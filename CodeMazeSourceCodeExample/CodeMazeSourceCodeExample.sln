@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMazeSourceCodeExample", "CodeMazeSourceCodeExample\CodeMazeSourceCodeExample.csproj", "{22DC9F1D-2455-498E-8F04-AFC3CF843EA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22DC9F1D-2455-498E-8F04-AFC3CF843EA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22DC9F1D-2455-498E-8F04-AFC3CF843EA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22DC9F1D-2455-498E-8F04-AFC3CF843EA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22DC9F1D-2455-498E-8F04-AFC3CF843EA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BFDDBD9-9130-40BE-BD0B-98BD8BBE30E1}
+	EndGlobalSection
+EndGlobal
