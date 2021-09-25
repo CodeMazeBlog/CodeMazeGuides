@@ -1,4 +1,4 @@
-﻿namespace EventsInCsharp.Services
+﻿namespace EventsInCsharp.Model
 {
 	public class Order
 	{

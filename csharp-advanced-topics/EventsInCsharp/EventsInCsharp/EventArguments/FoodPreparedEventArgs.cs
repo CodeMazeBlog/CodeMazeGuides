@@ -1,8 +1,9 @@
-﻿using System;
+﻿using EventsInCsharp.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EventsInCsharp.Services
+namespace EventsInCsharp.EventArguments
 {
 	public class FoodPreparedEventArgs : EventArgs
 	{

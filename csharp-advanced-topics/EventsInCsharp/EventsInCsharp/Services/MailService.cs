@@ -1,7 +1,8 @@
-﻿using EventsInCsharp.Services;
+﻿using EventsInCsharp.EventArguments;
+using EventsInCsharp.Model;
 using System;
 
-namespace EventsInCsharp
+namespace EventsInCsharp.Services
 {
 	public class MailService
 	{

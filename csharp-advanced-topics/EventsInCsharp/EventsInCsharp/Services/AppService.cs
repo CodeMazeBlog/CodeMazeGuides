@@ -1,9 +1,8 @@
-﻿using EventsInCsharp.Services;
+﻿using EventsInCsharp.EventArguments;
+using EventsInCsharp.Model;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace EventsInCsharp
+namespace EventsInCsharp.Services
 {
 	public class AppService
 	{

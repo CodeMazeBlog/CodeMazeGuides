@@ -1,4 +1,5 @@
-﻿using EventsInCsharp.Services;
+﻿using EventsInCsharp.Model;
+using EventsInCsharp.Services;
 using System;
 
 namespace EventsInCsharp

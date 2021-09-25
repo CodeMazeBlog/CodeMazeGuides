@@ -1,5 +1,6 @@
-﻿using System;
-using System.Threading;
+﻿using EventsInCsharp.EventArguments;
+using EventsInCsharp.Model;
+using System;
 
 namespace EventsInCsharp.Services
 {
@@ -10,7 +11,6 @@ namespace EventsInCsharp.Services
 		public void PrepareOrder(Order order)
 		{
 			Console.WriteLine($"Preparing your order '{order.Item}', please wait...");
-			//Thread.Sleep(4000);
 
 			OnFoodPrepared(order);
 		}
