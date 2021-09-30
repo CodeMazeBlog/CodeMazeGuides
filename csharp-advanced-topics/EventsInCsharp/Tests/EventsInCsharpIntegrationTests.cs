@@ -1,4 +1,6 @@
 using EventsInCsharp;
+using EventsInCsharp.EventArguments;
+using EventsInCsharp.Model;
 using EventsInCsharp.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
