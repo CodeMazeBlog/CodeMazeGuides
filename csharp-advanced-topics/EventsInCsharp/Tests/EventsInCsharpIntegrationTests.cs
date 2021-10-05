@@ -13,7 +13,7 @@ namespace Tests
 		[TestMethod]
 		public void givenTheOrder_EventIsRaised()
 		{
-			var receivedEvents = new List<string>();
+			var receivedEvents = new List<string>();  
 			var order = new Order { Item = "Pizza with extra cheese" }; 
 
 			var orderingService = new FoodOrderingService(); 
