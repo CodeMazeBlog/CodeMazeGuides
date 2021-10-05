@@ -29,7 +29,7 @@ namespace Tests
 			Assert.AreEqual("Pizza with extra cheese", receivedEvents[0]);
 		}
 
-		[TestMethod]
+		[TestMethod] 
 		public void givenTheOrder_whenServicesAreSubscribed_EventIsProcessedByServices()
 		{
 			var receivedEvents = new List<string>();
