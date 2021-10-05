@@ -16,7 +16,7 @@ namespace Tests
 			var receivedEvents = new List<string>();
 			var order = new Order { Item = "Pizza with extra cheese" };
 
-			var orderingService = new FoodOrderingService();
+			var orderingService = new FoodOrderingService(); 
 
 			orderingService.FoodPrepared += delegate (object sender, FoodPreparedEventArgs e)
 			{
