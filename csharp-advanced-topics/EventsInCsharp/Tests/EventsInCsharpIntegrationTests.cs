@@ -32,7 +32,7 @@ namespace Tests
 		[TestMethod] 
 		public void givenTheOrder_whenServicesAreSubscribed_EventIsProcessedByServices()
 		{
-			var receivedEvents = new List<string>();
+			varx receivedEvents = new List<string>();
 			var order = new Order { Item = "Pizza with extra cheese" };
 
 			var orderingService = new FoodOrderingService();
