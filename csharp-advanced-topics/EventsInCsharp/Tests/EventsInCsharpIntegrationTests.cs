@@ -46,6 +46,6 @@ namespace Tests
 
 			Assert.AreEqual("Pizza with extra cheese", appService.Order.Item);
 			Assert.AreEqual("Pizza with extra cheese", mailService.Order.Item);
-		}
+		} 
 	}
 }
