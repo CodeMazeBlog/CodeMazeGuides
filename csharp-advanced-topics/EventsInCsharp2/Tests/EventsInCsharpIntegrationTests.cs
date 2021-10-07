@@ -40,7 +40,7 @@ namespace Tests
 			var mailService = new MailService();
 
 			orderingService.FoodPrepared += appService.OnFoodPrepared;
-			orderingService.FoodPrepared += mailService.OnFoodPrepared;
+			orderingService.FoodPrepared += mailService.OnFoodPrepared; 
 
 			orderingService.PrepareOrder(order);
 
