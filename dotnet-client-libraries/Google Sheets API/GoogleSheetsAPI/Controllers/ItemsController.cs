@@ -44,7 +44,7 @@ namespace GoogleSheetsAPI.Controllers
         }
 
         [HttpPost]
-        public void Post(Item item)
+        public IActionResult Post(Item item)
         {
             var range = $"{SHEET_NAME}!A:D";
             var valueRange = new ValueRange
@@ -55,10 +55,12 @@ namespace GoogleSheetsAPI.Controllers
             var appendRequest = _googleSheetValues.Append(valueRange, SPREADSHEET_ID, range);
             appendRequest.ValueInputOption = AppendRequest.ValueInputOptionEnum.USERENTERED;
             appendRequest.Execute();
+
+            return CreatedAtAction(nameof(Get), item);
         }
 
         [HttpPut("{rowId}")]
-        public void Put(int rowId, Item item)
+        public IActionResult Put(int rowId, Item item)
         {
             var range = $"{SHEET_NAME}!A{rowId}:D{rowId}";
             var valueRange = new ValueRange
@@ -69,16 +71,20 @@ namespace GoogleSheetsAPI.Controllers
             var updateRequest = _googleSheetValues.Update(valueRange, SPREADSHEET_ID, range);
             updateRequest.ValueInputOption = UpdateRequest.ValueInputOptionEnum.USERENTERED;
             updateRequest.Execute();
+
+            return NoContent();
         }
 
         [HttpDelete("{rowId}")]
-        public void Delete(int rowId)
+        public IActionResult Delete(int rowId)
         {
             var range = $"{SHEET_NAME}!A{rowId}:D{rowId}";
             var requestBody = new ClearValuesRequest();
 
             var deleteRequest = _googleSheetValues.Clear(requestBody, SPREADSHEET_ID, range);
             deleteRequest.Execute();
+
+            return NoContent();
         }
     }
 }
