@@ -10,7 +10,7 @@ namespace GoogleSheetsAPI.Controllers
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        const string SPREADSHEET_ID = "143JhAuG7l_tSk5WMR4A1t1YuC-jL3r-DLmzw_WvC_bk";
+        const string SPREADSHEET_ID = "143J....";
         const string SHEET_NAME = "Items";
 
         SpreadsheetsResource.ValuesResource _googleSheetValues;

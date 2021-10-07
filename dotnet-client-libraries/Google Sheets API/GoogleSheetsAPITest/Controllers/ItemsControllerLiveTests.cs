@@ -9,17 +9,17 @@ using Xunit;
 
 namespace GoogleSheetsAPITest.Controllers
 {
-    public class ItemsControllerTests : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class ItemsControllerLiveTests : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private readonly HttpClient _client;
 
-        public ItemsControllerTests(CustomWebApplicationFactory<Startup> factory)
+        public ItemsControllerLiveTests(CustomWebApplicationFactory<Startup> factory)
         {
             _client = factory.CreateClient();
         }
-                
+
         [Fact]
-        public async Task VerifyControllerActions()
+        public async Task WhenInvokingActions_ThenSheetUpdated()
         {
             // Get Items
             var httpResponse = await GetItems();
@@ -61,7 +61,7 @@ namespace GoogleSheetsAPITest.Controllers
             // Get Items once again and verify row count
             httpResponse = await GetItems();
             httpResponse.EnsureSuccessStatusCode();
-            items = await GetItemsFromResponse(httpResponse);            
+            items = await GetItemsFromResponse(httpResponse);
             var rowCountAfterDelete = items.Count();
             Assert.Equal(rowCount, rowCountAfterDelete);
         }
