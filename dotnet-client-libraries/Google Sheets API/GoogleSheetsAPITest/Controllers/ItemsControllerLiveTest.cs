@@ -9,11 +9,11 @@ using Xunit;
 
 namespace GoogleSheetsAPITest.Controllers
 {
-    public class ItemsControllerLiveTests : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class ItemsControllerLiveTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
         private readonly HttpClient _client;
 
-        public ItemsControllerLiveTests(CustomWebApplicationFactory<Startup> factory)
+        public ItemsControllerLiveTest(CustomWebApplicationFactory<Startup> factory)
         {
             _client = factory.CreateClient();
         }
