@@ -26,7 +26,7 @@ namespace Tests
 			orderingService.PrepareOrder(order); 
 
 			Assert.AreEqual(1, receivedEvents.Count);
-			Assert.AreEqual("Pizza with extra cheese", receivedEvents[0]);
+			Assert.AreEqual("Pizza with extra cheese", receivedEvents[0]); 
 		}
 
 		[TestMethod] 
