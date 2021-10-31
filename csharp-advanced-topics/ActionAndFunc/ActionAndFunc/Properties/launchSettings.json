@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ActionAndFunc": {
+      "commandName": "Project",
+      "commandLineArgs": "sum print 1 2 3"
+    }
+  }
+}
