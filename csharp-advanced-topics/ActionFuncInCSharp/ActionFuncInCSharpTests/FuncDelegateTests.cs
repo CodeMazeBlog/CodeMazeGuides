@@ -1,5 +1,5 @@
 ﻿using System;
-using AsyncFuncInCSharp;
+using ActionFuncInCSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AsyncFuncInCSharpTests

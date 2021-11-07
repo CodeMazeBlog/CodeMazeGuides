@@ -1,4 +1,4 @@
-﻿namespace AsyncFuncInCSharp
+﻿namespace ActionFuncInCSharp
 {
     public static class ActionDelegate
     {

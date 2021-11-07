@@ -1,4 +1,4 @@
-﻿namespace AsyncFuncInCSharp;
+﻿namespace ActionFuncInCSharp;
 
 public delegate string Notifier(string message, DateTime notificationTime);
 
