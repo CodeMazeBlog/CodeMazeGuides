@@ -23,7 +23,7 @@ namespace Tests
 		[TestMethod]
 		public void whenStringIsSent_DelegateExecutesTheReferencedMethod()
 		{
-			PrintMessage delegate1 = new PrintMessage(WriteText);
+			var delegate1 = new PrintMessage(WriteText);
 			var result = delegate1("You're gonna need a bigger boat.");
 			Assert.AreEqual("Text:You're gonna need a bigger boat.", result);
 		}
@@ -31,7 +31,7 @@ namespace Tests
 		[TestMethod]
 		public void whenStringIsSent_DelegateReturnsTheReversedString()
 		{
-			PrintMessage delegate1 = new PrintMessage(ReverseText);
+			var delegate1 = new PrintMessage(ReverseText);
 			var result = delegate1("You're gonna need a bigger boat.");
 			Assert.AreEqual(Reverse("You're gonna need a bigger boat."), result);
 		}
@@ -39,9 +39,9 @@ namespace Tests
 		[TestMethod]
 		public void givenMulticastDelegate_whenTwoReferencedMethodAndPlusSign_DelegateInvocationListContainsTwoMethods()
 		{
-			PrintMessage delegate1 = new PrintMessage(WriteText);
-			PrintMessage delegate2 = new PrintMessage(ReverseText);
-			PrintMessage multicastDelegate = delegate1 + delegate2;
+			var delegate1 = new PrintMessage(WriteText);
+			var delegate2 = new PrintMessage(ReverseText);
+			var multicastDelegate = delegate1 + delegate2;
 
 			var invocationList = multicastDelegate.GetInvocationList();
 
@@ -53,9 +53,9 @@ namespace Tests
 		[TestMethod]
 		public void givenMulticastDelegate_whenTwoReferencedMethodAndPlusEquals_DelegateInvocationListContainsTwoMethods()
 		{
-			PrintMessage delegate1 = new PrintMessage(WriteText);
-			PrintMessage delegate2 = new PrintMessage(ReverseText);
-			PrintMessage multicastDelegate = delegate1;
+			var delegate1 = new PrintMessage(WriteText);
+			var delegate2 = new PrintMessage(ReverseText);
+			var multicastDelegate = delegate1;
 			multicastDelegate += delegate2;
 
 			var invocationList = multicastDelegate.GetInvocationList();
@@ -68,7 +68,7 @@ namespace Tests
 		[TestMethod]
 		public void whenGenericDelegate_DelegateExecutesTheReferencedMethod()
 		{
-			Print<string> delegate1 = new Print<string>(ReverseText);
+			var delegate1 = new Print<string>(ReverseText);
 			
 			var result = delegate1("You're gonna need a bigger boat.");
 
