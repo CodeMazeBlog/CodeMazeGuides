@@ -2,44 +2,64 @@
 
 namespace DelegatesInCsharp
 {
-	delegate void PrintMessage(string text);
-	delegate T Print<T>(T param1);
+    public delegate string DelegateFullName(string firstName, string lastName);
+    public delegate void DelegatePrintSumOfNumbers(int firstNumber, int secondNumber);
+    public delegate bool DelegateCheckLengthOfString(string exampleString);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var firstNumber = 5;
+            var secondNumber = 10;
+            var exampleString = "AmazingCodeMaze";
+            var firstName = "Code";
+            var lastName = "Maze";
 
-	class Program
-	{
-		public static void WriteText(string text) => Console.WriteLine($"Text: {text}");
-		public static void ReverseWriteText(string text) => Console.WriteLine($"Text in reverse: {Reverse(text)}");
-		public static string ReverseText(string text) => Reverse(text);
+            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
 
-		private static string Reverse(string s)
-		{
-			char[] charArray = s.ToCharArray();
-			Array.Reverse(charArray);
-			return new string(charArray);
-		}
+            #region Implementing Delegates Without Generics
 
-		static void Main(string[] args)
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseWriteText);
-			// with + sign
-			var multicastDelegate = delegate1 + delegate2;
+            Console.WriteLine("-------------- Prints Using Normal Delegate Invocation ---------------------");
 
-			// with =, +=, and -=
-			multicastDelegate = delegate1;
-			multicastDelegate += delegate2;
+            DelegateFullName delegateFullName = understandingDelegates.GetFullName;
+            var fullName = delegateFullName.Invoke(firstName, lastName);
+            Console.WriteLine(fullName);
 
-			multicastDelegate.Invoke("Go ahead, make my day.");
-			multicastDelegate("You're gonna need a bigger boat.");
+            DelegatePrintSumOfNumbers delegateSum = understandingDelegates.PrintSumOfNumbers;
+            delegateSum.Invoke(firstNumber, secondNumber);
 
-			var delegate3 = new Print<string>(ReverseText);
-			Console.WriteLine(delegate3("I'll be back."));
+            DelegateCheckLengthOfString delegateCheckLengthOfString = understandingDelegates.CheckLengthOfString;
+            Console.WriteLine(delegateCheckLengthOfString.Invoke(exampleString));
 
-			// comment out other stuff
-			Action<string> executeReverseWriteAction = ReverseWriteText;
-			executeReverseWriteAction("Are you not entertained?");
-			Func<string, string> executeReverseFunc = ReverseText;
-			Console.WriteLine(executeReverseFunc("Are you not entertained?"));
-		}
-	}
+            #endregion
+
+
+            #region Implementing Delegates With Generics
+            //Here we don't need to define delegates mentioned in line numbers 5,6 and 7
+            Console.WriteLine("\n-------------- Prints Using Generic Delegate Invocation --------------------\n");
+
+            Console.WriteLine("-------------- Implementing Func Delegate ----------------------------------");
+            Func<string, string, string> funcDelegateFullName = understandingDelegates.GetFullName;
+            var fullNameWithFuncDelegate = funcDelegateFullName.Invoke(firstName, lastName);
+            Console.WriteLine(fullNameWithFuncDelegate);
+
+            Console.WriteLine("-------------- Implementing Action Delegate --------------------------------");
+            Action<int, int> sumWithActionDelegate = understandingDelegates.PrintSumOfNumbers;
+            sumWithActionDelegate.Invoke(firstNumber, secondNumber);
+
+            Console.WriteLine("-------------- Implementing Predicate Delegate -----------------------------");
+            Predicate<string> stringLengthWithPredicateDelegate = understandingDelegates.CheckLengthOfString;
+            var resultOfPredicateDelegate = stringLengthWithPredicateDelegate.Invoke(exampleString);
+            Console.WriteLine(resultOfPredicateDelegate);
+
+            Console.WriteLine("-------------- Implementing Predicate using Func Delegate ------------------");
+            Func<string, bool> stringLengthWithFuncDelegate = understandingDelegates.CheckLengthOfString;
+            var resultOfPredicateWithFuncDelegate = stringLengthWithFuncDelegate.Invoke(exampleString);
+            Console.WriteLine(resultOfPredicateWithFuncDelegate);
+
+            #endregion
+
+            Console.ReadLine();
+        }
+    }
 }
