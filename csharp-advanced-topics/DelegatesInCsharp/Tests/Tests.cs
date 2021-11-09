@@ -1,94 +1,115 @@
+using DelegatesInCsharp;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using System;
+using System.IO;
 
 namespace Tests
 {
-	delegate string PrintMessage(string text);
-	delegate T Print<T>(T param1);
+    [TestClass]
+    public class Tests
+    {
+        #region GenericDelegateTests
 
-	[TestClass]
-	public class Tests
-	{
-		public static string WriteText(string text) { return $"Text:{text}"; }
-		public static string ReverseText(string text) { return Reverse(text); }
-		public static void ReverseWriteText(string text) { Console.WriteLine(Reverse(text)); }
+        [TestMethod]
+        public void WhenFirstNameAndLastNameProvided_GenericDelegateReturnsFullName()
+        {
+            //Arrange
+            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            Func<string, string, string> delegateFullName = understandingDelegates.GetFullName;
+            var firstName = "Code";
+            var lastName = "Maze";
 
-		private static string Reverse(string s)
-		{
-			char[] charArray = s.ToCharArray();
-			Array.Reverse(charArray);
-			return new string(charArray);
-		}
+            //Act
+            var result = delegateFullName.Invoke(firstName, lastName);
 
-		[TestMethod]
-		public void whenStringIsSent_DelegateExecutesTheReferencedMethod()
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var result = delegate1("You're gonna need a bigger boat.");
-			Assert.AreEqual("Text:You're gonna need a bigger boat.", result);
-		}
+            //Assert
+            Assert.AreEqual($"{firstName} {lastName}", result);
+        }
 
-		[TestMethod]
-		public void whenStringIsSent_DelegateReturnsTheReversedString()
-		{
-			var delegate1 = new PrintMessage(ReverseText);
-			var result = delegate1("You're gonna need a bigger boat.");
-			Assert.AreEqual(Reverse("You're gonna need a bigger boat."), result);
-		}
+        [TestMethod]
+        public void WhenTwoNumbersProvided_GenericDelegateReturnsSum()
+        {
+            //Arrange
+            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            Action<int, int> delegatePrintSumOfNumbers = understandingDelegates.PrintSumOfNumbers;
+            var firstNumber = 5;
+            var secondNumber = 10;
 
-		[TestMethod]
-		public void givenMulticastDelegate_whenTwoReferencedMethodAndPlusSign_DelegateInvocationListContainsTwoMethods()
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseText);
-			var multicastDelegate = delegate1 + delegate2;
+            //Act
+            using StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            delegatePrintSumOfNumbers.Invoke(firstNumber, secondNumber);
+            var expectedResult = firstNumber + secondNumber;
 
-			var invocationList = multicastDelegate.GetInvocationList();
+            //Assert
+            Assert.AreEqual(expectedResult.ToString().Trim(), stringWriter.ToString().Trim());
+        }
 
-			Assert.AreEqual(invocationList.Length, 2);
-			Assert.AreEqual(invocationList[0].Method.Name, "WriteText");
-			Assert.AreEqual(invocationList[1].Method.Name, "ReverseText");
-		}
 
-		[TestMethod]
-		public void givenMulticastDelegate_whenTwoReferencedMethodAndPlusEquals_DelegateInvocationListContainsTwoMethods()
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseText);
-			var multicastDelegate = delegate1;
-			multicastDelegate += delegate2;
 
-			var invocationList = multicastDelegate.GetInvocationList();
+        [TestMethod]
+        public void GivenAString_WhenLengthGreaterThanTenAndGenericDelegatePredicateUsed_ReturnTrue()
+        {
+            //Arrange
+            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            Predicate<string> delegateCheckLengthOfString = understandingDelegates.CheckLengthOfString;
+            var randomString = "CodeMazeBlogs";
 
-			Assert.AreEqual(invocationList.Length, 2);
-			Assert.AreEqual(invocationList[0].Method.Name, "WriteText");
-			Assert.AreEqual(invocationList[1].Method.Name, "ReverseText");
-		}
+            //Act
+            var result = delegateCheckLengthOfString.Invoke(randomString);
 
-		[TestMethod]
-		public void whenGenericDelegate_DelegateExecutesTheReferencedMethod()
-		{
-			var delegate1 = new Print<string>(ReverseText);
-			
-			var result = delegate1("You're gonna need a bigger boat.");
+            //Assert
+            Assert.IsTrue(result);
+        }
 
-			Assert.AreEqual(Reverse("You're gonna need a bigger boat."), result);
-		}
+        [TestMethod]
+        public void GivenAString_WhenLengthLessThanTenAndGenericDelegatePredicateUsed_ReturnFalse()
+        {
+            //Arrange
+            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            Predicate<string> delegateCheckLengthOfString = understandingDelegates.CheckLengthOfString;
+            var randomString = "CodeMaze";
 
-		[TestMethod]
-		public void whenActionDelegate_DelegateInvocationListNotEmpty()
-		{
-			Action<string> executeReverseWriteAction = ReverseWriteText;
-			var invocationList = executeReverseWriteAction.GetInvocationList();
-			Assert.AreEqual(invocationList.Length, 1);
-		}
+            //Act
+            var result = delegateCheckLengthOfString.Invoke(randomString);
 
-		[TestMethod]
-		public void whenFuncDelegate_DelegateInvocationListNotEmpty()
-		{
-			Func<string, string> executeReverseWriteAction = ReverseText;
-			var invocationList = executeReverseWriteAction.GetInvocationList();
-			Assert.AreEqual(invocationList.Length, 1);
-		}
-	}
+            //Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void GivenAString_WhenLengthGreaterThanTenAndGenericDelegateFuncUsed_ReturnTrue()
+        {
+            //Arrange
+            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            Func<string, bool> delegateCheckLengthOfString = understandingDelegates.CheckLengthOfString;
+            var randomString = "CodeMazeBlogs";
+
+            //Act
+            var result = delegateCheckLengthOfString.Invoke(randomString);
+
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void GivenAString_WhenLengthLessThanTenAndGenericDelegateFuncUsed_ReturnFalse()
+        {
+            //Arrange
+            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            Func<string, bool> delegateCheckLengthOfString = understandingDelegates.CheckLengthOfString;
+            var randomString = "CodeMaze";
+
+            //Act
+            var result = delegateCheckLengthOfString.Invoke(randomString);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
+
+        #endregion
+    }
 }
