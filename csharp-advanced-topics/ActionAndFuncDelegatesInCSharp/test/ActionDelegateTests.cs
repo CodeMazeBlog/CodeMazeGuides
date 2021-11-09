@@ -1,8 +1,12 @@
-﻿using System;
-using ActionFuncInCSharp;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using AsyncAndFuncInCsharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ActionFuncInCSharpTests
+namespace AsyncAndFuncInCsharp.Tests
 {
     [TestClass()]
     public class ActionDelegateTests
