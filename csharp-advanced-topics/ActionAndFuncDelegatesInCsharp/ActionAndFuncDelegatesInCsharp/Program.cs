@@ -9,7 +9,6 @@ namespace ActionAndFuncDelegatesInCsharp
         public static double Sum(double x, double y) => x + y;
         public static double Multiply(double x, double y) => x * y;
 
-
         static void Main(string[] args)
         {
             CalculationDelegate operation = Sum;
@@ -20,13 +19,11 @@ namespace ActionAndFuncDelegatesInCsharp
             CalculationDelegate divide = (x , y) => x / y;
             PrintResult(divide, 10, 2); // This case will show a strange name as the Method Name because the divide delegate objet is anonymous
 
-            
             Action doSomething = HelloWorld;
             doSomething();
 
             Func<DateTime> dateTimeYesterday = () => DateTime.Now.AddDays(-1);
             Console.WriteLine("Yesterday was {0}", dateTimeYesterday().ToShortDateString());
-
 
             Func<double, DateTime> dateTimeBackwards = (daysBackwards) => DateTime.Now.AddDays(-daysBackwards);
             var daysAgo = 5d;

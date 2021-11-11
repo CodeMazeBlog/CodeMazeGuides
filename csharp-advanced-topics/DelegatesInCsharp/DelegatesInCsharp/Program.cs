@@ -10,7 +10,6 @@ namespace DelegatesInCsharp
 		public static void WriteText(string text) => Console.WriteLine($"Text: {text}");
 		public static void ReverseWriteText(string text) => Console.WriteLine($"Text in reverse: {Reverse(text)}");
 		public static string ReverseText(string text) => Reverse(text);
-
 		private static string Reverse(string s)
 		{
 			char[] charArray = s.ToCharArray();
