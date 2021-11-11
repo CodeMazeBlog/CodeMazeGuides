@@ -11,13 +11,11 @@ namespace Tests
     [TestClass]
     public class Tests
     {
-        #region GenericDelegateTests
-
         [TestMethod]
         public void WhenFirstNameAndLastNameProvided_GenericDelegateReturnsFullName()
         {
             //Arrange
-            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            var understandingDelegates = new UnderstandingDelegates();
             Func<string, string, string> delegateFullName = understandingDelegates.GetFullName;
             var firstName = "Code";
             var lastName = "Maze";
@@ -33,7 +31,7 @@ namespace Tests
         public void WhenTwoNumbersProvided_GenericDelegateReturnsSum()
         {
             //Arrange
-            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            var understandingDelegates = new UnderstandingDelegates();
             Action<int, int> delegatePrintSumOfNumbers = understandingDelegates.PrintSumOfNumbers;
             var firstNumber = 5;
             var secondNumber = 10;
@@ -54,7 +52,7 @@ namespace Tests
         public void GivenAString_WhenLengthGreaterThanTenAndGenericDelegatePredicateUsed_ReturnTrue()
         {
             //Arrange
-            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            var understandingDelegates = new UnderstandingDelegates();
             Predicate<string> delegateCheckLengthOfString = understandingDelegates.CheckLengthOfString;
             var randomString = "CodeMazeBlogs";
 
@@ -69,7 +67,7 @@ namespace Tests
         public void GivenAString_WhenLengthLessThanTenAndGenericDelegatePredicateUsed_ReturnFalse()
         {
             //Arrange
-            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            var understandingDelegates = new UnderstandingDelegates();
             Predicate<string> delegateCheckLengthOfString = understandingDelegates.CheckLengthOfString;
             var randomString = "CodeMaze";
 
@@ -84,7 +82,7 @@ namespace Tests
         public void GivenAString_WhenLengthGreaterThanTenAndGenericDelegateFuncUsed_ReturnTrue()
         {
             //Arrange
-            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            var understandingDelegates = new UnderstandingDelegates();
             Func<string, bool> delegateCheckLengthOfString = understandingDelegates.CheckLengthOfString;
             var randomString = "CodeMazeBlogs";
 
@@ -99,7 +97,7 @@ namespace Tests
         public void GivenAString_WhenLengthLessThanTenAndGenericDelegateFuncUsed_ReturnFalse()
         {
             //Arrange
-            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
+            var understandingDelegates = new UnderstandingDelegates();
             Func<string, bool> delegateCheckLengthOfString = understandingDelegates.CheckLengthOfString;
             var randomString = "CodeMaze";
 
@@ -109,8 +107,5 @@ namespace Tests
             //Assert
             Assert.IsFalse(result);
         }
-
-
-        #endregion
     }
 }

@@ -15,9 +15,7 @@ namespace ActionFuncDelegatesCsharp
             var firstName = "Code";
             var lastName = "Maze";
 
-            UnderstandingDelegates understandingDelegates = new UnderstandingDelegates();
-
-            #region Implementing Delegates Without Generics
+            var understandingDelegates = new UnderstandingDelegates();
 
             Console.WriteLine("-------------- Prints Using Normal Delegate Invocation ---------------------");
 
@@ -31,10 +29,6 @@ namespace ActionFuncDelegatesCsharp
             DelegateCheckLengthOfString delegateCheckLengthOfString = understandingDelegates.CheckLengthOfString;
             Console.WriteLine(delegateCheckLengthOfString.Invoke(exampleString));
 
-            #endregion
-
-
-            #region Implementing Delegates With Generics
             //Here we don't need to define delegates mentioned in line numbers 5,6 and 7
             Console.WriteLine("\n-------------- Prints Using Generic Delegate Invocation --------------------\n");
 
@@ -56,8 +50,6 @@ namespace ActionFuncDelegatesCsharp
             Func<string, bool> stringLengthWithFuncDelegate = understandingDelegates.CheckLengthOfString;
             var resultOfPredicateWithFuncDelegate = stringLengthWithFuncDelegate.Invoke(exampleString);
             Console.WriteLine(resultOfPredicateWithFuncDelegate);
-
-            #endregion
 
             Console.ReadLine();
         }
