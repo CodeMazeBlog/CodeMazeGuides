@@ -89,7 +89,7 @@ namespace Tests
         [TestMethod]
         public void GivenContravariantActions_ThenTheyCanBeReferenced()
         {
-            // Givenqeeq
+            // Given
             Action<object> contravarianceExample = (x) => {
                 var exampleVariable = x;
             };
