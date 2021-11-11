@@ -6,7 +6,7 @@ using System.Linq;
 namespace Tests
 {
     [TestClass]
-    public class Tests
+    public class FuncAndActionDelegatesUnitTest
     {
         [TestMethod]
         public void GivenNegativeAndPositiveNumbers_WhenLINQAbsoluteSelectorViaFuncIsCalled_ThenAllNumbersHaveAbsoluteValues()
