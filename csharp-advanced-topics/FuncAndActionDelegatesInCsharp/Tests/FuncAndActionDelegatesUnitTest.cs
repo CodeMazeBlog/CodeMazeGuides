@@ -31,6 +31,7 @@ namespace Tests
             var absoluteNumbersWithoutFunc = numbers
                 .Select(new AbsoluteSelector())
                 .ToArray();
+
             // Then
             CollectionAssert.AreEqual(new int[] { 0, 1, 2, 3, 4, 5, 6 }, absoluteNumbersWithoutFunc);
         }
@@ -44,6 +45,7 @@ namespace Tests
             var signNumbers = numbers
                 .Select(x => x < 0 ? -1 : x > 0 ? 1 : 0)
                 .ToArray();
+
             // Then
             CollectionAssert.AreEqual(new int[] { 0, 1, -1, 1, -1, 1, 1 }, signNumbers);
         }
@@ -57,6 +59,7 @@ namespace Tests
             var signNumbersWithoutFunc = numbers
                 .Select(new SignSelector())
                 .ToArray();
+
             // Then
             CollectionAssert.AreEqual(new int[] { 0, 1, -1, 1, -1, 1, 1 }, signNumbersWithoutFunc);
         }
@@ -78,6 +81,7 @@ namespace Tests
             };
             // When
             Example.Log(logger, "Please log me!");
+
             // Then
             Assert.AreEqual(2, counter);
         }
@@ -85,7 +89,7 @@ namespace Tests
         [TestMethod]
         public void GivenContravariantActions_ThenTheyCanBeReferenced()
         {
-            // Given
+            // Givenqeeq
             Action<object> contravarianceExample = (x) => {
                 var exampleVariable = x;
             };
