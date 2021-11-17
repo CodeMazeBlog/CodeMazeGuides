@@ -2,6 +2,6 @@
 {
     public interface IMyService
     {
-        string GetInstanceId();
+        string InstanceId { get; }
     }
 }

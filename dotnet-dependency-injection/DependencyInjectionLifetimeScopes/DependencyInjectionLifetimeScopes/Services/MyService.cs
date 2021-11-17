@@ -2,18 +2,8 @@
 
 namespace DependencyInjectionLifetimeScopes
 {
-    public class MyService : IMyService
+    public class MyService : IMyTransientService, IMyScopedService, IMySingletonService
     {
-        public readonly IMyDependency _dependency;
-
-        public MyService(IMyDependency dependency)
-        {
-            _dependency = dependency ?? throw new ArgumentNullException(nameof(dependency));
-        }
-
-        public string GetInstanceId()
-        {
-            return _dependency.GetInstanceId();
-        }
+        public string InstanceId { get; } = Guid.NewGuid().ToString();
     }
 }

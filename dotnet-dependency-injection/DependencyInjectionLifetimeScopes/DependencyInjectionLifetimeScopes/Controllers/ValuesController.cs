@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 
 namespace DependencyInjectionLifetimeScopes.Controllers
@@ -7,21 +8,32 @@ namespace DependencyInjectionLifetimeScopes.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        public readonly IMyDependency _dependency;
-        public readonly IMyService _service;
+        public readonly ILogger _logger;
+        public readonly IMyTransientService _myTransientService;
+        public readonly IMyScopedService _myScopedService;
+        public readonly IMySingletonService _mySingletonService;
 
-        public ValuesController(IMyDependency dependency, IMyService service)
+        public ValuesController(
+            IMyTransientService myTransientService
+            , IMyScopedService myScopedService
+            , IMySingletonService mySingletonService
+            , ILogger<ValuesController> logger
+            )
         {
-            _dependency = dependency ?? throw new ArgumentNullException(nameof(dependency));
-            _service = service ?? throw new ArgumentNullException(nameof(service));
+            _logger = logger;
+            _myTransientService = myTransientService ?? throw new ArgumentNullException(nameof(myTransientService));
+            _myScopedService = myScopedService ?? throw new ArgumentNullException(nameof(myScopedService));
+            _mySingletonService = mySingletonService ?? throw new ArgumentNullException(nameof(mySingletonService));
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok($"Controller Dependency Instance: {_dependency.GetInstanceId()}" +
-                $"{Environment.NewLine}" +
-                $"Service    Dependency Instance: {_service.GetInstanceId()}");
+            _logger.LogInformation("Transient: " + _myTransientService.InstanceId);
+            _logger.LogInformation("Scoped: " + _myScopedService.InstanceId);
+            _logger.LogInformation("Singleton: " + _mySingletonService.InstanceId);
+
+            return Ok();
         }
     }
 }

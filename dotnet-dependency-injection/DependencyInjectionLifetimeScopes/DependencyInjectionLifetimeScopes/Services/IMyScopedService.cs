@@ -1,6 +1,6 @@
 ﻿namespace DependencyInjectionLifetimeScopes
 {
-    public interface IMyService
+    public interface IMyScopedService : IMyService
     {
     }
 }

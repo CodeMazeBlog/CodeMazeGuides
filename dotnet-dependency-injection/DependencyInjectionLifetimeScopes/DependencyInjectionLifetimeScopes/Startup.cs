@@ -21,8 +21,9 @@ namespace DependencyInjectionLifetimeScopes
         {
 
             services.AddControllers();
-            services.AddTransient<IMyService, MyService>();
-            services.AddSingleton<IMyDependency, MyDependency>();
+            services.AddTransient<IMyTransientService, MyService>();
+            services.AddScoped<IMyScopedService, MyService>();
+            services.AddSingleton<IMySingletonService, MyService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DependencyInjectionLifetimeScopes", Version = "v1" });
@@ -40,11 +41,9 @@ namespace DependencyInjectionLifetimeScopes
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
+            app.UseMyMiddleware();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
