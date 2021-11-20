@@ -56,6 +56,11 @@ namespace ThrowVsThrowEx
             }
             catch (Exception ex)
             {
+                //the stack trace of the top level exception is short
+                Assert.AreEqual(@"   at ThrowVsThrowEx.BusinessWorker.Work_WrapAndThrowNewEx()
+   at ThrowVsThrowEx.ThrowVsThrowExSamples.WrapAndThrowNewEx_KeepsTheStackTraceInTheInnerException()", ex.StackTrace);
+                //however, the actual exception and it's stack trace is visible within the ex.InnerException property
+                //the full exception string also reveals all the layers of inner exceptions
                 Assert.AreEqual(
                     @"ThrowVsThrowEx.BusinessWorker+BusinessException: I am a business domain wrapper for internal exceptions.
  ---> System.InvalidOperationException: That's a nasty bug!

@@ -17,7 +17,7 @@ namespace ThrowVsThrowEx
                 throw;
             }
         }
-
+        
         public void Work_ThrowEx()
         {
             try
