@@ -14,10 +14,10 @@ namespace DependencyInjectionLifetimeScopes.Controllers
         public readonly IMySingletonService _mySingletonService;
 
         public ValuesController(
-            IMyTransientService myTransientService
-            , IMyScopedService myScopedService
-            , IMySingletonService mySingletonService
-            , ILogger<ValuesController> logger
+            IMyTransientService myTransientService,
+            IMyScopedService myScopedService,
+            IMySingletonService mySingletonService,
+            ILogger<ValuesController> logger
             )
         {
             _logger = logger;
