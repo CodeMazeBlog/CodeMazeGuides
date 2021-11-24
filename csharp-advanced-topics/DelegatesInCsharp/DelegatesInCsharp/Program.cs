@@ -18,6 +18,23 @@ namespace DelegatesInCsharp
 			return new string(charArray);
 		}
 
+		private static void WriteRandomNumber()
+		{
+			Console.WriteLine(GenerateRandomNumber());
+		}
+		private static void WriteRandomNumberWithSeed(int seed)
+		{
+			Console.WriteLine(GenerateRandomNumberWithSeed(seed));
+		}
+		private static int GenerateRandomNumber()
+		{
+			return new Random().Next();
+		}
+		private static int GenerateRandomNumberWithSeed(int seed)
+		{
+			return new Random(seed).Next();
+		}
+
 		static void Main(string[] args)
 		{
 			var delegate1 = new PrintMessage(WriteText);
@@ -40,6 +57,27 @@ namespace DelegatesInCsharp
 			executeReverseWriteAction("Are you not entertained?");
 			Func<string, string> executeReverseFunc = ReverseText;
 			Console.WriteLine(executeReverseFunc("Are you not entertained?"));
+
+			//Action and Func Delegates in C# Example
+			Action executeWriteRandomNumber = WriteRandomNumber;
+			Action<int> executeWriteRandomNumberWithSeed = WriteRandomNumberWithSeed;
+			executeWriteRandomNumber();
+			executeWriteRandomNumberWithSeed(1);
+
+			Func<int> executeGenerateRandomNumber = GenerateRandomNumber;
+			Func<int,int> executeGenerateRandomNumberWithSeed = GenerateRandomNumberWithSeed;
+			executeGenerateRandomNumber();
+			executeGenerateRandomNumberWithSeed(11);
+
+			Action executeLambdaWriteRandomNumber = () => Console.WriteLine(GenerateRandomNumber());
+			Action<int> executeLambdaWriteRandomNumberWithSeed = (s) => Console.WriteLine(GenerateRandomNumberWithSeed(s));
+			executeLambdaWriteRandomNumber();
+			executeLambdaWriteRandomNumberWithSeed(2);
+
+			Func<int> executeLambdaGenerateRandomNumber = () => new Random().Next();
+			Func<int, int> executeLambdaGenerateRandomNumberWithSeed = (s) => new Random(s).Next();
+			executeLambdaGenerateRandomNumber();
+			executeLambdaGenerateRandomNumberWithSeed(22);
 		}
-	}
+    }
 }

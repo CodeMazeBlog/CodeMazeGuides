@@ -19,6 +19,22 @@ namespace Tests
 			Array.Reverse(charArray);
 			return new string(charArray);
 		}
+		private static void WriteRandomNumber()
+		{
+			Console.WriteLine(GenerateRandomNumber());
+		}
+		private static void WriteRandomNumberWithSeed(int seed)
+		{
+			Console.WriteLine(GenerateRandomNumberWithSeed(seed));
+		}
+		private static int GenerateRandomNumber()
+		{
+			return new Random().Next();
+		}
+		private static int GenerateRandomNumberWithSeed(int seed)
+		{
+			return new Random(seed).Next();
+		}
 
 		[TestMethod]
 		public void whenStringIsSent_DelegateExecutesTheReferencedMethod()
@@ -89,6 +105,31 @@ namespace Tests
 			Func<string, string> executeReverseWriteAction = ReverseText;
 			var invocationList = executeReverseWriteAction.GetInvocationList();
 			Assert.AreEqual(invocationList.Length, 1);
+		}
+
+		[TestMethod]
+		public void whenActionDelegate_DelegateInvocationWriteNotFailed()
+		{
+			Action executeWriteRandomNumber = WriteRandomNumber;
+			Action<int> executeWriteRandomNumberWithSeed = WriteRandomNumberWithSeed;
+            try
+            {
+				executeWriteRandomNumber();
+				executeWriteRandomNumberWithSeed(1);
+			}catch(Exception e)
+            {
+				Assert.Fail(e.Message);
+            }
+		}
+
+		[TestMethod]
+		public void whenFuncDelegate_DelegateInvocationGenerateNotEmpty()
+		{
+			Func<int> executeGenerateRandomNumber = GenerateRandomNumber;
+			Func<int, int> executeGenerateRandomNumberWithSeed = GenerateRandomNumberWithSeed;
+			var generatedNumber = executeGenerateRandomNumber();
+			var generatedNumberWithSeed = executeGenerateRandomNumberWithSeed(11);
+			Assert.IsNotNull(generatedNumberWithSeed);
 		}
 	}
 }
