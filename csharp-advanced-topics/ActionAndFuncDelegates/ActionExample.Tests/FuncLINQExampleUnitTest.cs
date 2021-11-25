@@ -1,12 +1,19 @@
-﻿using System;
+﻿using FuncLINQExample;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FuncLINQExample
+namespace Delegates.Tests
 {
-    class Program
+
+    [TestClass]
+    public class FuncLINQExampleUnitTest
     {
-        static void Main(string[] args)
+        [TestMethod]
+        public void givenFuncDelegate_whenSendingCustomers_thenReturnPremiumCustomers()
         {
             var customers = new List<Customer>
             {
@@ -16,27 +23,21 @@ namespace FuncLINQExample
                 new Customer { FirstName = "William",  Spending = 200},
             };
 
-            //Select premium customers who spend more than 250$ with using lambda functions
-            var premiumCusts = customers
-                .Where(c => c.Spending > 250);
-
-            foreach (var cust in premiumCusts)
-            {
-                Console.WriteLine(cust.FirstName);
-            }
-
             //define a Func which we will be assigned by custom function which will select premium customers 
             Func<Customer, bool> selectPremiums = Selector.PremiumCustomerSelector;
 
             //Select premium customers via Func delegate
             var premiumCustsCalculatedByFunc = customers
-                .Where(selectPremiums);
+                .Where(selectPremiums).ToList();
 
-            //Customers printed on screen is same 
-            foreach (var cust in premiumCustsCalculatedByFunc)
+            var premiumCustomers = new List<Customer>() 
             {
-                Console.WriteLine(cust.FirstName);
-            }
-        }        
+                new Customer { FirstName = "Linda" , Spending = 500},
+                new Customer { FirstName = "Elizabeth" , Spending = 300},
+            };
+
+            Assert.AreEqual(premiumCustomers.Count, premiumCustsCalculatedByFunc.Count); 
+
+        }
     }
 }
