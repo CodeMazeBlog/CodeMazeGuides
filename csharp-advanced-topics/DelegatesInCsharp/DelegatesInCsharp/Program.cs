@@ -22,19 +22,24 @@ namespace DelegatesInCsharp
 
             //Func Declaration
             Func<int, int, int> addingFuncOperation = AddingFunc;
+            Console.WriteLine("Func execution");
             //Invocation
             Console.WriteLine($"Result of addition is :{addingFuncOperation(2, 3)}");
+            Console.ReadLine();
         }
 
         public static void Adding(int a, int b)
         {
+            Console.WriteLine("Delegate execution");
             Console.WriteLine($"Result of addition is :{a + b}");
             Console.ReadLine();
         }
 
         static void DisplayNameAndAge(string username, int age)
         {
+            Console.WriteLine("Action execution");
             Console.WriteLine($"The username is {username} and the age is {age}.");
+            Console.ReadLine();
         }
 
         public static int AddingFunc(int a, int b)
