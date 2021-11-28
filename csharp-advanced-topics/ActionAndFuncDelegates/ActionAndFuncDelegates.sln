@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31911.196
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionExample", "ActionExample\ActionExample.csproj", "{98813C59-EF6F-4644-A9BB-52B8E564FB75}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuncLINQExample", "FuncLINQ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C961D346-FA24-416C-9C9D-A16ACC517D9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegates.Tests", "ActionExample.Tests\Delegates.Tests.csproj", "{017D62E7-FBCA-4A2F-9C89-5F6CD87BF1CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delegates.Tests", "ActionExample.Tests\Delegates.Tests.csproj", "{017D62E7-FBCA-4A2F-9C89-5F6CD87BF1CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegateExample", "DelegateExample\DelegateExample.csproj", "{6347AB8A-1579-484E-AD0A-6DF26B45C9DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{017D62E7-FBCA-4A2F-9C89-5F6CD87BF1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{017D62E7-FBCA-4A2F-9C89-5F6CD87BF1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{017D62E7-FBCA-4A2F-9C89-5F6CD87BF1CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6347AB8A-1579-484E-AD0A-6DF26B45C9DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6347AB8A-1579-484E-AD0A-6DF26B45C9DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6347AB8A-1579-484E-AD0A-6DF26B45C9DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6347AB8A-1579-484E-AD0A-6DF26B45C9DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,6 +14,7 @@ namespace Delegates.Tests
         {
             return x + y;
         }
+
         [TestMethod]
         public void givenFuncDelegate_whenSendingParameters_thenReturnValuesAreEqual()
         {
