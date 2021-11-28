@@ -1,23 +1,23 @@
-﻿namespace LearnFuncAndAction;
+﻿namespace ActionAndFuncDelegates;
 
 public class Program
 {
     // declare a delegate
-    delegate double Calculate(float a, float b);
+    delegate ulong Calculate(uint a, uint b);
 
     // assign method to variable declared as type Calculate
     static Calculate calcRectAreaDelegate = Rectangle.CalculateArea;
 
     // instead of declaring the Calculate delegate and assigning a method, we can simply use Func
-    static Func<float, float, double> calcRectAreaFunc = Rectangle.CalculateArea;
+    static Func<uint, uint, ulong> calcRectAreaFunc = Rectangle.CalculateArea;
 
     // example of Action variable
-    static Action<float, float> calcRectPerimeterAction = Rectangle.CalculatePerimeter;
+    static Action<uint, uint> calcRectPerimeterAction = Rectangle.CalculatePerimeter;
     
-    static void Main(string[] args)
+    public static void Main(string[]? args)
     {
-        int length = 10;
-        int breadth = 20;
+        uint length = 10;
+        uint breadth = 20;
         
         var areaOfRectangle = calcRectAreaDelegate(length, breadth);
         Console.WriteLine($"Area of rectangle (calculated by delegate referenced to the method) - {areaOfRectangle}");
@@ -32,6 +32,6 @@ public class Program
 
 public class Rectangle
 {
-    public static double CalculateArea(float length, float breadth) => length * breadth;
-    public static void CalculatePerimeter(float length, float breadth) => Console.Write(2 * (length + breadth));
+    public static ulong CalculateArea(uint length, uint breadth) => length * breadth;
+    public static void CalculatePerimeter(uint length, uint breadth) => Console.Write(2 * (length + breadth));
 }
