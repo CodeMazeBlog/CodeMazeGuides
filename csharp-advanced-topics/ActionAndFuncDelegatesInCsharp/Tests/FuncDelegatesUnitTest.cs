@@ -15,7 +15,7 @@ namespace Tests
         [InlineData(24, "John", "My name is John and i am 24 years old")]
         public void whenNameAndAgeIsEntered_thenConfirmFullDetails(int age, string name, string expected)
         {
-            var funcs = FullDetails;
+            Func<int,string,string> funcs = FullDetails;
 
             var actual = funcs(age, name);
 

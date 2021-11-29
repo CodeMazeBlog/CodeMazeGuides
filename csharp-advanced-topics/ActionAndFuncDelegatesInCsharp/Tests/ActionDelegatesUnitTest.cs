@@ -17,7 +17,7 @@ namespace Tests
         [Fact]
         public void whenDelegateIsChecked_thenConfirmType()
         {
-            var Actiondelegate = UsingActionDelegates;
+            Action Actiondelegate = UsingActionDelegates;
 
             Assert.IsType<Action>(Actiondelegate);
         }
@@ -28,7 +28,7 @@ namespace Tests
         {
             using (var consoleOutput = new ConsoleOutput())
             {
-                var action2 = FullNameAndAge;
+                Action<string,int> action2 = FullNameAndAge;
 
                 action2(fullName, age);
 
