@@ -24,7 +24,7 @@ namespace Tests
 
         [Theory]
         [InlineData("Umoh Tobby", 23, "My full name is Umoh Tobby, and i am 23 years old")]
-        public void whenNameAndAgeIsEntered_thenConfirmFullNameAndAge(string fullName, int age, string expected)
+        public void whenNameAndAgeIsEntered_thenConfirmFullNameAndAge(string fullName, int age, string? expected)
         {
             using (var consoleOutput = new ConsoleOutput())
             {
