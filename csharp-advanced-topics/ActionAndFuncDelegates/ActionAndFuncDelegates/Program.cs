@@ -8,7 +8,7 @@ public class Program
     // assign method to variable declared as type Calculate
     static Calculate calcRectAreaDelegate = Rectangle.CalculateArea;
 
-    // instead of declaring the Calculate delegate and assigning a method, we can simply use Func
+    // instead of declaring the Calculate delegate type and assigning a method, we can simply use Func
     static Func<uint, uint, ulong> calcRectAreaFunc = Rectangle.CalculateArea;
 
     // example of Action variable
