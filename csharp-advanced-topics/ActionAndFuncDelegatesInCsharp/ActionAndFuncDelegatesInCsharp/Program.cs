@@ -1,5 +1,7 @@
 ﻿using System;
-
+/// <summary>
+/// Aligady@gmail.com
+/// </summary>
 namespace ActionAndFuncDelegatesInCsharp
 {
     class Program
