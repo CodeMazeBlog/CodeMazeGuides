@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "e:\\GitHub\\Source\\Repos\\CodeMazeGuides\\csharp-advanced-topics\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp.csproj",
+      "projectUniqueName": "e:\\GitHub\\Source\\Repos\\CodeMazeGuides\\csharp-advanced-topics\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp.csproj",
       "projectName": "ActionAndFuncDelegatesInCsharp",
-      "projectPath": "e:\\GitHub\\Source\\Repos\\CodeMazeGuides\\csharp-advanced-topics\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp.csproj",
+      "projectPath": "e:\\GitHub\\Source\\Repos\\CodeMazeGuides\\csharp-advanced-topics\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp.csproj",
       "packagesPath": "C:\\Users\\pcs\\.nuget\\packages\\",
-      "outputPath": "e:\\GitHub\\Source\\Repos\\CodeMazeGuides\\csharp-advanced-topics\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp\\obj\\",
+      "outputPath": "e:\\GitHub\\Source\\Repos\\CodeMazeGuides\\csharp-advanced-topics\\ActionAndFuncDelegatesInCsharp\\ActionAndFuncDelegatesInCsharp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages",
