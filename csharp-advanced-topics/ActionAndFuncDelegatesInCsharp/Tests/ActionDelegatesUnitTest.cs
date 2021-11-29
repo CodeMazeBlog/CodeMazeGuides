@@ -51,10 +51,10 @@ namespace Tests
             Console.SetOut(stringWriter);
         }
 
-        public string GetOuput()
+        public string? GetOuput()
         {
             var getStringWriter = Convert.ToString(stringWriter);
-            var getString = getStringWriter.Replace("\r\n", "");
+            var getString = getStringWriter != null ? getStringWriter.Replace("\r\n", "") : getStringWriter;
 
             return getString;
         }
