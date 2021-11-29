@@ -1,6 +1,7 @@
 ﻿using Xunit;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Tests
 {
@@ -54,7 +55,7 @@ namespace Tests
         public string? GetOuput()
         {
             var getStringWriter = Convert.ToString(stringWriter);
-            var getString = getStringWriter != null ? getStringWriter.Replace("\r\n", "") : getStringWriter;
+            var getString = getStringWriter != null ? Regex.Replace(getStringWriter, @"\t|\n|\r", String.Empty) : getStringWriter;
 
             return getString;
         }
