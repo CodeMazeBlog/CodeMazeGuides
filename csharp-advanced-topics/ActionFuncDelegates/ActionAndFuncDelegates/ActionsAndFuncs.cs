@@ -29,6 +29,7 @@ namespace ActionAndFuncDelegates
                 actionDelegate = (name) => { LastGreetedName = name; Console.WriteLine("Hi old person, your name is: " + name); };
             actionDelegate(s);
         }
+
         static void Main(string[] args)
         {
             //delegates
@@ -45,7 +46,7 @@ namespace ActionAndFuncDelegates
 
 
             //------------ Func with Where
-            List<int> numbers = new List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            var numbers = new List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
             Func<int, bool> isEvenFunc = x => x % 2 == 0;
 
             var evenNumbersByAnonymousMethod = numbers.Where(x => x % 2 == 0); //Use a lambda expression

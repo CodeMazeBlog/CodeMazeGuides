@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30621.155
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionAndFuncDelegates", "ActionAndFuncDelegates\ActionAndFuncDelegates.csproj", "{984C0C6E-567F-4817-A17E-6672BFFA1F2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegatesTest", "ActionAndFuncDelegatesTest\ActionAndFuncDelegatesTest.csproj", "{BF0CFCE3-1142-4728-B46C-E02C5BEDEC86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "ActionAndFuncDelegatesTest\Tests.csproj", "{BF0CFCE3-1142-4728-B46C-E02C5BEDEC86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
