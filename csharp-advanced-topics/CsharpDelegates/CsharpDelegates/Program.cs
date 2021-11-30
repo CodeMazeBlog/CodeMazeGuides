@@ -20,7 +20,7 @@ namespace CsharpDelegates
         }
         static void Main(string[] args)
         {
-            //define a func delegate that takes two integer inputs and returns an integer output and assign it to the CalcProduct method
+            //define a func delegate that takes two integer inputs and returns an integer output
             Func<int, int, int> product = CalcProduct;
             int result = product(10, 10);
             //create an action delegate
