@@ -7,12 +7,6 @@ namespace Tests
 {
     public class FuncAndActionUnitTest
     {
-        [SetUp]
-        public void Setup()
-        {
-
-        }
-
         [Test]
         public void whenFuncPointingToCountMethodIsInvoked_thenResultIsSameAsMethodCountCalled()
         {
@@ -32,7 +26,6 @@ namespace Tests
             voidMethodPointer("Testing");
             bool result = stringWriter.ToString().Contains("7");
             Assert.True(result);
-
         }
     }
 }

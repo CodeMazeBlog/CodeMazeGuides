@@ -16,7 +16,5 @@ namespace ActionAndFuncInCsharp
         {
             Console.WriteLine(s.Length);
         }
-
-
     }
 }
