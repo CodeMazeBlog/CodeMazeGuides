@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CsharpDelegates
+namespace Delegates
 {
-    public class Program
+   public class Program
     {
         //define a function that takes two numbers and returns their product 
         public static int CalcProduct(int firstNum, int secondNum)
@@ -14,7 +10,7 @@ namespace CsharpDelegates
             return firstNum * secondNum;
         }
         //define a void function that prints the product of two numbers
-        public static void PrintProduct(int result) 
+        public static void PrintProduct(int result)
         {
             Console.WriteLine("The product is {0}", result);
         }

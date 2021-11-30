@@ -1,8 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using CsharpDelegates;
-
-namespace CsharpDelegatesTests
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Delegates;
+namespace DelegateTests
 {
     [TestClass]
     public class DelegateUnitTests
@@ -16,7 +14,5 @@ namespace CsharpDelegatesTests
             int actual = Program.CalcProduct(first, second);
             Assert.AreEqual(expected, actual);
         }
-
-       
     }
 }
