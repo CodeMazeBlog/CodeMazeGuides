@@ -27,12 +27,10 @@ namespace ActionAndFuncDelegatesInCsharp
             myLambdaAction(300);
             myLambdaAction(41);
 
-            
             Func<int, int, int> sum = Add;
 
             Console.WriteLine(sum(2, 3));
             Console.WriteLine(sum(5, 12));
-
 
             Console.ReadKey();
         }
