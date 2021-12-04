@@ -1,5 +1,6 @@
 ﻿using System;
 /// <summary>
+/// Alireza Gadyari
 /// Aligady@gmail.com
 /// </summary>
 namespace ActionAndFuncDelegatesInCsharp
