@@ -45,3 +45,4 @@ e:\GitHub\Source\Repos\CodeMazeGuides\csharp-advanced-topics\ActionAndFuncDelega
 e:\GitHub\Source\Repos\CodeMazeGuides\csharp-advanced-topics\ActionAndFuncDelegatesInCsharp\ActionAndFuncDelegatesInCsharp\obj\Debug\net5.0\ref\ActionAndFuncDelegatesInCsharp.dll
 e:\GitHub\Source\Repos\CodeMazeGuides\csharp-advanced-topics\ActionAndFuncDelegatesInCsharp\ActionAndFuncDelegatesInCsharp\obj\Debug\net5.0\ActionAndFuncDelegatesInCsharp.pdb
 e:\GitHub\Source\Repos\CodeMazeGuides\csharp-advanced-topics\ActionAndFuncDelegatesInCsharp\ActionAndFuncDelegatesInCsharp\obj\Debug\net5.0\ActionAndFuncDelegatesInCsharp.genruntimeconfig.cache
+e:\GitHub\Source\Repos\CodeMazeGuides\csharp-advanced-topics\ActionAndFuncDelegatesInCsharp\ActionAndFuncDelegatesInCsharp\obj\Debug\net5.0\ActionAndFuncDelegatesInCsharp.csproj.AssemblyReference.cache

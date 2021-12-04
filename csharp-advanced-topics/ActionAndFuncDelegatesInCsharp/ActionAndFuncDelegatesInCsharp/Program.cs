@@ -4,66 +4,90 @@
 /// </summary>
 namespace ActionAndFuncDelegatesInCsharp
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             #region Action delegate in c#
-            
-            //Action delegate
-            Action<string> displayAction = Display;
-            displayAction("Hello world!");
-
-            //Action delegate by Anonymous
-            Action<string> displayActionAnonymous = delegate (string message)
-            {
-                Console.WriteLine("Hello world!");
-            };
-            displayActionAnonymous("Hello world!");
-            Console.ReadLine();
-
-            //Action delegate by Lambda expression 
-            Action<string> displayActionLambda = message => Console.WriteLine(message);
-            displayActionLambda("Hello world!");
-            Console.ReadLine();
+            ActionDelegate();
+            ActionDelegateByAnonymous();
+            ActionDelegateByLambdaExpression();
             #endregion
 
-
             #region Func delegate in c#
-            //Func delegate
+            Display(FuncDelegate());
+            Display(FuncDelegateByAnonymous());
+            Display(FuncDelegateByLambdaExpression());
+            #endregion
+        }
+
+        #region Action Methods
+        public static int ActionDelegate()
+        {
+            Action<string> displayAction = Display;
+            displayAction("Hello world!");
+            return displayAction.GetInvocationList().Length;
+        }
+        public static int ActionDelegateByAnonymous()
+        {
+            Action<string> displayActionAnonymous = delegate (string message)
+            {
+                Console.WriteLine(message);
+            };
+            displayActionAnonymous("Hello world!");
+            return displayActionAnonymous.GetInvocationList().Length;
+        }
+        public static int ActionDelegateByLambdaExpression()
+        {
+            Action<string> displayActionLambda = message => Console.WriteLine(message);
+            displayActionLambda("Hello world!");
+            return displayActionLambda.GetInvocationList().Length;
+        }
+
+        #endregion
+
+        #region Func Methods
+        public static int FuncDelegate()
+        {
             Func<int, int, int> multiplyFunc = Multiply;
             int result = multiplyFunc(8, 10);
-            Console.WriteLine(result);
-            Console.ReadLine();
+            return result;
+        }
 
-            //Func delegate by Anonymous
+        public static int FuncDelegateByAnonymous()
+        {
             Func<int, int, int> multiplyFuncAnonymous = delegate (int x, int y)
             {
                 return x * y;
             };
             int resultAnonymous = multiplyFuncAnonymous(5, 10);
-            Console.WriteLine(resultAnonymous);
-            Console.ReadLine();
-
-            //Func delegate by Lambda expression 
-            Func<int, int, int> multiplyFuncLambda = (x, y) => x * y;
-            //Or 
-            //Func<int, int, int> multiplyFuncLambda = (x, y) => x * y;
-            int resultLambda = multiplyFuncLambda(5, 10);
-            Console.WriteLine(resultLambda);
-            Console.ReadLine();
-            #endregion
+            return resultAnonymous;
         }
 
+        public static int FuncDelegateByLambdaExpression()
+        {
+            Func<int, int, int> multiplyFuncLambda = (x, y) => x * y;
+            int resultLambda = multiplyFuncLambda(4, 10);
+            return resultLambda;
+        }
+        #endregion
+
+        #region Other Methods
         static void Display(string message)
         {
             Console.WriteLine(message);
-            Console.ReadLine();
+        }
+
+        static void Display(int value)
+        {
+            Console.WriteLine(value.ToString());
         }
 
         static int Multiply(int x, int y)
         {
             return x * y;
         }
+        #endregion
+
     }
 }
