@@ -19,9 +19,9 @@ namespace StringBuilderCheckEmpty
 
             var emptyStringBuilder = new StringBuilder();
 
-            string converted2String = emptyStringBuilder.ToString();
+            var converted2String = emptyStringBuilder.ToString();
 
-            if (String.IsNullOrEmpty(converted2String))
+            if (string.IsNullOrEmpty(converted2String))
             {
                 Console.WriteLine("emptyStringBuilder is empty!");
             }
@@ -33,7 +33,7 @@ namespace StringBuilderCheckEmpty
             }
 
 
-            if (emptyStringBuilder.ToString() == String.Empty)
+            if (emptyStringBuilder.ToString() == string.Empty)
             {
                 Console.WriteLine("emptyStringBuilder is empty!");
             }

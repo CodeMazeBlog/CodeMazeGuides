@@ -8,7 +8,7 @@ namespace StringBuilderTests
     public class StringBuilderCheckEmptyTests
     {
         [TestMethod]
-        public void givenStringBuilder_whenZeroChar_thenLengthEqualZero()
+        public void GivenStringBuilder_WhenZeroChar_ThenLengthEqualZero()
         {
             var filledStringBuilder = new StringBuilder();
             
@@ -16,11 +16,11 @@ namespace StringBuilderTests
         }
 
         [TestMethod]
-        public void givenStringBuilder_whenConvertedToString_thenStringEqualZero()
+        public void GivenStringBuilder_WhenConvertedToString_ThenStringEqualZero()
         {
             var emptyStringBuilder = new StringBuilder();
 
-            string converted2String = emptyStringBuilder.ToString();
+            var converted2String = emptyStringBuilder.ToString();
 
             Assert.IsTrue(string.Empty == converted2String);
         }
