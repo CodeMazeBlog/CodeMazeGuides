@@ -14,7 +14,6 @@ namespace ActionAndFuncDelegates
             Console.WriteLine(num1 + num2);
         }
 
-
         static void Main(string[] args)
         {
 
