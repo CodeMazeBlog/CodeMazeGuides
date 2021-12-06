@@ -5,32 +5,32 @@ using System.Threading.Tasks;
 
 namespace RunCodeInNewThreadConsoleApplication
 {
-class Program
-{
-    static async Task Main(string[] args)
+    class Program
     {
-        Console.WriteLine($"{ThreadInfo.Log()} Starting up PDF validations");
-
-        var tasks = new List<Task>();
-
-        for (int i = 0; i <= 2; i++)
+        static async Task Main(string[] args)
         {
-            int instanceNumber = i;
-            tasks.Add(Task.Run(() => new PdfValidator(instanceNumber).ValidateFile()).ContinueWith(LogResult));
+            Console.WriteLine($"{ThreadInfo.Log()} Starting up PDF validations");
+
+            var tasks = new List<Task>();
+
+            for (int i = 0; i <= 2; i++)
+            {
+                int instanceNumber = i;
+                tasks.Add(Task.Run(() => new PdfValidator(instanceNumber).ValidateFile()).ContinueWith(LogResult));
+            }
+
+            Console.WriteLine($"{ThreadInfo.Log()} Now waiting for results...");
+
+            await Task.WhenAll(tasks).ConfigureAwait(true);
+
+            Console.WriteLine($"{ThreadInfo.Log()} All done.");
+
+            Console.ReadKey();
         }
 
-        Console.WriteLine($"{ThreadInfo.Log()} Now waiting for results...");
-
-        await Task.WhenAll(tasks).ConfigureAwait(true);
-
-        Console.WriteLine($"{ThreadInfo.Log()} All done.");
-
-        Console.ReadKey();
+        private static void LogResult(Task<string> task)
+        {
+            Console.WriteLine($"{ThreadInfo.Log()} Is Valid: {task.Result}");
+        }
     }
-
-    private static void LogResult(Task<string> task)
-    {
-        Console.WriteLine($"{ThreadInfo.Log()} Is Valid: {task.Result}");
-    }
-}
 }
