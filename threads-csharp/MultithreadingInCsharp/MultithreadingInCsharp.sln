@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunCodeInNewThreadApplicationTests", "RunCodeInNewThreadApplicationTests\RunCodeInNewThreadApplicationTests.csproj", "{081C16A8-573C-4955-B1C1-A577B7CB1E54}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunCodeInNewThreadConsoleApplication", "RunCodeInNewThreadConsoleApplication\RunCodeInNewThreadConsoleApplication.csproj", "{EFF7CF8F-59BC-4ED3-BF57-593EE164E879}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunCodeInNewThreadApplicationTests", "RunCodeInNewThreadApplicationTests\RunCodeInNewThreadApplicationTests.csproj", "{081C16A8-573C-4955-B1C1-A577B7CB1E54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
