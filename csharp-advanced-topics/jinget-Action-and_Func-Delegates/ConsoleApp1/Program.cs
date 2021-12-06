@@ -1,13 +1,10 @@
-﻿using System;
-using System.Threading;
-
-namespace ActionAndFunc
+﻿namespace ActionAndFunc
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            CallWebService(DummyService);
+            CallWebService(DummyVoidService);
 
             int result = CallWebService(DummyService);
         }
@@ -65,6 +62,6 @@ namespace ActionAndFunc
             return -1;
         }
         static int DummyService() { return 10; }
+        static void DummyVoidService() { }
     }
-
 }
