@@ -7,13 +7,15 @@ namespace DictionaryGetValueByIndex
     {
         public static void Main(string[] args)
         {
-            var capitals = new Dictionary<string, string>(){
+            var capitals = new Dictionary<string, string>()
+            {
                 {"Turkey", "Ankara"},
                 {"UK", "London"},
                 {"USA", "Washington"}                
             };
 
             var element = capitals.ElementAt(2);
+
             Console.WriteLine(element);
 
             Console.WriteLine($"Just Key: {capitals.ElementAt(2).Key}");

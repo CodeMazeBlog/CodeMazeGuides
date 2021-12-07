@@ -10,7 +10,8 @@ namespace DictionaryTests
         [TestMethod]
         public void GivenDictionary_WhenAccessedByIndex_ThenReturnElement()
         {
-            var capitals = new Dictionary<string, string>(){
+            var capitals = new Dictionary<string, string>()
+            {
                 {"Turkey", "Ankara"},
                 {"UK", "London"},
                 {"USA", "Washington"}
@@ -25,7 +26,8 @@ namespace DictionaryTests
         [TestMethod]
         public void GivenDictionary_WhenAccessedByIndex_ThenReturnElementValue()
         {
-            var capitals = new Dictionary<string, string>(){
+            var capitals = new Dictionary<string, string>()
+            {
                 {"Turkey", "Ankara"},
                 {"UK", "London"},
                 {"USA", "Washington"}
