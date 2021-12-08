@@ -6,10 +6,14 @@ using AutoFacImplementationWeb.Interface;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+
+using System;
+using System.Linq;
 
 namespace AutoFacImplementationWeb
 {
@@ -23,23 +27,26 @@ namespace AutoFacImplementationWeb
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddControllersAsServices();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AutoFacImplementationWeb", Version = "v1" });
             });
-            services.AddAutofac();
-        }
 
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
             builder.RegisterType<PersonBusiness>().As<IPersonBusiness>();
+            builder.RegisterType<StringBusiness>().As<IStringBusiness>();
+            var controllersTypesInAssembly = typeof(Startup).Assembly.GetExportedTypes()
+                .Where(type => typeof(ControllerBase).IsAssignableFrom(type)).ToArray();
+            builder.RegisterTypes(controllersTypesInAssembly).PropertiesAutowired();
+
+            return new AutofacServiceProvider(builder.Build());
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
