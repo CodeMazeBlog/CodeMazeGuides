@@ -101,8 +101,8 @@ namespace Test
                 { "Orange", 5 },
                 { "Pear", 2 }
             };
-            
-            bool DictionaryHasBanana = MyDictionary.ContainsKey("Banana"); // true
+
+            bool DictionaryHasBanana = MyDictionary.ContainsKey("Banana");
 
             Assert.IsTrue(DictionaryHasBanana);
         }
