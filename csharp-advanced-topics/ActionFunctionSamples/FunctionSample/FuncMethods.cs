@@ -30,7 +30,6 @@ namespace FunctionSample
 
         public static void ShowFunctionExamples()
         {
-
             double Pow(double value1, double value2)
             {
                 return Math.Pow(value1, value2);
