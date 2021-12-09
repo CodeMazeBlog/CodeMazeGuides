@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertCharArray2String", "ConvertCharArray2String\ConvertCharArray2String.csproj", "{E526D224-B8CE-4E46-AF6C-AB5A3987323C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertCharArray2String", "ConvertCharArray2String\ConvertCharArray2String.csproj", "{F21AE7B0-5961-431F-9573-CF567C362730}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertCharArray2StringTests", "ConvertCharArray2StringTests\ConvertCharArray2StringTests.csproj", "{C1B5D5EE-1714-49E8-BAAA-5A31DA4C852E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConvertCharArray2StringTests", "ConvertCharArray2StringTests\ConvertCharArray2StringTests.csproj", "{8359457A-7DEA-438D-9A3B-8725C41729C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
