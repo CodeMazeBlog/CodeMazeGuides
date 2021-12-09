@@ -1,3 +1,3 @@
 ﻿using ActionSample;
 
-MyMethods.ShowActionExamples();
+ActionMethods.ShowActionExamples();

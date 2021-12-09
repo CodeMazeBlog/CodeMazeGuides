@@ -8,7 +8,7 @@ namespace TestProject
         [TestMethod]
         public void WhenShowExample_ThenCorrectOutput()
         {
-            ActionSample.MyMethods.ShowActionExamples();
+            ActionSample.ActionMethods.ShowActionExamples();
         }
     }
 }

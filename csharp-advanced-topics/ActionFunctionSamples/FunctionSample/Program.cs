@@ -1,3 +1,3 @@
 ﻿using FunctionSample;
 
-MyMethods.ShowFunctionExamples();
+FuncMethods.ShowFunctionExamples();

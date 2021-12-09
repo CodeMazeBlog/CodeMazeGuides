@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FunctionSample
 {
-    public class MyMethods
+    public class FuncMethods
     {
         int _sum = 0;
         int _count = 0;
@@ -36,13 +36,21 @@ namespace FunctionSample
                 return Math.Pow(value1, value2);
             }
 
+            //
+            //Defines a few Funcs
+            //
+
             Func<double, double, double> localFunc = Pow;
-            Func<int, int, int> anonymousAction = delegate (int value1, int value2) { return MyMethods.Add(value1, value2); };
+            Func<int, int, int> anonymousAction = delegate (int value1, int value2) { return FuncMethods.Add(value1, value2); };
 
-            MyMethods myMethods = new MyMethods();
+            FuncMethods funcMethods = new FuncMethods();
 
-            Func<int, int> lambadaFunc = (x) => myMethods.Add(x);
-            Func<double> simpleFunc = myMethods.GetAvg;
+            Func<int, int> lambadaFunc = (x) => funcMethods.Add(x);
+            Func<double> simpleFunc = funcMethods.GetAvg;
+
+            //
+            //Calls defined Funcs
+            //
 
             Console.WriteLine(localFunc(2, 3));
             Console.WriteLine(anonymousAction(2, 3));

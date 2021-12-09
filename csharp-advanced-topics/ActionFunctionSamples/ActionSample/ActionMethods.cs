@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ActionSample
 {
-    public class MyMethods
+    public class ActionMethods
     {
         static string defaultName = "World";
 
@@ -27,12 +27,20 @@ namespace ActionSample
                 Console.WriteLine("Hello World!");
             }
 
+            //
+            //Defines a few actions
+            //
+
             Action localAction = PrintHello;
             Action<string> anonymousAction = delegate (string name) { Console.WriteLine(string.Format("Hello {0}!", name)); };
-            Action staticAction = MyMethods.PrintHello;
+            Action staticAction = ActionMethods.PrintHello;
 
-            MyMethods myMethods = new MyMethods();
-            Action<string> lambadaAction = (x) => myMethods.PrintHello(x);
+            ActionMethods actionMethods = new ActionMethods();
+            Action<string> lambadaAction = (x) => actionMethods.PrintHello(x);
+
+            //
+            //Calls defined actions
+            //
 
             localAction();
             anonymousAction("World");
