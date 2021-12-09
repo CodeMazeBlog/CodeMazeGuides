@@ -6,17 +6,17 @@ namespace ConvertCharArray2StringTests
     public class ConvertCharArrayTests
     {
         [TestMethod]
-        public void GivenCharArray_WhenConvertedByConstructor_ThenStringCreated()
+        public void GivenCharArray_WhenConvertedByConstructor_ThenReturnString()
         {
             char[] charArray = { 'c', 'o', 'd', 'e', ' ', 'm', 'a', 'z', 'e' };
 
             var convertedToString = new string(charArray);
-
-            Assert.AreEqual("code maze",convertedToString);
+            
+            Assert.AreEqual("code maze", convertedToString);
         }
 
         [TestMethod]
-        public void GivenCharArray_WhenConvertedByJoin_ThenStringCreated()
+        public void GivenCharArray_WhenConvertedByJoin_ThenReturnString()
         {
             char[] charArray = { 'c', 'o', 'd', 'e', ' ', 'm', 'a', 'z', 'e' };
 
@@ -26,13 +26,13 @@ namespace ConvertCharArray2StringTests
         }
 
         [TestMethod]
-        public void GivenCharArray_WhenConvertedByConcat_ThenStringCreated()
+        public void GivenCharArray_WhenConvertedByConcat_ThenReturnString()
         {
             char[] charArray = { 'c', 'o', 'd', 'e', ' ', 'm', 'a', 'z', 'e' };
 
-            var concattedToString = string.Concat(charArray);
+            var concatedToString = string.Concat(charArray);
 
-            Assert.AreEqual("code maze", concattedToString);
+            Assert.AreEqual("code maze", concatedToString);
         }
     }
 }

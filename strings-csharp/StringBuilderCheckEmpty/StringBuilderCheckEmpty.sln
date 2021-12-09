@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.31911.260
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringBuilderCheckEmpty", "StringBuilderCheckEmpty\StringBuilderCheckEmpty.csproj", "{AD142495-ABB5-490B-B03C-7D1A2DAD9AA3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringBuilderTests", "StringBuilderTests\StringBuilderTests.csproj", "{82562BFD-F8CB-4688-B8F6-021453C5AB64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringBuilderTests", "StringBuilderTests\StringBuilderTests.csproj", "{82562BFD-F8CB-4688-B8F6-021453C5AB64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
