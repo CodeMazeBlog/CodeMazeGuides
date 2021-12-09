@@ -14,7 +14,7 @@ namespace Test
             Dictionary<string, int> MyDictionary = new Dictionary<string, int>() { { "Apple", 3 }, { "Banana", -2 }, { "Orange", 5 }, { "Pear", 2 } };
             bool DictionaryHasBanana = MyDictionary.ContainsKey("Banana"); // true
             bool DictionaryHasKiwi = MyDictionary.ContainsKey("Kiwi"); // false
-            bool DictionaryHasLowercaseBanana = MyDictionary.ContainsKey("banana"); // false, because "Banana" exists but "banana does not"
+            bool DictionaryHasLowercaseBanana = MyDictionary.ContainsKey("banana"); // false, because "Banana" exists but "banana" does not
 
             Assert.IsTrue(DictionaryHasBanana);
             Assert.IsFalse(DictionaryHasKiwi);
