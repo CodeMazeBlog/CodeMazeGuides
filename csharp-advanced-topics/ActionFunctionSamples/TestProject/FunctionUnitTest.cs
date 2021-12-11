@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace TestProject
 {
@@ -16,7 +17,7 @@ namespace TestProject
 
                 FunctionSample.FuncMethods.ShowFunctionExamples();
 
-                var output = stringWriter.ToString().Replace("\r\n", ",").TrimEnd(',');
+                var output = Regex.Replace(stringWriter.ToString(), @"\s+", ",").TrimEnd(',');
 
                 Assert.AreEqual("8,5,2.5", output);
             }

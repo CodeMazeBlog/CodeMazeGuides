@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace TestProject
 {
@@ -16,9 +17,9 @@ namespace TestProject
 
                 ActionSample.ActionMethods.ShowActionExamples();
 
-                var output = stringWriter.ToString().Replace("\r\n", ",").TrimEnd(',');
+                int count = Regex.Matches(stringWriter.ToString(), "Hello World!").Count;
 
-                Assert.AreEqual("Hello World!,Hello World!,Hello World!,Hello World!", output);
+                Assert.AreEqual(count, 4);
             }
         }
     }
