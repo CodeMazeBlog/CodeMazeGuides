@@ -36,7 +36,7 @@ namespace ActionSample
             Action staticAction = ActionMethods.PrintHello;
 
             ActionMethods actionMethods = new ActionMethods();
-            Action<string> lambadaAction = (x) => actionMethods.PrintHello(x);
+            Action<string> lambdaAction = (x) => actionMethods.PrintHello(x);
 
             //
             //Calls defined actions
@@ -45,7 +45,7 @@ namespace ActionSample
             localAction();
             anonymousAction("World");
             staticAction();
-            lambadaAction("World");
+            lambdaAction("World");
         }
     }
 }

@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
 
 namespace TestProject
 {
@@ -8,7 +10,16 @@ namespace TestProject
         [TestMethod]
         public void WhenShowExample_ThenCorrectOutput()
         {
-            ActionSample.ActionMethods.ShowActionExamples();
+            using (var stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+
+                ActionSample.ActionMethods.ShowActionExamples();
+
+                var output = stringWriter.ToString().Replace("\r\n", ",").TrimEnd(',');
+
+                Assert.AreEqual("Hello World!,Hello World!,Hello World!,Hello World!", output);
+            }
         }
     }
 }

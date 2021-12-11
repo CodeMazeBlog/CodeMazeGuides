@@ -8,9 +8,7 @@ namespace TestProject
         [TestMethod]
         public void WhenShowExamples_ThenCorrectOutputs()
         {
-            FunctionSample.FuncMethods.ShowFunctionExamples();
-
-            ActionSample.ActionMethods.ShowActionExamples();
+            new TotalIntTest().WhenShowExamples_ThenCorrectOutputs();
         }
     }
 }

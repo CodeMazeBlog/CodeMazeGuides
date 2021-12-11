@@ -8,8 +8,8 @@ namespace FunctionSample
 {
     public class FuncMethods
     {
-        int _sum = 0;
-        int _count = 0;
+        int sum = 0;
+        int count = 0;
 
         public static int Add(int value1, int value2)
         {
@@ -18,14 +18,14 @@ namespace FunctionSample
 
         public int Add(int value)
         {
-            _sum += value;
-            _count++;
-            return _sum;
+            sum += value;
+            count++;
+            return sum;
         }
 
         public double GetAvg()
         {
-            return _count > 0 ? (double)_sum / _count : 0;
+            return count > 0 ? (double)sum / count : 0;
         }
 
         public static void ShowFunctionExamples()
@@ -40,11 +40,11 @@ namespace FunctionSample
             //
 
             Func<double, double, double> localFunc = Pow;
-            Func<int, int, int> anonymousAction = delegate (int value1, int value2) { return FuncMethods.Add(value1, value2); };
+            Func<int, int, int> anonymousFunc = delegate (int value1, int value2) { return FuncMethods.Add(value1, value2); };
 
             FuncMethods funcMethods = new FuncMethods();
 
-            Func<int, int> lambadaFunc = (x) => funcMethods.Add(x);
+            Func<int, int> lambdaFunc = (x) => funcMethods.Add(x);
             Func<double> simpleFunc = funcMethods.GetAvg;
 
             //
@@ -52,10 +52,10 @@ namespace FunctionSample
             //
 
             Console.WriteLine(localFunc(2, 3));
-            Console.WriteLine(anonymousAction(2, 3));
+            Console.WriteLine(anonymousFunc(2, 3));
 
-            lambadaFunc(2);
-            lambadaFunc(3);
+            lambdaFunc(2);
+            lambdaFunc(3);
 
             Console.WriteLine(simpleFunc());
         }
