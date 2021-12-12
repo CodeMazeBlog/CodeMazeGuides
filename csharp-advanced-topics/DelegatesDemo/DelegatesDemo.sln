@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30711.63
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegatesDemo.SimpleDelegate", "DelegatesDemo.SimpleDelegate\DelegatesDemo.SimpleDelegate.csproj", "{234DFCA8-4207-4784-A6E9-83FC00FB9FEC}"
 EndProject
@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegatesDemo.ActionDemo", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegatesDemo.FuncDemo", "DelegatesDemo.FuncDemo\DelegatesDemo.FuncDemo.csproj", "{93CA024B-B80D-4F9C-BF6D-4F4F62A9A5DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegatesDemo.ActionPracticalUsage", "DelegatesDemo.ActionPracticalUsage\DelegatesDemo.ActionPracticalUsage.csproj", "{D3CEA8CA-CA37-4746-B4FC-E8DBE713DC56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegatesDemo.ActionPracticalUsage", "DelegatesDemo.ActionPracticalUsage\DelegatesDemo.ActionPracticalUsage.csproj", "{D3CEA8CA-CA37-4746-B4FC-E8DBE713DC56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegatesDemo.FuncPracticalUsage", "DelegatesDemo.FuncPracticalUsage\DelegatesDemo.FuncPracticalUsage.csproj", "{0CBC16F1-7BE0-4719-998F-8CD4273A371E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegatesDemo.FuncPracticalUsage", "DelegatesDemo.FuncPracticalUsage\DelegatesDemo.FuncPracticalUsage.csproj", "{0CBC16F1-7BE0-4719-998F-8CD4273A371E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{81314FC4-7CA4-4DAB-9C04-4BA9D72BB021}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{0CBC16F1-7BE0-4719-998F-8CD4273A371E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CBC16F1-7BE0-4719-998F-8CD4273A371E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CBC16F1-7BE0-4719-998F-8CD4273A371E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81314FC4-7CA4-4DAB-9C04-4BA9D72BB021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81314FC4-7CA4-4DAB-9C04-4BA9D72BB021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81314FC4-7CA4-4DAB-9C04-4BA9D72BB021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81314FC4-7CA4-4DAB-9C04-4BA9D72BB021}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

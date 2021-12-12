@@ -2,7 +2,7 @@
 
 namespace DelegatesDemo.FuncDemo
 {
-    class Program
+   public class Program
     {
         static void Main(string[] args)
         {
@@ -15,24 +15,32 @@ namespace DelegatesDemo.FuncDemo
             Console.WriteLine("Select Calculation  Operation: add, subtract, multiply, divide");
             var operation = Console.ReadLine();
 
-            Func<int,int,int> calculation
-                = operation switch
-                {
-                    "add" => (x, y) => x + y,
-                    "subtract" => (x, y) => x - y,
-                    "multiply" => (x, y) => x * y,
-                    _ => (x, y) => y != 0 ? x / y : 0
-                };
+            int result = CalculatorOperation(firstNumber, secondNumber, operation);
 
-            CalculateResult(firstNumber, secondNumber, calculation);
-
+            Console.WriteLine($"Result = {result}");
+        
             Console.ReadKey();
         }
 
-        private static void CalculateResult(int firstNumber, int secondNumber, Func<int, int, int> calculation)
+        public static int CalculatorOperation(int firstNumber, int secondNumber, string operation)
+        {
+            Func<int, int, int> calculation
+               = operation switch
+               {
+                   "add" => (x, y) => x + y,
+                   "subtract" => (x, y) => x - y,
+                   "multiply" => (x, y) => x * y,
+                   _ => (x, y) => y != 0 ? x / y : 0
+               };            
+
+            return CalculateResult(firstNumber, secondNumber, calculation);
+        }
+
+        private static int CalculateResult(int firstNumber, int secondNumber, Func<int,int,int> calculation)
         {
             var result = calculation(firstNumber, secondNumber);
-            Console.WriteLine($"Result = {result}");
+            return result;
+
         }
     }
 }

@@ -15,7 +15,14 @@ namespace DelegatesDemo.ActionDemo
             Console.WriteLine("Select Calculation  Operation: add, subtract, multiply, divide");
             var operation = Console.ReadLine();
 
-            Action<int,int> calculation
+            
+
+            Console.ReadKey();
+        }
+
+        public static void CalculatorOperation(int firstNumber, int secondNumber, string operation)
+        {
+            Action<int, int> calculation
                 = operation switch
                 {
                     "add" => (x, y) => Console.WriteLine(x + y),
@@ -25,8 +32,6 @@ namespace DelegatesDemo.ActionDemo
                 };
 
             CalculateResult(firstNumber, secondNumber, calculation);
-
-            Console.ReadKey();
         }
 
         private static void CalculateResult(int firstNumber, int secondNumber, Action<int,int> calculation)
