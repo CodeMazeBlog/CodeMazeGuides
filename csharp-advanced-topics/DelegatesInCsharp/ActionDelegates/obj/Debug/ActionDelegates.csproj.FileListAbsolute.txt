@@ -1,0 +1,7 @@
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\ActionDelegates\bin\Debug\ActionDelegates.exe.config
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\ActionDelegates\bin\Debug\ActionDelegates.exe
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\ActionDelegates\bin\Debug\ActionDelegates.pdb
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\ActionDelegates\obj\Debug\ActionDelegates.csprojAssemblyReference.cache
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\ActionDelegates\obj\Debug\ActionDelegates.csproj.CoreCompileInputs.cache
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\ActionDelegates\obj\Debug\ActionDelegates.exe
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\ActionDelegates\obj\Debug\ActionDelegates.pdb
