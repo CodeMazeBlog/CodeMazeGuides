@@ -1,0 +1,7 @@
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\FuncDelegates\bin\Debug\FuncDelegates.exe.config
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\FuncDelegates\bin\Debug\FuncDelegates.exe
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\FuncDelegates\bin\Debug\FuncDelegates.pdb
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\FuncDelegates\obj\Debug\FuncDelegates.csprojAssemblyReference.cache
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\FuncDelegates\obj\Debug\FuncDelegates.csproj.CoreCompileInputs.cache
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\FuncDelegates\obj\Debug\FuncDelegates.exe
+C:\Users\sarit\Documents\Visual Studio 2019\Projects\Delegates\FuncDelegates\obj\Debug\FuncDelegates.pdb
