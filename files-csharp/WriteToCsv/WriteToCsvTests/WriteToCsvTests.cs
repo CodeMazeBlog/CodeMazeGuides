@@ -33,11 +33,14 @@ namespace WriteToCsvTests
 
                 outputString = Encoding.ASCII.GetString(memoryStream.ToArray());
             }
+
+            //remove newlines (either \r\n or \n for win resp linux) as it might issues when comparing
+            outputString = outputString.Replace("\n", "").Replace("\r","");
             var expectedString = @"Identifier,IsLiving,Name,DateOfBirth
 1,True,John,2006-03-05
 2,True,Steve,1998-03-09
 3,True,James,1994-03-08
-";
+".Replace("\n", "").Replace("\r", "");
 
             Assert.AreEqual(expectedString, outputString, ignoreCase: false, CultureInfo.InvariantCulture);
 
