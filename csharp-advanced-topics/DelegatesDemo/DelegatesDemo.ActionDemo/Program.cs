@@ -15,7 +15,7 @@ namespace DelegatesDemo.ActionDemo
             Console.WriteLine("Select Calculation  Operation: add, subtract, multiply, divide");
             var operation = Console.ReadLine();
 
-            
+            CalculatorOperation(firstNumber, secondNumber, operation);
 
             Console.ReadKey();
         }
