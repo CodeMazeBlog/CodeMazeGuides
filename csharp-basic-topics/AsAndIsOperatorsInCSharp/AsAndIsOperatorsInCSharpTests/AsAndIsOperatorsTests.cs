@@ -27,7 +27,7 @@ namespace AsAndIsOperatorsInCSharpTests
         }
 
         [Fact]
-        public void EqualityVsTypeComparison_ShouldPrintThatComparisonsAreValid()
+        public void WhenEqualityVsTypeComparison_ThenPrintThatComparisonsAreValid()
         {
             Program.EqualityVsTypeComparison();
 
@@ -38,7 +38,7 @@ namespace AsAndIsOperatorsInCSharpTests
         }
 
         [Fact]
-        public void IsCowAnAnimal_ShouldPrintFalseAndTrue()
+        public void WhenIsCowAnAnimal_ThenPrintFalseAndTrue()
         {
             Program.IsCowAnAnimal();
 
@@ -50,7 +50,7 @@ namespace AsAndIsOperatorsInCSharpTests
         }
 
         [Fact]
-        public void CanCowBeAsAnimal_ShouldPrintTrue()
+        public void WhenCanCowBeAsAnimal_ThenShouldPrintTrue()
         {
             Program.CanCowBeAsAnimal();
 
@@ -61,7 +61,7 @@ namespace AsAndIsOperatorsInCSharpTests
         }
 
         [Fact]
-        public void CanObjectBeAsCow_ShouldPrintThatObjectIsNull()
+        public void WhenCanObjectBeAsCow_ThenPrintThatObjectIsNull()
         {
             Program.CanObjectBeAsCow();
 
@@ -72,7 +72,7 @@ namespace AsAndIsOperatorsInCSharpTests
         }
 
         [Fact]
-        public void HumanFriendlyNullCheck_ShouldCheckNullCorrectly()
+        public void GivenNullAndNonNull_WhenHumanFriendlyNullCheck_ThenCheckNullCorrectly()
         {
             object nonNullObject = new();
             object nullObject = null;
@@ -85,7 +85,7 @@ namespace AsAndIsOperatorsInCSharpTests
         }
 
         [Fact]
-        public void AsVsCastInvalidHandling_ShouldPrintInvalidChecks()
+        public void WhenAsVsCastInvalidHandling_ThenPrintInvalidChecks()
         {
             Program.AsVsCastInvalidHandling();
 
