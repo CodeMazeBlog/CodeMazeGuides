@@ -19,13 +19,13 @@ namespace ActionAndFuncDelegates
             // Func Delegate implementation
             Func<int, int, int, string, string> getDateString = CrateDateString;
             Console.WriteLine(string.Concat("Last date of year is " ,getDateString(2021, 12, 31, format)));
-
         }
 
         static void PrintText(string first, string second)
         {
             Console.WriteLine(string.Concat(first, delimeter, second));
         }
+
         static void PrintText(string first, string second, string third)
         {
             Console.WriteLine(string.Concat(first, delimeter, second, delimeter, third));
@@ -35,6 +35,5 @@ namespace ActionAndFuncDelegates
         {
             return new DateTime(day, second, third).ToString(format);
         }
-
     }
 }
