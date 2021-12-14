@@ -39,7 +39,7 @@ namespace WriteToCsvTests
 3,True,James,1994-03-08
 ";
 
-            Assert.AreEqual(expectedString, outputString);
+            Assert.AreEqual(expectedString, outputString, ignoreCase: false, CultureInfo.InvariantCulture);
 
         }
     }
