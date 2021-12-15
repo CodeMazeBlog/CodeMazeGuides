@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\codemazeapi\codemazeapi.csproj" />
+    <ProjectReference Include="..\codemazeapi\codemazeapi.csproj" />
   </ItemGroup>
 
 </Project>

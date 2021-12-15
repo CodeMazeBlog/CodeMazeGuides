@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "codemazeapi", "codemazeapi.csproj", "{87322A12-B04C-4F10-AE4F-4B5C2EE78577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "codemazeapi", "codemazeapi\codemazeapi.csproj", "{87322A12-B04C-4F10-AE4F-4B5C2EE78577}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "..\Test\Test\Test.csproj", "{F38DE839-7B98-4BBA-A5F5-C64146BB72AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{F38DE839-7B98-4BBA-A5F5-C64146BB72AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
