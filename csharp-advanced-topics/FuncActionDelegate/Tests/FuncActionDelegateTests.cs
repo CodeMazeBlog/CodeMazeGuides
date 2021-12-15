@@ -33,9 +33,9 @@ namespace Tests
         [TestMethod]
         public void whenActionDelegate_DelegateInvocationListNotEmpty()
         {
-            Action<Candidate,int> executeDisplayScoreAction = DisplayScore;
+            Action<Candidate, int> executeDisplayScoreAction = DisplayScore;
             var invocationList = executeDisplayScoreAction.GetInvocationList();
-            Assert.AreEqual(invocationList.Length,1);
+            Assert.AreEqual(invocationList.Length, 1);
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace Tests
         {
             Func<Candidate, bool> checkAgeFunc = CheckAge;
             Func<Candidate, bool> checkExperienceFunc = CheckExperience;
-            
+
             var invocationList1 = checkAgeFunc.GetInvocationList();
             var invocationList2 = checkExperienceFunc.GetInvocationList();
 
@@ -55,7 +55,7 @@ namespace Tests
         public void whenActionDelegate_DelegateExecutesTheReferenceMethod()
         {
             var candidate = new Candidate { Name = "David", Age = 20, Experience = 5 };
-            Action<Candidate, int> executeDisplayScoreAction= DisplayScore;
+            Action<Candidate, int> executeDisplayScoreAction = DisplayScore;
 
             try
             {
@@ -83,7 +83,7 @@ namespace Tests
                 }
             }
 
-            Assert.AreEqual(score,10);
+            Assert.AreEqual(score, 10);
         }
     }
 }
