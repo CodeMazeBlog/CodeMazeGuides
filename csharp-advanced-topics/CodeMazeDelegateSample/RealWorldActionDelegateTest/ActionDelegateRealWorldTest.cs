@@ -19,7 +19,10 @@ namespace RealWorldActionDelegateTest
                 Action<string> toUpperFunctionPointer = Helpers.PrintUpperCase;
                 ttMixDoubleParticipants.players.ForEach(toUpperFunctionPointer);
 
-                Assert.IsTrue(stringWriter.ToString().Contains("BRUCE\r\nTINA\r\nTIM\r\nMINA\r\n"));
+                Assert.IsTrue(stringWriter.ToString().Contains("BRUCE"));
+                Assert.IsTrue(stringWriter.ToString().Contains("TINA"));
+                Assert.IsTrue(stringWriter.ToString().Contains("TIM"));
+                Assert.IsTrue(stringWriter.ToString().Contains("MINA"));
             }
         }
     }

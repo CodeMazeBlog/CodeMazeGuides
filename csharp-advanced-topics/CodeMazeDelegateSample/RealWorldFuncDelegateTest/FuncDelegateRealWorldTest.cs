@@ -23,7 +23,10 @@ namespace RealWorldFuncDelegateTest
                 List<string> expected = new List<string>() { "BRUCE", "TINA", "TIM", "MINA" };
                 CollectionAssert.AreEqual(expected, upperCaseList);
                 upperCaseList.ForEach(printerFunctionPointer);
-                Assert.IsTrue(stringWriter.ToString().Contains("BRUCE\r\nTINA\r\nTIM\r\nMINA\r\n"));
+                Assert.IsTrue(stringWriter.ToString().Contains("BRUCE"));
+                Assert.IsTrue(stringWriter.ToString().Contains("TINA"));
+                Assert.IsTrue(stringWriter.ToString().Contains("TIM"));
+                Assert.IsTrue(stringWriter.ToString().Contains("MINA"));
             }
         }
     }
