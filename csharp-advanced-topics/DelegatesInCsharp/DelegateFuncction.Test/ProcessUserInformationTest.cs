@@ -26,7 +26,7 @@ namespace DelegateFuncction.Test
 
         [Fact]
         [Trait("Category", "Delegate")]
-        public void WelcomeUserToTheVotingSystem_CantVote_AcceptsUserAndDelegates_ReturnsString()
+        public void WelcomeUserToTheVotingSystem_GivenUserAndDelegates_WhenUserCannotVote_ThenReturnString()
         {
             var actual = ProcessUserInformation.WelcomeUserToTheVotingSystem(_youngUser, (age) => age > 18);
             var expected = $"Sorry {_youngUser.Name}, you are not allowed to vote at {_youngUser.Age} years old";
@@ -35,7 +35,7 @@ namespace DelegateFuncction.Test
 
         [Fact]
         [Trait("Category", "Delegate")]
-        public void WelcomeUserToTheVotingSystem_CanVote_AcceptsUserAndDelegates_ReturnsString()
+        public void WelcomeUserToTheVotingSystem_GivenUserAndDelegates_WhenUserCanVote_ThenReturnString()
         {
             var actual = ProcessUserInformation.WelcomeUserToTheVotingSystem(_adult, (age) => age > 18);
             var expected = $"Welcome to the voting system {_adult.Name}, we hope you vote the right Candidate";
@@ -45,7 +45,7 @@ namespace DelegateFuncction.Test
 
         [Fact]
         [Trait("Category", "Func")]
-        public void WelcomeUserToTheVotingSystemFunc_CanVote_AcceptsUserAndDelegates_ReturnsString()
+        public void WelcomeUserToTheVotingSystemFunc_GivenUserAndFunc_WhenUserCanVote_ThenReturnString()
         {
             var actual = ProcessUserInformation.WelcomeUserToTheVotingSystemFunc(_adult, (age) => age > 18,
                 (canUserVote, username, age) =>
@@ -65,7 +65,7 @@ namespace DelegateFuncction.Test
 
         [Fact]
         [Trait("Category", "Func")]
-        public void WelcomeUserToTheVotingSystemFunc_CantVote_AcceptsUserAndDelegates_ReturnsString()
+        public void WWelcomeUserToTheVotingSystemFunc_GivenUserAndFunc_WhenUserCannotVote_ThenReturnString()
         {
             var actual = ProcessUserInformation.WelcomeUserToTheVotingSystemFunc(_youngUser, (age) => age > 18,
                 (canUserVote, username, age) =>
@@ -84,7 +84,7 @@ namespace DelegateFuncction.Test
         
         [Fact]
         [Trait("Category", "Action")]
-        public void WelcomeUserToTheVotingSystemFuncAndAction_CantVote_AcceptsUserAndDelegates_ReturnsString()
+        public void WelcomeUserToTheVotingSystemFuncAndAction_GivenUserAndAction_WhenUserCannotVote_ThenReturnString()
         {
             var actual = ProcessUserInformation.WelcomeUserToTheVotingSystemFuncAndAction(_youngUser, (age) => age > 18,
                 (canUserVote, username, age) =>
@@ -103,7 +103,7 @@ namespace DelegateFuncction.Test
         
         [Fact]
         [Trait("Category", "Action")]
-        public void WelcomeUserToTheVotingSystemFuncAndAction_CanVote_AcceptsUserAndDelegates_ReturnsString()
+        public void WelcomeUserToTheVotingSystemFuncAndAction_GivenUserAndAction_WhenUserCanVote_ThenReturnString()
         {
             var actual = ProcessUserInformation.WelcomeUserToTheVotingSystemFuncAndAction(_adult, (age) => age > 18,
                 (canUserVote, username, age) =>
