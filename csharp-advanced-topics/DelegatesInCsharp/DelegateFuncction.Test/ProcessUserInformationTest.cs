@@ -6,8 +6,8 @@ namespace DelegateFuncction.Test
 {
     public class ProcessUserInformationTest
     {
-        private UserModel _youngUser = null;
-        private UserModel _adult = null;
+        private readonly UserModel _youngUser = null;
+        private readonly UserModel _adult = null;
 
         public ProcessUserInformationTest()
         {
