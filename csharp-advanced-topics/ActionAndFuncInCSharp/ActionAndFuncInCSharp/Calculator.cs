@@ -6,6 +6,7 @@
         {
             Print = n => Console.WriteLine($"*** {n} ***")
         };
+
         calculator.SetOperation('+');
         calculator.Calculate(4, 2);
         calculator.Print += n => Console.WriteLine("*********");
