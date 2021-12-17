@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delegates_Action_Func", "Delegates_Action_Func\Delegates_Action_Func.csproj", "{E79057CE-D059-492A-8E87-AEA29F0A2228}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegates_Test", "Tests\Delegates_Test\Delegates_Test.csproj", "{F0E272CE-2005-44EB-8EF6-21D91138DFF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegates_Test", "Tests\Delegates_Test.csproj", "{F0E272CE-2005-44EB-8EF6-21D91138DFF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
