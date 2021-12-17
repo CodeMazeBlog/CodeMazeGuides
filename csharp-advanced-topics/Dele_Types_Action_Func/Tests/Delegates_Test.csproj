@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.7" />
+   
+    <PackageReference Include="coverlet.collector" Version="3.1.0" />
+	<PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Delegates_Action_Func\Delegates_Action_Func.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Delegates_Action_Func">
+      <HintPath>..\..\Delegates_Action_Func\bin\Debug\net6.0\Delegates_Action_Func.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework">
+      <HintPath>..\..\Delegates_Action_Func\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
