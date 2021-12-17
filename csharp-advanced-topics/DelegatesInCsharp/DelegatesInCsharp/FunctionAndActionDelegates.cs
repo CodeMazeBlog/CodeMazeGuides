@@ -2,11 +2,9 @@ using System;
 
 namespace DelegatesInCsharp
 {
-
-
     public class FunctionAndActionDelegates 
     {
-        public static void Main(string[] args)
+        public static void TheProblem(string[] args)
         {
             Console.WriteLine(
                 "Inline Code Solution: " +
@@ -45,7 +43,7 @@ namespace DelegatesInCsharp
             return formattedInput; 
         }
 
-        public string GetFormattedInputUsingDelegateCode(string input) 
+        public static string GetFormattedInputUsingDelegateCode(string input) 
         { 
             Log(input); 
             
@@ -68,11 +66,11 @@ namespace DelegatesInCsharp
             = (input) => $"[Pretty] {DateTime.Now.Year}: {input}"; 
         
         static Action<string> Log 
-            = (message) => Console.WriteLine(message);
+            = (message) => Console.WriteLine($"[Log]{message}");
         
         //============================= Bonus Composable Delegate Solution - START =============================
 
-        public string GetFormattedInputUsingDelegateCode(
+        public static string GetFormattedInputUsingDelegateCode(
             string input, 
             Func<string, bool> isFormatted,
             Func<string, string> formatInput,
