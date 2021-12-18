@@ -35,7 +35,7 @@ namespace Action
 
             Action<int> printActionDelWithLambda = i => Console.WriteLine(i);
        
-            printActionDelWithLamda(10);
+            printActionDelWithLambda(10);
         }
     }
 }

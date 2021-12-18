@@ -18,18 +18,18 @@ namespace Func
             Console.WriteLine(result); 
 
             // Func with an Anonymous Method
-            Func<int> getRandomNumber = delegate()
+            Func<int> getRandomNumberWithAnonymous = delegate()
             {
                 Random rnd = new Random();
                 return rnd.Next(1, 100);
             };
 
             // Func with Lambda Expression
-            Func<int> getRandomNumber = () => new Random().Next(1, 100);
+            Func<int> getRandomNumberWithLambda = () => new Random().Next(1, 100);
 
             //Or 
 
-            Func<int, int, int>  Sum  = (x, y) => x + y;
+            Func<int, int, int>  Sum2  = (x, y) => x + y;
         }
     }
 }
