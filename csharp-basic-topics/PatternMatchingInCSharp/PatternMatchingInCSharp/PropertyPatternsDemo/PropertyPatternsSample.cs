@@ -35,17 +35,17 @@ namespace PropertyPatternsDemo
             //now let's make it match a bit more specific criteria
             var highPriorityOrder = standardOrder with { Payment = new Payment(new Price("USD", 9900000)) };
             Assert.AreEqual("ImportantOrderProcessor", OrderProcessorFactory.Get(highPriorityOrder));
-            Assert.AreEqual("ImportantOrderProcessor", OrderProcessorFactory.Get(highPriorityOrder with { Payment = new Payment(new Price("USD", 5)), Customer = new Customer("John Doe", "VIP")}));
+            Assert.AreEqual("ImportantOrderProcessor", OrderProcessorFactory.Get(highPriorityOrder with { Payment = new Payment(new Price("USD", 5)), Customer = new Customer("John Doe", "VIP") }));
 
             //now let's make a banking order in JPY
             var japaneseOrder = new Order(new Payment(new Price("JPY", 33333333)), new Customer("Bank Of Japan", "Banking"));
             Assert.AreEqual("JapaneseBankingProcessor", OrderProcessorFactory.Get(japaneseOrder));
 
             //and finally match the criteria with highest 'priority'
-            Assert.AreEqual("CryptoOrderProcessor", OrderProcessorFactory.Get(japaneseOrder with { Payment = new Payment( new Price("BTC", 100)) }));
+            Assert.AreEqual("CryptoOrderProcessor", OrderProcessorFactory.Get(japaneseOrder with { Payment = new Payment(new Price("BTC", 100)) }));
         }
 
-        //let's pretend this class enforces some business rules to ensure Orders are valid.
+        //another exapmple - let's pretend this class enforces some business rules to ensure Orders are valid.
         static class OrderValidator
         {
             public static void Validate(Order order)
@@ -78,7 +78,7 @@ namespace PropertyPatternsDemo
             Assert.Throws<InvalidOperationException>(() => OrderValidator.Validate(order));
 
             //now let's modify the order so that it is allowed
-            Assert.DoesNotThrow(() => OrderValidator.Validate(order with { Customer = new Customer("Jack Black", "Enterprise")}));
+            Assert.DoesNotThrow(() => OrderValidator.Validate(order with { Customer = new Customer("Jack Black", "Enterprise") }));
         }
     }
 }
