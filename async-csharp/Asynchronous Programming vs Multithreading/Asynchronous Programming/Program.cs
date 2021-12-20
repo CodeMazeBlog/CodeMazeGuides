@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Asynchronous_Programming;
+using System;
 using System.Text;
 
 namespace AsynchronousProgramming
@@ -37,10 +38,17 @@ namespace AsynchronousProgramming
           
             Console.WriteLine("Main method on thread with Id : " + Thread.CurrentThread.ManagedThreadId);
 
-            DateTime dt = DateTime.Now;
+            DateTime dt1 = DateTime.Now;
             await ExecuteAsyncFunctions();
-            var ts = DateTime.Now - dt;
-            Console.WriteLine("Seconds taken: " + ts.Seconds);
+            var ts1 = DateTime.Now - dt1;
+            Console.WriteLine("Seconds taken for asynchronous operation: " + ts1.Seconds + "\n");
+          
+            Multithreading multithreading = new Multithreading();
+            DateTime dt2 = DateTime.Now;
+            multithreading.ExecuteMultithreading();
+            var ts2 = DateTime.Now - dt2;
+            Console.WriteLine("Seconds taken for multithreading operation: " + ts2.Seconds);
+
         }
     }
 }

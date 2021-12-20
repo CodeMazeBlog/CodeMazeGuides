@@ -8,7 +8,7 @@ using System.Threading;
 namespace AsynchronousProgrammingTests
 {
     [TestClass]
-    public class Tests
+    public class ProgramTests
     {
         [TestMethod]
         public async Task GivenFunction_WhenExecutedFirstAsync_ShoudRunOnSameThread()
