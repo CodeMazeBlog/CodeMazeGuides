@@ -2,9 +2,6 @@
 
 namespace PropertyPatternsTest
 {
-    /// <summary>
-    /// another exapmple - let's pretend this class enforces some business rules to ensure Orders are valid.
-    /// </summary>
     static class OrderValidator
     {
         public static void Validate(Order order)
