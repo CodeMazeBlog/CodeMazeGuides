@@ -16,25 +16,31 @@ namespace PropertyPatternsTest
             //now let's make it match a bit more specific criteria
             var highPriorityOrder = standardOrder with { Payment = new Payment(new Price("USD", 9900000)) };
             Assert.AreEqual("ImportantOrderProcessor", OrderProcessorFactory.Get(highPriorityOrder));
-            Assert.AreEqual("ImportantOrderProcessor", OrderProcessorFactory.Get(highPriorityOrder with { Payment = new Payment(new Price("USD", 5)), Customer = new Customer("John Doe", "VIP") }));
+
+            var anotherHighPriorityOrder = highPriorityOrder with { Payment = new Payment(new Price("USD", 5)), Customer = new Customer("John Doe", "VIP") };
+            Assert.AreEqual("ImportantOrderProcessor", OrderProcessorFactory.Get(anotherHighPriorityOrder));
 
             //now let's make a banking order in JPY
             var japaneseOrder = new Order(new Payment(new Price("JPY", 33333333)), new Customer("Bank Of Japan", "Banking"));
             Assert.AreEqual("JapaneseBankingProcessor", OrderProcessorFactory.Get(japaneseOrder));
 
             //and finally match the criteria with highest 'priority'
-            Assert.AreEqual("CryptoOrderProcessor", OrderProcessorFactory.Get(japaneseOrder with { Payment = new Payment(new Price("BTC", 100)) }));
+            var cryptoOrder = japaneseOrder with { Payment = new Payment(new Price("BTC", 100)) };
+            Assert.AreEqual("CryptoOrderProcessor", OrderProcessorFactory.Get(cryptoOrder));
         }
 
         [Test]
-        public void OrderValidator_ThrowsAnErrorWhenNeeded()
+        public void OrderValidator_UnallowedOrderType_ThrowsAnError()
         {
-            //first let's test an unallowed order type
             var order = new Order(new Payment(new Price("BTC", 1000)), new Customer("Jim Beam", "Retail"));
             Assert.Throws<InvalidOperationException>(() => OrderValidator.Validate(order));
+        }
 
-            //now let's modify the order so that it is allowed
-            Assert.DoesNotThrow(() => OrderValidator.Validate(order with { Customer = new Customer("Jack Black", "Enterprise") }));
+        [Test]
+        public void OrderValidator_AllowedOrderType_DoesNotThrow()
+        {
+            var order = new Order(new Payment(new Price("BTC", 1000)), new Customer("Jack Black", "Enterprise"));
+            Assert.DoesNotThrow(() => OrderValidator.Validate(order));
         }
     }
 }
