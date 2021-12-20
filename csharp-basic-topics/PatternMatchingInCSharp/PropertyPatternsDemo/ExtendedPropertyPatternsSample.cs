@@ -14,18 +14,18 @@ namespace PropertyPatternsTest
             Assert.AreEqual("DefaultOrderProcessor", OrderProcessorFactory.Get(standardOrder));
 
             //now let's make it match a bit more specific criteria
-            var highPriorityOrder = standardOrder with { Payment = new Payment(new Price("USD", 9900000)) };
-            Assert.AreEqual("ImportantOrderProcessor", OrderProcessorFactory.Get(highPriorityOrder));
+            var bigMoneyOrder = new Order(new Payment(new Price("USD", 9900000)), new Customer("HSBC", "Banking"));
+            Assert.AreEqual("ImportantOrderProcessor", OrderProcessorFactory.Get(bigMoneyOrder));
 
-            var anotherHighPriorityOrder = highPriorityOrder with { Payment = new Payment(new Price("USD", 5)), Customer = new Customer("John Doe", "VIP") };
-            Assert.AreEqual("ImportantOrderProcessor", OrderProcessorFactory.Get(anotherHighPriorityOrder));
+            var vipPersonOrder = new Order(new Payment(new Price("USD", 5)), new Customer("Warren Buffalo", "VIP"));
+            Assert.AreEqual("ImportantOrderProcessor", OrderProcessorFactory.Get(vipPersonOrder));
 
             //now let's make a banking order in JPY
             var japaneseOrder = new Order(new Payment(new Price("JPY", 33333333)), new Customer("Bank Of Japan", "Banking"));
             Assert.AreEqual("JapaneseBankingProcessor", OrderProcessorFactory.Get(japaneseOrder));
 
             //and finally match the criteria with highest 'priority'
-            var cryptoOrder = japaneseOrder with { Payment = new Payment(new Price("BTC", 100)) };
+            var cryptoOrder = new Order(new Payment(new Price("BTC", 100)), new Customer("Bank Of Japan", "Banking"));
             Assert.AreEqual("CryptoOrderProcessor", OrderProcessorFactory.Get(cryptoOrder));
         }
 
