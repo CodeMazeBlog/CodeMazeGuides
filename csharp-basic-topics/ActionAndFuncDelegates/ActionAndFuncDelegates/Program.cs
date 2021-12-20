@@ -23,9 +23,9 @@ namespace CodeMaze
 
             // Plain method calling
             Console.WriteLine($"Relaying by plain method calling:");
-            AnotherMessageRelayMethod(sender, greetings);
-            AnotherMessageRelayMethod(sender, message);
-            AnotherMessageRelayMethod(sender, bye);
+            MessageRelayMethodWithVeryLongName(greetings);
+            MessageRelayMethodWithVeryLongName(message);
+            MessageRelayMethodWithVeryLongName(bye);
 
             // Using Action for referencing method, thus allow convenient, concise and clean codes
             Console.WriteLine($"\r\nRelaying by action of {nameof(MessageRelayMethodWithVeryLongName)}:");
@@ -60,7 +60,7 @@ namespace CodeMaze
             Console.WriteLine($"\r\nRelaying by action as argument of another method:");
             RelayMessages(relay1, greetings, message, bye);
 
-            // Or it can be rightly instantiated as lambda expression
+            // Or it can be passed as lambda form
             Console.WriteLine($"\r\nRelaying by action as argument of another method (lambda syntax):");
             RelayMessages(m => Console.WriteLine(m), greetings, message, bye);
         }
