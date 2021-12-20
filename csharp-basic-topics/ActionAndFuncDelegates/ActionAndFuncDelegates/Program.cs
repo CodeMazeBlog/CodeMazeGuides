@@ -43,7 +43,7 @@ namespace CodeMaze
 
             // Actions with similar signature can be combined just like plain value-types
             // This will eventually call both actions
-            Console.WriteLine($"\r\nRelaying by combied action of {nameof(MessageRelayMethodWithVeryLongName)} and {nameof(AnotherMessageRelayMethod)}:");
+            Console.WriteLine($"\r\nRelaying by combined action of {nameof(MessageRelayMethodWithVeryLongName)} and {nameof(AnotherMessageRelayMethod)}:");
             var relay3 = relay1 + relay2;
             relay3(greetings);
             relay3(message);
