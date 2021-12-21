@@ -10,13 +10,21 @@ namespace FuncAndActionDelegate
         }
         public void SimpleActionDelegate()
         {
-            Action<string> msg = PrintMsg;
-            msg("Hello World");
+            Action<string> action = PrintMsg;
+            action("Hello World");
+        }
+        public void ActionDelegateWithAnonymousMethods()
+        {
+            Action<string> printValue = delegate (string msg)
+            {
+                Console.WriteLine(msg);
+            };
+            printValue("Hello World From Anonymous Method");
         }
         public void ActionDelegateWithLambda()
         {
-            Action<string> msgWithLamda = (message) => Console.WriteLine(message);
-            msgWithLamda("Hello World From Lambda Expression");
+            Action<string> actionWithLamda = (message) => Console.WriteLine(message);
+            actionWithLamda("Hello World From Lambda Expression");
         }
     }
 }

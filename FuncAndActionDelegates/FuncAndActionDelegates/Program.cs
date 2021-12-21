@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FuncAndActionDelegate
+﻿namespace FuncAndActionDelegate
 {
     class Program
     {
@@ -10,16 +6,22 @@ namespace FuncAndActionDelegate
         {
             // Func Delegate
             FuncDelegate func = new FuncDelegate();
-            float funcResult = func.SimpleFuncDelegate();
+            double funcResult = func.SimpleFuncDelegate();
+
+            // Func Delegate with Anonymous Method
+            int funcResultwithAnonymousMethod = func.FuncDelegateWithAnonymousMethods();
 
             // Func Delegate with Lambda Expression
-            float funcResultwithLambda = func.FuncDelegateWithLambda();
+            double funcResultwithLambda = func.FuncDelegateWithLambda();
 
-            //ActionDelegate
+            //Action Delegate
             ActionDelegate action = new ActionDelegate();
             action.SimpleActionDelegate();
 
-            // Func Delegate with Lambda Expression
+            // Action Delegate with Anonymous Method
+            action.ActionDelegateWithAnonymousMethods();
+
+            // Action Delegate with Lambda Expression
             action.ActionDelegateWithLambda();
         }
     }
