@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace StaticClasses
 {
-    public class CollegeStudent
+    public static class Student
     {
         //private fields 
-        private string _name;
+        private static string _name;
 
-        //non-static properties
-        public int Id { get; set; }
-        public string Name { get { return _name; } set => _name = value; }
-        public DateTime DateOfBirth { get; set; }
+        //static properties
+        public static int Id { get; set; }
+        public static string Name { get { return _name; } set => _name = value; }
+        public static DateTime DateOfBirth { get; set; }
 
-        //non-static methods
+        //static methods
         //function to return the student's age
-        public int CalculateAge(DateTime DateOfBirth)
+        public static int CalculateAge(DateTime DateOfBirth)
         {
             //get today's date 
             var today = DateTime.Today;
 
             //calculate age
-            var age =today.Year - DateOfBirth.Year;
+            var age = today.Year - DateOfBirth.Year;
 
             //Go back to the previous year in case the student was born on a leap year
             if (DateOfBirth.Date > today.AddYears(-age))
@@ -35,7 +35,7 @@ namespace StaticClasses
         }
 
         //function to return the student's details on the screen
-        public string StudentDetails()
+        public static string StudentDetails()
         {
             var studentDetails = string.Empty;
             studentDetails = Name + " " + DateOfBirth + " " + CalculateAge(DateOfBirth);
