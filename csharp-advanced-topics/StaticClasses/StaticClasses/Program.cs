@@ -23,11 +23,11 @@ public class Program
     public static class Student
     {
         //private fields 
-        private static string name;
+        private static string _name;
 
         //static properties
         public static int Id { get; set; }
-        public static string Name { get { return name; } set => name = value; }
+        public static string Name { get { return _name; } set => _name = value; }
         public static DateTime DateOfBirth { get; set; }
 
         //static methods
@@ -35,25 +35,25 @@ public class Program
         public static int CalculateAge(DateTime DateOfBirth)
         {
             //get today's date 
-            DateTime today = DateTime.Today;
+            var _today = DateTime.Today;
 
             //calculate age
-            int age = today.Year - DateOfBirth.Year;
+            var _age = _today.Year - DateOfBirth.Year;
 
             //Go back to the previous year in case the student was born on a leap year
-            if (DateOfBirth.Date > today.AddYears(-age))
+            if (DateOfBirth.Date > _today.AddYears(-_age))
             {
-                age--;
+                _age--;
             }
-            return age;
+            return _age;
         }
 
         //function to return the student's details on the screen
         public static string StudentDetails()
         {
-            string studentDetails = string.Empty;
-            studentDetails = Name + " " + DateOfBirth + " " + CalculateAge(DateOfBirth);
-            return studentDetails;
+            var _studentDetails = string.Empty;
+            _studentDetails = Name + " " + DateOfBirth + " " + CalculateAge(DateOfBirth);
+            return _studentDetails;
         }
     }
 }

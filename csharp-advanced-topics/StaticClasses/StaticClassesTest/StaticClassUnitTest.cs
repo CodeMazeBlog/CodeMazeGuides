@@ -16,6 +16,7 @@ namespace StaticClassesTest
             Program.Student.DateOfBirth = new DateTime(1994, 12, 31);
             int expectedAge = 26;
             int actualAge = Program.Student.CalculateAge(Program.Student.DateOfBirth);
+
             Assert.AreEqual(expectedAge, actualAge);
         }
 
@@ -30,6 +31,7 @@ namespace StaticClassesTest
             student.DateOfBirth = new DateTime(1994, 12, 31);
             int expectedAge = 26;
             int actualAge = student.CalculateAge(student.DateOfBirth);
+
             Assert.AreEqual(expectedAge, actualAge);
         }
 
@@ -48,6 +50,7 @@ namespace StaticClassesTest
             student.Name = "John Doe";
             student.DateOfBirth = new DateTime(1994, 12, 31);
             var nonStaticVersion = student.StudentDetails;
+
             Assert.AreNotEqual(staticVersion, nonStaticVersion);
         }
     }
