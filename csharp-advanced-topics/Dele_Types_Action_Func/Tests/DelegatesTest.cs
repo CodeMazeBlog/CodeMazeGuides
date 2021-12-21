@@ -1,7 +1,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Delegates_Test
+namespace DelegatesTest
 {
     [TestClass]
     public class DelegatesTest
@@ -16,8 +16,7 @@ namespace Delegates_Test
 
 
             //Working of an action delegate.
-            //declare and use an action delegate here. // delegate has two parameters. 
-    
+            //declare and use an action delegate here.  
             ForActionDelegate_whenTwoParametersAreSent();
 
             //Working of a Func Delegate.
@@ -28,8 +27,8 @@ namespace Delegates_Test
         [TestMethod]
         public void ForActionDelegate_whenTwoParametersAreSent()
         {
-            int x = 20;
-            int y = 5;
+            var x = 20;
+            var y = 5;
             var result = x-y;
             Action<int, int> val = delegate (int x, int y)
             {
@@ -43,8 +42,8 @@ namespace Delegates_Test
         [TestMethod]
         public static void ForFuncDelegate_whenTwoParametersAreSent()
         {
-            int a = 10;
-            int b = 20;
+            var a = 10;
+            var b = 20;
             Func<int, int, int> SumDelegate = delegate (int x, int y)
             {
                 return x + y;
