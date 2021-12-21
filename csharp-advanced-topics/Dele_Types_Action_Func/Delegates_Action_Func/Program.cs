@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-namespace Delegates_Action_Func
+namespace DelegatesActionFunc
 {
     class Program
     {
@@ -11,7 +11,7 @@ namespace Delegates_Action_Func
             Val("Good Morning");
 
             //Working of an action delegate.
-            //declare and use an action delegate here. // delegate has two parameters. 
+            //declare and use an action delegate here. 
             Action<int, int> val = myMath;
             val(20, 5);
 
