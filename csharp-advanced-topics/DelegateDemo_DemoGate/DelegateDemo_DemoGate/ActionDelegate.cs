@@ -9,12 +9,6 @@ namespace DelegateDemo_DemoGate
         public static string sentence;
         public static string sentence1;
         public static string sentence2;
-
-        public string Sentence()
-        {
-            Console.WriteLine(sentence1);
-            return sentence1;
-        }
         
 
         public void ActionDelegates()

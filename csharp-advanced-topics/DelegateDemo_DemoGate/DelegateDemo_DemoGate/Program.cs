@@ -12,7 +12,6 @@ namespace DelegateDemo_DemoGate
 
             ActionDelegate actionDelegateClass = new ActionDelegate();
             actionDelegateClass.ActionDelegates();
-            actionDelegateClass.Sentence();
         }
 
     }
