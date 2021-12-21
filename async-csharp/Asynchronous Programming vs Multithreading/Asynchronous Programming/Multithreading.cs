@@ -25,11 +25,13 @@ namespace Asynchronous_Programming
             Console.WriteLine("First Multithreading Method on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
             Thread.Sleep(1000);
         }
+
         public void SecondMethod()
         {
             Console.WriteLine("Second Multithreading Method on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
             Thread.Sleep(1000);
         }
+        
         public void ThirdMethod()
         {
             Console.WriteLine("Third Multithreading Method on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
