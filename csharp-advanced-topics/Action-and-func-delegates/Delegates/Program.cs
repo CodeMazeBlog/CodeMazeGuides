@@ -2,30 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyApp // Note: actual namespace depends on the project name.
+namespace Delegates // Note: actual namespace depends on the project name.
 {
     public class Program
     {
-        delegate void myDelegate(string param1);
-
         public static void Main(string[] args)
         {
             Console.WriteLine(ReturnHelloParam1("world"));
 
-
-            //Example Action-delegate
-            //Method without return value
             void PrintHelloParam1(string param1)
             {
                 Console.WriteLine($"Hello {param1}");
             }
-            //Defining an Action-delegate
             Action<string> myDelegateAction = PrintHelloParam1;
-            //Executing the method trough the Action-delegate
             myDelegateAction("world with action-delegate");
 
-
-            //Example Func-delegate
             string ReturnHelloParam1(string param1)
             {
                 return $"Hello {param1}";
@@ -33,8 +24,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
             Func<string, string> myDelegateFunc = ReturnHelloParam1;
             Console.WriteLine(myDelegateFunc("world with func-delegate"));
 
-            
-            //Example of simple switch-case
             void IsItFridayYet(DayOfWeek dayOfWeek)
             {
                 switch (dayOfWeek)
@@ -50,8 +39,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
             }
             IsItFridayYet(DateTime.Now.DayOfWeek);
 
-
-            //Dictionary of actions
             var isItFridayYetActions = new Dictionary<DayOfWeek, Action>
             {
               {DayOfWeek.Monday, () => Console.WriteLine("No, it's Monday...")},
@@ -63,7 +50,6 @@ namespace MyApp // Note: actual namespace depends on the project name.
               {DayOfWeek.Sunday, () => Console.WriteLine("No, it's Sunday.")}
             };
             isItFridayYetActions[DateTime.Now.DayOfWeek].Invoke();
-
         }
     }
 }
