@@ -1,0 +1,14 @@
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\bin\Debug\netcoreapp3.1\ActionAndFunc.exe
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\bin\Debug\netcoreapp3.1\ActionAndFunc.deps.json
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\bin\Debug\netcoreapp3.1\ActionAndFunc.runtimeconfig.json
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\bin\Debug\netcoreapp3.1\ActionAndFunc.runtimeconfig.dev.json
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\bin\Debug\netcoreapp3.1\ActionAndFunc.dll
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\bin\Debug\netcoreapp3.1\ActionAndFunc.pdb
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\obj\Debug\netcoreapp3.1\ActionAndFunc.csproj.AssemblyReference.cache
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\obj\Debug\netcoreapp3.1\ActionAndFunc.GeneratedMSBuildEditorConfig.editorconfig
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\obj\Debug\netcoreapp3.1\ActionAndFunc.AssemblyInfoInputs.cache
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\obj\Debug\netcoreapp3.1\ActionAndFunc.AssemblyInfo.cs
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\obj\Debug\netcoreapp3.1\ActionAndFunc.csproj.CoreCompileInputs.cache
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\obj\Debug\netcoreapp3.1\ActionAndFunc.dll
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\obj\Debug\netcoreapp3.1\ActionAndFunc.pdb
+D:\CODEBASE\ActionAndFunc\ActionAndFunc\obj\Debug\netcoreapp3.1\ActionAndFunc.genruntimeconfig.cache
