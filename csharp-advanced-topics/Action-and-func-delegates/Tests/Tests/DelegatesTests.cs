@@ -8,21 +8,19 @@ namespace Tests
     [TestClass]
     public class DelegatesTests
     {
-        StringWriter fakeConsole;
+        string fakeConsole;
         Dictionary<DayOfWeek, Action> isItFridayYetDictionaryOfActions;
         public DelegatesTests()
         {
-            fakeConsole = new StringWriter();
-            Console.SetOut(fakeConsole);
             isItFridayYetDictionaryOfActions = new Dictionary<DayOfWeek, Action>
             {
-                {DayOfWeek.Friday, () => Console.WriteLine("Yeeeeeeey it's Friday !!!")}
+                {DayOfWeek.Friday, () => fakeConsole = "Yeeeeeeey it's Friday !!!"}
             };
         }
 
         void PrintHelloParam1(string param1)
         {
-            Console.WriteLine($"Hello {param1}");
+            fakeConsole = $"Hello {param1}";
         }
         string ReturnHelloParam1(string param1)
         {
@@ -33,7 +31,7 @@ namespace Tests
         public void WhenParameterIsSent_PrintsHelloParameter()
         {
             PrintHelloParam1("World");
-            Assert.AreEqual("Hello World\r\n", fakeConsole.ToString());
+            Assert.AreEqual("Hello World", fakeConsole);
         }
 
         [TestMethod]
@@ -49,7 +47,7 @@ namespace Tests
             Action<string> myDelegateAction = PrintHelloParam1;
             
             myDelegateAction("world with action-delegate");
-            Assert.AreEqual("Hello world with action-delegate\r\n", fakeConsole.ToString());
+            Assert.AreEqual("Hello world with action-delegate", fakeConsole);
         }
 
         [TestMethod]
@@ -63,7 +61,7 @@ namespace Tests
         public void GivenActionDelegate_WhenFridayIsSentAsParameter_PrintsYeeeeyItsFriday()
         {
             isItFridayYetDictionaryOfActions[DayOfWeek.Friday].Invoke();
-            Assert.AreEqual("Yeeeeeeey it's Friday !!!\r\n", fakeConsole.ToString());
+            Assert.AreEqual("Yeeeeeeey it's Friday !!!", fakeConsole);
         }
     }
 }
