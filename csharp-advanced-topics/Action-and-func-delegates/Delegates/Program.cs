@@ -14,6 +14,7 @@ namespace Delegates // Note: actual namespace depends on the project name.
             {
                 Console.WriteLine($"Hello {param1}");
             }
+
             Action<string> myDelegateAction = PrintHelloParam1;
             myDelegateAction("world with action-delegate");
 
@@ -21,6 +22,7 @@ namespace Delegates // Note: actual namespace depends on the project name.
             {
                 return $"Hello {param1}";
             }
+
             Func<string, string> myDelegateFunc = ReturnHelloParam1;
             Console.WriteLine(myDelegateFunc("world with func-delegate"));
 
@@ -37,6 +39,7 @@ namespace Delegates // Note: actual namespace depends on the project name.
                     case DayOfWeek.Sunday: { Console.WriteLine("No, it's Sunday."); break; }
                 }
             }
+
             IsItFridayYet(DateTime.Now.DayOfWeek);
 
             var isItFridayYetActions = new Dictionary<DayOfWeek, Action>
@@ -49,6 +52,7 @@ namespace Delegates // Note: actual namespace depends on the project name.
               {DayOfWeek.Saturday, () => Console.WriteLine("No, it's Saturday.")},
               {DayOfWeek.Sunday, () => Console.WriteLine("No, it's Sunday.")}
             };
+
             isItFridayYetActions[DateTime.Now.DayOfWeek].Invoke();
         }
     }
