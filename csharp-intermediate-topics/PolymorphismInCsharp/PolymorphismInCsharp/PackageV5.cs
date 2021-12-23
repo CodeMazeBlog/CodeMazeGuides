@@ -25,7 +25,7 @@ namespace Polymorphism_v5
             CountryCode = countryCode;
         }
 
-        public virtual decimal GetDeliveryCost()
+        public decimal GetDeliveryCost()
         {
             if (Type == "Expedited")
                 return 4 * Weight + 2;
@@ -43,7 +43,7 @@ namespace Polymorphism_v5
             else
                 return 3 * Weight;
         }
-        public virtual DateTime GetDeliveryDate()
+        public DateTime GetDeliveryDate()
         {
             if (Type == "Expedited")
                 return SendDate.AddDays(1);
