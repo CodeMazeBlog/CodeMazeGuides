@@ -15,7 +15,7 @@ namespace Tests
             // Act
             double result = del.SimpleFuncDelegate();
 
-            //Assert
+            // Assert
             Assert.Equal(20.55, result);
         }
 
@@ -28,7 +28,7 @@ namespace Tests
             // Act
             double result = del.FuncDelegateWithAnonymousMethods();
 
-            //Assert
+            // Assert
             Assert.Equal(50, result);
         }
 
@@ -41,7 +41,7 @@ namespace Tests
             // Act
             double result = del.FuncDelegateWithLambda();
 
-            //Assert
+            // Assert
             Assert.Equal(40.55, result);
         }
     }

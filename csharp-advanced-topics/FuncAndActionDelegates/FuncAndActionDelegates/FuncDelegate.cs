@@ -16,7 +16,7 @@ namespace FuncAndActionDelegate
         }
         public int FuncDelegateWithAnonymousMethods()
         {
-            Func<int> getValue = delegate ()
+            Func<int> getValue = delegate()
             {
                 return 10 * 5;
             };

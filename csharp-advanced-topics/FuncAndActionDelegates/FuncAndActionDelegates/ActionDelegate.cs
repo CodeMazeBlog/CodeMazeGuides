@@ -15,7 +15,7 @@ namespace FuncAndActionDelegate
         }
         public void ActionDelegateWithAnonymousMethods()
         {
-            Action<string> printValue = delegate (string msg)
+            Action<string> printValue = delegate(string msg)
             {
                 Console.WriteLine(msg);
             };

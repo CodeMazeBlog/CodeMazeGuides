@@ -14,7 +14,7 @@
             // Func Delegate with Lambda Expression
             double funcResultwithLambda = func.FuncDelegateWithLambda();
 
-            //Action Delegate
+            // Action Delegate
             ActionDelegate action = new ActionDelegate();
             action.SimpleActionDelegate();
 
