@@ -18,6 +18,10 @@ Action anotherActionSample = () =>
 
 ActionFuncSample.CallAnAction(actionSample);
 ActionFuncSample.CallAnAction(anotherActionSample);
+ActionFuncSample.CallAnActionWithParameters((int x, string s) =>
+{
+    Console.WriteLine($"The int value is {x} and the string is {s}");
+});
 #endregion
 
 #region Func
@@ -32,4 +36,9 @@ Func<bool> funcSample = () =>
 
 ActionFuncSample.CallAFunc(funcSample);
 ActionFuncSample.CallAFunc(() => true);
+ActionFuncSample.CallAFuncWithParameters((int x, string s) =>
+{
+    Console.WriteLine($"The int value is {x} and the string value is {s}. Do you agree? Yes or No?");
+    return Console.ReadKey(true).Key == ConsoleKey.Y;
+});
 #endregion
