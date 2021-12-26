@@ -19,14 +19,6 @@ namespace Tests
             _httpClient = _factory.CreateClient();
             _httpClient.BaseAddress = new Uri(catalogServiceUrl);
         }
-        //[Fact]
-        //public void Setup(WebApplicationFactory<Program> factory)
-        //{
-        //    var catalogServiceUrl = "https://localhost:7114/";
-        //    //_httpClient = new HttpClient();
-        //    _httpClient = factory.CreateClient();
-        //    _httpClient.BaseAddress = new Uri(catalogServiceUrl);
-        //}
 
         [Fact]
         public async Task GivenDefaultCall_WhenCalledV1_ThenReturnStringStartingWithB()
