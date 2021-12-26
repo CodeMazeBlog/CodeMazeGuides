@@ -7,7 +7,6 @@
         action();
 
         Console.WriteLine("***Action Delegate executed.***");
-        Console.ReadKey(true);
     }
 
     public static void CallAFunc(Func<bool> func)
@@ -17,6 +16,5 @@
         bool result = func();
 
         Console.WriteLine($"***Func result is {result}***");
-        Console.ReadKey(true);
     }
 }
