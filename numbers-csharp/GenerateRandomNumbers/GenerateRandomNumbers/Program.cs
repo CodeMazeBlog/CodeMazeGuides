@@ -38,11 +38,20 @@ namespace GenerateRandomNumbers
             var secureNumWithinRange = getSecureNumberWithinRange(lowerBound, upperBound);
             Console.WriteLine($"Secure Random Number Generated with {lowerBound} as the inclusive lower bound and {upperBound} as the exclusive upper bound: {secureNumWithinRange}");
 
+            var pseduoNumThreadSafe = getPseudoRandomNumberThreadSafe();
+            Console.WriteLine($"Pseduo Random Thread-Safe Number Generated: {pseduoNumThreadSafe}");
+
             var pseduoDouble = getPseudoDouble();
             Console.WriteLine($"Pseduo Random Double Generated: {pseduoDouble}");
 
+            var pseduoDoubleWithinRange = getPseudoDoubleWithinRange(lowerBound,upperBound);
+            Console.WriteLine($"Pseduo Random Double Generated with {lowerBound} as the inclusive lower bound and {upperBound} as the exclusive upper bound: {pseduoDoubleWithinRange}");
+
             var secureDouble = getSecureDouble();
             Console.WriteLine($"Secure Random Double Generated: {secureDouble}");
+
+            var secureDoubleWithinRange = getSecureDoubleWithinRange(lowerBound, upperBound);
+            Console.WriteLine($"Secure Random Double Generated with {lowerBound} as the inclusive lower bound and {upperBound} as the exclusive upper bound: {secureDoubleWithinRange}");
         }
 
         public static int getPseudoRandomNumber()
@@ -80,20 +89,38 @@ namespace GenerateRandomNumbers
             return rngNum;
         }
 
+        public static int getPseudoRandomNumberThreadSafe()
+        {
+            var random = Random.Shared.Next();
+            return random;
+        }
+
         public static double getPseudoDouble()
         {
             var random = new Random();
             var rDouble = random.NextDouble();
             return rDouble;
         }
+        public static double getPseudoDoubleWithinRange(double lowerBound, double upperBound)
+        {
+            var random = new Random();
+            var rDouble = random.NextDouble();
+            var rRangeDouble = rDouble * (upperBound - lowerBound) + lowerBound;
+            return rRangeDouble;
+        }
 
         public static double getSecureDouble()
         {
             RandomNumberGenerator.Create();
-            var numerator = RandomNumberGenerator.GetInt32(1, int.MaxValue);
-            var denominator = RandomNumberGenerator.GetInt32(1, int.MaxValue);
-            double quotient = (double) numerator / denominator;
-            return quotient;
+            var denominator = RandomNumberGenerator.GetInt32(2, int.MaxValue);
+            double sDouble = (double) 1 / denominator;
+            return sDouble;
+        }
+        public static double getSecureDoubleWithinRange(double lowerBound, double upperBound)
+        {
+            var rDouble = getSecureDouble();
+            var rRangeDouble = (double) rDouble * (upperBound - lowerBound) + lowerBound;
+            return rRangeDouble;
         }
     }
 }
