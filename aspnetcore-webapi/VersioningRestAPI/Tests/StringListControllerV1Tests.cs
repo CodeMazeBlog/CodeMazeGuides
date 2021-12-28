@@ -21,7 +21,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task GivenDefaultCall_WhenCalledV1_ThenReturnStringStartingWithB()
+        public async Task GivenDefaultCall_WhenNoVersion_ThenReturnStringStartingWithB()
         {
             var json = await _httpClient.GetStringAsync("/api/StringList");
             var strings = JArray.Parse(json);
