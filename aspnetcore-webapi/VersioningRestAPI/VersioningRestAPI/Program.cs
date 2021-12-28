@@ -1,8 +1,4 @@
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using VersioningRestAPI.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,30 +23,8 @@ builder.Services.AddVersionedApiExplorer(
         options.SubstituteApiVersionInUrl = true;
     });
 
-builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-builder.Services.AddSwaggerGen(
-    options =>
-    {
-        options.OperationFilter<SwaggerDefaultValues>();
-
-    });
 
 var app = builder.Build();
-
-var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-
-    app.UseSwaggerUI(options => {
-
-        foreach (var description in provider.ApiVersionDescriptions)
-        {
-            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-        }
-    });
-}
 
 app.UseHttpsRedirection();
 
