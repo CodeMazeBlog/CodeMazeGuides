@@ -15,9 +15,9 @@ namespace Tests
         public StringListControllerV1Tests(WebApplicationFactory<Program> factory)
         {
             _factory = factory;
-            var catalogServiceUrl = "https://localhost:7114/";
+            var serviceUrl = "https://localhost:7114/";
             _httpClient = _factory.CreateClient();
-            _httpClient.BaseAddress = new Uri(catalogServiceUrl);
+            _httpClient.BaseAddress = new Uri(serviceUrl);
         }
 
         [Fact]
