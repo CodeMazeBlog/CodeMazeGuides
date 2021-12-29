@@ -1,15 +1,15 @@
-﻿namespace CodeMaze
+﻿namespace ActionAndFuncDelegates
 {
     public class Messenger
     {
-        public void MessageRelayMethod(string message)
+        public void RelayMessage(string message)
         {
             Console.WriteLine(message);
         }
 
-        public void AnotherMessageRelayMethod(string sender, string message)
+        public void RelayMessageWithDetails(string message, string sender, int reference)
         {
-            Console.WriteLine($"{sender}: {message}");
+            Console.WriteLine($"{sender} [#{reference}]: {message}");
         }
     }
 }

@@ -1,13 +1,13 @@
 using System;
 using System.IO;
-using CodeMaze;
+using ActionAndFuncDelegates;
 using Xunit;
 
 namespace ActionAndFuncDelegatesTests
 {
     public class ActionAndFuncTests : IDisposable
     {
-        readonly StringWriter strOut = new StringWriter();
+        readonly StringWriter strOut = new();
         readonly string NewLine = Environment.NewLine;
 
         public ActionAndFuncTests()
@@ -21,17 +21,15 @@ namespace ActionAndFuncDelegatesTests
         public void WhenMethodIsDelegatedAsAction_ThenVerifyThatOutputIsSameAsOriginal()
         {
             var messenger = new Messenger();
-
-            var greetings = "Welcome to CodeMaze";
-            messenger.MessageRelayMethod(greetings);
+            messenger.RelayMessage("Line1");
 
             var originalOutput = strOut.ToString();
-            Assert.Equal($"{greetings}{NewLine}", originalOutput);
+            Assert.Equal($"Line1{NewLine}", originalOutput);
 
             ResetOut();
 
-            var relayAction = messenger.MessageRelayMethod;
-            relayAction(greetings);
+            var relay = messenger.RelayMessage;
+            relay("Line1");
 
             var delegatedOutput = strOut.ToString();
             Assert.Equal(originalOutput, delegatedOutput);
@@ -40,28 +38,26 @@ namespace ActionAndFuncDelegatesTests
         [Fact]
         public void WhenActionsAreCombined_ThenVerifyThatBothActionsAreInvoked()
         {
-            var messenger = new Messenger();
+            Action<string> relay1 = (msg) => Console.WriteLine($"Relay1: {msg}");
+            Action<string> relay2 = (msg) => Console.WriteLine($"Relay2: {msg}");
 
-            var greetings = "Welcome to CodeMaze";
-            var action1 = messenger.MessageRelayMethod;
-            Action<string> action2 = (m) => messenger.AnotherMessageRelayMethod("TEST", m);
+            var relay = relay1 + relay2;
 
-            action1(greetings);
-            var action1Output = strOut.ToString();
-            Assert.Equal($"{greetings}{NewLine}", action1Output);
-
-            ResetOut();
-
-            action2(greetings);
-            var action2Output = strOut.ToString();
-            Assert.Equal($"TEST: {greetings}{NewLine}", action2Output);
+            relay1("Welcome");
+            var relay1Output = strOut.ToString();
+            Assert.Equal($"Relay1: Welcome{NewLine}", relay1Output);
 
             ResetOut();
 
-            var mergedAction = action1 + action2;
-            mergedAction(greetings);
-            var mergedActionOutput = strOut.ToString();
-            Assert.Equal(action1Output + action2Output, mergedActionOutput);
+            relay2("Welcome");
+            var relay2Output = strOut.ToString();
+            Assert.Equal($"Relay2: Welcome{NewLine}", relay2Output);
+
+            ResetOut();
+
+            relay("Welcome");
+            var relayOutput = strOut.ToString();
+            Assert.Equal(relay1Output + relay2Output, relayOutput);
         }
 
         [Fact]
@@ -78,6 +74,24 @@ namespace ActionAndFuncDelegatesTests
             var delegatedReturn = formatFunc(inputStr);
 
             Assert.Equal(originalReturn, delegatedReturn);
+        }
+
+        [Theory]
+        [InlineData(nameof(Demo.ExampleCallDirectMethod), $"Line1\r\nLine2\r\nLine3\r\n")]
+        [InlineData(nameof(Demo.ExampleCallMethodByAction), $"Line1\r\nLine2\r\nLine3\r\n")]
+        [InlineData(nameof(Demo.ExampleMultiParamMethodByAction), $"Demo [#1]: Line1\r\nDemo [#2]: Line2\r\nDemo [#3]: Line3\r\n")]
+        [InlineData(nameof(Demo.ExampleMultiParamMethodByShortenedAction), $"Demo [#1]: Line1\r\nDemo [#2]: Line2\r\nDemo [#3]: Line3\r\n")]
+        [InlineData(nameof(Demo.ExampleCombinedAction), $"Relay1: Welcome\r\nRelay2: Welcome\r\n")]
+        [InlineData(nameof(Demo.ExamplePassActionAsMethodParameter), $"Line1\r\nLine2\r\nLine3\r\n")]
+        [InlineData(nameof(Demo.ExampleResultOfMethodByFunc), $"C# BASICS\r\n20211227\r\n")]
+        [InlineData(nameof(Demo.ExampleFuncUsingInlineLambdaSyntax), $"True\r\nFalse\r\n")]
+        [InlineData(nameof(Demo.ExamplePassFuncAsMethodParameter), $"C# BASICS\r\nC# DELEGATES\r\nACTIONS AND FUNCS\r\n")]
+        public void VerifyDemoExamples(string methodName, string expectedOutput)
+        {
+            typeof(Demo).GetMethod(methodName)?.Invoke(null, null);
+
+            var actualOutput = strOut.ToString();
+            Assert.Equal(expectedOutput.Replace("\r\n", NewLine), actualOutput);
         }
 
         public void Dispose()

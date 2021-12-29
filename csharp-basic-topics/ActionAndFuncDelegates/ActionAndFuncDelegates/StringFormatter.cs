@@ -1,21 +1,15 @@
-﻿namespace CodeMaze
+﻿namespace ActionAndFuncDelegates
 {
     public class StringFormatter
     {
         public string FormatStringAsUppercase(string str)
         {
-            var formatted = str.ToUpper();
-            Console.WriteLine($"Formats '{str}' as '{formatted}'");
-
-            return formatted;
+            return str.ToUpper();
         }
 
-        public string FormatDateAsString(DateTime time)
+        public string FormatDateAsString(DateTime dateTime)
         {
-            var formatted = time.ToString("yyyyMMddHHmmssfff");
-            Console.WriteLine($"Formats '{time}' as '{formatted}'");
-
-            return formatted;
+            return dateTime.ToString("yyyyMMdd");
         }
     }
 }
