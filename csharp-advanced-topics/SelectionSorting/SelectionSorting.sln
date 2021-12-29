@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectionSorting", "SelectionSorting\SelectionSorting.csproj", "{E66003A7-B8AC-4E72-A6A3-6806EAD294B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectionSortTest", "TestProject1\SelectionSortTest.csproj", "{929584C2-379D-482A-934F-E66379E4E66E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E66003A7-B8AC-4E72-A6A3-6806EAD294B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E66003A7-B8AC-4E72-A6A3-6806EAD294B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E66003A7-B8AC-4E72-A6A3-6806EAD294B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E66003A7-B8AC-4E72-A6A3-6806EAD294B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{929584C2-379D-482A-934F-E66379E4E66E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{929584C2-379D-482A-934F-E66379E4E66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{929584C2-379D-482A-934F-E66379E4E66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{929584C2-379D-482A-934F-E66379E4E66E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E541FD34-0802-41FB-AD48-981ECFC65F35}
+	EndGlobalSection
+EndGlobal
