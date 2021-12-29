@@ -2,7 +2,7 @@
 
 namespace Delegates
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -19,7 +19,7 @@ namespace Delegates
             GenerateData(evenNumber, logToConsole);
         }
 
-        static void GenerateData(Func<int, bool> predicate, Action<string> logger)
+        public static void GenerateData(Func<int, bool> predicate, Action<string> logger)
         {
             var numbers = Enumerable.Range(1, 100)
                             .Where(predicate)
