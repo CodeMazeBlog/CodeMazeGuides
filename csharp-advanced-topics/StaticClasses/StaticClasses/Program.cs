@@ -13,7 +13,7 @@ public class Program
 
         //non-static class student implementation 
         //the class has to be instantiated
-        CollegeStudent student = new CollegeStudent();
+        var student = new CollegeStudent();
         student.Id = 1;
         student.Name = "John Doe";
         student.DateOfBirth = new DateTime(1994, 12, 31);
@@ -47,7 +47,7 @@ public class Program
             }
             return age;
         }
-
+   
         //function to return the student's details on the screen
         public static string StudentDetails()
         {
