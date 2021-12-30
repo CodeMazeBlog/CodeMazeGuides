@@ -5,9 +5,9 @@ namespace MandatoryQueryStringParameters
 {
     public class QueryParameters
     {
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [BindRequired]
-        public int number { get; set; }
+        public int Number { get; set; }
     }
 }

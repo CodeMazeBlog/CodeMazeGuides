@@ -24,7 +24,7 @@ namespace Tests
         [Fact]
         public async Task GivenMandatoryParameters_WhenCallAPI_ThenReturnCorrectly()
         {
-            var json = await _httpClient.GetStringAsync("/withparams?number=12&id=4");
+            var json = await _httpClient.GetStringAsync("/withparams?Number=12&Id=4");
             var intArray = JArray.Parse(json).ToObject<int[]>();
             Assert.Equal(3, intArray.Length);
             Assert.Equal(4, intArray[0]);
@@ -33,7 +33,7 @@ namespace Tests
         [Fact]
         public async Task GivenNoBindRequiredParameters_WhenCallAPI_ThenReturnErrors()
         {
-            HttpResponseMessage response = await _httpClient.GetAsync("/withparams?number=12");
+            HttpResponseMessage response = await _httpClient.GetAsync("/withparams?Number=12");
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
         }
@@ -41,7 +41,7 @@ namespace Tests
         [Fact]
         public async Task GivenNoRequiredParameters_WhenCallAPI_ThenReturnErrors()
         {
-            HttpResponseMessage response = await _httpClient.GetAsync("/withparams?id=4");
+            HttpResponseMessage response = await _httpClient.GetAsync("/withparams?Id=4");
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
 
         }

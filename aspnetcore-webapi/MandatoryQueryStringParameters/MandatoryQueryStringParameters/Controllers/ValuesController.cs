@@ -16,18 +16,18 @@ namespace MandatoryQueryStringParameters.Controllers
                 return BadRequest();
             }
 
-            return Ok(new[] { parameters.id , parameters.number });
+            return Ok(new[] { parameters.Id , parameters.Number });
         }
 
         [HttpGet("/withparams")]
-        public IActionResult GetWithSingleParameters([Required] int id, [BindRequired] int number, int check)
+        public IActionResult GetWithSingleParameters([Required] int Id, [BindRequired] int Number, int Check)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            return Ok(new[] { id, number, check });
+            return Ok(new[] { Id, Number, Check });
         }
     }
 }
