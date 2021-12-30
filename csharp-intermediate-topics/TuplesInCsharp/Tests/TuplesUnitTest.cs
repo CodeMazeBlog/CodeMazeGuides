@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Tests
 {
-    public class TuplesTest
+    public class TuplesUnitTest
     {
         [Theory]
         [InlineData(20)]

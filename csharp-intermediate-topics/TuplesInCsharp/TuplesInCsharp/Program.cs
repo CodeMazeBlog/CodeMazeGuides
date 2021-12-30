@@ -12,10 +12,6 @@ var tupleCreatedWithExplicitType = Tuple.Create<string>("code-maze");
 
 var tupleCreatedWithNoExplicitType = Tuple.Create("code-maze"); 
 
-var example2 = Tuple.Create("code-maze", 24);
-
-var example3 = Tuple.Create(true, 3, "code-maze", 23M, "blockchain");
-
 var tupleWithEightElements = Tuple.Create(true, "between", "zero", "and", "one" , false, "bezao", 24);
 
 var tupleContainingArrays = Tuple.Create(new int[] { 1, 2, 3 }, new string[] { "black", "white" });
