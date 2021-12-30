@@ -9,7 +9,7 @@ namespace Tests
         [InlineData(20)]
         [InlineData(46)]
         [InlineData(92)]
-        public void MethodA_WithAnEvenNum_ReturnsATupleWithATrueValue(int num)
+        public void givenReturnATuple_WhenExecutedWithAnEvenNum_ReturnsATupleWithATrueValue(int num)
         {
             var tupleOne = Program.ReturnATuple(num);
 
@@ -23,7 +23,7 @@ namespace Tests
         [InlineData(21)]
         [InlineData(47)]
         [InlineData(93)]
-        public void MethodA_WithAnOddNum_ReturnsATupleWithAFalseValue(int num)
+        public void givenReturnATuple_WhenExecutedWithAnOddNum_ReturnsATupleWithAFalseValue(int num)
         {
             var tupleOne = Program.ReturnATuple(num);
 
@@ -34,7 +34,7 @@ namespace Tests
         }
 
         [Fact]
-        public void MethodB_WhenExecuted_ReturnsAString()
+        public void givenTakeInATuple_WhenExecutedWithATuple_ReturnsAString()
         {
             var testTuple = Tuple.Create(10, false);
             var result = Program.TakeInATuple(testTuple);
