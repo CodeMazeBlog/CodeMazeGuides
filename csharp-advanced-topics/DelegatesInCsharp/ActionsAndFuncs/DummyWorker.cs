@@ -3,22 +3,21 @@ namespace ActionsAndFuncs
 {
     internal class DummyWorker
     {
-        private readonly int fakeValue;
+        private readonly int _fakeValue;
 
         public DummyWorker(int fakeValue)
         {
-            this.fakeValue = fakeValue;
+            this._fakeValue = fakeValue;
         }
 
         public double DoTheFuncJob(Func<int, double> operation)
         {
-            //You'll do a heavy work here ^_^
-            return operation(fakeValue);
+            return operation(_fakeValue);
         }
 
         public void DoTheActionJob(Action<double> operation)
         {
-            operation(fakeValue);
+            operation(_fakeValue);
         }
     }
 }
