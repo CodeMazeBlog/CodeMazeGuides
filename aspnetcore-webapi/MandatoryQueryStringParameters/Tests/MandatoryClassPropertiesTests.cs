@@ -24,7 +24,7 @@ namespace Tests
         [Fact]
         public async Task GivenAllParameters_WhenCallAPI_ThenReturnCorrectly()
         {
-            var json = await _httpClient.GetStringAsync("/values?Id=13&Number=23");
+            var json = await _httpClient.GetStringAsync("/values?id=13&number=23");
             var intArray = JArray.Parse(json).ToObject<int[]>();
             Assert.Equal(2, intArray.Length);
             Assert.Equal(13, intArray[0]);

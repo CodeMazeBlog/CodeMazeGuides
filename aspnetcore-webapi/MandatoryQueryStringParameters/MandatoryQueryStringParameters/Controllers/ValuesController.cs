@@ -20,14 +20,14 @@ namespace MandatoryQueryStringParameters.Controllers
         }
 
         [HttpGet("/withparams")]
-        public IActionResult GetWithSingleParameters([Required] int Id, [BindRequired] int Number, int Check)
+        public IActionResult GetWithSingleParameters([Required] int id, [BindRequired] int number, int check)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            return Ok(new[] { Id, Number, Check });
+            return Ok(new[] { id, number, check });
         }
     }
 }
