@@ -1,3 +1,4 @@
+using ActionAndFuncDelegateInCSharp;
 using NUnit.Framework;
 
 namespace ActionAndFuncDelegateInCSharpTest
@@ -12,7 +13,7 @@ namespace ActionAndFuncDelegateInCSharpTest
         [Test]
         public void Test1()
         {
-            Assert.Pass();
+           
         }
     }
 }

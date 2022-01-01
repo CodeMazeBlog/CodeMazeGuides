@@ -18,7 +18,7 @@
         }
     }
 
-    internal class ActionExample
+    public static class ActionExample
     {
         private delegate void PrintMessage(string name);
 
@@ -47,7 +47,7 @@
     }
 
 
-    internal class FuncExample
+    public class FuncExample
     {
         private static int _count = 0;
 
