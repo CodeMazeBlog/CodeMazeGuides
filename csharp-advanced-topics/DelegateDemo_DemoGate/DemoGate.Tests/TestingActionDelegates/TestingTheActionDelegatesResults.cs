@@ -9,9 +9,8 @@ namespace DemoGate.Tests.TestingActionDelegates
     public class TestingTheActionDelegatesResults
     {
         ActionDelegate actionDelegateClass = new ActionDelegate();
-        //public TestingTheActionDelegatesResults() => _actionDelegate = new ActionDelegate();
         [Fact]
-        public void ActionDelegate_Sentence_ReturnsString()
+        public void GivenSentence_WhenSentenceIsString_ThenSentenceOutputIsString()
         {
             actionDelegateClass.ActionDelegates();
             Assert.Contains(ActionDelegate.sentence, "I think. Therefore I am.");

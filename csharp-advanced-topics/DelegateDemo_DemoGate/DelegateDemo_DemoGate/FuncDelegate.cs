@@ -4,7 +4,6 @@ using System.Text;
 
 namespace DelegateDemo_DemoGate
 {
-    
     public class FuncDelegate
     {
         public string FuncDelegates()
@@ -17,17 +16,14 @@ namespace DelegateDemo_DemoGate
             {
                 return phrase1 + phrase2;
             };
+
             string sentence2 = Sentence2("2: I think.", " Therefore I am.");
             Console.WriteLine($"Sentence = {sentence2}");
-            //return sentence2;
-
-
 
             Func<string, string, string> Sentence3 = (phrase1, phrase2) => phrase1 + phrase2;
             string sentence3 = Sentence3("3: I think.", " Therefore I am.");
             Console.WriteLine($"Sentence = {sentence3}");
             
-
             return sentence1;
         }
 

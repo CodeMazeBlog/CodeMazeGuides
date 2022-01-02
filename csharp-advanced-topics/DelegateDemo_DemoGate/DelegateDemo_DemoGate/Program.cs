@@ -4,7 +4,6 @@ namespace DelegateDemo_DemoGate
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             FuncDelegate funcDelegateClass = new FuncDelegate();
@@ -13,6 +12,5 @@ namespace DelegateDemo_DemoGate
             ActionDelegate actionDelegateClass = new ActionDelegate();
             actionDelegateClass.ActionDelegates();
         }
-
     }
 }

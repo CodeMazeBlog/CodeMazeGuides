@@ -10,7 +10,6 @@ namespace DelegateDemo_DemoGate
         public static string sentence1;
         public static string sentence2;
         
-
         public void ActionDelegates()
         {
             Action<string, string> Sentence = MakeSentence;
