@@ -11,10 +11,10 @@ namespace DemoGate.Tests.TestingFuncDelegates
         private readonly FuncDelegate _funcDelegate;
         public TestingTheFuncDelegateResult() => _funcDelegate = new FuncDelegate();
         [Fact]
-        public void GivenFuncDelegate_WhenSentenceIsString_ThenReturnString()
+        public void GivenFuncDelegate_WhenExecuted_ThenReturnString()
             => Assert.Contains(_funcDelegate.FuncDelegates(), "1: I think. Therefore I am.");
         [Fact]
-        public void GivenMakeSentenceMethod_WhenSentenceIsString_ThenReturnString()
+        public void GivenMakeSentenceMethod_WhenExecuted_ThenReturnString()
             => Assert.Contains(_funcDelegate.MakeSentence("I think.", " Therefore I am"), "I think. Therefore I am.");
     }
 }
