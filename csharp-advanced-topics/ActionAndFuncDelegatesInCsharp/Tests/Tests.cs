@@ -62,13 +62,13 @@ namespace Tests
 		{
 			//arrange
 			Program.names = names;
-			string expected = String.Join("\r\n", names) + "\r\n";
+			string expected = String.Join("", names);
 
 			//act
 			Program.PrintAllNames();
 
 			//assert
-			var output = stringWriter.ToString();
+			var output = stringWriter.ToString().Replace("\r\n","");
 			Assert.IsTrue(expected == output);
 		}
 
@@ -77,13 +77,13 @@ namespace Tests
 		{
 			//arrange
 			Program.names = names;
-			string expected = String.Join("\r\n", names.Where(n => n.Length == 5)) + "\r\n";
+			string expected = String.Join("", names.Where(n => n.Length == 5));
 
 			//act
 			Program.PrintFiveLetterNames();
 
 			//assert
-			var output = stringWriter.ToString();
+			var output = stringWriter.ToString().Replace("\r\n", "");
 			Assert.IsTrue(expected == output);
 		}
 
