@@ -28,7 +28,7 @@ namespace Tests
 		}
 
 		[TestMethod]
-		public void whenFireDelegateExceptionIsCalled_MethodPrintsCorrectResult()
+		public void whenFireDelegateExceptionIsCalled_ThenMethodPrintsCorrectExceptionMessage()
 		{
 			//arrange
 			Program.names = names;
@@ -43,7 +43,7 @@ namespace Tests
 		}
 
 		[TestMethod]
-		public void whenFireActionExceptionIsCalled_MethodPrintsCorrectResult()
+		public void whenFireActionExceptionIsCalled_ThenMethodPrintsCorrectExceptionMessage()
 		{
 			//arrange
 			Program.names = names;
@@ -58,7 +58,7 @@ namespace Tests
 		}
 
 		[TestMethod]
-		public void whenPrintAllNamesIsCalled_MethodPrintsCorrectResult()
+		public void whenPrintAllNamesIsCalled_ThenMethodPrintsCorrectNamesList()
 		{
 			//arrange
 			Program.names = names;
@@ -73,7 +73,7 @@ namespace Tests
 		}
 
 		[TestMethod]
-		public void whenPrintFiveLetterNamesIsCalled_MethodPrintsCorrectResult()
+		public void whenPrintFiveLetterNamesIsCalled_ThenMethodPrintsCorrectNamesList()
 		{
 			//arrange
 			Program.names = names;
@@ -88,7 +88,7 @@ namespace Tests
 		}
 
 		[TestMethod]
-		public void whenLogErrorIsCalled_MethodPrintsCorrectResult()
+		public void whenLogErrorIsCalled_ThenMethodPrintsCorrectExceptionMessage()
 		{
 			//arrange
 			var testException = new Exception("You shall not pass!");
