@@ -35,7 +35,6 @@ namespace Tests
         {
             HttpResponseMessage response = await _httpClient.GetAsync("/withparams?number=12");
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-
         }
 
         [Fact]
@@ -43,7 +42,6 @@ namespace Tests
         {
             HttpResponseMessage response = await _httpClient.GetAsync("/withparams?Id=4");
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-
         }
     }
 }

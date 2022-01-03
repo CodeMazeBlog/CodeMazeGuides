@@ -30,12 +30,12 @@ namespace Tests
             Assert.Equal(13, intArray[0]);
             Assert.Equal(23, intArray[1]);
         }
+
         [Fact]
         public async Task GivenNoParameters_WhenCallAPI_ThenReturnErrors()
         {
             HttpResponseMessage response = await _httpClient.GetAsync("/values");
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-
         }
     }
 }

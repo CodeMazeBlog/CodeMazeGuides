@@ -10,24 +10,11 @@ namespace MandatoryQueryStringParameters.Controllers
     {
         [HttpGet]
         public IActionResult Get([FromQuery]QueryParameters parameters)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
-            return Ok(new[] { parameters.Id , parameters.Number });
-        }
+            => Ok(new[] { parameters.Id , parameters.Number });
+        
 
         [HttpGet("/withparams")]
         public IActionResult GetWithParameters([Required] int id, [BindRequired] int number, int check)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
-            return Ok(new[] { id, number, check });
-        }
+            => Ok(new[] { id, number, check });
     }
 }
