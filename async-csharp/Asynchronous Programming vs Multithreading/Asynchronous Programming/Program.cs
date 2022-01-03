@@ -1,6 +1,4 @@
 ﻿using Asynchronous_Programming;
-using System;
-using System.Text;
 
 namespace AsynchronousProgramming
 {
@@ -10,16 +8,21 @@ namespace AsynchronousProgramming
         {
             Console.WriteLine("First Async Method on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
             await Task.Delay(1000);
+            Console.WriteLine("First Async Method Continuation on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
         }
+
         public static async Task SecondAsync()
         {
             Console.WriteLine("Second Async Method on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
             await Task.Delay(1000);
+            Console.WriteLine("Second Async Method Continuation on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
         }
+
         public static async Task ThirdAsync()
         {
             Console.WriteLine("Third Async Method on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
             await Task.Delay(1000);
+            Console.WriteLine("Third Async Method Continuation on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
         }
 
         public static async Task ExecuteAsyncFunctions()
@@ -28,27 +31,17 @@ namespace AsynchronousProgramming
             var secondAsync = SecondAsync();
             var thirdAsync = ThirdAsync();
 
-            await firstAsync;
-            await secondAsync;
-            await thirdAsync;
+            await Task.WhenAll(firstAsync, secondAsync, thirdAsync);
         }
 
         static async Task Main(string[] args)
-        {
-          
-            Console.WriteLine("Main method on thread with Id : " + Thread.CurrentThread.ManagedThreadId);
-
-            DateTime dt1 = DateTime.Now;
+        {      
             await ExecuteAsyncFunctions();
-            var ts1 = DateTime.Now - dt1;
-            Console.WriteLine("Seconds taken for asynchronous operation: " + ts1.Seconds + "\n");
+
+            Console.WriteLine();
           
             Multithreading multithreading = new Multithreading();
-            DateTime dt2 = DateTime.Now;
             multithreading.ExecuteMultithreading();
-            var ts2 = DateTime.Now - dt2;
-            Console.WriteLine("Seconds taken for multithreading operation: " + ts2.Seconds);
-
         }
     }
 }
