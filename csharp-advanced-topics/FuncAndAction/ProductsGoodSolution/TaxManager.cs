@@ -11,9 +11,9 @@ namespace ProductsGoodSolution
         public static Dictionary<ProductType, Func<double, double>> TaxCalculatorDict =>
             new()
             {
-                {ProductType.Clothes, ClothesFunc },
-                {ProductType.Household, HouseholdFunc },
-                {ProductType.Electronics, ElectronicsFunc },
+                { ProductType.Clothes, ClothesFunc },
+                { ProductType.Household, HouseholdFunc },
+                { ProductType.Electronics, ElectronicsFunc },
             };
 
         public static double ClothesFunc(double price) => price * 0.03;
