@@ -69,7 +69,7 @@ namespace Tests
 
 			//assert
 			var output = stringWriter.ToString();
-			Assert.AreEqual(expected, output);
+			Assert.IsTrue(expected == output);
 		}
 
 		[TestMethod]
@@ -84,7 +84,7 @@ namespace Tests
 
 			//assert
 			var output = stringWriter.ToString();
-			Assert.AreEqual(expected, output);
+			Assert.IsTrue(expected == output);
 		}
 
 		[TestMethod]
