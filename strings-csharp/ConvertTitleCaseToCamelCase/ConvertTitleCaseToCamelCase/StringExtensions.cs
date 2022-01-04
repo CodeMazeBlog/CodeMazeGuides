@@ -17,7 +17,7 @@ namespace ConvertTitleCaseToCamelCase
                 });
 
             var tailWords = words.Skip(1)
-                .Select(e => char.ToUpper(e[0]) + e.Substring(1))
+                .Select(word => char.ToUpper(word[0]) + word.Substring(1))
                 .ToArray();
 
             return leadWord + string.Join(string.Empty, tailWords);
