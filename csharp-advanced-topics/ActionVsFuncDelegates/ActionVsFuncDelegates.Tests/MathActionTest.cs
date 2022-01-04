@@ -18,7 +18,7 @@ namespace ActionVsFuncDelegates.Tests
             var mathAction = new MathAction();
             mathAction.ShowSum(a, b);
 
-            Assert.Equal($"{a} + {b} = {result}\r\n", stringWriter.ToString());
+            Assert.Equal($"{a} + {b} = {result}{Environment.NewLine}", stringWriter.ToString());
         }
 
         [Theory]
@@ -33,7 +33,7 @@ namespace ActionVsFuncDelegates.Tests
             var mathAction = new MathAction();
             mathAction.ShowMinus(a, b);
 
-            Assert.Equal($"{a} - {b} = {result}\r\n", stringWriter.ToString());
+            Assert.Equal($"{a} - {b} = {result}{Environment.NewLine}", stringWriter.ToString());
         }
 
         [Theory]
@@ -48,7 +48,7 @@ namespace ActionVsFuncDelegates.Tests
             var mathAction = new MathAction();
             mathAction.ShowMultiplied(a, b);
 
-            Assert.Equal($"{a} * {b} = {result}\r\n", stringWriter.ToString());
+            Assert.Equal($"{a} * {b} = {result}{Environment.NewLine}", stringWriter.ToString());
         }
     }
 }
