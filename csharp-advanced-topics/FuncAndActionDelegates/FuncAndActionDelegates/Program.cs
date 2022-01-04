@@ -29,9 +29,9 @@ namespace FuncAndActionDelegates
             tripleNumActionDel(6);
         }
 
-        public static int AddNumbers(int num1, int nums2)
+        public static int AddNumbers(int num1, int num2)
         {
-            return num1 + nums2;
+            return num1 + num2;
         }
 
         public static void PrintMessage()
