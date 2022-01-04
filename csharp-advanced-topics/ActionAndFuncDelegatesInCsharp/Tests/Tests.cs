@@ -68,7 +68,7 @@ namespace Tests
 			Program.PrintAllNames();
 
 			//assert
-			var output = stringWriter.ToString().Replace("\r\n","");
+			var output = stringWriter.ToString().Replace(Environment.NewLine,"");
 			Assert.IsTrue(expected == output);
 		}
 
@@ -83,7 +83,7 @@ namespace Tests
 			Program.PrintFiveLetterNames();
 
 			//assert
-			var output = stringWriter.ToString().Replace("\r\n", "");
+			var output = stringWriter.ToString().Replace(Environment.NewLine, "");
 			Assert.IsTrue(expected == output);
 		}
 
