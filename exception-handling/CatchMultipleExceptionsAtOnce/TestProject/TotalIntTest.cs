@@ -16,7 +16,6 @@ namespace TestProject
             TryCatchUnitTest test = new TryCatchUnitTest();
             test.WhenCorrectInput_ThenCorrectOutput();
             test.WhenIncorrectInputFormat_ThenInCorrectOutput();
-            test.WhenInvalidRangeError_ThenInCorrectOutput();
             test.WhenDivisionByZeroError_ThenInCorrectOutput();
             test.WhenOverflowError_ThenInCorrectOutput();
         }
