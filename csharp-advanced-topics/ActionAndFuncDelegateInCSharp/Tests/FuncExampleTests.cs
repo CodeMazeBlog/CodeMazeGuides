@@ -1,7 +1,7 @@
 using Xunit;
 using Shouldly;
-using ActionAndFuncDelegateInCSharp;
 using ActionAndFuncDelegateInCSharp.Model;
+using System;
 
 namespace Tests
 {
@@ -10,22 +10,26 @@ namespace Tests
         [Fact]
         public void WhenInvokingFuncThatReturnsRandomNumber_ThenTwoConsecutiveValuesShouldNotBeSame()
         {
-            int randomNumber = new FuncExamples().RandomNumberGenerator();
+            var random = new Random();
 
-            new FuncExamples()
-                .RandomNumberGenerator()
-                .ShouldNotBe(randomNumber);
+            Func<int> randomNumberGenerator = () => random.Next();
+
+            int randomNumber = randomNumberGenerator();
+
+            randomNumberGenerator().ShouldNotBe(randomNumber);
         }
 
         [Fact]
         public void WhenInvokingBankIdGetter_PersonIDNumberShouldBeMentioned()
         {
-            Person person = new Person()
+            var person = new Person()
             {
                 NationalIdentity = "random"
             };
 
-            var bankId = new FuncExamples().BankIdGetter(person, new Bank());
+            Func<Person, Bank, string> bankIdGetter = (person, bank) => bank.GetBankId(person);
+
+            var bankId = bankIdGetter(person, new Bank());
 
             bankId.ShouldNotBeNull();
             bankId.ShouldContain(person.NationalIdentity);

@@ -1,22 +1,24 @@
 using Xunit;
 using Shouldly;
 using ActionAndFuncDelegateInCSharp.Model;
-using ActionAndFuncDelegateInCSharp.Examples;
+using System;
 
 namespace Tests
 {
-public class ActionExampleTests
-{
-    [Fact]
-    public void WhenInvokingActionWithLaptopInstance_PriceChanges()
+    public class ActionExampleTests
     {
-        var laptop = new Laptop();
+        [Fact]
+        public void WhenInvokingActionWithLaptopInstance_PriceChanges()
+        {
+            var laptop = new Laptop();
 
-        laptop.Price.ShouldBe(0);
+            laptop.Price.ShouldBe(0);
 
-        new ActionExamples().LaptopPriceUpdater(laptop);
+            Action<Laptop> priceUpdater = laptop => laptop.Price = 56;
 
-        laptop.Price.ShouldBeGreaterThan(0);
+            priceUpdater(laptop);
+
+            laptop.Price.ShouldBeGreaterThan(0);
+        }
     }
-}
 }

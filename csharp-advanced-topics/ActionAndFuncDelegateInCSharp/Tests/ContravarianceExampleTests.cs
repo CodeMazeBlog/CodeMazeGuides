@@ -1,48 +1,35 @@
 using Xunit;
 using Shouldly;
 using ActionAndFuncDelegateInCSharp.Model;
-using ActionAndFuncDelegateInCSharp.Examples;
 
 namespace Tests
 {
+    public delegate void ActionDelegate<in T>(T obj);
+
     public class ContravarianceExampleTests
     {
         [Fact]
         public void WhenActionDelegateIsAssignedByContravarianceRelation_TheTargetDelegateShouldChangeAccordingly()
         {
-            var contravarianceExample = new ContravarianceExamples();
+            ActionDelegate<Button> clickOnButton = button => button.Click();
 
-            contravarianceExample.Assign();
+            ActionDelegate<Control> operateOnControl = control => control.Operate();
 
-            contravarianceExample.ActWithButton.ShouldBeOfType<ActionDelegate<Control>>();
+            clickOnButton.ShouldBeOfType<ActionDelegate<Button>>();
 
             var button = new Button();
 
             button.OperateCount.ShouldBe(0);
             button.ClickCount.ShouldBe(0);
 
-            contravarianceExample.ActWithButton(button);
+            clickOnButton = operateOnControl;
+
+            clickOnButton.ShouldBeOfType<ActionDelegate<Control>>();
+
+            clickOnButton(button);
 
             button.OperateCount.ShouldBe(1);
             button.ClickCount.ShouldBe(0);
-        }
-
-        [Fact]
-        public void WhenActionDelegateInvokedAsUsual_TheOutputShouldResembleWhatShouldHappenForInvarianceRelation()
-        {
-            var contravarianceExample = new ContravarianceExamples();
-
-            contravarianceExample.ActWithButton.ShouldBeOfType<ActionDelegate<Button>>();
-
-            var button = new Button();
-
-            button.OperateCount.ShouldBe(0);
-            button.ClickCount.ShouldBe(0);
-
-            contravarianceExample.ActWithButton(button);
-
-            button.OperateCount.ShouldBe(0);
-            button.ClickCount.ShouldBe(1);
         }
     }
 }

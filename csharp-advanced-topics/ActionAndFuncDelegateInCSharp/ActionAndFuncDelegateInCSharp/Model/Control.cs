@@ -4,9 +4,6 @@
     {
         public int OperateCount { get; set; }
 
-        public void Operate()
-        {
-            OperateCount++;
-        }
+        public void Operate() => OperateCount++;
     }
 }

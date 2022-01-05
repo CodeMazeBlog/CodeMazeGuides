@@ -1,22 +1,24 @@
 using Xunit;
 using Shouldly;
 using ActionAndFuncDelegateInCSharp.Model;
-using ActionAndFuncDelegateInCSharp.Examples;
 
 namespace Tests
 {
+    public delegate TResult FuncDelegate<out TResult>();
+
     public class CovarianceExampleTests
     {
         [Fact]
         public void WhenFuncDelegateIsAssignedToAnotherFuncDelegate_TheTargetDelegateShouldChangeAccordingly()
         {
-            var covarianceExample = new CovarianceExamples();
+            FuncDelegate<Button> funcWithButton = () => new Button();
+            FuncDelegate<Control> funcWithControl = () => new Control();
 
-            covarianceExample.Assign();
+            funcWithControl = funcWithButton;
 
-            covarianceExample.FuncWithControl.ShouldBeOfType<FuncDelegate<Button>>();
+            funcWithControl.ShouldBeOfType<FuncDelegate<Button>>();
 
-            covarianceExample.FuncWithControl().ShouldBeOfType<Button>();
+            funcWithControl().ShouldBeOfType<Button>();
         }
     }
 }

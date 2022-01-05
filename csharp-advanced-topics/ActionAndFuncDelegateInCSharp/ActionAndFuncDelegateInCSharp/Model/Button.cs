@@ -4,9 +4,6 @@
     {
         public int ClickCount { get; set; }
 
-        public void Click()
-        {
-            ClickCount++;
-        }
+        public void Click() => ClickCount++;
     }
 }
