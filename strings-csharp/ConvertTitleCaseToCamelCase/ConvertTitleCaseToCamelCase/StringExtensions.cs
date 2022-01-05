@@ -6,8 +6,6 @@ namespace ConvertTitleCaseToCamelCase
     {
         public static string ToCamelCase(this string str)
         {
-            if (string.IsNullOrEmpty(str)) return str;
-
             var words = str.Split(new[] { "_", " " }, StringSplitOptions.RemoveEmptyEntries);
 
             var leadWord = Regex.Replace(words[0], @"([A-Z])([A-Z]+|[a-z0-9]+)($|[A-Z]\w*)",
@@ -20,7 +18,7 @@ namespace ConvertTitleCaseToCamelCase
                 .Select(word => char.ToUpper(word[0]) + word.Substring(1))
                 .ToArray();
 
-            return leadWord + string.Join(string.Empty, tailWords);
+            return $"{leadWord}{string.Join(string.Empty, tailWords)}";
         }
     }
 }
