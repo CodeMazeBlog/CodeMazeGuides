@@ -24,7 +24,9 @@ namespace CustomHeaderResponse.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductItems()
         {
-            return await _context.ProductItems.ToListAsync();
+            List<Product> products = await _context.ProductItems.ToListAsync();
+            Response.Headers.Add("Total-Products", products.Count.ToString());
+            return products;
         }
 
         // GET: api/Products/5
