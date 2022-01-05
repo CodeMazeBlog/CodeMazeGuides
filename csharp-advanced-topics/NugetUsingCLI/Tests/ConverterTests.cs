@@ -6,13 +6,13 @@ namespace Tests
     public class ConverterTests
     {
         [Fact]
-        public void WhenProvidedDegreeCelsiusValue_ReturnsFahrenHeitValue()
+        public void WhenProvidedDegreeCelsiusValue_ReturnsFahrenheitValue()
         {
-            Assert.Equal(77, Converter.ToFahrenHeit(25));
+            Assert.Equal(77, Converter.ToFahrenheit(25));
         }
 
         [Fact]
-        public void WhenProvidedFahrenHeitValue_ReturnsDegreeCelsiusValue()
+        public void WhenProvidedFahrenheitValue_ReturnsDegreeCelsiusValue()
         {
             Assert.Equal(25, Converter.ToDegreeCelsius(77));
         }

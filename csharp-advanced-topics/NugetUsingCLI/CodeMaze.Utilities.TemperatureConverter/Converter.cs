@@ -2,14 +2,14 @@
 {
     public static class Converter
     {
-        public static double ToFahrenHeit(double degreeCelsiusTemp)
+        public static double ToFahrenheit(double degreeCelsiusTemp)
         {
             return (degreeCelsiusTemp * 9 / 5) + 32;
         }
 
-        public static double ToDegreeCelsius(double fahrenHeitTemp)
+        public static double ToDegreeCelsius(double fahrenheitTemp)
         {
-            return (fahrenHeitTemp - 32) * 5 / 9;
+            return (fahrenheitTemp - 32) * 5 / 9;
         }
     }
 }
