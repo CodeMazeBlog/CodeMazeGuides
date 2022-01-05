@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomHeaderResponse", "CustomHeaderResponse.csproj", "{DA50B8AD-BF3C-4071-856D-D30EA53833E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA50B8AD-BF3C-4071-856D-D30EA53833E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA50B8AD-BF3C-4071-856D-D30EA53833E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA50B8AD-BF3C-4071-856D-D30EA53833E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA50B8AD-BF3C-4071-856D-D30EA53833E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB67998B-51E4-47D7-801E-3F73EE9AA647}
+	EndGlobalSection
+EndGlobal
