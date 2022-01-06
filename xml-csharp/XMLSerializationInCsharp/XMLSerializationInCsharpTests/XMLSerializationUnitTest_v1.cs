@@ -12,8 +12,8 @@ namespace XMLSerializationInCsharpTests
         string xml = @"﻿<?xml version=""1.0"" encoding=""utf-8""?>
 <Patient xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <ID>232323</ID>
-  <FirstName>aa</FirstName>
-  <LastName>bb</LastName>
+  <FirstName>John</FirstName>
+  <LastName>Doe</LastName>
   <Birthday>1990-12-30T00:00:00</Birthday>
   <RoomNo>310</RoomNo>
 </Patient>";
@@ -27,17 +27,19 @@ namespace XMLSerializationInCsharpTests
         [Test]
         public void WhenSerializingASimpleClass_ThenCorrectXML()
         {
-            Patient patient = new Patient();
-            patient.ID = 232323;
-            patient.FirstName = "aa";
-            patient.LastName = "bb";
-            patient.Birthday = new DateTime(1990, 12, 30);
-            patient.RoomNo = 310;
-
-            using (MemoryStream stream = new MemoryStream())
-            using (StreamWriter writer = new StreamWriter(stream, Encoding.UTF8))
+            var patient = new Patient()
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(Patient));
+                ID = 232323,
+                FirstName = "John",
+                LastName = "Doe",
+                Birthday = new DateTime(1990, 12, 30),
+                RoomNo = 310
+            };
+
+            using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream, Encoding.UTF8))
+            {
+                var serializer = new XmlSerializer(typeof(Patient));
                 serializer.Serialize(writer, patient);
                 Assert.AreEqual(xml, Encoding.UTF8.GetString(stream.ToArray()));
             }

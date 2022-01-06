@@ -14,8 +14,8 @@ namespace XMLSerializationInCsharpTests
 <ArrayOfPerson xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <Person xsi:type=""Doctor"">
     <ID>777</ID>
-    <FirstName>Dr</FirstName>
-    <LastName>Dre</LastName>
+    <FirstName>Jane</FirstName>
+    <LastName>Doe</LastName>
     <Birthday>1975-03-05T00:00:00</Birthday>
     <Specialization>Cardiologist</Specialization>
   </Person>
@@ -37,28 +37,30 @@ namespace XMLSerializationInCsharpTests
         [Test]
         public void WhenSerializingAListOfDerivedObjects_ThenCorrectXML()
         {
-            var people = new List<Person>();
-            people.Add(new Doctor()
+            var people = new List<Person>()
             {
-                ID = 777,
-                FirstName = "Dr",
-                LastName = "Dre",
-                Birthday = new DateTime(1975, 3, 5),
-                Specialization = "Cardiologist"
-            });
-            people.Add(new Patient()
-            {
-                ID = 888,
-                FirstName = "John",
-                LastName = "Doe",
-                Birthday = new DateTime(1980, 3, 21),
-                RoomNo = 301
-            });
+                new Doctor()
+                {
+                    ID = 777,
+                    FirstName = "Jane",
+                    LastName = "Doe",
+                    Birthday = new DateTime(1975, 3, 5),
+                    Specialization = "Cardiologist"
+                },
+                new Patient()
+                {
+                    ID = 888,
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Birthday = new DateTime(1980, 3, 21),
+                    RoomNo = 301
+                }
+            };
 
-            using (MemoryStream stream = new MemoryStream())
-            using (StreamWriter writer = new StreamWriter(stream, Encoding.UTF8))
+            using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream, Encoding.UTF8))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(List<Person>));
+                var serializer = new XmlSerializer(typeof(List<Person>));
                 serializer.Serialize(writer, people);
                 Assert.AreEqual(xml, Encoding.UTF8.GetString(stream.ToArray()));
             }
