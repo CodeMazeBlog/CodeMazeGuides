@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CM223
+namespace CatchMultipleExceptionsAtOnes
 {
     public class CatchExamples
     {
-        public static int MultipleCatches(string strNumerator, string strDenominator)
+        public static int MultipleCatches(string numeratorParam, string denominatorParam)
         {
             try
             {
-                var numerator = Convert.ToInt32(strNumerator);
-                var denominator = Convert.ToInt32(strDenominator);
+                var numerator = Convert.ToUInt32(numeratorParam);
+                var denominator = Convert.ToUInt32(denominatorParam);
 
-                return numerator / denominator;
+                return (int)(numerator / denominator);
             }
             catch (FormatException)
             {
@@ -33,14 +33,14 @@ namespace CM223
             return -1;
         }
 
-        public static int SingleCatchWithWhen(string strNumerator, string strDenominator)
+        public static int SingleCatchWithWhen(string numeratorParam, string denominatorParam)
         {
             try
             {
-                var numerator = Convert.ToInt32(strNumerator);
-                var denominator = Convert.ToInt32(strDenominator);
+                var numerator = Convert.ToUInt32(numeratorParam);
+                var denominator = Convert.ToUInt32(denominatorParam);
 
-                return numerator / denominator;
+                return (int)(numerator / denominator);
             }
             catch (Exception ex) when (ex is FormatException ||
                                        ex is DivideByZeroException ||
@@ -50,29 +50,14 @@ namespace CM223
             }
         }
 
-        public static int SingleSimplecatch(string strNumerator, string strDenominator)
+        public static int SingleCatch_SwitchCase(string numeratorParam, string denominatorParam)
         {
             try
             {
-                var numerator = Convert.ToInt32(strNumerator);
-                var denominator = Convert.ToInt32(strDenominator);
+                var numerator = Convert.ToUInt32(numeratorParam);
+                var denominator = Convert.ToUInt32(denominatorParam);
 
-                return numerator / denominator;
-            }
-            catch (Exception)
-            {
-                return -1;
-            }
-        }
-
-        public static int SingleCatch_SwitchCase(string strNumerator, string strDenominator)
-        {
-            try
-            {
-                var numerator = Convert.ToInt32(strNumerator);
-                var denominator = Convert.ToInt32(strDenominator);
-
-                return numerator / denominator;
+                return (int)(numerator / denominator);
             }
             catch (Exception ex)
             {
@@ -93,14 +78,14 @@ namespace CM223
             return -1;
         }
 
-        public static int SingleCatch_SwitchWhen(string strNumerator, string strDenominator)
+        public static int SingleCatch_SwitchWhen(string numeratorParam, string denominatorParam)
         {
             try
             {
-                var numerator = Convert.ToInt32(strNumerator);
-                var denominator = Convert.ToInt32(strDenominator);
+                var numerator = Convert.ToUInt32(numeratorParam);
+                var denominator = Convert.ToUInt32(denominatorParam);
 
-                return numerator / denominator;
+                return (int)(numerator / denominator);
             }
             catch (Exception ex)
             {
