@@ -24,6 +24,7 @@ namespace CustomHeaderResponse.Controllers
 
         // GET: api/Products
         [HttpGet]
+        [ResponseHeader("Filter-Other-Attribute-Header", "Filter Other Attribute Value")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductItems()
         {
             List<Product> products = await _context.ProductItems.ToListAsync();
