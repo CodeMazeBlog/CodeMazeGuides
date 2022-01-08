@@ -7,7 +7,7 @@ namespace ActionsAndFuncs
 
         public DummyWorker(int fakeValue)
         {
-            this._fakeValue = fakeValue;
+            _fakeValue = fakeValue;
         }
 
         public double DoTheFuncJob(Func<int, double> operation)

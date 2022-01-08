@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests
 {
     [TestClass]
-    public class ActionFuncTests
+    public class Tests
     {
         [TestMethod]
         public void WhenInvokeTheFunc_TheInternalImplementationExecute()
