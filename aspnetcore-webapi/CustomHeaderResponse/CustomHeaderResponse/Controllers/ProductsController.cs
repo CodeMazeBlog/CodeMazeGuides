@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CustomHeaderResponse.Models;
+using CustomHeaderResponse.AttributeFilters;
 
 namespace CustomHeaderResponse.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ResponseHeader("Filter-Attribute-Header", "Filter Attribute Value")]
     public class ProductsController : ControllerBase
     {
         private readonly ProductContext _context;
