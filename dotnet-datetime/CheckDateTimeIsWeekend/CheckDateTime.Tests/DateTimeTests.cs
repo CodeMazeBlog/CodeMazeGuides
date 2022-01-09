@@ -9,7 +9,7 @@ namespace CheckDateTime.Tests
         [TestMethod]
         public void GivenWorkday_CheckReturnsWorkday()
         {
-            DateTime date = new DateTime(2021, 12, 15);
+            var date = new DateTime(2021, 12, 15);
             string result = string.Empty;
             if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
             {
@@ -22,10 +22,11 @@ namespace CheckDateTime.Tests
 
             Assert.AreEqual(result, "Workday");
         }
+
         [TestMethod]
         public void GivenWeekendDay_CheckReturnsWeekendDay()
         {
-            DateTime date = new DateTime(2021, 12, 4);
+            var date = new DateTime(2021, 12, 4);
             string result = string.Empty;
             if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
             {
@@ -42,11 +43,10 @@ namespace CheckDateTime.Tests
         [TestMethod]
         public void GivenWednesday_FormatShowsWednesday()
         {
-            DateTime date = new DateTime(2021, 10, 6);
+            var date = new DateTime(2021, 10, 6);
             string customDateFormat = date.ToString("dddd, dd MMMM yyyy");
 
             Assert.IsTrue(customDateFormat.Contains("Wednesday"));
-
         }
     }
 }
