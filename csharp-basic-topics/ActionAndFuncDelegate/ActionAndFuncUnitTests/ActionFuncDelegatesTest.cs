@@ -107,7 +107,10 @@ namespace AnctionsAndFuncExmaplesTests
 
             //then
             var result = sb.ToString();
-            Assert.Equal("Hi, Named Method\r\nHola, Anonymous Method\r\nHello, Static Method\r\nLambda\r\n", result);
+            Assert.Equal(
+                String.Format("Hi, Named Method{0}Hola, Anonymous Method{0}Hello, Static Method{0}Lambda{0}",
+                    System.Environment.NewLine),
+                result);
         }
 
         [Fact]
