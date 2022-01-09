@@ -1,17 +1,14 @@
-﻿namespace multipleswitchcase
+namespace multipleswitchcase
 {
 
     public static class Program
     {
         public static bool In<T>(this T val, params T[] vals) => vals.Contains(val);
+
         static void Main(string[] args)
         {            
-            //Multiple switch cases with the same result.
             subMultipleCaseResults();
-
-            //Multiple switch cases using extension method
             subMultipleCaseWithExtension();
-
         }
       
         static void subMultipleCaseResults()
@@ -25,7 +22,7 @@
                 case 60:
                 case 65:
                 case 70:
-                    resultstring = "It's a pleasant day.";
+                    resultstring = "It is a pleasant day.";
                     break;
                 case 85:
                     resultstring = "It is very hot today";
@@ -35,9 +32,6 @@
                     break;
             }
             Console.WriteLine(resultstring);
-
-
-            // use of when keyword in switch case
             switch (Value)
             {
                 case int n when (n >= Value && secondValue <= 200):
@@ -47,24 +41,21 @@
                     Console.WriteLine("The value is between 100 and 300");
                     break;
             }
-            // different format for the switch case.
             var resultValue = switchTemp
             switch
             {
-                var xi
-                when (xi >=60  && xi<= 65)||
-                (xi <=70 )=> "Its a pleasant day",
+                var xi when 
+                (xi >=60  && xi<= 65)||
+                (xi <= 70 )=> "It is a pleasant day",
                 85 => "It is hot today",
                 95 => "It is very hot today",
                 _ => "No weather report",
             };
             Console.WriteLine(resultValue);
-
         }
 
         static void subMultipleCaseWithExtension()
         {
-            
             var tempValue = 70;
             var templist = new List<int> { 60, 65, 70 };
             var result = tempValue
@@ -76,8 +67,6 @@
                 _ => "No weather report.",
             };
             Console.WriteLine($"{result} is with extension method");
-           
-             // switch condition using a list 
             var newresult = tempValue
             switch
             {
@@ -100,7 +89,5 @@
             };
             Console.WriteLine($"{resultText} result is for C# 9.0 syntax");
         }
-        
-           
     }
 }
