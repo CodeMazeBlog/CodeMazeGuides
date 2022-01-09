@@ -30,7 +30,6 @@ namespace Tests
     [TestClass]
     public class UnitTestSwitch
     {
-        
        [TestMethod]
         public void whenMultipleCasesHaveSameResult()
         {
@@ -43,17 +42,16 @@ namespace Tests
                 case 60:
                 case 65:
                 case 70:
-                    resultstring = "It's a pleasant day";
+                    resultstring = "It is a pleasant day";
                     break;
                 case 85:
-                    resultstring = "It's a very hot day";
+                    resultstring = "It is a very hot day";
                     break;
                 default:
                     resultstring = "No weather report today.";
                     break;
             }
             Console.WriteLine(resultstring);
-            // use of when keyword in switch case
             switch (Value)
             {
                 case int n when (n >= Value && secondValue <= 200):
@@ -63,12 +61,11 @@ namespace Tests
                     Console.WriteLine("The value is between 100 and 300");
                     break;
             }
-            // different format for the switch case.
             var resultValue = switchTemp
             switch
             {
-                var xi
-                when (xi >= 60 && xi <= 65) ||
+                var xi when 
+                (xi >= 60 && xi <= 65) ||
                 (xi <= 70) => "Pleasant weather today",  
                 85 => "It is hot today",
                 95 => "It is too hot today",
@@ -76,15 +73,12 @@ namespace Tests
             };
             Console.WriteLine(resultValue);
         }
-
-       
+     
         [TestMethod]
         public void whenSwitchCaseWithEasyFormat()
         {
             var tempValue = 70;
             var templist = new List<int> { 60, 65, 70 };
-
-            // switch condition using a list 
             var newresult = tempValue
             switch
             {
@@ -94,7 +88,6 @@ namespace Tests
                 _ => "No weather report",
             };
             Console.WriteLine($"{newresult} - result when using a list");
-            
             var resultText = tempValue
             switch
             {
@@ -106,7 +99,5 @@ namespace Tests
             };
             Console.WriteLine($"{resultText} - result is for C# 9.0 syntax");
         }
-
-
     }
 }
