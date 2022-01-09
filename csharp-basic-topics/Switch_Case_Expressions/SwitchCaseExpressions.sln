@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Switch_Case_Expressions", "Switch_Case_Expressions\Switch_Case_Expressions.csproj", "{037EB3BE-82A9-4022-ACF5-C57D236891A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Switch_Case_Expressions", "Switch_Case_Expressions\SwitchCaseExpressions.csproj", "{037EB3BE-82A9-4022-ACF5-C57D236891A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{7C62B574-E0D4-48B7-AE1F-CB60A3FA1682}"
 EndProject
