@@ -1,8 +1,8 @@
 ﻿namespace ActionFunc
 {
-    internal class Shape
+    public class Shape
     {
-        internal void Print(int Times)
+        public void Print(int Times)
         {
             for (int i = 0; i < Times; i++)
             {
@@ -10,7 +10,7 @@
             }
         }
 
-        internal int Compute(int FirstValue, int SecondValue)
+        public int Compute(int FirstValue, int SecondValue)
         {
             return FirstValue * SecondValue;
         }
