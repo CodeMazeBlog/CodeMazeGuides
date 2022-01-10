@@ -9,18 +9,19 @@ namespace Tests
         [TestMethod]
         public void WhenPassCorrectFromatedStringToIntParse_ThenCorrectOutputInteger()
         {
-            string input = "345 ";
-            int expected = 345;
-            int actual = 0;
+            var input = "345 ";
+            var expected = 345;
+            var actual = 0;
             try
             {
                 actual = int.Parse(input);
-                
+
             }
             catch (ArgumentNullException ex)
             {
-                Console.WriteLine("Error");
+                Console.WriteLine("ArgumentNullException");
             }
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -28,9 +29,9 @@ namespace Tests
         public void WhenPassNullStringToIntParse_ThenNullException()
         {
             string input = null;
-            string expected = "ArgumentNullException";
-            int output;
-            string actual = null;
+            var expected = "ArgumentNullException";
+            var output = 0;
+            var actual = string.Empty;
             try
             {
                 output = int.Parse(input);
@@ -40,16 +41,17 @@ namespace Tests
             {
                 actual = "ArgumentNullException";
             }
+
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void WhenPassCorrectFromatedStringToConvertToInt_ThenCorrectOutputInteger()
         {
-            string input = "345 ";
-            int expected = 345;
-            int actual = Convert.ToInt32(input);
-            
+            var input = "345 ";
+            var expected = 345;
+            var actual = Convert.ToInt32(input);
+
             Assert.AreEqual(expected, actual);
         }
 
@@ -57,20 +59,19 @@ namespace Tests
         public void WhenPassNullStringToConvertToInt_ThenZero()
         {
             string input = null;
-            int expected = 0;
-            int actual = Convert.ToInt32(input);
-            
+            var expected = 0;
+            var actual = Convert.ToInt32(input);
+
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void WhenPassCorrectFromatedStringToIntTryParse_ThenCorrectOutputIntegerWIthReturnTrue()
         {
-            string input = "345 ";
-            int expected = 345;
-            int actual ;
-            bool expectedSuccess = true;
-            bool actualSuccess = int.TryParse(input, out actual);
+            var input = "345 ";
+            var expected = 345;
+            var expectedSuccess = true;
+            var actualSuccess = int.TryParse(input, out var actual);
 
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expectedSuccess, actualSuccess);
@@ -80,10 +81,9 @@ namespace Tests
         public void WhenPassNullStringToIntTryParse_ThenReturnFalse()
         {
             string input = null;
-            int expected = 0;
-            int actual;
-            bool expectedSuccess = false;
-            bool actualSuccess = int.TryParse(input, out actual);
+            var expected = 0;
+            var expectedSuccess = false;
+            var actualSuccess = int.TryParse(input, out var actual);
 
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(expectedSuccess, actualSuccess);

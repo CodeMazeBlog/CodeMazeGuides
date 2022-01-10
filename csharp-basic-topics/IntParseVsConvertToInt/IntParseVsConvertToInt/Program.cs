@@ -7,40 +7,33 @@ namespace IntParseVsConvertToInt
         {
             try
             {
-                int outputInteger = int.Parse(inputString);
+                var outputInteger = int.Parse(inputString);
                 Console.WriteLine(outputInteger);
             }
             catch (ArgumentNullException ex)
             {
-                Console.WriteLine("Error");
+                Console.WriteLine("The int.Parse() method throws ArgumentNullException.");
             }
         }
 
         public static void ConvertToInt32Method(string inputString)
         {
-            int outputInteger = Convert.ToInt32(inputString);
+            var outputInteger = Convert.ToInt32(inputString);
             Console.WriteLine(outputInteger);
         }
 
         public static void IntTryParseMethod(string inputString)
         {
-            int outputInteger;
-            bool success = int.TryParse(inputString, out outputInteger);
-            if (success)
-            {
-                Console.WriteLine("Conversion successful.Converted value: " + outputInteger);
-            }
+            if (int.TryParse(inputString, out var outputInteger))
+                Console.WriteLine($"Output value: {outputInteger}");
             else
-            {
-                Console.WriteLine("Conversion failed.");
-            }
-
+                Console.WriteLine("The conversion failed.");
         }
 
         public static void Main(string[] args)
         {
-            string inputString = " 123 ";
-            string? inputNullString = null;
+            var inputString = " 123 ";
+            string inputNullString = null;
 
             IntParseMethod(inputString);
             IntParseMethod(inputNullString);
