@@ -166,10 +166,10 @@ namespace Application
             switch (OperationType)
             {
                 case Operation.Add:
-                    duration = Timespan1.Add(TimeSpan.FromTicks(0));
+                    duration = Timespan1.Add(Timespan2);
                     break;
                 case Operation.Substract:
-                    duration = Timespan1.Subtract(TimeSpan.FromTicks(0));
+                    duration = Timespan1.Subtract(Timespan2);
                     break;
                 default:
                     duration = TimeSpan.FromTicks(0);

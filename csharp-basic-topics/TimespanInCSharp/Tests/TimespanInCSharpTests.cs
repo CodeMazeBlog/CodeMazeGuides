@@ -95,7 +95,7 @@ namespace Tests
 		public void WhenValuesSent_Add()
 		{
 			TimeSpan TsParse = Program.Operate(TimeSpan.FromSeconds(45), TimeSpan.FromSeconds(45), Program.Operation.Add);
-			Assert.AreEqual(TsParse, TimeSpan.FromMinutes(1.5));
+			Assert.AreEqual(TsParse, TimeSpan.FromSeconds(90));
 		}
 		[TestMethod]
 		public void WhenValuesSent_Substract()
