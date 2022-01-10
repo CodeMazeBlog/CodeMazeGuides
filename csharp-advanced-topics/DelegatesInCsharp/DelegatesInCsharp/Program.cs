@@ -2,44 +2,40 @@
 
 namespace DelegatesInCsharp
 {
-	delegate void PrintMessage(string text);
-	delegate T Print<T>(T param1);
-
 	class Program
 	{
-		public static void WriteText(string text) => Console.WriteLine($"Text: {text}");
-		public static void ReverseWriteText(string text) => Console.WriteLine($"Text in reverse: {Reverse(text)}");
-		public static string ReverseText(string text) => Reverse(text);
+		delegate void Alarm();      // declaring a delegate
+        static void Main(string[] args)
+        {
+            //manualy declaring delegate 
+            Alarm alarm;            // creating a veriable
+            alarm = WakeUp;         // assigning the address of the method to this variable
+            alarm();                // calling a method
 
-		private static string Reverse(string s)
-		{
-			char[] charArray = s.ToCharArray();
-			Array.Reverse(charArray);
-			return new string(charArray);
-		}
+            void WakeUp() => Console.WriteLine("Wake up it is already 07:00");
+            Console.ReadLine();
 
-		static void Main(string[] args)
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseWriteText);
-			// with + sign
-			var multicastDelegate = delegate1 + delegate2;
+            // using Action
+            ModifyString("uppercase", StringToUpperCase);   //UPPERCASE
+            ModifyString("LOWERCASE", StringToLowerCase);   //lowercase
 
-			// with =, +=, and -=
-			multicastDelegate = delegate1;
-			multicastDelegate += delegate2;
+            void ModifyString(string str, Action<string> op) => op(str);
 
-			multicastDelegate.Invoke("Go ahead, make my day.");
-			multicastDelegate("You're gonna need a bigger boat.");
+            void StringToUpperCase(string str) => Console.WriteLine($"String modifeied to UpperCase - {str.ToUpper()}");
+            void StringToLowerCase(string str) => Console.WriteLine($"String modifeied to LowerCase - {str.ToLower()}");
 
-			var delegate3 = new Print<string>(ReverseText);
-			Console.WriteLine(delegate3("I'll be back."));
+            Console.ReadLine();
 
-			// comment out other stuff
-			Action<string> executeReverseWriteAction = ReverseWriteText;
-			executeReverseWriteAction("Are you not entertained?");
-			Func<string, string> executeReverseFunc = ReverseText;
-			Console.WriteLine(executeReverseFunc("Are you not entertained?"));
-		}
+            //using Func
+            int result1 = MathOperation(6, 4, Add); // 10
+            Console.WriteLine(result1);
+
+            int result2 = MathOperation(6, 4, Multiply); // 24
+            Console.WriteLine(result2);
+
+            int MathOperation(int x, int y, Func<int, int, int> operation) => operation(x, y);
+            int Add(int x, int y) => x + y;
+            int Multiply(int x, int y) => x * y;
+        }
 	}
 }
