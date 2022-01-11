@@ -2,7 +2,7 @@
 
 namespace ActionAndFuncDelegatesEval
 {
-    public static class ArithemeticClass
+    public static class ArithmeticClass
     {
         public static void Add(int firstNum, int secondNum)
         {

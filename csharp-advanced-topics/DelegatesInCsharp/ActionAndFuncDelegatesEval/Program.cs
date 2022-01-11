@@ -26,9 +26,9 @@ namespace ActionAndFuncDelegatesEval
 
             Console.WriteLine("========= Multicast delegates in action =========\n");
 
-            ArithemeticDelegate arithDelegate1 = ArithemeticClass.Add;
-            ArithemeticDelegate arithDelegate2 = ArithemeticClass.SubStract;
-            ArithemeticDelegate arithDelegate3 = ArithemeticClass.Multiply;
+            ArithemeticDelegate arithDelegate1 = ArithmeticClass.Add;
+            ArithemeticDelegate arithDelegate2 = ArithmeticClass.SubStract;
+            ArithemeticDelegate arithDelegate3 = ArithmeticClass.Multiply;
 
             ArithemeticDelegate arithDelegate = arithDelegate1 + arithDelegate2 + arithDelegate3;
 
@@ -36,7 +36,7 @@ namespace ActionAndFuncDelegatesEval
 
             // using generic delegates
 
-            Action<int, int> GenericAddDelegate = ArithemeticClass.Add;
+            Action<int, int> GenericAddDelegate = ArithmeticClass.Add;
 
             GenericAddDelegate(3, 4);
 
