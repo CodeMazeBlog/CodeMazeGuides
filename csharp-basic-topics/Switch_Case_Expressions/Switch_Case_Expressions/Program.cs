@@ -13,18 +13,18 @@ namespace multipleswitchcase
       
         static void subMultipleCaseResults()
         {
-            var switchTemp = 65;
+            var switchTemp = 20;
             var Value = 100;
             var secondValue = 200;
             var resultstring = string.Empty;
             switch (switchTemp)
             {
-                case 60:
-                case 65:
-                case 70:
+                case 20:
+                case 22:
+                case 24:
                     resultstring = "It is a pleasant day.";
                     break;
-                case 85:
+                case 30:
                     resultstring = "It is very hot today";
                     break;
                 default:
@@ -45,10 +45,10 @@ namespace multipleswitchcase
             switch
             {
                 var xi when 
-                (xi >=60  && xi<= 65)||
-                (xi <= 70 )=> "It is a pleasant day",
-                85 => "It is hot today",
-                95 => "It is very hot today",
+                (xi >= 20  && xi<= 22)||
+                (xi <= 25 )=> "It is a pleasant day",
+                30 => "It is hot today",
+                35 => "It is very hot today",
                 _ => "No weather report",
             };
             Console.WriteLine(resultValue);
@@ -56,22 +56,22 @@ namespace multipleswitchcase
 
         static void subMultipleCaseWithExtension()
         {
-            var tempValue = 70;
-            var templist = new List<int> { 60, 65, 70 };
+            var tempValue = 22;
+            var templist = new List<int> { 20, 22, 24 };
             var result = tempValue
             switch
             {
-                var x when x.In(60, 65, 70) => "It is a pleasant day",
-                80 => "It is hot today",
-                95 => "It is very hot today",
+                var x when x.In(20, 22, 24) => "It is a pleasant day",
+                30 => "It is hot today",
+                35 => "It is very hot today",
                 _ => "No weather report.",
             };
             Console.WriteLine($"{result} is with extension method");
             var newresult = tempValue
             switch
             {
-                80 => "It is hot today",
-                95 => "It is very hot today",
+                30 => "It is hot today",
+                35 => "It is very hot today",
                 _ when templist.Contains(tempValue) => "The weather is pleasant",
                 _ => "No weather report",
             };
@@ -81,10 +81,10 @@ namespace multipleswitchcase
             var resultText = tempValue
             switch
             {
-                60 or 65 or 70 => "Pleasant weather today",
-                80 => "It is quite hot today",
-                85 => "It is very hot today",
-                >90 => "Heat wave condition",
+                20 or 22 or 24 => "Pleasant weather today",
+                30 => "It is quite hot today",
+                35 => "It is very hot today",
+                > 35 => "Heat wave condition",
                 _ => "No weather report.    ",
             };
             Console.WriteLine($"{resultText} result is for C# 9.0 syntax");
