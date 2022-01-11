@@ -2,7 +2,7 @@
 
 namespace ActionDelegates
 {
-    internal class Program
+    public class Program
     {
         private delegate void SaySomethingDelegate(string message);
 

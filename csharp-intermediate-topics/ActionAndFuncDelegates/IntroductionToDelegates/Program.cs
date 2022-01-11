@@ -1,17 +1,18 @@
-﻿using System;
-
-namespace IntroductionToDelegates
+﻿namespace IntroductionToDelegates
 {
-	class Program
-	{
-		delegate string SaySomething();
+    public class Program
+    {
+        delegate string SaySomething();
 
-		static string SayHi() { return "Hi!"; }
+        public static string SayHi() { return "Hi!"; }
 
-		static void Main(string[] args)
-		{
-			SaySomething methodSayHi = SayHi;
-			Console.WriteLine(methodSayHi.Invoke());
-		}
-	}
+        static void Main(string[] args)
+            => InvokeSayHiWithDelegate();
+
+        public static string InvokeSayHiWithDelegate()
+        {
+            SaySomething methodSayHi = SayHi;
+            return methodSayHi.Invoke();
+        }
+    }
 }
