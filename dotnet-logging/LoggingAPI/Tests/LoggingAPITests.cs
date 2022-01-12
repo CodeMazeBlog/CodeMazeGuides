@@ -10,22 +10,23 @@ namespace Tests
     [TestClass]
     public class LoggingAPITests
     {
-        private readonly ILogger<Log> logger;
-        private readonly Log logClass;
-
-        public LoggingAPITests()
-        {
-            logger = Substitute.For<ILogger<Log>>();
-            logClass = new Log(logger);
-        }
-
 
         [TestMethod]
-        public void GivenLogger_ShouldLogInformation()
+        public void GivenLogger_ShouldLogInformation_WhenStudentIsCreated()
         {
-            logClass.logInfo("I am a log message");
+            ILogger<Student> logger = Substitute.For<ILogger<Student>>();
+            Student student = new Student("Test", "Test department", logger);
 
-            logger.Received(1).LogInformation("I am a log message");
+            logger.Received(1).LogInformation("A new student is created Test and his department is Test department");
+        }
+
+        [TestMethod]
+        public void GivenLoggerFactory_ShouldCreateLogger_WhenDepartmentIsCreated()
+        {
+            ILoggerFactory loggerFactory = Substitute.For<ILoggerFactory>();
+            Department department = new Department("Test", "Test department", loggerFactory);
+
+            loggerFactory.Received(1).CreateLogger<Department>();
         }
     }
 }

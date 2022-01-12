@@ -12,9 +12,11 @@ namespace LoggingAPI
                 builder.AddDebug();
             });
 
-            Log log = new Log(loggerFactory.CreateLogger<Log>());
+            ILogger<Student> logger = loggerFactory.CreateLogger<Student>();
+            Student student = new Student("Raghu", "IT", logger);
 
-            log.logInfo("I am a log message");
+            Department department = new Department("IT", "Information Technology", loggerFactory);
+
         }
     }
 }
