@@ -17,8 +17,8 @@ while (string.IsNullOrEmpty(strDenominator))
 
 var result1 = CatchExamples.MultipleCatches(strNumerator, strDenominator);
 var result2 = CatchExamples.SingleCatchWithWhen(strNumerator, strDenominator);
-var result3 = CatchExamples.SingleCatch_SwitchCase(strNumerator, strDenominator);
-var result4 = CatchExamples.SingleCatch_SwitchWhen(strNumerator, strDenominator);
+var result3 = CatchExamples.SingleCatchSwitchCase(strNumerator, strDenominator);
+var result4 = CatchExamples.SingleCatchSwitchPattern(strNumerator, strDenominator);
 
 if (result1 >= 0)
     Console.WriteLine("The result is: " + result1);

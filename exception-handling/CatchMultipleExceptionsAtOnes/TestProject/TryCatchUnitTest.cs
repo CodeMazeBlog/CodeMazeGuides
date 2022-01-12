@@ -15,8 +15,8 @@ namespace TestProject
 
             var result1 = CatchExamples.MultipleCatches(numerator, denominator);
             var result2 = CatchExamples.SingleCatchWithWhen(numerator, denominator);
-            var result3 = CatchExamples.SingleCatch_SwitchCase(numerator, denominator);
-            var result4 = CatchExamples.SingleCatch_SwitchWhen(numerator, denominator);
+            var result3 = CatchExamples.SingleCatchSwitchCase(numerator, denominator);
+            var result4 = CatchExamples.SingleCatchSwitchPattern(numerator, denominator);
 
             Assert.IsTrue(result1 == 5 && result2 == 5 && result3 == 5 && result4 == 5);
         }
@@ -28,8 +28,8 @@ namespace TestProject
 
             var result1 = CatchExamples.MultipleCatches(numerator, denominator);
             var result2 = CatchExamples.SingleCatchWithWhen(numerator, denominator);
-            var result3 = CatchExamples.SingleCatch_SwitchCase(numerator, denominator);
-            var result4 = CatchExamples.SingleCatch_SwitchWhen(numerator, denominator);
+            var result3 = CatchExamples.SingleCatchSwitchCase(numerator, denominator);
+            var result4 = CatchExamples.SingleCatchSwitchPattern(numerator, denominator);
 
             Assert.IsTrue(result1 == -1 && result2 == -1 && result3 == -1 && result4 == -1);
         }
@@ -41,8 +41,8 @@ namespace TestProject
 
             var result1 = CatchExamples.MultipleCatches(numerator, denominator);
             var result2 = CatchExamples.SingleCatchWithWhen(numerator, denominator);
-            var result3 = CatchExamples.SingleCatch_SwitchCase(numerator, denominator);
-            var result4 = CatchExamples.SingleCatch_SwitchWhen(numerator, denominator);
+            var result3 = CatchExamples.SingleCatchSwitchCase(numerator, denominator);
+            var result4 = CatchExamples.SingleCatchSwitchPattern(numerator, denominator);
 
             Assert.IsTrue(result1 == -1 && result2 == -1 && result3 == -1 && result4 == -1);
         }
@@ -54,8 +54,8 @@ namespace TestProject
 
             var result1 = CatchExamples.MultipleCatches(numerator, denominator);
             var result2 = CatchExamples.SingleCatchWithWhen(numerator, denominator);
-            var result3 = CatchExamples.SingleCatch_SwitchCase(numerator, denominator);
-            var result4 = CatchExamples.SingleCatch_SwitchWhen(numerator, denominator);
+            var result3 = CatchExamples.SingleCatchSwitchCase(numerator, denominator);
+            var result4 = CatchExamples.SingleCatchSwitchPattern(numerator, denominator);
 
             Assert.IsTrue(result1 == -1 && result2 == -1 && result3 == -1 && result4 == -1);
         }

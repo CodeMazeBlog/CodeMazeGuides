@@ -50,7 +50,7 @@ namespace CatchMultipleExceptionsAtOnes
             }
         }
 
-        public static int SingleCatch_SwitchCase(string numeratorParam, string denominatorParam)
+        public static int SingleCatchSwitchCase(string numeratorParam, string denominatorParam)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace CatchMultipleExceptionsAtOnes
             return -1;
         }
 
-        public static int SingleCatch_SwitchWhen(string numeratorParam, string denominatorParam)
+        public static int SingleCatchSwitchPattern(string numeratorParam, string denominatorParam)
         {
             try
             {
@@ -91,10 +91,10 @@ namespace CatchMultipleExceptionsAtOnes
             {
                 string str = ex switch
                 {
-                    _ when ex is FormatException => "Format Exception!",
-                    _ when ex is DivideByZeroException => "Divide By Zero Exception!",
-                    _ when ex is OverflowException => "Overflow Exception!",
-                    _ => "Unknwon Exception!"
+                    FormatException => "Format Exception!",
+                    DivideByZeroException => "Divide By Zero Exception!",
+                    OverflowException => "Overflow Exception!",
+                    _ => "Unknown Exception!"
                 };
 
                 Console.WriteLine(str);
