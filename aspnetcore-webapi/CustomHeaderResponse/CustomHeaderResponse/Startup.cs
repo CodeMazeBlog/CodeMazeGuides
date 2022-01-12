@@ -44,9 +44,12 @@ namespace CustomHeaderResponse
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseSwagger();
-                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CustomHeaderResponse v1"));
             }
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Middleware-Response-Header", "Middleware Header Value");
+                await next.Invoke();
+            });
 
             app.UseHttpsRedirection();
 
@@ -57,7 +60,7 @@ namespace CustomHeaderResponse
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-            });
+            });            
         }
     }
 }
