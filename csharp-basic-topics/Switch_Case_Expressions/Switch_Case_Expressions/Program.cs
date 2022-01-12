@@ -45,8 +45,7 @@ namespace multipleswitchcase
             switch
             {
                 var xi when 
-                (xi >= 20  && xi <= 22)||
-                (xi <= 25 )=> "It is a pleasant day",
+                (xi >= 20  && xi <= 22) || (xi <= 25 ) => "It is a pleasant day",
                 30 => "It is hot today",
                 35 => "It is very hot today",
                 _ => "No weather report",
