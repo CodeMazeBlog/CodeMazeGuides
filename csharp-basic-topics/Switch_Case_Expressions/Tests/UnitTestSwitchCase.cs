@@ -62,11 +62,10 @@ namespace Tests
                     break;
             }
             var resultValue = switchTemp
-            switch
+            switch 
             {
                 var xi when 
-                (xi >= 20 && xi <= 22) ||
-                (xi <= 25) => "Pleasant weather today",  
+                (xi >= 20 && xi <= 22) || (xi <= 25) => "Pleasant weather today",  
                 30 => "It is hot today",
                 35 => "It is too hot today",
                 _ => "No weather report",
