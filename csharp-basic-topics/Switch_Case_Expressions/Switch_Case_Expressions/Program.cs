@@ -7,11 +7,11 @@ namespace multipleswitchcase
 
         static void Main(string[] args)
         {            
-            subMultipleCaseResults();
-            subMultipleCaseWithExtension();
+            SubMultipleCaseResults();
+            SubMultipleCaseWithExtension();
         }
       
-        static void subMultipleCaseResults()
+        static void SubMultipleCaseResults()
         {
             var switchTemp = 20;
             var Value = 100;
@@ -45,7 +45,7 @@ namespace multipleswitchcase
             switch
             {
                 var xi when 
-                (xi >= 20  && xi<= 22)||
+                (xi >= 20  && xi <= 22)||
                 (xi <= 25 )=> "It is a pleasant day",
                 30 => "It is hot today",
                 35 => "It is very hot today",
@@ -54,7 +54,7 @@ namespace multipleswitchcase
             Console.WriteLine(resultValue);
         }
 
-        static void subMultipleCaseWithExtension()
+        static void SubMultipleCaseWithExtension()
         {
             var tempValue = 22;
             var templist = new List<int> { 20, 22, 24 };
@@ -76,8 +76,6 @@ namespace multipleswitchcase
                 _ => "No weather report",
             };
             Console.WriteLine($"{newresult} - result when using a list");
-
-
             var resultText = tempValue
             switch
             {
