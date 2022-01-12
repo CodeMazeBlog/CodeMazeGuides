@@ -61,7 +61,6 @@ namespace Tests
                     Console.WriteLine("The value is between 100 and 300");
                     break;
             }
-            // different format for the switch case.
             var resultValue = switchTemp
             switch
             {
