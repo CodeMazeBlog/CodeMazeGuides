@@ -12,9 +12,9 @@ namespace DateTimeNow.Tests
             var now = DateTime.Now;
             var utcNow = DateTime.UtcNow;
 
-            var currentTimezoneName = TimeZoneInfo.Local.StandardName;
-
-            if (currentTimezoneName.Contains("Greenwich"))
+            var hoursDiff = TimeZoneInfo.Local.GetUtcOffset(now).TotalHours;
+            
+            if (hoursDiff == 0)
             {
                 Assert.AreEqual(now.Hour, utcNow.Hour);
             }
