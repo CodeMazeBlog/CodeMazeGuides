@@ -17,7 +17,7 @@ namespace ConvertDateTimeToIso8601StringTests
         {
             // Mock local TimeZone
             _originalLocalTimeZone = TimeZoneInfo.Local;
-            SetLocalTimeZone(TimeZoneInfo.FindSystemTimeZoneById("Bangladesh Standard Time"));
+            SetLocalTimeZone(TimeZoneInfo.FindSystemTimeZoneById("Central Asia Standard Time"));
         }
 
         [Fact]
