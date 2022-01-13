@@ -81,7 +81,7 @@ namespace Tests
         public void whenSwitchCaseWithEasyFormat()
         {
             var tempValue = 22;
-            var templist = new List<int> { 20, 22, 24 }
+            var templist = new List<int> { 20, 22, 24 };
             var newresult = tempValue switch
             {
                 30 => "It is hot today",
