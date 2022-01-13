@@ -10,21 +10,20 @@ namespace Tests
     [TestClass]
     public class LoggingAPITests
     {
-
         [TestMethod]
         public void GivenLogger_ShouldLogInformation_WhenStudentIsCreated()
         {
             ILogger<Student> logger = Substitute.For<ILogger<Student>>();
-            Student student = new Student("Test", "Test department", logger);
+            var student = new Student("John", "IT", logger);
 
-            logger.Received(1).LogInformation("A new student is created Test and his department is Test department");
+            logger.Received(1).LogInformation("Name of student is John and his department is IT");
         }
 
         [TestMethod]
         public void GivenLoggerFactory_ShouldCreateLogger_WhenDepartmentIsCreated()
         {
             ILoggerFactory loggerFactory = Substitute.For<ILoggerFactory>();
-            Department department = new Department("Test", "Test department", loggerFactory);
+            var department = new Department("IT", "Information Technology", loggerFactory);
 
             loggerFactory.Received(1).CreateLogger<Department>();
         }

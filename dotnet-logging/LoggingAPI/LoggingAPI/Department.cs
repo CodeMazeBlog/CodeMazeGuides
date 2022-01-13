@@ -20,7 +20,7 @@ namespace LoggingAPI
             Description = description;
 
             _logger = factory.CreateLogger<Department>();
-            _logger.LogInformation("A new department is created " + this.Name + "-" + this.Description);
+            _logger.LogInformation("Department is " + Name + " " + Description);
         }
     }
 }

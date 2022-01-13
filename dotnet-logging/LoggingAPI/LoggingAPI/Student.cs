@@ -16,11 +16,11 @@ namespace LoggingAPI
 
         public Student(string name, string department, ILogger<Student> logger)
         {
-            this.Name = name;
-            this.Department = department;
+            Name = name;
+            Department = department;
             _logger = logger;
 
-            _logger.LogInformation("A new student is created " + this.Name +" and his department is " + this.Department);
+            _logger.LogInformation("Name of student is " + Name +" and his department is " + Department);
         }
     }
 }

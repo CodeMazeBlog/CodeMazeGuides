@@ -13,9 +13,9 @@ namespace LoggingAPI
             });
 
             ILogger<Student> logger = loggerFactory.CreateLogger<Student>();
-            Student student = new Student("Raghu", "IT", logger);
+            var student = new Student("John", "IT", logger);
 
-            Department department = new Department("IT", "Information Technology", loggerFactory);
+            var department = new Department("IT", "Information Technology", loggerFactory);
 
         }
     }
