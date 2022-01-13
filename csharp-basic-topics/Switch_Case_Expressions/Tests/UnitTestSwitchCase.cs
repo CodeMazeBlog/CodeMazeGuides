@@ -15,14 +15,14 @@ namespace Tests
         {
             var tempValue = 20;
             var templist = new List<int> { 20, 22, 24 };
-            var result = tempValue
-            switch
+            var result = tempValue switch
             {
                 var x when x.In(20, 22, 24) => "It is a pleasant day",
                 30 => "It is hot today",
                 35 => "It is very hot today",
                 _ => "No weather report.",
             };
+            
             Console.WriteLine($"{result} - with extension method");
         }
     }
@@ -51,7 +51,9 @@ namespace Tests
                     resultstring = "No weather report today.";
                     break;
             }
+            
             Console.WriteLine(resultstring);
+            
             switch (Value)
             {
                 case int n when (n >= Value && secondValue <= 200):
@@ -61,8 +63,8 @@ namespace Tests
                     Console.WriteLine("The value is between 100 and 300");
                     break;
             }
-            var resultValue = switchTemp
-            switch 
+            
+            var resultValue = switchTemp switch 
             {
                 var xi when 
                 (xi >= 20 && xi <= 22) || (xi <= 25) => "Pleasant weather today",  
@@ -70,6 +72,7 @@ namespace Tests
                 35 => "It is too hot today",
                 _ => "No weather report",
             };
+            
             Console.WriteLine(resultValue);
         }
 
@@ -78,18 +81,18 @@ namespace Tests
         public void whenSwitchCaseWithEasyFormat()
         {
             var tempValue = 22;
-            var templist = new List<int> { 20, 22, 24 };
-            var newresult = tempValue
-            switch
+            var templist = new List<int> { 20, 22, 24 }
+            var newresult = tempValue switch
             {
                 30 => "It is hot today",
                 35 => "It is very hot today",
                 _ when templist.Contains(tempValue) => "The weather is pleasant",
                 _ => "No weather report",
             };
+            
             Console.WriteLine($"{newresult} - result when using a list");
-            var resultText = tempValue
-            switch
+            
+            var resultText = tempValue switch
             {
                 20 or 22 or 24 => "Pleasant weather today",
                 30 => "It is quite hot today",
@@ -97,6 +100,7 @@ namespace Tests
                 > 35 => "Heat wave condition",
                 _ => "No weather report.    ",
             };
+            
             Console.WriteLine($"{resultText} - result is for C# 9.0 syntax");
         }
     }
