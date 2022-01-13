@@ -3,56 +3,31 @@
 namespace ActionandFuncDelegates
 {
     // Code samples for article writing
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Solution solution = new Solution();
+            // Invoking the function by using delegate
+            var firstSum = solution.sumDelegate.Invoke(2, 3);
+            Console.WriteLine(firstSum);
+            // Second way to invoke the delegate
+            var secondSum = solution.sumDelegate(2, 3);
+            Console.WriteLine(secondSum);
+
+            // Initialising Action Delegate
+            Action<string, string> print = Solution.PrintCoupleNames;
+            // Invoking the Action Delegate
+            print("Ravi", "Sri");
+
+            // Initialising the Func Delegate
+            Func<int, int, int> getSum = Solution.CalculateSum;
+            // Invoking the Func Delegate
+            var sumFromFuncDelegate = getSum(2, 3);
+            Console.WriteLine($"Sum returned by the func delegate is {sumFromFuncDelegate}");
+
         }
+
     }
 
-    public class Solution
-    {
-        public delegate int CalculateValue(int x, int y);
-        CalculateValue calculate = new CalculateValue(PrintSum);
-        public static int PrintSum(int x, int y)
-        {
-            return x + y;
-        }
-        public void DoBusinessLogicAndInvokeDelegate(int x, int y, CalculateValue callBack)
-        {
-            // Do business logic
-            // Invoke the delegate
-            callBack(x, y);
-        }
-
-        public void ValidatePhoeNumberAndSendSMS(string phoneNumber, Action<string> sendSMS)
-        {
-            if (phoneNumber.Length == 10)
-            {
-                sendSMS(phoneNumber);
-            }
-            else
-            {
-                Console.WriteLine("Phone Number Invalid");
-            }
-        }
-
-        public void IsVehicleAllowedOrNot(int vehicleNumber, Func<int, bool> validateVehicle)
-        {
-            if (validateVehicle(vehicleNumber))
-            {
-                Console.WriteLine("Vehicle allowed on the road");
-            }
-            else
-            {
-                Console.WriteLine("Vehicle not allowed on the road");
-            }
-        }
-        public void InvokeMethods()
-        {
-            ValidatePhoeNumberAndSendSMS("8413039309", x => { Console.WriteLine("SendingSMS"); });
-            IsVehicleAllowedOrNot(234, x => { if (x % 2 == 1) return true; return false; });
-        }
-    }
 }
