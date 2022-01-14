@@ -15,6 +15,7 @@ namespace Tests
         {
             var tempValue = 20;
             var templist = new List<int> { 20, 22, 24 };
+
             var result = tempValue switch
             {
                 var x when x.In(20, 22, 24) => "It is a pleasant day",
@@ -33,10 +34,9 @@ namespace Tests
         [TestMethod]
         public void whenMultipleCasesHaveSameResult()
         {
-            var switchTemp = 20;
-            var Value = 100;
-            var secondValue = 200;
-            var resultstring = string.Empty;
+           var switchTemp = 20;
+           var resultstring = string.Empty;
+
             switch (switchTemp)
             {
                 case 20:
@@ -53,6 +53,15 @@ namespace Tests
             }
 
             Console.WriteLine(resultstring);
+           
+        }
+
+        [TestMethod]
+        public void whenMultipleCasesUseWhenKeyword()
+        {
+            var switchTemp = 20;
+            var Value = 100;
+            var secondValue = 200;
 
             switch (Value)
             {
@@ -74,14 +83,15 @@ namespace Tests
             };
 
             Console.WriteLine(resultValue);
-        }
 
+        }
 
         [TestMethod]
         public void whenSwitchCaseWithEasyFormat()
         {
             var tempValue = 22;
             var templist = new List<int> { 20, 22, 24 };
+
             var newresult = tempValue switch
             {
                 30 => "It is hot today",
@@ -102,6 +112,7 @@ namespace Tests
             };
 
             Console.WriteLine($"{resultText} - result is for C# 9.0 syntax");
+
         }
     }
 }
