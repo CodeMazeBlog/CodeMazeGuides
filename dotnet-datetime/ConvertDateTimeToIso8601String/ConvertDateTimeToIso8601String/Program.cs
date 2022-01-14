@@ -36,7 +36,6 @@ var customFormats = new[]
     "yyyy-MM-ddTHH:mmZ",
     "yyyyMMddTHHmmsszzz",
     "yyyyMMddTHHmmsszz",
-    "yyyyMMddTHHmmssz"
 };
 
 customFormats.ToList().ForEach(f => Console.WriteLine($"{f} \t {localTime.ToString(f)}"));
@@ -49,7 +48,7 @@ var local = new DateTime(2022, 1, 13, 16, 25, 30, DateTimeKind.Local);
 Console.WriteLine(unspecified.ToString(format));            // 2022-01-13T16:25:30
 Console.WriteLine(utc.ToString(format));                    // 2022-01-13T16:25:30Z
 Console.WriteLine(local.ToString(format));                  // 2022-01-13T16:25:30+06:00
-Console.WriteLine(local.ToString("yyyy-MM-ddTHH:mm:ssz"));  // 2022-01-13T16:25:30+6
+Console.WriteLine(local.ToString("yyyy-MM-ddTHH:mm:sszz")); // 2022-01-13T16:25:30+06
 
 // Week dates - short form
 Console.WriteLine(localTime.ToShortIso8601WeekDateString());                        // 2022-W03

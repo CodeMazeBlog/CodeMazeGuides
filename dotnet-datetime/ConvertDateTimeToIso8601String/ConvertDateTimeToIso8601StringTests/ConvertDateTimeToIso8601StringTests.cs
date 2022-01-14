@@ -60,7 +60,6 @@ namespace ConvertDateTimeToIso8601StringTests
         [InlineData("yyyy-MM-ddTHH:mmZ", "2022-01-13T16:25Z")]
         [InlineData("yyyyMMddTHHmmsszzz", "20220113T162535+06:00")]
         [InlineData("yyyyMMddTHHmmsszz", "20220113T162535+06")]
-        [InlineData("yyyyMMddTHHmmssz", "20220113T162535+6")]
         public void GivenADateTime_WhenConvertedByCustomFormats_ThenVerifyIso8601Output(string format, string expectedOutput)
         {
             Assert.Equal(expectedOutput, localTime.ToString(format));
@@ -77,7 +76,7 @@ namespace ConvertDateTimeToIso8601StringTests
             Assert.Equal("2022-01-13T16:25:30", unspecified.ToString(format));
             Assert.Equal("2022-01-13T16:25:30Z", utc.ToString(format));
             Assert.Equal("2022-01-13T16:25:30+06:00", local.ToString(format));
-            Assert.Equal("2022-01-13T16:25:30+6", local.ToString("yyyy-MM-ddTHH:mm:ssz"));
+            Assert.Equal("2022-01-13T16:25:30+06", local.ToString("yyyy-MM-ddTHH:mm:sszz"));
         }
 
         [Fact]
