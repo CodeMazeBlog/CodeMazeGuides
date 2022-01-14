@@ -58,6 +58,9 @@ namespace ConvertDateTimeToIso8601StringTests
         [InlineData("yyyyMMddTHHmmssK", "20220113T162535+06:00")]
         [InlineData("yyyyMMddTHHmm", "20220113T1625")]
         [InlineData("yyyy-MM-ddTHH:mmZ", "2022-01-13T16:25Z")]
+        [InlineData("yyyyMMddTHHmmsszzz", "20220113T162535+06:00")]
+        [InlineData("yyyyMMddTHHmmsszz", "20220113T162535+06")]
+        [InlineData("yyyyMMddTHHmmssz", "20220113T162535+6")]
         public void GivenADateTime_WhenConvertedByCustomFormats_ThenVerifyIso8601Output(string format, string expectedOutput)
         {
             Assert.Equal(expectedOutput, localTime.ToString(format));
@@ -68,12 +71,13 @@ namespace ConvertDateTimeToIso8601StringTests
         {
             var format = "yyyy-MM-ddTHH:mm:ssK";
             var unspecified = new DateTime(2022, 1, 13, 16, 25, 30, DateTimeKind.Unspecified);
-            var local = new DateTime(2022, 1, 13, 16, 25, 30, DateTimeKind.Local);
             var utc = new DateTime(2022, 1, 13, 16, 25, 30, DateTimeKind.Utc);
+            var local = new DateTime(2022, 1, 13, 16, 25, 30, DateTimeKind.Local);
 
             Assert.Equal("2022-01-13T16:25:30", unspecified.ToString(format));
-            Assert.Equal("2022-01-13T16:25:30+06:00", local.ToString(format));
             Assert.Equal("2022-01-13T16:25:30Z", utc.ToString(format));
+            Assert.Equal("2022-01-13T16:25:30+06:00", local.ToString(format));
+            Assert.Equal("2022-01-13T16:25:30+6", local.ToString("yyyy-MM-ddTHH:mm:ssz"));
         }
 
         [Fact]
@@ -92,7 +96,6 @@ namespace ConvertDateTimeToIso8601StringTests
             Assert.Equal("2022-013", localTime.ToIso8601OrdinalDateString());
             Assert.Equal("2022013", localTime.ToIso8601OrdinalDateString(useSeparator: false));
         }
-
 
         private static void SetLocalTimeZone(TimeZoneInfo timeZoneInfo)
         {
