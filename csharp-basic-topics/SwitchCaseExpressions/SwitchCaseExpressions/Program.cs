@@ -1,6 +1,5 @@
-﻿namespace multipleswitchcase
+namespace SwitchCaseExpression
 {
-
     public static class Program
     {
         public static bool In<T>(this T val, params T[] vals) => vals.Contains(val);
@@ -8,15 +7,17 @@
         static void Main(string[] args)
         {
             SubMultipleCaseResults();
+            SubMultipleCaseResultsWithWhen();
             SubMultipleCaseWithExtension();
+            SubMultipleCaseWithListValues();
+            SubMultipleCaseWithNewVersion();
         }
 
         static void SubMultipleCaseResults()
         {
             var switchTemp = 20;
-            var Value = 100;
-            var secondValue = 200;
             var resultstring = string.Empty;
+
             switch (switchTemp)
             {
                 case 20:
@@ -33,6 +34,14 @@
             }
 
             Console.WriteLine(resultstring);
+          
+        }
+
+        static void SubMultipleCaseResultsWithWhen()
+        {
+            var switchTemp = 20;
+            var Value = 100;
+            var secondValue = 200;
 
             switch (Value)
             {
@@ -54,12 +63,12 @@
             };
 
             Console.WriteLine(resultValue);
-        }
 
+        }
         static void SubMultipleCaseWithExtension()
         {
             var tempValue = 22;
-            var templist = new List<int> { 20, 22, 24 };
+
             var result = tempValue switch
             {
                 var x when x.In(20, 22, 24) => "It is a pleasant day",
@@ -69,6 +78,13 @@
             };
 
             Console.WriteLine($"{result} - with extension method");
+ 
+        }
+
+        static void SubMultipleCaseWithListValues()
+        {
+            var tempValue = 22;
+            var templist = new List<int> { 20, 22, 24 };
 
             var newresult = tempValue switch
             {
@@ -80,16 +96,23 @@
 
             Console.WriteLine($"{newresult} - result when using a list");
 
+        }
+
+        static void SubMultipleCaseWithNewVersion()
+        {
+            var tempValue = 22;
+
             var resultText = tempValue switch
             {
                 20 or 22 or 24 => "Pleasant weather today",
                 30 => "It is quite hot today",
                 35 => "It is very hot today",
                 > 35 => "Heat wave condition",
-                _ => "No weather report.    ",
+                _ => "No weather report.",
             };
 
             Console.WriteLine($"{resultText} result is for C# 9.0 syntax");
+
         }
     }
 }
