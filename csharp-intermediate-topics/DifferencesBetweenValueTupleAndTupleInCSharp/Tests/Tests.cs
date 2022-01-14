@@ -1,4 +1,3 @@
-using DifferencesBetweenValueTupleAndTupleInCSharp;
 using System;
 using Xunit;
 
