@@ -1,4 +1,4 @@
-## ASP.NET Core Web API
+## Asynchronous Programming in C#.
 
 This section contains articles about asynchronous programming in C#.
 
