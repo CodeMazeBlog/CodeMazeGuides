@@ -1,0 +1,57 @@
+﻿using RateLimitingDemo.UsingCustomMiddleware.Model;
+
+namespace RateLimitingDemo.UsingCustomMiddleware.Repositories;
+public class ProductCatalogRepository : IProductCatalogRepository
+{
+    private readonly Dictionary<Guid, Product> _products = new();
+    private Random _rnd = new Random();
+    public ProductCatalogRepository()
+    {
+        InitializeProductStore();
+    }
+
+    public void Create(Product product)
+    {
+        if (product == null)
+        {
+            return;
+        }
+        _products[product.Id] = product;
+    }
+
+    public void Delete(Guid id)
+    {
+        _products.Remove(id);
+    }
+
+    public List<Product> GetAll()
+    {
+        return _products.Values.ToList();
+    }
+
+    public Product GetById(Guid id)
+    {
+        return _products[id];
+    }
+
+    public void Update(Product product)
+    {
+        var existingProduct = GetById(product.Id);
+        if (existingProduct is null)
+        {
+            return;
+        }
+        _products[product.Id] = product;
+    }
+
+    private void InitializeProductStore()
+    {
+        //Creating 5 random sample products
+        for (var i = 0; i < 5; i++)
+        {
+            var id = Guid.NewGuid();
+            _products.Add(id, new Product(id, $"Sample Product {i+1}", _rnd.Next(30, 70), _rnd.Next(1, 5)));
+        }
+    }
+}
+
