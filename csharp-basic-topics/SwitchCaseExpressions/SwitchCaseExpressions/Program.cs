@@ -34,22 +34,23 @@ namespace SwitchCaseExpression
             }
 
             Console.WriteLine(resultstring);
-          
         }
 
         static void SubMultipleCaseResultsWithWhen()
         {
             var switchTemp = 20;
-            var Value = 100;
-            var secondValue = 200;
+            var value = 100;
 
-            switch (Value)
+            switch (value)
             {
-                case int n when (n >= Value && secondValue <= 200):
-                    Console.WriteLine("The value is between 100 and 200");
+                case int n when (n >= 50 && n <= 150):
+                    Console.WriteLine("The value is between 50 and 150");
                     break;
-                case int n when (n >= Value && secondValue <= 300):
-                    Console.WriteLine("The value is between 100 and 300");
+                case int n when (n >= 150 && n <= 200):
+                    Console.WriteLine("The value is between 150 and 200");
+                    break;
+                default:
+                    Console.WriteLine("The number is not within the given range.");
                     break;
             }
 
@@ -63,7 +64,6 @@ namespace SwitchCaseExpression
             };
 
             Console.WriteLine(resultValue);
-
         }
         static void SubMultipleCaseWithExtension()
         {
@@ -78,7 +78,6 @@ namespace SwitchCaseExpression
             };
 
             Console.WriteLine($"{result} - with extension method");
- 
         }
 
         static void SubMultipleCaseWithListValues()
@@ -88,14 +87,13 @@ namespace SwitchCaseExpression
 
             var newresult = tempValue switch
             {
+                var x when templist.Contains(x) => "The weather is pleasant",
                 30 => "It is hot today",
                 35 => "It is very hot today",
-                _ when templist.Contains(tempValue) => "The weather is pleasant",
                 _ => "No weather report",
             };
 
             Console.WriteLine($"{newresult} - result when using a list");
-
         }
 
         static void SubMultipleCaseWithNewVersion()
@@ -112,7 +110,6 @@ namespace SwitchCaseExpression
             };
 
             Console.WriteLine($"{resultText} result is for C# 9.0 syntax");
-
         }
     }
 }
