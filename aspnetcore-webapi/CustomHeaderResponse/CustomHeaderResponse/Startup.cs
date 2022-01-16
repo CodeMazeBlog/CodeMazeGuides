@@ -32,6 +32,8 @@ namespace CustomHeaderResponse
             services.AddControllers();
             services.AddDbContext<ProductContext>(opt =>
                                                opt.UseInMemoryDatabase("ProductList"));
+
+
             //services.AddSwaggerGen(c =>
             //{
             //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "CustomHeaderResponse", Version = "v1" });
@@ -62,5 +64,7 @@ namespace CustomHeaderResponse
                 endpoints.MapControllers();
             });            
         }
+
+
     }
 }

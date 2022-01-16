@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomHeaderResponse", "CustomHeaderResponse.csproj", "{DA50B8AD-BF3C-4071-856D-D30EA53833E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomHeaderResponse", "CustomHeaderResponse.csproj", "{DA50B8AD-BF3C-4071-856D-D30EA53833E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomHeaderResponse.IntegrationTest", "..\CustomHeaderResponse.IntegrationTest\CustomHeaderResponse.IntegrationTest.csproj", "{BBACC8A5-6315-4217-81BC-90CE96B40FC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DA50B8AD-BF3C-4071-856D-D30EA53833E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA50B8AD-BF3C-4071-856D-D30EA53833E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA50B8AD-BF3C-4071-856D-D30EA53833E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBACC8A5-6315-4217-81BC-90CE96B40FC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBACC8A5-6315-4217-81BC-90CE96B40FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBACC8A5-6315-4217-81BC-90CE96B40FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBACC8A5-6315-4217-81BC-90CE96B40FC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
