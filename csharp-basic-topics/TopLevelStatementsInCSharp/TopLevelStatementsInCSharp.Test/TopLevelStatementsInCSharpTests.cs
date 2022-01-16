@@ -49,7 +49,16 @@ namespace TopLevelStatementsInCSharpTests
             Assert.Single(equalityArray);
         }
 
-        // As seen in the article, we can't test the TopLevelProgram.cs, since we have no accessible class to import.
-        // To manually test it, simply run the program, as the compiler will ignore the `Main()` method if top-level statements are present
+        [Fact]
+        public void WhenRunTopLevelStatements_ThenPrintOutput()
+        {
+            var entryPoint = typeof(Program).Assembly.EntryPoint!;
+            entryPoint.Invoke(null, new object[] { Array.Empty<string>() });
+
+            var equalityArray = PrintedOutputToArray();
+
+            Assert.Equal(_expectedOutput, equalityArray[0]);
+            Assert.Single(equalityArray);
+        }
     }
 }
