@@ -11,14 +11,14 @@ namespace Func_Delegates
             return (((decimal)marks / total) * 100);
         }
 
-        static public void Main()
-        {
-            Func<int, int, decimal> Get_Percentage = Percentage_Calculation;
+        //static public void Main()
+        //{
+        //    Func<int, int, decimal> Get_Percentage = Percentage_Calculation;
 
-            decimal MarksPercent = Get_Percentage(320, 500);
+        //    decimal MarksPercent = Get_Percentage(320, 500);
             
-            Console.WriteLine($"{MarksPercent }");
-        }
+        //    Console.WriteLine($"{MarksPercent }");
+        //}
     }
 }
 
