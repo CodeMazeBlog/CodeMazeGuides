@@ -19,3 +19,5 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+Action_Delegates.Action_Delegate_Class.Main();
+Func_Delegates.Func_Delegate_Class.Main();

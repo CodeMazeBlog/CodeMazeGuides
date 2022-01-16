@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Func_Delegates.Pages.Shared
+namespace Func_Delegates
 {
     public class Func_Delegate_Class
     {
-
+       
         // Method
         public static decimal Percentage_Calculation(int marks, int total)
         {

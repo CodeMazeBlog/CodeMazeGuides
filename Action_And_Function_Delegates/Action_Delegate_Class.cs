@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Action_Delegates.Pages.Shared
+namespace Action_Delegates
 {
     
     public class Action_Delegate_Class
