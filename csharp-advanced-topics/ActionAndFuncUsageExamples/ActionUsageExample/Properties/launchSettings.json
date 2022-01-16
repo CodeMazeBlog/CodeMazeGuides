@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ActionUsageExample": {
+      "commandName": "Project",
+      "hotReloadEnabled": false
+    }
+  }
+}
