@@ -1,4 +1,5 @@
 using ActionAndFunc;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ActionAndFuncTests
@@ -18,20 +19,27 @@ namespace ActionAndFuncTests
             string quote = Program.GetQuote();
 
             Assert.AreEqual(_quote, quote);
+
         }
 
         [TestMethod]
         public void GivenEven_ThenTrue()
         {
+
             bool result = Program.IsEven(2);
+
             Assert.AreEqual(true, result);
+
         }
 
         [TestMethod]
         public void GivenOdd_ThenTrue()
         {
+
             bool result = Program.IsEven(3);
+
             Assert.AreEqual(false, result);
+
         }
     }
 }

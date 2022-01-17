@@ -10,11 +10,27 @@
 
         private static readonly Func<int, bool> isEven = new(IsEven);
 
-        private static Func<string> getQuote = new(GetQuote);
+        private static readonly Func<string> getQuote = new(GetQuote);
 
-        public static void Main(string[] args) { }
+        public static void Main()
+        {
+
+            sayHello(String.Empty);
+
+            sayMyName(string.Empty, "Heisenberg");
+
+            string result = isEven(2) ? "It is even number" : "It is odd number";
+
+            string quote = getQuote();
+
+            Console.WriteLine(result);
+
+            Console.WriteLine(quote);
+
+        }
 
         public static void SayHello(string message) =>
+            
             Console.WriteLine($"Hello {(string.IsNullOrWhiteSpace(message) ? "Code Maze" : message)}");
 
         public static void SayMyName(string name, string lastName) => Console.WriteLine($"You are {name + " " + lastName}.");
