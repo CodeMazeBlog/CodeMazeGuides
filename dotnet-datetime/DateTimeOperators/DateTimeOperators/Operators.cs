@@ -8,22 +8,21 @@ namespace DateTimeOperators
 {
     public class Operators
     {
-
         public DateTime AddOperation(DateTime dt, TimeSpan ts) 
         {
-            DateTime result = dt.Add(ts);
+            var result = dt.Add(ts);
             return result;
         }
 
         public DateTime SubtractOperation(DateTime dt, TimeSpan ts) 
         {
-            DateTime result = dt.Subtract(ts);
+            var result = dt.Subtract(ts);
             return result;
         }
 
         public TimeSpan SubtractOperation(DateTime dt, DateTime dt1)
         {
-            TimeSpan result = dt.Subtract(dt1);
+            var result = dt.Subtract(dt1);
             return result;
         }
 
