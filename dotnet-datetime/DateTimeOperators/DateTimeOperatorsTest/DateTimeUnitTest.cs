@@ -12,9 +12,9 @@ namespace DateTimeOperatorsTest
         {
             var dt = new DateTime(2022, 1, 1);
             var ts = new TimeSpan(20, 4, 2, 1);
-            var operators = new Operators();
             var expected = new DateTime(2022, 1, 21, 4, 2, 1);
-            var actual = operators.AddOperation(dt, ts);
+
+            var actual = Operators.AddOperation(dt, ts);
 
             Assert.AreEqual(expected, actual);
         }
@@ -24,9 +24,9 @@ namespace DateTimeOperatorsTest
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
-            var operators = new Operators();
             var expected = new TimeSpan(365, 00, 0, 00);
-            var actual = operators.SubtractOperation(dt1, dt);
+
+            var actual = Operators.SubtractOperation(dt1, dt);
 
             Assert.AreEqual(expected, actual);
         }
@@ -36,9 +36,9 @@ namespace DateTimeOperatorsTest
         {
             var dt = new DateTime(2022, 1, 1);
             var ts = new TimeSpan(20, 4, 2, 1);
-            var operators = new Operators();
             var expected = new DateTime(2021, 12, 11, 19, 57, 59);
-            var actual = operators.SubtractOperation(dt, ts);
+
+            var actual = Operators.SubtractOperation(dt, ts);
 
             Assert.AreEqual(expected, actual);
         }
@@ -47,8 +47,8 @@ namespace DateTimeOperatorsTest
         public void GivenTwoEqualDates_ThenReturnTrue() 
         {
             var dt = new DateTime(2022, 1, 1);
-            var operators = new Operators();
-            var actual = operators.EqualityOperation(dt, dt);
+
+            var actual = Operators.EqualityOperation(dt, dt);
 
             Assert.IsTrue(actual);
         }
@@ -58,8 +58,8 @@ namespace DateTimeOperatorsTest
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
-            var operators = new Operators();
-            var actual = operators.InequalityOperation(dt1, dt);
+
+            var actual = Operators.InequalityOperation(dt1, dt);
 
             Assert.IsTrue(actual);
         }
@@ -69,8 +69,7 @@ namespace DateTimeOperatorsTest
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
-            var operators = new Operators();
-            var actual = operators.GreaterThanOperation(dt1, dt);
+            var actual = Operators.GreaterThanOperation(dt1, dt);
 
             Assert.IsTrue(actual);
         }
@@ -80,8 +79,7 @@ namespace DateTimeOperatorsTest
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
-            var operators = new Operators();
-            var actual = operators.GreaterThanOrEqualOperation(dt1, dt);
+            var actual = Operators.GreaterThanOrEqualOperation(dt1, dt);
 
             Assert.IsTrue(actual);
         }
@@ -91,8 +89,8 @@ namespace DateTimeOperatorsTest
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
-            var operators = new Operators();
-            var actual = operators.LessThanOperation(dt, dt1);
+
+            var actual = Operators.LessThanOperation(dt, dt1);
 
             Assert.IsTrue(actual);
         }
@@ -102,8 +100,8 @@ namespace DateTimeOperatorsTest
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
-            var operators = new Operators();
-            var actual = operators.LessThanOrEqualOperation(dt, dt1);
+
+            var actual = Operators.LessThanOrEqualOperation(dt, dt1);
 
             Assert.IsTrue(actual);
         }
@@ -113,13 +111,13 @@ namespace DateTimeOperatorsTest
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
-            var operators = new Operators();
             var expectedEqual = 0;
             var expectedMore = 1;
             var expectedLess = -1;   
-            var actualEqual = operators.CompareDates(dt, dt);
-            var actualMore = operators.CompareDates(dt1, dt);
-            var actualLess = operators.CompareDates(dt, dt1);
+
+            var actualEqual = Operators.CompareDates(dt, dt);
+            var actualMore = Operators.CompareDates(dt1, dt);
+            var actualLess = Operators.CompareDates(dt, dt1);
 
             Assert.AreEqual(expectedEqual, actualEqual);
             Assert.AreEqual(expectedLess, actualLess);
