@@ -29,7 +29,7 @@ namespace Tests
             var expected = sb.ToString();
 
             // act
-            Program.breakLoopAt5();
+            Program.BreakLoopAt5();
             var output = stringWriter.ToString();
 
             // assert
@@ -48,7 +48,7 @@ namespace Tests
             var expected = sb.ToString();
 
             // act
-            Program.continueLoopForNonMultipesOf3();
+            Program.ContinueLoopForNonMultipesOf3();
             var output = stringWriter.ToString();
 
             // assert
