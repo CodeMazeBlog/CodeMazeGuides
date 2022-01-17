@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CustomHeaderResponse\CustomHeaderResponse.csproj" />
+    <ProjectReference Include="..\..\CustomHeaderResponse\CustomHeaderResponse.csproj" />
   </ItemGroup>
 
 </Project>
