@@ -1,117 +1,113 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SwitchCaseExpression;
+using System.IO;
+using System.Text;
 
 namespace Tests
 {
     [TestClass]
-    public static class TestExtension
-    {
-        public static bool In<T>(this T val, params T[] vals) => vals.Contains(val);
-
-        [TestMethod]
-        static void whenSwitchCaseWithExtensionMethod()
-        {
-            var tempValue = 20;
-            var templist = new List<int> { 20, 22, 24 };
-
-            var result = tempValue switch
-            {
-                var x when x.In(20, 22, 24) => "It is a pleasant day",
-                30 => "It is hot today",
-                35 => "It is very hot today",
-                _ => "No weather report.",
-            };
-
-            Console.WriteLine($"{result} - with extension method");
-        }
-    }
-
-    [TestClass]
     public class UnitTestSwitch
     {
-        [TestMethod]
-        public void whenMultipleCasesHaveSameResult()
-        {
-           var switchTemp = 20;
-           var resultstring = string.Empty;
+        public static readonly string Pleasant_Weather = "It is a pleasant day";
+        public static readonly string Hot_Weather = "It is hot today";
+        public static readonly string Very_Hot_Weather = "It is very hot today";
+        public static readonly string No_Weather_Report = "No weather report";
 
-            switch (switchTemp)
+        StringWriter stringWrite = new StringWriter();
+
+        public UnitTestSwitch()
+        {
+            Console.SetOut(stringWrite);
+        }
+        
+        public string GetExpectedOutputForTest(int temp)
+        {
+            var expectedout = string.Empty;
+           
+            switch (temp)
             {
                 case 20:
                 case 22:
                 case 24:
-                    resultstring = "It is a pleasant day";
+                    expectedout = UnitTestSwitch.Pleasant_Weather;
                     break;
                 case 30:
-                    resultstring = "It is a very hot day";
+                    expectedout = UnitTestSwitch.Hot_Weather;
+                    break;
+                case 35:
+                    expectedout = UnitTestSwitch.Very_Hot_Weather;
                     break;
                 default:
-                    resultstring = "No weather report today.";
+                    expectedout = UnitTestSwitch.No_Weather_Report;
                     break;
             }
 
-            Console.WriteLine(resultstring);
+            return expectedout;
+        }
+
+        [TestMethod]
+        public void whenMultipleCasesHaveSameResult()
+        {
+            var switchTemp = 20;
+            var expectedout = GetExpectedOutputForTest(switchTemp);
+
+            Program.SubMultipleCaseResults();
+            var resultstring = stringWrite.ToString().Trim();
+            Assert.AreEqual(expectedout, resultstring);
         }
 
         [TestMethod]
         public void whenMultipleCasesUseWhenKeyword()
         {
             var switchTemp = 20;
-            var value = 100;
+            var expoutput = "The value is between 50 and 150";
+            var expectedout = GetExpectedOutputForTest(switchTemp);
 
-            switch (value)
-            {
-                case int n when (n >= 50 && n <= 150):
-                    Console.WriteLine("The value is between 50 and 150");
-                    break;
-                case int n when (n >= 150 && n <= 200):
-                    Console.WriteLine("The value is between 150 and 200");
-                    break;
-                default:
-                    Console.WriteLine("The number is not within the given range.");
-                    break;
-            }
+            Program.SubMultipleCaseResultsWithWhen();
+            var outputlines = stringWrite.ToString().Split(Environment.NewLine,StringSplitOptions.RemoveEmptyEntries);    
+            Assert.AreEqual(expoutput, outputlines[0]);
+            Assert.AreEqual(expectedout, outputlines[1]);
+        }
 
-            var resultValue = switchTemp switch
-            {
-                var xi when
-                (xi >= 20 && xi <= 22) || (xi <= 25) => "Pleasant weather today",
-                30 => "It is hot today",
-                35 => "It is too hot today",
-                _ => "No weather report",
-            };
+        [TestMethod]
+        public void whenMultipleCaseWithListValues()
+        {   
+            var tempValue = 22;
+            var expectedout = GetExpectedOutputForTest(tempValue);
 
-            Console.WriteLine(resultValue);
+            Program.SubMultipleCaseWithListValues();
+            var resultstring = stringWrite.ToString();
+            string[] arr = resultstring.Split("-");
+            resultstring = arr[0].ToString().Trim();
+            Assert.AreEqual(expectedout, resultstring);
         }
 
         [TestMethod]
         public void whenSwitchCaseWithEasyFormat()
         {
             var tempValue = 22;
-            var templist = new List<int> { 20, 22, 24 };
+            var resultText = string.Empty;
+            var expectedoutput = GetExpectedOutputForTest(tempValue);
 
-            var newresult = tempValue switch
-            {
-                var x when templist.Contains(x) => "The weather is pleasant",
-                30 => "It is hot today",
-                35 => "It is very hot today",
-                _ => "No weather report",
-            };
+            Program.SubMultipleCaseWithNewVersion();
+            resultText = stringWrite.ToString();
+            string[] arr = resultText.Split("-");
+            resultText = arr[0].ToString().Trim();
+            Assert.AreEqual(expectedoutput, resultText);
+        }
 
-            Console.WriteLine($"{newresult} - result when using a list");
+        [TestMethod]
+        public void whenSwitchCaseWithExtensionMethod()
+        {
+            var tempValue = 20;
+            var expectedout = GetExpectedOutputForTest(tempValue);
 
-            var resultText = tempValue switch
-            {
-                20 or 22 or 24 => "Pleasant weather today",
-                30 => "It is quite hot today",
-                35 => "It is very hot today",
-                > 35 => "Heat wave condition",
-                _ => "No weather report.    ",
-            };
-
-            Console.WriteLine($"{resultText} - result is for C# 9.0 syntax");
+            Program.SubMultipleCaseWithExtension();
+            var result = stringWrite.ToString();
+            string[] arr = result.Split("-");
+            result = arr[0].ToString().Trim();
+            Assert.AreEqual(expectedout, result);
         }
     }
 }
