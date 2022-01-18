@@ -19,7 +19,7 @@ namespace DateTimeOperatorsTest
         }
 
         [TestMethod]
-        public void GivenTwoDifferentDates_ThenSubtractCorrectly() 
+        public void GivenTwoDifferentDates_WhenTheyAreNotSame_ThenSubtractAndReturnTiimeSpan() 
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
@@ -30,7 +30,7 @@ namespace DateTimeOperatorsTest
         }
 
         [TestMethod]
-        public void GivenDateAndTimeSpan_ThenSubractCorrectly() 
+        public void GivenDateAndTimeSpan_WhenTheyAreNotSame_ThenSubractAndReturnDateTime() 
         {
             var dt = new DateTime(2022, 1, 1);
             var ts = new TimeSpan(20, 4, 2, 1);
