@@ -13,7 +13,7 @@ namespace SwitchCaseExpression
             SubMultipleCaseWithNewVersion();
         }
 
-        static void SubMultipleCaseResults()
+        public static void SubMultipleCaseResults()
         {
             var switchTemp = 20;
             var resultstring = string.Empty;
@@ -23,20 +23,20 @@ namespace SwitchCaseExpression
                 case 20:
                 case 22:
                 case 24:
-                    resultstring = "It is a pleasant day.";
+                    resultstring = "It is a pleasant day";
                     break;
                 case 30:
                     resultstring = "It is very hot today";
                     break;
                 default:
-                    resultstring = "No weather report today.";
+                    resultstring = "No weather report today";
                     break;
             }
 
             Console.WriteLine(resultstring);
         }
 
-        static void SubMultipleCaseResultsWithWhen()
+        public static void SubMultipleCaseResultsWithWhen()
         {
             var switchTemp = 20;
             var value = 100;
@@ -65,7 +65,7 @@ namespace SwitchCaseExpression
 
             Console.WriteLine(resultValue);
         }
-        static void SubMultipleCaseWithExtension()
+        public static void SubMultipleCaseWithExtension()
         {
             var tempValue = 22;
 
@@ -80,14 +80,14 @@ namespace SwitchCaseExpression
             Console.WriteLine($"{result} - with extension method");
         }
 
-        static void SubMultipleCaseWithListValues()
+        public static void SubMultipleCaseWithListValues()
         {
             var tempValue = 22;
             var templist = new List<int> { 20, 22, 24 };
 
             var newresult = tempValue switch
             {
-                var x when templist.Contains(x) => "The weather is pleasant",
+                var x when templist.Contains(x) => "It is a pleasant day",
                 30 => "It is hot today",
                 35 => "It is very hot today",
                 _ => "No weather report",
@@ -96,20 +96,20 @@ namespace SwitchCaseExpression
             Console.WriteLine($"{newresult} - result when using a list");
         }
 
-        static void SubMultipleCaseWithNewVersion()
+        public static void SubMultipleCaseWithNewVersion()
         {
             var tempValue = 22;
 
             var resultText = tempValue switch
             {
-                20 or 22 or 24 => "Pleasant weather today",
-                30 => "It is quite hot today",
+                20 or 22 or 24 => "It is a pleasant day",
+                30 => "It is hot today",
                 35 => "It is very hot today",
                 > 35 => "Heat wave condition",
                 _ => "No weather report.",
             };
 
-            Console.WriteLine($"{resultText} result is for C# 9.0 syntax");
+            Console.WriteLine($"{resultText} - result is for C# 9.0 syntax");
         }
     }
 }
