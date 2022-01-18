@@ -30,15 +30,12 @@ namespace ActionFuncInCsharp
 
             //invoking Func
             Console.WriteLine(greetings("John"));
-            
-
         }
 
         public static void ErrorMessage(string message)
         {
             Console.WriteLine($"Application down due to the following error: {message}");
         }
-
         public static string GreetUser(string user)
         {
             return $"Welcome back {user}. We are glad to see you";
