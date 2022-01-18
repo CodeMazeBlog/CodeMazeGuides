@@ -7,7 +7,7 @@ namespace DateTimeOperatorsTest
     public class DateTimeUnitTest
     {
         [TestMethod]
-        public void GivenTwoDates_ThenReturnCorrectSum()
+        public void GivenSameDateTimeAndTimeSpan_WhenTheyAreSame_ThenPlusAndAddReturnEqual()
         {
             var dt = new DateTime(2022, 1, 1);
             var ts = new TimeSpan(20, 4, 2, 1);
@@ -19,13 +19,13 @@ namespace DateTimeOperatorsTest
         }
 
         [TestMethod]
-        public void GivenTwoDates_ThenSubtractCorrectly() 
+        public void GivenTwoDifferentDates_ThenSubtractCorrectly() 
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
             var expected = new TimeSpan(365, 00, 0, 00);
 
-            Assert.AreEqual(expected, dt1-dt);
+            Assert.AreEqual(expected, dt1 - dt);
             Assert.AreEqual(expected, dt1.Subtract(dt));
         }
 
@@ -42,26 +42,26 @@ namespace DateTimeOperatorsTest
         }
 
         [TestMethod]
-        public void GivenTwoEqualDates_ThenReturnTrue() 
+        public void GivenTwoEqualDates_WhenTheyAreSame_ThenReturnEqual() 
         {
             var dt = new DateTime(2022, 1, 1);
 
-            Assert.IsTrue(dt==dt);
+            Assert.IsTrue(dt == dt);
             Assert.IsTrue(dt.Equals(dt));
         }
 
         [TestMethod]
-        public void GivenTwoNotEqualDates_ThenReturnTrue()
+        public void GivenTwoNotEqualDates_WhenTheyAreNotSame_ThenReturnNotEqual()
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
 
-            Assert.IsTrue(dt!=dt1);
+            Assert.IsTrue(dt != dt1);
             Assert.IsTrue(!dt.Equals(dt1));
         }
 
         [TestMethod]
-        public void GivenTwoNotEqualDates_ThenReturnGreaterThan()
+        public void GivenTwoNotEqualDates_WhenTheyAreNotSame_ThenCompareAndReturnGreaterThan()
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
@@ -72,7 +72,7 @@ namespace DateTimeOperatorsTest
         }
 
         [TestMethod]
-        public void GivenTwoNotEqualDates_ThenReturnGreaterThanOrEqual()
+        public void GivenTwoNotEqualDates_WhenTheyAreNotSame_ThenReturnGreaterThanOrEqual()
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
@@ -83,7 +83,7 @@ namespace DateTimeOperatorsTest
         }
 
         [TestMethod]
-        public void GivenTwoNotEqualDates_ThenReturnLessThan()
+        public void GivenTwoNotEqualDates_WhenTheyAreNotSame_ThenReturnLessThan()
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
@@ -94,7 +94,7 @@ namespace DateTimeOperatorsTest
         }
 
         [TestMethod]
-        public void GivenTwoNotEqualDates_ThenReturnLessThanOrEqual()
+        public void GivenTwoNotEqualDates_WhenTheyAreNotSameOrSame_ThenReturnLessThanOrEqual()
         {
             var dt = new DateTime(2022, 1, 1);
             var dt1 = new DateTime(2023, 1, 1);
