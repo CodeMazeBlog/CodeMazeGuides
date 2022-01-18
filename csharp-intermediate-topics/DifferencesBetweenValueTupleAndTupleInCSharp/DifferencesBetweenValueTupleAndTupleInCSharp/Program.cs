@@ -28,9 +28,9 @@ public partial class Program
         (int LastYear, int CurrentYear) namedValueTupleOne = (2021, 2022);
         var currentYear = namedValueTupleOne.CurrentYear;
 
-        var rightHandNamedValueTuple = (Language: "C#", Tool: "Laptop", Occupation: "Developer");
+        var rightHandNamedValueTuple = (language: "C#", tool: "Laptop", occupation: "Developer");
 
-        (string lang, string machine, string career) rightHandNamedValueTupleTwo = (Language: "C#", Tool: "Laptop", Occupation: "Developer");
+        (string lang, string machine, string career) rightHandNamedValueTupleTwo = (language: "C#", tool: "Laptop", occupation: "Developer");
 
         var initializedValueTupleFour = ValueTuple.Create("code-maze", "johndoe", "dotnet");
 
@@ -61,9 +61,9 @@ public partial class Program
 
     public static void AccessingMemberValues()
     {
-        (string, string, int, bool) ApiBook = ("codemaze", "Ultimate_ASP.NET_Core_Web_API_", 2021, false);
-        var itemOne = ApiBook.Item1; //returns "codemaze"
-        var itemThree = ApiBook.Item3; //returns 2021
+        (string, string, int, bool) apiBook = ("codemaze", "Ultimate_ASP.NET_Core_Web_API_", 2021, false);
+        var itemOne = apiBook.Item1; //returns "codemaze"
+        var itemThree = apiBook.Item3; //returns 2021
 
         var vowels = Tuple.Create("a", "e", "i", "o", "u");
         var fourthVowel = vowels.Item4; //returns "o"
@@ -83,12 +83,12 @@ public partial class Program
         var itemTwelve = evenNumbers2.nine; // returns 18
     }
 
-    public static (bool isDay, string Greeting) ReturnAValueTuple()
+    public static (bool isDay, string greeting) ReturnAValueTuple()
     {
         if (DateTime.Now.Hour < 12)
-            return (isDay: true, Greeting: "Good Morning");
+            return (isDay: true, greeting: "Good Morning");
 
-        return (isDay: false, Greeting: "Good Evening");
+        return (isDay: false, greeting: "Good Evening");
     }
 
     public static Tuple<bool, string> ReturnATuple()
