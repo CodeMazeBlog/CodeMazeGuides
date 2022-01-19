@@ -8,7 +8,7 @@ public class StreamDisposableTest
     {
         [TestMethod]
         [ExpectedException(typeof(IOException))]
-        public void DoesntDisposeStreamWriter()
+        public void WhenNot_Disposes_StreamWriter_ShouldNotWork()
         {
             var fileName = Guid.NewGuid() + ".txt";
             var firstWriter = new StreamWriter(fileName);
@@ -19,7 +19,7 @@ public class StreamDisposableTest
         }
 
         [TestMethod]
-        public void DisposesStreamWriter()
+        public void When_Disposes_StreamWriter_ShouldWork()
         {
             var fileName = Guid.NewGuid() + ".txt";
 

@@ -8,3 +8,4 @@ writer.WriteStreamAndDisposeObject();
 //This StreamWrite won't work
 writer.WriteStreamAndDontDisposeObject();
 
+writer.Dispose();
