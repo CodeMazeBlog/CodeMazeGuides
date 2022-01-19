@@ -10,4 +10,7 @@ var inputs = new[]
     "IOStream"
 };
 
-inputs.ToList().ForEach(x => Console.WriteLine($"{x} => {x.ToCamelCase()}"));
+foreach (var x in inputs)
+{
+    Console.WriteLine($"{x} => {x.ToCamelCase()}");
+}
