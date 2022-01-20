@@ -1,8 +1,8 @@
 ﻿var now = DateTime.Now; 
 var utcNow = DateTime.UtcNow;
 
-Console.WriteLine("Local Now: " + now.ToString()); 
-Console.WriteLine("UTC Now: " + utcNow.ToString());
+Console.WriteLine($"Local Now: {now}"); 
+Console.WriteLine($"UTC Now: {utcNow}");
 
 now = DateTime.Now; 
 utcNow = DateTime.UtcNow; 
@@ -13,14 +13,14 @@ if (utcNow.Kind == DateTimeKind.Utc)
     var utcToLocal = utcNow.ToLocalTime(); 
     var newKind = utcToLocal.Kind; 
 
-    Console.WriteLine(utcNow + " converted from UTC To Local is: " + utcToLocal); 
+    Console.WriteLine($"Converted {utcNow} from {oldKind} To {newKind}: " + utcToLocal); 
 }
 
 if (now.Kind == DateTimeKind.Local) 
 { 
     var oldKind = now.Kind; 
-    var localToUtc = utcNow.ToUniversalTime(); 
+    var localToUtc = now.ToUniversalTime(); 
     var newKind = localToUtc.Kind; 
 
-    Console.WriteLine(utcNow + " converted from Local To UTC is: " + localToUtc); 
+    Console.WriteLine($"Converted {now} from {oldKind} To {newKind}: " + localToUtc); 
 }
