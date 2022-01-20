@@ -38,7 +38,6 @@ namespace SwitchCaseExpression
 
         public static void SubMultipleCaseResultsWithWhen()
         {
-            var switchTemp = 20;
             var value = 100;
 
             switch (value)
@@ -53,17 +52,6 @@ namespace SwitchCaseExpression
                     Console.WriteLine("The number is not within the given range.");
                     break;
             }
-
-            var resultValue = switchTemp switch
-            {
-                var xi when
-                (xi >= 20 && xi <= 22) || (xi <= 25) => "It is a pleasant day",
-                30 => "It is hot today",
-                35 => "It is very hot today",
-                _ => "No weather report",
-            };
-
-            Console.WriteLine(resultValue);
         }
         public static void SubMultipleCaseWithExtension()
         {
