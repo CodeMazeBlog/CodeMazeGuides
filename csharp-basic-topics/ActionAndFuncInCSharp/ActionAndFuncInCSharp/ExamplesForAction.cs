@@ -17,6 +17,7 @@ namespace ActionAndFuncInCSharp
             lambdaAction();
             methodAction();
             methodWithParams(10);
+
         }
 
         public void MethodWithParams(int paramName)
