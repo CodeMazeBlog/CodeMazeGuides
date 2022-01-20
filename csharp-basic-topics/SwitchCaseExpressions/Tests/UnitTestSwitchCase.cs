@@ -20,7 +20,7 @@ namespace Tests
         {
             Console.SetOut(stringWrite);
         }
-        
+
         public string GetExpectedOutputForTest(int temp)
         {
             var expectedout = string.Empty;
@@ -53,21 +53,22 @@ namespace Tests
             var expectedout = GetExpectedOutputForTest(switchTemp);
 
             Program.SubMultipleCaseResults();
+
             var resultstring = stringWrite.ToString().Trim();
+
             Assert.AreEqual(expectedout, resultstring);
         }
 
         [TestMethod]
         public void whenMultipleCasesUseWhenKeyword()
         {
-            var switchTemp = 20;
             var expoutput = "The value is between 50 and 150";
-            var expectedout = GetExpectedOutputForTest(switchTemp);
 
             Program.SubMultipleCaseResultsWithWhen();
-            var outputlines = stringWrite.ToString().Split(Environment.NewLine,StringSplitOptions.RemoveEmptyEntries);    
-            Assert.AreEqual(expoutput, outputlines[0]);
-            Assert.AreEqual(expectedout, outputlines[1]);
+
+            var resultstring = stringWrite.ToString().Trim();
+
+            Assert.AreEqual(expoutput, resultstring);
         }
 
         [TestMethod]
@@ -77,9 +78,11 @@ namespace Tests
             var expectedout = GetExpectedOutputForTest(tempValue);
 
             Program.SubMultipleCaseWithListValues();
+
             var resultstring = stringWrite.ToString();
-            string[] arr = resultstring.Split("-");
+            var arr = resultstring.Split("-");
             resultstring = arr[0].ToString().Trim();
+
             Assert.AreEqual(expectedout, resultstring);
         }
 
@@ -91,9 +94,11 @@ namespace Tests
             var expectedoutput = GetExpectedOutputForTest(tempValue);
 
             Program.SubMultipleCaseWithNewVersion();
+
             resultText = stringWrite.ToString();
-            string[] arr = resultText.Split("-");
+            var arr = resultText.Split("-");
             resultText = arr[0].ToString().Trim();
+
             Assert.AreEqual(expectedoutput, resultText);
         }
 
@@ -104,9 +109,11 @@ namespace Tests
             var expectedout = GetExpectedOutputForTest(tempValue);
 
             Program.SubMultipleCaseWithExtension();
+
             var result = stringWrite.ToString();
-            string[] arr = result.Split("-");
+            var arr = result.Split("-");
             result = arr[0].ToString().Trim();
+
             Assert.AreEqual(expectedout, result);
         }
     }
