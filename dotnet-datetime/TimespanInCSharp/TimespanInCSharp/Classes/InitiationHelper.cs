@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static TimespanInCSharp.Classes.Variables;
+﻿using static TimespanInCSharp.Classes.Variables;
 
 namespace TimespanInCSharp.Classes
 {
@@ -38,25 +33,25 @@ namespace TimespanInCSharp.Classes
 
         public TimeSpan InitiateTimespan(int Hour, int Minute, int Second)
         {
-            TimeSpan duration = new TimeSpan(Hour, Minute, Second);
+            var duration = new TimeSpan(Hour, Minute, Second);
             return duration;
         }
 
         public TimeSpan InitiateTimespan(int Day, int Hour, int Minute, int Second)
         {
-            TimeSpan duration = new TimeSpan(Day, Hour, Minute, Second);
+            var duration = new TimeSpan(Day, Hour, Minute, Second);
             return duration;
         }
 
         public TimeSpan InitiateTimespan(int Day, int Hour, int Minute, int Second, int Millisecond)
         {
-            TimeSpan duration = new TimeSpan(Day, Hour, Minute, Second, Millisecond);
+            var duration = new TimeSpan(Day, Hour, Minute, Second, Millisecond);
             return duration;
         }
 
         public TimeSpan InitiateTimespan(int Ticks)
         {
-            TimeSpan duration = new TimeSpan(Ticks);
+            var duration = new TimeSpan(Ticks);
             return duration;
         }
 

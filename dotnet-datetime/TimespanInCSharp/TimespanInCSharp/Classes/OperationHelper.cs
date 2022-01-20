@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using static TimespanInCSharp.Classes.Variables;
 
 namespace TimespanInCSharp.Classes
@@ -30,7 +25,7 @@ namespace TimespanInCSharp.Classes
 
         public TimeSpan Operate(string Timespan1, Operation OperationType)
         {
-            TimeSpan duration = TimeSpan.FromTicks(0);
+            var duration = TimeSpan.FromTicks(0);
             TimeSpan outDuration;
             switch (OperationType)
             {

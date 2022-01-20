@@ -1,14 +1,13 @@
-﻿using System;
-using System.Globalization;
-using TimespanInCSharp.Classes;
+﻿using TimespanInCSharp.Classes;
 using static TimespanInCSharp.Classes.Variables;
 
 namespace Application
 {
     public class Program
     {
-        static string Seprator = "---------------------";
-        static string NewLine = Environment.NewLine;
+        static string seprator = "---------------------";
+        static string newLine = Environment.NewLine;
+
         public static void Main(string[] args)
         {
             InitiateTimeSpan();
@@ -18,9 +17,9 @@ namespace Application
 
         static void InitiateTimeSpan()
         {
-            InitiationHelper initHelper = new InitiationHelper();
+            var initHelper = new InitiationHelper();
 
-            Console.WriteLine(string.Concat("Diffrent Ways to Initiate a Timespan Value", NewLine, Seprator));
+            Console.WriteLine(string.Concat("Diffrent Ways to Initiate a Timespan Value", newLine, seprator));
 
             TimeSpan dayTimespan = initHelper.InitiateTimespan(2, TimePart.Day);
             Console.WriteLine($"Duration in Days: {dayTimespan:%d} day(s)");
@@ -40,14 +39,14 @@ namespace Application
             TimeSpan ticksTimespan = initHelper.InitiateTimespan(50000, TimePart.Ticks);
             Console.WriteLine($"Duration in Milliseconds: {ticksTimespan:%ffffffff} millisecond(s)");
 
-            TimeSpan HMS = initHelper.InitiateTimespan(5, 23, 31);
-            Console.WriteLine($"Duration in Hour,Minute,Second: {HMS:g}");
+            TimeSpan hms = initHelper.InitiateTimespan(5, 23, 31);
+            Console.WriteLine($"Duration in Hour,Minute,Second: {hms:g}");
 
-            TimeSpan DHMS = initHelper.InitiateTimespan(2, 5, 23, 31);
-            Console.WriteLine($"Duration in Day,Hour,Minute,Second,Millisecond: {DHMS:G}");
+            TimeSpan dhms = initHelper.InitiateTimespan(2, 5, 23, 31);
+            Console.WriteLine($"Duration in Day,Hour,Minute,Second,Millisecond: {dhms:G}");
 
-            TimeSpan DHMSM = initHelper.InitiateTimespan(2, 5, 23, 31, 532);
-            Console.WriteLine($"Duration in Day,Hour,Minute,Second,Millisecond: {DHMSM:G}");
+            TimeSpan dhmsm = initHelper.InitiateTimespan(2, 5, 23, 31, 532);
+            Console.WriteLine($"Duration in Day,Hour,Minute,Second,Millisecond: {dhmsm:G}");
 
             TimeSpan ticks2 = initHelper.InitiateTimespan(100);
             Console.WriteLine($"Duration in Day,Hour,Minute,Second,Millisecond: {ticks2:G}");
@@ -59,8 +58,10 @@ namespace Application
             int minute = 15;
             int second = 30;
             int millisecond = 731;
-            DateTime currentDateTime = new DateTime(year, month, day, hour, minute, second, millisecond);
+
+            var currentDateTime = new DateTime(year, month, day, hour, minute, second, millisecond);
             TimeSpan diffrence = initHelper.InitiateTimespan(new DateTime(2021, 1, 1), currentDateTime);
+
             Console.WriteLine($"The number of total days since 01 Jan 2021: {diffrence.TotalDays:N2}");
         }
 
@@ -72,45 +73,40 @@ namespace Application
             int second = 30;
             int millisecond = 731;
 
-            Console.WriteLine(String.Concat(NewLine, "Properties of Timespan Value", NewLine, Seprator));
-            TimeSpan timespan = new TimeSpan(day, hour, minute, second, millisecond);
-            Console.WriteLine($"The number of total days in timespan value: {timespan.TotalDays:N2}");
-            Console.WriteLine($"The number of days in in timespan value: {timespan.Days:N2}");
-            Console.WriteLine($"The number of total hours in timespan value: {timespan.TotalHours:N2}");
-            Console.WriteLine($"The number of hours in in timespan value: {timespan.Hours:N2}");
-            Console.WriteLine($"The number of total minutes in timespan value: {timespan.TotalMinutes:N2}");
-            Console.WriteLine($"The number of minutes in time in timespan value: {timespan.Minutes:N2}");
-            Console.WriteLine($"The number of total seconds in timespan value: {timespan.TotalSeconds:N2}");
-            Console.WriteLine($"The number of seconds in timespan value: {timespan.Seconds:N2}");
-            Console.WriteLine($"The number of total milliseconds in timespan value: {timespan.TotalMilliseconds:N2}");
-            Console.WriteLine($"The number of millisecond in timespan value: {timespan.Milliseconds:N2}");
-            Console.WriteLine($"The number of ticks in timespan value: {timespan.Ticks:N2}");
+            Console.WriteLine(String.Concat(newLine, "Properties of Timespan Value", newLine, seprator));
+
+            var timespan = new TimeSpan(day, hour, minute, second, millisecond);
+            Console.WriteLine($"Total Days: {timespan.TotalDays:N2}, Days: {timespan.Days:N2}");
+            Console.WriteLine($"Total Hours: {timespan.TotalHours:N2}, Hours:  {timespan.Hours:N2}");
+            Console.WriteLine($"Total Minutes: {timespan.TotalMinutes:N2}, Minutes: {timespan.Minutes:N2}");
+            Console.WriteLine($"Total Seconds: {timespan.TotalSeconds:N2}, Seconds: {timespan.Seconds:N2}");
+            Console.WriteLine($"Total Milliseconds: {timespan.TotalMilliseconds:N2}, Milliseconds: {timespan.Milliseconds:N2}");
+            Console.WriteLine($"Ticks: {timespan.Ticks:N2}");
         }
 
         private static void OperationsInTimespan()
         {
-            OperationHelper operationHelper = new OperationHelper();
+            var operationHelper = new OperationHelper();
 
-            Console.WriteLine(String.Concat(NewLine, "Operations in a Timespan Value", NewLine, Seprator));
+            Console.WriteLine(String.Concat(newLine, "Operations in a Timespan Value", newLine, seprator));
 
-            TimeSpan OprationExampleParse = operationHelper.Operate("01:45:00", Operation.Parse);
-            Console.WriteLine($"The number of total hours in timespan value resulted by passing string 01:45:00 to Timespan.Parse: {OprationExampleParse.TotalHours:N2}");
+            TimeSpan oprationExampleParse = operationHelper.Operate("01:45:00", Operation.Parse);
+            Console.WriteLine($"Timespan.Parse result: {oprationExampleParse.TotalHours:N2}");
 
-            TimeSpan OprationExampleTryParse = operationHelper.Operate("01:30:00", Operation.TryParse);
-            Console.WriteLine($"The number of total hours in timespan value resulted by passing string 01:30:00 to Timespan.TryParse: {OprationExampleTryParse.TotalHours:N2}");
+            TimeSpan oprationExampleTryParse = operationHelper.Operate("01:30:00", Operation.TryParse);
+            Console.WriteLine($"Timespan.TryParse result: {oprationExampleTryParse.TotalHours:N2}");
 
-            TimeSpan OprationExampleParseEx = operationHelper.Operate("01:30", Operation.ParseExact);
-            Console.WriteLine($"The number of total hours in timespan value resulted by passing string 01:30 to Timespan.ParseExact: {OprationExampleParseEx.TotalHours:N2}");
+            TimeSpan oprationExampleParseEx = operationHelper.Operate("01:30", Operation.ParseExact);
+            Console.WriteLine($"Timespan.ParseExact result: {oprationExampleParseEx.TotalHours:N2}");
 
-            TimeSpan OprationExampleTryParseEx = operationHelper.Operate("00:45", Operation.TryParseExact);
-            Console.WriteLine($"The number of total hours in timespan value resulted by passing string 00:45 to Timespan.TryParseExact: {OprationExampleTryParseEx.TotalHours:N2}");
+            TimeSpan oprationExampleTryParseEx = operationHelper.Operate("00:45", Operation.TryParseExact);
+            Console.WriteLine($"Timespan.TryParseExact result: {oprationExampleTryParseEx.TotalHours:N2}");
 
-            TimeSpan OprationExampleAdd = operationHelper.Operate(OprationExampleParse, OprationExampleTryParse, Operation.Add);
-            Console.WriteLine($"The timespan value resulted by adding timespan values with {OprationExampleParse.ToString(@"hh\:mm\:ss")} and {OprationExampleTryParseEx.ToString(@"hh\:mm\:ss")}: {OprationExampleAdd.ToString(@"hh\:mm\:ss")}");
+            TimeSpan oprationExampleAdd = operationHelper.Operate(oprationExampleParse, oprationExampleTryParse, Operation.Add);
+            Console.WriteLine($"Timespan.Add result: {oprationExampleAdd.ToString(@"hh\:mm\:ss")}");
 
-            TimeSpan OprationExampleSub = operationHelper.Operate(OprationExampleParse, OprationExampleTryParse, Operation.Substract);
-            Console.WriteLine($"The timespan value resulted by substracting timespan value {OprationExampleTryParse.ToString(@"hh\:mm\:ss")} from {OprationExampleParse.ToString(@"hh\:mm\:ss")}: {OprationExampleSub.ToString(@"hh\:mm\:ss")}");
+            TimeSpan oprationExampleSub = operationHelper.Operate(oprationExampleParse, oprationExampleTryParse, Operation.Substract);
+            Console.WriteLine($"Timespan.Substract result: {oprationExampleSub.ToString(@"hh\:mm\:ss")}");
         }
     }
 }
-
