@@ -52,7 +52,7 @@ namespace Tests
             var switchTemp = 20;
             var expectedout = GetExpectedOutputForTest(switchTemp);
 
-            Program.SubMultipleCaseResults();
+            Program.SubMultipleCaseResults(switchTemp);
 
             var resultstring = stringWrite.ToString().Trim();
 
@@ -77,7 +77,7 @@ namespace Tests
             var tempValue = 22;
             var expectedout = GetExpectedOutputForTest(tempValue);
 
-            Program.SubMultipleCaseWithListValues();
+            Program.SubMultipleCaseWithListValues(tempValue);
 
             var resultstring = stringWrite.ToString();
             var arr = resultstring.Split("-");
@@ -93,7 +93,7 @@ namespace Tests
             var resultText = string.Empty;
             var expectedoutput = GetExpectedOutputForTest(tempValue);
 
-            Program.SubMultipleCaseWithNewVersion();
+            Program.SubMultipleCaseWithNewVersion(tempValue);
 
             resultText = stringWrite.ToString();
             var arr = resultText.Split("-");
@@ -105,10 +105,10 @@ namespace Tests
         [TestMethod]
         public void whenSwitchCaseWithExtensionMethod()
         {
-            var tempValue = 20;
+            var tempValue = 22;
             var expectedout = GetExpectedOutputForTest(tempValue);
 
-            Program.SubMultipleCaseWithExtension();
+            Program.SubMultipleCaseWithExtension(tempValue);
 
             var result = stringWrite.ToString();
             var arr = result.Split("-");
