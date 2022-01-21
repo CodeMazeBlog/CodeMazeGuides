@@ -6,16 +6,17 @@ namespace SwitchCaseExpression
 
         static void Main(string[] args)
         {
-            SubMultipleCaseResults();
+            var tempValue = 22;
+
+            SubMultipleCaseResults(tempValue);
             SubMultipleCaseResultsWithWhen();
-            SubMultipleCaseWithExtension();
-            SubMultipleCaseWithListValues();
-            SubMultipleCaseWithNewVersion();
+            SubMultipleCaseWithExtension(tempValue);
+            SubMultipleCaseWithListValues(tempValue);
+            SubMultipleCaseWithNewVersion(tempValue);
         }
 
-        public static void SubMultipleCaseResults()
+        public static void SubMultipleCaseResults(int switchTemp)
         {
-            var switchTemp = 20;
             var resultstring = string.Empty;
 
             switch (switchTemp)
@@ -53,10 +54,8 @@ namespace SwitchCaseExpression
                     break;
             }
         }
-        public static void SubMultipleCaseWithExtension()
+        public static void SubMultipleCaseWithExtension(int tempValue)
         {
-            var tempValue = 22;
-
             var result = tempValue switch
             {
                 var x when x.In(20, 22, 24) => "It is a pleasant day",
@@ -68,9 +67,8 @@ namespace SwitchCaseExpression
             Console.WriteLine($"{result} - with extension method");
         }
 
-        public static void SubMultipleCaseWithListValues()
+        public static void SubMultipleCaseWithListValues(int tempValue)
         {
-            var tempValue = 22;
             var templist = new List<int> { 20, 22, 24 };
 
             var newresult = tempValue switch
@@ -84,10 +82,8 @@ namespace SwitchCaseExpression
             Console.WriteLine($"{newresult} - result when using a list");
         }
 
-        public static void SubMultipleCaseWithNewVersion()
+        public static void SubMultipleCaseWithNewVersion(int tempValue)
         {
-            var tempValue = 22;
-
             var resultText = tempValue switch
             {
                 20 or 22 or 24 => "It is a pleasant day",
