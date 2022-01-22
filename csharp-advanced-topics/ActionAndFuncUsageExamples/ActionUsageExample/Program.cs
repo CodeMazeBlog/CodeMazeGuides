@@ -1,20 +1,14 @@
-﻿
-using ActionUsageExample;
+﻿using ActionUsageExample;
 
-IGithubHttpClient githubClient = new GithubHttpClient();
+IMessagePrintService messagePrintService = new MessagePrintService();
 
-Console.WriteLine("Calling Github API \n");
+Action<string> messageBroker = messagePrintService.WriteToConsole;
+messageBroker += messagePrintService.WriteToDebugOutput;
 
-githubClient
-    .FetchRepositoryList(
-        githubId: "CodeMazeBlog",
-        fetchCount: 3,
-        OnReceivedRepos: (repoList) =>
-        {
-            // Update UI when data is received
-            Console.WriteLine($"Received repository list \nRepositoryCount : {repoList.Count}");
-        });
-
-Console.WriteLine("When data is being fecthed, perforing other tasks in UI i.e. updating progress bar.\n");
+//
+// Write message to target outputs
+//
+var message = "This a test message";
+messageBroker.Invoke(message);
 
 var _ = Console.ReadKey();

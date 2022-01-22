@@ -1,9 +1,9 @@
 ﻿using FuncUsageExample;
 
-var numberList = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+IMathService mathService = new MathService();
 
-var evenNumbersOnly = numberList.Filter(number => number % 2 == 0);
+var resultString = mathService.PerformOperation(2, 8, arithmeticOperation: (x, y) => x + y );
 
-Console.WriteLine($"Numbers after filtering: { string.Join(",", evenNumbersOnly) }");
+Console.WriteLine(resultString);
 
 var _ = Console.ReadKey();

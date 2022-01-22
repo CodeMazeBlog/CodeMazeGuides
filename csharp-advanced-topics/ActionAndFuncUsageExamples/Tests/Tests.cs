@@ -1,51 +1,27 @@
 using AutoFixture.Xunit2;
-using System.Collections.Generic;
-using FuncUsageExample;
+using System;
 using Xunit;
-using System.Linq;
+
 
 namespace Tests
 {
-    public class Tests : IClassFixture<GithubHttpClientTestFixure>
+    public class Tests: IClassFixture<MathServiceTestFixure>
     {
-        private readonly GithubHttpClientTestFixure _githubClientFixure;
+        private readonly MathServiceTestFixure _mathServiceFixure;
 
-        public Tests(GithubHttpClientTestFixure githubClientFixure)
+        public Tests(MathServiceTestFixure mathServiceTestFixure)
         {
-            _githubClientFixure = githubClientFixure;
+            _mathServiceFixure = mathServiceTestFixure;
         }
 
         [Theory]
-        [InlineAutoData("CodeMazeBlog", 5)]
-        [InlineAutoData("hovermind", 2)]
-        [InlineAutoData("octocat", 1)]
-        public void WhenCalledFetchRepositoryList_ShouldReturnList(string githubId, int fetchCount)
+        [InlineAutoData(1, 3, "X: 25.00% and Y: 75.00%")]
+        [InlineAutoData(6, 4, "X: 60.00% and Y: 40.00%")]
+        public void WhenCalledPerformOperation_ShouldReturnStringForSummation(int x, int y, string expectedResult) 
         {
-            _githubClientFixure.Sut.FetchRepositoryList(githubId, fetchCount, (repoList) =>
-            {
-                var expectedResult = fetchCount;
+            Func<int, int, double> summation = (p, q) => p + q;
 
-                var actualResult = repoList.Count;
-
-                Assert.Equal(expectedResult, actualResult);
-            });
-        }
-
-        [Theory]
-        [InlineAutoData(1, 5, 2)]
-        [InlineAutoData(7, 7, 0)]
-        [InlineAutoData(8, 15, 4)]
-        public void WhenCalledFilterOnList_ShouldSelectItemsBasedOnGivenPredicate(int rangeStart, int rangeEnd, int expectedResult)
-        {
-            var numberList = new List<int>();
-            for (int i = rangeStart; i <= rangeEnd; i++)
-            {
-                numberList.Add(i);
-            }
-
-            var filtered = numberList.Filter(number => number % 2 == 0);
-
-            var actualResult = Enumerable.Count(filtered);
+            var actualResult = _mathServiceFixure.Sut.PerformOperation(x, y, arithmeticOperation: summation);
 
             Assert.Equal(expectedResult, actualResult);
         }
