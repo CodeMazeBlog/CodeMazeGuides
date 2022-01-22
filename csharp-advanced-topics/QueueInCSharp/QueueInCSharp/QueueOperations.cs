@@ -1,68 +1,72 @@
 ﻿using QueueInCSharp.Models;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace QueueInCSharp;
-
-public static class QueueOperations
+namespace QueueInCSharp
 {
-    //declare a queue of orders
-    public static Queue<Order> Orders;
 
-    static QueueOperations()
+    public static class QueueOperations
     {
-        //initialize the queue
-        Orders = new Queue<Order>();
+        //declare a queue of orders
+        public static Queue<Order> Orders;
 
-        //create order objects
-        var Order1 = new Order("Ana", new string[] { "Chockolate", "Coffee" }, 20);
-        var Order2 = new Order("George", new string[] { "Juice", "Sandwich" }, 15);
-        var Order3 = new Order("Bob", new string[] { "Ice cream" }, 5);
+        static QueueOperations()
+        {
+            //initialize the queue
+            Orders = new Queue<Order>();
 
-        //add orders to the queue
-        Orders.Enqueue(Order1);
-        Orders.Enqueue(Order2);
-        Orders.Enqueue(Order3);
+            //create order objects
+            var Order1 = new Order("Ana", new string[] { "Chockolate", "Coffee" }, 20);
+            var Order2 = new Order("George", new string[] { "Juice", "Sandwich" }, 15);
+            var Order3 = new Order("Bob", new string[] { "Ice cream" }, 5);
+
+            //add orders to the queue
+            Orders.Enqueue(Order1);
+            Orders.Enqueue(Order2);
+            Orders.Enqueue(Order3);
+        }
+
+        public static int OrdersCount()
+        {
+            return Orders.Count;
+        }
+
+        public static (Order order, int numberOfRemainingOrders) GetOrderWithoutRemoving()
+        {
+            //get the first element from the queue
+            var order = Orders.Peek();
+            var numberOfRemainingOrders = Orders.Count();
+            return (order, numberOfRemainingOrders);
+        }
+
+        public static (Order order, int numberOfRemainingOrders) GetOrderAndRemove()
+        {
+            //get and remove the first element from the queue
+            var order = Orders.Dequeue();
+            var numberOfRemainingOrders = Orders.Count();
+            return (order, numberOfRemainingOrders);
+        }
+
+
+        public static int RemoveAllElements()
+        {
+            Queue<Order> orders = new Queue<Order>();
+
+            //create order objects
+            var Order1 = new Order("Ana", new string[] { "Chockolate", "Coffee" }, 20);
+            var Order2 = new Order("George", new string[] { "Juice", "Sandwich" }, 15);
+            var Order3 = new Order("Bob", new string[] { "Ice cream" }, 5);
+
+            //add orders to the queue
+            orders.Enqueue(Order1);
+            orders.Enqueue(Order2);
+            orders.Enqueue(Order3);
+
+            //remove all elements from the queue
+            orders.Clear();
+            return orders.Count();
+        }
+
     }
-
-    public static int OrdersCount()
-    {
-        return Orders.Count;
-    }
-
-    public static (Order order, int numberOfRemainingOrders) GetOrderWithoutRemoving()
-    {
-        //get the first element from the queue
-        var order = Orders.Peek();
-        var numberOfRemainingOrders = Orders.Count();
-        return (order, numberOfRemainingOrders);
-    }
-
-    public static (Order order, int numberOfRemainingOrders) GetOrderAndRemove()
-    {
-        //get and remove the first element from the queue
-        var order = Orders.Dequeue();
-        var numberOfRemainingOrders = Orders.Count();
-        return (order, numberOfRemainingOrders);
-    }
-
-
-    public static int RemoveAllElements()
-    {
-        Queue<Order> orders = new Queue<Order>();
-
-        //create order objects
-        var Order1 = new Order("Ana", new string[] { "Chockolate", "Coffee" }, 20);
-        var Order2 = new Order("George", new string[] { "Juice", "Sandwich" }, 15);
-        var Order3 = new Order("Bob", new string[] { "Ice cream" }, 5);
-
-        //add orders to the queue
-        orders.Enqueue(Order1);
-        orders.Enqueue(Order2);
-        orders.Enqueue(Order3);
-
-        //remove all elements from the queue
-        orders.Clear();
-        return orders.Count();
-    }
-
 }
 
