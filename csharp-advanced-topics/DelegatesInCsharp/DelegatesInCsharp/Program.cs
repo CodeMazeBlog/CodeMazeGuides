@@ -5,7 +5,7 @@ namespace DelegatesInCsharp
 	delegate void PrintMessage(string text);
 	delegate T Print<T>(T param1);
 
-	class Program
+	class Program 
 	{
 		public static void WriteText(string text) => Console.WriteLine($"Text: {text}");
 		public static void ReverseWriteText(string text) => Console.WriteLine($"Text in reverse: {Reverse(text)}");
