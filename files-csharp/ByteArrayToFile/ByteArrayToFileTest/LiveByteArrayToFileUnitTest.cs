@@ -6,7 +6,7 @@ using System.Text;
 namespace ByteArrayToFileTest
 {
     [TestClass]
-    public class ByteArrayToFileUnitTest
+    public class LiveByteArrayToFileUnitTest
     {
         const string _data = "Byte Array To File Test";
         readonly byte[] _dataInBytes = Encoding.UTF8.GetBytes(_data);
