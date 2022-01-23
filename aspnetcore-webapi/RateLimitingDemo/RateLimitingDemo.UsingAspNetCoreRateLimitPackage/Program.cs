@@ -1,7 +1,7 @@
 using AspNetCoreRateLimit;
 using AspNetCoreRateLimit.Redis;
-using RateLimitingDemo.UsAspNetCoreRateLimitPackage.Model;
-using RateLimitingDemo.UsAspNetCoreRateLimitPackage.Repositories;
+using RateLimitingDemo.Common.Model;
+using RateLimitingDemo.Common.Repositories;
 using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);

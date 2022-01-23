@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace RateLimitingDemo.UsingCustomMiddleware.Extensions;
@@ -25,6 +24,5 @@ public static class Serialization
 
         return JsonConvert.DeserializeObject<T>(Encoding.Default.GetString(arrayToDeserialize));
     }
-
 }
 

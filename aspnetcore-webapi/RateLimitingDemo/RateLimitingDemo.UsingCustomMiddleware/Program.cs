@@ -1,7 +1,7 @@
 using RateLimitingDemo.UsingCustomMiddleware.Decorators;
 using RateLimitingDemo.UsingCustomMiddleware.Extensions;
-using RateLimitingDemo.UsingCustomMiddleware.Model;
-using RateLimitingDemo.UsingCustomMiddleware.Repositories;
+using RateLimitingDemo.Common.Model;
+using RateLimitingDemo.Common.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

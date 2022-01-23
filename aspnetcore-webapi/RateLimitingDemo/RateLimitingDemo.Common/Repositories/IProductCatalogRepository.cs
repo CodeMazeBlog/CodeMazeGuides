@@ -1,6 +1,8 @@
-﻿using RateLimitingDemo.UsingCustomMiddleware.Model;
+﻿using RateLimitingDemo.Common.Model;
+using System;
+using System.Collections.Generic;
 
-namespace RateLimitingDemo.UsingCustomMiddleware.Repositories;
+namespace  RateLimitingDemo.Common.Repositories;
 
 public interface IProductCatalogRepository
 {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using RateLimitingDemo.UsAspNetCoreRateLimitPackage.Model;
+using RateLimitingDemo.Common.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -19,9 +19,11 @@ namespace Tests
         public void WhenAppIsStarted_IpRateLimitOptionsAreLoadedSuccessfully()
         {
             using var factory = new WebApplicationFactory<Program>();
+            
             var options = factory.Services.GetRequiredService<IOptions<IpRateLimitOptions>>();
-            Assert.AreEqual(1, options.Value.GeneralRules.Count);
             var generalRule = options.Value.GeneralRules[0];
+
+            Assert.AreEqual(1, options.Value.GeneralRules.Count);
             Assert.AreEqual("GET:/products", generalRule.Endpoint);
             Assert.AreEqual("5s", generalRule.Period);
             Assert.AreEqual(2, generalRule.Limit);
@@ -32,10 +34,12 @@ namespace Tests
         {
             using var factory = new WebApplicationFactory<Program>();
             var httpClient = factory.CreateClient();
+            
             var response = await httpClient.GetAsync($"/products");
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
             var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(result);
+            
             Assert.AreEqual(5, products?.ToList().Count);
         }
 
@@ -45,12 +49,14 @@ namespace Tests
             using var factory = new WebApplicationFactory<Program>();
             var httpClient = factory.CreateClient();
             var requests = new List<string> { "1", "2", "3" };
+            
             var allTasks = requests.Select(n => Task.Run(async () =>
             {
                 var result = await httpClient.GetStringAsync($"/products");
                
             })).ToList();
             async Task ConcurrentApiRequests() => await Task.WhenAll(allTasks);
+            
             var e = await Assert.ThrowsExceptionAsync<HttpRequestException>(ConcurrentApiRequests);
             Assert.AreEqual("Response status code does not indicate success: 429 (Too Many Requests).", e.Message);
         }       

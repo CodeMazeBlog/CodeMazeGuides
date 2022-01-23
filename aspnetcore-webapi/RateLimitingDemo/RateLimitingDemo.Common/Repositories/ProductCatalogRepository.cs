@@ -1,6 +1,9 @@
-﻿using RateLimitingDemo.UsAspNetCoreRateLimitPackage.Model;
+﻿using RateLimitingDemo.Common.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace RateLimitingDemo.UsAspNetCoreRateLimitPackage.Repositories;
+namespace RateLimitingDemo.Common.Repositories;
 public class ProductCatalogRepository : IProductCatalogRepository
 {
     private readonly Dictionary<Guid, Product> _products = new();

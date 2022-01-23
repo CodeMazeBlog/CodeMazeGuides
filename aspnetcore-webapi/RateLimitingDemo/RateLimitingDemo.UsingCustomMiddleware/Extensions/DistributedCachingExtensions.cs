@@ -6,7 +6,6 @@ public static class DistributedCachingExtensions
 {
     public async static Task SetCahceValueAsync<T>(this IDistributedCache distributedCache, string key, T value, CancellationToken token = default(CancellationToken))
     {
-
         await distributedCache.SetAsync(key, value.ToByteArray(), token);
     }
 
