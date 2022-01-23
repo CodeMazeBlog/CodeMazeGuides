@@ -64,7 +64,7 @@ namespace Tests
         {
             var expoutput = "The value is between 50 and 150";
 
-            Program.SubMultipleCaseResultsWithWhen();
+            Program.SubMultipleCaseResultsWithWhen(100);
 
             var resultstring = stringWrite.ToString().Trim();
 
