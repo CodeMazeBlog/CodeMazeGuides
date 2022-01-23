@@ -1,6 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 
-using WorkingWithRestSharp;
 using WorkingWithRestSharp.Controllers;
+using WorkingWithRestSharp.DataTransferObject;
 
 using Xunit;
 
@@ -12,66 +13,75 @@ namespace Test.WorkingWithRestSharp
         public async void GetUserList_WhenCalled_ReturnsUserLists()
         {
             // Arrange
-            UserController userController = new UserController();
+            UsersController userController = new UsersController();
             // Act
             var okResult = await userController.GetUserList();
+            var value = (okResult as OkObjectResult)?.Value as UserList;
             // Assert
-            Assert.IsType<UserDetails>(okResult);
+            Assert.IsType<UserList>(value);
+            Assert.IsType<OkObjectResult>(okResult);
         }
 
         [Fact]
-        public async void GetUserDetailsById_WhenCalled_ReturnsSpecificUser()
+        public async void GetUser_WhenCalled_ReturnsSpecificUser()
         {
             // Arrange
-            UserController userController = new UserController();
+            UsersController userController = new UsersController();
             // Act
-            var okResult = await userController.GetUserDetailsById("1");
+            var okResult = await userController.GetUser("1");
+            var value = (okResult as OkObjectResult)?.Value as UserDetails;
             // Assert
-            Assert.IsType<SingleUserDetails>(okResult);
+            Assert.IsType<UserDetails>(value);
+            Assert.IsType<OkObjectResult>(okResult);
         }
 
         [Fact]
-        public async void AddNewUserAndJob_WhenCalled_ReturnsAddedUserJobDetails()
+        public async void AddUser_WhenCalled_ReturnsAddedUserJobDetails()
         {
             // Arrange
-            UserController userController = new UserController();
-            UserJobDetailsRequest userJobDetailsRequest = new UserJobDetailsRequest
+            UsersController userController = new UsersController();
+            UserForCreation userForCreation = new UserForCreation()
             {
                 Name = "Code Maze",
                 Job = "Editor"
             };
             // Act
-            var okResult = await userController.AddNewUserAndJob(userJobDetailsRequest);
+            var okResult = await userController.AddUser(userForCreation);
+            var value = (okResult as OkObjectResult)?.Value as UserCreationResponse;
             // Assert
-            Assert.IsType<UserJobDetails>(okResult);
+            Assert.IsType<UserCreationResponse>(value);
+            Assert.IsType<OkObjectResult>(okResult);
         }
 
         [Fact]
-        public async void UpdateUserAndJob_WhenCalled_ReturnsUpdateUserJobDetails()
+        public async void UpdateUser_WhenCalled_ReturnsUpdateUserJobDetails()
         {
             // Arrange
-            UserController userController = new UserController();
-            UpdateUserJobDetailsRequest updateUserJobDetailsRequest = new UpdateUserJobDetailsRequest
+            UsersController userController = new UsersController();
+            UserForUpdate userForUpdate = new UserForUpdate()
             {
-                Id = "1",
                 Name = "Code Maze",
                 Job = "Editor"
             };
             // Act
-            var okResult = await userController.UpdateUserAndJob(updateUserJobDetailsRequest);
+            var okResult = await userController.UpdateUser(userForUpdate, "1");
+            var value = (okResult as OkObjectResult)?.Value as UserUpdateResponse;
             // Assert
-            Assert.IsType<UpdateUserJobDetails>(okResult);
+            Assert.IsType<UserUpdateResponse>(value);
+            Assert.IsType<OkObjectResult>(okResult);
         }
 
         [Fact]
         public async void DeleteUser_WhenCalled_ReturnsUpdateUserJobDetails()
         {
             // Arrange
-            UserController userController = new UserController();
+            UsersController userController = new UsersController();
             // Act
             var okResult = await userController.DeleteUser("1");
+            var value = (okResult as OkObjectResult)?.Value as UserDeleteResponse;
             // Assert
-            Assert.IsType<DeleteResponse>(okResult);
+            Assert.IsType<UserDeleteResponse>(value);
+            Assert.IsType<OkObjectResult>(okResult);
         }
     }
 }
