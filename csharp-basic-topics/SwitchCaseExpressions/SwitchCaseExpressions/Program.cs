@@ -6,13 +6,11 @@ namespace SwitchCaseExpression
 
         static void Main(string[] args)
         {
-            var tempValue = 22;
-
-            SubMultipleCaseResults(tempValue);
-            SubMultipleCaseResultsWithWhen();
-            SubMultipleCaseWithExtension(tempValue);
-            SubMultipleCaseWithListValues(tempValue);
-            SubMultipleCaseWithNewVersion(tempValue);
+            SubMultipleCaseResults(22);
+            SubMultipleCaseResultsWithWhen(100);
+            SubMultipleCaseWithExtension(22);
+            SubMultipleCaseWithListValues(22);
+            SubMultipleCaseWithNewVersion(22);
         }
 
         public static void SubMultipleCaseResults(int switchTemp)
@@ -37,10 +35,8 @@ namespace SwitchCaseExpression
             Console.WriteLine(resultstring);
         }
 
-        public static void SubMultipleCaseResultsWithWhen()
+        public static void SubMultipleCaseResultsWithWhen(int value)
         {
-            var value = 100;
-
             switch (value)
             {
                 case int n when (n >= 50 && n <= 150):
