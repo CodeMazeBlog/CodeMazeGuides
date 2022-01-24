@@ -1,17 +1,10 @@
 using System;
-using System.Globalization;
-using System.Threading;
 using Xunit;
 
 namespace Tests
 {
     public class DateOnlyTests
     {
-        public DateOnlyTests()
-        {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-AU");
-        }
-
         [Fact]
         public void CanCreateDateOnly()
         {
@@ -32,7 +25,7 @@ namespace Tests
             var newDate = dateOnly.AddDays(1);
 
             // Assert.
-            Assert.Equal("2/01/2022", newDate.ToString());
+            Assert.Equal(dateOnly.Day + 1, newDate.Day);
         }
 
         [Fact]
@@ -45,7 +38,7 @@ namespace Tests
             var newDate = dateOnly.AddMonths(1);
 
             // Assert.
-            Assert.Equal("1/02/2022", newDate.ToString());
+            Assert.Equal(dateOnly.Month + 1, newDate.Month);
         }
 
         [Fact]
@@ -58,7 +51,7 @@ namespace Tests
             var newDate = dateOnly.AddYears(1);
 
             // Assert.
-            Assert.Equal("1/01/2023", newDate.ToString());
+            Assert.Equal(dateOnly.Year + 1, newDate.Year);
         }
 
         [Fact]

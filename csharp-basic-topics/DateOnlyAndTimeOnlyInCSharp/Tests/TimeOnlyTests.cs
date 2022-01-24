@@ -1,17 +1,10 @@
 using System;
-using System.Globalization;
-using System.Threading;
 using Xunit;
 
 namespace Tests
 {
     public class TimeOnlyTests
     {
-        public TimeOnlyTests()
-        {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-AU");
-        }
-
         [Fact]
         public void CanCreateTimeOnly()
         {
@@ -19,7 +12,7 @@ namespace Tests
             var timeOnly = new TimeOnly(11, 0);
 
             // Assert.
-            Assert.Equal("11:00 AM", timeOnly.ToString());
+            Assert.Equal(11, timeOnly.Hour);
         }
 
         [Fact]
@@ -32,11 +25,11 @@ namespace Tests
             var newTime = timeOnly.AddHours(1);
 
             // Assert.
-            Assert.Equal("12:00 PM", newTime.ToString());
+            Assert.Equal(timeOnly.Hour + 1, newTime.Hour);
         }
 
         [Fact]
-        public void CanAddMonths()
+        public void CanAddMinutes()
         {
             // Arrange.
             var timeOnly = new TimeOnly(11, 0);
@@ -45,7 +38,7 @@ namespace Tests
             var newTime = timeOnly.AddMinutes(1);
 
             // Assert.
-            Assert.Equal("11:01 AM", newTime.ToString());
+            Assert.Equal(timeOnly.Minute + 1, newTime.Minute);
         }
 
         [Fact]
