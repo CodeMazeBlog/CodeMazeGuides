@@ -28,7 +28,7 @@ namespace Tests
             string actual = string.Empty;
             SumNumbersWithCallback(1, 1, (s) => actual = (s).ToString());
             SetMessage("the sum is: 2");
-            Assert.Equal(Message, actual);
+            Assert.Equal(actual, Message);
         }
     }
 }

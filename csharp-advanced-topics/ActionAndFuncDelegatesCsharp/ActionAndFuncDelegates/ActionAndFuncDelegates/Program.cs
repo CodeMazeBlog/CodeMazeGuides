@@ -1,10 +1,10 @@
 ﻿using static ActionAndFuncDelegates.ActionAndFuncUtils;
 
-SetMessageDelegate handler = SetMessage;
-SumNumbersDelegate otherHandler = SumNumbers;
+SetMessageDelegate messageHandler = SetMessage;
+SumNumbersDelegate sumHandler = SumNumbers;
 
-handler("Hello Code Maze!!");
-var result = otherHandler(1, 1);
+messageHandler("Hello Code Maze!!");
+var result = sumHandler(1, 1);
 Console.WriteLine(Message);
 Console.WriteLine(result);
 
