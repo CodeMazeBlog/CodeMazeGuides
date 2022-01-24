@@ -68,10 +68,10 @@ public partial class Program
         var vowels = Tuple.Create("a", "e", "i", "o", "u");
         var fourthVowel = vowels.Item4; //returns "o"
 
-        (string author, string booktitle, int publishYear, bool isFiction) ApiBookTwo = ("codemaze", "Ultimate_ASP.NET_Core_Web_API_", 2021, false);
+        (string author, string booktitle, int publishYear, bool isFiction) apiBookTwo = ("codemaze", "Ultimate_ASP.NET_Core_Web_API_", 2021, false);
 
-        var author = ApiBookTwo.author; //returns "codemaze
-        var publishYear = ApiBookTwo.publishYear; //returns 2021
+        var author = apiBookTwo.author; //returns "codemaze
+        var publishYear = apiBookTwo.publishYear; //returns 2021
 
         var evenNumbers = Tuple.Create(2, 4, 6, 8, 10, 12, 14,
         Tuple.Create(16, 18, 20, 22, 24, 26));
@@ -136,12 +136,12 @@ public partial class Program
 
     public static void MutabilityOfValueTuples()
     {
-        (string satellite, string star, string planet, string galaxy) heavenlybodies = ("satellite", "star", "planet", "galaxy");
+        (string satellite, string star, string planet, string galaxy) heavenlyBodies = ("satellite", "star", "planet", "galaxy");
 
-        heavenlybodies.planet = "Earth";
-        heavenlybodies.galaxy = "Milky way";
-        heavenlybodies.star = "Antares";
-        heavenlybodies.satellite = "moon";
+        heavenlyBodies.planet = "earth";
+        heavenlyBodies.galaxy = "mMilky way";
+        heavenlyBodies.star = "antares";
+        heavenlyBodies.satellite = "moon";
     }
 
     public static void CheckingEqualityOfValueTuples()
