@@ -37,8 +37,8 @@ public partial class Program
         var initializedTupleThree = Tuple.Create("code-maze", "johndoe", "dotnet");
         var valueTupleWithNoElementsOne = ValueTuple.Create();
 
-        var valueTupleWithNoElements = new ValueTuple(); //creating valueTuple with no elements
-        var initializedValueTupleSix = new ValueTuple<decimal, decimal, decimal>(10000M, 20000M, 30000m);
+        var valueTupleWithNoElements = new ValueTuple(); 
+        var initializedValueTupleSix = new ValueTuple<decimal, decimal, decimal>(10000M, 20000M, 30000M);
 
     }
     public static void StorageCapacity()
@@ -48,10 +48,10 @@ public partial class Program
         var valueTuple = ("my", "name", "is", "john", "doe", "and", "I", "am", 1000, "years", "old", true);
 
         var age = 999;
-        var name = "Metuse";
+        var name = "metuse";
         var gender = "male";
         var occupation = "pilot";
-        var hobby = "Anime watching";
+        var hobby = "anime watching";
         var mail = "metuse11@mail.com";
         var bestColor = "blue";
         var weight = "1000kg";
@@ -64,14 +64,6 @@ public partial class Program
         (string, string, int, bool) apiBook = ("codemaze", "Ultimate_ASP.NET_Core_Web_API_", 2021, false);
         var itemOne = apiBook.Item1; //returns "codemaze"
         var itemThree = apiBook.Item3; //returns 2021
-
-        var vowels = Tuple.Create("a", "e", "i", "o", "u");
-        var fourthVowel = vowels.Item4; //returns "o"
-
-        (string author, string booktitle, int publishYear, bool isFiction) apiBookTwo = ("codemaze", "Ultimate_ASP.NET_Core_Web_API_", 2021, false);
-
-        var author = apiBookTwo.author; //returns "codemaze
-        var publishYear = apiBookTwo.publishYear; //returns 2021
 
         var evenNumbers = Tuple.Create(2, 4, 6, 8, 10, 12, 14,
         Tuple.Create(16, 18, 20, 22, 24, 26));
@@ -117,9 +109,9 @@ public partial class Program
     public static void Deconstruction()
     {
         var result = CheckStringLength("October");
-        var isLengthEven = result.isLengthEven;
-        var message = result.message;
-        var stringLength = result.stringLength;
+        var isLengthEven = result.isLengthEven; //returns false
+        var message = result.message;// returns "this is odd"
+        var stringLength = result.stringLength;//returns 7
 
         var (isLengthEvenn, messagee, stringLengthh) = CheckStringLength("October");
 
@@ -139,7 +131,7 @@ public partial class Program
         (string satellite, string star, string planet, string galaxy) heavenlyBodies = ("satellite", "star", "planet", "galaxy");
 
         heavenlyBodies.planet = "earth";
-        heavenlyBodies.galaxy = "mMilky way";
+        heavenlyBodies.galaxy = "milky way";
         heavenlyBodies.star = "antares";
         heavenlyBodies.satellite = "moon";
     }
