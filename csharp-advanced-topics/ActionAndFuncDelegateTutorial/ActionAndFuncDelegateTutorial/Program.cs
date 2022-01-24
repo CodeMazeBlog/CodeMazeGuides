@@ -6,8 +6,8 @@ namespace ActionAndFuncDelegateTutorial
 
     public delegate T Func<in U, out T>(U arg);
 
-    public delegate void Action<in U>(U arg);
-    class Program
+    //public delegate void Action<in U>(U arg);
+    public static class Program
     {
         static void Main(string[] args)
         {
