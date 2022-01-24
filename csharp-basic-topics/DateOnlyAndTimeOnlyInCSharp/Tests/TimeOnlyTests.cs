@@ -1,10 +1,17 @@
 using System;
+using System.Globalization;
+using System.Threading;
 using Xunit;
 
 namespace Tests
 {
     public class TimeOnlyTests
     {
+        public TimeOnlyTests()
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-AU");
+        }
+
         [Fact]
         public void CanCreateTimeOnly()
         {
