@@ -12,7 +12,9 @@ namespace Tests
             var dateOnly = new DateOnly(2022, 1, 1);
 
             // Assert.
-            Assert.Equal("1/01/2022", dateOnly.ToString());
+            Assert.Equal(2022, dateOnly.Year);
+            Assert.Equal(1, dateOnly.Month);
+            Assert.Equal(1, dateOnly.Day);
         }
 
         [Fact]
@@ -78,7 +80,9 @@ namespace Tests
             var dateOnly = DateOnly.FromDateTime(dateTime);
 
             // Assert.
-            Assert.Equal("1/01/2022", dateOnly.ToString());
+            Assert.Equal(2022, dateOnly.Year);
+            Assert.Equal(1, dateOnly.Month);
+            Assert.Equal(1, dateOnly.Day);
         }
 
         [Fact]

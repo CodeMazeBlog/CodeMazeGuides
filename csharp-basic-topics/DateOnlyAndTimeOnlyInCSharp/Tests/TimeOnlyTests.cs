@@ -66,7 +66,8 @@ namespace Tests
             var timeOnly = TimeOnly.FromDateTime(dateTime);
 
             // Assert.
-            Assert.Equal("11:30 AM", timeOnly.ToString());
+            Assert.Equal(11, timeOnly.Hour);
+            Assert.Equal(30, timeOnly.Minute);
         }
 
         [Fact]
