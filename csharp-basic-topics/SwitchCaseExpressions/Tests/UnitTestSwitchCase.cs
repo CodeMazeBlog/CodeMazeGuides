@@ -9,10 +9,10 @@ namespace Tests
     [TestClass]
     public class UnitTestSwitch
     {
-        public static readonly string Pleasant_Weather = "It is a pleasant day";
-        public static readonly string Hot_Weather = "It is hot today";
-        public static readonly string Very_Hot_Weather = "It is very hot today";
-        public static readonly string No_Weather_Report = "No weather report";
+        private readonly string _pleasantWeather = "It is a pleasant day";
+        private readonly string _hotWeather = "It is hot today";
+        private readonly string _veryHotWeather = "It is very hot today";
+        private readonly string _noWeatherReport = "No weather report";
 
         StringWriter stringWrite = new StringWriter();
 
@@ -30,16 +30,16 @@ namespace Tests
                 case 20:
                 case 22:
                 case 24:
-                    expectedout = UnitTestSwitch.Pleasant_Weather;
+                    expectedout = _pleasantWeather;
                     break;
                 case 30:
-                    expectedout = UnitTestSwitch.Hot_Weather;
+                    expectedout = _hotWeather;
                     break;
                 case 35:
-                    expectedout = UnitTestSwitch.Very_Hot_Weather;
+                    expectedout = _veryHotWeather;
                     break;
                 default:
-                    expectedout = UnitTestSwitch.No_Weather_Report;
+                    expectedout = _noWeatherReport;
                     break;
             }
 
