@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-
 using WorkingWithRestSharp.Controllers;
 using WorkingWithRestSharp.DataTransferObject;
 
@@ -47,10 +46,10 @@ namespace Test.WorkingWithRestSharp
             };
             // Act
             var okResult = await userController.AddUser(userForCreation);
-            var value = (okResult as OkObjectResult)?.Value as UserCreationResponse;
+            var value = (okResult as ObjectResult)?.Value as UserCreationResponse;
             // Assert
             Assert.IsType<UserCreationResponse>(value);
-            Assert.IsType<OkObjectResult>(okResult);
+            Assert.IsType<ObjectResult>(okResult);
         }
 
         [Fact]
@@ -78,10 +77,8 @@ namespace Test.WorkingWithRestSharp
             UsersController userController = new UsersController();
             // Act
             var okResult = await userController.DeleteUser("1");
-            var value = (okResult as OkObjectResult)?.Value as UserDeleteResponse;
             // Assert
-            Assert.IsType<UserDeleteResponse>(value);
-            Assert.IsType<OkObjectResult>(okResult);
+            Assert.IsType<NoContentResult>(okResult);
         }
     }
 }
