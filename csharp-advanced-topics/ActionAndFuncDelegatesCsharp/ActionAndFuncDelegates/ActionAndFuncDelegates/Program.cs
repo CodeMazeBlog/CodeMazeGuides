@@ -21,6 +21,3 @@ SumNumbersWithCallback(1, 1, setMessage);
 Console.WriteLine(Message);
 
 
-
-
-
