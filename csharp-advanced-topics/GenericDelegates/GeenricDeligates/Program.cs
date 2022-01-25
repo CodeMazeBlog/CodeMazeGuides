@@ -35,10 +35,7 @@ namespace GenericDeligates
             int result = objInt.Invoke(10,20);
             Console.WriteLine("Int  return type : " + result);
 
-
-
             Console.ReadLine();
-
 
         }
     }
