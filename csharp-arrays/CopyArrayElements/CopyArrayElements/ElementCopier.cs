@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CopyArrayElements
+﻿namespace CopyArrayElements
 {
     public class ElementCopier
     {
         public Article[] CopyUsingAssignment(Article[] initialArray)
         {
             var destinationArray = initialArray;
+
             return destinationArray;
         }
+
         public Article[] CopyUsingArrayClass(Article[] initialArray)
         {
             var destinationArray = new Article[initialArray.Length];
@@ -24,6 +20,7 @@ namespace CopyArrayElements
         public Article[] CopyUsingClone(Article[] initialArray)
         {
             var destinationArray = initialArray.Clone();
+
             return (Article[])destinationArray;
         }
 
@@ -46,6 +43,7 @@ namespace CopyArrayElements
             var destinationArray = initialArray
                 .Select(x => new Article { Title = x.Title, LastUpdate = x.LastUpdate })
                 .ToArray();
+
             return destinationArray;
         }
 

@@ -50,7 +50,7 @@ namespace CopyArrayElements
         public static void PrintArticlesTitle(Article[] array)
         {
             foreach (var item in array)
-                Console.WriteLine($" -{item.ToString()}");
+                Console.WriteLine($" -{item}");
 
             Console.WriteLine();
         }

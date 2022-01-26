@@ -17,6 +17,7 @@ namespace Tests
         public void GivenTheClassProgram_ThenRunTheMainMethodAndWriteResultsAtTheConsole()
         {
             Program.Main(new string[]{ });
+
             Assert.AreEqual(1, Program.OutputResult);
         }
 
@@ -26,6 +27,7 @@ namespace Tests
             var initialArray = Program.InstantiateInitialArray();
 
             var destinationArray = _elementCopier.CopyUsingAssignment(initialArray);
+
             Assert.AreSame(initialArray, destinationArray);
         }
 
