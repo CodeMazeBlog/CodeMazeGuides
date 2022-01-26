@@ -35,6 +35,7 @@
         public Article[] CopyUsingRange(Article[] initialArray)
         {
             var destinationArray = initialArray[..];
+
             return destinationArray;
         }
 
