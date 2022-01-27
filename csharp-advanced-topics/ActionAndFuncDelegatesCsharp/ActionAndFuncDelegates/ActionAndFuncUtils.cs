@@ -4,7 +4,7 @@ namespace ActionAndFuncDelegates
 {
     public class ActionAndFuncUtils
     {
-        public delegate void SetMessageDelegate(string message);
+        public delegate void SetMessageDelegate(string messageToAssign);
         public delegate int SumNumbersDelegate(int param1, int param2);
         public static string message = "";
 
@@ -20,7 +20,7 @@ namespace ActionAndFuncDelegates
 
         public static int SumNumbersWithCallback(int param1, int param2, Action<string> callback)
         {
-            int sum = param1 + param2;
+            var sum = param1 + param2;
             callback($"the sum is: {sum}");
 
             return sum;

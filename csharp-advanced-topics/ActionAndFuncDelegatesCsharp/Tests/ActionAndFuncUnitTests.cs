@@ -25,7 +25,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenCallbackComputeSum_ThenIsEqualToExpectation()
+        public void WhenCallbackComputeSum_ThenEqualToExpectation()
         {
             string actual = string.Empty;
             SumNumbersWithCallback(1, 1, (s) => actual = (s).ToString());
