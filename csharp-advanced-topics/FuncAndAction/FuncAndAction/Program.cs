@@ -3,7 +3,7 @@ DelegateMethod d1 = new DelegateMethod(DisplayResult);
 var result = d1(3, 5);
 Console.WriteLine(result);
 
-var func = new Func<int, int, int>(CalculateValue);   
+var func = new Func<int, int, int>(CalculateValue);  
 Console.WriteLine(func(2, 5));
 
 var action = new Action<int>(PrintValue);
