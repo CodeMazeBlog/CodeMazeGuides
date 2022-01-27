@@ -4,6 +4,9 @@ var utcNow = DateTime.UtcNow;
 Console.WriteLine($"Local Now: {now}"); 
 Console.WriteLine($"UTC Now: {utcNow}");
 
+Console.WriteLine(now.Kind); 
+Console.WriteLine(utcNow.Kind);
+
 if (utcNow.Kind == DateTimeKind.Utc) 
 { 
     var oldKind = utcNow.Kind; 
