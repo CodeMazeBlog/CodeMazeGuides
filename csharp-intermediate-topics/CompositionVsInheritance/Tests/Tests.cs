@@ -1,11 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CompositionVsInheritance;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
 
 namespace CompositionVsInheritance.Tests
 {
@@ -16,6 +9,9 @@ namespace CompositionVsInheritance.Tests
         public void WhenBaseClassInstantiated_AllMembersAccesible()
         {
             var house = new House();
+            house.Color = "Blue";
+
+            Assert.AreEqual("Blue", house.Color);
 
             Assert.AreEqual("Building a floor...", house.GetFloor());
 
