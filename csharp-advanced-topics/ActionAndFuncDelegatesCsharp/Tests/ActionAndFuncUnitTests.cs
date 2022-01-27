@@ -17,11 +17,11 @@ namespace Tests
         [Fact]
         public void WhenSetMessage_ThenSetRightMessage()
         {
-            string message = "This is the message";
+            string messageToAssign = "This is the message";
             SetMessageDelegate setMessageDelegate = SetMessage;
-            setMessageDelegate(message);
+            setMessageDelegate(messageToAssign);
 
-            Assert.Equal(message, Message);
+            Assert.Equal(messageToAssign, message);
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace Tests
             SumNumbersWithCallback(1, 1, (s) => actual = (s).ToString());
             SetMessage("the sum is: 2");
 
-            Assert.Equal(actual, Message);
+            Assert.Equal(actual, message);
         }
     }
 }
