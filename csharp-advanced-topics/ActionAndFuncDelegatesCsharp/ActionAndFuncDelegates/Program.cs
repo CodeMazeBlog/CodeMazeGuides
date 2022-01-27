@@ -5,6 +5,7 @@ SumNumbersDelegate sumHandler = SumNumbers;
 
 messageHandler("Hello Code Maze!!");
 var result = sumHandler(1, 1);
+
 Console.WriteLine(Message);
 Console.WriteLine(result);
 
