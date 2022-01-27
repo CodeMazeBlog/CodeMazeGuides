@@ -12,13 +12,13 @@ Console.WriteLine(result);
 
 Action<string> setMessage = x => { message = x; };
 Func<int, int, int> sum = (x, y) => x + y;
-
-setMessage("Hello again Code Maze!");
-Console.WriteLine(message);
+setMessage("Hello Code Maze!");
 result = sum(1, 1);
-Console.WriteLine(result);
-
+setMessage("Hello again Code Maze!");
 SumNumbersWithCallback(1, 1, setMessage);
+
+Console.WriteLine(message);
+Console.WriteLine(result);
 Console.WriteLine(message);
 
 
