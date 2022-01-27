@@ -4,13 +4,13 @@ public class Program
 {
     public static void Main()
     {
-        Demonstrate_DateOnly();
-        Demonstrate_TimeOnly();
-        Demonstrate_FromDateTime();
-        Demonstrate_BasicOperators();
+        DemonstrateDateOnly();
+        DemonstrateTimeOnly();
+        DemonstrateFromDateTime();
+        DemonstrateBasicOperators();
     }
 
-    public static void Demonstrate_DateOnly()
+    public static void DemonstrateDateOnly()
     {
         var dateOnly = new DateOnly(2022, 1, 1);
         var dateTime = new DateTime(2022, 1, 1);
@@ -32,7 +32,7 @@ public class Program
         }
     }
 
-    public static void Demonstrate_TimeOnly()
+    public static void DemonstrateTimeOnly()
     {
         var sevenAM = new TimeOnly(7, 0);
         var elevenAM = new TimeOnly(11, 0);
@@ -51,16 +51,18 @@ public class Program
 
     }
 
-    public static void Demonstrate_FromDateTime()
+    public static void DemonstrateFromDateTime()
     {
         var dateTime = new DateTime(2022, 1, 1, 11, 30, 0);
+
         var dateOnly = DateOnly.FromDateTime(dateTime);
         var timeOnly = TimeOnly.FromDateTime(dateTime);
+
         Console.WriteLine(dateOnly);
         Console.WriteLine(timeOnly);
     }
 
-    public static void Demonstrate_BasicOperators()
+    public static void DemonstrateBasicOperators()
     {
         var firstOfJan = new DateOnly(2022, 1, 1);
         var secondOfJan = new DateOnly(2022, 1, 2);
