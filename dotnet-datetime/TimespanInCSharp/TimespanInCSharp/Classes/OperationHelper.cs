@@ -5,16 +5,16 @@ namespace TimespanInCSharp.Classes
 {
     public class OperationHelper
     {
-        public TimeSpan Operate(TimeSpan Timespan1, TimeSpan Timespan2, Operation OperationType)
+        public TimeSpan Operate(TimeSpan timespan1, TimeSpan timespan2, Operation operationType)
         {
             TimeSpan duration;
-            switch (OperationType)
+            switch (operationType)
             {
                 case Operation.Add:
-                    duration = Timespan1.Add(Timespan2);
+                    duration = timespan1.Add(timespan2);
                     break;
                 case Operation.Substract:
-                    duration = Timespan1.Subtract(Timespan2);
+                    duration = timespan1.Subtract(timespan2);
                     break;
                 default:
                     duration = TimeSpan.FromTicks(0);
@@ -23,26 +23,26 @@ namespace TimespanInCSharp.Classes
             return duration;
         }
 
-        public TimeSpan Operate(string Timespan1, Operation OperationType)
+        public TimeSpan Operate(string timespan1, Operation operationType)
         {
             var duration = TimeSpan.FromTicks(0);
             TimeSpan outDuration;
-            switch (OperationType)
+            switch (operationType)
             {
                 case Operation.Parse:
-                    duration = TimeSpan.Parse(Timespan1);
+                    duration = TimeSpan.Parse(timespan1);
                     break;
                 case Operation.ParseExact:
-                    duration = TimeSpan.ParseExact(Timespan1, "h\\:mm", CultureInfo.CurrentCulture);
+                    duration = TimeSpan.ParseExact(timespan1, "h\\:mm", CultureInfo.CurrentCulture);
                     break;
                 case Operation.TryParse:
-                    if (TimeSpan.TryParse(Timespan1, out outDuration))
+                    if (TimeSpan.TryParse(timespan1, out outDuration))
                     {
                         duration = outDuration;
                     }
                     break;
                 case Operation.TryParseExact:
-                    if (TimeSpan.TryParseExact(Timespan1, "h\\:mm", CultureInfo.CurrentCulture, out outDuration))
+                    if (TimeSpan.TryParseExact(timespan1, "h\\:mm", CultureInfo.CurrentCulture, out outDuration))
                     {
                         duration = outDuration;
                     }

@@ -11,80 +11,80 @@ namespace Tests
         [TestMethod]
         public void WhenHourMinuteSecondIsSent_InitiateTimespan()
         {
-            var initHelper = new InitiationHelper();
-            TimeSpan tsHMS = initHelper.InitiateTimespan(2, 30, 5);
+            var initHelper = new InitializationHelper();
+            var tsHMS = initHelper.InitializeTimespan(2, 30, 5);
             Assert.AreEqual(tsHMS, TimeSpan.FromSeconds(2 * 60 * 60 + 30 * 60 + 5));
         }
 
         [TestMethod]
         public void WhenDayHourMinuteSecondIsSent_InitiateTimespan()
         {
-            var initHelper = new InitiationHelper();
-            TimeSpan tsDHMS = initHelper.InitiateTimespan(1, 2, 30, 5);
+            var initHelper = new InitializationHelper();
+            var tsDHMS = initHelper.InitializeTimespan(1, 2, 30, 5);
             Assert.AreEqual(tsDHMS, TimeSpan.FromSeconds(24 * 60 * 60 + 2 * 60 * 60 + 30 * 60 + 5));
         }
 
         [TestMethod]
         public void WhenDayHourMinuteSecondMsIsSent_InitiateTimespan()
         {
-            var initHelper = new InitiationHelper();
-            TimeSpan tsDHMS = initHelper.InitiateTimespan(1, 2, 30, 5, 2000);
+            var initHelper = new InitializationHelper();
+            var tsDHMS = initHelper.InitializeTimespan(1, 2, 30, 5, 2000);
             Assert.AreEqual(tsDHMS, TimeSpan.FromSeconds(24 * 60 * 60 + 2 * 60 * 60 + 30 * 60 + 5 + 2));
         }
 
         [TestMethod]
         public void WhenTicksIsSent_InitiateTimespan()
         {
-            var initHelper = new InitiationHelper();
-            TimeSpan tsHMS = initHelper.InitiateTimespan(20000);
+            var initHelper = new InitializationHelper();
+            var tsHMS = initHelper.InitializeTimespan(20000);
             Assert.AreEqual(tsHMS, TimeSpan.FromMilliseconds(2));
         }
 
         [TestMethod]
         public void WhenDaySent_InitiateTimespan()
         {
-            var initHelper = new InitiationHelper();
-            TimeSpan tsD = initHelper.InitiateTimespan(1, TimePart.Day);
+            var initHelper = new InitializationHelper();
+            var tsD = initHelper.InitializeTimespan(1, TimePart.Day);
             Assert.AreEqual(tsD, TimeSpan.FromHours(24));
         }
 
         [TestMethod]
         public void WhenHourSent_InitiateTimespan()
         {
-            var initHelper = new InitiationHelper();
-            TimeSpan tsH = initHelper.InitiateTimespan(5, TimePart.Hour);
+            var initHelper = new InitializationHelper();
+            var tsH = initHelper.InitializeTimespan(5, TimePart.Hour);
             Assert.AreEqual(tsH, TimeSpan.FromHours(5));
         }
 
         [TestMethod]
         public void WhenMinuteSent_InitiateTimespan()
         {
-            var initHelper = new InitiationHelper();
-            TimeSpan tsH = initHelper.InitiateTimespan(30, TimePart.Minute);
+            var initHelper = new InitializationHelper();
+            var tsH = initHelper.InitializeTimespan(30, TimePart.Minute);
             Assert.AreEqual(tsH, TimeSpan.FromMinutes(30));
         }
 
         [TestMethod]
         public void WhenSecSent_InitiateTimespan()
         {
-            var initHelper = new InitiationHelper();
-            TimeSpan tsH = initHelper.InitiateTimespan(30, TimePart.Second);
+            var initHelper = new InitializationHelper();
+            var tsH = initHelper.InitializeTimespan(30, TimePart.Second);
             Assert.AreEqual(tsH, TimeSpan.FromSeconds(30));
         }
 
         [TestMethod]
         public void WhenMsSent_InitiateTimespan()
         {
-            var initHelper = new InitiationHelper();
-            TimeSpan tsH = initHelper.InitiateTimespan(1000, TimePart.MilliSecond);
+            var initHelper = new InitializationHelper();
+            var tsH = initHelper.InitializeTimespan(1000, TimePart.MilliSecond);
             Assert.AreEqual(tsH, TimeSpan.FromSeconds(1));
         }
 
         [TestMethod]
         public void WhenTicksSent_InitiateTimespan()
         {
-            var initHelper = new InitiationHelper();
-            TimeSpan tsM = initHelper.InitiateTimespan(1000 * 10000, TimePart.Ticks);
+            var initHelper = new InitializationHelper();
+            var tsM = initHelper.InitializeTimespan(1000 * 10000, TimePart.Ticks);
             Assert.AreEqual(tsM, TimeSpan.FromSeconds(1));
         }
 
@@ -92,7 +92,7 @@ namespace Tests
         public void WhenStringSent_Parse()
         {
             var operateHelper = new OperationHelper();
-            TimeSpan tsParse = operateHelper.Operate("00:00:10", Operation.Parse);
+            var tsParse = operateHelper.Operate("00:00:10", Operation.Parse);
             Assert.AreEqual(tsParse, TimeSpan.FromSeconds(10));
         }
 
@@ -100,7 +100,7 @@ namespace Tests
         public void WhenStringSent_ParseExact()
         {
             var operateHelper = new OperationHelper();
-            TimeSpan tsParse = operateHelper.Operate("00:10", Operation.ParseExact);
+            var tsParse = operateHelper.Operate("00:10", Operation.ParseExact);
             Assert.AreEqual(tsParse, TimeSpan.FromMinutes(10));
         }
 
@@ -108,7 +108,7 @@ namespace Tests
         public void WhenStringSent_TryParse()
         {
             var operateHelper = new OperationHelper();
-            TimeSpan tsParse = operateHelper.Operate("00:00:10", Operation.TryParse);
+            var tsParse = operateHelper.Operate("00:00:10", Operation.TryParse);
             Assert.AreEqual(tsParse, TimeSpan.FromSeconds(10));
         }
 
@@ -116,7 +116,7 @@ namespace Tests
         public void WhenStringSent_TryParseExact()
         {
             var operateHelper = new OperationHelper();
-            TimeSpan tsParse = operateHelper.Operate("00:10", Operation.TryParseExact);
+            var tsParse = operateHelper.Operate("00:10", Operation.TryParseExact);
             Assert.AreEqual(tsParse, TimeSpan.FromMinutes(10));
         }
 
@@ -124,7 +124,7 @@ namespace Tests
         public void WhenValuesSent_Add()
         {
             var operateHelper = new OperationHelper();
-            TimeSpan tsParse = operateHelper.Operate(TimeSpan.FromSeconds(45), TimeSpan.FromSeconds(45), Operation.Add);
+            var tsParse = operateHelper.Operate(TimeSpan.FromSeconds(45), TimeSpan.FromSeconds(45), Operation.Add);
             Assert.AreEqual(tsParse, TimeSpan.FromSeconds(90));
         }
 
@@ -132,7 +132,7 @@ namespace Tests
         public void WhenValuesSent_Substract()
         {
             var operateHelper = new OperationHelper();
-            TimeSpan tsParse = operateHelper.Operate(TimeSpan.FromSeconds(45), TimeSpan.FromSeconds(30), Operation.Substract);
+            var tsParse = operateHelper.Operate(TimeSpan.FromSeconds(45), TimeSpan.FromSeconds(30), Operation.Substract);
             Assert.AreEqual(tsParse, TimeSpan.FromSeconds(15));
         }
 
