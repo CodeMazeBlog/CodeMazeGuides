@@ -1,0 +1,139 @@
+<ol>
+	<li> </li>
+</ol>
+<!-- wp:paragraph -->
+<h2>Delegate</h2>
+<ul>
+	<li style="list-style-type: none;">
+<ul>
+	<li>Delegate is a reference type that defines the method signature</li>
+</ul>
+</li>
+</ul>
+<ul>
+	<li style="list-style-type: none;">
+<ul>
+	<li>We can define variables of delegate, like other data type eg: int, string, that can refer to a method with same signature as a delegate</li>
+</ul>
+</li>
+</ul>
+<ul>
+	<li style="list-style-type: none;">
+<ul>
+	<li>First, we need to declare a delegate using delegate keyword followed by a function signature</li>
+</ul>
+</li>
+</ul>
+<p style="text-align: left;"><br />
+<code>         [access_modifier] delegate [return_type] [delegate_name]([parameters])<br />
+          eg: public delegate void FirstDelegate(string msg);</code></p>
+<ul>
+	<li style="list-style-type: none;">
+<ul>
+	<li>Second, we need to set a target method</li>
+</ul>
+</li>
+</ul>
+<p><br />
+<code>            static void FirstMethod(string msg)<br />
+             {<br />
+               Console.WriteLine("Message for user: "+msg);<br />
+             }<br />
+             FirstDelegate del=FirstMethod;<br />
+                 or<br />
+             FirstDelegate del=new FirstDelegate(FirstMethod);<br />
+</code></p>
+<ul>
+	<li style="list-style-type: none;">
+<ul>
+	<li>Third, we need to invoke a method</li>
+</ul>
+</li>
+</ul>
+<ul>
+	<li style="list-style-type: none;"><code>       del("Invoking First Delegate");</code></li>
+	<li style="list-style-type: none;">
+<ul>          or</ul>
+</li>
+	<li style="list-style-type: none;"><code>       del.Invoke("Invoking First Delegate");</code></li>
+</ul>
+<h3>C# provides built-in generic delegate types: Func and Action</h3>
+<h2>Func delegate</h2>
+<ul style="list-style-type: circle;">
+	<li>Func is a generic delegate included in the System namespace</li>
+	<li>It has zero or more input parameters and one out parameter</li>
+</ul>
+<p><code>public delegate Toutput Func(T arg);</code></p>
+<p>Here, last parameter is return type and remaining parameters are input parameters.</p>
+<p><code>static int Add(int a, int b, int c)
+</code></p>
+<p><code>{
+</code></p>
+<p><code>return a+b+c;
+</code></p>
+<p><code>}
+</code></p>
+<p><code>static void Main()</code></p>
+<p><code>{
+</code></p>
+<p><code>Func&lt;int, int, int, int&gt; sum=Add;
+</code></p>
+<p><code>int result=sum(10,20,30);</code></p>
+<p><code>Console.WriteLine(result);</code></p>
+<p><code>}
+
+
+</code></p>
+<h3> C# function with an Anonymous method</h3>
+<ul>
+	<li>We can assign an anonymous method to the Func delegate using delegate keyword</li>
+</ul>
+<p><code>Func getNumbersBetween1To50=delegate()
+</code></p>
+<p><code>{
+</code></p>
+<p><code>Random randomNumber=new Random();
+</code></p>
+<p><code>return randomNumber.Next(1,50);
+</code></p>
+<p><code>};
+</code></p>
+<h3>Conclusion</h3>
+<ul>
+	<li>Func delegate type must return a value</li>
+	<li>Func delegate type can have 0 to 16 input parameters</li>
+	<li>In Func delegate, ref and out parameters are not allowed</li>
+	<li>It can be used with an anonymous method or lambda expression</li>
+</ul>
+<h2>Action Delegate</h2>
+<ul>
+	<li>Action delegate does not return a value</li>
+	<li>It can be used with a method that has a void return type</li>
+</ul>
+<p><code>public delegate void PrintingMessage(string msg);
+</code></p>
+<p><code>static void ConsolePrint(string msg)
+</code></p>
+<p><code>{
+</code></p>
+<p><code>Console.WriteLine("Message= "+msg);
+</code></p>
+<p><code>}
+</code></p>
+<p><code>static void Main()
+</code></p>
+<p><code>{</code></p>
+<p><code>PrintingMessage print=ConsolePrint;
+</code></p>
+<p><code>print("Hi, This is message");
+</code></p>
+<p><code>}
+</code></p>
+<h3>Conclusion</h3>
+<ul>
+	<li>Delegate types are derived from the Delegate class in .NET</li>
+	<li>Delegate types are sealed that means they cannot be derived from and it is not possible to derive custom classes from delegate</li>
+	<li>Delegate safely encapsulate a method</li>
+	<li>If a delegate is instantiated, a method call made to the delegate will be passsed by the delegate to that method</li>
+</ul>
+<ul><!-- /wp:paragraph --></ul>
