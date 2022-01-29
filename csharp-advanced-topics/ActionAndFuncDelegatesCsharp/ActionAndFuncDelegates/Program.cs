@@ -9,7 +9,6 @@ var result = sumHandler(1, 1);
 Console.WriteLine(message);
 Console.WriteLine(result);
 
-
 Action<string> setMessage = x => { message = x; };
 Func<int, int, int> sum = (x, y) => x + y;
 setMessage("Hello Code Maze!");
