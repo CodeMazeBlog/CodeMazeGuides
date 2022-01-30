@@ -3,9 +3,14 @@ using ActionAndFuncInCSharp;
 
 Console.WriteLine("Action Examples");
 var actionExamples = new ExamplesForAction();
-actionExamples.RunExamples();
+actionExamples.ActionPointsToArgumentlessMethod();
+actionExamples.ActionPointsToMethodWithArguments();
+actionExamples.ActionPointsToLambda();
 
 
 Console.WriteLine("Func Examples");
 var funcExmaples = new ExamplesForFunc();
-await funcExmaples.RunExamples();
+funcExmaples.FuncPointsToArgumentlessMethod();
+funcExmaples.FuncPointsToMethodWithArguments();
+funcExmaples.FuncPointsToLambda();
+await funcExmaples.FuncPointsToAsyncMethod();

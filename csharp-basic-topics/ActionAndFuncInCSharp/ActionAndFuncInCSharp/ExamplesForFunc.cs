@@ -3,42 +3,62 @@ namespace ActionAndFuncInCSharp
 {
     public class ExamplesForFunc
     {
-        public async Task RunExamples()
+        public void FuncPointsToArgumentlessMethod()
         {
-            // causes compilation error 
-            // Func f = () => { }; 
+            // declaration
+            Func<int> methodFunc = Method;
 
+            // invocation
+            var result = methodFunc();
+        }
+
+        public void FuncPointsToMethodWithArguments()
+        {
+            // declaration
+            Func<int, int> methodWithParams = MethodWithParams;
+
+            // invocation
+            var result = methodWithParams(2);
+        }
+
+        public void FuncPointsToLambda()
+        {
             // declaration
             Func<int> func = () =>
             {
                 Console.WriteLine("Lambda function");
                 return 1;
             };
-            Func<int> methodFunc = Method;
-            Func<int, int> methodWithParams = MethodWithParams;
+
+            // invocation
+            func();
+        }
+
+        public async Task FuncPointsToAsyncMethod()
+        {
+            // declaration
             Func<Task> asyncMethod = MethodAsync;
 
             // invocation
-            var result1 = func();
-            var result2 = methodFunc();
-            var result3 = methodWithParams(2);
             await asyncMethod();
         }
-        public Task MethodAsync()
+
+        public virtual Task MethodAsync()
         {
             Console.WriteLine("Async Method");
             return Task.CompletedTask;
         }
-        public int Method()
+
+        public virtual int Method()
         {
             Console.WriteLine("Method with params");
             return 1;
         }
-        public int MethodWithParams(int paramName)
+
+        public virtual int MethodWithParams(int paramName)
         {
             Console.WriteLine("Method without params");
             return 1;
         }
-
     }
 }

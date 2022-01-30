@@ -1,18 +1,20 @@
-﻿using FluentAssertions;
+﻿using ActionAndFuncInCSharp;
+using FluentAssertions;
+using Moq;
 using Xunit;
 
 namespace ActionAndFuncInCharpTests
 {
-    public class ActionAndFuncUsageTests
+    public class ActionUsageTests
     {
-        void TestActionMethod()
-        {
-            throw new Exception("method error message");
-        }
+        
+        Mock<ExamplesForAction> _mockActionExamples;
+        ExamplesForAction _examplesForAction;
 
-        int TestFuncMethod()
+        public ActionUsageTests()
         {
-            return 2;
+            _mockActionExamples = new Mock<ExamplesForAction>();
+            _examplesForAction = _mockActionExamples.Object;
         }
 
         [Fact]
@@ -26,42 +28,23 @@ namespace ActionAndFuncInCharpTests
         }
 
         [Fact]
-        public void Func_Should_RunLambda()
-        {
-            // Arrange
-            Func<int> func = () => { return 1; };
-            var expected = 1;
-
-            // Act
-            var actual = func();
-
-            // Assert
-            actual.Should().Be(expected);
-        }
-
-        [Fact]
         public void Action_Should_RunMethod()
         {
-            // Arrange
-            var action = TestActionMethod;
-
-            // Act && Assert
-            action.Should().Throw<Exception>("error message");
+            // Act
+            _examplesForAction.ActionPointsToArgumentlessMethod();
+            
+            // Assert
+            _mockActionExamples.Verify(s => s.Method());
         }
 
         [Fact]
-        public void Func_Should_RunMethod()
+        public void Action_Should_RunMethod_With_Params()
         {
-            // Arrange
-            Func<int> func = TestFuncMethod;
-            
-            var expected = 2;
-
             // Act
-            var actual = func();
+            _examplesForAction.ActionPointsToMethodWithArguments();
 
             // Assert
-            actual.Should().Be(expected);
+            _mockActionExamples.Verify(s => s.MethodWithParams(It.IsAny<int>()));
         }
     }
 }

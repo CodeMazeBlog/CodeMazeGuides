@@ -3,28 +3,42 @@ namespace ActionAndFuncInCSharp
 {
     public class ExamplesForAction
     {
-        public void RunExamples()
+        public void ActionPointsToArgumentlessMethod()
+        {
+            // declaration
+            Action methodAction = Method;
+
+            // invocation
+            methodAction();
+        }
+
+        public void ActionPointsToMethodWithArguments()
+        {
+            // declaration
+            Action<int> methodWithParams = MethodWithParams;
+
+            // invocation
+            methodWithParams(10);
+        }
+
+        public void ActionPointsToLambda()
         {
             // declaration
             Action lambdaAction = () =>
             {
                 Console.WriteLine("Lambda function");
             };
-            Action methodAction = Method;
-            Action<int> methodWithParams = MethodWithParams;
 
             // invocation
             lambdaAction();
-            methodAction();
-            methodWithParams(10);
-
         }
 
-        public void MethodWithParams(int paramName)
+        public virtual void MethodWithParams(int paramName)
         {
             Console.WriteLine("Method with params");
         }
-        public void Method()
+
+        public virtual void Method()
         {
             Console.WriteLine("Method without params");
         }
