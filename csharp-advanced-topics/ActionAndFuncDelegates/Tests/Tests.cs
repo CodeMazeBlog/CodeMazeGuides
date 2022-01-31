@@ -14,6 +14,7 @@ namespace Tests
         {
             var variable = 2;
             var result = DoubleTheVariable(variable);
+
             Assert.AreEqual(4, result);
         }
         [TestMethod]
@@ -21,8 +22,8 @@ namespace Tests
         {
             var firstDelegate = new OurFirstDelegate(PrintVariable);
             firstDelegate(4);
-
             var invocationList = firstDelegate.GetInvocationList();
+
             Assert.AreEqual(invocationList.Length, 1);
         }
         [TestMethod]
@@ -30,8 +31,8 @@ namespace Tests
         {
             var firstDelegate = new OurFirstDelegate(PrintVariable);
             PassADelegeteToAFunction(firstDelegate);
-
             var invocationList = firstDelegate.GetInvocationList();
+
             Assert.AreEqual(invocationList.Length, 1);
         }
         [TestMethod]
@@ -40,7 +41,6 @@ namespace Tests
             Func<string, string> HelloFuncDelegate = HelloFunction;
             var result = HelloFuncDelegate("Naruto");
 
-
             Assert.AreEqual(result, "Hello Naruto");
         }
         [TestMethod]
@@ -48,7 +48,6 @@ namespace Tests
         {
             Action<string> GoodbyeActionDelegate = GoodbyeFunction;
             GoodbyeActionDelegate("Naruto");
-
             var invocationList = GoodbyeActionDelegate.GetInvocationList();
 
 
