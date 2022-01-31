@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WorkingWithRestSharp.Controllers;
 using WorkingWithRestSharp.DataTransferObject;
-
 using Xunit;
 
 namespace Test.WorkingWithRestSharp

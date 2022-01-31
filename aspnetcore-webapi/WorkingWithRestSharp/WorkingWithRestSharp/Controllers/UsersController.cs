@@ -27,7 +27,7 @@ namespace WorkingWithRestSharp.Controllers
 
             if (!response.IsSuccessful)
             {
-                //logic for handling 404 or 400 or any other response
+                //Logic for handling unsuccessful response
             }
 
             var userList = JsonSerializer.Deserialize<UserList>(response.Content, _jsonSerializerOptions);
@@ -43,7 +43,7 @@ namespace WorkingWithRestSharp.Controllers
 
             if (!response.IsSuccessful)
             {
-                //logic for handling 404 or 400 or any other response
+                //Logic for handling unsuccessful response
             }
 
             var userDetails = JsonSerializer.Deserialize<UserDetails>(response.Content, _jsonSerializerOptions);
@@ -60,7 +60,7 @@ namespace WorkingWithRestSharp.Controllers
 
             if (!response.IsSuccessful)
             {
-                //logic for handling 404 or 400 or any other response
+                //Logic for handling unsuccessful response
             }
 
             var userCreationResponse = JsonSerializer.Deserialize<UserCreationResponse>(response.Content, _jsonSerializerOptions);
@@ -77,7 +77,7 @@ namespace WorkingWithRestSharp.Controllers
 
             if (!response.IsSuccessful)
             {
-                //logic for handling 404 or 400 or any other response
+                //Logic for handling unsuccessful response
             }
 
             var userUpdateResponse = JsonSerializer.Deserialize<UserUpdateResponse>(response.Content, _jsonSerializerOptions);
@@ -93,7 +93,7 @@ namespace WorkingWithRestSharp.Controllers
 
             if (!response.IsSuccessful)
             {
-                //logic for handling 404 or 400 or any other response
+                //Logic for handling unsuccessful response
             }
 
             return NoContent();
