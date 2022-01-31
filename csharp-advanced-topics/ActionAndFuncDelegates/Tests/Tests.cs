@@ -6,8 +6,7 @@ namespace Tests
     [TestClass]
     public class Tests
     {
-        public delegate void OurFirstDelegate(int x);
-
+        public delegate void ourFirstDelegate(int x);
 
         [TestMethod]
         public void WhenAParameterIsPassed_TheNumberIsDoubled()
@@ -17,24 +16,29 @@ namespace Tests
 
             Assert.AreEqual(4, result);
         }
+
         [TestMethod]
         public void WhenAParameterIsPassed_TheDelegateExecutesTheReferencedMethod()
         {
-            var firstDelegate = new OurFirstDelegate(PrintVariable);
+            var firstDelegate = new ourFirstDelegate(PrintVariable);
             firstDelegate(4);
+
             var invocationList = firstDelegate.GetInvocationList();
 
             Assert.AreEqual(invocationList.Length, 1);
         }
+
         [TestMethod]
         public void WhenADelegateIsPassedToAFunction_TheMethodExecutesTheDelegate()
         {
-            var firstDelegate = new OurFirstDelegate(PrintVariable);
+            var firstDelegate = new ourFirstDelegate(PrintVariable);
             PassADelegeteToAFunction(firstDelegate);
+
             var invocationList = firstDelegate.GetInvocationList();
 
             Assert.AreEqual(invocationList.Length, 1);
         }
+
         [TestMethod]
         public void WhenAStringIsPassed_TheFuncDelegateExecutesTheReferencedMethod()
         {
@@ -43,13 +47,14 @@ namespace Tests
 
             Assert.AreEqual(result, "Hello Naruto");
         }
+
         [TestMethod]
         public void WhenAStringIsPassed_TheActionDelegateExecutesTheReferencedMethod()
         {
             Action<string> GoodbyeActionDelegate = GoodbyeFunction;
             GoodbyeActionDelegate("Naruto");
-            var invocationList = GoodbyeActionDelegate.GetInvocationList();
 
+            var invocationList = GoodbyeActionDelegate.GetInvocationList();
 
             Assert.AreEqual(invocationList.Length, 1);
         }
@@ -58,7 +63,7 @@ namespace Tests
 
         public static void PrintVariable(int parameter) { Console.WriteLine(parameter); }
 
-        public static void PassADelegeteToAFunction(OurFirstDelegate myDelegate) { myDelegate(100); }
+        public static void PassADelegeteToAFunction(ourFirstDelegate myDelegate) { myDelegate(100); }
 
         public static string HelloFunction(string name) { return "Hello " + name; }
 

@@ -4,7 +4,7 @@ namespace ActionAndFuncDelegates
 {
     class Program
     {
-        public delegate void OurFirstDelegate(int x);
+        public delegate void ourFirstDelegate(int x);
 
         static void Main(string[] args)
         {
@@ -14,7 +14,7 @@ namespace ActionAndFuncDelegates
 
             PrintVariable(secondVariable);
 
-            var firstDelegate = new OurFirstDelegate(PrintVariable);
+            var firstDelegate = new ourFirstDelegate(PrintVariable);
 
             firstDelegate(200);
 
@@ -36,7 +36,7 @@ namespace ActionAndFuncDelegates
             Console.WriteLine(parameter);
         }
 
-        public static void PassADelegeteToAFunction(OurFirstDelegate myDelegate)
+        public static void PassADelegeteToAFunction(ourFirstDelegate myDelegate)
         {
             myDelegate(100);
         }
