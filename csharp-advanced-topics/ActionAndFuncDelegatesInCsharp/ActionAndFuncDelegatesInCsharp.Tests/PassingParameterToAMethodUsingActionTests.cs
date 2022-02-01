@@ -7,6 +7,7 @@ using Xunit;
 
 namespace ActionAndFuncDelegatesInCsharp.Tests
 {
+    [Collection("Sequential")]
     public class PassingParameterToAMethodUsingActionTests
     {
         [Fact]
