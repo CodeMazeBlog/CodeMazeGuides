@@ -17,7 +17,7 @@ namespace Tests
         public void ActionDelegateTest()
         {
             Action<string> writeDelegate = Program.DisplayName;
-            var exception = Record.Exception(() => Program.DisplayName("Chriss"));
+            var exception = Record.Exception(() => Program.DisplayName("Chriss Maven"));
             Assert.Null(exception);
         }
     }
