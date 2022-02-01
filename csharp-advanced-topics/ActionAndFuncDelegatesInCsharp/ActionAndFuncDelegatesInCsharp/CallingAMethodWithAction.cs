@@ -15,7 +15,7 @@ namespace ActionAndFuncDelegatesInCsharp
         public void RunExample()
         {
             Action sayHiAction = sayHi;
-            sayHi();
+            sayHiAction();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ActionAndFuncDelegatesInCsharp
 {
-    public class CallingAMethodFromAFuncDelegate
+    public class CallingAMethodWithAFuncDelegate
     {
         int Multiply(int operand1, int operand2)
         {

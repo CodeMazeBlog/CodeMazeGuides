@@ -11,12 +11,13 @@ namespace ActionAndFuncDelegatesInCsharp.Tests
     public class ActionWithLambdaExpressionTests
     {
         [Fact]
-        public void Example_ShouldWork()
+        public void WhenCallingLambdaExpressionUsingAction_ThenPrintHello()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
             ActionWithLambdaExpression actionWithLambdaExpression = new ActionWithLambdaExpression();
             actionWithLambdaExpression.RunExample();
+
             Assert.Equal("Hello" + Environment.NewLine, stringWriter.ToString());
         }
 

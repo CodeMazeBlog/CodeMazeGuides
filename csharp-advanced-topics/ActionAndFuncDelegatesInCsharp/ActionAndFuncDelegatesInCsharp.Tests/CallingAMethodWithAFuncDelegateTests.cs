@@ -7,13 +7,14 @@ using Xunit;
 
 namespace ActionAndFuncDelegatesInCsharp.Tests
 {
-    public class CallingAMethodFromAFuncDelegateTests
+    public class CallingAMethodWithAFuncDelegateTests
     {
         [Fact]
-        public void Example_ShouldWork()
+        public void WhenCallingMethodUsingFunc_ThenReturnFour()
         {
-            CallingAMethodFromAFuncDelegate callingAMethodFromAFuncDelegate = new CallingAMethodFromAFuncDelegate();
+            CallingAMethodWithAFuncDelegate callingAMethodFromAFuncDelegate = new CallingAMethodWithAFuncDelegate();
             int result = callingAMethodFromAFuncDelegate.RunExample();
+
             Assert.Equal(4, result);
         }
     }

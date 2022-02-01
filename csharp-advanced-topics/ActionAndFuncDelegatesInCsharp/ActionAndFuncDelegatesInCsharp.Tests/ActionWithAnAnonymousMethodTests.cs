@@ -11,12 +11,13 @@ namespace ActionAndFuncDelegatesInCsharp.Tests
     public class ActionWithAnAnonymousMethodTests
     {
         [Fact]
-        public void Example_ShouldWork()
+        public void WhenCallingAnonymousMethodUsingAction_ThenPrintHello()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
             ActionWithAnAnonymousMethod actionWithAnAnonymousMethod = new ActionWithAnAnonymousMethod();
             actionWithAnAnonymousMethod.RunExample();
+
             Assert.Equal("Hello" + Environment.NewLine, stringWriter.ToString());
         }
 

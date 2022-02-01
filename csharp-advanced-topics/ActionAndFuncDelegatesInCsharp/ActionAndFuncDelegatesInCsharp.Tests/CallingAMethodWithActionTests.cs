@@ -11,12 +11,13 @@ namespace ActionAndFuncDelegatesInCsharp.Tests
     public class CallingAMethodWithActionTests
     {
         [Fact]
-        public void Example_ShouldWork()
+        public void WhenCallingMethodUsingAction_ThenPrintHi()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
             CallingAMethodWithAction callingAMethodWithAction = new CallingAMethodWithAction();
             callingAMethodWithAction.RunExample();
+
             Assert.Equal("Hi" + Environment.NewLine, stringWriter.ToString());
         }
     }

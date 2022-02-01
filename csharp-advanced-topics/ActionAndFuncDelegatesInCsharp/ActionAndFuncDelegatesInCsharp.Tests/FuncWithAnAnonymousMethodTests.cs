@@ -10,10 +10,11 @@ namespace ActionAndFuncDelegatesInCsharp.Tests
     public class FuncWithAnAnonymousMethodTests
     {
         [Fact]
-        public void Example_ShouldWork()
+        public void WhenCallingAnonymousMethodUsingFunc_ThenReturnRandomInteger()
         {
             FuncWithAnAnonymousMethod funcWithAnAnonymousMethod = new FuncWithAnAnonymousMethod();
             int result = funcWithAnAnonymousMethod.RunExample();
+
             Assert.IsType<int>(result);
         }
 

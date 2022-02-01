@@ -10,7 +10,7 @@ namespace ActionAndFuncDelegatesInCsharp
     {
         Func<int> generateRandomNumber = delegate ()
         {
-            Random rnd = new Random();
+            var rnd = new Random();
             return rnd.Next(1, 100);
         };
         public int RunExample()

@@ -10,10 +10,11 @@ namespace ActionAndFuncDelegatesInCsharp.Tests
     public class FuncWithLambdaExpressionTests
     {
         [Fact]
-        public void Example_ShouldWork()
+        public void WhenCallingLambdaExpressionWithFunc_ThenReturnRandomInteger()
         {
             FuncWithLambdaExpression funcWithLambdaExpression = new FuncWithLambdaExpression();
             int result = funcWithLambdaExpression.RunExample();
+
             Assert.IsType<int>(result);
         }
 

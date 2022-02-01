@@ -10,17 +10,19 @@ namespace ActionAndFuncDelegatesInCsharp.Tests
     public class PassingFuncDelegateToAMethodTests
     {
         [Fact]
-        public void AddExample_ShouldWork()
+        public void WhenPassingAddMethod_ThenReturnSix()
         {
             PassingFuncDelegateToAMethod passingFuncDelegateToAMethod = new PassingFuncDelegateToAMethod();
             int result = passingFuncDelegateToAMethod.RunAddExample();
+
             Assert.Equal(6, result);
         }
         [Fact]
-        public void MultiplyExample_ShouldWork()
+        public void WhenPassingMultiplyMethod_ThenReturnEight()
         {
             PassingFuncDelegateToAMethod passingFuncDelegateToAMethod = new PassingFuncDelegateToAMethod();
             int result = passingFuncDelegateToAMethod.RunMultiplyExample();
+
             Assert.Equal(8, result);
         }
 
