@@ -10,9 +10,7 @@ var func = new Func<int, int, int>(_service.CalculateValue);
 Console.WriteLine(func(2, 5));
 
 var action = new Action<int>(_service.PrintValue);
-// it prints the "123" value on the screen
 action(123);
-
-// Also we can use this calling format
+// Another action calling format.
 action.Invoke(123);
 
