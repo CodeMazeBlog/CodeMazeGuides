@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace CheckDateTime
 {
@@ -8,7 +8,7 @@ namespace CheckDateTime
         {
             //Checks for Sat-Sun Weekends
 
-            DateTime date = DateTime.Now;
+            var date = DateTime.Now;
             if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
             {
                 Console.WriteLine("Weekend");
@@ -17,6 +17,7 @@ namespace CheckDateTime
             {
                 Console.WriteLine("Workday");
             }
+
             date = new DateTime(2021, 10, 10);
             if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
             {
@@ -62,6 +63,7 @@ namespace CheckDateTime
             {
                 Console.WriteLine("The date " + date.ToString("dddd, dd MMMM yyyy") + " is a Workday");
             }
+
             date = new DateTime(2021, 10, 10);
             if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
             {
