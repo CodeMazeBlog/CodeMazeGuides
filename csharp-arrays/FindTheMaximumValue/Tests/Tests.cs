@@ -15,7 +15,7 @@ namespace Tests
         {
             Program.Main(Array.Empty<string>());
                         
-            Assert.AreEqual(1, FindTheMaximumValue. Program.OutputResult);
+            Assert.AreEqual(1, Program.OutputResult);
         }
 
         [TestMethod]
