@@ -1,4 +1,3 @@
-
 using FuncAndAction;
 using System;
 using Xunit;
