@@ -8,11 +8,11 @@ using ActionAndFuncDemo.BusinessProcesses;
 
 //We are setting up items into a list (Real-world secnario: Items stored into the database)
 List<Item> items = new();
-items.Add(new Item(1, "Apples", 4.3m, 20m, Metrics.Kg));
-items.Add(new Item(2, "Mangoes", 0.53m, 200m, Metrics.Unit));
-items.Add(new Item(3, "Pineapple", 2.28m, 150m, Metrics.Unit));
-items.Add(new Item(4, "Kiwi", 2.24m, 48m, Metrics.Lb));
-items.Add(new Item(5, "Strawberries", 4.74m, 103m, Metrics.Lb));
+items.Add(new Item(1, "Apples", 4.3m, 20m));
+items.Add(new Item(2, "Mangoes", 0.53m, 200m));
+items.Add(new Item(3, "Pineapple", 2.28m, 150m));
+items.Add(new Item(4, "Kiwi", 2.24m, 48m));
+items.Add(new Item(5, "Strawberries", 4.74m, 103m));
 
 /* Case 1: 
  * The customer came up to purchase, selected some items and proceed to checkout 
@@ -23,19 +23,19 @@ var item = items.FirstOrDefault(x => x.Id == 1); //selected some apples
 if (item is not null)
 {
     //added 3 kgs (which is currently the metric) of apples into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 3, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 3));
 }
 item = items.FirstOrDefault(x => x.Id == 3); //selected some pineapples
 if (item is not null)
 {
     //added 1 unit (which is currently the metric) of pineapple into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 1, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 1));
 }
 item = items.FirstOrDefault(x => x.Id == 4); //selected some kiwi
 if (item is not null)
 {
     //added 4.3 lb (which is currently the metric) of kiwi into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 4.3m, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 4.3m));
 }
 //Now, we are proceeding to check-out
 var cart = CheckoutProcess.CreateCart(cartItems, "Joe Denly"); //generating the cart
@@ -46,7 +46,7 @@ foreach (var purchasedItem in cart.CartItems)
 {
     Console.WriteLine($"Item Name: {items?.FirstOrDefault(x => x.Id == purchasedItem.ItemId)?.Name}");
     Console.WriteLine($"Price: ${purchasedItem.PurchasedPrice}");
-    Console.WriteLine($"Quantity: {purchasedItem.PurchasedQuantity} {purchasedItem.PurchasedMetric}(s)");
+    Console.WriteLine($"Quantity: {purchasedItem.PurchasedQuantity}");
     Console.WriteLine("--");
 }
 Console.WriteLine("---------------------------------------------");
@@ -66,19 +66,19 @@ item = items.FirstOrDefault(x => x.Id == 1); //selected some apples
 if (item is not null)
 {
     //added 3 kgs (which is currently the metric) of apples into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 3, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 3));
 }
 item = items.FirstOrDefault(x => x.Id == 2); //selected some mangoes
 if (item is not null)
 {
     //added 6 units (which is currently the metric) of manges into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 6, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 6));
 }
 item = items.FirstOrDefault(x => x.Id == 4); //selected some kiwi
 if (item is not null)
 {
     //added 4.3 lb (which is currently the metric) of kiwi into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 4.3m, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 4.3m));
 }
 //Now, we are proceeding to check-out
 cart = CheckoutProcess.CreateCart(cartItems, "Jonathan Straw", DiscountProcesses.CalculateDiscount); //generating the cart
@@ -89,7 +89,7 @@ foreach (var purchasedItem in cart.CartItems)
 {
     Console.WriteLine($"Item Name: {items?.FirstOrDefault(x => x.Id == purchasedItem.ItemId)?.Name}");
     Console.WriteLine($"Price: ${purchasedItem.PurchasedPrice}");
-    Console.WriteLine($"Quantity: {purchasedItem.PurchasedQuantity} {purchasedItem.PurchasedMetric}(s)");
+    Console.WriteLine($"Quantity: {purchasedItem.PurchasedQuantity}");
     Console.WriteLine("--");
 }
 Console.WriteLine("---------------------------------------------");
@@ -104,19 +104,19 @@ item = items.FirstOrDefault(x => x.Id == 1); //selected some apples
 if (item is not null)
 {
     //added 6 kgs (which is currently the metric) of apples into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 6, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 6));
 }
 item = items.FirstOrDefault(x => x.Id == 2); //selected some pineapples
 if (item is not null)
 {
     //added 3 unit (which is currently the metric) of pineapple into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 3, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 3));
 }
 item = items.FirstOrDefault(x => x.Id == 5); //selected some strawberries
 if (item is not null)
 {
     //added 5.4 lb (which is currently the metric) of kiwi into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 5.4m, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 5.4m));
 }
 //Now, we are proceeding to check-out
 cart = CheckoutProcess.CreateCart(cartItems, "Adam Gilbert", x =>
@@ -148,7 +148,7 @@ foreach (var purchasedItem in cart.CartItems)
 {
     Console.WriteLine($"Item Name: {items?.FirstOrDefault(x => x.Id == purchasedItem.ItemId)?.Name}");
     Console.WriteLine($"Price: ${purchasedItem.PurchasedPrice}");
-    Console.WriteLine($"Quantity: {purchasedItem.PurchasedQuantity} {purchasedItem.PurchasedMetric}(s)");
+    Console.WriteLine($"Quantity: {purchasedItem.PurchasedQuantity}");
     Console.WriteLine("--");
 }
 Console.WriteLine("---------------------------------------------");
@@ -166,19 +166,19 @@ item = items.FirstOrDefault(x => x.Id == 1); //selected some apples
 if (item is not null)
 {
     //added 6 kgs (which is currently the metric) of apples into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 6, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 6));
 }
 item = items.FirstOrDefault(x => x.Id == 2); //selected some pineapples
 if (item is not null)
 {
     //added 3 unit (which is currently the metric) of pineapple into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 3, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 3));
 }
 item = items.FirstOrDefault(x => x.Id == 5); //selected some strawberries
 if (item is not null)
 {
     //added 5.4 lb (which is currently the metric) of kiwi into the cart 
-    cartItems.Add(new CartItem(item.Id, item.Price, 5.4m, item.Metric));
+    cartItems.Add(new CartItem(item.Id, item.Price, 5.4m));
 }
 //Now, we are proceeding to check-out
 cart = CheckoutProcess.CreateCart(cartItems, "Adam Gilbert", DiscountProcesses.CalculateDiscount, x =>
@@ -192,7 +192,7 @@ foreach (var purchasedItem in cart.CartItems)
 {
     Console.WriteLine($"Item Name: {items?.FirstOrDefault(x => x.Id == purchasedItem.ItemId)?.Name}");
     Console.WriteLine($"Price: ${purchasedItem.PurchasedPrice}");
-    Console.WriteLine($"Quantity: {purchasedItem.PurchasedQuantity} {purchasedItem.PurchasedMetric}(s)");
+    Console.WriteLine($"Quantity: {purchasedItem.PurchasedQuantity}");
     Console.WriteLine("--");
 }
 Console.WriteLine("---------------------------------------------");
