@@ -51,9 +51,9 @@ public class UnitTests
     {
         if (!(items?.Any() ?? false))
         {
-            items.Add(new Item(1, "Apples", 4.3m, 20m, Metrics.Kg));
-            items.Add(new Item(2, "Mangoes", 0.53m, 200m, Metrics.Unit));
-            items.Add(new Item(3, "Pineapple", 2.28m, 150m, Metrics.Unit));
+            items.Add(new Item(1, "Apples", 4.3m, 20m));
+            items.Add(new Item(2, "Mangoes", 0.53m, 200m));
+            items.Add(new Item(3, "Pineapple", 2.28m, 150m));
         }
         return items;
     }
@@ -84,17 +84,17 @@ public class UnitTests
         var item = GetItems().FirstOrDefault(x => x.Id == 1);
         if (item is not null)
         {
-            cartItems.Add(new CartItem(item.Id, item.Price, 3, item.Metric)); //3x4.3=12.9
+            cartItems.Add(new CartItem(item.Id, item.Price, 3)); //3x4.3=12.9
         }
         item = items.FirstOrDefault(x => x.Id == 2);
         if (item is not null)
         {
-            cartItems.Add(new CartItem(item.Id, item.Price, 6, item.Metric)); //6x0.53=3.18
+            cartItems.Add(new CartItem(item.Id, item.Price, 6)); //6x0.53=3.18
         }
         item = items.FirstOrDefault(x => x.Id == 3);
         if (item is not null)
         {
-            cartItems.Add(new CartItem(item.Id, item.Price, 2, item.Metric)); //2x2.28=4.56
+            cartItems.Add(new CartItem(item.Id, item.Price, 2)); //2x2.28=4.56
         }
         return cartItems;
     }

@@ -8,11 +8,11 @@ using ActionAndFuncDemo.BusinessProcesses;
 
 //We are setting up items into a list (Real-world secnario: Items stored into the database)
 List<Item> items = new();
-items.Add(new Item(1, "Apples", 4.3m, 20m, Metrics.Kg));
-items.Add(new Item(2, "Mangoes", 0.53m, 200m, Metrics.Unit));
-items.Add(new Item(3, "Pineapple", 2.28m, 150m, Metrics.Unit));
-items.Add(new Item(4, "Kiwi", 2.24m, 48m, Metrics.Lb));
-items.Add(new Item(5, "Strawberries", 4.74m, 103m, Metrics.Lb));
+items.Add(new Item(1, "Apples", 4.3m, 20m));
+items.Add(new Item(2, "Mangoes", 0.53m, 200m));
+items.Add(new Item(3, "Pineapple", 2.28m, 150m));
+items.Add(new Item(4, "Kiwi", 2.24m, 48m));
+items.Add(new Item(5, "Strawberries", 4.74m, 103m));
 
 
 /* Case: 

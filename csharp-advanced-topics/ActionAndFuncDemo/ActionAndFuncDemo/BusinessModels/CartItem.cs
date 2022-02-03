@@ -30,9 +30,5 @@
         /// Quantity of the item on which customer purchased the item
         /// </summary>
         public decimal PurchasedQuantity { get; set; }
-        /// <summary>
-        /// Quantity metric used on the time of the checkout
-        /// </summary>
-        public Metrics PurchasedMetric { get; set; }
     }
 }
