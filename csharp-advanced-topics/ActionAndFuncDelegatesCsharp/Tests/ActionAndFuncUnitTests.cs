@@ -1,0 +1,37 @@
+using Xunit;
+using static ActionAndFuncDelegates.ActionAndFuncUtils;
+
+namespace Tests
+{
+    public class ActionAndFuncUnitTests
+    {
+        [Fact]
+        public void WhenSumNumbers_ThenComputeCorrectSum()
+        {
+            SumNumbersDelegate sumDelegate = SumNumbers;
+            var result = sumDelegate(1, 1);
+
+            Assert.Equal(2, result);
+        }
+
+        [Fact]
+        public void WhenSetMessage_ThenSetRightMessage()
+        {
+            string messageToAssign = "This is the message";
+            SetMessageDelegate setMessageDelegate = SetMessage;
+            setMessageDelegate(messageToAssign);
+
+            Assert.Equal(messageToAssign, message);
+        }
+
+        [Fact]
+        public void WhenCallbackComputeSum_ThenEqualToExpectation()
+        {
+            string actual = string.Empty;
+            SumNumbersWithCallback(1, 1, (s) => actual = (s).ToString());
+            SetMessage("the sum is: 2");
+
+            Assert.Equal(actual, message);
+        }
+    }
+}
