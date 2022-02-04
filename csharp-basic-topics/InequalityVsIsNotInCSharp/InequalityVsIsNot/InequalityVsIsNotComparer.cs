@@ -4,15 +4,24 @@
     {
         public const int _constantSerialNumber = 1000;
 
+        public void CompareWithNull(Vehicle vehicle)
+        {
+            if (vehicle != null)
+                Console.WriteLine($"vehicle != null");
+
+            if (vehicle is not null)
+                Console.WriteLine($"vehicle is not null");
+        }
+
         public void CompareSerialNumberBoxed(Vehicle vehicle)
         {
             object boxedSerialNumber = vehicle.SerialNumber;
 
             if (boxedSerialNumber != (object)_constantSerialNumber)
-                Console.WriteLine($"serial number != {_constantSerialNumber}");
+                Console.WriteLine($"boxed serial number != {_constantSerialNumber}");
 
             if (boxedSerialNumber is not _constantSerialNumber)
-                Console.WriteLine($"serial number is not {_constantSerialNumber}");
+                Console.WriteLine($"boxed serial number is not {_constantSerialNumber}");
         }
 
         public void CompareSerialNumber(Vehicle vehicle)

@@ -11,6 +11,7 @@ Car car = new Car();
 car.Model = "Fiesta";
 car.VehicleBrand = Brand.Ford;
 
+comparer.CompareWithNull(vehicle);
 comparer.CompareSerialNumber(vehicle);
 comparer.CompareSerialNumberBoxed(vehicle);
 comparer.CompareBrand(vehicle);
