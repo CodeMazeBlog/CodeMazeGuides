@@ -1,4 +1,4 @@
-﻿namespace IterateThroughDictionary
+namespace IterateThroughDictionary
 {
     public  class Program
     {
@@ -19,23 +19,22 @@
             SubDictionaryStringJoin(MonthsInYear);
 
         }
-        public static void SubDictionaryUsingForEach(Dictionary<int,string> MonthsInYear )
+        public static void SubDictionaryUsingForEach(Dictionary<int,string> MonthsInYear)
         {
-            foreach (var month in MonthsInYear )
+            foreach (var month in MonthsInYear)
             {
                 Console.WriteLine(month.Key + ":" + month.Value);
-
             }
         }
 
         public static void SubDictionaryKeyValuePair(Dictionary<int,string> MonthsInYear)
         {
-            foreach(KeyValuePair<int,string> entry in MonthsInYear )
+            foreach (KeyValuePair<int,string> entry in MonthsInYear)
             {
                 Console.WriteLine(entry.Key + ":" + entry.Value);
             }
 
-            foreach( var (key,value) in MonthsInYear )
+            foreach (var (key,value) in MonthsInYear)
             {
                 Console.WriteLine(key + ":" + value);   
             }
@@ -55,7 +54,6 @@
         {
             MonthsInYear.AsParallel()
                         .ForAll(month => Console.WriteLine(month.Key + ":" + month.Value));
-
         }
 
         public static void SubDictionaryStringJoin(Dictionary<int, string> MonthsInYear)
