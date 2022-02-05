@@ -29,7 +29,7 @@ namespace Test
 
             var result = stringWriter.ToString(); 
 
-            Assert.AreEqual($"Hi, {_operations.Name}\r\n", stringWriter.ToString());
+            Assert.AreEqual($"Hi, {_operations.Name}\n", stringWriter.ToString());
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace Test
             Action sayHelloWorld = delegate () { Console.WriteLine("Hello, World!"); };
             sayHelloWorld();
 
-            Assert.AreEqual("Hello, World!\r\n", stringWriter.ToString());
+            Assert.AreEqual("Hello, World!\n", stringWriter.ToString());
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace Test
             sayHiToName("Olive");
 
 
-            Assert.AreEqual("Hi, Olive\r\n", stringWriter.ToString());
+            Assert.AreEqual("Hi, Olive\n", stringWriter.ToString());
         }
 
 
