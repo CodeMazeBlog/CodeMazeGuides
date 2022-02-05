@@ -6,11 +6,11 @@ namespace TeamC.Application.Visitor
 {
     public class TestResultsMonitoringApp
     {
-        private readonly List<ISicknessAlertVisitor> detectors;
+        private readonly List<ISicknessAlertVisitor> _detectors;
 
         public TestResultsMonitoringApp(List<ISicknessAlertVisitor> detectors)
         {
-            this.detectors = detectors;
+            this._detectors = detectors;
         }
 
         public List<AlertReport> AnalyzeResultsBatch(IEnumerable<ISicknessAlertVisitable> testResults)
@@ -19,7 +19,7 @@ namespace TeamC.Application.Visitor
 
             foreach (var sample in testResults)
             {
-                foreach (var detector in detectors)
+                foreach (var detector in _detectors)
                 {
                     alertReports.Add(sample.Accept(detector));
                 }
