@@ -1,9 +1,6 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using TeamA.TestResults;
 using TeamA.TestResults.ExtensibilityContract;
-using TeamA.TestResults.Results;
-using TeamB.Detectors.Detectors;
 
 namespace TeamC.Application.Visitor
 {
