@@ -8,7 +8,7 @@ using System.IO;
 namespace Test
 {
     [TestClass]
-    public class ActionDemo_Test
+    public class ActionDemoUnitTest
     {
         public Operations _operations;
 

@@ -7,7 +7,7 @@ using System;
 namespace Test
 {
     [TestClass]
-    public class FuncDemo_Test
+    public class FuncDemoUnitTest
     {
         public Operations _operations;
 
