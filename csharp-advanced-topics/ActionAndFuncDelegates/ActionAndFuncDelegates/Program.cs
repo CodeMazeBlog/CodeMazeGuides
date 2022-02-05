@@ -43,12 +43,12 @@ namespace ActionAndFuncDelegates
 
         public static string HelloFunction(string name)
         {
-            return "Hello " + name;
+            return $"Hello {name}";
         }
 
         public static void GoodbyeFunction(string name)
         {
-            Console.WriteLine("Goodbye " + name);
+            Console.WriteLine($"Goodbye {name}");
         }
     }
 }
