@@ -49,6 +49,7 @@ namespace ObserverPattern
         {
             foreach (var app in Applications)
                 Console.WriteLine($"Hey, {Name}! {app.ApplicantName} has just applied for job no. {app.JobId}");
+
             if(Applications.Count < 1)
                 Console.WriteLine($"Hey, {Name}! No applications yet.");
         }
