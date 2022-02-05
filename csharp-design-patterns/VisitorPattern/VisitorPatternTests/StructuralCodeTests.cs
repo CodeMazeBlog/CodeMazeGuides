@@ -49,12 +49,12 @@ namespace VisitorPatternTests
         public void SimpleScenarioTest()
         {
             //capture console output to assert test results
-            using StringWriter sw = new StringWriter();
+            using var sw = new StringWriter();
             Console.SetOut(sw);
 
             //arrange
-            IVisitableElement[] elements = new IVisitableElement[] { new ConcreteElementOne(), new ConcreteElementTwo() };
-            IVisitor visitor = new ConcreteVisitorOne();
+            var elements = new IVisitableElement[] { new ConcreteElementOne(), new ConcreteElementTwo() };
+            var visitor = new ConcreteVisitorOne();
 
             //act
             UseTheVisitorPattern(elements, visitor);
@@ -64,7 +64,7 @@ namespace VisitorPatternTests
 
             static void UseTheVisitorPattern(IVisitableElement[] elements, IVisitor visitor)
             {
-                foreach (IVisitableElement element in elements)
+                foreach (var element in elements)
                 {
                     switch (element)
                     {
