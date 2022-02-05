@@ -8,7 +8,7 @@ namespace TeamC.Application.Visitor
     public class VisitorPatternTests
     {
         [Test]
-        public void TestTheCodeWithVisitorPattern()
+        public void WhenProcessedSamples_ThenCorrectLogsProduced()
         {
             //capture console output to assert test results
             using var sw = new StringWriter();

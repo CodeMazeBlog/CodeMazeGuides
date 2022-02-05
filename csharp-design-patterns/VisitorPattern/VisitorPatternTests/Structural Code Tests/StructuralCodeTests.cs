@@ -6,7 +6,7 @@ namespace VisitorPatternTests
     public class StructuralCodeTests
     {
         [Test]
-        public void SimpleScenarioTest()
+        public void WhenProcessedElementsThenCorrectAnswerProduced()
         {
             //capture console output to assert test results
             using var sw = new StringWriter();
