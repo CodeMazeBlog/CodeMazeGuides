@@ -1,5 +1,6 @@
 ﻿using ActionAndFuncDelegates;
 
+Console.WriteLine("== USING DELEGATES ==");
 void WriteToConsole(string message)
 {
     Console.WriteLine("Delegate is writing to the console...");
@@ -16,3 +17,19 @@ void WriteToDb(string message)
 DelegateClass.Writers = WriteToConsole;
 DelegateClass.Writers += WriteToDb;
 DelegateClass.Execute("Hello, World!");
+
+Console.WriteLine("\r\n== USING ACTION<> ==");
+
+void AddTwo(int number)
+{
+    Console.WriteLine($"Action has added 2 to the number {number}: {number + 2}");
+}
+
+void SubtractTwo(int number)
+{
+    Console.WriteLine($"Action has subtracted 2 from the number {number}: {number - 2}");
+}
+
+ActionClass.Manipulator += AddTwo;
+ActionClass.Manipulator += SubtractTwo;
+ActionClass.Execute(10);
