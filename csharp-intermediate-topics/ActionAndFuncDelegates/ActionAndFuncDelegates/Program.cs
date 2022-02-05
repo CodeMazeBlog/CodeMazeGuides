@@ -33,3 +33,14 @@ void SubtractTwo(int number)
 ActionClass.Manipulator += AddTwo;
 ActionClass.Manipulator += SubtractTwo;
 ActionClass.Execute(10);
+
+Console.WriteLine("\r\n== USING FUNC<> ==");
+
+int AddTwoAndReturn(int number)
+{
+    Console.Write($"Func<> is adding 2 to the number {number}: ");
+    return number + 2;
+}
+
+FuncClass.Manipulate += AddTwoAndReturn;
+FuncClass.Execute(10);
