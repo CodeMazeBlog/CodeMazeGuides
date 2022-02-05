@@ -1,18 +1,18 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using ActionAndFuncDelegates;
 
 namespace Tests
 {
     [TestClass]
     public class Tests
     {
-        public delegate void ourFirstDelegate(int x);
 
         [TestMethod]
         public void WhenAParameterIsPassed_TheNumberIsDoubled()
         {
             var variable = 2;
-            var result = DoubleTheVariable(variable);
+            var result = Program.DoubleTheVariable(variable);
 
             Assert.AreEqual(4, result);
         }
@@ -20,7 +20,7 @@ namespace Tests
         [TestMethod]
         public void WhenAParameterIsPassed_TheDelegateExecutesTheReferencedMethod()
         {
-            var firstDelegate = new ourFirstDelegate(PrintVariable);
+            var firstDelegate = new Program.ourFirstDelegate(Program.PrintVariable);
             firstDelegate(4);
 
             var invocationList = firstDelegate.GetInvocationList();
@@ -31,8 +31,8 @@ namespace Tests
         [TestMethod]
         public void WhenADelegateIsPassedToAFunction_TheMethodExecutesTheDelegate()
         {
-            var firstDelegate = new ourFirstDelegate(PrintVariable);
-            PassADelegeteToAFunction(firstDelegate);
+            var firstDelegate = new Program.ourFirstDelegate(Program.PrintVariable);
+            Program.PassADelegeteToAFunction(firstDelegate);
 
             var invocationList = firstDelegate.GetInvocationList();
 
@@ -42,7 +42,7 @@ namespace Tests
         [TestMethod]
         public void WhenAStringIsPassed_TheFuncDelegateExecutesTheReferencedMethod()
         {
-            Func<string, string> HelloFuncDelegate = HelloFunction;
+            Func<string, string> HelloFuncDelegate = Program.HelloFunction;
             var result = HelloFuncDelegate("Naruto");
 
             Assert.AreEqual(result, "Hello Naruto");
@@ -51,7 +51,7 @@ namespace Tests
         [TestMethod]
         public void WhenAStringIsPassed_TheActionDelegateExecutesTheReferencedMethod()
         {
-            Action<string> GoodbyeActionDelegate = GoodbyeFunction;
+            Action<string> GoodbyeActionDelegate = Program.GoodbyeFunction;
             GoodbyeActionDelegate("Naruto");
 
             var invocationList = GoodbyeActionDelegate.GetInvocationList();
@@ -59,14 +59,5 @@ namespace Tests
             Assert.AreEqual(invocationList.Length, 1);
         }
 
-        public static int DoubleTheVariable(int parameter) { return parameter * 2; }
-
-        public static void PrintVariable(int parameter) { Console.WriteLine(parameter); }
-
-        public static void PassADelegeteToAFunction(ourFirstDelegate myDelegate) { myDelegate(100); }
-
-        public static string HelloFunction(string name) { return "Hello " + name; }
-
-        public static void GoodbyeFunction(string name) { Console.WriteLine("Goodbye " + name); }
     }
 }

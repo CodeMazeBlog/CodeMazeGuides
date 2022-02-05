@@ -2,7 +2,7 @@
 
 namespace ActionAndFuncDelegates
 {
-    class Program
+    public class Program
     {
         public delegate void ourFirstDelegate(int x);
 
