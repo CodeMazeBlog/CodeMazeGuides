@@ -41,7 +41,7 @@ namespace Test
             Action<string, string> sayHiToFullName = _operations.SayHiToFullName;
             sayHiToFullName("Teri", "Dactyl");
 
-            Assert.AreEqual($"Hi, Teri Dactyl\r\n", stringWriter.ToString());
+            Assert.AreEqual($"Hi, Teri Dactyl\n", stringWriter.ToString());
         }
 
         [TestMethod]
