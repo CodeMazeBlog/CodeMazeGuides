@@ -9,19 +9,19 @@ namespace TeamB.Detectors.Detectors
         public AlertReport Visit(BloodSample blood)
         {
             Console.WriteLine($"{GetType().Name} - Checking blood sample");
-            return new AlertReport();
+            return AlertReport.NotAnalyzable;
         }
 
         public AlertReport Visit(XRayImage rtg)
         {
-            Console.WriteLine($"{GetType().Name} - Checking Xray");
-            return new AlertReport();
+            Console.WriteLine($"{GetType().Name} - Checking X-Ray");
+            return AlertReport.NotAnalyzable;
         }
 
         public AlertReport Visit(EcgReading sample)
         {
             Console.WriteLine($"{GetType().Name} - Checking ECG");
-            return new AlertReport();
+            return AlertReport.NotAnalyzable;
         }
     }
 }

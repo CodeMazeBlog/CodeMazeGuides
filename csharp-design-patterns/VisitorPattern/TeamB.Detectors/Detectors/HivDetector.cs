@@ -19,8 +19,7 @@ namespace TeamB.Detectors.Detectors
         }
         public AlertReport Visit(EcgReading sample)
         {
-            Console.WriteLine($"{GetType().Name} - Checking heart rate abnormalities");
-            //analyze the heart beats and return correct risk value
+            Console.WriteLine($"{GetType().Name} - Checking ECG");
             return AlertReport.HighRisk;
         }
     }
