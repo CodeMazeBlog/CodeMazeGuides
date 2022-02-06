@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegatesInCsharp", "DelegatesInCsharp\DelegatesInCsharp.csproj", "{B7E7E843-3109-4BFF-90DD-B979CA1853B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegatesInCsharp", "DelegatesInCsharp\DelegatesInCsharp.csproj", "{B7E7E843-3109-4BFF-90DD-B979CA1853B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{CAAB0C6D-B8F4-487D-8114-8EAA72D02BEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{CAAB0C6D-B8F4-487D-8114-8EAA72D02BEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegate", "ActionAndFuncDelegate\ActionAndFuncDelegate.csproj", "{2BBA3FE5-B134-42C5-9233-6C702E79179D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegateTest", "ActionAndFuncDelegateTest\ActionAndFuncDelegateTest.csproj", "{8E2808E7-1900-4A29-8249-2CE8FFF0E967}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{CAAB0C6D-B8F4-487D-8114-8EAA72D02BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAAB0C6D-B8F4-487D-8114-8EAA72D02BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAAB0C6D-B8F4-487D-8114-8EAA72D02BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BBA3FE5-B134-42C5-9233-6C702E79179D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BBA3FE5-B134-42C5-9233-6C702E79179D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BBA3FE5-B134-42C5-9233-6C702E79179D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BBA3FE5-B134-42C5-9233-6C702E79179D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E2808E7-1900-4A29-8249-2CE8FFF0E967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E2808E7-1900-4A29-8249-2CE8FFF0E967}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E2808E7-1900-4A29-8249-2CE8FFF0E967}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E2808E7-1900-4A29-8249-2CE8FFF0E967}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
