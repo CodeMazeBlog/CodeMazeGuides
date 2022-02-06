@@ -4,60 +4,117 @@
     {
         public const int _constantSerialNumber = 1000;
 
-        public void CompareWithNull(Vehicle vehicle)
+        public bool NotEqualSerialNumber(Vehicle vehicle)
         {
-            if (vehicle != null)
-                Console.WriteLine($"vehicle != null");
+            bool result = false;
+            if (vehicle.SerialNumber != _constantSerialNumber)
+                result = true;
 
-            if (vehicle is not null)
-                Console.WriteLine($"vehicle is not null");
+            return result;
         }
 
-        public void CompareSerialNumberBoxed(Vehicle vehicle)
+        public bool IsNotSerialNumber(Vehicle vehicle)
         {
+            bool result = false;
+            if (vehicle.SerialNumber is not _constantSerialNumber)
+                result = true;
+
+            return result;
+        }
+
+
+        public bool NotEqualToNull(Vehicle vehicle)
+        {
+            bool result = false;
+            if (vehicle != null)
+                result = true;
+
+            return result;
+        }
+
+        public bool IsNotToNull(Vehicle vehicle)
+        {
+            bool result = false;
+            if (vehicle is not null)
+                result = true;
+
+            return result;
+        }
+
+        public bool NotEqualSerialNumberBoxed(Vehicle vehicle)
+        {
+            bool result = false;
             object boxedSerialNumber = vehicle.SerialNumber;
 
             if (boxedSerialNumber != (object)_constantSerialNumber)
-                Console.WriteLine($"boxed serial number != {_constantSerialNumber}");
+                result = true;
 
-            if (boxedSerialNumber is not _constantSerialNumber)
-                Console.WriteLine($"boxed serial number is not {_constantSerialNumber}");
+            return result;
         }
 
-        public void CompareSerialNumber(Vehicle vehicle)
+        public bool IsNotSerialNumberBoxed(Vehicle vehicle)
         {
-            if (vehicle.SerialNumber != _constantSerialNumber)
-                Console.WriteLine($"serial number != {_constantSerialNumber}");
+            bool result = false;
+            object boxedSerialNumber = vehicle.SerialNumber;
 
-            if (vehicle.SerialNumber is not _constantSerialNumber)
-                Console.WriteLine($"serial number is not {_constantSerialNumber}");
+            if (boxedSerialNumber is not (object)_constantSerialNumber)
+                result = true;
+
+            return result;
         }
 
-        public void CompareBrand(Vehicle vehicle)
+        public bool NotEqualBrand(Vehicle vehicle)
         {
+            bool result = false;
             if (vehicle.VehicleBrand != Brand.Ford)
-                Console.WriteLine("vehicle brand != Ford");
+                result = true;
 
+            return result;
+        }
+
+        public bool IsNotBrand(Vehicle vehicle)
+        {
+            bool result = false;
             if (vehicle.VehicleBrand is not Brand.Ford)
-                Console.WriteLine("vehicle brand is not Ford");
+                result = true;
+
+            return result;
         }
 
-        public void CompareModel(Car car)
+        public bool NotEqualModel(Car car)
         {
-            if (car.Model != "Fiesta")
-                Console.WriteLine("car model != Focus");
+            bool result = false;
+            if (car.Model != "Focus")
+                result = true;
 
-            if (car.Model is not "Fiesta")
-                Console.WriteLine("car model is not Focus");
+            return result;
         }
 
-        public void CompareClasses(Car car)
+        public bool IsNotModel(Car car)
         {
+            bool result = false;
+            if (car.Model is not "Focus")
+                result = true;
+
+            return result;
+        }
+
+        public bool NotEqualClass(Car car)
+        {
+            bool result = false;
             if (car.GetType() != typeof(Vehicle))
-                Console.WriteLine("car type != Vehicle");
+                result = true;
 
+            return result;
+        }
+
+        public bool IsNotClass(Car car)
+        {
+            bool result = false;
             if (car is not Vehicle)
-                Console.WriteLine("car type is not Vehicle");
+                result = true;
+
+            return result;
         }
     }
 }
