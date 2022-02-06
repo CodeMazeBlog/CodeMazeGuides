@@ -21,7 +21,6 @@ namespace ConvertStringToBoolean
 
             String[] invalidString = { "", String.Empty, "t", "    yes   ", "-1", "0", "1" };
 
-
             var values = validString.Concat(invalidString);
 
             foreach (var value in values)
@@ -46,7 +45,6 @@ namespace ConvertStringToBoolean
             String[] invalidString = {null, "", String.Empty, "t", "    yes   ", "-1", "0", "1" };
 
             var values = validString.Concat(invalidString);
-
 
             foreach (var value in values)
             {
