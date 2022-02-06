@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Tests
 {
-    public class BookServiceTests
+    public class BookServiceTest
     {
         [Fact]
         public void GivenOneBookRequest_WhenCreateBookIsCalled_ThenBookIsCreated()
@@ -16,7 +16,7 @@ namespace Tests
             var bookRequest = new BookRequest("name", "isbn");
 
             var options = new DbContextOptionsBuilder<ApiContext>()
-                .UseInMemoryDatabase(databaseName: "api")
+                .UseInMemoryDatabase(databaseName: "api1")
                 .Options;
 
             // When
@@ -42,7 +42,7 @@ namespace Tests
             };
 
             var options = new DbContextOptionsBuilder<ApiContext>()
-                .UseInMemoryDatabase(databaseName: "api")
+                .UseInMemoryDatabase(databaseName: "api2")
                 .Options;
 
             // When
@@ -59,7 +59,7 @@ namespace Tests
         {
             // Given
             var options = new DbContextOptionsBuilder<ApiContext>()
-                .UseInMemoryDatabase(databaseName: "api")
+                .UseInMemoryDatabase(databaseName: "api3")
                 .Options;
 
             var apiContext = new ApiContext(options);
