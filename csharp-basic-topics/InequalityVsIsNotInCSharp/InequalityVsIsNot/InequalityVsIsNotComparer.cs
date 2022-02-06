@@ -22,7 +22,6 @@
             return result;
         }
 
-
         public bool NotEqualToNull(Vehicle vehicle)
         {
             bool result = false;
