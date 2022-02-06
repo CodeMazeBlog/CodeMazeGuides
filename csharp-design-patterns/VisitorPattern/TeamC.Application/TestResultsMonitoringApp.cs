@@ -10,7 +10,7 @@ namespace TeamC.Application.Visitor
 
         public TestResultsMonitoringApp(List<ISicknessAlertVisitor> detectors)
         {
-            this._detectors = detectors;
+            _detectors = detectors;
         }
 
         public List<AlertReport> AnalyzeResultsBatch(IEnumerable<ISicknessAlertVisitable> testResults)
