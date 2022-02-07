@@ -10,8 +10,8 @@ vehicle.VehicleBrand = Brand.Toyota;
 Car car = new Car();
 car.Model = "Fiesta";
 car.VehicleBrand = Brand.Ford;
-
-bool result = comparer.NotEqualSerialNumber(vehicle);
+bool result = false;
+result = comparer.NotEqualSerialNumber(vehicle);
 if (result)
 {
     Console.WriteLine("serial number != 1000");
@@ -35,13 +35,13 @@ if (result)
     Console.WriteLine("vehicle is not null");
 }
 
-result = comparer.NotEqualSerialNumberBoxed(vehicle);
+result = comparer.NotEqualSerialNumberUsingBoxing(vehicle);
 if (result)
 {
     Console.WriteLine("boxed serial number != 1000");
 }
 
-result = comparer.IsNotSerialNumberBoxed(vehicle);
+result = comparer.IsNotSerialNumberWithBoxing(vehicle);
 if (result)
 {
     Console.WriteLine("boxed serial number is not 1000");
@@ -86,4 +86,5 @@ else
 {
     Console.WriteLine("car is Vehicle");
 }
+
 

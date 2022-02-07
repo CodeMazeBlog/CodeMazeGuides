@@ -2,13 +2,15 @@
 {
     public class InequalityVsIsNotComparer
     {
-        public const int _constantSerialNumber = 1000;
+        public const int _constantSerialNumber = 1001;
 
         public bool NotEqualSerialNumber(Vehicle vehicle)
         {
             bool result = false;
             if (vehicle.SerialNumber != _constantSerialNumber)
+            {
                 result = true;
+            }
 
             return result;
         }
@@ -17,7 +19,9 @@
         {
             bool result = false;
             if (vehicle.SerialNumber is not _constantSerialNumber)
+            {
                 result = true;
+            }
 
             return result;
         }
@@ -26,7 +30,9 @@
         {
             bool result = false;
             if (vehicle != null)
+            {
                 result = true;
+            }
 
             return result;
         }
@@ -35,29 +41,35 @@
         {
             bool result = false;
             if (vehicle is not null)
+            {
                 result = true;
+            }
 
             return result;
         }
 
-        public bool NotEqualSerialNumberBoxed(Vehicle vehicle)
+        public bool NotEqualSerialNumberUsingBoxing(Vehicle vehicle)
         {
             bool result = false;
             object boxedSerialNumber = vehicle.SerialNumber;
 
             if (boxedSerialNumber != (object)_constantSerialNumber)
+            {
                 result = true;
+            }
 
             return result;
         }
 
-        public bool IsNotSerialNumberBoxed(Vehicle vehicle)
+        public bool IsNotSerialNumberWithBoxing(Vehicle vehicle)
         {
             bool result = false;
             object boxedSerialNumber = vehicle.SerialNumber;
 
-            if (boxedSerialNumber is not (object)_constantSerialNumber)
+            if (boxedSerialNumber is not _constantSerialNumber)
+            {
                 result = true;
+            }
 
             return result;
         }
@@ -66,7 +78,9 @@
         {
             bool result = false;
             if (vehicle.VehicleBrand != Brand.Ford)
+            {
                 result = true;
+            }
 
             return result;
         }
@@ -75,7 +89,9 @@
         {
             bool result = false;
             if (vehicle.VehicleBrand is not Brand.Ford)
+            {
                 result = true;
+            }
 
             return result;
         }
@@ -84,7 +100,9 @@
         {
             bool result = false;
             if (car.Model != "Focus")
+            {
                 result = true;
+            }
 
             return result;
         }
@@ -93,7 +111,9 @@
         {
             bool result = false;
             if (car.Model is not "Focus")
+            {
                 result = true;
+            }
 
             return result;
         }
@@ -102,7 +122,9 @@
         {
             bool result = false;
             if (car.GetType() != typeof(Vehicle))
+            {
                 result = true;
+            }
 
             return result;
         }
@@ -111,7 +133,9 @@
         {
             bool result = false;
             if (car is not Vehicle)
+            {
                 result = true;
+            }
 
             return result;
         }

@@ -43,7 +43,7 @@ namespace Tests
         public void WhenSerialNumberIsBoxedAndNotEqualToConstant_ThenTheyAreDifferent()
         {
             Vehicle vehicle = new Vehicle();
-            bool result = _comparer.NotEqualSerialNumberBoxed(vehicle);
+            bool result = _comparer.NotEqualSerialNumberUsingBoxing(vehicle);
 
             Assert.True(result);
         }
@@ -52,7 +52,7 @@ namespace Tests
         public void WhenSerialNumberIsBoxedAndIsNotConstant_ThenTheyAreEqual()
         {
             Vehicle vehicle = new Vehicle();
-            bool result = _comparer.IsNotSerialNumberBoxed(vehicle);
+            bool result = _comparer.IsNotSerialNumberWithBoxing(vehicle);
 
             Assert.True(result);
         }
