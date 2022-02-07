@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ObserverPattern
 {
     public class HRSpecialist : IObserver<Application>
     {
-        private IDisposable cancellation;
+        private IDisposable _cancellation;
+        public string Name { get; set; }
+        public List<Application> Applications { get; set; }
 
         public HRSpecialist(string name)
         {
@@ -16,17 +16,14 @@ namespace ObserverPattern
             Applications = new();
         }
 
-        public string Name { get; set; }
-        public List<Application> Applications { get; set; }
-
         public virtual void Subscribe(ApplicationsHandler provider)
         {
-            cancellation = provider.Subscribe(this);
+            _cancellation = provider.Subscribe(this);
         }
 
         public virtual void Unsubscribe()
         {
-            cancellation.Dispose();
+            _cancellation.Dispose();
             Applications.Clear();
         }
 
@@ -47,10 +44,10 @@ namespace ObserverPattern
 
         public void ListApplications()
         {
-            foreach (var app in Applications)
-                Console.WriteLine($"Hey, {Name}! {app.ApplicantName} has just applied for job no. {app.JobId}");
-
-            if(Applications.Count < 1)
+            if(Applications.Any())
+                foreach (var app in Applications)
+                    Console.WriteLine($"Hey, {Name}! {app.ApplicantName} has just applied for job no. {app.JobId}");
+            else
                 Console.WriteLine($"Hey, {Name}! No applications yet.");
         }
     }

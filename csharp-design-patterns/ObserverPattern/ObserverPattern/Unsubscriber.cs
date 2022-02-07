@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ObserverPattern
 {
     public class Unsubscriber : IDisposable
     {
-        private List<IObserver<Application>> _observers;
-        private IObserver<Application> _observer;
+        private readonly List<IObserver<Application>> _observers;
+        private readonly IObserver<Application> _observer;
 
         public Unsubscriber(List<IObserver<Application>> observers, IObserver<Application> observer)
         {
