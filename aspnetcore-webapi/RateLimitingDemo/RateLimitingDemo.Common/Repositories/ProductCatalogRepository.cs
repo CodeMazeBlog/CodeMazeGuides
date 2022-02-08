@@ -11,21 +11,7 @@ public class ProductCatalogRepository : IProductCatalogRepository
     public ProductCatalogRepository()
     {
         InitializeProductStore();
-    }
-
-    public void Create(Product product)
-    {
-        if (product == null)
-        {
-            return;
-        }
-        _products[product.Id] = product;
-    }
-
-    public void Delete(Guid id)
-    {
-        _products.Remove(id);
-    }
+    } 
 
     public List<Product> GetAll()
     {
@@ -35,16 +21,6 @@ public class ProductCatalogRepository : IProductCatalogRepository
     public Product GetById(Guid id)
     {
         return _products[id];
-    }
-
-    public void Update(Product product)
-    {
-        var existingProduct = GetById(product.Id);
-        if (existingProduct is null)
-        {
-            return;
-        }
-        _products[product.Id] = product;
     }
 
     private void InitializeProductStore()
