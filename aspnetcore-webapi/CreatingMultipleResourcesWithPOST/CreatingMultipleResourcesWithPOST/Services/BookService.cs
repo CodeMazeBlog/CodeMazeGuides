@@ -12,14 +12,6 @@ namespace CreatingMultipleResorcesWithPOST.Services
             _context = context;
         }
 
-        public BookModel CreateBook(BookRequest bookRequest)
-        {
-            var bookModel = _context.BookModels.Add(new BookModel(0, bookRequest.Name, bookRequest.Isbn));
-            _context.SaveChanges();
-
-            return bookModel.Entity;
-        }
-
         public IEnumerable<MultipleBooksBase> CreateBooks(IEnumerable<BookRequest> bookRequests)
         {
             var books = new List<MultipleBooksBase>();
@@ -31,7 +23,7 @@ namespace CreatingMultipleResorcesWithPOST.Services
                     var bookModel = _context.BookModels.Add(new BookModel(0, bookRequest.Name, bookRequest.Isbn));
                     _context.SaveChanges();
 
-                    books.Add(new MultipleBooksModel("200", bookModel.Entity));
+                    books.Add(new MultipleBooksModel("201", bookModel.Entity));
                 }
                 catch (Exception)
                 {
@@ -42,11 +34,6 @@ namespace CreatingMultipleResorcesWithPOST.Services
             }
 
             return books;
-        }
-
-        public IEnumerable<BookModel> GetBooks()
-        {
-            return _context.BookModels.ToList();
         }
     }
 }

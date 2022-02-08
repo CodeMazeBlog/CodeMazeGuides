@@ -15,25 +15,11 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.MapPost("/api/books", (BookRequest bookRequests, IBookService bookService) =>
-{
-    var createdBook = bookService.CreateBook(bookRequests);
-
-    return Results.Created($"/api/books/{createdBook.Id}", createdBook);
-});
-
 app.MapPost("/api/books/batch", (BookRequest[] bookRequests, IBookService bookService) =>
 {
     var createdBooks = bookService.CreateBooks(bookRequests);
  
     return createdBooks.Select(x => (object)x);
-});
-
-app.MapGet("/api/books", (IBookService bookService) =>
-{
-    var books = bookService.GetBooks();
-
-    return books;
 });
 
 app.Run();
