@@ -20,7 +20,7 @@
         public int GetLargestElementUsingFor(int[] sourceArray)
         {
             int maxElement = sourceArray[0];
-            for (int index = 0; index < sourceArray.Length; index++)
+            for (int index = 1; index < sourceArray.Length; index++)
             {
                 if (sourceArray[index] > maxElement)
                     maxElement = sourceArray[index];
