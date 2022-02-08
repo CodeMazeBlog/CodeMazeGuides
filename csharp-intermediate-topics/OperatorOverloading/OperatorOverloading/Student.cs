@@ -3,24 +3,24 @@ namespace OperatorOverloading
 {
     public class Student
     {
-        private int RollNo { get; set; }
-        private int Level { get; set; }
-        private string Name { get; set; }
-        private int Age { get; set; }
-        private int NumberOfPassedCourses { get; set; }
+        private readonly int _rollNo;
+        private readonly int _level;
+        private readonly string _name;
+        private readonly int _age;
+        private int NumberOfPassedCourses;
 
         public Student(int rollNo, int level, string name, int age, int passedCourses)
         {
-            RollNo = rollNo;
-            Level = level;
-            Name = name;
-            Age = age;
+            _rollNo = rollNo;
+            _level = level;
+            _name = name;
+            _age = age;
             NumberOfPassedCourses = passedCourses;
         }
 
         public int GetNumberOfPassedCourses() => NumberOfPassedCourses;
 
-        public string GetName() => Name;
+        public string GetName() => _name;
 
         public static Student operator ++(Student student)
         {
@@ -30,7 +30,7 @@ namespace OperatorOverloading
 
         public static bool operator <(Student studentLeft, Student studentRight)
         {
-            if (studentLeft.Age < studentRight.Age)
+            if (studentLeft._age < studentRight._age)
                 return true;
             else
                 return false;
@@ -38,7 +38,7 @@ namespace OperatorOverloading
 
         public static bool operator >(Student studentLeft, Student studentRight)
         {
-            if (studentLeft.Age > studentRight.Age)
+            if (studentLeft._age > studentRight._age)
                 return true;
             else
                 return false;
@@ -51,8 +51,8 @@ namespace OperatorOverloading
             if (GetType() != student.GetType())
                 return false;
 
-            Student student1 = (Student)student;
-            return (RollNo == student1.RollNo) && (Level == student1.Level) && (Age == student1.Age);
+            var student1 = (Student)student;
+            return (_rollNo == student1._rollNo) && (_level == student1._level) && (_age == student1._age);
         }
 
         public override int GetHashCode()
