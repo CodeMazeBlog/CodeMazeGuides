@@ -8,32 +8,29 @@ namespace ObserverPattern
         {
             var observer1 = new HRSpecialist("Bill");
             var observer2 = new HRSpecialist("John");
-            var observer3 = new HRSpecialist("Sarah");
 
             var provider = new ApplicationsHandler();
 
             observer1.Subscribe(provider);
             observer2.Subscribe(provider);
             provider.AddApplication(new(1, "Jesus"));
-            provider.AddApplication(new(2, "Farah"));
+            provider.AddApplication(new(2, "John"));
 
             observer1.ListApplications();
             observer2.ListApplications();
-            observer3.ListApplications();
 
             observer1.Unsubscribe();
 
-            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine();
             Console.WriteLine($"{observer1.Name} unsubscribed");
-            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine();
 
-            provider.AddApplication(new(3, "Ahmed"));
+            provider.AddApplication(new(3, "Sofia"));
 
             observer1.ListApplications();
             observer2.ListApplications();
-            observer3.ListApplications();
 
-            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine();
 
             provider.CloseApplications();
         }
