@@ -10,7 +10,7 @@ var car = new Car();
 car.Model = "Fiesta";
 car.VehicleBrand = Brand.Ford;
 
-bool result = false;
+var result = false;
 
 result = comparer.NotEqualSerialNumber(vehicle);
 if (result)
