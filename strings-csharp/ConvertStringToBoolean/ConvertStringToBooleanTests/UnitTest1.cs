@@ -7,9 +7,8 @@ namespace ConvertStringToBooleanTests
     public class UnitTest1
     {
         [TestMethod]
-        public void givenConvertToBoolean_WhenValid_ThenConversionSuccess()
+        public void GivenConvertToBoolean_WhenValid_ThenConversionSuccess()
         {
-
             Assert.AreEqual(true, Convert.ToBoolean("true"));
 
             Assert.AreEqual(true, Convert.ToBoolean("True"));
@@ -19,11 +18,10 @@ namespace ConvertStringToBooleanTests
             Assert.AreEqual(false, Convert.ToBoolean("False   "));
 
             Assert.AreEqual(false, Convert.ToBoolean(null));
-
         }
 
         [TestMethod]
-        public void givenConvertToBoolean_WhenInvalid_ThenConversionThrowsException()
+        public void GivenConvertToBoolean_WhenInvalid_ThenConversionThrowsException()
         {
             Assert.ThrowsException<FormatException>(() => Convert.ToBoolean(""));
 
@@ -41,9 +39,8 @@ namespace ConvertStringToBooleanTests
         }
 
         [TestMethod]
-        public void givenboolParse_WhenValid_ThenConversionSuccess()
+        public void GivenboolParse_WhenValid_ThenConversionSuccess()
         {
-
             Assert.AreEqual(true, bool.Parse("true"));
 
             Assert.AreEqual(true, bool.Parse("True"));
@@ -54,7 +51,7 @@ namespace ConvertStringToBooleanTests
         }
 
         [TestMethod]
-        public void givenboolParse_WhenInvalid_ThenConversionThrowsException()
+        public void GivenboolParse_WhenInvalid_ThenConversionThrowsException()
         {
             Assert.ThrowsException<ArgumentNullException>(() => bool.Parse(null));
 
@@ -74,7 +71,7 @@ namespace ConvertStringToBooleanTests
         }
 
         [TestMethod]
-        public void givenboolTryParse_WhenValid_ThenConversionSuccess()
+        public void GivenboolTryParse_WhenValid_ThenConversionSuccess()
         {
             Assert.IsTrue(bool.TryParse("true", out bool result1));
 
@@ -94,7 +91,7 @@ namespace ConvertStringToBooleanTests
         }
 
         [TestMethod]
-        public void givenboolTryParse_WhenInvalid_ThenNoExceptionReturnFalse()
+        public void GivenboolTryParse_WhenInvalid_ThenNoExceptionReturnFalse()
         {
             Assert.IsFalse(bool.TryParse(null, out bool result1));
 
@@ -123,8 +120,6 @@ namespace ConvertStringToBooleanTests
             Assert.IsFalse(bool.TryParse("1", out bool result7));
 
             Assert.IsFalse(result7);
-
         }
-
     }
 }

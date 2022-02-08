@@ -16,10 +16,9 @@ namespace ConvertStringToBoolean
 
         public static void ToBooleanMethod()
         {
+            string[] validString = { null, "true", "True", "    true   ", "false", "False", "    false" };
 
-            String[] validString = { null, "true", "True", "    true   ", "false", "False", "    false" };
-
-            String[] invalidString = { "", String.Empty, "t", "    yes   ", "-1", "0", "1" };
+            string[] invalidString = { "", string.Empty, "t", "    yes   ", "-1", "0", "1" };
 
             var values = validString.Concat(invalidString);
 
@@ -34,15 +33,13 @@ namespace ConvertStringToBoolean
                     Console.WriteLine($"Unable to convert '{value}' to a Boolean.\n");
                 }
             }
-
         }
 
         public static void ParseMethod()
         {
+            string[] validString = { "true", "True", "    true   ", "false", "False", "    false" };
 
-            String[] validString = { "true", "True", "    true   ", "false", "False", "    false" };
-
-            String[] invalidString = {null, "", String.Empty, "t", "    yes   ", "-1", "0", "1" };
+            string[] invalidString = {null, "", string.Empty, "t", "    yes   ", "-1", "0", "1" };
 
             var values = validString.Concat(invalidString);
 
@@ -57,23 +54,19 @@ namespace ConvertStringToBoolean
                     Console.WriteLine($"Unable to convert '{value}' to a Boolean.\n");
                 }
             }
-
         }
-
 
         public static void TryParseMethod()
         {
-            String[] validString = { "true", "True", "    true   ", "false", "False", "    false" };
+            string[] validString = { "true", "True", "    true   ", "false", "False", "    false" };
 
-            String[] invalidString = { null, "", String.Empty, "t", "    yes   ", "-1", "0", "1" };
+            string[] invalidString = { null, "", string.Empty, "t", "    yes   ", "-1", "0", "1" };
 
             var values = validString.Concat(invalidString);
 
             foreach (var value in values)
             {
-                bool booleanValue;
-
-                if (bool.TryParse(value, out booleanValue))
+                if (bool.TryParse(value, out bool booleanValue))
                 {
                     Console.WriteLine($"Conversion successful: '{value}' to {booleanValue}.\n");
                 }
@@ -81,10 +74,7 @@ namespace ConvertStringToBoolean
                 {
                     Console.WriteLine($"Conversion Failed: '{value}' to {booleanValue}.\n");
                 }
-
             }
-
         }
     }
-
 }
