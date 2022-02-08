@@ -5,9 +5,9 @@ namespace Tests
 {
     public class InequalityVsIsNotTest
     {
-        readonly InequalityVsIsNotComparer _comparer;
-        readonly Vehicle _vehicle;
-        readonly Car _car;
+        private readonly InequalityVsIsNotComparer _comparer;
+        private readonly Vehicle _vehicle;
+        private readonly Car _car;
         public InequalityVsIsNotTest()
         {
             _comparer = new InequalityVsIsNotComparer();
@@ -25,7 +25,7 @@ namespace Tests
         public void WhenNotToNullObject_ThenNotEqualNull()
         {
             Vehicle vehicle = new Vehicle();
-            bool result = _comparer.NotEqualToNull(vehicle);
+            var result = _comparer.NotEqualToNull(vehicle);
 
             Assert.True(result);
         }
@@ -34,7 +34,7 @@ namespace Tests
         public void WhenIsNotNUllObject_ThenIsNotNull()
         {
             Vehicle vehicle = new Vehicle();
-            bool result = _comparer.IsNotToNull(vehicle);
+            var result = _comparer.IsNotToNull(vehicle);
 
             Assert.True(result);
         }
@@ -43,7 +43,7 @@ namespace Tests
         public void WhenSerialNumberIsBoxedAndNotEqualToConstant_ThenTheyAreDifferent()
         {
             Vehicle vehicle = new Vehicle();
-            bool result = _comparer.NotEqualSerialNumberUsingBoxing(vehicle);
+            var result = _comparer.NotEqualSerialNumberUsingBoxing(vehicle);
 
             Assert.True(result);
         }
@@ -52,7 +52,7 @@ namespace Tests
         public void WhenSerialNumberIsBoxedAndIsNotConstant_ThenTheyAreEqual()
         {
             Vehicle vehicle = new Vehicle();
-            bool result = _comparer.IsNotSerialNumberWithBoxing(vehicle);
+            var result = _comparer.IsNotSerialNumberWithBoxing(vehicle);
 
             Assert.True(result);
         }
@@ -61,7 +61,7 @@ namespace Tests
         public void WhenSerialNumberNotEqualToConstant_ThenTheyAreDifferent()
         {
             Vehicle vehicle = new Vehicle();
-            bool result = _comparer.NotEqualSerialNumber(vehicle);
+            var result = _comparer.NotEqualSerialNumber(vehicle);
 
             Assert.True(result);
         }
@@ -70,7 +70,7 @@ namespace Tests
         public void WhenSerialNumberIsNotConstant_ThenTheyAreDifferent()
         {
             Vehicle vehicle = new Vehicle();
-            bool result = _comparer.IsNotSerialNumber(vehicle);
+            var result = _comparer.IsNotSerialNumber(vehicle);
 
             Assert.True(result);
         }
@@ -79,7 +79,7 @@ namespace Tests
         public void WhenBrandNotEqualToConstant_ThenTheyAreDifferent()
         {
             Vehicle vehicle = new Vehicle();
-            bool result = _comparer.NotEqualBrand(vehicle);
+            var result = _comparer.NotEqualBrand(vehicle);
 
             Assert.True(result);
         }
@@ -88,7 +88,7 @@ namespace Tests
         public void WhenBrandIsNotConstant_ThenTheyAreDifferent()
         {
             Vehicle vehicle = new Vehicle();
-            bool result = _comparer.IsNotBrand(vehicle);
+            var result = _comparer.IsNotBrand(vehicle);
 
             Assert.True(result);
         }
@@ -97,7 +97,7 @@ namespace Tests
         public void WhenModelNotEqualToConstant_ThenTheyAreDifferent()
         {
             Car car = new Car();
-            bool result = _comparer.NotEqualModel(car);
+            var result = _comparer.NotEqualModel(car);
 
             Assert.True(result);
         }
@@ -106,7 +106,7 @@ namespace Tests
         public void WhenModelIsNotConstant_ThenTheyAreDifferent()
         {
             Car car = new Car();
-            bool result = _comparer.IsNotModel(car);
+            var result = _comparer.IsNotModel(car);
 
             Assert.True(result);
         }
@@ -115,7 +115,7 @@ namespace Tests
         public void WhenCarNotEqualToVehicle_ThenTheyAreDifferent()
         {
             Car car = new Car();
-            bool result = _comparer.NotEqualClass(car);
+            var result = _comparer.NotEqualClass(car);
 
             Assert.True(result);
         }
@@ -124,10 +124,9 @@ namespace Tests
         public void WhenCarIsNotVehicle_ThenTheyAreEqual()
         {
             Car car = new Car();
-            bool result = _comparer.IsNotClass(car);
+            var result = _comparer.IsNotClass(car);
 
             Assert.True(!result);
         }
-
     }
 }

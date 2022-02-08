@@ -1,16 +1,17 @@
 ﻿using InequalityVsIsNot;
 
+var comparer = new InequalityVsIsNotComparer();
 
-InequalityVsIsNotComparer comparer = new InequalityVsIsNotComparer();
-
-Vehicle vehicle = new Vehicle();
+var vehicle = new Vehicle();
 vehicle.SerialNumber = 1001;
 vehicle.VehicleBrand = Brand.Toyota;
 
-Car car = new Car();
+var car = new Car();
 car.Model = "Fiesta";
 car.VehicleBrand = Brand.Ford;
+
 bool result = false;
+
 result = comparer.NotEqualSerialNumber(vehicle);
 if (result)
 {
@@ -86,5 +87,3 @@ else
 {
     Console.WriteLine("car is Vehicle");
 }
-
-
