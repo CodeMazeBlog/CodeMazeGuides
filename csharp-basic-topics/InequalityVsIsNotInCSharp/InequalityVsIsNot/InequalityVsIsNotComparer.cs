@@ -6,7 +6,7 @@
 
         public bool NotEqualSerialNumber(Vehicle vehicle)
         {
-            bool result = false;
+            var result = false;
             if (vehicle.SerialNumber != _constantSerialNumber)
             {
                 result = true;
@@ -17,7 +17,7 @@
 
         public bool IsNotSerialNumber(Vehicle vehicle)
         {
-            bool result = false;
+            var result = false;
             if (vehicle.SerialNumber is not _constantSerialNumber)
             {
                 result = true;
@@ -28,7 +28,7 @@
 
         public bool NotEqualToNull(Vehicle vehicle)
         {
-            bool result = false;
+            var result = false;
             if (vehicle != null)
             {
                 result = true;
@@ -39,7 +39,7 @@
 
         public bool IsNotToNull(Vehicle vehicle)
         {
-            bool result = false;
+            var result = false;
             if (vehicle is not null)
             {
                 result = true;
@@ -50,7 +50,7 @@
 
         public bool NotEqualSerialNumberUsingBoxing(Vehicle vehicle)
         {
-            bool result = false;
+            var result = false;
             object boxedSerialNumber = vehicle.SerialNumber;
 
             if (boxedSerialNumber != (object)_constantSerialNumber)
@@ -63,7 +63,7 @@
 
         public bool IsNotSerialNumberWithBoxing(Vehicle vehicle)
         {
-            bool result = false;
+            var result = false;
             object boxedSerialNumber = vehicle.SerialNumber;
 
             if (boxedSerialNumber is not _constantSerialNumber)
@@ -76,7 +76,7 @@
 
         public bool NotEqualBrand(Vehicle vehicle)
         {
-            bool result = false;
+            var result = false;
             if (vehicle.VehicleBrand != Brand.Ford)
             {
                 result = true;
@@ -87,7 +87,7 @@
 
         public bool IsNotBrand(Vehicle vehicle)
         {
-            bool result = false;
+            var result = false;
             if (vehicle.VehicleBrand is not Brand.Ford)
             {
                 result = true;
@@ -98,7 +98,7 @@
 
         public bool NotEqualModel(Car car)
         {
-            bool result = false;
+            var result = false;
             if (car.Model != "Focus")
             {
                 result = true;
@@ -109,7 +109,7 @@
 
         public bool IsNotModel(Car car)
         {
-            bool result = false;
+            var result = false;
             if (car.Model is not "Focus")
             {
                 result = true;
@@ -120,7 +120,7 @@
 
         public bool NotEqualClass(Car car)
         {
-            bool result = false;
+            var result = false;
             if (car.GetType() != typeof(Vehicle))
             {
                 result = true;
@@ -131,7 +131,7 @@
 
         public bool IsNotClass(Car car)
         {
-            bool result = false;
+            var result = false;
             if (car is not Vehicle)
             {
                 result = true;
