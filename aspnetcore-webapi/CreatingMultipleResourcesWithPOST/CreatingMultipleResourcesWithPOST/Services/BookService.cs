@@ -27,7 +27,7 @@ namespace CreatingMultipleResorcesWithPOST.Services
                 }
                 catch (Exception)
                 {
-                    books.Add(new MultipleBooksErrorModel("500", "Internal server error"));
+                    books.Add(new MultipleBooksErrorModel("500", "Internal error while creating a resource"));
 
                     _context.ChangeTracker.Clear();
                 }

@@ -15,9 +15,11 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.MapPost("/api/books/batch", (BookRequest[] bookRequests, IBookService bookService) =>
+app.MapPost("/api/books/batch", (BookRequest[] bookRequests, IBookService bookService, HttpResponse response) =>
 {
     var createdBooks = bookService.CreateBooks(bookRequests);
+
+    response.StatusCode = StatusCodes.Status207MultiStatus;
  
     return createdBooks.Select(x => (object)x);
 });
