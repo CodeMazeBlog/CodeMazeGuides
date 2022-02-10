@@ -8,6 +8,16 @@ namespace InitializeArraysTests
     public class ArrayUnitTests
     {
         [TestMethod]
+        public void GivenEmptyArray_ThenReturnCorrectLength()
+        {
+            var students = new string[0];
+            var students1 = Array.Empty<string>();
+
+            Assert.AreEqual(0, students.Length);
+            Assert.AreEqual(0, students1.Length);
+        }
+
+        [TestMethod]
         public void GivenArrayOfFixedLength_ThenReturnCorrectLength()
         {
             var students = new string[2];
