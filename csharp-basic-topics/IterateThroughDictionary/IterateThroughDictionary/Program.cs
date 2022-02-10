@@ -4,7 +4,9 @@ namespace IterateThroughDictionary
     {
         public static void Main(string[]args)
         {
-            Dictionary<int, string> MonthsInYear = new Dictionary<int, string>
+            PerformAnalysisTest PTest = new PerformAnalysisTest();
+
+            var MonthsInYear = new Dictionary<int, string>
             {
                 {1,"January" },
                 {2,"February" },
@@ -17,13 +19,14 @@ namespace IterateThroughDictionary
             SubDictionaryForLoop(MonthsInYear);
             SubDictionaryParallelEnumerable(MonthsInYear);
             SubDictionaryStringJoin(MonthsInYear);
-
+            PTest.TestDictionaryLoopResult();
         }
+        
         public static void SubDictionaryUsingForEach(Dictionary<int,string> MonthsInYear)
         {
             foreach (var month in MonthsInYear)
             {
-                Console.WriteLine(month.Key + ":" + month.Value);
+                Console.WriteLine($"{month.Key } : {month.Value}");
             }
         }
 
@@ -31,12 +34,12 @@ namespace IterateThroughDictionary
         {
             foreach (KeyValuePair<int,string> entry in MonthsInYear)
             {
-                Console.WriteLine(entry.Key + ":" + entry.Value);
+                Console.WriteLine($"{entry.Key} : {entry.Value}");
             }
 
             foreach (var (key,value) in MonthsInYear)
             {
-                Console.WriteLine(key + ":" + value);   
+                Console.WriteLine($"{key} : {value}");   
             }
         }
 
@@ -46,14 +49,15 @@ namespace IterateThroughDictionary
             {
                 KeyValuePair<int, string> month = MonthsInYear.ElementAt(index);
 
-                Console.WriteLine(month.Key + ":" + month.Value);
+                Console.WriteLine($"{month.Key} : {month.Value}");
             }
         }
 
         public static void SubDictionaryParallelEnumerable(Dictionary<int, string> MonthsInYear)
         {
             MonthsInYear.AsParallel()
-                        .ForAll(month => Console.WriteLine(month.Key + ":" + month.Value));
+                        .OrderBy(month => month.Key)
+                        .ForAll(month => Console.WriteLine($"{month.Key} : {month.Value}"));
         }
 
         public static void SubDictionaryStringJoin(Dictionary<int, string> MonthsInYear)
