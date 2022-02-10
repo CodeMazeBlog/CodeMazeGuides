@@ -7,7 +7,7 @@ namespace OperatorOverloading
         private readonly int _level;
         private readonly string _name;
         private readonly int _age;
-        private int numberOfPassedCourses;
+        private int _numberOfPassedCourses;
 
         public Student(int rollNo, int level, string name, int age, int passedCourses)
         {
@@ -15,16 +15,16 @@ namespace OperatorOverloading
             _level = level;
             _name = name;
             _age = age;
-            numberOfPassedCourses = passedCourses;
+            _numberOfPassedCourses = passedCourses;
         }
 
-        public int GetNumberOfPassedCourses() => numberOfPassedCourses;
+        public int GetNumberOfPassedCourses() => _numberOfPassedCourses;
 
         public string GetName() => _name;
 
         public static Student operator ++(Student student)
         {
-            student.numberOfPassedCourses++;
+            student._numberOfPassedCourses++;
             return student;
         }
 
