@@ -4,7 +4,7 @@ using System;
 namespace ConvertStringToBooleanTests
 {
     [TestClass]
-    public class UnitTest1
+    public class ConvertStringToBooleanTests
     {
         [TestMethod]
         public void GivenConvertToBoolean_WhenValid_ThenConversionSuccess()
