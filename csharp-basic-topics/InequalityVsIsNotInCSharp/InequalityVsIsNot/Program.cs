@@ -10,80 +10,26 @@ var car = new Car();
 car.Model = "Fiesta";
 car.VehicleBrand = Brand.Ford;
 
-var result = false;
+comparer.SerialNumberComparationWithNotEqual(vehicle);
 
-result = comparer.NotEqualSerialNumber(vehicle);
-if (result)
-{
-    Console.WriteLine("serial number != 1000");
-}
+comparer.SerialNumberComparationWithIsNot(vehicle);
 
-result = comparer.IsNotSerialNumber(vehicle);
-if (result)
-{
-    Console.WriteLine("serial number is not 1000");
-}
+comparer.VehicleNotEqualToNull(vehicle);
 
-result = comparer.NotEqualToNull(vehicle);
-if (result)
-{
-    Console.WriteLine("vehicle != null");
-}
+comparer.VehicleIsNotToNull(vehicle);
 
-result = comparer.IsNotToNull(vehicle);
-if (result)
-{
-    Console.WriteLine("vehicle is not null");
-}
+comparer.BoxedSerialNumberComparationWithNotEqual(vehicle);
 
-result = comparer.NotEqualSerialNumberUsingBoxing(vehicle);
-if (result)
-{
-    Console.WriteLine("boxed serial number != 1000");
-}
+comparer.BoxedSerialNumberComparationWithIsNot(vehicle);
 
-result = comparer.IsNotSerialNumberWithBoxing(vehicle);
-if (result)
-{
-    Console.WriteLine("boxed serial number is not 1000");
-}
+comparer.BrandComparationWithNotEqual(vehicle);
 
-result = comparer.NotEqualBrand(vehicle);
-if (result)
-{
-    Console.WriteLine("brand != Ford");
-}
+comparer.BrandComparationWithIsNot(vehicle);
 
-result = comparer.IsNotBrand(vehicle);
-if (result)
-{
-    Console.WriteLine("brand is not Ford");
-}
+comparer.ModelComparationWithNotEqual(car);
 
-result = comparer.NotEqualModel(car);
-if (result)
-{
-    Console.WriteLine("model != Focus");
-}
+comparer.ModelComparationWithIsNot(car);
 
-result = comparer.IsNotModel(car);
-if (result)
-{
-    Console.WriteLine("model is not Focus");
-}
+comparer.CarTypeComparationWithNotEqual(car);
 
-result = comparer.NotEqualClass(car);
-if (result)
-{
-    Console.WriteLine("car != Vehicle");
-}
-
-result = comparer.IsNotClass(car);
-if (result)
-{
-    Console.WriteLine("car is not Vehicle");
-}
-else
-{
-    Console.WriteLine("car is Vehicle");
-}
+comparer.CarTypeComparationWithIsNot(car);

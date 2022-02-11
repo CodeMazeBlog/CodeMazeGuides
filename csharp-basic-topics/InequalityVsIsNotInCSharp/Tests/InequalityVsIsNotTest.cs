@@ -1,4 +1,6 @@
 using InequalityVsIsNot;
+using System;
+using System.IO;
 using Xunit;
 
 namespace Tests
@@ -13,7 +15,7 @@ namespace Tests
             _comparer = new InequalityVsIsNotComparer();
 
             _vehicle = new Vehicle();
-            _vehicle.SerialNumber = 1000;
+            _vehicle.SerialNumber = 1001;
             _vehicle.VehicleBrand = Brand.Toyota;
 
             _car = new Car();
@@ -22,111 +24,149 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenNotToNullObject_ThenNotEqualNull()
+        public void WhenNotEqualToNullObject_ThenNotEqualNull()
         {
-            Vehicle vehicle = new Vehicle();
-            var result = _comparer.NotEqualToNull(vehicle);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.VehicleNotEqualToNull(_vehicle);
+            var expected = string.Format($"vehicle != null{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
-        public void WhenIsNotNUllObject_ThenIsNotNull()
+        public void WhenIsNotNullObject_ThenIsNotNull()
         {
-            Vehicle vehicle = new Vehicle();
-            var result = _comparer.IsNotToNull(vehicle);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.VehicleIsNotToNull(_vehicle);
+            var expected = string.Format($"vehicle is not null{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
         public void WhenSerialNumberIsBoxedAndNotEqualToConstant_ThenTheyAreDifferent()
         {
-            Vehicle vehicle = new Vehicle();
-            var result = _comparer.NotEqualSerialNumberUsingBoxing(vehicle);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.BoxedSerialNumberComparationWithNotEqual(_vehicle);
+            var expected = string.Format($"boxed serial number != 1000{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
-        public void WhenSerialNumberIsBoxedAndIsNotConstant_ThenTheyAreEqual()
+        public void WhenSerialNumberIsBoxedAndNotConstant_ThenTheyAreEqual()
         {
-            Vehicle vehicle = new Vehicle();
-            var result = _comparer.IsNotSerialNumberWithBoxing(vehicle);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.BoxedSerialNumberComparationWithIsNot(_vehicle);
+            var expected = string.Format($"boxed serial number is not 1000{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
         public void WhenSerialNumberNotEqualToConstant_ThenTheyAreDifferent()
         {
-            Vehicle vehicle = new Vehicle();
-            var result = _comparer.NotEqualSerialNumber(vehicle);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.SerialNumberComparationWithNotEqual(_vehicle);
+            var expected = string.Format($"serial number != 1000{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
         public void WhenSerialNumberIsNotConstant_ThenTheyAreDifferent()
         {
-            Vehicle vehicle = new Vehicle();
-            var result = _comparer.IsNotSerialNumber(vehicle);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.SerialNumberComparationWithIsNot(_vehicle);
+            var expected = string.Format($"serial number is not 1000{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
         public void WhenBrandNotEqualToConstant_ThenTheyAreDifferent()
         {
-            Vehicle vehicle = new Vehicle();
-            var result = _comparer.NotEqualBrand(vehicle);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.BrandComparationWithNotEqual(_vehicle);
+            var expected = string.Format($"brand != Ford{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
         public void WhenBrandIsNotConstant_ThenTheyAreDifferent()
         {
-            Vehicle vehicle = new Vehicle();
-            var result = _comparer.IsNotBrand(vehicle);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.BrandComparationWithIsNot(_vehicle);
+            var expected = string.Format($"brand is not Ford{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
         public void WhenModelNotEqualToConstant_ThenTheyAreDifferent()
         {
-            Car car = new Car();
-            var result = _comparer.NotEqualModel(car);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.ModelComparationWithNotEqual(_car);
+            var expected = string.Format($"model != Focus{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
         public void WhenModelIsNotConstant_ThenTheyAreDifferent()
         {
-            Car car = new Car();
-            var result = _comparer.IsNotModel(car);
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.ModelComparationWithIsNot(_car);
+            var expected = string.Format($"model is not Focus{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
+        }
+
+        [Fact]
+        public void WhenModelIsNotCombinationOfTwoConstant_ThenTheyAreDifferent()
+        {
+            var car = new Car();
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.AnotherModelComparationWithIsNot(car);
+            var expected = string.Format($"model is not Focus{Environment.NewLine}");
+
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
         public void WhenCarNotEqualToVehicle_ThenTheyAreDifferent()
         {
-            Car car = new Car();
-            var result = _comparer.NotEqualClass(car);
+            var car = new Car();
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.CarTypeComparationWithNotEqual(car);
+            var expected = string.Format($"car != Vehicle{Environment.NewLine}");
 
-            Assert.True(result);
+            Assert.Equal(expected, sw.ToString());
         }
 
         [Fact]
         public void WhenCarIsNotVehicle_ThenTheyAreEqual()
         {
-            Car car = new Car();
-            var result = _comparer.IsNotClass(car);
+            var car = new Car();
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+            _comparer.CarTypeComparationWithIsNot(car);
+            var expected = string.Format($"car is Vehicle{Environment.NewLine}");
 
-            Assert.True(!result);
+            Assert.Equal(expected, sw.ToString());
         }
     }
 }

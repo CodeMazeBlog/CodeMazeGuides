@@ -2,142 +2,121 @@
 {
     public class InequalityVsIsNotComparer
     {
-        public const int _constantSerialNumber = 1001;
+        private const int _constantSerialNumber = 1000;
 
-        public bool NotEqualSerialNumber(Vehicle vehicle)
+        public void SerialNumberComparationWithNotEqual(Vehicle vehicle)
         {
-            var result = false;
             if (vehicle.SerialNumber != _constantSerialNumber)
             {
-                result = true;
+                Console.WriteLine("serial number != 1000");
             }
-
-            return result;
         }
 
-        public bool IsNotSerialNumber(Vehicle vehicle)
+        public void SerialNumberComparationWithIsNot(Vehicle vehicle)
         {
-            var result = false;
             if (vehicle.SerialNumber is not _constantSerialNumber)
             {
-                result = true;
+                Console.WriteLine("serial number is not 1000");
             }
-
-            return result;
         }
 
-        public bool NotEqualToNull(Vehicle vehicle)
+        public void VehicleNotEqualToNull(Vehicle vehicle)
         {
-            var result = false;
             if (vehicle != null)
             {
-                result = true;
+                Console.WriteLine("vehicle != null");
             }
-
-            return result;
         }
 
-        public bool IsNotToNull(Vehicle vehicle)
+        public void VehicleIsNotToNull(Vehicle vehicle)
         {
-            var result = false;
             if (vehicle is not null)
             {
-                result = true;
+                Console.WriteLine("vehicle is not null");
             }
-
-            return result;
         }
 
-        public bool NotEqualSerialNumberUsingBoxing(Vehicle vehicle)
+        public void BoxedSerialNumberComparationWithNotEqual(Vehicle vehicle)
         {
-            var result = false;
             object boxedSerialNumber = vehicle.SerialNumber;
 
             if (boxedSerialNumber != (object)_constantSerialNumber)
             {
-                result = true;
+                Console.WriteLine("boxed serial number != 1000");
             }
-
-            return result;
         }
 
-        public bool IsNotSerialNumberWithBoxing(Vehicle vehicle)
+        public void BoxedSerialNumberComparationWithIsNot(Vehicle vehicle)
         {
-            var result = false;
             object boxedSerialNumber = vehicle.SerialNumber;
 
             if (boxedSerialNumber is not _constantSerialNumber)
             {
-                result = true;
+                Console.WriteLine("boxed serial number is not 1000");
             }
-
-            return result;
         }
 
-        public bool NotEqualBrand(Vehicle vehicle)
+        public void BrandComparationWithNotEqual(Vehicle vehicle)
         {
-            var result = false;
             if (vehicle.VehicleBrand != Brand.Ford)
             {
-                result = true;
+                Console.WriteLine("brand != Ford");
             }
-
-            return result;
         }
 
-        public bool IsNotBrand(Vehicle vehicle)
+        public void BrandComparationWithIsNot(Vehicle vehicle)
         {
-            var result = false;
             if (vehicle.VehicleBrand is not Brand.Ford)
             {
-                result = true;
+                Console.WriteLine("brand is not Ford");
             }
-
-            return result;
         }
 
-        public bool NotEqualModel(Car car)
+        public void ModelComparationWithNotEqual(Car car)
         {
-            var result = false;
             if (car.Model != "Focus")
             {
-                result = true;
+                Console.WriteLine("model != Focus");
             }
-
-            return result;
         }
 
-        public bool IsNotModel(Car car)
+        public void ModelComparationWithIsNot(Car car)
         {
-            var result = false;
             if (car.Model is not "Focus")
             {
-                result = true;
+                Console.WriteLine("model is not Focus");
             }
-
-            return result;
         }
 
-        public bool NotEqualClass(Car car)
+        public void CarTypeComparationWithNotEqual(Car car)
         {
-            var result = false;
             if (car.GetType() != typeof(Vehicle))
             {
-                result = true;
+                Console.WriteLine("car != Vehicle");
             }
-
-            return result;
         }
 
-        public bool IsNotClass(Car car)
+        public void CarTypeComparationWithIsNot(Car car)
         {
-            var result = false;
             if (car is not Vehicle)
             {
-                result = true;
+                Console.WriteLine("car is not Vehicle");
             }
+            else
+            {
+                Console.WriteLine("car is Vehicle");
+            }
+        }
 
-            return result;
+        public void AnotherModelComparationWithIsNot(Car car)
+        {
+            const string a = "string b";
+            const string b = "string b";
+
+            if (car.Model is not $"{a} {b}") 
+            { 
+                Console.WriteLine("model is not Focus"); 
+            } 
         }
     }
 }
