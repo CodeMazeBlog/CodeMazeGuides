@@ -28,7 +28,7 @@ namespace Test
         [TestMethod]
         public void WhencDelegateSum_ThenSumTowIntegers()
         {
-            Func<int, int, int> intSumDelegate = _operations.Sum;
+            Func<int, int, int> intSumDelegate = Operations.Sum;
             var sum = intSumDelegate(3, 3);
             Assert.AreEqual(6, sum);
         }

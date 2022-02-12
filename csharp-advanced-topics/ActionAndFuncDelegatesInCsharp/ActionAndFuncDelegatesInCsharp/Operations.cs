@@ -10,13 +10,12 @@ namespace ActionAndFuncDelegatesInCsharp
     {
         public string Name { get; } = "Joe";
 
-
         public void SayHi()
         {
             Console.WriteLine($"Hi, {Name}");
         }
 
-        public void SayHiToFullName(string firtsName, string lastName)
+        public static void SayHiToFullName(string firtsName, string lastName)
         {
             Console.WriteLine($"Hi, {firtsName} {lastName}");
         }
@@ -26,7 +25,7 @@ namespace ActionAndFuncDelegatesInCsharp
             return Name;
         }
 
-        public int Sum(int x, int y)
+        public static int Sum(int x, int y)
         {
             return x + y;
         }

@@ -33,7 +33,7 @@ namespace Test
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
-            Action<string, string> sayHiToFullName = _operations.SayHiToFullName;
+            Action<string, string> sayHiToFullName = Operations.SayHiToFullName;
             sayHiToFullName("Teri", "Dactyl");
             Assert.AreEqual($"Hi, Teri Dactyl\n", stringWriter.ToString());
         }
