@@ -10,7 +10,7 @@ namespace Test
     [TestClass]
     public class ActionDemoUnitTest
     {
-        public Operations _operations;
+        private Operations _operations;
 
         [TestInitialize]
         public void SetUp()
@@ -19,56 +19,43 @@ namespace Test
         }
 
         [TestMethod]
-        public void SayHi_Test()
+        public void WhenDelegateSayHi_ThenWriteHiWithNameValue()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
-
             Action sayHiDelegate = _operations.SayHi;
             sayHiDelegate();
-
-            var result = stringWriter.ToString(); 
-
             Assert.AreEqual($"Hi, {_operations.Name}\n", stringWriter.ToString());
         }
 
         [TestMethod]
-        public void SayHiToFullName_Test()
+        public void WhenDelegateSayHiToFullName_ThenWriteHiWithFullNameValues()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
-
             Action<string, string> sayHiToFullName = _operations.SayHiToFullName;
             sayHiToFullName("Teri", "Dactyl");
-
             Assert.AreEqual($"Hi, Teri Dactyl\n", stringWriter.ToString());
         }
 
         [TestMethod]
-        public void SayHelloWorld_Test()
+        public void WhenDelegateAnonymouslySayHelloWorld_ThenWriteHelloWorld()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
-
             Action sayHelloWorld = delegate () { Console.WriteLine("Hello, World!"); };
             sayHelloWorld();
-
             Assert.AreEqual("Hello, World!\n", stringWriter.ToString());
         }
 
         [TestMethod]
-        public void SayHiToName_Test()
+        public void WhenDeleGateSayHiToName_ThenWriteHiToGivenName()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
-
             Action<string> sayHiToName = (string name) => { Console.WriteLine($"Hi, {name}"); };
             sayHiToName("Olive");
-
-
             Assert.AreEqual("Hi, Olive\n", stringWriter.ToString());
         }
-
-
     }
 }
