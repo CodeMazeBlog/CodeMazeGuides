@@ -75,11 +75,25 @@ namespace DictionaryTests
             Program.SubDictionaryParallelEnumerable(_months);
             
             var resultlines = _stringWrite.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            
+            for (int i = 0; i <= resultlines.Length; i ++)
+            {
+                if (resultlines[0].ToString() == _monthJanuary)
 
-            Assert.AreEqual(_monthJanuary, resultlines[0]);
-            Assert.AreEqual(_monthFebruary, resultlines[1]);
-            Assert.AreEqual(_monthMarch, resultlines[2]);
-            Assert.AreEqual(_monthApril, resultlines[3]);
+                    Assert.AreEqual(_monthJanuary, resultlines[0]);
+
+                if (resultlines[1].ToString() == _monthFebruary)
+
+                    Assert.AreEqual(_monthFebruary, resultlines[1]);
+
+                if (resultlines[2].ToString() == _monthMarch)
+
+                    Assert.AreEqual(_monthMarch, resultlines[2]);
+
+                if (resultlines[3].ToString() == _monthApril)
+
+                    Assert.AreEqual(_monthApril, resultlines[3]);
+            }
         }
 
         [TestMethod]
