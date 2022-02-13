@@ -14,10 +14,10 @@ namespace ActionAndFuncDemo.BusinessProcesses
             {
                 Console.WriteLine($"Item Name: {purchasedItem.ItemName}");
                 Console.WriteLine($"Price: ${purchasedItem.PurchasedPrice}");
-                Console.WriteLine($"Quantity: {purchasedItem.PurchasedQuantity} {purchasedItem.PurchasedMetric}(s)");
+                Console.WriteLine($"Quantity: {purchasedItem.PurchasedQuantity}");
                 Console.WriteLine("--");
             }
-            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine();
             Console.WriteLine($"G.Total:{cart.GrandTotal}");
         }
     }

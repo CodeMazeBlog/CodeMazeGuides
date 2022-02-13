@@ -5,12 +5,11 @@
     /// </summary>
     public class CartItem
     {
-        public CartItem(int itemId, string itemName, decimal purchasedPrice, decimal purchasedQuantity, Metrics purchasedMetric)
+        public CartItem(int itemId, string itemName, decimal purchasedPrice, decimal purchasedQuantity)
         {
             ItemId = itemId;
             PurchasedPrice = purchasedPrice;
             PurchasedQuantity = purchasedQuantity;
-            PurchasedMetric = purchasedMetric;
             ItemName = itemName;
         }
 
