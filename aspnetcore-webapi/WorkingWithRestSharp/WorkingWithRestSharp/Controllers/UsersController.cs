@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+
 using RestSharp;
+
 using System.Text.Json;
+
 using WorkingWithRestSharp.DataTransferObject;
 
 namespace WorkingWithRestSharp.Controllers
@@ -10,12 +13,10 @@ namespace WorkingWithRestSharp.Controllers
     public class UsersController : ControllerBase
     {
         private readonly RestClient _client;
-        private readonly JsonSerializerOptions _jsonSerializerOptions;
 
         public UsersController()
         {
             _client = new RestClient("https://reqres.in/");
-            _jsonSerializerOptions = new JsonSerializerOptions(new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
 
@@ -23,32 +24,28 @@ namespace WorkingWithRestSharp.Controllers
         public async Task<IActionResult> GetUserList()
         {
             var request = new RestRequest("api/users");
-            var response = await _client.ExecuteGetAsync(request);
+            var response = await _client.ExecuteGetAsync<UserList>(request);
 
             if (!response.IsSuccessful)
             {
                 //Logic for handling unsuccessful response
             }
 
-            var userList = JsonSerializer.Deserialize<UserList>(response.Content, _jsonSerializerOptions);
-
-            return Ok(userList);
+            return Ok(response.Data);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(string id)
         {
             var request = new RestRequest($"api/users/{id}");
-            var response = await _client.ExecuteGetAsync(request);
+            var response = await _client.ExecuteGetAsync<UserDetails>(request);
 
             if (!response.IsSuccessful)
             {
                 //Logic for handling unsuccessful response
             }
 
-            var userDetails = JsonSerializer.Deserialize<UserDetails>(response.Content, _jsonSerializerOptions);
-
-            return Ok(userDetails);
+            return Ok(response.Data);
         }
 
         [HttpPost]
@@ -56,16 +53,14 @@ namespace WorkingWithRestSharp.Controllers
         {
             var request = new RestRequest("api/users")
                         .AddJsonBody(userForCreation);
-            var response = await _client.ExecutePostAsync(request);
+            var response = await _client.ExecutePostAsync<UserCreationResponse>(request);
 
             if (!response.IsSuccessful)
             {
                 //Logic for handling unsuccessful response
             }
 
-            var userCreationResponse = JsonSerializer.Deserialize<UserCreationResponse>(response.Content, _jsonSerializerOptions);
-
-            return StatusCode(201, userCreationResponse);
+            return StatusCode(201, response.Data);
         }
 
         [HttpPut("{id}")]
@@ -80,9 +75,7 @@ namespace WorkingWithRestSharp.Controllers
                 //Logic for handling unsuccessful response
             }
 
-            var userUpdateResponse = JsonSerializer.Deserialize<UserUpdateResponse>(response.Content, _jsonSerializerOptions);
-
-            return Ok(userUpdateResponse);
+            return Ok(response.Data);
         }
 
         [HttpDelete("{id}")]
