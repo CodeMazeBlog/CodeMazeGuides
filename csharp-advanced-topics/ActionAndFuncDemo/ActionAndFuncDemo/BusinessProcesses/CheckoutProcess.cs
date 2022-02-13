@@ -34,7 +34,7 @@ namespace ActionAndFuncDemo.BusinessProcesses
             _cart = cart;
         }
 
-        public void DisplayCart(Action<Cart> displayAction)
+        public void GetCartValues(Action<Cart> displayAction)
         {
             displayAction(_cart);
         }

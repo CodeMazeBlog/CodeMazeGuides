@@ -16,7 +16,7 @@ public class UnitTests
         checkoutProcess.CreateCart(cartItems, DiscountProcesses.CalculateDiscount);
         var discount = GetDiscountOnTotalBill(GetTotalBill());
         var priceAfterDiscount = GetTotalBill() - discount;
-        checkoutProcess.DisplayCart(cart =>
+        checkoutProcess.GetCartValues(cart =>
         {
             Assert.AreEqual(cart.GrandTotal, priceAfterDiscount);
         });

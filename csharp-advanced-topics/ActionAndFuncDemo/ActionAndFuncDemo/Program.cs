@@ -51,4 +51,4 @@ checkOutProcess.CreateCart(cartItems, DiscountProcesses.CalculateDiscount); //ge
 
 
 //Displaying the cart
-checkOutProcess.DisplayCart(DisplayProcesses.DisplayCart);
+checkOutProcess.GetCartValues(DisplayProcesses.DisplayCart);
