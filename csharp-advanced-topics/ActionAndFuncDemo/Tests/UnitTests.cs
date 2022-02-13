@@ -9,43 +9,17 @@ public class UnitTests
 {
     private static readonly List<Item> items = new();
     [Test]
-    public void WhenCreateCart_ThenCalculateProperTotalBill()
-    {
-        List<CartItem> cartItems = GetCartItems();
-        var cart = CheckoutProcess.CreateCart(cartItems, "Jhon Day");
-
-        Assert.AreEqual(cart.GrandTotal, GetTotalBill());
-    }
-    [Test]
     public void WhenCreateCart_ThenCalculateProperDiscount()
     {
         var cartItems = GetCartItems();
-        var cart = CheckoutProcess.CreateCart(cartItems, "Jhon Day", DiscountProcesses.CalculateDiscount);
+        var checkoutProcess = new CheckoutProcess();
+        checkoutProcess.CreateCart(cartItems, DiscountProcesses.CalculateDiscount);
         var discount = GetDiscountOnTotalBill(GetTotalBill());
         var priceAfterDiscount = GetTotalBill() - discount;
-
-        Assert.AreEqual(cart.GrandTotal, priceAfterDiscount);
-    }
-    [Test]
-    public void WhenCreateCart_ThenProperlyDeductStock()
-    {
-        var cartItems = GetCartItems();
-        var cart = CheckoutProcess.CreateCart(cartItems, "Jhon Day", DiscountProcesses.CalculateDiscount, cartItem =>
+        checkoutProcess.DisplayCart(cart =>
         {
-            GetItems().FirstOrDefault(i => i.Id == cartItem.ItemId).Quantity -= cartItem.PurchasedQuantity;
+            Assert.AreEqual(cart.GrandTotal, priceAfterDiscount);
         });
-
-        var item = GetItems().FirstOrDefault(x => x.Id == 1);
-
-        Assert.AreEqual(17, item.Quantity);
-
-        item = GetItems().FirstOrDefault(x => x.Id == 2);
-
-        Assert.AreEqual(194, item.Quantity);
-
-        item = GetItems().FirstOrDefault(x => x.Id == 3);
-
-        Assert.AreEqual(148, item.Quantity);
     }
     public static List<Item> GetItems()
     {
@@ -84,17 +58,17 @@ public class UnitTests
         var item = GetItems().FirstOrDefault(x => x.Id == 1);
         if (item is not null)
         {
-            cartItems.Add(new CartItem(item.Id, item.Price, 3)); //3x4.3=12.9
+            cartItems.Add(new CartItem(item.Id, item.Name, item.Price, 3)); //3x4.3=12.9
         }
         item = items.FirstOrDefault(x => x.Id == 2);
         if (item is not null)
         {
-            cartItems.Add(new CartItem(item.Id, item.Price, 6)); //6x0.53=3.18
+            cartItems.Add(new CartItem(item.Id, item.Name, item.Price, 6)); //6x0.53=3.18
         }
         item = items.FirstOrDefault(x => x.Id == 3);
         if (item is not null)
         {
-            cartItems.Add(new CartItem(item.Id, item.Price, 2)); //2x2.28=4.56
+            cartItems.Add(new CartItem(item.Id, item.Name, item.Price, 2)); //2x2.28=4.56
         }
         return cartItems;
     }
