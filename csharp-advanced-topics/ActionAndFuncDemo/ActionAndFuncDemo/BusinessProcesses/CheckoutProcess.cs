@@ -7,36 +7,19 @@ namespace ActionAndFuncDemo.BusinessProcesses
     /// </summary>
     public class CheckoutProcess
     {
-        /// <summary>
-        /// Simple Checkout method to calculate items total
-        /// </summary>
-        /// <param name="items">List of items (items present in the database)</param>
-        /// <param name="purchasedItems">List of items purchased by the customer</param>
-        /// <param name="customerName">Name of the customer purchasing the items</param>
-        public static Cart CreateCart(List<CartItem> purchasedItems, string customerName)
-        {
-            Cart cart = new(customerName);
-            decimal gTotal = 0.0m;
-            foreach (var purchasedItem in purchasedItems)
-            {
-                var total = purchasedItem.PurchasedPrice * purchasedItem.PurchasedQuantity;
-                gTotal += total;
-            }
-            cart.CartItems = purchasedItems;
-            cart.GrandTotal = decimal.Round(gTotal, 2);
-            return cart;
-        }
+        private Cart? _cart;
+
         /// <summary>
         /// Checkout method with calculating the discount
         /// </summary>
         /// <param name="purchasedItems">List of items purchased by the customer</param>
-        /// <param name="customerName">Name of the customer purchasing the items</param>
         /// <param name="calculateDiscount">Delegate type to provide a function to calculate discount</param>
+        /// 
         /// <returns></returns>
-        public static Cart CreateCart(List<CartItem> purchasedItems, string customerName, Func<Cart, decimal> calculateDiscount)
+        public void CreateCart(List<CartItem> purchasedItems, Func<Cart, decimal> calculateDiscount)
         {
-            Cart cart = new(customerName);
-            decimal gTotal = 0.0m;
+            var cart = new Cart();
+            var gTotal = 0.0m;
             foreach (var purchasedItem in purchasedItems)
             {
                 var total = purchasedItem.PurchasedPrice * purchasedItem.PurchasedQuantity;
@@ -48,32 +31,12 @@ namespace ActionAndFuncDemo.BusinessProcesses
             var discount = calculateDiscount(cart);
             //applying discount into the grandtotal
             cart.GrandTotal -= discount;
-            return cart;
+            _cart = cart;
         }
-        /// <summary>
-        /// Checkout method with calculating the discount and deduct quantity from the stock
-        /// </summary>
-        /// <param name="purchasedItems">List of items purchased by the customer</param>
-        /// <param name="customerName">Name of the customer purchasing the items</param>
-        /// <param name="calculateDiscount">Delegate type to provide a function to calculate discount</param>
-        /// <param name="deductQuantity">Delegate type to deduct quantity from the stock</param>
-        /// <returns></returns>
-        public static Cart CreateCart(List<CartItem> purchasedItems, string customerName, Func<Cart, decimal> calculateDiscount, Action<CartItem> deductQuantity)
+
+        public void DisplayCart(Action<Cart> displayAction)
         {
-            Cart cart = new(customerName);
-            decimal gTotal = 0.0m;
-            foreach (var purchasedItem in purchasedItems)
-            {
-                var total = purchasedItem.PurchasedPrice * purchasedItem.PurchasedQuantity;
-                gTotal += total;
-                deductQuantity(purchasedItem);
-            }
-            cart.CartItems = purchasedItems;
-            cart.GrandTotal = decimal.Round(gTotal, 2);
-            var discount = calculateDiscount(cart);
-            //applying discount into the grandtotal
-            cart.GrandTotal -= discount;
-            return cart;
+            displayAction(_cart);
         }
     }
 }

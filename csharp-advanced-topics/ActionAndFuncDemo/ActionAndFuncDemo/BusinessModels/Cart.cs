@@ -5,15 +5,6 @@
     /// </summary>
     public class Cart
     {
-
-        public Cart(string customerName)
-        {
-            CustomerName = customerName;
-        }
-        /// <summary>
-        /// Name of the customer purchasing items
-        /// </summary>
-        public string CustomerName { get; set; }
         /// <summary>
         /// Grand Total of the bill
         /// </summary>
