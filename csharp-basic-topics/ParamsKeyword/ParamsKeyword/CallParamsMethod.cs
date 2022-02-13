@@ -27,7 +27,7 @@ namespace ParamsKeyword
                 "Added: Headphones",
             };
 
-            Assert.AreEqual(expectedResult, writer.ToString().Split("\r\n", StringSplitOptions.RemoveEmptyEntries));
+            Assert.AreEqual(expectedResult, writer.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries));
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace ParamsKeyword
                 "Added: Cheese"
             };
 
-            Assert.AreEqual(expectedResult, writer.ToString().Split("\r\n", StringSplitOptions.RemoveEmptyEntries));
+            Assert.AreEqual(expectedResult, writer.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries));
         }
 
         [Test]
