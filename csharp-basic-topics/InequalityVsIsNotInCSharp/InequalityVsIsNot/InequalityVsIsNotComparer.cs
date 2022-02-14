@@ -4,7 +4,7 @@
     {
         private const int _constantSerialNumber = 1000;
 
-        public void SerialNumberComparationWithNotEqual(Vehicle vehicle)
+        public void SerialNumberComparerUsingNotEqual(Vehicle vehicle)
         {
             if (vehicle.SerialNumber != _constantSerialNumber)
             {
@@ -12,7 +12,7 @@
             }
         }
 
-        public void SerialNumberComparationWithIsNot(Vehicle vehicle)
+        public void SerialNumberComparerUsingIsNot(Vehicle vehicle)
         {
             if (vehicle.SerialNumber is not _constantSerialNumber)
             {
@@ -36,7 +36,7 @@
             }
         }
 
-        public void BoxedSerialNumberComparationWithNotEqual(Vehicle vehicle)
+        public void BoxedSerialNumberComparerUsingNotEqual(Vehicle vehicle)
         {
             object boxedSerialNumber = vehicle.SerialNumber;
 
@@ -46,7 +46,7 @@
             }
         }
 
-        public void BoxedSerialNumberComparationWithIsNot(Vehicle vehicle)
+        public void BoxedSerialNumberComparerUsingIsNot(Vehicle vehicle)
         {
             object boxedSerialNumber = vehicle.SerialNumber;
 
@@ -56,7 +56,7 @@
             }
         }
 
-        public void BrandComparationWithNotEqual(Vehicle vehicle)
+        public void BrandComparerUsingNotEqual(Vehicle vehicle)
         {
             if (vehicle.VehicleBrand != Brand.Ford)
             {
@@ -64,7 +64,7 @@
             }
         }
 
-        public void BrandComparationWithIsNot(Vehicle vehicle)
+        public void BrandComparerUsingIsNot(Vehicle vehicle)
         {
             if (vehicle.VehicleBrand is not Brand.Ford)
             {
@@ -72,7 +72,7 @@
             }
         }
 
-        public void ModelComparationWithNotEqual(Car car)
+        public void ModelComparerUsingNotEqual(Car car)
         {
             if (car.Model != "Focus")
             {
@@ -80,7 +80,7 @@
             }
         }
 
-        public void ModelComparationWithIsNot(Car car)
+        public void ModelComparerUsingIsNot(Car car)
         {
             if (car.Model is not "Focus")
             {
@@ -88,7 +88,7 @@
             }
         }
 
-        public void CarTypeComparationWithNotEqual(Car car)
+        public void CarTypeComparerUsingNotEqual(Car car)
         {
             if (car.GetType() != typeof(Vehicle))
             {
@@ -96,7 +96,7 @@
             }
         }
 
-        public void CarTypeComparationWithIsNot(Car car)
+        public void CarTypeComparerUsingIsNot(Car car)
         {
             if (car is not Vehicle)
             {
@@ -108,7 +108,7 @@
             }
         }
 
-        public void AnotherModelComparationWithIsNot(Car car)
+        public void AnotherModelComparerUsingIsNot(Car car)
         {
             const string a = "string b";
             const string b = "string b";

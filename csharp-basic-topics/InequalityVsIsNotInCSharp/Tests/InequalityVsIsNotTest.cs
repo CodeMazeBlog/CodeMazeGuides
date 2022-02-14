@@ -10,6 +10,7 @@ namespace Tests
         private readonly InequalityVsIsNotComparer _comparer;
         private readonly Vehicle _vehicle;
         private readonly Car _car;
+
         public InequalityVsIsNotTest()
         {
             _comparer = new InequalityVsIsNotComparer();
@@ -50,7 +51,7 @@ namespace Tests
         {
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.BoxedSerialNumberComparationWithNotEqual(_vehicle);
+            _comparer.BoxedSerialNumberComparerUsingNotEqual(_vehicle);
             var expected = string.Format($"boxed serial number != 1000{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());
@@ -61,7 +62,7 @@ namespace Tests
         {
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.BoxedSerialNumberComparationWithIsNot(_vehicle);
+            _comparer.BoxedSerialNumberComparerUsingIsNot(_vehicle);
             var expected = string.Format($"boxed serial number is not 1000{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());
@@ -72,7 +73,7 @@ namespace Tests
         {
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.SerialNumberComparationWithNotEqual(_vehicle);
+            _comparer.SerialNumberComparerUsingNotEqual(_vehicle);
             var expected = string.Format($"serial number != 1000{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());
@@ -83,7 +84,7 @@ namespace Tests
         {
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.SerialNumberComparationWithIsNot(_vehicle);
+            _comparer.SerialNumberComparerUsingIsNot(_vehicle);
             var expected = string.Format($"serial number is not 1000{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());
@@ -94,7 +95,7 @@ namespace Tests
         {
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.BrandComparationWithNotEqual(_vehicle);
+            _comparer.BrandComparerUsingNotEqual(_vehicle);
             var expected = string.Format($"brand != Ford{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());
@@ -105,7 +106,7 @@ namespace Tests
         {
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.BrandComparationWithIsNot(_vehicle);
+            _comparer.BrandComparerUsingIsNot(_vehicle);
             var expected = string.Format($"brand is not Ford{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());
@@ -116,7 +117,7 @@ namespace Tests
         {
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.ModelComparationWithNotEqual(_car);
+            _comparer.ModelComparerUsingNotEqual(_car);
             var expected = string.Format($"model != Focus{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());
@@ -127,7 +128,7 @@ namespace Tests
         {
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.ModelComparationWithIsNot(_car);
+            _comparer.ModelComparerUsingIsNot(_car);
             var expected = string.Format($"model is not Focus{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());
@@ -139,7 +140,7 @@ namespace Tests
             var car = new Car();
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.AnotherModelComparationWithIsNot(car);
+            _comparer.AnotherModelComparerUsingIsNot(car);
             var expected = string.Format($"model is not Focus{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());
@@ -151,7 +152,7 @@ namespace Tests
             var car = new Car();
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.CarTypeComparationWithNotEqual(car);
+            _comparer.CarTypeComparerUsingNotEqual(car);
             var expected = string.Format($"car != Vehicle{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());
@@ -163,7 +164,7 @@ namespace Tests
             var car = new Car();
             using var sw = new StringWriter();
             Console.SetOut(sw);
-            _comparer.CarTypeComparationWithIsNot(car);
+            _comparer.CarTypeComparerUsingIsNot(car);
             var expected = string.Format($"car is Vehicle{Environment.NewLine}");
 
             Assert.Equal(expected, sw.ToString());

@@ -10,26 +10,26 @@ var car = new Car();
 car.Model = "Fiesta";
 car.VehicleBrand = Brand.Ford;
 
-comparer.SerialNumberComparationWithNotEqual(vehicle);
+comparer.SerialNumberComparerUsingNotEqual(vehicle);
 
-comparer.SerialNumberComparationWithIsNot(vehicle);
+comparer.SerialNumberComparerUsingIsNot(vehicle);
 
 comparer.VehicleNotEqualToNull(vehicle);
 
 comparer.VehicleIsNotToNull(vehicle);
 
-comparer.BoxedSerialNumberComparationWithNotEqual(vehicle);
+comparer.BoxedSerialNumberComparerUsingNotEqual(vehicle);
 
-comparer.BoxedSerialNumberComparationWithIsNot(vehicle);
+comparer.BoxedSerialNumberComparerUsingIsNot(vehicle);
 
-comparer.BrandComparationWithNotEqual(vehicle);
+comparer.BrandComparerUsingNotEqual(vehicle);
 
-comparer.BrandComparationWithIsNot(vehicle);
+comparer.BrandComparerUsingIsNot(vehicle);
 
-comparer.ModelComparationWithNotEqual(car);
+comparer.ModelComparerUsingNotEqual(car);
 
-comparer.ModelComparationWithIsNot(car);
+comparer.ModelComparerUsingIsNot(car);
 
-comparer.CarTypeComparationWithNotEqual(car);
+comparer.CarTypeComparerUsingNotEqual(car);
 
-comparer.CarTypeComparationWithIsNot(car);
+comparer.CarTypeComparerUsingIsNot(car);
