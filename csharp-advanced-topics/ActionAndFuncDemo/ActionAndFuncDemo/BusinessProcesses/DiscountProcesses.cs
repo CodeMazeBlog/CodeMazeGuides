@@ -6,7 +6,7 @@ namespace ActionAndFuncDemo.BusinessProcesses
     {
         public static decimal CalculateDiscount(Cart cart)
         {
-            decimal discount = 0.0m;
+            var discount = 0.0m;
             if (cart.GrandTotal >= 25)
             {
                 discount = cart.GrandTotal * 0.3m;
