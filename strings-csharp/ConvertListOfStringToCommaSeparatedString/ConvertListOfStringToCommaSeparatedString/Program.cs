@@ -1,7 +1,9 @@
 ﻿using ConvertListOfStringToCommaSeparatedString;
 
-SimpleList list = new SimpleList();
-string commaSeparatedString = list.ConvertListOfStringsToCommaSeparatedString(); // Output Hello,From,Code Maze
+var list = new SimpleList();
+var commaSeparatedString = list.ConvertListOfStringsToCommaSeparatedString(); 
+Console.WriteLine(commaSeparatedString); // Output Hello,From,Code Maze   
 
-ComplexList complexlist = new ComplexList();
-string employeeNames = complexlist.ConvertListOfStringsToCommaSeparatedString(); // Output Sarah,Eric
+var complexlist = new ComplexList();
+var employeeNames = complexlist.ConvertListOfStringsToCommaSeparatedString(); 
+Console.WriteLine(employeeNames); // Output Sarah,Eric

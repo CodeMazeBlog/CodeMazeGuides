@@ -4,8 +4,8 @@
     {
         public string ConvertListOfStringsToCommaSeparatedString()
         {
-            IList<string> sampleList = new List<string> { "Hello", "From", "Code Maze" };
-            string commaSeparatedString = string.Join(",", sampleList);
+            var sampleList = new List<string> { "Hello", "From", "Code Maze" };
+            var commaSeparatedString = string.Join(",", sampleList);
             return commaSeparatedString; 
         }
     }

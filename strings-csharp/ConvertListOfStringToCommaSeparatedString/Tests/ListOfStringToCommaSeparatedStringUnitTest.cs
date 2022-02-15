@@ -9,10 +9,10 @@ namespace Tests
         public void WhenJoinIsCalledWithCommaOnSimpleList_ThenItReturnsCommaSeparatedString()
         {
             // Arrange
-            SimpleList list = new SimpleList();
+            var list = new SimpleList();
 
             // Act
-            string result = list.ConvertListOfStringsToCommaSeparatedString();
+            var result = list.ConvertListOfStringsToCommaSeparatedString();
 
             // Assert
             Assert.Equal("Hello,From,Code Maze", result);
@@ -22,10 +22,10 @@ namespace Tests
         public void WhenJoinIsCalledWithCommaOnComplexList_ThenItReturnsCommaSeparatedString()
         {
             // Arrange
-            ComplexList complexList = new ComplexList();
+            var complexList = new ComplexList();
 
             // Act
-            string result = complexList.ConvertListOfStringsToCommaSeparatedString();
+            var result = complexList.ConvertListOfStringsToCommaSeparatedString();
 
             // Assert
             Assert.Equal("Sarah,Eric", result);

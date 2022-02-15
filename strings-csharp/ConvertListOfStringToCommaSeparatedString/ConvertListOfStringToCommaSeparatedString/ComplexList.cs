@@ -16,7 +16,7 @@ namespace ConvertListOfStringToCommaSeparatedString
                Name = "Eric"
             }
          };
-            string employeeNames = string.Join(",", employeeList.Select(employee => employee.Name));
+            var employeeNames = string.Join(",", employeeList.Select(employee => employee.Name));
             return employeeNames; 
         }
     }
