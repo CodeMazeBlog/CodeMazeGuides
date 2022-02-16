@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Producer", "Producer\Produc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Subscriber", "Subscriber\Subscriber.csproj", "{163D9AC9-9E88-45EC-B00E-2160886D13A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{5E84F17F-1C2D-4EF0-B965-24B66D335377}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{5E84F17F-1C2D-4EF0-B965-24B66D335377}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
