@@ -59,7 +59,7 @@ namespace Tests
         public void WhenCountOfStudents_ThenNumberOfStudents()
         {
             int count = Program.CountOfStudents();
-            Assert.Equal(2, count);
+            Assert.Equal(3, count);
         }
 
         [Fact]
