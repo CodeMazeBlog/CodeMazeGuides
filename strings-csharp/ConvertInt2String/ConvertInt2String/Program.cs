@@ -14,8 +14,8 @@ Console.WriteLine(string.Empty + luckyNumber);
 Console.WriteLine(luckyNumber + luckyNumber + string.Empty + luckyNumber + luckyNumber);
 Console.WriteLine(new StringBuilder().Append(luckyNumber).ToString());
 
-const int repsV1 = 20000;
-const int repsV2 = 1000000000;
+var repsV1 = 20000;
+var repsV2 = 1000000000;
 const int formatOffsetLeft = 23;
 const int formatOffsetRight = 10;
 StringBuilder benchmarkResultsBuilder = new StringBuilder($"\r\nBenchmarks with {repsV1:N0} repetitions: \r\n")
