@@ -5,36 +5,36 @@ namespace BenchmarkRunner
 {
     public class ArrayPopulatorBenchmark
     {
-        public static readonly ArrayPopulator _arrayPopulator = new();
-        private readonly Article[] benchMarkArray = new Article[1000 * 100];
-        private readonly Article benchmarkArticle = new()
-            { 
-                Title = "How to Copy Array Elements to New Array in C#", 
-                LastUpdate = new DateTime(2022, 01, 31) 
-            };
+        private static readonly ArrayPopulator _arrayPopulator = new();
+        private readonly Article[] _benchMarkArray = new Article[1000 * 100];
+        private readonly Article _benchmarkArticle = new()
+        { 
+            Title = "How to Copy Array Elements to New Array in C#", 
+            LastUpdate = new DateTime(2022, 01, 31) 
+        };
 
         [Benchmark]
         public void FillArray()
         {
-            _arrayPopulator.FillArray(benchMarkArray, benchmarkArticle);
+            _arrayPopulator.FillArray(_benchMarkArray, _benchmarkArticle);
         }
 
         [Benchmark]
         public void EnumerableRepeat()
         {
-            _arrayPopulator.EnumerableRepeat(benchmarkArticle, benchMarkArray.Length);
+            _arrayPopulator.EnumerableRepeat(_benchmarkArticle, _benchMarkArray.Length);
         }
 
         [Benchmark]
         public void ForStatement()
         {
-            _arrayPopulator.ForStatement(benchMarkArray, benchmarkArticle);
+            _arrayPopulator.ForStatement(_benchMarkArray, _benchmarkArticle);
         }
 
         [Benchmark]
         public void ForStatementShallowCopy()
         {
-            _arrayPopulator.ForStatementShallowCopy(benchMarkArray, benchmarkArticle);
+            _arrayPopulator.ForStatementShallowCopy(_benchMarkArray, _benchmarkArticle);
         }
     }
 }

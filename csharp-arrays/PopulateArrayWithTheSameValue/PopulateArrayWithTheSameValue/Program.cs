@@ -4,6 +4,7 @@
     {
         private static readonly ArrayPopulator _arrayPopulator = new();
         public static int OutputResult = 0;
+
         public static void Main(string[] args)
         {
             Console.WriteLine("-----  How to Populate or Instantiate Array with a Same Value");
