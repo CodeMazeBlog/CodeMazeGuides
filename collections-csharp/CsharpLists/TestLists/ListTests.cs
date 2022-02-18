@@ -69,11 +69,18 @@ namespace TestLists
             var otherCountries = new List<string>() { "Russia", "Bulgaria", "South Africa", "Mexico", "USA" };
 
             otherCountries.Remove("Russia");
+
+            Assert.AreEqual(4, otherCountries.Count);
+            CollectionAssert.DoesNotContain(otherCountries, "Russia");
+
             otherCountries.RemoveAt(0);
+
+            Assert.AreEqual(3, otherCountries.Count);
+            CollectionAssert.DoesNotContain(otherCountries, "Bulgaria");
+
             otherCountries.RemoveRange(0, 2);
 
-            CollectionAssert.DoesNotContain(otherCountries, "Russia");
-            CollectionAssert.DoesNotContain(otherCountries, "Bulgaria");
+            Assert.AreEqual(1, otherCountries.Count);
             CollectionAssert.DoesNotContain(otherCountries, "South Africa");
             CollectionAssert.DoesNotContain(otherCountries, "Mexico");
 
