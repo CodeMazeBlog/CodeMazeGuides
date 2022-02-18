@@ -110,10 +110,10 @@
 
         public void AnotherModelComparerUsingIsNot(Car car)
         {
-            const string a = "string b";
-            const string b = "string b";
+            const string a = "Fo";
+            const string b = "cus";
 
-            if (car.Model is not $"{a} {b}") 
+            if (car.Model is not $"{a}{b}") 
             { 
                 Console.WriteLine("model is not Focus"); 
             } 

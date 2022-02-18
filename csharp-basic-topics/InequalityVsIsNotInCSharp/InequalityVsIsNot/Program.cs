@@ -2,13 +2,17 @@
 
 var comparer = new InequalityVsIsNotComparer();
 
-var vehicle = new Vehicle();
-vehicle.SerialNumber = 1001;
-vehicle.VehicleBrand = Brand.Toyota;
+var vehicle = new Vehicle()
+{
+    SerialNumber = 1001,
+    VehicleBrand = Brand.Toyota
+};
 
-var car = new Car();
-car.Model = "Fiesta";
-car.VehicleBrand = Brand.Ford;
+var car = new Car()
+{
+    Model = "Fiesta",
+    VehicleBrand = Brand.Ford
+};
 
 comparer.SerialNumberComparerUsingNotEqual(vehicle);
 
@@ -29,6 +33,8 @@ comparer.BrandComparerUsingIsNot(vehicle);
 comparer.ModelComparerUsingNotEqual(car);
 
 comparer.ModelComparerUsingIsNot(car);
+
+comparer.AnotherModelComparerUsingIsNot(car);
 
 comparer.CarTypeComparerUsingNotEqual(car);
 
