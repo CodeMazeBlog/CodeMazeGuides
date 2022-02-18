@@ -12,9 +12,10 @@ namespace TestLists
         public void GivenEmptyList_AddItems()
         {
             var operations = new ListOperations();
-            var countries = operations.AddElements();
             var otherCountries = new List<string>() { "Russia", "Bulgaria", "South Africa" };
 
+            var countries = operations.AddElements();
+           
             Assert.AreEqual(countries.Count, otherCountries.Count);
         }
 
@@ -22,8 +23,9 @@ namespace TestLists
         public void GivenArray_AddItemsToList()
         {
             var operations = new ListOperations();
-            var countries = operations.AddElements();
             var otherCountries = new string[3] { "Russia", "Bulgaria", "South Africa" };
+
+            var countries = operations.AddElements();
             countries.AddRange(otherCountries);
 
             Assert.AreEqual(6, countries.Count);
@@ -33,6 +35,7 @@ namespace TestLists
         public void GivenList_ReadListItem()
         {
             var otherCountries = new List<string>() { "Russia", "Bulgaria", "South Africa" };
+
             var result = from s in otherCountries
                          where s.Equals("South Africa")
                          select s;
@@ -51,8 +54,9 @@ namespace TestLists
         public void GivenNonEmptyList_InsertListItem()
         {
             var operations = new ListOperations();
-            var countries = operations.AddElements();
             var otherCountries = new List<string>() { "Russia", "Bulgaria", "South Africa" };
+
+            var countries = operations.AddElements();
             countries.Insert(1, "Canada");
             countries.InsertRange(countries.Count - 1, otherCountries);
 
@@ -64,6 +68,7 @@ namespace TestLists
         public void GivenNonEmptyList_RemoveListItem()
         {
             var otherCountries = new List<string>() { "Russia", "Bulgaria", "South Africa", "Mexico", "USA" };
+
             otherCountries.Remove("Russia");
             otherCountries.RemoveAt(0);
             otherCountries.RemoveRange(0, 2);
