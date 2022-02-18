@@ -47,7 +47,6 @@ namespace TaskRunVsTaskFactoryStartNewTests
                 $"Task 3 executed{NewLine}Task 1 executed{NewLine}Task 2 executed{NewLine}",
                 $"Task 3 executed{NewLine}Task 2 executed{NewLine}Task 1 executed{NewLine}"
             }, e => e == actualOutput);
-            Assert.Equal($"Task 2 executed{NewLine}Task 3 executed{NewLine}Task 1 executed{NewLine}", actualOutput);
         }
 
         [Fact]
@@ -74,7 +73,6 @@ namespace TaskRunVsTaskFactoryStartNewTests
                 $"Task 3 executed{NewLine}Task 1 executed{NewLine}Task 2 executed{NewLine}",
                 $"Task 3 executed{NewLine}Task 2 executed{NewLine}Task 1 executed{NewLine}"
             }, e => e == actualOutput);
-            Assert.Equal($"Task 2 executed{NewLine}Task 3 executed{NewLine}Task 1 executed{NewLine}", actualOutput);
         }
 
         [Fact]
