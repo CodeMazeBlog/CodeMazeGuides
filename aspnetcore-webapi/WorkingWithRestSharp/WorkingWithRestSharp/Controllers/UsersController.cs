@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 
 using RestSharp;
 
-using System.Text.Json;
-
 using WorkingWithRestSharp.DataTransferObject;
 
 namespace WorkingWithRestSharp.Controllers
@@ -66,9 +64,9 @@ namespace WorkingWithRestSharp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser([FromBody] UserForUpdate userForUpdate, string id)
         {
-            var request = new RestRequest($"api/users/{id}", Method.Put)
+            var request = new RestRequest($"api/users/{id}")
                 .AddJsonBody(userForUpdate);
-            var response = await _client.ExecuteAsync<UserUpdateResponse>(request);
+            var response = await _client.ExecutePutAsync<UserUpdateResponse>(request);
 
             if (!response.IsSuccessful)
             {
