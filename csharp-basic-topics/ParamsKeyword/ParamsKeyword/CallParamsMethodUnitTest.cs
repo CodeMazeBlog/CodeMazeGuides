@@ -6,10 +6,10 @@ using System.IO;
 namespace ParamsKeyword
 {
     [TestFixture]
-    public class CallParamsMethod
+    public class CallParamsMethodUnitTest
     {
         [Test]
-        public void CommaDelimitedListOfArgs_ReturnsValidResult()
+        public void WhenCommaDelimitedListOfArgs_ThenReturnsValidResult()
         {
             //capture the console output
             using var writer = new StringWriter();
@@ -31,7 +31,7 @@ namespace ParamsKeyword
         }
 
         [Test]
-        public void CollectionArgument_ReturnsValidResult()
+        public void WhenCollectionArgument_ThenReturnsValidResult()
         {
             //capture the console output
             using var writer = new StringWriter();
@@ -52,7 +52,7 @@ namespace ParamsKeyword
         }
 
         [Test]
-        public void NoArguments_ReturnsValidResult()
+        public void WhenNoArguments_ThenReturnsValidResult()
         {
             //capture the console output
             using var writer = new StringWriter();
@@ -65,7 +65,7 @@ namespace ParamsKeyword
         }
 
         [Test]
-        public void NullArgument_ThrowsAnException()
+        public void WhenNullArgument_ThenThrowsAnException()
         {
             //capture the console output
             using var writer = new StringWriter();
@@ -74,9 +74,9 @@ namespace ParamsKeyword
             var shoppingList = new ShoppingList();
             string[]? groceries = default;
 
-#pragma warning disable CS8604 // Possible null reference argument.
+            #pragma warning disable CS8604 // Possible null reference argument.
             Assert.Throws<NullReferenceException>(()=>shoppingList.Add(groceries));
-#pragma warning restore CS8604 // Possible null reference argument.
+            #pragma warning restore CS8604 // Possible null reference argument.
         }
     }
 }
