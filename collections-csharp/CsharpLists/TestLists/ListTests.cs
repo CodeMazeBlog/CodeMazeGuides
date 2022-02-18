@@ -39,7 +39,6 @@ namespace TestLists
             var result = from s in otherCountries
                          where s.Equals("South Africa")
                          select s;
-
             foreach (var item in otherCountries) 
             {
                 if (item.Equals("South Africa"))
