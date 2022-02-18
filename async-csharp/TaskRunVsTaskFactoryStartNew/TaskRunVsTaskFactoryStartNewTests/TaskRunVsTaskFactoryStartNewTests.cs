@@ -87,8 +87,8 @@ namespace TaskRunVsTaskFactoryStartNewTests
                     Thread.Sleep(300);
                     Console.WriteLine("Inner task executed");
                 }, TaskCreationOptions.AttachedToParent);
-                innerTask.Start(TaskScheduler.Default);
 
+                innerTask.Start(TaskScheduler.Default);
                 Console.WriteLine("Outer task executed");
             });
 
@@ -120,7 +120,6 @@ namespace TaskRunVsTaskFactoryStartNewTests
                 }, TaskCreationOptions.AttachedToParent);
 
                 innerTask.Start(TaskScheduler.Default);
-
                 Console.WriteLine("Outer task executed");
             });
 
@@ -153,14 +152,12 @@ namespace TaskRunVsTaskFactoryStartNewTests
 
             var innerTask = task.Unwrap();
             Console.WriteLine(innerTask.GetType()); // System.Threading.Tasks.UnwrapPromise`1[System.String]
-
             Console.WriteLine(innerTask.Result); 	// Calculated Value
 
             Assert.IsType<Task<Task<string>>>(task);
             Assert.IsAssignableFrom<Task<string>>(innerTask);
             Assert.Equal("Calculated Value", innerTask.Result);
         }
-
 
         [Fact]
         public void GivenAsyncDelegate_WhenInvokedByRun_ThenDoesNotRequireCallingUnwrap()
@@ -172,7 +169,6 @@ namespace TaskRunVsTaskFactoryStartNewTests
             });
 
             Console.WriteLine(task.GetType());  // System.Threading.Tasks.UnwrapPromise`1[System.String]
-
             Console.WriteLine(task.Result); 	// Calculated Value
 
             Assert.IsAssignableFrom<Task<string>>(task);
