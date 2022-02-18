@@ -78,52 +78,66 @@ namespace TaskRunVsTaskFactoryStartNewTests
         [Fact]
         public void GivenParentTask_WhenInvokedByStartNew_ThenShouldWaitForCompletionOfChildTask()
         {
+            Task? innerTask = null;
+
             var outerTask = Task.Factory.StartNew(() =>
             {
-                var innerTask = new Task(() =>
+                innerTask = new Task(() =>
                 {
                     Thread.Sleep(300);
                     Console.WriteLine("Inner task executed");
                 }, TaskCreationOptions.AttachedToParent);
-                innerTask.Start();
+                innerTask.Start(TaskScheduler.Default);
 
                 Console.WriteLine("Outer task executed");
             });
+
             outerTask.Wait();
+            Console.WriteLine($"Inner task completed: {innerTask?.IsCompleted ?? false}");
             Console.WriteLine("Main thread exiting");
 
             // Output:
             // Outer task executed
             // Inner task executed
+            // Inner task completed: True
             // Main thread exiting
 
             var actualOutput = strOut.ToString();
-            Assert.Equal($"Outer task executed{NewLine}Inner task executed{NewLine}Main thread exiting{NewLine}", actualOutput);
+            Assert.Equal($"Outer task executed{NewLine}Inner task executed{NewLine}Inner task completed: True{NewLine}Main thread exiting{NewLine}", actualOutput);
         }
 
         [Fact]
         public void GivenParentTask_WhenInvokedByRun_ThenShouldNotWaitForCompletionOfChildTask()
         {
+            Task? innerTask = null;
+
             var outerTask = Task.Run(() =>
             {
-                var innerTask = new Task(() =>
+                innerTask = new Task(() =>
                 {
                     Thread.Sleep(300);
                     Console.WriteLine("Inner task executed");
                 }, TaskCreationOptions.AttachedToParent);
-                innerTask.Start();
+
+                innerTask.Start(TaskScheduler.Default);
 
                 Console.WriteLine("Outer task executed");
             });
+
             outerTask.Wait();
+            Console.WriteLine($"Inner task completed: {innerTask?.IsCompleted ?? false}");
             Console.WriteLine("Main thread exiting");
 
             // Output:
             // Outer task executed
+            // Inner task completed: False
             // Main thread exiting
 
             var actualOutput = strOut.ToString();
-            Assert.Equal($"Outer task executed{NewLine}Main thread exiting{NewLine}", actualOutput);
+            Assert.Equal($"Outer task executed{NewLine}Inner task completed: False{NewLine}Main thread exiting{NewLine}", actualOutput);
+
+            // Force completion to ensure proper dispose 
+            innerTask?.Wait();
         }
 
         [Fact]
