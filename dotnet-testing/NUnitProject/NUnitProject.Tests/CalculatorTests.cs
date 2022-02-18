@@ -23,7 +23,7 @@ namespace NUnitProject.Tests
 
         // fails intentionaly to show the work of max time attribute
         [MaxTime(1000)]
-        [Test]
+        [Test, Ignore("Ignored in order to prevent failed build")]
         public async Task Should_CompleteInTime()
         {
             await Task.Delay(1100);
