@@ -32,12 +32,21 @@ namespace TaskRunVsTaskFactoryStartNewTests
 
             Task.WaitAll(task1, task2, task3);
 
-            // Output:
+            // Approximate Output:
             // Task 2 executed
             // Task 3 executed
             // Task 1 executed
 
             var actualOutput = strOut.ToString();
+            Assert.Contains(new[]
+            {
+                $"Task 1 executed{NewLine}Task 2 executed{NewLine}Task 3 executed{NewLine}",
+                $"Task 1 executed{NewLine}Task 3 executed{NewLine}Task 2 executed{NewLine}",
+                $"Task 2 executed{NewLine}Task 1 executed{NewLine}Task 3 executed{NewLine}",
+                $"Task 2 executed{NewLine}Task 3 executed{NewLine}Task 1 executed{NewLine}",
+                $"Task 3 executed{NewLine}Task 1 executed{NewLine}Task 2 executed{NewLine}",
+                $"Task 3 executed{NewLine}Task 2 executed{NewLine}Task 1 executed{NewLine}"
+            }, e => e == actualOutput);
             Assert.Equal($"Task 2 executed{NewLine}Task 3 executed{NewLine}Task 1 executed{NewLine}", actualOutput);
         }
 
@@ -50,12 +59,21 @@ namespace TaskRunVsTaskFactoryStartNewTests
 
             Task.WaitAll(task1, task2, task3);
 
-            // Output:
+            // Approximate Output:
             // Task 2 executed
             // Task 3 executed
             // Task 1 executed
 
             var actualOutput = strOut.ToString();
+            Assert.Contains(new[]
+            {
+                $"Task 1 executed{NewLine}Task 2 executed{NewLine}Task 3 executed{NewLine}",
+                $"Task 1 executed{NewLine}Task 3 executed{NewLine}Task 2 executed{NewLine}",
+                $"Task 2 executed{NewLine}Task 1 executed{NewLine}Task 3 executed{NewLine}",
+                $"Task 2 executed{NewLine}Task 3 executed{NewLine}Task 1 executed{NewLine}",
+                $"Task 3 executed{NewLine}Task 1 executed{NewLine}Task 2 executed{NewLine}",
+                $"Task 3 executed{NewLine}Task 2 executed{NewLine}Task 1 executed{NewLine}"
+            }, e => e == actualOutput);
             Assert.Equal($"Task 2 executed{NewLine}Task 3 executed{NewLine}Task 1 executed{NewLine}", actualOutput);
         }
 
