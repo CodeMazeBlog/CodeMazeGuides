@@ -14,8 +14,8 @@ Console.WriteLine(string.Empty + luckyNumber);
 Console.WriteLine(luckyNumber + luckyNumber + string.Empty + luckyNumber + luckyNumber);
 Console.WriteLine(new StringBuilder().Append(luckyNumber).ToString());
 
-Console.WriteLine(Benchmark.Run(luckyNumber, 20000));
-Console.WriteLine(Benchmark.Run(luckyNumber, 1000000000));
+Console.WriteLine(Benchmark.Run(luckyNumber, 200000));
+Console.WriteLine(Benchmark.Run(luckyNumber, 2000000));
 
 Console.ReadLine();
 
