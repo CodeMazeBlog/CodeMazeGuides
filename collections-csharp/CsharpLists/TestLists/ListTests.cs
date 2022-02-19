@@ -72,21 +72,40 @@ namespace TestLists
 
             Assert.AreEqual(4, otherCountries.Count);
             CollectionAssert.DoesNotContain(otherCountries, "Russia");
+        }
+
+        [TestMethod]
+        public void GivenNonEmptyList_RemoveAtItemPosition()
+        {
+            var otherCountries = new List<string>() { "Russia", "Bulgaria", "South Africa", "Mexico", "USA" };
 
             otherCountries.RemoveAt(0);
 
-            Assert.AreEqual(3, otherCountries.Count);
-            CollectionAssert.DoesNotContain(otherCountries, "Bulgaria");
+            Assert.AreEqual(4, otherCountries.Count);
+            CollectionAssert.DoesNotContain(otherCountries, "Russia");
 
-            otherCountries.RemoveRange(0, 2);
+        }
 
-            Assert.AreEqual(1, otherCountries.Count);
-            CollectionAssert.DoesNotContain(otherCountries, "South Africa");
-            CollectionAssert.DoesNotContain(otherCountries, "Mexico");
+        [TestMethod]
+        public void GivenNonEmptyList_ClearList()
+        {
+            var otherCountries = new List<string>() { "Russia", "Bulgaria", "South Africa", "Mexico", "USA" };
 
             otherCountries.Clear();
 
             Assert.AreEqual(0, otherCountries.Count);
+        }
+
+        [TestMethod]
+        public void GivenNonEmptyList_RemoveRangeListItems()
+        {
+            var otherCountries = new List<string>() { "Russia", "Bulgaria", "South Africa", "Mexico", "USA" };
+
+            otherCountries.RemoveRange(0, 2);
+
+            Assert.AreEqual(3, otherCountries.Count);
+            CollectionAssert.DoesNotContain(otherCountries, "Russia");
+            CollectionAssert.DoesNotContain(otherCountries, "Bulgaria");
         }
 
         [TestMethod]
