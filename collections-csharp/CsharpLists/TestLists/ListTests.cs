@@ -83,7 +83,6 @@ namespace TestLists
 
             Assert.AreEqual(4, otherCountries.Count);
             CollectionAssert.DoesNotContain(otherCountries, "Russia");
-
         }
 
         [TestMethod]
