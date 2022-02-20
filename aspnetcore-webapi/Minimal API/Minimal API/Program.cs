@@ -13,7 +13,7 @@ app.MapGet("/articles/{id}", ArticleService.GetArticleById);
 
 app.MapPost("/articles", ArticleService.CreateArticle);
 
-app.MapMethods("/articles/{id}", new[] { "PATCH" }, ArticleService.UpdateArticle);
+app.MapPut("/articles/{id}", ArticleService.UpdateArticle);
 
 app.MapDelete("/articles/{id}", ArticleService.DeleteArticle);
 

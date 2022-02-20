@@ -1,13 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿namespace Minimal_API;
 
-namespace Minimal_API
+using Microsoft.EntityFrameworkCore;
+
+public class ApiContext : DbContext
 {
-    public class ApiContext : DbContext
-    {
-        public DbSet<Article> Articles { get; set; }
+    public DbSet<Article> Articles { get; set; }
 
-        public ApiContext(DbContextOptions<ApiContext> options)
-            : base(options)
-        { }
-    }
+    public ApiContext(DbContextOptions<ApiContext> options)
+        : base(options)
+    { }
 }
