@@ -58,49 +58,49 @@ namespace Tests
         [Fact]
         public void WhenCountOfStudents_ThenNumberOfStudents()
         {
-            int count = Program.CountOfStudents();
+            var count = Program.CountOfStudents();
             Assert.Equal(3, count);
         }
 
         [Fact]
         public void WhenMaxMarksOfStudents_ThenMaxMarks()
         {
-            int max = Program.MaxMarksOfStudent();
+            var max = Program.MaxMarksOfStudent();
             Assert.Equal(88, max);
         }
 
         [Fact]
         public void WhenMinMarksOfStudents_ThenMinMarks()
         {
-            int min = Program.MinMarksOfStudent();
+            var min = Program.MinMarksOfStudent();
             Assert.Equal(51, min);
         }
 
         [Fact]
         public void WhenFirstStudentOccurence_ThenStudentCount()
         {
-            Student student = Program.FirstStudentOccurence();
+            var student = Program.FirstStudentOccurence();
             Assert.Equal(2, student.StudentID);
         }
 
         [Fact]
         public void WhenFirstOrDefaultStudentOccurence_ThenStudentCount()
         {
-            Student student = Program.FirstOrDefaultStudentOccurence();
+            var student = Program.FirstOrDefaultStudentOccurence();
             Assert.Equal(1, student.StudentID);
         }
 
         [Fact]
         public void WhenSingleStudentOccurence_ThenStudentCount()
         {
-            Student student = Program.SingleStudentOccurence();
+            var student = Program.SingleStudentOccurence();
             Assert.Equal(1, student.StudentID);
         }
 
         [Fact]
         public void WhenSingleOrDefaultStudentOccurence_ThenStudentCount()
         {
-            Student student = Program.SingleOrDefaultStudentOccurence();
+            var student = Program.SingleOrDefaultStudentOccurence();
             Assert.Equal(1, student.StudentID);
         }
     }
