@@ -20,7 +20,7 @@ public class MinimalAPITest
         var apiContext = new ApiContext(options);
 
         // When
-        await ArticleService.CreateArticle(articleRequest, apiContext);
+        await (new ArticleService(apiContext)).CreateArticle(articleRequest);
 
         // Then
         Assert.True(await apiContext.Articles.FirstOrDefaultAsync() != null);
@@ -41,7 +41,7 @@ public class MinimalAPITest
         var articleRequest = new ArticleRequest("Title2", "Content", null);
 
         // When
-        await ArticleService.UpdateArticle(1, articleRequest, apiContext);
+        await (new ArticleService(apiContext)).UpdateArticle(1, articleRequest);
 
         // Then
         var updatedArticle = await apiContext.Articles.FirstOrDefaultAsync();
@@ -62,7 +62,7 @@ public class MinimalAPITest
         apiContext.SaveChanges();
 
         // When
-        await ArticleService.DeleteArticle(1, apiContext);
+        await (new ArticleService(apiContext)).DeleteArticle(1);
 
         // Then
         var deletedArticle = await apiContext.Articles.FirstOrDefaultAsync();
@@ -83,7 +83,7 @@ public class MinimalAPITest
         apiContext.SaveChanges();
 
         // When
-        await ArticleService.GetArticles(apiContext);
+        await (new ArticleService(apiContext)).GetArticles();
 
         // Then
         var existingArticle = await apiContext.Articles.FirstOrDefaultAsync();

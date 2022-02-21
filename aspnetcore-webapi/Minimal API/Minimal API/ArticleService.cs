@@ -2,37 +2,44 @@
 
 using Microsoft.EntityFrameworkCore;
 
-public static class ArticleService
+public class ArticleService : IArticleService
 {
-    public static async Task<IResult> GetArticles(ApiContext context)
+    public readonly ApiContext _context;
+
+    public ArticleService(ApiContext context)
     {
-        return Results.Ok(await context.Articles.ToListAsync());
+        _context = context;
     }
 
-    public static async Task<IResult> GetArticleById(ApiContext context, int id)
+    public async Task<IResult> GetArticles()
     {
-        var article = await context.Articles.FindAsync(id);
+        return Results.Ok(await _context.Articles.ToListAsync());
+    }
+
+    public async Task<IResult> GetArticleById(int id)
+    {
+        var article = await _context.Articles.FindAsync(id);
 
         return article != null ? Results.Ok(article) : Results.NotFound();
     }
 
-    public static async Task<IResult> CreateArticle(ArticleRequest article, ApiContext context)
+    public async Task<IResult> CreateArticle(ArticleRequest article)
     {
-        var createdArticle = context.Articles.Add(new Article
+        var createdArticle = _context.Articles.Add(new Article
         {
             Title = article.Title ?? string.Empty,
             Content = article.Content ?? string.Empty,
             PublishedAt = article.PublishedAt,
         });
 
-        await context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
 
         return Results.Created($"/articles/{createdArticle.Entity.Id}", createdArticle.Entity);
     }
 
-    public static async Task<IResult> UpdateArticle(int id, ArticleRequest article, ApiContext context)
+    public async Task<IResult> UpdateArticle(int id, ArticleRequest article)
     {
-        var articleToUpdate = await context.Articles.FindAsync(id);
+        var articleToUpdate = await _context.Articles.FindAsync(id);
 
         if (articleToUpdate == null)
         {
@@ -54,23 +61,23 @@ public static class ArticleService
             articleToUpdate.PublishedAt = articleToUpdate.PublishedAt;
         }
 
-        await context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
 
         return Results.Ok(articleToUpdate);
     }
 
-    public static async Task<IResult> DeleteArticle(int id, ApiContext context)
+    public async Task<IResult> DeleteArticle(int id)
     {
-        var article = await context.Articles.FindAsync(id);
+        var article = await _context.Articles.FindAsync(id);
 
         if (article == null)
         {
             return Results.NotFound();
         }
 
-        context.Articles.Remove(article);
+        _context.Articles.Remove(article);
 
-        await context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
 
         return Results.NoContent();
     }
