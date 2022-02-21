@@ -50,16 +50,5 @@ namespace RemoveFromListWhileIteratingTests
             CollectionAssert.AreEqual(OddNumbers, filteredList);
             CollectionAssert.AreEqual(filteredList, NumberList);
         }
-
-        [TestMethod]
-        public void WhenUsingLinqSelect_OriginalListUnmodified()
-        {
-            var filteredList = RemoveFromListWhileIteratingProgram.RemoveWithLinq(NumberList);
-            CollectionAssert.AreEqual(OddNumbers, filteredList);
-            CollectionAssert.AreEqual(NumberListCopy, NumberList);
-            CollectionAssert.AreNotEqual(filteredList, NumberList);
-        }
-
-
     }
 }

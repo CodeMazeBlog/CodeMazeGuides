@@ -35,16 +35,6 @@ namespace RemoveFromListWhileIterating
                 OneLineRemoveAll(NumberList);
             }
         }
-        
-
-        [Benchmark]
-        public void RunRemoveWithLinq()
-        {
-            for (int i = 0; i < TestIterations; i++)
-            {
-                RemoveWithLinq(NumberList);
-            }
-        }
 
         public static void Main(string[] args)
         {
@@ -116,13 +106,5 @@ namespace RemoveFromListWhileIterating
             return sourceList;
         }
 
-        public static List<int> RemoveWithLinq(List<int> sourceList)
-        {
-            var newList = (from el in sourceList
-                where el % 2 != 0
-                select el).ToList();
-
-            return newList;
-        }
     }
 }
