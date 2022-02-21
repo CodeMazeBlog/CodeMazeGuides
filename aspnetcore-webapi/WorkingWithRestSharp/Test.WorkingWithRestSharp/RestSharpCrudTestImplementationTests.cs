@@ -5,13 +5,13 @@ using Xunit;
 
 namespace Test.WorkingWithRestSharp
 {
-    public class RestSharpCrudTestImplementation
+    public class RestSharpCrudTestImplementationTests
     {
         [Fact]
         public async void GetUserList_WhenCalled_ReturnsUserLists()
         {
             // Arrange
-            UsersController userController = new UsersController();
+            var userController = new UsersController();
             // Act
             var okResult = await userController.GetUserList();
             var value = (okResult as OkObjectResult)?.Value as UserList;
@@ -24,7 +24,7 @@ namespace Test.WorkingWithRestSharp
         public async void GetUser_WhenCalled_ReturnsSpecificUser()
         {
             // Arrange
-            UsersController userController = new UsersController();
+            var userController = new UsersController();
             // Act
             var okResult = await userController.GetUser("1");
             var value = (okResult as OkObjectResult)?.Value as UserDetails;
@@ -37,8 +37,8 @@ namespace Test.WorkingWithRestSharp
         public async void AddUser_WhenCalled_ReturnsAddedUserJobDetails()
         {
             // Arrange
-            UsersController userController = new UsersController();
-            UserForCreation userForCreation = new UserForCreation()
+            var userController = new UsersController();
+            var userForCreation = new UserForCreation()
             {
                 Name = "Code Maze",
                 Job = "Editor"
@@ -55,8 +55,8 @@ namespace Test.WorkingWithRestSharp
         public async void UpdateUser_WhenCalled_ReturnsUpdateUserJobDetails()
         {
             // Arrange
-            UsersController userController = new UsersController();
-            UserForUpdate userForUpdate = new UserForUpdate()
+            var userController = new UsersController();
+            var userForUpdate = new UserForUpdate()
             {
                 Name = "Code Maze",
                 Job = "Editor"
@@ -73,7 +73,7 @@ namespace Test.WorkingWithRestSharp
         public async void DeleteUser_WhenCalled_ReturnsUpdateUserJobDetails()
         {
             // Arrange
-            UsersController userController = new UsersController();
+            var userController = new UsersController();
             // Act
             var okResult = await userController.DeleteUser("1");
             // Assert
