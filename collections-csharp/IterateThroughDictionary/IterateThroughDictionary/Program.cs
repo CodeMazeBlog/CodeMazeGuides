@@ -22,48 +22,48 @@ namespace IterateThroughDictionary
             pTest.TestDictionaryLoopResult();
         }
         
-        public static void SubDictionaryUsingForEach(Dictionary<int,string> monthsinyear)
+        public static void SubDictionaryUsingForEach(Dictionary<int,string> monthsInYear)
         {
-            foreach (var month in monthsinyear)
+            foreach (var month in monthsInYear)
             {
                 Console.WriteLine($"{month.Key } : {month.Value}");
             }
         }
 
-        public static void SubDictionaryKeyValuePair(Dictionary<int,string> monthsinyear)
+        public static void SubDictionaryKeyValuePair(Dictionary<int,string> monthsInYear)
         {
-            foreach (KeyValuePair<int,string> entry in monthsinyear)
+            foreach (KeyValuePair<int,string> entry in monthsInYear)
             {
                 Console.WriteLine($"{entry.Key} : {entry.Value}");
             }
 
-            foreach (var (key,value) in monthsinyear)
+            foreach (var (key,value) in monthsInYear)
             {
                 Console.WriteLine($"{key} : {value}");   
             }
         }
 
-        public static void SubDictionaryForLoop(Dictionary<int, string> monthsinyear)
+        public static void SubDictionaryForLoop(Dictionary<int, string> monthsInYear)
         {
-            for (int index = 0; index < monthsinyear.Count; index ++)
+            for (int index = 0; index < monthsInYear.Count; index ++)
             {
-                KeyValuePair<int, string> month = monthsinyear.ElementAt(index);
+                KeyValuePair<int, string> month = monthsInYear.ElementAt(index);
 
                 Console.WriteLine($"{month.Key} : {month.Value}");
             }
         }
 
-        public static void SubDictionaryParallelEnumerable(Dictionary<int, string> monthsinyear)
+        public static void SubDictionaryParallelEnumerable(Dictionary<int, string> monthsInYear)
         {
-            monthsinyear.AsParallel()
+            monthsInYear.AsParallel()
                         .OrderBy(month => month.Key)
                         .ForAll(month => Console.WriteLine($"{month.Key} : {month.Value}"));
                         
         }
 
-        public static void SubDictionaryStringJoin(Dictionary<int, string> monthsinyear)
+        public static void SubDictionaryStringJoin(Dictionary<int, string> monthsInYear)
         {
-            Console.WriteLine(String.Join(Environment.NewLine, monthsinyear));
+            Console.WriteLine(String.Join(Environment.NewLine, monthsInYear));
         }
     }
 }
