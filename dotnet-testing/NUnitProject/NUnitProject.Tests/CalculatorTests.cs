@@ -14,7 +14,7 @@ namespace NUnitProject.Tests
 
         [Ignore("example how to ignore tests")]
         [Test]
-        public void Ignored_Should_NotRun()
+        public void WhenIgnored_ThenNotRun()
         {
             // Assert that 1 equals 2 always gives failed test 
             Assert.AreEqual(1, 2);
@@ -23,7 +23,7 @@ namespace NUnitProject.Tests
         // fails intentionaly to show the work of max time attribute
         [MaxTime(1000)]
         [Test, Ignore("Ignored in order to prevent failed build")]
-        public async Task Should_CompleteInTime()
+        public async Task WhenTakesMoreTime_ThenItFails()
         {
             await Task.Delay(1100);
 
@@ -33,7 +33,7 @@ namespace NUnitProject.Tests
 
         [Author("Andrew")]
         [Test]
-        public void Should_AccessAuthor()
+        public void WhenHasAuthor_ThenCanAccessItInCode()
         {
             var expected = "Andrew";
             // Act
@@ -44,7 +44,7 @@ namespace NUnitProject.Tests
 
         [Test]
         [Description("this is simple test case")]
-        public void Should_HaveDescription()
+        public void WhenHaveDescription_ThenItsEasierToGetWhatItTests()
         {
             // Assert
             Assert.IsTrue(true);
@@ -52,7 +52,7 @@ namespace NUnitProject.Tests
 
         [Test]
         [Category("simple_tests")]
-        public void Should_HaveCategory()
+        public void WhenHaveCategory_ThenItCanBeInvokedWithCategoryFilder()
         {
             // Assert
             Assert.IsTrue(true);
@@ -60,7 +60,7 @@ namespace NUnitProject.Tests
 
         [Test]
 
-        public void Divide_ShouldReturnDivisionOfTwoNumbers()
+        public void WhenDivideTwoNumbers_ThenReturnDivisionOfTwoNumbers()
         {
             // Arrange
             var a = 300;
@@ -78,7 +78,7 @@ namespace NUnitProject.Tests
         [TestCase(300, 100, 3)]
         [TestCase(400, 200, 2)]
         [Category("simple_tests")]
-        public void Divide_ShouldReturnDivisionOfTwoNumbers(int a, int b, double expected)
+        public void WhenDivideTwoNumbers_ThenReturnDivisionOfTwoNumbers(int a, int b, double expected)
         {
             // Act
             var actual = _calculator.Divide(a, b);
@@ -89,7 +89,7 @@ namespace NUnitProject.Tests
 
         [TestCaseSource(nameof(SourceProvider))]
         [Category("simple_tests")]
-        public void Divide_ShouldReturnDivisionOfTwoNumbersProvidedBySource(int a, int b, double expected)
+        public void WhenDivideTwoNumbers_ThenReturnDivisionOfTwoNumbersProvidedBySource(int a, int b, double expected)
         {
             // Act
             var actual = _calculator.Divide(a, b);
@@ -97,7 +97,6 @@ namespace NUnitProject.Tests
             // Assert
             Assert.AreEqual(expected, actual);
         }
-
 
         public static IEnumerable<int[]> SourceProvider()
         {
