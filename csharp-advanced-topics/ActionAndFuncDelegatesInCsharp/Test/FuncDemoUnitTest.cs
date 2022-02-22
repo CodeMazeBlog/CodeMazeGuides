@@ -21,7 +21,9 @@ namespace Test
         public void WhenDelegateGetName_ThenGetDefualtNameValue()
         {
             Func<string> getNameDelegate = _operations.GetName;
+
             var name = getNameDelegate();
+
             Assert.AreEqual(name, _operations.Name);
         }
 
@@ -29,7 +31,9 @@ namespace Test
         public void WhencDelegateSum_ThenSumTowIntegers()
         {
             Func<int, int, int> intSumDelegate = Operations.Sum;
+
             var sum = intSumDelegate(3, 3);
+
             Assert.AreEqual(6, sum);
         }
 
@@ -38,7 +42,9 @@ namespace Test
         {
             Func<int, int, int> multiplyDelegate 
                 = delegate (int x, int y) { return x * y; };
+
             var multiply = multiplyDelegate(3, 2);
+
             Assert.AreEqual(6, multiply);
         }
 
@@ -46,7 +52,9 @@ namespace Test
         public void WhenDelegateSubtractionWithLambda_ThenSubtractTwoIntegers()
         {
             Func<int, int, int> subtractDelegate = (int x, int y) => x - y;
+
             var subtract = subtractDelegate(3, 2);
+
             Assert.AreEqual(1, subtract);
         }
     }

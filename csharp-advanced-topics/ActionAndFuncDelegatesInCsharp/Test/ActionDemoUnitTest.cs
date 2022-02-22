@@ -23,8 +23,10 @@ namespace Test
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
+
             Action sayHiDelegate = _operations.SayHi;
             sayHiDelegate();
+
             Assert.AreEqual($"Hi, {_operations.Name}\n", stringWriter.ToString());
         }
 
@@ -33,8 +35,10 @@ namespace Test
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
+
             Action<string, string> sayHiToFullName = Operations.SayHiToFullName;
             sayHiToFullName("Teri", "Dactyl");
+
             Assert.AreEqual($"Hi, Teri Dactyl\n", stringWriter.ToString());
         }
 
@@ -43,8 +47,10 @@ namespace Test
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
+
             Action sayHelloWorld = delegate () { Console.WriteLine("Hello, World!"); };
             sayHelloWorld();
+
             Assert.AreEqual("Hello, World!\n", stringWriter.ToString());
         }
 
@@ -53,8 +59,10 @@ namespace Test
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
+
             Action<string> sayHiToName = (string name) => { Console.WriteLine($"Hi, {name}"); };
             sayHiToName("Olive");
+
             Assert.AreEqual("Hi, Olive\n", stringWriter.ToString());
         }
     }

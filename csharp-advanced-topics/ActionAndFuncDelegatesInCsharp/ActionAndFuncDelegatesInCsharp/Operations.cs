@@ -2,7 +2,7 @@
 {
     public class Operations
     {
-        public string Name { get; } = "Joe";
+        public readonly string Name = "Joe";
 
         public void SayHi()
         {
