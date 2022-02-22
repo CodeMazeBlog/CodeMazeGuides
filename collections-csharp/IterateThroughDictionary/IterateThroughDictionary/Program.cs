@@ -1,4 +1,4 @@
-﻿namespace IterateThroughDictionary
+namespace IterateThroughDictionary
 {
     public  class Program
     {
@@ -6,7 +6,7 @@
         {
             var pTest = new PerformAnalysisTest();
 
-            var MonthsInYear = new Dictionary<int, string>
+            var monthsInYear = new Dictionary<int, string>
             {
                 {1,"January" },
                 {2,"February" },
@@ -14,55 +14,56 @@
                 {4,"April" }
             };
 
-            SubDictionaryUsingForEach(MonthsInYear);
-            SubDictionaryKeyValuePair(MonthsInYear);
-            SubDictionaryForLoop(MonthsInYear);
-            SubDictionaryParallelEnumerable(MonthsInYear);
-            SubDictionaryStringJoin(MonthsInYear);
+            SubDictionaryUsingForEach(monthsInYear);
+            SubDictionaryKeyValuePair(monthsInYear);
+            SubDictionaryForLoop(monthsInYear);
+            SubDictionaryParallelEnumerable(monthsInYear);
+            SubDictionaryStringJoin(monthsInYear);
             pTest.TestDictionaryLoopResult();
         }
         
-        public static void SubDictionaryUsingForEach(Dictionary<int,string> MonthsInYear)
+        public static void SubDictionaryUsingForEach(Dictionary<int,string> monthsinyear)
         {
-            foreach (var month in MonthsInYear)
+            foreach (var month in monthsinyear)
             {
                 Console.WriteLine($"{month.Key } : {month.Value}");
             }
         }
 
-        public static void SubDictionaryKeyValuePair(Dictionary<int,string> MonthsInYear)
+        public static void SubDictionaryKeyValuePair(Dictionary<int,string> monthsinyear)
         {
-            foreach (KeyValuePair<int,string> entry in MonthsInYear)
+            foreach (KeyValuePair<int,string> entry in monthsinyear)
             {
                 Console.WriteLine($"{entry.Key} : {entry.Value}");
             }
 
-            foreach (var (key,value) in MonthsInYear)
+            foreach (var (key,value) in monthsinyear)
             {
                 Console.WriteLine($"{key} : {value}");   
             }
         }
 
-        public static void SubDictionaryForLoop(Dictionary<int, string> MonthsInYear)
+        public static void SubDictionaryForLoop(Dictionary<int, string> monthsinyear)
         {
-            for (int index = 0; index < MonthsInYear.Count; index ++)
+            for (int index = 0; index < monthsinyear.Count; index ++)
             {
-                KeyValuePair<int, string> month = MonthsInYear.ElementAt(index);
+                KeyValuePair<int, string> month = monthsinyear.ElementAt(index);
 
                 Console.WriteLine($"{month.Key} : {month.Value}");
             }
         }
 
-        public static void SubDictionaryParallelEnumerable(Dictionary<int, string> MonthsInYear)
+        public static void SubDictionaryParallelEnumerable(Dictionary<int, string> monthsinyear)
         {
-            MonthsInYear.AsParallel()
+            monthsinyear.AsParallel()
                         .OrderBy(month => month.Key)
                         .ForAll(month => Console.WriteLine($"{month.Key} : {month.Value}"));
+                        
         }
 
-        public static void SubDictionaryStringJoin(Dictionary<int, string> MonthsInYear)
+        public static void SubDictionaryStringJoin(Dictionary<int, string> monthsinyear)
         {
-            Console.WriteLine(String.Join(Environment.NewLine, MonthsInYear));
+            Console.WriteLine(String.Join(Environment.NewLine, monthsinyear));
         }
     }
 }
