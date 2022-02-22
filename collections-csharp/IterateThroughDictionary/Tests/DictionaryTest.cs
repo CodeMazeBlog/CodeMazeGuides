@@ -15,11 +15,11 @@ namespace DictionaryTests
         public static readonly string _monthApril = "4 : April";
         public static readonly string _monthJanuaryStringJoin = "[1, January]";
 
-        StringWriter _stringWrite = new StringWriter();
+        StringWriter _stringWriter = new StringWriter();
 
         public DictionaryTest()
         {
-            Console.SetOut(_stringWrite);
+            Console.SetOut(_stringWriter);
         }
 
         static Dictionary<int, string> _months = new Dictionary<int, string>
@@ -35,7 +35,7 @@ namespace DictionaryTests
         {
             Program.SubDictionaryUsingForEach(_months);
             
-            var outputLines = _stringWrite.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var outputLines = _stringWriter.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
             Assert.AreEqual(_monthJanuary, outputLines[0]);
             Assert.AreEqual(_monthFebruary, outputLines[1]);
@@ -48,7 +48,7 @@ namespace DictionaryTests
         {
             Program.SubDictionaryKeyValuePair(_months);
             
-            var outputLines = _stringWrite.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var outputLines = _stringWriter.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
             Assert.AreEqual(_monthJanuary, outputLines[0]);
             Assert.AreEqual(_monthFebruary, outputLines[1]);
@@ -61,7 +61,7 @@ namespace DictionaryTests
         {
             Program.SubDictionaryForLoop(_months);
             
-            var outputLines = _stringWrite.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var outputLines = _stringWriter.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
             Assert.AreEqual(_monthJanuary, outputLines[0]);
             Assert.AreEqual(_monthFebruary, outputLines[1]);
@@ -74,24 +74,17 @@ namespace DictionaryTests
         {
             Program.SubDictionaryParallelEnumerable(_months);
             
-            var resultlines = _stringWrite.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var resultlines = _stringWriter.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             
             for (int i = 0; i <= resultlines.Length; i ++)
             {
                 if (resultlines[0].ToString() == _monthJanuary)
-
                     Assert.AreEqual(_monthJanuary, resultlines[0]);
-
                 if (resultlines[1].ToString() == _monthFebruary)
-
                     Assert.AreEqual(_monthFebruary, resultlines[1]);
-
                 if (resultlines[2].ToString() == _monthMarch)
-
                     Assert.AreEqual(_monthMarch, resultlines[2]);
-
                 if (resultlines[3].ToString() == _monthApril)
-
                     Assert.AreEqual(_monthApril, resultlines[3]);
             }
         }
@@ -101,7 +94,7 @@ namespace DictionaryTests
         {
             Program.SubDictionaryStringJoin(_months);
             
-            var outputLines = _stringWrite.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var outputLines = _stringWriter.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
             Assert.AreEqual(_monthJanuaryStringJoin, outputLines[0]);
         }
