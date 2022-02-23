@@ -58,7 +58,7 @@ public class ArticleService : IArticleService
 
         if (article.PublishedAt != null)
         {
-            articleToUpdate.PublishedAt = articleToUpdate.PublishedAt;
+            articleToUpdate.PublishedAt = article.PublishedAt;
         }
 
         await _context.SaveChangesAsync();
