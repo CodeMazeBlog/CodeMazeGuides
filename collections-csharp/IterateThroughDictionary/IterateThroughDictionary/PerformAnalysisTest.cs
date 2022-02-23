@@ -7,23 +7,23 @@ namespace IterateThroughDictionary
 {
     public class PerformAnalysisTest
     {
-        private Dictionary<int, string> testValues = new Dictionary<int, string>();
+        private Dictionary<int, string> _testValues = new Dictionary<int, string>();
 
         private void FillData()
         {
             for (int i = 0; i < 100000; i++)
             {
-                testValues.Add(i, "value-" + i);
+                _testValues.Add(i, "value-" + i);
             }
         }
 
         public void TestDictionaryLoopResult()
         {
             FillData();
-            WhenDictionaryUsingForEach(testValues);
-            WhenDictionaryUsingForLoop(testValues);
-            WhenDictionaryParallelEnumerable(testValues);
-            WhenDictionaryJoinString(testValues);
+            WhenDictionaryUsingForEach(_testValues);
+            WhenDictionaryUsingForLoop(_testValues);
+            WhenDictionaryParallelEnumerable(_testValues);
+            WhenDictionaryJoinString(_testValues);
         }
 
         private void WhenDictionaryUsingForEach(Dictionary<int, string> testValues)
