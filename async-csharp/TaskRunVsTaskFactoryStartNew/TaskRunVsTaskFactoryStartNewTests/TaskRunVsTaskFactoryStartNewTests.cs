@@ -9,12 +9,12 @@ namespace TaskRunVsTaskFactoryStartNewTests
 {
     public class TaskRunVsTaskFactoryStartNewUnitTest : IDisposable
     {
-        readonly StringWriter strOut = new();
-        readonly string NewLine = Environment.NewLine;
+        private readonly StringWriter _strOut = new();
+        private readonly string _newLine = Environment.NewLine;
 
         public TaskRunVsTaskFactoryStartNewUnitTest()
         {
-            Console.SetOut(strOut);
+            Console.SetOut(_strOut);
         }
 
         void DoWork(int order, int durationMs)
@@ -32,20 +32,15 @@ namespace TaskRunVsTaskFactoryStartNewTests
 
             Task.WaitAll(task1, task2, task3);
 
-            // Approximate Output:
-            // Task 2 executed
-            // Task 3 executed
-            // Task 1 executed
-
-            var actualOutput = strOut.ToString();
+            var actualOutput = _strOut.ToString();
             Assert.Contains(new[]
             {
-                $"Task 1 executed{NewLine}Task 2 executed{NewLine}Task 3 executed{NewLine}",
-                $"Task 1 executed{NewLine}Task 3 executed{NewLine}Task 2 executed{NewLine}",
-                $"Task 2 executed{NewLine}Task 1 executed{NewLine}Task 3 executed{NewLine}",
-                $"Task 2 executed{NewLine}Task 3 executed{NewLine}Task 1 executed{NewLine}",
-                $"Task 3 executed{NewLine}Task 1 executed{NewLine}Task 2 executed{NewLine}",
-                $"Task 3 executed{NewLine}Task 2 executed{NewLine}Task 1 executed{NewLine}"
+                $"Task 1 executed{_newLine}Task 2 executed{_newLine}Task 3 executed{_newLine}",
+                $"Task 1 executed{_newLine}Task 3 executed{_newLine}Task 2 executed{_newLine}",
+                $"Task 2 executed{_newLine}Task 1 executed{_newLine}Task 3 executed{_newLine}",
+                $"Task 2 executed{_newLine}Task 3 executed{_newLine}Task 1 executed{_newLine}",
+                $"Task 3 executed{_newLine}Task 1 executed{_newLine}Task 2 executed{_newLine}",
+                $"Task 3 executed{_newLine}Task 2 executed{_newLine}Task 1 executed{_newLine}"
             }, e => e == actualOutput);
         }
 
@@ -58,20 +53,15 @@ namespace TaskRunVsTaskFactoryStartNewTests
 
             Task.WaitAll(task1, task2, task3);
 
-            // Approximate Output:
-            // Task 2 executed
-            // Task 3 executed
-            // Task 1 executed
-
-            var actualOutput = strOut.ToString();
+            var actualOutput = _strOut.ToString();
             Assert.Contains(new[]
             {
-                $"Task 1 executed{NewLine}Task 2 executed{NewLine}Task 3 executed{NewLine}",
-                $"Task 1 executed{NewLine}Task 3 executed{NewLine}Task 2 executed{NewLine}",
-                $"Task 2 executed{NewLine}Task 1 executed{NewLine}Task 3 executed{NewLine}",
-                $"Task 2 executed{NewLine}Task 3 executed{NewLine}Task 1 executed{NewLine}",
-                $"Task 3 executed{NewLine}Task 1 executed{NewLine}Task 2 executed{NewLine}",
-                $"Task 3 executed{NewLine}Task 2 executed{NewLine}Task 1 executed{NewLine}"
+                $"Task 1 executed{_newLine}Task 2 executed{_newLine}Task 3 executed{_newLine}",
+                $"Task 1 executed{_newLine}Task 3 executed{_newLine}Task 2 executed{_newLine}",
+                $"Task 2 executed{_newLine}Task 1 executed{_newLine}Task 3 executed{_newLine}",
+                $"Task 2 executed{_newLine}Task 3 executed{_newLine}Task 1 executed{_newLine}",
+                $"Task 3 executed{_newLine}Task 1 executed{_newLine}Task 2 executed{_newLine}",
+                $"Task 3 executed{_newLine}Task 2 executed{_newLine}Task 1 executed{_newLine}"
             }, e => e == actualOutput);
         }
 
@@ -96,14 +86,8 @@ namespace TaskRunVsTaskFactoryStartNewTests
             Console.WriteLine($"Inner task completed: {innerTask?.IsCompleted ?? false}");
             Console.WriteLine("Main thread exiting");
 
-            // Output:
-            // Outer task executed
-            // Inner task executed
-            // Inner task completed: True
-            // Main thread exiting
-
-            var actualOutput = strOut.ToString();
-            Assert.Equal($"Outer task executed{NewLine}Inner task executed{NewLine}Inner task completed: True{NewLine}Main thread exiting{NewLine}", actualOutput);
+            var actualOutput = _strOut.ToString();
+            Assert.Equal($"Outer task executed{_newLine}Inner task executed{_newLine}Inner task completed: True{_newLine}Main thread exiting{_newLine}", actualOutput);
         }
 
         [Fact]
@@ -127,13 +111,8 @@ namespace TaskRunVsTaskFactoryStartNewTests
             Console.WriteLine($"Inner task completed: {innerTask?.IsCompleted ?? false}");
             Console.WriteLine("Main thread exiting");
 
-            // Output:
-            // Outer task executed
-            // Inner task completed: False
-            // Main thread exiting
-
-            var actualOutput = strOut.ToString();
-            Assert.Equal($"Outer task executed{NewLine}Inner task completed: False{NewLine}Main thread exiting{NewLine}", actualOutput);
+            var actualOutput = _strOut.ToString();
+            Assert.Equal($"Outer task executed{_newLine}Inner task completed: False{_newLine}Main thread exiting{_newLine}", actualOutput);
 
             // Force completion to ensure proper dispose 
             innerTask?.Wait();
@@ -148,11 +127,11 @@ namespace TaskRunVsTaskFactoryStartNewTests
                 return "Calculated Value";
             });
 
-            Console.WriteLine(task.GetType());      // System.Threading.Tasks.Task`1[System.Threading.Tasks.Task`1[System.String]]
+            Console.WriteLine(task.GetType()); // System.Threading.Tasks.Task`1[System.Threading.Tasks.Task`1[System.String]]
 
             var innerTask = task.Unwrap();
             Console.WriteLine(innerTask.GetType()); // System.Threading.Tasks.UnwrapPromise`1[System.String]
-            Console.WriteLine(innerTask.Result); 	// Calculated Value
+            Console.WriteLine(innerTask.Result); // Calculated Value
 
             Assert.IsType<Task<Task<string>>>(task);
             Assert.IsAssignableFrom<Task<string>>(innerTask);
@@ -168,8 +147,8 @@ namespace TaskRunVsTaskFactoryStartNewTests
                 return "Calculated Value";
             });
 
-            Console.WriteLine(task.GetType());  // System.Threading.Tasks.UnwrapPromise`1[System.String]
-            Console.WriteLine(task.Result); 	// Calculated Value
+            Console.WriteLine(task.GetType()); // System.Threading.Tasks.UnwrapPromise`1[System.String]
+            Console.WriteLine(task.Result); // Calculated Value
 
             Assert.IsAssignableFrom<Task<string>>(task);
             Assert.Equal("Calculated Value", task.Result);
@@ -192,13 +171,8 @@ namespace TaskRunVsTaskFactoryStartNewTests
 
             Task.WaitAll(tasks.ToArray());
 
-            // Output:
-            // Iteration 4
-            // Iteration 4
-            // Iteration 4
-
-            var actualOutput = strOut.ToString();
-            Assert.Equal($"Iteration 4{NewLine}Iteration 4{NewLine}Iteration 4{NewLine}", actualOutput);
+            var actualOutput = _strOut.ToString();
+            Assert.Equal($"Iteration 4{_newLine}Iteration 4{_newLine}Iteration 4{_newLine}", actualOutput);
         }
 
         [Fact]
@@ -219,20 +193,15 @@ namespace TaskRunVsTaskFactoryStartNewTests
 
             Task.WaitAll(tasks.ToArray());
 
-            // Approximate Output:
-            // Iteration 3
-            // Iteration 1
-            // Iteration 2
-
-            var actualOutput = strOut.ToString();
+            var actualOutput = _strOut.ToString();
             Assert.Contains(new[]
             {
-                $"Iteration 1{NewLine}Iteration 2{NewLine}Iteration 3{NewLine}",
-                $"Iteration 1{NewLine}Iteration 3{NewLine}Iteration 2{NewLine}",
-                $"Iteration 2{NewLine}Iteration 1{NewLine}Iteration 3{NewLine}",
-                $"Iteration 2{NewLine}Iteration 3{NewLine}Iteration 1{NewLine}",
-                $"Iteration 3{NewLine}Iteration 1{NewLine}Iteration 2{NewLine}",
-                $"Iteration 3{NewLine}Iteration 2{NewLine}Iteration 1{NewLine}"
+                $"Iteration 1{_newLine}Iteration 2{_newLine}Iteration 3{_newLine}",
+                $"Iteration 1{_newLine}Iteration 3{_newLine}Iteration 2{_newLine}",
+                $"Iteration 2{_newLine}Iteration 1{_newLine}Iteration 3{_newLine}",
+                $"Iteration 2{_newLine}Iteration 3{_newLine}Iteration 1{_newLine}",
+                $"Iteration 3{_newLine}Iteration 1{_newLine}Iteration 2{_newLine}",
+                $"Iteration 3{_newLine}Iteration 2{_newLine}Iteration 1{_newLine}"
             }, e => e == actualOutput);
         }
 
@@ -254,26 +223,21 @@ namespace TaskRunVsTaskFactoryStartNewTests
 
             Task.WaitAll(tasks.ToArray());
 
-            // Approximate Output:
-            // Iteration 1
-            // Iteration 3
-            // Iteration 2
-
-            var actualOutput = strOut.ToString();
+            var actualOutput = _strOut.ToString();
             Assert.Contains(new[]
             {
-                $"Iteration 1{NewLine}Iteration 2{NewLine}Iteration 3{NewLine}",
-                $"Iteration 1{NewLine}Iteration 3{NewLine}Iteration 2{NewLine}",
-                $"Iteration 2{NewLine}Iteration 1{NewLine}Iteration 3{NewLine}",
-                $"Iteration 2{NewLine}Iteration 3{NewLine}Iteration 1{NewLine}",
-                $"Iteration 3{NewLine}Iteration 1{NewLine}Iteration 2{NewLine}",
-                $"Iteration 3{NewLine}Iteration 2{NewLine}Iteration 1{NewLine}"
+                $"Iteration 1{_newLine}Iteration 2{_newLine}Iteration 3{_newLine}",
+                $"Iteration 1{_newLine}Iteration 3{_newLine}Iteration 2{_newLine}",
+                $"Iteration 2{_newLine}Iteration 1{_newLine}Iteration 3{_newLine}",
+                $"Iteration 2{_newLine}Iteration 3{_newLine}Iteration 1{_newLine}",
+                $"Iteration 3{_newLine}Iteration 1{_newLine}Iteration 2{_newLine}",
+                $"Iteration 3{_newLine}Iteration 2{_newLine}Iteration 1{_newLine}"
             }, e => e == actualOutput);
         }
 
         public void Dispose()
         {
-            strOut.Dispose();
+            _strOut.Dispose();
             GC.SuppressFinalize(this);
         }
     }
