@@ -15,14 +15,14 @@ namespace DictionaryTests
         public static readonly string _monthApril = "4 : April";
         public static readonly string _monthJanuaryStringJoin = "[1, January]";
 
-        StringWriter _stringWriter = new StringWriter();
+        private StringWriter _stringWriter = new StringWriter();
 
         public DictionaryTest()
         {
             Console.SetOut(_stringWriter);
         }
 
-        static Dictionary<int, string> _months = new Dictionary<int, string>
+        private static Dictionary<int, string> _months = new Dictionary<int, string>
         {
             {1,"January" },
             {2,"February" },
