@@ -38,24 +38,5 @@ namespace Producer.Controllers
 
             return Ok(new { id = order.Id });
         }
-
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateOrder(int id, OrderDto orderDto)
-        {
-            var order = await _context.Order.FirstOrDefaultAsync(o => o.Id == id);
-
-            if (order == null)
-                return NotFound();
-
-            order.ProductName = orderDto.ProductName;
-            order.Price = orderDto.Price;
-            order.Quantity = orderDto.Quantity;
-
-            await _context.SaveChangesAsync();
-
-            _messagePublisher.SendMessage(order);
-
-            return NoContent();
-        }
     }
 }

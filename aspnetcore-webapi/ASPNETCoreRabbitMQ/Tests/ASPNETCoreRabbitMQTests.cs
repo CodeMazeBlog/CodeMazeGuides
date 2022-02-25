@@ -51,38 +51,5 @@ namespace ASPNETCoreRabbitMQTests
                 && o.Quantity == orderDto.Quantity
                 )), Times.Once);
         }
-
-        [Fact]
-        public async Task UpdateOrder_ValidOrderDto_PublishesMessageToRabbitMQ()
-        {
-            // Arrange
-            var order = new Order
-            {
-                Id = 1,
-                ProductName = "Keyboard",
-                Price = 99.99M,
-                Quantity = 1
-            };
-
-            _orders.Add(order);
-
-            var orderDto = new OrderDto
-            {
-                ProductName = "Keyboard",
-                Price = 99.99M,
-                Quantity = 2
-            };
-
-            // Act
-            await _ordersController.UpdateOrder(1, orderDto);
-
-            // Assert
-            _messageProducer.Verify(m => m.SendMessage(
-                It.Is<Order>(o =>
-                o.ProductName == orderDto.ProductName
-                && o.Price == orderDto.Price
-                && o.Quantity == orderDto.Quantity
-                )), Times.Once);
-        }
     }
 }
