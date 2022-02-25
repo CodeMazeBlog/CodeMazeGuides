@@ -12,37 +12,35 @@ namespace BubbleSortTest
             var array = new int[] { 73, 57, 49, 99, 133, 20, 1 };
             var expected = new int[] { 1, 20, 49, 57, 73, 99, 133 };
             var sortFunction = new Bubble();
+            sortFunction.NumArray = array;
 
-            var sortedArray = sortFunction.SortArray(array);
-            
+            var sortedArray = sortFunction.SortArray();
+
             Assert.IsNotNull(sortedArray);
             CollectionAssert.AreEqual(sortedArray, expected);
         }
 
         [TestMethod]
-        public void GivenUnsortedArray_ThenReturnSortTime()
+        public void GivenUnsortedArray_WhenSortedWithOptimizedBubbleSort_ThenGetSortedArray()
         {
+            var array = new int[] { 73, 57, 49, 99, 133, 20, 1 };
+            var expected = new int[] { 1, 20, 49, 57, 73, 99, 133 };
             var sortFunction = new Bubble();
-            var best = new int[2000];
-            var average = new int[20000];
-            var worst = new int[100000];
 
-            var bestDuration = sortFunction.GetSortingTime(best);
-            var averageDuration = sortFunction.GetSortingTime(average);
-            var worstDuration = sortFunction.GetSortingTime(worst);
+            sortFunction.NumArray = array;
+            var sortedArray = sortFunction.SortOptimizedArray();
 
-            Assert.IsTrue(averageDuration > bestDuration);
-            Assert.IsTrue(worstDuration > bestDuration);
-            Assert.IsTrue  (worstDuration > averageDuration);
+            Assert.IsNotNull(sortedArray);
+            CollectionAssert.AreEqual(sortedArray, expected);
         }
 
         [TestMethod]
         public void GivenUnsortedArray_CheckInstanceType()
         {
             var sortFunction = new Bubble();
-            var array = new int[2000];
+            sortFunction.NumArray = Bubble.GenerateRandomNumber(200);
 
-            var sortedArray = sortFunction.SortArray(array);
+            var sortedArray = sortFunction.SortArray();
 
             Assert.IsInstanceOfType(sortedArray, typeof(int[]));
         }
@@ -51,9 +49,9 @@ namespace BubbleSortTest
         public void GivenUnsortedArray_CheckSortedNotNull()
         {
             var sortFunction = new Bubble();
-            var array = new int[2000];
+            sortFunction.NumArray = Bubble.GenerateRandomNumber(200);
 
-            var sortedArray = sortFunction.SortArray(array);
+            var sortedArray = sortFunction.SortArray();
 
             Assert.IsNotNull(sortedArray);
         }

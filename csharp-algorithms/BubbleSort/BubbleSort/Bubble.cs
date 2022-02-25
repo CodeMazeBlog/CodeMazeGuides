@@ -1,49 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BenchmarkDotNet.Attributes;
 
 namespace BubbleSort
 {
     public class Bubble
     {
-        public int[] SortArray(int[] array) 
+        [ParamsSource(nameof(ArraySizes))]
+        public int[]? NumArray { get; set; }
+        int[] bestCase = GenerateRandomNumber(200);
+        int[] averageCase = GenerateRandomNumber(2000);
+        int[] worstCase = GenerateRandomNumber(200000);
+        public IEnumerable<int[]> ArraySizes => new[] { bestCase, averageCase, worstCase};
+
+        [Benchmark]
+        public int[] SortArray() 
         {
-            var n = array.Length;
+            var n = NumArray.Length;
+
             for (int i = 0; i < n - 1; i++)
                 for (int j = 0; j < n - i - 1; j++)
-                    if (array[j] > array[j + 1])
+                    if (NumArray[j] > NumArray[j + 1])
                     {
-                        var tempVar = array[j];
-                        array[j] = array[j + 1];
-                        array[j + 1] = tempVar;
+                        var tempVar = NumArray[j];
+                        NumArray[j] = NumArray[j + 1];
+                        NumArray[j + 1] = tempVar;
                     }
-            return array;
+
+            return NumArray;
         }
 
-        public void DisplaySortTime(int[] array)
+        [Benchmark]
+        public int[] SortOptimizedArray()
         {
-            Console.WriteLine("{0} array elements:", array.Length);
-            var sortDuration = GetSortingTime(array);
-            Console.WriteLine("\tIt takes {0} seconds to sort the unsorted array", sortDuration);
-            sortDuration = GetSortingTime(array);
-            Console.WriteLine("\tIt takes {0} seconds to sort the sorted array\n", sortDuration);
+            var n = NumArray.Length;
+            bool swapRequired;
+
+            for (int i = 0; i < n - 1; i++) 
+            {
+                swapRequired = false;
+                for (int j = 0; j < n - i - 1; j++)
+                    if (NumArray[j] > NumArray[j + 1])
+                    {
+                        var tempVar = NumArray[j];
+                        NumArray[j] = NumArray[j + 1];
+                        NumArray[j + 1] = tempVar;
+                        swapRequired = true;
+                    }
+                if (swapRequired == false)
+                    break;
+            }
+   
+            return NumArray;
         }
 
-        public double GetSortingTime(int[] array)
+        public static int[] GenerateRandomNumber(int size)
         {
-            var start = Environment.TickCount;
-            SortArray(array);
-            var stop = Environment.TickCount;
-            return (stop - start) / 1000.0;
-        }
-
-        public void GenerateRandomNumber(int[] array, int maxNum)
-        {
+            var array = new int[size];
             var rand = new Random();
-            for (int i = 0; i < array.Length; i++)
+            var maxNum = 10000;
+
+            for (int i = 0; i < size; i++)
                 array[i] = rand.Next(maxNum + 1);
+
+            return array;
         }
     }
 }
