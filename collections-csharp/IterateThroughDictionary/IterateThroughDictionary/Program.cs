@@ -4,8 +4,6 @@ namespace IterateThroughDictionary
     {
         public static void Main(string[]args)
         {
-            var pTest = new PerformAnalysisTest();
-
             var monthsInYear = new Dictionary<int, string>
             {
                 {1,"January" },
@@ -19,7 +17,6 @@ namespace IterateThroughDictionary
             SubDictionaryForLoop(monthsInYear);
             SubDictionaryParallelEnumerable(monthsInYear);
             SubDictionaryStringJoin(monthsInYear);
-            pTest.TestDictionaryLoopResult();
         }
         
         public static void SubDictionaryUsingForEach(Dictionary<int,string> monthsInYear)
@@ -58,7 +55,6 @@ namespace IterateThroughDictionary
             monthsInYear.AsParallel()
                         .OrderBy(month => month.Key)
                         .ForAll(month => Console.WriteLine($"{month.Key} : {month.Value}"));
-                        
         }
 
         public static void SubDictionaryStringJoin(Dictionary<int, string> monthsInYear)
