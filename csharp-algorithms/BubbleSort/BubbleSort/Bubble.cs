@@ -6,10 +6,11 @@ namespace BubbleSort
     {
         [ParamsSource(nameof(ArraySizes))]
         public int[]? NumArray { get; set; }
-        int[] bestCase = GenerateRandomNumber(200);
-        int[] averageCase = GenerateRandomNumber(2000);
-        int[] worstCase = GenerateRandomNumber(200000);
-        public IEnumerable<int[]> ArraySizes => new[] { bestCase, averageCase, worstCase};
+        int[] smallArray = GenerateRandomNumber(200);
+        int[] mediumArray = GenerateRandomNumber(2000);
+        int[] largeArray = GenerateRandomNumber(200000);
+        int[] sortedLargeArray = GenerateSortedNumber(200000);
+        public IEnumerable<int[]> ArraySizes => new[] { smallArray, mediumArray, largeArray, sortedLargeArray };
 
         [Benchmark]
         public int[] SortArray() 
@@ -60,6 +61,16 @@ namespace BubbleSort
 
             for (int i = 0; i < size; i++)
                 array[i] = rand.Next(maxNum + 1);
+
+            return array;
+        }
+
+        public static int[] GenerateSortedNumber(int size)
+        {
+            var array = new int[size];
+
+            for (int i = 0; i < size; i++)
+                array[i] = i;
 
             return array;
         }
