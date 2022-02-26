@@ -30,7 +30,7 @@ namespace ASPNETCoreRabbitMQTests
         }
 
         [Fact]
-        public async Task GivenAnOrderDto_WhenCreateOrderIsCalled_ThenMessagePublishedeToRabbitMQ()
+        public async Task GivenAnOrderDto_WhenCreateOrderIsCalled_ThenMessagePublishedToRabbitMQ()
         {
             // Arrange
             var orderDto = new OrderDto
