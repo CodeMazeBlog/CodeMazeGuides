@@ -1,8 +1,8 @@
 using Xunit;
 using ActionFuncDelegate;
 
-namespace ActionFuncDelegateTest {
-
+namespace ActionFuncDelegateTest 
+{
     public class FuncDelegateTest
     {
         [Fact]

@@ -1,16 +1,16 @@
 using Xunit;
 using ActionFuncDelegate;
 
-namespace ActionFuncDelegateTest {
-
+namespace ActionFuncDelegateTest 
+{
     public class ActionDelegateTest
     {
         [Fact]
         public void GivenTwoValues_ThenCalculateSum()
         {
-            int valA = 120;
-            int valB = 160;
-            int expectedSum = valA + valB;
+            var valA = 120;
+            var valB = 160;
+            var expectedSum = valA + valB;
 
             ActionDelegate.Add(valA, valB);
             Assert.Equal(expectedSum, ActionDelegate.Sum);
