@@ -11,13 +11,13 @@ using Xunit;
 
 namespace ASPNETCoreRabbitMQTests
 {
-    public class ASPNETCoreRabbitMQTests
+    public class ASPNETCoreRabbitMQUnitTest
     {
         private readonly Mock<IMessageProducer> _messageProducer;
         private readonly List<Order> _orders;
         private readonly OrdersController _ordersController;
 
-        public ASPNETCoreRabbitMQTests()
+        public ASPNETCoreRabbitMQUnitTest()
         {
             _messageProducer = new Mock<IMessageProducer>();
 
@@ -30,7 +30,7 @@ namespace ASPNETCoreRabbitMQTests
         }
 
         [Fact]
-        public async Task CreateOrder_ValidOrderDto_PublishesMessageToRabbitMQ()
+        public async Task GivenAnOrderDto_WhenCreateOrderIsCalled_ThenMessagePublishedeToRabbitMQ()
         {
             // Arrange
             var orderDto = new OrderDto
