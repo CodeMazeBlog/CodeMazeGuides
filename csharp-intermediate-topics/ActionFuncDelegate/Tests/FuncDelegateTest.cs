@@ -8,11 +8,11 @@ namespace ActionFuncDelegateTest
         [Fact]
         public void GivenRadiusValue_ThenReturnCorrectAreaOfCircle()
         {
-            int radius = 2;
-            double valueOfPi = 3.14;
-            double exepectedRadius = valueOfPi * radius * radius;
+            var radius = 2;
+            var valueOfPi = 3.14;
+            var exepectedRadius = valueOfPi * radius * radius;
 
-            double returnedRadius = FuncDelegate.AreaOfCircle(radius);
+            var returnedRadius = FuncDelegate.AreaOfCircle(radius);
             Assert.Equal(exepectedRadius, returnedRadius);
         }
     }
