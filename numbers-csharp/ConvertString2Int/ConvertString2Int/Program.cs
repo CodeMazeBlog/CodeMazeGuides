@@ -1,12 +1,12 @@
 ﻿using ConvertString2Int;
 
 var stringValue = "3";
-int number;
+var number = 0;
 
 number = int.Parse(stringValue);
 Console.WriteLine($"Converted '{stringValue}' to {number} using 'int.Parse'");
 
-number = int.TryParse(stringValue, out number) ? number : 0;
+int.TryParse(stringValue, out number);
 Console.WriteLine($"Converted '{stringValue}' to {number} using 'int.TryParse'");
 
 number = Convert.ToInt32(stringValue);

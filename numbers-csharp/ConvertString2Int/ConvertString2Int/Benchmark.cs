@@ -14,7 +14,7 @@ namespace ConvertString2Int
 
         static string BenchmarkIntParse(string strValue, int reps)
         {
-            int number;
+            var number = 0;
             var watch = new Stopwatch();
             watch.Start();
             for (int i = 0; i < reps; i++)
@@ -27,12 +27,12 @@ namespace ConvertString2Int
         }
         static string BenchmarkIntTryParse(string strValue, int reps)
         {
-            int number;
+            var number = 0;
             var watch = new Stopwatch();
             watch.Start();
             for (int i = 0; i < reps; i++)
             {
-                number = int.TryParse(strValue, out number) ? number : 0;
+                int.TryParse(strValue, out number);
             }
             watch.Stop();
 
@@ -40,7 +40,7 @@ namespace ConvertString2Int
         }
         static string BenchmarkConvertToInt32(string strValue, int reps)
         {
-            int number;
+            var number = 0;
             var watch = new Stopwatch();
             watch.Start();
             for (int i = 0; i < reps; i++)
@@ -53,7 +53,7 @@ namespace ConvertString2Int
         }
         static string BenchmarkCustomConvert(string strValue, int reps)
         {
-            int number;
+            var number = 0;
             var watch = new Stopwatch();
             watch.Start();
             for (int i = 0; i < reps; i++)

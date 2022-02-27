@@ -10,11 +10,13 @@ namespace ConvertString2Int
     {
         public static int Parse(string strVal)
         {
-            int num = 0;
+            var num = 0;
+
             for (int i = 0; i < strVal.Length; i++)
             {
                 num = num * 10 + (strVal[i] - '0');
             }
+
             return num;
         }
     }
