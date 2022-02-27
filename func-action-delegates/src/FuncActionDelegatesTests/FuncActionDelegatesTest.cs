@@ -1,4 +1,6 @@
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace FuncActionDelegatesTests
 {
@@ -6,15 +8,19 @@ namespace FuncActionDelegatesTests
     public class FuncActionDelegatesTest
     {
         [TestMethod]
-        public void FuncDelegate()
+        public void whenCallFuncDelegate()
         {
-            Assert.IsTrue(true);
+
+            Func<string, string, string> funcDelegate = FuncDelegate.Program.Append;
+            string fullName = funcDelegate("Code", "Maze");
+            Assert.AreEqual(fullName, "CodeMaze");
+            
         }
 
         [TestMethod]
-        public void ActionDelegate()
+        public void whenCallActionDelegate()
         {
-            Assert.IsTrue(true);
+            Assert.AreEqual("CodeMaze", "CodeMaze");
         }
     }
 }

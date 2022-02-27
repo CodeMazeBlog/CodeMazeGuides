@@ -1,15 +1,15 @@
 ﻿using System;
 namespace ActionDelegate
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Action<string, string> actionDelegate = Print;
             actionDelegate("Code", "Maze");
             Console.ReadLine();
         }
-        static void Print(string firstName, string lastName)
+        public static void Print(string firstName, string lastName)
         {
             string fullName = firstName + lastName;
             Console.WriteLine($"{fullName}");
