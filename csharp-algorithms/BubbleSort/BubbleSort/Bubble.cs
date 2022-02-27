@@ -9,11 +9,30 @@ namespace BubbleSort
         int[] smallArray = GenerateRandomNumber(200);
         int[] mediumArray = GenerateRandomNumber(2000);
         int[] largeArray = GenerateRandomNumber(200000);
+        int[] sortedSmallArray = GenerateSortedNumber(200);
+        int[] sortedMediumArray = GenerateSortedNumber(2000);
         int[] sortedLargeArray = GenerateSortedNumber(200000);
-        public IEnumerable<int[]> ArraySizes => new[] { smallArray, mediumArray, largeArray, sortedLargeArray };
+        public IEnumerable<int[]> ArraySizes => new[] { smallArray, mediumArray, largeArray, sortedSmallArray, sortedMediumArray, sortedLargeArray };
 
         [Benchmark]
         public int[] SortArray() 
+        {
+            var n = NumArray.Length;
+
+            for (int i = 0; i < n - 1; i++)
+                for (int j = 0; j < n - i - 1; j++)
+                    if (NumArray[j] > NumArray[j + 1])
+                    {
+                        var tempVar = NumArray[j];
+                        NumArray[j] = NumArray[j + 1];
+                        NumArray[j + 1] = tempVar;
+                    }
+
+            return NumArray;
+        }
+
+        [Benchmark]
+        public int[] SortOrderedArray()
         {
             var n = NumArray.Length;
 
@@ -50,6 +69,30 @@ namespace BubbleSort
                     break;
             }
    
+            return NumArray;
+        }
+
+        [Benchmark]
+        public int[] SortOptimizedOrderedArray()
+        {
+            var n = NumArray.Length;
+            bool swapRequired;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                swapRequired = false;
+                for (int j = 0; j < n - i - 1; j++)
+                    if (NumArray[j] > NumArray[j + 1])
+                    {
+                        var tempVar = NumArray[j];
+                        NumArray[j] = NumArray[j + 1];
+                        NumArray[j + 1] = tempVar;
+                        swapRequired = true;
+                    }
+                if (swapRequired == false)
+                    break;
+            }
+
             return NumArray;
         }
 
