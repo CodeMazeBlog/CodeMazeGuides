@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FuncActionDelegatesTests
 {
     [TestClass]
-    public class UnitTest1
+    public class FuncActionDelegatesTest
     {
         [TestMethod]
         public void FuncDelegate()
