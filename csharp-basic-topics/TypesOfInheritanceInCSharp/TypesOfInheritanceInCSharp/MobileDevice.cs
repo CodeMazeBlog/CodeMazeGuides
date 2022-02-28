@@ -1,4 +1,5 @@
 ﻿namespace TypesOfInheritanceInCSharp;
+
 public class MobileDevice
 {
     public string OperatingSystem { get; set; } = null!;
