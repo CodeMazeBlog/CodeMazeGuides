@@ -35,5 +35,22 @@ namespace GetDatePartFromDateTime.Tests
 
             Assert.IsTrue(datePart.Hour == 0 && datePart.Minute == 0 && datePart.Second == 0);
         }
+
+        [TestMethod]
+        public void DateOnly_OnGivenDateTime_CreatesCorrectDate() 
+        {
+            DateTime date = new DateTime(2021, 7, 8, 11, 10, 9);
+            DateOnly dateOnly = new DateOnly(date.Year, date.Month, date.Day);
+
+            Assert.IsTrue(dateOnly.Year == date.Year && dateOnly.Month == date.Month && dateOnly.Day == date.Day);
+        }
+
+        [TestMethod]
+        public void DateFormat_OnGivenDateTime_CreatesCorrectDate()
+        {
+            DateTime date = new DateTime(2021, 7, 8, 11, 10, 9);
+
+            Assert.IsTrue($"{date:MMM}" == "Jul" && $"{date:dd}" == "08" && $"{date:yy}" == "21");
+        }
     }
 }
