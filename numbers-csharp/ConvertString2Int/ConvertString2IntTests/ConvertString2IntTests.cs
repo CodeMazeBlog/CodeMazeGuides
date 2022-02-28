@@ -111,5 +111,4 @@ namespace ConvertString2IntTests
             Assert.AreEqual(number, numberConvertedFromString);
         }
     }
-
 }

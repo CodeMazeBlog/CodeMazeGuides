@@ -15,8 +15,4 @@ Console.WriteLine($"Converted '{stringValue}' to {number} using 'Convert.ToInt32
 number = CustomConvert.Parse(stringValue);
 Console.Write($"Converted '{stringValue}' to {number} using 'CustomConvert'");
 
-Console.WriteLine(Benchmark.Run(stringValue, 100000));
-Console.WriteLine(Benchmark.Run(stringValue, 10000000));
-Console.WriteLine(Benchmark.Run(stringValue, 1000000000));
-
 Console.ReadKey();
