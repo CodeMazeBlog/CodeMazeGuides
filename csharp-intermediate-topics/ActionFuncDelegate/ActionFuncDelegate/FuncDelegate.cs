@@ -2,8 +2,6 @@ namespace ActionFuncDelegate
 {
     public class FuncDelegate 
     {
-        public static int Radius { get; set; }
-
         private static double valueOfPi = 3.14;
         
         public static double AreaOfCircle(int radius) 
@@ -14,9 +12,9 @@ namespace ActionFuncDelegate
         public static void Demonstrate() 
         {
             Func<int, double> areaDel = new Func<int, double>(FuncDelegate.AreaOfCircle);
-            Radius = 4;
+            var radius = 4;
 
-            Console.WriteLine(areaDel(Radius));
+            Console.WriteLine("Area of the circle is = " + areaDel(radius));
         }
     }
 }
