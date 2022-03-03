@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CustomAttributes
 {
-    public class TaskDescriptor : Attribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct)]
+    public class TaskDescriptorAttribute : Attribute
     {
         public string? Name { get; set; }
         public string? Description { get; set; }

@@ -13,7 +13,7 @@ namespace TestProject
 
             try
             {
-                CustomAttributeHelper.GetTaskAttribute(typeof(TaskGroup));
+                CustomAttributeHelper.GetAttribute(typeof(MyTasks), typeof(TaskDescriptorAttribute));
             }
             catch
             {
@@ -24,13 +24,30 @@ namespace TestProject
         }
 
         [TestMethod]
-        public void WhenCorrectInput_ThenCorrectMultipleAttOutput()
+        public void WhenCorrectMyTaskInput_ThenCorrectMultipleAttOutput()
         {
             bool result = true;
 
             try
             {
-                CustomAttributeHelper.GetTaskAttributesOfMethod(typeof(TaskGroup));
+                CustomAttributeHelper.GetAttributesOfMethods(typeof(MyTasks));
+            }
+            catch
+            {
+                result = false;
+            }
+
+            Assert.IsTrue(result == true);
+        }
+
+        [TestMethod]
+        public void WhenCorrectYourTaskInput_ThenCorrectMultipleAttOutput()
+        {
+            bool result = true;
+
+            try
+            {
+                CustomAttributeHelper.GetAttributesOfMethods(typeof(YourTasks));
             }
             catch
             {

@@ -9,55 +9,56 @@ namespace CustomAttributes
 {
     public static class CustomAttributeHelper
     {
-        public static void GetTaskAttribute(Type type)
+        private static void WriteOnTheConsole(Attribute attributeInstance)
         {
-            var taskDescriptorAtt = (TaskDescriptor?)Attribute.GetCustomAttribute(type, typeof(TaskDescriptor));
+            var pInfoList = attributeInstance.GetType().GetProperties(BindingFlags.Public |
+                    BindingFlags.Instance |
+                    BindingFlags.DeclaredOnly);
 
-            if (taskDescriptorAtt == null)
-            {
-                Console.WriteLine("The class {0} has not Attribute.", type.ToString());
-            }
-            else
-            {
-                Console.WriteLine("The Name Attribute is: {0}.", taskDescriptorAtt.Name);
-                Console.WriteLine("The Description Attribute is: {0}.", taskDescriptorAtt.Description);
-                Console.WriteLine("The NeedsManager Attribute is: {0}.", taskDescriptorAtt.NeedsManager);
-                Console.WriteLine("The DeveloperCount Attribute is: {0}.", taskDescriptorAtt.DeveloperCount);
-            }
+            Console.WriteLine("\nThe {0} attribute:", attributeInstance.ToString());
+
+            foreach (var pInfo in pInfoList)
+                Console.WriteLine("The {0} property is: {1}", pInfo.Name, pInfo.GetValue(attributeInstance));
         }
 
-        public static void GetTaskAttributesOfMethod(Type type)
+        public static void GetAttribute(Type desiredType, Type desiredAttribute)
         {
-            var methodInfoList = type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            var attributeInstance = Attribute.GetCustomAttribute(desiredType, desiredAttribute);
+
+            if (attributeInstance == null)
+                Console.WriteLine("The class {0} does not have atributes.", desiredType.ToString());
+            else
+                WriteOnTheConsole(attributeInstance);
+        }
+
+        public static void GetAttributesOfMethods(Type elementType)
+        {
+            var methodInfoList = elementType.GetMethods(BindingFlags.Public |
+                BindingFlags.Instance |
+                BindingFlags.DeclaredOnly);
 
             if (methodInfoList == null || methodInfoList.Length == 0)
             {
-                Console.WriteLine("The type {0} has not Method.", type.ToString());
+                Console.WriteLine("The type {0} does not have any methods.", elementType.ToString());
                 return;
             }
 
             foreach (var methodInfo in methodInfoList)
             {
-                var attributeList = Attribute.GetCustomAttributes(methodInfo, false);
+                var attributeList = Attribute.GetCustomAttributes(methodInfo, true);
 
                 if (attributeList.Length == 0)
                 {
-                    Console.WriteLine("The {0}.{1} method has not attribute.", type.Name, methodInfo.Name);
+                    Console.WriteLine("The {0}.{1} method does not have attributes.", elementType.Name, methodInfo.Name);
+                    continue;
                 }
-                else
-                {
-                    Console.WriteLine("The {0}.{1} method's Attributes:", type.Name, methodInfo.Name);
 
-                    foreach (var att in attributeList)
-                    {
-                        var pInfoList = att.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                Console.WriteLine("The {0}.{1} method's attribute:", elementType.Name, methodInfo.Name);
 
-                        Console.WriteLine("\nThe {0} Attribute(s):", att.ToString());
+                foreach (var att in attributeList)
+                    WriteOnTheConsole(att);
 
-                        foreach (var pInfo in pInfoList)
-                            Console.WriteLine("The {0} Attribute is: {1}", pInfo.Name, pInfo.GetValue(att));
-                    }
-                }
+                Console.WriteLine("\n");
             }
         }
     }

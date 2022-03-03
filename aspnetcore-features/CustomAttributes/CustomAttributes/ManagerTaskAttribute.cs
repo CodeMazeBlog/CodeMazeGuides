@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CustomAttributes
 {
-    public class DeveloperTask : Attribute
+    [AttributeUsage(AttributeTargets.Method, Inherited = false)]
+    public class ManagerTaskAttribute : Attribute
     {
         public Priorities Priority { get; set; }
-        public string? Description { get; set; }
+        public bool NeedsReport { get; set; }
     }
 }
