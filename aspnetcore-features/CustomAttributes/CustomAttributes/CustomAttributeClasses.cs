@@ -59,7 +59,6 @@ namespace CustomAttributes
 
                 Console.WriteLine("The {0}.{1} method's attribute:", elementType.Name, methodInfo.Name);
 
-
                 foreach (var att in attributeList)
                 {
                     WriteOnTheConsole(att);
