@@ -9,52 +9,31 @@ namespace TestProject
         [TestMethod]
         public void WhenCorrectInput_ThenCorrectSingleAttOutput()
         {
-            bool result = true;
-
-            try
-            {
-                CustomAttributeHelper.GetAttribute(typeof(MyTasks), typeof(TaskDescriptorAttribute));
-            }
-            catch
-            {
-                result = false;
-            }
-
-            Assert.IsTrue(result == true);
+            var attribute = CustomAttributeHelper.GetAttribute(typeof(MyTasks), typeof(TaskDescriptorAttribute));
+            
+            Assert.IsTrue(attribute == typeof(TaskDescriptorAttribute).ToString());
         }
 
         [TestMethod]
         public void WhenCorrectMyTaskInput_ThenCorrectMultipleAttOutput()
         {
-            bool result = true;
+            var attList = CustomAttributeHelper.GetAttributesOfMethods(typeof(MyTasks));
 
-            try
-            {
-                CustomAttributeHelper.GetAttributesOfMethods(typeof(MyTasks));
-            }
-            catch
-            {
-                result = false;
-            }
+            var result = attList.FindAll(x => x.Contains("ScheduleMeeting-" + typeof(DeveloperTaskAttribute))).Count == 2;
+            result &= attList.FindAll(x => x.Contains("ScheduleInterview-" + typeof(DeveloperTaskAttribute))).Count == 1;
+            result &= attList.FindAll(x => x.Contains("ScheduleInterview-" + typeof(ManagerTaskAttribute))).Count == 1;
 
-            Assert.IsTrue(result == true);
+            Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void WhenCorrectYourTaskInput_ThenCorrectMultipleAttOutput()
         {
-            bool result = true;
+            var attList = CustomAttributeHelper.GetAttributesOfMethods(typeof(YourTasks));
 
-            try
-            {
-                CustomAttributeHelper.GetAttributesOfMethods(typeof(YourTasks));
-            }
-            catch
-            {
-                result = false;
-            }
+            var result = attList.FindAll(x => x.Contains("ScheduleInterview-" + typeof(DeveloperTaskAttribute))).Count == 2;
 
-            Assert.IsTrue(result == true);
+            Assert.IsTrue(result);
         }
     }
 }

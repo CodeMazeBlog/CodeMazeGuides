@@ -12,20 +12,14 @@ namespace CustomAttributes
         DeveloperCount = 5)]
     public class MyTasks
     {
-        [DeveloperTask(Priority = Priorities.Low,
-           Description = "Low level description")]
-
-        [DeveloperTask(Priority = Priorities.High,
-            Description = "High level description")]
+        [DeveloperTask(Priorities.Low)]
+        [DeveloperTask(Priorities.High, Description = "High level description")]
         public void ScheduleMeeting()
         {
         }
 
-        [ManagerTask(Priority = Priorities.Mid,
-            NeedsReport = true)]
-
-        [DeveloperTask(Priority = Priorities.High,
-            Description = "High level description")]
+        [ManagerTask(Priority = Priorities.Mid, NeedsReport = true)]
+        [DeveloperTask(Priorities.High, Description = "High level description")]
         public virtual void ScheduleInterview()
         {
         }

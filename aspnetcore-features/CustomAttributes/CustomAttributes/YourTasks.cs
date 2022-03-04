@@ -8,8 +8,7 @@ namespace CustomAttributes
 {
     public class YourTasks : MyTasks
     {
-        [DeveloperTask(Priority = Priorities.Mid,
-            Description = "Mid level description")]
+        [DeveloperTask(Priorities.Mid, Description = "Mid level description")]
         public override void ScheduleInterview()
         {
         }
