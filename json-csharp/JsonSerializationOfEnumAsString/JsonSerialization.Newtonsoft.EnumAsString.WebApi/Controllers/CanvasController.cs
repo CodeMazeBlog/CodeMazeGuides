@@ -1,3 +1,4 @@
+using JsonSerialization.EnumAsString.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JsonSerialization.Newtonsoft.EnumAsString.WebApi.Controllers;

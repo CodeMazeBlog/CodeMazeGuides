@@ -1,9 +1,9 @@
-﻿namespace JsonSerialization.Native.EnumAsStringTests.InlineObjectSerialization;
+﻿namespace JsonSerialization.EnumAsString.Models;
 
 public class Canvas
 {
     public static readonly Canvas Poster 
-        = new() { Name = "Poster", BackColor = Color.LightGray, Pen = new("Simple", Color.Red) };
+        = new() { Name = "Poster", BackColor = Color.LightGray, Pen = new ("Simple", Color.Red) };
 
     public string? Name { get; set; }
 

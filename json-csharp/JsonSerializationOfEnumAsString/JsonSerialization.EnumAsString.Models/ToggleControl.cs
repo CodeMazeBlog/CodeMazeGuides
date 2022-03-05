@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace JsonSerialization.Native.EnumAsStringTests.CustomSerialization;
+namespace JsonSerialization.EnumAsString.Models;
 
 public record struct ToggleControl(string Name, ToggleType Type);
 

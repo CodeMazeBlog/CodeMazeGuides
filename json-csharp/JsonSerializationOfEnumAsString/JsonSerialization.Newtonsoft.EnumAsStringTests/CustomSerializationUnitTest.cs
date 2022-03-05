@@ -1,4 +1,6 @@
-namespace JsonSerialization.Newtonsoft.EnumAsStringTests.CustomSerialization;
+using JsonSerialization.EnumAsString.Models;
+
+namespace JsonSerialization.Newtonsoft.EnumAsStringTests;
 
 public class CustomSerializationUnitTest : UnitTestBase
 {

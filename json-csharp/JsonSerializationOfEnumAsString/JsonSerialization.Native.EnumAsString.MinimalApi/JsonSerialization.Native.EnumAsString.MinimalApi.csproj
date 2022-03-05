@@ -12,5 +12,8 @@
   <ItemGroup>
 	<InternalsVisibleTo Include="JsonSerialization.Native.EnumAsString.MinimalApiTests" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JsonSerialization.EnumAsString.Models\JsonSerialization.EnumAsString.Models.csproj" />
+  </ItemGroup>
 	
 </Project>

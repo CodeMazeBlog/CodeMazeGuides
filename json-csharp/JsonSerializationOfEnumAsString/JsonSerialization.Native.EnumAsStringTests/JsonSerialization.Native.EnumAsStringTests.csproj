@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JsonSerialization.EnumAsString.Models\JsonSerialization.EnumAsString.Models.csproj" />
     <ProjectReference Include="..\JsonSerialization.Native.EnumAsString.WebApi\JsonSerialization.Native.EnumAsString.WebApi.csproj" />
   </ItemGroup>
 

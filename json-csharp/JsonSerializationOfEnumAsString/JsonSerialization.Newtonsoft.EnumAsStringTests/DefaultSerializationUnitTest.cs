@@ -1,4 +1,6 @@
-namespace JsonSerialization.Native.EnumAsStringTests.DefaultSerialization;
+using JsonSerialization.EnumAsString.Models;
+
+namespace JsonSerialization.Newtonsoft.EnumAsStringTests;
 
 public class DefaultSerializationUnitTest : UnitTestBase
 {

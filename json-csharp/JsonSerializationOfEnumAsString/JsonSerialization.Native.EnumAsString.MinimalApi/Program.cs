@@ -1,4 +1,4 @@
-using JsonSerialization.Native.EnumAsString.MinimalApi;
+using JsonSerialization.EnumAsString.Models;
 using Microsoft.AspNetCore.Http.Json;
 using System.Text.Json.Serialization;
 

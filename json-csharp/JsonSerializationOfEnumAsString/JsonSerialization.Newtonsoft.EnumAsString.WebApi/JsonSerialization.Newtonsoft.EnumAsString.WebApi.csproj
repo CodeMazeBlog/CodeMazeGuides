@@ -13,5 +13,8 @@
   <ItemGroup>
 	<InternalsVisibleTo Include="JsonSerialization.Newtonsoft.EnumAsStringTests" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JsonSerialization.EnumAsString.Models\JsonSerialization.EnumAsString.Models.csproj" />
+  </ItemGroup>
 	
 </Project>
