@@ -26,16 +26,16 @@ namespace LINQBasicExample
             var students = FrequentlyUsedLINQExamples.DemoLINQQueryOperation().ToList();
             PrintStudentList(students);
 
-            Console.WriteLine("\n\n ## Method Syntax ##");
+            Console.WriteLine("\n\n ## Method Syntax - Where() ##");
 
-            var highPerformingStudents = FrequentlyUsedLINQExamples.DemoHighPerformingStudents().ToList();
+            var highPerformingStudents = FrequentlyUsedLINQExamples.SelectHighPerformingStudents().ToList();
             PrintStudentList(highPerformingStudents);
 
             Console.WriteLine("\n\n ## Examples : Frequently Used LINQ Methods ##");
 
-            Console.WriteLine("\n ## Where() ##");
-            var studentsWhoScoredHighGrades = FrequentlyUsedLINQExamples.SelectHighPerformingStudents().ToList();
-            PrintStudentList(studentsWhoScoredHighGrades);
+            Console.WriteLine("\n ## Select() ##");
+            var studentsSelected = FrequentlyUsedLINQExamples.SelectStudentNames("Noha Shamil").ToList();
+            PrintStudentList(studentsSelected);
 
             Console.WriteLine("\n ## OrderBy() ##");
             var studentsAfterOrderById = FrequentlyUsedLINQExamples.SelectStudentsOrderById().ToList();

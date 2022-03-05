@@ -14,13 +14,6 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenRetrievingHighPerformingStudents_ThenTotalStudentCount()
-        {
-            var studnets = FrequentlyUsedLINQExamples.DemoHighPerformingStudents().ToList();
-            Assert.Equal(2, studnets.Count);
-        }
-
-        [Fact]
         public void WhenSelectingHighPerformingStudents_ThenTotalStudentCount()
         {
             var studnets = FrequentlyUsedLINQExamples.SelectHighPerformingStudents().ToList();
@@ -46,6 +39,13 @@ namespace Tests
         {
             var items = FrequentlyUsedLINQExamples.SelectStudentsGroupBy().ToList();
             Assert.Equal("NYC", items[0].Key);
+        }
+
+        [Fact]
+        public void WhenSelectingStudentByName_ThenStudentMark()
+        {
+            var items = FrequentlyUsedLINQExamples.SelectStudentNames("Noha Shamil").ToList();
+            Assert.Equal(88, items[0].Mark);
         }
 
         [Fact]

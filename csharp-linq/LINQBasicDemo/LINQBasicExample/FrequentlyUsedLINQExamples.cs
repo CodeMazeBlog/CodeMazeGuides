@@ -26,13 +26,6 @@ namespace LINQBasicExample
             return highPerformingStudents;
         }
 
-        public static IEnumerable<Student> DemoHighPerformingStudents()
-        {
-            var studentList = GetStudnetsFromDb();
-            var highPerformingStudents = studentList.Where(s => s.Mark > 80);
-            return highPerformingStudents;
-        }
-
         public static IEnumerable<Student> SelectHighPerformingStudents()
         {
             var studentList = GetStudnetsFromDb();
@@ -59,6 +52,13 @@ namespace LINQBasicExample
             var studentList = GetStudnetsFromDb();
             var studentListGroupByCity = studentList.GroupBy(x => x.City);
             return studentListGroupByCity;
+        }
+
+        public static IEnumerable<Student> SelectStudentNames(string name)
+        {
+            var studentList = GetStudnetsFromDb();
+            var studentsIdentified = studentList.Where(c => c.StudentName == name).Select(stu => new Student {StudentName = stu.StudentName , Mark = stu.Mark});
+            return studentsIdentified;
         }
 
         public static int SumOfStudentMarks()
