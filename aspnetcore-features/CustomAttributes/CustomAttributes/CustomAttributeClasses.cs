@@ -15,10 +15,10 @@ namespace CustomAttributes
                     BindingFlags.Instance |
                     BindingFlags.DeclaredOnly);
 
-            Console.WriteLine("\nThe {0} attribute:", attributeInstance.ToString());
+            Console.WriteLine($"\nThe {attributeInstance} attribute:");
 
             foreach (var pInfo in pInfoList)
-                Console.WriteLine("The {0} property is: {1}", pInfo.Name, pInfo.GetValue(attributeInstance));
+                Console.WriteLine($"The {pInfo.Name} property is: {pInfo.GetValue(attributeInstance)}");
         }
 
         public static string? GetAttribute(Type desiredType, Type desiredAttribute)
@@ -26,7 +26,7 @@ namespace CustomAttributes
             var attributeInstance = Attribute.GetCustomAttribute(desiredType, desiredAttribute);
 
             if (attributeInstance == null)
-                Console.WriteLine("The class {0} does not have atributes.", desiredType.ToString());
+                Console.WriteLine($"The class {desiredType} does not have atributes.");
             else
                 WriteOnTheConsole(attributeInstance);
 
@@ -43,7 +43,7 @@ namespace CustomAttributes
 
             if (methodInfoList == null || methodInfoList.Length == 0)
             {
-                Console.WriteLine("The type {0} does not have any methods.", elementType.ToString());
+                Console.WriteLine($"The type {elementType} does not have any methods.");
                 return attributes;
             }
 
@@ -53,11 +53,11 @@ namespace CustomAttributes
 
                 if (attributeList.Length == 0)
                 {
-                    Console.WriteLine("The {0}.{1} method does not have attributes.", elementType.Name, methodInfo.Name);
+                    Console.WriteLine($"The {elementType.Name}.{methodInfo.Name} method does not have attributes.");
                     continue;
                 }
 
-                Console.WriteLine("The {0}.{1} method's attribute:", elementType.Name, methodInfo.Name);
+                Console.WriteLine($"The {elementType.Name}.{methodInfo.Name} method's attribute:");
 
                 foreach (var att in attributeList)
                 {
