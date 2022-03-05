@@ -41,6 +41,19 @@ namespace SliceArrayTests
         }
 
         [TestMethod]
+        public void WhenUsingArraySegmentSlice_ThenArrayIsSliced()
+        {
+            var data = new Tuple<int, bool>[] { new(20, true), new(50, true), new(35, false), new(55, true), new(16, false) };
+
+            var arraySegment = new ArraySegment<Tuple<int, bool>>(data);
+            var trainingData = arraySegment.Slice(0, 3);
+            var testingData = arraySegment.Slice(3, 2);
+
+            Assert.AreEqual(3, trainingData.Count());
+            Assert.AreEqual(2, testingData.Count());
+        }
+
+        [TestMethod]
         public void WhenUsingReadOnlySpan_ThenArrayIsSliced()
         {
             var data = new Tuple<int, bool>[] { new(20, true), new(50, true), new(35, false), new(55, true), new(16, false) };

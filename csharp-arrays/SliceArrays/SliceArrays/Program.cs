@@ -43,6 +43,23 @@ namespace SliceArrays
                 Console.WriteLine(record);
         }
 
+        static void SliceArrayUsingArraySegmentSlice()
+        {
+            var data = new Tuple<int, bool>[] { new(20, true), new(50, true), new(35, false), new(55, true), new(16, false) };
+            var arraySegment = new ArraySegment<Tuple<int, bool>>(data);
+            var trainingData = arraySegment.Slice(0, 3);
+            var testingData = arraySegment.Slice(3, 2);
+
+            Console.WriteLine("Training Data:");
+            foreach (var record in trainingData)
+                Console.WriteLine(record);
+
+            Console.WriteLine();
+            Console.WriteLine("Testing Data:");
+            foreach (var record in testingData)
+                Console.WriteLine(record);
+        }
+
         static void SliceArrayUsingArraySegmentWithChanging()
         {
             var data = new Tuple<int, bool>[] { new(20, true), new(50, true), new(35, false), new(55, true), new(16, false) };
