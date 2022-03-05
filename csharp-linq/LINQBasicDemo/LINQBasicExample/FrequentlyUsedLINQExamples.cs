@@ -5,7 +5,6 @@ namespace LINQBasicExample
 {
     public class FrequentlyUsedLINQExamples
     {
-
         static IQueryable<Student> GetStudnetsFromDb()
         {
             return new[] {  
