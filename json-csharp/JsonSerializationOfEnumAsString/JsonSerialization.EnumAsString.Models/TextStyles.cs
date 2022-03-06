@@ -1,7 +1,7 @@
 ﻿namespace JsonSerialization.EnumAsString.Models;
 
 [Flags]
-public enum TextStyle
+public enum TextStyles
 {
     None = 0,
     Bold = 1,

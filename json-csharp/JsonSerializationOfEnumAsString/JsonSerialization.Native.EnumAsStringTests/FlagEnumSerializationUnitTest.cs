@@ -7,9 +7,9 @@ public class FlagEnumSerializationUnitTest : UnitTestBase
     [Fact]
     public void GivenFlagEnum_WhenSerializeByDefault_ThenSerializeAsCombinedNumber()
     {
-        var style = TextStyle.Bold | TextStyle.Italic | TextStyle.Underline;
+        var styles = TextStyles.Bold | TextStyles.Italic | TextStyles.Underline;
 
-        var json = Serialize(new { Format = style });
+        var json = Serialize(new { Format = styles });
 
         Assert.Equal("{\"Format\":7}", json);
     }
@@ -17,9 +17,9 @@ public class FlagEnumSerializationUnitTest : UnitTestBase
     [Fact]
     public void GivenFlagEnum_WhenSerializeWithEnumConverter_ThenSerializeAsCsvString()
     {
-        var style = TextStyle.Bold | TextStyle.Italic | TextStyle.Underline;
+        var styles = TextStyles.Bold | TextStyles.Italic | TextStyles.Underline;
 
-        var json = SerializeWithStringEnum(new { Format = style });
+        var json = SerializeWithStringEnum(new { Format = styles });
 
         Assert.Equal("{\"Format\":\"Bold, Italic, Underline\"}", json);
     }
