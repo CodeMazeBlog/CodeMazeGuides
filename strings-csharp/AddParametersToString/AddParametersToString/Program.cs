@@ -7,9 +7,9 @@ namespace AddParametersToString
     {
         static void Main(string[] args)
         {
-            string name = "John Doe";
+            var name = "John Doe";
 
-            int age = 26;
+            var age = 26;
             
             Console.WriteLine(string.Format("Hi, my name is {0}.", name));
 

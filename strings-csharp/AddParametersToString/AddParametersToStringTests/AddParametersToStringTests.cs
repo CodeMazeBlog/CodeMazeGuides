@@ -22,7 +22,7 @@ namespace AddParametersToStringTests
         [TestMethod]
         public void GivenStringReplace_WhenVailid_ParameterAddedSuccessfully()
         {
-            string greeting = "Hi, my name is username. I am age years old.";
+            var greeting = "Hi, my name is username. I am age years old.";
 
             Assert.AreEqual(output, greeting.Replace("username", name).Replace("age", age.ToString()));
         }
