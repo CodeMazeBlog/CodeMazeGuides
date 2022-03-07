@@ -9,7 +9,7 @@ string ProcessMessage(CustomInterpolatedStringHandler builder) => builder.GetFor
 var lambda = [DebuggerStepThrough]() => "Hello world";
 
 // Constant interpolated strings example
-const string constantAttribute = "not awesome";
+const string constantAttribute = "awesome";
 const string constantMessage = $"Code maze is {constantAttribute}.";
 
 // Sealing records ToString method example
