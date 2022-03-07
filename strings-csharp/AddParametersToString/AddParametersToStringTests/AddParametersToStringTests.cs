@@ -36,7 +36,7 @@ namespace AddParametersToStringTests
         [TestMethod]
         public void GivenStringBuilderAppendFormat_WhenVailid_ParameterAddedSuccessfully()
         {
-            StringBuilder builder = new();
+            var builder = new StringBuilder();
 
             builder.AppendFormat("Hi, my name is {0}. I am {1} years old.", name, age);
 

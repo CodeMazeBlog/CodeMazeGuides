@@ -21,7 +21,7 @@ namespace AddParametersToString
 
             Console.WriteLine($"Hi, my name is {name}. I am {age} year{(age == 1 ? "" : "s")} old.");
 
-            StringBuilder builder = new();
+            var builder = new StringBuilder();
 
             builder.AppendFormat("Hi, my name is {0}. I am {1} years old.", name, age);
 
