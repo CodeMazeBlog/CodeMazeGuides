@@ -8,8 +8,8 @@ namespace ByteArrayToFileTest
     [TestClass]
     public class LiveByteArrayToFileUnitTest
     {
-        const string _data = "Byte Array To File Test";
-        readonly byte[] _dataInBytes = Encoding.UTF8.GetBytes(_data);
+        const string Data = "Byte Array To File Test";
+        readonly byte[] _dataInBytes = Encoding.UTF8.GetBytes(Data);
 
         [TestMethod]
         public void GivenBinaryWriter_WhenSavingByteArray_ThenLoadCorrectData()
@@ -17,7 +17,7 @@ namespace ByteArrayToFileTest
             string filePath = "./binary-writer-file.txt";
             ByteArrayToFileConverter.SaveByteArrayToFileWithBinaryWriter(_dataInBytes, filePath);
 
-            Assert.AreEqual(_data, File.ReadAllText(filePath));
+            Assert.AreEqual(Data, File.ReadAllText(filePath));
         }
         
         [TestMethod]
@@ -26,7 +26,7 @@ namespace ByteArrayToFileTest
             string filePath = "./filestream-file.txt";
             ByteArrayToFileConverter.SaveByteArrayToFileWithFileStream(_dataInBytes, filePath);
 
-            Assert.AreEqual(_data, File.ReadAllText(filePath));
+            Assert.AreEqual(Data, File.ReadAllText(filePath));
         }
         
         [TestMethod]
@@ -35,7 +35,7 @@ namespace ByteArrayToFileTest
             string filePath = "./static-method-file.txt";
             ByteArrayToFileConverter.SaveByteArrayToFileWithStaticMethod(_dataInBytes, filePath);
 
-            Assert.AreEqual(_data, File.ReadAllText(filePath));
+            Assert.AreEqual(Data, File.ReadAllText(filePath));
         }
     }
 }
