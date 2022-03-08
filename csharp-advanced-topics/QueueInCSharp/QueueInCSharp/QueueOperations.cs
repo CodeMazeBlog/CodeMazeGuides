@@ -13,14 +13,14 @@ public static class QueueOperations
         Orders = new Queue<Order>();
 
         //create order objects
-        var Order1 = new Order("Ana", new string[] { "Chockolate", "Coffee" }, 20);
-        var Order2 = new Order("George", new string[] { "Juice", "Sandwich" }, 15);
-        var Order3 = new Order("Bob", new string[] { "Ice cream" }, 5);
+        var order1 = new Order("Ana", new string[] { "Chockolate", "Coffee" }, 20);
+        var order2 = new Order("George", new string[] { "Juice", "Sandwich" }, 15);
+        var order3 = new Order("Bob", new string[] { "Ice cream" }, 5);
 
         //add orders to the queue
-        Orders.Enqueue(Order1);
-        Orders.Enqueue(Order2);
-        Orders.Enqueue(Order3);
+        Orders.Enqueue(order1);
+        Orders.Enqueue(order2);
+        Orders.Enqueue(order3);
     }
 
     public static int OrdersCount()
