@@ -7,8 +7,10 @@ public class CustomSerializationUnitTest : UnitTestBase
     [Fact]
     public void GivenEnum_WhenSerializeWithPropertyCamelCasePolicy_ThenDoesNotCamelCaseEnumValues()
     {
-        var options = new JsonSerializerOptions();
-        options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        var options = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
         options.Converters.Add(new JsonStringEnumConverter());
 
         var json = JsonSerializer.Serialize(Canvas.Poster, options);
