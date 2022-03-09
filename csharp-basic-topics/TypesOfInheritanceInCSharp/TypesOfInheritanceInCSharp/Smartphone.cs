@@ -9,7 +9,6 @@ public class Smartphone : MobileDevice
 
     protected Smartphone(string operatingSystem)
     {
-
         OperatingSystem = operatingSystem;
         InstalledApps = new List<string>();
     }
