@@ -10,10 +10,8 @@ public class ConvertibleNotebook : MobileDevice, Laptop
         {
             return true;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 
     public void WriteWithKeyboard(string message)
