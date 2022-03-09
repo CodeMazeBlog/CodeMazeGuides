@@ -15,11 +15,11 @@
             return false;
         }
 
-        public static bool operator !=(Vehicle vehicle1, Vehicle vehicle2)
+        public static bool operator !=(Vehicle vehicle, Vehicle otherVehicle)
         {
-            if (vehicle2 is not null)
+            if (otherVehicle is not null)
             {
-                return vehicle2.VehicleBrand != vehicle1.VehicleBrand;
+                return otherVehicle.VehicleBrand != vehicle.VehicleBrand;
             }
 
             return false;
