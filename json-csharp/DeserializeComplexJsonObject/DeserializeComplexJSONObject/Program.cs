@@ -1,4 +1,6 @@
-﻿namespace DeserializeComplexJSONObject
+﻿using DeserializeComplexJSONObject.JsonFiles;
+
+namespace DeserializeComplexJSONObject
 {
     public class Program
     {
@@ -35,8 +37,7 @@
 
         public static string ReadJsonFile()
         {
-            using StreamReader reader = new(@$"{AppContext.BaseDirectory}\JsonFiles\ComplexObject.json");
-            return reader.ReadToEnd();
+            return JsonComplexObject.Json;
         }
     }
 }
