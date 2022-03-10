@@ -7,7 +7,7 @@ namespace GetDatePartFromDateTime.Tests
     public class DateTests
     {
         [TestMethod]
-        public void RandomDate_GetDateProperty_DateComponentsAreEqual()
+        public void GivenDate_WhenGetDateProperty_ThenDateComponentsAreEqual()
         {
             DateTime fullDate = new DateTime(2022, 02, 14, 10, 40, 00);
 
@@ -17,7 +17,7 @@ namespace GetDatePartFromDateTime.Tests
         }
 
         [TestMethod]
-        public void RandomDate_GetDateProperty_RemovesHourData()
+        public void GivenDate_WhenGetDateProperty_ThenRemovesHourData()
         {
             DateTime fullDate = new DateTime(2022, 12, 14, 11, 23, 34);
 
@@ -27,7 +27,7 @@ namespace GetDatePartFromDateTime.Tests
         }
 
         [TestMethod]
-        public void RandomDate_GetDateProperty_SetsHourPartToDefault()
+        public void GivenDate_WhenGetDateProperty_ThenSetsHourPartToDefault()
         {
             DateTime fullDate = new DateTime(2012, 10, 11, 11, 23, 34);
 
@@ -37,7 +37,7 @@ namespace GetDatePartFromDateTime.Tests
         }
 
         [TestMethod]
-        public void DateOnly_OnGivenDateTime_CreatesCorrectDate() 
+        public void GivenDate_WhenCopyToDateOnly_ThenCreatesCorrectDate() 
         {
             DateTime date = new DateTime(2021, 7, 8, 11, 10, 9);
             DateOnly dateOnly = new DateOnly(date.Year, date.Month, date.Day);
@@ -46,7 +46,7 @@ namespace GetDatePartFromDateTime.Tests
         }
 
         [TestMethod]
-        public void DateFormat_OnGivenDateTime_CreatesCorrectDate()
+        public void GivenDate_WhenFormat_ThenComponentsDisplayedCorrectly()
         {
             DateTime date = new DateTime(2021, 7, 8, 11, 10, 9);
 
