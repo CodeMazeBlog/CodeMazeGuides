@@ -18,14 +18,8 @@ namespace Tests
             _microsoftDeserializer = new();
             _newtonsoftDeserializer = new();
 
-            _json = ReadJsonFile();
+            _json = JsonComplexObject.Json;
         }
-
-        private string ReadJsonFile()
-        {
-            using StreamReader reader = new(@$"{AppContext.BaseDirectory}\ComplexObject.json");
-            return reader.ReadToEnd();
-        }        
 
         [TestMethod]
         public void GivenTheClassProgram_ThenRunTheMainMethodAndWriteResultsAtTheConsole()
