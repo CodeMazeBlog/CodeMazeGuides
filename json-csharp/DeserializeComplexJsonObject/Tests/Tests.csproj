@@ -18,4 +18,10 @@
     <ProjectReference Include="..\DeserializeComplexJSONObject\DeserializeComplexJSONObject.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ComplexObject.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,7 @@
 using DeserializeComplexJSONObject;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 
 namespace Tests
 {
@@ -22,16 +23,9 @@ namespace Tests
 
         private string ReadJsonFile()
         {
-            return Program.ReadJsonFile();
-        }
-
-        [TestMethod]
-        public void GivenTheClassProgram_ThenReadTheJsonFile()
-        {
-            var json = Program.ReadJsonFile();
-
-            Assert.IsNotNull(json);
-        }
+            using StreamReader reader = new(@$"{AppContext.BaseDirectory}\ComplexObject.json");
+            return reader.ReadToEnd();
+        }        
 
         [TestMethod]
         public void GivenTheClassProgram_ThenRunTheMainMethodAndWriteResultsAtTheConsole()
