@@ -4,6 +4,15 @@
     public class RemoveFromListWhileIteratingProgram
     {
         private static readonly List<int> _numberList = Enumerable.Range(1, 20).ToList();
+
+        public static void Main(string[] args)
+        {
+            SimpleIterateRemoveWithToList(_numberList);
+            ReverseIterate(_numberList);
+            OneLineRemoveAll(_numberList);
+            OneLineRemoveAllWithSideEffect(_numberList);
+        }
+
         public static List<int> NaiveIterateRemove(List<int> sourceList)
         {
             foreach (var el in sourceList)
@@ -61,16 +70,8 @@
                 PerformOperation(item);
                 return item % 2 == 0;
             });
-            ;
+            
             return sourceList;
-        }
-
-        public static void Main(string[] args)
-        {
-            SimpleIterateRemoveWithToList(_numberList);
-            ReverseIterate(_numberList);
-            OneLineRemoveAll(_numberList);
-            OneLineRemoveAllWithSideEffect(_numberList);
         }
     }
 }
