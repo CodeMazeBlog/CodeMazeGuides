@@ -18,8 +18,6 @@ comparer.SerialNumberComparerUsingNotEqual(vehicle);
 
 comparer.SerialNumberComparerUsingIsNot(vehicle);
 
-comparer.VehicleNotEqualToNull(vehicle);
-
 comparer.VehicleIsNotToNull(vehicle);
 
 comparer.BoxedSerialNumberComparerUsingNotEqual(vehicle);
@@ -39,3 +37,14 @@ comparer.AnotherModelComparerUsingIsNot(car);
 comparer.CarTypeComparerUsingNotEqual(car);
 
 comparer.CarTypeComparerUsingIsNot(car);
+
+var otherVehicle = new Vehicle()
+{
+    SerialNumber = 1002,
+    VehicleBrand = Brand.Toyota
+};
+
+Console.WriteLine(vehicle != otherVehicle);
+Console.WriteLine(vehicle == otherVehicle);
+
+Console.WriteLine(vehicle != null);
