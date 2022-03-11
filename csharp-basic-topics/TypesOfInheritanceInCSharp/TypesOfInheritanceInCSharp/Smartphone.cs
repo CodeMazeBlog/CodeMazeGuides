@@ -22,7 +22,7 @@ public class Smartphone : MobileDevice
 
     public virtual void GetDescription()
     {
-        Console.WriteLine($"This smartphone has {Inches} inches and its operating system is {OperatingSystem}");
+        Console.WriteLine($"This smartphone is {Inches} inches big and its operating system is {OperatingSystem}");
     }
 
     public void ShowInstalledApps()

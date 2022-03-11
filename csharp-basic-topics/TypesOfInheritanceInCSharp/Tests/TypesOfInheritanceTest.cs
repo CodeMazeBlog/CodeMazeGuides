@@ -64,7 +64,7 @@ public class TypesOfInheritanceTest
         Console.SetOut(sw);
         androidSmartphone.GetDescription();
 
-        var expected = string.Format($"This Android smarphone has {androidSmartphone.Inches} inches, and {androidSmartphone.InstalledApps.Count} apps downloaded from Google Store{Environment.NewLine}");
+        var expected = string.Format($"This Android smarphone is {androidSmartphone.Inches} inches big, and {androidSmartphone.InstalledApps.Count} apps downloaded from Google Store{Environment.NewLine}");
 
         Assert.Equal(expected, sw.ToString());
     }

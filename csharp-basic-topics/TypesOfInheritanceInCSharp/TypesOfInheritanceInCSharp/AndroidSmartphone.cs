@@ -8,7 +8,7 @@ public class AndroidSmartphone : Smartphone
 
     public override sealed void GetDescription()
     {
-        Console.WriteLine($"This Android smarphone has {Inches} inches, and {InstalledApps.Count} apps downloaded from Google Store");
+        Console.WriteLine($"This Android smarphone is {Inches} inches big, and {InstalledApps.Count} apps downloaded from Google Store");
     }
 
     public void DownloadAppFromStore(string app)
