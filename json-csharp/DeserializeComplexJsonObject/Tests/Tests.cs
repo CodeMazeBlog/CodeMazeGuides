@@ -21,7 +21,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenTheClassProgram_ThenRunTheMainMethodAndWriteResultsAtTheConsole()
+        public void WhenRunTheMainMethod_ThenWriteResultsAtTheConsole()
         {
             Program.Main(Array.Empty<string>());
 
@@ -29,7 +29,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenAJsonString_ThenDeserializeUsingGenericSystemTextJson()
+        public void GivenAJsonString_WhenUsingGenericSystemTextJson_ThenReturnACompanyInstance()
         {
             var company = _microsoftDeserializer.DeserializeUsingGenericSystemTextJson(_json);
 
@@ -37,7 +37,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenAJsonString_ThenDeserializeUsingSystemTextJson()
+        public void GivenAJsonString_WhenUsingSystemTextJson_ThenReturnACompanyInstance()
         {
             var company = _microsoftDeserializer.DeserializeUsingSystemTextJson(_json);
 
@@ -45,7 +45,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenAJsonString_ThenDeserializeUsingNewtonsoftJson()
+        public void GivenAJsonString_WhenUsingNewtonsoftJson_ThenReturnACompanyInstance()
         {
             var company = _newtonsoftDeserializer.DeserializeUsingGenericNewtonsoftJson(_json);
 
