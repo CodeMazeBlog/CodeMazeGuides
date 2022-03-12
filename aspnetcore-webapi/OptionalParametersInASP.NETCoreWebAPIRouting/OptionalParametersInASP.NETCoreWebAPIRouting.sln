@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptionalParametersInASP.NETCoreWebAPIRouting", "OptionalParametersInASP.NETCoreWebAPIRouting\OptionalParametersInASP.NETCoreWebAPIRouting.csproj", "{379261BB-CF06-46E6-BFCC-F335704A51A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{ECF1A99F-7DC2-4D17-92E2-135709E99659}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{379261BB-CF06-46E6-BFCC-F335704A51A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379261BB-CF06-46E6-BFCC-F335704A51A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379261BB-CF06-46E6-BFCC-F335704A51A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379261BB-CF06-46E6-BFCC-F335704A51A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECF1A99F-7DC2-4D17-92E2-135709E99659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF1A99F-7DC2-4D17-92E2-135709E99659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF1A99F-7DC2-4D17-92E2-135709E99659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF1A99F-7DC2-4D17-92E2-135709E99659}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4404FAAC-82AC-4878-BF4C-2AC5F812406A}
+	EndGlobalSection
+EndGlobal
