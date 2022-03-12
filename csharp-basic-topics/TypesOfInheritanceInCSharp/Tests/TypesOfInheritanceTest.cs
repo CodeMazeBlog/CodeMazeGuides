@@ -4,6 +4,7 @@ using TypesOfInheritanceInCSharp;
 using Xunit;
 
 namespace TypesOfInheritanceInCSharpTests;
+
 public class TypesOfInheritanceTest
 {
     [Fact]
@@ -61,9 +62,9 @@ public class TypesOfInheritanceTest
     {
         var androidSmartphone = new AndroidSmartphone();
         using var sw = new StringWriter();
+
         Console.SetOut(sw);
         androidSmartphone.GetDescription();
-
         var expected = string.Format($"This Android smarphone is {androidSmartphone.Inches} inches big, and {androidSmartphone.InstalledApps.Count} apps downloaded from Google Store{Environment.NewLine}");
 
         Assert.Equal(expected, sw.ToString());
@@ -74,6 +75,7 @@ public class TypesOfInheritanceTest
     {
         var androidSmartphone = new AndroidSmartphone();
         using var sw = new StringWriter();
+
         Console.SetOut(sw);
         androidSmartphone.ShowInstalledApps();
         var expected = $"There are {androidSmartphone.InstalledApps.Count} app installed{Environment.NewLine}";
@@ -87,6 +89,7 @@ public class TypesOfInheritanceTest
         var androidSmartphone = new AndroidSmartphone();
         var appToDownload = "antivirus";
         using var sw = new StringWriter();
+
         Console.SetOut(sw);
         androidSmartphone.DownloadAppFromStore(appToDownload);
         var expected = $"I downloaded {appToDownload} from Google Store{Environment.NewLine}";
@@ -110,6 +113,7 @@ public class TypesOfInheritanceTest
     {
         var convertibleNotebook = new ConvertibleNotebook();
         using var sw = new StringWriter();
+
         Console.SetOut(sw);
         convertibleNotebook.WriteWithKeyboard("This is a message");
         var expected = $"This is a message{Environment.NewLine}";
