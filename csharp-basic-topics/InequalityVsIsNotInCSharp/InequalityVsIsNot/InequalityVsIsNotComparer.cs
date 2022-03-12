@@ -20,14 +20,6 @@
             }
         }
 
-        public void VehicleNotEqualToNull(Vehicle vehicle)
-        {
-            if (vehicle != null)
-            {
-                Console.WriteLine("vehicle != null");
-            }
-        }
-
         public void VehicleIsNotToNull(Vehicle vehicle)
         {
             if (vehicle is not null)

@@ -25,17 +25,6 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenNotEqualToNullObject_ThenNotEqualNull()
-        {
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
-            _comparer.VehicleNotEqualToNull(_vehicle);
-            var expected = string.Format($"vehicle != null{Environment.NewLine}");
-
-            Assert.Equal(expected, sw.ToString());
-        }
-
-        [Fact]
         public void WhenIsNotNullObject_ThenIsNotNull()
         {
             using var sw = new StringWriter();
@@ -169,5 +158,40 @@ namespace Tests
 
             Assert.Equal(expected, sw.ToString());
         }
+
+        [Fact]
+        public void WhenEqualOperatorIsOverloaded_ThenCorrectOutput()
+        {
+            var input1 = new Car()
+            {
+                SerialNumber = 1001,
+                VehicleBrand = Brand.Toyota
+            };
+            var input2 = new Car()
+            {
+                SerialNumber = 1002,
+                VehicleBrand = Brand.Toyota
+            };
+            var expected = true;
+            var actual = input1 == input2;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void WhenNotEqualOperatorIsOverloaded_ThenCorrectOutput()
+        {
+            var input1 = new Car()
+            {
+                SerialNumber = 1001,
+                VehicleBrand = Brand.Toyota
+            };
+
+            var expected = false;
+            var actual = input1 != null;
+
+            Assert.Equal(expected, actual);
+        }
+
     }
 }
