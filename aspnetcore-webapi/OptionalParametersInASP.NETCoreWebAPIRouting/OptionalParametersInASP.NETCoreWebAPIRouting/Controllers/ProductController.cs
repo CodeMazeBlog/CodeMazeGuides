@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace OptionalParametersInASP.NETCoreWebAPIRouting.Controllers
+﻿namespace OptionalParametersInASP.NETCoreWebAPIRouting.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -13,9 +10,9 @@ namespace OptionalParametersInASP.NETCoreWebAPIRouting.Controllers
         "Sweater", "Umbrella", "Jacket", "Polo", "Boots", "Microwave", "Schoolbag", "Sunshade", "SKinny Jeans", "Sunscreen"
          };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<ProductController> _logger;
 
-        public ProductController(ILogger<WeatherForecastController> logger)
+        public ProductController(ILogger<ProductController> logger)
         {
             _logger = logger;
         }
@@ -38,28 +35,21 @@ namespace OptionalParametersInASP.NETCoreWebAPIRouting.Controllers
             return products;
         }
 
-        [HttpGet("GetBy/{name}")]
-        public Product GetBy(string name)
-        {
-            var products = Get();
-
-            return products.Where(p => p.Name == name).FirstOrDefault()!;    
-        }
-
-        [HttpGet("GetBy/{id:int}")]
-        public Product GetBy(int id)
+        [HttpGet("GetById/{id:int}")]
+        public Product GetById(int id=2)
         {
             var products = Get();
 
             return products.Where(p => p.Id == id).FirstOrDefault()!;
         }
-
-        [HttpGet("GetById/{id:int?}")]
-        public Product GetById(int id = 1)
+        
+       /* [HttpGet("GetById/{id:int}")]
+        public Product GetById(int id)
         {
             var products = Get();
 
             return products.Where(p => p.Id == id).FirstOrDefault()!;
-        }
+        }*/
     }
 }
+
