@@ -1,6 +1,6 @@
 ﻿namespace TypesOfInheritanceInCSharp;
 
-public class ConvertibleNotebook : MobileDevice, Laptop
+public class ConvertibleNotebook : MobileDevice, ILaptop
 {
     public int UsbPortNumbers { get; set; }
 

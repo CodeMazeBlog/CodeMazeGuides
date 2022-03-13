@@ -44,7 +44,7 @@ public class TypesOfInheritanceTest
     {
         var smartphone = new ConvertibleNotebook();
 
-        Assert.True(smartphone is Laptop);
+        Assert.True(smartphone is ILaptop);
     }
 
     [Fact]

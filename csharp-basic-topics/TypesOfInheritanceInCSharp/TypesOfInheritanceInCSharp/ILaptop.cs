@@ -1,6 +1,6 @@
 ﻿namespace TypesOfInheritanceInCSharp;
 
-public interface Laptop
+public interface ILaptop
 {
     public int UsbPortNumbers { get; set; }
 

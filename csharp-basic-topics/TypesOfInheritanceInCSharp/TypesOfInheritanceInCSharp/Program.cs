@@ -44,4 +44,4 @@ convertibleNotebook.DeviceCanMakePhoneCall();
 convertibleNotebook.WriteWithKeyboard("I can write with keyboard");
 
 Console.WriteLine(convertibleNotebook is MobileDevice);
-Console.WriteLine(convertibleNotebook is Laptop);
+Console.WriteLine(convertibleNotebook is ILaptop);
