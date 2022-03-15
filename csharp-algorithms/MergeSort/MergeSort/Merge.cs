@@ -35,29 +35,22 @@ namespace MergeSort
 			{
 				if (leftTempArray[i] <= rightTempArray[j])
 				{
-					array[k] = leftTempArray[i];
-					i++;
+					array[k++] = leftTempArray[i++];
 				}
 				else
 				{
-					array[k] = rightTempArray[j];
-					j++;
+					array[k++] = rightTempArray[j++];
 				}
-				k++;
 			}
 
 			while (i < leftArrayLength)
 			{
-				array[k] = leftTempArray[i];
-				i++;
-				k++;
+				array[k++] = leftTempArray[i++];
 			}
 
 			while (j < rightArrayLength)
 			{
-				array[k] = rightTempArray[j];
-				j++;
-				k++;
+				array[k++] = rightTempArray[j++];
 			}
 		}
 
