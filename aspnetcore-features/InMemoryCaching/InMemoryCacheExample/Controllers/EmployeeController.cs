@@ -47,17 +47,5 @@ namespace InMemoryCacheExample.Controllers
 
             return Ok(employees);
         }
-
-        // GET: api/Employee/5
-        [HttpGet("{id}", Name = "Get")]
-        public IActionResult Get(long id)
-        {
-            Employee employee = _dataRepository.Get(id);
-            if (employee == null)
-            {
-                return NotFound("The Employee record couldn't be found.");
-            }
-            return Ok(employee);
-        }
     }
 }
