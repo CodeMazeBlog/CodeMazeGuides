@@ -13,7 +13,9 @@ namespace InMemoryCacheExample.Controllers
         private IMemoryCache _cache;
         private ILogger<EmployeeController> _logger;
 
-        public EmployeeController(IDataRepository<Employee> dataRepository, IMemoryCache cache, ILogger<EmployeeController> logger)
+        public EmployeeController(IDataRepository<Employee> dataRepository,
+            IMemoryCache cache,
+            ILogger<EmployeeController> logger)
         {
             _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
             _cache = cache ?? throw new ArgumentNullException(nameof(cache));
@@ -45,6 +47,7 @@ namespace InMemoryCacheExample.Controllers
 
             return Ok(employees);
         }
+
         // GET: api/Employee/5
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(long id)
@@ -55,48 +58,6 @@ namespace InMemoryCacheExample.Controllers
                 return NotFound("The Employee record couldn't be found.");
             }
             return Ok(employee);
-        }
-        // POST: api/Employee
-        [HttpPost]
-        public IActionResult Post([FromBody] Employee employee)
-        {
-            if (employee == null)
-            {
-                return BadRequest("Employee is null.");
-            }
-            _dataRepository.Add(employee);
-            return CreatedAtRoute(
-                    "Get",
-                    new { Id = employee.EmployeeId },
-                    employee);
-        }
-        // PUT: api/Employee/5
-        [HttpPut("{id}")]
-        public IActionResult Put(long id, [FromBody] Employee employee)
-        {
-            if (employee == null)
-            {
-                return BadRequest("Employee is null.");
-            }
-            Employee employeeToUpdate = _dataRepository.Get(id);
-            if (employeeToUpdate == null)
-            {
-                return NotFound("The Employee record couldn't be found.");
-            }
-            _dataRepository.Update(employeeToUpdate, employee);
-            return NoContent();
-        }
-        // DELETE: api/Employee/5
-        [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
-        {
-            Employee employee = _dataRepository.Get(id);
-            if (employee == null)
-            {
-                return NotFound("The Employee record couldn't be found.");
-            }
-            _dataRepository.Delete(employee);
-            return NoContent();
         }
     }
 }
