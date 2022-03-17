@@ -10,13 +10,13 @@ namespace BreakAndContinueStatementsInCsharp
             Console.WriteLine("We're looping from 1 to 10!");
 
             Console.WriteLine("Here's a loop that breaks just before printing 5");
-            breakLoopAt5();
+            BreakLoopAt5();
 
             Console.WriteLine("Here's a loop that continues for non-multiples of 3");
-            continueLoopForNonMultipesOf3();
+            ContinueLoopForNonMultipesOf3();
         }
 
-        public static void breakLoopAt5()
+        public static void BreakLoopAt5()
         {
             for (var i = 1; i <= 10; i++)
             {
@@ -28,7 +28,7 @@ namespace BreakAndContinueStatementsInCsharp
             }
         }
 
-        public static void continueLoopForNonMultipesOf3()
+        public static void ContinueLoopForNonMultipesOf3()
         {
             var i = 0;
             while (i < 10)

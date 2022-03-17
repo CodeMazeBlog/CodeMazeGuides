@@ -4,5 +4,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 ### Relevant articles:
 
 - [How to Convert Char Array to String in C#](https://code-maze.com/csharp-convert-char-array-to-string/)
+- [How to Convert Int to String in C#](https://code-maze.com/csharp-convert-int-to-string/)
+- [How to Convert String to Bool in C#](https://code-maze.com/csharp-convert-string-to-bool/)
 - [How to Convert String from Title Case to camelCase in C#](https://code-maze.com/csharp-convert-string-titlecase-camelcase/)
 - [How to Check if StringBuilder Is Empty](https://code-maze.com/csharp-stringbuilder-check-if-empty/)
