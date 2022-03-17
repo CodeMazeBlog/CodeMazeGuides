@@ -64,7 +64,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test1()
+        public void WhenUsingQuerySyntax_WeGetAllStudents()
         {
             var students = from student in StudentsXML.Elements("Student")
                            select student.Element("FirstName").Value + " " + student.Element("LastName").Value;
@@ -74,7 +74,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test2()
+        public void WhenUsingMethodSyntax_WeGetAllStudents()
         {
             var students = StudentsXML.Elements("Student")
                 .Select(student => student.Element("FirstName").Value + " " + student.Element("LastName").Value);
@@ -84,7 +84,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test3()
+        public void WhenCastingElementsToString_WeGetAllStudents()
         {
             var students = StudentsXML.Elements("Student")
                             .Select(student => (string)student.Element("FirstName") + " " + (string)student.Element("LastName"));
@@ -94,7 +94,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test4()
+        public void WhenFilteringForDate_WeGetStudentsFrom2000()
         {
             var students = StudentsXML.Elements("Student")
                             .Where(student => ((DateTime)student.Element("DateOfBirth")).Year == 2000)
@@ -102,12 +102,12 @@ namespace LINQtoXMLUnitTests
                                                     + " " + (string)student.Element("LastName")
                                                     + " (" + ((DateTime)student.Element("DateOfBirth")).ToShortDateString() + ")");
 
-            var expected = new string[] { "John Doe (02-Oct-00)", "Jim Doe (12-Mar-00)" };
+            var expected = new string[] { "John Doe (2/10/2000)", "Jim Doe (12/3/2000)" };
             Assert.AreEqual(expected, students.ToArray());
         }
 
         [Test]
-        public void Test5()
+        public void WhenFilteringForId_WeGetStudentWithId222()
         {
             var expected = @"<Student ID=""222"">
   <FirstName>Jane</FirstName>
@@ -132,7 +132,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test6()
+        public void WhenFilteringForClassId_WeGetTwoStudents()
         {
             var expected1 = @"<Student ID=""111"">
   <FirstName>John</FirstName>
@@ -175,7 +175,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test7()
+        public void WhenFilteringForClassIdWithQuerySyntax_WeGetTwoStudents()
         {
             var expected1 = @"<Student ID=""111"">
   <FirstName>John</FirstName>
@@ -224,7 +224,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test8()
+        public void WhenUpdatingStudentName_WeGetCorrectStudent()
         {
             var expected = @"<Student ID=""333"">
   <FirstName>Jimmy</FirstName>
@@ -251,7 +251,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test9()
+        public void WhenUpdatingMajor_WeGetCorrectStudent()
         {
             var expected1 = @"<Student ID=""111"">
   <FirstName>John</FirstName>
@@ -305,7 +305,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test10()
+        public void WhenDeletingStudent_WeGetCorrectRemainingStudent()
         {
             string expected = @"<Students>
   <Student ID=""111"">
@@ -349,7 +349,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test11()
+        public void WhenCreatingNewStudent_WeGetCorrectStudent()
         {
             string expected = @"<Students>
   <Student ID=""111"">
@@ -395,7 +395,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test12()
+        public void WhenCreatingNewStudentWithDefaultNamespace_WeGetCorrectStudent()
         {
             string expected = @"<Students xmlns=""http://www.testuni.edu/def"">
   <Student ID=""111"">
@@ -442,7 +442,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test13()
+        public void WhenCreatingNewStudentWithPrefixedNamespace_WeGetCorrectStudent()
         {
             string expected = @"<st:Students xmlns:st=""http://www.testuni.edu/def"">
   <st:Student ID=""111"">

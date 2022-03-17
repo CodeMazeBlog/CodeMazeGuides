@@ -89,7 +89,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test1()
+        public void WhenJoiningTwoXMLTrees_WeGetAnonymousObject()
         {
             var students = UniversityXML.Elements("Students").Elements("Student")
                             .Where(student => (string)student.Attribute("ID") == "111")
@@ -138,7 +138,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test2()
+        public void WhenJoiningTwoXMLTreesWithQuerySyntax_WeGetAnonymousObject()
         {
             var students = from student in UniversityXML.Elements("Students").Elements("Student")
                            where (string)student.Attribute("ID") == "111"
@@ -189,7 +189,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test3()
+        public void WhenJoiningTwoXMLTrees_WeGetStudentClass()
         {
             var students = UniversityXML.Elements("Students").Elements("Student")
                             .Where(student => (string)student.Attribute("ID") == "111")
@@ -238,7 +238,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test4()
+        public void WhenJoiningTwoXMLTrees_WeGetXElementObject()
         {
             var expected = @"<Students>
   <Student>
@@ -282,7 +282,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test5()
+        public void WhenJoiningTwoXMLTrees_WeGetSumAndCount()
         {
             var students = UniversityXML.Elements("Students").Elements("Student")
                            .Select(student => new
@@ -331,7 +331,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void Test6()
+        public void WhenGroupingResults_WeGetStudentsBySemester()
         {
             var students = new XElement("Semesters",
                                 UniversityXML.Elements("Students").Elements("Student")
