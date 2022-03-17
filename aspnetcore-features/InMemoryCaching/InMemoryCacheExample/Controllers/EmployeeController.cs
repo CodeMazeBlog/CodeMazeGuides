@@ -31,7 +31,9 @@ namespace InMemoryCacheExample.Controllers
             if (!_cache.TryGetValue("employeeList", out IEnumerable<Employee> employees))
             {
                 _logger.Log(LogLevel.Information, "Employee list not found in cache. Fetching from database.");
+
                 employees = _dataRepository.GetAll();
+
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
                         .SetSlidingExpiration(TimeSpan.FromSeconds(60))
                         .SetAbsoluteExpiration(TimeSpan.FromSeconds(3600))

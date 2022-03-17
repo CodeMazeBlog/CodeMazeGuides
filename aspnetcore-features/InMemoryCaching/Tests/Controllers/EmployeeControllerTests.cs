@@ -13,7 +13,7 @@ namespace Tests
     public class EmployeeControllerTests
     {
         [Fact]
-        public void Get_WhenEmployeesInCache_ReturnsSuccess()
+        public void WhenEmployeesInCache_ThenReturnsSuccess()
         {
             // Arrange            
             var employees = GetEmployees();
@@ -37,7 +37,7 @@ namespace Tests
         }
                 
         [Fact]
-        public void Get_WhenEmployeesNotInCache_ReturnsSuccess()
+        public void WhenEmployeesNotInCache_ThenReturnsSuccess()
         {
             // Arrange            
             var employees = GetEmployees();
