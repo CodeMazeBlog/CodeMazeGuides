@@ -102,7 +102,7 @@ namespace LINQtoXMLUnitTests
                                                     + " " + (string)student.Element("LastName")
                                                     + " (" + ((DateTime)student.Element("DateOfBirth")).ToShortDateString() + ")");
 
-            var expected = new string[] { "John Doe (10/2/2000)", "Jim Doe (3/12/2000)" };
+            var expected = new string[] { "John Doe (10/02/2000)", "Jim Doe (03/12/2000)" };
             Assert.AreEqual(expected, students.ToArray());
         }
 
