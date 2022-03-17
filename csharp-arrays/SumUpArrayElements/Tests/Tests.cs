@@ -8,7 +8,7 @@ namespace Tests
     public class Tests
     {
         private readonly SumArrayElements _sumArrayElements = new();
-        private readonly int[] sourceArray = new int[] { 3, 4, 8, 1, 6, 2 };
+        private readonly int[] _sourceArray = new int[] { 3, 4, 8, 1, 6, 2 };
 
         [TestMethod]
         public void GivenTheMainProgram_WhenExecuteTheMainMethod_ThenSetTheOutputResultToOne()
@@ -21,7 +21,7 @@ namespace Tests
         [TestMethod]
         public void GivenASourceArray_WhenUsingTheForLoopMethod_ThenReturnTheSumOfTheElements()
         {
-            var result = _sumArrayElements.ForLoop(sourceArray);
+            var result = _sumArrayElements.ForLoop(_sourceArray);
 
             Assert.AreEqual(24, result);
         }
@@ -29,7 +29,7 @@ namespace Tests
         [TestMethod]
         public void GivenASouceArray_WhenUsingTheForeachLoopMethod_ThenReturnTheSumOfTheElements()
         {
-            var result = _sumArrayElements.ForeachLoop(sourceArray);
+            var result = _sumArrayElements.ForeachLoop(_sourceArray);
 
             Assert.AreEqual(24, result);
         }
@@ -37,7 +37,7 @@ namespace Tests
         [TestMethod]
         public void GivenASouceArray_WhenUsingArrayForEachMethod_ThenReturnTheSumOfTheElements()
         {
-            var result = _sumArrayElements.ArrayForEach(sourceArray);
+            var result = _sumArrayElements.ArrayForEach(_sourceArray);
 
             Assert.AreEqual(24, result);
         }
@@ -45,7 +45,7 @@ namespace Tests
         [TestMethod]
         public void GivenASourceArray_WhenUsingEnumerableSumMethod_ThenReturnTheSumOfTheElements()
         {
-            var result = _sumArrayElements.EnumerableSum(sourceArray);
+            var result = _sumArrayElements.EnumerableSum(_sourceArray);
 
             Assert.AreEqual(24, result);
         }
@@ -53,7 +53,7 @@ namespace Tests
         [TestMethod]
         public void GivenASourceArray_WhenUsingTheArraySumMethod_ThenReturnTheSumOfTheElements()
         {
-            var result = _sumArrayElements.ArraySum(sourceArray);
+            var result = _sumArrayElements.ArraySum(_sourceArray);
 
             Assert.AreEqual(24, result);
         }
@@ -61,7 +61,7 @@ namespace Tests
         [TestMethod]
         public void GivenASourceArray_WhenUsingAggregateMethod_ThenReturnTheSumOfTheElements()
         {
-            var result = _sumArrayElements.Aggregate(sourceArray);
+            var result = _sumArrayElements.Aggregate(_sourceArray);
 
             Assert.AreEqual(24, result);
         }
