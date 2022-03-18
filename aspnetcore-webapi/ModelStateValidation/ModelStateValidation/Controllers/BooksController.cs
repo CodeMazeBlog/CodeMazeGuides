@@ -10,7 +10,7 @@ public class BooksController : ControllerBase
 {
     [HttpPost]
     [ServiceFilter(typeof(ValidationFilterAttribute))]
-    public IActionResult Post(CreateBookInputModel createBookInputModel)
+    public IActionResult Post([FromBody] CreateBookInputModel createBookInputModel)
     {
         return Ok(createBookInputModel);
     }
