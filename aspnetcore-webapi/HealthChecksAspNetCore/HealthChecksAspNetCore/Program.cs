@@ -5,13 +5,24 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHealthChecks()
-    .AddCheck<MyHealthCheck>("MyHealthCheck", null, new[] { "custom" });
+    .AddSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), tags: new[] { "database" })
+    .AddCheck<MyHealthCheck>("MyHealthCheck", tags: new[] { "custom" });
 
 builder.Services.AddHealthChecksUI()
     .AddInMemoryStorage();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("MyCorsPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
 
 var app = builder.Build();
 
@@ -20,6 +31,16 @@ app.MapHealthChecks("/health/custom", new HealthCheckOptions
     Predicate = reg => reg.Tags.Contains("custom"),
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
+
+app.MapHealthChecks("/health/secure", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+}).RequireAuthorization();
+
+app.MapHealthChecks("/health/cors", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+}).RequireCors("MyCorsPolicy");
 
 app.MapHealthChecks("/health", new HealthCheckOptions
 {
@@ -35,6 +56,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("MyCorsPolicy");
 
 var summaries = new[]
 {
