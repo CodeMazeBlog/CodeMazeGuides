@@ -49,7 +49,7 @@ public class NativeJsonFileUtilsUnitTest
 ]";
 
         var actualContent = File.ReadAllText(fileName);
-        Assert.Equal(expctedContent, actualContent);
+        Assert.Equal(expctedContent.ReplaceLineEndings(), actualContent);
     }
 
     [Fact]
