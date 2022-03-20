@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Newtonsoft.Json;
 using OptionalParameterinWebApi;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -34,7 +37,7 @@ namespace Test
         public async Task GetBy_WithInt_ReturnsProduct(int id)
         {
             var allProductsResponse = await _httpClient.GetAsync("api/Product");
-            var response = await _httpClient.GetAsync($"/api/Product/GetBy/{id}");
+            var response = await _httpClient.GetAsync($"/api/Product/GetById/{id}");
 
             var allProductsContent = await allProductsResponse.Content.ReadAsStringAsync();
             var content = await response.Content.ReadAsStringAsync();
@@ -48,24 +51,7 @@ namespace Test
             Assert.IsType<Product>(product);
             Assert.Equal(correspondingProduct?.Name, product.Name);
         }
-
-        [Fact]
-        public async Task GetById_WithoutOptionalParameter_ReturnsFirstProduct()
-        {
-            var response = await _httpClient.GetAsync($"/api/Product/GetById");
-            var allProductsResponse = await _httpClient.GetAsync("api/Product");
-
-            var allProductsContent = await allProductsResponse.Content.ReadAsStringAsync();
-            var content = await response.Content.ReadAsStringAsync();
-
-            var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(allProductsContent).ToList();
-            var product = JsonConvert.DeserializeObject<Product>(content);
-
-            var correspondingProduct = products.FirstOrDefault();
-
-            Assert.Equal(correspondingProduct?.Name, product.Name);
-            Assert.IsType<Product>(product);
-        }
+             
 
         [Theory]
         [InlineData(5)]

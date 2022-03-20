@@ -38,7 +38,7 @@ namespace OptionalParameterinWebApi.Controllers
         }
 
         [HttpGet("GetById/{id:int}")]
-        public Product GetById(int id = 2)
+        public Product GetById(int id = 1)
         {
             var products = Get();
 
