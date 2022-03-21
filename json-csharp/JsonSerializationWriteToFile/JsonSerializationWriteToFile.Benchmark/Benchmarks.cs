@@ -1,11 +1,9 @@
-﻿using BenchmarkDotNet;
-using BenchmarkDotNet.Attributes;
-using System;
-using SystemTextJson = JsonSerializationWriteToFile.Native.JsonFileUtils;
-using NewtonsoftJson = JsonSerializationWriteToFile.Newtonsoft.JsonFileUtils;
+﻿using BenchmarkDotNet.Attributes;
 using System.Collections.Generic;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
+using SystemTextJson = JsonSerializationWriteToFile.Native.JsonFileUtils;
+using NewtonsoftJson = JsonSerializationWriteToFile.Newtonsoft.JsonFileUtils;
 
 namespace JsonSerializationWriteToFile.Benchmark
 {
