@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
+using SelectionSort;
 
 namespace SelectionSortTest
 {
@@ -7,47 +7,39 @@ namespace SelectionSortTest
     public class SelectionSortUnitTest
     {
         [TestMethod]
-        public void GivenUnsortedArray_ThenreturnSortedArray()
+        public void GivenUnsortedArray_ThenReturnSortedArray()
         {
-           
-            int[] numArray = new int[10] { 57, 1, 98, 65, 88, 24, 45, 13, 79, 34 };
-            int arrayLength = numArray.Length;
+            var array = new int[] { 73, 57, 49, 99, 133, 20, 1 };
+            var expected = new int[] { 1, 20, 49, 57, 73, 99, 133 };
+            var sortFunction = new Selection();
+            sortFunction.NumArray = array;
 
-            int[] expectedArray = new int[10] { 1, 13, 24, 34, 45, 57, 65, 79, 88, 98 };
+            var sortedArray = sortFunction.SortArray();
 
-            int[] actualArray = Program.SortArray(numArray, arrayLength);
-
-            bool expected = true;
-            bool actual = Enumerable.SequenceEqual(expectedArray, actualArray);
-
-            Assert.AreEqual(expected, actual);
+            Assert.IsNotNull(sortedArray);
+            CollectionAssert.AreEqual(sortedArray, expected);
         }
 
         [TestMethod]
-        public void GivenEmptyArray_ThenReturnCorrectLength()
+        public void GivenUnsortedArray_CheckInstanceType()
         {
-            int[] numArray = new int[0];
-            int arrayLength = numArray.Length;
-            int expected = 0;
-            int actual = Program.SortArray(numArray, arrayLength).Length;
+            var sortFunction = new Selection();
+            sortFunction.NumArray = Selection.AddRandomElements(200);
 
-            Assert.AreEqual(expected, actual);
+            var sortedArray = sortFunction.SortArray();
+
+            Assert.IsInstanceOfType(sortedArray, typeof(int[]));
         }
 
         [TestMethod]
-        public void GivenSortedArray_ReturnSortedArray()
+        public void GivenUnsortedArray_CheckSortedNotNull()
         {
-            int[] numArray = new int[10] { 1, 13, 24, 34, 45, 57, 65, 79, 88, 98 };
-            int arrayLength = numArray.Length;
+            var sortFunction = new Selection();
+            sortFunction.NumArray = Selection.AddRandomElements(200);
 
-            int[] expectedArray = new int[10] { 1, 13, 24, 34, 45, 57, 65, 79, 88, 98 };
+            var sortedArray = sortFunction.SortArray();
 
-            int[] actualArray = Program.SortArray(numArray, arrayLength);
-
-            bool expected = true;
-            bool actual = Enumerable.SequenceEqual(expectedArray, actualArray);
-
-            Assert.AreEqual(expected, actual);
+            Assert.IsNotNull(sortedArray);
         }
     }
 }
