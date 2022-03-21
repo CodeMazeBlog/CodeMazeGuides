@@ -15,5 +15,11 @@ namespace InMemoryCacheExample.Models.DataManager
         {
             return _employeeContext.Employees.ToList();
         }
+
+        public void Add(Employee entity)
+        {
+            _employeeContext.Employees.Add(entity);
+            _employeeContext.SaveChanges();
+        }
     }
 }
