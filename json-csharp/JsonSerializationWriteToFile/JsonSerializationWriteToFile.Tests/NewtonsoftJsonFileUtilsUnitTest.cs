@@ -12,12 +12,13 @@ public class NewtonsoftJsonFileUtilsUnitTest
     public void GivenObject_WhenCallWithSimpleWrite_ThenProducesJsonFile()
     {
         var colleges = SurveyReport.GetColleges();
+        var fileName = "Colleges.json";
 
-        JsonFileUtils.SimpleWrite(colleges, "Colleges.json");
+        JsonFileUtils.SimpleWrite(colleges, fileName);
 
         var expctedContent = @"[{""Name"":""Juvenile"",""NoOfStudents"":300,""IsPublic"":false},{""Name"":""Cambrian"",""NoOfStudents"":650,""IsPublic"":true},{""Name"":""Mapple Leaf"",""NoOfStudents"":450,""IsPublic"":true}]";
 
-        var actualContent = File.ReadAllText("Colleges.json");
+        var actualContent = File.ReadAllText(fileName);
         Assert.Equal(expctedContent, actualContent);
     }
 
