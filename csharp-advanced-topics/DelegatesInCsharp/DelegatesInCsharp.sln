@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegatesInCsharp", "Delega
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{CAAB0C6D-B8F4-487D-8114-8EAA72D02BEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegatesInCsharp", "ActionAndFuncDelegatesInCsharp\ActionAndFuncDelegatesInCsharp.csproj", "{5526D6E1-E1B5-4D6D-9908-B46915EE169E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{CAAB0C6D-B8F4-487D-8114-8EAA72D02BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAAB0C6D-B8F4-487D-8114-8EAA72D02BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAAB0C6D-B8F4-487D-8114-8EAA72D02BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5526D6E1-E1B5-4D6D-9908-B46915EE169E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5526D6E1-E1B5-4D6D-9908-B46915EE169E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5526D6E1-E1B5-4D6D-9908-B46915EE169E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5526D6E1-E1B5-4D6D-9908-B46915EE169E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
