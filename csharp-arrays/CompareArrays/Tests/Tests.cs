@@ -70,15 +70,15 @@ namespace Tests
         [TestMethod]
         public void GivenTwoEqualDataArraysOfArticle_WhenCompareThemUsingEnumerableSequeceEqualMethod_ThenReturnTrue()
         {
-            var firstArticle = new Article() { Title = "How to Deserialize a Complex JSON Object in C# .NET", LastUpdate = new DateTime(2022, 03, 18) };
-            var similarFirstArticle = new Article() { Title = "How to Deserialize a Complex JSON Object in C# .NET", LastUpdate = new DateTime(2022, 03, 18) };
-            var secondArticle = new Article() { Title = "How to Populate an Array With the Same Value in C#", LastUpdate = new DateTime(2022, 02, 19) };
-            var similarSecondArticle = new Article() { Title = "How to Populate an Array With the Same Value in C#", LastUpdate = new DateTime(2022, 02, 19) };
+            var firstArticle = new Article() { Title = "First Article", LastUpdate = new() };
+            var firstArticleCopy = new Article() { Title = "First Article", LastUpdate = new() };
+            var secondArticle = new Article() { Title = "Second Article", LastUpdate = new() };
+            var secondArticleCopy = new Article() { Title = "Second Article", LastUpdate = new() };
 
-            var firstArray = new Article[] { firstArticle, secondArticle };
-            var secondArray = new Article[] { similarFirstArticle, similarSecondArticle };
+            var articleArray = new Article[] { firstArticle, secondArticle };
+            var articleArrayCopy = new Article[] { firstArticleCopy, secondArticleCopy };
 
-            var result = _arrayComparer.EnumerableSequenceEqual(firstArray, secondArray);
+            var result = _arrayComparer.EnumerableSequenceEqual(articleArray, articleArrayCopy);
 
             Assert.IsTrue(result);
         }
