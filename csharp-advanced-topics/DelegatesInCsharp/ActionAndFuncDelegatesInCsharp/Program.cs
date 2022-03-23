@@ -21,12 +21,22 @@ Action<string> printActionDel = new Action<string>(Print);
 printActionDel.Invoke("Invoke action delegate");
 
 
-#endregion
-
-#region Func Delegates 
-
 DoSomething(Function, "I invoked DoSomething Action Delegate");
 
+//Passing action delegate as a parameter to a method 
+static void DoSomething(Action<string> action, string input)
+{
+    action(input);
+}
+
+static void Function(string input)
+{
+    Console.WriteLine(input);
+}
+
+#endregion
+
+#region Func Delegates
 //Func delegate with return value full name in caps-lock 
 Func<string, string, string> getFullName = FullNameInCapital;
 
@@ -34,16 +44,7 @@ Func<string, string, string> getFullName = FullNameInCapital;
 string fullNameInCaps = getFullName("john", "doe");
 Console.WriteLine(fullNameInCaps);
 
-#endregion
-
-#region Methods
-
 static void Print(string input)
-{
-    Console.WriteLine(input);
-}
-
-static void Function(string input)
 {
     Console.WriteLine(input);
 }
@@ -53,17 +54,6 @@ static string FullNameInCapital(string firstName, string lastName)
     return (firstName+ " " + lastName).ToUpper();
 }
 
-static void DoSomething(Action<string> action, string input)
-{
-    action(input);
-}
-
-
-#endregion
-
-
-#region List of Users
-
 User[] users =
 {
     new(1, "Peter", "UK"), 
@@ -71,10 +61,6 @@ User[] users =
     new(3, "Mark", "KSA"), 
     new(4, "Pal", "UAE"),
 };
-
-#endregion
-
-#region Func Delegates usage in data filtering
 
 //From the array of users, we are going to filter who are living in USA.
 var country = "USA";
