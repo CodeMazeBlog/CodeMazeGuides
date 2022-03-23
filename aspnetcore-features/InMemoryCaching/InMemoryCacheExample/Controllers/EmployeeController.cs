@@ -2,87 +2,85 @@
 using InMemoryCacheExample.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using System.Net;
 
 namespace InMemoryCacheExample.Controllers
 {
-[Route("api/[controller]")]
-[ApiController]
-public class EmployeeController : ControllerBase
-{
-    private const string employeeListCacheKey = "employeeList";
-    private readonly IDataRepository<Employee> _dataRepository;
-    private IMemoryCache _cache;
-    private ILogger<EmployeeController> _logger;
-    private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
-
-    public EmployeeController(IDataRepository<Employee> dataRepository,
-        IMemoryCache cache,
-        ILogger<EmployeeController> logger)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class EmployeeController : ControllerBase
     {
-        _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
-        _cache = cache ?? throw new ArgumentNullException(nameof(cache));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    }
+        private const string employeeListCacheKey = "employeeList";
+        private readonly IDataRepository<Employee> _dataRepository;
+        private IMemoryCache _cache;
+        private ILogger<EmployeeController> _logger;
+        private static readonly SemaphoreSlim semaphore = new SemaphoreSlim(1, 1);
 
-    [HttpGet]
-    public IActionResult Get()
-    {
-        _logger.Log(LogLevel.Information, "Trying to fetch the list of employees from cache.");
-
-        if (_cache.TryGetValue(employeeListCacheKey, out IEnumerable<Employee> employees))
+        public EmployeeController(IDataRepository<Employee> dataRepository,
+            IMemoryCache cache,
+            ILogger<EmployeeController> logger)
         {
-            _logger.Log(LogLevel.Information, "Employee list found in cache.");
+            _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
+            _cache = cache ?? throw new ArgumentNullException(nameof(cache));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
-        else
+
+        [HttpGet]
+        public async Task<IActionResult> GetAsync()
         {
-            try
+            _logger.Log(LogLevel.Information, "Trying to fetch the list of employees from cache.");
+
+            if (_cache.TryGetValue(employeeListCacheKey, out IEnumerable<Employee> employees))
             {
-                semaphore.WaitAsync();
-
-                if (_cache.TryGetValue(employeeListCacheKey, out employees))
+                _logger.Log(LogLevel.Information, "Employee list found in cache.");
+            }
+            else
+            {
+                try
                 {
-                    _logger.Log(LogLevel.Information, "Employee list found in cache.");
+                    await semaphore.WaitAsync();
+
+                    if (_cache.TryGetValue(employeeListCacheKey, out employees))
+                    {
+                        _logger.Log(LogLevel.Information, "Employee list found in cache.");
+                    }
+                    else
+                    {
+                        _logger.Log(LogLevel.Information, "Employee list not found in cache. Fetching from database.");
+
+                        employees = _dataRepository.GetAll();
+
+                        var cacheEntryOptions = new MemoryCacheEntryOptions()
+                                .SetSlidingExpiration(TimeSpan.FromSeconds(60))
+                                .SetAbsoluteExpiration(TimeSpan.FromSeconds(3600))
+                                .SetPriority(CacheItemPriority.Normal)
+                                .SetSize(1024);
+
+                        _cache.Set(employeeListCacheKey, employees, cacheEntryOptions);
+                    }
                 }
-                else
+                finally
                 {
-                    _logger.Log(LogLevel.Information, "Employee list not found in cache. Fetching from database.");
-
-                    employees = _dataRepository.GetAll();
-
-                    var cacheEntryOptions = new MemoryCacheEntryOptions()
-                            .SetSlidingExpiration(TimeSpan.FromSeconds(60))
-                            .SetAbsoluteExpiration(TimeSpan.FromSeconds(3600))
-                            .SetPriority(CacheItemPriority.Normal)
-                            .SetSize(1024);
-
-                    _cache.Set(employeeListCacheKey, employees, cacheEntryOptions);
+                    semaphore.Release();
                 }
             }
-            finally
-            {
-                semaphore.Release();
-            }
+
+            return Ok(employees);
         }
 
-        return Ok(employees);
-    }
-
-    [HttpPost]
-    public IActionResult Post([FromBody] Employee employee)
-    {
-        if (employee == null)
+        [HttpPost]
+        public IActionResult Post([FromBody] Employee employee)
         {
-            return BadRequest("Employee is null.");
+            if (employee == null)
+            {
+                return BadRequest("Employee is null.");
+            }
+
+            _dataRepository.Add(employee);
+
+            _cache.Remove(employeeListCacheKey);
+
+            return new ObjectResult(employee) { StatusCode = (int)HttpStatusCode.Created };
         }
-
-        _dataRepository.Add(employee);
-
-        _cache.Remove(employeeListCacheKey);
-
-        return CreatedAtRoute(
-                "Get",
-                new { Id = employee.EmployeeId },
-                employee);
     }
-}
 }

@@ -32,8 +32,8 @@ namespace Tests
             var controller = new EmployeeController(repository.Object, cache, logger.Object);
 
             // Act            
-            var result = controller.Get();
-            var resultCount = ((result as ObjectResult)?.Value as List<Employee>)?.Count;
+            var result = controller.GetAsync();
+            var resultCount = ((result.Result as ObjectResult)?.Value as List<Employee>)?.Count;
 
             // Assert
             Assert.NotNull(result);
@@ -53,8 +53,8 @@ namespace Tests
             var controller = new EmployeeController(repository.Object, cache, logger.Object);
 
             // Act            
-            var result = controller.Get();
-            var resultCount = ((result as ObjectResult)?.Value as List<Employee>)?.Count;
+            var result = controller.GetAsync();
+            var resultCount = ((result.Result as ObjectResult)?.Value as List<Employee>)?.Count;
 
             // Assert
             Assert.NotNull(result);
@@ -82,7 +82,7 @@ namespace Tests
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal((int)HttpStatusCode.Created, resultStatusCode);            
+            Assert.Equal((int)HttpStatusCode.Created, resultStatusCode);
         }
 
         [Fact]
@@ -101,7 +101,7 @@ namespace Tests
             var controller = new EmployeeController(repository.Object, cache, logger.Object);
 
             // Act            
-            var result = controller.Post(employee);            
+            var result = controller.Post(employee);
 
             // Assert
             Assert.Null(cache.Get(employeeListCacheKey));
