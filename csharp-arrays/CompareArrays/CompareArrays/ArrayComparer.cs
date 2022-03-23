@@ -28,9 +28,9 @@ namespace CompareArrays
             return Enumerable.SequenceEqual(firstArray, secondArray);
         }
 
-        public bool EnumerableSequenceEqual(Article[] firstArray, Article[] secondArray)
+        public bool EnumerableSequenceEqual(Article[] articleArray, Article[] articleArrayCopy)
         {
-            return Enumerable.SequenceEqual(firstArray, secondArray, new Article());
+            return Enumerable.SequenceEqual(articleArray, articleArrayCopy, new Article());
         }
 
         public bool EnumerableEquals(int[] firstArray, int[] secondArray)

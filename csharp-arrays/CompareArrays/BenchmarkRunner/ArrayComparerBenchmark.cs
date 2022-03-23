@@ -1,8 +1,10 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Order;
 using CompareArrays;
 
 namespace BenchmarkRunner
 {
+    [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
     public class ArrayComparerBenchmark
     {
         private static readonly ArrayComparer _arrayComparer = new();
