@@ -1,4 +1,14 @@
-﻿//Action delegates 
+﻿
+#region Action Delegates
+
+PrintThis print = delegate(string val)
+{
+    Console.WriteLine(val);
+};
+
+print.Invoke("Anonymous method of Action delegate");
+
+//Action delegate using Lambda expression  
 Action<string> printActionDelegate = input => Console.WriteLine(input);
 printActionDelegate("Lambda expression way of Action delegate");
 
@@ -10,6 +20,11 @@ printActionDelegate2("Print this!");
 Action<string> printActionDel = new Action<string>(Print);
 printActionDel.Invoke("Invoke action delegate");
 
+
+#endregion
+
+#region Func Delegates 
+
 DoSomething(Function, "I invoked DoSomething Action Delegate");
 
 //Func delegate with return value full name in caps-lock 
@@ -18,6 +33,10 @@ Func<string, string, string> getFullName = FullNameInCapital;
 //Calling getFullName delegate and assign the return value to a variable
 string fullNameInCaps = getFullName("john", "doe");
 Console.WriteLine(fullNameInCaps);
+
+#endregion
+
+#region Methods
 
 static void Print(string input)
 {
@@ -39,6 +58,12 @@ static void DoSomething(Action<string> action, string input)
     action(input);
 }
 
+
+#endregion
+
+
+#region List of Users
+
 User[] users =
 {
     new(1, "Peter", "UK"), 
@@ -47,7 +72,11 @@ User[] users =
     new(4, "Pal", "UAE"),
 };
 
-//From the array of users, we get those that live in USA.
+#endregion
+
+#region Func Delegates usage in data filtering
+
+//From the array of users, we are going to filter who are living in USA.
 var country = "USA";
 Func<User, bool> livesIn = e => e.Country == country;
 
@@ -62,3 +91,16 @@ foreach (var user in result)
 }
 
 internal record User(int Id, string Name, string Country);
+
+#endregion
+
+
+#region Declraing an Action delegate
+
+//Action delegate with string input parameter 
+delegate void PrintThis(string value);
+
+#endregion
+
+
+
