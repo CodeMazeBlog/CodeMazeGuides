@@ -1,12 +1,11 @@
-using System;
+﻿using System;
 using System.Linq;
 using Xunit;
 
-namespace TestingActionAndFuncDelegates
+namespace Tests
 {
     public class TestingDelegates
     {
-
         [Fact]
         public void TestingActionDelegateInvokesTheMethodUsingLambdaExpression()
         {
