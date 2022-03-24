@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests
-{
+{    
     public class CustomHeadersIntegrationTests
     {
         private readonly WebApplicationFactory<Program> _factory;
