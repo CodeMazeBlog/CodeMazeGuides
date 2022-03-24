@@ -9,8 +9,8 @@ namespace OptionalParameterinWebApi.Controllers
 
         private static readonly string[] Products = new[]
         {
-        "Sweater", "Umbrella", "Jacket", "Polo", "Boots", "Microwave", "Schoolbag", "Sunshade", "SKinny Jeans", "Sunscreen"
-         };
+            "Sweater", "Umbrella", "Jacket", "Polo", "Boots", "Microwave", "Schoolbag", "Sunshade", "SKinny Jeans", "Sunscreen"
+        };
 
         private readonly ILogger<ProductController> _logger;
 
@@ -37,7 +37,7 @@ namespace OptionalParameterinWebApi.Controllers
             return products;
         }
 
-        [HttpGet("GetById/{id:int}")]
+        [HttpGet("GetById/{id:int?}")]
         public Product GetById(int id = 1)
         {
             var products = Get();

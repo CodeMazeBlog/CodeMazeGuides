@@ -1,17 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
-using OptionalParameterinWebApi;
 
 namespace OptionalParameterinWebApi.Controllers
 {
     [ApiController]
-    //[Route("[controller]/[action]", Name = "[controller]_[action]")]
     [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        };
 
         private readonly ILogger<WeatherForecastController> _logger;
 
