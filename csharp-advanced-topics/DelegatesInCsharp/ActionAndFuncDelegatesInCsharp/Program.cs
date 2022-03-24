@@ -80,7 +80,6 @@ internal record User(int Id, string Name, string Country);
 
 #endregion
 
-
 #region Declraing an Action delegate
 
 //Action delegate with string input parameter 
