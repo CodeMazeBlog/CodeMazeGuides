@@ -82,7 +82,7 @@ internal record User(int Id, string Name, string Country);
 
 #region Declraing an Action delegate
 
-//Action delegate with string input parameter 
+//Action delegate with a string input parameter 
 delegate void PrintThis(string value);
 
 #endregion
