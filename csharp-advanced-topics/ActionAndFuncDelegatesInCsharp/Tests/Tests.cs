@@ -1,10 +1,11 @@
-﻿using System;
+using System;
+using System.Collections;
 using System.Linq;
 using Xunit;
 
 namespace Tests
 {
-    public class TestingDelegates
+    public class Tests
     {
         [Fact]
         public void TestingActionDelegateInvokesTheMethodUsingLambdaExpression()
@@ -13,7 +14,7 @@ namespace Tests
             Action<string> printActionDelegate = input => Console.WriteLine(input);
             printActionDelegate("Lambda expression way of Action delegate");
             var invocation = printActionDelegate.GetInvocationList();
-            Assert.Single(invocation);
+            Assert.Single((IEnumerable)invocation);
         }
 
         [Fact]
@@ -23,7 +24,7 @@ namespace Tests
             Action<string> printActionDelegate2 = Print;
             printActionDelegate2("Print this!");
             var invocation2 = printActionDelegate2.GetInvocationList();
-            Assert.Single(invocation2);
+            Assert.Single((IEnumerable)invocation2);
         }
 
         [Fact]
@@ -33,7 +34,7 @@ namespace Tests
             Action<string> printActionDelegate3 = new Action<string>(Print);
             printActionDelegate3.Invoke("Invoke action delegate");
             var invocation3 = printActionDelegate3.GetInvocationList();
-            Assert.Single(invocation3);
+            Assert.Single((IEnumerable)invocation3);
         }
 
         [Fact]
@@ -42,7 +43,7 @@ namespace Tests
             //Testing getFullName Func delegate which accepts 2 strings and return concatenated string converted to caps-lock 
             Func<string, string, string> getFullName = FullNameInCapital;
             string fullNameInCaps = getFullName("john", "doe");
-            Assert.Equal("JOHN DOE",fullNameInCaps );
+            Assert.Equal("JOHN DOE", fullNameInCaps);
         }
 
         [Fact]
@@ -51,9 +52,9 @@ namespace Tests
             //From the array of users, we are going to filter who are living in USA.
             User[] users =
             {
-                new(1, "Peter", "UK"), 
-                new(2, "John", "USA"), 
-                new(3, "Mark", "KSA"), 
+                new(1, "Peter", "UK"),
+                new(2, "John", "USA"),
+                new(3, "Mark", "KSA"),
                 new(4, "Pal", "UAE"),
             };
 
@@ -64,7 +65,7 @@ namespace Tests
 
             foreach (var user in result)
             {
-                Assert.Equal(2,user.Id);
+                Assert.Equal(2, user.Id);
                 Assert.Equal("John", user.Name);
             }
         }
@@ -73,13 +74,12 @@ namespace Tests
 
         static string FullNameInCapital(string firstName, string lastName)
         {
-            return (firstName+ " " + lastName).ToUpper();
+            return (firstName + " " + lastName).ToUpper();
         }
 
         static void Print(string input)
         {
             Console.WriteLine(input);
         }
-
     }
 }
