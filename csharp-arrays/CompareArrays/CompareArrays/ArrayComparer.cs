@@ -35,12 +35,12 @@ namespace CompareArrays
 
         public bool EnumerableEquals(int[] firstArray, int[] secondArray)
         {
-            return Enumerable.Equals(firstArray, secondArray);
+            return Equals(firstArray, secondArray);
         }
 
         public bool EnumerableReferenceEquals(int[] firstArray, int[] secondArray)
         {
-            return Enumerable.ReferenceEquals(firstArray, secondArray);
+            return ReferenceEquals(firstArray, secondArray);
         }
 
         public bool StructuralEquatable(int[] firstArray, int[] secondArray)
