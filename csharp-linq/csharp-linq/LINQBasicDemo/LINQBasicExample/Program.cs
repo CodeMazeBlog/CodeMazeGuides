@@ -26,16 +26,16 @@ namespace LINQBasicExample
             var students = FrequentlyUsedLINQExamples.DemoLINQQueryOperation().ToList();
             PrintStudentList(students);
 
-            Console.WriteLine("\n\n ## Method Syntax - Where() ##");
+            Console.WriteLine("\n\n ## Method Syntax ##");
 
-            var highPerformingStudents = FrequentlyUsedLINQExamples.SelectHighPerformingStudents().ToList();
+            var highPerformingStudents = FrequentlyUsedLINQExamples.DemoHighPerformingStudents().ToList();
             PrintStudentList(highPerformingStudents);
 
             Console.WriteLine("\n\n ## Examples : Frequently Used LINQ Methods ##");
 
-            Console.WriteLine("\n ## Select() ##");
-            var studentsSelected = FrequentlyUsedLINQExamples.SelectStudentNames("Noha Shamil").ToList();
-            PrintStudentList(studentsSelected);
+            Console.WriteLine("\n ## Where() ##");
+            var studentsWhoScoredHighGrades = FrequentlyUsedLINQExamples.SelectHighPerformingStudents().ToList();
+            PrintStudentList(studentsWhoScoredHighGrades);
 
             Console.WriteLine("\n ## OrderBy() ##");
             var studentsAfterOrderById = FrequentlyUsedLINQExamples.SelectStudentsOrderById().ToList();
@@ -55,26 +55,6 @@ namespace LINQBasicExample
                 }
             }
 
-            Console.WriteLine("\n ## All() ##");
-            var hasStudentsPassed = FrequentlyUsedLINQExamples.GetStatusOfAllStudentsWhoPassed();
-            PrintBoolStatus(hasStudentsPassed);
-
-            Console.WriteLine("\n ## Any() ##");
-            var hasAnyStudentGotADistinction = FrequentlyUsedLINQExamples.GetStatusOfAllStudentsWhoPassed();
-            PrintBoolStatus(hasAnyStudentGotADistinction);
-
-            Console.WriteLine("\n ## Contains() ##");
-            var isStudentContainsIdex = FrequentlyUsedLINQExamples.GetStudentContainsId();
-            PrintBoolStatus(isStudentContainsIdex);
-
-            Console.WriteLine("\n ## Skip() ##");
-            var skipStudentAtIndex = FrequentlyUsedLINQExamples.GetStudentsSkipAtIndex().ToList();
-            PrintStudentList(skipStudentAtIndex);
-
-            Console.WriteLine("\n ## Take() ##");
-            var takeStudentAtIndex = FrequentlyUsedLINQExamples.TakeStudentsUptoIndex().ToList();
-            PrintStudentList(takeStudentAtIndex);
-
             Console.WriteLine("\n ## Sum() ##");
             var totalMarks = FrequentlyUsedLINQExamples.SumOfStudentMarks();
             PrintStudentProperty(totalMarks);
@@ -90,10 +70,6 @@ namespace LINQBasicExample
             Console.WriteLine("\n ## Min() ##");
             var minMarks = FrequentlyUsedLINQExamples.MinMarksOfStudent();
             PrintStudentProperty(minMarks);
-
-            Console.WriteLine("\n ## Average() ##");
-            var averageStudentMark = FrequentlyUsedLINQExamples.AverageMarksOfStudent();
-            Console.WriteLine("Average Marks : {0} ", averageStudentMark);
 
             Console.WriteLine("\n ## First() ##");
             var firstStudent = FrequentlyUsedLINQExamples.FirstStudentOccurence();
@@ -116,11 +92,6 @@ namespace LINQBasicExample
         {
             foreach(var student in students)
                 Console.WriteLine("Student name: {0} ", student.StudentName);
-        }
-
-        static void PrintBoolStatus(bool result)
-        {
-            Console.WriteLine("Result: {0} ", result);
         }
 
         static void PrintStudentObject(Student student)

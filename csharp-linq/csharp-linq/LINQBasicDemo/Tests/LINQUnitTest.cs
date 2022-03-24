@@ -14,6 +14,13 @@ namespace Tests
         }
 
         [Fact]
+        public void WhenRetrievingHighPerformingStudents_ThenTotalStudentCount()
+        {
+            var studnets = FrequentlyUsedLINQExamples.DemoHighPerformingStudents().ToList();
+            Assert.Equal(2, studnets.Count);
+        }
+
+        [Fact]
         public void WhenSelectingHighPerformingStudents_ThenTotalStudentCount()
         {
             var studnets = FrequentlyUsedLINQExamples.SelectHighPerformingStudents().ToList();
@@ -41,51 +48,8 @@ namespace Tests
             Assert.Equal("NYC", items[0].Key);
         }
 
-        // ALL, ANY, CONTAINS, TAKE, SKIP
         [Fact]
-        public void WhenAllStudnetsPassed_ThenStatus()
-        {
-            var items = FrequentlyUsedLINQExamples.GetStatusOfAllStudentsWhoPassed();
-            Assert.True(items);
-        }
-
-        [Fact]
-        public void WhenAnyStudnetWithDistinction_ThenStatus()
-        {
-            var items = FrequentlyUsedLINQExamples.GetStatusOfAnyStudentsWithDistinction();
-            Assert.True(items);
-        }
-
-        [Fact]
-        public void WhenStudentIndex_ThenDisplayStudentsFromIndex()
-        {
-            var items = FrequentlyUsedLINQExamples.TakeStudentsUptoIndex();
-            Assert.Equal(2, items.Count());
-        }
-
-        [Fact]
-        public void WhenStudentIndex_ThenSkipStudentsFromIndex()
-        {
-            var items = FrequentlyUsedLINQExamples.GetStudentsSkipAtIndex();
-            Assert.Equal(3, items.Count());
-        }
-         
-        [Fact]
-        public void WhenStudentContainsId_ThenStatus()
-        {
-            var items = FrequentlyUsedLINQExamples.GetStudentContainsId();
-            Assert.True(items);
-        }
-
-        [Fact]
-        public void WhenSelectingStudentByName_ThenStudentMark()
-        {
-            var items = FrequentlyUsedLINQExamples.SelectStudentNames("Noha Shamil").ToList();
-            Assert.Equal(88, items[0].Mark);
-        }
-
-        [Fact]
-        public void WhenSumOfStudentMarks_ThenTotalMark()
+        public void WhenSumOfStudentMarks_ThenTotalMarks()
         {
             var mark = FrequentlyUsedLINQExamples.SumOfStudentMarks();
             Assert.Equal(357, mark);
@@ -99,25 +63,17 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenMaxMarksOfStudents_ThenMaxMark()
+        public void WhenMaxMarksOfStudents_ThenMaxMarks()
         {
             var max = FrequentlyUsedLINQExamples.MaxMarksOfStudent();
             Assert.Equal(88, max);
         }
 
         [Fact]
-        public void WhenMinMarksOfStudents_ThenMinMark()
+        public void WhenMinMarksOfStudents_ThenMinMarks()
         {
             var min = FrequentlyUsedLINQExamples.MinMarksOfStudent();
             Assert.Equal(51, min);
-        }
-
-        // AVG
-        [Fact]
-        public void WhenStudnetsMark_ThenAverageMark()
-        {
-            var avgMark = FrequentlyUsedLINQExamples.AverageMarksOfStudent();
-            Assert.Equal(71.4, avgMark);
         }
 
         [Fact]
