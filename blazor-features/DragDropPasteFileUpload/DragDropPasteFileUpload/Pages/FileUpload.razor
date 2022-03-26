@@ -1,0 +1,55 @@
+﻿@page "/fileupload"
+
+@inject IJSRuntime JSRuntime;
+@implements IAsyncDisposable
+
+<h3>File Upload</h3>
+
+<div @ref="dropZoneElement" class="drop-zone">
+    <p>Drop a file or paste an image from the clipboard</p>
+    <InputFile OnChange="@OnChange" @ref="inputFile"></InputFile>
+</div>
+
+<img src="@imageSource" />
+
+@code {
+    ElementReference dropZoneElement;
+    InputFile inputFile;
+
+    IJSObjectReference _module;
+    IJSObjectReference _dropZoneInstance;
+
+    string imageSource;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dropZone.js");
+
+            _dropZoneInstance = await _module.InvokeAsync<IJSObjectReference>("initializeFileDropZone", dropZoneElement, inputFile.Element);
+        }
+    }
+
+    async Task OnChange(InputFileChangeEventArgs e)
+    {
+        using var stream = e.File.OpenReadStream();
+        using var ms = new MemoryStream();
+        await stream.CopyToAsync(ms);
+        imageSource = $"data:{e.File.ContentType};base64,{Convert.ToBase64String(ms.ToArray())}";
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_dropZoneInstance != null)
+        {
+            await _dropZoneInstance.InvokeVoidAsync("dispose");
+            await _dropZoneInstance.DisposeAsync();
+        }
+
+        if (_module != null)
+        {
+            await _module.DisposeAsync();
+        }
+    }
+}
