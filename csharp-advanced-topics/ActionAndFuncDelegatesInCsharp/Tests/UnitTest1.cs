@@ -5,9 +5,9 @@ using Xunit;
 
 namespace Tests
 {
-    public class Tests
+    public class UnitTest1
     {
-        [Fact]
+      [Fact]
         public void whenStringInvokedViaLambdaExpression_DelegateInvocationListMustReturnASingleElement()
         {
             //Testing Action delegate invokes the method using Lambda expression properly  
