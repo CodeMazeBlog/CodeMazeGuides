@@ -6,6 +6,5 @@ namespace SerializationDemo.Client.Clients
     {       
         Task<List<Employee>> GetAllEmployees();
         Task<Employee> CreateEmployee(Employee employee);
-
     }
 }

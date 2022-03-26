@@ -15,14 +15,14 @@ namespace SerializationDemo.EmployeeApi.Controllers
             _repo = repo;
         }
 
-        [HttpGet("")]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Employee>), StatusCodes.Status200OK)]
         public IActionResult GetAllEmployees()
         {
             return Ok(_repo.GetAll());
         }
 
-        [HttpPost("")]
+        [HttpPost]
         [ProducesResponseType(typeof(Employee), StatusCodes.Status201Created)]
         public IActionResult CreateEmployee(Employee employee)
         {

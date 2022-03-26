@@ -14,6 +14,7 @@ namespace SerializationDemo.Client.Clients
         private readonly HttpClient _client = new HttpClient();
         private readonly IDistributedCache _distributedCache;
         private const string AllEmployeesKey = "AllEmployees";
+
         public CachedJsonClient()
         {            
             var collection = new ServiceCollection();
@@ -42,7 +43,9 @@ namespace SerializationDemo.Client.Clients
             var url = $"{BaseUrl}/api/employees";
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            
             var response = await _client.SendAsync(request);
+            
             return response.Content;           
         }
 
@@ -53,6 +56,7 @@ namespace SerializationDemo.Client.Clients
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             request.Content = new ByteArrayContent(_serializer.Serialize(employee));
             request.Content.Headers.Add("Content-Type", "application/json");
+            
             var response = await _client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)

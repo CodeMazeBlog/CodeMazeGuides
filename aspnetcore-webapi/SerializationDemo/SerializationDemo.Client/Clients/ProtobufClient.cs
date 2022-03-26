@@ -17,6 +17,7 @@ namespace SerializationDemo.Client.Clients
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));            
             request.Content = new ByteArrayContent(_serializer.Serialize(employee));
             request.Content.Headers.Add("Content-Type", "application/x-protobuf");
+
             var response = await _client.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
@@ -33,8 +34,10 @@ namespace SerializationDemo.Client.Clients
             var url = $"{BaseUrl}/api/employees";
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
+            
             var response = await _client.SendAsync(request);
             var content = await response.Content.ReadAsByteArrayAsync();
+            
             return _serializer.Deserialize<List<Employee>>(content);
         }
     }
