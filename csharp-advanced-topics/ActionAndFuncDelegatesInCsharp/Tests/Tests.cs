@@ -8,7 +8,7 @@ namespace Tests
     public class Tests
     {
         [Fact]
-        public void TestingActionDelegateInvokesTheMethodUsingLambdaExpression()
+        public void whenStringInvokedViaLambdaExpression_DelegateInvocationListMustReturnASingleElement()
         {
             //Testing Action delegate invokes the method using Lambda expression properly  
             Action<string> printActionDelegate = input => Console.WriteLine(input);
@@ -18,7 +18,7 @@ namespace Tests
         }
 
         [Fact]
-        public void TestingActionDelegateInvokesUsingDirectMethodAssign()
+        public void whenActionDelegateAssignedToAVoidMethodDirectly_DelegateInvocationListMustReturnASingleElement()
         {
             //Testing Action delegate invokes the method which assigned directly  
             Action<string> printActionDelegate2 = Print;
@@ -28,7 +28,7 @@ namespace Tests
         }
 
         [Fact]
-        public void TestingActionDelegateInitializedUsingNewKeyword()
+        public void whenActionDelegateInitializedUsingNewKeyword_DelegateInvocationListMustReturnASingleElement()
         {
             //Testing Action delegate Initialized using the new keyword
             Action<string> printActionDelegate3 = new Action<string>(Print);
@@ -38,7 +38,7 @@ namespace Tests
         }
 
         [Fact]
-        public void TestFuncDelegateReturnConcatenatedStringConvertedToCapital()
+        public void whenPassingFirstNameAndLastNameToFuncDelegate_ItShouldReturnConcatenatedStringConvertedToCapital()
         {
             //Testing getFullName Func delegate which accepts 2 strings and return concatenated string converted to caps-lock 
             Func<string, string, string> getFullName = FullNameInCapital;
@@ -47,7 +47,7 @@ namespace Tests
         }
 
         [Fact]
-        public void TestingFuncDelegateReturnsAnObjectFromAListOfObjectsBasedOnACondition()
+        public void whenPassingAParameterToFuncDelegate_ItShouldReturnAnObjectFromAListOfObjectsBasedOnACondition()
         {
             //From the array of users, we are going to filter who are living in USA.
             User[] users =
