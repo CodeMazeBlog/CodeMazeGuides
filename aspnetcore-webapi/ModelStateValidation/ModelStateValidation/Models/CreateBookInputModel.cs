@@ -11,6 +11,6 @@ public class CreateBookInputModel
     public string? Description { get; set; }
 
     [Required]
-    [StringLength(13, MinimumLength = 13, ErrorMessage = "The ISBN must be a string with the exact length of 13")]
+    [StringLength(13, MinimumLength = 13, ErrorMessage = "The ISBN must be a string with the exact length of 13.")]
     public string? ISBN { get; set; }
 }
