@@ -60,5 +60,4 @@ public static class GenreRatingFinder
 
         return (genre, imdb, rotten);
     }
-
 }

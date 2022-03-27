@@ -10,7 +10,7 @@ namespace JsonDeserializationDynamicObject.Benchmark
     [CategoriesColumn]
     public class Benchmarks
     {
-        private static string _json = File.ReadAllText("MovieStats.json");
+        private static readonly string _json = File.ReadAllText("MovieStats.json");
 
         [BenchmarkCategory(nameof(SystemTextJson))]
         [Benchmark(Baseline = true)]
