@@ -20,5 +20,10 @@
   </ItemGroup>    
   <ItemGroup>
     <ProjectReference Include="..\JsonDeserializationDynamicObject\JsonDeserializationDynamicObject.csproj" />
+  </ItemGroup>    
+  <ItemGroup>
+    <None Update="MovieStats.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>  
 </Project>

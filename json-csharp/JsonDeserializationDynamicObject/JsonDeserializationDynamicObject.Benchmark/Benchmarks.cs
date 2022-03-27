@@ -1,70 +1,64 @@
 ﻿using BenchmarkDotNet.Attributes;
-using System.Collections.Generic;
-using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
 using SystemTextJson = JsonDeserializationDynamicObject.Native.GenreRatingFinder;
 using NewtonsoftJson = JsonDeserializationDynamicObject.Newtonsoft.GenreRatingFinder;
+using System.IO;
 
 namespace JsonDeserializationDynamicObject.Benchmark
 {
-    [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
+    [CategoriesColumn]
     public class Benchmarks
     {
+        private static string _json = File.ReadAllText("MovieStats.json");
+
         [BenchmarkCategory(nameof(SystemTextJson))]
         [Benchmark(Baseline = true)]
-        public void SimpleWrite()
+        public void UsingJsonElement()
         {
-                       
+            SystemTextJson.UsingJsonElement(_json);          
         }
 
         [BenchmarkCategory(nameof(SystemTextJson))]
         [Benchmark]
-        public void PrettyWrite()
+        public void UsingJsonObject()
         {
-            
-        }
-
-        [BenchmarkCategory(nameof(SystemTextJson))]
-        [Benchmark]
-        public void Utf8BytesWrite()
-        {
-            
-        }
-
-        [BenchmarkCategory(nameof(SystemTextJson))]
-        [Benchmark]
-        public void StreamWrite()
-        {
-            
-        }
-
-        [BenchmarkCategory(nameof(NewtonsoftJson))]
-        [Benchmark(Baseline = true)]
-        public void NewtonsoftSimpleWrite()
-        {
-            
+            SystemTextJson.UsingJsonObject(_json);
         }
 
         [BenchmarkCategory(nameof(NewtonsoftJson))]
         [Benchmark]
-        public void NewtonsoftPrettyWrite()
+        public void UsingDynamic()
         {
-            
+            NewtonsoftJson.UsingDynamic(_json);
         }
 
         [BenchmarkCategory(nameof(NewtonsoftJson))]
         [Benchmark]
-        public void NewtonsoftUtf8BytesWrite()
+        public void UsingExpandoObject()
         {
-            
+            NewtonsoftJson.UsingExpandoObject(_json);
         }
 
         [BenchmarkCategory(nameof(NewtonsoftJson))]
         [Benchmark]
-        public void NewtonsoftStreamWrite()
+        public void UsingAnonymousType()
         {
-            
+            NewtonsoftJson.UsingAnonymousTypeWithDictionary(_json);
+        }
+
+        [BenchmarkCategory(nameof(NewtonsoftJson))]
+        [Benchmark]
+        public void UsingJObject()
+        {
+            NewtonsoftJson.UsingJObject(_json);
+        }
+
+        [BenchmarkCategory(nameof(NewtonsoftJson))]
+        [Benchmark]
+        public void UsingJsonPath()
+        {
+            NewtonsoftJson.UsingJsonPath(_json);
         }
     }
 }
