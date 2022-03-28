@@ -43,6 +43,11 @@
 
             Console.WriteLine();
 
+            Console.WriteLine("---------- Compare using AsSpan.SequenceEqual");
+            Console.WriteLine($"Are equal: {_arrayComparer.AsSpanSequenceEqual(_firstArray, _secondArray)}");
+
+            Console.WriteLine();
+
             Console.WriteLine("---------- Compare using Enumerable.Equals");
             Console.WriteLine($"Are equal: {_arrayComparer.EnumerableEquals(_firstArray, _secondArray)}");
 
