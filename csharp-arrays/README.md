@@ -1,4 +1,4 @@
-## csharp-arrays
+## Array Collection
 
 This section contains the topics about arrays and solving specific problems with arrays in C#.
 
