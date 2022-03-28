@@ -56,7 +56,7 @@ public static class GenreRatingFinder
 
         var genre = (string)jsonDom["Genre"]!;
         var imdb = (double)jsonDom["Rating"]!["Imdb"]!;
-        var rotten = (double)jsonDom!["Rating"]!["Rotten Tomatoes"]!;
+        var rotten = (double)jsonDom["Rating"]!["Rotten Tomatoes"]!;
 
         return (genre, imdb, rotten);
     }
