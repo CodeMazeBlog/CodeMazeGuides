@@ -1,6 +1,6 @@
 ## csharp-arrays
 
-This section contains the topics about arrays in C#.
+This section contains the topics about arrays and solving specific problems with arrays in C#.
 
 ### Relevant articles:
 - [How to Copy Array Elements to New Array in C#](https://code-maze.com/csharp-copy-array-elements-to-new-array/)
