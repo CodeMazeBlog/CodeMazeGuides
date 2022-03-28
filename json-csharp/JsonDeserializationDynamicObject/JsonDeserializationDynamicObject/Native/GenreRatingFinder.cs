@@ -41,20 +41,20 @@ public static class GenreRatingFinder
 
     public static (string? Genre, double Imdb, double Rotten) UsingJsonObject(string jsonString)
     {
-        var jsonDom = JsonSerializer.Deserialize<JsonObject>(jsonString);
+        var jsonDom = JsonSerializer.Deserialize<JsonObject>(jsonString)!;
 
-        var genre = (string)jsonDom!["Genre"]!;
+        var genre = (string)jsonDom["Genre"]!;
         var imdb = (double)jsonDom["Rating"]!["Imdb"]!;
-        var rotten = (double)jsonDom!["Rating"]!["Rotten Tomatoes"]!;
+        var rotten = (double)jsonDom["Rating"]!["Rotten Tomatoes"]!;
 
         return (genre, imdb, rotten);
     }
 
     public static (string? Genre, double Imdb, double Rotten) UsingJsonNode(string jsonString)
     {
-        var jsonDom = JsonSerializer.Deserialize<JsonNode>(jsonString); 
+        var jsonDom = JsonSerializer.Deserialize<JsonNode>(jsonString)!; 
 
-        var genre = (string)jsonDom!["Genre"]!;
+        var genre = (string)jsonDom["Genre"]!;
         var imdb = (double)jsonDom["Rating"]!["Imdb"]!;
         var rotten = (double)jsonDom!["Rating"]!["Rotten Tomatoes"]!;
 
