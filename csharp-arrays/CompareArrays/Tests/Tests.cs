@@ -68,6 +68,14 @@ namespace Tests
         }
 
         [TestMethod]
+        public void GivenTwoEqualDataArrays_WhenCompareThemUsingAsSpanSequenceEqualMethod_ThenReturnTrue()
+        {
+            var result = _arrayComparer.AsSpanSequenceEqual(_firstArray, _secondArray);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
         public void GivenTwoEqualDataArraysOfArticle_WhenCompareThemUsingEnumerableSequeceEqualMethod_ThenReturnTrue()
         {
             var firstArticle = new Article() { Title = "First Article", LastUpdate = new() };

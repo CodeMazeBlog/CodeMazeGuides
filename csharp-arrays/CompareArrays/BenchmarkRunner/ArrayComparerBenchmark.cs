@@ -48,6 +48,12 @@ namespace BenchmarkRunner
         }
 
         [Benchmark]
+        public void AsSpanSequenceEqual()
+        {
+            _arrayComparer.AsSpanSequenceEqual(_firstArray, _secondArray);
+        }
+
+        [Benchmark]
         public void EnumerableEquals()
         {
             _arrayComparer.EnumerableEquals(_firstArray, _secondArray);
