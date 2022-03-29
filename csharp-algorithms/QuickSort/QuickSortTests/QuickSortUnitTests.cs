@@ -41,17 +41,5 @@ namespace QuickSortTests
 
             Assert.IsNotNull(sortedArray);
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(StackOverflowException))]
-        public void GivenLargeSortedArray_WhenArrayIsSorted_ThenThrowsStackOverflowException()
-        {
-            var sortFunction = new QuickSortMethods();
-            var array = QuickSortMethods.CreateSortedArray(20000000);
-
-            var sortedArray = sortFunction.SortArray(array, 0, array.Length - 1, string.Empty);
-           
-            Assert.ThrowsException<StackOverflowException>(() => sortFunction.SortArray(array, 0, array.Length - 1, string.Empty));
-        }
     }
 }
