@@ -28,6 +28,11 @@ namespace CompareArrays
             return Enumerable.SequenceEqual(firstArray, secondArray);
         }
 
+        public bool AsSpanSequenceEqual(int[] firstArray, int[] secondArray)
+        {
+            return firstArray.AsSpan().SequenceEqual(secondArray);
+        }
+
         public bool EnumerableSequenceEqual(Article[] articleArray, Article[] articleArrayCopy)
         {
             return Enumerable.SequenceEqual(articleArray, articleArrayCopy, new Article());
