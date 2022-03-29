@@ -18,7 +18,6 @@ namespace LINQBasicExample
 
         public static IEnumerable<Student> DemoLINQQueryOperation()
         {
-            /*Comment to Marinko : I am initializing GetStudentsFromDb() to a var and then using it in the query for better readability. I will delete this comment*/
             var studentList = GetStudentsFromDb();
             var highPerformingStudents = from student in studentList
                                          where student.Mark > 80
