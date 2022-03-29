@@ -13,7 +13,7 @@ namespace StringToTitleCaseUnitTest
         {
             Assert.AreEqual("A Tale Of Two Cities", textInfo.ToTitleCase("a tale oF tWo citIes"));
 
-            Assert.AreEqual("Harry Porter And The Deathly Hallows", textInfo.ToTitleCase("harry porter and the Deathly hallows"));
+            Assert.AreEqual("Harry Potter And The Deathly Hallows", textInfo.ToTitleCase("harry potter and the Deathly hallows"));
         }
 
         [TestMethod]

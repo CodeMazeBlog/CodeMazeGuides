@@ -13,7 +13,7 @@ namespace StringToTitleCase
 
             Console.WriteLine(textinfo.ToTitleCase("a tale oF tWo citIes"));
 
-            Console.WriteLine(textinfo.ToTitleCase("harry porter and the Deathly hallows"));
+            Console.WriteLine(textinfo.ToTitleCase("harry potter and the Deathly hallows"));
 
             Console.WriteLine(textinfo.ToTitleCase("OLIVER TWIST".ToLower()));
         }
