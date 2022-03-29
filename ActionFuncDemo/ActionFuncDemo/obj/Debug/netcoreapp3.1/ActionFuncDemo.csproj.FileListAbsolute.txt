@@ -1,0 +1,13 @@
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\bin\Debug\netcoreapp3.1\ActionFuncDemo.exe
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\bin\Debug\netcoreapp3.1\ActionFuncDemo.deps.json
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\bin\Debug\netcoreapp3.1\ActionFuncDemo.runtimeconfig.json
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\bin\Debug\netcoreapp3.1\ActionFuncDemo.runtimeconfig.dev.json
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\bin\Debug\netcoreapp3.1\ActionFuncDemo.dll
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\bin\Debug\netcoreapp3.1\ActionFuncDemo.pdb
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\obj\Debug\netcoreapp3.1\ActionFuncDemo.csprojAssemblyReference.cache
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\obj\Debug\netcoreapp3.1\ActionFuncDemo.AssemblyInfoInputs.cache
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\obj\Debug\netcoreapp3.1\ActionFuncDemo.AssemblyInfo.cs
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\obj\Debug\netcoreapp3.1\ActionFuncDemo.csproj.CoreCompileInputs.cache
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\obj\Debug\netcoreapp3.1\ActionFuncDemo.dll
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\obj\Debug\netcoreapp3.1\ActionFuncDemo.pdb
+C:\Users\cmcha\source\repos\ActionFuncDemo\ActionFuncDemo\obj\Debug\netcoreapp3.1\ActionFuncDemo.genruntimeconfig.cache
