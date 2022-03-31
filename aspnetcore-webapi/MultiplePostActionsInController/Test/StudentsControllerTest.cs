@@ -6,6 +6,7 @@ using MultiplePostActionsInController.Models;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 namespace Test
 {
@@ -23,46 +24,46 @@ namespace Test
         }
 
         [TestMethod]
-        public void WhenPostToStudentController_ThenInternalServerError()
+        public async Task WhenPostToStudentController_ThenInternalServerError()
         {
-            var responce = _client.PostAsJsonAsync($"/Students"
-                 , _student).Result;
+            var responce = await _client.PostAsJsonAsync($"/Students"
+                 , _student);
 
             Assert.AreEqual(HttpStatusCode.InternalServerError, responce.StatusCode);
         }
 
         [TestMethod]
-        public void WhenPostToStudentController_WithAddStudentAction_ThenNotFound()
+        public async Task WhenPostToStudentController_WithAddStudentAction_ThenNotFound()
         {
-            var responce = _client.PostAsJsonAsync("/Students/PostStudent"
-                 , _student).Result;
+            var responce = await _client.PostAsJsonAsync("/Students/PostStudent"
+                 , _student);
 
             Assert.AreEqual(HttpStatusCode.NotFound, responce.StatusCode);
         }
 
         [TestMethod]
-        public void WhenPostToStudentController_WithAddGradeAction_ThenNotFound()
+        public async Task WhenPostToStudentController_WithAddGradeAction_ThenNotFound()
         {
-            var responce = _client.PostAsJsonAsync("/Students/PostGrade"
-                 , _grade).Result;
+            var responce = await _client.PostAsJsonAsync("/Students/PostGrade"
+                 , _grade);
 
             Assert.AreEqual(HttpStatusCode.NotFound, responce.StatusCode);
         }
 
         [TestMethod]
-        public void WhenPostToStudentController_WithAddStudentAction_ThenCreated()
+        public async Task WhenPostToStudentController_WithAddStudentAction_ThenCreated()
         {
-            var responce = _client.PostAsJsonAsync("/Students/AddStudent"
-                 , _student).Result;
+            var responce = await _client.PostAsJsonAsync("/Students/AddStudent"
+                 , _student);
 
             Assert.AreEqual(HttpStatusCode.Created, responce.StatusCode);
         }
 
         [TestMethod]
-        public void WhenPostToStudentController_WithAddGradeAction_ThenCreated()
+        public async Task WhenPostToStudentController_WithAddGradeAction_ThenCreated()
         {
-            var responce = _client.PostAsJsonAsync("/Students/AddGrade"
-                 , _grade).Result;
+            var responce = await _client.PostAsJsonAsync("/Students/AddGrade"
+                 , _grade);
 
             Assert.AreEqual(HttpStatusCode.Created, responce.StatusCode);
         }
