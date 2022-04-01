@@ -5,7 +5,7 @@ namespace CodeFirstMigration.Tests
     public class Tests
     {
         [Fact]
-        public void TestSQLiteOk()
+        public void GivenContext_WhenMigrate_ThenEnsureDbCreated()
         {
             //arrange
             using var context = new CustomerContext();
