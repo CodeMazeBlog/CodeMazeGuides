@@ -1,4 +1,5 @@
 using CodeFirstMigration;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace Tests
@@ -6,14 +7,14 @@ namespace Tests
     public class ExampleTests
     {
         [Fact]
-        public void GivenContext_WhenMigrate_ThenEnsureDbCreated()
+        public void GivenContext_WhenMigrate_ThenReturnsNoError()
         {
             //arrange
             using var context = new CustomerContext();
 
             //act & assert
 
-            context.Database.EnsureCreated();
+            context.Database.Migrate();
         }
     }
 }
