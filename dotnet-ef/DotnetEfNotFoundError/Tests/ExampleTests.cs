@@ -1,8 +1,9 @@
-﻿using Xunit;
+using CodeFirstMigration;
+using Xunit;
 
-namespace CodeFirstMigration.Tests
+namespace Tests
 {
-    public class Tests
+    public class ExampleTests
     {
         [Fact]
         public void GivenContext_WhenMigrate_ThenEnsureDbCreated()

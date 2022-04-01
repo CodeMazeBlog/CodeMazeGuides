@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstMigration", "CodeFirstMigration\CodeFirstMigration.csproj", "{058099C9-E896-4BD4-AA48-2EEFE76C166D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeFirstMigration", "CodeFirstMigration\CodeFirstMigration.csproj", "{058099C9-E896-4BD4-AA48-2EEFE76C166D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFirstMigration.Tests", "CodeFirstMigration.Tests\CodeFirstMigration.Tests.csproj", "{C7EFFCF9-5DE9-4758-9318-DD246CC152C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{37820E32-4EBB-4955-9765-9D29CBC6AEBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{058099C9-E896-4BD4-AA48-2EEFE76C166D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{058099C9-E896-4BD4-AA48-2EEFE76C166D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{058099C9-E896-4BD4-AA48-2EEFE76C166D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7EFFCF9-5DE9-4758-9318-DD246CC152C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7EFFCF9-5DE9-4758-9318-DD246CC152C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7EFFCF9-5DE9-4758-9318-DD246CC152C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7EFFCF9-5DE9-4758-9318-DD246CC152C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37820E32-4EBB-4955-9765-9D29CBC6AEBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37820E32-4EBB-4955-9765-9D29CBC6AEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37820E32-4EBB-4955-9765-9D29CBC6AEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37820E32-4EBB-4955-9765-9D29CBC6AEBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
