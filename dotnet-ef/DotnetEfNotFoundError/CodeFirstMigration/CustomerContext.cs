@@ -5,7 +5,7 @@ namespace CodeFirstMigration
     //CustomerContext class to automatically initialize DbContext instance
     public class CustomerContext: DbContext
     {
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Customer>? Customers { get; set; }
 
         //configure database
 
