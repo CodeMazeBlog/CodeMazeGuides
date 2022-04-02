@@ -11,8 +11,6 @@ namespace SortListByProperty
             return originalList.OrderBy(x => x.Title).ToList();
         }
 
-        [ArgumentsSource(nameof(GenerateBooks))]
-        [Benchmark]
         public List<Book> SortByAuthorAndPagesUsingLinq(List<Book> originalList)
         {
             return originalList.OrderBy(x => x.Author).ThenBy(x => x.Pages).ToList();
