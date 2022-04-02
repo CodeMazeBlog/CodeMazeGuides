@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionTreeInCsharp", "ExpressionTreeInCsharp\ExpressionTreeInCsharp.csproj", "{1BF5AE36-B377-48BB-9C0C-AD0E1D397A10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionTreeTests", "ExpressionTreeTests\ExpressionTreeTests.csproj", "{E48083F1-01C4-4D92-974C-9730595EB83B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BF5AE36-B377-48BB-9C0C-AD0E1D397A10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BF5AE36-B377-48BB-9C0C-AD0E1D397A10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BF5AE36-B377-48BB-9C0C-AD0E1D397A10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BF5AE36-B377-48BB-9C0C-AD0E1D397A10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E48083F1-01C4-4D92-974C-9730595EB83B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E48083F1-01C4-4D92-974C-9730595EB83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E48083F1-01C4-4D92-974C-9730595EB83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E48083F1-01C4-4D92-974C-9730595EB83B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2D8ED88-E861-4A0F-9B85-304A73A4F4AE}
+	EndGlobalSection
+EndGlobal

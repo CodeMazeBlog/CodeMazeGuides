@@ -3,9 +3,9 @@ using System;
 using System.Linq.Expressions;
 using Xunit;
 
-namespace Tests
+namespace ExpressionTreeTests
 {
-    public class ExpressionTreeTests
+    public class Tests
     {
         private readonly ExpressionUtility _utility = new ExpressionUtility();
 

@@ -21,7 +21,6 @@ foreach (ParameterExpression pe in pes)
 {
     Console.WriteLine($"ParameterExpression\n \tname: {pe.Name}\n\ttype: {pe.Type}\n\tnode type: {pe.NodeType}");
 }
-Console.WriteLine($"Name: {name}");
 Console.WriteLine($"Return Type: {returnType}");
 
 var parameter = Expression.Parameter(typeof(int), "x");
