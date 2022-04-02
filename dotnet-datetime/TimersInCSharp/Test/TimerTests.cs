@@ -3,8 +3,8 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Timers;
+using Thread = System.Threading.Thread;
 
 namespace Test
 {
@@ -18,17 +18,17 @@ namespace Test
             var sw = new StringWriter();
             Console.SetOut(sw);
 
-            var timer = new System.Timers.Timer(1000);
+            var timer = new Timer(100);
             timer.Elapsed += OnEventExecution;
             timer.Start();
 
-            Thread.Sleep(3000);
+            Thread.Sleep(300);
             Assert.IsTrue(regex.Matches(sw.ToString()).Count >= 1);
         }
 
-        public void OnEventExecution(Object? source, ElapsedEventArgs e)
+        public void OnEventExecution(Object? sender, ElapsedEventArgs eventArgs)
         {
-            Console.WriteLine($"Elapsed event at {e.SignalTime:G}");
+            Console.WriteLine($"Elapsed event at {eventArgs.SignalTime:G}");
         }
 
         [TestMethod]
@@ -37,15 +37,15 @@ namespace Test
             var regex = new Regex("Elapsed event at");
             var sw = new StringWriter();
 
-            var timer = new System.Timers.Timer(1000);
-            timer.Elapsed += (s, e) =>
+            var timer = new Timer(100);
+            timer.Elapsed += (sender, eventArgs) =>
             {
-                sw.WriteLine($"Elapsed event at {e.SignalTime:G}");
+                sw.WriteLine($"Elapsed event at {eventArgs.SignalTime:G}");
             };
 
             timer.Start();
 
-            Thread.Sleep(3000);
+            Thread.Sleep(300);
             Assert.IsTrue(regex.Matches(sw.ToString()).Count > 1);
         }
 
@@ -55,16 +55,16 @@ namespace Test
             var regex = new Regex("Elapsed event at");
             var sw = new StringWriter();
 
-            var timer = new System.Timers.Timer(1000);
+            var timer = new Timer(100);
             timer.AutoReset = false;
-            timer.Elapsed += (s, e) =>
+            timer.Elapsed += (sender, eventArgs) =>
             {
-                sw.WriteLine($"Elapsed event at {e.SignalTime:G}");
+                sw.WriteLine($"Elapsed event at {eventArgs.SignalTime:G}");
             };
 
             timer.Start();
 
-            Thread.Sleep(3000);
+            Thread.Sleep(300);
             Assert.IsTrue(regex.Matches(sw.ToString()).Count == 1);
         }
 
@@ -74,15 +74,15 @@ namespace Test
             var regex = new Regex("Elapsed event at");
             var sw = new StringWriter();
 
-            var timer = new System.Timers.Timer(1000);
-            timer.Elapsed += async (s, e) =>
+            var timer = new Timer(100);
+            timer.Elapsed += async (sender, eventArgs) =>
             {
-                await sw.WriteLineAsync($"Elapsed event at {e.SignalTime:G}");
+                await sw.WriteLineAsync($"Elapsed event at {eventArgs.SignalTime:G}");
             };
 
             timer.Start();
 
-            Thread.Sleep(3000);
+            Thread.Sleep(300);
             Assert.IsTrue(regex.Matches(sw.ToString()).Count >= 1);
         }
 
@@ -92,15 +92,15 @@ namespace Test
             var regex = new Regex("Elapsed event at");
             var sw = new StringWriter();
 
-            var timer = new System.Timers.Timer(1000);
-            timer.Elapsed += (s, e) =>
+            var timer = new Timer(100);
+            timer.Elapsed += (sender, eventArgs) =>
             {
-                sw.WriteLine($"Elapsed event at {e.SignalTime:G}");
+                sw.WriteLine($"Elapsed event at {eventArgs.SignalTime:G}");
                 throw new Exception();
             };
 
             timer.Start();
-            Thread.Sleep(3000);
+            Thread.Sleep(300);
         }
 
         [TestMethod]
@@ -109,10 +109,10 @@ namespace Test
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
 
             stopwatch.Stop();
-            
+
             Console.WriteLine($"Total milliseconds: {stopwatch.Elapsed.TotalMilliseconds:F4}");
             Console.WriteLine($"Total seconds: {stopwatch.Elapsed.TotalSeconds:F4}");
             Console.WriteLine($"Total minutes: {stopwatch.Elapsed.TotalMinutes:F4}");
