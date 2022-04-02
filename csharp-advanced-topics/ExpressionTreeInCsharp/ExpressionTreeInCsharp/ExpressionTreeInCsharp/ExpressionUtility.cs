@@ -12,7 +12,6 @@ namespace ExpressionTreeInCsharp
             var moduloEven = Expression.Modulo(parameter, Expression.Constant(2, valueType));
             var multipleOfThree = Expression.Equal(moduloThree, Expression.Constant(0, valueType));
             var even = Expression.Equal(moduloEven, Expression.Constant(0, valueType));
-
             var binaryExpression = Expression.OrElse(multipleOfThree, even);
 
             return binaryExpression;

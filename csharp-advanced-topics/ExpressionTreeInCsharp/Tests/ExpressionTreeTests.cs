@@ -11,19 +11,19 @@ namespace Tests
 
         [Theory]
         [InlineData(5)]
-        public void WhenIsNotEvenOrMultipleOfThree_ThenItReturnFalse(int number)
+        [InlineData(17)]
+        public void GivenNumber_WhenItIsNotEvenOrMultipleOfThree_ThenItReturnFalse(int number)
         {
             Func<int, bool> isEvenOrMultipleOfThree = _utility.EvenOrMultipleOfThree();
             var result = isEvenOrMultipleOfThree(number);
 
             Assert.False(result);
-
         }
 
         [Theory]
         [InlineData(9)]
         [InlineData(4)]
-        public void GivenCorrectNumbers_WhenIsEvenOrMultipleOfThree_ThenItReturnTrue(int number)
+        public void GivenNumber_WhenItIsEvenOrMultipleOfThree_ThenItReturnTrue(int number)
         {
             Func<int, bool> isEvenOrMultipleOfThree = _utility.EvenOrMultipleOfThree();
             var result = isEvenOrMultipleOfThree(number);
@@ -32,7 +32,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenCreateTheExpressionTree_ThenTheExpressionTypeOrElse()
+        public void WhenCallCreateTheExpressionTree_ThenItCreatesTheExpressionTypeOrElse()
         {
             var parameter = Expression.Parameter(typeof(int), "x");
             var expr = _utility.CreateExpression(parameter);
@@ -54,7 +54,7 @@ namespace Tests
         [Theory]
         [InlineData(9)]
         [InlineData(4)]
-        public void GivenIncorrectNumbers_WhenIsEvenAndMultipleOfThree_ThenItReturnFalse(int number)
+        public void GivenEvenOrMultipleOfThreeNumber_WhenExpressionTypeIsAnd_ThenItReturnsFalse(int number)
         {
             var parameter = Expression.Parameter(typeof(int), "x");
             var expr = _utility.CreateExpression(parameter);
@@ -65,6 +65,22 @@ namespace Tests
             var result = isEvenAndMultipleOfThree(number);
 
             Assert.False(result);
+        }
+
+        [Theory]
+        [InlineData(18)]
+        [InlineData(6)]
+        public void GivenEvenAndMultipleOfThreeNumber_WhenExpressionTypeIsAnd_ThenItReturnsTrue(int number)
+        {
+            var parameter = Expression.Parameter(typeof(int), "x");
+            var expr = _utility.CreateExpression(parameter);
+            var treeModifier = new CustomExpressionVisitor();
+            var modifiedExpr = treeModifier.Modify(expr);
+
+            Func<int, bool> isEvenAndMultipleOfThree = Expression.Lambda<Func<int, bool>>(modifiedExpr, parameter).Compile();
+            var result = isEvenAndMultipleOfThree(number);
+
+            Assert.True(result);
         }
     }
 }
