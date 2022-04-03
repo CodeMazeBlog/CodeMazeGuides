@@ -3,7 +3,6 @@ using BenchmarkDotNet.Order;
 
 namespace Benchmark
 {
-	[Orderer(SummaryOrderPolicy.FastestToSlowest)]
 	public class DictionaryIterateBenchmark
 	{
 		private Dictionary<int, string> FillData(int count)
@@ -22,7 +21,7 @@ namespace Benchmark
 		{
 			yield return new object[] { FillData(100), "100" };
 			yield return new object[] { FillData(1000), "1000" };
-			yield return new object[] { FillData(10000), "100000" };
+			yield return new object[] { FillData(10000), "10000" };
 		}
 
 		[Benchmark]

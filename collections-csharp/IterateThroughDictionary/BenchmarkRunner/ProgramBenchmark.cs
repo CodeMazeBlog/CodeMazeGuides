@@ -7,11 +7,6 @@ namespace Benchmark
 		static void Main(string[] args)
 		{
 			BenchmarkRunner.Run<DictionaryIterateBenchmark>();
-
-			//var bla = new DictionaryIterateBenchmark();
-			//bla.WhenDictionaryUsingForLoop();
-			//bla.WhenDictionaryUsingForEach();
-			//bla.WhenDictionaryParallelEnumerable();
 		}
 	}
 }
