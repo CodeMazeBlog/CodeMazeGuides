@@ -1,62 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Order;
 
-namespace BenchmarkRunner
+namespace Benchmark
 {
-    public class DictionaryIterateBenchmark
-    {
-        private Dictionary<int, string> _testValues = new Dictionary<int, string>();
+	[Orderer(SummaryOrderPolicy.FastestToSlowest)]
+	public class DictionaryIterateBenchmark
+	{
+		private Dictionary<int, string> FillData(int count)
+		{
+			var testValues = new Dictionary<int, string>();
 
-        private void FillData()
-        {
-            for (int i = 0; i < 100000; i++)
-            {
-                _testValues.Add(i, "value-" + i);
-            }
-        }
-        public void TestDictionaryLoopResult()
-        {
-            FillData();
-            WhenDictionaryUsingForEach();
-            WhenDictionaryUsingForLoop();
-            WhenDictionaryParallelEnumerable();
-            WhenDictionaryJoinString();
-        }
+			for (int i = 0; i < count; i++)
+			{
+				testValues.Add(i, "value-" + i);
+			}
 
-        [Benchmark]
-        public void WhenDictionaryUsingForEach()
-        {
-            var result = 0;
+			return testValues;
+		}
 
-            foreach (int i in _testValues.Keys)
-            {
-                result += i;
-            }
-        }
+		public IEnumerable<object[]> SampleData()
+		{
+			yield return new object[] { FillData(100), "100" };
+			yield return new object[] { FillData(1000), "1000" };
+			yield return new object[] { FillData(10000), "100000" };
+		}
 
-        [Benchmark]
-        public void WhenDictionaryUsingForLoop()
-        {
-            for (int i = 0; i < _testValues.Count; i++)
-            {
-                var result = _testValues[i].Length + 1;
-            }
-        }
+		[Benchmark]
+		[ArgumentsSource(nameof(SampleData))]
+		public void WhenDictionaryUsingForEach(Dictionary<int, string> dictionaryData, string numberOfItems)
+		{
+			foreach (var testValue in dictionaryData)
+			{
+				var result = testValue.Value;
+			}
+		}
 
-        [Benchmark]
-        public void WhenDictionaryParallelEnumerable()
-        {
-            _testValues.AsParallel()
-                      .ForAll(val => val.Key.ToString());
-        }
+		[Benchmark]
+		[ArgumentsSource(nameof(SampleData))]
+		public void WhenDictionaryUsingForLoop(Dictionary<int, string> dictionaryData, string numberOfItems)
+		{
+			for (int i = 0; i < dictionaryData.Count; i++)
+			{
+				var item = dictionaryData.ElementAt(i);
+				var result = item.Value;
+			}
+		}
 
-        [Benchmark]
-        public void WhenDictionaryJoinString()
-        {
-            var resultstring = (String.Join(Environment.NewLine, _testValues));
-        }
-    }
+		[Benchmark]
+		[ArgumentsSource(nameof(SampleData))]
+		public void WhenDictionaryParallelEnumerable(Dictionary<int, string> dictionaryData, string numberOfItems)
+		{
+			var result = string.Empty;
+
+			dictionaryData.AsParallel().ForAll(testValue => result = testValue.Value);
+		}
+	}
 }

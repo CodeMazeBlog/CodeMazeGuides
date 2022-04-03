@@ -1,10 +1,17 @@
-﻿namespace ProgramBenchmarkRunner
+﻿using BenchmarkDotNet.Running;
+
+namespace Benchmark
 {
-    public class ProgramBenchmark
-    {
-        static void Main(string[] args)
-        {
-            BenchmarkDotNet.Running.BenchmarkRunner.Run<BenchmarkRunner.DictionaryIterateBenchmark>();
-        }
-    }
+	public class ProgramBenchmark
+	{
+		static void Main(string[] args)
+		{
+			BenchmarkRunner.Run<DictionaryIterateBenchmark>();
+
+			//var bla = new DictionaryIterateBenchmark();
+			//bla.WhenDictionaryUsingForLoop();
+			//bla.WhenDictionaryUsingForEach();
+			//bla.WhenDictionaryParallelEnumerable();
+		}
+	}
 }
