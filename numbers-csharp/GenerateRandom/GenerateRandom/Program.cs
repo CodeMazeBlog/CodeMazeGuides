@@ -1,5 +1,4 @@
 ﻿
-using System.Security.Cryptography;
 
 namespace GenerateRandom
 {
@@ -19,17 +18,17 @@ namespace GenerateRandom
 
         private static void GenerateRandomData()
         {
-            var pseduoNum = getPseudoRandomNumber();
+            var pseduoNum = GetPseudoRandomNumber();
             Console.WriteLine($"Pseduo Random Number Generated: {pseduoNum}");
 
-            var pseduoDouble = getPseudoDouble();
+            var pseduoDouble = GetPseudoDouble();
             Console.WriteLine($"Pseduo Random Double Generated: {pseduoDouble}");
 
-            var threadSafePseduoNum = getPseudoRandomNumberThreadSafe();
+            var threadSafePseduoNum = GetPseudoRandomNumberThreadSafe();
             Console.WriteLine($"Threadsafe Pseduo Random Double Generated: {threadSafePseduoNum}");
 
-            int stringLength = 10;
-            var pseduoRandomString = getPseudoRandomString(stringLength);
+            var stringLength = 10;
+            var pseduoRandomString = GetPseudoRandomString(stringLength);
             Console.WriteLine($"Threadsafe Pseduo Random String Generated: {pseduoRandomString}");
 
             var rc = new RandomCustom();
@@ -37,25 +36,28 @@ namespace GenerateRandom
             Console.WriteLine($"Custom Algorithm Psuedo Random Number: {customAlgorithmPsuedoRandomNumber}");
         }
 
-        public static int getPseudoRandomNumber()
+        public static int GetPseudoRandomNumber()
         {
             var random = new Random();
             var rNum = random.Next();
+
             return rNum;
         }
-        public static double getPseudoDouble()
+        public static double GetPseudoDouble()
         {
             var random = new Random();
             var rDouble = random.NextDouble();
+
             return rDouble;
         }
-        public static int getPseudoRandomNumberThreadSafe()
+        public static int GetPseudoRandomNumberThreadSafe()
         {
             var random = Random.Shared.Next();
+
             return random;
         }
 
-        public static string getPseudoRandomString(int stringLength)
+        public static string GetPseudoRandomString(int stringLength)
         {
             const string alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             var random = new Random();
@@ -67,27 +69,9 @@ namespace GenerateRandom
                 pseudoRandomChars[i] = alphabet[charIndex];
             }
 
-            var pseudoRandomString = new String(pseudoRandomChars);
+            var pseudoRandomString = new string(pseudoRandomChars);
+
             return pseudoRandomString;
-        }
-
-        public class RandomCustom : Random
-        {
-            protected override double Sample()
-            {
-                return modifySample(base.Sample());
-            }
-
-            private double modifySample(double sample)
-            {
-                double newSample = Math.Log(sample);
-                return newSample;
-            }
-
-            public override int Next()
-            {
-                return (int)(Sample() * int.MaxValue);
-            }
         }
     }
 }

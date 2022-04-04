@@ -7,35 +7,36 @@ namespace GenerateRandomTests
     [TestClass]
     public class GenerateRandomTest
     {
-        public void whenCallingGetPseudoRandomNumber_thenNotNull()
+        public void WhenCallingGetPseudoRandomNumber_thenNotNull()
         {
-            var num = getPseudoRandomNumber();
+            var num = GetPseudoRandomNumber();
             Assert.IsNotNull(num);
         }
 
         [TestMethod]
-        public void whenCallingGetPseudoDouble_thenNotNull()
+        public void WhenCallingGetPseudoDouble_thenNotNull()
         {
-            var num = getPseudoDouble();
+            var num = GetPseudoDouble();
             Assert.IsNotNull(num);
         }
 
         [TestMethod]
-        public void whenCallingGetPseudoRandomNumberThreadSafe_thenNotNull()
+        public void WhenCallingGetPseudoRandomNumberThreadSafe_thenNotNull()
         {
-            var num = getPseudoRandomNumberThreadSafe();
+            var num = GetPseudoRandomNumberThreadSafe();
             Assert.IsNotNull(num);
         }
 
         [TestMethod]
-        public void whenCallingGePseudoRandomString_thenNotNull()
+        public void WhenCallingGePseudoRandomString_thenNotNull()
         {
             int count = 100;
-            var num = getPseudoRandomString(count);
+            var num = GetPseudoRandomString(count);
             Assert.IsNotNull(num);
         }
+
         [TestMethod]
-        public void whenCallingRandomCustomNext_thenNotNull()
+        public void WhenCallingRandomCustomNext_thenNotNull()
         {
             var rc = new RandomCustom();
             var num = rc.Next();
