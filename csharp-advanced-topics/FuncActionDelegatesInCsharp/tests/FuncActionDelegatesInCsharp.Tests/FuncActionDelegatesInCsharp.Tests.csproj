@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\FuncActionDelegatesInCsharp\FuncActionDelegatesInCsharp.ConsoleApp\FuncActionDelegatesInCsharp.ConsoleApp.csproj" />
+		<ProjectReference Include="..\..\src\FuncActionDelegatesInCsharp.ConsoleApp\FuncActionDelegatesInCsharp.ConsoleApp.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
