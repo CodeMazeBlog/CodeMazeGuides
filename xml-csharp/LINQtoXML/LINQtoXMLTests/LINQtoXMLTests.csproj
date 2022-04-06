@@ -17,4 +17,13 @@
     <ProjectReference Include="..\LINQtoXML\LINQtoXML.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Students.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="University.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
