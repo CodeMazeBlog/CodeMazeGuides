@@ -170,31 +170,9 @@ namespace LINQtoXMLUnitTests
                             )
                         )));
 
-
-            var expected = @"<Semesters>
-  <Semester ID=""1"">
-    <Student>
-      <FirstName>John</FirstName>
-      <LastName>Doe</LastName>
-    </Student>
-    <Student>
-      <FirstName>Jane</FirstName>
-      <LastName>Doe</LastName>
-    </Student>
-  </Semester>
-  <Semester ID=""2"">
-    <Student>
-      <FirstName>Jim</FirstName>
-      <LastName>Doe</LastName>
-    </Student>
-  </Semester>
-</Semesters>";
-
             Assert.AreEqual(2, students.Elements("Semester").Count());
             Assert.AreEqual("1", students.Elements("Semester").ElementAt(0).Attribute("ID").Value);
             Assert.AreEqual("2", students.Elements("Semester").ElementAt(1).Attribute("ID").Value);
         }
-
-
     }
 }

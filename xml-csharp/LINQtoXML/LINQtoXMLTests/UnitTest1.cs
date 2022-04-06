@@ -55,8 +55,9 @@ namespace LINQtoXMLUnitTests
                     + " " + (string)student.Element("LastName")
                     + " (" + ((DateTime)student.Element("DateOfBirth")).ToShortDateString() + ")");
 
-            var expected = new string[] { "John Doe (2/10/2000)", "Jim Doe (12/3/2000)" };
-            Assert.AreEqual(expected, students.ToArray());
+            Assert.AreEqual(2, students.Count());
+            Assert.IsTrue(students.ElementAt(0).StartsWith("John Doe"));
+            Assert.IsTrue(students.ElementAt(1).StartsWith("Jim Doe"));
         }
 
         [Test]
