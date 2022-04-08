@@ -23,12 +23,15 @@ namespace QuickSort
                 {
                     leftIndex++;
                 }
-                while (array[rightIndex] > pivot)
+                while (rightIndex > pivot)
                 {
                     rightIndex--;
                 }
                 if (leftIndex < rightIndex)
                 {
+                    //if (array[leftIndex] == array[rightIndex])
+                    //    return rightIndex;
+
                     var tempVar = array[rightIndex];
                     array[rightIndex] = array[leftIndex];
                     array[leftIndex] = tempVar;
@@ -71,7 +74,6 @@ namespace QuickSort
 
             return array;
         }
-
         public static int[] CreateSortedArray(int size)
         {
             var array = new int[size];
