@@ -13,15 +13,15 @@
         /// <summary>
         /// Greeted persons
         /// </summary>
-        public List<Person> greetedPersons { get; init; }
+        public List<Person> greetedPeople { get; init; }
 
         /// <summary>
         /// person greeter new instance
         /// </summary>
         public PersonGreeter()
         {
-            greetedPersons = new List<Person>();
-            ShorterSayHelloAction = (Person person) => greetedPersons.Add(person);
+            greetedPeople = new List<Person>();
+            ShorterSayHelloAction = (Person person) => greetedPeople.Add(person);
             SayHelloAction = HelloPerson;
         }
 
@@ -56,7 +56,7 @@
         /// <param name="person">Person to greet.</param>
         public void HelloPerson(Person person)
         {
-            greetedPersons.Add(person);
+            greetedPeople.Add(person);
         }
 
         /// <summary>

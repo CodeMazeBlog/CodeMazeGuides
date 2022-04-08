@@ -12,7 +12,7 @@ namespace Tests
             var person = new Person { FirstName = "John", LastName = "Gates" };
             var personGreeter = new PersonGreeter();
             personGreeter.SayHelloWithBasicDelegate(person);
-            Assert.AreEqual(personGreeter.greetedPersons[0], person);
+            Assert.AreEqual(personGreeter.greetedPeople[0], person);
 
         }
 
@@ -22,7 +22,7 @@ namespace Tests
             var person = new Person { FirstName = "John", LastName = "Jobs" };
             var personGreeter = new PersonGreeter();
             personGreeter.SayHelloWithAction(person);
-            Assert.AreEqual(personGreeter.greetedPersons[0], person);
+            Assert.AreEqual(personGreeter.greetedPeople[0], person);
 
         }
 
@@ -32,7 +32,7 @@ namespace Tests
             var person = new Person { FirstName = "Bill", LastName = "Gates" };
             var personGreeter = new PersonGreeter();
             personGreeter.SayHelloWithShorterAction(person);
-            Assert.AreEqual(personGreeter.greetedPersons[0], person);
+            Assert.AreEqual(personGreeter.greetedPeople[0], person);
 
         }
 
@@ -42,8 +42,8 @@ namespace Tests
             var person = new Person { FirstName = "John", LastName = "Jobs" };
             var personGreeter = new PersonGreeter();
             var result = personGreeter.SayHelloWithFunc(person);
-            Assert.AreEqual(personGreeter.greetedPersons[0].FirstName, person.FirstName);
-            Assert.AreEqual(personGreeter.greetedPersons[0].LastName, person.LastName);
+            Assert.AreEqual(personGreeter.greetedPeople[0].FirstName, person.FirstName);
+            Assert.AreEqual(personGreeter.greetedPeople[0].LastName, person.LastName);
             Assert.AreEqual(person.FirstName, result.FirstName);
             Assert.AreEqual(person.LastName, result.LastName);
         }
