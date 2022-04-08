@@ -9,7 +9,7 @@ namespace Tests
         [TestMethod]
         public void WhenGreetingPersonWithBasicDelegate_ThenPersonAddedToList()
         {
-            var person = new Person { FirstName = "John", LastName = "Gates" };
+            var person = new Person("John", "Gates");
             var personGreeter = new PersonGreeter();
             personGreeter.SayHelloWithBasicDelegate(person);
             Assert.AreEqual(personGreeter.greetedPeople[0], person);
@@ -19,7 +19,7 @@ namespace Tests
         [TestMethod]
         public void WhenGreetingPersonWithAction_ThenPersonAddedToList()
         {
-            var person = new Person { FirstName = "John", LastName = "Jobs" };
+            var person = new Person("John", "Jobs");
             var personGreeter = new PersonGreeter();
             personGreeter.SayHelloWithAction(person);
             Assert.AreEqual(personGreeter.greetedPeople[0], person);
@@ -29,7 +29,7 @@ namespace Tests
         [TestMethod]
         public void WhenGreetingPersonWithShorterAction_ThenPersonAddedToList()
         {
-            var person = new Person { FirstName = "Bill", LastName = "Gates" };
+            var person = new Person("Bill", "Gates");
             var personGreeter = new PersonGreeter();
             personGreeter.SayHelloWithShorterAction(person);
             Assert.AreEqual(personGreeter.greetedPeople[0], person);
@@ -39,7 +39,7 @@ namespace Tests
         [TestMethod]
         public void WhenGreetingPersonWithFunc_ThenPersonAddedToListAndReturned()
         {
-            var person = new Person { FirstName = "John", LastName = "Jobs" };
+            var person = new Person("John", "Jobs");
             var personGreeter = new PersonGreeter();
             var result = personGreeter.SayHelloWithFunc(person);
             Assert.AreEqual(personGreeter.greetedPeople[0].FirstName, person.FirstName);

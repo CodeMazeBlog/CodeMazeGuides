@@ -79,7 +79,7 @@ namespace ActionAndFuncInCsharp
         /// <returns></returns>
         public Person CreateAndSayHello(string firstName, string lastName)
         {
-            var person = new Person { FirstName = firstName, LastName = lastName };
+            var person = new Person (  firstName,  lastName );
             ShorterSayHelloAction(person);
             return person;
         }

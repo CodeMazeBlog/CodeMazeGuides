@@ -12,7 +12,7 @@
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
-            var person = new Person { FirstName = "John", LastName = "Papa"};
+            var person = new Person ("John", "Papa");
 
             var p = new PersonGreeter();
             p.SayHelloWithBasicDelegate(person);
