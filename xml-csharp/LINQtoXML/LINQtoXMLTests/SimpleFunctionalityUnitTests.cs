@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace LINQtoXMLUnitTests
 {
-    public class Tests1
+    public class SimpleFunctionalityUnitTests
     {
         XElement StudentsXML;
 
@@ -16,38 +16,38 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenUsingQuerySyntax_WeGetAllStudents()
+        public void WhenUsingQuerySyntax_ThenWeGetAllStudents()
         {
             var students = 
                 from student in StudentsXML.Elements("Student")
                 select student.Element("FirstName").Value + " " + student.Element("LastName").Value;
 
             var expected = new string[] { "John Doe", "Jane Doe", "Jim Doe" };
-            Assert.AreEqual(expected, students.ToArray());
+            CollectionAssert.AreEqual(expected, students.ToArray());
         }
 
         [Test]
-        public void WhenUsingMethodSyntax_WeGetAllStudents()
+        public void WhenUsingMethodSyntax_ThenWeGetAllStudents()
         {
             var students = StudentsXML.Elements("Student")
                 .Select(student => student.Element("FirstName").Value + " " + student.Element("LastName").Value);
 
             var expected = new string[] { "John Doe", "Jane Doe", "Jim Doe" };
-            Assert.AreEqual(expected, students.ToArray());
+            CollectionAssert.AreEqual(expected, students.ToArray());
         }
 
         [Test]
-        public void WhenCastingElementsToString_WeGetAllStudents()
+        public void WhenCastingElementsToString_ThenWeGetAllStudents()
         {
             var students = StudentsXML.Elements("Student")
                 .Select(student => (string)student.Element("FirstName") + " " + (string)student.Element("LastName"));
 
             var expected = new string[] { "John Doe", "Jane Doe", "Jim Doe" };
-            Assert.AreEqual(expected, students.ToArray());
+            CollectionAssert.AreEqual(expected, students.ToArray());
         }
 
         [Test]
-        public void WhenFilteringForDate_WeGetStudentsFrom2000()
+        public void WhenFilteringForDate_ThenWeGetStudentsFrom2000()
         {
             var students = StudentsXML.Elements("Student")
                 .Where(student => ((DateTime)student.Element("DateOfBirth")).Year == 2000)
@@ -61,7 +61,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenFilteringForId_WeGetStudentWithId222()
+        public void WhenFilteringForId_ThenWeGetStudentWithId222()
         {
             var student = StudentsXML.Elements("Student")
                 .Where(student => (int)student.Attribute("ID") == 222)
@@ -71,7 +71,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenFilteringForClassId_WeGetTwoStudents()
+        public void WhenFilteringForClassId_ThenWeGetTwoStudents()
         {
             var students = StudentsXML.Elements("Student")
                 .Where(student => student.Elements("Courses").Elements("Course")
@@ -83,7 +83,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenUpdatingStudentName_WeGetCorrectStudent()
+        public void WhenUpdatingStudentName_ThenWeGetCorrectStudent()
         {
             var student = StudentsXML.Elements("Student")
                 .Where(student => (int)student.Attribute("ID") == 333)
@@ -95,7 +95,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenUpdatingMajor_WeGetUpdatedStudent()
+        public void WhenUpdatingMajor_ThenWeGetUpdatedStudent()
         {
             var students = StudentsXML.Elements("Student")
                 .Where(student => (int)student.Element("Semester") == 2
@@ -113,7 +113,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenDeletingStudent_WeGetCorrectRemainingStudent()
+        public void WhenDeletingStudent_ThenWeGetCorrectRemainingStudent()
         {
             StudentsXML.Elements("Student")
                 .Where(student => (int)student.Attribute("ID") == 333)
@@ -126,7 +126,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenCreatingNewStudent_WeGetOneStudent()
+        public void WhenCreatingNewStudent_ThenWeGetOneStudent()
         {
             XElement students =
                 new XElement("Students",
@@ -154,7 +154,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenCreatingNewStudentWithDefaultNamespace_WeGetOneStudent()
+        public void WhenCreatingNewStudentWithDefaultNamespace_ThenWeGetOneStudent()
         {
             XNamespace st = "http://www.testuni.edu/def";
             XElement students =
@@ -183,7 +183,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenCreatingNewStudentWithPrefixedNamespace_WeGetOneStudent()
+        public void WhenCreatingNewStudentWithPrefixedNamespace_ThenWeGetOneStudent()
         {
             XNamespace st = "http://www.testuni.edu/def";
             XElement students =

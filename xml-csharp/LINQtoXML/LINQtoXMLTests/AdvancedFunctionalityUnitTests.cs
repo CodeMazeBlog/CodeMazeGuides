@@ -6,7 +6,7 @@ using LINQtoXML;
 
 namespace LINQtoXMLUnitTests
 {
-    public class Tests2
+    public class AdvancedFunctionalityUnitTests
     {
         XElement UniversityXML;
 
@@ -17,7 +17,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenJoiningTwoXMLTrees_WeGetAnonymousObject()
+        public void WhenJoiningTwoXMLTrees_ThenWeGetAnonymousObject()
         {
             var students = UniversityXML.Elements("Students").Elements("Student")
                 .Where(student => (string)student.Attribute("ID") == "111")
@@ -42,7 +42,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenJoiningTwoXMLTreesWithQuerySyntax_WeGetAnonymousObject()
+        public void WhenJoiningTwoXMLTreesWithQuerySyntax_ThenWeGetAnonymousObject()
         {
             var students = 
                 from student in UniversityXML.Elements("Students").Elements("Student")
@@ -70,7 +70,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenJoiningTwoXMLTrees_WeGetStudentClass()
+        public void WhenJoiningTwoXMLTrees_ThenWeGetStudentClass()
         {
             var students = UniversityXML.Elements("Students").Elements("Student")
                 .Where(student => (string)student.Attribute("ID") == "111")
@@ -95,7 +95,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenJoiningTwoXMLTrees_WeGetXElementObject()
+        public void WhenJoiningTwoXMLTrees_ThenWeGetXElementObject()
         {
             var newElement = 
                 new XElement("Students",
@@ -124,7 +124,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenJoiningTwoXMLTrees_WeGetSumAndCount()
+        public void WhenJoiningTwoXMLTrees_ThenWeGetSumAndCount()
         {
             var students = UniversityXML.Elements("Students").Elements("Student")
                 .Select(student => new
@@ -154,7 +154,7 @@ namespace LINQtoXMLUnitTests
         }
 
         [Test]
-        public void WhenGroupingResults_WeGetStudentsBySemester()
+        public void WhenGroupingResults_ThenWeGetStudentsBySemester()
         {
             var students = 
                 new XElement("Semesters",
