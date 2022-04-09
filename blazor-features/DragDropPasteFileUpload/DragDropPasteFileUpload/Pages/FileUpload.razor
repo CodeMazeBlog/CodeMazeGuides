@@ -6,10 +6,16 @@
 <h3>File Upload</h3>
 
 <div @ref="fileDropContainer" class="file-drop-zone @HoverClass" @ondragenter="OnDragEnter" @ondragleave="OnDragLeave" @ondragover="OnDragEnter">
-    <InputFile OnChange="@OnChange" @ref="inputFile" />
+    <InputFile OnChange="@OnChange" @ref="inputFile" multiple />
+</div>
+<div class="error-message-container">
+    <p>@ErrorMessage</p>
 </div>
 <div class="image-container">
-    <img src="@imageSource" />
+    @foreach(var imageSource in imageSources)
+    {
+        <img src="@imageSource" />
+    }
 </div>
 
 @code {
@@ -19,9 +25,10 @@
     IJSObjectReference _filePasteModule;
     IJSObjectReference _filePasteFunctionReference;
 
-    string HoverClass;
-
-    string imageSource;
+    private string HoverClass;
+    private List<string> imageSources = new();
+    private const int maxAllowedFiles = 2;
+    private string ErrorMessage;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -39,10 +46,22 @@
 
     async Task OnChange(InputFileChangeEventArgs e)
     {
-        using var stream = e.File.OpenReadStream();
-        using var ms = new MemoryStream();
-        await stream.CopyToAsync(ms);
-        imageSource = $"data:{e.File.ContentType};base64,{Convert.ToBase64String(ms.ToArray())}";
+        imageSources.Clear();
+        ErrorMessage = string.Empty;
+
+        if (e.FileCount > maxAllowedFiles)
+        {
+            ErrorMessage = $"Only {maxAllowedFiles} files can be uploaded";
+            return;
+        }
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            using var stream = file.OpenReadStream();
+            using var ms = new MemoryStream();
+            await stream.CopyToAsync(ms);
+            imageSources.Add($"data:{file.ContentType};base64,{Convert.ToBase64String(ms.ToArray())}");
+        }
 
         HoverClass = string.Empty;
     }

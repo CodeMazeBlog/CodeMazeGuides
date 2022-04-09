@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 2px;
+    min-height: 100px;
 }
 
 .hover {
@@ -16,7 +17,16 @@
     justify-content: center;
 }
 
+.image-container img {
+    width: 50%;
+}
+
 ::deep input[type=file] {
     width: 100%;
     padding: 20px;
+}
+
+.error-message-container {
+    color: red;
+    text-align: center;
 }
