@@ -5,6 +5,7 @@ using DownloadMultipleAzure;
 using Moq;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests
@@ -12,7 +13,7 @@ namespace Tests
     public class MultipleDownloadExamplesTest
     {
         [Fact]
-        public void GivenMultipleFilesSetup_WhenFilesAreDownloadUsingParallelForEachAsync_ThenAllMethodsAreCalled()
+        public async Task GivenMultipleFilesSetup_WhenFilesAreDownloadUsingParallelForEachAsync_ThenAllMethodsAreCalled()
         {
             // Given
             var mockContainerName = "mock-container";
@@ -23,14 +24,14 @@ namespace Tests
             var multipleDownloadExamples = new MultipleDownloadExamples(mockBlobServiceClient.Object);
 
             // When
-            multipleDownloadExamples.DownloadMultipleFilesUsingParallelForEachAsync(mockContainerName);
+            await multipleDownloadExamples.DownloadMultipleFilesUsingParallelForEachAsync(mockContainerName);
 
             // Then
             mockRepository.VerifyAll();
         }
 
         [Fact]
-        public void GivenMultipleFilesSetup_WhenFilesAreDownloadUsingSemaphoreSlim_ThenAllMethodsAreCalled()
+        public async Task GivenMultipleFilesSetup_WhenFilesAreDownloadUsingSemaphoreSlim_ThenAllMethodsAreCalled()
         {
             // Given
             var mockContainerName = "mock-container";
@@ -41,7 +42,7 @@ namespace Tests
             var multipleDownloadExamples = new MultipleDownloadExamples(mockBlobServiceClient.Object);
 
             // When
-            multipleDownloadExamples.DownloadMultipleFilesUsingSemaphoreSlim(mockContainerName);
+            await multipleDownloadExamples.DownloadMultipleFilesUsingSemaphoreSlim(mockContainerName);
 
             // Then
             mockRepository.VerifyAll();
