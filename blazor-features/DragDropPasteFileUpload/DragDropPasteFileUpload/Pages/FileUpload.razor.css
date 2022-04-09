@@ -1,12 +1,22 @@
-﻿.drop-zone {
-    padding: 20px;
+﻿.file-drop-zone {
     width: 100%;
-    min-height: 100px;
-    border: 2px dashed #0087F7;
-    border-radius: 5px;
+    border: 3px dotted #fb275d;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
 }
 
-    .drop-zone.hover {
-        border-style: solid;
-        background-color: #3bd1ca;
-    }
+.hover {
+    border-style: solid;
+    background-color: #00ca71;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+}
+
+::deep input[type=file] {
+    width: 100%;
+    padding: 20px;
+}

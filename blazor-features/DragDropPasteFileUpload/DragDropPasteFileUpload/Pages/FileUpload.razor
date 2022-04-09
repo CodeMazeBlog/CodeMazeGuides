@@ -5,19 +5,21 @@
 
 <h3>File Upload</h3>
 
-<div @ref="dropZoneElement" class="drop-zone">
-    <p>Drop a file or paste an image from the clipboard</p>
-    <InputFile OnChange="@OnChange" @ref="inputFile"></InputFile>
+<div @ref="fileDropContainer" class="file-drop-zone @HoverClass" @ondragenter="OnDragEnter" @ondragleave="OnDragLeave" @ondragover="OnDragEnter">
+    <InputFile OnChange="@OnChange" @ref="inputFile" />
+</div>
+<div class="image-container">
+    <img src="@imageSource" />
 </div>
 
-<img src="@imageSource" />
-
 @code {
-    ElementReference dropZoneElement;
+    ElementReference fileDropContainer;
     InputFile inputFile;
 
-    IJSObjectReference _module;
-    IJSObjectReference _dropZoneInstance;
+    IJSObjectReference _filePasteModule;
+    IJSObjectReference _filePasteFunctionReference;
+
+    string HoverClass;
 
     string imageSource;
 
@@ -25,11 +27,15 @@
     {
         if (firstRender)
         {
-            _module = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/dropZone.js");
+            _filePasteModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/filePaste.js");
 
-            _dropZoneInstance = await _module.InvokeAsync<IJSObjectReference>("initializeFileDropZone", dropZoneElement, inputFile.Element);
+            _filePasteFunctionReference = await _filePasteModule.InvokeAsync<IJSObjectReference>("initializeFilePaste", fileDropContainer, inputFile.Element);
         }
     }
+
+    void OnDragEnter(DragEventArgs e) => HoverClass = "hover";
+
+    void OnDragLeave(DragEventArgs e) => HoverClass = string.Empty;
 
     async Task OnChange(InputFileChangeEventArgs e)
     {
@@ -37,19 +43,21 @@
         using var ms = new MemoryStream();
         await stream.CopyToAsync(ms);
         imageSource = $"data:{e.File.ContentType};base64,{Convert.ToBase64String(ms.ToArray())}";
+
+        HoverClass = string.Empty;
     }
 
     public async ValueTask DisposeAsync()
     {
-        if (_dropZoneInstance != null)
+        if (_filePasteFunctionReference != null)
         {
-            await _dropZoneInstance.InvokeVoidAsync("dispose");
-            await _dropZoneInstance.DisposeAsync();
+            await _filePasteFunctionReference.InvokeVoidAsync("dispose");
+            await _filePasteFunctionReference.DisposeAsync();
         }
 
-        if (_module != null)
+        if (_filePasteModule != null)
         {
-            await _module.DisposeAsync();
+            await _filePasteModule.DisposeAsync();
         }
     }
 }

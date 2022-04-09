@@ -9,10 +9,10 @@ namespace Tests;
 public class DragDropPasteFileUploadTest : TestContext
 {
     [Fact]
-    public void GivenAValidContext_WhenComponentIsRenderedForFirstTime_ThenImportsDropZoneJavaScriptFile()
+    public void GivenAValidContext_WhenComponentIsRenderedForFirstTime_ThenImportsFilePasteJavaScriptFile()
     {
         // Arrange
-        const string jsFileName = "./js/dropZone.js";
+        const string jsFileName = "./js/filePaste.js";
         JSInterop.SetupModule(jsFileName);
         JSInterop.Mode = JSRuntimeMode.Loose;
 
@@ -25,10 +25,10 @@ public class DragDropPasteFileUploadTest : TestContext
     }
 
     [Fact]
-    public void GivenAValidContext_WhenComponentIsRenderedForFirstTime_ThenInvokesInitializeFileDropZoneFunction()
+    public void GivenAValidContext_WhenComponentIsRenderedForFirstTime_ThenInvokesInitializeFilePasteFunction()
     {
         // Arrange
-        const string jsFunctionName = "initializeFileDropZone";
+        const string jsFunctionName = "initializeFilePaste";
         JSInterop.SetupVoid(jsFunctionName, It.IsAny<ElementReference[]>());
         JSInterop.Mode = JSRuntimeMode.Loose;
 
