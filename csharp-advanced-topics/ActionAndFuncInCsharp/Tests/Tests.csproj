@@ -2,8 +2,10 @@
 
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
- <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <IsPackable>false</IsPackable>
