@@ -10,7 +10,7 @@ namespace ActionFuncDelegates
             learningAction();
 
             Func<string, string, string> concateFunc = ConcateString;
-            string concatedText = concateFunc("Hi, I'm learning c#", "from code-maze.com");
+            var concatedText = concateFunc("Hi, I'm learning c#", "from code-maze.com");
             Console.WriteLine(concatedText);
         }
         public static void Learning()
