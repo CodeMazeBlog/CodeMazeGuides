@@ -6,3 +6,4 @@ This section contains the topics considered advanced level in C#.
 
 - [C# Delegates](https://code-maze.com/delegates-charp/)
 - [Events in C#](https://code-maze.com/csharp-events/)
+- [Action and Func Delegates] (https://code-maze.com/csharp-actionandfuncdelegates/)
