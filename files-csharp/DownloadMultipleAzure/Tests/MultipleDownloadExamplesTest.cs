@@ -50,11 +50,11 @@ namespace Tests
 
         private static Mock<BlobServiceClient> MockSetup(MockRepository mockRepository)
         {
-            Mock<BlobServiceClient> mockBlobServiceClient = mockRepository.Create<BlobServiceClient>();
-            Mock<BlobContainerClient> mockContainerClient = mockRepository.Create<BlobContainerClient>();
-            Mock<AsyncPageable<BlobItem>> mockPageableBlobItem = mockRepository.Create<AsyncPageable<BlobItem>>();
-            Mock<IAsyncEnumerable<Page<BlobItem>>> mockPages = mockRepository.Create<IAsyncEnumerable<Page<BlobItem>>>();
-            Mock<IAsyncEnumerator<Page<BlobItem>>> mockEnumerator = mockRepository.Create<IAsyncEnumerator<Page<BlobItem>>>();
+            var mockBlobServiceClient = mockRepository.Create<BlobServiceClient>();
+            var mockContainerClient = mockRepository.Create<BlobContainerClient>();
+            var mockPageableBlobItem = mockRepository.Create<AsyncPageable<BlobItem>>();
+            var mockPages = mockRepository.Create<IAsyncEnumerable<Page<BlobItem>>>();
+            var mockEnumerator = mockRepository.Create<IAsyncEnumerator<Page<BlobItem>>>();
 
             mockEnumerator.Setup(x => x.MoveNextAsync())
                 .Returns(new System.Threading.Tasks.ValueTask<bool>());

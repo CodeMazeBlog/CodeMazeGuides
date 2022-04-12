@@ -2,7 +2,7 @@
 using DownloadMultipleAzure;
 
 var connectionString = "UseDevelopmentStorage=true";
-BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
+var blobServiceClient = new BlobServiceClient(connectionString);
 
 var multipleDownloadExamples = new MultipleDownloadExamples(blobServiceClient);
 

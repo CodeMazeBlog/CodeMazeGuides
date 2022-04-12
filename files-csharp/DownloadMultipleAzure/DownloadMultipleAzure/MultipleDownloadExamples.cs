@@ -13,7 +13,7 @@ namespace DownloadMultipleAzure
 
         public async Task DownloadMultipleFilesUsingParallelForEachAsync(string containerName)
         {
-            BlobContainerClient blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+            var blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
             var blobPages = blobContainerClient.GetBlobsAsync().AsPages();
 
             await Parallel.ForEachAsync(blobPages, new ParallelOptions { MaxDegreeOfParallelism = 2 }, async (blobPage, token) =>
@@ -29,7 +29,7 @@ namespace DownloadMultipleAzure
 
         public async Task DownloadMultipleFilesUsingSemaphoreSlim(string containerName)
         {
-            BlobContainerClient blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+            var blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
             var blobPages = blobContainerClient.GetBlobsAsync().AsPages();
 
             var semaphore = new SemaphoreSlim(4);
