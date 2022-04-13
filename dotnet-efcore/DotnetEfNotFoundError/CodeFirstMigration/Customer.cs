@@ -1,6 +1,5 @@
 ﻿namespace CodeFirstMigration
 {
-    //model
     public class Customer
     {
         public Guid Id { get; }
