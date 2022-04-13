@@ -2,7 +2,7 @@
 
 namespace ActionAndFuncSample
 {
-    internal class Program
+    public class Program
     {
         // Delegate declaration which is just a method reference.
         delegate string MyDelegate(string s);
@@ -60,6 +60,17 @@ namespace ActionAndFuncSample
             Console.WriteLine("Press any key to exit");
             Console.ReadLine();
         }
+
+        public static object CovarianceMethod(Func<string,object> covariant, string param)
+        {
+           return covariant(param);
+        }
+
+        public static string ContraVarianceMethod(Func<string, string> covariant, string param)
+        {
+            return covariant(param);
+        }
+
 
         private static void Test(object o)
         {
