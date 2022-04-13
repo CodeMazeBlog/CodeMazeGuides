@@ -3,4 +3,4 @@
 This section contains LINQ related topics
 ### Relevant articles:
 
-- TBD
+- [LINQ Basic Concepts in C#](https://code-maze.com/linq-csharp-basic-concepts/)
