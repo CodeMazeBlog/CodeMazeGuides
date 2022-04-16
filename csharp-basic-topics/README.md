@@ -13,3 +13,5 @@ This section contains the topics considered advanced level in C#.
 - [Extended Property Patterns in C#](https://code-maze.com/csharp-extended-property-patterns/)
 - [Switch Expression with Multiple Cases That Return the Same Result in C#](https://code-maze.com/csharp-switch-multiple-cases-return-same-result/)
 - [Top-Level Statements in C#](https://code-maze.com/csharp-top-level-statements/)
+- [Types of Inheritance In C#](https://code-maze.com/csharp-types-of-inheritance/)
+- [C# 10 New Features](https://code-maze.com/csharp-10-new-features/)
