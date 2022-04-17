@@ -13,50 +13,42 @@ namespace QuickSort
             yield return new object[] { CreateSortedArray(2000), 0, 1999, "Medium Sorted" };
             yield return new object[] { CreateSortedArray(10000), 0, 9999, "Large Sorted" };
         }
-        public int Partition(int[] array, int leftIndex, int rightIndex)
-        {
-            var pivot = array[leftIndex];
-
-            while (true)
-            {
-                while (array[leftIndex] < pivot)
-                {
-                    leftIndex++;
-                }
-                while (array[rightIndex] > pivot)
-                {
-                    rightIndex--;
-                }
-                if (leftIndex < rightIndex)
-                {
-                    var tempVar = array[rightIndex];
-                    array[rightIndex] = array[leftIndex];
-                    array[leftIndex] = tempVar;
-                }
-                else
-                {
-                    return rightIndex;
-                }
-            }
-        }
-
+       
         [Benchmark]
         [ArgumentsSource(nameof(SampleArrays))]
         public int[] SortArray(int[] array, int leftIndex, int rightIndex, string arrayName)
         {
-            if (leftIndex < rightIndex)
-            {
-                var pivot = Partition(array, leftIndex, rightIndex);
+            var i = leftIndex;
+            var j = rightIndex;
+            var pivot = array[leftIndex];
 
-                if (pivot > 1)
+            while (i <= j)
+            {
+                while (array[i] < pivot)
                 {
-                    SortArray(array, leftIndex, pivot - 1, arrayName);
+                    i++;
                 }
-                if (pivot + 1 < rightIndex)
+                
+                while (array[j] > pivot)
                 {
-                    SortArray(array, pivot + 1, rightIndex, arrayName);
+                    j--;
+                }
+
+                if (i <= j)
+                {
+                    int temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                    i++;
+                    j--;
                 }
             }
+            
+            if (leftIndex < j)
+                SortArray(array, leftIndex, j, arrayName);
+
+            if (i < rightIndex)
+                SortArray(array, i, rightIndex, arrayName);
 
             return array;
         }
@@ -71,7 +63,6 @@ namespace QuickSort
 
             return array;
         }
-
         public static int[] CreateSortedArray(int size)
         {
             var array = new int[size];
