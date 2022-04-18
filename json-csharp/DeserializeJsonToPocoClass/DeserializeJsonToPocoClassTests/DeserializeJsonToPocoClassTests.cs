@@ -8,7 +8,7 @@ namespace DeserializeJsonToPocoClassTests
     public class DeserializeJsonToPocoClassTests
     {
         [TestMethod]
-        public void WhenRunningMain_JsonIsDeserialized()
+        public void WhenRunningMain_ThenJsonIsDeserialized()
         {
             Program.Main();
 
