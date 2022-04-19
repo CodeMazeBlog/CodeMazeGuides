@@ -21,6 +21,11 @@ namespace InsertionSort
         [ArgumentsSource(nameof(SampleArrays))]
         public int[] SortArray(int[] array, int length, string arrayName)
         {
+            if (length <= 1)
+            {
+                return array;
+            }
+
             for (int i = 1; i < length; i++)
             {
                 var key = array[i];
