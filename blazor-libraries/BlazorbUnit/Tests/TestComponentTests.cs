@@ -15,7 +15,7 @@ namespace Tests;
 public class TestComponentTests : TestContext
 {
     [Fact]
-    public void GivenAValidContext_WhenComponentIsRendered_ThenMarkupMatchesExpectedOutput()
+    public void GivenAValidComponent_WhenComponentIsRendered_ThenMarkupMatchesExpectedOutput()
     {
         var cut = RenderComponent<TestComponent>();
 
