@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace PriorityQueueInCSharp
 {
-    public class VaccinationQueueComparer : IComparer<Person>
+    public class HospitalQueueComparer : IComparer<Patient>
     {
-        public int Compare(Person x, Person y)
+        public int Compare(Patient x, Patient y)
         {
-            Console.WriteLine($"Comparing {x.Name} and {y.Name}");
-            Console.WriteLine();    
+            Console.WriteLine($"Comparing {x.Name} and {y.Name}\n\r"); 
 
             if (x.Age == y.Age)
                 return 0;
