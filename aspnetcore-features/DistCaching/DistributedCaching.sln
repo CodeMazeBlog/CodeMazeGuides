@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{0C5FAA9D-8FFE-4112-B86E-B92DF4D0F209}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistCacheExample", "DistCacheExample\DistCacheExample.csproj", "{5D3F94AC-7960-4F28-8966-A4E3AD47774C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistributedCaching", "DistCacheExample\DistributedCaching.csproj", "{5D3F94AC-7960-4F28-8966-A4E3AD47774C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

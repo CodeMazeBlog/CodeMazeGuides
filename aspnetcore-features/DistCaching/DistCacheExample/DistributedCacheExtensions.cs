@@ -14,7 +14,8 @@ namespace DistCacheExample
 
         public static Task SetAsync<T>(this IDistributedCache cache, string key, T value, DistributedCacheEntryOptions options)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(value, GetJsonSerializerOptions()));
+            var bytes = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(value, GetJsonSerializerOptions()));
+
             return cache.SetAsync(key, bytes, options);
         }
 
@@ -30,7 +31,7 @@ namespace DistCacheExample
             return true;
         }
 
-        public static JsonSerializerOptions GetJsonSerializerOptions()
+        private static JsonSerializerOptions GetJsonSerializerOptions()
         {
             return new JsonSerializerOptions()
             {
