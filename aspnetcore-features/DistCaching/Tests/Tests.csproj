@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DistCacheExample\DistCacheExample.csproj" />
+    <ProjectReference Include="..\DistCacheExample\DistributedCaching.csproj" />
   </ItemGroup>
 
 </Project>
