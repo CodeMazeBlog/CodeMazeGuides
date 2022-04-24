@@ -6,7 +6,6 @@ namespace Monolith.ShoppingCartApi.Coordinators
     public class CheckoutCoordinatorV4 : ICheckoutCoordinator
     {
         private readonly ICheckoutProcessingChannel _checkoutProcessingChannel;
-        
 
         public CheckoutCoordinatorV4(ICheckoutProcessingChannel checkoutProcessingChannel)
         {

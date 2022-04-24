@@ -9,6 +9,7 @@ namespace Monolith.ShoppingCartApi.Controllers
     public class ShoppingCartController : ControllerBase
     {
         private readonly ICheckoutCoordinator _checkoutCoordinator;
+
         public ShoppingCartController(ICheckoutCoordinator checkoutCoordinator)
         {
             _checkoutCoordinator = checkoutCoordinator;

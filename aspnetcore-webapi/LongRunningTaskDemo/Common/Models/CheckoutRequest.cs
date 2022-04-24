@@ -4,8 +4,8 @@
     {
         public Guid CustomerId { get; set; }
 
-        public IEnumerable<OrderLineItem> LineItems { get; set; }
+        public IEnumerable<OrderLineItem>? LineItems { get; set; }
 
-        public PaymentInfo PaymentInfo { get; set; }
+        public PaymentInfo? PaymentInfo { get; set; }
     }
 }

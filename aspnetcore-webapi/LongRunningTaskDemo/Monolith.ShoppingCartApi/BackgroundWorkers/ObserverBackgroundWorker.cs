@@ -32,9 +32,10 @@ namespace Monolith.ShoppingCartApi.BackgroundWorkers
             await base.StopAsync(cancellationToken);
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _subscription = _checkoutStream.Subscribe(async item => await ProcessItemAsync(item));            
+            _subscription = _checkoutStream.Subscribe(async item => await ProcessItemAsync(item));
+            return Task.CompletedTask; 
         }
 
         private async Task ProcessItemAsync(QueueItem item)

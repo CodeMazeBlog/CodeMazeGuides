@@ -5,7 +5,7 @@ namespace Monolith.ShoppingCartApi.Services
 {
     public class TaxCalculator : ITaxCalculator
     {
-        private Random _random = new Random();
+        private readonly Random _random = new();
         private readonly ILogger _logger;
         
         public TaxCalculator(ILogger<TaxCalculator> logger)
@@ -13,16 +13,13 @@ namespace Monolith.ShoppingCartApi.Services
             _logger = logger;
         }
 
-        public async Task<int> CalculateTaxAsync(Guid CustomerId, IEnumerable<OrderLineItem> orderLineItems)
+        public async Task<int> CalculateTaxAsync(Guid customerId, IEnumerable<OrderLineItem> orderLineItems)
         {
-            //Simulate Customer lookup from database/service. The customer address can be used for tax calculation
-            await Task.Delay(500);
-            _logger.LogInformation($"Customer lookup completed for customer {CustomerId}.");
+            await Task.Delay(50);
+            _logger.LogInformation($"Customer lookup completed for customer {customerId}.");
 
-            //Simulate complex tax calculation for all line items
-            await Task.Delay(500);
+            await Task.Delay(50);
             var tax = _random.Next(1, 200);
-
             _logger.LogInformation($"Tax value calculated for customer is {tax}.");
 
             return tax;

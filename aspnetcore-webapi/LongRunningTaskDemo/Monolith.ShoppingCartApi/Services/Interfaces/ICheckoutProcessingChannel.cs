@@ -6,6 +6,6 @@
 
         IAsyncEnumerable<QueueItem> ReadAllAsync(CancellationToken ct = default);
 
-        bool TryCompleteWriter(Exception ex = null);
+        bool TryCompleteWriter(Exception? ex = null);
     }
 }

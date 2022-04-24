@@ -2,7 +2,7 @@
 {
     public class PaymentInfo
     {
-        public string CreditCardNumber { get; set; }
+        public string? CreditCardNumber { get; set; }
                 
         public CreditCardType CreditCardType { get; set; }
 

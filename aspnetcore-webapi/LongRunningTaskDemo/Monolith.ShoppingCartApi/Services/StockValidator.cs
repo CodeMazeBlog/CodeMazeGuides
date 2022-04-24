@@ -13,8 +13,7 @@ namespace Monolith.ShoppingCartApi.Services
         }
         public async Task<bool> ValidateAsync(IEnumerable<OrderLineItem> orderLineItems)
         {
-            //Simulates a database/service lookup of stock availability for the line items
-            await Task.Delay(1000);
+            await Task.Delay(50);
             _logger.LogInformation("Stock is validated.");
             return true;
         }

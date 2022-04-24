@@ -6,6 +6,6 @@ namespace Monolith.ShoppingCartApi
     {
         public Guid OrderId { get; set; }
 
-        public CheckoutRequest Request { get; set; }
+        public CheckoutRequest? Request { get; set; }
     }
 }

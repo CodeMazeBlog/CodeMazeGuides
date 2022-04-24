@@ -24,6 +24,7 @@ namespace Monolith.ShoppingCartApi.Coordinators
             
             checkoutQueue = CreateCheckoutQueue();
         }
+
         public Task<CheckoutResponse> ProcessCheckoutAsync(CheckoutRequest request)
         {
             var response = new CheckoutResponse 
@@ -42,7 +43,6 @@ namespace Monolith.ShoppingCartApi.Coordinators
             checkoutQueue.Add(queueItem);
 
             return Task.FromResult(response);
-
         }
 
         private  BlockingCollection<QueueItem> CreateCheckoutQueue()

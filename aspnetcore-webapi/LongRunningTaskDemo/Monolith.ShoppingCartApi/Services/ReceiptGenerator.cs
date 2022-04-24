@@ -12,23 +12,19 @@ namespace Monolith.ShoppingCartApi.Services
         }
         public async Task GenerateAsync(Guid customerId, CheckoutResponse response, int amount)
         {
-            //Simulate Receipt generation and save in the database
-            await Task.Delay(1000);
+            await Task.Delay(50);
             _logger.LogInformation("Receipt Generated and Order Status persisted in DB.");
 
-            //Simulate sending of email with receipt through a third party SMTP service
-            await Task.Delay(1000);
+            await Task.Delay(50);
             _logger.LogInformation("Email is sent with Order Status and receipt.");
         }
 
         public async Task ProcessFailuresAsync(Guid customerId, CheckoutResponse response)
         {
-            //Simulate failure save in the database
-            await Task.Delay(1000);
+            await Task.Delay(50);
             _logger.LogInformation("Failure Order Status and reason persisted in DB.");
 
-            //Simulate sending of email with failure reason through a third party SMTP service
-            await Task.Delay(1000);
+            await Task.Delay(50);
             _logger.LogInformation("Email is sent with Order Status and failure reason.");
         }
     }

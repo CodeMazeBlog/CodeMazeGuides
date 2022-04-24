@@ -9,6 +9,7 @@ namespace Monolith.ShoppingCartApi.Coordinators
         private readonly ITaxCalculator _taxCalculator;
         private readonly IPaymentProcessor _paymentProcessor;
         private readonly IReceiptGenerator _receiptGenerator;
+
         public CheckoutCoordinatorV1(IStockValidator stockValidator,
                                      ITaxCalculator taxCalculator,
                                      IPaymentProcessor paymentProcessor,
@@ -19,6 +20,7 @@ namespace Monolith.ShoppingCartApi.Coordinators
             _paymentProcessor = paymentProcessor;
             _receiptGenerator = receiptGenerator;
         }
+
         public async Task<CheckoutResponse> ProcessCheckoutAsync(CheckoutRequest request)
         {
             var response = new CheckoutResponse 

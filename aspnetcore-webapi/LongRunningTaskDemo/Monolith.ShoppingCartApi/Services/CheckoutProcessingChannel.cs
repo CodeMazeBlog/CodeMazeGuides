@@ -39,7 +39,7 @@ namespace Monolith.ShoppingCartApi.Services
         public IAsyncEnumerable<QueueItem> ReadAllAsync(CancellationToken ct = default) 
             => _channel.Reader.ReadAllAsync(ct);
 
-        public bool TryCompleteWriter(Exception ex = null) 
+        public bool TryCompleteWriter(Exception? ex = null) 
             => _channel.Writer.TryComplete(ex);
     }
 }

@@ -25,9 +25,15 @@ namespace Monolith.ShoppingCartApi.BackgroundWorkers
             _checkoutProcessingChannel = checkoutProcessingChannel;
         }
 
+        public override async Task StopAsync(CancellationToken cancellationToken)
+        {
+            _checkoutProcessingChannel.TryCompleteWriter();
+            await base.StopAsync(cancellationToken);
+        }
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await foreach (var item in _checkoutProcessingChannel.ReadAllAsync())
+            await foreach (var item in _checkoutProcessingChannel.ReadAllAsync(stoppingToken))
             { 
                 await ProcessItemAsync(item);
             }
