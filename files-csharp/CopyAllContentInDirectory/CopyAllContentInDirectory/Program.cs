@@ -2,22 +2,23 @@
 
 namespace CopyAllContentInDirectory
 {
-    public class Program
+    public static class Program
     {
         public static string sourceDir { get; set; } = "";
-        public static string destDir { get; set; } = "";
+        public static string destinationDir { get; set; } = "";
+        public static IFileSystem fileSystem { get; set; } = new FileSystem(); // for testing purposes
 
-        public static void Main(IFileSystem fs)
+        public static void Main()
         {
-            foreach (string dir in fs.Directory.GetDirectories(sourceDir, "*", SearchOption.AllDirectories))
+            foreach (string dir in fileSystem.Directory.GetDirectories(sourceDir, "*", SearchOption.AllDirectories))
             {
-                string dirToCreate = dir.Replace(sourceDir, destDir);
-                fs.Directory.CreateDirectory(dirToCreate);
+                string dirToCreate = dir.Replace(sourceDir, destinationDir);
+                fileSystem.Directory.CreateDirectory(dirToCreate);
             }
 
-            foreach (string newPath in fs.Directory.GetFiles(sourceDir, "*.*", SearchOption.AllDirectories))
+            foreach (string newPath in fileSystem.Directory.GetFiles(sourceDir, "*.*", SearchOption.AllDirectories))
             {
-                fs.File.Copy(newPath, newPath.Replace(sourceDir, destDir), true);
+                fileSystem.File.Copy(newPath, newPath.Replace(sourceDir, destinationDir), true);
             }
         }
     }
