@@ -8,7 +8,7 @@ namespace LINQSortingAndFilteringTests
     public class LINQSortingAndFilteringTest
     {
         [TestMethod]
-        public void WhenCallingSorting_thenNoException()
+        public void WhenCallingSorting_ThenNoException()
         {
             try
             {
@@ -21,7 +21,7 @@ namespace LINQSortingAndFilteringTests
         }
 
         [TestMethod]
-        public void WhenCallingFiltering_thenNoException()
+        public void WhenCallingFiltering_ThenNoException()
         {
             try
             {

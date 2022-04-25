@@ -9,7 +9,7 @@
             {
                 Sorting();
                 Filtering();
-                Console.WriteLine("\n Run Again? (Y/N)");
+                Console.WriteLine($"{Environment.NewLine} Run Again? (Y/N)");
                 var input = Console.ReadLine() ?? "";
                 run = input.ToLower().First().Equals('y') ? true : false;
             }
@@ -20,47 +20,46 @@
             var shapeList = new List<Shape>()
             {
                 new Shape() { ShapeId = 0, ShapeType = "Square", ShapeHeight = 2, ShapeWidth = 2,Is3D = false },
-                new Shape() { ShapeId = 1, ShapeType = "Rectangle", ShapeHeight = 4, ShapeWidth = 6,Is3D = false },
-                new Shape() { ShapeId = 2, ShapeType = "Cone", ShapeHeight = 3, ShapeWidth = 1,Is3D = true }
+                new Shape() { ShapeId = 1, ShapeType = "Cone", ShapeHeight = 3, ShapeWidth = 1,Is3D = true },
+                new Shape() { ShapeId = 2, ShapeType = "Rectangle", ShapeHeight = 4, ShapeWidth = 6,Is3D = false }
             };
 
             List<Shape> sortedShapeList;
 
             sortedShapeList = LINQSortOrderBy(shapeList);
-            printList(sortedShapeList);
+            PrintList(sortedShapeList);
 
             sortedShapeList = LINQSortOrderByDescending(shapeList);
-            printList(sortedShapeList);
+            PrintList(sortedShapeList);
 
             sortedShapeList = LINQSortThenBy(shapeList);
-            printList(sortedShapeList);
+            PrintList(sortedShapeList);
 
             sortedShapeList = LINQSortThenByDescending(shapeList);
-            printList(sortedShapeList);
+            PrintList(sortedShapeList);
 
             LINQSortReverse(shapeList);
-            printList(shapeList);
+            PrintList(shapeList);
         }
-
         private static List<Shape> LINQSortOrderBy(List<Shape> shapeList)
         {
-            List<Shape> sortedList = shapeList.OrderBy(sl => sl.ShapeType).ToList();
+            var sortedList = shapeList.OrderBy(sl => sl.ShapeType).ToList();
             return sortedList;
         }
         private static List<Shape> LINQSortOrderByDescending(List<Shape> shapeList)
         {
-            List<Shape> sortedList = shapeList.OrderByDescending(sl => sl.ShapeId).ToList();
+            var sortedList = shapeList.OrderByDescending(sl => sl.ShapeId).ToList();
             return sortedList;
         }
         private static List<Shape> LINQSortThenBy(List<Shape> shapeList)
         {
-            List<Shape> sortedList = shapeList.OrderBy(sl => sl.Is3D).ThenBy(sl => sl.ShapeId).ToList();
+            var sortedList = shapeList.OrderBy(sl => sl.Is3D).ThenBy(sl => sl.ShapeId).ToList();
             return sortedList;
         }
 
         private static List<Shape> LINQSortThenByDescending(List<Shape> shapeList)
         {
-            List<Shape> sortedList = shapeList.OrderByDescending(sl => sl.Is3D).ThenByDescending(sl => sl.ShapeId).ToList();
+            var sortedList = shapeList.OrderByDescending(sl => sl.Is3D).ThenByDescending(sl => sl.ShapeId).ToList();
             return sortedList;
         }
 
@@ -68,8 +67,7 @@
         {
             shapeList.Reverse();
         }
-
-        private static void printList(List<Shape> shapes)
+        private static void PrintList(List<Shape> shapes)
         {
             Console.WriteLine("----------------------------------------");
             foreach(var shape in shapes)
@@ -91,31 +89,31 @@
             List<Shape> filteredShapeList;
 
             filteredShapeList = LINQFilterWhere(shapeList);
-            printList(filteredShapeList);
+            PrintList(filteredShapeList);
 
             filteredShapeList = LINQFilterWhereVerbose(shapeList);
-            printList(filteredShapeList);
+            PrintList(filteredShapeList);
 
             filteredShapeList = LINQFilterOfType(shapeList);
-            printList(filteredShapeList);
+            PrintList(filteredShapeList);
 
             LINQFilterExtension(shapeList);
-            printList(shapeList);
+            PrintList(shapeList);
         }
 
         private static List<Shape> LINQFilterWhere(List<Shape> shapeList)
         {
-            List<Shape> filteredList = shapeList.Where(sl => sl.ShapeHeight < 4).ToList();
+            var filteredList = shapeList.Where(sl => sl.ShapeHeight < 4).ToList();
             return filteredList;
         }
 
         private static List<Shape> LINQFilterWhereVerbose(List<Shape> shapeList)
         {
-            List<Shape> filteredList = shapeList.Where(sl => checkShape(sl)).ToList();
+            var filteredList = shapeList.Where(sl => CheckShape(sl)).ToList();
             return filteredList;
         }
 
-        private static bool checkShape(Shape s)
+        private static bool CheckShape(Shape s)
         {
             if(s.ShapeWidth < 3 && s.Is3D)
             {
@@ -123,10 +121,9 @@
             }
             return false;
         }
-
         private static List<Shape> LINQFilterOfType(List<Shape> shapeList)
         {
-            List<Shape> filteredList = shapeList.OfType<Shape>().ToList();
+            var filteredList = shapeList.OfType<Shape>().ToList();
             return filteredList;
         }
 
