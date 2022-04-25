@@ -181,11 +181,14 @@ namespace PriorityQueueInCSharpTests
             var hospitalQueue = new PriorityQueue<Patient, Patient>(new HospitalQueueComparer());
             patients.ForEach(p => hospitalQueue.Enqueue(p, p));
 
-            var highestPriorityPatient = hospitalQueue.EnqueueDequeue(new Patient("Roy", 59), new Patient("Roy", 59));
+            var patientToAdd = new Patient("Roy", 59);
+            var highestPriorityPatient = hospitalQueue.EnqueueDequeue(patientToAdd, patientToAdd);
+
             Assert.AreEqual(highestPriorityPatient.Age, 60);
             Assert.AreEqual(highestPriorityPatient.Name, "Elizabeth");
 
             var secondHighestPriorityPatient = hospitalQueue.Peek();
+
             Assert.AreEqual(secondHighestPriorityPatient.Age, 59);
             Assert.AreEqual(secondHighestPriorityPatient.Name, "Roy");
         }
