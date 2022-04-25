@@ -33,7 +33,3 @@ static void ExploreSortingMechanism()
     while (hospitalQueue.Count > 0)
         Console.WriteLine($"Dequeuing {hospitalQueue.Dequeue().Name}");
 }
-
-
-
-
