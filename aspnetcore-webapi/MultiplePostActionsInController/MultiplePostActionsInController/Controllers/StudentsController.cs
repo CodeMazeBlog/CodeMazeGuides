@@ -23,14 +23,14 @@ namespace MultiplePostActionsInController.Controllers
         };
 
         [HttpPost]
-        public ActionResult PostStudent(Student student)
+        public ActionResult AddStudent(Student student)
         {
             students.Add(student);
             return StatusCode(201);
         }
 
         [HttpPost]
-        public ActionResult PostGrade(StudentGrade grade)
+        public ActionResult AddGrade(StudentGrade grade)
         {
             grades.Add(grade);
             return StatusCode(201);
@@ -38,14 +38,14 @@ namespace MultiplePostActionsInController.Controllers
 
         [Route("AddStudent")]
         [HttpPost]
-        public ActionResult AddStudent(Student student)
+        public ActionResult PostStudent(Student student)
         {
             students.Add(student);
             return StatusCode(201);
         }
 
         [HttpPost("AddGrade")]
-        public ActionResult AddGrade(StudentGrade grade)
+        public ActionResult PostGrade(StudentGrade grade)
         {
             grades.Add(grade);
             return StatusCode(201);
