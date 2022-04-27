@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <StartupObject>DelegateDemo.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" Version="11.0.50727.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+      <HintPath>..\..\..\..\..\.nuget\packages\newtonsoft.json\12.0.1\lib\net45\microsoft.visualstudio.qualitytools.unittestframework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
