@@ -6,41 +6,41 @@ namespace ReturnHTMLFromASPNETCoreWebAPIUnitTest
 {
     public class ReturnHTMLFromASPNETCoreWebAPIUnitTest
     {
-        private readonly UserController controller;
+        private readonly UserController _controller;
 
         public ReturnHTMLFromASPNETCoreWebAPIUnitTest()
         {
-            controller = new UserController();
+            _controller = new UserController();
         }
 
         [Fact]
-        public void GetIndex_WhenCalled_ReturnsIndexHTML()
+        public void GetIndex_WhenCalled_ThenReturnsIndexHTML()
         {
-            var response = controller.Index();
+            var response = _controller.Index();
 
             Assert.IsType<ContentResult>(response);
         }
 
         [Fact]
-        public void GetVerify_WhenCalled_ReturnsVerifyHTML()
+        public void GetVerify_WhenCalled_ThenReturnsVerifyHTML()
         {
-            var response = controller.Verify();
+            var response = _controller.Verify();
 
-            Assert.IsType<ContentResult>(response as ContentResult);
+            Assert.IsType<ContentResult>(response);
         }
         
         [Fact]
-        public void GetConfirmVerify_WhenCalled_ReturnsConfirmVerifyHTML()
+        public void GetConfirmVerify_WhenCalled_ThenReturnsConfirmVerifyHTML()
         {
-            var response = controller.ConfirmVerify();
+            var response = _controller.ConfirmVerify();
 
             Assert.IsType<ContentResult>(response);
         }
 
         [Fact]
-        public void GetWelcome_WhenCalled_ReturnsWelcomeHTML()
+        public void GetWelcome_WhenCalled_ThenReturnsWelcomeHTML()
         {
-            var response = controller.Welcome("John");
+            var response = _controller.Welcome("John");
 
             Assert.IsType<ContentResult>(response);
         }
