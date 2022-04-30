@@ -1,8 +1,6 @@
 using CopyAllContentInDirectory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using System.IO.Abstractions;
-using Moq;
 using System.IO.Abstractions.TestingHelpers;
 
 namespace CopyAllContentInDirectoryTests
