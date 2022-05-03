@@ -70,8 +70,6 @@ namespace CopyAllContentInDirectoryTests
 
             Program.Main();
 
-            Assert.IsTrue(mockFileSystem.AllDirectories.Contains("/Destination"));
-            Assert.IsTrue(mockFileSystem.AllDirectories.Contains("/Destination/ChildDir"));
             Assert.IsTrue(mockFileSystem.AllDirectories.Contains("/Destination/ChildDir/ChildOfChildDir"));
 
             Assert.IsTrue(mockFileSystem.FileExists("/Destination/ChildDir/childfile.txt"));
