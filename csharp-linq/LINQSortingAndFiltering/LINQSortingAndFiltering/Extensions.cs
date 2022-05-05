@@ -4,7 +4,7 @@
     {
         public static List<T> RemoveNullFilter<T>(this List<T> list)
         {
-            foreach (T item in list)
+            foreach (T item in list.ToList())
             {
                 if(item == null)
                 {
