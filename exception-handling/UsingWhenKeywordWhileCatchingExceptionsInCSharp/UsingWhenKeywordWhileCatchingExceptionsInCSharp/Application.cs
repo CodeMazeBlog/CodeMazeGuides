@@ -65,13 +65,12 @@
                 ConvertToBool(Console.ReadLine()!);
 
             }
-            catch (FormatException ex) when (ex.Message.Contains("Input string was not in a correct format") || ex.Message.Contains("not recognized as a valid Boolean"))
+            catch (FormatException ex) when (ex.Message.Contains("correct format") || ex.Message.Contains("valid Boolean"))
             {
                 Console.Write(ex.Message);
                 Console.Write($"{Environment.NewLine}Error!!");
                 throw;
             }
-
             catch
             {
                 throw;
