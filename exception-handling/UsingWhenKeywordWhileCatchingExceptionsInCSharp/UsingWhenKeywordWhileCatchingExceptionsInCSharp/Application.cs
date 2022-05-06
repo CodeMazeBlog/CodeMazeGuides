@@ -7,15 +7,14 @@ namespace UsingWhenKeywordWhileCatchingExceptionsInCSharp
         public static void Interface()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"Welcome!\n\n ");
+            Console.WriteLine($"Welcome!{Environment.NewLine}{Environment.NewLine} ");
 
             try
-            {
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\nPlease enter your 8-digit special number\n");
+            {                
+                Console.WriteLine($"{Environment.NewLine}Please enter your 8-digit special number");
                 ConvertToInt(Console.ReadLine()!);
 
-                Console.WriteLine("Would you like to part of a lottery? True or False\n");
+                Console.WriteLine($"Would you like to part of a lottery? True or False{Environment.NewLine}");
                 ConvertToBool(Console.ReadLine()!);
 
                 Console.WriteLine("Please enter date of birth (Format => Friday, April 10, 2009)");
@@ -24,41 +23,29 @@ namespace UsingWhenKeywordWhileCatchingExceptionsInCSharp
                 Console.WriteLine("Please enter your guid password");
                 ConvertToGuid(Console.ReadLine()!);
             }
-
-            catch (FormatException F) when (F.Message.Contains("Input string was not in a correct format"))
+            catch (FormatException ex) when (ex.Message.Contains("Input string was not in a correct format"))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write(F.Message);
-                Console.Write("\nSpecial number error");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(ex.Message);
+                Console.Write($"{Environment.NewLine}Special number error");                
                 throw;
-
             }
-            catch (FormatException F) when (F.Message.Contains("not recognized as a valid Boolean"))
+            catch (FormatException ex) when (ex.Message.Contains("not recognized as a valid Boolean"))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write(F.Message);
-                Console.Write("\nLottery participant error");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(ex.Message);
+                Console.Write($"{Environment.NewLine}Lottery participant error");
                 throw;
-
             }
-            catch (FormatException F) when (F.Message.Contains("not recognized as a valid DateTime"))
+            catch (FormatException ex) when (ex.Message.Contains("not recognized as a valid DateTime"))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write(F.Message);
-                Console.Write("\nDate of birth error");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(ex.Message);
+                Console.Write($"{Environment.NewLine}Date of birth error");
                 throw;
-
             }
-            catch (FormatException F) when (F.Message.Contains("Format string can be only"))
+            catch (FormatException ex) when (ex.Message.Contains("Format string can be only"))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write(F.Message);
-                Console.Write("\nGuid error");
-                Console.ForegroundColor = ConsoleColor.White;
-                throw;
+                Console.Write(ex.Message);
+                Console.Write($"{Environment.NewLine}Guid error");
+                 throw;
             }
             catch
             {
@@ -69,20 +56,25 @@ namespace UsingWhenKeywordWhileCatchingExceptionsInCSharp
         public static int ConvertToInt(string num)
         {
             int specialNum = Convert.ToInt32(num);
+
             return specialNum;
         }
+
         public static Guid ConvertToGuid(string num)
         {
             return Guid.Parse(num.Trim());
         }
+
         public static DateTime ConvertToDateTime(string num)
         {
             var cultureInfo = new CultureInfo("en-US");
+
             return DateTime.ParseExact(num.Trim()!, "D", cultureInfo);
         }
+
         public static bool ConvertToBool(string num)
         {
-            return Boolean.Parse(num);
+            return bool.Parse(num);
         }
     }
 
