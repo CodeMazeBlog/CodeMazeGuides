@@ -1,11 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReadFromCsv
 {
@@ -19,9 +14,11 @@ namespace ReadFromCsv
                 Comment = '#',
                 HasHeaderRecord = false
             };
+
             using (var reader = new StreamReader("filePersons.csv"))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
+                csv.Context.RegisterClassMap<PersonMap>();
                 var persons = csv.GetRecords<Person>();
             }
 

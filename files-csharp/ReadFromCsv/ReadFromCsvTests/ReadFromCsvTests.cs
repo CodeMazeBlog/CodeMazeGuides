@@ -15,7 +15,7 @@ namespace ReadFromCsvTests
     public class ReadFromCsvTests
     {
         [TestMethod]
-        public void givenCsvFile_whenReadingPersonsFromCsv_thenListOfPersonsIsPopulated()
+        public void GivenCsvFile_WhenReadingPersonsFromCsv_ThenListOfPersonsIsPopulated()
         {
             string csvFile =
                 @"1, John, True, 03/05/2006 00:00:00
@@ -35,6 +35,7 @@ namespace ReadFromCsvTests
                 {
                     HasHeaderRecord = false,
                 };
+
                 using (var reader = new StreamReader(test_Stream))
                 using (var csv = new CsvReader(reader, config))
                 {
