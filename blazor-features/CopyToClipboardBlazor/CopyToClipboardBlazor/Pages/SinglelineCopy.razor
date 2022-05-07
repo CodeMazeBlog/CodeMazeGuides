@@ -1,0 +1,13 @@
+﻿@page "/singleline"
+
+<h3>Singe-line Copy to Clipboard</h3>
+
+<input type="text" readonly value="@text" />
+<CopyToClipboard TextToCopy="@text" />
+
+<TextArea />
+
+@code {
+	
+	string text = "Some readonly text to copy";
+}

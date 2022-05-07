@@ -1,0 +1,12 @@
+﻿@page "/userinput"
+
+<h3>User Input Copy to Clipboard</h3>
+
+<input @bind-value="text" />
+<CopyToClipboard TextToCopy="@text" />
+
+<TextArea />
+
+@code {
+	string text = "";
+}

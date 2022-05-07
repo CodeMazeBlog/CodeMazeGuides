@@ -1,0 +1,14 @@
+﻿@page "/multiline"
+
+<h3>Multi-line Copy to Clipboard</h3>
+
+<textarea readonly rows="10" cols="20">@text</textarea>
+<CopyToClipboard TextToCopy="@text" />
+
+<TextArea />
+
+@code {
+	string text = @"This is
+a multiline 
+code snippet";
+}
