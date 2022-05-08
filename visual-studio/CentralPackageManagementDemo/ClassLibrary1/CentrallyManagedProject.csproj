@@ -8,7 +8,7 @@
 
 <ItemGroup>
   <PackageReference Include="Newtonsoft.Json" />
-  <PackageReference Include="Serilog" VersionOverride="2.11.0" />
+  <PackageReference Include="Serilog" VersionOverride="2.00.0" />
 </ItemGroup>
 
 </Project>
