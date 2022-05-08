@@ -1,6 +1,8 @@
 using System.Collections;
 using Xunit;
+
 namespace StackInCSharpTestProject;
+
 public class Tests
 {
     [Fact]
@@ -47,7 +49,6 @@ public class Tests
         stack.Push(1);
         stack.Push("test");
 
-        var stackCountBeforePeek = stack.Count;
         var lastItem = stack.Pop();
 
         Assert.Equal("test", lastItem);
@@ -60,10 +61,31 @@ public class Tests
         stack.Push(1);
         stack.Push("test");
 
-        var stackCountBeforePeek = stack.Count;
         var lastItem = stack.Peek();
 
         Assert.Equal("test", lastItem);
     }
 
+
+    [Fact]
+    public void WhenClear_ThenTheStackIsEmpty()
+    {
+        var stack = new Stack();
+        stack.Push(1);
+        stack.Push("test");
+
+        stack.Clear();
+
+        Assert.Empty(stack);
+    }
+
+    [Fact]
+    public void WhenCreateSynchronizedStack_ThenItIsThreadSafe()
+    {
+        var stack = new Stack();
+        var synchronizedStack = Stack.Synchronized(stack);
+
+        Assert.True(synchronizedStack.IsSynchronized);
+        Assert.False(stack.IsSynchronized);
+    }
 }

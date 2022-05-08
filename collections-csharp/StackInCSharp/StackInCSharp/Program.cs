@@ -1,14 +1,19 @@
 ﻿using StackInCSharp;
 using System.Collections;
 
-Stack myFirstNonGenericStack = new Stack();
+List<string> letters = new List<string>() { "a", "b", "c" };
+Stack lettersStack = new Stack(letters);
 
 var page1 = new Page("The first visited page", DateTime.Now);
 var page2 = new Page("The second visited page", DateTime.Now);
 
-myFirstNonGenericStack.Push(1);
-myFirstNonGenericStack.Push(page1);
-myFirstNonGenericStack.Push("hello");
+Console.WriteLine($"before push lettersStack contains {lettersStack.Count} items");
+
+lettersStack.Push(1);
+lettersStack.Push(page1);
+lettersStack.Push("hello");
+
+Console.WriteLine($"after 3 Push lettersStack contains {lettersStack.Count} items\n");
 
 Stack<Page> pageStack = new Stack<Page>();
 
@@ -18,44 +23,50 @@ Console.WriteLine($"before Push pageStack contains {pageStack.Count} items");
 pageStack.Push(page1);
 pageStack.Push(page2);
 
-Console.WriteLine($"after Push pageStack contains {pageStack.Count} items\n");
+Console.WriteLine($"after 2 Push pageStack contains {pageStack.Count} items\n");
 
-Page? topPage = null;
 
-object? lastAddedItem = myFirstNonGenericStack.Peek();
+object? lastAddedItem = lettersStack.Peek();
 var lastVisitedPage = pageStack.Peek();
 
 Console.WriteLine($"Peek() METHOD");
-Console.WriteLine($"the first retrieved element in myFirstNonGenericStack is  {lastAddedItem}");
+Console.WriteLine($"the first retrieved element in lettersStack is  {lastAddedItem}");
 Console.WriteLine($"the first retrieved element in pageStack is {lastVisitedPage.Title}");
-Console.WriteLine($"myFirstNonGenericStack contains {myFirstNonGenericStack.Count} items");
-Console.WriteLine($"pageStack contains {myFirstNonGenericStack.Count} items");
+Console.WriteLine($"lettersStack contains {lettersStack.Count} items");
+Console.WriteLine($"pageStack contains {pageStack.Count} items\n");
 
-var result = pageStack.TryPeek(out topPage);
+var result = pageStack.TryPeek(out var topPage);
 
+Console.WriteLine($"TryPeek METHOD");
 Console.WriteLine($"TryPeek returns:  {result}");
-Console.WriteLine($"the topPage in pageStack is:  {topPage?.Title}");
-Console.WriteLine($"pageStack contains {myFirstNonGenericStack.Count} items\n");
+Console.WriteLine($"the title of the topPage in pageStack is:  {topPage?.Title}");
+Console.WriteLine($"pageStack contains {pageStack.Count} items\n");
 
-lastAddedItem = myFirstNonGenericStack.Pop();
+lastAddedItem = lettersStack.Pop();
 lastVisitedPage = pageStack.Pop();
 
 Console.WriteLine($"Pop() METHOD");
-Console.WriteLine($"the first retrieved element in myFirstNonGenericStack is  {lastAddedItem}");
+Console.WriteLine($"the first retrieved element in lettersStack is  {lastAddedItem}");
 Console.WriteLine($"the first retrieved element in pageStack is {lastVisitedPage.Title}");
-Console.WriteLine($"myFirstNonGenericStack contains {myFirstNonGenericStack.Count} items");
-Console.WriteLine($"pageStack contains {myFirstNonGenericStack.Count} items");
+Console.WriteLine($"lettersStack contains {lettersStack.Count} items");
+Console.WriteLine($"pageStack contains {pageStack.Count} items\n");
 
 result = pageStack.TryPop(out topPage);
 
+Console.WriteLine($"TryPop() METHOD");
 Console.WriteLine($"TryPop returns:  {result}");
-Console.WriteLine($"the topPage in pageStack is: {topPage?.Title}");
-Console.WriteLine($"contains {myFirstNonGenericStack.Count} items\n");
+Console.WriteLine($"the title of the topPage in pageStack is: {topPage?.Title}");
+Console.WriteLine($"pageStack contains {pageStack.Count} items\n");
 
-Stack synchronizedStack = Stack.Synchronized(myFirstNonGenericStack);
+lettersStack.Clear();
+
+Console.WriteLine($"Clear() METHOD");
+Console.WriteLine($"lettersStack contains {lettersStack.Count} items\n");
+
+Stack synchronizedStack = Stack.Synchronized(lettersStack);
 
 Console.WriteLine($"Thread-safety for non-generic case");
-Console.WriteLine($"myFirstNonGenericStack is thread-safe: {myFirstNonGenericStack.IsSynchronized}");
+Console.WriteLine($"lettersStack is thread-safe: {lettersStack.IsSynchronized}");
 Console.WriteLine($"synchronizedStack is thread-safe: {synchronizedStack.IsSynchronized}");
 
 
