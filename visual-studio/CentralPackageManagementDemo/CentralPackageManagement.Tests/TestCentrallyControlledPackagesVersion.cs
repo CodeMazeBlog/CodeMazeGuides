@@ -13,7 +13,7 @@ namespace CentralPackageManagement.Tests
         }
 
         [Test]
-        public void WhenCheckingManagedPackage_ThenOverridenVersionIsReturned()
+        public void WhenCheckingManagedPackageWithOverride_ThenOverridenVersionIsReturned()
         {
             Assert.AreEqual("2.11.0.0", CentrallyManagedDependencyPresenter.GetSerilogVersion());
         }

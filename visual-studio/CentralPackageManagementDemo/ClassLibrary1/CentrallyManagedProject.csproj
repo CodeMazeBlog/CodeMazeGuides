@@ -6,9 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" />
-    <PackageReference Include="Serilog" VersionOverride="2.11.0" />
-  </ItemGroup>
+<ItemGroup>
+  <PackageReference Include="Newtonsoft.Json" />
+  <PackageReference Include="Serilog" VersionOverride="2.11.0" />
+</ItemGroup>
 
 </Project>
