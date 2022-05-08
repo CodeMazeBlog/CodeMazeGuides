@@ -12,7 +12,7 @@ namespace CentralPackageManagement.Tests
             Assert.AreEqual("13.0.1.25517", CentrallyManagedDependencyPresenter.GetJsonVersion());
         }
 
-        [Test]
+        [Test, Ignore("VersionOverride is not yet supported in Jenkins builds")]
         public void WhenCheckingManagedPackageWithOverride_ThenOverridenVersionIsReturned()
         {
             Assert.AreEqual("2.0.0.0", CentrallyManagedDependencyPresenter.GetSerilogVersion());
