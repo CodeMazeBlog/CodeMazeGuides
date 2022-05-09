@@ -162,10 +162,12 @@ public class NewtonsoftJsonUnitTest
 
         var xml = JsonXmlUtils.JsonToXmlWithExplicitRoot(json, "Movie");
 
-        Assert.Equal(@"<?xml version=""1.0""?>
+        var expectedXml = @"<?xml version=""1.0""?>
 <Movie>
   <Name>Squid Game</Name>
   <Genre>Thriller</Genre>
-</Movie>", xml);
+</Movie>".ReplaceLineEndings();
+
+        Assert.Equal(expectedXml, xml);
     }
 }
