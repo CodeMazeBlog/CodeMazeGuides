@@ -1,7 +1,5 @@
 using JsonToXmlBackAndForth.Native;
 using Xunit;
-using System.Text.Json;
-using System;
 
 namespace JsonToXmlBackAndForth.Tests;
 

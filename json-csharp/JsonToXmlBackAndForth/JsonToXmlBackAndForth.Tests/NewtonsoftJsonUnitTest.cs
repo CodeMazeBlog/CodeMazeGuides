@@ -1,6 +1,5 @@
 using Xunit;
 using JsonToXmlBackAndForth.Newtonsoft;
-using System;
 using Newtonsoft.Json;
 
 namespace JsonToXmlBackAndForth.Tests;
