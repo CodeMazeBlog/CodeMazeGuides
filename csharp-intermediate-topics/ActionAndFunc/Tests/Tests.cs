@@ -1,27 +1,29 @@
-namespace Tests;
+﻿namespace Tests;
 
-using Xunit;
 using System;
 using ActionAndFuncExample;
+using Xunit;
+
 public class Tests
 {
     [Fact]
-    public void GivenInitializedActionDelegate_InvocationListNotEmpty()
+    public void GivenActionDelegate_WhenInitialized_ThenInvocationListIsNotEmpty()
     {
         Action<string> action = Logger.LogToConsole;
         var invocationList = action.GetInvocationList();
         Assert.NotEmpty(invocationList);
     }
+
     [Fact]
-    public void GivenInitializedFuncDelegate_InvocationListNotEmpty()
+    public void GivenFuncDelegate_WhenIntialized_ThenInvocationListIsNotEmpty()
     {
-        Func<int, int ,int> func = Calculator.Add;
+        Func<int, int, int> func = Calculator.Add;
         var invocationList = func.GetInvocationList();
         Assert.NotEmpty(invocationList);
     }
 
     [Fact]
-    public void GivenInitializedActionDelegate_InvocationListContainsReferencedMethodName() 
+    public void GivenActionDelegate_WhenInitialized_ThenInvocationListContainsReferencedMethodName()
     {
         Action<string> action = Logger.LogToConsole;
         var invocationList = action.GetInvocationList();
@@ -29,7 +31,7 @@ public class Tests
     }
 
     [Fact]
-    public void GivenInitializedFuncDelegate_InvocationListContainsReferencedMethodName()
+    public void GivenFuncDelegate_WhenInitialized_ThenInvocationListContainsReferencedMethodName()
     {
         Func<int, int, int> func = Calculator.Add;
         var invocationList = func.GetInvocationList();
@@ -37,12 +39,13 @@ public class Tests
     }
 
     [Theory]
-    [InlineData(2,2,4)]
-    [InlineData(4,15,19)]
-    [InlineData(1982,-1979,3)]
-    public void GivenTwoNumbers_FuncDelegateExecutesReferencedMethod(int num1, int num2, int expectedResult) 
+    [InlineData(2, 2)]
+    [InlineData(4, 15)]
+    [InlineData(1982, -1979)]
+    public void GivenFuncDelegate_WhenInvoked_ThenExecutesReferencedMethod(int num1, int num2)
     {
         Func<int, int, int> func = Calculator.Add;
+        var expectedResult = Calculator.Add(num1,num2);
         var result = func(num1, num2);
         Assert.Equal(expectedResult, result);
     }

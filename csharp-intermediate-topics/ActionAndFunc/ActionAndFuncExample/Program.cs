@@ -1,7 +1,7 @@
 ﻿namespace ActionAndFuncExample;
 
-
 public delegate void Log(string message);
+
 public class Program
 {
     static void Main()
@@ -10,11 +10,11 @@ public class Program
         ActionExamples();
         FuncExample();
     }
-    
+
     static void DelegateExamples()
     {
         Console.WriteLine("\n\nDelegate example output:");
-        string message = "delegate example message";
+        var message = "delegate example message";
         Log logger = Logger.LogToConsole;
         Log logger1 = delegate (string message) { Console.WriteLine($"ANONYMOUS:\t{message}"); };
         Log logger2 = message => Console.WriteLine($"LAMBDA :\t{message}");
@@ -22,31 +22,30 @@ public class Program
         logger1(message);
         logger2(message);
     }
+
     static void ActionExamples()
     {
         Console.WriteLine("\n\nAction example output:");
-        string message = "action example message";
-        // Initiate Action delegate 
+        var message = "action example message";
         Action<string> logger = Logger.LogToConsole;
         Action<string> logger1 = delegate (string message) { Console.WriteLine($"ANONYMOUS:\t{message}"); };
         Action<string> logger2 = message => Console.WriteLine($"LAMBDA :\t{message}");
-        // Call Action delegates
         logger(message);
         logger1(message);
         logger2(message);
     }
+
     static void FuncExample()
     {
         Console.WriteLine("\n\nFunc example output:");
         int num1 = 10, num2 = 2;
         Action<string> logger = message => Console.WriteLine($"{DateTime.Now} :\t{message}");
-        // Inistantiate Func delegate 
         Func<int, int, int> calculator = Calculator.Add;
-        // Call Func delegate
-        int result = calculator(num1, num2);
+        var result = calculator(num1, num2);
         logger($"{num1} + {num2} = {result}");
         calculator = Calculator.Multiply;
-        int result2 = calculator(num1, num2);
+        var result2 = calculator(num1, num2);
         logger($"{num1} + {num2} = {result2}");
     }
+
 }
