@@ -25,31 +25,28 @@ namespace UsingWhenInExceptionHandlingInCsharp
             }
             catch (FormatException ex) when (ex.Message.Contains("Input string was not in a correct format"))
             {                
-                Console.Write(ex.Message);
-                Console.Write($"{Environment.NewLine}Special number error");
+                Console.WriteLine(ex.Message);
+                Console.Write("Special number error");
                 throw;
-
             }
             catch (FormatException ex) when (ex.Message.Contains("not recognized as a valid Boolean"))
             {
                 
-                Console.Write(ex.Message);
-                Console.Write($"{Environment.NewLine}Lottery participant error");
+                Console.WriteLine(ex.Message);
+                Console.Write("Lottery participant error");
                 throw;
-
             }
             catch (FormatException ex) when (ex.Message.Contains("not recognized as a valid DateTime"))
             {                
-                Console.Write(ex.Message);
-                Console.Write($"{Environment.NewLine}Date of birth error");                
+                Console.WriteLine(ex.Message);
+                Console.Write("Date of birth error");                
                 throw;
-
             }
             catch (FormatException ex) when (ex.Message.Contains("Format string can be only"))
             {
                 
-                Console.Write(ex.Message);
-                Console.Write($"{Environment.NewLine}Guid error");                
+                Console.WriteLine(ex.Message);
+                Console.Write("Guid error");                
                 throw;
             }
             catch
@@ -58,7 +55,7 @@ namespace UsingWhenInExceptionHandlingInCsharp
             }
         }
 
-        public void InterfaceTwo()
+        public static void InterfaceTwo()
         {
             try 
             { 
@@ -70,8 +67,8 @@ namespace UsingWhenInExceptionHandlingInCsharp
             } 
             catch (FormatException ex) when (ex.Message.Contains("correct format") || ex.Message.Contains("valid Boolean")) 
             {
-                Console.Write(ex.Message); 
-                Console.Write($"{Environment.NewLine}Error!!"); 
+                Console.WriteLine(ex.Message); 
+                Console.Write("Error!!"); 
                 throw;
             } 
             catch
