@@ -11,6 +11,7 @@ public static class JsonXmlUtils
     public static string XmlToJson(string xml)
     {
         var doc = XDocument.Parse(xml);
+
         return JsonConvert.SerializeXNode(doc);
     }
 
@@ -25,6 +26,7 @@ public static class JsonXmlUtils
     public static string XmlToPrettyJson(string xml)
     {
         var doc = XDocument.Parse(xml);
+
         return JsonConvert.SerializeXNode(doc, Formatting.Indented);
     }
 
@@ -46,6 +48,7 @@ public static class JsonXmlUtils
     public static string XmlToJsonWithoutRoot(string xml)
     {
         var doc = XDocument.Parse(xml);
+
         return JsonConvert.SerializeXNode(doc, Formatting.None, omitRootObject: true);
     }
     #endregion
@@ -69,11 +72,6 @@ public static class JsonXmlUtils
         var declaration = doc.Declaration ?? _defaultDeclaration;
 
         return $"{declaration}{Environment.NewLine}{doc}";
-    }
-
-    public static XmlDocument JsonToXmlDocument(string json)
-    {
-        return JsonConvert.DeserializeXmlNode(json)!;
     }
     #endregion
 }
