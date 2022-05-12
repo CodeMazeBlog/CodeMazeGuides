@@ -7,7 +7,7 @@ using System.Threading;
 using System.Net;
 using System.Text.Json;
 using HttpClientUser;
-using System.Net.Http.Headers;
+using RichardSzalay.MockHttp;
 using System;
 
 namespace MockingHttpClient
@@ -16,37 +16,58 @@ namespace MockingHttpClient
     public class MockingHttpClientTests
     {
         private Mock<HttpMessageHandler> msgHandler;
+        private MockHttpMessageHandler szalayMsgHandler;
+        private string baseAddress = "https://jokes-api.herokuapp.com";
+        private string jokeEndpoint = $"/api/joke/500";
+        private string joke = "this is a mocked joke";
 
         [TestInitialize]
         public void Initialize()
         {
             msgHandler = new Mock<HttpMessageHandler>();
+            szalayMsgHandler = new MockHttpMessageHandler();
+
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void GivenMockedHandler_WhenRunningMain_ThenHandlerResponds()
         {
-            string baseAddress = "https://jokes-api.herokuapp.com";
-            string jokeEndpoint = $"/api/joke/500";
-            string joke = JsonSerializer.Serialize("haha joke");
-
-            var requestMessage = new HttpRequestMessage()
-            {
-                Content = new StringContent(joke),
-                Method = HttpMethod.Get,
-                //Headers = new HttpRequestHeaders(HttpMethod.Get, baseAddress + jokeEndpoint),
-                RequestUri = new Uri(baseAddress + jokeEndpoint),
-            };
-
             msgHandler.Protected()
-                //.Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
-                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.Is<HttpRequestMessage>(m => m.RequestUri!.Equals(baseAddress+jokeEndpoint)), ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage() { StatusCode = HttpStatusCode.OK, Content = new StringContent(joke) }).Verifiable();
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(new HttpResponseMessage() { StatusCode = HttpStatusCode.OK, Content = new StringContent(joke) })
+                .Verifiable();
 
             Program.handler = msgHandler.Object;
             Program.Main(new string[] { });
 
-            // Assert section
+            msgHandler.VerifyAll();
+            Assert.AreEqual(joke, Program.jokeResponse);
+        }
+
+        [TestMethod]
+        public void GivenHandlerMockedIncorrectly_WhenRunningMain_ThenHandlerThrowsException()
+        {
+            jokeEndpoint = $"/api/joke/499";
+
+            msgHandler.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.Is<HttpRequestMessage>(m => m.RequestUri!.Equals(baseAddress + jokeEndpoint)), ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(new HttpResponseMessage() { StatusCode = HttpStatusCode.OK, Content = new StringContent(joke) });
+
+            Program.handler = msgHandler.Object;
+
+            Assert.ThrowsException<AggregateException>(() => Program.Main(new string[] { }));
+        }
+
+        [TestMethod]
+        public void GivenMockedHandlerWithWildcard_WhenRunningMain_ThenHandlerResponds()
+        {
+            szalayMsgHandler = new MockHttpMessageHandler();
+            szalayMsgHandler.When("https://jokes-api.herokuapp.com/api/joke/*").Respond("text/plain", joke);
+
+            Program.handler = szalayMsgHandler;
+            Program.Main(new string[] { });
+
+            Assert.AreEqual(joke, Program.jokeResponse);
         }
     }
 }
