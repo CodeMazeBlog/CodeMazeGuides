@@ -1,94 +1,64 @@
 ﻿using RemoveDuplicatesFromAnArray;
-using System.Linq;
 using Xunit;
 
 namespace Tests;
 
 public class Tests
 {
-    public static readonly RemoveDuplicateElements _duplicatesRemoval = new RemoveDuplicateElements();
+    private readonly RemoveDuplicateElements _duplicatesRemoval;
+    string[] arrayWithDuplicateValues;
+    public Tests()
+    {
+        _duplicatesRemoval = new RemoveDuplicateElements();
+        arrayWithDuplicateValues = new string[] { "value1", "value1", "value2", "value2" };
+    }
 
     [Fact]
-    public void GivenAnArray_WhenUsingWithDistinctMethod_ThenReturnUniqueValues()
+    public void GivenAnArray_WhenUsingWithDistinctLINQMethod_ThenReturnUniqueValues()
     {
-        var repeatedStrArray = Enumerable.Repeat("it", 3).Concat(Enumerable.Repeat("jump", 3)).Concat(Enumerable.Repeat("it", 3)).ToArray();
-
-        //Act
-        var response = _duplicatesRemoval.WithDistinct_Method(repeatedStrArray);
-
-        //Assert
+        var response = _duplicatesRemoval.WithDistinctLINQMethod(arrayWithDuplicateValues);
         Assert.Equal(2, response.Length);
     }
 
     [Fact]
-    public void GivenAnArray_WhenUsingGroupByandSelect_ThenReturnUniqueValues()
+    public void GivenAnArray_WhenUsingGroupByAndSelectLINQMethod_ThenReturnUniqueValues()
     {
-        var repeatedStrArray = Enumerable.Repeat("it", 3).Concat(Enumerable.Repeat("jump", 3)).Concat(Enumerable.Repeat("it", 3)).ToArray();
-
-        //Act
-        var response = _duplicatesRemoval.WithGroupByandSelect(repeatedStrArray);
-
-        //Assert
+        var response = _duplicatesRemoval.WithGroupByAndSelectLINQMethod(arrayWithDuplicateValues);
         Assert.Equal(2, response.Length);
     }
 
     [Fact]
     public void GivenAnArray_WhenUsingHashingMethod_ThenReturnUniqueValues()
     {
-        var repeatedStrArray = Enumerable.Repeat("it", 3).Concat(Enumerable.Repeat("jump", 3)).Concat(Enumerable.Repeat("it", 3)).ToArray();
-
-        //Act
-        var response = _duplicatesRemoval.ByHashing(repeatedStrArray);
-
-        //Assert
+        var response = _duplicatesRemoval.ByHashing(arrayWithDuplicateValues);
         Assert.Equal(2, response.Length);
     }
 
     [Fact]
     public void GivenAnArray_WhenUsingHashSet_ThenReturnUniqueValues()
     {
-        var repeatedStrArray = Enumerable.Repeat("it", 3).Concat(Enumerable.Repeat("jump", 3)).Concat(Enumerable.Repeat("it", 3)).ToArray();
-
-        //Act
-        var response = _duplicatesRemoval.ByCreatingHashSet(repeatedStrArray);
-
-        //Assert
+        var response = _duplicatesRemoval.ByCreatingHashSet(arrayWithDuplicateValues);
         Assert.Equal(2, response.Length);
     }
 
     [Fact]
-    public void GivenAnArray_WhenUsingForLoop_ThenReturnUniqueValues()
+    public void GivenAnArray_WhenUsingForLoopAndShiftingElements_ThenReturnUniqueValues()
     {
-        var repeatedStrArray = Enumerable.Repeat("it", 3).Concat(Enumerable.Repeat("jump", 3)).Concat(Enumerable.Repeat("it", 3)).ToArray();
-
-        //Act
-        var response = _duplicatesRemoval.UsingForLoop(repeatedStrArray);
-
-        //Assert
+        var response = _duplicatesRemoval.UsingForLoopAndShiftingElements(arrayWithDuplicateValues);
         Assert.Equal(2, response.Length);
     }
 
     [Fact]
     public void GivenAnArray_WhenUsingForLoopWithDictionary_ThenReturnUniqueValues()
     {
-        var repeatedStrArray = Enumerable.Repeat("it", 3).Concat(Enumerable.Repeat("jump", 3)).Concat(Enumerable.Repeat("it", 3)).ToArray();
-
-        //Act
-        var response = _duplicatesRemoval.UsingForLoopWithDictionary(repeatedStrArray);
-
-        //Assert
+        var response = _duplicatesRemoval.UsingForLoopWithDictionary(arrayWithDuplicateValues);
         Assert.Equal(2, response.Length);
     }
 
     [Fact]
     public void GivenAnArray_WhenUsingRecursion_ThenReturnUniqueValues()
     {
-        var repeatedStrArray = Enumerable.Repeat("it", 3).Concat(Enumerable.Repeat("jump", 3)).Concat(Enumerable.Repeat("it", 3)).ToArray();
-
-        //Act
-        var response = _duplicatesRemoval.UsingRecursion(repeatedStrArray);
-
-        //Assert
+        var response = _duplicatesRemoval.UsingRecursion(arrayWithDuplicateValues);
         Assert.Equal(2, response.Length);
     }
 }

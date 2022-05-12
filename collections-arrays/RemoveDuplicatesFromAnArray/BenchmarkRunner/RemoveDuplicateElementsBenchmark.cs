@@ -1,65 +1,63 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Order;
 using RemoveDuplicatesFromAnArray;
 
 namespace BenchmarkRunner
 {
     [RankColumn]
     [MemoryDiagnoser]
-
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class RemoveDuplicateElementsBenchmark
     {
-        public static readonly RemoveDuplicateElements _duplicatesRemoval = new RemoveDuplicateElements();
+        private readonly RemoveDuplicateElements _duplicatesRemoval;
+        private readonly string[] repeatedStrArray;
 
-        [Benchmark]
-        public void UsingDistinctMethod()
+        public RemoveDuplicateElementsBenchmark()
         {
-            var repeatedStrArray = Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 50)).Concat(Enumerable.Repeat("it", 50)).ToArray();
-            var response = _duplicatesRemoval.WithDistinct_Method(repeatedStrArray);
+            _duplicatesRemoval = new RemoveDuplicateElements();
+            repeatedStrArray = Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 80)).Concat(Enumerable.Repeat("it", 70)).ToArray();
         }
 
         [Benchmark]
-        public void UsingGroupByandSelect()
+        public void UsingDistinctLINQMethod()
         {
-            var repeatedStrArray = Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 50)).Concat(Enumerable.Repeat("it", 50)).ToArray();
-            var response = _duplicatesRemoval.WithGroupByandSelect(repeatedStrArray);
+            _duplicatesRemoval.WithDistinctLINQMethod(repeatedStrArray);
+        }
 
+        [Benchmark]
+        public void UsingGroupByAndSelectLINQMethod()
+        {
+            _duplicatesRemoval.WithGroupByAndSelectLINQMethod(repeatedStrArray);
         }
 
         [Benchmark]
         public void UsingHashingMethod()
         {
-            var repeatedStrArray = Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 50)).Concat(Enumerable.Repeat("it", 50)).ToArray();
-            var response = _duplicatesRemoval.ByHashing(repeatedStrArray);
-
+            _duplicatesRemoval.ByHashing(repeatedStrArray);
         }
 
         [Benchmark]
         public void UsingHashSet()
         {
-            var repeatedStrArray = Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 50)).Concat(Enumerable.Repeat("it", 50)).ToArray();
-            var response = _duplicatesRemoval.ByCreatingHashSet(repeatedStrArray);
+            _duplicatesRemoval.ByCreatingHashSet(repeatedStrArray);
         }
 
         [Benchmark]
         public void UsingForLoopByShifting()
         {
-            var repeatedStrArray = Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 50)).Concat(Enumerable.Repeat("it", 50)).ToArray();
-            var response = _duplicatesRemoval.UsingForLoop(repeatedStrArray);
+            _duplicatesRemoval.UsingForLoopAndShiftingElements(repeatedStrArray);
         }
 
         [Benchmark]
         public void UsingForLoopWithDictionary()
         {
-            var repeatedStrArray = Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 50)).Concat(Enumerable.Repeat("it", 50)).ToArray();
-            var response = _duplicatesRemoval.UsingForLoopWithDictionary(repeatedStrArray);
+            _duplicatesRemoval.UsingForLoopWithDictionary(repeatedStrArray);
         }
 
         [Benchmark]
         public void UsingRecursion()
         {
-            var repeatedStrArray = Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 50)).Concat(Enumerable.Repeat("it", 50)).ToArray();
-            var response = _duplicatesRemoval.UsingRecursion(repeatedStrArray);
+            _duplicatesRemoval.UsingRecursion(repeatedStrArray);
         }
-
     }
 }

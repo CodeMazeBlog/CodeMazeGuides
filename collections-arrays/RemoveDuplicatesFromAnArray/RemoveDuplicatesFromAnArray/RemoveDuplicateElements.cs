@@ -2,57 +2,56 @@
 
 public class RemoveDuplicateElements
 {
-    public string[] WithDistinct_Method(string[] arr)
+    public string[] WithDistinctLINQMethod(string[] arrayWithDuplicateValues)
     {
-        return arr.Distinct().ToArray();
+        return arrayWithDuplicateValues.Distinct().ToArray();
     }
 
-    public string[] WithGroupByandSelect(string[] arr)
+    public string[] WithGroupByAndSelectLINQMethod(string[] arrayWithDuplicateValues)
     {
-        return arr.GroupBy(d => d).Select(d => d.First()).ToArray();
-
+        return arrayWithDuplicateValues.GroupBy(d => d).Select(d => d.First()).ToArray();
     }
 
-    public T[] ByHashing<T>(T[] arr)
+    public T[] ByHashing<T>(T[] arrayWithDuplicateValues)
     {
-        return arr.ToHashSet().ToArray();
-
+        return arrayWithDuplicateValues.ToHashSet().ToArray();
     }
 
-    public T[] ByCreatingHashSet<T>(T[] arr)
+    public T[] ByCreatingHashSet<T>(T[] arrayWithDuplicateValues)
     {
-        var hashSet = new HashSet<T>(arr);
+        var hashSet = new HashSet<T>(arrayWithDuplicateValues);
         return hashSet.ToArray();
-
     }
 
-    public string[] UsingForLoop(string[] arr)
+    // This method will re-arrange the elements in the array
+    public string[] UsingForLoopAndShiftingElements(string[] arrayWithDuplicateValues)
     {
-        var size = arr.Length;
+        var size = arrayWithDuplicateValues.Length;
+
         for (int i = 0; i < size; i++)
         {
             for (int j = i + 1; j < size; j++)
             {
-                if (arr[i] == arr[j])
+                if (arrayWithDuplicateValues[i] == arrayWithDuplicateValues[j])
                 {
                     for (int k = j; k < size - 1; k++)
                     {
-                        arr[k] = arr[k + 1];
+                        arrayWithDuplicateValues[k] = arrayWithDuplicateValues[k + 1];
                     }
                     j--;
                     size--;
                 }
             }
-
         }
-        return arr[0..size];
 
+        return arrayWithDuplicateValues[0..size];
     }
 
-    public string[] UsingForLoopWithDictionary(string[] arr)
+    public string[] UsingForLoopWithDictionary(string[] arrayWithDuplicateValues)
     {
         var dic = new Dictionary<string, int>();
-        foreach (var s in arr)
+
+        foreach (var s in arrayWithDuplicateValues)
         {
             dic.TryAdd(s, 1);
         }
@@ -60,30 +59,26 @@ public class RemoveDuplicateElements
         return dic.Select(x => x.Key.ToString()).ToArray();
     }
 
-    public string[] UsingRecursion(string[] arr, List<string>? mem = default)
+    public string[] UsingRecursion(string[] arrayWithDuplicateValues, List<string>? mem = default, int index = 0)
     {
         if (mem == null)
         {
             mem = new List<string>();
         }
 
-        if (arr.Length <= 1)
+        if (index >= arrayWithDuplicateValues.Length)
         {
-            return arr;
+            return arrayWithDuplicateValues;
         }
 
-        if (mem.IndexOf(arr[0]) < 0)
+        if (mem.IndexOf(arrayWithDuplicateValues[index]) < 0)
         {
-            mem.Add(arr[0]);
-            UsingRecursion(arr[1..(arr.Length - 1)], mem);
+            mem.Add(arrayWithDuplicateValues[index]);
         }
-        else
-        {
-            UsingRecursion(arr[1..(arr.Length - 1)], mem);
-        }
+
+        UsingRecursion(arrayWithDuplicateValues, mem, index + 1);
 
         return mem.ToArray();
     }
-
 }
 
