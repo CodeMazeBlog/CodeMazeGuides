@@ -36,9 +36,9 @@ namespace Article.Api.Controllers
             var deletedId = _articleRepository.Delete(id);
 
             if (deletedId == 0)
-                return NoContent();
+                return NotFound();
 
-            return Ok(_articleRepository.Delete(id));
+            return NoContent();
         }
     }
 }

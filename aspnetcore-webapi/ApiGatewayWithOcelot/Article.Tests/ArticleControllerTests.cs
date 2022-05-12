@@ -59,11 +59,11 @@ namespace Article.Tests
             var result = controller.Delete(1);
 
             Assert.IsNotNull(result);
-            Assert.IsTrue(result is OkObjectResult);
+            Assert.IsTrue(result is NoContentResult);
         }
 
         [TestMethod]
-        public void GivenTheDeleteEndpoint_WhenSendNotFoundIdAsParameter_ThenReturnNoContent()
+        public void GivenTheDeleteEndpoint_WhenSendNotFoundIdAsParameter_ThenReturnNotFound()
         {
             var articleRepositoryMock = new ArticleRepositoryMock()
                 .DeleteNotFound();
@@ -72,7 +72,7 @@ namespace Article.Tests
             var result = controller.Delete(1);
 
             Assert.IsNotNull(result);
-            Assert.IsTrue(result is NoContentResult);
+            Assert.IsTrue(result is NotFoundResult);
         }
 
         private ArticlesController InstantiateController(ArticleRepositoryMock? articleRepositoryMock = null)

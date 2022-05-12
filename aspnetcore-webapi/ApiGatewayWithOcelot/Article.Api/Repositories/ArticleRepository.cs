@@ -48,7 +48,7 @@ namespace Article.Api.Repositories
 
         public int Delete(int id)
         {
-            var removed = _articles.SingleOrDefault(x => x.Id == 1);
+            var removed = _articles.SingleOrDefault(x => x.Id == id);
 
             if (removed != null)
                 _articles.Remove(removed);
