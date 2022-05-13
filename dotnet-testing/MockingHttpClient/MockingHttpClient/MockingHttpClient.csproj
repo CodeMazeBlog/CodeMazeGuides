@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\HttpClientUser\HttpClientUser.csproj" />
+    <ProjectReference Include="..\HttpClientUser\HttpClientUser.csproj" />
   </ItemGroup>
 
 </Project>

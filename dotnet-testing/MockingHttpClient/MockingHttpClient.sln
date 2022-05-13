@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MockingHttpClient", "MockingHttpClient\MockingHttpClient.csproj", "{AD2B7515-F0F1-46C7-B3CC-C013AE76AECE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClientUser", "..\HttpClientUser\HttpClientUser.csproj", "{7179138E-CD69-4B0B-92E5-D94CB9826D2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpClientUser", "HttpClientUser\HttpClientUser.csproj", "{7179138E-CD69-4B0B-92E5-D94CB9826D2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
