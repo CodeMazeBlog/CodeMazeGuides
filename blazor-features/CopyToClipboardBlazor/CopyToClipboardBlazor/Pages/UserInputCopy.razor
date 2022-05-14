@@ -2,8 +2,10 @@
 
 <h3>User Input Copy to Clipboard</h3>
 
-<input @bind-value="text" />
-<CopyToClipboard TextToCopy="@text" />
+<div class="container">
+	<input @bind-value="text" />
+	<CopyToClipboard TextToCopy="@text" />
+</div>
 
 <TextArea />
 

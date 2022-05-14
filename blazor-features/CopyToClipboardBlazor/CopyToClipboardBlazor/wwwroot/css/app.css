@@ -62,3 +62,24 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.container {
+    display: flex;
+    padding-left: 0;
+    margin: 0;
+}
+
+    .container input {
+        margin-right: 5px;
+    }
+
+.flex-end-container {
+    display: flex;
+    align-items: end;
+    padding-left: 0;
+    margin: 0;
+}
+
+    .flex-end-container textarea {
+        margin-right: 5px;
+    }
