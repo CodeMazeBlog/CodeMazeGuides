@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-List<string> fruitList = new List<string>
+var fruitList = new List<string>
 {
     "apple",
     "orange",
@@ -9,11 +9,11 @@ List<string> fruitList = new List<string>
     "coconut"
 };
 
-string fruits = string.Join(",", fruitList);
+var fruits = string.Join(",", fruitList);
 
-string filterFruit = string.Join(",", fruitList.Where(fruit => fruit.Contains("apple")));
+var filterFruit = string.Join(",", fruitList.Where(fruit => fruit.Contains("apple")));
 
-string trimedFruits = string.Join(",", fruitList.ToArray(), 2, 3);
+var trimedFruits = string.Join(",", fruitList.ToArray(), 2, 3);
 
 Console.WriteLine($"Fruits: {fruits}");
 
