@@ -13,10 +13,10 @@ var fruits = string.Join(",", fruitList);
 
 var filterFruit = string.Join(",", fruitList.Where(fruit => fruit.Contains("apple")));
 
-var trimedFruits = string.Join(",", fruitList.ToArray(), 2, 3);
+var trimmedFruits = string.Join(",", fruitList.ToArray(), 2, 3);
 
 Console.WriteLine($"Fruits: {fruits}");
 
 Console.WriteLine($"Filtered Fruit: {filterFruit}");
 
-Console.WriteLine($"Trimmed Fruits: {trimedFruits}");
+Console.WriteLine($"Trimmed Fruits: {trimmedFruits}");
