@@ -13,6 +13,13 @@ namespace JsonDeserializationDynamicObject.Benchmark
         private static readonly string _json = File.ReadAllText("MovieStats.json");
 
         [BenchmarkCategory(nameof(SystemTextJson))]
+        [Benchmark]
+        public void SystemTextJsonAnonymousType()
+        {
+            SystemTextJson.UsingAnonymousType(_json);
+        }
+
+        [BenchmarkCategory(nameof(SystemTextJson))]
         [Benchmark(Baseline = true)]
         public void UsingJsonElement()
         {
@@ -42,7 +49,7 @@ namespace JsonDeserializationDynamicObject.Benchmark
 
         [BenchmarkCategory(nameof(NewtonsoftJson))]
         [Benchmark]
-        public void UsingAnonymousType()
+        public void NewtonsoftJsonAnonymousType()
         {
             NewtonsoftJson.UsingAnonymousTypeWithDictionary(_json);
         }
