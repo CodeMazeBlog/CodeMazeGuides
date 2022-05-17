@@ -38,8 +38,8 @@
             sortedShapeList = LINQSortThenByDescending(shapeList);
             PrintList(sortedShapeList);
 
-            LINQSortReverse(shapeList);
-            PrintList(shapeList);
+            var reversed = LINQSortReverse(shapeList);
+            PrintList(reversed.ToList());
         }
         private static List<Shape> LINQSortOrderBy(List<Shape> shapeList)
         {
@@ -63,10 +63,13 @@
             return sortedList;
         }
 
-        private static void LINQSortReverse(List<Shape> shapeList)
+        private static IEnumerable<Shape> LINQSortReverse(IEnumerable<Shape> shapeList)
         {
-            shapeList.Reverse();
+            var reversedList = shapeList.Reverse();
+
+            return reversedList;
         }
+
         private static void PrintList(List<Shape> shapes)
         {
             Console.WriteLine("----------------------------------------");

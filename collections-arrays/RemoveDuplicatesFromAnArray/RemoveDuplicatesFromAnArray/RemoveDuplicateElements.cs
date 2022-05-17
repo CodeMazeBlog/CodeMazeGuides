@@ -17,14 +17,14 @@ public class RemoveDuplicateElements
         return arrayWithDuplicateValues.ToHashSet().ToArray();
     }
 
-    public T[] ByCreatingHashSet<T>(T[] arrayWithDuplicateValues)
+    public T[] ByConvertingToHashSet<T>(T[] arrayWithDuplicateValues)
     {
         var hashSet = new HashSet<T>(arrayWithDuplicateValues);
         return hashSet.ToArray();
     }
 
     // This method will re-arrange the elements in the array
-    public string[] UsingForLoopAndShiftingElements(string[] arrayWithDuplicateValues)
+    public string[] IterationAndShiftingElements(string[] arrayWithDuplicateValues)
     {
         var size = arrayWithDuplicateValues.Length;
 
@@ -47,7 +47,7 @@ public class RemoveDuplicateElements
         return arrayWithDuplicateValues[0..size];
     }
 
-    public string[] UsingForLoopWithDictionary(string[] arrayWithDuplicateValues)
+    public string[] IterationWithDictionary(string[] arrayWithDuplicateValues)
     {
         var dic = new Dictionary<string, int>();
 
@@ -59,7 +59,7 @@ public class RemoveDuplicateElements
         return dic.Select(x => x.Key.ToString()).ToArray();
     }
 
-    public string[] UsingRecursion(string[] arrayWithDuplicateValues, List<string>? mem = default, int index = 0)
+    public string[] RecursiveMethod(string[] arrayWithDuplicateValues, List<string>? mem = default, int index = 0)
     {
         if (mem == null)
         {
@@ -76,7 +76,7 @@ public class RemoveDuplicateElements
             mem.Add(arrayWithDuplicateValues[index]);
         }
 
-        UsingRecursion(arrayWithDuplicateValues, mem, index + 1);
+        RecursiveMethod(arrayWithDuplicateValues, mem, index + 1);
 
         return mem.ToArray();
     }

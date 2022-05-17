@@ -10,54 +10,54 @@ namespace BenchmarkRunner
     public class RemoveDuplicateElementsBenchmark
     {
         private readonly RemoveDuplicateElements _duplicatesRemoval;
-        private readonly string[] repeatedStrArray;
+        private readonly string[] _repeatedStrArray;
 
         public RemoveDuplicateElementsBenchmark()
         {
             _duplicatesRemoval = new RemoveDuplicateElements();
-            repeatedStrArray = Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 80)).Concat(Enumerable.Repeat("it", 70)).ToArray();
+            _repeatedStrArray = Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 80)).Concat(Enumerable.Repeat("it", 70)).ToArray();
         }
 
         [Benchmark]
-        public void UsingDistinctLINQMethod()
+        public void DistinctLINQMethod()
         {
-            _duplicatesRemoval.WithDistinctLINQMethod(repeatedStrArray);
+            _duplicatesRemoval.WithDistinctLINQMethod(_repeatedStrArray);
         }
 
         [Benchmark]
-        public void UsingGroupByAndSelectLINQMethod()
+        public void GroupByAndSelectLINQMethod()
         {
-            _duplicatesRemoval.WithGroupByAndSelectLINQMethod(repeatedStrArray);
+            _duplicatesRemoval.WithGroupByAndSelectLINQMethod(_repeatedStrArray);
         }
 
         [Benchmark]
-        public void UsingHashingMethod()
+        public void HashingMethod()
         {
-            _duplicatesRemoval.ByHashing(repeatedStrArray);
+            _duplicatesRemoval.ByHashing(_repeatedStrArray);
         }
 
         [Benchmark]
-        public void UsingHashSet()
+        public void ConversionToHashSet()
         {
-            _duplicatesRemoval.ByCreatingHashSet(repeatedStrArray);
+            _duplicatesRemoval.ByConvertingToHashSet(_repeatedStrArray);
         }
 
         [Benchmark]
-        public void UsingForLoopByShifting()
+        public void IterationAndShifting()
         {
-            _duplicatesRemoval.UsingForLoopAndShiftingElements(repeatedStrArray);
+            _duplicatesRemoval.IterationAndShiftingElements(_repeatedStrArray);
         }
 
         [Benchmark]
-        public void UsingForLoopWithDictionary()
+        public void IterationWithDictionary()
         {
-            _duplicatesRemoval.UsingForLoopWithDictionary(repeatedStrArray);
+            _duplicatesRemoval.IterationWithDictionary(_repeatedStrArray);
         }
 
         [Benchmark]
-        public void UsingRecursion()
+        public void RecursiveMethod()
         {
-            _duplicatesRemoval.UsingRecursion(repeatedStrArray);
+            _duplicatesRemoval.RecursiveMethod(_repeatedStrArray);
         }
     }
 }
