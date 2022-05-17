@@ -2,22 +2,26 @@
 {
     public class Program
     {
-        public static HttpMessageHandler? handler { get; set; }
-        public static string? jokeResponse { get; set; }
+        public static HttpMessageHandler? Handler { get; set; }
+        public static string? Response { get; set; }
+        public static HttpClient Client = new HttpClient();
         
         public static void Main(string[] args)
         {
-            string baseAddress = "https://jokes-api.herokuapp.com";
-            string jokeEndpoint = $"/api/joke/500";
+            if (Handler is not null)
+            { 
+                Client = new HttpClient(Handler);
+            }
 
-            HttpClient client = new HttpClient(handler!);
+            string baseAddress = "https://reqres.in";
+            string apiEndpoint = "/api/users/2";
 
-            var responseMessage = client.GetAsync(baseAddress + jokeEndpoint).Result;
+            var responseMessage = Client.GetAsync(baseAddress + apiEndpoint).Result;
 
             if (responseMessage.IsSuccessStatusCode)
             {
-                jokeResponse = responseMessage.Content.ReadAsStringAsync().Result;
-                Console.WriteLine(jokeResponse);
+                Response = responseMessage.Content.ReadAsStringAsync().Result;
+                Console.WriteLine(Response);
             }
         }
     }
