@@ -19,6 +19,17 @@ public class NativeJsonUnitTest
     }
 
     [Fact]
+    public void GivenJsonString_WhenUsingAnonymousType_ThenDynamicallyRetrieveGenreAndRating()
+    {
+        var jsonString = MovieStats.SquidGame;
+
+        var (genre, imdb) = GenreRatingFinder.UsingAnonymousType(jsonString);
+
+        Assert.Equal("Thriller", genre);
+        Assert.Equal(8.1d, imdb);
+    }
+
+    [Fact]
     public void GivenJsonString_WhenUsingJsonElement_ThenDynamicallyRetrieveGenreAndRating()
     {
         var jsonString = MovieStats.SquidGame;
