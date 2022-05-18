@@ -4,7 +4,24 @@ using System.Text.Json.Nodes;
 namespace JsonDeserializationDynamicObject.Native;
 
 public static class GenreRatingFinder
-{    
+{
+    public static (string? Genre, double Imdb) UsingAnonymousType(string jsonString)
+    {
+        var anonymous = DeserializeAnonymousType(jsonString, new
+        {
+            Genre = string.Empty,
+            Rating = new { Imdb = 0d }
+        })!;
+
+        var genre = anonymous.Genre;
+        var imdb = anonymous.Rating.Imdb;
+
+        return (genre, imdb);
+    }
+
+    static T DeserializeAnonymousType<T>(string jsonString, T anonymousObject)
+        => JsonSerializer.Deserialize<T>(jsonString)!;    
+
     public static (string? Genre, double Imdb, double Rotten) UsingJsonElement(string jsonString)
     {
         var jsonElement = JsonSerializer.Deserialize<JsonElement>(jsonString);
