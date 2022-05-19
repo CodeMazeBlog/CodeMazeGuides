@@ -27,10 +27,10 @@ namespace Test
         [TestMethod]
         public async Task WhenCallProductControllerGetAllAction_Then3ProductRecordsAsResult()
         {
-            var responce = await _client.GetAsync($"/Product/GetAll");
-            var products = JsonConvert.DeserializeObject<List<Product>>(await responce.Content.ReadAsStringAsync());
+            var response = await _client.GetAsync($"/Product/GetAll");
+            var products = JsonConvert.DeserializeObject<List<Product>>(await response.Content.ReadAsStringAsync());
 
-            Assert.AreEqual(HttpStatusCode.OK, responce.StatusCode);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.AreEqual(3, products.Count);
         }
     }

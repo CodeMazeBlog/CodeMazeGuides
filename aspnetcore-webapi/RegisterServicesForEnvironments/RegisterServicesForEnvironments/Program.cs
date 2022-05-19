@@ -4,11 +4,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-if(builder.Environment.IsDevelopment())
+if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddScoped<IProductService, ProductDevelopmentService>();
 }
-else
+else if (builder.Environment.IsProduction())
 {
     builder.Services.AddScoped<IProductService, ProductLiveService>();
 }

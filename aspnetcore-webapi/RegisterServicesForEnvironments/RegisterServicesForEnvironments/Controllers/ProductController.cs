@@ -19,8 +19,8 @@ namespace RegisterServicesForEnvironments.Controllers
         public IActionResult GetAll()
         {
             var products = _productService.GetAll();
-            return Ok(products);
 
+            return Ok(products);
         }
     }
 }
