@@ -4,13 +4,26 @@ var employee = new
     Id = 001,
     FirstName = "John",
     LastName = "Doe",
-    Department = "Marketing"
+    Department = "Marketing",
+    FullTime = false,
+    HourlyPay = 35.75
 };
 
 Console.WriteLine($"Id: {employee.Id}");
 Console.WriteLine($"First Name: {employee.FirstName}");
 Console.WriteLine($"Last Name: {employee.LastName}");
 Console.WriteLine($"Department: {employee.Department}");
+Console.WriteLine($"Full Time: {employee.FullTime}");
+Console.WriteLine($"Hourly Pay: {employee.HourlyPay}");
+
+Console.WriteLine(); Console.WriteLine();
+
+Console.WriteLine($"Id Type: {employee.Id.GetType()}");
+Console.WriteLine($"First Name Type: {employee.FirstName.GetType()}");
+Console.WriteLine($"Last Name Type: {employee.LastName.GetType()}");
+Console.WriteLine($"Department Type: {employee.Department.GetType()}");
+Console.WriteLine($"Full Time Type: {employee.FullTime.GetType()}");
+Console.WriteLine($"Hourly Pay Type: {employee.HourlyPay.GetType()}");
 
 Console.WriteLine(); Console.WriteLine();
 
@@ -29,18 +42,15 @@ var employeeWithOfficeAddress = new
     }
 };
 
-Console.WriteLine($"Id: {employeeWithOfficeAddress.Id}");
-Console.WriteLine($"First Name: {employeeWithOfficeAddress.FirstName}");
-Console.WriteLine($"Last Name: {employeeWithOfficeAddress.LastName}");
-Console.WriteLine($"Department: {employeeWithOfficeAddress.Department}");
-Console.WriteLine($"Location: {employeeWithOfficeAddress.OfficeAddress.City}");
+Console.WriteLine($"Employee Office Location: {employeeWithOfficeAddress.OfficeAddress.City}");
 
 Console.WriteLine(); Console.WriteLine();
 
-var arrEmployees = new[] {
-            new { Id = 001, FirstName = "John", LastName = "Doe", Department = "Marketing" },
-            new { Id = 002, FirstName = "Jane", LastName = "Doe", Department = "Accounting" },
-            new { Id = 003, FirstName = "Bob", LastName = "Smith", Department = "Human Resources" }
+var arrEmployees = new[]
+{
+    new { Id = 001, FirstName = "John", LastName = "Doe", Department = "Marketing" },
+    new { Id = 002, FirstName = "Jane", LastName = "Doe", Department = "Accounting" },
+    new { Id = 003, FirstName = "Bob", LastName = "Smith", Department = "Human Resources" }
 };
 
 foreach (var emp in arrEmployees)
@@ -55,13 +65,10 @@ dynamic dynamicEmployee = new
     Id = 001,
     FirstName = "John",
     LastName = "Doe",
-    Department = "Marketing"
 };
 
 Console.WriteLine($"Id: {dynamicEmployee.Id}");
-Console.WriteLine($"FirstName: {dynamicEmployee.FirstName}");
-Console.WriteLine($"LastName: {dynamicEmployee.LastName}");
-Console.WriteLine($"Department: {dynamicEmployee.Department}");
+Console.WriteLine($"Name: {dynamicEmployee.FirstName} {dynamicEmployee.LastName}");
 
 Console.WriteLine(); Console.WriteLine();
 

@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,8 +15,10 @@ namespace Tests
             {
                 Id = 001,
                 FirstName = "John",
-                LastName = "Doe",
-                Department = "Marketing"
+                LastName = "Doe",                
+                Department = "Marketing",
+                FullTime = false,
+                HourlyPay = 35.75
             };
 
             Assert.AreEqual("John Doe", $"{employee.FirstName} {employee.LastName}");
@@ -45,10 +48,11 @@ namespace Tests
         [TestMethod]
         public void GivenArrayAnonymousType_WhenWritingProperties_ThenReturnPropertyValues()
         {
-            var arrEmployees = new[] {
-            new { Id = 001, FirstName = "John", LastName = "Doe", Department = "Marketing" },
-            new { Id = 002, FirstName = "Jane", LastName = "Doe", Department = "Accounting" },
-            new { Id = 003, FirstName = "Bob", LastName = "Smith", Department = "Human Resources" }
+            var arrEmployees = new[]
+            {
+                new { Id = 001, FirstName = "John", LastName = "Doe", Department = "Marketing" },
+                new { Id = 002, FirstName = "Jane", LastName = "Doe", Department = "Accounting" },
+                new { Id = 003, FirstName = "Bob", LastName = "Smith", Department = "Human Resources" }
             };
 
             Assert.AreEqual("Bob Smith", $"{arrEmployees[2].FirstName} {arrEmployees[2].LastName}");
@@ -61,8 +65,7 @@ namespace Tests
             {
                 Id = 001,
                 FirstName = "John",
-                LastName = "Doe",
-                Department = "Marketing"
+                LastName = "Doe"
             };
 
             Assert.AreEqual("John Doe", $"{dynamicEmployee.FirstName} {dynamicEmployee.LastName}");
@@ -73,11 +76,12 @@ namespace Tests
         {
             var result = "";
 
-            List<Employee> EmployeeList = new List<Employee>() {
-            new Employee() { Id = 001, FirstName = "John", LastName = "Doe", Department = "Marketing" },
-            new Employee() { Id = 002, FirstName = "Jane", LastName = "Doe", Department = "Accounting" },
-            new Employee() { Id = 003, FirstName = "Bob", LastName = "Smith", Department = "Human Resources" }
-        };
+            List<Employee> EmployeeList = new List<Employee>()
+            {
+                new Employee() { Id = 001, FirstName = "John", LastName = "Doe", Department = "Marketing" },
+                new Employee() { Id = 002, FirstName = "Jane", LastName = "Doe", Department = "Accounting" },
+                new Employee() { Id = 003, FirstName = "Bob", LastName = "Smith", Department = "Human Resources" }
+            };
 
             var employeesFromList = from emp in EmployeeList
                                     select new { Id = emp.Id, Name = $"{emp.FirstName} {emp.LastName}" };
