@@ -5,20 +5,20 @@ namespace IpAddressBlocking;
 
 public class IpBlockActionFilter : ActionFilterAttribute
 {
-    private readonly IIpBlacklistService _blacklistService;
+    private readonly IIpBlockingService _ipBlockingService;
 
-    public IpBlockActionFilter(IIpBlacklistService blacklistService)
+    public IpBlockActionFilter(IIpBlockingService ipBlockingService)
     {
-        _blacklistService = blacklistService;
+        _ipBlockingService = ipBlockingService;
     }
 
     public override void OnActionExecuting(ActionExecutingContext context)
     {
         var remoteIp = context.HttpContext.Connection.RemoteIpAddress;
 
-        var isBlacklisted = _blacklistService.IsBlacklisted(remoteIp!);
+        var isBlocked = _ipBlockingService.IsBlocked(remoteIp!);
 
-        if (isBlacklisted)
+        if (isBlocked)
         {
             context.Result = new StatusCodeResult(StatusCodes.Status403Forbidden);
             return;

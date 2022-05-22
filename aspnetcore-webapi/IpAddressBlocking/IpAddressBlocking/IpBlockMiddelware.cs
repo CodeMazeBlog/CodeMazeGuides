@@ -5,21 +5,21 @@ namespace IpAddressBlocking;
 public class IpBlockMiddelware
 {
     private readonly RequestDelegate _next;
-    private readonly IIpBlacklistService _blacklistService;
+    private readonly IIpBlockingService _ipBlockingService;
 
-    public IpBlockMiddelware(RequestDelegate next, IIpBlacklistService blacklistService)
+    public IpBlockMiddelware(RequestDelegate next, IIpBlockingService ipBlockingService)
     {
         _next = next;
-        _blacklistService = blacklistService;
+        _ipBlockingService = ipBlockingService;
     }
 
     public async Task Invoke(HttpContext context)
     {
         var remoteIp = context.Connection.RemoteIpAddress;
 
-        var isBlacklisted = _blacklistService.IsBlacklisted(remoteIp!);
+        var isBlocked = _ipBlockingService.IsBlocked(remoteIp!);
 
-        if (isBlacklisted)
+        if (isBlocked)
         {
             context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
             return;
