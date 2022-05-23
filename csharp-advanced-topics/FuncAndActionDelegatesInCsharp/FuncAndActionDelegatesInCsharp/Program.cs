@@ -6,8 +6,6 @@ class Program
 {
     static void Main(string[] args)
     {
-
-        // Action delegate
         Console.WriteLine(nameof(BeforeUsingActionDelegate));
         var beforeAction = new BeforeUsingActionDelegate();
         beforeAction.SendEmails();
@@ -20,7 +18,6 @@ class Program
 
         Console.WriteLine();
 
-        // Func delegate
         Console.WriteLine(nameof(BeforeUsingFuncDelegate));
         var beforeFunc = new BeforeUsingFuncDelegate();
         beforeFunc.SendEmails();
