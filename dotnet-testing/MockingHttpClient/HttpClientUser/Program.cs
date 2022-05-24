@@ -6,7 +6,7 @@
         public static string? Response { get; set; }
         public static HttpClient Client = new HttpClient();
         
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             if (Handler is not null)
             { 
@@ -16,11 +16,11 @@
             string baseAddress = "https://reqres.in";
             string apiEndpoint = "/api/users/2";
 
-            var responseMessage = Client.GetAsync(baseAddress + apiEndpoint).Result;
+            var responseMessage = await Client.GetAsync(baseAddress + apiEndpoint);
 
             if (responseMessage.IsSuccessStatusCode)
             {
-                Response = responseMessage.Content.ReadAsStringAsync().Result;
+                Response = await responseMessage.Content.ReadAsStringAsync();
                 Console.WriteLine(Response);
             }
         }

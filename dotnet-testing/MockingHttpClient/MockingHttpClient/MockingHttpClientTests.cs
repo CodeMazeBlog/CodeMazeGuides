@@ -28,24 +28,27 @@ namespace MockingHttpClient
         }
 
         [TestMethod]
-        public void GivenMockedHandler_WhenRunningMain_ThenHandlerResponds()
+        public async Task GivenMockedHandler_WhenRunningMain_ThenHandlerResponds()
         {
             var mockedProtected = _msgHandler.Protected();
+
             var setupApiRequest = mockedProtected.Setup<Task<HttpResponseMessage>>(
                 "SendAsync", 
                 ItExpr.IsAny<HttpRequestMessage>(), 
                 ItExpr.IsAny<CancellationToken>()
                 );
+
             var apiMockedResponse = 
                 setupApiRequest.ReturnsAsync(new HttpResponseMessage() 
                 { 
                     StatusCode = HttpStatusCode.OK, 
                     Content = new StringContent(_response) 
                 });
+
             apiMockedResponse.Verifiable();
 
             Program.Handler = _msgHandler!.Object;
-            Program.Main(new string[] { });
+            await Program.Main(new string[] { });
 
             _msgHandler.VerifyAll();
             Assert.AreEqual(_response, Program.Response);
@@ -57,22 +60,31 @@ namespace MockingHttpClient
             _apiEndpoint = $"/api/499";
 
             var mockedProtected = _msgHandler.Protected();
-            var setupApiRequest = mockedProtected.Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.Is<HttpRequestMessage>(m => m.RequestUri!.Equals(_baseAddress + _apiEndpoint)), ItExpr.IsAny<CancellationToken>());
-            var apiMockedResponse = setupApiRequest.ReturnsAsync(new HttpResponseMessage() { StatusCode = HttpStatusCode.OK, Content = new StringContent(_response) });
+
+            var setupApiRequest = mockedProtected.Setup<Task<HttpResponseMessage>>(
+                "SendAsync", 
+                ItExpr.Is<HttpRequestMessage>(m => m.RequestUri!.Equals(_baseAddress + _apiEndpoint)), 
+                ItExpr.IsAny<CancellationToken>());
+
+            var apiMockedResponse = setupApiRequest.ReturnsAsync(new HttpResponseMessage() 
+            { 
+                StatusCode = HttpStatusCode.OK, 
+                Content = new StringContent(_response) 
+            });
 
             Program.Handler = _msgHandler!.Object;
 
-            Assert.ThrowsException<AggregateException>(() => Program.Main(new string[] { }));
+            Assert.ThrowsExceptionAsync<InvalidOperationException>(async () => await Program.Main(new string[] { }));
         }
 
         [TestMethod]
-        public void GivenMockedHandlerWithWildcard_WhenRunningMain_ThenHandlerResponds()
+        public async Task GivenMockedHandlerWithWildcard_WhenRunningMain_ThenHandlerResponds()
         {
             _szalayMsgHandler = new MockHttpMessageHandler();
             _szalayMsgHandler.When("https://reqres.in/*").Respond("text/plain", _response);
 
             Program.Handler = _szalayMsgHandler;
-            Program.Main(new string[] { });
+            await Program.Main(new string[] { });
 
             Assert.AreEqual(_response, Program.Response);
         }
