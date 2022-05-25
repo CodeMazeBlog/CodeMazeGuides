@@ -13,10 +13,11 @@ namespace BucketSortTests
             var expected = new int[] { 1, 20, 49, 57, 73, 99, 133 };
             var sortFunction = new BucketSortMethods();
 
-            var sortedArray = sortFunction.SortArray(array, string.Empty);
+            var sortOptimized = sortFunction.SortArrayOptimized(array, string.Empty);
+            var sortNormal = sortFunction.SortArray(array, string.Empty);
 
-            Assert.IsNotNull(sortedArray);
-            CollectionAssert.AreEqual(sortedArray, expected);
+            CollectionAssert.AreEqual(expected, sortOptimized); 
+            CollectionAssert.AreEqual(sortNormal, expected);
         }
 
         [TestMethod]
@@ -25,7 +26,7 @@ namespace BucketSortTests
             var sortFunction = new BucketSortMethods(); ;
             var array = BucketSortMethods.CreateRandomArray(200);
 
-            var sortedArray = sortFunction.SortArray(array, string.Empty);
+            var sortedArray = sortFunction.SortArrayOptimized(array, string.Empty);
 
             Assert.IsInstanceOfType(sortedArray, typeof(int[]));
         }
@@ -36,7 +37,7 @@ namespace BucketSortTests
             var sortFunction = new BucketSortMethods();
             var array = BucketSortMethods.CreateRandomArray(200);
 
-            var sortedArray = sortFunction.SortArray(array, string.Empty);
+            var sortedArray = sortFunction.SortArrayOptimized(array, string.Empty);
 
             Assert.IsNotNull(sortedArray);
         }
@@ -48,7 +49,7 @@ namespace BucketSortTests
             var expected = new int[] { 73 };
             var sortFunction = new BucketSortMethods();
 
-            var sortedArray = sortFunction.SortArray(array, string.Empty);
+            var sortedArray = sortFunction.SortArrayOptimized(array, string.Empty);
 
             Assert.IsNotNull(sortedArray);
             CollectionAssert.AreEqual(sortedArray, expected);
