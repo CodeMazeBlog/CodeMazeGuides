@@ -36,16 +36,12 @@ namespace MockAsynchronousMethods.Repository.FakeDatabase
 
         public async Task<IEnumerable<ArticleDbModel>> GetAsync()
         {
-            await Task.Delay(10);
-
-            return _articles;
+            return await Task.FromResult(_articles);
         }
 
         public async Task<ArticleDbModel?> GetByIdAsync(int id)
         {
-            await Task.Delay(10);
-
-            return _articles.FirstOrDefault(x => x.Id == id);
+            return await Task.FromResult(_articles.FirstOrDefault(x => x.Id == id));
         }
     }
 }

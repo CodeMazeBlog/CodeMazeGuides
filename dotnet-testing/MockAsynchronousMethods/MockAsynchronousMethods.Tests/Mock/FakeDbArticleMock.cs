@@ -1,16 +1,17 @@
 ﻿using MockAsynchronousMethods.Repository.DbModels;
 using MockAsynchronousMethods.Repository.Interfaces;
+using MockAsynchronousMethods.Tests.Mock;
 using Moq;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace MockAsynchronousMethods.Repository.Tests.Mock
 {
     public class FakeDbArticleMock : Mock<IFakeDbArticles>
     {
-        public FakeDbArticleMock GetByIdAsync(ArticleDbModel articleDbModel)
+        public FakeDbArticleMock GetByIdAsync()
         {
             Setup(x => x.GetByIdAsync(It.IsAny<int>()))
-                .ReturnsAsync(articleDbModel);
+                .ReturnsAsync(FakeDb.Articles.First());
 
             return this;
         }
@@ -23,10 +24,10 @@ namespace MockAsynchronousMethods.Repository.Tests.Mock
             return this;
         }
 
-        public FakeDbArticleMock GetAllAsync(List<ArticleDbModel> articlesDbModel)
+        public FakeDbArticleMock GetAllAsync()
         {
             Setup(x => x.GetAsync())
-                .ReturnsAsync(articlesDbModel);
+                .ReturnsAsync(FakeDb.Articles);
 
             return this;
         }

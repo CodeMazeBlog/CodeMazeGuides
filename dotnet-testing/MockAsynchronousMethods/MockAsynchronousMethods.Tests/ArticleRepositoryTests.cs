@@ -1,7 +1,5 @@
-using MockAsynchronousMethods.Repository.DbModels;
 using MockAsynchronousMethods.Repository.Tests.Mock;
-using System;
-using System.Collections.Generic;
+using MockAsynchronousMethods.Tests.Mock;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
@@ -13,21 +11,14 @@ namespace MockAsynchronousMethods.Repository.Tests
         [Fact]
         public async Task GivenAMockedDatabase_WhenRequestingAnExistingArticleAsynchronously_ThenReturnASingleArticle()
         {
-            var article = new ArticleDbModel
-            {
-                Id = 1,
-                Title = "First Article",
-                LastUpdate = DateTime.Now
-            };
-
             var mockArticleRepository = new FakeDbArticleMock()
-                .GetByIdAsync(article);
+                .GetByIdAsync();
 
             var articleRepository = new ArticleRepository(mockArticleRepository.Object);
             var result = await articleRepository.GetArticleAsync(1);
 
             Assert.NotNull(result);
-            Assert.Equal(article, result);
+            Assert.Equal(FakeDb.Articles.First(), result);
         }
 
         [Fact]
@@ -46,15 +37,7 @@ namespace MockAsynchronousMethods.Repository.Tests
         public async Task GivenAMockedDatabase_WhenRequestingAListOfArticleAsynchronously_ThenReturnAListOfArticles()
         {
             var mockArticleRepository = new FakeDbArticleMock()
-                .GetAllAsync(new List<ArticleDbModel>
-                {
-                    new ArticleDbModel
-                    {
-                        Id = 1,
-                        Title = "First Article",
-                        LastUpdate = DateTime.Now
-                    }
-                });
+                .GetAllAsync();
 
             var articleRepository = new ArticleRepository(mockArticleRepository.Object);
             var result = await articleRepository.GetAllArticlesAsync();
