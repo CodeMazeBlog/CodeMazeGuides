@@ -1,91 +1,154 @@
-using System.Collections;
+using StackInCSharp;
+using System;
 using Xunit;
 
 namespace StackInCSharpTestProject;
 
 public class Tests
 {
-    [Fact]
-    public void WhenPushItem_ThenStackCountIncreases()
-    {
-        var stack = new Stack();
-        var initialStackCount = stack.Count;
-        stack.Push(1);
-        stack.Push("test");
+    private NonGenericStackHelper _nonGenericStackHelper = new NonGenericStackHelper();
+    private GenericStackHelper<Page> _genericStackHelper = new GenericStackHelper<Page>();
 
-        Assert.Equal(initialStackCount + 2, stack.Count);
+    [Fact]
+    public void GivenNonGenerickStack_WhenPushItem_ThenStackCountIncreases()
+    {
+        var stack = _nonGenericStackHelper.NonGenericStack;
+        var initialStackCount = _nonGenericStackHelper.GetCount();
+        _nonGenericStackHelper.PushItem(1);
+
+        Assert.Equal(initialStackCount + 1, stack.Count);
     }
 
     [Fact]
-    public void WhenPopItem_ThenStackCountDecreases()
+    public void GivenNonGenerickStack_WhenPopItem_ThenStackCountDecreases()
     {
-        var stack = new Stack();
-        stack.Push(1);
-        stack.Push("test");
+        _nonGenericStackHelper.PushItem(1);
+        _nonGenericStackHelper.PushItem("hello");
 
-        var stackCountBeforePop = stack.Count;
-        stack.Pop();
+        var stackCountBeforePop = _nonGenericStackHelper.GetCount();
+        _nonGenericStackHelper.PopItem();
 
-        Assert.Equal(stackCountBeforePop - 1, stack.Count);
+        Assert.Equal(stackCountBeforePop - 1, _nonGenericStackHelper.GetCount());
     }
 
     [Fact]
-    public void WhenPeekItem_ThenStackCountRemainsEqual()
+    public void GivenNonGenerickStack_WhenPeekItem_ThenStackCountRemainsEqual()
     {
-        var stack = new Stack();
-        stack.Push(1);
-        stack.Push("test");
+        _nonGenericStackHelper.PushItem(1);
+        _nonGenericStackHelper.PushItem("hello");
 
-        var stackCountBeforePeek = stack.Count;
-        stack.Peek();
+        var stackCountBeforePeek = _nonGenericStackHelper.GetCount();
+        _nonGenericStackHelper.PeekItem();
 
-        Assert.Equal(stackCountBeforePeek, stack.Count);
+        Assert.Equal(stackCountBeforePeek, _nonGenericStackHelper.GetCount());
     }
 
     [Fact]
-    public void WhenPop_ThenTheItemIsTheLastAdded()
+    public void GivenNonGenerickStack_WhenPop_ThenTheItemIsTheLastAdded()
     {
-        var stack = new Stack();
-        stack.Push(1);
-        stack.Push("test");
+        _nonGenericStackHelper.PushItem(1);
+        _nonGenericStackHelper.PushItem("hello");
 
-        var lastItem = stack.Pop();
+        var lastItem = _nonGenericStackHelper.PopItem();
 
-        Assert.Equal("test", lastItem);
+        Assert.Equal("hello", lastItem);
     }
 
     [Fact]
-    public void WhenPeek_ThenTheItemIsTheLastAdded()
+    public void GivenNonGenerickStack_WhenPeek_ThenTheItemIsTheLastAdded()
     {
-        var stack = new Stack();
-        stack.Push(1);
-        stack.Push("test");
+        _nonGenericStackHelper.PushItem(1);
+        _nonGenericStackHelper.PushItem("hello");
 
-        var lastItem = stack.Peek();
+        var lastItem = _nonGenericStackHelper.PeekItem();
 
-        Assert.Equal("test", lastItem);
-    }
-
-
-    [Fact]
-    public void WhenClear_ThenTheStackIsEmpty()
-    {
-        var stack = new Stack();
-        stack.Push(1);
-        stack.Push("test");
-
-        stack.Clear();
-
-        Assert.Empty(stack);
+        Assert.Equal("hello", lastItem);
     }
 
     [Fact]
-    public void WhenCreateSynchronizedStack_ThenItIsThreadSafe()
+    public void GivenNonGenerickStack_WhenClear_ThenTheStackIsEmpty()
     {
-        var stack = new Stack();
-        var synchronizedStack = Stack.Synchronized(stack);
+        _nonGenericStackHelper.PushItem(1);
+        _nonGenericStackHelper.PushItem("hello");
 
-        Assert.True(synchronizedStack.IsSynchronized);
-        Assert.False(stack.IsSynchronized);
+        _nonGenericStackHelper.ClearStack();
+
+        Assert.Empty(_nonGenericStackHelper.NonGenericStack);
+    }
+
+    [Fact]
+    public void GivenNonGenerickStack_WhenCreateSynchronizedStack_ThenItIsThreadSafe()
+    {
+        var synchronizedStack = _nonGenericStackHelper.CreateSynchonizedStack();
+
+        Assert.False(_nonGenericStackHelper.IsSynchronizedStack(_nonGenericStackHelper.NonGenericStack));
+        Assert.True(_nonGenericStackHelper.IsSynchronizedStack(synchronizedStack));
+    }
+
+    [Fact]
+    public void GivenGenerickStack_WhenPushItem_ThenStackCountIncreases()
+    {
+        var stack = _genericStackHelper.GenericStack;
+        var initialStackCount = _genericStackHelper.GetCount();
+        _genericStackHelper.PushItem(new Page("New page", DateTime.Now));
+
+        Assert.Equal(initialStackCount + 1, stack.Count);
+    }
+
+    [Fact]
+    public void GivenGenerickStack_WhenPopItem_ThenStackCountDecreases()
+    {
+        _genericStackHelper.PushItem(new Page("New page", DateTime.Now));
+        _genericStackHelper.PushItem(new Page("Another page", DateTime.Now));
+
+        var stackCountBeforePop = _genericStackHelper.GetCount();
+        _genericStackHelper.PopItem();
+
+        Assert.Equal(stackCountBeforePop - 1, _genericStackHelper.GetCount());
+    }
+
+    [Fact]
+    public void GivenGenerickStack_WhenPeekItem_ThenStackCountRemainsEqual()
+    {
+        _genericStackHelper.PushItem(new Page("New page", DateTime.Now));
+        _genericStackHelper.PushItem(new Page("Another page", DateTime.Now));
+
+        var stackCountBeforePeek = _genericStackHelper.GetCount();
+        _genericStackHelper.PeekItem();
+
+        Assert.Equal(stackCountBeforePeek, _genericStackHelper.GetCount());
+    }
+
+    [Fact]
+    public void GivenGenerickStack_WhenPop_ThenTheItemIsTheLastAdded()
+    {
+        _genericStackHelper.PushItem(new Page("New page", DateTime.Now));
+        _genericStackHelper.PushItem(new Page("Another page", DateTime.Now));
+
+        var lastItem = _genericStackHelper.PopItem();
+
+        Assert.Equal("Another page", lastItem.Title);
+    }
+
+    [Fact]
+    public void GivenGenerickStack_WhenPeek_ThenTheItemIsTheLastAdded()
+    {
+        _genericStackHelper.PushItem(new Page("New page", DateTime.Now));
+        _genericStackHelper.PushItem(new Page("Another page", DateTime.Now));
+
+        var lastItem = _genericStackHelper.PeekItem();
+
+        Assert.Equal("Another page", lastItem.Title);
+    }
+
+    [Fact]
+    public void GivenGenerickStack_WhenClear_ThenTheStackIsEmpty()
+    {
+        _genericStackHelper.PushItem(new Page("New page", DateTime.Now));
+        _genericStackHelper.PushItem(new Page("Another page", DateTime.Now));
+
+        _genericStackHelper.ClearStack();
+
+        Assert.Empty(_genericStackHelper.GenericStack);
     }
 }

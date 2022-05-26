@@ -1,4 +1,5 @@
 ﻿namespace StackInCSharp;
+
 public class Page
 {
     public Page(string title, DateTime lastUpdateTime)

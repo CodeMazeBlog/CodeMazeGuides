@@ -1,74 +1,64 @@
 ﻿using StackInCSharp;
 using System.Collections;
 
-List<string> letters = new List<string>() { "a", "b", "c" };
-Stack lettersStack = new Stack(letters);
-
-var page1 = new Page("The first visited page", DateTime.Now);
+var page1 = new Page("\nThe first visited page", DateTime.Now);
 var page2 = new Page("The second visited page", DateTime.Now);
 
-Console.WriteLine($"before push lettersStack contains {lettersStack.Count} items");
+var nonGenericStackHelper = new NonGenericStackHelper();
+var genericStackHelper = new GenericStackHelper<Page>();
 
-lettersStack.Push(1);
-lettersStack.Push(page1);
-lettersStack.Push("hello");
+nonGenericStackHelper.PushItem(1);
+nonGenericStackHelper.PushItem(page1);
+nonGenericStackHelper.PushItem("hello");
+nonGenericStackHelper.PrintCount();
 
-Console.WriteLine($"after 3 Push lettersStack contains {lettersStack.Count} items\n");
+genericStackHelper.PushItem(page1);
+genericStackHelper.PushItem(page2);
+genericStackHelper.PrintCount();
 
-Stack<Page> pageStack = new Stack<Page>();
+object? lastAddedItem = nonGenericStackHelper.PeekItem();
+var lastVisitedPage = genericStackHelper.PeekItem();
 
-Console.WriteLine($"Push() METHOD");
-Console.WriteLine($"before Push pageStack contains {pageStack.Count} items");
-
-pageStack.Push(page1);
-pageStack.Push(page2);
-
-Console.WriteLine($"after 2 Push pageStack contains {pageStack.Count} items\n");
-
-
-object? lastAddedItem = lettersStack.Peek();
-var lastVisitedPage = pageStack.Peek();
-
-Console.WriteLine($"Peek() METHOD");
-Console.WriteLine($"the first retrieved element in lettersStack is  {lastAddedItem}");
+Console.WriteLine($"\nPeek() METHOD");
+Console.WriteLine($"the first retrieved element in lettersStack is {lastAddedItem}");
 Console.WriteLine($"the first retrieved element in pageStack is {lastVisitedPage.Title}");
-Console.WriteLine($"lettersStack contains {lettersStack.Count} items");
-Console.WriteLine($"pageStack contains {pageStack.Count} items\n");
 
-var result = pageStack.TryPeek(out var topPage);
+nonGenericStackHelper.PrintCount();
+genericStackHelper.PrintCount();
 
-Console.WriteLine($"TryPeek METHOD");
-Console.WriteLine($"TryPeek returns:  {result}");
-Console.WriteLine($"the title of the topPage in pageStack is:  {topPage?.Title}");
-Console.WriteLine($"pageStack contains {pageStack.Count} items\n");
+bool result = genericStackHelper.TryPeekItem(out var topPage);
 
-lastAddedItem = lettersStack.Pop();
-lastVisitedPage = pageStack.Pop();
+Console.WriteLine($"\nTryPeek METHOD");
+Console.WriteLine($"TryPeek returns: {result}");
+Console.WriteLine($"the title of the topPage in pageStack is: {topPage?.Title}");
+genericStackHelper.PrintCount();
 
-Console.WriteLine($"Pop() METHOD");
-Console.WriteLine($"the first retrieved element in lettersStack is  {lastAddedItem}");
+lastAddedItem = nonGenericStackHelper.PopItem();
+lastVisitedPage = genericStackHelper.PopItem();
+
+Console.WriteLine($"\nPop() METHOD");
+Console.WriteLine($"the first retrieved element in lettersStack is {lastAddedItem}");
 Console.WriteLine($"the first retrieved element in pageStack is {lastVisitedPage.Title}");
-Console.WriteLine($"lettersStack contains {lettersStack.Count} items");
-Console.WriteLine($"pageStack contains {pageStack.Count} items\n");
 
-result = pageStack.TryPop(out topPage);
+nonGenericStackHelper.PrintCount();
+genericStackHelper.PrintCount();
 
-Console.WriteLine($"TryPop() METHOD");
+result = genericStackHelper.TryPopItem(out topPage);
+
+Console.WriteLine($"\nTryPop() METHOD");
 Console.WriteLine($"TryPop returns:  {result}");
 Console.WriteLine($"the title of the topPage in pageStack is: {topPage?.Title}");
-Console.WriteLine($"pageStack contains {pageStack.Count} items\n");
+genericStackHelper.PrintCount();
 
-lettersStack.Clear();
+nonGenericStackHelper.ClearStack();
+genericStackHelper.ClearStack();
 
-Console.WriteLine($"Clear() METHOD");
-Console.WriteLine($"lettersStack contains {lettersStack.Count} items\n");
+Console.WriteLine($"\nClear() METHOD");
+nonGenericStackHelper.PrintCount();
+genericStackHelper.PrintCount();
 
-Stack synchronizedStack = Stack.Synchronized(lettersStack);
+Stack synchronizedStack = nonGenericStackHelper.CreateSynchonizedStack();
 
 Console.WriteLine($"Thread-safety for non-generic case");
-Console.WriteLine($"lettersStack is thread-safe: {lettersStack.IsSynchronized}");
-Console.WriteLine($"synchronizedStack is thread-safe: {synchronizedStack.IsSynchronized}");
-
-
-
-
+Console.WriteLine($"{nameof(nonGenericStackHelper.NonGenericStack)} is thread-safe: {nonGenericStackHelper.IsSynchronizedStack(nonGenericStackHelper.NonGenericStack)}");
+Console.WriteLine($"{nameof(synchronizedStack)} is thread-safe: {nonGenericStackHelper.IsSynchronizedStack(synchronizedStack)}");
