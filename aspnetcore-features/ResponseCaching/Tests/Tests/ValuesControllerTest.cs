@@ -8,7 +8,7 @@ namespace Tests
     public class ValuesControllerTest
     {
         [Fact]
-        public void Test1()
+        public void Get_WhenInvoked_ReturnSuccessStatusCode()
         {
             var controller = new ValuesController();
             var result = controller.Get();

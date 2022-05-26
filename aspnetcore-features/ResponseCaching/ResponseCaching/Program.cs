@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
-ConfigurationManager configuration = builder.Configuration;
 
 builder.Services.AddControllers(options =>
 {
-    var cacheProfiles = configuration
+    var cacheProfiles = builder.Configuration
             .GetSection("CacheProfiles")
             .GetChildren();
 
