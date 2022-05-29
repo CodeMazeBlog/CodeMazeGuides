@@ -12,9 +12,6 @@ namespace BucketSort
             yield return new object[] { CreateSortedArray(200), "Small Sorted" };
             yield return new object[] { CreateSortedArray(2000), "Medium Sorted" };
             yield return new object[] { CreateSortedArray(20000), "Large Sorted" };
-            yield return new object[] { CreateReversedArray(CreateSortedArray(200)), "Small Reversed" };
-            yield return new object[] { CreateReversedArray(CreateSortedArray(2000)), "Medium Reversed" };
-            yield return new object[] { CreateReversedArray(CreateSortedArray(20000)), "Large Reversed" };
         }
 
         [Benchmark]
@@ -151,13 +148,6 @@ namespace BucketSort
 
             for (int i = 0; i < size; i++)
                 array[i] = i;
-
-            return array;
-        }
-
-        public static int[] CreateReversedArray(int[] array)
-        {
-            Array.Reverse(array);
 
             return array;
         }
