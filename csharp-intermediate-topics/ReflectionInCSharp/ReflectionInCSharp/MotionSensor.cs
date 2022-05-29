@@ -20,11 +20,11 @@ public class MotionSensor : IMotionSensor
 
     public string Status => _detections > 0 ? "Red" : "Green";
 
+    public bool IsCritical(int threshold) => _detections >= threshold;
+
     public void Observe() => RaiseMotionDetected("*");
 
     public void Observe(string direction) => RaiseMotionDetected(direction);
-
-    public bool IsCritical(int threshold) => _detections >= threshold;
 
     private void RaiseMotionDetected(string direction)
     {

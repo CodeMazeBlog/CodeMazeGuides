@@ -1,11 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace ReflectionInCSharp.Tests;
 
@@ -37,6 +37,16 @@ public class ReflectionInCSharpUnitTest
         Assert.Equal("ReflectionInCSharp.MotionSensor, ReflectionInCSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", type.AssemblyQualifiedName);
         Assert.True(type.IsClass);
         Assert.False(type.IsValueType);
+    }
+
+    [Fact]
+    public void GivenGenericClass_WhenExploredAsType_ThenProvidesGenericInformation()
+    {
+        var type = typeof(List<string>);
+
+        Assert.True(type.IsGenericType);
+        Assert.Single(type.GenericTypeArguments);
+        Assert.Equal(typeof(string), type.GenericTypeArguments[0]);
     }
 
     [Fact]
@@ -72,13 +82,14 @@ public class ReflectionInCSharpUnitTest
 
         var members = type.GetMembers();
 
-        Assert.Equal(@".ctor : Constructor
+        Assert.Equal(
+@".ctor : Constructor
 .ctor : Constructor
 MotionDetected : Event
 FocalPoint : Field
-Observe : Method
-Observe : Method
 IsCritical : Method
+Observe : Method
+Observe : Method
 Enabled : Property
 Status : Property
 add_MotionDetected : Method
@@ -100,7 +111,8 @@ GetHashCode : Method
 
         var members = type.GetMember(nameof(MotionSensor.Observe))!;
 
-        Assert.Equal(@"Observe : Method
+        Assert.Equal(
+@"Observe : Method
 Observe : Method
 ".ReplaceLineEndings(), PrintInfo(members));
     }
@@ -296,9 +308,24 @@ Observe : Method
         var allTypes = assembly.GetTypes();
         var exportedTypes = assembly.GetExportedTypes();
 
-        Assert.Equal(@"IMotionSensor : TypeInfo
+        Assert.NotEmpty(allTypes);
+        Assert.Equal(
+@"IMotionSensor : TypeInfo
 InternalTracker : TypeInfo
-MotionSensor : TypeInfo".ReplaceLineEndings(), PrintInfo(exportedTypes));
+MotionSensor : TypeInfo
+".ReplaceLineEndings(), PrintInfo(exportedTypes));
+    }
+
+    [Fact]
+    public void GivenAssembly_WhenCallsGetManifestResourceStream_ThenResourceStream()
+    {
+        var assembly = typeof(MotionSensor).Assembly;
+
+        using var stream = assembly.GetManifestResourceStream("ReflectionInCSharp.SampleManifest.txt")!;
+        using var reader = new StreamReader(stream);
+        var content = reader.ReadToEnd();
+
+        Assert.Equal("sample resource content", content);
     }
 
     string PrintInfo<T>(params T[] members) where T : MemberInfo
