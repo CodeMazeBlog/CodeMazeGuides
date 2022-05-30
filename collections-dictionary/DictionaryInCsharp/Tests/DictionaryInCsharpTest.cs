@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using DictionaryInCsharp;
+﻿using DictionaryInCsharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 
 namespace DictionaryInCsharpTest
 {
@@ -27,7 +25,7 @@ namespace DictionaryInCsharpTest
         [TestMethod]
         public void GivenEmptyDictionary_WhenAddingToDictionary_ThenReturnsPopulatedDictionary()
         {
-            Dictionary<int, Product> productsDict = new Dictionary<int, Product>();
+            var productsDict = new Dictionary<int, Product>();
 
             var result = Program.AddToDictionary(productsDict);
 
@@ -38,7 +36,7 @@ namespace DictionaryInCsharpTest
         [TestMethod]
         public void GivenNewKey_WhenAddingToDictionary_ThenAddsElementToDictionary()
         {
-            Dictionary<int, Product> productsDict = new Dictionary<int, Product>();
+            var productsDict = new Dictionary<int, Product>();
 
             var result = Program.AddToDictionary(productsDict);
 
@@ -52,6 +50,7 @@ namespace DictionaryInCsharpTest
         {
             var result = Program.RetrieveDictionaryElements(productsDict);
 
+            Assert.IsNotNull(result);
             Assert.AreEqual(result.ProductId, 112);
             Assert.AreEqual(result.ProductName, "Chair");
         }
