@@ -47,6 +47,29 @@ public class RemoveDuplicateElements
         return arrayWithDuplicateValues[0..size];
     }
 
+    public string[] IterationAndSwappingElements(string[] arrayWithDuplicateValues)
+    {
+        var size = arrayWithDuplicateValues.Length;
+
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = i + 1; j < size; j++)
+            {
+                if (arrayWithDuplicateValues[i] == arrayWithDuplicateValues[j])
+                {
+                    size--;
+                    arrayWithDuplicateValues[j] = arrayWithDuplicateValues[size];
+                    j--;
+                }
+            }
+        }
+
+        return arrayWithDuplicateValues[0..size];
+    }
+
+
+
+
     public string[] IterationWithDictionary(string[] arrayWithDuplicateValues)
     {
         var dic = new Dictionary<string, int>();
@@ -57,6 +80,18 @@ public class RemoveDuplicateElements
         }
 
         return dic.Select(x => x.Key.ToString()).ToArray();
+    }
+
+    public string[] IterationWithDictionaryOpt(string[] arrayWithDuplicateValues)
+    {
+        var dic = new Dictionary<string, int>();
+
+        foreach (var s in arrayWithDuplicateValues)
+        {
+            dic.TryAdd(s, 1);
+        }
+
+        return dic.Keys.ToArray();
     }
 
     public string[] RecursiveMethod(string[] arrayWithDuplicateValues, List<string>? mem = default, int index = 0)
