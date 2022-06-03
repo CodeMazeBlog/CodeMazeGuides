@@ -1,12 +1,10 @@
-﻿using System.Text;
-using Xunit;
-using System.IO;
+﻿using Xunit;
 
 namespace dotnet_console.Tests
 {
     public class ConsoleTests
     {
-        StringWriter _testWriter = new StringWriter();        
+        StringWriter _testWriter = new StringWriter();
 
         [Fact]
         public void HelloWorld_Outputs()
@@ -36,11 +34,11 @@ namespace dotnet_console.Tests
             var lines = sb.ToString().Split(Environment.NewLine, StringSplitOptions.TrimEntries);
             Assert.Equal("Hello, Gavin", lines[1]);
 
-        }        
+        }
 
         public ConsoleTests()
         {
-            Console.SetOut(_testWriter);            
+            Console.SetOut(_testWriter);
         }
     }
 }

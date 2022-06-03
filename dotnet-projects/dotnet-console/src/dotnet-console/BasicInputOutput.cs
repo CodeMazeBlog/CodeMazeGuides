@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace dotnet_console
+﻿namespace dotnet_console
 {
     public static class BasicInputOutput
     {
@@ -17,7 +11,7 @@ namespace dotnet_console
         {
             Console.WriteLine("What is your name?");
             string name = Console.ReadLine();
-            Console.WriteLine($"Hello, {name}");            
+            Console.WriteLine($"Hello, {name}");
         }
 
         public static void ReadSingleCharacter()

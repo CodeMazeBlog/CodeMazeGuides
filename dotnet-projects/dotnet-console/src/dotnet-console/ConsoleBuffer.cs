@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace dotnet_console
+﻿namespace dotnet_console
 {
     public static class ConsoleBuffer
     {
