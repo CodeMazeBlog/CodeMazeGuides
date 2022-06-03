@@ -22,6 +22,5 @@ void Run()
     base64String = _base64Operations.Base64Encoding(sampletext, true);
     Console.WriteLine(string.Format("Base64 string is '{0}' ", base64String));
     Console.WriteLine(string.Format("Decoded value is '{0}' \n", _base64Operations.Base64Decoding(base64String)));
-
     Console.ReadLine();
 }
