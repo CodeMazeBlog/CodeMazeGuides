@@ -59,27 +59,27 @@ public class RemoveDuplicatesHelper<T>
 
     public List<T> UsingIterations()
     {
-        var size = ListWithDuplicates.Count;
+        var n = ListWithDuplicates.Count;
 
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < n; i++)
         {
-            for (int j = i + 1; j < size; j++)
+            for (int j = i + 1; j < n; j++)
             {
                 if (ListWithDuplicates.ElementAt(i).Equals(ListWithDuplicates.ElementAt(j)))
                 {
-                    for (int k = j; k < size - 1; k++)
+                    for (int k = j; k < n - 1; k++)
                     {
                         T item = ListWithDuplicates.ElementAt(k);
                         item = ListWithDuplicates.ElementAt(k + 1);
                     }
                     j--;
-                    size--;
+                    n--;
                 }
             }
 
         }
 
-        var distinctList = ListWithDuplicates.Take(size).ToList();
+        var distinctList = ListWithDuplicates.Take(n).ToList();
 
         return distinctList;
     }
@@ -106,7 +106,7 @@ public class RemoveDuplicatesHelper<T>
 
     public List<T> Sorting()
     {
-        List<T> unique = new List<T>();
+        List<T> listWithoutDuplicates = new List<T>();
         ListWithDuplicates = ListWithDuplicates.OrderBy(x => x).ToList();
 
         T element = default;
@@ -115,11 +115,11 @@ public class RemoveDuplicatesHelper<T>
         {
             if (!result.Equals(element))
             {
-                unique.Add(result);
+                listWithoutDuplicates.Add(result);
                 element = result;
             }
         }
 
-        return unique;
+        return listWithoutDuplicates;
     }
 }
