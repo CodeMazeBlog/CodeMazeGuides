@@ -13,7 +13,7 @@
         {
             for (int i = 2; i < 10; i++)
             {
-                if (i != 0) await Task.Delay(1000);
+                if (i != 0) await Task.Delay(10);
 
                 Console.Clear();
                 Console.ForegroundColor = (ConsoleColor)i;
