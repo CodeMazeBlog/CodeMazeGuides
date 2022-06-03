@@ -7,118 +7,114 @@ using static VerticalSliceArchitecture.Features.Games.UpdateGameForConsole;
 
 namespace VerticalSliceArchitecture.Features.Games
 {
-[Route("api/[controller]")]
-[ApiController]
-public class GamesController : ControllerBase
-{
-    private readonly IMediator _mediator;
-
-    public GamesController(IMediator mediator)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class GamesController : ControllerBase
     {
-        _mediator = mediator;
-    }
+        private readonly IMediator _mediator;
 
-    #region Queries
-    [HttpGet(Name = "GetGamesForConsole")]
-    public async Task<ActionResult<IEnumerable<GameResult>>> GetGamesForConsole(int consoleId)
-    {
-        try
+        public GamesController(IMediator mediator)
         {
-            var query = new GetGamesQuery
+            _mediator = mediator;
+        }
+
+        [HttpGet(Name = "GetGamesForConsole")]
+        public async Task<ActionResult<IEnumerable<GameResult>>> GetGamesForConsole(int consoleId)
+        {
+            try
             {
-                ConsoleId = consoleId
-            };
+                var query = new GetGamesQuery
+                {
+                    ConsoleId = consoleId
+                };
 
-            var result = await _mediator.Send(query);
+                var result = await _mediator.Send(query);
 
-            return Ok(result);
-        }
-        catch (NoConsoleExistsException ex)
-        {
-            return Conflict(new
+                return Ok(result);
+            }
+            catch (NoConsoleExistsException ex)
             {
-                ex.Message
-            });
+                return Conflict(new
+                {
+                    ex.Message
+                });
+            }
         }
-    }
-    #endregion
 
-    #region Commands
-    [HttpPost]
-    public async Task<ActionResult> AddGame(AddGameToConsole.AddGameCommand command)
-    {
-        try
+        [HttpPost]
+        public async Task<ActionResult> AddGame(AddGameToConsole.AddGameCommand command)
         {
-            var result = await _mediator.Send(command);
-
-            return CreatedAtRoute("GetGamesForConsole", new { consoleId = result.ConsoleId }, result);
-        }
-        catch (NoConsoleExistsException ex)
-        {
-            return Conflict(new
+            try
             {
-                ex.Message
-            });
-        }
-    }
+                var result = await _mediator.Send(command);
 
-    [HttpPut]
-    public async Task<ActionResult> UpdateGameForConsole(int consoleId, UpdateGameCommand command)
-    {
-        try
-        {
-            command.ConsoleId = consoleId;
-
-            var result = await _mediator.Send(command);
-
-            return Ok(result);
-        }
-        catch (NoConsoleExistsException ex)
-        {
-            return Conflict(new
+                return CreatedAtRoute("GetGamesForConsole", new { consoleId = result.ConsoleId }, result);
+            }
+            catch (NoConsoleExistsException ex)
             {
-                ex.Message
-            });
+                return Conflict(new
+                {
+                    ex.Message
+                });
+            }
         }
-        catch (NoGameExistsException ex)
-        {
-            return Conflict(new
-            {
-                ex.Message,
-                ex.ConsoleId,
-                ex.GameId
-            });
-        }
-    }
 
-    [HttpDelete]
-    public async Task<ActionResult> RemoveGameFromConsole(int consoleId, RemoveGameCommand command)
-    {
-        try
+        [HttpPut]
+        public async Task<ActionResult> UpdateGameForConsole(int consoleId, UpdateGameCommand command)
         {
-            command.ConsoleId = consoleId;
-
-            await _mediator.Send(command);
-
-            return NoContent();
-        }
-        catch (NoConsoleExistsException ex)
-        {
-            return Conflict(new
+            try
             {
-                ex.Message
-            });
-        }
-        catch (NoGameExistsException ex)
-        {
-            return Conflict(new
+                command.ConsoleId = consoleId;
+
+                var result = await _mediator.Send(command);
+
+                return NoContent();
+            }
+            catch (NoConsoleExistsException ex)
             {
-                ex.Message,
-                ex.ConsoleId,
-                ex.GameId
-            });
+                return Conflict(new
+                {
+                    ex.Message
+                });
+            }
+            catch (NoGameExistsException ex)
+            {
+                return Conflict(new
+                {
+                    ex.Message,
+                    ex.ConsoleId,
+                    ex.GameId
+                });
+            }
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> RemoveGameFromConsole(int consoleId, RemoveGameCommand command)
+        {
+            try
+            {
+                command.ConsoleId = consoleId;
+
+                await _mediator.Send(command);
+
+                return NoContent();
+            }
+            catch (NoConsoleExistsException ex)
+            {
+                return Conflict(new
+                {
+                    ex.Message
+                });
+            }
+            catch (NoGameExistsException ex)
+            {
+                return Conflict(new
+                {
+                    ex.Message,
+                    ex.ConsoleId,
+                    ex.GameId
+                });
+            }
         }
     }
-    #endregion
-}
 }
