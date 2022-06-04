@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Microservice.ShoppingCartApi\Microservice.ShoppingCartApi.csproj" />
     <ProjectReference Include="..\Monolith.ShoppingCartApi\Monolith.ShoppingCartApi.csproj" />
   </ItemGroup>
 
