@@ -1,5 +1,4 @@
-﻿
-using dotnet_console;
+﻿using dotnet_console;
 
 Console.WriteLine("1 - Basic Output");
 Console.WriteLine("2 - Basic Input");
@@ -36,5 +35,3 @@ switch (result.Key)
         BasicInputOutput.ReadSingleCharacter();
         break;
 }
-
-
