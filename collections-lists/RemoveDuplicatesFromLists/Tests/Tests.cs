@@ -18,7 +18,9 @@ public class Tests
     public void WhenUsingDistinct_ThenRemovesDuplicates()
     {
         List<int> response = _helper.UsingDistinct();
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
 
+        Assert.True(unique);
         Assert.Equal(2, response.Count);
     }
 
@@ -26,7 +28,9 @@ public class Tests
     public void WhenUsingGroupBy_ThenRemovesDuplicates()
     {
         List<int> response = _helper.UsingGroupBy();
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
 
+        Assert.True(unique);
         Assert.Equal(2, response.Count);
     }
 
@@ -34,7 +38,9 @@ public class Tests
     public void WhenUsingUnion_ThenRemovesDuplicates()
     {
         List<int> response = _helper.UsingUnion();
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
 
+        Assert.True(unique);
         Assert.Equal(2, response.Count);
     }
 
@@ -42,7 +48,9 @@ public class Tests
     public void WhenUsingHashSet_ThenRemovesDuplicates()
     {
         List<int> response = _helper.UsingHashSet();
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
 
+        Assert.True(unique);
         Assert.Equal(2, response.Count);
     }
 
@@ -50,23 +58,41 @@ public class Tests
     public void WhenUsingDictionary_ThenRemovesDuplicates()
     {
         List<int> response = _helper.UsingHashSet();
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
 
+        Assert.True(unique);
         Assert.Equal(2, response.Count);
     }
 
     [Fact]
-    public void WhenRemoveDuplicatesIterativelly_ThenRemovesDuplicates()
+    public void WhenUsingEmptyList_ThenRemovesDuplicates()
     {
         List<int> response = _helper.UsingEmptyList();
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
 
+        Assert.True(unique);
         Assert.Equal(2, response.Count);
     }
 
     [Fact]
-    public void WhenRemoveDuplicatesManually_ThenRemovesDuplicates()
+    public void WhenUsingIterations_ThenRemovesDuplicates()
     {
         List<int> response = _helper.UsingIterations();
 
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
+
+        Assert.True(unique);
+        Assert.Equal(2, response.Count);
+    }
+
+    [Fact]
+    public void WhenUsingIterationsAndSwapping_ThenRemovesDuplicates()
+    {
+        List<int> response = _helper.UsingIterationsAndSwapping();
+
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
+
+        Assert.True(unique);
         Assert.Equal(2, response.Count);
     }
 
@@ -74,7 +100,9 @@ public class Tests
     public void WhenUsingRecursion_ThenRemovesDuplicates()
     {
         List<int> response = _helper.UsingRecursion();
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
 
+        Assert.True(unique);
         Assert.Equal(2, response.Count);
     }
 
@@ -82,7 +110,9 @@ public class Tests
     public void WhenSorting_ThenRemovesDuplicates()
     {
         List<int> response = _helper.Sorting();
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
 
+        Assert.True(unique);
         Assert.Equal(2, response.Count);
     }
 }

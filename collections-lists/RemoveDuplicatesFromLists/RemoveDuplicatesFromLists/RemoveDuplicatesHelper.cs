@@ -37,7 +37,7 @@ public class RemoveDuplicatesHelper<T>
             dic.TryAdd(s, 1);
         }
 
-        var distinctList = dic.Select(x => x.Key).ToList();
+        var distinctList = dic.Keys.ToList();
 
         return distinctList;
     }
@@ -65,7 +65,7 @@ public class RemoveDuplicatesHelper<T>
         {
             for (int j = i + 1; j < n; j++)
             {
-                if (ListWithDuplicates.ElementAt(i).Equals(ListWithDuplicates.ElementAt(j)))
+                if (ListWithDuplicates.ElementAt(i)!.Equals(ListWithDuplicates.ElementAt(j)))
                 {
                     for (int k = j; k < n - 1; k++)
                     {
@@ -76,12 +76,29 @@ public class RemoveDuplicatesHelper<T>
                     n--;
                 }
             }
-
         }
 
-        var distinctList = ListWithDuplicates.Take(n).ToList();
+        return ListWithDuplicates.Take(n).ToList();
+    }
 
-        return distinctList;
+    public List<T> UsingIterationsAndSwapping()
+    {
+        var size = ListWithDuplicates.Count;
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = i + 1; j < size; j++)
+            {
+                if (ListWithDuplicates.ElementAt(i)!.Equals(ListWithDuplicates.ElementAt(j)))
+                {
+                    size--;
+                    T jThItem = ListWithDuplicates.ElementAt(j);
+                    jThItem = ListWithDuplicates.ElementAt(size);
+                    j--;
+                }
+            }
+        }
+
+        return ListWithDuplicates.Take(size).ToList();
     }
 
     public List<T> UsingRecursion(List<T>? listWithoutDuplicates = default, int index = 0)
@@ -109,11 +126,11 @@ public class RemoveDuplicatesHelper<T>
         List<T> listWithoutDuplicates = new List<T>();
         ListWithDuplicates = ListWithDuplicates.OrderBy(x => x).ToList();
 
-        T element = default;
+        T? element = default;
 
         foreach (T result in ListWithDuplicates)
         {
-            if (!result.Equals(element))
+            if (!result!.Equals(element))
             {
                 listWithoutDuplicates.Add(result);
                 element = result;

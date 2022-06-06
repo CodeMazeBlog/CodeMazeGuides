@@ -61,6 +61,12 @@ public class RemoveDuplicateFromListBenchmarkRunner
         }
 
         [Benchmark]
+        public void IterationsAndSwappingMethod()
+        {
+            _helper.UsingIterationsAndSwapping();
+        }
+
+        [Benchmark]
         public void RecursiveMethod()
         {
             _helper.UsingRecursion();
