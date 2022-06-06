@@ -5,7 +5,8 @@
         public string? Name { get; set; }
         public string? Description { get; set; }
         public int Age { get; set; }
-        public Animal? AnimalParent { get; set; }
-        public Animal? AnimalChild { get; set; }
+        public bool Cloned { get; set; } = false;
+        public bool Clone { get; set; } = false;
+        public abstract Animal CreateClone();
     }
 }

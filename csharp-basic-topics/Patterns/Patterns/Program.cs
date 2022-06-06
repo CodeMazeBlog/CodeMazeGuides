@@ -31,11 +31,8 @@
             Console.WriteLine(isDog);
             message = MatchPositionalPattern(50, 10000);
             Console.WriteLine(message);
-
-            var dog = new Dog();
-            dog.AnimalParent = new Dog();
-            dog.AnimalChild = MatchVarPattern(dog);
-            Console.WriteLine(dog.AnimalChild.GetType());
+            var cloned = MatchVarPattern(new Dog());
+            Console.WriteLine(cloned);
         }
         public static string MatchTypePattern(Animal animal) => animal switch
         {
@@ -71,7 +68,7 @@
 
         public static bool MatchPropertyPattern(Animal animal) => animal is
         {
-            Name: "Dog", Description: "furry animal with tail and paws", AnimalParent: Dog or null
+            Name: "Dog", Description: "furry animal with tail and paws", Cloned: false or true
         };
 
         public static string MatchPositionalPattern(int animalage, int animalweight) => (animalage, animalweight) switch
@@ -82,10 +79,10 @@
             ( >= 21, > 100) => "Unhealthy adult animal weight"
         };
 
-        public static Animal MatchVarPattern(Animal animal) => animal switch
-        {
-            var Parent when Parent is Cat  => new Cat(),
-            var Parent when Parent is Dog => new Dog()
-        };
+        public static bool MatchVarPattern(Animal animal) => 
+            animal.CreateClone() is var clone 
+            && clone.Clone 
+            && animal.Cloned
+            && animal.GetType() == clone.GetType();
     }
 }
