@@ -22,7 +22,17 @@ namespace SpanExample
         [Benchmark]
         public void ParseWithString()
         {
-            string[] hamletlines = hamletText.Split('\n');
+            int indexPrev = 0;
+            int indexCurrent = 0;
+            List<string> substrings = new List<string>();
+            foreach (char c in hamletText)
+            { 
+                if (c == '\n')
+                {
+                    string substring = hamletText.Substring(indexPrev == 0 ? indexPrev : indexPrev + 1, indexCurrent - indexPrev);
+                    substrings.Add(substring);
+                }
+            }
         }
 
         // span func
@@ -37,7 +47,7 @@ namespace SpanExample
             {
                 if (c == '\n')
                 {
-                    var slice = hamletSpan.Slice(indexPrev + 1, indexCurrent - indexPrev);
+                    var slice = hamletSpan.Slice(indexPrev == 0 ? indexPrev : indexPrev + 1, indexCurrent - indexPrev);
                     indexPrev = indexCurrent;
                 }
                 indexCurrent++;
