@@ -6,7 +6,6 @@ namespace SpanInCSharpTests
     [TestClass]
     public class SpanTests
     {
-        //GivenRunningOnWindows_WhenRunningMain_ThenDirectoryDeepCopyOccurs
         [TestMethod]
         public void WhenImplicitlyCastingStringToSpan_ThenSpanIsCreatedSuccessfully()
         {

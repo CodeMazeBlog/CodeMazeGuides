@@ -16,7 +16,7 @@ namespace SpanExample
     [MemoryDiagnoser]
     public class StringSpanBenchmark
     {
-        string hamletText = File.ReadAllText("./hamletActOne.txt");
+        string _hamletText = File.ReadAllText("./hamletActOne.txt");
 
         // string func
         [Benchmark]
@@ -25,11 +25,11 @@ namespace SpanExample
             int indexPrev = 0;
             int indexCurrent = 0;
             List<string> substrings = new List<string>();
-            foreach (char c in hamletText)
+            foreach (char c in _hamletText)
             { 
                 if (c == '\n')
                 {
-                    string substring = hamletText.Substring(indexPrev == 0 ? indexPrev : indexPrev + 1, indexCurrent - indexPrev);
+                    string substring = _hamletText.Substring(indexPrev == 0 ? indexPrev : indexPrev + 1, indexCurrent - indexPrev);
                     substrings.Add(substring);
                 }
             }
@@ -39,7 +39,7 @@ namespace SpanExample
         [Benchmark]
         public void ParseWithSpan()
         {
-            var hamletSpan = hamletText.AsSpan();
+            var hamletSpan = _hamletText.AsSpan();
 
             int indexPrev = 0;
             int indexCurrent = 0;
