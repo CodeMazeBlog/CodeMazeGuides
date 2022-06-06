@@ -43,16 +43,5 @@ namespace SpanExample
                 indexCurrent++;
             }
         }
-
-        private string[] getAllWords(string text)
-        {
-            MatchCollection matches = Regex.Matches(text, @"\b[\w']+\b");
-
-            var words = from m in matches.Cast<Match>()
-                        where !string.IsNullOrEmpty(m.Value)
-                        select m.Value;
-
-            return words.ToArray();
-        }
     }
 }
