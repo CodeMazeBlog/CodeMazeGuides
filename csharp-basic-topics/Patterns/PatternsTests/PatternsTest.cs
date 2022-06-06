@@ -97,8 +97,8 @@ namespace PatternsTests
             try
             {
                 var dog = new Patterns.Dog();
-                var parent = MatchVarPattern(dog);
-                Assert.AreEqual(parent.GetType(), dog.GetType());
+                var cloned = MatchVarPattern(dog);
+                Assert.AreEqual(cloned, true);
             }
             catch (Exception e)
             {
