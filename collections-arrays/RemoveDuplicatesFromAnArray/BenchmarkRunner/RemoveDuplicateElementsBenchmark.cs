@@ -49,11 +49,21 @@ namespace BenchmarkRunner
         }
 
         [Benchmark]
+        public void IterationAndSwapping()
+        {
+            _duplicatesRemoval.IterationAndSwappingElements(_repeatedStrArray);
+        }
+        
+        [Benchmark]
         public void IterationWithDictionary()
         {
             _duplicatesRemoval.IterationWithDictionary(_repeatedStrArray);
         }
-
+        [Benchmark]
+        public void IterationWithDictionaryOpt()
+        {
+            _duplicatesRemoval.IterationWithDictionaryOpt(_repeatedStrArray);
+        }
         [Benchmark]
         public void RecursiveMethod()
         {
