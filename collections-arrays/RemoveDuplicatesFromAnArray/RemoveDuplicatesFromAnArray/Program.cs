@@ -30,8 +30,16 @@ class Program
         Console.WriteLine("Output = {0}", string.Join(",", _duplicatesRemoval.IterationAndShiftingElements(arrayWithDuplicateValues)));
         Console.WriteLine();
 
+        Console.WriteLine("Remove duplicates with for loop by swapping elements in the array");
+        Console.WriteLine("Output = {0}", string.Join(",", _duplicatesRemoval.IterationAndSwappingElements(arrayWithDuplicateValues)));
+        Console.WriteLine();
+
         Console.WriteLine("Remove duplicates with for loop and dictionary");
         Console.WriteLine("Output = {0}", string.Join(",", _duplicatesRemoval.IterationWithDictionary(arrayWithDuplicateValues)));
+        Console.WriteLine();
+
+        Console.WriteLine("Remove duplicates with for loop and dictionary updated");
+        Console.WriteLine("Output = {0}", string.Join(",", _duplicatesRemoval.IterationWithDictionaryOpt(arrayWithDuplicateValues)));
         Console.WriteLine();
 
         Console.WriteLine("Remove duplicates with recursion and extra list");
