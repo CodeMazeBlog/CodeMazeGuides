@@ -65,9 +65,19 @@ public class Tests
     }
 
     [Fact]
-    public void WhenUsingEmptyList_ThenRemovesDuplicates()
+    public void WhenUsingEmptyListWithContains_ThenRemovesDuplicates()
     {
-        List<int> response = _helper.UsingEmptyList();
+        List<int> response = _helper.UsingEmptyListWithContains();
+        var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
+
+        Assert.True(unique);
+        Assert.Equal(2, response.Count);
+    }
+
+    [Fact]
+    public void WhenUsingEmptyListWithContainsAny_ThenRemovesDuplicates()
+    {
+        List<int> response = _helper.UsingEmptyListWithAny();
         var unique = response.GroupBy(p => p).All(g => g.Count() == 1);
 
         Assert.True(unique);

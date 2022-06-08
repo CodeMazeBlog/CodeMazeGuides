@@ -7,7 +7,7 @@ public class RemoveDuplicatesHelper<T>
         ListWithDuplicates = new List<T>();
     }
 
-    public List<T> ListWithDuplicates { get; private set; }
+    public List<T> ListWithDuplicates { get; set; }
 
     public List<T> UsingDistinct()
     {
@@ -42,13 +42,28 @@ public class RemoveDuplicatesHelper<T>
         return distinctList;
     }
 
-    public List<T> UsingEmptyList()
+    public List<T> UsingEmptyListWithContains()
     {
         List<T> listWithoutDuplicates = new List<T>();
 
         foreach (T item in ListWithDuplicates)
         {
             if (!listWithoutDuplicates.Contains(item))
+            {
+                listWithoutDuplicates.Add(item);
+            }
+        }
+
+        return listWithoutDuplicates;
+    }
+
+    public List<T> UsingEmptyListWithAny()
+    {
+        List<T> listWithoutDuplicates = new List<T>();
+
+        foreach (T item in ListWithDuplicates)
+        {
+            if (!listWithoutDuplicates.Any(x => x.Equals(item)))
             {
                 listWithoutDuplicates.Add(item);
             }

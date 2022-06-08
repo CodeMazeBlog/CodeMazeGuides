@@ -11,11 +11,11 @@ public class RemoveDuplicateFromListBenchmarkRunner
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class RemoveDuplicateElementsBenchmark
     {
-        private RemoveDuplicatesHelper<string> _helper = new RemoveDuplicatesHelper<string>();
+        private RemoveDuplicatesHelper<int> _helper = new RemoveDuplicatesHelper<int>();
 
         public RemoveDuplicateElementsBenchmark()
         {
-            _helper.ListWithDuplicates.AddRange(Enumerable.Repeat("it", 50).Concat(Enumerable.Repeat("jump", 80)).Concat(Enumerable.Repeat("it", 70)).ToList());
+            _helper.ListWithDuplicates.AddRange(Enumerable.Repeat(1, 50).Concat(Enumerable.Repeat(2, 80)).Concat(Enumerable.Repeat(3, 70)).ToList());
         }
 
         [Benchmark]
@@ -49,9 +49,15 @@ public class RemoveDuplicateFromListBenchmarkRunner
         }
 
         [Benchmark]
-        public void EmptyListMethod()
+        public void EmptyListWithContainsMethod()
         {
-            _helper.UsingEmptyList();
+            _helper.UsingEmptyListWithContains();
+        }
+
+        [Benchmark]
+        public void EmptyListWithAnyMethod()
+        {
+            _helper.UsingEmptyListWithAny();
         }
 
         [Benchmark]
