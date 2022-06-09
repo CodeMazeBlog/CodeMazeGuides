@@ -39,7 +39,13 @@ public class RemoveDuplicateFromListBenchmarkRunner
         [Benchmark]
         public void HashSetMethod()
         {
-            _helper.UsingHashSet();
+            _helper.ConvertingToHashSet();
+        }
+
+        [Benchmark]
+        public void InitializingHashetMethod()
+        {
+            _helper.InitializingAHashSet();
         }
 
         [Benchmark]
@@ -61,9 +67,9 @@ public class RemoveDuplicateFromListBenchmarkRunner
         }
 
         [Benchmark]
-        public void IterationsMethod()
+        public void IterationsAndShiftingMethod()
         {
-            _helper.UsingIterations();
+            _helper.UsingIterationsAndShifting();
         }
 
         [Benchmark]

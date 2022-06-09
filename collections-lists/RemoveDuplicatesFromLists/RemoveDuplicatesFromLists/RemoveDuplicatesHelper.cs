@@ -24,9 +24,14 @@ public class RemoveDuplicatesHelper<T>
         return ListWithDuplicates.Union(ListWithDuplicates).ToList();
     }
 
-    public List<T> UsingHashSet()
+    public List<T> ConvertingToHashSet()
     {
         return ListWithDuplicates.ToHashSet().ToList();
+    }
+
+    public List<T> InitializingAHashSet()
+    {
+        return new HashSet<T>(ListWithDuplicates).ToList();
     }
 
     public List<T> UsingDictionary()
@@ -44,7 +49,7 @@ public class RemoveDuplicatesHelper<T>
 
     public List<T> UsingEmptyListWithContains()
     {
-        List<T> listWithoutDuplicates = new List<T>();
+        var listWithoutDuplicates = new List<T>();
 
         foreach (T item in ListWithDuplicates)
         {
@@ -59,7 +64,7 @@ public class RemoveDuplicatesHelper<T>
 
     public List<T> UsingEmptyListWithAny()
     {
-        List<T> listWithoutDuplicates = new List<T>();
+        var listWithoutDuplicates = new List<T>();
 
         foreach (T item in ListWithDuplicates)
         {
@@ -72,7 +77,7 @@ public class RemoveDuplicatesHelper<T>
         return listWithoutDuplicates;
     }
 
-    public List<T> UsingIterations()
+    public List<T> UsingIterationsAndShifting()
     {
         var n = ListWithDuplicates.Count;
 
@@ -138,11 +143,9 @@ public class RemoveDuplicatesHelper<T>
 
     public List<T> Sorting()
     {
-        List<T> listWithoutDuplicates = new List<T>();
+        var listWithoutDuplicates = new List<T>();
         ListWithDuplicates = ListWithDuplicates.OrderBy(x => x).ToList();
-
         T? element = default;
-
         foreach (T result in ListWithDuplicates)
         {
             if (!result!.Equals(element))
