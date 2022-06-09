@@ -36,7 +36,7 @@ public class CSConstructorsTests
 
             var consoleString = sw.ToString().Trim();
 
-            var result = consoleString.Contains("Parameterized Constructor Invoked");
+            var result = consoleString.Contains("Constructor are chained and Invoked");
 
             Assert.IsTrue(result);
         }
@@ -72,7 +72,7 @@ public class CSConstructorsTests
 
             var consoleString = sw.ToString().Trim();
 
-            var result = consoleString.Contains("Parameterized Constructor Invoked");
+            var result = consoleString.Contains("Constructor are chained and Invoked");
 
             Assert.IsTrue(result);
         }
