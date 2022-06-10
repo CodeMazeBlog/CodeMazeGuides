@@ -15,7 +15,7 @@ namespace MultipleAuthenticationSchemes.Controllers;
 public class AuthController : ControllerBase
 {
     [HttpPost("loginDefaultJwt")]
-    public IActionResult LoginDefaultJwt(User user)
+    public IActionResult LoginDefaultJwt([FromBody] User user)
     {
         var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@1"));
         var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -34,7 +34,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("loginSecondJwt")]
-    public IActionResult LoginSecondJwt(User user)
+    public IActionResult LoginSecondJwt([FromBody] User user)
     {
         var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@2"));
         var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
