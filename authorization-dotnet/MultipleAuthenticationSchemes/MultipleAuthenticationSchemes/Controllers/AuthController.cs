@@ -52,12 +52,11 @@ public class AuthController : ControllerBase
         return Ok(new { Token = tokenString });
     }
 
-    [Authorize]
     [HttpPost("loginCookie")]
-    public async Task<IActionResult> LoginCookie()
+    public async Task<IActionResult> LoginCookie([FromBody] User user)
     {
         var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
-        identity.AddClaim(new Claim(ClaimTypes.Name, "Already authorized author with a cookie"));
+        identity.AddClaim(new Claim(ClaimTypes.Name, user.Username ?? string.Empty));
         var principal = new ClaimsPrincipal(identity);
 
         await HttpContext.SignInAsync(

@@ -44,20 +44,14 @@ namespace Tests
         }
 
         [Fact]
-        public async Task GivenLoggedInUser_WhenLoginCookie_ThenReturnsOk()
+        public async Task WhenLoginCookie_ThenReturnsOk()
         {
-            // Given
-            var loginJwtResponse = await _httpClient.PostAsync("/auth/loginDefaultJwt", 
+            // When
+            var response = await _httpClient.PostAsync("/auth/loginCookie", 
                 Helpers.ContentHelper.GetStringContent(new
                 {
-                    Username = "Author with default jwt scheme",
+                    Username = "Author with cookie scheme"
                 }));
-
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", await Helpers.GetToken(loginJwtResponse));
-
-            // When
-            var response = await _httpClient.PostAsync("/auth/loginCookie", null);
 
             // Then
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);

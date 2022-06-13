@@ -19,16 +19,12 @@ namespace Tests
         public async Task GivenLoggedInUserWithCookie_WhenGetWithCookie_ThenResultIsOk()
         {
             // Given
-            var loginJwtResponse = await _httpClient.PostAsync("/auth/loginDefaultJwt",
-                Helpers.ContentHelper.GetStringContent(new
-                {
-                    Username = "Author with default jwt scheme",
-                }));
+            var responseCookie = await _httpClient.PostAsync("/auth/loginCookie",
+            Helpers.ContentHelper.GetStringContent(new
+            {
+                Username = "Author with cookie scheme",
+            }));
 
-            _httpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", await Helpers.GetToken(loginJwtResponse));
-
-            var responseCookie = await _httpClient.PostAsync("/auth/loginCookie", null);
             var cookie = responseCookie.Headers.GetValues("Set-Cookie").FirstOrDefault()!.Split("=")[1];
 
             _httpClient.DefaultRequestHeaders.Add(".AspNetCore.Cookies", cookie);
