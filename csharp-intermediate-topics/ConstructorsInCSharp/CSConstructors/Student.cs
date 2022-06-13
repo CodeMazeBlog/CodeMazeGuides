@@ -3,17 +3,17 @@ namespace CSConstructors
 {
 	public class Student: Person
 	{
-		private string department;
+		private string _department;
 
 		public Student(string name, int age, string department):base(name, age)
 		{
-			this.department = department;
+			_department = department;
 		}
 
-		public void print()
+		public void Print()
 		{
-			base.display();
-			Console.WriteLine("department is:" + department);
+			base.Display();
+			Console.WriteLine("department is:" + _department);
 		}
 	}
 }

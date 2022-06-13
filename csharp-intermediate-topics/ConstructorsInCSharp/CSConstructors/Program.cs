@@ -6,21 +6,21 @@ namespace CSConstructors
     {
         public static void Main(string[] args)
         {
-            Person person1 = new Person();
-            person1.display();
+            var person1 = new Person();
+            person1.Display();
 
-            Person person2 = new Person("Mahesh");
-            person2.display();
+            var person2 = new Person("John Doe");
+            person2.Display();
 
-            Person copyPerson = new Person(person2);
-            copyPerson.display();
+            var copyPerson = new Person(person2);
+            copyPerson.Display();
 
-            Student student = new Student("Mahesh", 30, "IT");
-            student.print();
+            var student = new Student("John Doe", 30, "IT");
+            student.Print();
 
             //This will throw error
             //SingletonClass singletonClass = new SingletonClass();
-            SingletonClass singletonClass = SingletonClass.getInstance();
+            var singletonClass = SingletonClass.getInstance();
         }
     }
 }
