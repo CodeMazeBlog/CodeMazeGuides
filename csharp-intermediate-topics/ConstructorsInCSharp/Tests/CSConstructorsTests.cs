@@ -9,7 +9,7 @@ namespace Tests;
 public class CSConstructorsTests
 {
     [TestMethod]
-    public void GivenEmptyConstructor_ShouldInvokeDefaultConstructor_OnIntialize()
+    public void WhenGivenEmptyConstructorOnIntialize_ThenInvokeDefaultConstructor()
     {
         using (var sw = new StringWriter())
         {
@@ -26,7 +26,7 @@ public class CSConstructorsTests
     }
 
     [TestMethod]
-    public void GivenNameAndAge_ShouldInvokeParameterizedConstructor_OnIntialize()
+    public void WhenGivenNameAndAgeOnIntialize_ThenInvokeParameterizedConstructor()
     {
         using(var sw = new StringWriter())
         {
@@ -43,7 +43,7 @@ public class CSConstructorsTests
     }
 
     [TestMethod]
-    public void GivenExistingPerson_ShouldInvokeCopyConstructor_OnIntialize()
+    public void WhenGivenExistingPerson_ThenInvokeCopyConstructor_OnIntialize()
     {
         Person person = new Person("Test", 10);
 
@@ -62,7 +62,7 @@ public class CSConstructorsTests
     }
 
     [TestMethod]
-    public void GivenStudent_ShouldInvokeBaseConstructor_OnIntialize()
+    public void WhenGivenStudent_ShouldInvokeBaseConstructor_OnIntialize()
     {
         using (var sw = new StringWriter())
         {
