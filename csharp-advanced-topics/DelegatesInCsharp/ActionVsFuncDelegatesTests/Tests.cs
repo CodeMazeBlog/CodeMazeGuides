@@ -27,5 +27,12 @@ namespace ActionVsFuncDelegatesTests
 
             Assert.AreEqual(100, getMaxNumber());
         }
+        [TestMethod]
+        public void whenTwoDifferentIntegersIsSent_DeletagesReturnTheMaxOne2()
+        {
+            Func<int, int, int> sum = (x, y) => x + y;
+
+            Assert.AreEqual(15, sum.Invoke(10, 5));
+        }
     }
 }
