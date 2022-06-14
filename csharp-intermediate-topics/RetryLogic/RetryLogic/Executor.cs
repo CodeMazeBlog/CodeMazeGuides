@@ -6,7 +6,7 @@ namespace RetryLogic
     {
         public static void Execute(Action action, int numberOfRetries)
         {
-            int tries = 0;
+            var tries = 0;
 
             while (tries <= numberOfRetries)
             {
@@ -21,13 +21,14 @@ namespace RetryLogic
                 }
             }
 
-            throw new RetryException($"Error after {numberOfRetries + 1 } tries");
+            throw new RetryException($"Error after {tries} tries");
         }
 
         public static TResult? Execute<TResult>(Func<TResult> func, int numberOfRetries)
         {
-            int i = 0;
-            while (i <= numberOfRetries)
+            var tries = 0;
+
+            while (tries <= numberOfRetries)
             {
                 try
                 {
@@ -35,11 +36,11 @@ namespace RetryLogic
                 }
                 catch
                 {
-                    i++;
+                    tries++;
                 }
             }
 
-            throw new RetryException($"Error after {numberOfRetries + 1 } tries");
+            throw new RetryException($"Error after {tries} tries");
         }
     }
 }

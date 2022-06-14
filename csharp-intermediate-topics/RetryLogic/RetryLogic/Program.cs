@@ -37,12 +37,12 @@ public class Program
         const int forbiddenNumber = 3;
 
         Console.Write("Write a number: ");
-        int number = int.Parse(Console.ReadLine() ?? "0");
+        var number = int.Parse(Console.ReadLine() ?? "0");
 
         if (number == forbiddenNumber)
             throw new ArgumentException($"The generated number must to be different from {forbiddenNumber}");
 
-        Console.Write("Equal numbers");
+        Console.Write("Not Equal");
     }
 
     public static int SecondSimulationMethod()
@@ -50,12 +50,12 @@ public class Program
         const int forbiddenNumber = 3;
 
         Console.Write("Write a number: ");
-        int number = int.Parse(Console.ReadLine() ?? "0");
+        var number = int.Parse(Console.ReadLine() ?? "0");
 
         if (number == forbiddenNumber)
             throw new ArgumentException($"The generated number must to be different from {forbiddenNumber}");
 
-        Console.Write("Equal numbers");
+        Console.Write("Not Equal");
 
         return number;
     }

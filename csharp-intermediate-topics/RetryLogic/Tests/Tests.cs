@@ -46,27 +46,27 @@ namespace Tests
             var result = Executor.Execute(() => SecondSimulationMethodOfTest(5, 10), 3);
 
             Assert.AreNotEqual(result, 0);
-            Assert.AreEqual("Equal number", _consoleOutput.ToString());
+            Assert.AreEqual("Not Equal", _consoleOutput.ToString());
         }
 
         public static void FirstSiulationMethodOfTest(int min, int max, int forbiddenNumber = 0)
         {
-            int number = new Random().Next(min, max);
+            var number = new Random().Next(min, max);
 
             if (number == forbiddenNumber)
                 throw new ArgumentException($"The generated number must to be different from {forbiddenNumber}");
 
-            Console.Write("Equal number!");
+            Console.Write("Not Equal");
         }
 
         public static int SecondSimulationMethodOfTest(int min, int max, int forbiddenNumber = 0)
         {
-            int number = new Random().Next(min, max);
+            var number = new Random().Next(min, max);
 
             if (number == forbiddenNumber)
                 throw new ArgumentException($"The generated number must to be different from {forbiddenNumber}");
 
-            Console.Write("Equal number");
+            Console.Write("Not Equal");
 
             return number;
         }
