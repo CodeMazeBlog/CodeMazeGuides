@@ -12,24 +12,24 @@ namespace ActionVsFuncDelegates
             #region Action
 
             // Non-Generic Action delegate
-            Action DoAction = new Action(GetCompanyName);
-            DoAction();
+            var doAction = new Action(GetCompanyName);
+            doAction();
 
             // Generic Action delegate
-            Action<string> Display = new Action<string>(DisplayMessage);
-            Display.Invoke("Code Maze is one of the best Website to read relevant articles.");
+            var display = new Action<string>(DisplayMessage);
+            display.Invoke("Code Maze is one of the best Website to read relevant articles.");
 
             //Action with Anonymous method
-            Action<int> IncreaseCount = delegate (int count)
+            var increaseCount = delegate (int count)
             {
                 count++;
                 Console.WriteLine("Count = " + count);
             };
-            IncreaseCount.Invoke(5);
+            increaseCount.Invoke(5);
 
             // Action with Lambda Expression
-            Action<int> Increment = (incrementedN) => incrementedN++;
-            Increment.Invoke(10);
+            Action<int> increment = (incrementedN) => incrementedN++;
+            increment.Invoke(10);
 
             #endregion
 
@@ -44,8 +44,8 @@ namespace ActionVsFuncDelegates
             Console.WriteLine("Max number: " + getMaxNumber());
 
             // Func with Lambda Expression
-            Func<int, int, int> Sum = (x, y) => x + y;
-            Console.WriteLine("Sum: " + Sum.Invoke(10, 5));
+            Func<int, int, int> sum = (x, y) => x + y;
+            Console.WriteLine("Sum: " + sum.Invoke(10, 5));
             
             #endregion
         }
