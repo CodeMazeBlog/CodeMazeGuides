@@ -40,7 +40,7 @@ public class Program
         var number = int.Parse(Console.ReadLine() ?? "0");
 
         if (number == forbiddenNumber)
-            throw new ArgumentException($"The generated number must to be different from {forbiddenNumber}");
+            throw new ArgumentException($"The generated number must be different from {forbiddenNumber}");
 
         Console.Write("Not Equal");
     }
@@ -53,7 +53,7 @@ public class Program
         var number = int.Parse(Console.ReadLine() ?? "0");
 
         if (number == forbiddenNumber)
-            throw new ArgumentException($"The generated number must to be different from {forbiddenNumber}");
+            throw new ArgumentException($"The generated number must be different from {forbiddenNumber}");
 
         Console.Write("Not Equal");
 

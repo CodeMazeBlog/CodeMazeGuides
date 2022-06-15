@@ -54,7 +54,7 @@ namespace Tests
             var number = new Random().Next(min, max);
 
             if (number == forbiddenNumber)
-                throw new ArgumentException($"The generated number must to be different from {forbiddenNumber}");
+                throw new ArgumentException($"The generated number must be different from {forbiddenNumber}");
 
             Console.Write("Not Equal");
         }
@@ -64,7 +64,7 @@ namespace Tests
             var number = new Random().Next(min, max);
 
             if (number == forbiddenNumber)
-                throw new ArgumentException($"The generated number must to be different from {forbiddenNumber}");
+                throw new ArgumentException($"The generated number must be different from {forbiddenNumber}");
 
             Console.Write("Not Equal");
 
