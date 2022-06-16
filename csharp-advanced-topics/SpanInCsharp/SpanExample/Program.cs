@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Text.RegularExpressions;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
 
 namespace SpanExample
@@ -14,6 +12,7 @@ namespace SpanExample
     }
 
     [MemoryDiagnoser]
+    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
     public class StringSpanBenchmark
     {
         string _hamletText = File.ReadAllText("./hamletActOne.txt");
@@ -22,16 +21,22 @@ namespace SpanExample
         [Benchmark]
         public void ParseWithString()
         {
-            int indexPrev = 0;
-            int indexCurrent = 0;
-            List<string> substrings = new List<string>();
+            var indexPrev = 0;
+            var indexCurrent = 0;
+            var substrings = new List<string>();
             foreach (char c in _hamletText)
-            { 
+            {
                 if (c == '\n')
                 {
-                    string substring = _hamletText.Substring(indexPrev == 0 ? indexPrev : indexPrev + 1, indexCurrent - indexPrev);
-                    substrings.Add(substring);
+                    indexCurrent += 1;
+                    substrings.Add(
+                        _hamletText.Substring(
+                            indexPrev, 
+                            indexCurrent - indexPrev));
+                    indexPrev = indexCurrent;
+                    continue;
                 }
+                indexCurrent++;
             }
         }
 
@@ -41,14 +46,18 @@ namespace SpanExample
         {
             var hamletSpan = _hamletText.AsSpan();
 
-            int indexPrev = 0;
-            int indexCurrent = 0;
+            var indexPrev = 0;
+            var indexCurrent = 0;
             foreach (char c in hamletSpan)
             {
                 if (c == '\n')
                 {
-                    var slice = hamletSpan.Slice(indexPrev == 0 ? indexPrev : indexPrev + 1, indexCurrent - indexPrev);
+                    indexCurrent += 1;
+                    var slice = hamletSpan.Slice(
+                        indexPrev,
+                        indexCurrent - indexPrev);
                     indexPrev = indexCurrent;
+                    continue;
                 }
                 indexCurrent++;
             }

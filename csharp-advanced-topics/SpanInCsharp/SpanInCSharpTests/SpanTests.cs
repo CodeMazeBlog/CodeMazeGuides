@@ -9,7 +9,7 @@ namespace SpanInCSharpTests
         [TestMethod]
         public void WhenImplicitlyCastingStringToSpan_ThenSpanIsCreatedSuccessfully()
         {
-            string str = "this is a string!";
+            var str = "this is a string!";
 
             ReadOnlySpan<char> strSpan = str;
 
@@ -22,7 +22,7 @@ namespace SpanInCSharpTests
         [TestMethod]
         public void WhenExplicitlyCastingStringToSpan_ThenSpanIsCreatedSuccessfully()
         {
-            string str = "this is a string!";
+            var str = "this is a string!";
 
             ReadOnlySpan<char> strSpan = str.AsSpan();
 
