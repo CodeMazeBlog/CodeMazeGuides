@@ -22,5 +22,8 @@ public class Program
 
         await AsyncLambdaExpressions.AsyncExpressionLambda();
         await AsyncLambdaExpressions.AsyncStatementLambda();
+
+        var lambdaExpressionsInEvents = new LambdaExpressionsInEvents();
+        lambdaExpressionsInEvents.InvokeEvent();
     }
 }
