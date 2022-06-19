@@ -2,7 +2,6 @@
 
 public class RangeExamples
 {
-   
     public static string[] GetAll(string[] arr)
     {
         return arr[..];
@@ -13,6 +12,7 @@ public class RangeExamples
         var start = new Index(0);
         var end = new Index(2);
         var range = new Range(start, end);
+
         return arr[range];
     }
 
@@ -30,5 +30,4 @@ public class RangeExamples
     {
         return arr[3..6];
     }
-
 }

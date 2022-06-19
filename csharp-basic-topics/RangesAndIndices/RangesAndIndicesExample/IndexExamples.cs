@@ -5,12 +5,14 @@ public class IndexExamples
     public static string GetFirst(string[] names)
     {
         var index = new Index(0);
+
         return names[index];
     }
 
     public static string GetLastMethod1(string[] names)
     {
         var index = new Index(1, true);
+
         return names[index];
     }
 
@@ -23,5 +25,4 @@ public class IndexExamples
     {
         return names[^2];
     }
-
 }

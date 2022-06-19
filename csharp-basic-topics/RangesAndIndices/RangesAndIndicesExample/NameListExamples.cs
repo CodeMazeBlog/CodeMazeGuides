@@ -2,7 +2,6 @@
 
 public class NameListExamples
 {
-
     public static List<string> GetAll(NameList names)
     {
         return names[..];
@@ -13,6 +12,7 @@ public class NameListExamples
         var start = new Index(0);
         var end = new Index(2);
         var range = new Range(start, end);
+
         return names[range];
     }
 
@@ -35,5 +35,4 @@ public class NameListExamples
     {
         return names[^1];
     }
-
 }

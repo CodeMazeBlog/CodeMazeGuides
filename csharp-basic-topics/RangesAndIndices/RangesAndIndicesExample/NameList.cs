@@ -4,7 +4,6 @@ namespace RangesAndIndicesExample;
 
 public class NameList : IEnumerable<string>
 {
-
     private List<string> _names;
 
     public NameList()

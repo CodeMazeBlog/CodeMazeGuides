@@ -23,9 +23,7 @@ internal class TestData : IEnumerable<object[]>
     }
 
     IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
-
 }
-
 
 internal class NameListTestData : IEnumerable<object[]>
 {
@@ -47,6 +45,4 @@ internal class NameListTestData : IEnumerable<object[]>
     }
 
     IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
-
 }
-
