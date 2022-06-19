@@ -54,7 +54,6 @@ namespace Tests
         public void givenFuncDelegate_whenFuncDelegateIsPassedAsParameter_DelegateReturnsTheExpectedValueBasedOnTheDiscountParameter(bool isDiscoundApplied)
         {
             var movieOrder = GetTestMovieOrder();
-
             var calculatedPrice = movieOrder.CalculateTotalPrice(CalculateOrderPrice, isDiscoundApplied);
 
             if (isDiscoundApplied)
@@ -82,7 +81,6 @@ namespace Tests
         private MovieOrder GetTestMovieOrder()
         {
             List<Ticket> ticketList = GetTestTicketList();
-
             return new MovieOrder(ticketList, "The Shawshank Redemption");
         }
 

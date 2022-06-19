@@ -2,15 +2,15 @@
 
 //Main program execution
 
-static void GetCurrentDateTime() => Console.WriteLine(DateTime.Now);
+static void WriteCurrentDateTime() => Console.WriteLine(DateTime.Now);
 
 static string GetGreetingsMessage(string name, int age) 
 {
     return $"Hello, my name is {name} and I'm {age} years old!";
 }
 
-Action getCurrentDateTimeDelegate = GetCurrentDateTime;
-getCurrentDateTimeDelegate.Invoke();
+Action writeCurrentDateTimeDelegate = WriteCurrentDateTime;
+writeCurrentDateTimeDelegate.Invoke();
 
 Func<string, int, string> getGreetingsMessageDelegate = GetGreetingsMessage;
 var greetingsMessage = getGreetingsMessageDelegate("John", 26);
@@ -25,9 +25,9 @@ List<Ticket> ticketList = new List<Ticket>
 
 var movieOrder = new MovieOrder(ticketList, "The Godfather");
 
-static double CalculateOrderPrice(List<Ticket> ticketList, bool isDiscountAplied)
+static double CalculateOrderPrice(List<Ticket> tickets, bool isDiscountAplied)
 {
-    var totalPrice = ticketList.Sum(ticket => ticket.Price);
+    var totalPrice = tickets.Sum(ticket => ticket.Price);
 
     if (isDiscountAplied)
     {
