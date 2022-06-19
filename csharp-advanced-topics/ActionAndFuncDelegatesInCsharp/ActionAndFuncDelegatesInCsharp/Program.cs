@@ -9,22 +9,6 @@ static string GetGreetingsMessage(string name, int age)
     return $"Hello, my name is {name} and I'm {age} years old!";
 }
 
-Action writeCurrentDateTimeDelegate = WriteCurrentDateTime;
-writeCurrentDateTimeDelegate.Invoke();
-
-Func<string, int, string> getGreetingsMessageDelegate = GetGreetingsMessage;
-var greetingsMessage = getGreetingsMessageDelegate("John", 26);
-Console.WriteLine(greetingsMessage);
-
-List<Ticket> ticketList = new List<Ticket>
-{
-    new Ticket(50),
-    new Ticket(50),
-    new Ticket(35)
-};
-
-var movieOrder = new MovieOrder(ticketList, "The Godfather");
-
 static double CalculateOrderPrice(List<Ticket> tickets, bool isDiscountAplied)
 {
     var totalPrice = tickets.Sum(ticket => ticket.Price);
@@ -41,6 +25,22 @@ static void WriteToConsole(string message)
 {
     Console.WriteLine(message);
 }
+
+Action writeCurrentDateTimeDelegate = WriteCurrentDateTime;
+writeCurrentDateTimeDelegate.Invoke();
+
+Func<string, int, string> getGreetingsMessageDelegate = GetGreetingsMessage;
+var greetingsMessage = getGreetingsMessageDelegate("John", 26);
+Console.WriteLine(greetingsMessage);
+
+List<Ticket> ticketList = new List<Ticket>
+{
+    new Ticket(50),
+    new Ticket(50),
+    new Ticket(35)
+};
+
+var movieOrder = new MovieOrder(ticketList, "The Godfather");
 
 var calculatedPrice = movieOrder.CalculateTotalPrice(CalculateOrderPrice, true);
 
