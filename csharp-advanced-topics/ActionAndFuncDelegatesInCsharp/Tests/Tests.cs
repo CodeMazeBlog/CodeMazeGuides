@@ -31,9 +31,8 @@ namespace Tests
             Console.WriteLine(message);
         }
 
-
         [Fact]
-        public void givenActionDelegate_whenCurrentDateTimeIsWritten_DelegateInvocationListNotEmpty()
+        public void whenCurrentDateTimeIsWritten_DelegateInvocationListNotEmpty()
         {
             Action writeCurrentDateTimeDelegate = WriteCurrentDateTime;
             var invocationList = writeCurrentDateTimeDelegate.GetInvocationList();
@@ -41,7 +40,7 @@ namespace Tests
         }
 
         [Fact]
-        public void givenFuncDelegate_whenNameAndAgeAreSet_DelegateReturnsTheExpectedStringValue()
+        public void whenNameAndAgeAreSet_DelegateReturnsTheExpectedStringValue()
         {
             Func<string, int, string> getGreetingsMessageDelegate = GetGreetingsMessage;
             var result = getGreetingsMessageDelegate("John", 26);
@@ -51,7 +50,7 @@ namespace Tests
         [Theory]
         [InlineData(true)]
         [InlineData(false)]
-        public void givenFuncDelegate_whenFuncDelegateIsPassedAsParameter_DelegateReturnsTheExpectedValueBasedOnTheDiscountParameter(bool isDiscoundApplied)
+        public void whenFuncDelegateIsPassedAsParameter_DelegateReturnsTheExpectedValueBasedOnTheDiscountParameter(bool isDiscoundApplied)
         {
             var movieOrder = GetTestMovieOrder();
             var calculatedPrice = movieOrder.CalculateTotalPrice(CalculateOrderPrice, isDiscoundApplied);
@@ -67,7 +66,7 @@ namespace Tests
         }
 
         [Fact]
-        public void givenActionDelegate_whenActionDelegateIsPassedAsParameter_DelegateInvocationListNotEmpty()
+        public void whenActionDelegateIsPassedAsParameter_DelegateInvocationListNotEmpty()
         {
             var movieOrder = GetTestMovieOrder();
             Action<string> writeToConsoleDelegate = WriteToConsole;
