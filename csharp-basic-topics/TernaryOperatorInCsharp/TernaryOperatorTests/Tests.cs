@@ -7,7 +7,7 @@ namespace TernaryOperatorTests
     public class Tests
     {
         [TestMethod]
-        public void whenYisGreaterThanX_thenTernaryOperatorReturnsString()
+        public void WhenYisGreaterThanX_ThenTernaryOperatorReturnsString()
         {
             int x = 5, y = 10;
 
@@ -23,8 +23,9 @@ namespace TernaryOperatorTests
             string result = (x > y) ? "x is greater than y" : "y is greater than x";
             Assert.AreEqual("y is greater than x", result);
         }
+
         [TestMethod]
-        public void whenAisEqualToB_thenNestedTernaryOperatorReturnsString()
+        public void WhenAisEqualToB_ThenNestedTernaryOperatorReturnsString()
         {
             int a = 10, b = 10;
 
@@ -44,8 +45,9 @@ namespace TernaryOperatorTests
             string comparison = (a > b) ? "a is greater than b" : (a < b) ? "b is greater than a" : "a is equal to b";
             Assert.AreEqual("a is equal to b", comparison);
         }
+
         [TestMethod]
-        public void whenStatementExecuted_thenCheckTheValueOfArrayChangedOrNot1()
+        public void WhenStatementExecuted_ThenCheckTheValueOfArrayChangedOrNot1()
         {
             var array1 = new int[] { 1, 2, 3, 4, 5 };
             int number1 = 100;
@@ -54,8 +56,9 @@ namespace TernaryOperatorTests
             value1 = 0;
             Assert.AreEqual(3, array1[2]);
         }
+
         [TestMethod]
-        public void whenStatementExecuted_thenCheckTheValueOfArrayChangedOrNot2()
+        public void WhenStatementExecuted_ThenCheckTheValueOfArrayChangedOrNot2()
         {
             var array2 = new int[] { 1, 2, 3, 4, 5 };
             int number2 = 100;

@@ -1,5 +1,8 @@
 ﻿
-int x = 5, y = 10;
+#region nested ternary operator vs if-else statement
+
+var x = 5;
+var y = 10;
 
 if (x > y)
 {
@@ -10,12 +13,15 @@ else
     Console.WriteLine("y is greater than x");
 }
 
-string result = (x > y) ? "x is greater than y" : "y is greater than x";
+var result = (x > y) ? "x is greater than y" : "y is greater than x";
 Console.WriteLine(result);
 
-// nested ternary operator vs if-else if statement
+#endregion
 
-int a = 10, b = 10;
+#region nested ternary operator vs if-else if statement
+
+var a = 10;
+var b = 10;
 
 if (a > b)
 {
@@ -30,24 +36,29 @@ else
     Console.WriteLine("a is equal to b");
 }
 
-string comparison = (a > b) ? "a is greater than b" : (a < b) ? "b is greater than a" : "a is equal to b";
+var comparison = (a > b) ? "a is greater than b" : (a < b) ? "b is greater than a" : "a is equal to b";
 Console.WriteLine(comparison);
 
+#endregion
 
-// ternary operator without ref keyword
+#region ternary operator without ref keyword
 
 var array1 = new int[] { 1, 2, 3, 4, 5 };
-int number1 = 100;
+var number1 = 100;
 
-int value1 = number1 >= 100 ? array1[2] : array1[4];
+var value1 = number1 >= 100 ? array1[2] : array1[4];
 value1 = 0;
 Console.WriteLine(string.Join(" ", array1));
 
-// ternary operator with ref keyword
+#endregion
+
+#region ternary operator with ref keyword
 
 var array2 = new int[] { 1, 2, 3, 4, 5 };
-int number2 = 100;
+var number2 = 100;
 
-ref int value2 = ref ((number2 >= 100) ? ref array2[2] : ref array2[4]);
+ref var value2 = ref ((number2 >= 100) ? ref array2[2] : ref array2[4]);
 value2 = 10000;
 Console.WriteLine(string.Join(" ", array2));
+
+#endregion
