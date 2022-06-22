@@ -13,7 +13,7 @@ namespace Tests
     public class CodeMazeWorkerServiceTests
     {
         [Fact]
-        public async void WorkerService_WhenStarted_LogsInformation()
+        public async void WorkerService_WhenStarted_ThenLogsInformation()
         {
             //Arrange
             IServiceCollection services = new ServiceCollection();
