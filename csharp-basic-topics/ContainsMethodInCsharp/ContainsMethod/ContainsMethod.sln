@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainsMethod", "ContainsMethod\ContainsMethod.csproj", "{D3F623F1-D929-48B5-9FE9-3933B22F099A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainsMethodTests", "ContainsMethodTests\ContainsMethodTests.csproj", "{653424AE-5C0A-4DF1-8E99-1D137A54C814}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3F623F1-D929-48B5-9FE9-3933B22F099A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3F623F1-D929-48B5-9FE9-3933B22F099A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3F623F1-D929-48B5-9FE9-3933B22F099A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3F623F1-D929-48B5-9FE9-3933B22F099A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{653424AE-5C0A-4DF1-8E99-1D137A54C814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{653424AE-5C0A-4DF1-8E99-1D137A54C814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{653424AE-5C0A-4DF1-8E99-1D137A54C814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{653424AE-5C0A-4DF1-8E99-1D137A54C814}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37F65254-C616-43A0-950F-C0C50BA6E843}
+	EndGlobalSection
+EndGlobal
