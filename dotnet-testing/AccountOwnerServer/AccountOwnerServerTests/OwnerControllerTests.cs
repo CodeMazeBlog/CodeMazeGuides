@@ -24,7 +24,7 @@ namespace AccountOwnerServerTests
         }
 
         [Fact]
-        public void WhenGettingAllOwners_AllOwnersReturn()
+        public void WhenGettingAllOwners_ThenAllOwnersReturn()
         {
             var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
             var mapper = GetMapper();
@@ -40,7 +40,7 @@ namespace AccountOwnerServerTests
         }
 
         [Fact]
-        public void GivenAnIdOfAnExistingOwner_WhenGettingOwnerById_OwnerReturns()
+        public void GivenAnIdOfAnExistingOwner_WhenGettingOwnerById_ThenOwnerReturns()
         {
             var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
             var mapper = GetMapper();
@@ -57,7 +57,7 @@ namespace AccountOwnerServerTests
         }
 
         [Fact]
-        public void GivenAnIdOfANonExistingOwner_WhenGettingOwnerById_NotFoundReturns()
+        public void GivenAnIdOfANonExistingOwner_WhenGettingOwnerById_ThenNotFoundReturns()
         {
             var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
             var mapper = GetMapper();
@@ -72,7 +72,7 @@ namespace AccountOwnerServerTests
         }
 
         [Fact]
-        public void GivenValidRequest_WhenCreatingOwner_CreatedReturns()
+        public void GivenValidRequest_WhenCreatingOwner_ThenCreatedReturns()
         {
             var repositoryWrapperMock = MockIRepositoryWrapper.GetMock();
             var mapper = GetMapper();

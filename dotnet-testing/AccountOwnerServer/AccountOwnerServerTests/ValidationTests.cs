@@ -19,9 +19,6 @@ namespace AccountOwnerServer.Tests
         [InlineData("TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest",
             "TestAdress",
             "06/04/1994", false)]
-        [InlineData("TestName",
-            "TestAddressTestAddressTestAddressTestAddressTestAddressTestAddressTestAddressTestAddressTestAddressTestAddress",
-            "06/04/1994", false)]
         public void TestModelValidation(string? name, string? address, string? dateOfBirth, bool isValid)
         {
             var owner = new OwnerForCreationDto()
