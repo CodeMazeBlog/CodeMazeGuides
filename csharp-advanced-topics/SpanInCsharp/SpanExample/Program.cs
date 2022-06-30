@@ -23,19 +23,23 @@ namespace SpanExample
         {
             var indexPrev = 0;
             var indexCurrent = 0;
-            var substrings = new List<string>();
+            var rowNum = 0;
+
             foreach (char c in _hamletText)
             {
                 if (c == '\n')
                 {
                     indexCurrent += 1;
-                    substrings.Add(
-                        _hamletText.Substring(
-                            indexPrev, 
-                            indexCurrent - indexPrev));
+
+                    var line = _hamletText.Substring(indexPrev, indexCurrent - indexPrev);
+                    if (line.Equals(Environment.NewLine))
+                        rowNum++;
+
                     indexPrev = indexCurrent;
+
                     continue;
                 }
+
                 indexCurrent++;
             }
         }
@@ -48,17 +52,23 @@ namespace SpanExample
 
             var indexPrev = 0;
             var indexCurrent = 0;
+            var rowNum = 0;
+
             foreach (char c in hamletSpan)
             {
                 if (c == '\n')
                 {
                     indexCurrent += 1;
-                    var slice = hamletSpan.Slice(
-                        indexPrev,
-                        indexCurrent - indexPrev);
+
+                    var slice = hamletSpan.Slice(indexPrev, indexCurrent - indexPrev);
+                    if (slice.Equals(Environment.NewLine, StringComparison.OrdinalIgnoreCase))
+                        rowNum++;
+
                     indexPrev = indexCurrent;
+
                     continue;
                 }
+
                 indexCurrent++;
             }
         }
