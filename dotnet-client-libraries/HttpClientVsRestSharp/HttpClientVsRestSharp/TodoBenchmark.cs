@@ -68,7 +68,7 @@ namespace HttpClientVsRestSharp
             var serializedTodo = JsonSerializer.Serialize(todoForUpdate);
             var requestContent = new StringContent(serializedTodo, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PutAsync("todos", requestContent);
+            var response = await httpClient.PutAsync($"todos/{todoForUpdate.Id}", requestContent);
             var updatedTodo = await response.Content.ReadFromJsonAsync<Todo>();
 
             return updatedTodo;
@@ -79,7 +79,7 @@ namespace HttpClientVsRestSharp
         {
             var todoForUpdate = GetTodoForUpdate();
 
-            var request = new RestRequest("todos").AddJsonBody(todoForUpdate);
+            var request = new RestRequest($"todos/{todoForUpdate.Id}").AddJsonBody(todoForUpdate);
             var updatedTodo = await restClient.PutAsync<Todo>(request);
 
             return updatedTodo;
