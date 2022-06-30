@@ -18,7 +18,7 @@ namespace HttpClientVsRestSharp
         }
 
         [Benchmark]
-        public async Task<List<Todo>?> GetAllTodos_HttpClient()
+        public static async Task<List<Todo>?> GetAllTodos_HttpClient()
         {
             var response = await httpClient.GetAsync("todos");
             var todos = await response.Content.ReadFromJsonAsync<List<Todo>>();
@@ -27,7 +27,7 @@ namespace HttpClientVsRestSharp
         }
 
         [Benchmark]
-        public async Task<List<Todo>?> GetAllTodos_RestSharp()
+        public static async Task<List<Todo>?> GetAllTodos_RestSharp()
         {
             var request = new RestRequest("todos");
             var todos = await restClient.GetAsync<List<Todo>>(request);
@@ -36,7 +36,7 @@ namespace HttpClientVsRestSharp
         }
 
         [Benchmark]
-        public async Task<Todo?> CreateTodo_HttpClient()
+        public static async Task<Todo?> CreateTodo_HttpClient()
         {
             var todoForCreation = GetTodoForCreation();
 
@@ -50,7 +50,7 @@ namespace HttpClientVsRestSharp
         }
 
         [Benchmark]
-        public async Task<Todo?> CreateTodo_RestSharp()
+        public static async Task<Todo?> CreateTodo_RestSharp()
         {
             var todoForCreation = GetTodoForCreation();
 
@@ -61,7 +61,7 @@ namespace HttpClientVsRestSharp
         }
 
         [Benchmark]
-        public async Task<Todo?> UpdateTodo_HttpClient()
+        public static async Task<Todo?> UpdateTodo_HttpClient()
         {
             var todoForUpdate = GetTodoForUpdate();
 
@@ -75,7 +75,7 @@ namespace HttpClientVsRestSharp
         }
 
         [Benchmark]
-        public async Task<Todo?> UpdateTodo_RestSharp()
+        public static async Task<Todo?> UpdateTodo_RestSharp()
         {
             var todoForUpdate = GetTodoForUpdate();
 
@@ -86,13 +86,13 @@ namespace HttpClientVsRestSharp
         }
 
         [Benchmark]
-        public async Task DeleteTodo_HttpClient()
+        public static async Task DeleteTodo_HttpClient()
         {
             await httpClient.DeleteAsync("todos/1");
         }
 
         [Benchmark]
-        public async Task DeleteTodo_RestSharp()
+        public static async Task DeleteTodo_RestSharp()
         {
             var request = new RestRequest("todos/1");
             await restClient.DeleteAsync(request);
