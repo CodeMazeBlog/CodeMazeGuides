@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using RestSharp;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
@@ -8,20 +9,19 @@ namespace HttpClientVsRestSharp
     [MemoryDiagnoser]
     public class TodoBenchmark
     {
-        private static readonly HttpClient _httpClient = new HttpClient();
-        private static readonly RestClient _restClient = new RestClient("https://jsonplaceholder.typicode.com/");
+        private static readonly HttpClient httpClient = new HttpClient();
+        private static readonly RestClient restClient = new RestClient("https://jsonplaceholder.typicode.com/");
 
         public TodoBenchmark()
         {
-            _httpClient.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
+            httpClient.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
         }
 
         [Benchmark]
         public async Task<List<Todo>?> GetAllTodos_HttpClient()
         {
-            var response = await _httpClient.GetAsync("todos");
-            var content = await response.Content.ReadAsStringAsync();
-            var todos = JsonSerializer.Deserialize<List<Todo>>(content);
+            var response = await httpClient.GetAsync("todos");
+            var todos = await response.Content.ReadFromJsonAsync<List<Todo>>();
 
             return todos;
         }
@@ -30,28 +30,9 @@ namespace HttpClientVsRestSharp
         public async Task<List<Todo>?> GetAllTodos_RestSharp()
         {
             var request = new RestRequest("todos");
-            var todos = await _restClient.GetAsync<List<Todo>>(request);
+            var todos = await restClient.GetAsync<List<Todo>>(request);
 
             return todos;
-        }
-
-        [Benchmark]
-        public async Task<Todo?> GetSingleTodo_HttpClient()
-        {
-            var response = await _httpClient.GetAsync("todos/1");
-            var content = await response.Content.ReadAsStringAsync();
-            var todo = JsonSerializer.Deserialize<Todo>(content);
-
-            return todo;
-        }
-
-        [Benchmark]
-        public async Task<Todo?> GetSingleTodo_RestSharp()
-        {
-            var request = new RestRequest("todos/1");
-            var todo = await _restClient.GetAsync<Todo>(request);
-
-            return todo;
         }
 
         [Benchmark]
@@ -62,9 +43,8 @@ namespace HttpClientVsRestSharp
             var serializedTodo = JsonSerializer.Serialize(todoForCreation);
             var requestContent = new StringContent(serializedTodo, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("todos", requestContent);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var createdTodo = JsonSerializer.Deserialize<Todo>(responseContent);
+            var response = await httpClient.PostAsync("todos", requestContent);
+            var createdTodo = await response.Content.ReadFromJsonAsync<Todo>();
 
             return createdTodo;
         }
@@ -75,7 +55,7 @@ namespace HttpClientVsRestSharp
             var todoForCreation = GetTodoForCreation();
 
             var request = new RestRequest("todos").AddJsonBody(todoForCreation);
-            var createdTodo = await _restClient.PostAsync<Todo>(request);
+            var createdTodo = await restClient.PostAsync<Todo>(request);
 
             return createdTodo;
         }
@@ -88,9 +68,8 @@ namespace HttpClientVsRestSharp
             var serializedTodo = JsonSerializer.Serialize(todoForUpdate);
             var requestContent = new StringContent(serializedTodo, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PutAsync("todos", requestContent);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var updatedTodo = JsonSerializer.Deserialize<Todo>(responseContent);
+            var response = await httpClient.PutAsync("todos", requestContent);
+            var updatedTodo = await response.Content.ReadFromJsonAsync<Todo>();
 
             return updatedTodo;
         }
@@ -101,7 +80,7 @@ namespace HttpClientVsRestSharp
             var todoForUpdate = GetTodoForUpdate();
 
             var request = new RestRequest("todos").AddJsonBody(todoForUpdate);
-            var updatedTodo = await _restClient.PutAsync<Todo>(request);
+            var updatedTodo = await restClient.PutAsync<Todo>(request);
 
             return updatedTodo;
         }
@@ -109,21 +88,21 @@ namespace HttpClientVsRestSharp
         [Benchmark]
         public async Task DeleteTodo_HttpClient()
         {
-            await _httpClient.DeleteAsync("todos/1");
+            await httpClient.DeleteAsync("todos/1");
         }
 
         [Benchmark]
         public async Task DeleteTodo_RestSharp()
         {
             var request = new RestRequest("todos/1");
-            await _restClient.DeleteAsync(request);
+            await restClient.DeleteAsync(request);
         }
 
         private static Todo GetTodoForCreation()
         {
             return new Todo
             {
-                Id = 1,
+                Id = 0,
                 UserId = 1,
                 Completed = false,
                 Title = "Wake Up!"
