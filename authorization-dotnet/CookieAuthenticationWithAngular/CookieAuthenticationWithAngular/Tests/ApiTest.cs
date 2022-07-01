@@ -1,6 +1,7 @@
 using CookieAuthenticationWithAngular.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net.Http.Json;
+using Xunit;
 
 namespace CookieAuthenticationWithAngular.Tests;
 
