@@ -14,13 +14,10 @@ export class SignInComponent implements OnInit {
   constructor(private authService: AuthService,
     private formBuilder: FormBuilder,
     private router: Router) {
-
     this.authService.isSignedIn().subscribe(
       isSignedIn => {
-        debugger;
         this.signedIn = isSignedIn;
       });
-
   }
 
   ngOnInit(): void {
