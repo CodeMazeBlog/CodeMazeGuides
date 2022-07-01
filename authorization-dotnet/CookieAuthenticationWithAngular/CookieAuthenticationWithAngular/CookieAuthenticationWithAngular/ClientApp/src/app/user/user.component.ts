@@ -2,19 +2,19 @@ import { Component } from '@angular/core';
 import { AuthService, UserClaim } from '../auth/auth-service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
+    selector: 'app-user',
+    templateUrl: './user.component.html',
 })
 export class UserComponent {
-  userClaims: UserClaim[] = [];
-  constructor(private authService: AuthService) {
-    this.getUser();
-  }
+    userClaims: UserClaim[] = [];
+    constructor(private authService: AuthService) {
+        this.getUser();
+    }
 
-  getUser() {
-    this.authService.user().subscribe(
-      result => {
-        this.userClaims = result;
-      });
-  }
+    getUser() {
+        this.authService.user().subscribe(
+            result => {
+                this.userClaims = result;
+            });
+    }
 }
