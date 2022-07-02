@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{D0B7632C-F12C-44D9-87D6-7576D76BD1CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpAction", "CsharpAction\CsharpAction.csproj", "{B1520413-B817-4C4D-B3AE-FDF1C9ED8C4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0B7632C-F12C-44D9-87D6-7576D76BD1CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B7632C-F12C-44D9-87D6-7576D76BD1CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B7632C-F12C-44D9-87D6-7576D76BD1CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B7632C-F12C-44D9-87D6-7576D76BD1CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1520413-B817-4C4D-B3AE-FDF1C9ED8C4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1520413-B817-4C4D-B3AE-FDF1C9ED8C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1520413-B817-4C4D-B3AE-FDF1C9ED8C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1520413-B817-4C4D-B3AE-FDF1C9ED8C4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
