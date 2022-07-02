@@ -8,11 +8,11 @@ public class UnitTest1
         //arrange
         var stringWriter = new StringWriter();
         Console.SetOut(stringWriter);
-        Action greetings = () => Console.WriteLine("Hello, World!");
+        Action greetings = () => Console.Write("Hello, World!");
         //act
         greetings();
         //assert
-        Assert.Equal("Hello, World!\r\n", stringWriter.ToString());
+        Assert.Equal("Hello, World!", stringWriter.ToString());
     }
 
     [Fact]
@@ -21,11 +21,11 @@ public class UnitTest1
         //arrange
         var stringWriter = new StringWriter();
         Console.SetOut(stringWriter);
-        Action<int> substructTwo = (num) => Console.WriteLine(num - 2);
+        Action<int> substructTwo = (num) => Console.Write(num - 2);
         //act
         substructTwo(50);
         //assert
-        Assert.Equal("48\r\n", stringWriter.ToString());
+        Assert.Equal("48", stringWriter.ToString());
     }
 
     [Fact]
