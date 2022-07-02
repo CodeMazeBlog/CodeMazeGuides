@@ -34,10 +34,10 @@ public class UnitTest1
         //arrange
         var stringWriter = new StringWriter();
         Console.SetOut(stringWriter);
-        Action<string, string> caps = (wOne, wTwo) => Console.WriteLine(string.Concat(wOne, wTwo).ToUpper());
+        Action<string, string> caps = (wOne, wTwo) => Console.Write(string.Concat(wOne, wTwo).ToUpper());
         //act
         caps("This", "Rocks");
         //assert
-        Assert.Equal("THISROCKS\r\n", stringWriter.ToString());
+        Assert.Equal("THISROCKS", stringWriter.ToString());
     }
 }
