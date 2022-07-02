@@ -28,7 +28,8 @@
 	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' 
 			And !Exists('$(SpaRoot)node_modules') And $(MSBuildStartupDirectory.Contains('Tests')) == 'false' 
 			And $(MSBuildStartupDirectory.EndsWith('authorization-dotnet\CookieAuthenticationWithAngular')) == 'false'
-			And $(MSBuildStartupDirectory.EndsWith('authorization-dotnet/CookieAuthenticationWithAngular')) == 'false'">
+			And $(MSBuildStartupDirectory.EndsWith('authorization-dotnet/CookieAuthenticationWithAngular')) == 'false'
+			And $(MSBuildStartupDirectory.EndsWith('codemaze-build-pr')) == 'false'">
 		<!-- Ensure Node.js is installed -->
 		<Message Importance="high" Text="MSBuildStartupDirectory: $(MSBuildStartupDirectory)" />
 		<Exec Command="node --version" ContinueOnError="true">
