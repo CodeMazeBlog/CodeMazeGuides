@@ -30,6 +30,7 @@
 			And $(MSBuildStartupDirectory.EndsWith('authorization-dotnet\CookieAuthenticationWithAngular')) == 'false'
 			And $(MSBuildStartupDirectory.EndsWith('authorization-dotnet/CookieAuthenticationWithAngular')) == 'false'">
 		<!-- Ensure Node.js is installed -->
+		<Message Importance="high" Text="MSBuildStartupDirectory: $(MSBuildStartupDirectory)" />
 		<Exec Command="node --version" ContinueOnError="true">
 			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
 		</Exec>
