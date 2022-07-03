@@ -6,14 +6,14 @@ namespace UnsafeCodeInCSharp.Tests
     public class Tests
     {
         [TestMethod]
-        public void WhenPointerVariablePassedThenValueTriples()
+        public void WhenPointerVariablePassed_ThenValueTriples()
         {
             unsafe
             {
-                int input = 30;
-                int* ptr = &input;
+                var input = 30;
+                int* inputPtr = &input;
 
-                Program.GetTriple(ptr);
+                Program.GetTriple(inputPtr);
 
                 Assert.AreEqual(90, input);
             }

@@ -6,30 +6,30 @@
         {
             unsafe
             {
-                int a = 100;
-                int* ptr = &a;
+                var number = 100;
+                int* numberPtr = &number;
 
-                Console.WriteLine("The value of variable: {0}", a);
-                Console.WriteLine("The value of variable using pointer: {0}", ptr->ToString());
-                Console.WriteLine("The address of variable : {0}", (int)ptr);
+                Console.WriteLine("The value of variable: {0}", number);
+                Console.WriteLine("The value of variable using pointer: {0}", numberPtr->ToString());
+                Console.WriteLine("The address of variable : {0}", (int)numberPtr);
             }
 
-            int num = 10;
-            int* arg = &num;
+            var num = 10;
+            int* numPtr = &num;
 
             Console.WriteLine("GetTriple Input: {0}", num);
 
-            GetTriple(arg);
+            GetTriple(numPtr);
 
             Console.WriteLine("GetTriple Output: {0}", num);
 
-            string text = "Happy";
+            var text = "Happy";
 
-            fixed (char* ptr = text)
+            fixed (char* textPtr = text)
             {
-                for (int i = 0; i < text.Length; i++)
+                for (var i = 0; i < text.Length; i++)
                 {
-                    Console.WriteLine("text[{0}] : {1}", i, *(ptr + i));
+                    Console.WriteLine("text[{0}] : {1}", i, *(textPtr + i));
                 }
             }
 
