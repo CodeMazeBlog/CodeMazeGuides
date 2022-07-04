@@ -1,4 +1,4 @@
-﻿using HttpClientVsRestSharp;
+using HttpClientVsRestSharp;
 using RestSharp;
 using System;
 using System.Collections.Generic;
