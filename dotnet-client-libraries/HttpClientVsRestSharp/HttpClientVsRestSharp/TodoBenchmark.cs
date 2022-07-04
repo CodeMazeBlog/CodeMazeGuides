@@ -40,10 +40,7 @@ namespace HttpClientVsRestSharp
         {
             var todoForCreation = GetTodoForCreation();
 
-            var serializedTodo = JsonSerializer.Serialize(todoForCreation);
-            var requestContent = new StringContent(serializedTodo, Encoding.UTF8, "application/json");
-
-            var response = await httpClient.PostAsync("todos", requestContent);
+            var response = await httpClient.PostAsJsonAsync("todos", todoForCreation);
             var createdTodo = await response.Content.ReadFromJsonAsync<Todo>();
 
             return createdTodo;
