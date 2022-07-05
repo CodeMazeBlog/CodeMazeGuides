@@ -20,7 +20,7 @@ namespace CSConstructors
 
             //This will throw error
             //SingletonClass singletonClass = new SingletonClass();
-            var singletonClass = SingletonClass.getInstance();
+            var singletonClass = SingletonClass.GetInstance();
         }
     }
 }

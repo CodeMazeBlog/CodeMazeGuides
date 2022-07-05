@@ -3,7 +3,7 @@
     private string _name;
     private int _age;
 
-    public static int studentCount;
+    private static int studentCount;
 
     static Person()
     {

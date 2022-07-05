@@ -9,7 +9,7 @@ namespace CSConstructors
 		{
 		}
 
-		public static SingletonClass getInstance()
+		public static SingletonClass GetInstance()
         {
 			if(_singletonClass == null)
             {
