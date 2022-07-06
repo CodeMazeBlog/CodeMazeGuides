@@ -1,14 +1,11 @@
 ﻿#region LINQ Method Syntax
 
-var isExist = false;
-var countries = new string[] { "USA", "England", "Germany", "Sweeden", "Poland" };
+var exists = false;
+var countries = new string[] { "USA", "England", "Germany", "Sweden", "Poland" };
 
-if (countries.Contains("Sweeden"))
-    isExist = true;
-else
-    isExist = false;
+exists = countries.Contains("Sweden") ? true : false;   
 
-Console.WriteLine(isExist);
+Console.WriteLine(exists);
 
 #endregion
 
@@ -16,30 +13,27 @@ Console.WriteLine(isExist);
 
 var articles = new string[] { "article-1", "article-2", "article-3", "article-4", "article-5" };
 
-var isFounded = from article in articles
+var results = from article in articles
                 where article.Contains("article-1")
                 select article;
 
-foreach (var found in isFounded)
+foreach (var res in results)
 {
-    Console.WriteLine("Existed article: " + found);
+    Console.WriteLine("Article: " + res);
 }
 
 #endregion
 
 #region Manually
 
-var result = find("Code-Maze", "If you want to read great articles, then let's check the Code-Maze.");
+var result = find("Code Maze", "If you want to read great articles, then let's check Code Maze.");
 Console.WriteLine("Result: " + result);
 
 static (int, bool) find(string givenString, string templateText)
 {
     int found = -1;
-    var isFound = false;
+    var founded = false;
     int givenStringIndex = 0;
-
-    if (String.IsNullOrEmpty(givenString) || string.IsNullOrEmpty(templateText))
-        return (-1, false);
 
     for (int textIndex = 0; textIndex < templateText.Length; textIndex++)
     {
@@ -51,8 +45,8 @@ static (int, bool) find(string givenString, string templateText)
             givenStringIndex++;
             if (givenStringIndex >= givenString.Length)
             {
-                isFound = true;
-                return (found, isFound);
+                founded = true;
+                return (found, founded);
             }
         }
         else
@@ -67,3 +61,43 @@ static (int, bool) find(string givenString, string templateText)
 }
 
 #endregion
+
+#region Contains() with Any() method
+
+var cities = new string[] { "Paris", "Tokyo", "Jakarta", "Delhi", "Mumbai" };
+
+var result1 = cities.Any(city => city.Contains("Tokyo", StringComparison.InvariantCultureIgnoreCase));
+Console.WriteLine("Result 1: " + result1);
+
+
+#endregion
+
+#region Contains() with All() method
+
+Employee[] employees = new Employee[]
+{
+    new () {Name = "James", Surname = "Smith", Age = 25},
+    new () {Name = "Michael", Surname = "Smith", Age = 26},
+    new () {Name = "Robert", Surname = "Smith", Age = 27},
+    new () {Name = "David", Surname = "Smith", Age = 28},
+    new () {Name = "Mary", Surname = "Smith", Age = 29}
+};
+
+var result2 = false;
+
+foreach (var employee in employees)
+{
+    result2 = employee.Surname.Contains("Smith", StringComparison.InvariantCultureIgnoreCase);
+    Console.WriteLine($"Result 2 for {employee.Name}: " + result2);
+}
+
+public class Employee
+{
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    public int Age { get; set; }
+}
+
+#endregion
+
+

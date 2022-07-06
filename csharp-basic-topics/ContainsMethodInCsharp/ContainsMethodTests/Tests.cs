@@ -10,15 +10,12 @@ namespace ContainsMethodTests
         [TestMethod]
         public void WhenStringValueExistInStringArray_ThenReturnBooleanValue()
         {
-            var isExist = false;
-            var countries = new string[] { "USA", "England", "Germany", "Sweeden", "Poland" };
+            var exists = false;
+            var countries = new string[] { "USA", "England", "Germany", "Sweden", "Poland" };
 
-            if (countries.Contains("Sweeden"))
-                isExist = true;
-            else
-                isExist = false;
+            exists = countries.Contains("Sweden") ? true : false;
 
-            Assert.IsTrue(isExist);
+            Assert.IsTrue(exists);
         }
 
         [TestMethod]
@@ -26,31 +23,58 @@ namespace ContainsMethodTests
         {
             var articles = new string[] { "article-1", "article-2", "article-3", "article-4", "article-5" };
 
-            var isFounded = from article in articles
-                            where article.Contains("article-1")
-                            select article;
+            var results = from article in articles
+                          where article.Contains("article-1")
+                          select article;
 
-            foreach (var found in isFounded)
+            foreach (var result in results)
             {
-                Assert.AreEqual("article-1", found);
+                Assert.AreEqual("article-1", result);
             }
         }
 
         [TestMethod]
         public void WhenGivenStringValueExistInText_ThenReturnTupleAsStarterPositionOfValueAndBooleanValue()
         {
-            var result = find("Code-Maze", "If you want to read great articles, then let's check the Code-Maze.");
+            var result = find("Code Maze", "If you want to read great articles, then let's check Code Maze.");
             Assert.IsTrue(result.Item2);
+        }
+
+        [TestMethod]
+        public void WhenAnyOfElementsMatchTheCondition_ThenReturnTrue()
+        {
+            var cities = new string[] { "Paris", "Tokyo", "Jakarta", "Delhi", "Mumbai" };
+
+            var result1 = cities.Any(city => city.Contains("Tokyo", StringComparison.InvariantCultureIgnoreCase));
+            Assert.IsTrue(result1);
+        }
+
+        [TestMethod]
+        public void WhenAllOfElemenstMatchTheCondition_ThenReturnTrue()
+        {
+            Employee[] employees = new Employee[]
+            {
+                new () {Name = "James", Surname = "Smith", Age = 25},
+                new () {Name = "Michael", Surname = "Smith", Age = 26},
+                new () {Name = "Robert", Surname = "Smith", Age = 27},
+                new () {Name = "David", Surname = "Smith", Age = 28},
+                new () {Name = "Mary", Surname = "Smith", Age = 29}
+            };
+
+            var result2 = false;
+
+            foreach (var employee in employees)
+            {
+                result2 = employee.Surname.Contains("Smith", StringComparison.InvariantCultureIgnoreCase);
+                Assert.IsTrue(result2);
+            }
         }
 
         static (int, bool) find(string givenString, string templateText)
         {
             int found = -1;
-            var isFound = false;
+            var founded = false;
             int givenStringIndex = 0;
-
-            if (String.IsNullOrEmpty(givenString) || string.IsNullOrEmpty(templateText))
-                return (-1, false);
 
             for (int textIndex = 0; textIndex < templateText.Length; textIndex++)
             {
@@ -62,8 +86,8 @@ namespace ContainsMethodTests
                     givenStringIndex++;
                     if (givenStringIndex >= givenString.Length)
                     {
-                        isFound = true;
-                        return (found, isFound);
+                        founded = true;
+                        return (found, founded);
                     }
                 }
                 else
@@ -76,5 +100,12 @@ namespace ContainsMethodTests
             }
             return (-1, false);
         }
+    }
+
+    public class Employee
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public int Age { get; set; }
     }
 }
