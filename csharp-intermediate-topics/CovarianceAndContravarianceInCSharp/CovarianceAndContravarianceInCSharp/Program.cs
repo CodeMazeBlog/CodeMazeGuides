@@ -8,9 +8,9 @@ namespace CovarianceAndContravarianceInCSharp
 
         static void Main(string[] args)
         {
-            Person personObject = new Person();
-            Employee employeeObject = new Employee();
-            Manager managerObject = new Manager();
+            var personObject = new Person();
+            var employeeObject = new Employee();
+            var managerObject = new Manager();
 
             personObject = employeeObject;
             personObject = managerObject;

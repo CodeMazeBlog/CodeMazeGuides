@@ -11,9 +11,9 @@ namespace Tests
         [TestMethod]
         public void GivenLessDerivedObjectType_WhenAssigningMoreDerivedObjectType_ThenObjectsAreEqual()
         {
-            Person personObject = new Person();
-            Employee employeeObject = new Employee();
-            Manager managerObject = new Manager();
+            var personObject = new Person();
+            var employeeObject = new Employee();
+            var managerObject = new Manager();
 
             personObject = employeeObject;
             Assert.AreEqual(personObject, employeeObject);
@@ -32,7 +32,7 @@ namespace Tests
         [TestMethod]
         public void GivenLessDerivedArray_WhenAssigningMoreDerivedObjectType_ThenArrayElementAndObjectAreEqual()
         {
-            Manager managerObject = new Manager();
+            var managerObject = new Manager();
             Person[] people = new Employee[5];
             people[0] = managerObject;
 
