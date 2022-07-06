@@ -8,5 +8,7 @@ This section contains the topics about arrays and solving specific problems with
 - [How to Find the Maximum Value of an Array in C#](https://code-maze.com/csharp-array-maximum-value/)
 - [Different Ways to Initialize Arrays in C#](https://code-maze.com/csharp-initialize-arrays/)
 - [How to Populate an Array With the Same Value in C#](https://code-maze.com/csharp-populate-array-same-value/)
+- [Different Ways to Print The Elements of an Array in C#](https://code-maze.com/csharp-print-elements-of-an-array/)
+- [Remove Duplicates From a C# Array](https://code-maze.com/csharp-array-remove-duplicates/)
 - [Array Slicing in C#](https://code-maze.com/csharp-array-slicing/)
 - [How to Sum Up Elements of an Array in C#](https://code-maze.com/csharp-sum-up-elements-of-an-array/)
