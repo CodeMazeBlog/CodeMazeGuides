@@ -9,7 +9,7 @@
         /// with no input arguments.
         /// </summary>
  
-        private Action delegateA;
+        private Action? delegateA;
 
 
         /// <summary>
@@ -18,7 +18,7 @@
         /// with four input arguments.
         /// </summary>
         
-        private Action<string, string, string, int> delegateB;
+        private Action<string, string, string, int>? delegateB;
 
 
         /// <summary>
@@ -27,7 +27,7 @@
         /// with no input arguments.
         /// </summary>
         
-        private Func<string> delegateC;
+        private Func<string>? delegateC;
 
 
         /// <summary>
@@ -36,7 +36,7 @@
         /// with four input arguments.
         /// </summary>
 
-        private Func<string, string, string, int, string> delegateD;
+        private Func<string, string, string, int, string>? delegateD;
 
 
         #region public methods

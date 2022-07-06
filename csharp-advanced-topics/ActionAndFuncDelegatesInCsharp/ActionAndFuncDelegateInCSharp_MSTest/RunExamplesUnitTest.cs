@@ -32,7 +32,7 @@ namespace ActionAndFuncDelegateInCSharp_MSTest
 
             var msg = rEx.RunThirdMethodExample();
 
-            Assert.AreEqual(msg, "hello world from third method!");
+            Assert.AreEqual(msg, "hello from third method!");
         }
 
 
