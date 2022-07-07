@@ -39,11 +39,11 @@ namespace Test
         {
             var currentConsoleOut = Console.Out;
 
-            string text = "Good day, John Doe.\r\n";
+            string text = "Good day, John Doe.";
 
             using (var consoleOutput = new ConsoleOutput())
             {
-                Action<string> Greetings = (name) => Console.WriteLine($"Good day, {name}.");
+                Action<string> Greetings = (name) => Console.Write($"Good day, {name}.");
 
                 Greetings("John Doe");
 
