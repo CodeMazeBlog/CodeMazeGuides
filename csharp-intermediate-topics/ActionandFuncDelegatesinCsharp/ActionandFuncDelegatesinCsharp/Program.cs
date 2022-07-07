@@ -1,44 +1,46 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 //Assigning methods to Action Delegates
-static void PrintName(string name)
+static void SayHello(string name)
 {
     Console.WriteLine($"Hello {name}");
 }
 
-Action<string> printNameAction = PrintName;
+Action<string> Greet = SayHello;
 
-printNameAction("John Doe");
+Greet("John Doe");
 
 //Assigning anonymous methods to Action Delegates
-Action<int> anonymousMethodAction = delegate(int number) { Console.WriteLine($"Number passed is {number}"); };
+Action<int, int> AddNumbers = delegate(int num1, int num2) { Console.WriteLine($"Total of {num1} + {num2} is {num1 + num2}"); };
 
-anonymousMethodAction(20);
+AddNumbers(20, 32);
 
 
 //Using Action Delegates with Lambda expressions
-Action<string> lambdaExpressAction = (name) => Console.WriteLine($"The animal is: {name}");
-lambdaExpressAction("Lion");
+Action<string> Greetings = (name) => Console.WriteLine($"Good day, {name}.");
+Greetings("John Doe");
 
 //Assigning methods to Func Delegates
-static string PrintNameAgain(string name)
+static int AddNumber(int num1, int num2)
 {
-    return $"Hello {name}";
+    return num1 + num2;
 }
 
-Func<string, string> funcName = PrintNameAgain;
+Func<int, int, int> Sum = AddNumber;
 
-Console.WriteLine(funcName("John Doe"));
+Console.WriteLine(Sum(5, 8));
+Console.WriteLine(Sum(32, 81));
 
 //Assigning anonymous methods to Func Delegates
-Func<string, string> anonymousFuncMethod = delegate (string name) { return $"Name passed is {name}"; };
+Func<int, bool> OlderThanEighteen = delegate (int age) { return age > 18; };
 
-Console.WriteLine(anonymousFuncMethod("Anonymous Func Delegates"));
+Console.WriteLine(OlderThanEighteen(19));
+Console.WriteLine(OlderThanEighteen(8));
 
 
 //Using Action Delegates with Lambda expressions
-Func<string, string, string> lambdaExpressionsFunc = (firstName, lastName) => $"Your name is {firstName} {lastName}";
-Console.WriteLine(lambdaExpressionsFunc("John", "Doe"));
+Func<string, string, string> GetFullName = (firstName, lastName) => $"Your full name is - {firstName} {lastName}";
+Console.WriteLine(GetFullName("John", "Doe"));
 
 double GetSquareRoot(int number)
 {
@@ -47,6 +49,6 @@ double GetSquareRoot(int number)
 
 Func<int, double> GetSquareRootFunc = GetSquareRoot;
 
-double result = GetSquareRootFunc(20);
+double result = GetSquareRootFunc(25);
 
 Console.WriteLine(result);
