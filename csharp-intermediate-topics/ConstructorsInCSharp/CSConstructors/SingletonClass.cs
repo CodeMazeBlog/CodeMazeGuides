@@ -15,6 +15,7 @@ namespace CSConstructors
             {
 				_singletonClass = new SingletonClass();
             }
+
 			return _singletonClass;
         }
 	}

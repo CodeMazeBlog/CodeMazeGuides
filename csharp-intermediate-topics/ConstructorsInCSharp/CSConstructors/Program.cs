@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSConstructors
+﻿namespace CSConstructors
 {
     public class Program
     {

@@ -15,7 +15,7 @@ public class CSConstructorsTests
         {
             Console.SetOut(sw);
 
-            Person person = new Person();
+            var person = new Person();
 
             var consoleString = sw.ToString().Trim();
 
@@ -32,7 +32,7 @@ public class CSConstructorsTests
         {
             Console.SetOut(sw);
 
-            Person person = new Person("Test", 10);
+            var person = new Person("Test", 10);
 
             var consoleString = sw.ToString().Trim();
 
@@ -45,7 +45,7 @@ public class CSConstructorsTests
     [TestMethod]
     public void WhenGivenExistingPerson_ThenInvokeCopyConstructor_OnIntialize()
     {
-        Person person = new Person("Test", 10);
+        var person = new Person("Test", 10);
 
         using (var sw = new StringWriter())
         {
@@ -68,7 +68,7 @@ public class CSConstructorsTests
         {
             Console.SetOut(sw);
 
-            Student student = new Student("Test", 10, "IT");
+            var student = new Student("Test", 10, "IT");
 
             var consoleString = sw.ToString().Trim();
 

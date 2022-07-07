@@ -22,7 +22,8 @@
         _name = name;
     }
 
-    public Person(string name, int age): this(name)
+    public Person(string name, int age)
+        : this(name)
     {
         _age = age;
         Console.WriteLine("Constructor are chained and Invoked");
