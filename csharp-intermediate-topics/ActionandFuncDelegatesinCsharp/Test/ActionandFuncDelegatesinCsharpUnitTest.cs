@@ -71,10 +71,20 @@ namespace Test
             return stringWriter.ToString();
         }
 
+        protected virtual void Dispose(Boolean disposing)
+        {
+            if (disposing)
+            {
+                Console.SetOut(originalOutput);
+                stringWriter.Dispose();
+            }
+        }
+
         public void Dispose()
         {
-            Console.SetOut(originalOutput);
-            stringWriter.Dispose();
+            Dispose(true);
+
+            GC.SuppressFinalize(this);
         }
     }
 }
