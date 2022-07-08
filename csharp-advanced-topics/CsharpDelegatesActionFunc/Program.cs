@@ -1,43 +1,54 @@
 ﻿using System;
+using System.Text;
 
 namespace CsharpDelegatesActionFunc
 {
-    /// Sample example of Multicast delegate 
     class Program
     {
-        // Declare a delegate 
-        delegate void CalculateInterestRate(double time, double rate);
+        delegate string getInterestRate(double time, double rate);
         static void Main(string[] args)
         {
-            double totalInterest;
-            //Assign method to multi delegate by passing first method name 
-            CalculateInterestRate delegateTotalInterest = new CalculateInterestRate(getTotalInterestByHours);
-            //Assign method to multi delegate by passing second method name 
-            delegateTotalInterest += getTotalInterestByMinutes;
-            //Invoke the delegate to fire the two methods
-            delegateTotalInterest.Invoke(8, 10);
-            Console.ReadKey();
-        }
-        //Creating methods which will be assigned to delegate object 
-        /// <summary> 
-        /// Gets the total interest by hours. 
-        /// </summary> 
-        /// <param name="time" />The Time in hours. 
-        /// <param name="rate" />The Rate. 
-        /// <returns>Total Interest 
-        static void getTotalInterestByHours(double time, double rate)
-        {
-            Console.WriteLine("Total Interest of {0} rate in {1} hours is {2}", rate, time, (time * rate) / 100);
-        }
-        /// <summary> 
-        /// Gets the total interest by minutes. 
-        /// </summary> 
-        /// <param name="time" />The Time in minutes. 
-        /// <param name="rate" />The Rate. 
-        /// <returns>Total Interest 
-        static void getTotalInterestByMinutes(double time, double rate)
-        {
-            Console.WriteLine("Total Interest of {0} rate in {1} minutes is {2}", rate, time, (time * rate) / 100);
+            //Single delegate
+            getInterestRate delegateTotalInterest = new getInterestRate(InterestService.getTotalInterestByHours);
+            string result = delegateTotalInterest.Invoke(8, 10);
+            Console.WriteLine("Single delegate result: " + result);
+
+            //Multicast delegate
+            delegateTotalInterest += InterestService.getTotalInterestByMinutes;
+            StringBuilder sb = new StringBuilder();
+            foreach (var del in delegateTotalInterest.GetInvocationList())
+            {
+                string res = (string)del.DynamicInvoke(8, 10);
+                sb.Append(res + " - ");
+            }
+            Console.WriteLine("Multicast delegate result: " + sb.ToString());
+
+            //Action<T> Single delegate
+            Action<double, double> actionGetTotalInterestSingle = InterestService.printTotalInterestByHours;
+            Console.WriteLine("Action<T> single delegate result: ");
+            actionGetTotalInterestSingle(8, 10);
+
+            //Action<T> Multicast delegate
+            Action<double, double> actionGetTotalInterestMultiple = InterestService.printTotalInterestByHours;
+            actionGetTotalInterestMultiple += InterestService.printTotalInterestByMinutes;
+            Console.WriteLine("Action<T> multicast delegate result: ");
+            actionGetTotalInterestMultiple(8, 10);
+
+            //Func<T> Single delegate
+            Func<double, double, string> funcGetTotalInterestSingle = InterestService.getTotalInterestByHours;
+            string funcSingleResult = funcGetTotalInterestSingle(8, 10);
+            Console.WriteLine("Func<T> single delegate result: " + funcSingleResult);
+
+            //Func<T> multicast delegate
+            Func<double, double, string> executeGetTotalInterest = InterestService.getTotalInterestByHours;
+            executeGetTotalInterest += InterestService.getTotalInterestByMinutes;
+            StringBuilder funcSb = new StringBuilder();
+            foreach (var del in executeGetTotalInterest.GetInvocationList())
+            {
+                string funcMultiResult = (string)del.DynamicInvoke(8, 10);
+                funcSb.Append(funcMultiResult + " - ");
+            }
+            Console.WriteLine("Func<T> multicast delegate result: " + funcSb.ToString());
         }
     }
 }
