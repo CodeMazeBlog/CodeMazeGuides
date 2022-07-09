@@ -4,11 +4,13 @@ public class MyClass
 {
     private Dependency _dep;
     private IDependency _idep;
+    private AbstractDependency _abstractDep;
 
-    public MyClass(Dependency dep, IDependency idep)
+    public MyClass(Dependency dep, IDependency idep, AbstractDependency abstractDep)
     {
         _dep = dep;
         _idep = idep;
+        _abstractDep = abstractDep;
     }
 
     public void CallingPublicMethod() 
@@ -37,8 +39,13 @@ public class MyClass
         _dep.DepPublicMethod();
     }
 
+    public void CallingInterfaceDependencyPublicMethod() 
+    {
+        _idep.DepInterfacePublicMethod();
+    }
+
     public void CallingAbstractDependencyPublicMethod() 
     {
-        _idep.DepAbstractPublicMethod();
+        _abstractDep.DepAbstractPublicMethod();
     }
 }
