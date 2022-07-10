@@ -2,13 +2,14 @@ import { HttpClient, HttpEvent } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
+import { Response } from "./response";
+import { UserClaim } from "./user-claim";
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) { }
 
     public signIn(email: string, password: string) {
         return this.http.post<Response>('api/signin', {
@@ -35,14 +36,4 @@ export class AuthService {
                 return of(false);
             }));
     }
-}
-
-export interface UserClaim {
-    type: string;
-    value: string;
-}
-
-export interface Response {
-    isSuccess: boolean;
-    message: string;
 }

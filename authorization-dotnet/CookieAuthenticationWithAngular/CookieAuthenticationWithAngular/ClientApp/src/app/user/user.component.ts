@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService, UserClaim } from '../auth/auth-service';
+import { AuthService } from '../auth/auth-service';
+import { UserClaim } from '../auth/user-claim';
 
 @Component({
     selector: 'app-user',

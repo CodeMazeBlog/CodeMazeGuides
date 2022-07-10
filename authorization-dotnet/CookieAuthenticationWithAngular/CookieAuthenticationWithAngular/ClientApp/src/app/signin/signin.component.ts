@@ -40,7 +40,10 @@ export class SignInComponent implements OnInit {
             response => {
                 if (response.isSuccess) {
                     this.router.navigateByUrl('user')
-                } else {
+                }
+            },
+            error => {
+                if (!error?.error?.isSuccess) {
                     this.authFailed = true;
                 }
             });
