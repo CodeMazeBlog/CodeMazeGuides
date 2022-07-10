@@ -51,7 +51,7 @@ public class CSConstructorsTests
         {
             Console.SetOut(sw);
 
-            Person person2 = new Person(person);
+            var person2 = new Person(person);
 
             var consoleString = sw.ToString().Trim();
 
