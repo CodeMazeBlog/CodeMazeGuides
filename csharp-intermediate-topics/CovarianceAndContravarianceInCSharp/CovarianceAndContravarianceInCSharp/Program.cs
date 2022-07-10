@@ -2,7 +2,7 @@
 
 namespace CovarianceAndContravarianceInCSharp
 {
-    class Program
+    public class Program
     {
         delegate void personDelegate(Employee employee);
 
@@ -37,18 +37,18 @@ namespace CovarianceAndContravarianceInCSharp
             icontraEmployee = icontraPerson;
         }
 
-        static void GreetPerson(Person person)
+        public static void GreetPerson(Person person)
         {
             // Logic to greet person.
         }
 
-        static Manager GetEmployeeManager(string employeeFullName)
+        public static Manager GetEmployeeManager(string employeeFullName)
         {
             // Logic to find employee's manager.
             return new Manager();
         }
 
-        static void EvaluatePerformance(Employee employee)
+        public static void EvaluatePerformance(Employee employee)
         {
             // Logic to evaluate performance.
         }
@@ -57,10 +57,10 @@ namespace CovarianceAndContravarianceInCSharp
         public class Employee : Person { }
         public class Manager : Employee { }
 
-        interface ICovariant<out T> { }
-        interface IContravariant<in T> { }
+        public interface ICovariant<out T> { }
+        public interface IContravariant<in T> { }
 
-        class ImplementICovariant<T> : ICovariant<T> { }
-        class ImplementIContravariant<T> : IContravariant<T> { }
+        public class ImplementICovariant<T> : ICovariant<T> { }
+        public class ImplementIContravariant<T> : IContravariant<T> { }
     }
 }
