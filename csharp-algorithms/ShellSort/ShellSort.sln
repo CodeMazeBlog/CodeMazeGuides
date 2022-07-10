@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellSort", "ShellSort\ShellSort.csproj", "{CECBBA9C-99D7-4A74-BEA0-2A538B97246C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellSortTests", "ShellSortTests\ShellSortTests.csproj", "{CAC901C4-82CD-4D7E-B033-31D220418A68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CECBBA9C-99D7-4A74-BEA0-2A538B97246C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CECBBA9C-99D7-4A74-BEA0-2A538B97246C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CECBBA9C-99D7-4A74-BEA0-2A538B97246C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CECBBA9C-99D7-4A74-BEA0-2A538B97246C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAC901C4-82CD-4D7E-B033-31D220418A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAC901C4-82CD-4D7E-B033-31D220418A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAC901C4-82CD-4D7E-B033-31D220418A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAC901C4-82CD-4D7E-B033-31D220418A68}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3E584662-2C28-4001-B61B-0EF81D0DC231}
+	EndGlobalSection
+EndGlobal

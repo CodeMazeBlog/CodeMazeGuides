@@ -53,8 +53,7 @@ namespace InMemoryCacheExample.Controllers
                         var cacheEntryOptions = new MemoryCacheEntryOptions()
                                 .SetSlidingExpiration(TimeSpan.FromSeconds(60))
                                 .SetAbsoluteExpiration(TimeSpan.FromSeconds(3600))
-                                .SetPriority(CacheItemPriority.Normal)
-                                .SetSize(1024);
+                                .SetPriority(CacheItemPriority.Normal);
 
                         _cache.Set(employeeListCacheKey, employees, cacheEntryOptions);
                     }
