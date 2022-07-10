@@ -12,18 +12,18 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     public signIn(email: string, password: string) {
-        return this.http.post<Response>('api/signin', {
+        return this.http.post<Response>('api/auth/signin', {
             email: email,
             password: password
         });
     }
 
     public signOut() {
-        return this.http.get('api/signout');
+        return this.http.get('api/auth/signout');
     }
 
     public user() {
-        return this.http.get<UserClaim[]>('api/user');
+        return this.http.get<UserClaim[]>('api/auth/user');
     }
 
     public isSignedIn(): Observable<boolean> {
