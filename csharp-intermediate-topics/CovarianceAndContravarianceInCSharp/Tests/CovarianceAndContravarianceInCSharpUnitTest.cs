@@ -1,6 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using static CovarianceAndContravarianceInCSharp.Program;
 
 namespace Tests
 {
@@ -78,6 +77,22 @@ namespace Tests
             icontraEmployee = icontraPerson;
 
             Assert.AreEqual(icontraEmployee, icontraPerson);
+        }
+
+        static void GreetPerson(Person person)
+        {
+            // Logic to greet person.
+        }
+
+        static Manager GetEmployeeManager(string employeeFullName)
+        {
+            // Logic to find employee's manager.
+            return new Manager();
+        }
+
+        static void EvaluatePerformance(Employee employee)
+        {
+            // Logic to evaluate performance.
         }
     }
 }
