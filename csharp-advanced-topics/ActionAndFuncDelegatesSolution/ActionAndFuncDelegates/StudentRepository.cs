@@ -36,7 +36,6 @@
                     Name = "Alex",
                     CGPA = 8.2f
                 }
-
             };
         }
 

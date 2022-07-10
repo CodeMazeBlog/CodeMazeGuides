@@ -32,7 +32,6 @@
             {
                 return student.CGPA >= 8f;
             };
-
             StudentRepository.GetDistinctionStudents(studentFunc);
         }
     }
