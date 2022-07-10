@@ -28,7 +28,7 @@ public class CSConstructorsTests
     [TestMethod]
     public void WhenGivenNameAndAgeOnIntialize_ThenInvokeParameterizedConstructor()
     {
-        using(var sw = new StringWriter())
+        using (var sw = new StringWriter())
         {
             Console.SetOut(sw);
 
