@@ -26,7 +26,7 @@ namespace Tests
         public void GivenMoreDerivedDelegateParameterType_WhenAssigningLessDerivedMethodParameterType_ThenDelegateMethodParameterIsLessDerived()
         {
             personDelegate del = GreetPerson;
-            Assert.IsTrue(del.Method.ToString() == "Void GreetPerson(Person)");
+            Assert.IsTrue(del.Method.ToString() == "Void GreetPerson(Tests.Person)");
         }
 
         [TestMethod]
