@@ -7,13 +7,16 @@ namespace CookieAuthenticationWithAngular.Tests;
 
 public class ApiTest
 {
+    string signInApi = "api/auth/signin";
+    string userApi = "api/auth/user";
+    string signOutApi = "api/auth/signout";
     [Fact]
     public async Task WhenCallingUnauthorizedEndpoint_ThenReturn401()
     {
         await using var application = new WebApplicationFactory<Program>();
         using var client = application.CreateClient();
 
-        var response = await client.GetAsync("api/user");
+        var response = await client.GetAsync(userApi);
         Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response.StatusCode);
     }
 
@@ -22,7 +25,7 @@ public class ApiTest
     {
         await using var application = new WebApplicationFactory<Program>();
         using var client = application.CreateClient();
-        var response = await client.PostAsJsonAsync("api/signin", new SignInRequest("invalid-email", "invalid-password"));
+        var response = await client.PostAsJsonAsync(signInApi, new SignInRequest("invalid-email", "invalid-password"));
         var result = await response.Content.ReadFromJsonAsync<Response>();
         Assert.False(result?.IsSuccess);
     }
@@ -33,7 +36,7 @@ public class ApiTest
         await using var application = new WebApplicationFactory<Program>();
         using var client = application.CreateClient();
 
-        var response = await client.PostAsJsonAsync("api/signin", new SignInRequest("user1@test.com", "user1"));
+        var response = await client.PostAsJsonAsync(signInApi, new SignInRequest("user1@test.com", "user1"));
         var result = await response.Content.ReadFromJsonAsync<Response>();
 
         Assert.True(result?.IsSuccess);
@@ -44,11 +47,11 @@ public class ApiTest
 
         // When protected endpoint is called with this cookie, it should succeed
         client.DefaultRequestHeaders.Add("Cookie", cookieHeader);
-        var userResult = await client.GetAsync("api/user");
+        var userResult = await client.GetAsync(userApi);
         Assert.True(userResult.IsSuccessStatusCode);
 
         // When signout is called, it should return expired cookie
-        var signOutResult = await client.GetAsync("api/signout");
+        var signOutResult = await client.GetAsync(signOutApi);
         Assert.True(signOutResult.IsSuccessStatusCode);
 
         var signOutCookie = signOutResult.Headers.GetValues("Set-Cookie").First();
@@ -57,7 +60,7 @@ public class ApiTest
         // Again if the user endpoint is called with the new signout cookie, then it should fail as unauthorized
         client.DefaultRequestHeaders.Remove("Cookie");
         client.DefaultRequestHeaders.Add("Cookie", signOutCookie);
-        var userResultUnAuthorized = await client.GetAsync("api/user");
+        var userResultUnAuthorized = await client.GetAsync(userApi);
         Assert.Equal(System.Net.HttpStatusCode.Unauthorized, userResultUnAuthorized.StatusCode);
     }
 }
