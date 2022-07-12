@@ -1,6 +1,6 @@
 ﻿namespace ContainsString
 {
-    public class Methods
+    public class FindStringExamples
     {
         public (int, bool) Find(string givenString, string templateText)
         {

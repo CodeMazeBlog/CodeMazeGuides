@@ -8,19 +8,19 @@ namespace ContainsStringTests
     [TestClass]
     public class Tests
     {
-        Methods methods = new Methods();
+        FindStringExamples findStringExamples = new FindStringExamples();
 
         [TestMethod]
         public void WhenStringValueExistInStringArray_ThenReturnBooleanValue()
         {
-            var exists = methods.ContainsCountry();
+            var exists = findStringExamples.ContainsCountry();
             Assert.IsTrue(exists);
         }
 
         [TestMethod]
         public void WhenStringValueExistInStringArray_ThenReturnStringValueOfExistedElement()
         {
-            var result = methods.ContainsArticle();
+            var result = findStringExamples.ContainsArticle();
             Assert.AreEqual("article-1", result);
         }
 
@@ -28,21 +28,21 @@ namespace ContainsStringTests
         public void WhenGivenStringValueExistInText_ThenReturnTupleAsStarterPositionOfValueAndBooleanValue()
         {
             
-            var result = methods.Find("Code Maze", "If you want to read great articles, then let's check Code Maze.");
+            var result = findStringExamples.Find("Code Maze", "If you want to read great articles, then let's check Code Maze.");
             Assert.IsTrue(result.Item2);
         }
 
         [TestMethod]
         public void WhenAnyOfElementsMatchTheCondition_ThenReturnTrue()
         {
-            var result = methods.ContainsCity();
+            var result = findStringExamples.ContainsCity();
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void WhenAllOfElemenstMatchTheCondition_ThenReturnTrue()
         {
-            var results = methods.ContainsNameInEmployees();
+            var results = findStringExamples.ContainsNameInEmployees();
 
             foreach (var result in results)
             {

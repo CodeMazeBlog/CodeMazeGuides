@@ -1,19 +1,19 @@
 ﻿using ContainsString;
 
-Methods methods = new Methods();
+FindStringExamples findStringExamples = new FindStringExamples();
 
 
-methods.ContainsCountry();
+findStringExamples.ContainsCountry();
 
 
-methods.ContainsCity();
+findStringExamples.ContainsCity();
 
 
-methods.ContainsNameInEmployees();
+findStringExamples.ContainsNameInEmployees();
 
 
-methods.ContainsArticle();
+findStringExamples.ContainsArticle();
 
 
-var result = methods.Find("Code Maze", "If you want to read great articles, then let's check Code Maze.");
+var result = findStringExamples.Find("Code Maze", "If you want to read great articles, then let's check Code Maze.");
 Console.WriteLine("Result: " + result);
