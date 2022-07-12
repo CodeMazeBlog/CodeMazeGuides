@@ -38,10 +38,10 @@ namespace ContainsStringTests
         }
 
         [TestMethod]
-        public void WhenAnyOfElementsMatchTheConditionWithoutCaseSensetive_ThenReturnTrue()
+        public void WhenAnyOfElementsDoNotMatchTheConditionWithoutCaseSensetive_ThenReturnFalse()
         {
             var result = findStringExamples.ContainsCityWithoutCaseSensetive();
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
