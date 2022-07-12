@@ -43,6 +43,7 @@ public class AuthController : Controller
                 AllowRefresh = true,
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
             });
+
         return Ok(new Response(true, "Signed in successfully"));
     }
 
@@ -51,6 +52,7 @@ public class AuthController : Controller
     public IActionResult GetUser()
     {
         var userClaims = User.Claims.Select(x => new UserClaim(x.Type, x.Value)).ToList();
+
         return Ok(userClaims);
     }
 

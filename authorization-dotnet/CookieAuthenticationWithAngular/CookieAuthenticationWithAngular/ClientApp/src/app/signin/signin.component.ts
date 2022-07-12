@@ -34,8 +34,8 @@ export class SignInComponent implements OnInit {
         if (!this.loginForm.valid) {
             return;
         }
-        let userName = this.loginForm.get('email')?.value;
-        let password = this.loginForm.get('password')?.value;
+        const userName = this.loginForm.get('email')?.value;
+        const password = this.loginForm.get('password')?.value;
         this.authService.signIn(userName, password).subscribe(
             response => {
                 if (response.isSuccess) {
