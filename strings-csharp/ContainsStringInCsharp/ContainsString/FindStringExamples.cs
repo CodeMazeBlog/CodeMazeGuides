@@ -45,17 +45,27 @@
             return exists;
         }
 
-        public bool ContainsCity()
+        public bool ContainsCityWithoutCaseSensetive()
         {
             var cities = new string[] { "Paris", "Tokyo", "Jakarta", "Delhi", "Mumbai" };
 
-            var result = cities.Any(city => city.Contains("Tokyo", StringComparison.InvariantCultureIgnoreCase));
-            Console.WriteLine("Result of ContainsCity() method : " + result);
+            var result = cities.Any(city => city.Contains("tokyo"));
+            Console.WriteLine("Result of ContainsCityWithoutCaseSensetive() method : " + result);
 
             return result;
         }
 
-        public bool[] ContainsNameInEmployees()
+        public bool ContainsCityWithCaseSensetive()
+        {
+            var cities = new string[] { "Paris", "Tokyo", "Jakarta", "Delhi", "Mumbai" };
+
+            var result = cities.Any(city => city.Contains("tokyo", StringComparison.InvariantCultureIgnoreCase));
+            Console.WriteLine("Result of ContainsCityWithCaseSensetive() method : " + result);
+
+            return result;
+        }
+
+        public bool ContainsNameInEmployees()
         {
             var employees = new Employee[]
             {
@@ -66,20 +76,10 @@
                 new () {Name = "Mary", Surname = "Smith", Age = 29}
             };
 
-            var result = false;
-            var results = new bool[5];
-            var index = 0;
+            var result = employees.All(employees => employees.Surname.Contains("Smith"));
+            Console.WriteLine("Result for ContainsNameInEmployees() method: " + result);
 
-            foreach (var employee in employees)
-            {
-                result = employee.Surname.Contains("Smith", StringComparison.InvariantCultureIgnoreCase);
-                Console.WriteLine($"Result for {employee.Name}: " + result);
-
-                results[index] = result;
-                index++;
-            }
-
-            return results;
+            return result;
         }
 
         public string ContainsArticle()
@@ -90,12 +90,8 @@
                           where article.Contains("article-1")
                           select article;
 
-            var exists = "";
-            foreach (var res in results)
-            {
-                exists = res;
-                Console.WriteLine("Article: " + res);
-            }
+            var exists = results.FirstOrDefault();
+            Console.WriteLine("Result for ContainsArticle() method: " + exists);
 
             return exists;
         }

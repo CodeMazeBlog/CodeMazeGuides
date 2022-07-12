@@ -1,12 +1,14 @@
 ﻿using ContainsString;
 
-FindStringExamples findStringExamples = new FindStringExamples();
+var findStringExamples = new FindStringExamples();
 
 
 findStringExamples.ContainsCountry();
 
 
-findStringExamples.ContainsCity();
+findStringExamples.ContainsCityWithoutCaseSensetive();
+
+findStringExamples.ContainsCityWithCaseSensetive();
 
 
 findStringExamples.ContainsNameInEmployees();

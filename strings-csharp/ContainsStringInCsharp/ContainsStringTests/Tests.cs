@@ -1,7 +1,5 @@
 using ContainsString;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Linq;
 
 namespace ContainsStringTests
 {
@@ -13,8 +11,8 @@ namespace ContainsStringTests
         [TestMethod]
         public void WhenStringValueExistInStringArray_ThenReturnBooleanValue()
         {
-            var exists = findStringExamples.ContainsCountry();
-            Assert.IsTrue(exists);
+            var result = findStringExamples.ContainsCountry();
+            Assert.IsTrue(result);
         }
 
         [TestMethod]
@@ -27,27 +25,30 @@ namespace ContainsStringTests
         [TestMethod]
         public void WhenGivenStringValueExistInText_ThenReturnTupleAsStarterPositionOfValueAndBooleanValue()
         {
-            
+
             var result = findStringExamples.Find("Code Maze", "If you want to read great articles, then let's check Code Maze.");
             Assert.IsTrue(result.Item2);
         }
 
         [TestMethod]
-        public void WhenAnyOfElementsMatchTheCondition_ThenReturnTrue()
+        public void WhenAnyOfElementsMatchTheConditionWithCaseSensetive_ThenReturnTrue()
         {
-            var result = findStringExamples.ContainsCity();
+            var result = findStringExamples.ContainsCityWithCaseSensetive();
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void WhenAnyOfElementsMatchTheConditionWithoutCaseSensetive_ThenReturnTrue()
+        {
+            var result = findStringExamples.ContainsCityWithoutCaseSensetive();
             Assert.IsTrue(result);
         }
 
         [TestMethod]
         public void WhenAllOfElemenstMatchTheCondition_ThenReturnTrue()
         {
-            var results = findStringExamples.ContainsNameInEmployees();
-
-            foreach (var result in results)
-            {
-                Assert.IsTrue(result);
-            }
+            var result = findStringExamples.ContainsNameInEmployees();
+            Assert.IsTrue(result);
         }
     }
 }
