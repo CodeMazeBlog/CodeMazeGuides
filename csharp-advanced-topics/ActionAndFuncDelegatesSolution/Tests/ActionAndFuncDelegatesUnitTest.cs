@@ -85,9 +85,9 @@ namespace Tests
             };
             var expectedOutput = true;
             
-            var actualoutput = studentEligibility.StudentFunc(student);
+            var actualOutput = studentEligibility.StudentFunc(student);
 
-            Assert.AreEqual(expectedOutput, actualoutput);
+            Assert.AreEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -101,9 +101,9 @@ namespace Tests
             };
             var expectedOutput = false;
 
-            var actualoutput = studentEligibility.StudentFunc(student);
+            var actualOutput = studentEligibility.StudentFunc(student);
 
-            Assert.AreEqual(expectedOutput, actualoutput);
+            Assert.AreEqual(expectedOutput, actualOutput);
         }
 
         [TestMethod]
@@ -117,9 +117,9 @@ namespace Tests
             };
             var expectedOutput = true;
 
-            var actualoutput = studentEligibility.StudentFunc(student);
+            var actualOutput = studentEligibility.StudentFunc(student);
 
-            Assert.AreEqual(expectedOutput, actualoutput);
+            Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
 }
