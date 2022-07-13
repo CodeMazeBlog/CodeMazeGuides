@@ -6,32 +6,73 @@ namespace Tests
     [TestClass]
     public class ActionAndFuncDelegatesUnitTest
     {
-        Func<int, int, int> testFuncDelegate = (int a, int b) => { return a + b; };
-        Func<Student, bool> func = (Student student) => { return student.CGPA >= 8; };
+        ActionDelegates actionDelegate = new();
+        FuncDelegates funcDelegate = new();
+        StudentEligibility studentEligibility = new();
 
         [TestMethod]
-        public void WhenAdd2PositiveIntegers_ThenResultIsAPositiveInteger()
+        public void WhenAdd1PositiveIntAnd1PositiveDecimalViaActionDelegate_ThenResultIsAPositiveDecimal()
         {
-            Assert.AreEqual(200, testFuncDelegate(100, 100));
+            var expectedSum = 400.65M;
+
+            actionDelegate.IntDecimalActionDelegate(200, 200.65M);
+            var actualSum = actionDelegate.Sum;
+            
+            Assert.AreEqual(expectedSum, actualSum);
         }
 
         [TestMethod]
-        public void WhenAdd2NegativeIntegers_ThenResultIsANegativeInteger()
+        public void WhenAdd1LargerPositiveIntAnd1NegativeDecimalViaActionDelegate_ThenResultIsAPositiveDecimal()
         {
-            Assert.AreEqual(-200, testFuncDelegate(-100, -100));
+            var expectedSum = 199.35M;
+
+            actionDelegate.IntDecimalActionDelegate(400, -200.65M);
+            var actualSum = actionDelegate.Sum;
+
+            Assert.AreEqual(expectedSum, actualSum);
         }
 
         [TestMethod]
-        public void WhenAdd1PositiveIntegerAnd1LargerNegativeInteger_ThenResultIsANegativeInteger()
+        public void WhenAdd1NegativeIntAnd1PositiveDecimalViaActionDelegate_ThenResultIsAPositiveDecimal()
         {
-            Assert.AreEqual(-100, testFuncDelegate(200, -300));
+            var expectedSum = 100.65M;
+
+            actionDelegate.IntDecimalActionDelegate(-100, 200.65M);
+            var actualSum = actionDelegate.Sum;
+
+            Assert.AreEqual(expectedSum, actualSum);
         }
 
         [TestMethod]
-        public void WhenAdd1LargerPositiveIntegerAnd1NegativeInteger_ThenResultIsAPositiveInteger()
+        public void WhenAdd1NegativeIntAnd1NegativeDecimalViaActionDelegate_ThenResultIsANegativeDecimal()
         {
-            Assert.AreEqual(200, testFuncDelegate(400, -200));
+            var expectedSum = -400.65M;
+
+            actionDelegate.IntDecimalActionDelegate(-200, -200.65M);
+            var actualSum = actionDelegate.Sum;
+
+            Assert.AreEqual(expectedSum, actualSum);
         }
+
+        [TestMethod]
+        public void WhenAdd2PositiveDecimalsViaFuncDelegate_ThenResultIsAPositiveDecimal()
+        {
+            var expectedSum = 201;
+            
+            var actualSum = funcDelegate.DecimalFuncDelegate(100.55M, 100.45M);
+
+            Assert.AreEqual(expectedSum, actualSum);
+        }
+
+        [TestMethod]
+        public void WhenAdd2NegativeDecimalsViaFuncDelegate_ThenResultIsANegativeDecimal()
+        {
+            var expectedSum = -150.51M;
+            
+            var actualSum = funcDelegate.DecimalFuncDelegate(-50.25M, -100.26M);
+
+            Assert.AreEqual(expectedSum, actualSum);
+        } 
 
         [TestMethod]
         public void WhenStudentCGPAGreaterThan8_ThenReturnTrue()
@@ -42,7 +83,11 @@ namespace Tests
                 Name = "Reyes",
                 CGPA = 8.23f
             };
-            Assert.AreEqual(true, func(student));
+            var expectedOutput = true;
+            
+            var actualoutput = studentEligibility.StudentFunc(student);
+
+            Assert.AreEqual(expectedOutput, actualoutput);
         }
 
         [TestMethod]
@@ -50,11 +95,15 @@ namespace Tests
         {
             var student = new Student
             {
-                Id = 99,
-                Name = "Reyes",
+                Id = 100,
+                Name = "Rose",
                 CGPA = 7.5f
             };
-            Assert.AreEqual(false, func(student));
+            var expectedOutput = false;
+
+            var actualoutput = studentEligibility.StudentFunc(student);
+
+            Assert.AreEqual(expectedOutput, actualoutput);
         }
 
         [TestMethod]
@@ -62,11 +111,15 @@ namespace Tests
         {
             var student = new Student
             {
-                Id = 99,
-                Name = "Reyes",
+                Id = 101,
+                Name = "Ramone",
                 CGPA = 8f
             };
-            Assert.AreEqual(true, func(student));
+            var expectedOutput = true;
+
+            var actualoutput = studentEligibility.StudentFunc(student);
+
+            Assert.AreEqual(expectedOutput, actualoutput);
         }
     }
 }

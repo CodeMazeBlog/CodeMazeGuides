@@ -5,34 +5,23 @@
         static void Main(string[] args)
         {
             //Action delegates
-            Action action = () => Console.WriteLine("Simplest Action Delegate");
-            action();
+            ActionDelegates actionDelegate = new();
 
-            Action<int, float> testIntFloatActionDelegate;
-            testIntFloatActionDelegate = (int num1, float num2) =>
-            {
-                var sum = num1 + num2;
-                Console.WriteLine($"The sum is {sum}");
-            };
-            testIntFloatActionDelegate(10, 200.45f);
+            actionDelegate.SimpleActionDelegate();
+            actionDelegate.IntDecimalActionDelegate(100, 200.65M);
 
             //Func delegates
-            Func<bool> func = () => false;
-            Console.WriteLine(func());
+            FuncDelegates funcDelegate = new();
 
-            Func<float, float, float> testFloatFuncDelegate;
-            testFloatFuncDelegate = (float a, float b) =>
-            {
-                return a / b;
-            };
-            Console.WriteLine(testFloatFuncDelegate(1000.25f, 24.25f));
+            var result = funcDelegate.SimpleFuncDelegate();
+            Console.WriteLine(result);
+
+            var response = funcDelegate.DecimalFuncDelegate(52.25M, 65.45M);
+            Console.WriteLine(response);
 
             //Practical Example
-            Func<Student, bool> studentFunc = (Student student) =>
-            {
-                return student.CGPA >= 8f;
-            };
-            StudentRepository.GetDistinctionStudents(studentFunc);
+            StudentEligibility studentEligibility = new();
+            StudentRepository.GetDistinctionStudents(studentEligibility.StudentFunc);
         }
     }
 }
