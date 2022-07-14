@@ -7,8 +7,8 @@ public class Base64Operations
     public string Base64Encoding(string text, bool AddLineBreaks = false)
     {
         var textBytes = Encoding.UTF8.GetBytes(text);
-        // When AddLineBreaks == true, a space will be added after every 76 characters
-        return !AddLineBreaks ? Convert.ToBase64String(textBytes) : Convert.ToBase64String(textBytes, Base64FormattingOptions.InsertLineBreaks);
+        return !AddLineBreaks ? Convert.ToBase64String(textBytes) :
+            Convert.ToBase64String(textBytes, Base64FormattingOptions.InsertLineBreaks);
     }
 
     public string Base64Encoding(string text, int offset, int arrayLength)
