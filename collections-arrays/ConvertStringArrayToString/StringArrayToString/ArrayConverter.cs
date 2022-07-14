@@ -4,7 +4,7 @@ namespace StringArrayToString
 {
     public class ArrayConverter
     {
-        public string UsingLoopString(string[] array)
+        public string UsingLoopStringAdditionAssignment(string[] array)
         {
             var result = string.Empty;
 

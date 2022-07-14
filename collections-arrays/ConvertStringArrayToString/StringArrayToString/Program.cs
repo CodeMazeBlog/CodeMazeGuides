@@ -10,8 +10,8 @@ public class Program
         var array = new string[] { "Code", "Maze", "Code-Maze", "C#" };
 
         Console.WriteLine();
-        Console.WriteLine("Convert to string using Loop String:");
-        Console.WriteLine(elementConcatenator.UsingLoopString(array));
+        Console.WriteLine("Convert to string using Loop String and Addition Assignment Operator:");
+        Console.WriteLine(elementConcatenator.UsingLoopStringAdditionAssignment(array));
 
         Console.WriteLine();
         Console.WriteLine("Convert to string using Loop String Builder:");

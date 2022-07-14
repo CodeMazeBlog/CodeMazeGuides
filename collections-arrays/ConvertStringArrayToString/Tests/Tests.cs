@@ -9,9 +9,9 @@ namespace Tests
         private readonly ArrayConverter _arrayConverter = new();
 
         [Fact]
-        public void GivenAnArray_WhenUsingLoopString_ThenConvertIntoString()
+        public void GivenAnArray_WhenUsingLoopStringAdditionAssignment_ThenConvertIntoString()
         {
-            var result = _arrayConverter.UsingLoopString(_array);
+            var result = _arrayConverter.UsingLoopStringAdditionAssignment(_array);
 
             Assert.Equal(_result, result);
 

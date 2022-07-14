@@ -11,9 +11,9 @@ namespace BenchmarkRunner
         private ArrayConverter _elementConcateneator = new();
 
         [Benchmark]
-        public void UsingLoopString()
+        public void UsingLoopStringAdditionAssignment()
         {
-            _elementConcateneator.UsingLoopString(_array);
+            _elementConcateneator.UsingLoopStringAdditionAssignment(_array);
         }
 
         [Benchmark]
