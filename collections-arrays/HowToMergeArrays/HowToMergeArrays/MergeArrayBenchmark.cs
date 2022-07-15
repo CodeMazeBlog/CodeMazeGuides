@@ -8,6 +8,11 @@ namespace HowToMergeArrays
     {
         private static readonly int _arraySize = 50000;
 
+        public int ArraySize
+        {
+            get { return _arraySize; }
+        }
+
         [Benchmark]
         public int[] MergeUsingArrayCopyWithNewArray()
         {
