@@ -52,7 +52,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenMergingWithLinqUnion_ThenCombinedArrayNotEmptyAndLengthEqualsDoubleSize()
+        public void WhenMergingWithLinqUnion_ThenCombinedArrayNotEmptyAndLengthEqualsDoubleSizeDistinct()
         {
             var combinedArray = _mergeArrayRunner.MergeUsingLinqUnion();
 
