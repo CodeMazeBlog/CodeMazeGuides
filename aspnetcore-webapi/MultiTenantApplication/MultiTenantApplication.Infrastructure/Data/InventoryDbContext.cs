@@ -10,7 +10,9 @@ public class InventoryDbContext : DbContext
         : base(options)
     {
         _tenant = tenantResolver.GetCurrentTenant();
-        Database.SetConnectionString(_tenant.ConnectionString);
+
+        if (_tenant.ConnectionString is { } connectionString)
+            Database.SetConnectionString(connectionString);
     }
 
     public DbSet<Goods> Goods { get; set; }
