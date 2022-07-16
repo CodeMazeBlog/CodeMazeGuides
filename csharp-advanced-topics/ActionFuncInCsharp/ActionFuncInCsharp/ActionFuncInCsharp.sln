@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionFuncInCsharp", "ActionFuncInCsharp\ActionFuncInCsharp.csproj", "{B2288890-BED7-415C-B9E3-7A19F2148A8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceService", "InvoicingService\InvoiceService.csproj", "{BB1CBBF1-7F92-41A2-971A-68E21873EB9F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2288890-BED7-415C-B9E3-7A19F2148A8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2288890-BED7-415C-B9E3-7A19F2148A8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2288890-BED7-415C-B9E3-7A19F2148A8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2288890-BED7-415C-B9E3-7A19F2148A8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB1CBBF1-7F92-41A2-971A-68E21873EB9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1CBBF1-7F92-41A2-971A-68E21873EB9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB1CBBF1-7F92-41A2-971A-68E21873EB9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB1CBBF1-7F92-41A2-971A-68E21873EB9F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DCC80E55-7433-4E65-B0EA-BBA3B75603F6}
+	EndGlobalSection
+EndGlobal
