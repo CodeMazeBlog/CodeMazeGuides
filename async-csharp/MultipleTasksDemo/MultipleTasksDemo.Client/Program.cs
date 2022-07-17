@@ -136,8 +136,9 @@ async Task ExecuteUsingParallelForeachAsync()
 
 async Task<EmployeeDetails> GetEmployeeDetails(Guid id)
 {
-	var response = await _httpClient.GetStringAsync($"http://localhost:3000/details/{id}");
+	var response = await _httpClient.GetStringAsync($"https://my-json-server.typicode.com/adhikari-chayan/demo/details/{id}");
 	var employeeDetails = JsonSerializer.Deserialize<EmployeeDetails>(response, _serializerOptions);
+	
 	await Task.Delay(2000);
 	//throw new Exception("Test Exception 1");
 	return employeeDetails!;
@@ -145,8 +146,9 @@ async Task<EmployeeDetails> GetEmployeeDetails(Guid id)
 
 async Task<decimal> GetEmployeeSalary(Guid id)
 {
-	var response = await _httpClient.GetStringAsync($"http://localhost:3000/salary/{id}");
+	var response = await _httpClient.GetStringAsync($"https://my-json-server.typicode.com/adhikari-chayan/demo/salary/{id}");
 	var salary = JsonSerializer.Deserialize<Salary>(response, _serializerOptions);
+	
 	await Task.Delay(1000);
 	//throw new Exception("Test Exception 2");
 	return salary!.SalaryInEuro;
@@ -154,8 +156,9 @@ async Task<decimal> GetEmployeeSalary(Guid id)
 
 async Task<int> GetEmployeeRating(Guid id)
 {
-	var response = await _httpClient.GetStringAsync($"http://localhost:3000/rating/{id}");
+	var response = await _httpClient.GetStringAsync($"https://my-json-server.typicode.com/adhikari-chayan/demo/rating/{id}");
 	var rating = JsonSerializer.Deserialize<AppraisalRating>(response, _serializerOptions);
+	
 	await Task.Delay(1000);
 	return rating!.Rating;
 }
