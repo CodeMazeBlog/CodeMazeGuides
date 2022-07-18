@@ -60,6 +60,7 @@ namespace HowToMergeArrays
             var secondArray = GetSourceArrayPopulatedWithNumber(2);
 
             var combinedArray = firstArray.Concat(secondArray).ToArray();
+
             return combinedArray;
         }
 
@@ -70,6 +71,7 @@ namespace HowToMergeArrays
             var secondArray = GetSourceArrayPopulatedWithNumber(2);
 
             var combinedArray = firstArray.Union(secondArray).ToArray();
+
             return combinedArray;
         }
 
@@ -81,6 +83,7 @@ namespace HowToMergeArrays
 
             var firstAndSecondArray = new[] { firstArray, secondArray };
             var combinedArray = firstAndSecondArray.SelectMany(animal => animal).ToArray();
+
             return combinedArray;
         }
 
