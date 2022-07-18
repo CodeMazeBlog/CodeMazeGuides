@@ -88,7 +88,7 @@ namespace JsonPolymorphicSerialization
                         case "CoursesTaken":
                             if (reader.TokenType == JsonTokenType.StartArray)
                             {
-                                string courseName = String.Empty;
+                                string? courseName = String.Empty;
                                 int semester = 0;
 
                                 while (reader.Read())
@@ -129,7 +129,7 @@ namespace JsonPolymorphicSerialization
                         case "CoursesOffered":
                             if (reader.TokenType == JsonTokenType.StartArray)
                             {
-                                string courseName = String.Empty;
+                                string? courseName = String.Empty;
                                 int semester = 0;
 
                                 while (reader.Read())

@@ -82,15 +82,8 @@ var options = new JsonSerializerOptions
     WriteIndented = true
 };
 
-Console.WriteLine("-----------------------------------------------");
-Console.WriteLine("simple serialization --> does not include derived class properties");
 string personsJson = JsonSerializer.Serialize<Person[]>(list, options);
-Console.WriteLine(personsJson);
-
-Console.WriteLine("-----------------------------------------------");
-Console.WriteLine("simple serialization --> includes derived class properties");
 personsJson = JsonSerializer.Serialize<object[]>(list, options);
-Console.WriteLine(personsJson);
 
 options = new JsonSerializerOptions
 {
@@ -98,13 +91,6 @@ options = new JsonSerializerOptions
     WriteIndented = true
 };
 
-Console.WriteLine("-----------------------------------------------");
-Console.WriteLine("serialization with custom converter");
 personsJson = JsonSerializer.Serialize<Person[]>(list, options);
-Console.WriteLine(personsJson);
-
-Console.WriteLine("-----------------------------------------------");
-Console.WriteLine("deserialization with custom converter");
 var personsList = JsonSerializer.Deserialize<List<Person>>(personsJson, options);
-Console.WriteLine(ObjectDumper.Dump(personsList));
 

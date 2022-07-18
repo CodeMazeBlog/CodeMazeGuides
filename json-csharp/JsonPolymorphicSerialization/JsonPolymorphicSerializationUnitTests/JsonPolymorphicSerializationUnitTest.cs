@@ -178,15 +178,15 @@ namespace JsonPolymorphicSerializationUnitTests
         public void WhenUsingCustomConverterDeserialization_ThenDerivedClassPropertiesArePresent()
         {
             var deserializedList = JsonSerializer.Deserialize<List<Person>>(json, options);
-            var john = deserializedList.FirstOrDefault(p => p.FirstName == "John");
+            var john = deserializedList?.FirstOrDefault(p => p.FirstName == "John");
             Assert.IsNotNull(john);
-            Assert.AreEqual(((Student)john).RegistrationYear, 2019);
-            Assert.AreEqual(((Student)john).CoursesTaken.Count, 2);
+            Assert.AreEqual(((Student?)john)?.RegistrationYear, 2019);
+            Assert.AreEqual(((Student?)john)?.CoursesTaken.Count, 2);
 
-            var jane = deserializedList.FirstOrDefault(p => p.FirstName == "Jane");
+            var jane = deserializedList?.FirstOrDefault(p => p.FirstName == "Jane");
             Assert.IsNotNull(jane);
-            Assert.AreEqual(((Professor)jane).OfficeNumber, "222A");
-            Assert.AreEqual(((Professor)jane).CoursesOffered.Count, 1);
+            Assert.AreEqual(((Professor?)jane)?.OfficeNumber, "222A");
+            Assert.AreEqual(((Professor?)jane)?.CoursesOffered.Count, 1);
         }
     }
 }
