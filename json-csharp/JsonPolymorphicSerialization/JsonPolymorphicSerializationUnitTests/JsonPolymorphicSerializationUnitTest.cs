@@ -16,26 +16,12 @@ namespace JsonPolymorphicSerializationUnitTests
                 FirstName = "John",
                 LastName =  "Doe",
                 BirthDate = new DateTime(2000, 2, 4),
-                HomeAddress = new Address()
-                {
-                    Street = "3 Main str.",
-                    ZipCode = "22323",
-                    City = "Boston",
-                    Country = "USA"
-                },
+                HomeAddress = "3 Main str., 22323 Boston, USA",
                 RegistrationYear = 2019,
-                CoursesTaken = new List<Course>()
+                CoursesTaken = new List<string>()
                 {
-                    new Course()
-                    {
-                        Name = "Algorithms",
-                        Semester = 2
-                    },
-                    new Course()
-                    {
-                        Name = "Databases",
-                        Semester = 1
-                    }
+                    "Algorithms",
+                    "Databases",
                 }
             },
             new Professor()
@@ -43,21 +29,11 @@ namespace JsonPolymorphicSerializationUnitTests
                 FirstName = "Jane",
                 LastName =  "Doe",
                 BirthDate = new DateTime(1978, 6, 6),
-                HomeAddress = new Address()
-                {
-                    Street = "1 Market str.",
-                    ZipCode = "HHFW33",
-                    City = "London",
-                    Country = "UK"
-                },
+                HomeAddress = "1 Market str., HHFW33 London, UK",
                 OfficeNumber = "222A",
-                CoursesOffered = new List<Course>()
+                CoursesOffered = new List<string>()
                 {
-                    new Course()
-                    {
-                        Name = "Algorithms",
-                        Semester = 2
-                    }
+                    "Algorithms"
                 }
             },
             new Student()
@@ -65,21 +41,11 @@ namespace JsonPolymorphicSerializationUnitTests
                 FirstName = "Jason",
                 LastName =  "Doe",
                 BirthDate = new DateTime(2002, 7, 8),
-                HomeAddress = new Address()
-                {
-                    Street = "5 First str.",
-                    ZipCode = "43422",
-                    City = "New York",
-                    Country = "USA"
-                },
+                HomeAddress = "5 First str., 43422 New York, USA",
                 RegistrationYear = 2020,
-                CoursesTaken = new List<Course>()
+                CoursesTaken = new List<string>()
                 {
-                    new Course()
-                    {
-                        Name = "Databases",
-                        Semester = 1
-                    }
+                    "Databases",
                 }
             }
         };
@@ -91,16 +57,10 @@ namespace JsonPolymorphicSerializationUnitTests
     ""LastName"": ""Doe"",
     ""BirthDate"": ""2000-02-04T00:00:00"",
     ""RegistrationYear"" : 2019,
-    ""HomeAddress"": null,
+    ""HomeAddress"": ""3 Main str., 22323 Boston, USA"",
     ""CoursesTaken"": [
-      {
-        ""Name"": ""Algorithms"",
-        ""Semester"": 2
-      },
-      {
-        ""Name"": ""Databases"",
-        ""Semester"": 1
-      }
+        ""Algorithms"",
+        ""Databases""
     ]
   },
   {
@@ -109,13 +69,10 @@ namespace JsonPolymorphicSerializationUnitTests
     ""LastName"": ""Doe"",
     ""BirthDate"": ""1978-06-06T00:00:00"",
     ""OfficeNumber"" : ""222A"",
-    ""HomeAddress"": null,
+    ""HomeAddress"": ""1 Market str., HHFW33 London, UK"",
     ""CoursesOffered"": [
-      {
-        ""Name"": ""Algorithms"",
-        ""Semester"": 2
-      }
-    ]
+        ""Algorithms""
+     ]
   },
   {
     ""PersonType"" : ""Student"",
@@ -123,12 +80,9 @@ namespace JsonPolymorphicSerializationUnitTests
     ""LastName"": ""Doe"",
     ""BirthDate"": ""2002-07-07T00:00:00"",
     ""RegistrationYear"" : 2020,
-    ""HomeAddress"": null,
+    ""HomeAddress"": ""5 First str., 43422 New York, USA"",
     ""CoursesTaken"": [
-      {
-        ""Name"": ""Databases"",
-        ""Semester"": 1
-      }
+        ""Databases""
     ]
   }
 ]";

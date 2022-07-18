@@ -3,6 +3,6 @@
     public class Student : Person
     {
         public int RegistrationYear { get; set; }
-        public List<Course> CoursesTaken { get; set; } = new List<Course>();
+        public List<string> CoursesTaken { get; set; } = new List<string>();
     }
 }

@@ -12,27 +12,19 @@ namespace JsonPolymorphicSerialization
             Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType != JsonTokenType.StartObject)
-            {
                 throw new JsonException();
-            }
 
             reader.Read();
             if (reader.TokenType != JsonTokenType.PropertyName)
-            {
                 throw new JsonException();
-            }
 
             string? propertyName = reader.GetString();
             if (propertyName != "PersonType")
-            {
                 throw new JsonException();
-            }
 
             reader.Read();
             if (reader.TokenType != JsonTokenType.String)
-            {
                 throw new JsonException();
-            }
 
             var personType = reader.GetString();
             Person person;
@@ -53,9 +45,7 @@ namespace JsonPolymorphicSerialization
             while (reader.Read())
             {
                 if (reader.TokenType == JsonTokenType.EndObject)
-                {
                     return person;
-                }
 
                 if (reader.TokenType == JsonTokenType.PropertyName)
                 {
@@ -75,6 +65,10 @@ namespace JsonPolymorphicSerialization
                             person.BirthDate = reader.GetDateTime();
                             break;
 
+                        case "HomeAddress":
+                            person.HomeAddress = reader.GetString();
+                            break;
+
                         case "RegistrationYear":
                             int registrationYear = reader.GetInt32();
                             ((Student)person).RegistrationYear = registrationYear;
@@ -88,40 +82,14 @@ namespace JsonPolymorphicSerialization
                         case "CoursesTaken":
                             if (reader.TokenType == JsonTokenType.StartArray)
                             {
-                                string? courseName = String.Empty;
-                                int semester = 0;
-
                                 while (reader.Read())
                                 {
                                     if (reader.TokenType == JsonTokenType.EndArray)
-                                    {
                                         break;
-                                    }
 
-                                    if (reader.TokenType == JsonTokenType.EndObject)
-                                    {
-                                        ((Student)person).CoursesTaken.Add(new Course()
-                                        {
-                                            Name = courseName,
-                                            Semester = semester
-                                        });
-                                    }
-
-                                    if (reader.TokenType == JsonTokenType.PropertyName)
-                                    {
-                                        propertyName = reader.GetString();
-                                        reader.Read();
-                                        switch (propertyName)
-                                        {
-                                            case "Name":
-                                                courseName = reader.GetString();
-                                                break;
-
-                                            case "Semester":
-                                                semester = reader.GetInt32();
-                                                break;
-                                        }
-                                    }
+                                    var course = reader.GetString();
+                                    if(course != null)
+                                        ((Student)person).CoursesTaken.Add(course);
                                 }
                             }
                             break;
@@ -129,77 +97,14 @@ namespace JsonPolymorphicSerialization
                         case "CoursesOffered":
                             if (reader.TokenType == JsonTokenType.StartArray)
                             {
-                                string? courseName = String.Empty;
-                                int semester = 0;
-
                                 while (reader.Read())
                                 {
                                     if (reader.TokenType == JsonTokenType.EndArray)
-                                    {
                                         break;
-                                    }
 
-                                    if (reader.TokenType == JsonTokenType.EndObject)
-                                    {
-                                        ((Professor)person).CoursesOffered.Add(new Course()
-                                        {
-                                            Name = courseName,
-                                            Semester = semester
-                                        });
-                                    }
-
-                                    if (reader.TokenType == JsonTokenType.PropertyName)
-                                    {
-                                        propertyName = reader.GetString();
-                                        reader.Read();
-                                        switch (propertyName)
-                                        {
-                                            case "Name":
-                                                courseName = reader.GetString();
-                                                break;
-
-                                            case "Semester":
-                                                semester = reader.GetInt32();
-                                                break;
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-
-                        case "HomeAddress":
-                            if (reader.TokenType == JsonTokenType.StartObject)
-                            {
-                                while (reader.Read())
-                                {
-                                    if (reader.TokenType == JsonTokenType.EndObject)
-                                    {
-                                        break;
-                                    }
-
-                                    if (reader.TokenType == JsonTokenType.PropertyName)
-                                    {
-                                        propertyName = reader.GetString();
-                                        reader.Read();
-                                        switch (propertyName)
-                                        {
-                                            case "Street":
-                                                person.HomeAddress.Street = reader.GetString();
-                                                break;
-
-                                            case "ZipCode":
-                                                person.HomeAddress.ZipCode = reader.GetString();
-                                                break;
-
-                                            case "City":
-                                                person.HomeAddress.City = reader.GetString();
-                                                break;
-
-                                            case "Country":
-                                                person.HomeAddress.Country = reader.GetString();
-                                                break;
-                                        }
-                                    }
+                                    var course = reader.GetString();
+                                    if (course != null)
+                                        ((Professor)person).CoursesOffered.Add(course);
                                 }
                             }
                             break;
@@ -210,20 +115,6 @@ namespace JsonPolymorphicSerialization
             throw new JsonException();
         }
 
-        private void WritePerson(Utf8JsonWriter writer, Person person)
-        {
-            writer.WriteString("FirstName", person.FirstName);
-            writer.WriteString("LastName", person.LastName);
-            writer.WriteString("BirthDate", person.BirthDate);
-
-            writer.WriteStartObject("HomeAddress");
-            writer.WriteString("Street", person.HomeAddress.Street);
-            writer.WriteString("ZipCode", person.HomeAddress.ZipCode);
-            writer.WriteString("City", person.HomeAddress.City);
-            writer.WriteString("Country", person.HomeAddress.Country);
-            writer.WriteEndObject();
-        }
-
         public override void Write(Utf8JsonWriter writer, Person person, JsonSerializerOptions options)
         {
             writer.WriteStartObject();
@@ -231,15 +122,15 @@ namespace JsonPolymorphicSerialization
             if (person is Student student)
             {
                 writer.WriteString("PersonType", "Student");
-                WritePerson(writer, person);
+                writer.WriteString("FirstName", person.FirstName);
+                writer.WriteString("LastName", person.LastName);
+                writer.WriteString("BirthDate", person.BirthDate);
+                writer.WriteString("HomeAddress", person.HomeAddress);
                 writer.WriteNumber("RegistrationYear", student.RegistrationYear);
                 writer.WriteStartArray("CoursesTaken");
                 foreach(var course in student.CoursesTaken)
                 {
-                    writer.WriteStartObject();
-                    writer.WriteString("Name", course.Name);
-                    writer.WriteNumber("Semester", course.Semester);
-                    writer.WriteEndObject();
+                    writer.WriteStringValue(course);
                 }
                 writer.WriteEndArray();
 
@@ -247,15 +138,15 @@ namespace JsonPolymorphicSerialization
             else if (person is Professor professor)
             {
                 writer.WriteString("PersonType", "Professor");
-                WritePerson(writer, person);
+                writer.WriteString("FirstName", person.FirstName);
+                writer.WriteString("LastName", person.LastName);
+                writer.WriteString("BirthDate", person.BirthDate);
+                writer.WriteString("HomeAddress", person.HomeAddress);
                 writer.WriteString("OfficeNumber", professor.OfficeNumber);
                 writer.WriteStartArray("CoursesOffered");
                 foreach (var course in professor.CoursesOffered)
                 {
-                    writer.WriteStartObject();
-                    writer.WriteString("Name", course.Name);
-                    writer.WriteNumber("Semester", course.Semester);
-                    writer.WriteEndObject();
+                    writer.WriteStringValue(course);
                 }
                 writer.WriteEndArray();
             }
