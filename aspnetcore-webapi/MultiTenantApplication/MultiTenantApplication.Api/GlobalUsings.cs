@@ -1,0 +1,14 @@
+﻿global using Microsoft.AspNetCore.Mvc;
+global using MultiTenantApplication.Core.Abstractions;
+global using MultiTenantApplication.Infrastructure.Repositories;
+global using MultiTenantApplication.Infrastructure;
+global using MultiTenantApplication.Core;
+global using MultiTenantApplication.Api;
+global using Microsoft.IdentityModel.Tokens;
+global using System.Text;
+global using Microsoft.AspNetCore.Authorization;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.EntityFrameworkCore;
+global using MultiTenantApplication.Infrastructure.Data;
