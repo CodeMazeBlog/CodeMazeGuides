@@ -2,16 +2,14 @@
 using JsonPolymorphicSerialization;
 using System.Text.Json;
 
-var list = new Person[]
+var list = new Member[]
 {
     new Student()
     {
-        FirstName = "John",
-        LastName =  "Doe",
+        Name = "John Doe",
         BirthDate = new DateTime(2000, 2, 4),
-        HomeAddress = "3 Main str., 22323 Boston, USA",
         RegistrationYear = 2019,
-        CoursesTaken = new List<string>()
+        Courses = new List<string>()
         {
             "Algorithms",
             "Databases",
@@ -19,24 +17,17 @@ var list = new Person[]
     },
     new Professor()
     {
-        FirstName = "Jane",
-        LastName =  "Doe",
+        Name = "Jane Doe",
         BirthDate = new DateTime(1978, 6, 6),
-        HomeAddress = "1 Market str., HHFW33 London, UK",
-        OfficeNumber = "222A",
-        CoursesOffered = new List<string>()
-        {
-            "Algorithms"
-        }
+        Rank = "Full Professor",
+        IsTenured = true,
     },
     new Student()
     {
-        FirstName = "Jason",
-        LastName =  "Doe",
+        Name = "Jason Doe",
         BirthDate = new DateTime(2002, 7, 8),
-        HomeAddress = "5 First str., 43422 New York, USA",
         RegistrationYear = 2020,
-        CoursesTaken = new List<string>()
+        Courses = new List<string>()
         {
             "Databases",
         }
@@ -48,9 +39,8 @@ var options = new JsonSerializerOptions
     WriteIndented = true
 };
 
-string personsJson = JsonSerializer.Serialize<Person[]>(list, options);
-personsJson = JsonSerializer.Serialize<object[]>(list, options);
-
+string membersJson = JsonSerializer.Serialize<Member[]>(list, options);
+membersJson = JsonSerializer.Serialize<object[]>(list, options);
 
 options = new JsonSerializerOptions
 {
@@ -58,6 +48,6 @@ options = new JsonSerializerOptions
     WriteIndented = true
 };
 
-personsJson = JsonSerializer.Serialize<Person[]>(list, options);
-var personsList = JsonSerializer.Deserialize<List<Person>>(personsJson, options);
+membersJson = JsonSerializer.Serialize<Member[]>(list, options);
+var membersList = JsonSerializer.Deserialize<List<Member>>(membersJson, options);
 

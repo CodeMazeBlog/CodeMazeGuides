@@ -9,16 +9,14 @@ namespace JsonPolymorphicSerializationUnitTests
 {
     public class Tests
     {
-        Person[] list = new Person[]
+        Member[] list = new Member[]
         {
             new Student()
             {
-                FirstName = "John",
-                LastName =  "Doe",
+                Name = "John Doe",
                 BirthDate = new DateTime(2000, 2, 4),
-                HomeAddress = "3 Main str., 22323 Boston, USA",
                 RegistrationYear = 2019,
-                CoursesTaken = new List<string>()
+                Courses = new List<string>()
                 {
                     "Algorithms",
                     "Databases",
@@ -26,24 +24,17 @@ namespace JsonPolymorphicSerializationUnitTests
             },
             new Professor()
             {
-                FirstName = "Jane",
-                LastName =  "Doe",
+                Name = "Jane Doe",
                 BirthDate = new DateTime(1978, 6, 6),
-                HomeAddress = "1 Market str., HHFW33 London, UK",
-                OfficeNumber = "222A",
-                CoursesOffered = new List<string>()
-                {
-                    "Algorithms"
-                }
+                Rank = "Full Professor",
+                IsTenured = true
             },
             new Student()
             {
-                FirstName = "Jason",
-                LastName =  "Doe",
+                Name = "Jason Doe",
                 BirthDate = new DateTime(2002, 7, 8),
-                HomeAddress = "5 First str., 43422 New York, USA",
                 RegistrationYear = 2020,
-                CoursesTaken = new List<string>()
+                Courses = new List<string>()
                 {
                     "Databases",
                 }
@@ -52,36 +43,28 @@ namespace JsonPolymorphicSerializationUnitTests
 
         string json = @"[
   {
-	""PersonType"" : ""Student"",
-    ""FirstName"": ""John"",
-    ""LastName"": ""Doe"",
+	""MemberType"" : ""Student"",
+    ""Name"": ""John Doe"",
     ""BirthDate"": ""2000-02-04T00:00:00"",
     ""RegistrationYear"" : 2019,
-    ""HomeAddress"": ""3 Main str., 22323 Boston, USA"",
-    ""CoursesTaken"": [
+    ""Courses"": [
         ""Algorithms"",
         ""Databases""
     ]
   },
   {
-    ""PersonType"" : ""Professor"",
-    ""FirstName"": ""Jane"",
-    ""LastName"": ""Doe"",
+    ""MemberType"" : ""Professor"",
+    ""Name"": ""Jane Doe"",
     ""BirthDate"": ""1978-06-06T00:00:00"",
-    ""OfficeNumber"" : ""222A"",
-    ""HomeAddress"": ""1 Market str., HHFW33 London, UK"",
-    ""CoursesOffered"": [
-        ""Algorithms""
-     ]
+    ""Rank"" : ""Full Professor"",
+    ""IsTenured"" : true
   },
   {
-    ""PersonType"" : ""Student"",
-    ""FirstName"": ""Jason"",
-    ""LastName"": ""Doe"",
+    ""MemberType"" : ""Student"",
+    ""Name"": ""Jason Doe"",
     ""BirthDate"": ""2002-07-07T00:00:00"",
     ""RegistrationYear"" : 2020,
-    ""HomeAddress"": ""5 First str., 43422 New York, USA"",
-    ""CoursesTaken"": [
+    ""Courses"": [
         ""Databases""
     ]
   }
@@ -101,46 +84,46 @@ namespace JsonPolymorphicSerializationUnitTests
         [Test]
         public void WhenUsingSimpleSerialization_ThenDerivedClassPropertiesAreAbsent()
         {
-            var personsJson = JsonSerializer.Serialize<Person[]>(list);
-            Assert.IsFalse(personsJson.Contains("CoursesTaken"));
-            Assert.IsFalse(personsJson.Contains("CoursesOffered"));
-            Assert.IsFalse(personsJson.Contains("RegistrationYear"));
-            Assert.IsFalse(personsJson.Contains("OfficeNumber"));
+            var membersJson = JsonSerializer.Serialize<Member[]>(list);
+            Assert.IsFalse(membersJson.Contains("Courses"));
+            Assert.IsFalse(membersJson.Contains("RegistrationYear"));
+            Assert.IsFalse(membersJson.Contains("Rank"));
+            Assert.IsFalse(membersJson.Contains("IsTenured"));
         }
 
         [Test]
         public void WhenUsingSimpleSerializationWithObject_ThenDerivedClassPropertiesArePresent()
         {
-            var personsJson = JsonSerializer.Serialize<object[]>(list);
-            Assert.IsTrue(personsJson.Contains("CoursesTaken"));
-            Assert.IsTrue(personsJson.Contains("CoursesOffered"));
-            Assert.IsTrue(personsJson.Contains("RegistrationYear"));
-            Assert.IsTrue(personsJson.Contains("OfficeNumber"));
+            var membersJson = JsonSerializer.Serialize<object[]>(list);
+            Assert.IsTrue(membersJson.Contains("Courses"));
+            Assert.IsTrue(membersJson.Contains("RegistrationYear"));
+            Assert.IsTrue(membersJson.Contains("Rank"));
+            Assert.IsTrue(membersJson.Contains("IsTenured"));
         }
 
         [Test]
         public void WhenUsingCustomConverterSerialization_ThenDerivedClassPropertiesArePresent()
         {
-            var personsJson = JsonSerializer.Serialize<Person[]>(list, options);
-            Assert.IsTrue(personsJson.Contains("CoursesTaken"));
-            Assert.IsTrue(personsJson.Contains("CoursesOffered"));
-            Assert.IsTrue(personsJson.Contains("RegistrationYear"));
-            Assert.IsTrue(personsJson.Contains("OfficeNumber"));
+            var membersJson = JsonSerializer.Serialize<Member[]>(list, options);
+            Assert.IsTrue(membersJson.Contains("Courses"));
+            Assert.IsTrue(membersJson.Contains("RegistrationYear"));
+            Assert.IsTrue(membersJson.Contains("Rank"));
+            Assert.IsTrue(membersJson.Contains("IsTenured"));
         }
 
         [Test]
         public void WhenUsingCustomConverterDeserialization_ThenDerivedClassPropertiesArePresent()
         {
-            var deserializedList = JsonSerializer.Deserialize<List<Person>>(json, options);
-            var john = deserializedList?.FirstOrDefault(p => p.FirstName == "John");
+            var deserializedList = JsonSerializer.Deserialize<List<Member>>(json, options);
+            var john = deserializedList?.FirstOrDefault(p => p.Name == "John Doe");
             Assert.IsNotNull(john);
             Assert.AreEqual(((Student?)john)?.RegistrationYear, 2019);
-            Assert.AreEqual(((Student?)john)?.CoursesTaken.Count, 2);
+            Assert.AreEqual(((Student?)john)?.Courses.Count, 2);
 
-            var jane = deserializedList?.FirstOrDefault(p => p.FirstName == "Jane");
+            var jane = deserializedList?.FirstOrDefault(p => p.Name == "Jane Doe");
             Assert.IsNotNull(jane);
-            Assert.AreEqual(((Professor?)jane)?.OfficeNumber, "222A");
-            Assert.AreEqual(((Professor?)jane)?.CoursesOffered.Count, 1);
+            Assert.AreEqual(((Professor?)jane)?.Rank, "Full Professor");
+            Assert.AreEqual(((Professor?)jane)?.IsTenured, true);
         }
     }
 }

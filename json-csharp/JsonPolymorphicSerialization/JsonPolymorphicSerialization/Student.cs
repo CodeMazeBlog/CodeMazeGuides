@@ -1,8 +1,8 @@
 ﻿namespace JsonPolymorphicSerialization
 {
-    public class Student : Person
+    public class Student : Member
     {
         public int RegistrationYear { get; set; }
-        public List<string> CoursesTaken { get; set; } = new List<string>();
+        public List<string> Courses { get; set; } = new List<string>();
     }
 }
