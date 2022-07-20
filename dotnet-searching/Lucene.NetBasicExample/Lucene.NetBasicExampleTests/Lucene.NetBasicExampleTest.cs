@@ -22,7 +22,7 @@ namespace Lucene.NetBasicExampleTests
         }
 
         [TestMethod]
-        public void Test3_WhenCallingAddToIndex_ThenResultCountIsCorrect()
+        public void Test3_WhenCallingAddToIndex_ThenResultCountIsGreaterThanZero()
         {
             AddToIndex();
             var result = Search("AddedFirstName");
@@ -46,7 +46,7 @@ namespace Lucene.NetBasicExampleTests
         }
 
         [TestMethod]
-        public void Test6_WhenCallingDispose_ThenWriterIsNull()
+        public void Test6_WhenCallingDispose_ThenWriterIsClosed()
         {
             Dispose();
             Assert.IsTrue(Writer.IsClosed);
