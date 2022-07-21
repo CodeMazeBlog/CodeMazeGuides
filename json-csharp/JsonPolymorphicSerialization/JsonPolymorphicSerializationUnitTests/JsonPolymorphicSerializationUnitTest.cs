@@ -73,6 +73,7 @@ namespace JsonPolymorphicSerializationUnitTests
         JsonSerializerOptions options = new JsonSerializerOptions
         {
             Converters = { new UniversityJsonConverter() },
+
             WriteIndented = true
         };
 

@@ -45,6 +45,7 @@ membersJson = JsonSerializer.Serialize<object[]>(list, options);
 options = new JsonSerializerOptions
 {
     Converters = { new UniversityJsonConverter() },
+
     WriteIndented = true
 };
 
