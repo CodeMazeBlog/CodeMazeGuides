@@ -9,7 +9,7 @@ namespace JsonPolymorphicSerializationUnitTests
 {
     public class Tests
     {
-        Member[] list = new Member[]
+        Member[] members = new Member[]
         {
             new Student()
             {
@@ -36,7 +36,7 @@ namespace JsonPolymorphicSerializationUnitTests
                 RegistrationYear = 2020,
                 Courses = new List<string>()
                 {
-                    "Databases",
+                    "Databases"
                 }
             }
         };
@@ -85,7 +85,7 @@ namespace JsonPolymorphicSerializationUnitTests
         [Test]
         public void WhenUsingSimpleSerialization_ThenDerivedClassPropertiesAreAbsent()
         {
-            var membersJson = JsonSerializer.Serialize<Member[]>(list);
+            var membersJson = JsonSerializer.Serialize<Member[]>(members);
             Assert.IsFalse(membersJson.Contains("Courses"));
             Assert.IsFalse(membersJson.Contains("RegistrationYear"));
             Assert.IsFalse(membersJson.Contains("Rank"));
@@ -95,7 +95,7 @@ namespace JsonPolymorphicSerializationUnitTests
         [Test]
         public void WhenUsingSimpleSerializationWithObject_ThenDerivedClassPropertiesArePresent()
         {
-            var membersJson = JsonSerializer.Serialize<object[]>(list);
+            var membersJson = JsonSerializer.Serialize<object[]>(members);
             Assert.IsTrue(membersJson.Contains("Courses"));
             Assert.IsTrue(membersJson.Contains("RegistrationYear"));
             Assert.IsTrue(membersJson.Contains("Rank"));
@@ -105,7 +105,7 @@ namespace JsonPolymorphicSerializationUnitTests
         [Test]
         public void WhenUsingCustomConverterSerialization_ThenDerivedClassPropertiesArePresent()
         {
-            var membersJson = JsonSerializer.Serialize<Member[]>(list, options);
+            var membersJson = JsonSerializer.Serialize<Member[]>(members, options);
             Assert.IsTrue(membersJson.Contains("Courses"));
             Assert.IsTrue(membersJson.Contains("RegistrationYear"));
             Assert.IsTrue(membersJson.Contains("Rank"));

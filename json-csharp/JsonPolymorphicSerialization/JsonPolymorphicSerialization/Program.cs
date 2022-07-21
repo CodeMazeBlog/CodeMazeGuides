@@ -2,7 +2,7 @@
 using JsonPolymorphicSerialization;
 using System.Text.Json;
 
-var list = new Member[]
+var members = new Member[]
 {
     new Student()
     {
@@ -29,7 +29,7 @@ var list = new Member[]
         RegistrationYear = 2020,
         Courses = new List<string>()
         {
-            "Databases",
+            "Databases"
         }
     }
 };
@@ -39,16 +39,15 @@ var options = new JsonSerializerOptions
     WriteIndented = true
 };
 
-string membersJson = JsonSerializer.Serialize<Member[]>(list, options);
-membersJson = JsonSerializer.Serialize<object[]>(list, options);
+string membersJson = JsonSerializer.Serialize<Member[]>(members, options);
+membersJson = JsonSerializer.Serialize<object[]>(members, options);
 
 options = new JsonSerializerOptions
 {
     Converters = { new UniversityJsonConverter() },
-
     WriteIndented = true
 };
 
-membersJson = JsonSerializer.Serialize<Member[]>(list, options);
-var membersList = JsonSerializer.Deserialize<List<Member>>(membersJson, options);
+membersJson = JsonSerializer.Serialize<Member[]>(members, options);
+var newMembers = JsonSerializer.Deserialize <Member[]>(membersJson, options);
 
