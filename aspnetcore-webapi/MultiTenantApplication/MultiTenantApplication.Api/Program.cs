@@ -7,7 +7,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.Bootstrap();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = JwtHelper.GetTokenParameters();
+    });
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<ITenantRegistry, TenantRegistry>();
+builder.Services.AddScoped<ITenantResolver, TenantResolver>();
+builder.Services.AddTransient<IGoodsRepository, GoodsRepository>();
+builder.Services.AddDbContext<InventoryDbContext>(o =>
+{
+    o.UseSqlServer(options => options.MigrationsAssembly(typeof(InventoryDbContext).Assembly.FullName));
+});
+
+DatabaseHelper.EnsureLatestDatabase(builder.Services);
 
 var app = builder.Build();
 

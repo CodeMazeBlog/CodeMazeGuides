@@ -5,6 +5,6 @@ namespace MultiTenantApplication.Core.Abstractions;
 public interface IGoodsRepository
 {
     Task<Goods> AddAsync(GoodsDto goodsDto);
+
     Task<IReadOnlyList<Goods>> GetAllAsync();
-    Task<Goods?> FindByNameAsync(string name);
 }

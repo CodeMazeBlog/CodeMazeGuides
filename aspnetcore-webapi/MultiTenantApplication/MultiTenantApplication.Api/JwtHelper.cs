@@ -27,7 +27,7 @@ public class JwtHelper
         var tokenOptions = new JwtSecurityToken(
             issuer: ISSUER,
             audience: AUDIENCE,
-            claims: new List<Claim>() { new(ClaimTypes.Name, tenant.Name ?? string.Empty) },
+            claims: new List<Claim>() { new(ClaimConstants.TenantId, tenant.Name ?? string.Empty) },
             expires: DateTime.Now.AddMinutes(10),
             signingCredentials: signinCredentials
         );

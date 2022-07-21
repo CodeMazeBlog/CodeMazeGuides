@@ -12,7 +12,7 @@ public class MigrationDbContextFactory : IDesignTimeDbContextFactory<InventoryDb
         return new InventoryDbContext(builder.Options, new MigrationTenantResolver());
     }
 
-    class MigrationTenantResolver : ITenantResolver
+    private class MigrationTenantResolver : ITenantResolver
     {
         private readonly Tenant _tenant;
 

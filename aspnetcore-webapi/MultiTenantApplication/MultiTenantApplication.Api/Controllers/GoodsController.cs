@@ -20,15 +20,7 @@ public class GoodsController : ControllerBase
         return Created(string.Empty, goods);
     }
 
-    [HttpGet("{name}")]
-    public async Task<IActionResult> GetAsync(string name)
-    {
-        var goods = await _goodsRepository.FindByNameAsync(name);
-
-        return Ok(goods);
-    }
-
-    [HttpGet("list")]
+    [HttpGet]
     public async Task<IActionResult> GetListAsync()
     {
         var list = await _goodsRepository.GetAllAsync();

@@ -23,9 +23,4 @@ public class GoodsRepository : IGoodsRepository
     {
         return await _dbContext.Goods.ToListAsync();
     }
-
-    public async Task<Goods?> FindByNameAsync(string name)
-    {
-        return await _dbContext.Goods.FirstOrDefaultAsync(e => e.Name == name);
-    }
 }

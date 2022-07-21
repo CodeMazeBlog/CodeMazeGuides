@@ -1,21 +1,20 @@
-﻿#nullable disable
-
-namespace MultiTenantApplication.Infrastructure;
+﻿namespace MultiTenantApplication.Infrastructure;
 
 public class TenantRegistry : ITenantRegistry
 {
-    private readonly TenantOptions _tenantOptions;
+    private readonly TenantOptions _registry;
 
     public TenantRegistry(IConfiguration configuration)
     {
-        _tenantOptions = configuration.GetSection("TenantOptions").Get<TenantOptions>();
+        _registry = configuration.GetSection("TenantOptions").Get<TenantOptions>();
 
-        foreach(var tenant in _tenantOptions.Tenants.Where(e => string.IsNullOrEmpty(e.ConnectionString)))
+        foreach(var tenant in _registry.Tenants.Where(e => string.IsNullOrEmpty(e.ConnectionString)))
         {
-            tenant.ConnectionString = _tenantOptions.DefaultConnection;
+            tenant.ConnectionString = _registry.DefaultConnection;
         }
     }
 
-    public Tenant[] Tenants => _tenantOptions.Tenants;
+    public Tenant[] GetTenants() => _registry.Tenants;
 
+    public User[] GetUsers() => _registry.Users;
 }

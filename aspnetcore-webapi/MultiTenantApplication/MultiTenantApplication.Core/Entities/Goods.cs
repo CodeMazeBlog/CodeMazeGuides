@@ -1,13 +1,8 @@
-﻿using MultiTenantApplication.Core.Abstractions;
+﻿namespace MultiTenantApplication.Core.Entities;
 
-namespace MultiTenantApplication.Core.Entities;
-
-#nullable disable
-
-public class Goods : IHaveTenant
+public class Goods : EntityBase
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
+
     public decimal Price { get; set; }
-    public string TenantId { get; set; }
 }

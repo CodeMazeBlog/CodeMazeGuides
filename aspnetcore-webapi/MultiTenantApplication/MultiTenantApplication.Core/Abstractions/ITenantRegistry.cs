@@ -2,5 +2,7 @@
 
 public interface ITenantRegistry
 {
-    Tenant[] Tenants { get; }
+    Tenant[] GetTenants();
+
+    User[] GetUsers();
 }

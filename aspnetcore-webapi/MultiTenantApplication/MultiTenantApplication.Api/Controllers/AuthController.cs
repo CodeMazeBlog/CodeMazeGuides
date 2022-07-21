@@ -12,20 +12,22 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromBody] User user)
+    public IActionResult Login([FromBody] LoginRequest loginRequest)
     {
-        if (user is null) 
+        if (loginRequest is null) 
             return BadRequest();
 
-        var tenant = _tenantRegistry.Tenants.FirstOrDefault(e => e.Name == user.UserName && e.Secret == user.Password);
+        var user = _tenantRegistry.GetUsers()
+            .FirstOrDefault(e => e.Name == loginRequest.UserName && e.Secret == loginRequest.Password);
 
-        if (tenant is null)
+        if (user is null)
             return Unauthorized($"Invalid user");
+
+        if (_tenantRegistry.GetTenants().FirstOrDefault(e => e.Name == user.TenantId) is not { } tenant)
+            return Unauthorized($"Invalid tenant");
 
         var tokenString = JwtHelper.GenerateToken(tenant);
 
         return Ok(new { Token = tokenString });
     }
 }
-
-public record class User(string UserName, string Password);

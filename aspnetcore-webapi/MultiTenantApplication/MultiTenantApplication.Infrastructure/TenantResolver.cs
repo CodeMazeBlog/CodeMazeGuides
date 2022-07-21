@@ -13,11 +13,13 @@ public class TenantResolver : ITenantResolver
 
     public Tenant GetCurrentTenant()
     {
-        var claim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(e => e.Type == ClaimTypes.Name);
+        var claim = _httpContextAccessor.HttpContext.User.Claims
+            .FirstOrDefault(e => e.Type == ClaimConstants.TenantId);
+
         if (claim is null)
             throw new UnauthorizedAccessException("Authentication failed");
 
-        var tenant = _tenantRegistry.Tenants.FirstOrDefault(t => t.Name == claim.Value);
+        var tenant = _tenantRegistry.GetTenants().FirstOrDefault(t => t.Name == claim.Value);
         if (tenant is null)
             throw new UnauthorizedAccessException($"Tenant '{claim.Value}' is not registered.");
 
