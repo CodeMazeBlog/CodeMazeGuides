@@ -13,8 +13,8 @@ namespace Lucene.NetBasicExample
     {
         public static IndexWriter Writer;
         public static List<Person> Data;
-        private static RAMDirectory Directory;
-        private static string PersonGuidToBeUpdated;
+        private static RAMDirectory _directory;
+        private static string _personGuidToBeUpdated;
 
         public static void GetData()
         {
@@ -37,9 +37,9 @@ namespace Lucene.NetBasicExample
         {
             const LuceneVersion lv = LuceneVersion.LUCENE_48;
             Analyzer a = new StandardAnalyzer(lv);
-            Directory = new RAMDirectory();
+            _directory = new RAMDirectory();
             var config = new IndexWriterConfig(lv, a);
-            Writer = new IndexWriter(Directory, config);
+            Writer = new IndexWriter(_directory, config);
 
             var guidField = new StringField("GUID", "", Field.Store.YES);
             var fNameField = new TextField("FirstName", "", Field.Store.YES);
@@ -72,11 +72,11 @@ namespace Lucene.NetBasicExample
 
         public static void AddToIndex()
         {
-            PersonGuidToBeUpdated = Guid.NewGuid().ToString();
+            _personGuidToBeUpdated = Guid.NewGuid().ToString();
 
             var d = new Document()
             {
-                new StringField("GUID", PersonGuidToBeUpdated, Field.Store.YES),
+                new StringField("GUID", _personGuidToBeUpdated, Field.Store.YES),
                 new TextField("FirstName", "AddedFirstName", Field.Store.YES),
                 new TextField("MiddleName", "AddedMiddleName", Field.Store.YES),
                 new TextField("LastName", "AddedLastName", Field.Store.YES),
@@ -91,34 +91,34 @@ namespace Lucene.NetBasicExample
         {
             var d = new Document()
             {
-                new StringField("GUID", PersonGuidToBeUpdated, Field.Store.YES),
+                new StringField("GUID", _personGuidToBeUpdated, Field.Store.YES),
                 new TextField("FirstName", "UpdateFirstName", Field.Store.YES),
                 new TextField("MiddleName", "UpdatedMiddleName", Field.Store.YES),
                 new TextField("LastName", "UpdatedLastName", Field.Store.YES),
                 new TextField("Description", "Updated Description", Field.Store.YES)
             };
 
-            Writer.UpdateDocument(new Term("GUID", PersonGuidToBeUpdated), d);
+            Writer.UpdateDocument(new Term("GUID", _personGuidToBeUpdated), d);
             Writer.Commit();
         }
 
         public static void DeleteFromIndex()
         {
-            Writer.DeleteDocuments(new Term("GUID", PersonGuidToBeUpdated));
+            Writer.DeleteDocuments(new Term("GUID", _personGuidToBeUpdated));
             Writer.Commit();
         }
 
         public static void Dispose()
         {
             Writer.Dispose();
-            Directory.Dispose();
+            _directory.Dispose();
         }
 
         public static List<string> Search(string input)
         {
             const LuceneVersion lv = LuceneVersion.LUCENE_48;
             Analyzer a = new StandardAnalyzer(lv);
-            var dirReader = DirectoryReader.Open(Directory);
+            var dirReader = DirectoryReader.Open(_directory);
             var searcher = new IndexSearcher(dirReader);
 
             string[] fnames = { "GUID", "FirstName", "MiddleName", "LastName", "Age", "Description" };
