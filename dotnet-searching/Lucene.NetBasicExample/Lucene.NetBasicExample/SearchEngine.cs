@@ -11,8 +11,8 @@ namespace Lucene.NetBasicExample
 {
     public class SearchEngine
     {
-        public static IndexWriter Writer;
-        public static List<Person> Data;
+        public static IndexWriter Writer { get; set; }
+        public static List<Person> Data { get; set; }
         private static RAMDirectory _directory;
         private static string _personGuidToBeUpdated;
 
