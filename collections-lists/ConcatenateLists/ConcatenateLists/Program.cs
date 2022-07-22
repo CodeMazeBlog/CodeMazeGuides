@@ -12,8 +12,8 @@ public class Program
         var concatenator = new Concatenator();
 
         Console.WriteLine();
-        Console.WriteLine("------ Concatenate lists using Loop");
-        PrintOut(concatenator.UsingLoop(firstList, secondList));
+        Console.WriteLine("------ Concatenate lists using Add");
+        PrintOut(concatenator.UsingAdd(firstList, secondList));
 
         Console.WriteLine();
         Console.WriteLine("------ Concatenate using Enumerable.Concat");

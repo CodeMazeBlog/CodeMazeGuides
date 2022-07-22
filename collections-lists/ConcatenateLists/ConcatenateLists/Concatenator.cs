@@ -2,7 +2,7 @@
 {
     public class Concatenator
     {
-        public List<string> UsingLoop(List<string> firstList, List<string> secondList)
+        public List<string> UsingAdd(List<string> firstList, List<string> secondList)
         {
             var result = new List<string>(firstList.Count() + secondList.Count());
 

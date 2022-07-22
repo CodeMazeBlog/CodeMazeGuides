@@ -14,9 +14,9 @@ namespace BenchmarkRunner
         private readonly Concatenator _concatenator = new();
                
         [Benchmark]
-        public void UsingLoop()
+        public void UsingAdd()
         {
-             _concatenator.UsingLoop(_firstList, _secondList);
+             _concatenator.UsingAdd(_firstList, _secondList);
         }
 
         [Benchmark]

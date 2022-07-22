@@ -11,9 +11,9 @@ namespace Tests
         private readonly List<string> _expectedList = new() { "Concatenate", "Lists", "In", "C#" };
 
         [Fact]
-        public void GivenTwoLists_WhenUsingLoopMethod_ThenReturnANewConcatenatedList()
+        public void GivenTwoLists_WhenUsingAddMethod_ThenReturnANewConcatenatedList()
         {
-            var result = _concatenator.UsingLoop(_firstList, _secondList);
+            var result = _concatenator.UsingAdd(_firstList, _secondList);
 
             Assert.Equal(_expectedList.Count(), result.Count);
             Assert.Equal(_expectedList, result);
