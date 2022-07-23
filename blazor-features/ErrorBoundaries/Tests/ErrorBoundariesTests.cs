@@ -20,7 +20,7 @@ public class ErrorBoundariesTests : TestContext
     public void GivenAValidContext_WhenCounterExceedsFive_ThenErrorIsShown()
 	{
         // Arrange
-        const int count = 5;
+        const int count = 4;
 
         // Act
         var cut = RenderComponent<Index>();
@@ -34,14 +34,14 @@ public class ErrorBoundariesTests : TestContext
 
         // Assert
         var error = cut.Find("p");
-        error.MarkupMatches("<p>Uh oh! Something went wrong</p>");
+        error.MarkupMatches("<p class=\"error-message\">Uh oh! Something went wrong</p>");
     }
 
     [Fact]
     public void GivenComponentInErrorState_WhenResetButtonClicked_ThenStateIsReset()
     {
         // Arrange
-        const int count = 5;
+        const int count = 4;
 
         var cut = RenderComponent<Index>();
         var counter = cut.FindComponent<Counter>();

@@ -7,7 +7,7 @@
 		<Counter />
 	</ChildContent>
 	<ErrorContent>
-		<p>Uh oh! Something went wrong</p>
+		<p class="error-message">Uh oh! Something went wrong</p>
 		<button class="btn btn-warning" @onclick="ResetError">Reset</button>
 	</ErrorContent>
 </ErrorBoundary>
@@ -16,7 +16,6 @@
 
 @code {
 	private ErrorBoundary? errorBoundary;
-	private Exception? exception;
 
 	protected override void OnParametersSet()
 	{
