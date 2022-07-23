@@ -1,4 +1,5 @@
 ﻿using LINQImprovements;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests;
 
@@ -85,10 +86,10 @@ public class LINQUtilsTests
     [TestMethod]
     public void WhenEnumerablesAreZipped_ThenReturnEnumeratedTupleWithAllEnumerables()
     {
-        var names = new List<String>() { "student1", "student2" };
-        var departments = new List<String>() { "dept1", "dept2" };
+        var names = new List<string>() { "student1", "student2" };
+        var departments = new List<string>() { "dept1", "dept2" };
         var grades = new List<int>() { 1, 2};
-        var expectedResult = new List<(String, String, int)>() { ("student1", "dept1", 1), ("student2", "dept2", 2) };
+        var expectedResult = new List<(string, string, int)>() { ("student1", "dept1", 1), ("student2", "dept2", 2) };
 
         var zippedEnumerables = LINQUtils.ZipEnumerables(names, departments, grades);
 
