@@ -16,39 +16,36 @@ namespace LINQImrpovements
             };
 
             //Pages of Students with page size 2
-            var studentChunks = students.Chunk(2);
-            studentChunks.ToList().ForEach(studentChunk => Console.WriteLine(studentChunk.Count()));
+            var studentChunks = LINQUtils.Chunk(2);
+            studentChunks.ForEach(studentChunk => Console.WriteLine(studentChunk.Count()));
 
-            //Get student with maximum and minimum grades by using maxBy and minBy
-            var student1 = students.MaxBy(student => student.Grade);
-            Console.WriteLine(student1);
+            //Get students with maximum and minimum grades by using maxBy and minBy
+            var maxStudent = LINQUtils.MaxGrade();
+            Console.WriteLine(maxStudent);
 
-            var student2 = students.MinBy(student => student.Grade);
-            Console.WriteLine(student2);
+            var minStudent = LINQUtils.MinGrade();
+            Console.WriteLine(minStudent);
 
-            //Get Default value when element does not exist
-            var defaultStudent = new Student(name: "", department: "", grade: -1);
-
-            var firstStudent = students.FirstOrDefault(student => student.Name.Equals("Fake Student"), defaultStudent);
-            var lastStudent = students.LastOrDefault(student => student.Name.Equals("Fake Student"), defaultStudent);
-            var singleStudent = students.SingleOrDefault(student => student.Name.Equals("Fake Student"), defaultStudent);
+            //Get Default value when the element does not exist
+            var firstStudent = LINQUtils.FirstOrDefaultStudent();
+            var lastStudent = LINQUtils.LastOrDefaultStudent();
+            var singleStudent = LINQUtils.SingleOrDefaultStudent();
 
             Console.WriteLine(firstStudent);
             Console.WriteLine(lastStudent);
             Console.WriteLine(singleStudent);
 
             //Index and Range Arguments
-            var student = students.ElementAt(^3);
+            var student = LINQUtils.ElementAt(^3);
             Console.WriteLine(student);
 
-            var studentsRange = students.Take(1..3);
+            var studentsRange = LINQUtils.Take(1..3);
             PrintEnumerable(studentsRange);
 
-            //Avoid count if count does not exist
+            //Avoid count if the count does not exist
             int count = -1;
-            var queryableStudents = students.AsQueryable();
 
-            var doesCountExist = queryableStudents.TryGetNonEnumeratedCount(out count);
+            var doesCountExist = LINQUtils.CountStudents(out count);
             Console.WriteLine(doesCountExist);
 
             //3 Way Zip
@@ -56,25 +53,22 @@ namespace LINQImrpovements
             var departments = new List<string>() { "CS", "AP", "IT" };
             var grades = new List<int>() { 10, 6, 8 };
 
-            var enumeratedList = names.Zip(departments, grades);
+            var enumeratedList = LINQUtils.ZipEnumerables(names, departments, grades);
             PrintEnumerable(enumeratedList);
 
             //Set operations
-            var distinctStudents = students.DistinctBy(student => student.Department);
+            var distinctStudents = LINQUtils.DistinctDepartmentStudents();
             PrintEnumerable(distinctStudents);
 
-            var studentNames = new List<string>()
-            {
-                "Ross", "Stokes", "James", "Mike"
-            };
+            var studentNames = new List<string>(){ "Ross", "Stokes", "James", "Mike" };
 
-            var unCommonStudents = names.ExceptBy(studentNames, student => student);
+            var unCommonStudents = LINQUtils.ExceptBy(names, studentNames);
             PrintEnumerable(unCommonStudents);
 
-            var commonStudents = names.IntersectBy(studentNames, student => student);
+            var commonStudents = LINQUtils.IntersectBy(names, studentNames);
             PrintEnumerable(commonStudents);
 
-            var allStudents = names.UnionBy(studentNames, student => student);
+            var allStudents = LINQUtils.UnionBy(names, studentNames);
             PrintEnumerable(allStudents);
         }
 

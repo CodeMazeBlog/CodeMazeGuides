@@ -19,6 +19,19 @@ namespace LINQImprovements
         {
             return "Name: " + Name + " Dept: " + Department + " Grade: " + Grade;
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Name, Department, Grade);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Student student &&
+                   Name == student.Name &&
+                   Department == student.Department &&
+                   Grade == student.Grade;
+        }
     }
 }
 

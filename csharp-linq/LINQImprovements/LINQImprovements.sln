@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1703.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQImprovements", "LINQImprovements\LINQImprovements.csproj", "{489DCCA0-D104-4F81-BEBD-3689C5E008CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{CA705F39-BC61-4D97-9616-34759D011E19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{489DCCA0-D104-4F81-BEBD-3689C5E008CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{489DCCA0-D104-4F81-BEBD-3689C5E008CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{489DCCA0-D104-4F81-BEBD-3689C5E008CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA705F39-BC61-4D97-9616-34759D011E19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA705F39-BC61-4D97-9616-34759D011E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA705F39-BC61-4D97-9616-34759D011E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA705F39-BC61-4D97-9616-34759D011E19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
