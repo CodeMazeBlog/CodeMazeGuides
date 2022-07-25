@@ -27,6 +27,14 @@ public class Program
         Console.WriteLine("------ Concatenate using AddRange");
         PrintOut(concatenator.UsingAddRange(firstList, secondList));
 
+        Console.WriteLine();
+        Console.WriteLine("------ Concatenate using List CopyTo");
+        PrintOut(concatenator.UsingCopyTo(firstList, secondList));
+
+        Console.WriteLine();
+        Console.WriteLine("------ Concatenate using SelectMany");
+        PrintOut(concatenator.UsingSelectMany(firstList, secondList));
+
         Console.ReadLine();
     }
 

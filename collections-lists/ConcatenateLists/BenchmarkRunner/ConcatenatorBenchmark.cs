@@ -36,5 +36,17 @@ namespace BenchmarkRunner
         {
             _concatenator.UsingAddRange(_firstList, _secondList);
         }
+
+        [Benchmark]
+        public void UsingCopyTo()
+        {
+            _concatenator.UsingCopyTo(_firstList, _secondList);
+        }
+
+        [Benchmark]
+        public void UsingSelecMany()
+        {
+            _concatenator.UsingSelectMany(_firstList, _secondList);
+        }
     }
 }

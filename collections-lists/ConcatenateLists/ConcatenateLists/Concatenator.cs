@@ -38,5 +38,22 @@
 
             return result;
         }
+
+        public List<string> UsingCopyTo(List<string> firstList, List<string> secondList)
+        {
+            var combinedList = new string[firstList.Count() + secondList.Count()];
+
+            firstList.CopyTo(combinedList);
+            secondList.CopyTo(combinedList, firstList.Count());
+
+            return combinedList.ToList();
+        }
+
+        public List<string> UsingSelectMany(List<string> firstList, List<string> secondList)
+        {  
+            var combinedArray = (new[] { firstList, secondList }).SelectMany(x => x);
+
+            return combinedArray.ToList();
+        }
     }
 }
