@@ -4,14 +4,14 @@ using Xunit;
 
 namespace ActionAndFuncDelegatesInCsharpTests
 {
-    public class ActionAndFuncDelegateTests : IDisposable
+    public class ActionAndFuncDelegateUnitTest : IDisposable
     {
         private readonly TextWriter _originalConsoleOut;
         private readonly StringWriter _fakeConsoleOut;
 
         private readonly string _expectedHelloWorldOutput = $"Hello World!{Environment.NewLine}";
 
-        public ActionAndFuncDelegateTests()
+        public ActionAndFuncDelegateUnitTest()
         {
             _originalConsoleOut = Console.Out;
             _fakeConsoleOut = new StringWriter();
