@@ -44,7 +44,7 @@ namespace BenchmarkRunner
         }
 
         [Benchmark]
-        public void UsingSelecMany()
+        public void UsingSelectMany()
         {
             _concatenator.UsingSelectMany(_firstList, _secondList);
         }

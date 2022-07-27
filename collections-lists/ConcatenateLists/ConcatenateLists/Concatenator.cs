@@ -51,7 +51,7 @@
 
         public List<string> UsingSelectMany(List<string> firstList, List<string> secondList)
         {  
-            var combinedArray = (new[] { firstList, secondList }).SelectMany(x => x);
+            var combinedArray = new[] { firstList, secondList }.SelectMany(x => x);
 
             return combinedArray.ToList();
         }
