@@ -14,9 +14,9 @@ namespace LINQImprovements
         static Student defaultStudent = new Student(name: "", department: "", grade: -1);
 
 
-        public static List<Student[]> Chunk( int pageSize)
+        public static List<Student[]> Chunk(int pageSize)
         {
-            var studentChunks =  students.Chunk(pageSize);
+            var studentChunks = students.Chunk(pageSize);
 
             return studentChunks.ToList();
         }
@@ -68,24 +68,24 @@ namespace LINQImprovements
             return names.Zip(departments, grades);
         }
 
-        public static IEnumerable<Student> DistinctDepartmentStudents()
+        public static IEnumerable<Student> DistinctByDepartment()
         {
             return students.DistinctBy(student => student.Department);
         }
 
-        public static IEnumerable<String> ExceptBy(List<string> firstList, List<string> secondList)
+        public static IEnumerable<Student> ExceptByDepartment(List<Student> secondList)
         {
-            return firstList.ExceptBy(secondList, student => student);
+            return students.ExceptBy(secondList.Select(student => student.Department), student => student.Department);
         }
 
-        public static IEnumerable<String> IntersectBy(List<string> firstList, List<string> secondList)
+        public static IEnumerable<Student> IntersectByDepartment(List<Student> secondList)
         {
-            return firstList.IntersectBy(secondList, student => student);
+            return students.IntersectBy(secondList.Select(student => student.Department), student => student.Department);
         }
 
-        public static IEnumerable<String> UnionBy(List<string> firstList, List<string> secondList)
+        public static IEnumerable<Student> UnionByDepartment(List<Student> secondList)
         {
-            return firstList.UnionBy(secondList, student => student);
+            return students.UnionBy(secondList, student => student.Department);
         }
     }
 }

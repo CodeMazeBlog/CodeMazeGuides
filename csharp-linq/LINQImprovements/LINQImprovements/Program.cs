@@ -7,17 +7,17 @@ namespace LINQImrpovements
     {
         public static void Main(string[] args)
         {
-            var students = new List<Student>()
+            var studentsList = new List<Student>()
             {
-                new Student("John", "CS", 10),
-                new Student("James", "CS", 6),
-                new Student("Mike", "IT", 8),
+                new Student("Perry", "CE", 10),
+                new Student("Dottin", "CU", 6),
+                new Student("Sciver", "ME", 8),
                 new Student("Mahesh", "IT", 3),
             };
 
             //Pages of Students with page size 2
             var studentChunks = LINQUtils.Chunk(2);
-            foreach(var studentChunk in studentChunks)
+            foreach (var studentChunk in studentChunks)
             {
                 Console.WriteLine(studentChunk.Count());
             }
@@ -53,31 +53,29 @@ namespace LINQImrpovements
 
             //3 Way Zip
             var names = new List<string>() { "John", "James", "Mike" };
-            var departments = new List<string>() { "CS", "AP", "IT" };
+            var departments = new List<string>() { "ME", "AP", "IT" };
             var grades = new List<int>() { 10, 6, 8 };
 
             var enumeratedList = LINQUtils.ZipEnumerables(names, departments, grades);
             PrintEnumerable(enumeratedList);
 
             //Set operations
-            var distinctStudents = LINQUtils.DistinctDepartmentStudents();
+            var distinctStudents = LINQUtils.DistinctByDepartment();
             PrintEnumerable(distinctStudents);
 
-            var studentNames = new List<string>(){ "Ross", "Stokes", "James", "Mike" };
-
-            var unCommonStudents = LINQUtils.ExceptBy(names, studentNames);
+            var unCommonStudents = LINQUtils.ExceptByDepartment(studentsList);
             PrintEnumerable(unCommonStudents);
 
-            var commonStudents = LINQUtils.IntersectBy(names, studentNames);
+            var commonStudents = LINQUtils.IntersectByDepartment(studentsList);
             PrintEnumerable(commonStudents);
 
-            var allStudents = LINQUtils.UnionBy(names, studentNames);
+            var allStudents = LINQUtils.UnionByDepartment(studentsList);
             PrintEnumerable(allStudents);
         }
 
         public static void PrintEnumerable<T>(IEnumerable<T> students)
         {
-            foreach(var student in students)
+            foreach (var student in students)
             {
                 Console.WriteLine(student);
             }
