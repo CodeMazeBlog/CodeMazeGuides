@@ -5,6 +5,11 @@ This section contains source code for the articles about algorithms in C#.
 ### Relevant articles:
 
 - [Bubble Sort In C#](https://code-maze.com/csharp-bubble-sort/)
+- [Bucket Sort in C#](https://code-maze.com/bucket-sort-csharp/)
+- [Counting Sort in C#](https://code-maze.com/counting-sort-in-c/)
+- [Insertion Sort in C#](https://code-maze.com/insertion-sort-csharp/)
 - [Merge Sort in C#](https://code-maze.com/csharp-merge-sort/)
 - [Quicksort in C#](https://code-maze.com/csharp-quicksort-algorithm/)
+- [Radix Sort in C#](https://code-maze.com/csharp-radix-sort/)
 - [Selection Sort in C#](https://code-maze.com/csharp-selection-sort/)
+- [Shell Sort in C#](https://code-maze.com/shell-sort-csharp/)

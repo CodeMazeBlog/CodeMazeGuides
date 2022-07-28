@@ -67,9 +67,6 @@ public class RemoveDuplicateElements
         return arrayWithDuplicateValues[0..size];
     }
 
-
-
-
     public string[] IterationWithDictionary(string[] arrayWithDuplicateValues)
     {
         var dic = new Dictionary<string, int>();

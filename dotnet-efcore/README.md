@@ -1,4 +1,4 @@
-## Dotnet EF
+## .NET Entity Framework
 
 This section contains articles about Entity Framework Core.
 
