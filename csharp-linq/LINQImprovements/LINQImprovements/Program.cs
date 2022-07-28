@@ -17,7 +17,10 @@ namespace LINQImrpovements
 
             //Pages of Students with page size 2
             var studentChunks = LINQUtils.Chunk(2);
-            studentChunks.ForEach(studentChunk => Console.WriteLine(studentChunk.Count()));
+            foreach(var studentChunk in studentChunks)
+            {
+                Console.WriteLine(studentChunk.Count());
+            }
 
             //Get students with maximum and minimum grades by using maxBy and minBy
             var maxStudent = LINQUtils.MaxGrade();
@@ -74,7 +77,10 @@ namespace LINQImrpovements
 
         public static void PrintEnumerable<T>(IEnumerable<T> students)
         {
-            students.ToList().ForEach(student => Console.WriteLine(student));
+            foreach(var student in students)
+            {
+                Console.WriteLine(student);
+            }
         }
     }
 }

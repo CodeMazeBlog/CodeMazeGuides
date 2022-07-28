@@ -4,12 +4,12 @@ namespace LINQImprovements
     public static class LINQUtils
     {
         public static IList<Student> students = new List<Student>()
-                                            {
-                                                new Student("John", "CS", 10),
-                                                new Student("James", "CS", 6),
-                                                new Student("Mike", "IT", 8),
-                                                new Student("Stokes", "IT", 0),
-                                            };
+        {
+            new Student("John", "CS", 10),
+            new Student("James", "CS", 6),
+            new Student("Mike", "IT", 8),
+            new Student("Stokes", "IT", 0),
+        };
 
         static Student defaultStudent = new Student(name: "", department: "", grade: -1);
 
@@ -17,6 +17,7 @@ namespace LINQImprovements
         public static List<Student[]> Chunk( int pageSize)
         {
             var studentChunks =  students.Chunk(pageSize);
+
             return studentChunks.ToList();
         }
 
@@ -58,6 +59,7 @@ namespace LINQImprovements
         public static bool CountStudents(out int count)
         {
             var queryableStudents = students.AsQueryable();
+
             return queryableStudents.TryGetNonEnumeratedCount(out count);
         }
 
