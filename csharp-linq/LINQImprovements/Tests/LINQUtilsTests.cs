@@ -74,7 +74,7 @@ public class LINQUtilsTests
     {
         var student = LINQUtils.ElementAt(^1);
 
-        Assert.AreEqual(LINQUtils.students[3], student);
+        Assert.AreEqual(LINQUtils.Students[3], student);
     }
 
     [TestMethod]
