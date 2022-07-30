@@ -3,7 +3,7 @@ namespace LINQImprovements
 {
     public static class LINQUtils
     {
-        public static IList<Student> Students = new List<Student>()
+        public static IList<Student> Students => new List<Student>()
         {
             new Student("John", "CS", 10),
             new Student("James", "CS", 6),
