@@ -27,10 +27,10 @@ public class ErrorBoundariesTests : TestContext
         var counter = cut.FindComponent<Counter>();
         var counterButton = counter.Find("button");
 
-		for (var i = 0; i <= count; i++)
-		{
+        for (var i = 0; i <= count; i++)
+        {
             counterButton.Click();
-		}
+        }
 
         // Assert
         var error = cut.Find("p");
