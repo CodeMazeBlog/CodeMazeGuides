@@ -18,7 +18,7 @@ public class ErrorBoundariesTests : TestContext
 
     [Fact]
     public void GivenAValidContext_WhenCounterExceedsFive_ThenErrorIsShown()
-	{
+    { 
         // Arrange
         const int count = 4;
 
