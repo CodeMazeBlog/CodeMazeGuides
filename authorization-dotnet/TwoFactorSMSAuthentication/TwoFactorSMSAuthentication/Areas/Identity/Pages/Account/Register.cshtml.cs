@@ -34,14 +34,13 @@ namespace TwoFactorSMSAuthentication.Areas.Identity.Pages.Account
         public RegisterModel(
             UserManager<AppUser> userManager,
             IUserStore<AppUser> userStore,
-            IUserEmailStore<AppUser> emailStore,
             SignInManager<AppUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
             _userStore = userStore;
-            _emailStore = emailStore ?? GetEmailStore();
+            _emailStore = EmailStore ?? GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
@@ -65,6 +64,8 @@ namespace TwoFactorSMSAuthentication.Areas.Identity.Pages.Account
         ///     directly from your code. This API may change or be removed in future releases.
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
+
+        public IUserEmailStore<AppUser> EmailStore { get; set; }
 
         /// <summary>
         ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -127,7 +128,11 @@ namespace TwoFactorSMSAuthentication.Areas.Identity.Pages.Account
                 user.LastName = Input.LastName;
 
                 await _userStore.SetUserNameAsync(user, Input.Email.Split('@')[0], CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                
+                var emailStore = EmailStore ?? _emailStore;
+
+                await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -147,7 +152,7 @@ namespace TwoFactorSMSAuthentication.Areas.Identity.Pages.Account
 
                         await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                             $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-                    }                 
+                    }
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -185,7 +190,7 @@ namespace TwoFactorSMSAuthentication.Areas.Identity.Pages.Account
 
         private IUserEmailStore<AppUser> GetEmailStore()
         {
-            return (IUserEmailStore<AppUser>)_userStore;
+            return _userStore as IUserEmailStore<AppUser>;
         }
     }
 }

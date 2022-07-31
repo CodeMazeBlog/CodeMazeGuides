@@ -62,29 +62,28 @@ namespace Tests
             _smsSender = new Mock<ISmsSender>();
 
             _emailStore = new Mock<IUserEmailStore<AppUser>>();
-
-            _registerModel = new RegisterModel(_userManager.Object, _userStore.Object, _emailStore.Object, _signInManager.Object, _registerLogger.Object, _emailSender.Object);
-
-            _loginModel = new LoginModel(_signInManager.Object, _loginLogger.Object);
-
-            _loginWith2faModel = new LoginWith2faModel(_signInManager.Object, _userManager.Object, _login2faLogger.Object, _smsSender.Object);
         }
 
         [Fact]
-        public async void OnPostAsync_WhenUserRegister_ThenReturnSuccess()
+        public async void OnRegisterPostAsync_WhenUserRegister_ThenReturnSuccess()
         {
-            _registerModel.Input = new RegisterModel.InputModel()
+            _registerModel = new RegisterModel(_userManager.Object, _userStore.Object, _signInManager.Object, _registerLogger.Object, _emailSender.Object)
             {
-                FirstName = "Test",
-                LastName = "Test",
-                Email = "test@test.com",
-                Password = "Password1!",
-                ConfirmPassword = "Password1!"
+                Input = new RegisterModel.InputModel()
+                {
+                    FirstName = "Test",
+                    LastName = "Test",
+                    Email = "test@test.com",
+                    Password = "Password1!",
+                    ConfirmPassword = "Password1!"
+                },
+
+                EmailStore = _emailStore.Object
             };
 
             _userManager.Setup(x => x.CreateAsync(It.IsAny<AppUser>(), It.IsAny<string>())).Returns(Task.FromResult(IdentityResult.Success));
 
-            _signInManager.Setup(x => x.SignInAsync(It.IsAny<AppUser>(), false, null)).Returns(Task.FromResult(IdentityResult.Success));
+            _signInManager.Setup(x => x.SignInAsync(It.IsAny<AppUser>(), false, null)).Returns(Task.FromResult(IdentityResult.Success));            
 
             var result = await _registerModel.OnPostAsync("~/");
 
@@ -96,13 +95,17 @@ namespace Tests
         }
 
         [Fact]
-        public async void OnPostAsync_WhenUserLogin_ThenReturnSuccess()
+        public async void OnLoginPostAsync_WhenUserLogin_ThenReturnSuccess()
         {
-            _loginModel.Input = new LoginModel.InputModel()
+
+            _loginModel = new LoginModel(_signInManager.Object, _loginLogger.Object)
             {
-                Email = "test@test.com",
-                Password = "Password1!",
-                RememberMe = false
+                Input = new LoginModel.InputModel()
+                {
+                    Email = "test@test.com",
+                    Password = "Password1!",
+                    RememberMe = false
+                }
             };
 
             _signInManager.Setup(x =>
@@ -122,13 +125,16 @@ namespace Tests
         }
 
         [Fact]
-        public async void OnPostAsync_WhenUserLoginWithTwoFactorEnabled_ThenRedirectToLoginWith2FA()
+        public async void OnLoginPostAsync_WhenUserLoginWithTwoFactorEnabled_ThenRedirectToLoginWith2FA()
         {
-            _loginModel.Input = new LoginModel.InputModel()
+            _loginModel = new LoginModel(_signInManager.Object, _loginLogger.Object)
             {
-                Email = "test@test.com",
-                Password = "Password1!",
-                RememberMe = false
+                Input = new LoginModel.InputModel()
+                {
+                    Email = "test@test.com",
+                    Password = "Password1!",
+                    RememberMe = false
+                }
             };
 
             _signInManager.Setup(x =>
@@ -148,11 +154,14 @@ namespace Tests
         }
 
         [Fact]
-        public async void OnPostAsync_WhenProvideOTP_ThenReturnSuccess()
+        public async void OnLogin2faPostAsync_WhenProvideOTP_ThenReturnSuccess()
         {
-            _loginWith2faModel.Input = new LoginWith2faModel.InputModel()
+            _loginWith2faModel = new LoginWith2faModel(_signInManager.Object, _userManager.Object, _login2faLogger.Object, _smsSender.Object)
             {
-                TwoFactorCode = "123456"
+                Input = new LoginWith2faModel.InputModel()
+                {
+                    TwoFactorCode = "123456"
+                }
             };
 
             _signInManager.Setup(x => x.GetTwoFactorAuthenticationUserAsync()).Returns(Task.FromResult(new AppUser()));
