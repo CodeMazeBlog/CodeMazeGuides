@@ -6,7 +6,7 @@ namespace SortDictionaryByValueTests;
 public class SortDictionaryByValueUnitTest
 {
     [Fact]
-    public void SortDictionaryValueUsingLinqOrderBy_Should_Return_SortedKeyValuePairs()
+    public void GivenUnorderedDictionary_WhenSortedUsingLinqOrderBy_ThenReturnOrderedKeyValuePairs()
     {
         var dictionary = new Dictionary<string, string>
         {
@@ -25,7 +25,7 @@ public class SortDictionaryByValueUnitTest
     }
 
     [Fact]
-    public void SortDictionaryValueUsingSortMethod_Should_Return_SortedKeyValuePairs()
+    public void GivenUnorderedDictionary_WhenSortedUsingSortMethod_ThenReturnOrderedKeyValuePairs()
     {
         var dictionary = new Dictionary<string, string>
         {
@@ -44,7 +44,7 @@ public class SortDictionaryByValueUnitTest
     }
 
     [Fact]
-    public void SortDictionaryValueUsingLinqQueryExpression_Should_Return_SortedKeyValuePairs()
+    public void GivenUnorderedDictionary_WhenSortedUsingLinqQueryExpression_ThenReturnOrderedKeyValuePairs()
     {
         var dictionary = new Dictionary<string, string>
         {
