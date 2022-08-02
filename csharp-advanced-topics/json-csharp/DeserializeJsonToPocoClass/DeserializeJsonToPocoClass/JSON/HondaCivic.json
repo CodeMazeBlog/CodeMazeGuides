@@ -1,0 +1,10 @@
+{
+  "make": "Honda",
+  "model": "Civic",
+  "year": 2015,
+  "features": [
+    "ABS",
+    "Automatic locks",
+    "Power windows"
+  ]
+}

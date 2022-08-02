@@ -1,0 +1,19 @@
+﻿@inject HttpClient Http;
+
+@if (DataFromApi is null)
+{
+	<p>Retrieving data...</p>
+}
+else
+{
+	<p>Data retrieved</p>
+}
+
+@code {
+	public List<string> DataFromApi { get; set; }
+
+	protected override async Task OnInitializedAsync()
+	{
+		DataFromApi = await Http.GetFromJsonAsync<List<string>>("/api/data");
+	}
+}
