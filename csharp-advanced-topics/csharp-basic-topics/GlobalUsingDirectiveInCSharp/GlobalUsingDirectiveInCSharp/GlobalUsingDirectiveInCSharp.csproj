@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+<ItemGroup>
+  <Using Remove="System.Collections.Generic"></Using>
+  <Using Include="GlobalUsingDirectiveInCSharp.Model"></Using>
+</ItemGroup>
+
+</Project>
