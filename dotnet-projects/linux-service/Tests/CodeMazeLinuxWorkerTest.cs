@@ -24,7 +24,7 @@ namespace Tests
 
             //Act
             await workerService.StartAsync(CancellationToken.None);
-            await Task.Delay(1000);
+            await Task.Delay(100);
             await workerService.StopAsync(CancellationToken.None);
 
             //Assert
