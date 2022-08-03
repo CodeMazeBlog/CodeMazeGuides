@@ -3,7 +3,7 @@ using InvoiceService;
 namespace TestsProject
 {
     [TestClass]
-    public class FuncTests
+    public class FuncTest
     {
         [TestMethod]
         public void GivenFunction_WhenOneFuncDelegatePassed_ShouldHaveOneDeletageLinked()
