@@ -10,7 +10,7 @@ namespace TestsProject
         {            
             // arrage
             Action<string> actionDelegate = ActionDelegate;
-            InvoicingService invoicingService = new InvoicingService();
+            var invoicingService = new InvoicingService();
 
             // act
             invoicingService.GenerateInvoiceWithAction(actionDelegate);
@@ -20,7 +20,6 @@ namespace TestsProject
             Assert.AreEqual(invocationList.Length, 1);
         }
 
-        // mock delegate action
         private void ActionDelegate(string arg)
         {
             // any internl processing
