@@ -1,4 +1,5 @@
 using SimpleInjector;
+using SimpleInjector.Lifestyles;
 using SimpleInjectorExample.Services;
 using SimpleInjectorExample.Spec;
 
@@ -9,9 +10,10 @@ public class ContainerManager
     private static Container ConfigureServices()
     {
         var container = new Container();
-        container.Register<ILogger, ConsoleLogger>();
+        container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+        container.Register<ILogger, ConsoleLogger>(Lifestyle.Singleton);
         container.Register<IUserRepository>(() => new UserRepository());
-        container.Register<IAddressRepository, AddressRepository>();
+        container.Register<IAddressRepository, AddressRepository>(Lifestyle.Scoped);
         container.Register<IUserService, UserService>();
         container.Collection.Register<INotification>(typeof(EmailNotification), typeof(SMSNotification));
         container.Verify();

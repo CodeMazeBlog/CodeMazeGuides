@@ -1,4 +1,5 @@
-﻿using SimpleInjectorExample.Spec;
+﻿using SimpleInjector.Lifestyles;
+using SimpleInjectorExample.Spec;
 
 static void RunLogger()
 {
@@ -6,9 +7,8 @@ static void RunLogger()
     logger.Information("Hello SimpleInjector");
 }
 
-static void RunNotificationServices()
+static void RunNotificationServices(string notification)
 {
-    string notification = "Simple Injector Ping";
     var notificationServices = ContainerManager.Instance.GetAllInstances<INotification>();
     foreach(var service in notificationServices)
     {
@@ -16,5 +16,15 @@ static void RunNotificationServices()
     }    
 }
 
-RunLogger();
-RunNotificationServices();
+static void PingUser(int userId)
+{
+    using var scope = AsyncScopedLifestyle.BeginScope(ContainerManager.Instance);
+    var service = ContainerManager.Instance.GetInstance<IUserService>();
+    var logger = ContainerManager.Instance.GetInstance<ILogger>();
+    
+    var detail = service.GetUserDetail(userId);
+    logger.Information($"PINGING USER Name: {detail.User.FirstName} {detail.User.LastName}, Address: {detail.Address.City} - {detail.Address.Zone}");
+    RunNotificationServices($"Hello {detail.User.FirstName} {detail.User.LastName}");
+}
+
+PingUser(1);

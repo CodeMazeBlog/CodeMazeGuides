@@ -1,6 +1,8 @@
 using SimpleInjectorExample.Services;
 using SimpleInjectorExample.Spec;
 
+using SimpleInjector.Lifestyles;
+
 namespace Tests;
 
 public class ContainerManagerTests
@@ -42,6 +44,8 @@ public class ContainerManagerTests
     public void GivenIAddressRepository_WhenGetInstanceIsInvoked_ThenReturnsAddressRepository()
     {
         var expectedType = typeof(AddressRepository);
+
+        using var scope = AsyncScopedLifestyle.BeginScope(ContainerManager.Instance);
         var service = ContainerManager.Instance.GetInstance<IAddressRepository>();
 
         Assert.NotNull(service);
@@ -52,6 +56,8 @@ public class ContainerManagerTests
     public void GivenIUserService_WhenGetInstanceIsInvoked_ThenReturnsUserService()
     {
         var expectedType = typeof(UserService);
+        
+        using var scope = AsyncScopedLifestyle.BeginScope(ContainerManager.Instance);
         var service = ContainerManager.Instance.GetInstance<IUserService>();
 
         Assert.NotNull(service);
