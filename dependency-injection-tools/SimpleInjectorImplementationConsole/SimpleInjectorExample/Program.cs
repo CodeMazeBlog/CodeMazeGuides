@@ -28,3 +28,4 @@ static void PingUser(int userId)
 }
 
 PingUser(1);
+RunLogger();
