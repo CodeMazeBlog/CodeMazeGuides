@@ -17,6 +17,7 @@ namespace TestsProject
             // assert
             Assert.AreEqual(invocationList.Length, 1);
         }
+
         private void ActionDelegate(string arg)
         {
             // any internl processing

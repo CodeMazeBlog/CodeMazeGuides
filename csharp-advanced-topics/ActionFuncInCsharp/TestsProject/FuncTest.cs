@@ -17,6 +17,7 @@ namespace TestsProject
             // assert
             Assert.AreEqual(invocationList.Length, 1);
         }
+
         private decimal FuncDelegate(decimal arg)
         {
             return arg + (arg * 0.2M);

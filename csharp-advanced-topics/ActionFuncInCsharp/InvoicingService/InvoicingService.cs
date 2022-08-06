@@ -11,6 +11,7 @@
                 notificationProcessor(notificationBody);
             }
         }
+
         public void GenerateInvoiceWithAction(Action<string>? notificationProcessor = null)
         {
             if (notificationProcessor != null)
@@ -19,6 +20,7 @@
                 notificationProcessor(notificationBody);
             }
         }
+
         public void GenerateInvoiceWithFunc(decimal totalSpending, Func<decimal, decimal>? taxCalculation = null)
         {
             if (taxCalculation != null)
