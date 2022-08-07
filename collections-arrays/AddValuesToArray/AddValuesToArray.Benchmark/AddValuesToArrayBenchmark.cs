@@ -51,4 +51,11 @@ public class AddValuesToArrayBenchmark
     {
         AddValuesToArrayMethods.ArrayResize(arraySize);
     }
+
+    [Benchmark]
+    [ArgumentsSource(nameof(ArraySize))]
+    public void ArrayCopyTo(int arraySize)
+    {
+        AddValuesToArrayMethods.ArrayCopyTo(arraySize);
+    }
 }

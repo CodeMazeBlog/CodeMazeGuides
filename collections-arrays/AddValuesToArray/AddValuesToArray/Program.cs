@@ -27,5 +27,9 @@ internal class Program
         Console.WriteLine(nameof(AddValuesToArrayMethods.ArrayResize));
         var array6 = AddValuesToArrayMethods.ArrayResize(5);
         Console.WriteLine(string.Join(", ", array6));
+
+        Console.WriteLine(nameof(AddValuesToArrayMethods.ArrayCopyTo));
+        var array7 = AddValuesToArrayMethods.ArrayCopyTo(5);
+        Console.WriteLine(string.Join(", ", array6));
     }
 }

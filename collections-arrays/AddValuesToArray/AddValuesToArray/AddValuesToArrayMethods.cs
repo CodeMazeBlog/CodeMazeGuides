@@ -69,4 +69,14 @@ public class AddValuesToArrayMethods
 
         return array;
     }
+
+    public static int[] ArrayCopyTo(int arraySize)
+    {
+        var array1 = new int[arraySize];
+        var array2 = Enumerable.Range(0, arraySize).Select(x => x).ToArray();
+
+        array2.CopyTo(array1, 0);
+
+        return array1;
+    }
 }

@@ -62,4 +62,14 @@ public class AddValuesToArrayUnitTest
         Assert.Equal(1, array[1]);
         Assert.Equal(2, array[2]);
     }
+
+    [Fact]
+    public void GivenAnArraySize_WhenUsingArrayCopyTo_ThenValuesShouldBeAdded()
+    {
+        var array = AddValuesToArrayMethods.ArrayCopyTo(3);
+
+        Assert.Equal(0, array[0]);
+        Assert.Equal(1, array[1]);
+        Assert.Equal(2, array[2]);
+    }
 }
