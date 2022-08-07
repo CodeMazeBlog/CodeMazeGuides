@@ -1,10 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HasFlagPeformance
 {
@@ -21,6 +17,7 @@ namespace HasFlagPeformance
             {
                 result = UserType.Employee.HasFlag(UserType.Driver);
             }
+
             return result;
         }
 
@@ -32,6 +29,7 @@ namespace HasFlagPeformance
             {
                 result = (UserType.Employee & UserType.Driver) == UserType.Driver;
             }
+
             return result;
         }
     }

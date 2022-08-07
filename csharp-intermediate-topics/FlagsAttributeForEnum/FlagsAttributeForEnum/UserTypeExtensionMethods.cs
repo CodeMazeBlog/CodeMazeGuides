@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FlagsAttributeForEnum
+﻿namespace FlagsAttributeForEnum
 {
     public static class UserTypeExtensionMethods
     {
@@ -14,6 +8,7 @@ namespace FlagsAttributeForEnum
             {
                 userType |= flag;
             }
+
             return userType;
         }
 
@@ -23,6 +18,7 @@ namespace FlagsAttributeForEnum
             {
                 userType &= ~item;
             }
+
             return userType;
         }
 
@@ -30,7 +26,7 @@ namespace FlagsAttributeForEnum
             => (userType & typeToCompare) == typeToCompare;
 
         public static void Print(this UserType userType)
-            => Console.WriteLine("This message is for users of types: {0}.", userType);
+            => Console.WriteLine("This message is for users of type: {0}.", userType);
 
     }
 }

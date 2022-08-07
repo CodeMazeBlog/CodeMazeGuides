@@ -10,11 +10,11 @@ audience.Print();
 
 if (audience.CustomHasFlag(UserType.Driver)) // or use HasFlag
 {
-    Console.WriteLine("Driver is exist.");
+    Console.WriteLine("Driver exist.");
 }
 else
 {
-    Console.WriteLine("Driver is not exist.");
+    Console.WriteLine("Driver doesn't exist.");
     Console.WriteLine("Adding Driver...");
     audience = audience.Add(UserType.Driver);
 }
