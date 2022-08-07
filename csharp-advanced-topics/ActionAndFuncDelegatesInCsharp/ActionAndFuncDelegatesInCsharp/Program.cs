@@ -7,17 +7,17 @@ namespace ActionAndFuncDelegatesInCsharp
 		delegate void Print(int val);
 		delegate int Sum(int x, int y);
 	
-		static void ConsolePrint(int i)
+		public static void ConsolePrint(int i)
 		{
 			Console.WriteLine(i);
 		}
 		
-		static int Add(int x, int y)
+		public static int Add(int x, int y)
 		{
 			return x + y;
 		}
 	
-		static void Main(string[] args)
+		public static void Main(string[] args)
 		{
 			// Demonstrate Action delegates behavior
 			Print printRegularDelegate = ConsolePrint;
