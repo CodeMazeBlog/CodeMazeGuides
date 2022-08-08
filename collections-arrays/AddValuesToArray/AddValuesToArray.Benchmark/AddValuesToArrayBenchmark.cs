@@ -1,7 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Order;
 
 namespace AddValuesToArray.Benchmark;
 
+[MemoryDiagnoser, Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class AddValuesToArrayBenchmark
 {
     public IEnumerable<object> ArraySize()
