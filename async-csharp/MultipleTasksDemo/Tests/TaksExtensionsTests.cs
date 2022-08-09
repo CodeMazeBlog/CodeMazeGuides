@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using TaskExtensions = MultipleTasksDemo.Client.TaskExtensions;
+using TaskExtensions = MultipleTasksDemo.Client.Extensions.TaskExtensions;
 
 namespace Tests
 {
