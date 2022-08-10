@@ -8,8 +8,7 @@ string Sum(int a, int b)
 
 Func<int, int, string> calculateSum = Sum;
 
-Console.Write("Simple method: ");
-Console.WriteLine(calculateSum(2, 3));
+Console.WriteLine("Simple method: {0}",calculateSum(2, 3));
 #endregion
 
 
@@ -19,8 +18,7 @@ Func<long, int, double> calculateMultiplication = delegate (long a, int b)
       return a + b;
   };
 
-Console.Write("Anonymous method: ");
-Console.WriteLine(calculateMultiplication(12, 13));
+Console.WriteLine("Anonymous method: {0}",calculateMultiplication(12, 13));
 #endregion
 
 #region lambda expression
@@ -28,27 +26,27 @@ var fruits = new List<string> { "apple", "mango", "dates", "orange" };
 string fruit = "orange";
 Func<string, bool> isFruitExist = (s) => s == fruit;
 
-Console.Write("Lambda expression: ");
 var result = fruits.Where(isFruitExist);
 foreach (var item in result)
 {
-    Console.WriteLine(item);
+    Console.Write("Lambda expression: {0}", item);
 }
 #endregion
 
 #endregion
 
-
+Console.WriteLine();Console.WriteLine();
+Console.WriteLine("Action");
 #region Action
 #region simple method
 void Subtract(int a, int b, int c)
 {
-    var result = a + b + c;
+    var result = a - b - c;
+    Console.WriteLine("Simple method: {0}", result);
 }
 
 Action<int, int, int> calculateSubtraction = Subtract;
 
-Console.Write("Simple method: ");
 calculateSubtraction(12, 3, 5);
 #endregion
 
@@ -56,9 +54,9 @@ calculateSubtraction(12, 3, 5);
 Action<string, string> concatString = delegate (string a, string b)
 {
     var result = a + b;
+    Console.WriteLine("Anonymous method: {0}", result);
 };
 
-Console.Write("Anonymous method: ");
 concatString("code", "maze");
 #endregion
 
@@ -68,10 +66,9 @@ string toFind = "John";
 Action<string> iNameExist = (n) =>
 {
     var result = names.Exists(s => s == toFind);
-    Console.WriteLine(result);
+    Console.WriteLine("Lambda Expression {0}",result);
 };
 iNameExist(toFind);
 #endregion
 
 #endregion
-Console.WriteLine("Hello, World!");
