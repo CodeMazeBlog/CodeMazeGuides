@@ -78,7 +78,7 @@ public class Executor
 
         Parallel.ForEach(employeeIds, parallelOptions, id =>
         {
-             var employeeDetail = _employeeApiFacade.GetEmployeeDetails(id).GetAwaiter().GetResult();
+            var employeeDetail = _employeeApiFacade.GetEmployeeDetails(id).GetAwaiter().GetResult();
 
             employeeDetails.Add(employeeDetail);
         });
@@ -98,7 +98,7 @@ public class Executor
 
         ConcurrentBag<EmployeeDetails> employeeDetails = new();
 
-        await Parallel.ForEachAsync(employeeIds,                                parallelOptions, async (id, _) =>
+        await Parallel.ForEachAsync(employeeIds, parallelOptions, async (id, _) =>
         {
             var employeeDetail = await _employeeApiFacade.GetEmployeeDetails(id);
 
