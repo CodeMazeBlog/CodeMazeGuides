@@ -23,7 +23,9 @@ static void PingUser(int userId)
     var logger = ContainerManager.Instance.GetInstance<ILogger>();
     
     var detail = service.GetUserDetail(userId);
-    logger.Information($"PINGING USER Name: {detail.User.FirstName} {detail.User.LastName}, Address: {detail.Address.City} - {detail.Address.Zone}");
+    var userInfo = $"{detail.User.FirstName} {detail.User.LastName}";
+    var address = $" {detail.Address.City} - {detail.Address.Zone}";
+    logger.Information($"PINGING USER Name: {userInfo}, Address: {address}");
     RunNotificationServices($"Hello {detail.User.FirstName} {detail.User.LastName}");
 }
 

@@ -18,6 +18,7 @@ public class UserService : IUserService
     {
         var user = _userRepository.GetUser(userId);
         var address = _addressRepository.GetUserAddress(userId);
+        
         return new(user, address);
     }
 }
