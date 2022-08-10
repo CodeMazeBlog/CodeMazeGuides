@@ -13,7 +13,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void whenTwoNumbersArePassedForAddition_FuncDelegateReturnsSumAsString()
+        public void whenTwoNumbersArePassedForAddition_ThenFuncDelegateReturnsSumAsString()
         {
             Func<int, int, string> funcForSum = Sum;
             var result = funcForSum(2, 4);
@@ -21,7 +21,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void whenTwoNumbersArePassedForAddition_FuncDelegateReturnsSum()
+        public void whenTwoNumbersArePassedForAddition_ThenFuncDelegateReturnsSum()
         {
             Func<int, int, string> funcForSum = Sum;
             var result = funcForSum(2, 4);
@@ -29,7 +29,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void whenMessagePassedForPrinting_ActionDelegatePrintIt()
+        public void whenMessagePassedForPrinting_ThenActionDelegatePrintIt()
         {
             Action<string> printer = m =>
             {
@@ -41,7 +41,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void whenMessagePassedForPrinting_ActionDelegatePrintItWrong()
+        public void whenMessagePassedForPrinting_ThenActionDelegatePrintItWrong()
         {
             Action<string> printer = m =>
             {
