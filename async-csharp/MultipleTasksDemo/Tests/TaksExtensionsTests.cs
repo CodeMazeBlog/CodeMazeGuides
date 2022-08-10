@@ -5,6 +5,7 @@ using TaskExtensions = MultipleTasksDemo.Client.Extensions.TaskExtensions;
 
 namespace Tests
 {
+	[TestFixture]
 	public class Tests
 	{
 		[Test]
