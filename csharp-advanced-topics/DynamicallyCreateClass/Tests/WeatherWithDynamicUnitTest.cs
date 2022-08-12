@@ -1,3 +1,4 @@
+using System.Text.Json.Nodes;
 using DynamicallyCreateClass.WithDynamic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,8 +15,9 @@ public class WeatherWithDynamicUnitTest
         WeatherSource ws3 = new WeatherSource(3, 9.5, 35);
 
         var weatherAggregator = new WeatherAggregator(
-            new WeatherData[] { ws1.WeatherObject, ws2.WeatherObject, ws3.WeatherObject });
-        
+            new WeatherData[] { ws1.WeatherObject, ws2.WeatherObject, ws3.WeatherObject }
+        );
+
         Assert.AreEqual(10.0, weatherAggregator.AggregatedWeather.Temperature);
         Assert.AreEqual(40, weatherAggregator.AggregatedWeather.Humidity);
     }
@@ -26,8 +28,8 @@ public class WeatherWithDynamicUnitTest
         dynamic weatherObj = new WeatherSource(1, 10.7, 40).WeatherObject;
 
         var temperature = weatherObj.Temperature1;
-        
-        Assert.AreEqual(10.7, temperature);
+
+        Assert.AreEqual(10.7, (double)temperature);
     }
 
     [TestMethod]
@@ -36,8 +38,9 @@ public class WeatherWithDynamicUnitTest
         dynamic weatherObj = new WeatherSource(1, 10.7, 40).WeatherObject;
 
         weatherObj.Temperature1 = 10;
-        
-        Assert.AreEqual(10, weatherObj.Temperature1);
+
+        Assert.IsTrue(weatherObj.Temperature1.GetType().IsAssignableTo(typeof(JsonValue)));
+        Assert.AreEqual(10, (int)weatherObj.Temperature1);
     }
 
     [TestMethod]
@@ -46,7 +49,7 @@ public class WeatherWithDynamicUnitTest
         dynamic weatherObj = new WeatherSource(1, 10.7, 40).WeatherObject;
 
         var csvResult = weatherObj.Format();
-        
+
         Assert.AreEqual("10.7,40", csvResult);
     }
 
@@ -55,8 +58,8 @@ public class WeatherWithDynamicUnitTest
     {
         dynamic weatherObj = new WeatherSource(1, 10.7, 40).WeatherObject;
 
-        var weatherData = (WeatherData) weatherObj;
-        
+        var weatherData = (WeatherData)weatherObj;
+
         Assert.AreEqual(10.7, weatherData.Temperature);
         Assert.AreEqual(40, weatherData.Humidity);
     }
@@ -67,7 +70,7 @@ public class WeatherWithDynamicUnitTest
         dynamic weatherObj = new WeatherSource(1, 10.7, 40).WeatherObject;
 
         WeatherData weatherData = weatherObj;
-        
+
         Assert.AreEqual(10.7, weatherData.Temperature);
         Assert.AreEqual(40, weatherData.Humidity);
     }

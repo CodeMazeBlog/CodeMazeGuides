@@ -14,8 +14,11 @@ public class WeatherWithExpandoUnitTest
         WeatherSource ws3 = new WeatherSource(3, 9.5, 35);
 
         var weatherAggregator = new WeatherAggregator(
-            ws1.WeatherObject, ws2.WeatherObject, ws3.WeatherObject);
-        
+            ws1.WeatherObject,
+            ws2.WeatherObject,
+            ws3.WeatherObject
+        );
+
         Assert.AreEqual(10.0, weatherAggregator.AggregatedWeather.Temperature);
         Assert.AreEqual(40, weatherAggregator.AggregatedWeather.Humidity);
     }
@@ -28,9 +31,12 @@ public class WeatherWithExpandoUnitTest
         WeatherSource ws3 = new WeatherSource(3, 9.0, 35);
 
         var weatherAggregator = new WeatherAggregator(
-            ws1.WeatherObject, ws2.WeatherObject, ws3.WeatherObject);
+            ws1.WeatherObject,
+            ws2.WeatherObject,
+            ws3.WeatherObject
+        );
         weatherAggregator.RoundWeatherDataForSource1();
-        
+
         Assert.AreEqual(10.0, weatherAggregator.AggregatedWeather.Temperature);
         Assert.AreEqual(40, weatherAggregator.AggregatedWeather.Humidity);
     }
@@ -41,7 +47,7 @@ public class WeatherWithExpandoUnitTest
         WeatherSource ws1 = new WeatherSource(1, 10.7, 40);
 
         var csvResult = ws1.WeatherObject.Format();
-        
+
         Assert.AreEqual("10.7,40", csvResult);
     }
 }

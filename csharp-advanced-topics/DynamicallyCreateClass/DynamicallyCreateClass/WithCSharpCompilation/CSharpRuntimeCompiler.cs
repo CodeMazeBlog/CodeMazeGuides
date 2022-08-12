@@ -11,18 +11,19 @@ public class CSharpRuntimeCompiler
     private readonly Assembly _assembly;
 
     public CSharpRuntimeCompiler(string code, params MetadataReference[] references)
-        : this("testing_for_dynamic", code, references)
-    {
-    }
+        : this("testing_for_dynamic", code, references) { }
 
-    public CSharpRuntimeCompiler(string assemblyName, 
-                          string code, 
-                          params MetadataReference[] references)  
+    public CSharpRuntimeCompiler(
+        string assemblyName,
+        string code,
+        params MetadataReference[] references
+    )
     {
         _assemblyName = assemblyName;
         SyntaxTree syntaxTree = CSharpSyntaxTree.ParseText(code);
 
-        CSharpCompilation compilation = CSharpCompilation.Create(assemblyName)
+        CSharpCompilation compilation = CSharpCompilation
+            .Create(assemblyName)
             .AddSyntaxTrees(syntaxTree)
             .WithOptions(new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary))
             .AddReferences(Basic.Reference.Assemblies.Net60.All.Concat(references));
@@ -33,12 +34,16 @@ public class CSharpRuntimeCompiler
 
             if (!result.Success)
             {
-                IEnumerable<Diagnostic> failures = result.Diagnostics.Where(diagnostic => 
-                    diagnostic.IsWarningAsError || 
-                    diagnostic.Severity == DiagnosticSeverity.Error);
+                IEnumerable<Diagnostic> failures = result.Diagnostics.Where(
+                    diagnostic =>
+                        diagnostic.IsWarningAsError
+                        || diagnostic.Severity == DiagnosticSeverity.Error
+                );
 
-                var messages = string.Join(Environment.NewLine, 
-                    failures.Select(f => f.GetMessage()));
+                var messages = string.Join(
+                    Environment.NewLine,
+                    failures.Select(f => f.GetMessage())
+                );
                 throw new AggregateException(messages);
             }
             else

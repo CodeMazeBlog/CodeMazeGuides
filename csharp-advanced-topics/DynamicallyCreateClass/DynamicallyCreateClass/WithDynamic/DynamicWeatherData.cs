@@ -1,29 +1,28 @@
 using System.Dynamic;
-using Newtonsoft.Json.Linq;
+using System.Text.Json.Nodes;
 
 namespace DynamicallyCreateClass.WithDynamic;
 
 public class DynamicWeatherData : DynamicObject
 {
-    JObject _weatherData;
-    public DynamicWeatherData(JObject weatherData)
+    JsonObject _weatherData;
+
+    public DynamicWeatherData(JsonObject weatherData)
     {
         _weatherData = weatherData;
     }
 
-    public override bool TrySetMember(
-        SetMemberBinder binder, object? value)
+    public override bool TrySetMember(SetMemberBinder binder, object? value)
     {
         if (!_weatherData.ContainsKey(binder.Name))
             return false;
 
-        _weatherData[binder.Name] = value == null ? null : JToken.FromObject(value);
+        _weatherData[binder.Name] = value == null ? null : JsonValue.Create(value);
 
         return true;
     }
 
-    public override bool TryGetMember(
-        GetMemberBinder binder, out object? result)
+    public override bool TryGetMember(GetMemberBinder binder, out object? result)
     {
         if (!_weatherData.ContainsKey(binder.Name))
         {
@@ -31,15 +30,17 @@ public class DynamicWeatherData : DynamicObject
             return false;
         }
 
-        result = _weatherData[binder.Name]!.ToObject<object>();
+        result = _weatherData[binder.Name]?.AsValue();
         return true;
     }
 
-    public override bool TryInvokeMember(InvokeMemberBinder binder, 
-                                         object?[]? args, 
-                                         out object? result)
+    public override bool TryInvokeMember(
+        InvokeMemberBinder binder,
+        object?[]? args,
+        out object? result
+    )
     {
-        if (binder.Name == "Format" && args?.Length == 0) 
+        if (binder.Name == "Format" && args?.Length == 0)
         {
             var (temperature, humidity) = GetProperties();
 
@@ -62,21 +63,21 @@ public class DynamicWeatherData : DynamicObject
             result = new WeatherData(temperature, humidity);
             return true;
         }
-        else 
+        else
         {
             result = null;
             return false;
         }
     }
 
-    private (double, int) GetProperties() 
+    private (double, int) GetProperties()
     {
-        var temperatureAttr = _weatherData.Properties()
-            .First(jp => jp.Name.StartsWith("Temperature"))
-            .ToObject<double>();
-        var humidityAttr = _weatherData.Properties()
-            .First(jp => jp.Name.StartsWith("Humidity"))
-            .ToObject<int>();
+        var temperatureAttr = _weatherData
+            .First(kv => kv.Key.StartsWith("Temperature"))
+            .Value!.GetValue<double>();
+        var humidityAttr = _weatherData
+            .First(kv => kv.Key.StartsWith("Humidity"))
+            .Value!.GetValue<int>();
 
         return (temperatureAttr, humidityAttr);
     }

@@ -10,7 +10,8 @@ public class CSharpRuntimeCompilerUnitTest
     [TestMethod]
     public void GivenRawCodeWithAggregationFunction_WhenExecutedOnArgs_ThenGetAggregatedResult()
     {
-        var code = @"
+        var code =
+            @"
             using System.Linq;
 
             namespace CSharpRuntimeCompilation
@@ -26,7 +27,7 @@ public class CSharpRuntimeCompilerUnitTest
         var runtimeCompiler = new CSharpRuntimeCompiler(code);
         var aggregator = runtimeCompiler.GetInstance("CSharpRuntimeCompilation.Aggregator");
 
-        var result = aggregator?.Sum(1, 2, 3); 
+        var result = aggregator?.Sum(1, 2, 3);
 
         Assert.AreEqual(6, result);
     }
