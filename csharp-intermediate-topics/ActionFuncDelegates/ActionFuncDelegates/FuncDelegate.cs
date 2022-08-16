@@ -26,7 +26,7 @@ public class FuncDelegate
 
     public double Run()
     {
-        var funcDel = FetchTotal;
+        Func<int, double> funcDel = FetchTotal;
         var result = funcDel(3);
         Console.WriteLine($"[Func -> FetchTotal]: {result}");
         return result;
