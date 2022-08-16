@@ -2,30 +2,34 @@ namespace ActionFuncDelegates;
 
 public partial class Delegate
 {
-  public delegate void Price(double price);
+    public delegate void Prnt(string msg);
 
-  void ConsolePrice(double price)
-  {
-    Console.WriteLine($"[Delegate -> ConsolePrice]: {price}");
-  }
+    void ConsolePrice(string msg)
+    {
+        Console.WriteLine($"[Delegate -> ConsolePrice]: {msg}");
+    }
 
-  public void ActionRun()
-  {
-    Price del = ConsolePrice;
-    del(5.99);
-  }
+    public void ActionRun()
+    {
+        Prnt del = ConsolePrice;
+        del("Hello from delegate!");
+    }
 }
 
 public class ActionDelegate
 {
-  void ConsolePrice(double price)
-  {
-    Console.WriteLine($"[Action -> ConsolePrice]: {price}");
-  }
+    public int MessageLength { get; private set; }
 
-  public void Run()
-  {
-    Action<double> actionDel = ConsolePrice;
-    actionDel(5.99);
-  }
+    void ConsolePrnt(string msg)
+    {
+        MessageLength = msg.Length;
+        Console.WriteLine($"[Action -> ConsolePrice]: {msg}");
+    }
+
+    public int Run()
+    {
+        Action<string> actionDel = ConsolePrnt;
+        actionDel("Hello from the other side!");
+        return MessageLength;
+    }
 }

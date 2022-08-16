@@ -2,27 +2,29 @@ namespace ActionFuncDelegates;
 
 public partial class Delegate
 {
-  // Declaration
-  public delegate void MyDelegate(string msg);
+    // Declaration
+    public delegate int MyDelegate(int num1, int num2);
 
-  public void Run()
-  {
-    // Initialization
-    var del = Sample.Method;
-    // Invocation
-    del("Hello");
-
-    // Initialization
-    del = (string msg) => Console.WriteLine("[Lambda expression]: " + msg);
-    // Invocation
-    del("Hello");
-  }
-
-  class Sample
-  {
-    public static void Method(string message)
+    public int Run()
     {
-      Console.WriteLine($"[Sample -> Method]: {message}");
+        // Initialization
+        var del = Sample.Method;
+        // Invocation
+        var sum = del(5, 6);
+
+        // Initialization
+        del = (int num1, int num2) => num1 + num2;
+        // Invocation
+        sum = del(7, 8);
+
+        return sum;
     }
-  }
+
+    class Sample
+    {
+        public static int Method(int num1, int num2)
+        {
+            return num1 + num2;
+        }
+    }
 }

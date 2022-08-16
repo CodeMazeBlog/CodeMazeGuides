@@ -1,7 +1,8 @@
 ﻿Console.WriteLine("---");
 
 var del = new ActionFuncDelegates.Delegate();
-del.Run();
+var sum = del.Run();
+Console.WriteLine($"Sum: {sum}");
 
 Console.WriteLine("---");
 
