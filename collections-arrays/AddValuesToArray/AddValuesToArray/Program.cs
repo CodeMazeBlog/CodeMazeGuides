@@ -4,8 +4,8 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine(nameof(AddValuesToArrayMethods.ArrayIndexInitilizer));
-        var array1 = AddValuesToArrayMethods.ArrayIndexInitilizer(5);
+        Console.WriteLine(nameof(AddValuesToArrayMethods.ArrayIndexInitializer));
+        var array1 = AddValuesToArrayMethods.ArrayIndexInitializer(5);
         Console.WriteLine(string.Join(", ", array1));
 
         Console.WriteLine(nameof(AddValuesToArrayMethods.SetValueMethod));

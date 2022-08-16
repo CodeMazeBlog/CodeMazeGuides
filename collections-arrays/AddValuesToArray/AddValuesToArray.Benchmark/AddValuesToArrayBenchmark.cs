@@ -14,9 +14,9 @@ public class AddValuesToArrayBenchmark
 
     [Benchmark]
     [ArgumentsSource(nameof(ArraySize))]
-    public void ArrayIndexInitilizer(int arraySize)
+    public void ArrayIndexInitializer(int arraySize)
     {
-        AddValuesToArrayMethods.ArrayIndexInitilizer(arraySize);
+        AddValuesToArrayMethods.ArrayIndexInitializer(arraySize);
     }
 
     [Benchmark]

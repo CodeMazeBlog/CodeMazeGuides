@@ -1,7 +1,7 @@
 ﻿namespace AddValuesToArray;
 public class AddValuesToArrayMethods
 {
-    public static int[] ArrayIndexInitilizer(int arraySize)
+    public static int[] ArrayIndexInitializer(int arraySize)
     {
         var array = new int[arraySize];
 

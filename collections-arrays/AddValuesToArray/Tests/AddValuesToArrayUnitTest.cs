@@ -5,9 +5,9 @@ namespace Tests;
 public class AddValuesToArrayUnitTest
 {
     [Fact]
-    public void GivenAnArraySize_WhenUsingArrayIndexInitilizer_ThenValuesShouldBeAdded()
+    public void GivenAnArraySize_WhenUsingArrayIndexInitializer_ThenValuesShouldBeAdded()
     {
-        var array = AddValuesToArrayMethods.ArrayIndexInitilizer(3);
+        var array = AddValuesToArrayMethods.ArrayIndexInitializer(3);
 
         Assert.Equal(0, array[0]);
         Assert.Equal(1, array[1]);
