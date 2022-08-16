@@ -1,7 +1,7 @@
 ﻿public class Person
 {
-    private string _name;
-    private int _age;
+    public string Name { get; set; }
+    public int Age { get; set; }
 
     private static int studentCount;
 
@@ -12,32 +12,29 @@
 
     public Person()
     {
-        _name = "testName";
-        _age = 25;
-        Console.WriteLine("Default Constructor Invoked");
+        Name = "testName";
+        Age = 25;
     }
 
     public Person(string name)
     {
-        _name = name;
+        Name = name;
     }
 
     public Person(string name, int age)
         : this(name)
     {
-        _age = age;
-        Console.WriteLine("Constructor are chained and Invoked");
+        Age = age;
     }
 
     public Person(Person student)
     {
-        _name = student._name;
-        _age = student._age;
-        Console.WriteLine("Copy Constructor Invoked");
+        Name = student.Name;
+        Age = student.Age;
     }
 
     public void Display()
     {
-        Console.WriteLine(_name + " " + _age);
+        Console.WriteLine(Name + " " + Age);
     }
 }

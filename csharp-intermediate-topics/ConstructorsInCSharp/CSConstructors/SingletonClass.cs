@@ -1,23 +1,23 @@
 ﻿using System;
 namespace CSConstructors
 {
-	public class SingletonClass
-	{
-		private static SingletonClass _singletonClass;
+    public class SingletonClass
+    {
+        private static SingletonClass _singletonClass;
 
-		private SingletonClass()
-		{
-		}
-
-		public static SingletonClass GetInstance()
+        private SingletonClass()
         {
-			if(_singletonClass == null)
+        }
+
+        public static SingletonClass GetInstance()
+        {
+            if (_singletonClass == null)
             {
-				_singletonClass = new SingletonClass();
+                _singletonClass = new SingletonClass();
             }
 
-			return _singletonClass;
+            return _singletonClass;
         }
-	}
+    }
 }
 

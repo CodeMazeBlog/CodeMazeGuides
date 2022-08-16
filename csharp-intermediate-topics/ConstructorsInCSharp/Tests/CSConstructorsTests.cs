@@ -11,70 +11,38 @@ public class CSConstructorsTests
     [TestMethod]
     public void WhenGivenEmptyConstructorOnIntialize_ThenInvokeDefaultConstructor()
     {
-        using (var sw = new StringWriter())
-        {
-            Console.SetOut(sw);
+        var person = new Person();
 
-            var person = new Person();
-
-            var consoleString = sw.ToString().Trim();
-
-            var result = consoleString.Contains("Default Constructor Invoked");
-
-            Assert.IsTrue(result);
-        }
+        Assert.AreEqual(person.Name, "testName");
+        Assert.AreEqual(person.Age, 25);
     }
 
     [TestMethod]
     public void WhenGivenNameAndAgeOnIntialize_ThenInvokeParameterizedConstructor()
     {
-        using(var sw = new StringWriter())
-        {
-            Console.SetOut(sw);
+        var person = new Person("Test", 10);
 
-            var person = new Person("Test", 10);
-
-            var consoleString = sw.ToString().Trim();
-
-            var result = consoleString.Contains("Constructor are chained and Invoked");
-
-            Assert.IsTrue(result);
-        }
+        Assert.AreEqual(person.Name, "Test");
+        Assert.AreEqual(person.Age, 10);
     }
 
     [TestMethod]
     public void WhenGivenExistingPerson_ThenInvokeCopyConstructor_OnIntialize()
     {
         var person = new Person("Test", 10);
+        var person2 = new Person(person);
 
-        using (var sw = new StringWriter())
-        {
-            Console.SetOut(sw);
-
-            Person person2 = new Person(person);
-
-            var consoleString = sw.ToString().Trim();
-
-            var result = consoleString.Contains("Copy Constructor Invoked");
-
-            Assert.IsTrue(result);
-        }
+        Assert.AreEqual(person.Name, "Test");
+        Assert.AreEqual(person.Age, 10);
     }
 
     [TestMethod]
     public void WhenGivenStudent_ShouldInvokeBaseConstructor_OnIntialize()
     {
-        using (var sw = new StringWriter())
-        {
-            Console.SetOut(sw);
+        var student = new Student("Test", 10, "IT");
 
-            var student = new Student("Test", 10, "IT");
-
-            var consoleString = sw.ToString().Trim();
-
-            var result = consoleString.Contains("Constructor are chained and Invoked");
-
-            Assert.IsTrue(result);
-        }
+        Assert.AreEqual(student.Name, "Test");
+        Assert.AreEqual(student.Age, 10);
+        Assert.AreEqual(student.Department, "IT");
     }
 }

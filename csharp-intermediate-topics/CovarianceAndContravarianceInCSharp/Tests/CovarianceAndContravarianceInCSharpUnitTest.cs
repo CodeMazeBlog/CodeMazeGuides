@@ -26,7 +26,7 @@ namespace Tests
         public void GivenMoreDerivedDelegateParameterType_WhenAssigningLessDerivedMethodParameterType_ThenDelegateMethodParameterIsLessDerived()
         {
             personDelegate del = GreetPerson;
-            Assert.IsTrue(del.Method.ToString() == "Void GreetPerson(Person)");
+            Assert.IsTrue(del.Method.ToString() == "Void GreetPerson(Tests.Person)");
         }
 
         [TestMethod]
@@ -81,12 +81,12 @@ namespace Tests
 
         static void GreetPerson(Person person)
         {
-            // Logic to greet the person.
+            // Logic to greet person.
         }
 
         static Manager GetEmployeeManager(string employeeFullName)
         {
-            // Logic to find the employee's manager.
+            // Logic to find employee's manager.
             return new Manager();
         }
 
@@ -94,15 +94,5 @@ namespace Tests
         {
             // Logic to evaluate performance.
         }
-
-        public class Person { }
-        public class Employee : Person { }
-        public class Manager : Employee { }
-
-        interface IContravariant<in T> { }
-        interface ICovariant<out T> { }
-
-        class ImplementIContravariant<T> : IContravariant<T> { }
-        class ImplementICovariant<T> : ICovariant<T> { }
     }
 }
