@@ -28,7 +28,7 @@ public class AddValuesToArrayBenchmark
 
     [Benchmark]
     [ArgumentsSource(nameof(ArraySize))]
-    public void LinqList(int arraySize)
+    public void ListCollection(int arraySize)
     {
         AddValuesToArrayMethods.LinqList(arraySize);
     }
@@ -45,13 +45,6 @@ public class AddValuesToArrayBenchmark
     public void LinqAppend(int arraySize)
     {
         AddValuesToArrayMethods.LinqAppend(arraySize);
-    }
-
-    [Benchmark]
-    [ArgumentsSource(nameof(ArraySize))]
-    public void ArrayResize(int arraySize)
-    {
-        AddValuesToArrayMethods.ArrayResize(arraySize);
     }
 
     [Benchmark]
