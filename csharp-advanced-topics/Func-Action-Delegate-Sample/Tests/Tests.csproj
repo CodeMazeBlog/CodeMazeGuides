@@ -14,4 +14,8 @@
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Func-Action-Delegate-Library\Func-Action-Delegate-Library.csproj" />
+  </ItemGroup>
+
 </Project>

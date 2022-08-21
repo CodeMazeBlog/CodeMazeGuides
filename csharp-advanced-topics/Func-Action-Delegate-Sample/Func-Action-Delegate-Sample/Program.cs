@@ -1,74 +1,66 @@
-﻿#region Func
+﻿using Func_Action_Delegate_Library.Action;
+using Func_Action_Delegate_Library.Func;
+
+#region Func
+Console.WriteLine("Function Delegate");
 
 #region simple method
-string Sum(int a, int b)
-{
-    return (a + b).ToString();
-}
-
-Func<int, int, string> calculateSum = Sum;
-
-Console.WriteLine("Simple method: {0}",calculateSum(2, 3));
+var funcWithSimpleMethod = new FuncWithSimpleMethod();
+funcWithSimpleMethod.calculateSum = funcWithSimpleMethod.Sum;
+Console.WriteLine("Simple method: {0}", funcWithSimpleMethod.calculateSum(3, 5));
 #endregion
 
 
 #region anonymous method
-Func<long, int, double> calculateMultiplication = delegate (long a, int b)
-  {
-      return a + b;
-  };
-
-Console.WriteLine("Anonymous method: {0}",calculateMultiplication(12, 13));
+var funcWithAnnonymousMethod = new FuncWithAnnonymousMethod();
+Console.WriteLine("Anonymous method: {0}", funcWithAnnonymousMethod.calculateMultiplication(12, 13));
 #endregion
 
-#region lambda expression
-var fruits = new List<string> { "apple", "mango", "dates", "orange" };
-string fruit = "orange";
-Func<string, bool> isFruitExist = (s) => s == fruit;
 
-var result = fruits.Where(isFruitExist);
+#region lambda expression
+var funcWithLambdaExpression = new FuncWithLambdaExpression();
+funcWithLambdaExpression.IsFruitExist = s => s == funcWithLambdaExpression.Fruit;
+var result = funcWithLambdaExpression.Fruits.Where(funcWithLambdaExpression.IsFruitExist);
 foreach (var item in result)
 {
-    Console.Write("Lambda expression: {0}", item);
+    Console.WriteLine("Lambda expression: {0}", item);
 }
 #endregion
 
 #endregion
 
-Console.WriteLine();Console.WriteLine();
-Console.WriteLine("Action");
+Console.WriteLine(); Console.WriteLine();
 #region Action
+Console.WriteLine("Action Delegate");
+
 #region simple method
-void Subtract(int a, int b, int c)
-{
-    var result = a - b - c;
-    Console.WriteLine("Simple method: {0}", result);
-}
-
-Action<int, int, int> calculateSubtraction = Subtract;
-
-calculateSubtraction(12, 3, 5);
+var actionWithSimpleMethod = new ActionWithSimpleMethod();
+actionWithSimpleMethod.calculateSubtraction = actionWithSimpleMethod.Subtract;
+actionWithSimpleMethod.calculateSubtraction(12, 3, 5);
+if (actionWithSimpleMethod.result < 0)
+    Console.WriteLine("Cant print as subtraction result in less than 0");
+else
+    Console.WriteLine("Simple method: {0}", actionWithSimpleMethod.result);
 #endregion
 
 #region anonymous method
-Action<string, string> concatString = delegate (string a, string b)
-{
-    var result = a + b;
-    Console.WriteLine("Anonymous method: {0}", result);
-};
-
-concatString("code", "maze");
+var actionWithAnnonymousMethod = new ActionWithAnnonymousMethod();
+actionWithAnnonymousMethod.concatString("code", "maze");
+if (ActionWithAnnonymousMethod.Result == "codemaze")
+    Console.WriteLine("yes, concatenated correctly");
+else
+    Console.WriteLine("no, not concatenated correctly");
 #endregion
 
 #region lambda expression
-var names = new List<string> { "John", "Milo", "Rambo", "Joseph" };
-string toFind = "John";
-Action<string> iNameExist = (n) =>
+var actionWithLambdaExpression = new ActionWithLambdaExpression();
+actionWithLambdaExpression.ToFind = "John";
+actionWithLambdaExpression.IsNameExist = n =>
 {
-    var result = names.Exists(s => s == toFind);
-    Console.WriteLine("Lambda Expression {0}",result);
+    actionWithLambdaExpression.IsFound = actionWithLambdaExpression.Names.Exists(s => s == actionWithLambdaExpression.ToFind);
 };
-iNameExist(toFind);
+actionWithLambdaExpression.IsNameExist(actionWithLambdaExpression.ToFind);
+Console.WriteLine("Found in List : {0}", actionWithLambdaExpression.IsFound?"YES":"NO");
 #endregion
 
 #endregion

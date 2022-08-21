@@ -1,3 +1,5 @@
+using Func_Action_Delegate_Library.Action;
+using Func_Action_Delegate_Library.Func;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -6,50 +8,35 @@ namespace Tests
     [TestClass]
     public class Tests
     {
-        string message=string.Empty;
+        string message = string.Empty;
         string Sum(int a, int b)
         {
             return (a + b).ToString();
         }
 
         [TestMethod]
-        public void whenTwoNumbersArePassedForAddition_ThenFuncDelegateReturnsSumAsString()
+        public void WHENtwoNumbersArePassedForAddition_THENfuncDelegateReturnsSumAsString()
         {
-            Func<int, int, string> funcForSum = Sum;
-            var result = funcForSum(2, 4);
-            Assert.AreEqual("6", result);
+            var funcWithSimpleMethod = new FuncWithSimpleMethod();
+            funcWithSimpleMethod.calculateSum = funcWithSimpleMethod.Sum;
+            Assert.AreEqual("8", funcWithSimpleMethod.calculateSum(3, 5));
         }
 
         [TestMethod]
-        public void whenTwoNumbersArePassedForAddition_ThenFuncDelegateReturnsSum()
+        public void WHENtwoNumbersArePassedForAddition_THENfuncDelegateReturnsSum()
         {
-            Func<int, int, string> funcForSum = Sum;
-            var result = funcForSum(2, 4);
-            Assert.AreNotEqual(6, result);
+            var funcWithSimpleMethod = new FuncWithSimpleMethod();
+            funcWithSimpleMethod.calculateSum = funcWithSimpleMethod.Sum;
+            Assert.AreNotEqual("18", funcWithSimpleMethod.calculateSum(3, 5));
         }
 
         [TestMethod]
-        public void whenMessagePassedForPrinting_ThenActionDelegatePrintIt()
+        public void WHENmessagePassedForSubtraction_THENactionDelegateReturnsResult()
         {
-            Action<string> printer = m =>
-            {
-                message = m;
-                Console.WriteLine(message);
-            };
-            printer("Yeah we did unit tests");
-            Assert.AreEqual("Yeah we did unit tests", message);
-        }
-
-        [TestMethod]
-        public void whenMessagePassedForPrinting_ThenActionDelegatePrintItWrong()
-        {
-            Action<string> printer = m =>
-            {
-                message = m;
-                Console.WriteLine(message);
-            };
-            printer("Yeah we did unit tests");
-            Assert.AreNotEqual("Yeah did unit tests", message);
+            var actionWithSimpleMethod = new ActionWithSimpleMethod();
+            actionWithSimpleMethod.calculateSubtraction = actionWithSimpleMethod.Subtract;
+            actionWithSimpleMethod.calculateSubtraction(12, 3, 5);
+            Assert.IsTrue(actionWithSimpleMethod.result < 0 ? false : true);
         }
     }
 }
