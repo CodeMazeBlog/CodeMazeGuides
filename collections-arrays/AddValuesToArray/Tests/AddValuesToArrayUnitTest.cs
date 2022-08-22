@@ -26,7 +26,7 @@ public class AddValuesToArrayUnitTest
     [Fact]
     public void GivenAnArraySize_WhenUsingLinqList_ThenValuesShouldBeAdded()
     {
-        var array = AddValuesToArrayMethods.LinqList(3);
+        var array = AddValuesToArrayMethods.UsingList(3);
 
         Assert.Equal(0, array[0]);
         Assert.Equal(1, array[1]);

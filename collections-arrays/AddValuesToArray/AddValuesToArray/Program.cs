@@ -12,8 +12,8 @@ internal class Program
         var array2 = AddValuesToArrayMethods.SetValueMethod(5);
         Console.WriteLine(string.Join(", ", array2));
 
-        Console.WriteLine(nameof(AddValuesToArrayMethods.LinqList));
-        var array3 = AddValuesToArrayMethods.LinqList(5);
+        Console.WriteLine(nameof(AddValuesToArrayMethods.UsingList));
+        var array3 = AddValuesToArrayMethods.UsingList(5);
         Console.WriteLine(string.Join(", ", array3));
 
         Console.WriteLine(nameof(AddValuesToArrayMethods.LinqConcat));

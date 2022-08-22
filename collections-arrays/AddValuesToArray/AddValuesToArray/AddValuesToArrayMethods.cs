@@ -24,7 +24,7 @@ public class AddValuesToArrayMethods
 
         return array;
     }
-    public static int[] LinqList(int arraySize)
+    public static int[] UsingList(int arraySize)
     {
         var list = new List<int>();
 
