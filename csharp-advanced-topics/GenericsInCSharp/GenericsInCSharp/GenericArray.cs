@@ -7,11 +7,11 @@
         {
             arrayObj = new T[size + 1];
         }
-        public T retrieveValue(int index)
+        public T RetrieveValue(int index)
         {
             return arrayObj[index];
         }
-        public void insertValue(int index, T value)
+        public void InsertValue(int index, T value)
         {
             arrayObj[index] = value;
         }

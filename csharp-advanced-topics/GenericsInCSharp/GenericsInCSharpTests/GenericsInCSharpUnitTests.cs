@@ -45,16 +45,16 @@ namespace GenericsInCSharpTests
 
             for (int i = 0; i < 5; i++) 
             {
-                intArray.insertValue(i, rand.Next());
+                intArray.InsertValue(i, rand.Next());
             }
 
             for (int i = 0; i < 5; i++)
             {
-                guidArray.insertValue(i, Guid.NewGuid());
+                guidArray.InsertValue(i, Guid.NewGuid());
             }
-
-            Assert.IsInstanceOfType(intArray.retrieveValue(1), typeof(int));
-            Assert.IsInstanceOfType(guidArray.retrieveValue(1), typeof(Guid));
+            
+            Assert.IsInstanceOfType(intArray.RetrieveValue(1), typeof(int));
+            Assert.IsInstanceOfType(guidArray.RetrieveValue(1), typeof(Guid));
         }
 
         [TestMethod]

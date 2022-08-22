@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApp1\GenericsInCSharp.csproj" />
+    <ProjectReference Include="..\GenericsInCSharp\GenericsInCSharp.csproj" />
   </ItemGroup>
 
 </Project>
