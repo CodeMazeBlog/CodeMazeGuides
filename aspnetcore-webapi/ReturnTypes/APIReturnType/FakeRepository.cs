@@ -1,11 +1,11 @@
-﻿namespace APIReturnType.Controllers
+﻿namespace APIReturnType
 {
-    public class FakeRepository
+    public class FakeRepository : IFakeRepository
     {
-        public List<Employee> Employees { get; set; }
+        public List<Employee>? Employees { get; set; }
 
-        internal IEnumerable<Employee> GetEmployees()
-        {            
+        public IEnumerable<Employee> GetEmployees()
+        {
             Employees = new()
             {
                 new Employee()
@@ -31,31 +31,31 @@
             return Employees;
         }
 
-        internal bool TryGetEmployee(int id, out Employee? employee)
+        public bool TryGetEmployee(int id, out Employee? employee)
         {
             employee = GetEmployees().FirstOrDefault(e => e.Id == id);
             return employee != null;
         }
 
-        internal IEnumerable<Employee> GetActiveEmployees()
+        public IEnumerable<Employee> GetActiveEmployees()
         {
             foreach (var employee in GetEmployees())
             {
-                Thread.Sleep(3000);
+                Thread.Sleep(10);
                 yield return employee;
             }
         }
 
-        internal async IAsyncEnumerable<Employee> GetActiveEmployeesAsync()
+        public async IAsyncEnumerable<Employee> GetActiveEmployeesAsync()
         {
             foreach (var employee in GetEmployees())
             {
-                await Task.Delay(3000);
+                await Task.Delay(10);
                 yield return employee;
             }
         }
 
-        internal async Task AddEmployeeAsync(Employee employee)
+        public async Task AddEmployeeAsync(Employee? employee)
         {
         }
     }

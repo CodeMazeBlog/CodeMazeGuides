@@ -6,7 +6,12 @@ namespace APIReturnType.Controllers
     [ApiController]
     public class EmployeeIActionResultController : ControllerBase
     {
-        public FakeRepository _repository = new();
+        public IFakeRepository _repository;
+
+        public EmployeeIActionResultController(IFakeRepository repository)
+        {
+            _repository = repository;
+        }
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Employee))]

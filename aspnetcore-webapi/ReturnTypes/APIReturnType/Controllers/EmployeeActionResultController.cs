@@ -6,12 +6,17 @@ namespace APIReturnType.Controllers
     [ApiController]
     public class EmployeeActionResultController : ControllerBase
     {
-        public FakeRepository _repository = new();
+        public IFakeRepository _repository;
+
+        public EmployeeActionResultController(IFakeRepository repository)
+        {
+            _repository = repository;
+        }
 
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<Employee> GetById(int id)
+        public ActionResult<Employee?> GetById(int id)
         {
             if (!_repository.TryGetEmployee(id, out var employee))
             {
@@ -26,14 +31,15 @@ namespace APIReturnType.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Employee>> CreateAsync(Employee employee)
         {
-            if (employee.Name.Length < 3 || employee.Name.Length > 30)
+            int? employeeNameLength = employee?.Name?.Length;
+            if (employeeNameLength < 3 || employeeNameLength > 30)
             {
                 return BadRequest("Name should be between 3 and 30 characters.");
             }
 
             await _repository.AddEmployeeAsync(employee);
 
-            return CreatedAtAction(nameof(GetById), new { id = employee.Id }, employee);
+            return CreatedAtAction(nameof(GetById), new { id = employee?.Id }, employee);
         }
     }
 }

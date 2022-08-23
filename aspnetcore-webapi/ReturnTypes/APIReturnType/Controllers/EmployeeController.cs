@@ -6,7 +6,12 @@ namespace APIReturnType.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        public FakeRepository _repository = new();
+        public IFakeRepository _repository;
+
+        public EmployeeController(IFakeRepository repository)
+        {
+            _repository = repository;
+        }
 
         [HttpGet]
         public IEnumerable<Employee> Get() =>
