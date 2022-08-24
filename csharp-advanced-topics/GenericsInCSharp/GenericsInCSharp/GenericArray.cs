@@ -2,18 +2,21 @@
 {
     public class GenericArray<T>
     {
-        private T[] arrayObj;
+        private T[] _arrayObj;
+
         public GenericArray(int size)
         {
-            arrayObj = new T[size + 1];
+            _arrayObj = new T[size + 1];
         }
+
         public T RetrieveValue(int index)
         {
-            return arrayObj[index];
+            return _arrayObj[index];
         }
+
         public void InsertValue(int index, T value)
         {
-            arrayObj[index] = value;
+            _arrayObj[index] = value;
         }
     }
 }
