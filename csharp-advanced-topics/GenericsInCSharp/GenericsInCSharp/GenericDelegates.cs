@@ -6,6 +6,7 @@
         {
             return num1 + num2;
         }
+
         public int MultiplicationFunc(int num1, int num2 )
         {
             return num2 * num1;
