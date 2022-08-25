@@ -9,6 +9,7 @@
             var delegateObj = new GenericDelegates();
             var addition = new ArithmeticDelegates<int>(delegateObj.AdditionFunc);
             var multiplication = new ArithmeticDelegates<int>(delegateObj.MultiplicationFunc);
+
             var num1 = 5;
             var num2 = 10;
 
