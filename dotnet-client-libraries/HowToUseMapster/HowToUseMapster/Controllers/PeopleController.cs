@@ -6,44 +6,44 @@ namespace HowToUseMapster.Controllers
     [ApiController]
     public class PeopleController: ControllerBase
     {
-		[HttpGet("new-person")]
-		public IActionResult GetNewPerson()
-		{
-			var person = MappingFunctions.MapPersonToNewDto();
+    [HttpGet("new-person")]
+    public IActionResult GetNewPerson()
+    {
+      var person = MappingFunctions.MapPersonToNewDto();
 
-			return Ok(person);
-		}
+      return Ok(person);
+    }
 
-		[HttpGet("existing-person")]
-		public IActionResult GetExistingPerson()
-		{
-			var person = MappingFunctions.MapPersonToExistingDto();
+    [HttpGet("existing-person")]
+    public IActionResult GetExistingPerson()
+    {
+      var person = MappingFunctions.MapPersonToExistingDto();
 
-			return Ok(person);
-		}
+      return Ok(person);
+    }
 
-		[HttpGet]
-		public IActionResult GetPeopleQueryable()
-		{
-			var people = MappingFunctions.MapPersonQueryableToDtoQueryable();
+    [HttpGet]
+    public IActionResult GetPeopleQueryable()
+    {
+      var people = MappingFunctions.MapPersonQueryableToDtoQueryable();
 
-			return Ok(people);
-		}
+      return Ok(people);
+    }
 
-		[HttpGet("short-person")]
-		public IActionResult GetShortPerson()
-		{
-			var person = MappingFunctions.CustomMapPersonToShortInfoDto();
+    [HttpGet("short-person")]
+    public IActionResult GetShortPerson()
+    {
+      var person = MappingFunctions.CustomMapPersonToShortInfoDto();
 
-			return Ok(person);
-		}
+      return Ok(person);
+    }
 
-		[HttpGet("entity")]
-		public IActionResult GetPersonEntity()
-		{
-			var person = MappingFunctions.MapPersonDtoToPersonEntity();
+    [HttpGet("entity")]
+    public IActionResult GetPersonEntity()
+    {
+      var person = MappingFunctions.MapPersonDtoToPersonEntity();
 
-			return Ok(person);
-		}
-	}
+      return Ok(person);
+    }
+  }
 }
