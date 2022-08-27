@@ -1,19 +1,12 @@
 using Func_Action_Delegate_Library.Action;
 using Func_Action_Delegate_Library.Func;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Tests
 {
     [TestClass]
     public class Tests
     {
-        string message = string.Empty;
-        string Sum(int a, int b)
-        {
-            return (a + b).ToString();
-        }
-
         [TestMethod]
         public void WHENtwoNumbersArePassedForAddition_THENfuncDelegateReturnsSumAsString()
         {

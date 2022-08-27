@@ -19,7 +19,7 @@ Console.WriteLine("Anonymous method: {0}", funcWithAnnonymousMethod.calculateMul
 
 #region lambda expression
 var funcWithLambdaExpression = new FuncWithLambdaExpression();
-funcWithLambdaExpression.IsFruitExist = s => s == funcWithLambdaExpression.Fruit;
+funcWithLambdaExpression.IsFruitExist = s => s == funcWithLambdaExpression.FruitToFind;
 var result = funcWithLambdaExpression.Fruits.Where(funcWithLambdaExpression.IsFruitExist);
 foreach (var item in result)
 {
@@ -38,7 +38,7 @@ var actionWithSimpleMethod = new ActionWithSimpleMethod();
 actionWithSimpleMethod.calculateSubtraction = actionWithSimpleMethod.Subtract;
 actionWithSimpleMethod.calculateSubtraction(12, 3, 5);
 if (actionWithSimpleMethod.result < 0)
-    Console.WriteLine("Cant print as subtraction result in less than 0");
+    Console.WriteLine("Cant print as the output is less than 0");
 else
     Console.WriteLine("Simple method: {0}", actionWithSimpleMethod.result);
 #endregion
