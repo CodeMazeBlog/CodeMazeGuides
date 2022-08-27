@@ -9,9 +9,9 @@ namespace HowToUseMapster.Controllers
 		[HttpGet("new-person")]
 		public IActionResult GetNewPerson()
 		{
-		    var person = MappingFunctions.MapPersonToNewDto();
+			var person = MappingFunctions.MapPersonToNewDto();
 
-		    return Ok(person);
+			return Ok(person);
 		}
 
 		[HttpGet("existing-person")]
