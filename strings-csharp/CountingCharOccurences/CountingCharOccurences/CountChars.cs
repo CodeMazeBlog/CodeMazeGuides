@@ -1,83 +1,133 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System.Diagnostics;
 using System.Text.RegularExpressions;
 
 namespace CountingCharOccurences
 {
     public class CountChars
     {
-        private static readonly string _chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        private static readonly Random _random = new Random();
-
-        public static IEnumerable<List<string>> GenerateStringWithSubString()
+        public void RunIterations()
         {
-            var data = new List<List<string>>();
+            string source = "Mary had a little lamb and a little hut too.";
+            char toFind = 'l';
+            int iterations = 100000000;
 
-            var needleHaystack = new List<string>();
+            Console.WriteLine("|                             Method |   Time(in ms) |");
+            Console.WriteLine("|----------------------------------- |--------------:|");
 
-            int length = _random.Next(5, 1000);
-            char[] haystack = GenerateRandomString(length);
+            var sw = new Stopwatch();
+            var iterationDetails = new List<IterationDetail>();
 
-            int needleLength = _random.Next(2, Math.Min(100, length));
-            char[] needle = GenerateRandomString(needleLength);
+            sw.Start();
 
-            needleHaystack.Add(Convert.ToString(haystack));
-            needleHaystack.Add(Convert.ToString(needle));
-
-            data.Add(needleHaystack);
-
-            return data;
-        }
-
-        public static IEnumerable<List<string>> GenerateStringWithChar()
-        {
-            var data = new List<List<string>>();
-
-            var needleHaystack = new List<string>();
-
-            int length = _random.Next(5, 1000);
-            char[] haystack = GenerateRandomString(length);
-
-            char needle = GenerateRandomString(1)[0];
-
-            needleHaystack.Add(Convert.ToString(haystack));
-            needleHaystack.Add(Convert.ToString(needle));
-
-            data.Add(needleHaystack);
-
-            return data;
-        }
-
-        private static char[] GenerateRandomString(int length)
-        {
-            var word = new char[length];
-
-            for (int i = 0; i < word.Length; i++)
+            for (int i = 0; i < iterations; i++)
             {
-                word[i] = _chars[_random.Next(_chars.Length)];
+                CountCharsUsingLinqCount(source, toFind);
             }
+            iterationDetails.Add(new IterationDetail("Using Linq Count() ", sw.ElapsedMilliseconds));
 
-            return word;
+            sw.Restart();
+
+            for (int i = 0; i < iterations; i++)
+            {
+                CountCharsUsingForeach(source, toFind);
+            }
+            iterationDetails.Add(new IterationDetail("Using Foreach      ", sw.ElapsedMilliseconds));
+
+            sw.Restart();
+
+            for (int i = 0; i < iterations; i++)
+            {
+                CountCharsUsingForeachSpan(source, toFind);
+            }
+            iterationDetails.Add(new IterationDetail("Using Foreach Span ", sw.ElapsedMilliseconds));
+
+            sw.Restart();
+
+            for (int i = 0; i < iterations; i++)
+            {
+                CountCharsUsingIndex(source, toFind);
+            }
+            iterationDetails.Add(new IterationDetail("Using IndexOf()    ", sw.ElapsedMilliseconds));
+
+            sw.Restart();
+
+            for (int i = 0; i < iterations; i++)
+            {
+                CountCharsUsingFor(source, toFind);
+            }
+            iterationDetails.Add(new IterationDetail("Using For          ", sw.ElapsedMilliseconds));
+
+            sw.Restart();
+
+            for (int i = 0; i < iterations; i++)
+            {
+                CountCharsUsingForReverseIteration(source, toFind);
+            }
+            iterationDetails.Add(new IterationDetail("Using For (Reverse)", sw.ElapsedMilliseconds));
+
+            sw.Restart();
+
+            for (int i = 0; i < iterations; i++)
+            {
+                CountCharsUsingForUsingSpan(source, toFind);
+            }
+            iterationDetails.Add(new IterationDetail("Using For (Span)   ", sw.ElapsedMilliseconds));
+
+            sw.Restart();
+
+            for (int i = 0; i < iterations; i++)
+            {
+                CountCharsUsingSplit(source, toFind.ToString());
+            }
+            iterationDetails.Add(new IterationDetail("Using Split()      ", sw.ElapsedMilliseconds));
+
+            sw.Restart();
+
+            for (int i = 0; i < iterations; i++)
+            {
+                CountCharsUsingReplace(source, toFind.ToString());
+            }
+            iterationDetails.Add(new IterationDetail("Using Replace()    ", sw.ElapsedMilliseconds));
+
+            sw.Restart();
+
+            for (int i = 0; i < iterations; i++)
+            {
+                CountCharsUsingRegex(source, toFind.ToString());
+            }
+            iterationDetails.Add(new IterationDetail("Using Regex        ", sw.ElapsedMilliseconds));
+
+            iterationDetails.Sort((a, b) => a.Time.CompareTo(b.Time));
+
+            foreach (var item in iterationDetails)
+            {
+                Console.WriteLine($"|                {item.Name} |          {item.Time} |");
+            }
         }
 
-        [ArgumentsSource(nameof(GenerateStringWithChar))]
-        [Benchmark]
-        public int CountCharsUsingLinqCount(List<string> text)
+        public int CountCharsUsingLinqCount(string source, char toFind)
         {
-            string mainString = text[0];
-            char toFind = Convert.ToChar(text[1]);
-
-            return mainString.Count(t => t == toFind);
+            return source.Count(t => t == toFind);
         }
 
-        [ArgumentsSource(nameof(GenerateStringWithChar))]
-        [Benchmark]
-        public int CountCharsUsingForeach(List<string> text)
+        public int CountCharsUsingForeach(string source, char toFind)
         {
             int count = 0;
-            string mainString = text[0];
-            char toFind = Convert.ToChar(text[1]);
 
-            foreach (var c in mainString)
+            foreach (var ch in source)
+            {
+                if (ch == toFind)
+                    count++;
+            }
+
+            return count;
+        }
+
+        public int CountCharsUsingForeachSpan(string source, char toFind)
+        {
+            int count = 0;
+
+            foreach (var c in source.AsSpan())
             {
                 if (c == toFind)
                     count++;
@@ -86,33 +136,12 @@ namespace CountingCharOccurences
             return count;
         }
 
-        [ArgumentsSource(nameof(GenerateStringWithChar))]
-        [Benchmark]
-        public int CountCharsUsingForeachSpan(List<string> text)
-        {
-            int count = 0;
-            string mainString = text[0];
-            char toFind = Convert.ToChar(text[1]);
-
-            foreach (var c in mainString.AsSpan())
-            {
-                if (c == toFind)
-                    count++;
-            }
-
-            return count;
-        }
-
-        [ArgumentsSource(nameof(GenerateStringWithChar))]
-        [Benchmark]
-        public int CountCharsUsingIndex(List<string> text)
+        public int CountCharsUsingIndex(string source, char toFind)
         {
             int count = 0;
             int n = 0;
-            string mainString = text[0];
-            char toFind = Convert.ToChar(text[1]);
 
-            while ((n = mainString.IndexOf(toFind, n) + 1) != 0)
+            while ((n = source.IndexOf(toFind, n) + 1) != 0)
             {
                 n++;
                 count++;
@@ -121,70 +150,58 @@ namespace CountingCharOccurences
             return count;
         }
 
-        [ArgumentsSource(nameof(GenerateStringWithChar))]
-        [Benchmark]
-        public int CountCharsUsingFor(List<string> text)
+        public int CountCharsUsingFor(string source, char toFind)
         {
             int count = 0;
-            char toFind = Convert.ToChar(text[1]);
-            char[] textChars = text[0].ToCharArray();
-            int length = textChars.Length;
 
-            for (int n = 0; n < length; n++)
+            for (int n = 0; n < source.Length; n++)
             {
-                if (textChars[n] == toFind)
+                if (source[n] == toFind)
                     count++;
             }
 
             return count;
         }
 
-        [ArgumentsSource(nameof(GenerateStringWithChar))]
-        [Benchmark]
-        public int CountCharsUsingForReverseIteration(List<string> text)
+        public int CountCharsUsingForReverseIteration(string source, char toFind)
         {
             int count = 0;
-            char toFind = Convert.ToChar(text[1]);
-            char[] textChars = text[0].ToCharArray();
-            int length = textChars.Length;
 
-            for (int n = length - 1; n >= 0; n--)
+            for (int n = source.Length - 1; n >= 0; n--)
             {
-                if (textChars[n] == toFind)
+                if (source[n] == toFind)
                     count++;
             }
 
             return count;
         }
 
-        [ArgumentsSource(nameof(GenerateStringWithSubString))]
-        [Benchmark]
-        public int CountCharsUsingSplit(List<string> text)
+        public int CountCharsUsingForUsingSpan(string source, char toFind)
         {
-            string mainString = text[0];
-            string toFind = text[1];
+            int count = 0;
 
-            return mainString.Split(toFind).Length - 1;
+            for (int n = 0; n < source.AsSpan().Length; n++)
+            {
+                if (source[n] == toFind)
+                    count++;
+            }
+
+            return count;
         }
 
-        [ArgumentsSource(nameof(GenerateStringWithSubString))]
-        [Benchmark]
-        public int CountCharsUsingReplace(List<string> text)
+        public int CountCharsUsingSplit(string source, string toFind)
         {
-            string mainString = text[0];
-            string toFind = text[1];
-
-            return (mainString.Length - mainString.Replace(toFind, "").Length) / toFind.Length;
+            return source.Split(toFind).Length - 1;
         }
 
-        [ArgumentsSource(nameof(GenerateStringWithSubString))]
-        [Benchmark]
-        public int CountCharsUsingRegex(List<string> text)
+        public int CountCharsUsingReplace(string source, string toFind)
         {
-            string mainString = text[0];
-            string toFind = text[1];
+            return (source.Length - source.Replace(toFind, "").Length) / toFind.Length;
+        }
 
-            return new Regex(Regex.Escape(toFind)).Matches(mainString).Count;
+        public int CountCharsUsingRegex(string source, string toFind)
+        {
+            return new Regex(Regex.Escape(toFind)).Matches(source).Count;
         }
     }
 }

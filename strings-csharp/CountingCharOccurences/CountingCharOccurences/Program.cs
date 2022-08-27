@@ -1,12 +1,11 @@
-﻿using BenchmarkDotNet.Running;
-
-namespace CountingCharOccurences
+﻿namespace CountingCharOccurences
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<CountChars>();
+            CountChars countChars = new CountChars();
+            countChars.RunIterations();
         }
     }
 }

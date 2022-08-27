@@ -12,13 +12,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            var text = new List<string>
-            {
-                main,
-                Convert.ToString(toFind)
-            };
-
-            int actual = _countChars.CountCharsUsingLinqCount(text);
+            int actual = _countChars.CountCharsUsingLinqCount(main, toFind);
 
             Assert.Equal(2, actual);
         }
@@ -29,13 +23,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            var text = new List<string>
-            {
-                main,
-                Convert.ToString(toFind)
-            };
-
-            int actual = _countChars.CountCharsUsingForeach(text);
+            int actual = _countChars.CountCharsUsingForeach(main, toFind);
 
             Assert.Equal(2, actual);
         }
@@ -46,13 +34,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            var text = new List<string>
-            {
-                main,
-                Convert.ToString(toFind)
-            };
-
-            int actual = _countChars.CountCharsUsingForeachSpan(text);
+            int actual = _countChars.CountCharsUsingForeachSpan(main, toFind);
 
             Assert.Equal(2, actual);
         }
@@ -63,13 +45,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            var text = new List<string>
-            {
-                main,
-                Convert.ToString(toFind)
-            };
-
-            int actual = _countChars.CountCharsUsingIndex(text);
+            int actual = _countChars.CountCharsUsingIndex(main, toFind);
 
             Assert.Equal(2, actual);
         }
@@ -80,13 +56,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            var text = new List<string>
-            {
-                main,
-                Convert.ToString(toFind)
-            };
-
-            int actual = _countChars.CountCharsUsingFor(text);
+            int actual = _countChars.CountCharsUsingFor(main, toFind);
 
             Assert.Equal(2, actual);
         }
@@ -97,13 +67,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            var text = new List<string>
-            {
-                main,
-                Convert.ToString(toFind)
-            };
-
-            int actual = _countChars.CountCharsUsingForReverseIteration(text);
+            int actual = _countChars.CountCharsUsingForReverseIteration(main, toFind);
 
             Assert.Equal(2, actual);
         }
@@ -114,13 +78,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            var text = new List<string>
-            {
-                main,
-                Convert.ToString(toFind)
-            };
-
-            int actual = _countChars.CountCharsUsingSplit(text);
+            int actual = _countChars.CountCharsUsingSplit(main, toFind.ToString());
 
             Assert.Equal(2, actual);
         }
@@ -131,13 +89,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             string toFind = "Mary";
 
-            var text = new List<string>
-            {
-                main,
-                toFind
-            };
-
-            int actual = _countChars.CountCharsUsingSplit(text);
+            int actual = _countChars.CountCharsUsingSplit(main, toFind);
 
             Assert.Equal(1, actual);
         }
@@ -148,13 +100,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            var text = new List<string>
-            {
-                main,
-                Convert.ToString(toFind)
-            };
-
-            int actual = _countChars.CountCharsUsingReplace(text);
+            int actual = _countChars.CountCharsUsingReplace(main, toFind.ToString());
 
             Assert.Equal(2, actual);
         }
@@ -165,13 +111,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             string toFind = "Mary";
 
-            var text = new List<string>
-            {
-                main,
-                toFind
-            };
-
-            int actual = _countChars.CountCharsUsingReplace(text);
+            int actual = _countChars.CountCharsUsingReplace(main, toFind);
 
             Assert.Equal(1, actual);
         }
@@ -182,13 +122,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            var text = new List<string>
-            {
-                main,
-                Convert.ToString(toFind)
-            };
-
-            int actual = _countChars.CountCharsUsingRegex(text);
+            int actual = _countChars.CountCharsUsingRegex(main, toFind.ToString());
 
             Assert.Equal(2, actual);
         }
@@ -199,13 +133,7 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             string toFind = "Mary";
 
-            var text = new List<string>
-            {
-                main,
-                toFind
-            };
-
-            int actual = _countChars.CountCharsUsingRegex(text);
+            int actual = _countChars.CountCharsUsingRegex(main, toFind);
 
             Assert.Equal(1, actual);
         }
