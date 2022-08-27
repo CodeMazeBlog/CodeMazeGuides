@@ -12,7 +12,9 @@ namespace HowToUseMapster.Config
             TypeAdapterConfig<Person, PersonShortInfoDto>
                 .NewConfig()
                 .Map(dest => dest.FullName, src => $"{src.Title} {src.FirstName} {src.LastName}")
-                .Map(dest => dest.Age, src => DateTime.Now.Year - src.DateOfBirth.Value.Year, srcCond => srcCond.DateOfBirth.HasValue)
+                .Map(dest => dest.Age,
+                     src => DateTime.Now.Year - src.DateOfBirth.Value.Year,
+                     srcCond => srcCond.DateOfBirth.HasValue)
                 .Map(dest => dest.FullAddress, src => $"{src.Address.Street} {src.Address.PostCode} - {src.Address.City}");
 
             TypeAdapterConfig<Person, PersonDto>
