@@ -29,7 +29,7 @@ app.MapPut("/books", (Book book) =>
     books.RemoveAll(book => book.BookId == book.BookId);
     books.Add(book);
 
-    return Results.Ok(book);
+    return Results.NoContent();
 });
 
 app.MapDelete("/books/{bookId}", (int bookId) =>

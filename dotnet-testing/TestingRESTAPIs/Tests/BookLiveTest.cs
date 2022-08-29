@@ -38,10 +38,7 @@ public class BookLiveTest : IDisposable
         var response = await _httpClient.GetAsync("/books");
 
         // Assert.
-        await TestHelpers.AssertResponseWithContentAsync(stopwatch,
-                                                         response,
-                                                         expectedStatusCode,
-                                                         expectedContent);
+        await TestHelpers.AssertResponseWithContentAsync(stopwatch, response, expectedStatusCode, expectedContent);
     }
 
     [Fact]
@@ -56,28 +53,22 @@ public class BookLiveTest : IDisposable
         var response = await _httpClient.PostAsync("/books", TestHelpers.GetJsonStringContent(expectedContent));
 
         // Assert.
-        await TestHelpers.AssertResponseWithContentAsync(stopwatch,
-                                                         response,
-                                                         expectedStatusCode,
-                                                         expectedContent);
+        await TestHelpers.AssertResponseWithContentAsync(stopwatch, response, expectedStatusCode, expectedContent);
     }
 
     [Fact]
     public async Task GivenARequest_WhenCallingPutBooks_ThenTheAPIReturnsExpectedResponseAndUpdatesBook()
     {
         // Arrange.
-        var expectedStatusCode = System.Net.HttpStatusCode.OK;
-        var expectedContent = new Book(6, "Awesome book #6 - Updated");
+        var expectedStatusCode = System.Net.HttpStatusCode.NoContent;
+        var updatedBook = new Book(6, "Awesome book #6 - Updated");
         var stopwatch = Stopwatch.StartNew();
 
         // Act.
-        var response = await _httpClient.PutAsync("/books", TestHelpers.GetJsonStringContent(expectedContent));
+        var response = await _httpClient.PutAsync("/books", TestHelpers.GetJsonStringContent(updatedBook));
 
         // Assert.
-        await TestHelpers.AssertResponseWithContentAsync(stopwatch,
-                                                         response,
-                                                         expectedStatusCode,
-                                                         expectedContent);
+        TestHelpers.AssertCommonResponseParts(stopwatch, response, expectedStatusCode);
     }
 
     [Fact]
@@ -92,9 +83,7 @@ public class BookLiveTest : IDisposable
         var response = await _httpClient.DeleteAsync($"/books/{bookIdToDelete}");
 
         // Assert.
-        TestHelpers.AssertCommonResponseParts(stopwatch,
-                                              response,
-                                              expectedStatusCode);
+        TestHelpers.AssertCommonResponseParts(stopwatch, response, expectedStatusCode);
     }
 
     [Fact]
@@ -111,10 +100,7 @@ public class BookLiveTest : IDisposable
         var response = await _httpClient.SendAsync(request);
 
         // Assert.
-        await TestHelpers.AssertResponseWithContentAsync(stopwatch,
-                                                         response,
-                                                         expectedStatusCode,
-                                                         expectedContent);
+        await TestHelpers.AssertResponseWithContentAsync(stopwatch, response, expectedStatusCode, expectedContent);
     }
 
     [Theory]
@@ -134,8 +120,6 @@ public class BookLiveTest : IDisposable
         var response = await _httpClient.SendAsync(request);
 
         // Assert.
-        TestHelpers.AssertCommonResponseParts(stopwatch,
-                                              response,
-                                              expectedStatusCode);
+        TestHelpers.AssertCommonResponseParts(stopwatch, response, expectedStatusCode);
     }
 }
