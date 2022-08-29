@@ -1,8 +1,6 @@
 using System;
 using System.Diagnostics;
 using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -10,10 +8,7 @@ namespace Tests;
 internal record Book(int BookId, string Title);
 
 public class BookLiveTest : IDisposable
-{
-    private const string _jsonMediaType = "application/json";
-    private const int _expectedMaxElapsedMilliseconds = 1000;
-    private readonly JsonSerializerOptions _jsonSerializerOptions = new() { PropertyNameCaseInsensitive = true };
+{   
     private readonly HttpClient _httpClient = new()
     {
         BaseAddress = new Uri("https://localhost:7133")
@@ -24,28 +19,8 @@ public class BookLiveTest : IDisposable
         _httpClient.DeleteAsync("/state").GetAwaiter().GetResult();
     }
 
-    private async Task AssertResponseWithContentAsync<T>(Stopwatch stopwatch,
-                                                         HttpResponseMessage response,
-                                                         System.Net.HttpStatusCode expectedStatusCode,
-                                                         T expectedContent)
-    {
-        AssertCommonResponseParts(stopwatch,
-                                  response,
-                                  expectedStatusCode);
-        Assert.Equal(_jsonMediaType, response.Content.Headers.ContentType?.MediaType);
-        Assert.Equal(expectedContent, await JsonSerializer.DeserializeAsync<T?>(await response.Content.ReadAsStreamAsync(), _jsonSerializerOptions));
-    }
-
-    private static void AssertCommonResponseParts(Stopwatch stopwatch,
-                                                  HttpResponseMessage response,
-                                                  System.Net.HttpStatusCode expectedStatusCode)
-    {
-        Assert.Equal(expectedStatusCode, response.StatusCode);
-        Assert.True(stopwatch.ElapsedMilliseconds < _expectedMaxElapsedMilliseconds);
-    }
-
     [Fact]
-    public async Task GivenARequest_GetBooks_ReturnsExpectedResponse()
+    public async Task GivenARequest_WhenCallingGetBooks_ThenTheAPIReturnsExpectedResponse()
     {
         // Arrange.
         var expectedStatusCode = System.Net.HttpStatusCode.OK;
@@ -63,14 +38,14 @@ public class BookLiveTest : IDisposable
         var response = await _httpClient.GetAsync("/books");
 
         // Assert.
-        await AssertResponseWithContentAsync(stopwatch,
-                                             response,
-                                             expectedStatusCode,
-                                             expectedContent);
+        await TestHelpers.AssertResponseWithContentAsync(stopwatch,
+                                                         response,
+                                                         expectedStatusCode,
+                                                         expectedContent);
     }
 
     [Fact]
-    public async Task GivenARequest_PostBooks_ReturnsExpectedResponseAndAddsBook()
+    public async Task GivenARequest_WhenCallingPostBooks_ThenTheAPIReturnsExpectedResponseAndAddsBook()
     {
         // Arrange.
         var expectedStatusCode = System.Net.HttpStatusCode.Created;
@@ -78,17 +53,17 @@ public class BookLiveTest : IDisposable
         var stopwatch = Stopwatch.StartNew();
 
         // Act.
-        var response = await _httpClient.PostAsync("/books", new StringContent(JsonSerializer.Serialize(expectedContent), Encoding.UTF8, _jsonMediaType));
+        var response = await _httpClient.PostAsync("/books", TestHelpers.GetJsonStringContent(expectedContent));
 
         // Assert.
-        await AssertResponseWithContentAsync(stopwatch,
-                                             response,
-                                             expectedStatusCode,
-                                             expectedContent);
+        await TestHelpers.AssertResponseWithContentAsync(stopwatch,
+                                                         response,
+                                                         expectedStatusCode,
+                                                         expectedContent);
     }
 
     [Fact]
-    public async Task GivenARequest_PutBooks_ReturnsExpectedResponseAndUpdatesBook()
+    public async Task GivenARequest_WhenCallingPutBooks_ThenTheAPIReturnsExpectedResponseAndUpdatesBook()
     {
         // Arrange.
         var expectedStatusCode = System.Net.HttpStatusCode.OK;
@@ -96,17 +71,17 @@ public class BookLiveTest : IDisposable
         var stopwatch = Stopwatch.StartNew();
 
         // Act.
-        var response = await _httpClient.PutAsync("/books", new StringContent(JsonSerializer.Serialize(expectedContent), Encoding.UTF8, _jsonMediaType));
+        var response = await _httpClient.PutAsync("/books", TestHelpers.GetJsonStringContent(expectedContent));
 
         // Assert.
-        await AssertResponseWithContentAsync(stopwatch,
-                                             response,
-                                             expectedStatusCode,
-                                             expectedContent);
+        await TestHelpers.AssertResponseWithContentAsync(stopwatch,
+                                                         response,
+                                                         expectedStatusCode,
+                                                         expectedContent);
     }
 
     [Fact]
-    public async Task GivenARequest_DeleteBooks_ReturnsExpectedResponseAndDeletesBook()
+    public async Task GivenARequest_WhenCallingDeleteBooks_ThenTheAPIReturnsExpectedResponseAndDeletesBook()
     {
         // Arrange.
         var expectedStatusCode = System.Net.HttpStatusCode.NoContent;
@@ -117,13 +92,13 @@ public class BookLiveTest : IDisposable
         var response = await _httpClient.DeleteAsync($"/books/{bookIdToDelete}");
 
         // Assert.
-        AssertCommonResponseParts(stopwatch,
-                                  response,
-                                  expectedStatusCode);
+        TestHelpers.AssertCommonResponseParts(stopwatch,
+                                              response,
+                                              expectedStatusCode);
     }
 
     [Fact]
-    public async Task GivenAnAuthenticatedRequest_Admin_ReturnsExpectedResponse()
+    public async Task GivenAnAuthenticatedRequest_WhenCallingAdmin_ThenTheAPIReturnsExpectedResponse()
     {
         // Arrange.
         var expectedStatusCode = System.Net.HttpStatusCode.OK;
@@ -136,10 +111,10 @@ public class BookLiveTest : IDisposable
         var response = await _httpClient.SendAsync(request);
 
         // Assert.
-        await AssertResponseWithContentAsync(stopwatch,
-                                             response,
-                                             expectedStatusCode,
-                                             expectedContent);
+        await TestHelpers.AssertResponseWithContentAsync(stopwatch,
+                                                         response,
+                                                         expectedStatusCode,
+                                                         expectedContent);
     }
 
     [Theory]
@@ -147,7 +122,7 @@ public class BookLiveTest : IDisposable
     [InlineData("")]
     [InlineData(" ")]
     [InlineData("WrongApiKey")]
-    public async Task GivenAnUnauthenticatedRequest_Admin_ReturnsUnauthorized(string apiKey)
+    public async Task GivenAnUnauthenticatedRequest_WhenCallingAdmin_ThenTheAPIReturnsUnauthorized(string apiKey)
     {
         // Arrange.
         var expectedStatusCode = System.Net.HttpStatusCode.Unauthorized;
@@ -159,8 +134,8 @@ public class BookLiveTest : IDisposable
         var response = await _httpClient.SendAsync(request);
 
         // Assert.
-        AssertCommonResponseParts(stopwatch,
-                                  response,
-                                  expectedStatusCode);
+        TestHelpers.AssertCommonResponseParts(stopwatch,
+                                              response,
+                                              expectedStatusCode);
     }
 }

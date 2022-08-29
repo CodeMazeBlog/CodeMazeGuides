@@ -7,8 +7,8 @@ app.UseHttpsRedirection();
 var books = new List<Book>();
 
 void InitializeBooks() => books = Enumerable.Range(1, 5)
-                                            .Select(index => new Book(index, $"Awesome book #{index}"))
-                                            .ToList();
+    .Select(index => new Book(index, $"Awesome book #{index}"))
+    .ToList();
 
 InitializeBooks();
 
@@ -20,6 +20,7 @@ app.MapGet("/books", () =>
 app.MapPost("/books", (Book book) =>
 {
     books.Add(book);
+
     return Results.Created($"/books/{book.BookId}", book);
 });
 
@@ -27,18 +28,21 @@ app.MapPut("/books", (Book book) =>
 {
     books.RemoveAll(book => book.BookId == book.BookId);
     books.Add(book);
+
     return Results.Ok(book);
 });
 
 app.MapDelete("/books/{bookId}", (int bookId) =>
 {
     books.RemoveAll(book => book.BookId == bookId);
+
     return Results.NoContent();
 });
 
 app.MapDelete("/state", () =>
 {
     InitializeBooks();
+
     return Results.NoContent();
 });
 
