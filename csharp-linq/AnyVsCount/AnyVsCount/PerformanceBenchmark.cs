@@ -16,15 +16,15 @@ namespace AnyVsCount
         }
 
         [Benchmark]
-        public bool CheckWithCount()
-        {
-            return _numbersEnumerable.Count() > 0;
-        }
-
-        [Benchmark]
         public bool CheckWithAnyAndCondition()
         {
             return _numbersEnumerable.Any(num => num > 500);
+        }
+
+        [Benchmark]
+        public bool CheckWithCount()
+        {
+            return _numbersEnumerable.Count() > 0;
         }
 
         [Benchmark]
