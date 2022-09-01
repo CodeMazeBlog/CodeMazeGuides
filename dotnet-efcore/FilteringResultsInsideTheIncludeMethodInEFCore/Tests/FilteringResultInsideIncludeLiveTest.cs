@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Tests
 {
-    public class FilteringResultInsideIncludeUnitTest
+    public class FilteringResultInsideIncludeLiveTest
     {
         [Fact]
         public void WhenUsingNotSupportedMethod_ThenFailsWithAInvalidOperationException()
