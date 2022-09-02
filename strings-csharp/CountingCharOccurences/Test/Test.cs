@@ -73,6 +73,17 @@ namespace Test
         }
 
         [Fact]
+        public void WhenSearchCharUsingForWithSpanThenReturnNumberOfOccurences()
+        {
+            string main = "Mary Had A Little Lamb";
+            char toFind = 'L';
+
+            int actual = _countChars.CountCharsUsingForWithSpan(main, toFind);
+
+            Assert.Equal(2, actual);
+        }
+
+        [Fact]
         public void WhenSearchCharUsingSplitThenReturnNumberOfOccurences()
         {
             string main = "Mary Had A Little Lamb";
