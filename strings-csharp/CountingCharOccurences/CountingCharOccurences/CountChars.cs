@@ -1,8 +1,10 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Order;
 using System.Text.RegularExpressions;
 
 namespace CountingCharOccurences
 {
+    [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical)]
     public class CountChars
     {
         public IEnumerable<object[]> GenerateStringWithCharArgs()
