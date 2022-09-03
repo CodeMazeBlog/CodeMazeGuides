@@ -43,10 +43,11 @@ namespace Tests
         public void WhenUsingAOneFilterPerNavigationOnMultipleInclude_ThenSuccess()
         {
             var context = new AppDbContext();
+            var actual = Queries.GoodFilteringOnMultipleInclude(context);
 
-            var actual = Queries.RightFilteringOnMultipleInclude(context);
+            var expected = Queries.CourseCount * (Queries.StudentCountPerCourse / 2);
 
-            Assert.Equal(actual.Item1.Count, actual.Item2.Count);
+            Assert.Equal(expected, actual.Sum(x => x.Students!.Count()));
         }
 
         [Fact]
@@ -63,13 +64,26 @@ namespace Tests
         public void WhenFilteringOnIncludeWithTrackingQueries_ThenAggregatesTheResults1()
         {
             var context = new AppDbContext();
-            var acutal = Queries.FilteredIncludeWithTrackingQueries1(context);
-            var courses1 = acutal.Item1;
-            var courses2 = acutal.Item2;
+            var actual = Queries.FilteredIncludeWithTrackingQueries1(context);
+            var students1 = actual.Item1.SelectMany(x => x.Students!).ToList();
+            var students2 = actual.Item2.SelectMany(x => x.Students!).ToList();
 
-            var expected = Queries.CourseCount;
+            var expected = Queries.CourseCount * Queries.StudentCountPerCourse;
 
-            Assert.True(courses1.Count == expected && courses2.Count == expected);
+            Assert.True(students1.Count == expected && students2.Count == expected);
+        }
+
+        [Fact]
+        public void WhenFilteringOnIncludeWithNotTrackingQueries_ThenTheResults()
+        {
+            var context = new AppDbContext();
+            var actual = Queries.FilteredIncludeWithNotTrackingQueries(context);
+            var students1 = actual.Item1.SelectMany(x => x.Students!).ToList();
+            var students2 = actual.Item2.SelectMany(x => x.Students!).ToList();
+
+            var expected = Queries.CourseCount * (Queries.StudentCountPerCourse / 2);
+
+            Assert.True(students1.Count == expected && students2.Count == expected);
         }
 
         [Fact]
@@ -91,7 +105,7 @@ namespace Tests
 
             var expected = Queries.CourseCount * Queries.StudentCountPerCourse;
 
-            Assert.Equal(expected, actual.Sum(x => x.Count));
+            Assert.Equal(expected, actual.Select(x => x.Students).Sum(x => x!.Count));
         }
 
         [Fact]
@@ -102,7 +116,7 @@ namespace Tests
 
             var expected = Queries.CourseCount * (Queries.StudentCountPerCourse / 2);
 
-            Assert.Equal(expected, actual.Sum(x => x.Count));
+            Assert.Equal(expected, actual.Select(x => x.Students).Sum(x => x!.Count));
         }
 
     }
