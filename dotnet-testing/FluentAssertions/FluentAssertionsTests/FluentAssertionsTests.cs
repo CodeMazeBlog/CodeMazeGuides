@@ -261,6 +261,7 @@ namespace FluentAssertionsTests
             var customer = new Customer(1);
 
             customer.Should().BeOfType<Customer>();
+            customer.Should().BeSameAs(customer);
         }
 
         [TestMethod]
