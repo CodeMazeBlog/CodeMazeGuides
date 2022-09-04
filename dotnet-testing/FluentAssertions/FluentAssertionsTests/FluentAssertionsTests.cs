@@ -11,14 +11,14 @@ namespace FluentAssertionsTests
     public class FluentAssertionsTests
     {
         [TestMethod]
-        public async Task GivenAString_ThenAssertStartEndAndLength()
+        public void WhenTestingAString_ThenAssertStartEndAndLength()
         {
             string myTestString = "Hello, this is a test string";
             myTestString.Should().StartWith("He").And.EndWith("g").And.HaveLength(28);
         }
 
         [TestMethod]
-        public async Task GivenAString_ThenAssertBe()
+        public void WhenTestingAString_ThenAssertBe()
         {
             string myTestString = "Hello, this is a test string";
             myTestString.Should().Be("Hello, this is a test string");
@@ -26,7 +26,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenAString_ThenAssertBeEquivalentTo()
+        public void WhenTestingAString_ThenAssertBeEquivalentTo()
         {
             string myTestString = "Hello, this is a test string";
             myTestString.Should().BeEquivalentTo(myTestString);
@@ -34,7 +34,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenAString_ThenAssertBeEmpty()
+        public void WhenTestingAString_ThenAssertBeEmpty()
         {
             string myTestString = "";
             string myOtherTestString = "Hello, this is a test string";
@@ -43,7 +43,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenAString_ThenAssertBeNull()
+        public void WhenTestingAString_ThenAssertBeNull()
         {
             string? myTestString = null;
             string myOtherTestString = "Hello, this is a test string";
@@ -52,7 +52,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenAString_ThenAssertBeNullOrEmpty()
+        public void WhenTestingAString_ThenAssertBeNullOrEmpty()
         {
             string? myTestString = null;
             string myOtherTestString = "Hello, this is a test string";
@@ -61,7 +61,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenAString_ThenAssertBeLowerCased()
+        public void WhenTestingAString_ThenAssertBeLowerCased()
         {
             // be careful of special characters as they will fail this assertion, even whitespace characters
             string myTestString = "hello";
@@ -71,7 +71,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenAString_ThenAssertBeUpperCased()
+        public void WhenTestingAString_ThenAssertBeUpperCased()
         {
             // be careful of special characters as they will fail this assertion, even whitespace characters
             string myTestString = "HELLO";
@@ -81,7 +81,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenAString_ThenAssertMatch()
+        public async Task WhenTestingAString_ThenAssertMatch()
         {
             string myTestString = "Hello, this is a test string";
             string myOtherTestString = "Hello, this is a test string";
@@ -90,7 +90,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenAString_ThenAssertMatchEquivalentOf()
+        public void WhenTestingAString_ThenAssertMatchEquivalentOf()
         {
             string myTestString = "Hello, this is a test string";
             string myOtherTestString = "Hello, this is a test string";
@@ -99,7 +99,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenAString_ThenAssertMatchRegex()
+        public void WhenTestingAString_ThenAssertMatchRegex()
         {
             string myTestString = "05/30/2022";
             string myOtherTestString = "32A-45/2022";
@@ -108,7 +108,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACollection_ThenAssertHaveElementAt()
+        public void WhenTestingACollection_ThenAssertHaveElementAt()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer()
@@ -121,7 +121,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACollection_ThenAssertElementPreceding()
+        public void WhenTestingACollection_ThenAssertElementPreceding()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer(1);
@@ -136,7 +136,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACollection_ThenAssertElementSucceeding()
+        public void WhenTestingACollection_ThenAssertElementSucceeding()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer(1);
@@ -151,7 +151,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACollection_ThenAssertElementsInAscendingOrder()
+        public void WhenTestingACollection_ThenAssertElementsInAscendingOrder()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer(1);
@@ -166,7 +166,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACollection_ThenAssertElementsInDescendingOrder()
+        public void WhenTestingACollection_ThenAssertElementsInDescendingOrder()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer(1);
@@ -181,7 +181,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACollection_ThenAssertContains()
+        public void WhenTestingACollection_ThenAssertContains()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer(1);
@@ -196,7 +196,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACollection_ThenAssertIntersectsWith()
+        public void WhenTestingACollection_ThenAssertIntersectsWith()
         {
             List<Customer> customers = new List<Customer>();
             List<Customer> customers2 = new List<Customer>();
@@ -215,7 +215,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACollection_ThenAssertOnlyHasUniqueItems()
+        public void WhenTestingACollection_ThenAssertOnlyHasUniqueItems()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer(1);
@@ -230,7 +230,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACollection_ThenAssertAllSatisfy()
+        public void WhenTestingACollection_ThenAssertAllSatisfy()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer(1);
@@ -245,7 +245,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACustomer_ThenAssertOfType()
+        public void WhenTestingACollection_ThenAssertOfType()
         {
             Customer customer = new Customer(1);
 
@@ -253,7 +253,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenASpecialCustomer_ThenAssertBeAssignableToCustomer()
+        public async Task WhenTestingASpecialCustomer_ThenAssertBeAssignableToCustomer()
         {
             SpecialCustomer customer = new SpecialCustomer();
 
@@ -261,7 +261,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task GivenACustomer_ThenAssertGetNullIdThrowsException()
+        public async Task WhenTestingACustomer_ThenAssertGetNullIdThrowsException()
         {
             // Customer Object with null Id property
             var customer = new Customer();
@@ -281,7 +281,8 @@ namespace FluentAssertionsTests
             await act.Should().ThrowAsync<NullReferenceException>();
         }
 
-        public async Task GivenAnAssertionScope_ThenAllAssertionsAreEvaluated()
+        [TestMethod]
+        public void WhenTestingAnAssertionScope_ThenAllAssertionsAreEvaluated()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer(1);
@@ -301,22 +302,23 @@ namespace FluentAssertionsTests
             }
         }
 
-        public async Task GivenAssertionsChained_ThenAllAssertionsAreEvaluated()
+        [TestMethod]
+        public void WhenTestingChainedAssertions_ThenAllAssertionsAreEvaluated()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer(1);
             Customer customer2 = new Customer(2);
             Customer customer3 = new Customer(3);
 
-            customers.Add(customer3);
-            customers.Add(customer2);
+            //customers.Add(customer3);
+            //customers.Add(customer2);
             customers.Add(customer);
 
             customers.Should().NotBeNull().And.HaveCountGreaterThan(0); 
-            Execute.Assertion.FailWith("customers list is empty").Then.ForCondition(customers.Count > 0);
         }
 
-        public async Task GivenACollection_ThenWhichEvaluatesElementsInCollection()
+        [TestMethod]
+        public void WhenTestingACollection_ThenWhichEvaluatesElementsInCollection()
         {
             List<Customer> customers = new List<Customer>();
             Customer customer = new Customer(99);
@@ -326,12 +328,13 @@ namespace FluentAssertionsTests
             customers.Should().ContainSingle().Which.Should().BeEquivalentTo(new Customer { Id = 99 });
         }
 
-        public async Task GivenAnAction_ThenWhichEvaluatesResultingObject()
+        [TestMethod]
+        public void WhenTestingAnAction_ThenWhichEvaluatesResultingObject()
         {
             Customer customer = new Customer();
             Action action = () => customer.GetId();
 
-            action.Should().Throw<NullReferenceException>().Where(ex => ex.Message != null).Where(ex => ex.Data.Count > 0);
+            action.Should().Throw<NullReferenceException>().Where(ex => ex.Message != null).Where(ex => ex.Data.Count == 0);
         }
     }
 
