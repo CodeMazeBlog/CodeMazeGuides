@@ -14,6 +14,7 @@ namespace FluentAssertionsTests
         public void WhenTestingAString_ThenAssertStartEndAndLength()
         {
             string myTestString = "Hello, this is a test string";
+
             myTestString.Should().StartWith("He").And.EndWith("g").And.HaveLength(28);
         }
 
@@ -21,6 +22,7 @@ namespace FluentAssertionsTests
         public void WhenTestingAString_ThenAssertBe()
         {
             string myTestString = "Hello, this is a test string";
+
             myTestString.Should().Be("Hello, this is a test string");
             myTestString.Should().NotBe("Hello, this is the wrong string");
         }
@@ -29,6 +31,7 @@ namespace FluentAssertionsTests
         public void WhenTestingAString_ThenAssertBeEquivalentTo()
         {
             string myTestString = "Hello, this is a test string";
+
             myTestString.Should().BeEquivalentTo(myTestString);
             myTestString.Should().NotBeEquivalentTo("Helo, this is a test string");
         }
@@ -38,6 +41,7 @@ namespace FluentAssertionsTests
         {
             string myTestString = "";
             string myOtherTestString = "Hello, this is a test string";
+
             myTestString.Should().BeEmpty();
             myOtherTestString.Should().NotBeEmpty();
         }
@@ -47,6 +51,7 @@ namespace FluentAssertionsTests
         {
             string? myTestString = null;
             string myOtherTestString = "Hello, this is a test string";
+
             myTestString.Should().BeNull();
             myOtherTestString.Should().NotBeNull();
         }
@@ -56,6 +61,7 @@ namespace FluentAssertionsTests
         {
             string? myTestString = null;
             string myOtherTestString = "Hello, this is a test string";
+
             myTestString.Should().BeNullOrEmpty();
             myOtherTestString.Should().NotBeNullOrEmpty();
         }
@@ -66,6 +72,7 @@ namespace FluentAssertionsTests
             // be careful of special characters as they will fail this assertion, even whitespace characters
             string myTestString = "hello";
             string myOtherTestString = "HEllo";
+
             myTestString.Should().BeLowerCased();
             myOtherTestString.Should().NotBeLowerCased();
         }
@@ -76,6 +83,7 @@ namespace FluentAssertionsTests
             // be careful of special characters as they will fail this assertion, even whitespace characters
             string myTestString = "HELLO";
             string myOtherTestString = "HELlo";
+
             myTestString.Should().BeUpperCased();
             myOtherTestString.Should().NotBeUpperCased();
         }
@@ -85,6 +93,7 @@ namespace FluentAssertionsTests
         {
             string myTestString = "Hello, this is a test string";
             string myOtherTestString = "Hello, this is a test string";
+
             myTestString.Should().Match("Hello, this is a * string");
             myOtherTestString.Should().NotMatch("Hello, this is a ? string");
         }
@@ -94,6 +103,7 @@ namespace FluentAssertionsTests
         {
             string myTestString = "Hello, this is a test string";
             string myOtherTestString = "Hello, this is a test string";
+
             myTestString.Should().MatchEquivalentOf("HElLo, this is a * string");
             myOtherTestString.Should().NotMatchEquivalentOf("HeLLo, this is a ? string");
         }
@@ -103,6 +113,7 @@ namespace FluentAssertionsTests
         {
             string myTestString = "05/30/2022";
             string myOtherTestString = "32A-45/2022";
+
             myTestString.Should().MatchRegex("\\d{1,2}\\/\\d{1,2}\\/\\d{4}");
             myOtherTestString.Should().NotMatchRegex("\\d{1,2}\\/\\d{1,2}\\/\\d{4}");
         }
@@ -271,6 +282,7 @@ namespace FluentAssertionsTests
 
             // Asserts that calling GetId() will throw
             Action action = () => customer.GetId(); 
+
             action.Should().Throw<NullReferenceException>(); 
             
             // Asserts that calling GetId() will throw
@@ -278,6 +290,7 @@ namespace FluentAssertionsTests
 
             // same assertion only async
             Func<Task> act = () => customer.GetIdAsync(); 
+
             await act.Should().ThrowAsync<NullReferenceException>();
         }
 
@@ -310,8 +323,8 @@ namespace FluentAssertionsTests
             Customer customer2 = new Customer(2);
             Customer customer3 = new Customer(3);
 
-            //customers.Add(customer3);
-            //customers.Add(customer2);
+            customers.Add(customer3);
+            customers.Add(customer2);
             customers.Add(customer);
 
             customers.Should().NotBeNull().And.HaveCountGreaterThan(0); 
