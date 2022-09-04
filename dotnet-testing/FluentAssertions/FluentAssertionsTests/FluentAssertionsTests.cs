@@ -121,8 +121,8 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenAssertHaveElementAt()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer()
+            var customers = new List<Customer>();
+            var customer = new Customer()
             {
                 Id = 1,
             };
@@ -134,10 +134,10 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenAssertElementPreceding()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer(1);
-            Customer customer2 = new Customer(2);
-            Customer customer3 = new Customer(3);
+            var customers = new List<Customer>();
+            var customer = new Customer(1);
+            var customer2 = new Customer(2);
+            var customer3 = new Customer(3);
 
             customers.Add(customer);
             customers.Add(customer2);
@@ -149,10 +149,10 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenAssertElementSucceeding()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer(1);
-            Customer customer2 = new Customer(2);
-            Customer customer3 = new Customer(3);
+            var customers = new List<Customer>();
+            var customer = new Customer(1);
+            var customer2 = new Customer(2);
+            var customer3 = new Customer(3);
 
             customers.Add(customer);
             customers.Add(customer2);
@@ -164,10 +164,10 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenAssertElementsInAscendingOrder()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer(1);
-            Customer customer2 = new Customer(2);
-            Customer customer3 = new Customer(3);
+            var customers = new List<Customer>();
+            var customer = new Customer(1);
+            var customer2 = new Customer(2);
+            var customer3 = new Customer(3);
 
             customers.Add(customer);
             customers.Add(customer2);
@@ -179,10 +179,10 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenAssertElementsInDescendingOrder()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer(1);
-            Customer customer2 = new Customer(2);
-            Customer customer3 = new Customer(3);
+            var customers = new List<Customer>();
+            var customer = new Customer(1);
+            var customer2 = new Customer(2);
+            var customer3 = new Customer(3);
 
             customers.Add(customer3);
             customers.Add(customer2);
@@ -194,10 +194,10 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenAssertContains()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer(1);
-            Customer customer2 = new Customer(2);
-            Customer customer3 = new Customer(3);
+            var customers = new List<Customer>();
+            var customer = new Customer(1);
+            var customer2 = new Customer(2);
+            var customer3 = new Customer(3);
 
             customers.Add(customer3);
             customers.Add(customer2);
@@ -209,11 +209,11 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenAssertIntersectsWith()
         {
-            List<Customer> customers = new List<Customer>();
-            List<Customer> customers2 = new List<Customer>();
-            Customer customer = new Customer(1);
-            Customer customer2 = new Customer(2);
-            Customer customer3 = new Customer(3);
+            var customers = new List<Customer>();
+            var customers2 = new List<Customer>();
+            var customer = new Customer(1);
+            var customer2 = new Customer(2);
+            var customer3 = new Customer(3);
 
             customers.Add(customer3);
             customers.Add(customer2);
@@ -228,10 +228,10 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenAssertOnlyHasUniqueItems()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer(1);
-            Customer customer2 = new Customer(2);
-            Customer customer3 = new Customer(3);
+            var customers = new List<Customer>();
+            var customer = new Customer(1);
+            var customer2 = new Customer(2);
+            var customer3 = new Customer(3);
 
             customers.Add(customer3);
             customers.Add(customer2);
@@ -243,10 +243,10 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenAssertAllSatisfy()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer(1);
-            Customer customer2 = new Customer(2);
-            Customer customer3 = new Customer(3);
+            var customers = new List<Customer>();
+            var customer = new Customer(1);
+            var customer2 = new Customer(2);
+            var customer3 = new Customer(3);
 
             customers.Add(customer3);
             customers.Add(customer2);
@@ -258,7 +258,7 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenAssertOfType()
         {
-            Customer customer = new Customer(1);
+            var customer = new Customer(1);
 
             customer.Should().BeOfType<Customer>();
         }
@@ -266,7 +266,7 @@ namespace FluentAssertionsTests
         [TestMethod]
         public async Task WhenTestingASpecialCustomer_ThenAssertBeAssignableToCustomer()
         {
-            SpecialCustomer customer = new SpecialCustomer();
+            var customer = new SpecialCustomer();
 
             customer.Should().BeAssignableTo<Customer>();
         }
@@ -318,10 +318,10 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingChainedAssertions_ThenAllAssertionsAreEvaluated()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer(1);
-            Customer customer2 = new Customer(2);
-            Customer customer3 = new Customer(3);
+            var customers = new List<Customer>();
+            var customer = new Customer(1);
+            var customer2 = new Customer(2);
+            var customer3 = new Customer(3);
 
             customers.Add(customer3);
             customers.Add(customer2);
@@ -333,8 +333,8 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingACollection_ThenWhichEvaluatesElementsInCollection()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer(99);
+            var customers = new List<Customer>();
+            var customer = new Customer(99);
 
             customers.Add(customer);
 
@@ -344,8 +344,8 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingAnAction_ThenWhichEvaluatesResultingObject()
         {
-            Customer customer = new Customer();
-            Action action = () => customer.GetId();
+            var customer = new Customer();
+            var action = () => customer.GetId();
 
             action.Should().Throw<NullReferenceException>().Where(ex => ex.Message != null).Where(ex => ex.Data.Count == 0);
         }
