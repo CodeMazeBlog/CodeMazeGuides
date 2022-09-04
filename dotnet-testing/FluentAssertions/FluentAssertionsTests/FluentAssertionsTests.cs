@@ -13,7 +13,7 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingAString_ThenAssertStartEndAndLength()
         {
-            string myTestString = "Hello, this is a test string";
+            var myTestString = "Hello, this is a test string";
 
             myTestString.Should().StartWith("He").And.EndWith("g").And.HaveLength(28);
         }
@@ -21,7 +21,7 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingAString_ThenAssertBe()
         {
-            string myTestString = "Hello, this is a test string";
+            var myTestString = "Hello, this is a test string";
 
             myTestString.Should().Be("Hello, this is a test string");
             myTestString.Should().NotBe("Hello, this is the wrong string");
@@ -30,7 +30,7 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingAString_ThenAssertBeEquivalentTo()
         {
-            string myTestString = "Hello, this is a test string";
+            var myTestString = "Hello, this is a test string";
 
             myTestString.Should().BeEquivalentTo(myTestString);
             myTestString.Should().NotBeEquivalentTo("Helo, this is a test string");
@@ -39,8 +39,8 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingAString_ThenAssertBeEmpty()
         {
-            string myTestString = "";
-            string myOtherTestString = "Hello, this is a test string";
+            var myTestString = "";
+            var myOtherTestString = "Hello, this is a test string";
 
             myTestString.Should().BeEmpty();
             myOtherTestString.Should().NotBeEmpty();
@@ -50,7 +50,7 @@ namespace FluentAssertionsTests
         public void WhenTestingAString_ThenAssertBeNull()
         {
             string? myTestString = null;
-            string myOtherTestString = "Hello, this is a test string";
+            var myOtherTestString = "Hello, this is a test string";
 
             myTestString.Should().BeNull();
             myOtherTestString.Should().NotBeNull();
@@ -60,7 +60,7 @@ namespace FluentAssertionsTests
         public void WhenTestingAString_ThenAssertBeNullOrEmpty()
         {
             string? myTestString = null;
-            string myOtherTestString = "Hello, this is a test string";
+            var myOtherTestString = "Hello, this is a test string";
 
             myTestString.Should().BeNullOrEmpty();
             myOtherTestString.Should().NotBeNullOrEmpty();
@@ -70,8 +70,8 @@ namespace FluentAssertionsTests
         public void WhenTestingAString_ThenAssertBeLowerCased()
         {
             // be careful of special characters as they will fail this assertion, even whitespace characters
-            string myTestString = "hello";
-            string myOtherTestString = "HEllo";
+            var myTestString = "hello";
+            var myOtherTestString = "HEllo";
 
             myTestString.Should().BeLowerCased();
             myOtherTestString.Should().NotBeLowerCased();
@@ -81,8 +81,8 @@ namespace FluentAssertionsTests
         public void WhenTestingAString_ThenAssertBeUpperCased()
         {
             // be careful of special characters as they will fail this assertion, even whitespace characters
-            string myTestString = "HELLO";
-            string myOtherTestString = "HELlo";
+            var myTestString = "HELLO";
+            var myOtherTestString = "HELlo";
 
             myTestString.Should().BeUpperCased();
             myOtherTestString.Should().NotBeUpperCased();
@@ -91,8 +91,8 @@ namespace FluentAssertionsTests
         [TestMethod]
         public async Task WhenTestingAString_ThenAssertMatch()
         {
-            string myTestString = "Hello, this is a test string";
-            string myOtherTestString = "Hello, this is a test string";
+            var myTestString = "Hello, this is a test string";
+            var myOtherTestString = "Hello, this is a test string";
 
             myTestString.Should().Match("Hello, this is a * string");
             myOtherTestString.Should().NotMatch("Hello, this is a ? string");
@@ -101,8 +101,8 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingAString_ThenAssertMatchEquivalentOf()
         {
-            string myTestString = "Hello, this is a test string";
-            string myOtherTestString = "Hello, this is a test string";
+            var myTestString = "Hello, this is a test string";
+            var myOtherTestString = "Hello, this is a test string";
 
             myTestString.Should().MatchEquivalentOf("HElLo, this is a * string");
             myOtherTestString.Should().NotMatchEquivalentOf("HeLLo, this is a ? string");
@@ -111,8 +111,8 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingAString_ThenAssertMatchRegex()
         {
-            string myTestString = "05/30/2022";
-            string myOtherTestString = "32A-45/2022";
+            var myTestString = "05/30/2022";
+            var myOtherTestString = "32A-45/2022";
 
             myTestString.Should().MatchRegex("\\d{1,2}\\/\\d{1,2}\\/\\d{4}");
             myOtherTestString.Should().NotMatchRegex("\\d{1,2}\\/\\d{1,2}\\/\\d{4}");
@@ -349,39 +349,5 @@ namespace FluentAssertionsTests
 
             action.Should().Throw<NullReferenceException>().Where(ex => ex.Message != null).Where(ex => ex.Data.Count == 0);
         }
-    }
-
-    public class Customer 
-    {
-        public Customer(int id)
-        {
-            Id = id;
-        }
-
-        public Customer() { }
-
-        public int? Id { get; set; }
-
-        public int GetId()
-        {
-            if (Id is null)
-            {
-                throw new NullReferenceException();
-            }
-
-            return Id ?? -1;
-        }
-
-        public async Task<int> GetIdAsync()
-        {
-            return await Task.Run(() =>
-            {
-                return GetId();
-            });
-        }
-    }
-    public class SpecialCustomer : Customer
-    {
-        public SpecialCustomer() { }
     }
 }
