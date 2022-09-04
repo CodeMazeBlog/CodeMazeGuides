@@ -8,40 +8,39 @@ using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests;
-public class WeatherForecastControllerTests
+public class FeatureFlagControllerTests
 {
     private readonly Mock<IFeatureManager> _featureManager = new();
-    private readonly WeatherForecastController _controller;
+    private readonly FeatureFlagController _controller;
 
-    public WeatherForecastControllerTests()
+    public FeatureFlagControllerTests()
     {
-        _controller = new WeatherForecastController(_featureManager.Object);
+        _controller = new FeatureFlagController(_featureManager.Object);
     }
 
     [Fact]
-    public async Task GivenEndpointWithFeatureManager_WhenShowForecastIsEnabled_ThenForecastIsReturned()
+    public async Task GivenEndpointWithFeatureManager_WhenBooleanFilterIsEnabled_ThenOkIsReturned()
     {
         // Arrange
-        _featureManager.Setup(f => f.IsEnabledAsync("ShowForecast")).ReturnsAsync(true);
+        _featureManager.Setup(f => f.IsEnabledAsync("BooleanFilter")).ReturnsAsync(true);
 
         // Act
-        var forecast = await _controller.Get();
+        var forecast = await _controller.BooleanFilter();
         var okResult = forecast as OkObjectResult;
 
         // Assert
         Assert.NotNull(okResult);
-        Assert.IsType<WeatherForecast[]>(okResult.Value);
         Assert.Equal(StatusCodes.Status200OK, okResult.StatusCode);
     }
 
     [Fact]
-    public async Task GivenEndpointWithFeatureManager_WhenShowForecastIsDisabled_ThenBadRequestIsReturned()
+    public async Task GivenEndpointWithFeatureManager_WhenBooleanFilterIsDisabled_ThenBadRequestIsReturned()
     {
         // Arrange
-        _featureManager.Setup(f => f.IsEnabledAsync("ShowForecast")).ReturnsAsync(false);
+        _featureManager.Setup(f => f.IsEnabledAsync("BooleanFilter")).ReturnsAsync(false);
 
         // Act
-        var forecast = await _controller.Get();
+        var forecast = await _controller.BooleanFilter();
         var badRequestResult = forecast as BadRequestObjectResult;
 
         // Assert
