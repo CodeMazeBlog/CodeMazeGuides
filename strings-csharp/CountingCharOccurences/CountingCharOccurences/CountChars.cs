@@ -12,12 +12,6 @@ namespace CountingCharOccurences
             yield return new object[] { "Mary had a little lamb", 'l' };
         }
 
-        public IEnumerable<object[]> GenerateStringWithStringArgs()
-        {
-            yield return new object[] { "Mary had a little lamb", "Mary" };
-            yield return new object[] { "Mary had a little lamb", "l" };
-        }
-
         [Benchmark]
         [ArgumentsSource(nameof(GenerateStringWithCharArgs))]
         public int CountCharsUsingLinqCount(string source, char toFind)
@@ -117,24 +111,24 @@ namespace CountingCharOccurences
         }
 
         [Benchmark]
-        [ArgumentsSource(nameof(GenerateStringWithStringArgs))]
-        public int CountCharsUsingSplit(string source, string toFind)
+        [ArgumentsSource(nameof(GenerateStringWithCharArgs))]
+        public int CountCharsUsingSplit(string source, char toFind)
         {
             return source.Split(toFind).Length - 1;
         }
 
         [Benchmark]
-        [ArgumentsSource(nameof(GenerateStringWithStringArgs))]
-        public int CountCharsUsingReplace(string source, string toFind)
+        [ArgumentsSource(nameof(GenerateStringWithCharArgs))]
+        public int CountCharsUsingReplace(string source, char toFind)
         {
-            return (source.Length - source.Replace(toFind, "").Length) / toFind.Length;
+            return source.Length - source.Replace(toFind.ToString(), "").Length;
         }
 
         [Benchmark]
-        [ArgumentsSource(nameof(GenerateStringWithStringArgs))]
-        public int CountCharsUsingRegex(string source, string toFind)
+        [ArgumentsSource(nameof(GenerateStringWithCharArgs))]
+        public int CountCharsUsingRegex(string source, char toFind)
         {
-            return new Regex(Regex.Escape(toFind)).Matches(source).Count;
+            return new Regex(Regex.Escape(toFind.ToString())).Matches(source).Count;
         }
     }
 }

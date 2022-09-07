@@ -89,20 +89,9 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            int actual = _countChars.CountCharsUsingSplit(main, toFind.ToString());
-
-            Assert.Equal(2, actual);
-        }
-
-        [Fact]
-        public void WhenSearchStringUsingSplitThenReturnNumberOfOccurences()
-        {
-            string main = "Mary Had A Little Lamb";
-            string toFind = "Mary";
-
             int actual = _countChars.CountCharsUsingSplit(main, toFind);
 
-            Assert.Equal(1, actual);
+            Assert.Equal(2, actual);
         }
 
         [Fact]
@@ -111,20 +100,9 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            int actual = _countChars.CountCharsUsingReplace(main, toFind.ToString());
-
-            Assert.Equal(2, actual);
-        }
-
-        [Fact]
-        public void WhenSearchStringUsingReplaceThenReturnNumberOfOccurences()
-        {
-            string main = "Mary Had A Little Lamb";
-            string toFind = "Mary";
-
             int actual = _countChars.CountCharsUsingReplace(main, toFind);
 
-            Assert.Equal(1, actual);
+            Assert.Equal(2, actual);
         }
 
         [Fact]
@@ -133,20 +111,9 @@ namespace Test
             string main = "Mary Had A Little Lamb";
             char toFind = 'L';
 
-            int actual = _countChars.CountCharsUsingRegex(main, toFind.ToString());
-
-            Assert.Equal(2, actual);
-        }
-
-        [Fact]
-        public void WhenSearchStringUsingRegexThenReturnNumberOfOccurences()
-        {
-            string main = "Mary Had A Little Lamb";
-            string toFind = "Mary";
-
             int actual = _countChars.CountCharsUsingRegex(main, toFind);
 
-            Assert.Equal(1, actual);
+            Assert.Equal(2, actual);
         }
     }
 }
