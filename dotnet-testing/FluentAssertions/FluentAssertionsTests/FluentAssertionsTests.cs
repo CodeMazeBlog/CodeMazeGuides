@@ -89,7 +89,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task WhenTestingAString_ThenAssertMatch()
+        public void WhenTestingAString_ThenAssertMatch()
         {
             var myTestString = "Hello, this is a test string";
             var myOtherTestString = "Hello, this is a test string";
@@ -265,7 +265,7 @@ namespace FluentAssertionsTests
         }
 
         [TestMethod]
-        public async Task WhenTestingASpecialCustomer_ThenAssertBeAssignableToCustomer()
+        public void WhenTestingASpecialCustomer_ThenAssertBeAssignableToCustomer()
         {
             var customer = new SpecialCustomer();
 
