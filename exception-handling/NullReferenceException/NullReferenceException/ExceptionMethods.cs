@@ -26,9 +26,11 @@
 
             int[] numbers = null;
 
-            for(int i = 0; i < numbers.Length; i++)
+            for (int i = 0; i < numbers.Length; i++) 
+            {
                 numbers[i] = rand.Next();
-
+            }
+         
             return numbers;
         }
 
@@ -39,7 +41,9 @@
             var numbers = new int[50];
 
             for (int i = 0; i < numbers.Length; i++)
+            {
                 numbers[i] = rand.Next();
+            }
 
             return numbers;
         }
@@ -67,7 +71,7 @@
             }
             else
             {
-                return $"{searchString}could not be found";
+                return $"{searchString} could not be found";
             }
         }
 
@@ -102,9 +106,11 @@
         {
             var names = new String[] { "John", "Mary", "Andrew", "Grace", "Aston", "Sheila" };
 
-            foreach(var person in names)
+            foreach (var person in names) 
+            {
                 peopleNames.Add(person);
-
+            }
+                
             return peopleNames;
         }
 
@@ -117,12 +123,16 @@
         {
             var names = new String[] { "John", "Mary", "Andrew", "Grace", "Aston", "Sheila" };
 
-            if (peopleNames == null)
+            if (peopleNames == null) 
+            {
                 peopleNames = new List<string>();
+            }
 
-            foreach (var person in names)
+            foreach (var person in names) 
+            {
                 peopleNames.Add(person);
-
+            }
+                
             return peopleNames;
         }
     }
