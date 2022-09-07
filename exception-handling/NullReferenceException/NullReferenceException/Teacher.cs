@@ -8,7 +8,7 @@
         {
         }
 
-        public Teacher[] AddRange(String[] lastNames)
+        public Teacher[] AddRange(string[] lastNames)
         {
             var teachers = new Teacher[lastNames.Length];
 
@@ -20,7 +20,7 @@
             return teachers;
         }
 
-        public Teacher(String lastName)
+        public Teacher(string lastName)
         {
             this.LastName = lastName;
         }

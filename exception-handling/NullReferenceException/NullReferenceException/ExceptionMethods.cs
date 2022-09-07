@@ -52,7 +52,7 @@
         {
             var personObj = new Teacher();
             
-            var people = personObj.AddRange(new String[] { "John", "Mary", "Jane", "Usher", "Andrew", "Grace", "Aston", "Sheila" });
+            var people = personObj.AddRange(new string[] { "John", "Mary", "Jane", "Usher", "Andrew", "Grace", "Aston", "Sheila" });
             var result = Array.Find(people, p => p.LastName == searchString);
             
             return result.ToString();
@@ -62,7 +62,7 @@
         {
             var personObj = new Teacher();
 
-            var people = personObj.AddRange(new String[] { "John", "Mary", "Jane", "Usher", "Andrew", "Grace", "Aston", "Sheila" });
+            var people = personObj.AddRange(new string[] { "John", "Mary", "Jane", "Usher", "Andrew", "Grace", "Aston", "Sheila" });
             var result = Array.Find(people, p => p.LastName == searchString);
 
             if (result != null)
@@ -77,7 +77,7 @@
 
         public string[] CapitalizeNames() 
         {
-            var names = new String[] { "John", "Mary", null, null, "Andrew", "Grace", "Aston", "Sheila" };
+            var names = new string[] { "John", "Mary", null, null, "Andrew", "Grace", "Aston", "Sheila" };
 
             for (int i = 0; i < names.Length; i++)
             {
@@ -89,11 +89,11 @@
 
         public string[] FixedCapitalizeNames()
         {
-            var names = new String[] { "John", "Mary", null, null, "Andrew", "Grace", "Aston", "Sheila" };
+            var names = new string[] { "John", "Mary", null, null, "Andrew", "Grace", "Aston", "Sheila" };
 
             for(int i = 0; i < names.Length; i++)
             {
-                if (!String.IsNullOrEmpty(names[i])) 
+                if (!string.IsNullOrEmpty(names[i])) 
                 {
                     names[i] = names[i].ToUpper();
                 }
@@ -104,7 +104,7 @@
 
         public List<string> PopulateList(List<string> peopleNames) 
         {
-            var names = new String[] { "John", "Mary", "Andrew", "Grace", "Aston", "Sheila" };
+            var names = new string[] { "John", "Mary", "Andrew", "Grace", "Aston", "Sheila" };
 
             foreach (var person in names) 
             {
@@ -121,7 +121,7 @@
 
         public List<string> FixedPopulateList(List<string> peopleNames)
         {
-            var names = new String[] { "John", "Mary", "Andrew", "Grace", "Aston", "Sheila" };
+            var names = new string[] { "John", "Mary", "Andrew", "Grace", "Aston", "Sheila" };
 
             if (peopleNames == null) 
             {
