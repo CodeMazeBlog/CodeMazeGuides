@@ -298,10 +298,10 @@ namespace FluentAssertionsTests
         [TestMethod]
         public void WhenTestingAnAssertionScope_ThenAllAssertionsAreEvaluated()
         {
-            List<Customer> customers = new List<Customer>();
-            Customer customer = new Customer(1);
-            Customer customer2 = new Customer(2);
-            Customer customer3 = new Customer(3);
+            var customers = new List<Customer>();
+            var customer = new Customer(1);
+            var customer2 = new Customer(2);
+            var customer3 = new Customer(3);
 
             customers.Add(customer3);
             customers.Add(customer2);
