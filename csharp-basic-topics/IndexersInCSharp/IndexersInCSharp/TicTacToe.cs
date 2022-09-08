@@ -65,7 +65,7 @@
                     s += _patch[i, j].ToString();
                     s += "\t";
                 }
-                s += "\n";
+                s += Environment.NewLine;
             }
 
             return s;
