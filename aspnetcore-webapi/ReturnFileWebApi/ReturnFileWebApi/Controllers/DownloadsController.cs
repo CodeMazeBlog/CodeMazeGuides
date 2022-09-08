@@ -9,8 +9,8 @@ namespace ReturnFileWebApi.Controllers
     public class DownloadsController : ControllerBase
     {
         private readonly IFileService _fileService;
-        private const string _mimeType = "image/png";
-        private const string _fileName = "CM-Logo.png";
+        private const string MimeType = "image/png";
+        private const string FileName = "CM-Logo.png";
 
         public DownloadsController(IFileService fileService)
         {
@@ -22,7 +22,7 @@ namespace ReturnFileWebApi.Controllers
         {
             var image = _fileService.GetImageAsByteArray();
 
-            return File(image, _mimeType, _fileName);
+            return File(image, MimeType, FileName);
         }
 
         [HttpGet("images-stream")]
@@ -30,7 +30,7 @@ namespace ReturnFileWebApi.Controllers
         {
             var image = _fileService.GetImageAsStream();
 
-            return File(image, _mimeType, _fileName);
+            return File(image, MimeType, FileName);
         }
     }
 }
