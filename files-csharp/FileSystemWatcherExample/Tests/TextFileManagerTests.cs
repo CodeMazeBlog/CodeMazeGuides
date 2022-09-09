@@ -80,6 +80,12 @@ public class TextFileManagerTests : IDisposable
         Assert.Equal(fileHash,newFileHash);
     }
 
+    private void PrepareTestFile(string fileName)
+    {
+            var content = new string[] { "test" };
+        _textFileManager.Create(fileName,content);
+    }
+
     public void Dispose()
     {
         if(Directory.Exists(_testDirectory)){
@@ -87,11 +93,5 @@ public class TextFileManagerTests : IDisposable
         }
         _textFileManager.Dispose();
         _sha1.Dispose();
-    }
-
-    private void PrepareTestFile(string fileName)
-    {
-            var content = new string[] { "test" };
-        _textFileManager.Create(fileName,content);
     }
 }

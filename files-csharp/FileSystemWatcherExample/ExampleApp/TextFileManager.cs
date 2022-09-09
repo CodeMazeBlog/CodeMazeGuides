@@ -13,11 +13,6 @@ public class TextFileManager : IDisposable
         ConfigureEvents();
     }
 
-    ~TextFileManager()
-    {
-        Dispose(false);
-    }
-
     public void Create(string fileName, IEnumerable<string> contents)
     {
         var path = AbsolutePath(fileName);
@@ -53,25 +48,6 @@ public class TextFileManager : IDisposable
             throw new FileNotFoundException(oldPath);
         
         File.Move(oldPath, newPath);
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(true);
-    }
-
-    public virtual void Dispose(bool disposing)
-    {
-        if(_desposed)
-            return;
-        
-        if(disposing)
-        {
-            _fileSystemWatcher.Dispose();
-        }
-
-        _desposed = true;
     }
 
     private void ConfigureFilters()
@@ -126,4 +102,27 @@ public class TextFileManager : IDisposable
 
     private string AbsolutePath(string fileName) => Path.Combine(_rootDirectory, fileName);
 
+    ~TextFileManager()
+    {
+        Dispose(false);
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(true);
+    }
+
+    public virtual void Dispose(bool disposing)
+    {
+        if(_desposed)
+            return;
+        
+        if(disposing)
+        {
+            _fileSystemWatcher.Dispose();
+        }
+
+        _desposed = true;
+    }
 }

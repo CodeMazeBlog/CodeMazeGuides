@@ -11,6 +11,7 @@ public static class FileUtil
                 _dircetoryToMonitor = Path.Combine(Directory.GetCurrentDirectory(),"bin","DirectoryToMonitor");
                 Directory.CreateDirectory(_dircetoryToMonitor);
             }
+            
             return _dircetoryToMonitor;
         }
     }
