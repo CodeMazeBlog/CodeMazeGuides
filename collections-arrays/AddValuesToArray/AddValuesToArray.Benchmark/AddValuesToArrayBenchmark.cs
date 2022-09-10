@@ -30,7 +30,7 @@ public class AddValuesToArrayBenchmark
     [ArgumentsSource(nameof(ArraySize))]
     public void ListCollection(int arraySize)
     {
-        AddValuesToArrayMethods.LinqList(arraySize);
+        AddValuesToArrayMethods.UsingList(arraySize);
     }
 
     [Benchmark]
