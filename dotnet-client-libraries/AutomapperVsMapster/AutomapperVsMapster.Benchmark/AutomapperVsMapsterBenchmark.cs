@@ -135,6 +135,7 @@ public class AutomapperVsMapsterBenchmark
     [GlobalSetup(Targets = new[] { nameof(AutoMapperCustomPropertyObjectMapping), nameof(MapsterCustomPropertyObjectMapping) })]
     public void SetupDataSourceForCustomPropertyMapping()
     {
+        MapsterCustomPropertyMapping.Initialize();
         _customPropertyObjectSource = CustomPropertyMappingDataGenerator.GetSources(_size).ToArray();
     }
 
@@ -163,6 +164,7 @@ public class AutomapperVsMapsterBenchmark
     [GlobalSetup(Targets = new[] { nameof(AutoMapperReverseObjectMapping), nameof(MapsterReverseObjectMapping) })]
     public void SetupDataSourceForReverseMapping()
     {
+        MapsterReverseMapping.Initialize();
         _reverseMappingObjectSource = ReverseMappingDataGenerator.GetSources(_size).ToArray();
     }
 
