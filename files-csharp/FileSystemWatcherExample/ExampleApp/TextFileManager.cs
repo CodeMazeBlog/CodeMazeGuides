@@ -13,22 +13,22 @@ public class TextFileManager : IDisposable
         ConfigureEvents();
     }
 
-    public void Create(string fileName, IEnumerable<string> contents)
+    public void Create(string fileName, IEnumerable<string> content)
     {
         var path = AbsolutePath(fileName);
         if (File.Exists(path))
             throw new Exception($"File With the same name exists: {fileName}");
         
-        File.WriteAllLines(path, contents);
+        File.WriteAllLines(path, content);
     }
 
-    public void Update(string fileName, IEnumerable<string> newContents)
+    public void Update(string fileName, IEnumerable<string> newContent)
     {
         var path = AbsolutePath(fileName);
         if (!File.Exists(path))
             throw new FileNotFoundException(path);
         
-        File.WriteAllLines(path, newContents);
+        File.WriteAllLines(path, newContent);
     }
 
     public void Delete(string fileName)
