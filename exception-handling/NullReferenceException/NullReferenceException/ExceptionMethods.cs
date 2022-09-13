@@ -13,7 +13,7 @@
 
         public List<string> FixedStudentList()
         {
-            List<string> studentList = new List<string>();
+            var studentList = new List<string>();
 
             studentList.Add("John Doe");
 
@@ -53,7 +53,7 @@
             var personObj = new Teacher();
             
             var people = personObj.AddRange(new string[] { "John", "Mary", "Jane", "Usher", "Andrew", "Grace", "Aston", "Sheila" });
-            var result = Array.Find(people, p => p.LastName == searchString);
+            var result = Array.Find(people, p => p.FirstName == searchString);
             
             return result.ToString();
         }
@@ -63,7 +63,7 @@
             var personObj = new Teacher();
 
             var people = personObj.AddRange(new string[] { "John", "Mary", "Jane", "Usher", "Andrew", "Grace", "Aston", "Sheila" });
-            var result = Array.Find(people, p => p.LastName == searchString);
+            var result = Array.Find(people, p => p.FirstName == searchString);
 
             if (result != null)
             {
@@ -112,11 +112,6 @@
             }
                 
             return peopleNames;
-        }
-
-        public List<string> RetrieveData() 
-        {
-            return null;
         }
 
         public List<string> FixedPopulateList(List<string> peopleNames)
