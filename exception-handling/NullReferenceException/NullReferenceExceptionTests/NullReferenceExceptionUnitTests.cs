@@ -101,7 +101,7 @@ namespace NullReferenceExceptionTests
         {
             var namesObj = new ExceptionMethods();
 
-            var currentPeople = namesObj.RetrieveData();
+            List<string> currentPeople = null;
             var peopleList = namesObj.PopulateList(currentPeople);
 
             Assert.IsNull(peopleList);
@@ -112,7 +112,7 @@ namespace NullReferenceExceptionTests
         {
             var namesObj = new ExceptionMethods();
 
-            var currentPeople = namesObj.RetrieveData();
+            List<string> currentPeople = null;
             var peopleList = namesObj.FixedPopulateList(currentPeople);
 
             Assert.IsNotNull(peopleList);
