@@ -5,3 +5,4 @@ This section contains the topics about the third-party Dependency Injection Tool
 ### Relevant articles:
 
 - [Using Autofac in a .NET (Core) Project](https://code-maze.com/using-autofac-dotnet/)
+- [Dependency Injection With Simple Injector in .NET](https://code-maze.com/dotnet-dependency-injection-simple-injector/)
