@@ -8,14 +8,14 @@ namespace PathClassCsharpUnitTest
         PathClass pathClass = new PathClass();
 
         [Test]
-        public void DirectorySeparatorChar()
+        public void WhenCallingDirectorySeparatorChar_ThenDirectorySeparatorCharIsRetrieved()
         {
             char DirectorySeparatorChar_Result = pathClass.DirectorySeparatorChar();
             Assert.That(DirectorySeparatorChar_Result, Is.EqualTo('\\'));
         }
 
         [Test]
-        public void AltDirectorySeparatorChar()
+        public void WhenCallingAltDirectorySeparatorChar_ThenAltDirectorySeparatorCharIsRetrieved()
         {
             char AltDirectorySeparatorChar_Result = pathClass.AltDirectorySeparatorChar();
             Assert.That(AltDirectorySeparatorChar_Result, Is.EqualTo('/'));
@@ -23,21 +23,21 @@ namespace PathClassCsharpUnitTest
 
 
         [Test]
-        public void PathSeparator()
+        public void WhenCallingPathSeparator_ThenPathSeparatorCharIsRetrieved()
         {
             char PathSeparatorChar_Result = pathClass.PathSeparator();
             Assert.That(PathSeparatorChar_Result, Is.EqualTo(';'));
         }
 
         [Test]
-        public void VolumeSeparatorChar()
+        public void WhenCallingVolumeSeparatorChar_ThenVolumeSeparatorCharIsRetrieved()
         {
             char VolumeSeparatorChar_Result = pathClass.VolumeSeparatorChar();
             Assert.That(VolumeSeparatorChar_Result, Is.EqualTo(':'));
         }
 
         [Test]
-        public void GetInvalidPathChars()
+        public void WhenCallingGetInvalidPathChars_ThenInvalidPathCharsAreRetrieved()
         {
             char[] GetInvalidPathChars_Result = pathClass.GetInvalidPathChars();
             char[] Result = { '|' };
@@ -46,7 +46,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void ChangeExtension()
+        public void WhenCallingChangeExtension_ThenFileExtensionIsChanged()
         {
             string pathFile = @"C:\mydir\myfile.com";
             string newExtension = ".old";
@@ -55,7 +55,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void CombineTwoPaths()
+        public void WhenCallingCombineTwoPaths_ThenPathStingIsReturned()
         {
             string path1 = "c:\\temp";
             string path2 = "subdir1\\";
@@ -64,7 +64,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void CombineThreePaths()
+        public void WhenCallingCombineThreePaths_ThenPathStingIsReturned()
         {
             string path1 = "c:\\temp";
             string path2 = "subdir1\\";
@@ -74,7 +74,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void CombineFourPaths()
+        public void WhenCallingCombineFourPaths_ThenPathStingIsReturned()
         {
             string path1 = "c:\\temp";
             string path2 = "subdir1\\";
@@ -86,7 +86,7 @@ namespace PathClassCsharpUnitTest
 
 
         [Test]
-        public void CombinePathsArray()
+        public void WhenCallingCombinePathsArray_ThenPathStingIsReturned()
         {
             string[] paths = { @"d:\archives", "2001", "media", "image.txt" };
             string combination_Result = pathClass.Combine(paths);
@@ -94,7 +94,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void EndsInDirectorySeparator()
+        public void WhenCallingEndsInDirectorySeparator_ThenBoolVariableIsReturned()
         {
             ReadOnlySpan<char> filepath = "C:/Users/user1/".AsSpan();
             bool first_result = pathClass.EndsInDirectorySeparator(filepath);
@@ -106,7 +106,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void GetDirectoryName()
+        public void WhenCallingGetDirectoryName_ThenDirectoryNameIsReturned()
         {
             string PathString = @"C:\MyDir\MySubDir\myfile.ext";
             string directoryName = pathClass.GetDirectoryName(PathString);
@@ -119,7 +119,7 @@ namespace PathClassCsharpUnitTest
 
 
         [Test]
-        public void GetFileName()
+        public void WhenCallingGetFileName_ThenFileNameIsReturnes()
         {
             ReadOnlySpan<char> file_path = "C:/Users/user1/file.exe".AsSpan();
             ReadOnlySpan<char> file_name = new Span<char>(new String(' ', 100).ToCharArray());
@@ -132,7 +132,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void TryJoin()
+        public void WhenCallingTryJoin_ThenPathStringIsReturned()
         {
             ReadOnlySpan<char> pathString1 = "C:\\".AsSpan();
             ReadOnlySpan<char> pathString2 = "Users\\user1".AsSpan();
@@ -150,12 +150,8 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void GetFullPath()
+        public void WhenCallingGetFullPath_ThenPathStringIsReturned()
         {
-            string mydir_path = @"mydir";
-            string PathResult = pathClass.GetFullPath(mydir_path);
-            Assert.That(PathResult, Is.EqualTo("C:\\Projects\\CodeMazeGuides\\csharp-intermediate-topics\\PathClassCsharp\\Tests\\bin\\Debug\\net6.0\\mydir"));
-
             string basePath = "C:/Utilities/";
             string relativePath = "./data/output.xml";
             string pathstringresult = pathClass.GetFullPath(relativePath, basePath);
