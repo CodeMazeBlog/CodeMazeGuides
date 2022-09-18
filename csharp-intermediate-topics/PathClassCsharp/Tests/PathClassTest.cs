@@ -1,5 +1,5 @@
 using System.IO;
-
+using System.Runtime.InteropServices;
 
 namespace PathClassCsharpUnitTest
 {
@@ -11,7 +11,14 @@ namespace PathClassCsharpUnitTest
         public void WhenCallingDirectorySeparatorChar_ThenDirectorySeparatorCharIsRetrieved()
         {
             char DirectorySeparatorChar_Result = pathClass.DirectorySeparatorChar();
-            Assert.That(DirectorySeparatorChar_Result, Is.EqualTo('\\'));
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Assert.That(DirectorySeparatorChar_Result, Is.EqualTo('/'));
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Assert.That(DirectorySeparatorChar_Result, Is.EqualTo('\\'));
+            }
         }
 
         [Test]
