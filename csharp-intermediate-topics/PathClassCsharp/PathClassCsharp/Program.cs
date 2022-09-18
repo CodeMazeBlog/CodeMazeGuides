@@ -39,7 +39,7 @@ namespace PathClassCSharp
             if (!Path.IsPathFullyQualified(path2))
             {
                 //Linux StringPath
-                path2 = "another/path";
+                path2 = "subdir1";
             }
             string combination_Result = pathClass.Combine(path1, path2);
            
@@ -47,7 +47,7 @@ namespace PathClassCSharp
             if (!Path.IsPathFullyQualified(path3))
             {
                 //Linux StringPath
-                path3 = "additionaPath/";
+                path3 = "subdir2/";
             }
             combination_Result = pathClass.Combine(path1, path2, path3);
 
@@ -132,9 +132,9 @@ namespace PathClassCSharp
             if (!Path.IsPathFullyQualified(basePath)) 
             {
                 //Linux StringPath
-                basePath = "/Utilities/";
+                basePath = "/Utilities";
             }
-            string relativePath = "./data/output.xml";
+            string relativePath = "data/output.xml";
             string pathstringresult = pathClass.GetFullPath(relativePath, basePath);
 
             string full_path_string = @"C:\mydir\myfile.ext";
