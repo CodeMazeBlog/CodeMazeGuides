@@ -289,6 +289,7 @@ namespace PathClassCsharpUnitTest
         [Test]
         public void WhenCallingTryJoin_ThenPathStringIsReturned()
         {
+            Span<Char> first_destination = new Span<Char>(new String(' ', 14).ToCharArray());
             ReadOnlySpan<char> pathString1 = "C:\\".AsSpan();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
@@ -300,8 +301,8 @@ namespace PathClassCsharpUnitTest
             {
                 //Linux StringPath
                 pathString2 = "Users/user1";
-            }
-            Span<Char> first_destination = new Span<Char>(new String(' ', 14).ToCharArray());
+                first_destination = new Span<Char>(new String(' ', 12).ToCharArray());
+            }           
             int charsWritten = 0;
             pathClass.TryJoin(pathString1, pathString2, first_destination, out charsWritten);
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -401,7 +402,7 @@ namespace PathClassCsharpUnitTest
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 //Linux StringPath
-                pathArrayComponents[0] = "/";
+                pathArrayComponents[0] = "";
             }
             resultComponent = pathClass.Join(pathArrayComponents);
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
