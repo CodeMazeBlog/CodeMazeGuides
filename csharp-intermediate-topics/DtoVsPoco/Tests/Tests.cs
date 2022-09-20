@@ -11,15 +11,6 @@ namespace Tests
         private readonly IPersonService _personService = new PersonService();
 
         [Fact]
-        public async Task WhenGettingPersonInfoData_ThenReturnNotEmptyCollectionOfPersonInfoDtos()
-        {
-            var personInfoData = await _personService.GetPersonInfoData();
-
-            Assert.True(personInfoData is ICollection<PersonInfo>);
-            Assert.NotEmpty(personInfoData);
-        }
-
-        [Fact]
         public async Task WhenGettingPersonDetailsData_ThenReturnNotEmptyCollectionOfPersonDetailsDtos()
         {
             var personDetailsData = await _personService.GetPersonDetailsData();
