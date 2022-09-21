@@ -8,7 +8,7 @@ namespace PathClassCsharpUnitTest
         PathClass pathClass = new PathClass();
 
         [Test]
-        public void WhenCallingDirectorySeparatorChar_ThenDirectorySeparatorCharIsRetrieved()
+        public void WhenCallingDirectorySeparatorChar_ThenDirectorySeparatorCharIsReturned()
         {
             char DirectorySeparatorChar_Result = pathClass.DirectorySeparatorChar();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -22,14 +22,14 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void WhenCallingAltDirectorySeparatorChar_ThenAltDirectorySeparatorCharIsRetrieved()
+        public void WhenCallingAltDirectorySeparatorChar_ThenAltDirectorySeparatorCharIsReturned()
         {
             char AltDirectorySeparatorChar_Result = pathClass.AltDirectorySeparatorChar();
             Assert.That(AltDirectorySeparatorChar_Result, Is.EqualTo('/'));
         }
 
         [Test]
-        public void WhenCallingPathSeparator_ThenPathSeparatorCharIsRetrieved()
+        public void WhenCallingPathSeparator_ThenPathSeparatorCharIsReturned()
         {
             char PathSeparatorChar_Result = pathClass.PathSeparator();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -43,7 +43,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void WhenCallingVolumeSeparatorChar_ThenVolumeSeparatorCharIsRetrieved()
+        public void WhenCallingVolumeSeparatorChar_ThenVolumeSeparatorCharIsReturned()
         {
             char VolumeSeparatorChar_Result = pathClass.VolumeSeparatorChar();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -57,7 +57,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void WhenCallingGetInvalidPathChars_ThenInvalidPathCharsAreRetrieved()
+        public void WhenCallingGetInvalidPathChars_ThenInvalidPathCharsAreReturned()
         {
             char[] GetInvalidPathChars_Result = pathClass.GetInvalidPathChars();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -69,6 +69,48 @@ namespace PathClassCsharpUnitTest
                 char[] Result = { '|' };
                 Assert.That(GetInvalidPathChars_Result[0], Is.EqualTo('|'));
                 Assert.That(GetInvalidPathChars_Result[1], Is.EqualTo('\u0000'));
+            }
+        }
+
+        [Test]
+        public void WhenCallingEndsInDirectorySeparator_ThenBoolVariableIsReturned()
+        {
+            ReadOnlySpan<char> filepath = "C:/Users/user1/".AsSpan();
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                //Linux StringPath
+                filepath = "/Users/user1/".AsSpan();
+            }
+            bool first_result = pathClass.EndsInDirectorySeparator(filepath);
+            Assert.That(first_result, Is.EqualTo(true));
+
+            string filePathString = @"C:\MyDir\MySubDir\myfile.ext";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                //Linux StringPath
+                filePathString = "/MyDir/MySubDir/myfile.ext";
+            }
+            bool second_result = pathClass.EndsInDirectorySeparator(filePathString);
+            Assert.That(second_result, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void WhenCallingGetExtension_ThenFileExtensionIsReturned()
+        {
+            string pathFile = @"C:\mydir\myfile.com";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                //Linux StringPath
+                pathFile = "/mydir/myfile.com";
+            }
+            string GetExtension_Result = pathClass.GetExtension(pathFile);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Assert.That(GetExtension_Result, Is.EqualTo(".com"));
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Assert.That(GetExtension_Result, Is.EqualTo(".com"));
             }
         }
 
@@ -94,7 +136,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void WhenCallingCombineTwoPaths_ThenPathStingIsReturned()
+        public void WhenCallingCombineTwoPaths_ThenCombinedPathStingIsReturned()
         {
             string path1 = "c:\\temp";
             string path2 = "subdir1\\";
@@ -120,7 +162,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void WhenCallingCombineThreePaths_ThenPathStingIsReturned()
+        public void WhenCallingCombineThreePaths_ThenCombinedPathStingIsReturned()
         {
             string path1 = "c:\\temp";
             string path2 = "subdir1\\";
@@ -153,7 +195,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void WhenCallingCombineFourPaths_ThenPathStingIsReturned()
+        public void WhenCallingCombineFourPaths_ThenCombinedPathStingIsReturned()
         {
             string path1 = "c:\\temp";
             string path2 = "subdir1\\";
@@ -186,7 +228,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void WhenCallingCombinePathsArray_ThenPathStingIsReturned()
+        public void WhenCallingCombinePathsArray_ThenCombinedPathStingIsReturned()
         {
             string[] paths = { @"d:\archives", "2001", "media", "image.txt" };
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -203,29 +245,7 @@ namespace PathClassCsharpUnitTest
             {
                 Assert.That(combination_Result, Is.EqualTo("d:\\archives\\2001\\media\\image.txt"));
             }
-        }
-
-        [Test]
-        public void WhenCallingEndsInDirectorySeparator_ThenBoolVariableIsReturned()
-        {
-            ReadOnlySpan<char> filepath = "C:/Users/user1/".AsSpan();
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                //Linux StringPath
-                filepath = "/Users/user1/".AsSpan();
-            }
-            bool first_result = pathClass.EndsInDirectorySeparator(filepath);
-            Assert.That(first_result, Is.EqualTo(true));
-
-            string filePathString = @"C:\MyDir\MySubDir\myfile.ext";
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                //Linux StringPath
-                filePathString = "/MyDir/MySubDir/myfile.ext";
-            }
-            bool second_result = pathClass.EndsInDirectorySeparator(filePathString);
-            Assert.That(second_result, Is.EqualTo(false));
-        }
+        }      
 
         [Test]
         public void WhenCallingGetDirectoryName_ThenDirectoryNameIsReturned()
@@ -264,7 +284,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void WhenCallingGetFileName_ThenFileNameIsReturnes()
+        public void WhenCallingGetFileName_ThenFileNameIsReturned()
         {
             ReadOnlySpan<char> file_path = "C:/Users/user1/file.exe".AsSpan();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -287,7 +307,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void WhenCallingTryJoin_ThenPathStringIsReturned()
+        public void WhenCallingTryJoin_ThenJoinedPathStringIsReturned()
         {
             Span<Char> first_destination = new Span<Char>(new String(' ', 14).ToCharArray());
             Span<Char> second_destination = new Span<Char>(new String(' ', 34).ToCharArray());
@@ -339,7 +359,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void WhenCallingGetFullPath_ThenPathStringIsReturned()
+        public void WhenCallingGetFullPath_ThenFullPathStringIsReturned()
         {
             string basePath = "C:/Utilities/";
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -360,7 +380,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void GetPathRoot()
+        public void WhenCallingGetPathRoot_ThenStringPathRootIsReturned()
         {
             string full_path_string = @"C:\mydir\myfile.ext";
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -380,7 +400,7 @@ namespace PathClassCsharpUnitTest
         }
 
         [Test]
-        public void Join()
+        public void WhenCallingJoin_ThenJoinedPathStingIsReturned()
         {
             string pathFirstComponent = "D:/";
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace PathClassCSharp
 {
@@ -20,12 +19,30 @@ namespace PathClassCSharp
 
             char[] GetInvalidPathChars_Result = pathClass.GetInvalidPathChars();
 
-            string pathFile = @"C:\mydir\myfile.com";           
+            ReadOnlySpan<char> filepath = "C:/Users/user1/".AsSpan();
+            if (!Path.IsPathFullyQualified(filepath))
+            {
+                //Linux StringPath
+                filepath = "/Users/user1/".AsSpan();
+            }
+            bool result = pathClass.EndsInDirectorySeparator(filepath);
+
+            string filePathString = @"C:\MyDir\MySubDir\myfile.ext";
+            if (!Path.IsPathFullyQualified(filePathString))
+            {
+                //Linux StringPath
+                filePathString = "/MyDir/MySubDir/myfile.ext";
+            }
+            result = pathClass.EndsInDirectorySeparator(filePathString);
+
+            string pathFile = @"C:\mydir\myfile.com";
             if (!Path.IsPathFullyQualified(pathFile))
             {
                 //Linux StringPath
                 pathFile = "/mydir/myfile.com";
             }
+            string GetExtension_Result = pathClass.GetExtension(pathFile);
+
             string newExtension = ".old";
             string ChangeExtension_Result = pathClass.ChangeExtension(pathFile, newExtension);
 
@@ -51,32 +68,13 @@ namespace PathClassCSharp
             }
             combination_Result = pathClass.Combine(path1, path2, path3);
 
-            string path4 = "file.txt";
-            combination_Result = pathClass.Combine(path1, path2, path3, path4);
-
             string[] paths = { @"d:\archives", "2001", "media", "image.txt" };
             if (!Path.IsPathFullyQualified(paths[0]))
             {
                 //Linux StringPath
                 paths[0] = "/archives";
             }           
-            combination_Result = pathClass.Combine(paths);
-
-            ReadOnlySpan<char> filepath = "C:/Users/user1/".AsSpan();
-            if (!Path.IsPathFullyQualified(filepath))
-            {
-                //Linux StringPath
-                filepath = "/Users/user1/".AsSpan();
-            }
-            bool result = pathClass.EndsInDirectorySeparator(filepath);
-
-            string filePathString = @"C:\MyDir\MySubDir\myfile.ext";
-            if (!Path.IsPathFullyQualified(filePathString))
-            {
-                //Linux StringPath
-                filePathString = "/MyDir/MySubDir/myfile.ext";
-            }
-            result = pathClass.EndsInDirectorySeparator(filePathString);
+            combination_Result = pathClass.Combine(paths);                      
 
             string PathString = @"C:\MyDir\MySubDir\myfile.ext";
             if (!Path.IsPathFullyQualified(PathString))

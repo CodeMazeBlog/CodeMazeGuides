@@ -1,23 +1,22 @@
 ﻿using System.IO;
-using System.Xml.XPath;
 
 namespace PathClassCSharp
 {
     public class PathClass
     {
+        public char DirectorySeparatorChar()
+        {
+            char result = Path.DirectorySeparatorChar;
+            Console.WriteLine($"Path.DirectorySeparatorChar: '{result}'");
+            return result;
+        }
+
         public char AltDirectorySeparatorChar()
         {
             char result = Path.AltDirectorySeparatorChar;
             Console.WriteLine($"Path.AltDirectorySeparatorChar: '{result}'");
             return result;
-        }
-
-        public char DirectorySeparatorChar()
-        {
-            char result = Path.DirectorySeparatorChar;
-            Console.WriteLine($"Path.DirectorySeparatorChar: ' {result}'");
-            return result;
-        }
+        }    
 
         public char PathSeparator()
         {
@@ -45,6 +44,27 @@ namespace PathClassCSharp
             }
             Console.WriteLine();
             return (invalidChars);
+        }
+
+        public bool EndsInDirectorySeparator(ReadOnlySpan<Char> filePath)
+        {
+            bool result = Path.EndsInDirectorySeparator(filePath);
+            Console.WriteLine("EndsInDirectorySeparator('{0}') returns '{1}'", filePath.ToString(), result.ToString());
+            return result;
+        }
+
+        public bool EndsInDirectorySeparator(string filePath)
+        {
+            bool result = Path.EndsInDirectorySeparator(filePath);
+            Console.WriteLine("EndsInDirectorySeparator('{0}') returns '{1}'", filePath, result.ToString());
+            return result;
+        }
+
+        public string GetExtension(string fileName)
+        {
+            string extensionString = Path.GetExtension(fileName);
+            Console.WriteLine("GetExtension('{0}') returns '{1}'", fileName, extensionString);
+            return extensionString;
         }
 
         public string ChangeExtension(string path, string newExtension)
@@ -85,66 +105,27 @@ namespace PathClassCSharp
                                paths[0], paths[1], paths[2], paths[3], Environment.NewLine, combination);
             return combination;
         }
-       
-        public bool EndsInDirectorySeparator(ReadOnlySpan<Char> filePath)
-        {
-            bool result = Path.EndsInDirectorySeparator(filePath);
-            Console.WriteLine("EndsInDirectorySeparator('{0}') returns '{1}'", filePath.ToString(), result.ToString());
-            return result;
-        }
 
-        public bool EndsInDirectorySeparator(string filePath)
+        public string GetDirectoryName(string filePath)
         {
-            bool result = Path.EndsInDirectorySeparator(filePath);
-            Console.WriteLine("EndsInDirectorySeparator('{0}') returns '{1}'", filePath, result.ToString());
-            return result;
-        }
-
-        public string GetDirectoryName(string filepath)
-        {
-            string directoryName = Path.GetDirectoryName(filepath);
-            Console.WriteLine("GetDirectoryName('{0}') returns '{1}'", filepath, directoryName);
+            string directoryName = Path.GetDirectoryName(filePath);
+            Console.WriteLine("GetDirectoryName('{0}') returns '{1}'", filePath, directoryName);
             return directoryName;
         }
 
-        public string GetExtension(string fileName)
+        public ReadOnlySpan<char> GetFileName(ReadOnlySpan<Char> filePath)
         {
-            string extensionString = Path.GetDirectoryName(fileName);
-            Console.WriteLine("GetExtension('{0}') returns '{1}'", fileName, extensionString);
-            return extensionString;
+            ReadOnlySpan<char> filName = new Span<char>(new String(' ', 100).ToCharArray());
+            filName = Path.GetFileName(filePath);
+            Console.WriteLine("GetFileName('{0}') returns '{1}'", filePath.ToString(), filName.ToString());
+            return filName;
         }
 
-        public ReadOnlySpan<char> GetFileName(ReadOnlySpan<Char> filename)
+        public string GetFileName(string fileName)
         {
-            ReadOnlySpan<char> Result = new Span<char>(new String(' ', 100).ToCharArray());
-            Result = Path.GetFileName(filename);
-            Console.WriteLine("GetFileName('{0}') returns '{1}'", filename.ToString(), Result.ToString());
+            string Result = Path.GetFileName(fileName);
+            Console.WriteLine("GetFileName('{0}') returns '{1}'", fileName, Result);
             return Result;
-        }
-
-        public string GetFileName(string filename)
-        {
-            string Result = Path.GetFileName(filename);
-            Console.WriteLine("GetFileName('{0}') returns '{1}'", filename, Result);
-            return Result;
-        }
-
-        public bool TryJoin(ReadOnlySpan<Char> path1, ReadOnlySpan<Char> path2, Span<Char> destination, out Int32 charsWritten)
-        {
-            if (Path.TryJoin(path1, path2, destination, out charsWritten))
-                Console.WriteLine($"Wrote {charsWritten} characters: '{destination.Slice(0, charsWritten).ToString()}'");
-            else
-                Console.WriteLine("Concatenation operation failed.");
-            return true;
-        }
-
-        public bool TryJoin(ReadOnlySpan<Char> path1, ReadOnlySpan<Char> path2, ReadOnlySpan<Char> path3, Span<Char> destination, out Int32 charsWritten)
-        {
-            if (Path.TryJoin(path1, path2, path3, destination, out charsWritten))
-                Console.WriteLine($"Wrote {charsWritten} characters: '{destination.Slice(0, charsWritten).ToString()}'");
-            else
-                Console.WriteLine("Concatenation operation failed.");
-            return true;
         }
 
         public string GetFullPath(string mydir_path)
@@ -168,6 +149,24 @@ namespace PathClassCSharp
             return pathRoot;
         }
 
+        public bool TryJoin(ReadOnlySpan<Char> path1, ReadOnlySpan<Char> path2, Span<Char> destination, out Int32 charsWritten)
+        {
+            if (Path.TryJoin(path1, path2, destination, out charsWritten))
+                Console.WriteLine($"Wrote {charsWritten} characters: '{destination.Slice(0, charsWritten).ToString()}'");
+            else
+                Console.WriteLine("Concatenation operation failed.");
+            return true;
+        }
+
+        public bool TryJoin(ReadOnlySpan<Char> path1, ReadOnlySpan<Char> path2, ReadOnlySpan<Char> path3, Span<Char> destination, out Int32 charsWritten)
+        {
+            if (Path.TryJoin(path1, path2, path3, destination, out charsWritten))
+                Console.WriteLine($"Wrote {charsWritten} characters: '{destination.Slice(0, charsWritten).ToString()}'");
+            else
+                Console.WriteLine("Concatenation operation failed.");
+            return true;
+        }
+
         public string Join(String path1, String path2, String path3)
         {
             string result = Path.Join(path1, path2, path3);
@@ -180,6 +179,6 @@ namespace PathClassCSharp
             string result = Path.Join(pathArrayComponents);
             Console.WriteLine($"Path.Join: '{Path.Join(pathArrayComponents)}'");
             return result;
-        }
+        }      
     }
 }
