@@ -1,0 +1,12 @@
+﻿{
+  "version": "1",
+  "environments": [
+    // Consulte https://aka.ms/remotetesting para obtener más información
+    // sobre cómo configurar entornos remotos.
+    {
+      "name": "Ubuntu-20.04",
+      "type": "wsl",
+      "wslDistribution": "Ubuntu"
+    }
+  ]
+}

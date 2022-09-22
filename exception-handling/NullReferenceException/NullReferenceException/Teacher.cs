@@ -2,27 +2,27 @@
 {
     public class Teacher
     {
-        public string? LastName { get; set; }
+        public string? FirstName { get; set; }
 
         public Teacher()
         {
         }
 
-        public Teacher[] AddRange(string[] lastNames)
+        public Teacher[] AddRange(string[] firstNames)
         {
-            var teachers = new Teacher[lastNames.Length];
+            var teachers = new Teacher[firstNames.Length];
 
-            for (int i = 0; i < lastNames.Length; i++) 
+            for (int i = 0; i < firstNames.Length; i++) 
             {
-                teachers[i] = new Teacher(lastNames[i]);
+                teachers[i] = new Teacher(firstNames[i]);
             }
                 
             return teachers;
         }
 
-        public Teacher(string lastName)
+        public Teacher(string firstName)
         {
-            this.LastName = lastName;
+            this.FirstName = firstName;
         }
     }
 }
