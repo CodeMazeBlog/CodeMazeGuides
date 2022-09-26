@@ -1,16 +1,16 @@
-﻿using System;
+﻿using FuncActionDelegatesInCSharp;
 
-class Program
+public class Program
 {
     static void Main()
     {
         //Action delegate example
-        Action<string> actionmessage = DisplayCodeMazeMessage;
-        actionmessage.Invoke("CodeMaze is best source of C# action delegate info online.");
+        ActionDelegateExample ade = new ActionDelegateExample();
+        ade.RunActionDelegateExample();
 
         //Func delegate example
-        Func<string> funcmessage = GetCodeMazeMessage;
-        Console.WriteLine(funcmessage.Invoke());
+        FuncDelegateExample fde = new FuncDelegateExample();
+        fde.RunFuncDelegateExample();
 
         //Anonymous methods for action delegate
         Action<string> printMessageAction = m => Console.WriteLine("Your message to print:" + m);
@@ -28,15 +28,5 @@ class Program
         Func<string> getMessage = delegate () { return "CodeMaze is a great resource for info on Func delegates in C#"; };
 
 
-    }
-
-    static void DisplayCodeMazeMessage(string message)
-    {
-        Console.WriteLine(message);
-    }
-
-    static string GetCodeMazeMessage()
-    {
-        return ("CodeMaze is best source of C# func delegate info online.");
     }
 }

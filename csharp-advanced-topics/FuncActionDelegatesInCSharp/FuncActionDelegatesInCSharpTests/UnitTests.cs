@@ -1,29 +1,27 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+using FuncActionDelegatesInCSharp;
 
 namespace UnitTests
 {
     [TestClass]
     public class FuncActionDelegatesInCSharpUnitTest
     {
-
-        static void DisplayCodeMazeMessage(string message)
+        [TestMethod]
+        public void whenMessageSent_VerifyActionDelegateMessageSet()
         {
-            Console.WriteLine(message);
-        }
-
-        static string GetCodeMazeMessage()
-        {
-            return ("CodeMaze is best source of C# func delegate info online.");
+            ActionDelegateExample ade = new ActionDelegateExample();
+            ade.RunActionDelegateExample();
+            
+            Assert.AreEqual("CodeMaze is best source of C# action delegate info online.", ade.CodeMazeMessage);
         }
 
         [TestMethod]
-        public void whenMessageSent_FuncDelegateExecutesTheReferencedMethod()
+        public void whenMessageSent_VerifyFuncDelegateMessageSet()
         {
-            Func<string> funcmessage = GetCodeMazeMessage;
-
-            var result = funcmessage.Invoke();
-            Assert.AreEqual("CodeMaze is best source of C# func delegate info online.", result);
+            FuncDelegateExample fde = new FuncDelegateExample();
+            fde.RunFuncDelegateExample();
+            
+            Assert.AreEqual("CodeMaze is best source of C# func delegate info online.", fde.CodeMazeMessage);
         }
     }
 }

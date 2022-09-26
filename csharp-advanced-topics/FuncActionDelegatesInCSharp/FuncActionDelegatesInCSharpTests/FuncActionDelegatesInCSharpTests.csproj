@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -13,6 +13,10 @@
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FuncActionDelegatesInCSharp\FuncActionDelegatesInCSharp.csproj" />
   </ItemGroup>
 
 </Project>
