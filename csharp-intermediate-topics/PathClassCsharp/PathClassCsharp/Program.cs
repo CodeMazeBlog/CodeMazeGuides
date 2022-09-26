@@ -28,7 +28,7 @@ namespace PathClassCSharp
 
             var result = pathClass.EndsInDirectorySeparator(filepath);
 
-            string filePathString = @"C:\MyDir\MySubDir\myfile.ext";
+            var filePathString = @"C:\MyDir\MySubDir\myfile.ext";
             if (!Path.IsPathFullyQualified(filePathString))
             {
                 //Linux StringPath
@@ -37,7 +37,7 @@ namespace PathClassCSharp
             
             result = pathClass.EndsInDirectorySeparator(filePathString);
 
-            string pathFile = @"C:\mydir\myfile.com";
+            var pathFile = @"C:\mydir\myfile.com";
             if (!Path.IsPathFullyQualified(pathFile))
             {
                 //Linux StringPath
@@ -46,12 +46,12 @@ namespace PathClassCSharp
             
             var getExtensionResult = pathClass.GetExtension(pathFile);
 
-            string newExtension = ".old";
+            var newExtension = ".old";
             
             var changeExtensionResult = pathClass.ChangeExtension(pathFile, newExtension);
 
-            string path1 = "c:\\temp";            
-            string path2 = "subdir1\\";        
+            var path1 = "c:\\temp";            
+            var path2 = "subdir1\\";        
             if (!Path.IsPathFullyQualified(path1))
             {
                 //Linux StringPath
@@ -66,7 +66,7 @@ namespace PathClassCSharp
             
             var combinationResult = pathClass.Combine(path1, path2);       
 
-            string path3 = "subdir2\\";
+            var path3 = "subdir2\\";
             if (!Path.IsPathFullyQualified(path3))
             {
                 //Linux StringPath
@@ -84,7 +84,7 @@ namespace PathClassCSharp
             
             combinationResult = pathClass.Combine(paths);                      
                         
-            string pathString = @"C:\MyDir\MySubDir\myfile.ext";
+            var pathString = @"C:\MyDir\MySubDir\myfile.ext";
             if (!Path.IsPathFullyQualified(pathString))
             {
                 //Linux StringPath
@@ -93,7 +93,7 @@ namespace PathClassCSharp
             
             var directoryName = pathClass.GetDirectoryName(pathString);
 
-            string fileName = @"C:\mydir.old\myfile.ext";            
+            var fileName = @"C:\mydir.old\myfile.ext";            
             if (!Path.IsPathFullyQualified(fileName))
             {
                 //Linux StringPath
@@ -113,7 +113,7 @@ namespace PathClassCSharp
 
             fileNameString = pathClass.GetFileName(filePath);
 
-            string fileStringName = "C:/Users/user1/file.exe";            
+            var fileStringName = "C:/Users/user1/file.exe";            
             if (!Path.IsPathFullyQualified(fileStringName))
             {
                 //Linux StringPath
@@ -138,21 +138,21 @@ namespace PathClassCSharp
             
             pathClass.TryJoin(pathString1, pathString2, pathString3, destination, out charsWritten);
 
-            string mydirPath = @"mydir";
+            var mydirPath = @"mydir";
             
             var pathResult = pathClass.GetFullPath(mydirPath);
 
-            string basePath = "C:/Utilities/";            
+            var basePath = "C:/Utilities/";            
             if (!Path.IsPathFullyQualified(basePath)) 
             {
                 //Linux StringPath
                 basePath = "/Utilities";
             }
-            string relativePath = "data/output.xml";
+            var relativePath = "data/output.xml";
             
             var pathStringResult = pathClass.GetFullPath(relativePath, basePath);
 
-            string fullPathString = @"C:\mydir\myfile.ext";            
+            var fullPathString = @"C:\mydir\myfile.ext";            
             if (!Path.IsPathFullyQualified(fullPathString))
             {
                 //Linux StringPath
@@ -161,14 +161,14 @@ namespace PathClassCSharp
 
             var pathRoot = pathClass.GetPathRoot(fullPathString);
 
-            string pathFirstComponent = "D:/";            
+            var pathFirstComponent = "D:/";            
             if (!Path.IsPathFullyQualified(pathFirstComponent))
             {
                 //Linux StringPath
                 pathFirstComponent = "/";
             }            
-            string pathSecondComponent = "users/user1/documents";            
-            string pathThirdComponent = "letters";
+            var pathSecondComponent = "users/user1/documents";            
+            var pathThirdComponent = "letters";
             
             var resultComponent = pathClass.Join(pathFirstComponent, pathSecondComponent, pathThirdComponent);
             
