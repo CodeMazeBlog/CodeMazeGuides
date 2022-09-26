@@ -2,7 +2,7 @@ namespace Tests
 {
     public class DelegatesUnitTest
     {
-        private CodeMazeDelegates _codeMazeDelegates { get; set; }
+        private CodeMazeDelegates _codeMazeDelegates;
 
         [SetUp]
         public void Setup()
