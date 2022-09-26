@@ -8,11 +8,11 @@ namespace DelegatesSampleCode
 {
     public class FuncActionSample
     {
-        public static bool Sample()
+        public static bool SampleAction()
         {
             try
             {
-                // Use Action<> delegate to point to Add method
+                // Use Action<> delegate to point to Multiply method
                 Action<int, int> actionTarget = new Action<int, int>(MathOperations.Multiply);
                 actionTarget(10, 15);
                 Action<string, int, int> actionTargetSring = new Action<string, int, int>(MathOperations.Multiply);
@@ -22,6 +22,21 @@ namespace DelegatesSampleCode
             catch
             {
                 return false;
+            }
+
+        }
+
+        public static int SampleFunc()
+        {
+            try
+            {
+                // Use Func<> delegate to point to Add method
+                Func<int, int, int> actionTarget = MathOperations.Add;
+                return actionTarget(10, 15);                                
+            }
+            catch
+            {
+                return 0;
             }
 
         }

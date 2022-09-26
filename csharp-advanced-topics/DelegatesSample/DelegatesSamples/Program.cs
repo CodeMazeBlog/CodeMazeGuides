@@ -3,6 +3,7 @@
 using DelegatesSampleCode;
 
 GeneralDelegateSample.Sample();
-FuncActionSample.Sample();
+FuncActionSample.SampleAction();
+FuncActionSample.SampleFunc();
 
 
