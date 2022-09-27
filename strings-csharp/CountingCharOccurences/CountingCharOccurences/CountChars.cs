@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 namespace CountingCharOccurences
 {
     [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Alphabetical)]
+    [MemoryDiagnoser]
     public class CountChars
     {
         public IEnumerable<object[]> GenerateStringWithCharArgs()
