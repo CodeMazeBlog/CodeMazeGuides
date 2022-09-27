@@ -19,7 +19,7 @@ namespace FirstLetterToUpper
                 return string.Empty;
             }
 
-            return input[0].ToString().ToUpper() + input.Substring(1);
+            return $"{input[0].ToString().ToUpper()}{input[1..]}";
         }
 
         [Benchmark]
@@ -62,7 +62,7 @@ namespace FirstLetterToUpper
                 return string.Empty;
             }
 
-            return string.Concat(input[0].ToString().ToUpper(), input.AsSpan(1));
+            return $"{input[0].ToString().ToUpper()}{input.AsSpan(1)}";
         }
 
         [Benchmark]
