@@ -19,7 +19,7 @@ namespace FirstLetterToUpper
                 return string.Empty;
             }
 
-            return $"{input[0].ToString().ToUpper()}{input[1..]}";
+            return $"{input[0].ToString().ToUpper()}{input.Substring(1)}";
         }
 
         [Benchmark]
