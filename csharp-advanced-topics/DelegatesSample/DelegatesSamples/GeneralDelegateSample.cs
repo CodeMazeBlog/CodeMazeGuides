@@ -14,7 +14,7 @@ namespace DelegatesSampleCode
             try
             {                
 
-                Operation deleOperation = new Operation(MathOperations.Add);
+                var deleOperation = new Operation(MathOperations.Add);
 
                 deleOperation(100, 100);
                 deleOperation = new Operation(MathOperations.Subtract);

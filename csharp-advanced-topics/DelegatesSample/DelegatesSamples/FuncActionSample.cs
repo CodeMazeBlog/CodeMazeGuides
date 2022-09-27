@@ -13,10 +13,12 @@ namespace DelegatesSampleCode
             try
             {
                 // Use Action<> delegate to point to Multiply method
-                Action<int, int> actionTarget = new Action<int, int>(MathOperations.Multiply);
+                var actionTarget = new Action<int, int>(MathOperations.Multiply);
                 actionTarget(10, 15);
-                Action<string, int, int> actionTargetSring = new Action<string, int, int>(MathOperations.Multiply);
+
+                var actionTargetSring = new Action<string, int, int>(MathOperations.Multiply);
                 actionTargetSring("Welcome!!", 10, 12);
+
                 return true;
             }
             catch
@@ -31,7 +33,8 @@ namespace DelegatesSampleCode
             try
             {
                 // Use Func<> delegate to point to Add method
-                Func<int, int, int> actionTarget = MathOperations.Add;
+                var actionTarget = MathOperations.Add;
+
                 return actionTarget(10, 15);                                
             }
             catch
