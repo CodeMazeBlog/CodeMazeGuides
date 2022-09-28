@@ -3,6 +3,7 @@
     public class FuncDelegateExample
     {
         public string? CodeMazeMessage { get; set; }
+
         public void RunFuncDelegateExample()
         {
             //Func delegate example

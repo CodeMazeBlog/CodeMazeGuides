@@ -5,11 +5,11 @@ public class Program
     static void Main()
     {
         //Action delegate example
-        ActionDelegateExample ade = new ActionDelegateExample();
+        var ade = new ActionDelegateExample();
         ade.RunActionDelegateExample();
 
         //Func delegate example
-        FuncDelegateExample fde = new FuncDelegateExample();
+        var fde = new FuncDelegateExample();
         fde.RunFuncDelegateExample();
 
         //Anonymous methods for action delegate

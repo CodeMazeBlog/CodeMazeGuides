@@ -9,7 +9,7 @@ namespace UnitTests
         [TestMethod]
         public void whenMessageSent_VerifyActionDelegateMessageSet()
         {
-            ActionDelegateExample ade = new ActionDelegateExample();
+            var ade = new ActionDelegateExample();
             ade.RunActionDelegateExample();
             
             Assert.AreEqual("CodeMaze is best source of C# action delegate info online.", ade.CodeMazeMessage);
@@ -18,7 +18,7 @@ namespace UnitTests
         [TestMethod]
         public void whenMessageSent_VerifyFuncDelegateMessageSet()
         {
-            FuncDelegateExample fde = new FuncDelegateExample();
+            var fde = new FuncDelegateExample();
             fde.RunFuncDelegateExample();
             
             Assert.AreEqual("CodeMaze is best source of C# func delegate info online.", fde.CodeMazeMessage);

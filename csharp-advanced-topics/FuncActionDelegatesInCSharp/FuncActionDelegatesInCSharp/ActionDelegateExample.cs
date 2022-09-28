@@ -12,7 +12,7 @@
         }
         public void DisplayCodeMazeMessage(string message)
         {
-           CodeMazeMessage = message;
+            CodeMazeMessage = message;
             Console.WriteLine(CodeMazeMessage);
         }
     }
