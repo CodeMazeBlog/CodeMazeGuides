@@ -115,5 +115,16 @@ namespace Test
 
             Assert.Equal(2, actual);
         }
+
+        [Fact]
+        public void WhenSearchCharUsingSpanCountThenReturnNumberOfOccurences()
+        {
+            string main = "Mary Had A Little Lamb";
+            char toFind = 'L';
+
+            int actual = _countChars.CountCharsUsingSpanCount(main, toFind);
+
+            Assert.Equal(2, actual);
+        }
     }
 }

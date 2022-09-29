@@ -1,6 +1,7 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 using System.Text.RegularExpressions;
+using CommunityToolkit.HighPerformance;
 
 namespace CountingCharOccurences
 {
@@ -130,6 +131,13 @@ namespace CountingCharOccurences
         public int CountCharsUsingRegex(string source, char toFind)
         {
             return new Regex(Regex.Escape(toFind.ToString())).Matches(source).Count;
+        }
+
+        [Benchmark]
+        [ArgumentsSource(nameof(GenerateStringWithCharArgs))]
+        public int CountCharsUsingSpanCount(string source, char toFind)
+        {
+            return source.AsSpan().Count(toFind);
         }
     }
 }
