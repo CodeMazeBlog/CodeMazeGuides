@@ -16,7 +16,7 @@ public class StringController : ControllerBase
             reverse.Append(input[i]);
         }
 
-        Thread.Sleep(500);
+        Thread.Sleep(10);
 
         return reverse.ToString();
     }
