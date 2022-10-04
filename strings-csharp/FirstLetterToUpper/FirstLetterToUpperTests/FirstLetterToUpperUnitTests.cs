@@ -5,11 +5,11 @@ namespace FirstLetterToUpperTests
     [TestClass]
     public class FirstLetterToUpperUnitTests
     {
+        FirstLetterToUpperMethods upperCase = new FirstLetterToUpperMethods();
+
         [TestMethod]
         public void GivenALowerCaseString_WhenUsingSubStringTechnique_VerifyFirstCharIsUpper()
         {
-            var upperCase = new FirstLetterToUpperMethods();
-
             var testString = "this is a test string";
             var returnedString = upperCase.FirstCharSubstring(testString);
 
@@ -19,8 +19,6 @@ namespace FirstLetterToUpperTests
         [TestMethod]
         public void GivenALowerCaseString_WhenUsingCharToUpperTechnique_VerifyFirstCharIsUpper()
         {
-            var upperCase = new FirstLetterToUpperMethods();
-
             var testString = "this is a test string";
             var returnedString = upperCase.FirstCharToUpper(testString);
 
@@ -30,8 +28,6 @@ namespace FirstLetterToUpperTests
         [TestMethod]
         public void GivenALowerCaseString_WhenUsingCharArrayTechnique_VerifyFirstCharIsUpper()
         {
-            var upperCase = new FirstLetterToUpperMethods();
-
             var testString = "this is a test string";
             var returnedString = upperCase.FirstCharToCharArray(testString);
 
@@ -41,8 +37,6 @@ namespace FirstLetterToUpperTests
         [TestMethod]
         public void GivenALowerCaseString_WhenUsingAsSpanTechnique_VerifyFirstCharIsUpper()
         {
-            var upperCase = new FirstLetterToUpperMethods();
-
             var testString = "this is a test string";
             var returnedString = upperCase.FirstCharToUpperAsSpan(testString);
 
@@ -52,8 +46,6 @@ namespace FirstLetterToUpperTests
         [TestMethod]
         public void GivenALowerCaseString_WhenUsingRegexTechnique_VerifyFirstCharIsUpper()
         {
-            var upperCase = new FirstLetterToUpperMethods();
-
             var testString = "this is a test string";
             var returnedString = upperCase.FirstCharToUpperRegex(testString);
 
@@ -63,8 +55,6 @@ namespace FirstLetterToUpperTests
         [TestMethod]
         public void GivenALowerCaseString_WhenUsingLinqTechnique_VerifyFirstCharIsUpper()
         {
-            var upperCase = new FirstLetterToUpperMethods();
-
             var testString = "this is a test string";
             var returnedString = upperCase.FirstCharToUpperLinq(testString);
 
@@ -74,8 +64,6 @@ namespace FirstLetterToUpperTests
         [TestMethod]
         public void GivenALowerCaseString_WhenUsingUnsafeCodeTechnique_VerifyFirstCharIsUpper()
         {
-            var upperCase = new FirstLetterToUpperMethods();
-
             var testString = "this is a test string";
             var returnedString = upperCase.FirstCharToUpperUnsafeCode(testString);
 

@@ -3,6 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace FirstLetterToUpper
 {
+    [MemoryDiagnoser]
+    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
+    [RankColumn]
     public class FirstLetterToUpperMethods
     {
         public IEnumerable<object[]> SampleStrings()
@@ -109,7 +112,7 @@ namespace FirstLetterToUpper
             return input;
         }
 
-        public string GenerateRandomString(int size)
+        private string GenerateRandomString(int size)
         {
             var random = new Random();
 
