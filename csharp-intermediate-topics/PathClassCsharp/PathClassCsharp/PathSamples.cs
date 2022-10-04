@@ -161,27 +161,23 @@
             return pathRoot;
         }
 
-        public bool TryJoin(ReadOnlySpan<Char> path1, ReadOnlySpan<Char> path2, Span<Char> destination, out Int32 charsWritten)
+        public void TryJoin(ReadOnlySpan<Char> path1, ReadOnlySpan<Char> path2, Span<Char> destination, out Int32 charsWritten)
         {
             if (Path.TryJoin(path1, path2, destination, out charsWritten))
                 Console.WriteLine($"Wrote {charsWritten} characters: '{destination.Slice(0, charsWritten).ToString()}'");
             else
                 Console.WriteLine("Concatenation operation failed.");
-            
-            return true;
         }
 
-        public bool TryJoin(ReadOnlySpan<Char> path1, ReadOnlySpan<Char> path2, ReadOnlySpan<Char> path3, Span<Char> destination, out Int32 charsWritten)
+        public void TryJoin(ReadOnlySpan<Char> path1, ReadOnlySpan<Char> path2, ReadOnlySpan<Char> path3, Span<Char> destination, out Int32 charsWritten)
         {
             if (Path.TryJoin(path1, path2, path3, destination, out charsWritten))
                 Console.WriteLine($"Wrote {charsWritten} characters: '{destination.Slice(0, charsWritten).ToString()}'");
             else
                 Console.WriteLine("Concatenation operation failed.");
-            
-            return true;
         }
 
-        public string Join(String path1, String path2, String path3)
+        public string Join(string path1, string path2, string path3)
         {
             var result = Path.Join(path1, path2, path3);            
             Console.WriteLine($"Path.Join: '{result}'");
@@ -189,7 +185,7 @@
             return result;
         }
 
-        public string Join(String[] pathArrayComponents)
+        public string Join(string[] pathArrayComponents)
         {
             var result = Path.Join(pathArrayComponents);            
             Console.WriteLine($"Path.Join: '{result}'");
