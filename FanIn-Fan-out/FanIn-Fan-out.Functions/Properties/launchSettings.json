@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "FanIn_Fan_out.Functions": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7015",
+      "launchBrowser": false
+    }
+  }
+}
