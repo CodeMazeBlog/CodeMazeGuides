@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionAndFuncInCsharp", "ActionAndFuncInCsharp\ActionAndFuncInCsharp.csproj", "{6896FADC-709F-4769-8588-178E820C3071}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{74DBDE4B-85B7-4DD7-A13F-54262D52D3E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionAndFuncInCsharp.Tests", "ActionAndFuncInCsharp.Tests\ActionAndFuncInCsharp.Tests.csproj", "{74DBDE4B-85B7-4DD7-A13F-54262D52D3E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
