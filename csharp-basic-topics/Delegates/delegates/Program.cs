@@ -1,5 +1,5 @@
-﻿
-class Program
+﻿namespace delegates;
+public class Program
 {
     public static EmployeeModel employeeModel = new EmployeeModel();
     public static void Main()
@@ -17,7 +17,7 @@ class Program
         System.Console.WriteLine($"Total over Time Amount is {overTimeAmount:C2}");
     }
 }
-class EmployeeModel
+public class EmployeeModel
 {
 
     // These properties could be comming from db config or converted to variables to suit different types and/or levels of each employee
