@@ -27,14 +27,14 @@ namespace IndexOutOfRangeExceptionProject
         {
             if (forcefullyRaiseException)
             {
-                for (int i = 0; i <= NumbersArray.Length; i++)
+                for (var i = 0; i <= NumbersArray.Length; i++)
                 {
                     Console.WriteLine(NumbersArray[i]);
                 }
             }
             else
             {
-                for (int i = 0; i < NumbersArray.Length; i++)
+                for (var i = 0; i < NumbersArray.Length; i++)
                 {
                     Console.WriteLine(NumbersArray[i]);
                 }
@@ -45,7 +45,7 @@ namespace IndexOutOfRangeExceptionProject
         {
             if (forcefullyRaiseException)
             {
-                for (int i = 0; i < CustomLowerBoundArray.Length; i++)
+                for (var i = 0; i < CustomLowerBoundArray.Length; i++)
                 {
                     CustomLowerBoundArray.SetValue(input, i);
                     input *= 5;
@@ -53,12 +53,12 @@ namespace IndexOutOfRangeExceptionProject
             }
             else
             {
-                for (int i = CustomLowerBoundArray.GetLowerBound(0); i <= CustomLowerBoundArray.GetUpperBound(0); i++)
+                for (var i = CustomLowerBoundArray.GetLowerBound(0); i <= CustomLowerBoundArray.GetUpperBound(0); i++)
                 {
                     CustomLowerBoundArray.SetValue(input, i);
                     input *= 5;
                 }
-                for (int i = CustomLowerBoundArray.GetLowerBound(0); i <= CustomLowerBoundArray.GetUpperBound(0); i++)
+                for (var i = CustomLowerBoundArray.GetLowerBound(0); i <= CustomLowerBoundArray.GetUpperBound(0); i++)
                 {
                     Console.WriteLine(CustomLowerBoundArray.GetValue(i));
                 }
@@ -72,7 +72,7 @@ namespace IndexOutOfRangeExceptionProject
             if (forcefullyRaiseException)
             {
                 Console.WriteLine($"Let's display the even numbers greater than {searchArgument}");
-                for (int i = startIndex; i < MultiplesOfFive.Count; i++)
+                for (var i = startIndex; i < MultiplesOfFive.Count; i++)
                 {
                     Console.WriteLine(MultiplesOfFive[i]);
                 }
@@ -86,7 +86,7 @@ namespace IndexOutOfRangeExceptionProject
                 else
                 {
                     Console.WriteLine($"Let's display the even numbers greater than {searchArgument}");
-                    for (int i = startIndex; i < MultiplesOfFive.Count; i++)
+                    for (var i = startIndex; i < MultiplesOfFive.Count; i++)
                     {
                         Console.WriteLine(MultiplesOfFive[i]);
                     }
@@ -132,7 +132,7 @@ namespace IndexOutOfRangeExceptionProject
         {
             if (forcefullyRaiseException)
             {
-                for (int i = 0; i < Groceries.Rows.Count; i++)
+                for (var i = 0; i < Groceries.Rows.Count; i++)
                 {
                     var row = Groceries.Rows[i];
                     Console.WriteLine($"{row[0]}\t {row[1]}\t {row[2]}\t {row[3]}");
