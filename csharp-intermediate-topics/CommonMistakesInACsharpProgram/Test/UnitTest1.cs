@@ -5,14 +5,7 @@ using Xunit;
 namespace Test
 {
     public class UnitTest1
-    {
-
-        [Fact]
-        public void GivenManualIteratons_WhenExecuted_ReturnsIEnumerable()
-        {
-            var result = Application.ManualIterations();
-            Assert.IsType<List<int>?>(result);
-        }
+    {       
         [Fact]
         public void GivenMisplaceTypes_WhenExecuted_ReturnsBool()
         {
