@@ -65,7 +65,11 @@ namespace FirstLetterToUpper
                 return string.Empty;
             }
 
-            return $"{input[0].ToString().ToUpper()}{input.AsSpan(1)}";
+            Span<char> destination = stackalloc char[1];
+
+            input.AsSpan(0, 1).ToUpperInvariant(destination);
+
+            return $"{destination}{input.AsSpan(1)}";
         }
 
         [Benchmark]
