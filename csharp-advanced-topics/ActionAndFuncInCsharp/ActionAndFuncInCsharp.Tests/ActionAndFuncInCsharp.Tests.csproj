@@ -12,4 +12,7 @@
     <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ActionAndFuncInCsharp\ActionAndFuncInCsharp.csproj" />
+  </ItemGroup>
 </Project>
