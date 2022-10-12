@@ -49,6 +49,7 @@ namespace CommonMistakesInACsharpProgram
         {
             Person personOne = new();
             personOne.name = "John";
+
             return personOne.PersonExtension();
         }
 
@@ -70,7 +71,7 @@ namespace CommonMistakesInACsharpProgram
                 stringBuilder.Append(word).Append(" ");
             }
 
-            return stringBuilder.ToString();
+            return introduction = stringBuilder.ToString();
         }
 
         public static void ImplicitVariableType()
