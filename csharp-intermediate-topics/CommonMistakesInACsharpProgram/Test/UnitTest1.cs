@@ -1,5 +1,4 @@
 using CommonMistakesInACsharpProgram;
-using System.Collections.Generic;
 using Xunit;
 
 namespace Test
@@ -12,12 +11,14 @@ namespace Test
             var result = Application.MisplaceTypes();
             Assert.IsType<bool>(result);
         }
+
         [Fact]
         public void GivenOverLookingExtensionTypes_WhenExecutedWithTrueOrFalse_ReturnsString()
         {
             var result = Application.OverLookingExtensionTypes();
             Assert.IsType<string>(result);
         }
+
         [Fact]
         public void GivenStringConcantenation_WhenExecutedWithTrueOrFalse_ReturnsString()
         {
