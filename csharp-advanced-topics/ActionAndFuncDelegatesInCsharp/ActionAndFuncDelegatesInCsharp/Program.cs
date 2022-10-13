@@ -5,7 +5,6 @@ namespace ActionAndFuncDelegatesInCsharp
 
     class Program
     {
-        // define a delegate
         public delegate void SendMailDelegate(string email, string mailbody);
 
         static void Main(string[] args)
@@ -15,10 +14,9 @@ namespace ActionAndFuncDelegatesInCsharp
             var handler = new SendMailDelegate(SendMailHandler);
             handler("abc@example.com", "This is sample message");
 
-
             ActionDelegateExamples();
 
-			FuncDelegateExamples();
+            FuncDelegateExamples();
         }
 
         private static void ActionDelegateExamples()
@@ -45,7 +43,6 @@ namespace ActionAndFuncDelegatesInCsharp
 
         private static void FuncDelegateExamples()
         {
-
             // Example 1: Using Anonymous methods:
             Func<string, string> hello = delegate (string name)
             {
@@ -62,7 +59,7 @@ namespace ActionAndFuncDelegatesInCsharp
             {
                 return x + y;
             };
-            Console.WriteLine(add(10, 20));  // output: 30
+            Console.WriteLine(add(10, 20));
         }
 
 
@@ -71,6 +68,5 @@ namespace ActionAndFuncDelegatesInCsharp
         {
             Console.WriteLine("Message has been sent successfully!");
         }
-
     }
 }
