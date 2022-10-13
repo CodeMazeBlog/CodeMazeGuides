@@ -7,7 +7,7 @@ namespace Test
         [Fact]
         public void GivenDefaultConstructorWhenObjectInitializedThenPropertiesSet()
         {
-            Animal animal = new Animal();
+            var animal = new Animal();
 
             string expected = "Hi! My name is Daffy, and I am a 85 years old duck.";
             string actual = animal.Speak();
@@ -18,7 +18,7 @@ namespace Test
         [Fact]
         public void GivenParametrizedConstructorWhenObjectInitializedThenPropertiesSet()
         {
-            Animal animal = new Animal("Bugs", "bunny", 84);
+            var animal = new Animal("Bugs", "bunny", 84);
 
             string expected = "Hi! My name is Bugs, and I am a 84 years old bunny.";
             string actual = animal.Speak();
@@ -29,7 +29,7 @@ namespace Test
         [Fact]
         public void GivenParametrizedConstructorWithDifferentTypesWhenObjectInitializedThenPropertiesSet()
         {
-            Animal animal = new Animal("Sylvester", "cat", "83");
+            var animal = new Animal("Sylvester", "cat", "83");
 
             string expected = "Hi! My name is Sylvester, and I am a 83 years old cat.";
             string actual = animal.Speak();
@@ -40,7 +40,7 @@ namespace Test
         [Fact]
         public void GivenParametrizedConstructorWithScrambledTypesWhenObjectInitializedThenPropertiesSet()
         {
-            Animal animal = new Animal("mouse", 69, "Speedy");
+            var animal = new Animal("mouse", 69, "Speedy");
 
             string expected = "Hi! My name is Speedy, and I am a 69 years old mouse.";
             string actual = animal.Speak();
