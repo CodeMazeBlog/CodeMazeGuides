@@ -1,10 +1,7 @@
 using ActionAndFuncDelegatesInCSharp;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Tests
 {
-    [TestClass]
     public class Tests
     {
         private double GetRoot(double value)
@@ -17,21 +14,20 @@ namespace Tests
             return Math.Pow(value, 2);
         }
 
-        [TestMethod]
+        [Test]
         public void WhenValue100_ThenSquare10000()
         {
             var value = 100;
-            var result = Methods.GetProcessResult(value, new Func<double, double>(GetSquare));
-            Assert.AreEqual(10000, result);
+            var result = Methods.GetProcessResult(value, (double value) => Console.WriteLine("Calculating a square of {0}.", value), new Func<double, double>(GetSquare)); ;
+            Assert.That(result, Is.EqualTo(10000));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenValue100_ThenRoot10()
         {
             var value = 100;
-            var result = Methods.GetProcessResult(value, new Func<double, double>(GetRoot));
-            Assert.AreEqual(10, result);
+            var result = Methods.GetProcessResult(value, (double value) => Console.WriteLine("Calculating the square root of {0}.", value), new Func<double, double>(GetRoot));
+            Assert.That(result, Is.EqualTo(10));
         }
-
     }
 }
