@@ -28,5 +28,50 @@ namespace UsingOData.Controllers
         {
             return SingleResult.Create(_repo.GetById(key));
         }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] Company company)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            _repo.Create(company);
+
+            return Created("companies", company);
+        }
+
+        [HttpPut]
+        public IActionResult Put([FromODataUri] int key, [FromBody] Company company)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (key != company.ID)
+            {
+                return BadRequest();
+            }
+
+            _repo.Update(company);
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public IActionResult Delete([FromODataUri] int key)
+        {
+            var company = _repo.GetById(key);
+            if (company == null)
+            {
+                return BadRequest();
+            }
+
+            _repo.Delete(company.First());
+
+            return NoContent();
+        }
+
     }
 }
