@@ -15,7 +15,7 @@ builder.Services
 
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
-    var defaultCulture = "en-GB";
+    const string defaultCulture = "en-GB";
     var supportedCultures = new[]
     {
         new CultureInfo(defaultCulture),
