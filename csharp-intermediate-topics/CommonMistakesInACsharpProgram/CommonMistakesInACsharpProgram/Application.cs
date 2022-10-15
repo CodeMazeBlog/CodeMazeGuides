@@ -48,7 +48,7 @@ namespace CommonMistakesInACsharpProgram
         public static string OverLookingExtensionTypes()
         {
             Person personOne = new();
-            personOne.name = "John";
+            personOne.Name = "John";
 
             return personOne.PersonExtension();
         }

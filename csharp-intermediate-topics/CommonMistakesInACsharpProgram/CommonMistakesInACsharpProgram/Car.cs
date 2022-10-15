@@ -2,8 +2,8 @@
 {
     public class Car
     {
-        public int id;
+        public int Id { get; set; }
 
-        public string name;
+        public string Name { get; set; }
     }
 }

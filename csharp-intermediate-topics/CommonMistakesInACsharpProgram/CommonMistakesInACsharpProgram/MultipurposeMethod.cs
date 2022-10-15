@@ -28,15 +28,15 @@
                 Console.WriteLine(welcomeMessage);
 
 
-                Person person = new() { name = name, age = age };
+                Person person = new() { Name = name, Age = age };
 
                 if (count % 2 == 0)
                 {
-                    person.team = "Team-even";
+                    person.Team = "Team-even";
                 }
                 else
                 {
-                    person.team = "Team-Odd";
+                    person.Team = "Team-Odd";
                 }
 
                 people.Add(person);
@@ -94,15 +94,15 @@
         private static void RegisterUser(string name, int age)
         {
             int count = GetVowelCount(name);
-            Person person = new() { name = name, age = age };
+            Person person = new() { Name = name, Age = age };
 
             if (count % 2 == 0)
             {
-                person.team = "Team-even";
+                person.Team = "Team-even";
             }
             else
             {
-                person.team = "Team-Odd";
+                person.Team = "Team-Odd";
             }
         }
     }

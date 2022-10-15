@@ -4,11 +4,11 @@
     {
         public static string PersonExtension(this Person person)
         {
-            person.name ??= "A person";
+            person.Name ??= "A person";
 
-            Console.WriteLine($"{person.name} is happy");
+            Console.WriteLine($"{person.Name} is happy");
 
-            return person.name;
+            return person.Name;
         }
     }
 }

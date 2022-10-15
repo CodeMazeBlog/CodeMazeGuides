@@ -2,10 +2,10 @@
 {
     public struct Person
     {
-        public string name;
+        public string Name { get; set; }
 
-        public int age;
+        public int Age { get; set; }
 
-        public string team;
+        public string Team { get; set; }
     }
 }

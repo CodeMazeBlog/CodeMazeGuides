@@ -18,9 +18,9 @@
                 {
                     return Enumerable.Empty<Person>();
                 }
-                List<Person> users = new() { new Person { age = 12, name = "John" }, new Person { age = 3, name = "doe" }, };
+                List<Person> users = new() { new Person { Age = 12, Name = "John" }, new Person { Age = 3, Name = "doe" }, };
 
-                return users.Where(x => x.name == name);
+                return users.Where(x => x.Name == name);
             }
         }
     }
