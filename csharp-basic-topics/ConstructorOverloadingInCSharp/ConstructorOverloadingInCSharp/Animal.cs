@@ -6,8 +6,12 @@
         public string Type { get; set; }
         public int Age { get; set; }
 
-        public Animal() : this("Daffy", "duck", 85)
-        { }
+        public Animal()
+        {
+            Name = "Daffy";
+            Type = "duck";
+            Age = 85;
+        }
 
         public Animal(string name, string type, int age)
         {
