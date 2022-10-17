@@ -9,7 +9,7 @@ namespace UsingOData.Controllers
     [ApiController]
     public class CompaniesController : ControllerBase
     {
-        ICompanyRepo _repo;
+        private readonly ICompanyRepo _repo;
         public CompaniesController(ICompanyRepo repo)
         {
             _repo = repo;
@@ -63,7 +63,7 @@ namespace UsingOData.Controllers
         public IActionResult Delete([FromODataUri] int key)
         {
             var company = _repo.GetById(key);
-            if (company == null)
+            if (company is null)
             {
                 return BadRequest();
             }

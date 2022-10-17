@@ -4,7 +4,7 @@ namespace UsingOData
 {
     public class CompanyRepo : ICompanyRepo
     {
-        ApiContext _context;
+        private readonly ApiContext _context;
         public CompanyRepo(ApiContext context)
         {
             _context = context;
