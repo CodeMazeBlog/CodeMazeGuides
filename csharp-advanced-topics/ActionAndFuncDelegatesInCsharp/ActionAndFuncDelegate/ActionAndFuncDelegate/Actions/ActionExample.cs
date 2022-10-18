@@ -1,6 +1,6 @@
 ﻿namespace ActionAndFuncDelegate.Actions
 {
-    internal class ActionExample
+    public class ActionExample
     {
         public void RunWithParams(int number1, int number2)
         {

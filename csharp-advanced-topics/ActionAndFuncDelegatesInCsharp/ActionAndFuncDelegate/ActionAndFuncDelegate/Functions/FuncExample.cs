@@ -1,6 +1,6 @@
 ﻿namespace ActionAndFuncDelegate.Functions
 {
-    internal class FuncExample
+    public class FuncExample
     {
         public int RunWithParams(int number1, int number2)
         {
