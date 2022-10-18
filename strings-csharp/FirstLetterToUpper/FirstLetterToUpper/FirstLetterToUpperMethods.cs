@@ -96,6 +96,23 @@ namespace FirstLetterToUpper
             return $"{input.FirstOrDefault().ToString().ToUpper()}{input.Substring(1)}";
         }
 
+
+        [Benchmark]
+        [ArgumentsSource(nameof(SampleStrings))]
+        public string FirstCharToUpperStringCreate(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return string.Empty;
+            }
+
+            return string.Create(input.Length, input, static (Span<char> chars, string str) =>
+            {
+                chars[0] = char.ToUpperInvariant(str[0]);
+                str.AsSpan(1).CopyTo(chars[1..]);
+            });
+        }
+
         [Benchmark]
         [ArgumentsSource(nameof(SampleStrings))]
         public string FirstCharToUpperUnsafeCode(string input)
