@@ -6,7 +6,7 @@ namespace Tests
     public class EmployeeTests
     {
         [Fact]
-        public void EmployeeArray_WhenSorted_ThenIsOrderedBasedOnId()
+        public void EmployeeArray_WhenDefaultSorted_ThenIsOrderedBasedOnId()
         {
             var employees = GetEmployees();
 
@@ -16,7 +16,32 @@ namespace Tests
             {
                 Assert.True(employees[i].Id < employees[i + 1].Id);
             }
+        }
 
+        [Fact]
+        public void EmployeeArray_WhenSortedUsingIComparer_ThenIsOrderedBasedOnId()
+        {
+            var employees = GetEmployees();
+
+            Array.Sort(employees, Employee.SortByIdAscending());
+
+            for (int i = 0; i < 4; i++)
+            {
+                Assert.True(employees[i].Id < employees[i + 1].Id);
+            }
+        }
+
+        [Fact]
+        public void EmployeeArray_WhenSortedUsingComparisonDelegate_ThenIsOrderedBasedOnId()
+        {
+            var employees = GetEmployees();
+
+            Array.Sort(employees, Employee.CompareEmployeesByIdAscending);
+
+            for (int i = 0; i < 4; i++)
+            {
+                Assert.True(employees[i].Id < employees[i + 1].Id);
+            }
         }
 
         private static Employee[] GetEmployees()

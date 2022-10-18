@@ -2,16 +2,16 @@
 
 namespace ObjectComparisons
 {
-    public class Employee : IComparable
+    public partial class Employee : IComparable
     {
+        public int Id { get; set; }
+        public string? Name { get; set; }
+
         public Employee(int id, string? name)
         {
             Id = id;
             Name = name;
         }
-
-        public int Id { get; set; }
-        public string? Name { get; set; }
 
         public int CompareTo(object? obj)
         {
@@ -19,90 +19,40 @@ namespace ObjectComparisons
             return Id.CompareTo(employee?.Id);
         }
 
-        private class SortByIdAscendingHelper : IComparer
-        {
-            public int Compare(object? x, object? y)
-            {
-                if ((x == null) || (y == null))
-                {
-                    return 0;
-                }
-
-                Employee? employee1 = x as Employee;
-                Employee? employee2 = y as Employee;
-
-                int? value1 = employee1?.Id;
-                int? value2 = employee2?.Id;
-
-                int v1 = value1.HasValue ? value1.Value : 0;
-                int v2 = value2.HasValue ? value2.Value : 0;
-
-                return v1.CompareTo(v2);
-            }
-        }
-
-        private class SortByIdDescendingHelper : IComparer
-        {
-            public int Compare(object? x, object? y)
-            {
-                if ((x == null) || (y == null))
-                {
-                    return 0;
-                }
-
-                Employee? employee1 = x as Employee;
-                Employee? employee2 = y as Employee;
-
-                int? value1 = employee1?.Id;
-                int? value2 = employee2?.Id;
-
-                int v1 = value1.HasValue ? value1.Value : 0;
-                int v2 = value2.HasValue ? value2.Value : 0;
-
-                return v2.CompareTo(v1);
-            }
-        }
-
         public static IComparer SortByIdAscending()
         {
-            return (IComparer)new SortByIdAscendingHelper();
+            return new SortByIdAscendingHelper();
         }
 
         public static IComparer SortByIdDescending()
         {
-            return (IComparer)new SortByIdDescendingHelper();
+            return new SortByIdDescendingHelper();
         }
 
         public static int CompareEmployeesByIdAscending(Employee employee1, Employee employee2)
         {
-            if ((employee1 == null) || (employee2 == null))
+            if ((employee1 is null) || (employee2 is null))
             {
                 return 0;
             }
 
-            int? value1 = employee1?.Id;
-            int? value2 = employee2?.Id;
+            int value1 = employee1?.Id ?? 0;
+            int value2 = employee2?.Id ?? 0;
 
-            int v1 = value1 ?? 0;
-            int v2 = value2 ?? 0;
-
-            return v1.CompareTo(v2);
+            return value1.CompareTo(value2);
         }
 
         public static int CompareEmployeesByIdDescending(Employee employee1, Employee employee2)
         {
-            if ((employee1 == null) || (employee2 == null))
+            if ((employee1 is null) || (employee2 is null))
             {
                 return 0;
             }
 
-            int? value1 = employee1?.Id;
-            int? value2 = employee2?.Id;
+            int value1 = employee1?.Id ?? 0;
+            int value2 = employee2?.Id ?? 0;
 
-            int v1 = value1 ?? 0;
-            int v2 = value2 ?? 0;
-
-            return v2.CompareTo(v1);
+            return value2.CompareTo(value1);
         }
     }
 }

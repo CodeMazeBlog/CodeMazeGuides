@@ -1,14 +1,14 @@
 ﻿using BenchmarkDotNet.Running;
 using ObjectComparisons;
 
-Employee[] employees = new Employee[5]
-    {
-        new Employee(4, "John"),
-        new Employee(2, "Tom"),
-        new Employee(1, "Eric"),
-        new Employee(5, "Dan"),
-        new Employee(3, "Alen")
-    };
+var employees = new Employee[5]
+{
+    new Employee(4, "John"),
+    new Employee(2, "Tom"),
+    new Employee(1, "Eric"),
+    new Employee(5, "Dan"),
+    new Employee(3, "Alen")
+};
 
 Console.WriteLine("The Employee Array:");
 
@@ -16,40 +16,40 @@ PrintEmployees(employees);
 
 Array.Sort(employees);
 
-Console.WriteLine("\nDefault Sorting:");
+Console.WriteLine($"{Environment.NewLine}Default Sorting:");
 
 PrintEmployees(employees);
 
 Array.Sort(employees, Employee.SortByIdAscending());
 
-Console.WriteLine("\nSorting by Id Ascending");
+Console.WriteLine($"{Environment.NewLine}Sorting by Id Ascending");
 
 PrintEmployees(employees);
 
 Array.Sort(employees, Employee.SortByIdDescending());
 
-Console.WriteLine("\nSorting by Id Descending");
+Console.WriteLine($"{Environment.NewLine}Sorting by Id Descending");
 
 PrintEmployees(employees);
 
-List<Employee> employeeList = new List<Employee>
-    {
-        new Employee(4, "John"),
-        new Employee(2, "Tom"),
-        new Employee(1, "Eric"),
-        new Employee(5, "Dan"),
-        new Employee(3, "Alen")
-    };
+var employeeList = new List<Employee>
+{
+    new Employee(4, "John"),
+    new Employee(2, "Tom"),
+    new Employee(1, "Eric"),
+    new Employee(5, "Dan"),
+    new Employee(3, "Alen")
+};
 
 employeeList.Sort(Employee.CompareEmployeesByIdAscending);
 
-Console.WriteLine("\nSorting by Id Ascending using Comparison Delegate");
+Console.WriteLine($"{Environment.NewLine}Sorting by Id Ascending using Comparison Delegate");
 
 PrintEmployeeList(employeeList);
 
 employeeList.Sort(Employee.CompareEmployeesByIdDescending);
 
-Console.WriteLine("\nSorting by Id Descending using Comparison Delegate");
+Console.WriteLine($"{Environment.NewLine}Sorting by Id Descending using Comparison Delegate");
 
 PrintEmployeeList(employeeList);
 
