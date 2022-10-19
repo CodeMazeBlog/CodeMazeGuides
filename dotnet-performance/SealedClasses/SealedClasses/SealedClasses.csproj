@@ -9,10 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
-    <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="CommunityToolkit.HighPerformance" />
-  </ItemGroup>
 </Project>
