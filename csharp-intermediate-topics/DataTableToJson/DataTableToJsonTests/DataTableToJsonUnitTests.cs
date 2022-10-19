@@ -13,32 +13,34 @@ namespace DataTableToJsonTestsTests
         public void GivenDataTable_WhenUsingSystemTextJson_VerifyResult()
         {
             var json = methods.DataTable_SystemTextJson(dataTable);
-            Console.Write(json);
-            Assert.IsFalse(string.IsNullOrEmpty(json));
+            Assert.IsTrue(ValidateJson(json));
         }
 
         [TestMethod]
         public void GivenDataTable_WhenUsingStringBuilder_VerifyResult()
         {
             var json = methods.DataTable_StringBuilder(dataTable);
-            Console.Write(json);
-            Assert.IsFalse(string.IsNullOrEmpty(json));
+            Assert.IsTrue(ValidateJson(json));
         }
 
         [TestMethod]
         public void GivenDataTable_WhenUsingLINQ_VerifyResult()
         {
             var json = methods.DataTable_LINQ(dataTable);
-            Console.Write(json);
-            Assert.IsFalse(string.IsNullOrEmpty(json));
+            Assert.IsTrue(ValidateJson(json));
         }
 
         [TestMethod]
         public void GivenDataTable_WhenUsingNewtonsoftJsonNet_VerifyResult()
         {
             var json = methods.DataTable_NewtonsoftJsonNet(dataTable);
-            Console.Write(json);
-            Assert.IsFalse(string.IsNullOrEmpty(json));
+            Assert.IsTrue(ValidateJson(json));
+        }
+
+        private bool ValidateJson(string json)
+        {
+            var dt = Newtonsoft.Json.JsonConvert.DeserializeObject<DataTable>(json);
+            return dt?.Rows.Count == 1000;
         }
     }
 }
