@@ -18,9 +18,9 @@ public class UserLineConcurrentQueue
         _users.Enqueue(user);
     }
 
-    public bool TryServeUser()
+    public bool TryServeUser(out User? user)
     {
-        var isRemoved = _users.TryDequeue(out User? user);
+        var isRemoved = _users.TryDequeue(out user);
         if (isRemoved)
         {
             Console.WriteLine($"SERVED: {user}");
