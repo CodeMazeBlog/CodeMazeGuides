@@ -12,9 +12,28 @@ namespace HashSetInCSharpTests
         {
             var languages = hashSet.ProgrammingLanguages();
 
-            Assert.IsNotInstanceOfType(languages, typeof(string));
+            Assert.IsInstanceOfType(languages, typeof(HashSet<string>));
             Assert.AreEqual(languages.Count(), 9);
             Assert.IsTrue(languages.Contains("C#"));
+        }
+
+        [TestMethod]
+        public void GivenAHashSet_WhenNotEmpty_VerifyHasNoDuplicates()
+        {
+            var languages = hashSet.ProgrammingLanguages();
+
+            languages.Add("C");
+            languages.Add("C++");
+            languages.Add("C#");
+            languages.Add("Java");
+            languages.Add("Scala");
+            languages.Add("TypeScript");
+            languages.Add("Python");
+            languages.Add("JavaScript");
+            languages.Add("Rust");
+
+            Assert.IsInstanceOfType(languages, typeof(HashSet<string>));
+            Assert.AreEqual(languages.Count(), 9);
         }
 
         [TestMethod]

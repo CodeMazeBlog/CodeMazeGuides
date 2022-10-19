@@ -54,7 +54,7 @@ namespace HashSetInCSharp
 
         public HashSet<int> RandomInts(int size) 
         {
-            var rand= new Random();
+            var rand = new Random();
             var numbers = new HashSet<int>();
 
             for (int i = 0; i < size; i++) 
