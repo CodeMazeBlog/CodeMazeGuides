@@ -1,29 +1,24 @@
-﻿namespace ActionAndFuncDelegatesInCSharp;
+﻿PlotGraph(x => 2 * x + 3);
 
-public class Program
+static void PlotGraph(Func<int, int> func)
 {
-    // 1 - define a delegate
-    public delegate int GraphDelegate(int x);
-
-    // 2 - define a method that can accept another method as an argument
-    public static void PlotGraph(GraphDelegate func)
+    for (var i = 0; i < 10; i++)
     {
-        for (var i = 0; i < 10; i++)
-        {
-            Console.WriteLine($"(x = {i}, y = {func(i)})");
-        }
-    }
-
-    public static void Main(string[] args)
-    {
-        /**
-         * 3 - assign an anonymous method to a variable of type GraphDelegate
-         * We can also define a named method or a lambda expression here
-         * Let's ignore lambda expression since it was introduced in .NET 3.5 along with Func and Action delegates
-         */
-        GraphDelegate linearGraph = delegate(int x) { return 2 * x + 3; };
-
-        // 4 - pass the delegate as an argument
-        PlotGraph(linearGraph);
+        Console.WriteLine($"(x = {i}, y = {func(i)})");
     }
 }
+
+/*
+ * Output
+ *
+ * (x = 0, y = 3)
+ * (x = 1, y = 5)
+ * (x = 2, y = 7)
+ * (x = 3, y = 9)
+ * (x = 4, y = 11)
+ * (x = 5, y = 13)
+ * (x = 6, y = 15)
+ * (x = 7, y = 17)
+ * (x = 8, y = 19)
+ * (x = 9, y = 21)
+ */
