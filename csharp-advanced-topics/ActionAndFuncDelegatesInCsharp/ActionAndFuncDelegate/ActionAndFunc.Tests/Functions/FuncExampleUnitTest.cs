@@ -3,11 +3,11 @@ using FluentAssertions;
 
 namespace ActionAndFunc.Tests.Functions
 {
-    public class FuncExampleTests
+    public class FuncExampleUnitTest
     {
         private readonly FuncExample _funcExample;
 
-        public FuncExampleTests()
+        public FuncExampleUnitTest()
         {
             _funcExample = new FuncExample();
         }
