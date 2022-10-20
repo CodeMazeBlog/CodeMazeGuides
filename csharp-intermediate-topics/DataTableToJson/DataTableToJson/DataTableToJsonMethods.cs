@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Bogus;
+using Microsoft.Extensions.Primitives;
 using System.Data;
 using System.Text;
 
@@ -11,6 +12,7 @@ namespace DataTableToJsonTests
     public class DataTableToJsonTestsMethods
     {
         private readonly Faker<Student> _faker = new Faker<Student>();
+        public DataTable dataTable;
         public DataTable GenerateDummyDataTable()
         {
             DataTable dt = new DataTable();
@@ -27,13 +29,23 @@ namespace DataTableToJsonTests
             }
             return dt;
         }
-        public IEnumerable<DataTable> SampleDataTable()
+
+        public DataTableToJsonTestsMethods()
         {
-            return new DataTable[1] { GenerateDummyDataTable() };
+            dataTable = GenerateDummyDataTable();
         }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleDataTable))]
+        #region Methods
+        public string DataTable_NewtonsoftJsonNet(DataTable dataTable)
+        {
+            if (dataTable == null)
+            {
+                return string.Empty;
+            }
+
+            return Newtonsoft.Json.JsonConvert.SerializeObject(dataTable);
+        }
+
         public string DataTable_SystemTextJson(DataTable dataTable)
         {
             if (dataTable == null)
@@ -42,13 +54,11 @@ namespace DataTableToJsonTests
             }
 
             var data = dataTable.Rows.OfType<DataRow>()
-                    .Select(r => dataTable.Columns.OfType<DataColumn>()
-                        .ToDictionary(c => c.ColumnName, v => r[v]));
+                        .Select(row => dataTable.Columns.OfType<DataColumn>()
+                            .ToDictionary(col => col.ColumnName, c => row[c]));
             return System.Text.Json.JsonSerializer.Serialize(data);
         }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleDataTable))]
         public string DataTable_StringBuilder(DataTable dataTable)
         {
             if (dataTable == null)
@@ -64,34 +74,24 @@ namespace DataTableToJsonTests
                 {
                     jsonStringBuilder.Append("{");
                     for (int j = 0; j < dataTable.Columns.Count; j++)
-                    {
-                        if (j < dataTable.Columns.Count - 1)
-                        {
-                            jsonStringBuilder.Append("\"" + dataTable.Columns[j].ColumnName.ToString() + "\":" + "\"" + dataTable.Rows[i][j].ToString() + "\",");
-                        }
-                        else if (j == dataTable.Columns.Count - 1)
-                        {
-                            jsonStringBuilder.Append("\"" + dataTable.Columns[j].ColumnName.ToString() + "\":" + "\"" + dataTable.Rows[i][j].ToString() + "\"");
-                        }
-                    }
+                        jsonStringBuilder.AppendFormat("\"{0}\":\"{1}\"{2}",
+                                dataTable.Columns[j].ColumnName.ToString(),
+                                dataTable.Rows[i][j].ToString(),
+                                j < dataTable.Columns.Count - 1 ? "," : string.Empty);
+
                     if (i == dataTable.Rows.Count - 1)
-                    {
                         jsonStringBuilder.Append("}");
-                    }
                     else
-                    {
                         jsonStringBuilder.Append("},");
-                    }
+
                 }
                 jsonStringBuilder.Append("]");
             }
+
             return jsonStringBuilder.ToString();
         }
 
-
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleDataTable))]
-        public string DataTable_LINQ(DataTable dataTable)
+        public string DataTable_Linq(DataTable dataTable)
         {
             if (dataTable == null)
             {
@@ -100,27 +100,43 @@ namespace DataTableToJsonTests
 
             return "[" 
                     + string.Join(",", dataTable.Rows.OfType<DataRow>()
-                    .Select(r =>
+                    .Select(row =>
                         "{" 
                         + string.Join(",", dataTable.Columns.OfType<DataColumn>()
-                            .Select(c => 
-                                    string.Format("\"{0}\":\"{1}\"", c.ColumnName, r[c].ToString())))
+                            .Select(col => string.Format("\"{0}\":\"{1}\"", 
+                                                col.ColumnName, 
+                                                row[col].ToString())))
                         + "}"))
                     + "]";
         }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleDataTable))]
-        public string DataTable_NewtonsoftJsonNet(DataTable dataTable)
-        {
-            if (dataTable == null)
-            {
-                return string.Empty;
-            }
+        #endregion
 
-            return Newtonsoft.Json.JsonConvert.SerializeObject(dataTable);
+        #region Benchmark
+        [Benchmark]
+        public void NewtonsoftJsonNet()
+        {
+            DataTable_NewtonsoftJsonNet(dataTable);
         }
 
+        [Benchmark]
+        public void SystemTextJson()
+        {
+            DataTable_SystemTextJson(dataTable);
+        }
+
+        [Benchmark]
+        public void Linq()
+        {
+            DataTable_Linq(dataTable);
+        }
+
+        [Benchmark]
+        public void StringBuilder()
+        {
+            DataTable_StringBuilder(dataTable);
+        }
+        #endregion
     }
 
     public class Student
