@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace ActionAndFunc;
+﻿namespace ActionAndFunc;
 
 public class RuleEngine
 {
@@ -30,15 +28,15 @@ public class RuleEngine
 
     public List<string> ExecuteRules(int number)
     {
-        var errors = new List<string>();
+        var validationResults = new List<string>();
 
         foreach (var rule in Rules)
         {
             if (!rule.Value(number))
             {
-                errors.Add($"Given number is not {rule.Key}");
+                validationResults.Add($"Given number is not {rule.Key}");
             }
         }
-        return errors;
+        return validationResults;
     }
 }
