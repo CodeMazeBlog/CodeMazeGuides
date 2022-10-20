@@ -1,3 +1,5 @@
+using ActionAndFuncDelegatesInCSharp;
+
 namespace ActionAndFunc.Tests;
 
 public class FuncTests
@@ -8,7 +10,7 @@ public class FuncTests
         //Arrange
         var number = 10;
         var sut = new RuleEngine();
-        
+
         //Act
         var result = sut.ExecuteRules(number);
 
