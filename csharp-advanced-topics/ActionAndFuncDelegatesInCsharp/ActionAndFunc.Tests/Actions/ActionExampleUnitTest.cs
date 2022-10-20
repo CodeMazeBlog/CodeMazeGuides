@@ -24,7 +24,7 @@ namespace ActionAndFunc.Tests.Actions
 
                 _actionExample.RunWithParams(numberInput1, numberInput2);
 
-                sw.ToString().Should().Be(resultExpected);
+                sw.ToString().Should().BeEquivalentTo(resultExpected);
             }
         }
 
@@ -38,7 +38,7 @@ namespace ActionAndFunc.Tests.Actions
 
                 _actionExample.RunWithoutParams();
 
-                sw.ToString().Should().Be(resultExpected);
+                sw.ToString().Should().BeEquivalentTo(resultExpected);
             }
         }
     }
