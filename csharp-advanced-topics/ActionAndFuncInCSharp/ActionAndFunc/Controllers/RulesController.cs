@@ -4,13 +4,13 @@ namespace ActionAndFunc.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class RulesController : ControllerBase
 {
     [HttpGet(Name = "RunRules")]
-    public IActionResult Get()
+    public IActionResult GetNumberDetails(int number)
     {
         var ruleEngine = new RuleEngine();
-        var isPositiveNumnber = ruleEngine.Rules["PositiveNumber"](25);
-        return Ok();
+        var validationResults = ruleEngine.ExecuteRules(number);
+        return Ok(validationResults);
     }
 }

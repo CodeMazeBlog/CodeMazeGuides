@@ -3,58 +3,48 @@ namespace ActionAndFunc.Tests;
 public class FuncTests
 {
     [Fact]
-    public void GivenPositiveNumber_ShouldReturnTrue()
+    public void GivenPositiveNumber_ShouldReturnNotNegativeAndNotZeroErrors()
     {
         //Arrange
         var number = 10;
         var sut = new RuleEngine();
         
         //Act
-        var isPositiveNumber = sut.Rules["PositiveNumber"](number);
+        var result = sut.ExecuteRules(number);
 
         //Assert
-        Assert.True(isPositiveNumber);
+        Assert.Contains(result, x => x == "Given number is not Negative");
+        Assert.Contains(result, x => x == "Given number is not Zero");
     }
-    
+
     [Fact]
-    public void GivenNegativeNumber_ShouldReturnFalse()
+    public void GivenNegativeNumber_ShouldReturnNotPositiveAndNotZeroErrors()
     {
         //Arrange
         var number = -10;
         var sut = new RuleEngine();
-        
+
         //Act
-        var isPositiveNumber = sut.Rules["PositiveNumber"](number);
+        var result = sut.ExecuteRules(number);
 
         //Assert
-        Assert.False(isPositiveNumber);
+        Assert.Contains(result, x => x == "Given number is not Positive");
+        Assert.Contains(result, x => x == "Given number is not Zero");
     }
-    
+
     [Fact]
-    public void GivenNegativeNumber_ShouldReturnTrue()
+    public void GivenZeroNumber_ShouldReturnNotPositiveAndNotNegativeErrors()
     {
         //Arrange
-        var number = -10;
+        var number = 0;
         var sut = new RuleEngine();
-        
+
         //Act
-        var isNegativeNumber = sut.Rules["NegativeNumber"](number);
+        var result = sut.ExecuteRules(number);
 
         //Assert
-        Assert.True(isNegativeNumber);
+        Assert.Contains(result, x => x == "Given number is not Negative");
+        Assert.Contains(result, x => x == "Given number is not Positive");
     }
-    
-    [Fact]
-    public void GivenPositiveNumber_ShouldReturnFalse()
-    {
-        //Arrange
-        var number = 10;
-        var sut = new RuleEngine();
-        
-        //Act
-        var isNegativeNumber = sut.Rules["NegativeNumber"](number);
 
-        //Assert
-        Assert.False(isNegativeNumber);
-    }
 }
