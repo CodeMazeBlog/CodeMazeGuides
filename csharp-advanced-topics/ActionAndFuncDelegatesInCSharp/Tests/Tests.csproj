@@ -21,8 +21,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ActionAndFuncInCSharp\ActionAndFuncInCSharp.csproj" />
-  </ItemGroup>
-
 </Project>
