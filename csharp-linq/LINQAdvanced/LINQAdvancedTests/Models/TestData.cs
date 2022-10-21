@@ -35,7 +35,7 @@ namespace LINQAdvancedTests.Models
                 AbleToHire = true, 
                 Permissions = "READ_WRITE_CREATE_DELETE", 
                 EmployeeId = 102,
-                Name = "Carl Friedrich Gauss", 
+                Name = "Carl Friedrich Gauss", 
                 Department = "Leadership", 
                 Salary = 175000.00, 
                 DepartmentResponsibleFor = "R&D"
