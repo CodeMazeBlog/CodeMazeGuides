@@ -180,6 +180,5 @@ namespace LINQAdvancedTests
             Assert.AreEqual(expectedNumberOfEmployees, employeesRepeated.Count());
             CollectionAssert.AllItemsAreInstancesOfType(employeesRepeated.ToList(), typeof(Employee));
         }
-
     }
 }
