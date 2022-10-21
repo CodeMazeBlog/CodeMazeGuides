@@ -89,10 +89,10 @@ namespace LINQAdvancedTests
             (dir, emGroup) => new 
             { 
                 dir.Name, 
-                EmployeeGroup = emGroup 
-            });
+                EmployeeGroup = emGroup.ToList() 
+            }).ToList();
 
-            var numOfEmpWithoutGroup = groupJoin.Where(g => g.Name == "Carl Friedrich Gauss" && g.EmployeeGroup.ToList().Count == 0).Count();
+            var numOfEmpWithoutGroup = groupJoin.Where(g => g.Name == "Carl Friedrich Gauss" && g.EmployeeGroup.Count == 0).Count();
 
             Assert.IsNotNull(groupJoin);
             Assert.AreEqual(expectedEmployeeDirectorGroupedPairings, groupJoin.Count());
