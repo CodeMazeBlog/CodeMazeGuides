@@ -89,14 +89,12 @@ namespace LINQAdvancedTests
             (dir, emGroup) => new 
             { 
                 dir.Name, 
-                EmployeeGroup = emGroup.ToList() 
-            }).ToList();
-
-            var numOfEmpWithoutGroup = groupJoin.Where(g => g.Name == "Carl Friedrich Gauss" && g.EmployeeGroup.Count == 0).Count();
+                EmployeeGroup = emGroup 
+            });
 
             Assert.IsNotNull(groupJoin);
             Assert.AreEqual(expectedEmployeeDirectorGroupedPairings, groupJoin.Count());
-            Assert.AreEqual(1, numOfEmpWithoutGroup);
+            Assert.AreEqual(1, groupJoin.Where(g => g.Name == "Carl Friedrich Gauss" && g.EmployeeGroup.Count() == 0).Count());
         }
 
         [TestMethod]
@@ -115,7 +113,7 @@ namespace LINQAdvancedTests
 
             Assert.IsNotNull(groupJoin);
             Assert.AreEqual(expectedLeftOuterJoinedEmployeeDirectorPairings, groupJoin.Count());
-            Assert.AreEqual(1, groupJoin.Where(g => g.Name == "Carl Friedrich Gauss" && g.EmployeeGroup.Count() == 1).Count());
+            Assert.AreEqual(1, groupJoin.Where(g => g.Name == "Carl Friedrich Gauss" && g.EmployeeGroup.Count() == 1).Count());
         }
 
         [TestMethod]
