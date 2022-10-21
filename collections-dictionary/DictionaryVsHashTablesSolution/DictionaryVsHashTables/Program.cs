@@ -8,7 +8,7 @@ namespace DictionaryVsHashTables
         private static void Main(string[] args)
         {
             //Dictionary Example
-            var ordersDictionary = Utility.CreateAnOrderDictionary();
+            var ordersDictionary = Utility.CreateOrderDictionary();
 
             foreach (KeyValuePair<int, Order> order in ordersDictionary)
             {
@@ -17,7 +17,7 @@ namespace DictionaryVsHashTables
             }
 
             //Hashtable Example
-            var hashTable = Utility.CreateAHashTable();
+            var hashTable = Utility.CreateHashTable();
 
             foreach (DictionaryEntry item in hashTable)
             {

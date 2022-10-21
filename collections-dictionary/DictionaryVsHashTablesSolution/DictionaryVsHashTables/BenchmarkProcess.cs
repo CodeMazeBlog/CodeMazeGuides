@@ -2,30 +2,31 @@
 
 namespace DictionaryVsHashTables
 {
+    [MemoryDiagnoser]
     public class BenchmarkProcess
     {
         [Benchmark]
-        public void BenchmarkADictionary()
+        public void BenchmarkDictionary()
         {
-            Utility.ReadADictionary(Utility.CreateASmallNumbersDictionary());
+            Utility.ReadDictionary(Utility.CreateSmallNumbersDictionary());
         }
 
         [Benchmark]
-        public void BenchmarkAHashtable()
+        public void BenchmarkHashtable()
         {
-            Utility.ReadAHashTable(Utility.CreateASmallNumbersHashTable());
+            Utility.ReadHashTable(Utility.CreateSmallNumbersHashTable());
         }
 
         [Benchmark]
-        public void BenchmarkALargeDictionary()
+        public void BenchmarkLargeDictionary()
         {
-            Utility.ReadADictionary(Utility.CreateALargeDictionary());
+            Utility.ReadDictionary(Utility.CreateLargeDictionary());
         }
 
         [Benchmark]
-        public void BenchmarkALargeHashtable()
+        public void BenchmarkLargeHashtable()
         {
-            Utility.ReadAHashTable(Utility.CreateALargeHashTable());
+            Utility.ReadHashTable(Utility.CreateLargeHashTable());
         }
     }
 }

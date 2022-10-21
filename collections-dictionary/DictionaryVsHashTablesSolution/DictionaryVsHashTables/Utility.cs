@@ -7,12 +7,12 @@ namespace DictionaryVsHashTables
         private const int ONE_HUNDRED_THOUSAND = 100000;
         private const int TEN_MILLION = 10000000;
 
-        public static Dictionary<int, string> CreateAnEmptyDictionary()
+        public static Dictionary<int, string> CreateEmptyDictionary()
         {
             return new Dictionary<int, string>();
         }
 
-        public static Dictionary<int, Order> CreateAnOrderDictionary()
+        public static Dictionary<int, Order> CreateOrderDictionary()
         {
             return new Dictionary<int, Order>
             {
@@ -40,7 +40,7 @@ namespace DictionaryVsHashTables
             };
         }
 
-        public static Dictionary<int, string> CreateASmallNumbersDictionary()
+        public static Dictionary<int, string> CreateSmallNumbersDictionary()
         {
             var dictionary = new Dictionary<int, string>();
 
@@ -52,7 +52,7 @@ namespace DictionaryVsHashTables
             return dictionary;
         }
 
-        public static Dictionary<int, string> CreateALargeDictionary()
+        public static Dictionary<int, string> CreateLargeDictionary()
         {
             var dictionary = new Dictionary<int, string>();
 
@@ -64,12 +64,12 @@ namespace DictionaryVsHashTables
             return dictionary;
         }
 
-        public static Hashtable CreateAnEmptyHashTable()
+        public static Hashtable CreateEmptyHashTable()
         {
             return new Hashtable();
         }
 
-        public static Hashtable CreateAHashTable()
+        public static Hashtable CreateHashTable()
         {
             return new Hashtable
             {
@@ -79,7 +79,7 @@ namespace DictionaryVsHashTables
             };
         }
 
-        public static Hashtable CreateASmallNumbersHashTable()
+        public static Hashtable CreateSmallNumbersHashTable()
         {
             var hashTable = new Hashtable();
 
@@ -91,7 +91,7 @@ namespace DictionaryVsHashTables
             return hashTable;
         }
 
-        public static Hashtable CreateALargeHashTable()
+        public static Hashtable CreateLargeHashTable()
         {
             var hashTable = new Hashtable();
 
@@ -103,7 +103,7 @@ namespace DictionaryVsHashTables
             return hashTable;
         }
 
-        public static void ReadADictionary(Dictionary<int, string> dictionary)
+        public static void ReadDictionary(Dictionary<int, string> dictionary)
         {
             for (var i = 0; i < dictionary.Count; i++)
             {
@@ -111,7 +111,7 @@ namespace DictionaryVsHashTables
             }
         }
 
-        public static void ReadAHashTable(Hashtable hashTable)
+        public static void ReadHashTable(Hashtable hashTable)
         {
             for (var i = 0; i < hashTable.Count; i++)
             {

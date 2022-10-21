@@ -7,112 +7,112 @@ namespace Tests
     [TestClass]
     public class DictionaryVsHashTablesUnitTest
     {
-        private readonly Dictionary<int, Order> orders = new();
-        private readonly Hashtable random = new();
+        private readonly Dictionary<int, Order> _orders = new();
+        private readonly Hashtable _random = new();
 
         public DictionaryVsHashTablesUnitTest()
         {
-            orders.Add(1, new Order
+            _orders.Add(1, new Order
             {
                 OrderId = Guid.NewGuid(),
                 Quantity = 25
             });
-            orders.Add(2, new Order
+            _orders.Add(2, new Order
             {
                 OrderId = Guid.NewGuid(),
                 Quantity = 35
             });
-            orders.Add(3, new Order
+            _orders.Add(3, new Order
             {
                 OrderId = Guid.NewGuid(),
                 Quantity = 45
             });
 
-            random.Add(1, 100);
-            random.Add(2, "Chicago");
-            random.Add(3, true);
+            _random.Add(1, 100);
+            _random.Add(2, "Chicago");
+            _random.Add(3, true);
         }
 
         [TestMethod]
-        public void WhenCreateAnEmptyDictionary_ThenReturnDictionaryOfTypeIntAndString()
+        public void WhenCreateEmptyDictionary_ThenReturnDictionaryOfTypeIntAndString()
         {
-            var actual = Utility.CreateAnEmptyDictionary();
+            var actual = Utility.CreateEmptyDictionary();
 
             Assert.IsInstanceOfType(actual, typeof(Dictionary<int, string>));
         }
 
         [TestMethod]
-        public void WhenCreateAnOrdersDictionary_ThenReturnDictionaryOfTypeIntAndOrder()
+        public void WhenCreateOrdersDictionary_ThenReturnDictionaryOfTypeIntAndOrder()
         {
-            var actual = Utility.CreateAnOrderDictionary();
+            var actual = Utility.CreateOrderDictionary();
 
             Assert.IsInstanceOfType(actual, typeof(Dictionary<int, Order>));
         }
 
         [TestMethod]
-        public void WhenCreateAnOrdersDictionary_ThenFirstKeyShouldBeEqual()
+        public void WhenCreateOrdersDictionary_ThenFirstKeyShouldBeEqual()
         {
-            var actual = Utility.CreateAnOrderDictionary();
-            var expected = orders;
+            var actual = Utility.CreateOrderDictionary();
+            var expected = _orders;
 
             Assert.AreEqual(expected.Keys.ToList()[0], actual.Keys.ToList()[0]);
         }
 
         [TestMethod]
-        public void WhenCreateAnOrdersDictionary_ThenFirstKeyAndSecondKeyShouldNotBeEqual()
+        public void WhenCreateOrdersDictionary_ThenFirstKeyAndSecondKeyShouldNotBeEqual()
         {
-            var actual = Utility.CreateAnOrderDictionary();
-            var expected = orders;
+            var actual = Utility.CreateOrderDictionary();
+            var expected = _orders;
 
             Assert.AreNotEqual(expected.Keys.ToList()[0], actual.Keys.ToList()[1]);
         }
 
         [TestMethod]
-        public void WhenCreateAnOrdersDictionary_ThenFirstQuantitiesShouldBeEqual()
+        public void WhenCreateOrdersDictionary_ThenFirstQuantitiesShouldBeEqual()
         {
-            var actual = Utility.CreateAnOrderDictionary();
+            var actual = Utility.CreateOrderDictionary();
             var firstActualQuantity = actual.Values.First().Quantity;
 
-            var expected = orders;
+            var expected = _orders;
             var firstExpectedQuantity = expected.Values.First().Quantity;
 
             Assert.AreEqual(firstExpectedQuantity, firstActualQuantity);
         }
 
         [TestMethod]
-        public void WhenCreateAnOrdersDictionary_ThenFirstAndSecondQuantitiesShouldNotBeEqual()
+        public void WhenCreateOrdersDictionary_ThenFirstAndSecondQuantitiesShouldNotBeEqual()
         {
-            var actual = Utility.CreateAnOrderDictionary();
+            var actual = Utility.CreateOrderDictionary();
             var firstActualQuantity = actual.Values.ElementAt(1).Quantity;
 
-            var expected = orders;
+            var expected = _orders;
             var secondExpectedQuantity = expected.Values.ElementAt(2).Quantity;
 
             Assert.AreNotEqual(secondExpectedQuantity, firstActualQuantity);
         }
 
         [TestMethod]
-        public void WhenCreateAnEmptyHashTable_ThenReturnInstanceOfAHashtable()
+        public void WhenCreateEmptyHashTable_ThenReturnInstanceOfAHashtable()
         {
-            var actual = Utility.CreateAnEmptyHashTable();
+            var actual = Utility.CreateEmptyHashTable();
 
             Assert.IsInstanceOfType(actual, typeof(Hashtable));
         }
 
         [TestMethod]
-        public void WhenCreateAHashTable_ThenCountOfKeysShouldBeEqual()
+        public void WhenCreateHashTable_ThenCountOfKeysShouldBeEqual()
         {
-            var actual = Utility.CreateAHashTable();
-            var expected = random;
+            var actual = Utility.CreateHashTable();
+            var expected = _random;
 
             Assert.AreEqual(actual.Keys.Count, expected.Keys.Count);
         }
 
         [TestMethod]
-        public void WhenCreateAHashTableAndAddAnotherElement_ThenCountOfKeysShouldNotBeEqual()
+        public void WhenCreateHashTableAndAddAnotherElement_ThenCountOfKeysShouldNotBeEqual()
         {
-            var actual = Utility.CreateAHashTable();
-            var expected = random;
+            var actual = Utility.CreateHashTable();
+            var expected = _random;
             expected.Add(4, 200.65f);
 
             Assert.AreNotEqual(actual.Keys.Count, expected.Keys.Count);
