@@ -92,9 +92,11 @@ namespace LINQAdvancedTests
                 EmployeeGroup = emGroup 
             });
 
+            var numOfEmpWithoutGroup = groupJoin.Where(g => g.Name == "Carl Friedrich Gauss" && g.EmployeeGroup.Count() == 0).Count();
+
             Assert.IsNotNull(groupJoin);
             Assert.AreEqual(expectedEmployeeDirectorGroupedPairings, groupJoin.Count());
-            Assert.AreEqual(1, groupJoin.Where(g => g.Name == "Carl Friedrich Gauss" && g.EmployeeGroup.Count() == 0).Count());
+            Assert.AreEqual(1, numOfEmpWithoutGroup);
         }
 
         [TestMethod]
