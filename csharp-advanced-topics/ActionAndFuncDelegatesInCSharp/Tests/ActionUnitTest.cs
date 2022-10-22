@@ -1,113 +1,47 @@
+using ActionAndFuncDelegatesInCSharp;
+
 namespace Tests;
 
 public class ActionUnitTest
 {
     [Fact]
-    public void GivenAVariableOfAction_WhenAssigningANamedMethodAndInvoking_ThenNoExceptionThrown()
+    public void GivenAnActionPointingToANamedMethod_WhenInvoking_ThenTheNamedMethodShouldBeCalled()
     {
-        #region Arrange
-
-        Action<string> log;
-
-        #endregion
-
-        #region Act
-
-        var exception = Record.Exception(() =>
-        {
-            log = Console.WriteLine;
-            log("hai");
-        });
-
-        #endregion
-
-        #region Assert
-
-        Assert.Null(exception);
-
-        #endregion
-    }
-
-    [Fact]
-    public void GivenAVariableOfAction_WhenAssigningAnAnonymousMethodAndInvoking_ThenNoExceptionThrown()
-    {
-        #region Arrange
-
-        Action<string> log;
-
-        #endregion
-
-        #region Act
-
-        var exception = Record.Exception(() =>
-        {
-            log = delegate(string x)
-            {
-                Console.WriteLine(x);
-            };
-
-            log("hai");
-        });
-
-        #endregion
-
-        #region Assert
-
-        Assert.Null(exception);
-
-        #endregion
-    }
-
-    [Fact]
-    public void GivenAVariableOfAction_WhenAssigningALambdaExpressionAndInvoking_ThenNoExceptionThrown()
-    {
-        #region Arrange
-
-        Action<string> log;
-
-        #endregion
-
-        #region Act
-
-        var exception = Record.Exception(() =>
-        {
-            log = x => Console.WriteLine(x);
-            log("hai");
-        });
-
-        #endregion
-
-        #region Assert
-
-        Assert.Null(exception);
-
-        #endregion
+        var isLogged = ActionDelegate.LogUsingActionReferringANamedMethod();
+        
+        Assert.True(isLogged);
     }
     
     [Fact]
-    public void GivenSomeActionDelegates_WhenCombiningThemAndInvoking_ThenNoExceptionThrown()
+    public void GivenAnActionPointingToAnAnonymousMethod_WhenInvoking_ThenTheAnonymousMethodShouldBeCalled()
     {
-        #region Arrange
+        var isLogged = ActionDelegate.LogUsingActionReferringAnAnonymousMethod();
+        
+        Assert.True(isLogged);
+    }
 
-        Action<string> logDb = msg => Console.WriteLine($"logging to DB: {msg}");
-        Action<string> logApi = msg => Console.WriteLine($"logging to API: {msg}");
-
-        #endregion
-
-        #region Act
-
-        var exception = Record.Exception(() =>
-        {
-            Action<string> transform = logDb + logApi;
-            transform("hello");
-        });
-
-        #endregion
-
-        #region Assert
-
-        Assert.Null(exception);
-
-        #endregion
+    [Fact]
+    public void GivenAnActionPointingToALambdaExpression_WhenInvoking_ThenTheLambdaExpressionShouldBeCalled()
+    {
+        var isLogged = ActionDelegate.LogUsingActionReferringALambdaExpression();
+        
+        Assert.True(isLogged);
+    }
+    
+    [Fact]
+    public void GivenAnAction_WhenCallingUsingInvoke_ThenTheReferencedMethodShouldBeCalled()
+    {
+        var isLogged = ActionDelegate.CallingActionUsingInvoke();
+        
+        Assert.True(isLogged);
+    }
+    
+    [Fact]
+    public void GivenAMulticastDelegateFormedUsingActions_WhenInvoking_EachActionShouldBeCalled()
+    {
+        var (isLogConsoleInvoked, isLogDbInvoked) = ActionDelegate.FormingMulticastDelegateUsingActions();
+        
+        Assert.True(isLogConsoleInvoked);
+        Assert.True(isLogDbInvoked);
     }
 }
