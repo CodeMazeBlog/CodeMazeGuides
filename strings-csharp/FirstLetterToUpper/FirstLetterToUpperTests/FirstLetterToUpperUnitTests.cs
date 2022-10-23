@@ -44,6 +44,15 @@ namespace FirstLetterToUpperTests
         }
 
         [TestMethod]
+        public void GivenALowerCaseString_WhenUsingStringCreateTechnique_VerifyFirstCharIsUpper()
+        {
+            var testString = "this is a test string";
+            var returnedString = upperCase.FirstCharToUpperStringCreate(testString);
+
+            Assert.IsTrue(char.IsUpper(returnedString[0]));
+        }
+
+        [TestMethod]
         public void GivenALowerCaseString_WhenUsingRegexTechnique_VerifyFirstCharIsUpper()
         {
             var testString = "this is a test string";
