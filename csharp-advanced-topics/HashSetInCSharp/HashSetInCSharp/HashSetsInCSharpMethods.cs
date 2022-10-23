@@ -42,7 +42,7 @@ namespace HashSetInCSharp
 
         public List<int> CreateList(HashSet<int> hashSet)
         {
-            var list = hashSet.ToList();
+            var list = new List<int>();
 
             foreach (var item in hashSet) 
             {

@@ -84,7 +84,7 @@ namespace HashSetInCSharpTests
             var numbersList = hashSet.CreateList(numbers);
 
             CollectionAssert.AllItemsAreInstancesOfType(numbersList, typeof(int));
-            Equals(numbersList.Count(), numbers.Count());
+            Assert.AreEqual(numbersList.Count(), numbers.Count());
         }
 
         [TestMethod]
