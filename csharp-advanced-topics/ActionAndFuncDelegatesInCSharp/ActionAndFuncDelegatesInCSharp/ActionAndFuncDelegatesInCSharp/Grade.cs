@@ -1,6 +1,6 @@
 ﻿namespace ActionAndFuncDelegatesInCSharp
 {
-    public class Grades
+    public class Grade
     {
         public string CalculateGradeFromTotalMarks(int totalMarks)
         {

@@ -6,10 +6,8 @@ string CalculateGrade(Func<int, string> calculateGrade)
 {
     var total = marks.Sum();
     var grade = calculateGrade(total);
-    Console.WriteLine($"Your grade is: {grade}");
     return grade;
 }
 
-
-var grades = new Grades();
+var grades = new Grade();
 CalculateGrade(grades.CalculateGradeFromTotalMarks);
