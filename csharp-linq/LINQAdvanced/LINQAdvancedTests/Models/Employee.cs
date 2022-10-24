@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-
-namespace LINQAdvancedTests.Models
-{ 
+﻿namespace LINQAdvancedTests.Models
+{
     public class Employee
     {
         public int EmployeeId { get; set; } = 0;

@@ -1,6 +1,5 @@
 using LINQAdvancedTests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 
@@ -84,13 +83,13 @@ namespace LINQAdvancedTests
         {
             var expectedEmployeeDirectorGroupedPairings = 3;
             var groupJoin = TestData.Directors.GroupJoin(TestData.Employees,
-            dir => dir.DepartmentResponsibleFor,
-            em => em.Department,
-            (dir, emGroup) => new 
-            { 
-                dir.Name, 
-                EmployeeGroup = emGroup 
-            });
+                dir => dir.DepartmentResponsibleFor,
+                em => em.Department,
+                (dir, emGroup) => new 
+                { 
+                    dir.Name, 
+                    EmployeeGroup = emGroup 
+                });
 
             Assert.IsNotNull(groupJoin);
             Assert.AreEqual(expectedEmployeeDirectorGroupedPairings, groupJoin.Count());
@@ -102,14 +101,14 @@ namespace LINQAdvancedTests
         {
             var expectedLeftOuterJoinedEmployeeDirectorPairings = 3;
             var groupJoin = TestData.Directors.GroupJoin(TestData.Employees,
-                                    dir => dir.DepartmentResponsibleFor,
-                                    em => em.Department,
-                                    (dir, emGroup) => new 
-                                    { 
-                                        dir.DepartmentResponsibleFor, 
-                                        dir.Name, 
-                                        EmployeeGroup = emGroup.DefaultIfEmpty(new() { Name = "No Name" }) 
-                                    });
+                dir => dir.DepartmentResponsibleFor,
+                em => em.Department,
+                (dir, emGroup) => new 
+                { 
+                    dir.DepartmentResponsibleFor, 
+                    dir.Name, 
+                    EmployeeGroup = emGroup.DefaultIfEmpty(new() { Name = "No Name" }) 
+                });
 
             Assert.IsNotNull(groupJoin);
             Assert.AreEqual(expectedLeftOuterJoinedEmployeeDirectorPairings, groupJoin.Count());

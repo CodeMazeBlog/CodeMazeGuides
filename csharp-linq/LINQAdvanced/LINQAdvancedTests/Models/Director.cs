@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace LINQAdvancedTests.Models
+﻿namespace LINQAdvancedTests.Models
 {
     public class Director : Employee
     {
