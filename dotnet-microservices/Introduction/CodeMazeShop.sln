@@ -7,35 +7,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monolith", "Monolith", "{17
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{ACCAE33F-AD18-44FC-A64B-B8B925540B7F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Web", "CodeMazeShop.Web\CodeMazeShop.Web.csproj", "{0AEB5241-5BE6-422B-8FF1-B848AF2577A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Web", "CodeMazeShop\CodeMazeShop.Web\CodeMazeShop.Web.csproj", "{0AEB5241-5BE6-422B-8FF1-B848AF2577A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mock", "Mock", "{C40CAC02-4840-41ED-B73C-AFF691253933}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "External.PaymentGateway", "External.PaymentGateway\External.PaymentGateway.csproj", "{DDE69C0D-D669-414A-BE74-3EB3DA1A5C67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "External.PaymentGateway", "CodeMazeShop\External.PaymentGateway\External.PaymentGateway.csproj", "{DDE69C0D-D669-414A-BE74-3EB3DA1A5C67}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{96BEAC5B-7623-4235-82DE-2ADA947F9099}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{3235637C-DA19-4C38-973B-060994AEF4AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.ProductCatalog", "CodeMazeShop.Services.ProductCatalog\CodeMazeShop.Services.ProductCatalog.csproj", "{269E1715-4CEF-41A1-883D-6F557D500A1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.ProductCatalog", "CodeMazeShop\CodeMazeShop.Services.ProductCatalog\CodeMazeShop.Services.ProductCatalog.csproj", "{269E1715-4CEF-41A1-883D-6F557D500A1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.Discount", "CodeMazeShop.Services.Discount\CodeMazeShop.Services.Discount.csproj", "{40A73E51-11D4-46D6-8D0B-C76702BEF497}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.Discount", "CodeMazeShop\CodeMazeShop.Services.Discount\CodeMazeShop.Services.Discount.csproj", "{40A73E51-11D4-46D6-8D0B-C76702BEF497}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.ShoppingCart", "CodeMazeShop.Services.ShoppingCart\CodeMazeShop.Services.ShoppingCart.csproj", "{EBDDCB4A-E102-4D35-A47E-CAB89C531954}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.ShoppingCart", "CodeMazeShop\CodeMazeShop.Services.ShoppingCart\CodeMazeShop.Services.ShoppingCart.csproj", "{EBDDCB4A-E102-4D35-A47E-CAB89C531954}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.Ordering", "CodeMazeShop.Services.Ordering\CodeMazeShop.Services.Ordering.csproj", "{077E8E54-D67C-4082-8026-27F951682D13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.Ordering", "CodeMazeShop\CodeMazeShop.Services.Ordering\CodeMazeShop.Services.Ordering.csproj", "{077E8E54-D67C-4082-8026-27F951682D13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.Payment", "CodeMazeShop.Services.Payment\CodeMazeShop.Services.Payment.csproj", "{A3CD915D-AE1F-4E88-87F9-F53B87B5FDEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.Payment", "CodeMazeShop\CodeMazeShop.Services.Payment\CodeMazeShop.Services.Payment.csproj", "{A3CD915D-AE1F-4E88-87F9-F53B87B5FDEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.Marketing", "CodeMazeShop.Services.Marketing\CodeMazeShop.Services.Marketing.csproj", "{F0C1ABA1-4D66-4551-8E94-88B88D10E266}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.Marketing", "CodeMazeShop\CodeMazeShop.Services.Marketing\CodeMazeShop.Services.Marketing.csproj", "{F0C1ABA1-4D66-4551-8E94-88B88D10E266}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.WebClient", "CodeMazeShop.WebClient\CodeMazeShop.WebClient.csproj", "{2AB209A6-77E5-4740-A82E-D6CD31CF8546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.WebClient", "CodeMazeShop\CodeMazeShop.WebClient\CodeMazeShop.WebClient.csproj", "{2AB209A6-77E5-4740-A82E-D6CD31CF8546}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{656715D1-4D24-49AF-8626-76E2FE05A2C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.DataContracts", "CodeMazeShop.DataContracts\CodeMazeShop.DataContracts.csproj", "{C0D8BF23-142E-4B98-9D06-937468B1F163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.DataContracts", "CodeMazeShop\CodeMazeShop.DataContracts\CodeMazeShop.DataContracts.csproj", "{C0D8BF23-142E-4B98-9D06-937468B1F163}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{A3ADCCE9-C222-4F96-AAC3-2ECFD1D3EBB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "CodeMazeShop\Tests\Tests.csproj", "{A3ADCCE9-C222-4F96-AAC3-2ECFD1D3EBB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
