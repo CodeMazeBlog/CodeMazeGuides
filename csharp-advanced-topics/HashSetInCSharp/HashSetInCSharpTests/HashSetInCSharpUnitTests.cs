@@ -1,5 +1,4 @@
 using HashSetInCSharp;
-using System.Runtime.CompilerServices;
 
 namespace HashSetInCSharpTests
 {
@@ -7,30 +6,30 @@ namespace HashSetInCSharpTests
     public class HashSetInCSharpUnitTests
     {
         HashSetsInCSharpMethods hashSet = new HashSetsInCSharpMethods();
-        private HashSet<string> languages;
+        private readonly  HashSet<string> _languages;
 
         public HashSetInCSharpUnitTests()
         {
-            languages = hashSet.ProgrammingLanguages();
+            _languages = hashSet.ProgrammingLanguages();
         }
 
         [TestMethod]
         public void GivenAHashSet_WhenNotEmpty_VerifyCountAndContains()
         {
-            Assert.IsInstanceOfType(languages, typeof(HashSet<string>));
-            Assert.AreEqual(languages.Count(), 9);
-            Assert.IsTrue(languages.Contains("C#"));
+            Assert.IsInstanceOfType(_languages, typeof(HashSet<string>));
+            Assert.AreEqual(_languages.Count(), 9);
+            Assert.IsTrue(_languages.Contains("C#"));
         }
 
         [TestMethod]
         public void GivenAHashSet_WhenNotEmpty_VerifyHasNoDuplicates()
         {
-            languages.Add("C");
-            languages.Add("C++");
-            languages.Add("C#");
+            _languages.Add("C");
+            _languages.Add("C++");
+            _languages.Add("C#");
            
-            Assert.IsInstanceOfType(languages, typeof(HashSet<string>));
-            Assert.AreEqual(languages.Count(), 9);
+            Assert.IsInstanceOfType(_languages, typeof(HashSet<string>));
+            Assert.AreEqual(_languages.Count(), 9);
         }
 
         [TestMethod]
@@ -38,10 +37,10 @@ namespace HashSetInCSharpTests
         {
             var elementToRemove = "Java";
 
-            var updatedLanguages = hashSet.RemoveElement(languages, elementToRemove);
+            var updatedLanguages = hashSet.RemoveElement(_languages, elementToRemove);
 
             Assert.IsFalse(updatedLanguages.Contains(elementToRemove));
-            Assert.AreEqual(languages.Count(), 8);
+            Assert.AreEqual(_languages.Count(), 8);
         }
 
         [TestMethod]
@@ -70,10 +69,10 @@ namespace HashSetInCSharpTests
         [TestMethod]
         public void GivenAHashSet_WhenNotEmpty_VerifyAllElementsCleared()
         {
-            languages.Clear();
+            _languages.Clear();
 
-            Assert.AreEqual(0, languages.Count());
-            Assert.IsNull(languages.FirstOrDefault());
+            Assert.AreEqual(0, _languages.Count());
+            Assert.IsNull(_languages.FirstOrDefault());
         }
 
         [TestMethod]
@@ -92,10 +91,10 @@ namespace HashSetInCSharpTests
         {
             var moreLanguages = new HashSet<string> { "C", "C++", "C#", "Java", "Scala", "TypeScript", "Python", "JavaScript", "Rust", "Assembly", "Pascal" };
 
-            Assert.IsTrue(languages.IsSubsetOf(moreLanguages));
-            Assert.IsTrue(languages.IsProperSubsetOf(moreLanguages));
-            Assert.IsTrue(moreLanguages.IsSupersetOf(languages));
-            Assert.IsTrue(moreLanguages.IsProperSupersetOf(languages));
+            Assert.IsTrue(_languages.IsSubsetOf(moreLanguages));
+            Assert.IsTrue(_languages.IsProperSubsetOf(moreLanguages));
+            Assert.IsTrue(moreLanguages.IsSupersetOf(_languages));
+            Assert.IsTrue(moreLanguages.IsProperSupersetOf(_languages));
         }
 
         [TestMethod]
@@ -103,8 +102,8 @@ namespace HashSetInCSharpTests
         {
             var moreLanguages = new HashSet<string> { "Assembly", "Pascal", "HTML", "CSS", "PHP" };
 
-            languages.UnionWith(moreLanguages);
-            Assert.AreEqual(languages.Count(), 14);
+            _languages.UnionWith(moreLanguages);
+            Assert.AreEqual(_languages.Count(), 14);
         }
 
         [TestMethod]
@@ -112,15 +111,15 @@ namespace HashSetInCSharpTests
         {
             var moreLanguages = new HashSet<string> { "C", "C++", "C#", "Java", "Scala", "Assembly", "Pascal", "HTML", "CSS", "PHP" };
 
-            languages.IntersectWith(moreLanguages);
+            _languages.IntersectWith(moreLanguages);
 
-            Assert.AreEqual(languages.Count(), 5);
-            Assert.IsTrue(languages.Contains("C"));
-            Assert.IsTrue(languages.Contains("C++"));
-            Assert.IsTrue(languages.Contains("C#"));
-            Assert.IsTrue(languages.Contains("Java"));
-            Assert.IsTrue(languages.Contains("Scala"));
-            Assert.IsFalse(languages.Contains("Assembly"));
+            Assert.AreEqual(_languages.Count(), 5);
+            Assert.IsTrue(_languages.Contains("C"));
+            Assert.IsTrue(_languages.Contains("C++"));
+            Assert.IsTrue(_languages.Contains("C#"));
+            Assert.IsTrue(_languages.Contains("Java"));
+            Assert.IsTrue(_languages.Contains("Scala"));
+            Assert.IsFalse(_languages.Contains("Assembly"));
         }
 
         [TestMethod]
@@ -128,14 +127,14 @@ namespace HashSetInCSharpTests
         {
             var moreLanguages = new HashSet<string> { "C", "C++", "C#", "Java", "Scala", "Assembly", "Pascal", "HTML", "CSS", "PHP" };
 
-            languages.ExceptWith(moreLanguages);
+            _languages.ExceptWith(moreLanguages);
 
-            Assert.AreEqual(languages.Count(), 4);
-            Assert.IsTrue(languages.Contains("TypeScript"));
-            Assert.IsTrue(languages.Contains("Python"));
-            Assert.IsTrue(languages.Contains("JavaScript"));
-            Assert.IsTrue(languages.Contains("Rust"));
-            Assert.IsFalse(languages.Contains("Assembly"));
+            Assert.AreEqual(_languages.Count(), 4);
+            Assert.IsTrue(_languages.Contains("TypeScript"));
+            Assert.IsTrue(_languages.Contains("Python"));
+            Assert.IsTrue(_languages.Contains("JavaScript"));
+            Assert.IsTrue(_languages.Contains("Rust"));
+            Assert.IsFalse(_languages.Contains("Assembly"));
         }
 
         [TestMethod]
@@ -143,18 +142,18 @@ namespace HashSetInCSharpTests
         {
             var moreLanguages = new HashSet<string> { "Assembly", "Pascal", "HTML", "CSS", "PHP" };
 
-            languages.SymmetricExceptWith(moreLanguages);
+            _languages.SymmetricExceptWith(moreLanguages);
             
-            Assert.AreEqual(languages.Count(), 14);
+            Assert.AreEqual(_languages.Count(), 14);
         }
 
         [TestMethod]
         public void GivenAHashSet_WhenNotEmpty_TryToGetValue()
         {
-            Assert.IsTrue(languages.TryGetValue("C#", out _));
-            Assert.IsTrue(languages.Contains("C#"));
-            Assert.IsFalse(languages.TryGetValue("Assembly", out _));
-            Assert.IsFalse(languages.Contains("Assembly"));
+            Assert.IsTrue(_languages.TryGetValue("C#", out _));
+            Assert.IsTrue(_languages.Contains("C#"));
+            Assert.IsFalse(_languages.TryGetValue("Assembly", out _));
+            Assert.IsFalse(_languages.Contains("Assembly"));
         }
     }
 }
