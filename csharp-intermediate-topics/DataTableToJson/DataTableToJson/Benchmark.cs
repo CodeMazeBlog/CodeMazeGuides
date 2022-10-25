@@ -5,9 +5,10 @@ using System.Data;
 
 namespace DataTableToJsonTests
 {
-    
+    [MemoryDiagnoser]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn, MeanColumn, MedianColumn]
+    [HideColumns(new string[] { "Gen0","Gen1","Gen2" })]
     public class Benchmark
     {
         public class Student
