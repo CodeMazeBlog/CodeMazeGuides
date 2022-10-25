@@ -13,33 +13,23 @@ namespace ActionAndFunc.Tests.Actions
         }
 
         [Theory]
-        [InlineData(2, 2, "Sum result(with parameters): 4")]
-        [InlineData(5, 2, "Sum result(with parameters): 7")]
-        [InlineData(-2, 2, "Sum result(with parameters): 0")]
-        public void WhenExecuteActionDelegate_RunWithParams_ShouldPrintSum(int numberInput1, int numberInput2, string resultExpected)
+        [InlineData(2, 2, 4)]
+        [InlineData(5, 2, 7)]
+        [InlineData(-2, 2, 0)]
+        public void WhenExecuteActionDelegate_RunWithParams_ThenReturnSum(int numberInput1, int numberInput2, int resultExpected)
         {
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
+            _actionExample.RunWithParams(numberInput1, numberInput2);
 
-                _actionExample.RunWithParams(numberInput1, numberInput2);
-
-                sw.ToString().Should().Contain(resultExpected);
-            }
+            _actionExample.sumResult.Should().Be(resultExpected);
         }
 
         [Theory]
-        [InlineData("Sum result(no parameters): 10")]
-        public void WhenExecuteActionDelegate_RunWithoutParams_ShouldPrintSum(string resultExpected)
+        [InlineData(10)]
+        public void WhenExecuteActionDelegate_RunWithoutParams_ThenReturnSum(int resultExpected)
         {
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
+            _actionExample.RunWithoutParams();
 
-                _actionExample.RunWithoutParams();
-
-                sw.ToString().Should().Contain(resultExpected);
-            }
+            _actionExample.sumResult.Should().Be(resultExpected);
         }
     }
 }

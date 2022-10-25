@@ -16,7 +16,7 @@ namespace ActionAndFunc.Tests.Functions
         [InlineData(2, 2, 4)]
         [InlineData(5, 2, 7)]
         [InlineData(-2, 2, 0)]
-        public void WhenExecuteFuncDelegate_RunWithParams_ShouldReturnSum(int numberInput1, int numberInput2, int resultExpected)
+        public void WhenExecuteFuncDelegate_RunWithParams_ThenReturnSum(int numberInput1, int numberInput2, int resultExpected)
         {
             int result = _funcExample.RunWithParams(numberInput1, numberInput2);
 
@@ -25,7 +25,7 @@ namespace ActionAndFunc.Tests.Functions
 
         [Theory]
         [InlineData(10)]
-        public void WhenExecuteFuncDelegate_RunWithoutParams_ShouldReturnSum(int resultExpected)
+        public void WhenExecuteFuncDelegate_RunWithoutParams_ThenReturnSum(int resultExpected)
         {
             int result = _funcExample.RunWithoutParams();
 

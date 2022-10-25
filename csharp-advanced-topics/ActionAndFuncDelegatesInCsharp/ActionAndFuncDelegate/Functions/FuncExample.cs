@@ -4,10 +4,8 @@
     {
         public int RunWithParams(int number1, int number2)
         {
-            //func delegate using an anonymous function
             Func<int, int, int> anonymousSumFunc = delegate (int param1, int param2)
             {
-                //your business logic
                 return number1 + number2;
             };
 
@@ -18,10 +16,8 @@
 
         public int RunWithoutParams()
         {
-            //func delegate using an anonymous function
             Func<int> anonymousSumFunc = delegate ()
             {
-                //your business logic
                 return 5 + 5;
             };
 
