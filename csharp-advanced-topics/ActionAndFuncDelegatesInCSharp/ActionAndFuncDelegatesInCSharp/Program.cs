@@ -6,10 +6,21 @@ string CalculateGrade(Func<int, string> calculateGrade)
 {
     var total = marks.Sum();
     var grade = calculateGrade(total);
-
-    Console.WriteLine($"Your grade is {grade}");
     return grade;
 }
 
-var grades = new Grade();
-CalculateGrade(grades.CalculateGradeFromTotalMarks);
+var grade = new Grade();
+CalculateGrade(grade.CalculateGradeFromTotalMarks);
+
+Action<List<int>> calculateAverage = grade.CalculateAverageMarks;
+calculateAverage(marks);
+
+
+// Using Lambda Expression to instantiate Action<T> delegate
+/*Action<List<int>> printAverageScores = delegate(List<int> marksList)
+{
+    var average = marksList.Average();
+    Console.WriteLine($"The Average Mark is: {average}");
+};
+
+printAverageScores(marks);*/
