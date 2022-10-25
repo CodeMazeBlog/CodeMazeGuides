@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodeMazeShop.Services.ProductCatalog\CodeMazeShop.Services.ProductCatalog.csproj" />
     <ProjectReference Include="..\CodeMazeShop.Web\CodeMazeShop.Web.csproj" />
   </ItemGroup>
 

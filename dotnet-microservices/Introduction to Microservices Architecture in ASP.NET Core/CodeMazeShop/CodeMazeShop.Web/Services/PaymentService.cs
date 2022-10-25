@@ -32,6 +32,9 @@ public class PaymentService : IPaymentService
 
         var responseString = await response.Content.ReadAsStringAsync();
 
-        return JsonSerializer.Deserialize<bool>(responseString, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        return JsonSerializer.Deserialize<bool>(responseString, new JsonSerializerOptions 
+        { 
+            PropertyNameCaseInsensitive = true 
+        });
     }
 }
