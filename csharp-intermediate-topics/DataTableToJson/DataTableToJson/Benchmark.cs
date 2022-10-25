@@ -5,9 +5,9 @@ using System.Data;
 
 namespace DataTableToJsonTests
 {
-    [MemoryDiagnoser]
+    
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
-    [RankColumn]
+    [RankColumn, MeanColumn, MedianColumn]
     public class Benchmark
     {
         public class Student
@@ -44,16 +44,16 @@ namespace DataTableToJsonTests
         }
 
         [Benchmark]
-        public void NewtonsoftJsonNet() => Methods.DataTable_NewtonsoftJsonNet(dataTable);
+        public void NewtonsoftJsonNet() => Methods.DataTableNewtonsoftJsonNet(dataTable);
 
         [Benchmark]
-        public void SystemTextJson() => Methods.DataTable_SystemTextJson(dataTable);
+        public void SystemTextJson() => Methods.DataTableSystemTextJson(dataTable);
 
         [Benchmark]
-        public void Linq() => Methods.DataTable_Linq(dataTable);
+        public void Linq() => Methods.DataTableLinq(dataTable);
 
         [Benchmark]
-        public void StringBuilder() => Methods.DataTable_StringBuilder(dataTable);
+        public void StringBuilder() => Methods.DataTableStringBuilder(dataTable);
 
     }
 

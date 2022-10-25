@@ -1,14 +1,11 @@
-﻿using BenchmarkDotNet.Attributes;
-using Bogus;
-using Microsoft.Extensions.Primitives;
-using System.Data;
+﻿using System.Data;
 using System.Text;
 
 namespace DataTableToJsonTest
 {
     public static class Methods
     {
-        public static string DataTable_NewtonsoftJsonNet(DataTable dataTable)
+        public static string DataTableNewtonsoftJsonNet(DataTable dataTable)
         {
             if (dataTable == null)
             {
@@ -18,7 +15,7 @@ namespace DataTableToJsonTest
             return Newtonsoft.Json.JsonConvert.SerializeObject(dataTable);
         }
 
-        public static string DataTable_SystemTextJson(DataTable dataTable)
+        public static string DataTableSystemTextJson(DataTable dataTable)
         {
             if (dataTable == null)
             {
@@ -32,7 +29,7 @@ namespace DataTableToJsonTest
             return System.Text.Json.JsonSerializer.Serialize(data);
         }
 
-        public static string DataTable_StringBuilder(DataTable dataTable)
+        public static string DataTableStringBuilder(DataTable dataTable)
         {
             if (dataTable == null)
             {
@@ -52,11 +49,7 @@ namespace DataTableToJsonTest
                                 dataTable.Rows[i][j].ToString(),
                                 j < dataTable.Columns.Count - 1 ? "," : string.Empty);
 
-                    if (i == dataTable.Rows.Count - 1)
-                        jsonStringBuilder.Append("}");
-                    else
-                        jsonStringBuilder.Append("},");
-
+                    jsonStringBuilder.Append(i == dataTable.Rows.Count - 1 ? "}" : "},");
                 }
                 jsonStringBuilder.Append("]");
             }
@@ -64,7 +57,7 @@ namespace DataTableToJsonTest
             return jsonStringBuilder.ToString();
         }
 
-        public static string DataTable_Linq(DataTable dataTable)
+        public static string DataTableLinq(DataTable dataTable)
         {
             if (dataTable == null)
             {

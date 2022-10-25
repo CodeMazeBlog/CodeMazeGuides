@@ -12,28 +12,28 @@ namespace DataTableToJsonTestsTests
         [TestMethod]
         public void GivenDataTable_WhenUsingNewtonsoftJsonNet_VerifyResult()
         {
-            var json = Methods.DataTable_NewtonsoftJsonNet(benchmark.dataTable);
+            var json = Methods.DataTableNewtonsoftJsonNet(benchmark.dataTable);
             Assert.IsTrue(ValidateJson(json));
         }
 
         [TestMethod]
         public void GivenDataTable_WhenUsingSystemTextJson_VerifyResult()
         {
-            var json = Methods.DataTable_SystemTextJson(benchmark.dataTable);
+            var json = Methods.DataTableSystemTextJson(benchmark.dataTable);
             Assert.IsTrue(ValidateJson(json));
         }
 
         [TestMethod]
         public void GivenDataTable_WhenUsingStringBuilder_VerifyResult()
         {
-            var json = Methods.DataTable_StringBuilder(benchmark.dataTable);
+            var json = Methods.DataTableStringBuilder(benchmark.dataTable);
             Assert.IsTrue(ValidateJson(json));
         }
 
         [TestMethod]
         public void GivenDataTable_WhenUsingLINQ_VerifyResult()
         {
-            var json = Methods.DataTable_Linq(benchmark.dataTable);
+            var json = Methods.DataTableLinq(benchmark.dataTable);
             Assert.IsTrue(ValidateJson(json));
         }
 
