@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using TwoFactorAuthenticationGoogleAuthenticatorAngular.Models;
 namespace TwoFactorAuthenticationGoogleAuthenticatorAngular.Controllers
 {
     [Route("api/accounts")]
+    [EnableCors("two_factor_auth_cors")]
     [ApiController]
     public class AccountsController : ControllerBase
     {

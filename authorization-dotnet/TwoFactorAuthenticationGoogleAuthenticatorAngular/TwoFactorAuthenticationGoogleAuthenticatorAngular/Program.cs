@@ -6,6 +6,18 @@ using TwoFactorAuthenticationGoogleAuthenticatorAngular.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var allowSpecificOrigins = "two_factor_auth_cors";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(allowSpecificOrigins,
+        builder =>
+          builder.WithOrigins("http://localhost:4200", "https://localhost:4200")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials());
+});
+
 builder.Services.AddDbContext<RepositoryContext>(opts =>
     opts.UseSqlServer(builder.Configuration.GetConnectionString("sqlConnection")));
 
@@ -28,6 +40,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(allowSpecificOrigins);
 
 app.UseHttpsRedirection();
 
