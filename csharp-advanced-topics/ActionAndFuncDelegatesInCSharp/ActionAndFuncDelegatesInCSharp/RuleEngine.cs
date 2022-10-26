@@ -2,13 +2,13 @@
 {
     public class RuleEngine
     {
-        private readonly IDictionary<string, Func<int, bool>> Rules = new Dictionary<string, Func<int, bool>>();
+        private readonly Dictionary<string, Func<int, bool>> _rules = new();
 
         public RuleEngine()
         {
-            Rules.Add("Positive", IsPositiveNumber);
-            Rules.Add("Negative", IsNegativeNumber);
-            Rules.Add("Zero", IsEqualToZero);
+            _rules.Add("Positive", IsPositiveNumber);
+            _rules.Add("Negative", IsNegativeNumber);
+            _rules.Add("Zero", IsEqualToZero);
         }
 
         private bool IsPositiveNumber(int number)
@@ -30,7 +30,7 @@
         {
             var validationResults = new List<string>();
 
-            foreach (var rule in Rules)
+            foreach (var rule in _rules)
             {
                 if (!rule.Value(number))
                 {
