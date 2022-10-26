@@ -1,0 +1,15 @@
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\bin\Debug\net6.0\ConsoleAppFuncDelegate.exe
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\bin\Debug\net6.0\ConsoleAppFuncDelegate.deps.json
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\bin\Debug\net6.0\ConsoleAppFuncDelegate.runtimeconfig.json
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\bin\Debug\net6.0\ConsoleAppFuncDelegate.dll
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\bin\Debug\net6.0\ConsoleAppFuncDelegate.pdb
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\obj\Debug\net6.0\ConsoleAppFuncDelegate.csproj.AssemblyReference.cache
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\obj\Debug\net6.0\ConsoleAppFuncDelegate.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\obj\Debug\net6.0\ConsoleAppFuncDelegate.AssemblyInfoInputs.cache
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\obj\Debug\net6.0\ConsoleAppFuncDelegate.AssemblyInfo.cs
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\obj\Debug\net6.0\ConsoleAppFuncDelegate.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\obj\Debug\net6.0\ConsoleAppFuncDelegate.dll
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\obj\Debug\net6.0\refint\ConsoleAppFuncDelegate.dll
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\obj\Debug\net6.0\ConsoleAppFuncDelegate.pdb
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\obj\Debug\net6.0\ConsoleAppFuncDelegate.genruntimeconfig.cache
+C:\Users\User\Source\Repos\ConsoleAppFuncDelegate\ConsoleAppFuncDelegate\obj\Debug\net6.0\ref\ConsoleAppFuncDelegate.dll
