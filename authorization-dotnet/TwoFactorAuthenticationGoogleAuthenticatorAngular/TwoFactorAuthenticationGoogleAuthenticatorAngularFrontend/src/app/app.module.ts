@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { HomeComponent } from './components/home/home.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterUserComponent,
     HomeComponent,
-    SettingsComponent
+    SettingsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

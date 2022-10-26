@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 using TwoFactorAuthenticationGoogleAuthenticatorAngular.Models;
 
 namespace TwoFactorAuthenticationGoogleAuthenticatorAngular.Controllers
@@ -38,6 +39,17 @@ namespace TwoFactorAuthenticationGoogleAuthenticatorAngular.Controllers
             }
 
             return StatusCode(201);
+        }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login([FromBody] UserForAuthenticationDto userForAuthentication)
+        {
+            var user = await _userManager.FindByNameAsync(userForAuthentication.Email);
+
+            if (user == null || !await _userManager.CheckPasswordAsync(user, userForAuthentication.Password))
+                return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
+
+            return Ok(new AuthResponseDto { IsAuthSuccessful = true });
         }
     }
 }
