@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CSharpActionFuncApp;
 namespace CSharpActionFuncApp.Test
@@ -5,39 +6,38 @@ namespace CSharpActionFuncApp.Test
     [TestClass]
     public class ActionFuncDelegateTest
     {
-        readonly ActionFuncDelegate objActionFuncDelegate;
+        readonly DelegatesInAction objDelegateInAction;
 
-        ActionFuncDelegateTest()
+        public ActionFuncDelegateTest()
         {
-            objActionFuncDelegate = new ActionFuncDelegate();
+            objDelegateInAction = new DelegatesInAction();
         }
 
         [TestMethod]
-        public void TestAdddtionDelegteResultIsSuccess()
+        public void WhenCallingActionDelegateInAction_ThenNoException()
         {
-            objActionFuncDelegate.Addition(5, 5);
-            Assert.AreEqual(10, ActionFuncDelegate.result);
+            try
+            {
+                objDelegateInAction.ActionDelegateInAction();
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
         }
 
         [TestMethod]
-        public void TestAdditionActionDelegateAnotherwayResultIsSuccess()
+        public void WhenCallingFuncDelegateInAction_ThenNoException()
         {
-            objActionFuncDelegate.AdditionActionDelegateAnotherway(10, 5);
-            Assert.AreEqual(15, ActionFuncDelegate.result);
+            try
+            {
+                objDelegateInAction.FuncDelegateInAction();
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
         }
 
-        [TestMethod]
-        public void TestAdditionUsingFuncDelegateReturnsValue()
-        {
-            int sum = objActionFuncDelegate.AdditionUsingFunc(10, 10);
-            Assert.AreEqual(20, sum);
-        }
-
-        [TestMethod]
-        public void TestAdditionUsingFunc2DelegateReturnsValue()
-        {
-            int sum = objActionFuncDelegate.AdditionUsingFunc2(10, 20);
-            Assert.AreEqual(30, sum);
-        }
     }
 }
