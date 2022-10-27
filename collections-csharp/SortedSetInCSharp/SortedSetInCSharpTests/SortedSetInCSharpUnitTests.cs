@@ -36,7 +36,6 @@ namespace SortedSetInCSharpTests
         [TestMethod]
         public void GivenASortedSet_WhenNotEmpty_VerifyOverlapsSuccessful()
         {
-
             var commonLanguages = new SortedSet<string> { "C", "C++", "C#", "Java", "Scala", "TypeScript", "Python", "JavaScript", "Rust", "Assembly", "Pascal" };
             var differentLanguages = new SortedSet<string> { "Assembly", "Pascal", "HTML", "CSS", "PHP" };
 
