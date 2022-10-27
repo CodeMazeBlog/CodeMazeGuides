@@ -17,10 +17,10 @@ calculateAverage(marks);
 
 
 // Using Lambda Expression to instantiate Action<T> delegate
-/*Action<List<int>> printAverageScores = delegate(List<int> marksList)
+Action<List<int>> printAverageScores = delegate(List<int> marksList)
 {
     var average = marksList.Average();
     Console.WriteLine($"The Average Mark is: {average}");
 };
 
-printAverageScores(marks);*/
+printAverageScores(marks);
