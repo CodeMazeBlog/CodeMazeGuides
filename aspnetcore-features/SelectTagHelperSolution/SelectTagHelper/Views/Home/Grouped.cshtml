@@ -1,0 +1,9 @@
+﻿@model GroupViewModel
+@{
+    ViewData["Title"] = "Grouped Dropdown";
+}
+
+<h3>Grouped drodown list</h3>
+<select class="form-select-sm" asp-items="@Model.Courses">
+    <option>Please Select</option>
+</select>

@@ -1,0 +1,20 @@
+﻿@model MultiSelectViewModel
+@{
+    ViewData["Title"] = "Multi Select Dropdown";
+}
+
+<h3>Multi Select Dropdown</h3>
+<form method="post">
+    <div>
+        <select class="form-select" asp-for="SelectedEmployeeIds" multiple
+                asp-items="new SelectList(@Model.Employees,
+                                  nameof(EmployeeViewModel.Id),
+                                  nameof(EmployeeViewModel.EmployeeName))">
+        </select>
+    </div>
+    <div class="mt-4">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+
+</form>
+
