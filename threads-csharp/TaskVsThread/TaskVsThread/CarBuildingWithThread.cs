@@ -22,7 +22,7 @@ public class CarBuildingWithThread : CarBuilding
         });
         engineThread.Start();
 
-        ConcurrentBag<Suspension> suspensions = new ConcurrentBag<Suspension>();
+        var suspensions = new ConcurrentBag<Suspension>();
         var suspensionThreads = Enumerable
             .Range(0, suspensionCount)
             .Select(i =>
