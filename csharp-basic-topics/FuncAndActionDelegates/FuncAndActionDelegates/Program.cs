@@ -1,0 +1,6 @@
+﻿//Simplest declaration
+Action simpleAction;
+
+
+
+
