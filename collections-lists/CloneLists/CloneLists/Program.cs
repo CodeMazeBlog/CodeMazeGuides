@@ -5,7 +5,7 @@ public class Program
     static void Main()
     {
         ToListExample tle = new ToListExample();
-        List<string> carList = new List<string>() { "Porsche", "Corvette", "Bugati" };
+        var carList = new List<string>() { "Porsche", "Corvette", "Bugati" };
         List<string> clonedCarList = tle.RunToListExample(carList);
 
         CopyToMethodExample cme = new CopyToMethodExample();

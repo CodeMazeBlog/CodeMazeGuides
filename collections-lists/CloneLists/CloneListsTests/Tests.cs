@@ -9,7 +9,7 @@ namespace CloneListsTests
         [TestMethod]
         public void verifylistwascloned_usingToListExample()
         {
-            List<string> carList = new List<string>() { "Porsche", "Corvette", "Bugati" };
+            var carList = new List<string>() { "Porsche", "Corvette", "Bugati" };
             ToListExample tle = new ToListExample();
             List<string> clonedCarList = tle.RunToListExample(carList);
 
