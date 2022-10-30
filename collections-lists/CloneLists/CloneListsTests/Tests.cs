@@ -3,7 +3,7 @@ using CloneLists;
 namespace CloneListsTests
 {
     [TestClass]
-    public class UnitTest1
+    public class Tests
     {
         [TestMethod]
         public void verifylistwascloned_usingToListExample()
