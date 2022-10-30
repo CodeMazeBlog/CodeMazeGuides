@@ -1,4 +1,5 @@
 using CloneLists;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CloneListsTests
 {
