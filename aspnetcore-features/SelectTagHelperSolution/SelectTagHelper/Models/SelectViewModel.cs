@@ -14,12 +14,6 @@ namespace SelectTagHelper.Models
         public int? SelectedDepartment { get; set; }
     }
 
-    public class EmployeeViewModel
-    {
-        public int Id { get; set; }
-        public string EmployeeName { get; set; }
-    }
-
     public enum Department
     {
         IT,

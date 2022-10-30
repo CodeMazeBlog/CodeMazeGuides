@@ -8,24 +8,83 @@ namespace SelectTagHelper.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
-        {
-        }
-
+        //Usage of List<SelectListItem> to render select element
         public IActionResult Index()
         {
-            return View();
+            var model = new ProductViewModel
+            {
+                Products = new List<SelectListItem>
+                {
+                    new SelectListItem
+                    {
+                        Text = "Motherboards",
+                        Value = "MB"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "Graphic Cards",
+                        Value = "GC"
+                    },
+                    new SelectListItem
+                    {
+                        Text = "Liquid Coolants",
+                        Value = "LC"
+                    }
+                },
+                Product = "GC"
+            };
+
+            return View(model);
         }
 
+        [HttpPost]
+        public IActionResult Index(ProductViewModel model)
+        {
+            var selectedProduct = model.Product;
+
+            return Content("The selected value: " + selectedProduct);
+        }
+
+        //Usage of List<EmployeeViewModel> to render select element
+        public IActionResult SelectTagHelperWithComplexViewModel()
+        {
+            var model = new SelectViewModel
+            {
+                Employees = StaticRepository.GetEmployees()
+            };
+
+            return View(model);
+        }
+
+        //Usage of List<strings> to render select element
+        public IActionResult SelectTagHelperWithListOfStrings()
+        {
+            var model = new SelectViewModel
+            {
+                Countries = new SelectList(StaticRepository.GetCountries())
+            };
+
+            return View(model);
+        }
+
+        //Usage of Enum to render select element
+        public IActionResult SelectTagHelperWithEnum()
+        {
+            var model = new SampleViewModel();
+            return View(model);
+        }
+
+        //Consolidated action method - renders select element using all the approaches
         public IActionResult Details()
         {
             var model = new SelectViewModel
             {
                 Genders = StaticRepository.GetGenders(),
                 Employees = StaticRepository.GetEmployees(),
-                SelectedEmployeeId = 102,
                 Countries = new SelectList(StaticRepository.GetCountries()),
-                SelectedCountry = "UK",
+                SelectedGender = "Female",
+                SelectedEmployeeId = 102,
+                SelectedCountry = "USA",
                 SelectedDepartment = 2
             };
             return View(model);
@@ -34,9 +93,15 @@ namespace SelectTagHelper.Controllers
         [HttpPost]
         public IActionResult Details(SelectViewModel model)
         {
+            var selectedGender = model.SelectedGender;
+            var selectedEmployee = model.SelectedEmployeeId;
+            var selectedCountry = model.SelectedCountry;
+            var selectedDepartment = model.SelectedDepartment;
+
             return RedirectToAction("Details");
         }
 
+        //Multi Select Action Method - to render multi-select dropdown
         public IActionResult MultiSelect()
         {
             var model = new MultiSelectViewModel
@@ -49,9 +114,12 @@ namespace SelectTagHelper.Controllers
         [HttpPost]
         public IActionResult MultiSelect(MultiSelectViewModel model)
         {
+            var selectedEmployeeIds = model.SelectedEmployeeIds;
+
             return RedirectToAction("MultiSelect");
         }
 
+        //Grouped Action Method - to render grouped dropdown
         public IActionResult Grouped()
         {
             var sciences = new SelectListGroup { Name = "Science" };

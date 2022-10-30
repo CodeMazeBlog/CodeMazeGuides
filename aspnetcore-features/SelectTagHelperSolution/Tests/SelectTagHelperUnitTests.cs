@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SelectTagHelper.Controllers;
 using SelectTagHelper.Models;
 
@@ -9,7 +10,7 @@ namespace Tests
     public class SelectTagHelperUnitTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void WhenActionMethodIndex_ThenReturnNotNull()
         {
             var controller = new HomeController();
             var index = controller.Index() as ViewResult;
@@ -17,7 +18,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestMethod2()
+        public void WhenActionMethodDetails_ThenReturnNotNull()
         {
             var controller = new HomeController();
             var details = controller.Details() as ViewResult;
@@ -25,7 +26,47 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestMethod3()
+        public void WhenActionMethodSelectTagHelperWithComplexViewModel_ThenReturnNotNull()
+        {
+            var controller = new HomeController();
+            var view = controller.SelectTagHelperWithComplexViewModel() as ViewResult;
+            Assert.IsNotNull(view);
+        }
+
+        [TestMethod]
+        public void WhenActionMethodSelectTagHelperWithListOfStrings_ThenReturnNotNull()
+        {
+            var controller = new HomeController();
+            var view = controller.SelectTagHelperWithListOfStrings() as ViewResult;
+            Assert.IsNotNull(view);
+        }
+
+        [TestMethod]
+        public void WhenActionMethodSelectTagHelperWithEnum_ThenReturnNotNull()
+        {
+            var controller = new HomeController();
+            var view = controller.SelectTagHelperWithEnum() as ViewResult;
+            Assert.IsNotNull(view);
+        }
+
+        [TestMethod]
+        public void WhenActionMethodMultiSelect_ThenReturnNotNull()
+        {
+            var controller = new HomeController();
+            var multiSelectView = controller.MultiSelect() as ViewResult;
+            Assert.IsNotNull(multiSelectView);
+        }
+
+        [TestMethod]
+        public void WhenActionMethodGrouped_ThenReturnNotNull()
+        {
+            var controller = new HomeController();
+            var groupedView = controller.Grouped() as ViewResult;
+            Assert.IsNotNull(groupedView);
+        }
+
+        [TestMethod]
+        public void WhenActionMethodDetailsWithGenders_ThenReturnEqual()
         {
             var controller = new HomeController();
             var details = controller.Details() as ViewResult;
@@ -60,7 +101,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestMethod4()
+        public void WhenActionMethodDetailsWithEmployees_ThenReturnEqual()
         {
             var controller = new HomeController();
             var details = controller.Details() as ViewResult;
@@ -95,7 +136,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestMethod5()
+        public void WhenActionMethodDetailsWithCountries_ThenReturnEqual()
         {
             var controller = new HomeController();
             var details = controller.Details() as ViewResult;
@@ -114,6 +155,68 @@ namespace Tests
             {
                 Assert.AreEqual(expectedCountries.ElementAt(i).Text, actualCountries.ElementAt(i).Text);
                 Assert.AreEqual(expectedCountries.ElementAt(i).Value, actualCountries.ElementAt(i).Value);
+            }
+        }
+
+        [TestMethod]
+        public void WhenActionMethodGrouped_ThenReturnEqual()
+        {
+            var controller = new HomeController();
+            var grouped = controller.Grouped() as ViewResult;
+
+            var sciences = new SelectListGroup { Name = "Science" };
+            var humanities = new SelectListGroup { Name = "Humanities" };
+
+            var expectedCourses = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Text  = "Physics",
+                    Value = "PH101",
+                    Group = sciences
+                },
+                new SelectListItem
+                {
+                    Text = "Chemistry",
+                    Value = "CH101",
+                    Group = sciences
+                },
+                new SelectListItem
+                {
+                    Text = "Mathematics",
+                    Value = "MT101",
+                    Group = sciences
+                },
+                new SelectListItem
+                {
+                    Text = "English",
+                    Value = "EN101",
+                    Group = humanities
+                },
+                new SelectListItem
+                {
+                    Text = "Environmental Studies",
+                    Value = "EN101",
+                    Group = humanities
+                },
+                new SelectListItem
+                {
+                    Text = "Economics",
+                    Value = "EC101",
+                    Group = humanities
+                }
+            };
+
+            var actualModel = (GroupViewModel)grouped.Model;
+            var actualCourses = actualModel.Courses;
+
+            Assert.AreEqual(expectedCourses.Count, actualCourses.Count);
+
+            for (var i = 0; i < expectedCourses.Count; i++)
+            {
+                Assert.AreEqual(expectedCourses.ElementAt(i).Text, actualCourses.ElementAt(i).Text);
+                Assert.AreEqual(expectedCourses.ElementAt(i).Value, actualCourses.ElementAt(i).Value);
+                Assert.AreEqual(expectedCourses.ElementAt(i).Group.Name, actualCourses.ElementAt(i).Group.Name);
             }
         }
     }

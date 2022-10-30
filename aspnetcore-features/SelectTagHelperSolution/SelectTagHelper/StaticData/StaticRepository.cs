@@ -11,19 +11,18 @@ namespace SelectTagHelper.StaticData
             {
                 new SelectListItem
                 {
-                    Text="Male",
-                    Value="Male",
-                    Selected=true,
+                    Text = "Male",
+                    Value = "Male"
                 },
                 new SelectListItem
                 {
-                    Text="Female",
-                    Value="Female"
+                    Text = "Female",
+                    Value = "Female"
                 },
                 new SelectListItem
                 {
-                    Text="Others",
-                    Value="Others"
+                    Text = "Others",
+                    Value = "Others"
                 }
             };
         }
@@ -34,18 +33,18 @@ namespace SelectTagHelper.StaticData
             {
                 new EmployeeViewModel
                 {
-                    Id=101,
-                    EmployeeName="Mark"
+                    Id = 101,
+                    EmployeeName = "Mark"
                 },
                 new EmployeeViewModel
                 {
-                    Id=102,
-                    EmployeeName="Dave"
+                    Id = 102,
+                    EmployeeName = "Dave"
                 },
                 new EmployeeViewModel
                 {
-                    Id=103,
-                    EmployeeName="Rosy"
+                    Id = 103,
+                    EmployeeName = "Rosy"
                 }
             };
         }
@@ -58,46 +57,46 @@ namespace SelectTagHelper.StaticData
             };
         }
 
-        public static List<SelectListItem> GetCourses(SelectListGroup group1, SelectListGroup group2)
+        public static List<SelectListItem> GetCourses(SelectListGroup science, SelectListGroup humanities)
         {
             return new List<SelectListItem>
             {
                 new SelectListItem
                 {
-                    Text="Physics",
-                    Value="PH101",
-                    Group=group1
+                    Text  = "Physics",
+                    Value = "PH101",
+                    Group = science
                 },
                 new SelectListItem
                 {
-                    Text="Chemistry",
-                    Value="CH101",
-                    Group=group1
+                    Text = "Chemistry",
+                    Value = "CH101",
+                    Group = science
                 },
                 new SelectListItem
                 {
-                    Text="Mathematics",
-                    Value="MT101",
-                    Group=group1
+                    Text = "Mathematics",
+                    Value = "MT101",
+                    Group = science
                 },
                 new SelectListItem
                 {
-                    Text="English",
-                    Value="EN101",
-                    Group=group2
+                    Text = "English",
+                    Value = "EN101",
+                    Group = humanities
                 },
                 new SelectListItem
                 {
-                    Text="Environmental Studies",
-                    Value="EN101",
-                    Group=group2
+                    Text = "Environmental Studies",
+                    Value = "EN101",
+                    Group = humanities
                 },
                 new SelectListItem
                 {
-                    Text="Economics",
-                    Value="EC101",
-                    Group=group2
-                },
+                    Text = "Economics",
+                    Value = "EC101",
+                    Group = humanities
+                }
             };
         }
     }
