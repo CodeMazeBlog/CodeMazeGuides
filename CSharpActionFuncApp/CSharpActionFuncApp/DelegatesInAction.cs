@@ -1,39 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpActionFuncApp
+﻿namespace CSharpActionFuncApp
 {
     public class DelegatesInAction
     {
-        ActionFuncDelegate objActionFuncDelegate;
+        private readonly ActionFuncDelegate _objActionFuncDelegate;
 
         public DelegatesInAction()
         {
-            objActionFuncDelegate = new ActionFuncDelegate();
+            _objActionFuncDelegate = new ActionFuncDelegate();
         }
 
         // Action delegate calls
-        public void ActionDelegateInAction()
+        public int ActionDelegateInAction(int num1, int num2)
         {
-            objActionFuncDelegate.Addition(10, 10);
-            Console.WriteLine($"Addition = {ActionFuncDelegate.result}");
-
-            objActionFuncDelegate.AdditionActionDelegateAnotherway(10, 20);
-            Console.WriteLine($"Addition using ActionDelegateAnotherway = {ActionFuncDelegate.result}");
+            _objActionFuncDelegate._Addition(num1, num2);
+            return _objActionFuncDelegate.result;
         }
+
+        public int ActionDelegateInActionUsingAnotherWay(int num1, int num2)
+        {
+            _objActionFuncDelegate._AdditionActionDelegateAnotherway(num1, num2);
+            return _objActionFuncDelegate.result;
+        }
+
         //Func delegate calls
-        public void FuncDelegateInAction()
+        public int FuncDelegateInAction(int num1, int num2)
         {
-            int sum = objActionFuncDelegate.AdditionUsingFunc(10, 30);
-            Console.WriteLine($"Sum using AdditionUsingFunc = {sum}");
-
-            sum = objActionFuncDelegate.AdditionUsingFunc2(10, 40);
-            Console.WriteLine($"Sum using AdditionUsingFunc2 = {sum}");
+            return _objActionFuncDelegate._AdditionUsingFunc(num1, num2);
         }
 
-
+        public int FuncDelegateInActionUsingAnotherWay(int num1, int num2)
+        {
+            return _objActionFuncDelegate._AdditionUsingFunc2(num1, num2);
+        }
     }
 }
