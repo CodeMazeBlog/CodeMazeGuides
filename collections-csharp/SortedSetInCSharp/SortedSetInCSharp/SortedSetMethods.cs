@@ -19,9 +19,9 @@
             return languages;
         }
 
-        public SortedSet<string> RemoveElement(SortedSet<string> sortedSet, string value)
+        public SortedSet<string> RemoveElement(SortedSet<string> sortedSet, string valueToRemove)
         {
-            sortedSet.Remove(value);
+            sortedSet.Remove(valueToRemove);
 
             return sortedSet;
         }
