@@ -1,0 +1,16 @@
+﻿@page "/example1"
+
+<h3>Blazor Event Handling (Built-in Event Arguments)</h3>
+<p>@Coordinates1</p>
+<img class="card-img-top" src="@Example1PhotoPath" @onmousemove="@Mouse_Move" style="width: 25% ;height: 250" />
+
+@code{ 
+	
+	public string Example1PhotoPath = "https://www.w3schools.com/html/img_girl.jpg";
+	protected string Coordinates1 { get; set; }
+	
+	protected void Mouse_Move(MouseEventArgs e) 
+	{     
+		Coordinates1 = $"X = {e.ClientX } Y = {e.ClientY}";     
+	} 	
+}

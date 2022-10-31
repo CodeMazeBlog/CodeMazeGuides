@@ -1,0 +1,14 @@
+﻿@page "/example3"
+
+<h3>Blazor Event Callback</h3>
+<ChildComponent OnClickCallback="@EventFromChild" /> 
+<p>@message</p> 
+
+@code { 
+	
+	private string message; 
+	private void EventFromChild(MouseEventArgs e) 
+	{ 
+		message = $"Mouse coordinates of child component button - ({e.ScreenX}:{e.ScreenY})"; 
+	} 
+}

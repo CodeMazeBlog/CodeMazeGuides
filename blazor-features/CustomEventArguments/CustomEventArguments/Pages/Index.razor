@@ -1,0 +1,32 @@
+﻿@inject NavigationManager NavigationManager
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h3>Blazor Event Handling (Built-in Event Arguments)</h3>
+<button @onclick=@( () => TriggerUrlExample1() ) class="btn btn-primary">Example 1</button>
+
+<h3>Blazor Event Handling (Definition using Lambda expressions)</h3>
+<button @onclick=@( () => TriggerUrlExample2() ) class="btn btn-primary">Example 2</button>
+
+<h3>Blazor Event Callback</h3>
+<button @onclick=@( () => TriggerUrlExample3() ) class="btn btn-primary">Example 3</button>
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code{ 
+	void TriggerUrlExample1()
+    {
+        NavigationManager.NavigateTo("/example1");
+    }
+
+    void TriggerUrlExample2()
+    {
+        NavigationManager.NavigateTo("/example2");
+    }
+
+    void TriggerUrlExample3()
+    {
+        NavigationManager.NavigateTo("/example3");
+    }
+}

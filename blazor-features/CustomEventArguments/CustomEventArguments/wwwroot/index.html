@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>CustomEventArguments</title>
+    <base href="/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <link href="CustomEventArguments.styles.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQhBQVoTz6zE4KYqAEsqMKAaoZF-mMtOA"></script>
+
+</head>
+
+<body>
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        function geoFindMe() {
+
+            const mapLink = document.querySelector('#map-link');
+
+            //Google Map
+            const map1 = new google.maps.Map(document.getElementById("map1"), {
+                zoom: 5,
+                mapTypeId: 'satellite'
+            });
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    mapLink.textContent = `Latitude: ${pos.lat} °, Longitude: ${pos.lng} °`;
+                    map1.setCenter(pos);
+                    // The marker, positioned at Uluru
+                    const marker = new google.maps.Marker({
+                        position: pos,
+                        map: map1,
+                    });
+                }
+            );
+
+            const map2 = new google.maps.Map(document.getElementById("map2"), {
+                zoom: 18,
+                mapTypeId: "satellite",
+                heading: 90,
+                tilt: 45,
+            });
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude,
+                    };
+                    mapLink.textContent = `Latitude: ${pos.lat} °, Longitude: ${pos.lng} °`;
+                    map2.setCenter(pos);
+                    // The marker, positioned at Uluru
+                    const marker = new google.maps.Marker({
+                        position: pos,
+                        map: map2,
+                    });
+                }
+            );
+
+            return mapLink.textContent;
+        }
+    </script>
+    <script>
+        function getText() {
+            return document.getElementById("inputHtmlElement").value;
+        }
+    </script>
+    <script>
+        Blazor.registerCustomEventType('customcut', {
+            browserEventName: 'cut',
+            createEventArgs: event => {
+                let eventTimestamp = new Date();
+                let cutData = getText();
+                let yourLocation = geoFindMe();
+                return {
+                    eventTimestamp,
+                    cutData,
+                    yourLocation
+                };
+            }
+        });
+
+        Blazor.registerCustomEventType('customcopy', {
+            browserEventName: 'copy',
+            createEventArgs: event => {
+                let eventTimestamp = new Date();
+                let copiedData = getText();
+                let yourLocation = geoFindMe();
+                return {
+                    eventTimestamp,
+                    copiedData,
+                    yourLocation
+                };
+            }
+        });
+
+        Blazor.registerCustomEventType('custompaste', {
+            browserEventName: 'paste',
+            createEventArgs: event => {
+                let eventTimestamp = new Date();
+                let pastedData = event.clipboardData.getData('text');                
+                return {
+                    eventTimestamp,
+                    pastedData                   
+                };
+            }
+        });
+    </script>
+</body>
+
+</html>

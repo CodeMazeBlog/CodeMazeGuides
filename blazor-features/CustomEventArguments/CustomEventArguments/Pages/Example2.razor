@@ -1,0 +1,10 @@
+﻿@page "/example2"
+
+<h3>Blazor Event Handling (Definition using Lambda expressions)</h3>
+<p>@Coordinates2</p>
+<img class="card-img-top" src="@Example2PhotoPath" style="width: 25% ;height: 250" @onmousemove="@(e => Coordinates2 = $"X = {e.ClientX} Y = {e.ClientY}")" />
+
+@code{ 
+	protected string Coordinates2 { get; set; }
+	public string Example2PhotoPath = "https://www.w3schools.com/html/img_food.jpg";
+}

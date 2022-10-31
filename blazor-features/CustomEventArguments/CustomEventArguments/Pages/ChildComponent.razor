@@ -1,0 +1,7 @@
+﻿<h4>Child Component</h4>
+
+<button @onclick="OnClickCallback"> Click Me </button>
+
+@code {
+	[Parameter] public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}

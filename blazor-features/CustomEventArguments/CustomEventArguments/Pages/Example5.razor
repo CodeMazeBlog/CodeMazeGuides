@@ -1,0 +1,41 @@
+﻿@page "/example5"
+
+@using CustomEventArguments.CustomEvents
+
+@inject IJSRuntime JSRuntime
+
+<p>Try pasting into the following text box:</p>
+
+<input id="inputHtmlElement" @oncustomcut="HandleCustomCut" @oncustomcopy="HandleCustomCopy" />
+
+<p id="text">@message1</p>
+<p id="location">@message2</p>
+
+<p id="status"></p>
+
+<a id="map-link" target="_blank"></a>
+<br />
+<h3>My Google Maps Demo</h3>
+
+<!--The div element for the map -->
+<div class="row">
+	<div id="map1" class="column" style="height:500px;width:50%;"></div>
+	<div id="map2" class="column" style="height:500px;width:50%;"></div>
+</div>
+
+@code {
+	string message1;
+	string message2;
+
+	void HandleCustomCut(CustomCutEventArgs eventArgs)
+	{
+		message1 = $"At {eventArgs.EventTimestamp.ToShortTimeString()}, The cut text is: {eventArgs.CutData}";
+		message2 = $"Your location is: {eventArgs.YourLocation}";
+	}
+
+	void HandleCustomCopy(CustomCopyEventArgs eventArgs)
+	{
+		message1 = $"At {eventArgs.EventTimestamp.ToShortTimeString()}, The copied text is: {eventArgs.CopiedData}";
+		message2 = $"Your location is: {eventArgs.YourLocation}";
+	}
+}

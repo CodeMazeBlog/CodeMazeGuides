@@ -1,0 +1,18 @@
+﻿@page "/example4" 
+
+@using CustomEventArguments.CustomEvents
+
+<h3>Blazor Custom Event Arguments</h3>
+<p>Try pasting into the following text box:</p> 
+<input @oncustompaste="HandleCustomPaste" /> 
+<p>@message</p> 
+
+@code { 
+	
+	string message; 
+
+	void HandleCustomPaste(CustomPasteEventArgs eventArgs) 
+	{ 
+		message = $"At {eventArgs.EventTimestamp.ToShortTimeString()}, you pasted: {eventArgs.PastedData}"; 
+	} 
+}
