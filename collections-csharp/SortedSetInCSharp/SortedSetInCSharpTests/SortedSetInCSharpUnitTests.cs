@@ -5,12 +5,13 @@ namespace SortedSetInCSharpTests
     [TestClass]
     public class SortedSetInCSharpUnitTests
     {
-        SortedSetMethods sortedSet = new SortedSetMethods();
+        private readonly SortedSetMethods _sortedSet; 
         private readonly SortedSet<string> _languages;
 
         public SortedSetInCSharpUnitTests()
         {
-            _languages = sortedSet.ProgrammingLanguages();
+            _sortedSet = new SortedSetMethods();
+            _languages = _sortedSet.ProgrammingLanguages();
         }
 
         [TestMethod]
@@ -49,7 +50,7 @@ namespace SortedSetInCSharpTests
         {
             var elementToRemove = "Java";
 
-            var updatedLanguages = sortedSet.RemoveElement(_languages, elementToRemove);
+            var updatedLanguages = _sortedSet.RemoveElement(_languages, elementToRemove);
 
             Assert.IsFalse(updatedLanguages.Contains(elementToRemove));
             Assert.AreEqual(_languages.Count(), 8);
