@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDisposableObjects", "IDisposableObjects\IDisposableObjects.csproj", "{BC39B4F6-C872-4614-9C0D-8FF98E9BAE3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IDisposableObjects", "IDisposableObjects\IDisposableObjects.csproj", "{BC39B4F6-C872-4614-9C0D-8FF98E9BAE3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDisposableObjectsUnitTest", "IDisposableObjectsUnitTest\IDisposableObjectsUnitTest.csproj", "{59BAC846-3903-4083-B74D-1BB5711E45A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IDisposableObjectsUnitTest", "IDisposableObjectsUnitTest\IDisposableObjectsUnitTest.csproj", "{59BAC846-3903-4083-B74D-1BB5711E45A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

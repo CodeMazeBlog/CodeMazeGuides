@@ -3,63 +3,51 @@ namespace IdisposableObjects;
 
 public class Program
 {
-    protected static string basePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-    protected static string projectsPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(basePath).FullName).FullName).FullName).FullName;
-    protected static string exampleFilePath = projectsPath + "/codeMazeExample.txt";
-
-    protected static StreamReader ExampleFileReader = null;
-    protected static StreamWriter ExampleFileWriter = null;
+    protected static private string? basePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+    protected static private string? projectsPath = Directory.GetParent(basePath).Parent.Parent.Parent.FullName;
+    protected static private string exampleFilePath = projectsPath + "/codeMazeExample.txt";
+    protected static private StreamReader? exampleFileReader;
+    protected static private  StreamWriter? exampleFileWriter;
 
     public static void Main()
     {
         if (!File.Exists(exampleFilePath))
         {
-            using StreamWriter ExampleFileWriter = new StreamWriter(exampleFilePath, append: true);
-            ExampleFileWriter.WriteLine("example File Content");
-            ExampleFileWriter.Close();
+            using StreamWriter? exampleFileWriter = new(exampleFilePath, append: true);
+            exampleFileWriter.WriteLine("example File Content");
+            exampleFileWriter.Close();
         }
-
-        Console.WriteLine(UnmanagedObjectFileManager());
+        //Console.WriteLine(UnmanagedObjectFileManager());
         //Console.WriteLine(UsingusingFileManager());
-        //Console.WriteLine(UsingTryFinallyFileManager());
-
+        Console.WriteLine(UsingTryFinallyFileManager());
     }
+
     public static int UnmanagedObjectFileManager()
     {
+        exampleFileReader = new StreamReader(exampleFilePath);
+        var exampleFileContents = exampleFileReader.ReadToEnd();
+        var exampleFileReaderInfo = new StringInfo(exampleFileContents);
 
-        ExampleFileReader = new StreamReader(exampleFilePath);
-
-        var ExampleFileContents = ExampleFileReader.ReadToEnd();
-
-        var ExampleFileReaderInfo = new StringInfo(ExampleFileContents);
-
-        return ExampleFileReaderInfo.LengthInTextElements;
+        return exampleFileReaderInfo.LengthInTextElements;
     }
 
     public static int UsingusingFileManager()
     {
-        using StreamReader ExampleFileReader = new StreamReader(exampleFilePath);
+        using StreamReader? exampleFileReader = new(exampleFilePath);
+        var exampleFileContents = exampleFileReader.ReadToEnd();
+        var exampleFileReaderInfo = new StringInfo(exampleFileContents);
 
-        var ExampleFileContents = ExampleFileReader.ReadToEnd();
-
-        var ExampleFileReaderInfo = new StringInfo(ExampleFileContents);
-
-        return ExampleFileReaderInfo.LengthInTextElements;
+        return exampleFileReaderInfo.LengthInTextElements;
     }
-
-
 
     public static int UsingTryFinallyFileManager()
     {
-        int ExampleFileReaderInfoLenth = 0;
+        int exampleFileReaderInfoLenth = 0;
         try
         {
-
-            ExampleFileReader = new StreamReader(exampleFilePath);
-
-            var ExampleFileContents = ExampleFileReader.ReadToEnd();
-
-            ExampleFileReaderInfoLenth = new StringInfo(ExampleFileContents).LengthInTextElements;
+            exampleFileReader = new(exampleFilePath);
+            var exampleFileContents = exampleFileReader.ReadToEnd();
+            exampleFileReaderInfoLenth = new StringInfo(exampleFileContents).LengthInTextElements;
         }
         catch (FileNotFoundException)
         {
@@ -75,11 +63,10 @@ public class Program
         }
         finally
         {
-            ExampleFileReader?.Dispose();
-            ExampleFileWriter?.Dispose();
-
+            exampleFileReader?.Dispose();
+            exampleFileWriter?.Dispose();
         }
-        return ExampleFileReaderInfoLenth;
-    }
 
+        return exampleFileReaderInfoLenth;
+    }
 }

@@ -1,40 +1,33 @@
 using IdisposableObjects;
 namespace TestIDisposableObjects
-
 {
     [TestClass]
     public class UnitTest
     {
-
         [TestMethod]
-        public void WhenIDisposablesNotDisposed_MethodRunsSuccessfully()
+        public void WhenIDisposablesNotManaged_ThenMethodRunsSuccessfully()
         {
-            // arrange
             int expectedResults = 21;
-            //act
             int actualResults = Program.UnmanagedObjectFileManager();
-            //assert
+
             Assert.AreEqual(expectedResults, actualResults);
         }
 
         [TestMethod]
-        public void WhenUsingusingStatement_MethodReturnsCorrectLength()
+        public void WhenUsingusingStatement_ThenMethodReturnsCorrectLength()
         {
-            // arrange
             int expectedResults = 21;
-            //act
             int actualResults = Program.UsingusingFileManager();
-            //assert
+
             Assert.AreEqual(expectedResults, actualResults);
         }
+
         [TestMethod]
-        public void WhenUsingTryFinally_MethodReturnsCorrectLength()
+        public void WhenUsingTryFinally_ThenMethodReturnsCorrectLength()
         {
-            // arrange
             int expectedResults = 21;
-            //act
             int actualResults = Program.UsingTryFinallyFileManager();
-            //assert
+
             Assert.AreEqual(expectedResults, actualResults);
         }
     }
