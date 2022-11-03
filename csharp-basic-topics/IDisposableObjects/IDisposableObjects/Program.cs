@@ -3,50 +3,55 @@ namespace IdisposableObjects;
 
 public class Program
 {
-    protected static private string? basePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
-    protected static private string? projectsPath = Directory.GetParent(basePath).Parent.Parent.Parent.FullName;
-    protected static private string exampleFilePath = projectsPath + "/codeMazeExample.txt";
-    protected static private StreamReader? exampleFileReader;
-    protected static private  StreamWriter? exampleFileWriter;
+    private protected static  string? basePath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+    private protected static  string? projectsPath = Directory.GetParent(basePath).Parent.Parent.Parent.FullName;
+    private protected static string exampleFilePath = projectsPath + "/codeMazeExample.txt";
+    private protected StreamReader? exampleFileReader;
+
+    public Program(StreamReader? exampleFileReader=null)
+    {
+        this.exampleFileReader = exampleFileReader;
+    }
 
     public static void Main()
     {
+        Program newProgramInstance = new();
         if (!File.Exists(exampleFilePath))
         {
             using StreamWriter? exampleFileWriter = new(exampleFilePath, append: true);
             exampleFileWriter.WriteLine("example File Content");
             exampleFileWriter.Close();
         }
-        //Console.WriteLine(UnmanagedObjectFileManager());
-        //Console.WriteLine(UsingusingFileManager());
-        Console.WriteLine(UsingTryFinallyFileManager());
+        //Console.WriteLine(newProgramInstance.UnmanagedObjectFileManager());
+        //Console.WriteLine(newProgramInstance.UsingusingFileManager());
+        Console.WriteLine(newProgramInstance.UsingTryFinallyFileManager());
     }
 
-    public static int UnmanagedObjectFileManager()
+    public  int UnmanagedObjectFileManager()
     {
         exampleFileReader = new StreamReader(exampleFilePath);
-        var exampleFileContents = exampleFileReader.ReadToEnd();
-        var exampleFileReaderInfo = new StringInfo(exampleFileContents);
+        string? exampleFileContents = exampleFileReader.ReadToEnd();
+        StringInfo? exampleFileReaderInfo = new(exampleFileContents);
 
         return exampleFileReaderInfo.LengthInTextElements;
     }
 
-    public static int UsingusingFileManager()
+    public int UsingusingFileManager()
     {
         using StreamReader? exampleFileReader = new(exampleFilePath);
-        var exampleFileContents = exampleFileReader.ReadToEnd();
-        var exampleFileReaderInfo = new StringInfo(exampleFileContents);
+        string? exampleFileContents = exampleFileReader.ReadToEnd();
+        StringInfo? exampleFileReaderInfo = new(exampleFileContents);
 
         return exampleFileReaderInfo.LengthInTextElements;
     }
 
-    public static int UsingTryFinallyFileManager()
+    public int UsingTryFinallyFileManager()
     {
         int exampleFileReaderInfoLenth = 0;
         try
         {
             exampleFileReader = new(exampleFilePath);
-            var exampleFileContents = exampleFileReader.ReadToEnd();
+            string? exampleFileContents = exampleFileReader.ReadToEnd();
             exampleFileReaderInfoLenth = new StringInfo(exampleFileContents).LengthInTextElements;
         }
         catch (FileNotFoundException)
@@ -64,7 +69,6 @@ public class Program
         finally
         {
             exampleFileReader?.Dispose();
-            exampleFileWriter?.Dispose();
         }
 
         return exampleFileReaderInfoLenth;
