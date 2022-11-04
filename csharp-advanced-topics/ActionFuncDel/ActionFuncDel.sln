@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32929.386
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionFuncDel", "ActionFuncDel\ActionFuncDel.csproj", "{B9FE2CA0-3FF5-417D-8843-0AD8897E8910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionFuncDelTest", "ActionFuncDelTest\ActionFuncDelTest.csproj", "{026E1287-96B4-4F62-AC82-5265B25791E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9FE2CA0-3FF5-417D-8843-0AD8897E8910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9FE2CA0-3FF5-417D-8843-0AD8897E8910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9FE2CA0-3FF5-417D-8843-0AD8897E8910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9FE2CA0-3FF5-417D-8843-0AD8897E8910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{026E1287-96B4-4F62-AC82-5265B25791E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{026E1287-96B4-4F62-AC82-5265B25791E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{026E1287-96B4-4F62-AC82-5265B25791E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{026E1287-96B4-4F62-AC82-5265B25791E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {312BB439-A315-4DFE-9B54-F7912EB028B4}
+	EndGlobalSection
+EndGlobal
