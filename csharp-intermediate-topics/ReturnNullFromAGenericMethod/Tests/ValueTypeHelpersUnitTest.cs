@@ -2,10 +2,10 @@
 
 namespace Tests
 {
-    public class ValueTypeHelpersTests
+    public class ValueTypeHelpersUnitTest
     {
         [Fact]
-        public void GivenValueType_ShouldThrowInvalidOperationException_WhenNullReturned()
+        public void GivenNullableValueType_WhenNullReturned_ThenThrowInvalidOperationException()
         {
             var numbers = new List<int> { 1, 2, 3, 4, 5 };
             var number = ValueTypeHelpers.FindItem(numbers, 6);
