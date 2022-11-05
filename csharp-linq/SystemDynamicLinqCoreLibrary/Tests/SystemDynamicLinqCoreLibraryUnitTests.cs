@@ -4,7 +4,7 @@ using SystemDynamicLinqCoreLibrary;
 
 namespace Tests
 {
-    public class SystemDynamicLinqCoreLibraryUnitTest
+    public class SystemDynamicLinqCoreLibraryUnitTests
     {
         private Employee _employee;
 

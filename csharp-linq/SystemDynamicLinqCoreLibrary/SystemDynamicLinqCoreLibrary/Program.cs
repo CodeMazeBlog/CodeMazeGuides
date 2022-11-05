@@ -34,10 +34,6 @@ var employeeNullPropagation = employees.Where("np(Employer.Name) == \"Block 10\"
 
 var employeesUnknownEmployer = employees.Select("np(Employer.Name, \"Not Specified\")").ToDynamicList();
 
-foreach (var  empl in employeesUnknownEmployer)
-{
-    Console.WriteLine(empl);
-}
 
 // Dynamic Lambda Expressions
 
