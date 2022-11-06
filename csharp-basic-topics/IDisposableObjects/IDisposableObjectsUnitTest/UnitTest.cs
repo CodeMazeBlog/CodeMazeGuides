@@ -1,15 +1,15 @@
-using IdisposableObjects;
+using IDisposableObjects;
 namespace TestIDisposableObjects
 {
     [TestClass]
     public class UnitTest
     {
-        readonly Program newProgramInstance = new();
+        readonly FileManager fileManager = new();
         [TestMethod]
-        public void WhenIDisposablesNotManaged_ThenMethodRunsSuccessfully()
+        public void WhenIDisposablesNotManaged_ThenReturnsCorrectLength()
         {
             int expectedResults = 21;
-            int actualResults = newProgramInstance.UnmanagedObjectFileManager();
+            int actualResults = fileManager.UnmanagedObjectFileManager();
 
             Assert.AreEqual(expectedResults, actualResults);
         }
@@ -18,7 +18,7 @@ namespace TestIDisposableObjects
         public void WhenUsingusingStatement_ThenMethodReturnsCorrectLength()
         {
             int expectedResults = 21;
-            int actualResults = newProgramInstance.UsingusingFileManager();
+            int actualResults = fileManager.UsingFileManager();
 
             Assert.AreEqual(expectedResults, actualResults);
         }
@@ -27,7 +27,7 @@ namespace TestIDisposableObjects
         public void WhenUsingTryFinally_ThenMethodReturnsCorrectLength()
         {
             int expectedResults = 21;
-            int actualResults = newProgramInstance.UsingTryFinallyFileManager();
+            int actualResults = fileManager.TryFinallyFileManager();
 
             Assert.AreEqual(expectedResults, actualResults);
         }
