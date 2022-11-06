@@ -12,6 +12,12 @@
 <h3>Blazor Event Callback</h3>
 <button @onclick=@( () => TriggerUrlExample3() ) class="btn btn-primary">Example 3</button>
 
+<h3>Custom Event Arguments</h3>
+<button @onclick=@( () => TriggerUrlExample4() ) class="btn btn-primary">Example 4</button>
+
+<h3>Custom Event Arguments</h3>
+<button @onclick=@( () => TriggerUrlExample5() ) class="btn btn-primary">Example 5</button>
+
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code{ 
@@ -28,5 +34,15 @@
     void TriggerUrlExample3()
     {
         NavigationManager.NavigateTo("/example3");
+    }
+
+    void TriggerUrlExample4()
+    {
+        NavigationManager.NavigateTo("/example4");
+    }
+
+    void TriggerUrlExample5()
+    {
+        NavigationManager.NavigateTo("/example5");
     }
 }

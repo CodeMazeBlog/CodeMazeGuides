@@ -1,4 +1,3 @@
-using System.Diagnostics.Metrics;
 using Bunit;
 using CustomEventArguments.Pages;
 

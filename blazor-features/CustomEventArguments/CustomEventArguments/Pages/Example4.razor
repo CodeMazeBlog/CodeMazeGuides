@@ -13,6 +13,7 @@
 
 	void HandleCustomPaste(CustomPasteEventArgs eventArgs) 
 	{ 
-		message = $"At {eventArgs.EventTimestamp.ToShortTimeString()}, you pasted: {eventArgs.PastedData}"; 
+		message = $"At {eventArgs.EventTimestamp.ToShortTimeString()}"
+		           +  $", you pasted: {eventArgs.PastedData}"; 
 	} 
 }

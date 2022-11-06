@@ -1,10 +1,5 @@
-using System.Diagnostics.Metrics;
 using Bunit;
-using CustomEventArguments.CustomEvents;
 using CustomEventArguments.Pages;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components;
-using AngleSharpWrappers;
 
 namespace CustomEventArgumentsTestExample3
 {

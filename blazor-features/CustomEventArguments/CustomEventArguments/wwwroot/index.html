@@ -3,14 +3,16 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,
+          user-scalable=no" />
     <title>CustomEventArguments</title>
     <base href="/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="CustomEventArguments.styles.css" rel="stylesheet" />
-
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=API Key value"></script>
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=API Key value">
+    </script>
 
 </head>
 
@@ -42,7 +44,8 @@
                     };
                     mapLink.textContent = `Latitude: ${pos.lat} °, Longitude: ${pos.lng} °`;
                     map1.setCenter(pos);
-                    // The marker, positioned at Uluru
+
+                    // The marker
                     const marker = new google.maps.Marker({
                         position: pos,
                         map: map1,
@@ -65,7 +68,8 @@
                     };
                     mapLink.textContent = `Latitude: ${pos.lat} °, Longitude: ${pos.lng} °`;
                     map2.setCenter(pos);
-                    // The marker, positioned at Uluru
+
+                    // The marker
                     const marker = new google.maps.Marker({
                         position: pos,
                         map: map2,
@@ -76,11 +80,13 @@
             return mapLink.textContent;
         }
     </script>
+
     <script>
         function getText() {
             return document.getElementById("inputHtmlElement").value;
         }
     </script>
+
     <script>
         Blazor.registerCustomEventType('customcut', {
             browserEventName: 'cut',

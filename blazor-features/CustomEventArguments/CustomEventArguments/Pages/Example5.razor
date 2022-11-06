@@ -29,13 +29,15 @@
 
 	void HandleCustomCut(CustomCutEventArgs eventArgs)
 	{
-		message1 = $"At {eventArgs.EventTimestamp.ToShortTimeString()}, The cut text is: {eventArgs.CutData}";
+		message1 = $"At {eventArgs.EventTimestamp.ToShortTimeString()}"
+		           + $", The cut text is: {eventArgs.CutData}";
 		message2 = $"Your location is: {eventArgs.YourLocation}";
 	}
 
 	void HandleCustomCopy(CustomCopyEventArgs eventArgs)
 	{
-		message1 = $"At {eventArgs.EventTimestamp.ToShortTimeString()}, The copied text is: {eventArgs.CopiedData}";
+		message1 = $"At {eventArgs.EventTimestamp.ToShortTimeString()}"
+		           + $", The copied text is: {eventArgs.CopiedData}";
 		message2 = $"Your location is: {eventArgs.YourLocation}";
 	}
 }
