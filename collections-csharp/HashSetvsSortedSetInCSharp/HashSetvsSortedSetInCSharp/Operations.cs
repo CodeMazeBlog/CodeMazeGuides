@@ -104,7 +104,7 @@ namespace HashSetvsSortedSetInCSharp
             return _sortedSet.ToList();
         }
 
-        public List<int> RandomInts(int size)
+        private List<int> RandomInts(int size)
         {
             var rand = new Random();
             var numbers = new List<int>();
