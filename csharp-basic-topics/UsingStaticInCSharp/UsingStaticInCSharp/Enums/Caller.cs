@@ -1,10 +1,10 @@
-﻿using static UsingStaticInCSharp.Enums.Color;
+﻿using static UsingStaticInCSharp.Enums.Role;
 
 namespace UsingStaticInCSharp.Enums;
-public static class Caller
+public class Caller
 {
-    public static void Invoke()
+    public virtual void Invoke()
     {
-        Console.WriteLine("The enum items are {0}, {1}, {2}", Red, Green, Blue);
+        Console.WriteLine("The enum items are {0}, {1}", User, Admin);
     }
 }

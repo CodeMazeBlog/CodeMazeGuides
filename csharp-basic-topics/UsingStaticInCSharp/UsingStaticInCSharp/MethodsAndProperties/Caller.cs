@@ -1,9 +1,9 @@
 ﻿using static UsingStaticInCSharp.MethodsAndProperties.ClassA;
 
 namespace UsingStaticInCSharp.MethodsAndProperties;
-public static class Caller
+public class Caller
 {
-    public static void Invoke()
+    public virtual void Invoke()
     {
         MethodA();
         MethodB();

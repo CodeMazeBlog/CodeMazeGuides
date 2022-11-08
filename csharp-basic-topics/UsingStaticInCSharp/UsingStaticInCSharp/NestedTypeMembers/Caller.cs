@@ -3,7 +3,7 @@
 namespace UsingStaticInCSharp.NestedTypeMembers;
 public class Caller
 {
-    public static void Invoke()
+    public virtual void Invoke()
     {
         MethodB();
     }

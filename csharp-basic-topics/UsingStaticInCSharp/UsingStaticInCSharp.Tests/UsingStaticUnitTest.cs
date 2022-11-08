@@ -1,55 +1,59 @@
+using Moq;
+
 namespace UsingStaticInCSharp.Tests;
 public class UsingStaticUnitTest
 {
-    readonly StringWriter output;
-
-    public UsingStaticUnitTest()
+    [Fact]
+    public void GivenAStaticConstant_WhenCalledByUsingStaticFeature_ShouldBeInvoked()
     {
-        output = new StringWriter();
-        Console.SetOut(output);
+        var mock = new Mock<Constants.Caller>();
+        mock.Object.Invoke();
+
+        mock.Verify(x => x.Invoke());
     }
 
     [Fact]
-    public void GivenAStaticConstant_WhenCalledByUsingStaticFeature_ShouldReturnItsValue()
+    public void GivenANestedClassFromSampleClassOne_WhenCalledByUsingStaticFeature_ShouldBeInvoked()
     {
-        Constants.Caller.Invoke();
-        Assert.Contains("The contants are Pending, InProgress, Completed", output.ToString());
+        var mock = new Mock<NestedTypeMembers.Caller>();
+        mock.Object.Invoke();
+
+        mock.Verify(x => x.Invoke());
     }
 
     [Fact]
-    public void GivenANestedClassFromSampleClassOne_WhenCalledByUsingStaticFeature_ShouldReturnItsValue()
+    public void GivenAStaticMethodFromClassA_WhenCalledByUsingStaticFeature_ShouldBeInvoked()
     {
-        NestedTypeMembers.Caller.Invoke();
-        Assert.Contains("NestedTypeMembers.ClassA.ClassB.MethodB() called", output.ToString());
+        var mock = new Mock<MethodsAndProperties.Caller>();
+        mock.Object.Invoke();
+
+        mock.Verify(x => x.Invoke());
     }
 
     [Fact]
-    public void GivenAStaticMethodFromClassA_WhenCalledByUsingStaticFeature_ShouldReturnItsValue()
+    public void GivenAAmbiguityMethodFromClassAAndClassB_WhenCalledByItsClassName_ShouldBeInvoked()
     {
-        MethodsAndProperties.Caller.Invoke();
-        Assert.Contains("MethodsAndProperties.ClassA.MethodA() called", output.ToString());
-        Assert.Contains("MethodsAndProperties.ClassA.MethodB() called", output.ToString());
+        var mock = new Mock<Ambiguity.Caller>();
+        mock.Object.Invoke();
+
+        mock.Verify(x => x.Invoke());
     }
 
     [Fact]
-    public void GivenAAmbiguityMethodFromClassAAndClassB_WhenCalledByItsClassName_ShouldReturnItsValue()
+    public void GivenAEnum_WhenCalledByUsingStaticFeature_ShouldBeInvoked()
     {
-        Ambiguity.Caller.Invoke();
-        Assert.Contains("UsingStaticInCSharp.Ambiguity.ClassA.Method() called", output.ToString());
-        Assert.Contains("UsingStaticInCSharp.Ambiguity.ClassB.Method() called", output.ToString());
+        var mock = new Mock<Enums.Caller>();
+        mock.Object.Invoke();
+
+        mock.Verify(x => x.Invoke());
     }
 
     [Fact]
-    public void GivenAEnum_WhenCalledByUsingStaticFeature_ShouldReturnItsValue()
+    public void GivenAnExtensionMethodInDifferentNamespace_WhenCalledByUsingStaticFeature_ShouldBeInvoked()
     {
-        Enums.Caller.Invoke();
-        Assert.Contains("The enum items are Red, Green, Blue", output.ToString());
-    }
+        var mock = new Mock<ExtensionMethods.Caller>();
+        mock.Object.Invoke();
 
-    [Fact]
-    public void GivenAnExtensionMethodInDifferentNamespace_WhenCalledByUsingStaticFeature_ShouldReturnItsValue()
-    {
-        ExtensionMethods.Caller.Invoke();
-        Assert.Contains("The sum is 3", output.ToString());
+        mock.Verify(x => x.Invoke());
     }
 }

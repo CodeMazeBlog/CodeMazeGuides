@@ -1,9 +1,9 @@
 ﻿using static UsingStaticInCSharp.BaseClassMembers.ClassB;
 
 namespace UsingStaticInCSharp.BaseClassMembers;
-public static class Caller
+public class Caller
 {
-    public static void Invoke()
+    public virtual void Invoke()
     {
         MethodB();
     }
