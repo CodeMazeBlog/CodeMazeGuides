@@ -1,8 +1,6 @@
-﻿using System.Collections;
-
-namespace ObjectComparisons
+﻿namespace ObjectComparisons
 {
-    public partial class Employee : IComparable
+    public partial class Employee : IComparable<Employee>
     {
         public int Id { get; set; }
         public string? Name { get; set; }
@@ -13,18 +11,17 @@ namespace ObjectComparisons
             Name = name;
         }
 
-        public int CompareTo(object? obj)
+        public int CompareTo(Employee? otherEmployee)
         {
-            Employee? employee = obj as Employee;
-            return Id.CompareTo(employee?.Id);
+            return otherEmployee is null ? 1 : Id.CompareTo(otherEmployee.Id);
         }
 
-        public static IComparer SortByIdAscending()
+        public static IComparer<Employee> SortByIdAscending()
         {
             return new SortByIdAscendingHelper();
         }
 
-        public static IComparer SortByIdDescending()
+        public static IComparer<Employee> SortByIdDescending()
         {
             return new SortByIdDescendingHelper();
         }
