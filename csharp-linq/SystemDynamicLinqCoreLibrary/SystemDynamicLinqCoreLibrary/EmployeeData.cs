@@ -2,9 +2,16 @@
 {
     public class EmployeeData
     {
+        public IQueryable<Employee> Employees;
+
+        public EmployeeData()
+        {
+            GetEmployees();
+        }
+
         public IQueryable<Employee> GetEmployees()
         {
-            return new[]
+            Employees = new[]
             {
                 new Employee
                 {
@@ -76,6 +83,8 @@
                     }
                 }
             }.AsQueryable();
+
+            return Employees;
         }
     }
 }
