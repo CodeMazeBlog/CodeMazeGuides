@@ -1,6 +1,2 @@
 ﻿//Simplest declaration
 Action simpleAction;
-
-
-
-

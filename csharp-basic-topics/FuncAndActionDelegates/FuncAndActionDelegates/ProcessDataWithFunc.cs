@@ -1,9 +1,8 @@
-﻿using System;
-namespace FuncAndActionDelegates
+﻿namespace FuncAndActionDelegates
 {
     public class ProcessDataWithFunc
     {
-        public void process()
+        public void Process()
         {
             //Simplest declaration with a return type and no parameters
             Func<int> simpleFunc;

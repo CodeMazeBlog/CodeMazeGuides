@@ -4,21 +4,23 @@ namespace FuncAndActionDelegatesUnitTest;
 
 public class Tests
 {
+    ProcessDataWithFunc _obj;
+
     [SetUp]
     public void Setup()
     {
+        _obj = new ProcessDataWithFunc();
     }
 
     [Test]
-    public void WhenPassedTwoNums_ShouldReturnSum()
+    public void WhenPassedTwoNums_ThenShouldReturnSum()
     {
         //Arrange
         var val1 = 1;
         var val2 = 2;
-        ProcessDataWithFunc obj = new ProcessDataWithFunc();
 
         //Act
-        var totalResult = obj.CalculateSumWithReturnVal(val1, val2);
+        var totalResult = _obj.CalculateSumWithReturnVal(val1, val2);
 
         //Assert
 
@@ -26,16 +28,14 @@ public class Tests
     }
 
     [Test]
-    public void WhenPassedSumFunc_ShouldReturnSum()
+    public void WhenPassedSumFunc_ThenShouldReturnSum()
     {
         //Arrange
         var val1 = 1;
         var val2 = 2;
 
-        ProcessDataWithFunc obj = new ProcessDataWithFunc();
-
         //Act
-        var totalResult = obj.GetDataWithFunc(obj.CalculateSumWithReturnVal, val1, val2);
+        var totalResult = _obj.GetDataWithFunc(_obj.CalculateSumWithReturnVal, val1, val2);
 
         //Assert
 

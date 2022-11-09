@@ -1,5 +1,4 @@
-﻿using System;
-namespace FuncAndActionDelegates
+﻿namespace FuncAndActionDelegates
 {
     public class ProcessDataWithAction
     {
