@@ -40,7 +40,7 @@ namespace ExecuteStoredProceduresInEFCore
         {
             return context?.Students?.FromSqlRaw("FindStudents @searchFor", 
                     new SqlParameter("@searchFor", searchFor)).ToList();
-        }
+        } 
 
         public static List<Student>? FindStudentsFromSqlInterpolated(AppDbContext context, string searchFor)
         {
