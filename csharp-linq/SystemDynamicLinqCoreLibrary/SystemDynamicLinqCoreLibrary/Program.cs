@@ -2,21 +2,55 @@
 using System.Linq.Expressions;
 using SystemDynamicLinqCoreLibrary;
 
-var employee = new Employee();
 
-var employees = employee.GetEmployees();
+var employeeData = new EmployeeData();
+var employees = employeeData.GetEmployees();
 
-var itDepartmentEmployees = employees.Where("Department == @0", "IT").ToList();
+var stronglyTypedEmployeeLinq = employees
+    .Where(e => e.Department == "IT")
+    .ToList();
 
-var itEmployees = employees.Where("Department == \"IT\"").ToList();
+var itDepartmentEmployees = employees
+    .Where("Department == @0", "IT")
+    .ToList();
 
-var itEmployeesList = employees.Where("c => c.Department = \"IT\"").ToList();
+var itEmployees = employees
+    .Where("Department == \"IT\"")
+    .ToList();
 
-var relevantData = employees.Select("new {Name, Department}").ToDynamicList();
+var itEmployeesList = employees
+    .Where("c => c.Department = \"IT\"")
+    .ToList();
 
-var sortedData = employees.OrderBy("Name").ToList();
+var stronglyTypedSelect = employees
+    .Select(e => new Employee
+    {
+        Name = e.Name,
+        Department = e.Department,
+    })
+    .ToList();
 
-var multipleSortedData = employees.OrderBy("Department desc, Name").ToList();
+
+var relevantData = employees
+    .Select("new {Name, Department}")
+    .ToDynamicList();
+
+var sortedData = employees
+    .OrderBy("Name")
+    .ToList();
+
+var stronglySortedData = employees
+    .OrderBy(x => x.Name)
+    .ToList();
+
+var strongMultipleSortedData = employees
+    .OrderBy(x => x.Department)
+    .ThenBy(x => x.Name)
+    .ToList();
+
+var multipleSortedData = employees
+    .OrderBy("Department desc, Name")
+    .ToList();
 
 
 // Creating Config
@@ -26,13 +60,18 @@ var config = new ParsingConfig()
     DateTimeIsParsedAsUTC = true
 };
 
-var query = employees.Where(config, "Age > 26").ToList();
+var query = employees
+    .Where(config, "Age > 26")
+    .ToList();
 
 // Null Propagation
 
-var employeeNullPropagation = employees.Where("np(Employer.Name) == \"Block 10\"").ToList();
+var employeeNullPropagation = employees
+    .Where("np(Employer.Name) == \"Test Company\"")
+    .ToList();
 
-var employeesUnknownEmployer = employees.Select("np(Employer.Name, \"Not Specified\")").ToDynamicList();
+var employeesUnknownEmployer = employees
+    .ToDynamicList();
 
 
 // Dynamic Lambda Expressions
@@ -43,4 +82,6 @@ Expression<Func<Employee, bool>> itExpression = DynamicExpressionParser
 Expression<Func<Employee, bool>> ageExpression = DynamicExpressionParser
     .ParseLambda<Employee, bool>(new ParsingConfig(), true, "Age >= 20");
 
-var employeesLambda = employees.Where("@0(it) and @1(it)", itExpression, ageExpression).ToList();
+var employeesLambda = employees
+    .Where("@0(it) and @1(it)", itExpression, ageExpression)
+    .ToList();

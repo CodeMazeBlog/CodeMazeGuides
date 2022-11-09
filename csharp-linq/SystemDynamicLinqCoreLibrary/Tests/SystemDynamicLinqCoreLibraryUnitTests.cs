@@ -6,12 +6,12 @@ namespace Tests
 {
     public class SystemDynamicLinqCoreLibraryUnitTests
     {
-        private Employee _employee;
+        private EmployeeData _employee;
 
         [SetUp]
         public void SetUp()
         {
-            _employee = new Employee();
+            _employee = new EmployeeData();
         }
 
         [TestCase("IT", 2)]
@@ -38,7 +38,7 @@ namespace Tests
             Assert.AreEqual(expectedCount, actualEmployees.Count);
         }
 
-        [TestCase("Block 10", 1)]
+        [TestCase("Test Company", 1)]
         public void WhenEmployerNameIsSpecified_ThenReturnEmployeesForEmployer(string employer, int employeeCount)
         {
             var employees = _employee.GetEmployees();
