@@ -32,6 +32,13 @@ namespace Tests
         [Fact]
         public void WhenFindStudentsExecuteSqlRawUnsafe_ThenSuccess()
         {
+            var results = Methods.FindStudentsFromSqlRawUnsafe(context, "100");
+            Assert.True(results?.Count == 9);
+        }
+
+        [Fact]
+        public void WhenFindStudentsExecuteSqlRawUnsafeSqlInjection_ThenSuccess()
+        {
             var results = Methods.FindStudentsFromSqlRawUnsafe(context, 
                 @"xyz'; UPDATE Students SET Name = 'Student 000' WHERE Id = 1; SELECT '");
             Assert.True(results?.Count == 0);
