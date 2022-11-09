@@ -1,6 +1,6 @@
 ## Basic Topics in C#
 
-This section contains the topics considered advanced level in C#.
+This section contains the topics considered basic level in C#.
 
 ### Relevant articles:
 
