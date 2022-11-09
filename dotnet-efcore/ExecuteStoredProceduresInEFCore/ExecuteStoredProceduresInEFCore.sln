@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExecuteStoredProceduresInEFCore", "ExecuteStoredProceduresInEFCore\ExecuteStoredProceduresInEFCore.csproj", "{A5E00892-7B14-4042-8B0D-5739F1647188}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExecuteStoredProceduresInEFCore", "ExecuteStoredProcedures\ExecuteStoredProceduresInEFCore.csproj", "{A5E00892-7B14-4042-8B0D-5739F1647188}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{818F600B-F377-4CDA-8597-CAB8027E2642}"
 EndProject
