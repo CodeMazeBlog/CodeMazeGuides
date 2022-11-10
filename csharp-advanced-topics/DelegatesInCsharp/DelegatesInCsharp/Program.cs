@@ -33,7 +33,7 @@ namespace DelegatesInCsharp
 			multicastDelegate("You're gonna need a bigger boat.");
 
 			var delegate3 = new Print<string>(ReverseText);
-			Console.WriteLine(delegate3("I'll be back."));
+			Console.WriteLine(delegate3("I'll be back. iou"));
 
 			// comment out other stuff
 			Action<string> executeReverseWriteAction = ReverseWriteText;
