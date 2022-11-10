@@ -9,7 +9,7 @@ namespace ExecuteStoredProceduresInEFCore
     {
         public const int CourseCount = 10;
         public const int StudentCountPerCourse = 100;
-        
+
         public static async Task SeedData(AppDbContext context)
         {
             if (!context.Courses!.Any())
@@ -36,9 +36,14 @@ namespace ExecuteStoredProceduresInEFCore
             return context?.Students?.FromSql($"FindStudents {searchFor}").ToList();
         }
 
+        public static List<Student>? FindStudentsFromSqlDynamic(AppDbContext context, string methodName, string searchFor)
+        {
+            return context?.Students?.FromSql($"{methodName} {searchFor}").ToList();
+        }
+
         public static List<Student>? FindStudentsFromSqlRaw(AppDbContext context, string searchFor)
         {
-            return context?.Students?.FromSqlRaw("FindStudents @searchFor", 
+            return context?.Students?.FromSqlRaw("FindStudents @searchFor",
                     new SqlParameter("@searchFor", searchFor)).ToList();
         }
 
@@ -54,7 +59,13 @@ namespace ExecuteStoredProceduresInEFCore
 
         public static List<Student>? FindStudentsAltFromSqlRaw(AppDbContext context, string searchFor)
         {
-            return context?.Students?.FromSqlRaw("FindStudentsAlt @searchFor", 
+            return context?.Students?.FromSqlRaw("FindStudentsAlt @searchFor",
+                new SqlParameter("@searchFor", searchFor)).ToList();
+        }
+
+        public static List<Student>? FindStudentsDynamic(AppDbContext context, string searchFor, bool altMethod)
+        {
+            return context?.Students?.FromSqlRaw("FindStudentsAlt @searchFor",
                 new SqlParameter("@searchFor", searchFor)).ToList();
         }
 
@@ -69,6 +80,8 @@ namespace ExecuteStoredProceduresInEFCore
         {
             return context.Database.ExecuteSql($"UpdateStudentMark @Id={id}, @Mark={mark}");
         }
+
+
         public async static Task<int> UpdateStudentMarkSqlAsync(AppDbContext context, int id, int mark)
         {
             return await context.Database.ExecuteSqlAsync($"UpdateStudentMark @Id={id}, @Mark={mark}");
@@ -76,7 +89,7 @@ namespace ExecuteStoredProceduresInEFCore
 
         public static int UpdateStudentMarkSqlRaw(AppDbContext context, int id, int mark)
         {
-            return context.Database.ExecuteSqlRaw("dbo.UpdateStudentMark @Id, @Mark", 
+            return context.Database.ExecuteSqlRaw("dbo.UpdateStudentMark @Id, @Mark",
                             new SqlParameter("@Id", id),
                             new SqlParameter("@Mark", mark));
         }
@@ -87,6 +100,7 @@ namespace ExecuteStoredProceduresInEFCore
                             new SqlParameter("@Mark", mark));
         }
 
+
         public static int UpdateStudentMarkSqlInterpolated(AppDbContext context, int id, int mark)
         {
             return context.Database.ExecuteSqlInterpolated($"UpdateStudentMark @Id={id}, @Mark={mark}");
@@ -96,5 +110,49 @@ namespace ExecuteStoredProceduresInEFCore
             return await context.Database.ExecuteSqlInterpolatedAsync($"UpdateStudentMark @Id={id}, @Mark={mark}");
         }
         #endregion
+
+        #region Dyanmic SQL
+
+        public static int UpdateStudentMarkSqlDynamic(AppDbContext context, int id, int mark)
+        {
+            var field1 = "@Id";
+            var field2 = "@Mark";
+            return context.Database.ExecuteSql($"UpdateStudentMark {field1}={id}, {field2}={mark}");
+        }
+
+        public static int UpdateStudentMarkSqlRawDynamic(AppDbContext context, int id, int mark)
+        {
+            var field1 = "@Id";
+            var field2 = "@Mark";
+            return context.Database.ExecuteSqlRaw($"dbo.UpdateStudentMark {field1} = @Id, {field2}=@Mark",
+                            new SqlParameter("@Id", id),
+                            new SqlParameter("@Mark", mark));
+        }
+
+        #endregion
+
+        #region Combine with LINQ
+        public static List<Student>? FindStudentsFromSqlAndLinq(AppDbContext context, string searchFor)
+        {
+            return context?.Students?
+                        .FromSql($"SELECT * FROM Students")
+                        .Where(m => m.Name != null && m.Name.IndexOf(searchFor) > -1)
+                        .OrderBy(m => m.Mark)
+                        .ToList();
+        }
+
+        public static int? FindStudentsFromSqlAndUpdateMarks(AppDbContext context, string searchFor)
+        {
+            var students = context?.Students?
+                        .FromSql($"FindStudents {searchFor}").ToList();
+
+            if (students != null)
+                foreach (var student in students)
+                    student.Mark += 1;
+
+            return context?.SaveChanges();
+        }
+        #endregion
+
     }
 }

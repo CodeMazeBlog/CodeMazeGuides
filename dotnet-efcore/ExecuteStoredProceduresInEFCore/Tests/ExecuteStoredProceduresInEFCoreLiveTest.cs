@@ -1,5 +1,6 @@
 using ExecuteStoredProceduresInEFCore;
 using ExecuteStoredProceduresInEFCore.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using Xunit;
 
@@ -52,7 +53,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenFindStudentsExtendedFromSqlRaw_ThenSuccess()
+        public void WhenFindStudentsExtendedFromSqlRaw_ThenFail()
         {
             Assert.Throws<InvalidOperationException>(
                 () => Methods.FindStudentsAltFromSqlRaw(context, "100")
@@ -60,7 +61,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenFindStudentsAltFromSqlInterpolated_ThenSuccess()
+        public void WhenFindStudentsAltFromSqlInterpolated_ThenFail()
         {
             Assert.Throws<InvalidOperationException>(
                 () => Methods.FindStudentsAltFromSqlInterpolated(context, "100")
@@ -105,6 +106,35 @@ namespace Tests
         {
             var results = await Methods.UpdateStudentMarkSqlInterpolatedAsync(context, 1, 999);
             Assert.True(results == 1);
+        }
+
+        [Fact]
+        public void WhenUpdateStudentMarkSqlDynamic_ThenFail()
+        {
+            Assert.Throws<SqlException>(
+                () => Methods.UpdateStudentMarkSqlDynamic(context, 1, 666)
+            );
+        }
+
+        [Fact]
+        public void WhenUpdateStudentMarkSqlRawDynamic_ThenSuccess()
+        {
+            var results = Methods.UpdateStudentMarkSqlRawDynamic(context, 1, 666);
+            Assert.True(results == 1);
+        }
+
+        [Fact]
+        public void WhenFindStudentsFromSqlAndLinq_ThenSuccess()
+        {
+            var results = Methods.FindStudentsFromSqlAndLinq(context, "100");
+            Assert.True(results?.Count == 9);
+        }
+
+        [Fact]
+        public void WhenFindStudentsFromSqlAndUpdateMarks_ThenSuccess()
+        {
+            var results = Methods.FindStudentsFromSqlAndUpdateMarks(context, "100");
+            Assert.True(results == 9);
         }
     }
 }
