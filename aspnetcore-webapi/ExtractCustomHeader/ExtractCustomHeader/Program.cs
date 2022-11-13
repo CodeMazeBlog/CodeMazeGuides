@@ -1,3 +1,5 @@
+using ExtractCustomHeader;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,5 +23,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseWhen(context => context.Request.Path.StartsWithSegments("/api2"), appBuilder =>
+{
+    appBuilder.UseMiddleware<EctractCustomHeaderMiddleware>();
+});
 
 app.Run();

@@ -9,7 +9,7 @@ namespace ExtractCustomHeader.Controllers
     public class ExtractCustomHeaderController : ControllerBase
     {
         [HttpGet("from-request")]
-        public IActionResult Get()
+        public IActionResult ExtractFromRequest()
         {
             const string HEADER_KEY_NAME = "HeaderKey";
             Request.Headers.TryGetValue(HEADER_KEY_NAME, out StringValues headerValue);
@@ -18,9 +18,16 @@ namespace ExtractCustomHeader.Controllers
         }
 
         [HttpGet("from-header-attribute")]
-        public IActionResult GetFromQueryAttribute([FromHeader] HeaderDTO headerDTO)
+        public IActionResult ExtractFromQueryAttribute([FromHeader] HeaderDTO headerDTO)
         {
             return Ok(headerDTO);
+        }
+
+        [HttpGet("from-filter")]
+        [ExtractCustomHeader]
+        public IActionResult ExtractFromFilter()
+        {
+            return Ok();
         }
     }
 }
