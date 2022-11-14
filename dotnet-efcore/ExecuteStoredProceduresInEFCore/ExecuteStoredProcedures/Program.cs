@@ -3,5 +3,5 @@ using ExecuteStoredProceduresInEFCore;
 
 using (var context = new AppDbContext())
 {
-    await Methods.SeedData(context);
+    await SeedManager.SeedData(context);
 }
