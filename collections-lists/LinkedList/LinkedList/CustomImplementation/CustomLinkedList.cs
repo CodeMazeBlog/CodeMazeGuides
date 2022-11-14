@@ -34,21 +34,27 @@ namespace LinkedList.CustomImplementation
             AddFirst(node);
         }
 
-        public void AddAfter(T addingValue, T value)
+        public void AddAfter(T addingValue, T findValue)
         {
             var addingNode = new Node<T>(addingValue);
-            AddAfter(addingNode, value);
+            AddAfter(addingNode, findValue);
         }
 
-        public void AddAfter(Node<T> addingNode, T value)
+        public void AddAfter(Node<T> addingNode, T findValue)
         {
-            var find = Find(value);
+            var find = Find(findValue);
 
             if(find is not null)
             {
-                addingNode.Next = find.Next;
-                addingNode.Prev = find;
+                var next = find.Next;
+
+                addingNode.Next = next;
                 find.Next = addingNode;
+
+                if(next?.Prev is not null)
+                    next.Prev = addingNode;
+                
+                addingNode.Prev = find;
 
                 Count++;
 
@@ -99,14 +105,18 @@ namespace LinkedList.CustomImplementation
             return default;
         }
 
-        public void AddBefore(Node<T> addingNode, T value)
+        public void AddBefore(Node<T> addingNode, T findValue)
         {
-            var find = Find(value);
+            var find = Find(findValue);
 
             if (find is not null)
             {
-                addingNode.Next = find;
                 addingNode.Prev = find.Prev;
+
+                if (find.Prev?.Next is not null)
+                    find.Prev.Next = addingNode;
+
+                addingNode.Next = find;
                 find.Prev = addingNode;
 
                 Count++;
@@ -117,10 +127,10 @@ namespace LinkedList.CustomImplementation
             AddLast(addingNode);
         }
 
-        public void AddBefore(T addingValue, T value)
+        public void AddBefore(T addingValue, T findValue)
         {
             var node = new Node<T>(addingValue);
-            AddBefore(node, value);
+            AddBefore(node, findValue);
         }
 
         public Node<T>? Find(T value)

@@ -39,16 +39,12 @@ namespace LinkedList
 
         public static void AddAfter(CustomLinkedList<int> customLinkedList)
         {
-            var node = customLinkedList.Find(2);
-            if (node is not null)
-                customLinkedList.AddAfter(node, 3);
+            customLinkedList.AddAfter(3, 2);
         }
 
         public void AddBefore(CustomLinkedList<int> customLinkedList)
         {
-            var node = customLinkedList.Find(1);
-            if (node is not null)
-                customLinkedList.AddBefore(1, 4);
+            customLinkedList.AddBefore(4, 1);
         }
 
         public void AddLast(CustomLinkedList<int> customLinkedList)
