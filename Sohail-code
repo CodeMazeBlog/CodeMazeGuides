@@ -1,0 +1,7 @@
+public static void ActionSample() { 
+Action<int, int> sumDisplay = new Action<int, int>(Sum);
+sumDisplay(10, 20);
+} 
+public static void Add(int number1, int number2) { 
+Console. WriteLine(number1 + number2);
+}
