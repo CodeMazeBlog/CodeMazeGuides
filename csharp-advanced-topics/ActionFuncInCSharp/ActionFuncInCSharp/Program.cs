@@ -14,7 +14,7 @@ int calcResult = func(5, 4);
 // Func as parameter
 List<string> progLang = new() { "C", "C++", "C#", "F#", "Rust", "Go" };
 Func<string, bool> whereFunc = (string s) => { return s.Contains('C'); };
-List<string> cLang = progLang.Where(whereFunc).ToList();
+var cLang = progLang.Where(whereFunc).ToList();
 
 #endregion
 
@@ -88,5 +88,3 @@ void CalculateAndPrint(int number1, int number2, Action<int> printAction)
 
 CalculateAndPrint(5, 5, printInt); 
 #endregion
-
-
