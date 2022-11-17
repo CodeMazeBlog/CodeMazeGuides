@@ -1,0 +1,44 @@
+﻿@model CodeMazeShop.Web.Entities.Product
+<div class="row mt-5">
+    <div class="col-md-4">
+        <img src="@Model.ImageUrl" class="detailImage" alt="product pic" />
+    </div>
+    <div class="col-md-6 ml-1">
+        <div class="row">
+            <div class="columnHeader">@Model.CategoryName.ToUpper()</div>
+        </div>
+        <div class="row mt-2 bold">
+            <h1>@Model.Name</h1>
+        </div>
+        <div class="row mt-4">
+            @Model.Description
+        </div>
+        <div class="row mt-5">
+            <h3><span class="bold">$@Model.Price</span></h3><span class="mt-1">&nbsp;&nbsp;&nbsp; PER ITEM</span>
+        </div>
+    </div>
+</div>
+<div class="row mt-5">
+    <div class="col">
+        <hr />
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col offset-4">
+        <form class="form" asp-action="AddCartLineItem" asp-controller="ShoppingCart">
+            <div class="row">
+                <label class="columnHeader mt-2">QUANTITY:</label>
+                <select name="Quantity" class="ml-5 w-25">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <input asp-for="ProductId" type="hidden" />
+                <input asp-for="Price" type="hidden" />
+                <button type="submit" class="btn btn-primary ml-4">ADD TO CART</button>
+            </div>
+        </form>
+    </div>
+</div>
