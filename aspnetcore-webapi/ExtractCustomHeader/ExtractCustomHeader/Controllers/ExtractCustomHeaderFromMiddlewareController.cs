@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 
 namespace ExtractCustomHeader.Controllers
 {
@@ -9,7 +10,11 @@ namespace ExtractCustomHeader.Controllers
         [HttpGet("from-middleware")]
         public IActionResult ExtractFromMiddleware()
         {
-            return Ok();
+            const string HEADER_KEY_NAME = "MiddlewareHeaderKey";
+            HttpContext.Items.TryGetValue(HEADER_KEY_NAME, out object? filterHeaderValue);
+            Request.Headers.TryGetValue(HEADER_KEY_NAME, out StringValues headerValue);
+
+            return Ok(filterHeaderValue);
         }
     }
 }

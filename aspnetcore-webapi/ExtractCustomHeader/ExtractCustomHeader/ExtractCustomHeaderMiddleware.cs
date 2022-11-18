@@ -2,11 +2,11 @@
 
 namespace ExtractCustomHeader
 {
-    public class EctractCustomHeaderMiddleware
+    public class ExtractCustomHeaderMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public EctractCustomHeaderMiddleware(RequestDelegate next)
+        public ExtractCustomHeaderMiddleware(RequestDelegate next)
         {
             _next = next;
         }
@@ -15,9 +15,16 @@ namespace ExtractCustomHeader
         {
             const string HEADER_KEY_NAME = "MiddlewareHeaderKey";
             context.Request.Headers.TryGetValue(HEADER_KEY_NAME, out StringValues headerValue);
-            Console.WriteLine(headerValue);
 
-            // Call the next delegate/middleware in the pipeline.
+            if (context.Items.ContainsKey(HEADER_KEY_NAME))
+            {
+                context.Items[HEADER_KEY_NAME] = headerValue;
+            }
+            else
+            {
+                context.Items.Add(HEADER_KEY_NAME, $"{headerValue}-received");
+            }
+
             await _next(context);
         }
     }

@@ -1,5 +1,8 @@
-using ExtractCustomHeader;
 
+using ExtractCustomHeader;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("ExtractCustomHeaderTests")]
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,7 +29,7 @@ app.MapControllers();
 
 app.UseWhen(context => context.Request.Path.StartsWithSegments("/api2"), appBuilder =>
 {
-    appBuilder.UseMiddleware<EctractCustomHeaderMiddleware>();
+    appBuilder.UseMiddleware<ExtractCustomHeaderMiddleware>();
 });
 
 app.Run();

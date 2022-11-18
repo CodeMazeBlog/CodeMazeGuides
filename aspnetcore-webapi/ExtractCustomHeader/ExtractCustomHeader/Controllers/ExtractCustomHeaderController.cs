@@ -8,8 +8,8 @@ namespace ExtractCustomHeader.Controllers
     [Route("api/headers")]
     public class ExtractCustomHeaderController : ControllerBase
     {
-        [HttpGet("from-request")]
-        public IActionResult ExtractFromRequest()
+        [HttpGet("from-basic")]
+        public IActionResult ExtractFromBasic()
         {
             const string HEADER_KEY_NAME = "HeaderKey";
             Request.Headers.TryGetValue(HEADER_KEY_NAME, out StringValues headerValue);
@@ -27,7 +27,10 @@ namespace ExtractCustomHeader.Controllers
         [ExtractCustomHeader]
         public IActionResult ExtractFromFilter()
         {
-            return Ok();
+            const string HEADER_KEY_NAME = "FilterHeaderKey";
+            HttpContext.Items.TryGetValue(HEADER_KEY_NAME, out object? filterHeaderValue);
+
+            return Ok(filterHeaderValue);
         }
     }
 }
