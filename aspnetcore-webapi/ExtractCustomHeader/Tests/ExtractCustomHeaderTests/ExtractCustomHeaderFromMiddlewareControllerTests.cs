@@ -13,7 +13,7 @@ namespace ExtractCustomHeaderTests
         }
 
         [Fact]
-        public async Task Get_BasicEndpoint_ReturnsCustomHeader()
+        public async Task Get_MiddlewareEndpoint_ReturnsCustomHeader()
         {
             var client = _factory.CreateClient();
             client.DefaultRequestHeaders.Add("MiddlewareHeaderKey", "MiddlewareHeaderValue");
