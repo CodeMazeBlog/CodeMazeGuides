@@ -2,6 +2,6 @@
 
 public delegate void BasicCalcPrintDelegate<T>(T numberOne, T numberTwo);
 
-public delegate void BasicCalcDelegate(int numberOne, int numberTwo);
+public delegate void IntBasicCalcDelegate(int numberOne, int numberTwo);
 
-public delegate void BasicCalcDelegate<T>(T numberOne, T numberTwo);
+public delegate T BasicCalcDelegate<T>(T numberOne, T numberTwo);
