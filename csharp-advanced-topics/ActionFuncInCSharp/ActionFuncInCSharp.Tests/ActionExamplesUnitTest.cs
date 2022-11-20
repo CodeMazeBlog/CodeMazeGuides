@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Text;
 
 namespace ActionFuncInCSharp.Tests
 {
@@ -7,13 +8,15 @@ namespace ActionFuncInCSharp.Tests
         [Fact]
         public void WhenAssignAnonymousMethodToActionDelegate_ThenActionCallSuccessfully()
         {
-            var writer = new StringWriter();
-            Console.SetOut(writer);
+            MemoryStream ms = new MemoryStream();
+            var sw = new StreamWriter(ms);
+            sw.AutoFlush = true;
+            Console.SetOut(sw);
             Action<string> sayHelloAction = (string name) => Console.WriteLine("Hello {0}", name);
             sayHelloAction("Ahmad");
-            var sb = writer.GetStringBuilder();
 
-            Assert.Equal("Hello Ahmad", sb.ToString().TrimEnd());
+            var actual = Encoding.UTF8.GetString(ms.ToArray(), 0, (int)ms.Length);
+            Assert.Equal("Hello Ahmad", actual.TrimEnd());
         }
 
         [Theory]
@@ -21,16 +24,24 @@ namespace ActionFuncInCSharp.Tests
         public void WhenAssignMultipleMethodsToActionDelegate_ThenActionDelegateCallsTheMethodsSuccessfullyInOrder(int numberOne, int numberTwo)
         {
             var intBasicCalculator = new IntBasicCalculator();
-            var writer = new StringWriter();
-            Console.SetOut(writer);
+            MemoryStream ms = new MemoryStream();
+            var sw = new StreamWriter(ms);
+            sw.AutoFlush = true;
+            Console.SetOut(sw);
+
             Action<int, int> calcPrintAction = intBasicCalculator.AdditionPrint;
             calcPrintAction += intBasicCalculator.SubtractionPrint;
             calcPrintAction += intBasicCalculator.MultiplicationPrint;
             calcPrintAction += intBasicCalculator.DivisionPrint;
 
             calcPrintAction(numberOne, numberTwo);
+            var actualTemp = Encoding.UTF8.GetString(ms.ToArray(), 0, (int)ms.Length);
+            var actual = actualTemp.ToString()
+                .Split("\r\n")
+                .SkipLast(1)
+                .Select(s => int.Parse(s))
+                .ToArray();
 
-            var actual = writer.ToString().Split("\r\n").SkipLast(1).Select(s => int.Parse(s)).ToArray();
             var expected = new int[]
 {
               numberOne + numberTwo,
