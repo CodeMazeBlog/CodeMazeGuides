@@ -1,4 +1,4 @@
-﻿using FuncAndActionInCSharp.Delegates;
+﻿using FuncAndActionInCSharp.Shapes;
 
 namespace FuncAndActionInCSharp
 {
@@ -17,10 +17,10 @@ namespace FuncAndActionInCSharp
 
             //Func to calculate area and perimeter of a square
             Func<int, double> func1;
-            func1 = Shape.GetSquareArea;
+            func1 = Square.GetSquareArea;
             Console.WriteLine($"The area of a square of side {side} is: {func1(side)}");
 
-            func1 = Shape.GetSquarePerimeter;
+            func1 = Square.GetSquarePerimeter;
             Console.WriteLine($"The perimeter of square of side {side} is: {func1(side)}");
 
             #endregion
@@ -31,7 +31,7 @@ namespace FuncAndActionInCSharp
 
             //Func to calculate the area of a circle
             int radius = 15;
-            func1 = Shape.GetCircleArea;
+            func1 = Circle.GetCircleArea;
             Console.WriteLine($"The area of a circle with radius {radius} is: {func1(radius)}");
 
             #endregion
@@ -44,10 +44,10 @@ namespace FuncAndActionInCSharp
             int length = 15;
             int width = 25;
             Func<int, int, double> func2;
-            func2 = Shape.GetRectangleArea;
+            func2 = Rectangle.GetRectangleArea;
             Console.WriteLine($"The area of a rectangle with length {length} and width {width} is: {func2(length, width)}");
 
-            func2 = Shape.GetRectanglePerimeter;
+            func2 = Rectangle.GetRectanglePerimeter;
             Console.WriteLine($"The perimeter of a rectangle with length {length} and width {width} is: {func2(length, width)}");
 
             #endregion
@@ -85,10 +85,10 @@ namespace FuncAndActionInCSharp
 
             //Action to calculate area and perimeter of a square
             Action<int> action1;
-            action1 = Shape.PrintSquareArea;
+            action1 = Square.PrintSquareArea;
             action1(side);
 
-            action1 = Shape.PrintSquarePerimeter;
+            action1 = Square.PrintSquarePerimeter;
             action1(side);
 
             #endregion
@@ -97,7 +97,7 @@ namespace FuncAndActionInCSharp
 
             Console.WriteLine("\r\n<Circle Calculation>");
 
-            action1 = Shape.PrintCircleArea;
+            action1 = Circle.PrintCircleArea;
             action1(radius);
 
             #endregion
@@ -107,10 +107,10 @@ namespace FuncAndActionInCSharp
             Console.WriteLine("\r\n<Rectangle Calculation>");
 
             Action<int, int> action2;
-            action2 = Shape.PrintRectangleArea;
+            action2 = Rectangle.PrintRectangleArea;
             action2(length, width);
 
-            action2 = Shape.PrintRectanglePerimeter;
+            action2 = Rectangle.PrintRectanglePerimeter;
             action2(length, width);
 
 
