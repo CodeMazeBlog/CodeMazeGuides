@@ -25,7 +25,7 @@
         public void WhenFuncAsMethodReturnType_ThenFuncCallSuccessfully() 
         {
             Func<int, int, int>? func = FuncExamples.GetCalcFunc(BasicCalculationEnum.Addition);
-            var actual = func(5,5);
+            var actual = func?.Invoke(5, 5);
             var expected = 10;
     
             Assert.Equal(expected, actual);
