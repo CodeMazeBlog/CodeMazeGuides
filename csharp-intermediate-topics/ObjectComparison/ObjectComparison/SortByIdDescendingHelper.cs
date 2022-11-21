@@ -1,23 +1,12 @@
-﻿using System.Collections;
-
-namespace ObjectComparisons
+﻿namespace ObjectComparisons
 {
-    public class SortByIdDescendingHelper : IComparer
+    public class SortByIdDescendingHelper : IComparer<Employee>
     {
-        public int Compare(object? x, object? y)
+        public int Compare(Employee? firstEmployee, Employee? secondEmployee)
         {
-            if ((x is null) || (y is null))
-            {
-                return 0;
-            }
-
-            Employee? employee1 = x as Employee;
-            Employee? employee2 = y as Employee;
-
-            int value1 = employee1?.Id ?? 0;
-            int value2 = employee2?.Id ?? 0;
-
-            return value2.CompareTo(value1);
+            return ((firstEmployee is null) || (secondEmployee is null)) ?
+                0 :
+                secondEmployee.Id.CompareTo(firstEmployee.Id);
         }
     }
 }
