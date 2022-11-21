@@ -7,16 +7,16 @@ namespace ExtractCustomHeader
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            const string HEADER_KEY_NAME = "FilterHeaderKey";
-            context.HttpContext.Request.Headers.TryGetValue(HEADER_KEY_NAME, out StringValues headerValue);
+            const string HeaderKeyName = "FilterHeaderKey";
+            context.HttpContext.Request.Headers.TryGetValue(HeaderKeyName, out StringValues headerValue);
 
-            if (context.HttpContext.Items.ContainsKey(HEADER_KEY_NAME))
+            if (context.HttpContext.Items.ContainsKey(HeaderKeyName))
             {
-                context.HttpContext.Items[HEADER_KEY_NAME] = headerValue;
+                context.HttpContext.Items[HeaderKeyName] = headerValue;
             }
             else
             {
-                context.HttpContext.Items.Add(HEADER_KEY_NAME, $"{headerValue}-received");
+                context.HttpContext.Items.Add(HeaderKeyName, $"{headerValue}-received");
             }
         }
     }

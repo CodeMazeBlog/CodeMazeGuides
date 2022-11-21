@@ -11,8 +11,8 @@ namespace ExtractCustomHeader.Controllers
         [HttpGet("from-basic")]
         public IActionResult ExtractFromBasic()
         {
-            const string HEADER_KEY_NAME = "HeaderKey";
-            Request.Headers.TryGetValue(HEADER_KEY_NAME, out StringValues headerValue);
+            const string HeaderKeyName = "HeaderKey";
+            Request.Headers.TryGetValue(HeaderKeyName, out StringValues headerValue);
 
             return Ok(headerValue);
         }
@@ -27,8 +27,8 @@ namespace ExtractCustomHeader.Controllers
         [ExtractCustomHeader]
         public IActionResult ExtractFromFilter()
         {
-            const string HEADER_KEY_NAME = "FilterHeaderKey";
-            HttpContext.Items.TryGetValue(HEADER_KEY_NAME, out object? filterHeaderValue);
+            const string HeaderKeyName = "FilterHeaderKey";
+            HttpContext.Items.TryGetValue(HeaderKeyName, out object? filterHeaderValue);
 
             return Ok(filterHeaderValue);
         }

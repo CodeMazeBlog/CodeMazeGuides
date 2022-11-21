@@ -9,8 +9,8 @@ namespace ExtractCustomHeader.Controllers
         [HttpGet("from-middleware")]
         public IActionResult ExtractFromMiddleware()
         {
-            const string HEADER_KEY_NAME = "MiddlewareHeaderKey";
-            HttpContext.Items.TryGetValue(HEADER_KEY_NAME, out object? filterHeaderValue);
+            const string HeaderKeyName = "MiddlewareHeaderKey";
+            HttpContext.Items.TryGetValue(HeaderKeyName, out object? filterHeaderValue);
 
             return Ok(filterHeaderValue);
         }

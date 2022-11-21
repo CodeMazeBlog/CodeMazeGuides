@@ -13,7 +13,7 @@ namespace ExtractCustomHeaderTests
         }
 
         [Fact]
-        public async Task Get_BasicEndpoint_ReturnsCustomHeader()
+        public async Task WhenCallingExtractFromBasicEndpoint_ThenReturnsCustomHeaderValue()
         {
             var client = _factory.CreateClient();
             client.DefaultRequestHeaders.Add("HeaderKey", "HeaderValue");
@@ -24,7 +24,7 @@ namespace ExtractCustomHeaderTests
         }
 
         [Fact]
-        public async Task Get_HeaderAttributeEndpoint_ReturnsCustomHeader()
+        public async Task WhenCallingExtractFromHeaderAttributeEndpoint_ThenReturnsCustomHeaderValue()
         {
             var client = _factory.CreateClient();
             client.DefaultRequestHeaders.Add("FirstName", "NameSample");
@@ -40,7 +40,7 @@ namespace ExtractCustomHeaderTests
         }
 
         [Fact]
-        public async Task Get_FilterAttributeEndpoint_ReturnsCustomHeader()
+        public async Task WhenCallingExtractFromFilterEndpoint_ThenReturnsCustomHeaderValue()
         {
             var client = _factory.CreateClient();
             client.DefaultRequestHeaders.Add("FilterHeaderKey", "FilterHeaderValue");

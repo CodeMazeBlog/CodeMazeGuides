@@ -6,23 +6,20 @@ namespace ExtractCustomHeader
     {
         private readonly RequestDelegate _next;
 
-        public ExtractCustomHeaderMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
+        public ExtractCustomHeaderMiddleware(RequestDelegate next) => _next = next;
 
         public async Task InvokeAsync(HttpContext context)
         {
-            const string HEADER_KEY_NAME = "MiddlewareHeaderKey";
-            context.Request.Headers.TryGetValue(HEADER_KEY_NAME, out StringValues headerValue);
+            const string HeaderKeyName = "MiddlewareHeaderKey";
+            context.Request.Headers.TryGetValue(HeaderKeyName, out StringValues headerValue);
 
-            if (context.Items.ContainsKey(HEADER_KEY_NAME))
+            if (context.Items.ContainsKey(HeaderKeyName))
             {
-                context.Items[HEADER_KEY_NAME] = headerValue;
+                context.Items[HeaderKeyName] = headerValue;
             }
             else
             {
-                context.Items.Add(HEADER_KEY_NAME, $"{headerValue}-received");
+                context.Items.Add(HeaderKeyName, $"{headerValue}-received");
             }
 
             await _next(context);
