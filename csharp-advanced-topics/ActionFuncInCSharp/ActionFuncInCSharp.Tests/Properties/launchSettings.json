@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ActionFuncInCSharp.Tests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

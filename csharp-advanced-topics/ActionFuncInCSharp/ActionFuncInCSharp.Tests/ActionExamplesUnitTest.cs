@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace ActionFuncInCSharp.Tests
@@ -12,6 +13,7 @@ namespace ActionFuncInCSharp.Tests
             _writer = new StringWriter();
             Console.SetOut(_writer);
         }
+
         [Fact]
         public void WhenAssignAnonymousMethodToActionDelegate_ThenActionCallSuccessfully()
         {
@@ -36,7 +38,7 @@ namespace ActionFuncInCSharp.Tests
 
             calcPrintAction(numberOne, numberTwo);
 
-            var actual = _writer.ToString().Split("\r\n").SkipLast(1).Select(s => int.Parse(s)).ToArray();
+            var actual = _writer.ToString().Split("\n").SkipLast(1).Select(s => int.Parse(s)).ToArray();
             var expected = new int[]
 {
               numberOne + numberTwo,
