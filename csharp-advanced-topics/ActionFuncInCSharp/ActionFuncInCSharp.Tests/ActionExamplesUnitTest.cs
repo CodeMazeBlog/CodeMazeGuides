@@ -5,43 +5,35 @@ namespace ActionFuncInCSharp.Tests
 {
     public class ActionExamplesUnitTest
     {
-        [Fact]
-        public void WhenAssignAnonymousMethodToActionDelegate_ThenActionCallSuccessfully()
-        {
-            MemoryStream ms = new MemoryStream();
-            var sw = new StreamWriter(ms);
-            sw.AutoFlush = true;
-            Console.SetOut(sw);
-            Action<string> sayHelloAction = (string name) => Console.WriteLine("Hello {0}", name);
-            sayHelloAction("Ahmad");
+        //[Fact]
+        //public void WhenAssignAnonymousMethodToActionDelegate_ThenActionCallSuccessfully()
+        //{
+        //    MemoryStream ms = new MemoryStream();
+        //    var sw = new StreamWriter(ms);
+        //    sw.AutoFlush = true;
+        //    Console.SetOut(sw);
+        //    Action<string> sayHelloAction = (string name) => Console.WriteLine("Hello {0}", name);
+        //    sayHelloAction("Ahmad");
 
-            var actual = Encoding.UTF8.GetString(ms.ToArray(), 0, (int)ms.Length);
-            Assert.Equal("Hello Ahmad", actual.TrimEnd());
-        }
+        //    var actual = Encoding.UTF8.GetString(ms.ToArray(), 0, (int)ms.Length);
+        //    Assert.Equal("Hello Ahmad", actual.TrimEnd());
+        //}
 
         [Theory]
         [InlineData(3, 2)]
         public void WhenAssignMultipleMethodsToActionDelegate_ThenActionDelegateCallsTheMethodsSuccessfullyInOrder(int numberOne, int numberTwo)
         {
             var intBasicCalculator = new IntBasicCalculator();
-            MemoryStream ms = new MemoryStream();
-            var sw = new StreamWriter(ms);
-            sw.AutoFlush = true;
-            Console.SetOut(sw);
-
+            var writer = new StringWriter();
+            Console.SetOut(writer);
             Action<int, int> calcPrintAction = intBasicCalculator.AdditionPrint;
             calcPrintAction += intBasicCalculator.SubtractionPrint;
             calcPrintAction += intBasicCalculator.MultiplicationPrint;
             calcPrintAction += intBasicCalculator.DivisionPrint;
 
             calcPrintAction(numberOne, numberTwo);
-            var actualTemp = Encoding.UTF8.GetString(ms.ToArray(), 0, (int)ms.Length);
-            var actual = actualTemp.ToString()
-                .Split("\r\n")
-                .SkipLast(1)
-                .Select(s => int.Parse(s))
-                .ToArray();
 
+            var actual = writer.ToString().Split("\r\n").SkipLast(1).Select(s => int.Parse(s)).ToArray();
             var expected = new int[]
 {
               numberOne + numberTwo,
