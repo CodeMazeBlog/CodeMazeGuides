@@ -13,77 +13,77 @@ namespace LinkedList.CustomImplementation
         public Node<T>? First { get; set; }
         public int Count { get; set; }
 
-        public void AddFirst(Node<T> node)
+        public void AddFirst(Node<T> nodeToAdd)
         {
             if (First is null)
-                First = node;
+                First = nodeToAdd;
             else
             {
-                node.Next = First;
-                First.Prev = node;
+                nodeToAdd.Next = First;
+                First.Prev = nodeToAdd;
 
-                First = node;
+                First = nodeToAdd;
             }
 
             Count++;
         }
 
-        public void AddFirst(T value)
+        public void AddFirst(T valueToAdd)
         {
-            var node = new Node<T>(value);
+            var node = new Node<T>(valueToAdd);
             AddFirst(node);
         }
 
-        public void AddAfter(T addingValue, T findValue)
+        public void AddAfter(T valueToAdd, T valueToFind)
         {
-            var addingNode = new Node<T>(addingValue);
-            AddAfter(addingNode, findValue);
+            var nodeToAdd = new Node<T>(valueToAdd);
+            AddAfter(nodeToAdd, valueToFind);
         }
 
-        public void AddAfter(Node<T> addingNode, T findValue)
+        public void AddAfter(Node<T> nodeToAdd, T valueToFind)
         {
-            var find = Find(findValue);
+            var find = Find(valueToFind);
 
             if(find is not null)
             {
                 var next = find.Next;
 
-                addingNode.Next = next;
-                find.Next = addingNode;
+                nodeToAdd.Next = next;
+                find.Next = nodeToAdd;
 
                 if(next?.Prev is not null)
-                    next.Prev = addingNode;
+                    next.Prev = nodeToAdd;
                 
-                addingNode.Prev = find;
+                nodeToAdd.Prev = find;
 
                 Count++;
 
                 return;
             }
 
-            AddLast(addingNode);
+            AddLast(nodeToAdd);
         }
 
-        public void AddLast(Node<T> node)
+        public void AddLast(Node<T> nodeToAdd)
         {
             var lastNode = GetLastNode();
 
             if (lastNode is not null)
             {
-                lastNode.Next = node;
-                node.Prev = lastNode;
+                lastNode.Next = nodeToAdd;
+                nodeToAdd.Prev = lastNode;
 
                 Count++;
 
                 return;
             }
 
-            AddFirst(node);
+            AddFirst(nodeToAdd);
         }
 
-        public void AddLast(T value)
+        public void AddLast(T valueToAdd)
         {
-            var node = new Node<T>(value);
+            var node = new Node<T>(valueToAdd);
             AddLast(node);
         }
 
@@ -105,41 +105,41 @@ namespace LinkedList.CustomImplementation
             return default;
         }
 
-        public void AddBefore(Node<T> addingNode, T findValue)
+        public void AddBefore(Node<T> nodeToAdd, T valueToFind)
         {
-            var find = Find(findValue);
+            var find = Find(valueToFind);
 
             if (find is not null)
             {
-                addingNode.Prev = find.Prev;
+                nodeToAdd.Prev = find.Prev;
 
                 if (find.Prev?.Next is not null)
-                    find.Prev.Next = addingNode;
+                    find.Prev.Next = nodeToAdd;
 
-                addingNode.Next = find;
-                find.Prev = addingNode;
+                nodeToAdd.Next = find;
+                find.Prev = nodeToAdd;
 
                 Count++;
 
                 return;
             }
 
-            AddLast(addingNode);
+            AddLast(nodeToAdd);
         }
 
-        public void AddBefore(T addingValue, T findValue)
+        public void AddBefore(T valueToAdd, T valueToFind)
         {
-            var node = new Node<T>(addingValue);
-            AddBefore(node, findValue);
+            var node = new Node<T>(valueToAdd);
+            AddBefore(node, valueToFind);
         }
 
-        public Node<T>? Find(T value)
+        public Node<T>? Find(T valueToFind)
         {
             var aux = First;
 
             while (aux is not null)
             {
-                if (EqualityComparer<T>.Default.Equals(aux.Value, value))
+                if (EqualityComparer<T>.Default.Equals(aux.Value, valueToFind))
                     return aux;
 
                 aux = aux.Next;
@@ -148,9 +148,9 @@ namespace LinkedList.CustomImplementation
             return default;
         }
 
-        public void Remove(T value)
+        public void Remove(T valueToRemove)
         {
-            var find = Find(value);
+            var find = Find(valueToRemove);
 
             if (find is null)
                 return;
