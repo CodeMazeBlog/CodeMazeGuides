@@ -18,6 +18,7 @@ public class FloatingPointTypeUnitTest
         int factor)
     {
         var result = _floatingPointArithmetic.FloatSumAndMultiplication(firstValue, secondValue, factor);
+
         Assert.False(result);
     }
 
@@ -28,6 +29,7 @@ public class FloatingPointTypeUnitTest
         int factor)
     {
         var result = _floatingPointArithmetic.DoubleSumAndMultiplication(firstValue, secondValue, factor);
+
         Assert.False(result);
     }
 
@@ -38,6 +40,7 @@ public class FloatingPointTypeUnitTest
         int factor)
     {
         var result = _floatingPointArithmetic.DecimalSumAndMultiplication(firstValue, secondValue, factor);
+
         Assert.True(result);
     }
 }
