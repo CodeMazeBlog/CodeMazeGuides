@@ -7,10 +7,12 @@
             int summation = number1 + number2;
             printAction(summation);
         }
-        public void printTypeName(Parent parent) => Console.WriteLine(parent.Name);
+
+        public void PrintTypeName(Parent parent) => Console.WriteLine(parent.Name);
+
         public void CovarianceCall()
         {
-            Action<Child> action = printTypeName;
+            Action<Child> action = PrintTypeName;
             action(new Child());
         }
     }

@@ -22,6 +22,7 @@ namespace ActionFuncInCSharp.Tests
             sayHelloAction("Ahmad");
 
             var actual = _writer.ToString();
+
             Assert.Equal("Hello Ahmad", actual.TrimEnd());
         }
 
@@ -66,13 +67,13 @@ namespace ActionFuncInCSharp.Tests
         public void WhanPassCallbackMethod_ThenActionCallSuccessfully()
         {
             _writer.Flush();
-            void printInt(int number)
+            void PrintInt(int number)
             {
                 Console.WriteLine("the number is {0}", number);
             }
 
             var actionExamples = new ActionExamples();
-            actionExamples.CalculateAndPrint(4, 5, printInt);
+            actionExamples.CalculateAndPrint(4, 5, PrintInt);
             var actual = _writer.ToString().Trim();
             var expected = "the number is 9";
 

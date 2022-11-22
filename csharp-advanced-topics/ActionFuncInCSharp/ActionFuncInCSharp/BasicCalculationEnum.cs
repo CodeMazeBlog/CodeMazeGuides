@@ -2,6 +2,9 @@
 {
     public enum BasicCalculationEnum
     {
-        Addition, Subtraction, Multiplication, Division
+        Addition,
+        Subtraction,
+        Multiplication,
+        Division
     }
 }
