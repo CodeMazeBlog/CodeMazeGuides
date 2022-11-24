@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Http;
 
 namespace WebAPIAnalyzers.Controllers
-{
-    //[ApiConventionType(typeof(CustomConventions))]
+{    
     [Route("api/[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
@@ -15,8 +14,7 @@ namespace WebAPIAnalyzers.Controllers
             _repository = repository;
         }
 
-        [HttpGet("{id}")]
-        //[ApiConventionMethod(typeof(CustomConventions), nameof(CustomConventions.GetByIdConvention))]
+        [HttpGet("{id}")]        
         public IActionResult GetById(int id)
         {
             if (id < 1)
