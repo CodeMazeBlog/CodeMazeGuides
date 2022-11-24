@@ -2,12 +2,12 @@
 {
     public class File
     {
+        public string Path { get; }
+
         public File(string path)
         {
-            this.Path = path;
+            Path = path;
         }
-
-        public string? Path { get; }
 
         public static bool operator == (File file1, File file2)
         {
