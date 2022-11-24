@@ -16,7 +16,9 @@ namespace LinkedList.CustomImplementation
         public void AddFirst(Node<T> nodeToAdd)
         {
             if (First is null)
+            {
                 First = nodeToAdd;
+            }
             else
             {
                 nodeToAdd.Next = First;
@@ -51,8 +53,10 @@ namespace LinkedList.CustomImplementation
                 nodeToAdd.Next = next;
                 find.Next = nodeToAdd;
 
-                if(next?.Prev is not null)
+                if (next?.Prev is not null)
+                {
                     next.Prev = nodeToAdd;
+                }
                 
                 nodeToAdd.Prev = find;
 
@@ -90,14 +94,18 @@ namespace LinkedList.CustomImplementation
         public Node<T>? GetLastNode()
         {
             if (First is null)
+            {
                 return default;
+            }
 
             var aux = First;
 
             while (aux is not null)
             {
                 if (aux.Next is null)
+                {
                     return aux;
+                }
 
                 aux = aux.Next;
             }
@@ -114,7 +122,9 @@ namespace LinkedList.CustomImplementation
                 nodeToAdd.Prev = find.Prev;
 
                 if (find.Prev?.Next is not null)
+                {
                     find.Prev.Next = nodeToAdd;
+                }
 
                 nodeToAdd.Next = find;
                 find.Prev = nodeToAdd;
@@ -140,7 +150,9 @@ namespace LinkedList.CustomImplementation
             while (aux is not null)
             {
                 if (EqualityComparer<T>.Default.Equals(aux.Value, valueToFind))
+                {
                     return aux;
+                }
 
                 aux = aux.Next;
             }
@@ -153,16 +165,22 @@ namespace LinkedList.CustomImplementation
             var find = Find(valueToRemove);
 
             if (find is null)
+            {
                 return;
+            }
 
             var next = find.Next;
             var prev = find.Prev;
 
             if (prev is not null)
+            {
                 prev.Next = next;
+            }
 
             if (next is not null)
+            {
                 next.Prev = prev;
+            }
 
             Count--;
         }
@@ -170,7 +188,9 @@ namespace LinkedList.CustomImplementation
         public void RemoveFirst()
         {
             if (First is null)
+            {
                 return;
+            }
 
             var next = First.Next;
 
@@ -193,8 +213,10 @@ namespace LinkedList.CustomImplementation
             {
                 var prev = lastNode.Prev;
 
-                if(prev is not null)
+                if (prev is not null)
+                {
                     prev.Next = null;
+                }
 
                 lastNode.Prev = null;
 
