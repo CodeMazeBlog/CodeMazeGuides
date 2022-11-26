@@ -1,11 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ActionFuncInCSharp.Tests
+﻿namespace ActionFuncInCSharp
 {
     public static class ProductFunctions
     {

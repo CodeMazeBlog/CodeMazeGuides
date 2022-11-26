@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace ActionFuncInCSharp.Tests
+namespace ActionFuncInCSharp
 {
     public static class LoggingActions
     {

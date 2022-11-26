@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionFuncInCSharp.Tests", "ActionFuncInCSharp.Tests\ActionFuncInCSharp.Tests.csproj", "{28E9159D-86EA-4564-B936-9EAB37080B25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionFuncInCSharp.Tests", "ActionFuncInCSharp.Tests\ActionFuncInCSharp.Tests.csproj", "{28E9159D-86EA-4564-B936-9EAB37080B25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionFuncInCSharp", "ActionFuncInCSharp\ActionFuncInCSharp.csproj", "{830BC507-400A-4CB5-9757-707F3B1267AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{28E9159D-86EA-4564-B936-9EAB37080B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28E9159D-86EA-4564-B936-9EAB37080B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28E9159D-86EA-4564-B936-9EAB37080B25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{830BC507-400A-4CB5-9757-707F3B1267AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{830BC507-400A-4CB5-9757-707F3B1267AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{830BC507-400A-4CB5-9757-707F3B1267AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{830BC507-400A-4CB5-9757-707F3B1267AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

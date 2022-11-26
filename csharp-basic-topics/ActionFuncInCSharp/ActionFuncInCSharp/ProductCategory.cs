@@ -1,4 +1,4 @@
-﻿namespace ActionFuncInCSharp.Tests
+﻿namespace ActionFuncInCSharp
 {
     public enum ProductCategory
     {

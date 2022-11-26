@@ -4,153 +4,112 @@ namespace ActionFuncInCSharp.Tests
     public class ProductTests
     {
         [TestMethod]
-        public void LogProductNamesToConsole()
+        public void WhenPassedAProductCategory_ThenProductMatchingCategoryAreReturned()
         {
-            List<Product> products = new()
+            List<Product> expected = new()
             {
-                new() { Name = "Rich Tea Buscuit", Price = 1.99 },
-                new() { Name = "Hovis Bread", Price = 1.29 }
+                new() { Name = "Whole Chicken", Price = 6.99, ProductCategory = ProductCategory.Fresh },
+                new() { Name = "Hovis Bread", Price = 1.29, ProductCategory = ProductCategory.Fresh },
+                new() { Name = "Whole Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh }
             };
 
-            products.ForEach(p => Console.WriteLine($"Product Name: '{p.Name}' Price: '�{p.Price}'"));
-        }
-
-        [TestMethod]
-        public void LogProductNamesToConsoleUsingAssignedAction()
-        {
-            List<Product> products = new()
-            {
-                new() { Name = "Rich Tea Buscuit", Price = 1.99 },
-                new() { Name = "Hovis Bread", Price = 1.29 }
-            };
-
-            Action<Product> loggingAction = p => Console.WriteLine($"Product Name: '{p.Name}' Price: '�{p.Price}'");
-            products.ForEach(loggingAction);
-        }
-
-        [TestMethod]
-        public void LogProductNamesToConsoleUsingLocalFunction()
-        {
-            List<Product> products = new()
-            {
-                new() { Name = "Rich Tea Buscuit", Price = 1.99 },
-                new() { Name = "Hovis Bread", Price = 1.29 }
-            };
-            products.ForEach(LoggingAction);
-
-            static void LoggingAction(Product p) => Console.WriteLine($"Product Name: '{p.Name}' Price: '�{p.Price}'");
-        }
-
-        [TestMethod]
-        public void LogProductsViaLoggingAction()
-        {
-            List<Product> products = new()
-            {
-                new() { Name = "Rich Tea Buscuit", Price = 1.99 },
-                new() { Name = "Hovis Bread", Price = 1.29 }
-            };
-
-            products.ForEach(LoggingActions.LogObjectsToConsole);
-        }
-
-        [TestMethod]
-        public void FilterProductsByType()
-        {
-            List<Product> products = new()
+            List<Product> initial = new()
             {
                 new() { Name = "Rich Tea Buscuit", Price = 1.99, ProductCategory = ProductCategory.LongLife },
                 new() { Name = "Whole Chicken", Price = 6.99, ProductCategory = ProductCategory.Fresh },
                 new() { Name = "Hovis Bread", Price = 1.29, ProductCategory = ProductCategory.Fresh },
-                new() { Name = "While Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh },
+                new() { Name = "Whole Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh },
                 new() { Name = "Paracetamol", Price = 4.99, ProductCategory = ProductCategory.Medical }
             };
 
-            var filteredProducts = products.Where(p => p.ProductCategory == ProductCategory.Fresh);
+            var productService = new ProductService(initial);
 
-            Assert.AreEqual(3, filteredProducts.Count());
+            var actual = productService.GetProductsForCategory(ProductCategory.Fresh);
 
-            //Filtered Products = 
-            //Product: {"Name":"Whole Chicken","Price":6.99,"ProductCategory":1}
-            //Product: { "Name":"Hovis Bread","Price":1.29,"ProductCategory":1}
-            //Product: { "Name":"While Milk","Price":1.09,"ProductCategory":1}
+            Assert.AreEqual(3, actual.Count);
 
-            foreach (var product in filteredProducts)
-            {
-                LoggingActions.LogObjectsToConsole(product);
-            }
+            CollectionAssert.AreEquivalent(expected, actual);
         }
 
         [TestMethod]
-        public void FilterProductsByPrice()
+        public void WhenPassedAPredicateOfPriceIsLessThan_ThenProductsMatchingPredicateAreReturned()
         {
-            List<Product> products = new()
+            List<Product> expected = new()
+            {
+                new() { Name = "Hovis Bread", Price = 1.29, ProductCategory = ProductCategory.Fresh },
+                new() { Name = "Whole Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh }
+            };
+
+            List<Product> initial = new()
             {
                 new() { Name = "Rich Tea Buscuit", Price = 1.99, ProductCategory = ProductCategory.LongLife },
                 new() { Name = "Whole Chicken", Price = 6.99, ProductCategory = ProductCategory.Fresh },
                 new() { Name = "Hovis Bread", Price = 1.29, ProductCategory = ProductCategory.Fresh },
-                new() { Name = "While Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh },
+                new() { Name = "Whole Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh },
                 new() { Name = "Paracetamol", Price = 4.99, ProductCategory = ProductCategory.Medical }
             };
 
-            var filteredProducts = products.Where(p => p.Price < 1.99);
+            var productService = new ProductService(initial);
 
-            Assert.AreEqual(2, filteredProducts.Count());
+            var actual = productService.GetProducts(p => p.Price < 1.99);
 
-            //Filtered Products = 
-            //Product: {"Name":"Hovis Bread","Price":1.29,"ProductCategory":1}
-            //Product: {"Name":"While Milk","Price":1.09,"ProductCategory":1}
+            Assert.AreEqual(2, actual.Count);
 
-            foreach (var product in filteredProducts)
-            {
-                LoggingActions.LogObjectsToConsole(product);
-            }
+            CollectionAssert.AreEquivalent(expected, actual);
         }
 
         [TestMethod]
-        public void FilterProductsByPriceUsingSharedFunction()
+        public void WhenPassedASharedFunctionOfPredicatePriceIsLessThan_ThenProductsMatchingPredicateAreReturned_AndNoLogIsWritten()
         {
-            List<Product> products = new()
+            List<Product> expected = new()
+            {
+                new() { Name = "Hovis Bread", Price = 1.29, ProductCategory = ProductCategory.Fresh },
+                new() { Name = "Whole Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh }
+            };
+
+            List<Product> initial = new()
             {
                 new() { Name = "Rich Tea Buscuit", Price = 1.99, ProductCategory = ProductCategory.LongLife },
                 new() { Name = "Whole Chicken", Price = 6.99, ProductCategory = ProductCategory.Fresh },
                 new() { Name = "Hovis Bread", Price = 1.29, ProductCategory = ProductCategory.Fresh },
-                new() { Name = "While Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh },
+                new() { Name = "Whole Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh },
                 new() { Name = "Paracetamol", Price = 4.99, ProductCategory = ProductCategory.Medical }
             };
 
-            var filteredProducts = products.Where(ProductFunctions.PriceIsLessThan(1.99));
+            var productService = new ProductService(initial, shouldLog: false);
 
-            Assert.AreEqual(2, filteredProducts.Count());
+            var actual = productService.GetProducts(ProductFunctions.PriceIsLessThan(1.99));
 
-            //Filtered Products = 
-            //Product: {"Name":"Hovis Bread","Price":1.29,"ProductCategory":1}
-            //Product: {"Name":"While Milk","Price":1.09,"ProductCategory":1}
+            Assert.AreEqual(2, actual.Count);
 
-            foreach (var product in filteredProducts)
-            {
-                LoggingActions.LogObjectsToConsole(product);
-            }
+            CollectionAssert.AreEquivalent(expected, actual);
         }
 
         [TestMethod]
-        public void FilterProductsAndLog()
+        public void WhenPassedASharedFunctionOfPredicatePriceIsLessThan_ThenProductsMatchingPredicateAreReturned_AndLogIsWritten()
         {
-            List<Product> products = new()
+            List<Product> expected = new()
+            {
+                new() { Name = "Hovis Bread", Price = 1.29, ProductCategory = ProductCategory.Fresh },
+                new() { Name = "Whole Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh }
+            };
+
+            List<Product> initial = new()
             {
                 new() { Name = "Rich Tea Buscuit", Price = 1.99, ProductCategory = ProductCategory.LongLife },
                 new() { Name = "Whole Chicken", Price = 6.99, ProductCategory = ProductCategory.Fresh },
                 new() { Name = "Hovis Bread", Price = 1.29, ProductCategory = ProductCategory.Fresh },
-                new() { Name = "While Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh },
+                new() { Name = "Whole Milk", Price = 1.09, ProductCategory = ProductCategory.Fresh },
                 new() { Name = "Paracetamol", Price = 4.99, ProductCategory = ProductCategory.Medical }
             };
 
-            var filteredProducts = products.Where(ProductFunctions.PriceIsLessThan(1.99, logOnPredicated: true));
+            var productService = new ProductService(initial, shouldLog: false);
 
-            Assert.AreEqual(2, filteredProducts.Count());
+            var actual = productService.GetProducts(ProductFunctions.PriceIsLessThan(1.99, logOnPredicated: true));
 
-            //Filtered Products = 
-            //Product: {"Name":"Hovis Bread","Price":1.29,"ProductCategory":1}
-            //Product: {"Name":"While Milk","Price":1.09,"ProductCategory":1}
+            Assert.AreEqual(2, actual.Count);
+
+            CollectionAssert.AreEquivalent(expected, actual);
         }
     }
 }
