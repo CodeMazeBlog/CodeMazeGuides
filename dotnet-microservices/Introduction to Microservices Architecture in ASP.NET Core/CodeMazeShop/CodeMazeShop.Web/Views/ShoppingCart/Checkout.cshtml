@@ -1,0 +1,105 @@
+﻿@model CartCheckoutViewModel
+
+<h2 class="text-danger">@ViewBag.ErrorMessage</h2>
+
+<form asp-action="Checkout" method="post" class="form-horizontal" role="form">
+    <h4>You're just one step away from placing your order.</h4>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="LastName" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstName" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ZipCode" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="ZipCode" class="form-control" />
+            <span asp-validation-for="ZipCode" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="City" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Country" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CardName" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="CardName" class="form-control" />
+            <span asp-validation-for="CardName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CardNumber" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="CardNumber" class="form-control" />
+            <span asp-validation-for="CardNumber" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CardExpiration" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="CardExpiration" class="form-control" />
+            <span asp-validation-for="CardExpiration" class="text-danger"></span>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="CvvCode" class="col-md-2 control-label"></label>
+        <div class="col-md-5">
+            <input asp-for="CvvCode" class="form-control" />
+            <span asp-validation-for="CvvCode" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" class="btn btn-primary" value="Place order" />
+        </div>
+    </div>
+
+</form>
