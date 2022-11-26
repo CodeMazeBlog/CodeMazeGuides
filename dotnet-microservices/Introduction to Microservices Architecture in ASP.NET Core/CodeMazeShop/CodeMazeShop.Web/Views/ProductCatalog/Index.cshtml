@@ -1,0 +1,41 @@
+﻿@model CodeMazeShop.Web.Models.ProductListModel
+
+@{
+    var categoryListItems = Model.Categories.Select(c =>
+        new SelectListItem { Value = c.CategoryId.ToString(), Text = c.Name }
+    ).ToList();
+    categoryListItems.Insert(0, new SelectListItem { Text = "All" });
+}
+
+<div class="row mt-5 mb-3">
+    <form asp-action="SelectCategory" method="post">
+        <select asp-for="SelectedCategory" asp-items="categoryListItems"></select>
+        <button type="submit" class="filterButton">FILTER</button>
+    </form>
+</div>
+
+<div class="row">
+    @if (Model.Products?.Count() == 0)
+    {
+        <text>No Products were found.</text>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr class="columnHeader">
+                    <th></th>                   
+                    <th>NAME</th>                    
+                    <th>PRICE</th>
+                </tr>
+            </thead>
+            <tbody>
+                @Html.DisplayFor(m => m.Products)
+            </tbody>
+        </table>
+    }
+</div>
+
+@section Widget {
+    <partial name="_ShoppingCartWidget" model="@Model.NumberOfItems" />
+}
