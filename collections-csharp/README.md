@@ -8,6 +8,7 @@ This section contains articles about C#/.NET collections.
 - [List Collection in C#](https://code-maze.com/csharp-list-collection/)
 - [Dictionary in C#](https://code-maze.com/dictionary-csharp/)
 - [HashSet vs SortedSet in C#](https://code-maze.com/csharp-hashset-vs-sortedset/)
+- [HashSet in C#](https://code-maze.com/csharp-hashset/)
 - [Queue in C#](https://code-maze.com/queue-csharp/)
 - [SortedList in C#](https://code-maze.com/csharp-sortedlist/)
 - [SortedSet in C#](https://code-maze.com/csharp-sortedset/)
