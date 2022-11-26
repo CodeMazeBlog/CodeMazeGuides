@@ -20,3 +20,4 @@ This section contains the topics considered intermediate level in C#.
 - [Static Classes in C#](https://code-maze.com/static-classes-csharp/)
 - [Tuple in C#](https://code-maze.com/csharp-tuple/)
 - [Unsafe Code in C# (unsafe keyword)](https://code-maze.com/unsafe-code-csharp/)
+- [How to Enumerate an Enum in C#](https://code-maze.com/how-to-enumerate-an-enum-in-c/)
