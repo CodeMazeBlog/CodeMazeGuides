@@ -12,6 +12,7 @@ public static class CustomConventions
     [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Prefix)]
     public static void Get(
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)]
+        [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.AssignableFrom)]
         int id)
     { }
 }
