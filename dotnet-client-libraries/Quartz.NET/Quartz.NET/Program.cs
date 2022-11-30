@@ -20,7 +20,14 @@ var trigger = TriggerBuilder.Create()
 var builder = Host.CreateDefaultBuilder()
     .ConfigureServices((cxt, services) =>
     {
-        services.AddQuartz();
+        services.AddQuartz(opt =>
+        {
+            opt.UsePersistentStore(s =>
+            {
+                s.UseSqlServer("Server=localhost,1433;Database=Quartz;User Id=sa;Password=<CONNECTION_STRING>;Encrypt=False;");
+                s.UseJsonSerializer();
+            });
+        });
         services.AddQuartzHostedService(opt =>
         {
             opt.WaitForJobsToComplete = true;
