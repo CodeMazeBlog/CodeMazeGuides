@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-public class Sample
+﻿public class Sample
 {
     int? number; //null by default    
 
