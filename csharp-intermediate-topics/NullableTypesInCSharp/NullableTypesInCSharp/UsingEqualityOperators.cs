@@ -1,8 +1,8 @@
 ﻿namespace NullableTypesInCSharp
 {
-    internal class UsingEqualityOperators
+    public class UsingEqualityOperators
     {
-        public void Run()
+        public static (bool areEqual, bool areEqualTwo, bool areEqualThree) Run()
         {
             bool? isRunning = null;
             bool? isDisposed = null;
@@ -11,13 +11,15 @@
 
             bool areEqual = isDisposed == isRunning; //true
             bool areEqualTwo = isDisposed == isActive; //false
-            bool areEqualThree = isActive == isHuman; //
+            bool areEqualThree = isActive == isHuman; //false
+
+            return (areEqual, areEqualTwo, areEqualThree);
         }
     }
 
-    internal class UsingInEqualityOperators
+    public class UsingInEqualityOperators
     {
-        public void Run()
+        public static (bool areEqual, bool areEqualTwo, bool areEqualThree) Run()
         {
             bool? isRunning = null;
             bool? isDisposed = null;
@@ -27,6 +29,8 @@
             bool areEqual = isDisposed != isRunning; //false
             bool areEqualTwo = isDisposed != isActive; //true
             bool areEqualThree = isActive != isHuman; // true
+
+            return (areEqual, areEqualTwo, areEqualThree);
         }
     }
 }

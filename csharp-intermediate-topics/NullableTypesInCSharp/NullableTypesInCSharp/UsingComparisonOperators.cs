@@ -1,8 +1,8 @@
 ﻿namespace NullableTypesInCSharp
 {
-    internal class UsingComparisonOperators
+    public class UsingComparisonOperators
     {
-        public static void Run()
+        public static bool Run()
         {
             int? countOne = null;
             int? countTwo = null;
@@ -13,19 +13,18 @@
             int? countThree = 12;
             int? countFour = 14;
 
-            bool areEqualThree = countFour > countThree; //true
-            Console.WriteLine(areEqualThree);
+            return countFour > countThree; //true            
         }
     }
 
-    internal class UsingNullCoalescingOperator
+    public class UsingNullCoalescingOperator
     {
-        public static void Run()
+        public static int? Run()
         {
             int? count = null;
             long? id = count ?? 1;
 
-            count ??= 13;
+            return count ??= 13;
         }
     }
 }

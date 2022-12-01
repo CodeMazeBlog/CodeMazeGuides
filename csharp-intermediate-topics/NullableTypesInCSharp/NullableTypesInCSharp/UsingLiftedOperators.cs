@@ -6,6 +6,3 @@
 
     public int? sum => numberOne + numberTwo;
 }
-
-
-

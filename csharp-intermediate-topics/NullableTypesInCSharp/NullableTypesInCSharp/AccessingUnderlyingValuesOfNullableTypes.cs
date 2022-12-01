@@ -3,11 +3,13 @@
     byte? weekDay = 24;
     int? number = null;  
 
-    void AccessingUnassignedValues()
+    public static int? AccessingUnassignedValues(int? num)
     {
         int? number;
 
         //Console.WriteLine(number.ToString()); 
+
+        return number = num;
     }
 
     void UsingNullableProperties()

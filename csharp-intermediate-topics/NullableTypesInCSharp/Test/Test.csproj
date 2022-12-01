@@ -20,4 +20,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NullableTypesInCSharp\NullableTypesInCSharp.csproj" />
+  </ItemGroup>
+
 </Project>
