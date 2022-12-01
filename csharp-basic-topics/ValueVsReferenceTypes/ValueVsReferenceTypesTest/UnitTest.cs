@@ -4,15 +4,14 @@ namespace ValueVsReferenceTypesTest
     [TestClass]
     public class UnitTest
     {
-       readonly Car car= new();
-       readonly CarModel carModel= new();
-       readonly WorkingDaysCalculator workingDaysCalculator= new();
+        Car car = new();
+        WorkingDaysCalculator workingDaysCalculator = new();
 
         [TestMethod]
         public void WhenChangeCarModel_ThenMethodReturnsCorrectValue()
         {
-            string expectedResults = "Nissan";
-            string actualResults = car.ChangeCarModel(carModel);
+            var expectedResults = "Toyota";
+            var actualResults = car.CarModelName;
 
             Assert.AreEqual(expectedResults, actualResults);
         }
@@ -20,8 +19,8 @@ namespace ValueVsReferenceTypesTest
         [TestMethod]
         public void WhenDaysOfTheWeek_ThenMethodReturnsCorrectValue()
         {
-            int expectedResults = 7;
-            int actualResults = workingDaysCalculator.DaysOfTheWeek();
+            var expectedResults = 7;
+            var actualResults = workingDaysCalculator.DaysOfTheWeek;
 
             Assert.AreEqual(expectedResults, actualResults);
         }
@@ -29,8 +28,8 @@ namespace ValueVsReferenceTypesTest
         [TestMethod]
         public void WhenWeeklyWorkDays_ThenMethodReturnsCorrectValue()
         {
-            int expectedResults = 5;
-            int actualResults = workingDaysCalculator.WeeklyWorkDays();
+            var expectedResults = 5;
+            var actualResults = workingDaysCalculator.WeeklyWorkDays();
 
             Assert.AreEqual(expectedResults, actualResults);
         }
