@@ -1,7 +1,4 @@
 ﻿using ExecuteStoredProceduresInEFCore.Models;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
 
 namespace ExecuteStoredProceduresInEFCore
 {
