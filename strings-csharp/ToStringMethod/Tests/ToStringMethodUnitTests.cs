@@ -24,9 +24,8 @@ public class ToStringMethodUnitTests
     }
 
     [Theory]
-    [InlineData("en-GB", "Range Rover Vogue costs £200,000.00 and was sold on 12/2/2022 8:50:10 PM")]
-    [InlineData("ja-JP", "Range Rover Vogue costs ￥200,000 and was sold on 12/2/2022 8:50:10 PM")]
-    [InlineData("fr-FR", "Range Rover Vogue costs 200 000,00 € and was sold on 12/2/2022 8:50:10 PM")]
+    [InlineData("en-GB", "Range Rover Vogue costs £200,000.00 and was sold on 12/02/2022 20:50:10")]
+    [InlineData("ja-JP", "Range Rover Vogue costs ￥200,000 and was sold on 12/02/2022 20:50:10")]
     public void WhenCultureIsPassed_ThenReturnFormattedCurrency(string culture, string expected)
     {
         var result = _car.ToString(culture);
