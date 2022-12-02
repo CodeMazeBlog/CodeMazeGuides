@@ -91,7 +91,7 @@ namespace ExecuteStoredProceduresInEFCore.Migrations
                                     AS
                                     BEGIN
                                         UPDATE 
-                                            Students
+                                            Students 
                                         SET 
                                             Mark = @Mark
                                         WHERE 
