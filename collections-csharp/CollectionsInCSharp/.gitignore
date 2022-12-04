@@ -11,7 +11,8 @@
 *.sln.docstates
 .vs
 .vscode
-.sln
+*.sln
+.gitignore
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
