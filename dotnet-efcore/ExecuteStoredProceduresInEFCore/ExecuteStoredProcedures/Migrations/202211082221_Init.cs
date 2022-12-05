@@ -83,6 +83,22 @@ namespace ExecuteStoredProceduresInEFCore.Migrations
 	                                    WHERE 
 		                                    Id = @Id;
                                     END");
+
+            migrationBuilder.Sql(@"CREATE OR ALTER PROCEDURE UpdateStudentMarkWithReturnValue
+                                        @Id int,
+                                        @Mark int,
+	                                    @AvgMark int OUTPUT
+                                    AS
+                                    BEGIN
+                                        UPDATE 
+                                            Students
+                                        SET 
+                                            Mark = @Mark
+                                        WHERE 
+                                            Id = @Id;
+
+	                                    SELECT @AvgMark = AVG(Mark) FROM Students
+                                    END");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
