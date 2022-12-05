@@ -39,7 +39,7 @@ namespace Tests
 
                 ActionDelegateEvenOrOdd(50);
 
-                string expected = "50 is even number.\r\n";
+                string expected = "50 is even number.";
                 Assert.AreEqual<string>(expected.ToString(), sw.ToString());
             }
         }
@@ -53,7 +53,7 @@ namespace Tests
 
                 ActionDelegateMaximum(50, 80);
 
-                string expected = "Maximum of 50 and 80 is 80.\r\n";
+                string expected = "Maximum of 50 and 80 is 80.";
                 Assert.AreEqual<string>(expected.ToString(), sw.ToString());
             }
         }
