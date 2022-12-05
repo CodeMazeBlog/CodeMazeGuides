@@ -58,5 +58,21 @@ namespace ExecuteStoredProceduresInEFCore
                 new SqlParameter("@Mark", mark));
         }
 
+        public static int UpdateStudentMarkWithReturnValueSqlRaw(AppDbContext context, int id, int mark)
+        {
+            var avgMarkParameter = new SqlParameter()
+            {
+                ParameterName = "AvgMark",
+                SqlDbType = System.Data.SqlDbType.Int,
+                Direction = System.Data.ParameterDirection.Output
+            };
+
+            context.Database.ExecuteSqlRaw("dbo.UpdateStudentMarkWithReturnValue @Id, @Mark, @AvgMark OUTPUT",
+                new SqlParameter("@Id", id),
+                new SqlParameter("@Mark", mark),
+                avgMarkParameter);
+
+            return (int)avgMarkParameter.Value;
+        }
     }
 }

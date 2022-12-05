@@ -150,5 +150,13 @@ namespace Tests
 
             Assert.True(results == 9);
         }
+
+        [Fact]
+        public void WhenUpdateStudentMarkWithReturnValueSqlRaw_ThenSuccess()
+        {
+            var results = UpdateMethods.UpdateStudentMarkWithReturnValueSqlRaw(context, 1, 999);
+
+            Assert.True(results > 1);
+        }
     }
 }

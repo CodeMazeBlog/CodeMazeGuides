@@ -11,6 +11,7 @@ This section contains the topics considered intermediate level in C#.
 - [Covariance and Contravariance in C#](https://code-maze.com/csharp-covariance-and-contravariance/)
 - [Difference Between ValueTuple and Tuple in C#](https://code-maze.com/csharp-valuetuple-vs-tuple/)
 - [What is the Difference Between a DTO and a POCO?](https://code-maze.com/difference-dto-poco/)
+- [How to Enumerate an Enum in C#](https://code-maze.com/enumerate-enum-csharp/)
 - [How to Convert DataTable to JSON in C#](https://code-maze.com/convert-datatable-json-csharp/)
 - [Flags Attribute For Enum in C#](https://code-maze.com/csharp-flags-attribute-for-enum/)
 - [How to Call Generic Method Using Reflection in C#](https://code-maze.com/csharp-call-generic-method-using-reflection/)
