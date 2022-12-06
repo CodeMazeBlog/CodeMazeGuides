@@ -1,16 +1,17 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Bogus;
-using DataTableToJsonTest;
 using System.Data;
 using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Configs;
 
 namespace DataTableToJsonTests
 {
     [MemoryDiagnoser]
-    [RankColumn, MeanColumn, MedianColumn]
-    [HideColumns(new string[] { "Gen0","Gen1","Gen2","Job" })]
+    [MeanColumn, MedianColumn]
+    [HideColumns(new string[] { "Gen0", "Gen1", "Gen2", "Job" })]
     [SimpleJob(RuntimeMoniker.Net60)]
     [SimpleJob(RuntimeMoniker.Net70)]
+    [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByMethod)]
     public class Benchmark
     {
         public class Student
@@ -22,7 +23,9 @@ namespace DataTableToJsonTests
 
         private readonly Faker<Student> _faker = new Faker<Student>();
         private List<Student> students;
+        private List<Student> students2;
         private List<int> studentBirthYears;
+        private List<int> studentBirthYears2;
         private const int count = 100000;
 
         public Benchmark()
@@ -32,24 +35,59 @@ namespace DataTableToJsonTests
                 .RuleFor(m => m.LastName, faker => faker.Person.LastName)
                 .RuleFor(m => m.BirthYear, faker => faker.Person.DateOfBirth.Year)
                 .Generate(count);
+            students2 = students.ToList();
 
             studentBirthYears = students.Select(m => m.BirthYear).ToList();
+            studentBirthYears2 = studentBirthYears.ToList();
         }
 
         [Benchmark]
         public void Min() => studentBirthYears.Min();
 
         [Benchmark]
-        public void List_Min() => students.Select(m => m.BirthYear).ToList().Min();
+        public void Max() => studentBirthYears.Max();
 
-        //[Benchmark]
-        //public void Max() => students.Max(m => m.BirthYear);
+        [Benchmark]
+        public void Average() => studentBirthYears.Average();
 
-        //[Benchmark]
-        //public void Sum() => students.Sum(m => m.BirthYear);
+        [Benchmark]
+        public void Sum() => studentBirthYears.Sum();
 
-        //[Benchmark]
-        //public void Average() => students.Average(m => m.BirthYear);
+        [Benchmark]
+        public void First() => studentBirthYears.First();
+
+        [Benchmark]
+        public void Filter() => studentBirthYears.Where(m => m > 1980);
+
+        [Benchmark]
+        public void Group() => studentBirthYears.GroupBy(m => m);
+
+        [Benchmark]
+        public void Join() => studentBirthYears.Join(studentBirthYears2, m => m, k => k, (m,k) => m);
+
+        [Benchmark]
+        public void List_Min() => students.Min(m => m.BirthYear);
+
+        [Benchmark]
+        public void List_Max() => students.Max(m => m.BirthYear);
+
+        [Benchmark]
+        public void List_Sum() => students.Sum(m => m.BirthYear);
+
+        [Benchmark]
+        public void List_Average() => students.Average(m => m.BirthYear);
+
+        [Benchmark]
+        public void List_First() => students.First();
+
+        [Benchmark]
+        public void List_Filter() => students.Where(m => m.BirthYear > 1980);
+
+        [Benchmark]
+        public void List_Group() => students.GroupBy(m => m.BirthYear);
+
+        [Benchmark]
+        public void List_Join() => students.Join(students2, m => m.BirthYear, k => k.BirthYear, (m,k) => m);
 
 
     }
