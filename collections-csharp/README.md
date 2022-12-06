@@ -9,6 +9,7 @@ This section contains articles about C#/.NET collections.
 - [Dictionary in C#](https://code-maze.com/dictionary-csharp/)
 - [HashSet vs SortedSet in C#](https://code-maze.com/csharp-hashset-vs-sortedset/)
 - [HashSet in C#](https://code-maze.com/csharp-hashset/)
+- [How to Implement a LinkedList in C#](https://code-maze.com/csharp-linkedlist/)
 - [Queue in C#](https://code-maze.com/queue-csharp/)
 - [SortedList in C#](https://code-maze.com/csharp-sortedlist/)
 - [SortedSet in C#](https://code-maze.com/csharp-sortedset/)
