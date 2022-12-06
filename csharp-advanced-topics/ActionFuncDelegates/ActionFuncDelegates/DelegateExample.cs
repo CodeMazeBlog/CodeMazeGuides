@@ -7,11 +7,9 @@ public class DelegateExample
     public delegate void MyAction<T>(T value);
     public List<Item> TransformTitle(List<Item> data, string transformValue)
     {
-        // use custom MyAction<T> method 
-
         data.MyForeach(i => i.Title = transformValue);
-        return data;
 
+        return data;
     }
 }
 public static class MyExtension
@@ -22,6 +20,7 @@ public static class MyExtension
         {
             action(item);
         }
+
         return items;
     }
 }
