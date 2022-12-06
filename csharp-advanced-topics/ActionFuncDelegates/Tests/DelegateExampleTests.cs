@@ -27,7 +27,5 @@ public class DelegateExampleTests
         //Assert
 
         items.ForEach(i => Assert.That(i.Title, Is.EqualTo(transformValue)));
-
-
     }
 }

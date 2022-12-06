@@ -28,7 +28,6 @@ public class ActionFuncExampleTests
         //Assert
 
         Assert.That(items.Count, Is.EqualTo(expectedCount));
-
     }
 
     [Test]
@@ -47,7 +46,6 @@ public class ActionFuncExampleTests
         //Assert
 
         Assert.That(items.Count, Is.EqualTo(expectedCount));
-
     }
 
     [Test]
@@ -65,7 +63,5 @@ public class ActionFuncExampleTests
         //Assert
 
         items.ForEach(i => Assert.That(i.Title, Is.EqualTo(transformValue)));
-
-
     }
 }
