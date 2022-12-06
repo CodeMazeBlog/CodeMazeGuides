@@ -93,6 +93,5 @@ namespace Tests
 
             Assert.IsType<ArrayList>(result);
         }
-
     }
 }

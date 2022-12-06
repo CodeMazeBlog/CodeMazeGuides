@@ -134,6 +134,5 @@ namespace Tests
 
             Assert.IsType<string>(result);
         }
-
     }
 }

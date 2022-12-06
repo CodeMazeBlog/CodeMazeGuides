@@ -108,7 +108,5 @@ namespace CollectionsInCSharp
 
             return detailList;
         }
-
     }
-
 }
