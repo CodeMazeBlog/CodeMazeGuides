@@ -1,5 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
-using DataTableToJsonTests;
+using LINQPerformanceImprovementsNET7;
 
 BenchmarkDotNet.Reports.Summary summary;
 summary = BenchmarkRunner.Run<Benchmark>();

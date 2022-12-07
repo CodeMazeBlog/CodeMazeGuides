@@ -1,7 +1,7 @@
-namespace DataTableToJsonTestsTests
+namespace LINQPerformanceImprovementsNET7Tests
 {
     [TestClass]
-    public class DataTableToJsonTestsUnitTests
+    public class LINQPerformanceImprovementsNET7UnitTests
     {
 
     }

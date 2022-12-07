@@ -4,7 +4,7 @@ using System.Data;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Configs;
 
-namespace DataTableToJsonTests
+namespace LINQPerformanceImprovementsNET7
 {
     [MemoryDiagnoser]
     [RankColumn, MeanColumn, MedianColumn]
