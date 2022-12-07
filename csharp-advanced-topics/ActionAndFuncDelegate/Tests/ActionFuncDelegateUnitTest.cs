@@ -36,30 +36,25 @@ namespace Tests
         [TestMethod]
         public void WhenEvenOddActionCalled_ThenPrintNumberIsEvenOrOdd()
         {
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                ActionDelegateEvenOrOdd(50);
-                var result = sw.ToString().Trim();
-                string expected = "50 is even number.";
+            using StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+            ActionDelegateEvenOrOdd(50);
+            var result = sw.ToString().Trim();
+            string expected = "50 is even number.";
 
-                Assert.AreEqual(expected, result);
-
-            }
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
         public void WhenMaximumNumberActionCalled_ThenPrintMaximumOfTwoNumber()
         {
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                ActionDelegateMaximum(45, 55);
-                var result = sw.ToString().Trim();
-                string expected = "Maximum of 45 and 55 is 55.";
+            using StringWriter sw = new StringWriter();
+            Console.SetOut(sw);
+            ActionDelegateMaximum(45, 55);
+            var result = sw.ToString().Trim();
+            string expected = "Maximum of 45 and 55 is 55.";
 
-                Assert.AreEqual<string>(expected, result);
-            }
+            Assert.AreEqual<string>(expected, result);
         }
 
     }
