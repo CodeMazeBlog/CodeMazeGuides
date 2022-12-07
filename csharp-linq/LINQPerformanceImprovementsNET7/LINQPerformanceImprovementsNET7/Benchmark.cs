@@ -7,7 +7,7 @@ using BenchmarkDotNet.Configs;
 namespace DataTableToJsonTests
 {
     [MemoryDiagnoser]
-    [MeanColumn, MedianColumn]
+    [RankColumn, MeanColumn, MedianColumn]
     [HideColumns(new string[] { "Gen0", "Gen1", "Gen2", "Job" })]
     [SimpleJob(RuntimeMoniker.Net60)]
     [SimpleJob(RuntimeMoniker.Net70)]
