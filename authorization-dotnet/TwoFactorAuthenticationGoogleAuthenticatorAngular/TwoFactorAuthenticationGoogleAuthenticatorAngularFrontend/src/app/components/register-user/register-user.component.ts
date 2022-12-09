@@ -25,9 +25,7 @@ export class RegisterUserComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void { 
-    console.log("a");
-  }
+  ngOnInit(): void { }
 
   public validateControl = (controlName: string) => {
     return this.registerForm.get(controlName)?.invalid && this.registerForm.get(controlName)?.touched
@@ -50,7 +48,7 @@ export class RegisterUserComponent implements OnInit {
     .subscribe({
       next: (_) => {
         console.log("Successful registration");
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
       },
       error: (err: HttpErrorResponse) => console.log(err.error.errors)
     })

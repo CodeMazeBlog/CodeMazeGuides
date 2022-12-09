@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SettingsComponent } from './settings.component';
+import { TfaSetupComponent } from './tfa-setup.component';
 
-describe('SettingsComponent', () => {
-  let component: SettingsComponent;
-  let fixture: ComponentFixture<SettingsComponent>;
+describe('TfaSetupComponent', () => {
+  let component: TfaSetupComponent;
+  let fixture: ComponentFixture<TfaSetupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SettingsComponent ]
+      declarations: [ TfaSetupComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SettingsComponent);
+    fixture = TestBed.createComponent(TfaSetupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

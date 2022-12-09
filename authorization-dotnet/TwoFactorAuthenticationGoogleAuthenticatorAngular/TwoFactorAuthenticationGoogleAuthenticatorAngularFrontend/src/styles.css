@@ -1,3 +1,7 @@
+body{
+    padding:20px;
+}
+
 em{
     color: #e71515;
     font-weight: bold;

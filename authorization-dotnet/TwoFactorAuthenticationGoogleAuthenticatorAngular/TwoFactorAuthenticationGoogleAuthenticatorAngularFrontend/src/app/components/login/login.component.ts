@@ -13,14 +13,20 @@ import { AuthResponseDto } from 'src/app/models/AuthResponseDto';
 })
 export class LoginComponent implements OnInit {
   private returnUrl: string = "";
+  isTfaEnabled: boolean = false;
   
   loginForm: FormGroup  = new FormGroup({
-    username: new FormControl("", [Validators.required]),
+    email: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required])
+  });
+
+  tfaForm: FormGroup  = new FormGroup({
+    tfaCode: new FormControl("", [Validators.required])
   });
 
   errorMessage: string = '';
   showError: boolean = false;
+  email:string = "";
 
   constructor(
     private authService: AuthenticationService, 
@@ -44,15 +50,24 @@ export class LoginComponent implements OnInit {
     const login = {... loginFormValue };
 
     const userForAuth: UserForAuthenticationDto = {
-      email: login.username,
+      email: login.email,
       password: login.password
     }
 
-    this.authService.loginUser('api/accounts/login', userForAuth)
+    this.authService.loginUser(userForAuth)
     .subscribe({
       next: (res:AuthResponseDto) => {
-       localStorage.setItem("token", res.token);
-       this.router.navigate([this.returnUrl]);
+       this.isTfaEnabled = res.isTfaEnabled;
+
+       if(this.isTfaEnabled){
+        this.router.navigate(['twostepverification'], 
+          { queryParams: { returnUrl: this.returnUrl, email: login.email }})
+       }
+       else{
+        localStorage.setItem("token", res.token);
+        localStorage.setItem("email", login.email);
+        this.router.navigate([this.returnUrl]);
+       }
     },
     error: (err: HttpErrorResponse) => {
       this.errorMessage = err.message;
