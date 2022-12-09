@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeMaze Shop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col text-right">
+                    <div class="mt-3" >
+                        <a asp-controller="Order" asp-action="Index">My orders</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3 pb-3 pt-1">
+                <div class="col-md-9">
+                    <a class="navbar-brand" asp-controller="ProductCatalog" asp-action="Index">
+                        <img src="~/img/Code-Maze-Logo-White-Text-Transparent-Small.png" />
+                    </a>
+                </div>
+                <div class="col-md-3 mt-5">
+                    <div>
+                        @RenderSection("Widget", required: false)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
