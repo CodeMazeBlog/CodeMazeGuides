@@ -1,6 +1,6 @@
-﻿using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using TwoFactorAuthenticationGoogleAuthenticatorAngular.Models;
+﻿using TwoFactorAuthenticationGoogleAuthenticatorAngular.Models;
 using AutoMapper;
+using TwoFactorAuthenticationGoogleAuthenticatorAngular.DataTransferObjects;
 
 namespace TwoFactorAuthenticationGoogleAuthenticatorAngular.Controllers
 {

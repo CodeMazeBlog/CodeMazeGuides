@@ -14,6 +14,5 @@ namespace TwoFactorAuthenticationGoogleAuthenticatorAngular.Models
         {
             base.OnModelCreating(modelBuilder);
         }
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TwoFactorAuthenticationGoogleAuthenticatorAngular.Models
+namespace TwoFactorAuthenticationGoogleAuthenticatorAngular.DataTransferObjects
 {
     public class UserForRegistrationDto
     {

@@ -1,4 +1,4 @@
-﻿namespace TwoFactorAuthenticationGoogleAuthenticatorAngular.Models
+﻿namespace TwoFactorAuthenticationGoogleAuthenticatorAngular.DataTransferObjects
 {
     public class RegistrationResponseDto
     {
