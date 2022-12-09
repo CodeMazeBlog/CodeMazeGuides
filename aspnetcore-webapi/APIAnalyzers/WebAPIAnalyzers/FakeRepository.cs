@@ -17,7 +17,8 @@
                 new Employee()
                 {
                     Id = 1,
-                    Name = "John Doe"                },
+                    Name = "John Doe"
+                },
                 new Employee()
                 {
                     Id = 2,
