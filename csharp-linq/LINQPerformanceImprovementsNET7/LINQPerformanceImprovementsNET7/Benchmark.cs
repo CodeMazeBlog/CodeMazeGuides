@@ -3,13 +3,11 @@ using Bogus;
 using System.Data;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Configs;
-using System.Linq;
 
 namespace LINQPerformanceImprovementsNET7
 {
-    
     [RankColumn]
-    [HideColumns(new string[] { "Job" })]
+    [HideColumns(new string[] { "Job", "Error", "StdDev", "Median" })]
     [MemoryDiagnoser(false)]
     [SimpleJob(RuntimeMoniker.Net60)]
     [SimpleJob(RuntimeMoniker.Net70)]
@@ -108,8 +106,5 @@ namespace LINQPerformanceImprovementsNET7
 
         [Benchmark]
         public void List_Join() => students.Join(students2, m => m.BirthYear, k => k.BirthYear, (m, k) => m);
-
-
     }
-
 }
