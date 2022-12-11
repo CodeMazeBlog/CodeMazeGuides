@@ -6,17 +6,72 @@ using System.Threading.Tasks;
 
 namespace DefaultInterfaceMethod
 {
-    public interface IDefaultInterface
+    public interface ICalendar
     {
-        int year { get; set; }
-        private static string message = "Welcome to FIFA World Cup ";
-        public string FullMessage()
+        public DateTime date { get; set; }
+        public string ShowMessage()
         {
-            return message + year;
+            return "Default Calendar";
         }
-        public void ShowMessage()
+    }
+    public interface IYearCalendar : ICalendar
+    {
+        public bool IsLeapYear()
         {
-            Console.WriteLine(FullMessage());
+            if (date.Year % 400 == 0)
+                return true;
+            if (date.Year % 100 == 0)
+                return false;
+            if (date.Year % 4 == 0)
+                return true;
+
+            return false;
+        }
+        string ICalendar.ShowMessage()
+        {
+            if (IsLeapYear())
+                return $"{date} is a leap year";
+            else
+                return $"{date} is not a leap year";
+        }
+
+    }
+    public interface IMonthCalendar : ICalendar
+    {
+        public bool Is31DaysMonth()
+        {
+            if (DateTime.DaysInMonth(date.Year, date.Month) > 30)
+                return true;
+
+            return false;
+        }
+        string ICalendar.ShowMessage()
+        {
+            if (Is31DaysMonth())
+                return $"{date} has 31 days";
+            else
+                return $"{date} does not has 31 days";
+        }
+
+    }
+    public class MyYearCalendar : IYearCalendar
+    {
+        public DateTime date;
+        DateTime ICalendar.date { get => date; set => date = value; }
+    }
+    public class MyMonthCalendar : IMonthCalendar
+    {
+        public DateTime date;
+        DateTime ICalendar.date { get => date; set => date = value; }
+    }
+    public class MyCalendar : IYearCalendar, IMonthCalendar
+    {
+        public DateTime date;
+        DateTime ICalendar.date { get => date; set => date = value; }
+
+        public string ShowMessage()
+        {
+            return $"Today is {date}";
         }
     }
 }

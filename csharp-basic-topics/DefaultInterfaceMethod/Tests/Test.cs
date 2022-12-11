@@ -1,36 +1,35 @@
 using DefaultInterfaceMethod;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using System;
 
 namespace Tests
 {
-   
+
     [TestClass]
     public class Test
     {
         [TestMethod]
-        public void DefaultInterfaceMethod_DisplayMessage()
+        public void WhenCalendarYear_ThenItIsLeap()
         {
-            IDefaultInterface di = new IDefaultInterfaceImplementation();
-            di.year = 2902;
-            di.ShowMessage();
+            IYearCalendar impl = new MyYearCalendar();
+            impl.date = new DateTime(2000, 12, 1);
+            Assert.IsTrue(impl.IsLeapYear());
         }
         [TestMethod]
-        public void WhenAddNewDefaultInterfaceMethod_ThenBuildWithSuccess()
+        public void WhenCalendarMonth_ThenItIs31Days()
         {
-            var sql = new SqlServerConnection();
-            sql.Open();
-            sql.Close();
-            var oracle = new OracleConnection();
-            oracle.Open();
-            oracle.Close();
+            IMonthCalendar impl = new MyMonthCalendar();
+            impl.date = new DateTime(2000, 12, 1);
+            Assert.IsTrue(impl.Is31DaysMonth());
         }
 
         [TestMethod]
-        public void WhenMultipleInheritance_ThenNoDiamondProblem()
+        public void WhenCalendar_ThenDisplayDate()
         {
-            AllTransaction trn = new AllTransaction();
-            trn.Transaction();
+            var impl = new MyCalendar();
+            impl.date = new DateTime(2000, 12, 1);
+            Assert.IsTrue(impl is ICalendar);
         }
+
     }
 }
