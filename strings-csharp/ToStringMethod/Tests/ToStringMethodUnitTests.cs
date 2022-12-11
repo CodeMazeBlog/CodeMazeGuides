@@ -5,12 +5,16 @@ namespace Tests;
 public class ToStringMethodUnitTests
 {
     private readonly Person _person;
+    private readonly Person _secondPerson;
     private readonly Car _car;
+    private readonly Car _secondCar;
 
     public ToStringMethodUnitTests()
     {
         _person = new Person("Jane Doe", 26, "Secretary");
         _car = new Car("Range Rover", "Vogue", 200000M, new DateTime(2022, 12, 02, 20, 50, 10));
+        _secondPerson = new Person();
+        _secondCar = new Car();
     }
 
     [Fact]
@@ -48,4 +52,29 @@ public class ToStringMethodUnitTests
         Assert.NotNull(result);
         Assert.Equal(expected, result);
     }
+
+    [Fact]
+    public void WhenPersonObjectIsNull_ThenReturnFallbackValue()
+    {
+        var result = _secondPerson.ToString();
+
+        Assert.Equal(string.Empty, result);
+    } 
+    
+    [Fact]
+    public void WhenCultureIsPassedAndCarIsNull_ThenReturnFallbackValue()
+    {
+        var cultureFormattedString = _secondCar.ToString("en-US");
+        var dateFormattedString = _secondCar.ToString("en-US", "dd-MM-yyyy");
+
+        Assert.Equal(string.Empty, cultureFormattedString); 
+    }
+
+    [Fact]
+    public void WhenDateIsPassedAndCarIsNull_ThenReturnFallbackValue()
+    {
+        var dateFormattedString = _secondCar.ToString("en-US", "dd-MM-yyyy");
+
+        Assert.Equal(string.Empty, dateFormattedString); 
+    }   
 }

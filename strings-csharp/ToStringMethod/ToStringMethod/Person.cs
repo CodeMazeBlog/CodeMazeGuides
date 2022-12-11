@@ -6,6 +6,11 @@ public class Person
     public int Age { get; set; }
     public string Profession { get; set; }
 
+    public Person()
+    {
+        
+    }
+
     public Person(string name, int age, string profession)
     {
         Name = name;
@@ -15,6 +20,11 @@ public class Person
 
     public override string ToString()
     {
+        if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Profession))
+        {
+            return string.Empty;
+        }
+
         return $"{Name} is {Age} years old, and is a {Profession}";
     }
 }
