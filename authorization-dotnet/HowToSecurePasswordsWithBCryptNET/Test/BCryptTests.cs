@@ -35,7 +35,6 @@ public class BCryptTests
     [Fact]
     public void WhenVerifyingPasswordWithEnhancedEntropy_ThenVerificationSucceeds()
     {
-
         var passwordHash = BCrypt.EnhancedHashPassword("Password123!");
         var result = BCrypt.EnhancedVerify("Password123!", passwordHash);
 
@@ -45,7 +44,6 @@ public class BCryptTests
     [Fact]
     public void WhenVerifyingPasswordWithEnhancedEntropyAndSHA512_ThenVerificationSucceeds()
     {
-
         var passwordHash = BCrypt.EnhancedHashPassword("Password123!", HashType.SHA512);
         var result = BCrypt.EnhancedVerify("Password123!", passwordHash, HashType.SHA512);
 
