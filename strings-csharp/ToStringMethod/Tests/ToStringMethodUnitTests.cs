@@ -4,23 +4,21 @@ namespace Tests;
 
 public class ToStringMethodUnitTests
 {
-    private readonly Person _person;
-    private readonly Person _secondPerson;
-    private readonly Car _car;
-    private readonly Car _secondCar;
+    private Person _person;
+    private Car _car;
 
     public ToStringMethodUnitTests()
     {
         _person = new Person("Jane Doe", 26, "Secretary");
         _car = new Car("Range Rover", "Vogue", 200000M, new DateTime(2022, 12, 02, 20, 50, 10));
-        _secondPerson = new Person();
-        _secondCar = new Car();
+
     }
 
     [Fact]
     public void WhenPersonDetailsArePassed_TheReturnString()
     {
         const string expected = "Jane Doe is 26 years old, and is a Secretary";
+
         var result = _person.ToString();
 
         Assert.NotNull(result);
@@ -54,27 +52,64 @@ public class ToStringMethodUnitTests
     }
 
     [Fact]
-    public void WhenPersonObjectIsNull_ThenReturnFallbackValue()
+    public void WhenNullCarObjectIsConvertedToString_ThenThrowAnException()
     {
-        var result = _secondPerson.ToString();
+        _car = null;
 
-        Assert.Equal(string.Empty, result);
-    } 
-    
-    [Fact]
-    public void WhenCultureIsPassedAndCarIsNull_ThenReturnFallbackValue()
-    {
-        var cultureFormattedString = _secondCar.ToString("en-US");
-        var dateFormattedString = _secondCar.ToString("en-US", "dd-MM-yyyy");
+        void Action() => _car.ConvertNullObjectToString();
 
-        Assert.Equal(string.Empty, cultureFormattedString); 
+        Assert.Throws<NullReferenceException>(Action);
     }
 
     [Fact]
-    public void WhenDateIsPassedAndCarIsNull_ThenReturnFallbackValue()
+    public void WhenNullPersonObjectIsConvertedToString_ThenThrowAnException()
     {
-        var dateFormattedString = _secondCar.ToString("en-US", "dd-MM-yyyy");
+        _person = null;
 
-        Assert.Equal(string.Empty, dateFormattedString); 
-    }   
+        void Action() => _person.ConvertNullObjectToString();
+
+        Assert.Throws<NullReferenceException>(Action);
+    }
+
+    [Fact]
+    public void WhenNullCarObjectIsConvertedToString_ThenReturnEmptyString()
+    {
+        _car = null;
+
+        var result = _car.HandleNullException();
+
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void WhenNullPersonObjectIsConvertedToString_ThenReturnEmptyString()
+    {
+        _person = null;
+
+        var result = _person.HandleNullException();
+
+        Assert.Empty(result);
+    }
+
+    [Theory]
+    [InlineData("en-GB", "dd/MM/yyyy")]
+    public void WhenCarObjectHasNullProperty_ThenReturnEmptyString(string culture, string dateFormat)
+    {
+        _car.Make = null;
+        _car.Model = null;
+
+        var result = _car.ToString(culture, dateFormat);
+
+        Assert.Empty(result);
+    }
+
+    [Fact]
+    public void WhenPersonObjectHasNullProperty_ThenReturnEmptyString()
+    {
+        _person.Name = null;
+
+        var result = _person.ToString();
+
+        Assert.Empty(result);
+    }
 }
