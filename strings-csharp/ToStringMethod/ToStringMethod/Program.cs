@@ -6,8 +6,3 @@ person.ToString();
 var car = new Car("Tesla", "Model S", 100000M, DateTime.Now);
 car.ToString("en-US");
 car.ToString("en-US", "dd-MMM-yyyy");
-
-car = null;
-//car.ConvertNullObjectToString();
-
-car.HandleNullException();

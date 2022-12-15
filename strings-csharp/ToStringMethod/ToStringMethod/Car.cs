@@ -21,11 +21,6 @@ public class Car
     {
         var price = Price.ToString("C", new CultureInfo(culture));
 
-        if (string.IsNullOrEmpty(Make) || string.IsNullOrEmpty(Model))
-        {
-            return string.Empty;
-        }
-
         return $"{Make} {Model} costs {price} and was sold on {SoldAt}";
     }
 
@@ -33,11 +28,6 @@ public class Car
     {
         var price = Price.ToString("C", new CultureInfo(culture));
         var saleDate = SoldAt.ToString(dateFormat);
-
-        if (string.IsNullOrEmpty(Make) || string.IsNullOrEmpty(Model))
-        {
-            return string.Empty;
-        }
 
         return $"{Make} {Model} costs {price} and was sold on {saleDate}";
     }

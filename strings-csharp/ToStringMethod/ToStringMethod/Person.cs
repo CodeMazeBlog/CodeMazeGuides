@@ -15,11 +15,6 @@ public class Person
 
     public override string ToString()
     {
-        if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Profession))
-        {
-            return string.Empty;
-        }
-
         return $"{Name} is {Age} years old, and is a {Profession}";
     }
 }
