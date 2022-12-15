@@ -9,7 +9,7 @@ namespace ObjectComparisons
     [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
     public class ObjectComparisonBenchmark
     {
-        [Params(100, 1000, 10000)]
+        [Params(10000)]
         public int Count { get; set; }
 
         public Employee[] Employees { get; } = new Employee[5]
@@ -47,6 +47,5 @@ namespace ObjectComparisons
                 Array.Sort(Employees, Employee.CompareEmployeesByIdAscending);
             }
         }
-
     }
 }
