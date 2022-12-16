@@ -20,19 +20,15 @@ namespace ConsumerApp.Repository
 
         public async Task PostUsersAsync(UserModel userModel, string token)
         {
-            var uri = new Uri("https://localhost:5001/api/users");
-
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var result = await _httpClient.PostAsync(uri, GenerateBody(userModel)); 
+            var result = await _httpClient.PostAsync("api/users", GenerateBody(userModel)); 
 
             result.EnsureSuccessStatusCode();
         }
 
         public async Task<IEnumerable<UserModel>> GetUsersAsync()
         {
-            var uri = new Uri("https://localhost:5001/api/users");
-
-            var result = await _httpClient.GetAsync(uri);
+            var result = await _httpClient.GetAsync("api/users");
 
             result.EnsureSuccessStatusCode();
 
@@ -43,9 +39,7 @@ namespace ConsumerApp.Repository
 
         public async Task<UserModel> GetUsersAsync(int userId)
         {
-            var uri = new Uri($"https://localhost:5001/api/users/{userId}");
-
-            var result = await _httpClient.GetAsync(uri);
+            var result = await _httpClient.GetAsync($"api/users/{userId}");
 
             result.EnsureSuccessStatusCode();
 

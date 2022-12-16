@@ -19,15 +19,13 @@ namespace ConsumerApp.Infrastructure
 
         public async Task<AccessToken> AuthenticateAsync(string email, string password)
         {
-            var uri = new Uri("https://localhost:5001/api/auth/login");
-
             var body = JsonSerializer.Serialize(new { email, password }, 
                 new JsonSerializerOptions 
                 { 
                     PropertyNameCaseInsensitive = true 
                 });
 
-            var result = await _httpClient.PostAsync(uri, new StringContent(body, Encoding.UTF8, "application/json"));
+            var result = await _httpClient.PostAsync("api/auth/login", new StringContent(body, Encoding.UTF8, "application/json"));
 
             result.EnsureSuccessStatusCode();
 

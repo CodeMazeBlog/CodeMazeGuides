@@ -17,11 +17,13 @@ namespace ConsumerApp
                 {
                     services.AddScoped<ProgramApplication>();
 
-                    services.AddHttpClient<ILoginApiRepository, LoginApiRepository>();
+                    services.AddHttpClient<ILoginApiRepository, LoginApiRepository>(
+                        c => c.BaseAddress = new Uri("https://localhost:5001/"));
                     
                     services.AddScoped<LoginHandler>();
 
-                    services.AddHttpClient<IUserApiRepository, UserApiRepository>()
+                    services.AddHttpClient<IUserApiRepository, UserApiRepository>(
+                        c => c.BaseAddress = new Uri("https://localhost:5001/"))
                         .AddHttpMessageHandler<LoginHandler>();
                     
                 }).UseConsoleLifetime();

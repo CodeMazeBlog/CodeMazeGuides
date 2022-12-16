@@ -8,7 +8,7 @@ using UserApi.Controllers;
 using UserApi.Database;
 using UserApi.Models;
 
-namespace Tests
+namespace UserApi.Tests
 {
     public class UsersTests
     {
