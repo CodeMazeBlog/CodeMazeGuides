@@ -14,11 +14,11 @@ namespace CryptographyDotnet
         public void WhenUsingAES_ThenDataIsEncrypted()
         {
             var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            var data = Encoding.UTF8.GetBytes(dataStr);
             var key = GenerateAESKey();
 
             var encryptedData = Encrypt(data, key, out var iv);
-            
+
             Assert.AreNotEqual(data, encryptedData);
         }
 
@@ -26,13 +26,13 @@ namespace CryptographyDotnet
         public void GivenSameInput_WhenUsingAES_ThenDataIsEncryptedDifferentlyEachTime()
         {
             var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            var data = Encoding.UTF8.GetBytes(dataStr);
             var key = GenerateAESKey();
 
             var encryptedData = Encrypt(data, key, out var iv);
 
             var dataStr2 = "This is corporate research! Dont read me!";
-            var data2 = Encoding.ASCII.GetBytes(dataStr2);
+            var data2 = Encoding.UTF8.GetBytes(dataStr2);
             var key2 = GenerateAESKey();
 
             var encryptedData2 = Encrypt(data2, key2, out var iv2);
@@ -44,13 +44,13 @@ namespace CryptographyDotnet
         public void GivenSameInputAndSameKey_WhenUsingAES_ThenDataIsEncryptedDifferentlyEachTime()
         {
             var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            var data = Encoding.UTF8.GetBytes(dataStr);
             var key = GenerateAESKey();
 
             var encryptedData = Encrypt(data, key, out var iv);
 
             var dataStr2 = "This is corporate research! Dont read me!";
-            var data2 = Encoding.ASCII.GetBytes(dataStr2);
+            var data2 = Encoding.UTF8.GetBytes(dataStr2);
 
             var encryptedData2 = Encrypt(data2, key, out var iv2);
 
@@ -61,7 +61,7 @@ namespace CryptographyDotnet
         public void WhenEncryptingWithAES_ThenDataIsRecoverable()
         {
             var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            var data = Encoding.UTF8.GetBytes(dataStr);
             var key = GenerateAESKey();
 
             var encryptedData = Encrypt(data, key, out var iv);
@@ -69,14 +69,14 @@ namespace CryptographyDotnet
 
 
             CollectionAssert.AreEqual(data, decryptedData);
-            Assert.AreEqual(dataStr, Encoding.ASCII.GetString(decryptedData));
+            Assert.AreEqual(dataStr, Encoding.UTF8.GetString(decryptedData));
         }
 
         [TestMethod]
         public void GivenWrongKeySize_WhenEncryptingWithAES_ThenExceptionIsThrown()
         {
             var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            var data = Encoding.UTF8.GetBytes(dataStr);
 
             Assert.ThrowsException<CryptographicException>(() => {
                 Encrypt(data, new byte[] { 1, 2, 3 }, out var iv);
@@ -89,7 +89,7 @@ namespace CryptographyDotnet
             {
                 aes.Mode = CipherMode.CBC; // better security
                 aes.Key = key;
-                aes.GenerateIV();
+                aes.GenerateIV(); // IV = Initialization Vector
 
                 using (var encryptor = aes.CreateEncryptor())
                 {

@@ -14,11 +14,14 @@ namespace CryptographyDotnet
         public void WhenUsingRSA_ThenDataIsEncrypted()
         {
             var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            var data = Encoding.UTF8.GetBytes(dataStr);
+            var keyLength = 2048;
 
-            GenerateKeys(2048, out var publicKey, out var privateKey);
+            GenerateKeys(keyLength, out var publicKey, out var privateKey);
 
             var encryptedData = Encrypt(data, publicKey);
+
+            var hashAsString = Convert.ToHexString(encryptedData);
 
             Assert.AreNotEqual(data, encryptedData);
         }
@@ -27,13 +30,14 @@ namespace CryptographyDotnet
         public void GivenSameInput_WhenUsingRSA_ThenDataIsEncryptedDifferentlyEachTime()
         {
             var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            var data = Encoding.UTF8.GetBytes(dataStr);
+            var keyLength = 2048;
 
-            GenerateKeys(2048, out var publicKey, out var privateKey);
+            GenerateKeys(keyLength, out var publicKey, out var privateKey);
 
             var encryptedData = Encrypt(data, publicKey);
 
-            GenerateKeys(2048, out var publicKey2, out var privateKey2);
+            GenerateKeys(keyLength, out var publicKey2, out var privateKey2);
 
             var encryptedData2 = Encrypt(data, publicKey2);
 
@@ -44,9 +48,10 @@ namespace CryptographyDotnet
         public void GivenSameInputAndSameKey_WhenUsingRSA_ThenDataIsEncryptedDifferentlyEachTime()
         {
             var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            var data = Encoding.UTF8.GetBytes(dataStr);
+            var keyLength = 2048;
 
-            GenerateKeys(2048, out var publicKey, out var privateKey);
+            GenerateKeys(keyLength, out var publicKey, out var privateKey);
 
             var encryptedData = Encrypt(data, publicKey);
 
@@ -59,9 +64,10 @@ namespace CryptographyDotnet
         public void WhenEncryptingWithRSA_ThenDataIsRecoverable()
         {
             var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            var data = Encoding.UTF8.GetBytes(dataStr);
+            var keyLength = 2048;
 
-            GenerateKeys(2048, out var publicKey, out var privateKey);
+            GenerateKeys(keyLength, out var publicKey, out var privateKey);
 
             var encryptedData = Encrypt(data, publicKey);
             var decryptedData = Decrypt(encryptedData, privateKey);
@@ -74,7 +80,7 @@ namespace CryptographyDotnet
         public void GivenKeySizeTooSmall_WhenCreatingRSAKeys_ThenExceptionIsThrown()
         {
             var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.ASCII.GetBytes(dataStr);
+            var data = Encoding.UTF8.GetBytes(dataStr);
 
             Assert.ThrowsException<CryptographicException>(() => {
                 GenerateKeys(128, out var publicKey, out var privateKey);

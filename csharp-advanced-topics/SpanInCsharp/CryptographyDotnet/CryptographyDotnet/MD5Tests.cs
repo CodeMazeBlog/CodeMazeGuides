@@ -12,7 +12,7 @@ namespace CryptographyDotnet
         [TestMethod]
         public async Task WhenHashingSameValue_ThenHashesAreEqual()
         {
-            var strStreamOne = new MemoryStream(Encoding.ASCII.GetBytes("This is my pasword! Dont read me!"));
+            var strStreamOne = new MemoryStream(Encoding.UTF8.GetBytes("This is my pasword! Dont read me!"));
 
             byte[] hashOne;
             using (var hasher = MD5.Create())
@@ -20,7 +20,7 @@ namespace CryptographyDotnet
                 hashOne = await hasher.ComputeHashAsync(strStreamOne);
             }
 
-            var strStreamTwo = new MemoryStream(Encoding.ASCII.GetBytes("This is my pasword! Dont read me!"));
+            var strStreamTwo = new MemoryStream(Encoding.UTF8.GetBytes("This is my pasword! Dont read me!"));
             byte[] hashTwo;
             using (var hasher = MD5.Create())
             {
@@ -33,7 +33,7 @@ namespace CryptographyDotnet
         [TestMethod]
         public async Task WhenUsingMD5_ThenDataIsHashed()
         {
-            var strStreamOne = new MemoryStream(Encoding.ASCII.GetBytes("This is my pasword! Dont read me!"));
+            var strStreamOne = new MemoryStream(Encoding.UTF8.GetBytes("This is my pasword! Dont read me!"));
 
             byte[] hashOne;
             using (var hasher = MD5.Create())
