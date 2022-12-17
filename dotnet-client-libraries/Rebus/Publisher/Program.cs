@@ -8,7 +8,7 @@ builder.Services.AddRebus(configure =>
     var configurer = configure
     .Logging(l => l.ColoredConsole())
     .Transport(t => t.UseRabbitMqAsOneWayClient("amqp://guest:guest@localhost:5672"))
-    .Options(o => o.EnableFleetManager("https://api.rebus.fm", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhaWQiOiJ0LXRlYW0yMi0xIiwidXBuIjoidXNlcjczNiIsIndoZW4iOiIxNjcwOTUxOTcyNDUyIn0.WNdYpNPiRr4_ATP10xTdXBjYPuGRW75QSO1rQXy3E85905kSSvFAFdukePB5NckliVRbbxlqNSmo9PA6k9pPwA"));
+    .Options(o => o.EnableFleetManager("https://api.rebus.fm", "<API_KEY>"));
 
     return configurer;
 });
