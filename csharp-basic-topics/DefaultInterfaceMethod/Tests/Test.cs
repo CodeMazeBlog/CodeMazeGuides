@@ -1,35 +1,35 @@
+using NUnit.Framework;
 using DefaultInterfaceMethod;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Tests
 {
-
-    [TestClass]
     public class Test
     {
-        [TestMethod]
+        [Test]
         public void WhenCalendarYear_ThenItIsLeap()
         {
             IYearCalendar impl = new MyYearCalendar();
-            impl.date = new DateTime(2000, 12, 1);
+            impl.Date = new DateTime(2000, 12, 1);
+
             Assert.IsTrue(impl.IsLeapYear());
         }
-        [TestMethod]
+
+        [Test]
         public void WhenCalendarMonth_ThenItIs31Days()
         {
             IMonthCalendar impl = new MyMonthCalendar();
-            impl.date = new DateTime(2000, 12, 1);
+            impl.Date = new DateTime(2000, 12, 1);
+
             Assert.IsTrue(impl.Is31DaysMonth());
         }
 
-        [TestMethod]
+        [Test]
         public void WhenCalendar_ThenDisplayDate()
         {
             var impl = new MyCalendar();
-            impl.date = new DateTime(2000, 12, 1);
+            impl.Date = new DateTime(2000, 12, 1);
+
             Assert.IsTrue(impl is ICalendar);
         }
-
     }
 }
