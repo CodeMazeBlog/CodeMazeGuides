@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using static SelectTagHelper.Enums.Enumerations;
 
 namespace SelectTagHelper.Models
 {
@@ -12,13 +13,5 @@ namespace SelectTagHelper.Models
         public string SelectedCountry { get; set; }
         public Department Department { get; set; }
         public int? SelectedDepartment { get; set; }
-    }
-
-    public enum Department
-    {
-        IT,
-        HR,
-        Finance,
-        Admin
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace SelectTagHelper.Models
+﻿using static SelectTagHelper.Enums.Enumerations;
+
+namespace SelectTagHelper.Models
 {
     public class SampleViewModel
     {

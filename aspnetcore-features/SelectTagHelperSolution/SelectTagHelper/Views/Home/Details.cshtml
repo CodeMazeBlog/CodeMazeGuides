@@ -1,28 +1,29 @@
-﻿@model SelectViewModel
+﻿@using SelectTagHelper.Enums
+@model SelectViewModel
 @{
     ViewData["Title"] = "Dropdowns";
 }
 <form method="post">
 
-    <h3>Gender Dropdown - Using a List of SelectListItems</h3>
+    <p>Gender Dropdown - Using a List of SelectListItems</p>
     <select class="form-select-sm" asp-for="SelectedGender" asp-items="@Model.Genders">
         <option>Please Select</option>
     </select>
 
-    <h3 class="mt-2">Employees Dropdown - Using a List of Complex Models</h3>
+    <p class="mt-2">Employees Dropdown - Using a List of Complex Models</p>
     <select class="form-select-sm" asp-for="SelectedEmployeeId"
             asp-items="new SelectList(@Model.Employees, nameof(EmployeeViewModel.Id),
                    nameof(EmployeeViewModel.EmployeeName))">
         <option>Please Select</option>
     </select>
 
-    <h3 class="mt-2">Countries Dropdown - Using a List of static strings</h3>
+    <p class="mt-2">Countries Dropdown - Using a List of static strings</p>
     <select class="form-select-sm" asp-for="SelectedCountry" asp-items="@Model.Countries">
         <option>Please Select</option>
     </select>
 
-    <h3 class="mt-2">Department Dropdown - Using an enum</h3>
-    <select class="form-select-sm" asp-for="SelectedDepartment" asp-items="@Html.GetEnumSelectList<Department>()">
+    <p class="mt-2">Department Dropdown - Using an enum</p>
+    <select class="form-select-sm" asp-for="SelectedDepartment" asp-items="Html.GetEnumSelectList<Enumerations.Department>()">
         <option>Please Select</option>
     </select>
 

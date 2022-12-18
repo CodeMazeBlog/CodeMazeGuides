@@ -15,8 +15,9 @@ html {
 
 body {
     margin-bottom: 60px;
+    background-color: #C8C8C8;
 }
 
 .multi-select-dropdown {
-    width: 50%;
+    width: 20%;
 }

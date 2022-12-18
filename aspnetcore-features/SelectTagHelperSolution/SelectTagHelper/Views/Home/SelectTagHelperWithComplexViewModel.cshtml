@@ -3,7 +3,7 @@
     ViewData["Title"] = "Employee Dropdown";
 }
 
-<h3 class="mt-2">Employees Dropdown - Using a List of Complex Models</h3>
+<p class="mt-2">Employees Dropdown - Using a List of Complex Models</p>
 
 <select class="form-select-sm" asp-for="SelectedEmployeeId"
         asp-items="new SelectList(@Model.Employees, nameof(EmployeeViewModel.Id),
