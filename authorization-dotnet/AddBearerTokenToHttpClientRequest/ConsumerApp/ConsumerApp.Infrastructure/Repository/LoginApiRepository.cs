@@ -17,8 +17,15 @@ namespace ConsumerApp.Infrastructure
             _httpClient = httpClient;
         }
 
-        public async Task<AccessToken> AuthenticateAsync(string email, string password)
+        public async Task<AccessToken> AuthenticateAsync()
         {
+            var token = RetrieveCachedToken();
+            if (!string.IsNullOrWhiteSpace(token))
+                return new() { Token = token };
+
+            var email = Environment.GetEnvironmentVariable("email");
+            var password = Environment.GetEnvironmentVariable("password");
+
             var body = JsonSerializer.Serialize(new { email, password }, 
                 new JsonSerializerOptions 
                 { 
@@ -31,8 +38,22 @@ namespace ConsumerApp.Infrastructure
 
             var response = await result.Content.ReadAsStringAsync();
 
-            return DeserializeResponse<AccessToken>(response);
+            var deserializedToken = DeserializeResponse<AccessToken>(response);
+
+            SetCacheToken(deserializedToken);
+
+            return deserializedToken;
         }
+
+        private void SetCacheToken(AccessToken deserializedToken)
+        {
+            Environment.SetEnvironmentVariable("token", deserializedToken.Token);
+        }
+
+        private string RetrieveCachedToken()
+        {
+            return Environment.GetEnvironmentVariable("token");
+        } 
 
         public T DeserializeResponse<T>(string response)
         {

@@ -13,10 +13,10 @@ namespace UserApi.Tests
     public class UsersTests
     {
         [Fact]
-        public void GivenAGeMethod_WhenTheDatabaseIsNotNull_ThenReturnAListWithEveryUser()
+        public void GivenAGeUsersMethod_WhenTheDatabaseIsNotNull_ThenReturnAListWithEveryUser()
         {
             var controller = CreateController();
-            var result = controller.Get();
+            var result = controller.GetUsers();
 
             Assert.NotNull(result);
             Assert.IsType<OkObjectResult>(result);
@@ -30,7 +30,7 @@ namespace UserApi.Tests
             var specificId = 1;
 
             var controller = CreateController();
-            var result = controller.Get(specificId);
+            var result = controller.GetUserById(specificId);
 
             Assert.NotNull(result);
             Assert.IsType<OkObjectResult>(result);
@@ -44,7 +44,7 @@ namespace UserApi.Tests
             var specificId = 99;
 
             var controller = CreateController();
-            var result = controller.Get(specificId);
+            var result = controller.GetUserById(specificId);
 
             Assert.NotNull(result);
             Assert.IsType<NotFoundResult>(result);
@@ -63,7 +63,7 @@ namespace UserApi.Tests
             };
 
             var controller = CreateController();
-            var result = controller.Post(userModel);
+            var result = controller.CreateUser(userModel);
 
             Assert.NotNull(result);
             Assert.IsType<ObjectResult>(result);

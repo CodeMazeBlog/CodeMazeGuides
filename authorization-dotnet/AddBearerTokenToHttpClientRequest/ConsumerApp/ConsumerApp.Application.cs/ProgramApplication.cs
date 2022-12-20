@@ -31,7 +31,7 @@ namespace ConsumerApp.Application.cs
             Environment.SetEnvironmentVariable("email", email);
             Environment.SetEnvironmentVariable("password", password);
 
-            var token = await _loginApiRepository.AuthenticateAsync(email, password);
+            var token = await _loginApiRepository.AuthenticateAsync();
             Environment.SetEnvironmentVariable("token", token.Token);
         }
 
@@ -58,7 +58,7 @@ namespace ConsumerApp.Application.cs
                 {
                     case 1:
                         var user = CreateNewUser();
-                        await _userRepository.PostUsersAsync(user, Environment.GetEnvironmentVariable("token"));
+                        await _userRepository.CreateUserAsync(user, Environment.GetEnvironmentVariable("token"));
                         break;
                     case 2:
                         PrintEveryUser(await GetAllUsers());

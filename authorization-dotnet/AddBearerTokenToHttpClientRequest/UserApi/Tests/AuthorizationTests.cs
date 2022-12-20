@@ -11,7 +11,7 @@ namespace UserApi.Tests
         [Fact]
         public void GivenAnAuthenticateModelInstance_WhenUserIsInTheDatabase_ThenGenerateABearerToken()
         {
-            var credentials = new AuthenticateModelModel()
+            var credentials = new AuthenticateModel()
             {
                 Email = "JohnDoe@codemaze.com",
                 Password = "123456"
@@ -29,7 +29,7 @@ namespace UserApi.Tests
         [Fact]
         public void GivenAnAuthenticateModelInstance_WhenUserIsNotInTheDatabase_ThenReturnUnauthorized()
         {
-            var credentials = new AuthenticateModelModel()
+            var credentials = new AuthenticateModel()
             {
                 Email = "codemaze@codemaze.com",
                 Password = "123456"

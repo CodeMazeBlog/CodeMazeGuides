@@ -4,6 +4,6 @@ namespace ConsumerApp.Domain.Interfaces
 {
     public interface ILoginApiRepository
     {
-        Task<AccessToken> AuthenticateAsync(string email, string password);
+        Task<AccessToken> AuthenticateAsync();
     }
 }

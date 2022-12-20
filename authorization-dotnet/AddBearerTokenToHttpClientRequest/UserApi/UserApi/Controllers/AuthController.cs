@@ -12,22 +12,22 @@ namespace UserApi.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UsersDatabase _userDatabase;
+        private readonly UsersDatabase _usersDatabase;
 
-        public AuthController(UsersDatabase userDatabase)
+        public AuthController(UsersDatabase usersDatabase)
         {
-            _userDatabase = userDatabase;
+            _usersDatabase = usersDatabase;
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] AuthenticateModelModel loginModel)
+        public IActionResult Login([FromBody] AuthenticateModel loginModel)
         {            
             if (loginModel is null)
             {
-                return BadRequest("Invalid client Request");
+                return BadRequest("Invalid client request.");
             }
 
-            if(_userDatabase.Any(x => x.Email.Equals(loginModel.Email, StringComparison.InvariantCultureIgnoreCase) 
+            if(_usersDatabase.Any(x => x.Email.Equals(loginModel.Email, StringComparison.InvariantCultureIgnoreCase) 
                 && x.Password == loginModel.Password))
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));

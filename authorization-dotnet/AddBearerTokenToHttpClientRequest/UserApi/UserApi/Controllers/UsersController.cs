@@ -17,7 +17,7 @@ namespace UserApi.Controllers
         }
 
         [HttpPost, Authorize]
-        public IActionResult Post(UserModel userModel)
+        public IActionResult CreateUser(UserModel userModel)
         {
             _usersDatabase.AddUser(userModel);
 
@@ -28,13 +28,13 @@ namespace UserApi.Controllers
         }
 
         [HttpGet, Authorize]
-        public IActionResult Get()
+        public IActionResult GetUsers()
         {
             return Ok(_usersDatabase);
         }
 
         [HttpGet("{id}"), Authorize]
-        public IActionResult Get(int id) 
+        public IActionResult GetUserById(int id) 
         {
             var user = _usersDatabase.FirstOrDefault(x => x.Id == id);
 

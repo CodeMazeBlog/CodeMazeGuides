@@ -45,7 +45,7 @@ namespace ConsumerApp.Test
         {
             var loginApiRepositoryMock = new Mock<ILoginApiRepository>();
 
-            loginApiRepositoryMock.Setup(x => x.AuthenticateAsync(It.IsAny<string>(), It.IsAny<string>()))
+            loginApiRepositoryMock.Setup(x => x.AuthenticateAsync())
                 .ReturnsAsync(new AccessToken());
 
             return loginApiRepositoryMock;

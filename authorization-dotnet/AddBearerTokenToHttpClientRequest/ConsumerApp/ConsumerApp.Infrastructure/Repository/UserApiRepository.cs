@@ -18,7 +18,7 @@ namespace ConsumerApp.Repository
             _httpClient = httpClient;
         }
 
-        public async Task PostUsersAsync(UserModel userModel, string token)
+        public async Task CreateUserAsync(UserModel userModel, string token)
         {
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var result = await _httpClient.PostAsync("api/users", GenerateBody(userModel)); 
