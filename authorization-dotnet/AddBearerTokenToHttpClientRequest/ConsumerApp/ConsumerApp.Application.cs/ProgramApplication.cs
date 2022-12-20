@@ -23,10 +23,10 @@ namespace ConsumerApp.Application.cs
             Console.WriteLine("----- Let's sign in");
 
             Console.Write("Type the Email: ");
-            string email = Console.ReadLine() ?? "johnDoe@codemaze.com";
+            var email = Console.ReadLine() ?? "johnDoe@codemaze.com";
 
             Console.Write("Type the password: ");
-            string password = Console.ReadLine() ?? "123456";
+            var password = Console.ReadLine() ?? "123456";
 
             Environment.SetEnvironmentVariable("email", email);
             Environment.SetEnvironmentVariable("password", password);
