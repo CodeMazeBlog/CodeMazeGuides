@@ -10,11 +10,18 @@ namespace CryptographyDotnet
     [TestClass]
     public class AESTests
     {
+        public string dataStr = "This is corporate research! Dont read me!";
+        public byte[] data = { };
+
+        [TestInitialize]
+        public void Initilialize()
+        {
+            data = Encoding.UTF8.GetBytes(dataStr);
+        }
+
         [TestMethod]
         public void WhenUsingAES_ThenDataIsEncrypted()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
             var key = GenerateAESKey();
 
             var encryptedData = Encrypt(data, key, out var iv);
@@ -25,8 +32,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void GivenSameInput_WhenUsingAES_ThenDataIsEncryptedDifferentlyEachTime()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
             var key = GenerateAESKey();
 
             var encryptedData = Encrypt(data, key, out var iv);
@@ -43,8 +48,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void GivenSameInputAndSameKey_WhenUsingAES_ThenDataIsEncryptedDifferentlyEachTime()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
             var key = GenerateAESKey();
 
             var encryptedData = Encrypt(data, key, out var iv);
@@ -60,8 +63,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void WhenEncryptingWithAES_ThenDataIsRecoverable()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
             var key = GenerateAESKey();
 
             var encryptedData = Encrypt(data, key, out var iv);
@@ -75,9 +76,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void GivenWrongKeySize_WhenEncryptingWithAES_ThenExceptionIsThrown()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
-
             Assert.ThrowsException<CryptographicException>(() => {
                 Encrypt(data, new byte[] { 1, 2, 3 }, out var iv);
             });

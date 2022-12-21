@@ -1,20 +1,25 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CryptographyDotnet
 {
     [TestClass]
     public class RSATests
     {
+        public string dataStr = "This is corporate research! Dont read me!";
+        public byte[] data = { };
+
+        [TestInitialize]
+        public void Initilialize()
+        {
+            data = Encoding.UTF8.GetBytes(dataStr);
+        }
+
         [TestMethod]
         public void WhenUsingRSA_ThenDataIsEncrypted()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
             var keyLength = 2048;
 
             GenerateKeys(keyLength, out var publicKey, out var privateKey);
@@ -29,8 +34,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void GivenSameInput_WhenUsingRSA_ThenDataIsEncryptedDifferentlyEachTime()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
             var keyLength = 2048;
 
             GenerateKeys(keyLength, out var publicKey, out var privateKey);
@@ -47,8 +50,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void GivenSameInputAndSameKey_WhenUsingRSA_ThenDataIsEncryptedDifferentlyEachTime()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
             var keyLength = 2048;
 
             GenerateKeys(keyLength, out var publicKey, out var privateKey);
@@ -63,8 +64,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void WhenEncryptingWithRSA_ThenDataIsRecoverable()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
             var keyLength = 2048;
 
             GenerateKeys(keyLength, out var publicKey, out var privateKey);
@@ -79,9 +78,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void GivenKeySizeTooSmall_WhenCreatingRSAKeys_ThenExceptionIsThrown()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
-
             Assert.ThrowsException<CryptographicException>(() => {
                 GenerateKeys(128, out var publicKey, out var privateKey);
             });

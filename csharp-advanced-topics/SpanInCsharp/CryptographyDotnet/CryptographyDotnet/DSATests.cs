@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +12,14 @@ namespace CryptographyDotnet
     public class DSATests
     {
         public DSA? dsa;
+        public string dataStr = "This is corporate research! Dont read me!";
+        public byte[] data = {};
 
         [TestInitialize]
         public void Initilialize()
         {
             dsa = DSA.Create();
+            data = Encoding.UTF8.GetBytes(dataStr);
         }
 
         [TestCleanup]
@@ -27,9 +31,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void WhenUsingDSA_ThenDataIsSigned()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
-
             var signedData = Sign(data);
 
             Assert.AreNotEqual(data, signedData);
@@ -39,11 +40,7 @@ namespace CryptographyDotnet
         [TestMethod]
         public void GivenSameInput_WhenUsingDSA_ThenDataIsSignedDifferentlyEachTime()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
-
             var signedData = Sign(data);
-
             var signedData2 = Sign(data);
 
             CollectionAssert.AreNotEqual(signedData, signedData2);
@@ -52,9 +49,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void WhenSigningWithDSA_ThenDataIsVerifiable()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
-
             var signedData = Sign(data);
             var signatureVerified = VerifySignature(data, signedData);
 
@@ -68,9 +62,6 @@ namespace CryptographyDotnet
         [TestMethod]
         public void WhenSigningWithDSA_ThenDifferentDataIsNotVerified()
         {
-            var dataStr = "This is corporate research! Dont read me!";
-            var data = Encoding.UTF8.GetBytes(dataStr);
-
             var dataStr2 = "This is a different string!";
             var data2 = Encoding.UTF8.GetBytes(dataStr2);
 
