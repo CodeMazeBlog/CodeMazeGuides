@@ -48,7 +48,7 @@ namespace TwoFactorAuthenticationGoogleAuthenticatorAngular.Controllers
                 return BadRequest(new RegistrationResponseDto { Errors = errors });
             }
 
-            return StatusCode(201);
+            return Created();
         }
 
         [HttpPost("login")]
