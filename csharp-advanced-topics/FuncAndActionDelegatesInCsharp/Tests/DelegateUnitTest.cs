@@ -1,6 +1,6 @@
 namespace Tests;
 
-public delegate Boolean Chief(Boolean isFoodReady);
+public delegate bool Chief(bool isFoodReady);
 public delegate string EatTheFood(string food);
 public delegate int PayForTheFood(int price);
 
@@ -8,7 +8,7 @@ public delegate int PayForTheFood(int price);
 public class DelegateUnitTest
 {
 
-    public static Boolean MakeFood(Boolean isFoodReady)
+    public static bool MakeFood(bool isFoodReady)
     {
         return isFoodReady;
     }
@@ -24,24 +24,32 @@ public class DelegateUnitTest
     }
 
     [Test]
-    public void WhenBooleanIsSent_ThenDelegateReturnsTheValue()
+    public void WhenBoolIsSent_ThenDelegateReturnsTheValue()
     {
         var chiefTestDelegate = new Chief(MakeFood);
         var result = chiefTestDelegate(true);
+
+        //assert
         Assert.AreEqual(true, result);
     }
 
     [Test]
-    public void WhenStringIsSent_ThenDelegateExecutesTheReferenceMethodAndReturnsTheNewString(){
+    public void WhenStringIsSent_ThenDelegateExecutesTheReferenceMethodAndReturnsTheNewString()
+    {
         var eatTheFoodTestDelegate = new EatTheFood(Consume);
         var result = eatTheFoodTestDelegate("pancake");
+
+        //assert
         Assert.AreEqual("I ate the pancake", result);
     }
 
     [Test]
-    public void WhenIntegerIsSent_ThenDelegateExecutesTheReferenceMethodAnReturnsTheIntegerValue(){
+    public void WhenIntegerIsSent_ThenDelegateExecutesTheReferenceMethodAnReturnsTheIntegerValue()
+    {
         var eatTheFoodTestDelegate = new PayForTheFood(Payment);
         var result = eatTheFoodTestDelegate(10);
+
+        //assert
         Assert.AreEqual(10, result);
     }
 
