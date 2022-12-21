@@ -21,14 +21,13 @@ namespace UserApi.Controllers
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] AuthenticateModel loginModel)
-        {            
+        {
             if (loginModel is null)
             {
                 return BadRequest("Invalid client request.");
             }
 
-            if(_usersDatabase.Any(x => x.Email.Equals(loginModel.Email, StringComparison.InvariantCultureIgnoreCase) 
-                && x.Password == loginModel.Password))
+            if (CheckRegisteredUser(loginModel))
             {
                 var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -46,6 +45,12 @@ namespace UserApi.Controllers
             }
 
             return Unauthorized();
+        }
+
+        private bool CheckRegisteredUser(AuthenticateModel loginModel)
+        {
+            return _usersDatabase.Any(x => x.Email.Equals(loginModel.Email, StringComparison.InvariantCultureIgnoreCase)
+                            && x.Password == loginModel.Password);
         }
     }
 }

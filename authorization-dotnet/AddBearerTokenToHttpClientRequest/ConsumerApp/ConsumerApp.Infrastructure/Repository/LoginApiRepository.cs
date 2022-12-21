@@ -23,16 +23,7 @@ namespace ConsumerApp.Infrastructure
             if (!string.IsNullOrWhiteSpace(token))
                 return new() { Token = token };
 
-            var email = Environment.GetEnvironmentVariable("email");
-            var password = Environment.GetEnvironmentVariable("password");
-
-            var body = JsonSerializer.Serialize(new { email, password }, 
-                new JsonSerializerOptions 
-                { 
-                    PropertyNameCaseInsensitive = true 
-                });
-
-            var result = await _httpClient.PostAsync("api/auth/login", new StringContent(body, Encoding.UTF8, "application/json"));
+            var result = await _httpClient.PostAsync("api/auth/login", GenerateBody());
 
             result.EnsureSuccessStatusCode();
 
@@ -45,13 +36,29 @@ namespace ConsumerApp.Infrastructure
             return deserializedToken;
         }
 
+        private StringContent GenerateBody()
+        {
+            var email = Environment.GetEnvironmentVariable("email");
+            var password = Environment.GetEnvironmentVariable("password");
+
+            var body = JsonSerializer.Serialize(new { email, password },
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+            return new StringContent(body, Encoding.UTF8, "application/json");
+        }
+
         private void SetCacheToken(AccessToken deserializedToken)
         {
+            //In a real-world application we should store the token in a cache service and set an TTL.
             Environment.SetEnvironmentVariable("token", deserializedToken.Token);
         }
 
         private string RetrieveCachedToken()
         {
+            //In a real-world application, we should retrieve the token from a cache service.
             return Environment.GetEnvironmentVariable("token");
         } 
 
