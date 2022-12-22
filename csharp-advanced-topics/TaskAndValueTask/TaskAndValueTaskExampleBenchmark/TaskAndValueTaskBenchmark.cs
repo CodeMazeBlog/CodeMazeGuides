@@ -1,7 +1,7 @@
-namespace ExampleAppBenchmark;
+namespace TaskAndValueTaskExampleBenchmark;
 
 using BenchmarkDotNet.Attributes;
-using ExampleApp;
+using TaskAndValueTaskExample;
 
 [MemoryDiagnoser]
 public class TaskAndValueTaskBenchmark

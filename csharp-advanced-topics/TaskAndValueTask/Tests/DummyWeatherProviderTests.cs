@@ -1,6 +1,6 @@
 namespace Tests;
 
-using ExampleApp;
+using TaskAndValueTaskExample;
 
 public class DummyWeatherProviderTests
 {

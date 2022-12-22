@@ -1,4 +1,4 @@
-namespace ExampleApp;
+namespace TaskAndValueTaskExample;
 
 #nullable disable
 public record Weather

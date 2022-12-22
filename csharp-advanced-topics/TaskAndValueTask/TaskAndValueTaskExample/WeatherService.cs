@@ -1,4 +1,4 @@
-namespace ExampleApp;
+namespace TaskAndValueTaskExample;
 
 using System.Collections.Concurrent;
 

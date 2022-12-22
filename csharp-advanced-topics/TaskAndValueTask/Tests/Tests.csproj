@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExampleApp\ExampleApp.csproj" />
+    <ProjectReference Include="..\TaskAndValueTaskExample\TaskAndValueTaskExample.csproj" />
   </ItemGroup>
 
 </Project>

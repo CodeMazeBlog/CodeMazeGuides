@@ -1,10 +1,10 @@
-namespace ExampleApp;
+namespace TaskAndValueTaskExample;
 
 public static class DummyWeatherProvider
 {
     public static async Task<Weather> Get(string city)
     {
-        await Task.Delay((int)TimeSpan.FromSeconds(5).TotalMilliseconds);
+        await Task.Delay(10);
         var weather = new Weather 
         { 
             City = city, 
