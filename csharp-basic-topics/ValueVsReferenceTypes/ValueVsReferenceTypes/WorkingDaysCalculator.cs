@@ -2,16 +2,17 @@
 {
     public class WorkingDaysCalculator
     {
-        private int weekendDaysCount = 2;
-
-        public int WeeklyWorkDays()
+        public int WeeklyWorkDays(int daysInAWeek)
         {
-            return DaysOfTheWeek - weekendDaysCount;
+            daysInAWeek = DaysOfTheWeek - WeekendDaysCount;
+            return daysInAWeek;
         }
 
-        public int DaysOfTheWeek
+        public int DaysOfTheWeek { get; set; }
+
+        public int WeekendDaysCount
         {
-            get { return 7; }
+            get { return 2; }
         }
     }
 }
