@@ -15,14 +15,11 @@ namespace Application
 
         public static void PrintNumbersUsingActionDelegate()
         {
-            var actionDelegate = new ActionDelegate();
-
             ActionDelegate.PrintNumbers();
         }
+
         public static void PrintFullNamesUsingFuncDelegate()
         {
-            var funcDelegate = new FuncDelegate();
-
             FuncDelegate.PrintFullNames();
         }
     }

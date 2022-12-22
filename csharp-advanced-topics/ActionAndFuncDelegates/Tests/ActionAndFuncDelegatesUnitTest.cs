@@ -20,6 +20,7 @@ public class ActionAndFuncDelegatesUnitTest : IDisposable
     private string[] PrintedOutputToArray()
     {
         var printedString = _output.ToString();
+
         return printedString.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
     }
 

@@ -6,9 +6,9 @@ public class FuncDelegate
     {
         var employees = new List<Employee>()
             {
-                new Employee { ID = 101, FirstName = "Tony", LastName = "James" },
-                new Employee { ID = 102, FirstName = "Terry", LastName = "John" },
-                new Employee { ID = 103, FirstName = "Telly", LastName = "Carter" },
+                new() { ID = 101, FirstName = "Tony", LastName = "James" },
+                new() { ID = 102, FirstName = "Terry", LastName = "John" },
+                new() { ID = 103, FirstName = "Telly", LastName = "Carter" },
             };
 
         //Func<Employee, string> selector = employee => $"{employee.FirstName} {employee.LastName}";
