@@ -37,7 +37,7 @@ namespace ConsumerApp.Repository
             return DeserializeResult<IEnumerable<UserModel>>(response);
         }
 
-        public async Task<UserModel> GetUsersAsync(int userId)
+        public async Task<UserModel> GetUserAsync(int userId)
         {
             var result = await _httpClient.GetAsync($"api/users/{userId}");
 

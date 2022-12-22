@@ -62,7 +62,7 @@ namespace ConsumerApp.Test
                     new() 
                 });
 
-            userApiRepositoryMock.Setup(x => x.GetUsersAsync(It.IsAny<int>()))
+            userApiRepositoryMock.Setup(x => x.GetUserAsync(It.IsAny<int>()))
                 .ReturnsAsync(new UserModel 
                 { 
                     FirstName = "John", 

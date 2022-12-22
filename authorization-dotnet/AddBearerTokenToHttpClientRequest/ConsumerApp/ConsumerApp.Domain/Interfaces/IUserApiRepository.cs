@@ -6,6 +6,6 @@ namespace ConsumerApp.Domain.Interfaces
     {
         Task CreateUserAsync(UserModel userModel, string token);
         Task<IEnumerable<UserModel>> GetUsersAsync();
-        Task<UserModel> GetUsersAsync(int userId);
+        Task<UserModel> GetUserAsync(int userId);
     }
 }

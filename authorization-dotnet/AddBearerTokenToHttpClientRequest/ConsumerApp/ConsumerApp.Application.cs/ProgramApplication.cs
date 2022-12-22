@@ -91,7 +91,7 @@ namespace ConsumerApp.Application.cs
 
         public async Task<UserModel> GetUserById(int userId)
         {
-            return await _userRepository.GetUsersAsync(userId);
+            return await _userRepository.GetUserAsync(userId);
         }
 
         public async Task<IEnumerable<UserModel>> GetAllUsers()
