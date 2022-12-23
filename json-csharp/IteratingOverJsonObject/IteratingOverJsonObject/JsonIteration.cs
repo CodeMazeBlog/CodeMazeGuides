@@ -1,5 +1,4 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -12,6 +11,7 @@ public class JsonIteration
     public string Name { get; set; }
     public int Age { get; set; }
     public string Department { get; set; }
+    public int ItemsCount { get; set; }
 
     public JsonIteration()
     {
@@ -27,6 +27,7 @@ public class JsonIteration
             Name = data.name;
             Age = data.age;
             Department = data.department;
+            ItemsCount += 1;
         }
     }
 
@@ -39,6 +40,7 @@ public class JsonIteration
             Name = (string)data["name"];
             Age = (int)data["age"];
             Department = (string)data["department"];
+            ItemsCount += 1;
         }
     }
 
@@ -51,6 +53,7 @@ public class JsonIteration
             Name = employee.Name;
             Age = employee.Age;
             Department = employee.Department;
+            ItemsCount += 1;
         }
 
         return employees;
@@ -68,6 +71,7 @@ public class JsonIteration
             Name = employee.Name;
             Age = employee.Age;
             Department = employee.Department;
+            ItemsCount += 1;
         }
 
         return employees;
