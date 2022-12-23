@@ -5,8 +5,6 @@ using NUnit.Framework;
 
 namespace Tests;
 
-public delegate void Action<in T1>(T1 arg1);
-public delegate void Action<in T1, in T2, in T3>(T1 arg1, T2 arg2, T3 arg3);
 
 public class ActionDelegateUnitTest
 {
@@ -20,6 +18,18 @@ public class ActionDelegateUnitTest
     public static void SayThanksToDeliveryGuy(string name)
     {
         Console.WriteLine($"Thank you {name}!");
+    }
+
+    public static void MyVoidMethod(string name, int number)
+    {
+        if (name == "Mike" && number == 1)
+        {
+            Console.WriteLine("Mike is number 1");
+        }
+        else
+        {
+            Console.WriteLine("Mike is not number 1");
+        }
     }
 
     [Test]
@@ -37,6 +47,23 @@ public class ActionDelegateUnitTest
         //assert
         var output = stringWriter.ToString();
         Assert.AreEqual("5 pancakes will be delivered to you in 10 minutes\nDelivery recieved!\n", output);
+    }
+
+    [Test]
+    public void GivenParametersAreSuitable_WhenActionDelegate_ThenDelegateExecutesOneConsoleWriteLineFunctions()
+    {
+
+        //arrange
+        Action<string, int> myVoidDelegateTest = MyVoidMethod;
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        //act
+        myVoidDelegateTest("Mike", 1);
+
+        //assert
+        var output = stringWriter.ToString();
+        Assert.AreEqual("Mike is number 1\n", output);
     }
 
     [Test]

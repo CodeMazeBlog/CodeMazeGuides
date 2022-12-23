@@ -14,10 +14,6 @@ public class Program
     public delegate void Action<in T1>(T1 arg1);
     public delegate void Action<in T1, in T2, in T3>(T1 arg1, T2 arg2, T3 arg3);
 
-    //1.4.func delegate
-    public delegate TResult Func<out TResult>();
-    public delegate TResult Func<in T, out TResult>(T arg);
-    public delegate TResult Func<in T1, in T2, out TResult>(T1 arg1, T2 arg2);
 
     //functions
     public static bool MakeFood(bool isFoodReady)
@@ -62,6 +58,28 @@ public class Program
     }
 
 
+    public static bool MyMethod(string name, int number)
+    {
+        if (name == "Mike" && number == 1)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    public static void MyVoidMethod(string name, int number)
+    {
+        if (name == "Mike" && number == 1)
+        {
+            Console.WriteLine("Mike is number 1");
+        }
+        else
+        {
+            Console.WriteLine("Mike is not number 1");
+        }
+    }
+
+
     public static void Main()
     {
         //delegate implementation
@@ -83,10 +101,13 @@ public class Program
         Console.WriteLine(genericConsume("T-Bone"));
         Console.WriteLine($"Total bill is {genericPayment(20)}");
 
+        //1.4.func delegate
         //action & func delegate implementation
         Func<string, int, string> order = OrderFood;
+        Func<string, int, bool> myDelegate = MyMethod;
         Action<string, int, int> delivery = DeliveryRecieved;
         Action<string> thanks = SayThanksToDeliveryGuy;
+        Action<string,int> myVoidDelegate = MyVoidMethod;
         Func<double> tip = TipTheDeliveryGuy;
         Func<string, string> consume = Consume;
 
@@ -95,6 +116,8 @@ public class Program
         thanks("Eddie");
         Console.WriteLine($"We tipped Eddie {tip()} dollars");
         Console.WriteLine(consume("Mac Big"));
+        Console.WriteLine(myDelegate("Mike", 1)); 
+        myVoidDelegate("Jane",1);
 
     }
 }

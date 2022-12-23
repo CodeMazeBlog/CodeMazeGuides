@@ -1,9 +1,5 @@
 namespace Tests;
 
-public delegate TResult Func<out TResult>();
-public delegate TResult Func<in T, out TResult>(T arg);
-public delegate TResult Func<in T1, in T2, out TResult>(T1 arg1, T2 arg2);
-
 
 public class FuncDelegateUnitTest
 {
@@ -22,7 +18,15 @@ public class FuncDelegateUnitTest
         return $"I ate the {food}";
     }
 
+    public static bool MyMethod(string name, int number)
+    {
+        if (name == "Mike" && number == 1)
+        {
+            return true;
+        }
 
+        return false;
+    }
 
     [Test]
     public void GivenParametersAreSuitable_WhenFunctionDelegate_ThenDelegateExecutesTheReferenceMethodAndReturnString()
@@ -48,4 +52,16 @@ public class FuncDelegateUnitTest
         Assert.AreEqual(2.45, tipTheDeliveryGuyResult);
 
     }
+
+    [Test]
+    public void GivenParametersAreSuitable_WhenFunctionDelegate_ThenDelegateExecutesTheReferenceMethodAndReturnBoolean()
+    {
+        Func<string, int, bool> myMethodTest = MyMethod;
+
+        var result = myMethodTest("Mike", 1);
+
+        //assert
+        Assert.AreEqual(true, result);
+    }
+
 }
