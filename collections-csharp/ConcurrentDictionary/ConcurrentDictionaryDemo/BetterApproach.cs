@@ -4,7 +4,7 @@ class BetterApproach
 {
     private const int MaxIterations = 100;
     private const int MaxStateEntries = 10;
-    private ConcurrentDictionary<int, int> sharedState = new();
+    private ConcurrentDictionary<int, int> _sharedState = new();
 
     public void Run()
     {
@@ -18,8 +18,8 @@ class BetterApproach
         for (int iteration = 0; iteration < MaxIterations; iteration++)
         {
             var entryKey = iteration % MaxStateEntries;
-            sharedState.AddOrUpdate(
-            entryKey,                                       // the key that we want to update
+            _sharedState.AddOrUpdate(
+                entryKey,                                   // the key that we want to update
                 key => 1,                                   // initial value factory, in case the key is not found
                 (key, currentValue) => currentValue + 1);   // updated value factory, in case the key already exists
         }
@@ -27,7 +27,7 @@ class BetterApproach
 
     private void PrintState()
     {
-        foreach (var entry in sharedState)
+        foreach (var entry in _sharedState)
         {
             Console.WriteLine($"{entry.Key}\t{entry.Value}");
         }

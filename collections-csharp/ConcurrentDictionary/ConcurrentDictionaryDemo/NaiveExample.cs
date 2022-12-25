@@ -2,7 +2,7 @@ class NaiveExample
 {
     private const int MaxIterations = 100;
     private const int MaxStateEntries = 10;
-    private Dictionary<int, int> sharedState = new(MaxStateEntries);
+    private Dictionary<int, int> _sharedState = new(MaxStateEntries);
 
     public void Run()
     {
@@ -16,17 +16,17 @@ class NaiveExample
         for (int iteration = 0; iteration < MaxIterations; iteration++)
         {
             var entryKey = iteration % MaxStateEntries;
-            if (!sharedState.TryGetValue(entryKey, out int entryValue))
+            if (!_sharedState.TryGetValue(entryKey, out int entryValue))
             {
                 entryValue = 0;
             }
-            sharedState[entryKey] = entryValue + 1;
+            _sharedState[entryKey] = entryValue + 1;
         }
     }
 
     private void PrintState()
     {
-        foreach (var entry in sharedState)
+        foreach (var entry in _sharedState)
         {
             Console.WriteLine($"{entry.Key}\t{entry.Value}");
         }
