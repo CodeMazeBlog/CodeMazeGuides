@@ -32,16 +32,16 @@ public class Program
     {
         DateTime now = DateTime.Now;
         string timeZoneName = "Central Standard Time";
-        // Use delegate to encapsul method
+        // Use delegate to encapsulate method
         TimeConverter timeConverter = ConvertTimeByTimeZone;
         LocalTimeAndZoneName localTimeZoneName = DisplayLocalTimeAndTimeZone;
         // Execute delegates
         localTimeZoneName(now);
         Console.WriteLine($"Time in {timeZoneName} is {timeConverter(now, TimeZoneInfo.FindSystemTimeZoneById(timeZoneName))}");
 
-        // Use Action to encapsul method which doesn't return any value
+        // Use Action to encapsulated method which doesn't return any value
         Action<DateTime> localTimeZoneNameAciton = DisplayLocalTimeAndTimeZone;
-        // Use Func to encapsul method which returns a value
+        // Use Func to encapsulated method which returns a value
         Func<DateTime, TimeZoneInfo, DateTime> timeConverterFunc = ConvertTimeByTimeZone;
         // Execute Action and Func
         localTimeZoneNameAciton(now);
