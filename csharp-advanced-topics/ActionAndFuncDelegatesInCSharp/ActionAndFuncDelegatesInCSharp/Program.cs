@@ -39,9 +39,9 @@ public class Program
         localTimeZoneName(now);
         Console.WriteLine($"Time in {timeZoneName} is {timeConverter(now, TimeZoneInfo.FindSystemTimeZoneById(timeZoneName))}");
 
-        // Use Action to encapsulated method which doesn't return any value
+        // Use Action to encapsulate method which doesn't return any value
         Action<DateTime> localTimeZoneNameAciton = DisplayLocalTimeAndTimeZone;
-        // Use Func to encapsulated method which returns a value
+        // Use Func to encapsulate method which returns a value
         Func<DateTime, TimeZoneInfo, DateTime> timeConverterFunc = ConvertTimeByTimeZone;
         // Execute Action and Func
         localTimeZoneNameAciton(now);
