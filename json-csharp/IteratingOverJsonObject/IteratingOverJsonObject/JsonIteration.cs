@@ -21,7 +21,7 @@ public class JsonIteration
         foreach (var data in jsonData)
         {
             var name = data.name;
-            var age = data.age; 
+            var age = data.age;
             var department = data.department;
 
             Console.WriteLine("Name: {0}, Age: {1}, Department: {2} \n", name, age, department);
@@ -48,7 +48,7 @@ public class JsonIteration
         return count;
     }
 
-    public List<Employee> IterateUsingStaticObject()
+    public List<Employee> IterateUsingDynamicallyTypedObject()
     {
         var employees = JsonConvert.DeserializeObject<List<Employee>>(Json);
 
