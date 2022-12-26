@@ -31,7 +31,7 @@ public class JsonIterationUnitTest
     [InlineData(5)]
     public void WhenStaticListIsUsed_ThenReturnListOfEmployees(int expectedCount)
     {
-        var employees = _jsonIteration.IterateUsingDynamicallyTypedObject();
+        var employees = _jsonIteration.IterateUsingStaticallyTypedObject();
 
         var actualCount = employees.Count;
 

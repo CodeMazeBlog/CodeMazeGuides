@@ -48,7 +48,7 @@ public class JsonIteration
         return count;
     }
 
-    public List<Employee> IterateUsingDynamicallyTypedObject()
+    public List<Employee> IterateUsingStaticallyTypedObject()
     {
         var employees = JsonConvert.DeserializeObject<List<Employee>>(Json);
 
