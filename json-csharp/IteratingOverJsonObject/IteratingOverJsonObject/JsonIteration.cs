@@ -8,70 +8,76 @@ namespace IteratingOverJsonObject;
 public class JsonIteration
 {
     public string Json { get; set; }
-    public string Name { get; set; }
-    public int Age { get; set; }
-    public string Department { get; set; }
-    public int ItemsCount { get; set; }
 
     public JsonIteration()
     {
         Json = new TestData().GenerateJsonData();
     }
 
-    public void IterateOverJsonDynamically(string jsonString)
+    public int IterateOverJsonDynamically()
     {
-        var jsonData = JsonConvert.DeserializeObject<dynamic>(jsonString);
+        var jsonData = JsonConvert.DeserializeObject<dynamic>(Json);
 
         foreach (var data in jsonData)
         {
-            Name = data.name;
-            Age = data.age;
-            Department = data.department;
-            ItemsCount += 1;
+            var name = data.name;
+            var age = data.age; 
+            var department = data.department;
+
+            Console.WriteLine("Name: {0}, Age: {1}, Department: {2} \n", name, age, department);
         }
+
+        var count = jsonData.Count;
+        return count;
     }
 
-    public void IterateUsingJArray(string jsonString)
+    public int IterateUsingJArray()
     {
-        var jsonArray = JArray.Parse(jsonString);
+        var jsonArray = JArray.Parse(Json);
 
         foreach (var data in jsonArray)
         {
-            Name = (string)data["name"];
-            Age = (int)data["age"];
-            Department = (string)data["department"];
-            ItemsCount += 1;
+            var name = (string)data["name"];
+            var age = (int)data["age"];
+            var department = (string)data["department"];
+
+            Console.WriteLine("Name: {0}, Age: {1}, Department: {2} \n", name, age, department);
         }
+
+        var count = jsonArray.Count;
+        return count;
     }
 
-    public List<Employee> IterateUsingStaticObject(string jsonString)
+    public List<Employee> IterateUsingStaticObject()
     {
-        var employees = JsonConvert.DeserializeObject<List<Employee>>(jsonString);
+        var employees = JsonConvert.DeserializeObject<List<Employee>>(Json);
 
         foreach (var employee in employees)
         {
-            Name = employee.Name;
-            Age = employee.Age;
-            Department = employee.Department;
-            ItemsCount += 1;
+            var name = employee.Name;
+            var age = employee.Age;
+            var department = employee.Department;
+
+            Console.WriteLine("Name: {0}, Age: {1}, Department: {2} \n", name, age, department);
         }
 
         return employees;
     }
 
-    public List<Employee> IterateUsingSystemJson(string jsonString)
+    public List<Employee> IterateUsingSystemJson()
     {
-        var employees = JsonSerializer.Deserialize<List<Employee>>(jsonString, new JsonSerializerOptions
+        var employees = JsonSerializer.Deserialize<List<Employee>>(Json, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
         });
 
         foreach (var employee in employees)
         {
-            Name = employee.Name;
-            Age = employee.Age;
-            Department = employee.Department;
-            ItemsCount += 1;
+            var name = employee.Name;
+            var age = employee.Age;
+            var department = employee.Department;
+
+            Console.WriteLine("Name: {0}, Age: {1}, Department: {2} \n", name, age, department);
         }
 
         return employees;

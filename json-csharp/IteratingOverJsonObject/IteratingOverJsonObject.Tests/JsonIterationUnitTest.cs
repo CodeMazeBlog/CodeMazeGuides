@@ -13,32 +13,25 @@ public class JsonIterationUnitTest
     [InlineData(5)]
     public void WhenJsonDataIsDynamicallyRead_ThenIncreaseCount(int expectedCount)
     {
-        var jsonString = _jsonIteration.Json;
-        _jsonIteration.IterateOverJsonDynamically(jsonString);
+        var count = _jsonIteration.IterateOverJsonDynamically();
 
-        var actualCount = _jsonIteration.ItemsCount;
-
-        Assert.Equal(expectedCount, actualCount);
+        Assert.Equal(expectedCount, count);
     }
 
     [Theory]
     [InlineData(5)]
     public void WhenJArrayIsUsed_ThenIncreaseCount(int expectedCount)
     {
-        var jsonString = _jsonIteration.Json;
-        _jsonIteration.IterateUsingJArray(jsonString);
+        var count= _jsonIteration.IterateUsingJArray();
 
-        var actualCount = _jsonIteration.ItemsCount;
-
-        Assert.Equal(expectedCount, actualCount);
+        Assert.Equal(expectedCount, count);
     }
 
     [Theory]
     [InlineData(5)]
     public void WhenStaticListIsUsed_ThenReturnListOfEmployees(int expectedCount)
     {
-        var jsonString = _jsonIteration.Json;
-        var employees = _jsonIteration.IterateUsingStaticObject(jsonString);
+        var employees = _jsonIteration.IterateUsingStaticObject();
 
         var actualCount = employees.Count;
 
@@ -49,8 +42,7 @@ public class JsonIterationUnitTest
     [InlineData(5)]
     public void WhenSystemJsonIsUsed_ThenReturnListOfEmployees(int expectedCount)
     {
-        var jsonString = _jsonIteration.Json;
-        var employees = _jsonIteration.IterateUsingSystemJson(jsonString);
+        var employees = _jsonIteration.IterateUsingSystemJson();
 
         var actualCount = employees.Count;
 
