@@ -11,6 +11,7 @@ namespace Tests
 
         static bool isAdminNotified = false;
         static bool isAccountNotified = false;
+
         public StudentServiceUnitTest()
         {
             _students = Student.DummyStudents();
