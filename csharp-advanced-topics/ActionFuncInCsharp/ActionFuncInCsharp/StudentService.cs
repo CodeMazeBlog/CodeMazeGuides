@@ -13,6 +13,7 @@
                     return student;
                 }
             }
+
             return default!;
         }
 
@@ -22,6 +23,7 @@
                 Action<Student> notify)
         {
             student.Courses.Add(course);
+
             notify(student);
         }
     }

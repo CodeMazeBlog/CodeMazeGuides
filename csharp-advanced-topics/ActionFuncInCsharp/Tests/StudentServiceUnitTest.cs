@@ -5,18 +5,18 @@ namespace Tests
 {
     public class StudentServiceUnitTest
     {
-        private readonly IEnumerable<Student> _students;
-        private readonly IEnumerable<Course> _courses;
+        readonly IEnumerable<Student> _students;
+        readonly IEnumerable<Course> _courses;
+        readonly Action<Student> _sendNotifications;
 
-        private static bool isAdminNotified = false;
-        private static bool isAccountNotified = false;
-        Action<Student> sendNotifications;
+        static bool isAdminNotified = false;
+        static bool isAccountNotified = false;
         public StudentServiceUnitTest()
         {
             _students = Student.DummyStudents();
             _courses = Course.DummyeCourses();
-            sendNotifications = NotifyAdmin;
-            sendNotifications += NotifyAccount;
+            _sendNotifications = NotifyAdmin;
+            _sendNotifications += NotifyAccount;
         }
 
         [Theory]
@@ -43,7 +43,7 @@ namespace Tests
             var student = StudentService.GetStudent(_students, studentCourseFilters.Item1);
             var course = studentCourseFilters.Item2(_courses);
 
-            StudentService.EnrollStudentToCourse(student, course, sendNotifications);
+            StudentService.EnrollStudentToCourse(student, course, _sendNotifications);
 
             Assert.Equal(student.Courses.Last(), course);
         }
@@ -57,45 +57,49 @@ namespace Tests
             var student = StudentService.GetStudent(_students, studentCourseFilters.Item1);
             var course = studentCourseFilters.Item2(_courses);
 
-            StudentService.EnrollStudentToCourse(student, course, sendNotifications);
+            StudentService.EnrollStudentToCourse(student, course, _sendNotifications);
 
             Assert.True(isAdminNotified);
+
             Assert.True(isAccountNotified);
         }
 
         public static IEnumerable<object[]> StudentsMatchingFilters =>
         new List<object[]>
         {
-             new object[] { studentWithId_1 },
-             new object[] { studentWithName_Lara },
+             new object[] { StudentWithId1 },
+             new object[] { StudentWithNameLara },
         };
         
         public static IEnumerable<object[]> StudentsNonMatchingFilters =>
         new List<object[]>
         {
-           new object[] { studentWithId_Max },
-           new object[] { studentWithName_Abc },
+           new object[] { StudentWithIdMax },
+           new object[] { StudentWithNameAbc },
         };
         
         public static IEnumerable<object[]> StudentCoursesMatchingFilters =>
         new List<object[]>
         {
-            new object[] { (studentWithId_1, courseWithId_1) },
-            new object[] { (studentWithName_Lara, courseWithName_Docker) },
+            new object[] { (StudentWithId1, CourseWithId1) },
+            new object[] { (StudentWithNameLara, CourseWithNameDocker) },
         };
         
         private static void NotifyAdmin(Student student) => isAdminNotified = true;
-        
+
         private static void NotifyAccount(Student student) => isAccountNotified = true;
         
-        private static readonly Func<Student, bool> studentWithId_1 = (s) => s.Id == 1;
-        private static readonly Func<Student, bool> studentWithName_Lara = (s) => s.Name.Equals("Lara", StringComparison.InvariantCulture);
+        private static readonly Func<Student, bool> StudentWithId1 = (s) => s.Id == 1;
+
+        private static readonly Func<Student, bool> StudentWithNameLara = (s) => s.Name.Equals("Lara", StringComparison.InvariantCulture);
         
-        private static readonly Func<Student, bool> studentWithId_Max = (s) => s.Id == int.MaxValue;
-        private static readonly Func<Student, bool> studentWithName_Abc = (s) => s.Name.Equals("Abc", StringComparison.InvariantCulture);
+        private static readonly Func<Student, bool> StudentWithIdMax = (s) => s.Id == int.MaxValue;
+
+        private static readonly Func<Student, bool> StudentWithNameAbc = (s) => s.Name.Equals("Abc", StringComparison.InvariantCulture);
         
-        private static readonly Func<IEnumerable<Course>, Course> courseWithId_1 = (c) => c.First(x => x.Id == 1);
-        private static readonly Func<IEnumerable<Course>, Course> courseWithName_Docker = (c) => c.First(x => x.Name.Equals("docker", StringComparison.InvariantCultureIgnoreCase));
+        private static readonly Func<IEnumerable<Course>, Course> CourseWithId1 = (c) => c.First(x => x.Id == 1);
+
+        private static readonly Func<IEnumerable<Course>, Course> CourseWithNameDocker = (c) => c.First(x => x.Name.Equals("docker", StringComparison.InvariantCultureIgnoreCase));
 
     }
 }
