@@ -24,7 +24,7 @@ public class JsonIteration
             var age = data.age;
             var department = data.department;
 
-            Console.WriteLine("Name: {0}, Age: {1}, Department: {2} \n", name, age, department);
+            Console.WriteLine($"Name: {name}, Age: {age}, Department: {department}");
         }
 
         var count = jsonData.Count;
@@ -41,7 +41,7 @@ public class JsonIteration
             var age = (int)data["age"];
             var department = (string)data["department"];
 
-            Console.WriteLine("Name: {0}, Age: {1}, Department: {2} \n", name, age, department);
+            Console.WriteLine($"Name: {name}, Age: {age}, Department: {department}");
         }
 
         var count = jsonArray.Count;
@@ -58,7 +58,7 @@ public class JsonIteration
             var age = employee.Age;
             var department = employee.Department;
 
-            Console.WriteLine("Name: {0}, Age: {1}, Department: {2} \n", name, age, department);
+            Console.WriteLine($"Name: {name}, Age: {age}, Department: {department}");
         }
 
         return employees;
@@ -77,7 +77,7 @@ public class JsonIteration
             var age = employee.Age;
             var department = employee.Department;
 
-            Console.WriteLine("Name: {0}, Age: {1}, Department: {2} \n", name, age, department);
+            Console.WriteLine($"Name: {name}, Age: {age}, Department: {department}");
         }
 
         return employees;
