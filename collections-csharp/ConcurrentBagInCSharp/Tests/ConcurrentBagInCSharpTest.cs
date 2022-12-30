@@ -53,5 +53,25 @@ namespace Tests
             Assert.IsType<ArrayList>(result);
             Assert.Single(result);
         }
+
+        [Fact]
+        public void GivenAConcurrentBag_WhenConvertingToAnArray_ThenReturnsAnArray()
+        {
+            var bag = ConcurrentBagDemo.CreateAndAddToConcurrentBagConcurrently();
+            var result = ConcurrentBagDemo.ConcurrentBagToArrayMethod(bag);
+
+            Assert.IsType<int[]>(result);
+            Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public void GivenAConcurrentBag_WhenCopyingToAnArray_ThenReturnsAnArray()
+        {
+            var bag = ConcurrentBagDemo.CreateAndAddToConcurrentBagConcurrently();
+            var result = ConcurrentBagDemo.ConcurrentBagCopyToMethod(bag);
+
+            Assert.IsType<int[]>(result);
+            Assert.NotEmpty(result);
+        }
     }
 }

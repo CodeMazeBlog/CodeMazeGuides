@@ -1,8 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections;
 
-
-
 namespace ConcurrentBagInCSharp
 {
     public class ConcurrentBagDemo
@@ -81,5 +79,27 @@ namespace ConcurrentBagInCSharp
             });
         }
 
+        public static int[] ConcurrentBagToArrayMethod(ConcurrentBag<int> bag)
+        {
+            var myArray = new int[bag.Count];
+            myArray = bag.ToArray();
+
+            return myArray;
+        }
+
+        public static int[] ConcurrentBagCopyToMethod(ConcurrentBag<int> bag)
+        {
+            var someArray = new int[bag.Count];
+            bag.CopyTo(someArray, 0);
+
+            return someArray;
+        }
+        
+        public static void ConcurrentBagClearMethod(ConcurrentBag<int> bag)
+        {
+            bag.Clear();
+
+            Console.WriteLine($"My concurrent bag contains {bag.Count} item."); // My concurrent bag contains 0 item.
+        }
     }
 }
