@@ -1,6 +1,4 @@
-﻿using System.Collections.Concurrent;
-
-namespace ConcurrentBagInCSharp
+﻿namespace ConcurrentBagInCSharp
 {
     internal class Program
     {
@@ -9,6 +7,7 @@ namespace ConcurrentBagInCSharp
             var myConcurrentBag = ConcurrentBagDemo.CreateAndAddToConcurrentBagConcurrently();
             var myConcurrentBagCount = myConcurrentBag.Count;
             var isMyConcurrentBagEmpty = myConcurrentBag.IsEmpty;
+            
         }
     }
 }
