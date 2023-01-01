@@ -4,6 +4,7 @@ This section contains articles about C#/.NET collections.
 
 ### Relevant articles:
 
+- [Working With Collections in .NET](https://code-maze.com/dotnet-collections-overview/)
 - [Concurrent Collections in C#](https://code-maze.com/csharp-concurrent-collections/)
 - [List Collection in C#](https://code-maze.com/csharp-list-collection/)
 - [Dictionary in C#](https://code-maze.com/dictionary-csharp/)
