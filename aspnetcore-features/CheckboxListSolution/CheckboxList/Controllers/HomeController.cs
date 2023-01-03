@@ -30,7 +30,6 @@ namespace CheckboxList.Controllers
         public IActionResult CourseSelection(List<CheckboxViewModel> courses)
         {
             var selectedCourses = courses.Where(x => x.IsChecked == true).ToList();
-
             return RedirectToAction("CourseSelection");
         }
 
