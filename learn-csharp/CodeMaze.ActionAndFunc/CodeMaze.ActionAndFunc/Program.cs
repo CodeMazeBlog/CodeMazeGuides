@@ -16,7 +16,7 @@ public class Program
         //Pass an Action<T> to another function as a lambda
         FunctionC((string textA, string textB) =>
         {
-            Console.WriteLine("");
+            Console.WriteLine("Anonymous lambda function");
         });
     }
 
