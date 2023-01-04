@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsAndIsOperatorsInCSharp", "AsAndIsOperatorsInCSharp\AsAndIsOperatorsInCSharp.csproj", "{50E7B2EB-6611-4059-8512-2DDBEC7921FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsAndIsOperatorsInCSharpTests", "AsAndIsOperatorsInCSharpTests\AsAndIsOperatorsInCSharpTests.csproj", "{ECF71098-0CDF-4D6A-8E76-6DF3E2DB9CF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsAndIsOperatorsInCSharpTests", "AsAndIsOperatorsInCSharpTests\AsAndIsOperatorsInCSharpTests.csproj", "{ECF71098-0CDF-4D6A-8E76-6DF3E2DB9CF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegates", "..\..\csharp-advanced-topics\ActionAndFuncDelegates\ActionAndFuncDelegates\ActionAndFuncDelegates.csproj", "{6AE937AA-E0C0-4749-9F43-BD843DDBA6DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{ECF71098-0CDF-4D6A-8E76-6DF3E2DB9CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECF71098-0CDF-4D6A-8E76-6DF3E2DB9CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECF71098-0CDF-4D6A-8E76-6DF3E2DB9CF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AE937AA-E0C0-4749-9F43-BD843DDBA6DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE937AA-E0C0-4749-9F43-BD843DDBA6DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE937AA-E0C0-4749-9F43-BD843DDBA6DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE937AA-E0C0-4749-9F43-BD843DDBA6DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
