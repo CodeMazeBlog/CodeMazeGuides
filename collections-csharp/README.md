@@ -6,6 +6,7 @@ This section contains articles about C#/.NET collections.
 
 - [Working With Collections in .NET](https://code-maze.com/dotnet-collections-overview/)
 - [Concurrent Collections in C#](https://code-maze.com/csharp-concurrent-collections/)
+- [ConcurrentBag in C#](https://code-maze.com/csharp-concurrentbag/)
 - [List Collection in C#](https://code-maze.com/csharp-list-collection/)
 - [Dictionary in C#](https://code-maze.com/dictionary-csharp/)
 - [HashSet vs SortedSet in C#](https://code-maze.com/csharp-hashset-vs-sortedset/)
