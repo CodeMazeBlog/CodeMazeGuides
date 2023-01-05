@@ -6,27 +6,6 @@ namespace ConvertStringAndIntToEnumTests
     [TestClass]
     public class ConvertStringAndIntToEnumTests
     {
-        public enum DayOfWeek
-        {
-            Monday,
-            Tuesday,
-            Wednesday,
-            Thursday,
-            Friday,
-            Saturday,
-            Sunday
-        }
-
-        [Flags]
-        public enum UserType
-        {
-            None = 0,
-            Customer = 1,
-            Driver = 2,
-            Admin = 4,
-        }
-
-
         [TestMethod]
         public void GivenValidEnumAsString_WhenConvertingToEnum_ThenCorrectlyConverted()
         {
@@ -46,6 +25,7 @@ namespace ConvertStringAndIntToEnumTests
             
             Assert.IsFalse(isEnumParsed);
         }
+
         [TestMethod]
         public void GivenValidEnumAsStringInteger_WhenConvertingToEnum_ThenCorrectlyConverted()
         {
@@ -89,7 +69,6 @@ namespace ConvertStringAndIntToEnumTests
             
             Assert.IsTrue(isEnumParsed);
             Assert.AreEqual(UserType.Customer| UserType.Driver, parsedEnum);
-
         }
 
         [TestMethod]
@@ -101,7 +80,6 @@ namespace ConvertStringAndIntToEnumTests
             var isEnumParsed = Enum.IsDefined(typeof(UserType), inputInt) || parsedEnum.ToString().Contains(",");
             
             Assert.IsFalse(isEnumParsed);
-
         }
     }
 }
