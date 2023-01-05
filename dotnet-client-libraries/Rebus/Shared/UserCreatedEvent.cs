@@ -6,5 +6,5 @@ public class UserCreatedEvent
         UserName = userName;
     }
 
-    public string UserName { get; set; }
+    public string UserName { get; }
 }
