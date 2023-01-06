@@ -11,3 +11,4 @@ This section contains the topics considered advanced level in C#.
 - [Introduction to Regular Expressions in C#](https://code-maze.com/regular-expressions-csharp/)
 - [Lambda Expressions in C#](https://code-maze.com/lambda-expressions-in-csharp/)
 - [How to Use Span in C# to Improve Application Performance](https://code-maze.com/csharp-span-to-improve-application-performance/)
+- [Understanding Task and ValueTask in C#](https://code-maze.com/csharp-task-and-valuetask/)

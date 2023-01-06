@@ -4,6 +4,7 @@ This section contains articles about authorization related topics in .NET.
 
 ### Relevant articles:
 
+- [How to Add a BearerToken to an HttpClient Request](https://code-maze.com/add-bearertoken-httpclient-request/)
 - [Cookie Authentication With ASP.NET Core and Angular](https://code-maze.com/cookie-authentication-aspnetcore-angular/)
 - [Hashing and Salting Passwords in C# – Best Practices](https://code-maze.com/csharp-hashing-salting-passwords-best-practices/)
 - [How to Secure Passwords with BCrypt.NET](https://code-maze.com/dotnet-secure-passwords-bcrypt/)
