@@ -2,12 +2,14 @@
 {
     public class Car
     {
-        public string ChangeCarModel( string newModel)
+        public Car(string modelName)=> ModelName = modelName;
+
+        public string ChangeCarModel(string newModel)
         {
             ModelName = newModel;
             return ModelName;
         }
 
-        public string? ModelName { get; set; }
+        public string ModelName { get; set; }
     }
 }

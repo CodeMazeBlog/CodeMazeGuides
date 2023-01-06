@@ -4,19 +4,17 @@ namespace ValueVsReferenceTypesTest
     [TestClass]
     public class UnitTest
     {
-        Car car = new()
-        {
-            ModelName = "Toyota"
-        };
-        WorkingDaysCalculator workingDaysCalculator = new()
-        {
-            DaysOfTheWeek = 7
-        };
+
+        WorkingDaysCalculator workingDaysCalculator = new();
 
         [TestMethod]
         public void WhenChangeCarModel_ThenMethodReturnsCorrectValue()
         {
-            var expectedResults = "Toyota";
+            var defaultModelName = "Toyota";
+            Car car = new(defaultModelName);
+            var newModelName = "Nissan";
+            car.ChangeCarModel(newModelName);
+            var expectedResults = "Nissan";
             var actualResults = car.ModelName;
 
             Assert.AreEqual(expectedResults, actualResults);

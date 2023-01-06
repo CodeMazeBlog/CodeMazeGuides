@@ -2,6 +2,7 @@
 {
     public class WorkingDaysCalculator
     {
+        public WorkingDaysCalculator() => DaysOfTheWeek = 7;
         public int WeeklyWorkDays(int daysInAWeek)
         {
             daysInAWeek = DaysOfTheWeek - WeekendDaysCount;
