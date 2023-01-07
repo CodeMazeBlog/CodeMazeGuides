@@ -4,10 +4,6 @@ using System.Text.Json;
 namespace BogusNugetPackage.Models;
 public sealed class Employee 
 {
-    public Employee()
-    {
-    }
-
     public Guid Id { get; set; }
     public string FirstName { get; set; } = default!;
     public string LastName { get; set; } = default!;

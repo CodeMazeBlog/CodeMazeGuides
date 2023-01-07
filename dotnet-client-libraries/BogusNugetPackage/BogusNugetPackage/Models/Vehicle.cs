@@ -3,10 +3,6 @@
 namespace BogusNugetPackage.Models;
 public sealed class Vehicle
 {
-    public Vehicle()
-    {
-    }
-
     public Guid Id { get; set; }
     public Guid EmployeeId { get; set; }
     public string Manufacturer { get; set; } = default!;
