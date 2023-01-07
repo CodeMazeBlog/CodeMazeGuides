@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 namespace BogusNugetPackage;
 public static class DataGenerator
 {
+    public const int NumberOfEmployees = 5;
+    public const int NumberOfVehiclesPerEmployee = 2;
+
     public static readonly List<Employee> Employees = new();
     public static readonly List<Vehicle> Vehicles = new();
 
@@ -24,6 +27,8 @@ public static class DataGenerator
     {
         using var employeeDbContext = new EmployeeContext();
 
+        employeeDbContext.Database.EnsureCreated();
+
         var dbEmployeesWithVehicles = employeeDbContext.Employees
            .Include(e => e.Vehicles)
            .ToList();
@@ -33,7 +38,23 @@ public static class DataGenerator
 
     public static void InitBogusEmployeeData()
     {
-        var employeeGenerator = new Faker<Employee>()
+        var employeeGenerator = GetEmployeeGenerator();
+
+        var generatedEmployees = employeeGenerator.Generate(NumberOfEmployees);
+        Employees.AddRange(generatedEmployees);
+    }
+
+    private static List<Vehicle> GetBogusVehicleData(Guid employeeId)
+    {
+        var vehicleGenerator = GetVehicleGenerator(employeeId);
+        var generatedVehicles = vehicleGenerator.Generate(NumberOfVehiclesPerEmployee);
+
+        return generatedVehicles;
+    }
+
+    private static Faker<Employee> GetEmployeeGenerator()
+    {
+        return new Faker<Employee>()
             .RuleFor(e => e.Id, _ => Guid.NewGuid())
             .RuleFor(e => e.FirstName, f => f.Name.FirstName())
             .RuleFor(e => e.LastName, f => f.Name.LastName())
@@ -42,25 +63,21 @@ public static class DataGenerator
             .RuleFor(e => e.AboutMe, f => f.Lorem.Paragraph(1))
             .RuleFor(e => e.YearsOld, f => f.Random.Int(18, 90))
             .RuleFor(e => e.Personality, f => f.PickRandom<Personality>())
-            .RuleFor(e => e.Vehicles, (_, e) => 
+            .RuleFor(e => e.Vehicles, (_, e) =>
             {
-                InitBogusVehicleData(e.Id);
+                var generatedVehicles = GetBogusVehicleData(e.Id);
+                Vehicles.AddRange(generatedVehicles);
+
                 return null!;
             });
-
-        var generatedEmployees = employeeGenerator.Generate(5);
-        Employees.AddRange(generatedEmployees);
     }
 
-    private static void InitBogusVehicleData(Guid employeeId)
+    private static Faker<Vehicle> GetVehicleGenerator(Guid employeeId)
     {
-        var vehicleGenerator = new Faker<Vehicle>()
+        return new Faker<Vehicle>()
             .RuleFor(v => v.Id, _ => Guid.NewGuid())
             .RuleFor(v => v.EmployeeId, _ => employeeId)
             .RuleFor(v => v.Manufacturer, f => f.Vehicle.Manufacturer())
             .RuleFor(v => v.Fuel, f => f.Vehicle.Fuel());
-
-        var generatedVehicles = vehicleGenerator.Generate(3);
-        Vehicles.AddRange(generatedVehicles);
     }
 }

@@ -17,8 +17,6 @@ public sealed class EmployeeContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        DataGenerator.InitBogusEmployeeData();
-
         modelBuilder.Entity<Employee>().HasData(DataGenerator.Employees);
         modelBuilder.Entity<Vehicle>().HasData(DataGenerator.Vehicles);
     }

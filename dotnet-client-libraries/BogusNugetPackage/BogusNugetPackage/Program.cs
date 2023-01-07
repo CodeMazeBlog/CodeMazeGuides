@@ -12,3 +12,8 @@ Console.WriteLine("-----------------");
 
 Console.WriteLine("Multiple Employees: ");
 DataGenerator.GetListOfEmployees().ForEach(Console.WriteLine);
+
+Console.WriteLine("-----------------");
+
+Console.WriteLine("DB Seeded Employees: ");
+DataGenerator.GetSeededEmployeesFromDb().ForEach(Console.WriteLine);
