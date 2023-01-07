@@ -7,21 +7,11 @@ using Microsoft.EntityFrameworkCore;
 namespace BogusNugetPackage;
 public static class DataGenerator
 {
-    public const int NumberOfEmployees = 5;
-    public const int NumberOfVehiclesPerEmployee = 2;
-
     public static readonly List<Employee> Employees = new();
     public static readonly List<Vehicle> Vehicles = new();
 
-    public static Employee GetSingleEmployee()
-    {
-        return Employees.First();
-    }
-
-    public static List<Employee> GetListOfEmployees()
-    {
-        return Employees;
-    }
+    public const int NumberOfEmployees = 5;
+    public const int NumberOfVehiclesPerEmployee = 2;
 
     public static List<Employee> GetSeededEmployeesFromDb()
     {
@@ -36,12 +26,12 @@ public static class DataGenerator
         return dbEmployeesWithVehicles;
     }
 
-    public static void InitBogusEmployeeData()
+    public static void InitBogusData()
     {
         var employeeGenerator = GetEmployeeGenerator();
-
         var generatedEmployees = employeeGenerator.Generate(NumberOfEmployees);
         Employees.AddRange(generatedEmployees);
+        generatedEmployees.ForEach(e => Vehicles.AddRange(GetBogusVehicleData(e.Id)));
     }
 
     private static List<Vehicle> GetBogusVehicleData(Guid employeeId)
@@ -62,14 +52,7 @@ public static class DataGenerator
             .RuleFor(e => e.Email, (f, e) => f.Internet.Email(e.FirstName, e.LastName))
             .RuleFor(e => e.AboutMe, f => f.Lorem.Paragraph(1))
             .RuleFor(e => e.YearsOld, f => f.Random.Int(18, 90))
-            .RuleFor(e => e.Personality, f => f.PickRandom<Personality>())
-            .RuleFor(e => e.Vehicles, (_, e) =>
-            {
-                var generatedVehicles = GetBogusVehicleData(e.Id);
-                Vehicles.AddRange(generatedVehicles);
-
-                return null!;
-            });
+            .RuleFor(e => e.Personality, f => f.PickRandom<Personality>());
     }
 
     private static Faker<Vehicle> GetVehicleGenerator(Guid employeeId)

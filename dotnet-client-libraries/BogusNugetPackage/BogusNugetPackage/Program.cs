@@ -1,17 +1,17 @@
 ﻿using BogusNugetPackage;
 
 Console.WriteLine("Initializing data with Bogus...");
-DataGenerator.InitBogusEmployeeData();
+DataGenerator.InitBogusData();
 
 Console.WriteLine("-----------------");
 
 Console.WriteLine("Single Employee: ");
-Console.WriteLine(DataGenerator.GetSingleEmployee());
+Console.WriteLine(DataGenerator.Employees.First());
 
 Console.WriteLine("-----------------");
 
 Console.WriteLine("Multiple Employees: ");
-DataGenerator.GetListOfEmployees().ForEach(Console.WriteLine);
+DataGenerator.Employees.ForEach(Console.WriteLine);
 
 Console.WriteLine("-----------------");
 
