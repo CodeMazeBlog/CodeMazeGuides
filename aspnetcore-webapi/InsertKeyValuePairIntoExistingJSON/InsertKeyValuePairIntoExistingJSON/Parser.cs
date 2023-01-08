@@ -11,18 +11,18 @@ namespace InsertKeyValuePairIntoExistingJSON
             _json = json;
         }
 
-        public JObject AddStringValue(string key, string value)
+        public JObject AddStringValue(string propertyName, string value)
         {
             var json = JObject.Parse(_json);
-            json.Add(key, value);
+            json.Add(propertyName, value);
 
             return json;
         }
 
-        public JObject AddObjectValue(string key, object value)
+        public JObject AddObjectValue(string propertyName, object value)
         {
             var json = JObject.Parse(_json);
-            json.Add(key, JObject.FromObject(value));
+            json.Add(propertyName, JObject.FromObject(value));
 
             return json;
         }
@@ -30,11 +30,6 @@ namespace InsertKeyValuePairIntoExistingJSON
         public JObject InsertStringValue(string existingProperty, string newProperty, string value)
         {
             var json = JObject.Parse(_json);
-            if (!json.ContainsKey(existingProperty))
-            {
-                return json;
-            }
-
             json[existingProperty][newProperty] = value;
 
             return json;
@@ -43,11 +38,6 @@ namespace InsertKeyValuePairIntoExistingJSON
         public JObject InsertObjectValue(string existingProperty, string newProperty, object value)
         {
             var json = JObject.Parse(_json);
-            if (!json.ContainsKey(existingProperty))
-            {
-                return json;
-            }
-
             json[existingProperty][newProperty] = JObject.FromObject(value);
 
             return json;
