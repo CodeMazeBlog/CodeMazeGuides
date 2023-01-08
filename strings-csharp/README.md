@@ -15,5 +15,6 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [Make The First Letter of a String Upper Case in C#](https://code-maze.com/csharp-first-letter-upper-case/)
 - [StringBuilder in C#](https://code-maze.com/stringbuilder-csharp/)
 - [How to Convert String to Title Case in C#](https://code-maze.com/csharp-convert-string-title-case/)
+- [ToString Method in C#](https://code-maze.com/tostring-method-csharp/)
 - [Using Variables Inside Strings in C#](https://code-maze.com/csharp-using-variables-inside-strings/)
 - [C# String Interpolation](https://code-maze.com/csharp-string-interpolation/)
