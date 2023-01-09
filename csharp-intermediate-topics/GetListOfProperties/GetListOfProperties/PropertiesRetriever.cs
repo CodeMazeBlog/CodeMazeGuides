@@ -4,25 +4,25 @@ namespace GetListOfProperties
 {
     public class PropertiesRetriever
     {
-        public PropertyInfo[] RetrieveProperties(object @object)
+        public PropertyInfo[] RetrieveProperties(object obj)
         {
-            var type = @object.GetType();
+            var type = obj.GetType();
             type.GetProperties();
 
             return type.GetProperties();
         }
 
-        public PropertyInfo[] RetrievePropertiesWithFilter(object @object, BindingFlags binding)
+        public PropertyInfo[] RetrievePropertiesWithFilter(object obj, BindingFlags binding)
         {
-            var type = @object.GetType();
+            var type = obj.GetType();
             type.GetProperties();
 
             return type.GetProperties(binding);
         }
 
-        public PropertyInfo[] RetrieveParentClassPropertiesWithFilter(object @object, BindingFlags binding)
+        public PropertyInfo[] RetrieveParentClassPropertiesWithFilter(object obj, BindingFlags binding)
         {
-            var type = @object.GetType();
+            var type = obj.GetType();
             type.GetProperties();
 
             return type.BaseType?.GetProperties(binding);
