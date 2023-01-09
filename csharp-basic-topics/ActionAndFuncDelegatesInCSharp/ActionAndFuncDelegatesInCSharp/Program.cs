@@ -27,18 +27,18 @@ public static class Program
     {
         Func<int, int> addOneFunc;
         addOneFunc = number => number + 1;
-        var two = addOneFunc(1);
+        var sum = addOneFunc(1);
 
-        return two;
+        return sum;
     }
 
     public static int AddNumbersWithFunc()
     {
         Func<int, int, int> addNumbersFunc;
         addNumbersFunc = (number1, number2) => number1 + number2;
-        var three = addNumbersFunc(1, 2);
+        var sum = addNumbersFunc(1, 2);
 
-        return three;
+        return sum;
     }
 
     delegate TReturn MyFunc<TParam1, TReturn>(TParam1 param1);
@@ -47,8 +47,8 @@ public static class Program
     {
         MyFunc<int, int> addOneFunc;
         addOneFunc = number => number + 1;
-        var two = addOneFunc(1);
+        var sum = addOneFunc(1);
 
-        return two;
+        return sum;
     }
 }

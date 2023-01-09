@@ -18,24 +18,24 @@ public class ActionAndFuncDelegatesUnitTest
     [Fact]
     public void WhenAddingOneWithFunc_ThenCorrectResultReturned()
     {
-        var two = Program.AddOneWithFunc();
+        var sum = Program.AddOneWithFunc();
 
-        Assert.Equal(2, two);
+        Assert.Equal(2, sum);
     }
 
     [Fact]
     public void WhenAddingNumbersWithFunc_ThenCorrectResultReturned()
     {
-        var three = Program.AddNumbersWithFunc();
+        var sum = Program.AddNumbersWithFunc();
 
-        Assert.Equal(3, three);
+        Assert.Equal(3, sum);
     }
 
     [Fact]
     public void WhenAddingOneWithCustomFunc_ThenCorrectResultReturned()
     {
-        var two = Program.AddOneWithCustomFunc();
+        var sum = Program.AddOneWithCustomFunc();
 
-        Assert.Equal(2, two);
+        Assert.Equal(2, sum);
     }   
 }
