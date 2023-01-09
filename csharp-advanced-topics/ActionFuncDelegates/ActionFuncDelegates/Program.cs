@@ -7,13 +7,11 @@ namespace ActionFuncDelegates
     {
         static void Main(string[] args)
         {
-            //Action Delegate
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            var numbers = new List<int> { 1, 2, 3, 4, 5 };
 
             ActionProgram(numbers);
 
-            //Func Delegate
-            string sentence = "Sentence example";
+            var sentence = "Sentence example";
 
             FuncProgram(sentence);
         }

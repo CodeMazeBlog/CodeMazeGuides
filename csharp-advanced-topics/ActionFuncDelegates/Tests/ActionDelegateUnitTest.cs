@@ -5,11 +5,16 @@ using System.Collections.Generic;
 using System.IO;
 
 namespace Tests
-{
+{  
+
     [TestClass]
     public class ActionDelegateTests
     {
-        private const int Expected = 27;
+        
+        private const int expectedResultTestOne = 27;
+        private const int expectedResultTestTwo = 125;
+        private const int expectedResultTestThree = 64;
+
         [TestMethod]
         public void When3_Then27()
         {
@@ -20,11 +25,10 @@ namespace Tests
 
                 var result = Convert.ToInt32(sw.ToString().Trim());
 
-                Assert.AreEqual(Expected, result);
+                Assert.AreEqual(expectedResultTestOne, result);
             }
         }
-
-        private const int Expected2 = 125;
+        
         [TestMethod]
         public void When5_Then125()
         {
@@ -35,11 +39,10 @@ namespace Tests
 
                 var result = Convert.ToInt32(sw2.ToString().Trim());
 
-                Assert.AreEqual(Expected2, result);
+                Assert.AreEqual(expectedResultTestTwo, result);
             }
         }
-
-        private const int Expected3 = 64;
+        
         [TestMethod]
         public void When4_Then64()
         {
@@ -50,7 +53,7 @@ namespace Tests
 
                 var result = Convert.ToInt32(sw.ToString().Trim());
 
-                Assert.AreEqual(Expected3, result);
+                Assert.AreEqual(expectedResultTestThree, result);
             }
         }
     }

@@ -8,7 +8,10 @@ namespace Tests
     [TestClass]
     public class FuncDelegateTests
     {
-        private const int Expected = 1;
+        private const int expectedResultTestOne = 1;
+        private const int expectedResultTestTwo = 2;
+        private const int expectedResultTestThree = 6;
+
         [TestMethod]
         public void WhenHi_Then1()
         {
@@ -19,11 +22,10 @@ namespace Tests
 
                 var result = Convert.ToInt32(sw.ToString().Trim());
 
-                Assert.AreEqual(Expected, result);
+                Assert.AreEqual(expectedResultTestOne, result);
             }
         }
-
-        private const int Expected2 = 2;
+        
         [TestMethod]
         public void WhenHello_Then2()
         {
@@ -34,11 +36,10 @@ namespace Tests
 
                 var result = Convert.ToInt32(sw2.ToString().Trim());
 
-                Assert.AreEqual(Expected2, result);
+                Assert.AreEqual(expectedResultTestTwo, result);
             }
         }
-
-        private const int Expected3 = 6;
+        
         [TestMethod]
         public void WhenHellotherefriend_Then6()
         {
@@ -49,7 +50,7 @@ namespace Tests
 
                 var result = Convert.ToInt32(sw.ToString().Trim());
 
-                Assert.AreEqual(Expected3, result);
+                Assert.AreEqual(expectedResultTestThree, result);
             }
         }
     }
