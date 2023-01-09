@@ -59,6 +59,30 @@ namespace Tests
         }
 
         [Fact]
+        public void GivenAnArrayAndAValue_WhenCheckingWithArrayFindIndexWithStartsWith_ThenReturnsAnIntegerIndex()
+        {
+            var result = _checkMethods.ArrayFindIndexWithStartsWith();
+
+            Assert.Equal(3, result);
+        }
+
+        [Fact]
+        public void GivenAnArrayAndAValue_WhenCheckingWithArrayFindIndexWithEndsWith_ThenReturnsAnIntegerIndex()
+        {
+            var result = _checkMethods.ArrayFindIndexWithEndsWith();
+
+            Assert.Equal(1, result);
+        }
+
+        [Fact]
+        public void GivenAnArrayAndAValue_WhenCheckingWithArrayFindIndexWithRegex_ThenReturnsAnIntegerIndex()
+        {
+            var result = _checkMethods.ArrayFindIndexWithRegex();
+
+            Assert.Equal(5, result);
+        }
+
+        [Fact]
         public void GivenAnArrayAndAValue_WhenCheckingWithArrayLastIndexOf_ThenReturnsAnIntegerIndex()
         {
             var result = _checkMethods.ArrayLastIndexOf();

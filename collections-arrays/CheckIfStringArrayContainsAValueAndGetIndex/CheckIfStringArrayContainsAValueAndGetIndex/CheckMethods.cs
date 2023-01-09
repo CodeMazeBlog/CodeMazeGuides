@@ -1,4 +1,6 @@
-﻿namespace CheckIfStringArrayContainsAValueAndGetIndex
+﻿using System.Text.RegularExpressions;
+
+namespace CheckIfStringArrayContainsAValueAndGetIndex
 {
     public class CheckMethods
     {
@@ -70,6 +72,30 @@
         {
             string value = "du";
             int index = Array.FindIndex(_stringArray, str => str.Contains(value));
+
+            return index;
+        }
+
+        public int ArrayFindIndexWithStartsWith()
+        {
+            string value = "liz";
+            int index = Array.FindIndex(_stringArray, str => str.StartsWith(value));
+
+            return index;
+        }
+
+        public int ArrayFindIndexWithEndsWith()
+        {
+            string value = "rse";
+            int index = Array.FindIndex(_stringArray, str => str.EndsWith(value));
+
+            return index;
+        }
+
+        public int ArrayFindIndexWithRegex()
+        {
+            string pattern = @"^(fro)";
+            int index = Array.FindIndex(_stringArray, str => Regex.IsMatch(str, pattern));
 
             return index;
         }
