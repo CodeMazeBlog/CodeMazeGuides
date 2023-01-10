@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DataContract = CodeMazeShop.DataContracts.ShoppingCart;
-using Messages = CodeMaze.Integration.Messages;
+using Messages = CodeMazeShop.Integration.Messages;
 
 namespace CodeMazeShop.Services.ShoppingCart.Profiles
 {

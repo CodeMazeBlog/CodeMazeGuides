@@ -1,4 +1,4 @@
-﻿using CodeMaze.Integration.Messages;
+﻿using CodeMazeShop.Integration.Messages;
 using CodeMazeShop.Services.Ordering.Entities;
 using CodeMazeShop.Services.Ordering.Repositories;
 

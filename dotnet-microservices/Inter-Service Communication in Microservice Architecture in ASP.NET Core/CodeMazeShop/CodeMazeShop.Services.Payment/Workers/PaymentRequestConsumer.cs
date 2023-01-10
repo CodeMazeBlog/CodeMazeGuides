@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text;
-using CodeMaze.Integration.Abstractions;
-using CodeMaze.Integration.Messages;
+using CodeMazeShop.Integration.Abstractions;
+using CodeMazeShop.Integration.Messages;
 using RabbitMQ.Client.Events;
 using RabbitMQ.Client;
 using CodeMazeShop.Services.Payment.Services;

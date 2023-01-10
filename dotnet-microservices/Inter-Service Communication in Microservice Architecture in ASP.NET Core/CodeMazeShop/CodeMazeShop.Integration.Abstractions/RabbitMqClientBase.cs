@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 
-namespace CodeMaze.Integration.Abstractions;
+namespace CodeMazeShop.Integration.Abstractions;
 
 public class RabbitMqClientBase : IDisposable
 {

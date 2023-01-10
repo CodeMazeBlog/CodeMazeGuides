@@ -2,7 +2,7 @@
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace CodeMaze.Integration.Abstractions;
+namespace CodeMazeShop.Integration.Abstractions;
 
 public abstract class ConsumerBase : RabbitMqClientBase
 {

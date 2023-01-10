@@ -3,7 +3,7 @@ using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 
-namespace CodeMaze.Integration.Abstractions;
+namespace CodeMazeShop.Integration.Abstractions;
 
 public class ProducerBase<T> : RabbitMqClientBase, IMessageProducer<T>
 {

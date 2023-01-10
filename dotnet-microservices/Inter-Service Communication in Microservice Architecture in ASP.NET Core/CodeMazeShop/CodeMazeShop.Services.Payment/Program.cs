@@ -1,5 +1,5 @@
-using CodeMaze.Integration.Abstractions;
-using CodeMaze.Integration.Messages;
+using CodeMazeShop.Integration.Abstractions;
+using CodeMazeShop.Integration.Messages;
 using CodeMazeShop.Services.Payment.Messaging;
 using CodeMazeShop.Services.Payment.Services;
 using CodeMazeShop.Services.Payment.Workers;

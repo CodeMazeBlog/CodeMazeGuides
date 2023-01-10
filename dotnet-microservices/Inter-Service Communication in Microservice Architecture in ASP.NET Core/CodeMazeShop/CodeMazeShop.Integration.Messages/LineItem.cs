@@ -1,4 +1,4 @@
-﻿namespace CodeMaze.Integration.Messages;
+﻿namespace CodeMazeShop.Integration.Messages;
 
 public class LineItem
 {

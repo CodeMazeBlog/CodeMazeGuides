@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using CodeMaze.Integration.Abstractions;
-using CodeMaze.Integration.Messages;
+using CodeMazeShop.Integration.Abstractions;
+using CodeMazeShop.Integration.Messages;
 using CodeMazeShop.DataContracts.ShoppingCart;
 using CodeMazeShop.Services.ShoppingCart.Facade;
 using CodeMazeShop.Services.ShoppingCart.Repositories;

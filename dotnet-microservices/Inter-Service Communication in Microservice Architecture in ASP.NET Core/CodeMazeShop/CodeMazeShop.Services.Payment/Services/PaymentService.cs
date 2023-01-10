@@ -1,6 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using System.Text.Json;
-using CodeMaze.Integration.Messages;
+using CodeMazeShop.Integration.Messages;
 
 namespace CodeMazeShop.Services.Payment.Services;
 

@@ -1,4 +1,4 @@
-﻿using CodeMaze.Integration.Messages;
+﻿using CodeMazeShop.Integration.Messages;
 
 namespace CodeMazeShop.Services.Payment.Services;
 

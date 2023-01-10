@@ -1,4 +1,6 @@
-﻿namespace CodeMaze.Integration.Messages;
+﻿using System;
+
+namespace CodeMazeShop.Integration.Messages;
 
 public class PaymentUpdateMessage
 {

@@ -1,5 +1,5 @@
-﻿using CodeMaze.Integration.Abstractions;
-using CodeMaze.Integration.Messages;
+﻿using CodeMazeShop.Integration.Abstractions;
+using CodeMazeShop.Integration.Messages;
 using RabbitMQ.Client;
 
 namespace CodeMazeShop.Services.Payment.Messaging;

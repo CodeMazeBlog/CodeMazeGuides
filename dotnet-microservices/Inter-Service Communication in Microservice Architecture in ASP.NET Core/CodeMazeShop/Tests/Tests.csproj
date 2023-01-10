@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodeMaze.Integration.Abstractions\CodeMaze.Integration.Abstractions.csproj" />
+    <ProjectReference Include="..\CodeMazeShop.Integration.Abstractions\CodeMazeShop.Integration.Abstractions.csproj" />
     <ProjectReference Include="..\CodeMazeShop.Services.ProductCatalog\CodeMazeShop.Services.ProductCatalog.csproj" />
     <ProjectReference Include="..\CodeMazeShop.Services.ShoppingCart\CodeMazeShop.Services.ShoppingCart.csproj" />
   </ItemGroup>
