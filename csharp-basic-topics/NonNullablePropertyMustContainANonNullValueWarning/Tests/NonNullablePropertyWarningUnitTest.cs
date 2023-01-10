@@ -5,7 +5,7 @@ using NonNullablePropertyWarning;
 namespace Tests
 {
     [TestClass]
-    public class NonNullablePropertyWarning
+    public class NonNullablePropertyWarningUnitTest
     {
         private Address? _address;
 
