@@ -11,3 +11,5 @@ This section contains the topics about the client libraries in .NET.
 - [Getting Started With Mapster in ASP.NET Core](https://code-maze.com/mapster-aspnetcore-introduction/)
 - [HttpClient vs RestSharp - Which One to Use in .NET](https://code-maze.com/httpclient-vs-restsharp/)
 - [Schedule Jobs with Quartz.NET](https://code-maze.com/schedule-jobs-with-quartz-net/)
+- [Rebus in .NET – Service Bus Implementation](https://code-maze.com/rebus-dotnet/)
+- [Using Refit to Consume APIs in C#](https://code-maze.com/using-refit-to-consume-apis-in-csharp/)
