@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CodeMaze.Integration.MessageBus\CodeMaze.Integration.Abstractions.csproj" />
-    <ProjectReference Include="..\..\CodeMaze.Integration.Messages\CodeMaze.Integration.Messages.csproj" />
+    <ProjectReference Include="..\CodeMaze.Integration.Abstractions\CodeMaze.Integration.Abstractions.csproj" />
+    <ProjectReference Include="..\CodeMaze.Integration.Messages\CodeMaze.Integration.Messages.csproj" />
     <ProjectReference Include="..\CodeMazeShop.DataContracts\CodeMazeShop.DataContracts.csproj" />
   </ItemGroup>
 

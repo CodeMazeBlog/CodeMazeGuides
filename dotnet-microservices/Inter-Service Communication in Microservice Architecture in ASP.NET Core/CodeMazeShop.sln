@@ -33,16 +33,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.Payme
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Services.ShoppingCart", "CodeMazeShop\CodeMazeShop.Services.ShoppingCart\CodeMazeShop.Services.ShoppingCart.csproj", "{1628C1BE-2D7F-4829-9C99-DF4FE744A5DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Utilities", "CodeMazeShop.Utilities\CodeMazeShop.Utilities.csproj", "{02B085D0-E692-47E4-BA17-EA4FC110FB1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeShop.Utilities", "CodeMazeShop\CodeMazeShop.Utilities\CodeMazeShop.Utilities.csproj", "{02B085D0-E692-47E4-BA17-EA4FC110FB1A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Proto", "Proto", "{7B5CA836-79BC-4B0D-BF9C-BCD98591B9A0}"
 	ProjectSection(SolutionItems) = preProject
 		CodeMazeShop\discount.proto = CodeMazeShop\discount.proto
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMaze.Integration.Messages", "CodeMaze.Integration.Messages\CodeMaze.Integration.Messages.csproj", "{0E912B78-6E80-4D27-A66E-9EE914DA9EAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMaze.Integration.Messages", "CodeMazeShop\CodeMaze.Integration.Messages\CodeMaze.Integration.Messages.csproj", "{0E912B78-6E80-4D27-A66E-9EE914DA9EAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMaze.Integration.Abstractions", "CodeMaze.Integration.MessageBus\CodeMaze.Integration.Abstractions.csproj", "{0EB45139-1F45-4683-A2C5-42CE064E0BDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMaze.Integration.Abstractions", "CodeMazeShop\CodeMaze.Integration.Abstractions\CodeMaze.Integration.Abstractions.csproj", "{0EB45139-1F45-4683-A2C5-42CE064E0BDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
