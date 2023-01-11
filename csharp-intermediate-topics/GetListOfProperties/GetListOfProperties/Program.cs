@@ -28,6 +28,19 @@ public class Program
             BindingFlags.Public);
         propertiesRetriever.PrintProperties(properties);
 
+        Console.WriteLine("Instance and Static public filters:");
+        properties = propertiesRetriever.RetrievePropertiesWithFilter(new Configuration(),
+            BindingFlags.Instance |
+            BindingFlags.Static |
+            BindingFlags.Public);
+        propertiesRetriever.PrintProperties(properties);
+
+        Console.WriteLine("Static public filters:");
+        properties = propertiesRetriever.RetrievePropertiesWithFilter(new Configuration(),
+            BindingFlags.Static |
+            BindingFlags.Public);
+        propertiesRetriever.PrintProperties(properties);
+
         Console.WriteLine("Instance, Public and NonPublic filters:");
         properties = propertiesRetriever.RetrievePropertiesWithFilter(new User(),
             BindingFlags.Instance |
