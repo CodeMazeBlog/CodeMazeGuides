@@ -1,4 +1,6 @@
-﻿namespace ConvertStringAndIntToEnumTests
+﻿using System;
+
+namespace ConvertStringAndIntToEnumTests
 {
     [Flags]
     public enum UserType
