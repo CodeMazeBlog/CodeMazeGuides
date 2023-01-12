@@ -29,8 +29,8 @@ namespace Tests
         }
 
         [Theory]
-        [InlineData(3)]
-        public void WhenGetValuesUsingSelectTokenIsUsed_ThenReturnThreeJsonObjects(int expected)
+        [InlineData(5)]
+        public void WhenGetValuesUsingSelectTokenIsUsed_ThenReturnFiveValues(int expected)
         {
             var actualCount = _jObjectManipulation.GetValuesUsingSelectToken();
 

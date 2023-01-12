@@ -4,7 +4,6 @@ namespace GetValueByKeyFromJObject
 {
     public class JObjectManipulation
     {
-        public string JsonArray { get; set; }
         public string SingleJsonObject { get; set; }
 
         public JObjectManipulation()
@@ -15,7 +14,6 @@ namespace GetValueByKeyFromJObject
         public void InitializeData()
         {
             var testData = new TestData();
-            JsonArray = testData.GenerateJsonArray();
             SingleJsonObject = testData.GenerateSingleJsonObject();
         }
 
@@ -56,21 +54,19 @@ namespace GetValueByKeyFromJObject
 
         public int GetValuesUsingSelectToken()
         {
-            var jArray = JArray.Parse(JsonArray);
+            var jsonObject = JObject.Parse(SingleJsonObject);
 
-            foreach (JObject item in jArray.Children<JObject>())
-            {
-                var name = (string)item.SelectToken("name");
-                var make = (string)item.SelectToken("make");
-                var model = (string)item.SelectToken("model");
-                var year = (int)item.SelectToken("year");
-                var amount = (int)item.SelectToken("price.amount");
-                var currency = (string)item.SelectToken("price.currency");
+            var name = (string)jsonObject.SelectToken("name");
+            var make = (string)jsonObject.SelectToken("make");
+            var model = (string)jsonObject.SelectToken("model");
+            var year = (int)jsonObject.SelectToken("year");
+            var amount = (int)jsonObject.SelectToken("price.amount");
+            var currency = (string)jsonObject.SelectToken("price.currency");
 
-                Console.WriteLine($"A {make} {name} {model} {year} costs {amount} {currency} \n");
-            }
+            Console.WriteLine($"A {make} {name} {model} {year} costs {amount} {currency} \n");
 
-            return jArray.Count;
+
+            return jsonObject.Count;
         }
 
 
