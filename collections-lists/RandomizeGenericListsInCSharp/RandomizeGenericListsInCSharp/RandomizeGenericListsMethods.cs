@@ -7,6 +7,12 @@ namespace RandomizeGenericListsInCSharp
     [RankColumn]
     public class RandomizeGenericListsMethods
     {
+        private readonly Random _rand;
+
+        public RandomizeGenericListsMethods() 
+        {
+            _rand = new Random();
+        }
         public IEnumerable<List<int>> SampleList()
         {
             yield return OrderedInts(1000000);
@@ -18,9 +24,7 @@ namespace RandomizeGenericListsInCSharp
         {
             for (int i = listToShuffle.Count - 1; i > 0; i--)
             {
-                var rand = new Random();
-
-                var k = rand.Next(i + 1);
+                var k = _rand.Next(i + 1);
                 var value = listToShuffle[k];
                 listToShuffle[k] = listToShuffle[i];
                 listToShuffle[i] = value;
@@ -33,9 +37,7 @@ namespace RandomizeGenericListsInCSharp
         [Benchmark]
         public List<int> GenerateRandomOrderBy(List<int> listToShuffle)
         {
-            var rand = new Random();
-
-            var shuffledList = listToShuffle.OrderBy(_ => rand.Next()).ToList();
+            var shuffledList = listToShuffle.OrderBy(_ => _rand.Next()).ToList();
 
             return shuffledList;
         }

@@ -22,8 +22,8 @@ public class RandomizeGenericListsUnitTests
         var firstVal = shuffledList.First();
         var lastVal = shuffledList.Last();
         
-        Assert.IsFalse(firstVal == 0);
-        Assert.IsFalse(lastVal == 999999);
+        Assert.AreNotEqual(firstVal, 0);
+        Assert.AreNotEqual(lastVal, 999999);
     }
 
     [TestMethod]
@@ -34,8 +34,8 @@ public class RandomizeGenericListsUnitTests
         var firstVal = shuffledList.First();
         var lastVal = shuffledList.Last();
 
-        Assert.IsFalse(firstVal == 0);
-        Assert.IsFalse(lastVal == 999999);
+        Assert.AreNotEqual(firstVal, 0);
+        Assert.AreNotEqual(lastVal, 999999);
     }
 
     [TestMethod]
@@ -46,8 +46,8 @@ public class RandomizeGenericListsUnitTests
         var firstVal = shuffledList.First();
         var lastVal = shuffledList.Last();
 
-        Assert.IsFalse(firstVal == 0);
-        Assert.IsFalse(lastVal == 999999);
+        Assert.AreNotEqual(firstVal, 0);
+        Assert.AreNotEqual(lastVal, 999999);
     }
 
     [TestMethod]
@@ -56,8 +56,8 @@ public class RandomizeGenericListsUnitTests
         var firstVal = _orderedList.First();
         var lastVal = _orderedList.Last();
 
-        Assert.IsTrue(firstVal == 0);
-        Assert.IsTrue(lastVal == 999999);
+        Assert.AreEqual(firstVal, 0);
+        Assert.AreEqual(lastVal, 999999);
         Assert.IsInstanceOfType(_orderedList, typeof(List<int>));
     }
 }
