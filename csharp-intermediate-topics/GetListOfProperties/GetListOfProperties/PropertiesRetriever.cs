@@ -7,7 +7,6 @@ namespace GetListOfProperties
         public PropertyInfo[] RetrieveProperties(object obj)
         {
             var type = obj.GetType();
-            type.GetProperties();
 
             return type.GetProperties();
         }
@@ -15,7 +14,6 @@ namespace GetListOfProperties
         public PropertyInfo[] RetrievePropertiesWithFilter(object obj, BindingFlags binding)
         {
             var type = obj.GetType();
-            type.GetProperties();
 
             return type.GetProperties(binding);
         }
@@ -23,7 +21,6 @@ namespace GetListOfProperties
         public PropertyInfo[] RetrieveParentClassPropertiesWithFilter(object obj, BindingFlags binding)
         {
             var type = obj.GetType();
-            type.GetProperties();
 
             return type.BaseType?.GetProperties(binding);
         }
