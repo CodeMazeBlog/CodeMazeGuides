@@ -2,11 +2,11 @@
 
 public class DatabaseFixture : IDisposable
 {
-    public string startsWithN = "nop";
-    public string containsN = "mnp";
-    public string endsWithN = "lmn";
-    public string notContainsN = "abc";
-    public BlogDbContext? blogDbContext;
+    internal string startsWithN = "nop";
+    internal string containsN = "mnp";
+    internal string endsWithN = "lmn";
+    internal string notContainsN = "abc";
+    internal BlogDbContext? blogDbContext;
 
     public DatabaseFixture()
     {
