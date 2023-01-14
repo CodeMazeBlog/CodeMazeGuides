@@ -4,7 +4,7 @@ public class BetterApproach
 {
     public const int MaxIterations = 100;
     public const int MaxStateEntries = 10;
-    public const int ProcessingSteps = 20;
+    public const int ProcessingSteps = 40;
 
     public IEnumerable<int> State => _sharedState.Values;
 

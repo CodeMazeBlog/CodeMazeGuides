@@ -35,6 +35,7 @@ public class MemoryLeakExample
 
     private int UpdatedValueFactory(int key, int currentValue)
     {
+        Thread.Sleep(3);
         Interlocked.Increment(ref UpdateValueCreated[key]);
         return currentValue + 1;
     }
