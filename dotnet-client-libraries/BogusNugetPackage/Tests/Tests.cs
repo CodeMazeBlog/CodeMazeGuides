@@ -29,7 +29,7 @@ public class Tests
     }
 
     [Fact]
-    public void WhenGettingSingleEmployee_ThenEmailIncludesLastName()
+    public void WhenGettingSingleEmployee_ThenEmailContainsLastName()
     {
         DataGenerator.InitBogusData();
 
