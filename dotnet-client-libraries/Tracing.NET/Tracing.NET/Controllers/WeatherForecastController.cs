@@ -9,11 +9,10 @@ public class WeatherForecastController : ControllerBase
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
-    private readonly IHttpClientFactory _httpClientFactory;
+
     private readonly ILogger<WeatherForecastController> _logger;
 
-    public WeatherForecastController(
-        ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
         _logger = logger;
     }
@@ -35,7 +34,7 @@ public class WeatherForecastController : ControllerBase
     {
         var client = new HttpClient();
 
-        using var response = await client.GetAsync("https://code-maze.com");
+        var response = await client.GetAsync("https://code-maze.com");
         response.EnsureSuccessStatusCode();
     }
 }
