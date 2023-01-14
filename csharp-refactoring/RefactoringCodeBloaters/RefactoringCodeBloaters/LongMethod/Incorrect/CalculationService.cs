@@ -1,4 +1,4 @@
-﻿namespace csharp_refactoring.Bloaters.LongMethod.Incorrect
+﻿namespace csharp_refactoring.LongMethod.Incorrect
 {
     public class CalculationService
     {

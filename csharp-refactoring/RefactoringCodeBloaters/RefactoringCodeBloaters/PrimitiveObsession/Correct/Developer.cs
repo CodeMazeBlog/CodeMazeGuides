@@ -1,14 +1,14 @@
-﻿namespace csharp_refactoring.Bloaters.PrimitiveObsession.Correct
+﻿namespace csharp_refactoring.PrimitiveObsession.Correct
 {
     public class Developer : Employee
     {
         public DeveloperSpecialization Specialization { get; set; }
 
-        public Developer(string firstName, string lastName) 
+        public Developer(string firstName, string lastName)
             : base(firstName, lastName)
         { }
 
-        public override int Type { get { return Employee.Developer; } }
+        public override int Type { get { return Developer; } }
 
         public override double GetMonthlyBonus(double monthlySalary)
         {

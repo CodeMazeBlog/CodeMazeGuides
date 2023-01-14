@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace csharp_refactoring.Bloaters.PrimitiveObsession.Correct
+namespace csharp_refactoring.PrimitiveObsession.Correct
 {
     public class Person
     {
@@ -20,7 +20,7 @@ namespace csharp_refactoring.Bloaters.PrimitiveObsession.Correct
 
         public void AssignAddress(Address address)
         {
-            this.Address = address;
+            Address = address;
         }
     }
 }

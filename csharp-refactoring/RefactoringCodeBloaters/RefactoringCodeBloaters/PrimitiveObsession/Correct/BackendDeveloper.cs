@@ -1,4 +1,4 @@
-﻿namespace csharp_refactoring.Bloaters.PrimitiveObsession.Correct
+﻿namespace csharp_refactoring.PrimitiveObsession.Correct
 {
     public class BackendDeveloper : FrontendDeveloper
     {

@@ -1,4 +1,4 @@
-﻿namespace csharp_refactoring.Bloaters.PrimitiveObsession.Correct
+﻿namespace csharp_refactoring.PrimitiveObsession.Correct
 {
     public class Administrator : Employee
     {
@@ -6,7 +6,7 @@
             : base(firstName, lastName)
         { }
 
-        public override int Type { get { return Employee.Administrator; } }
+        public override int Type { get { return Administrator; } }
 
         public override double GetMonthlyBonus(double monthlySalary)
         {

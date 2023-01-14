@@ -1,4 +1,4 @@
-﻿namespace csharp_refactoring.Bloaters.PrimitiveObsession.Incorrect
+﻿namespace csharp_refactoring.PrimitiveObsession.Incorrect
 {
     public class Person
     {
@@ -19,11 +19,11 @@
 
         public void AssignAddress(string streetName, string city, string postalCode, string region, string country)
         {
-            this.StreetName = streetName;
-            this.City = city;
-            this.PostalCode = postalCode;
-            this.Region = region;
-            this.Country = country;
+            StreetName = streetName;
+            City = city;
+            PostalCode = postalCode;
+            Region = region;
+            Country = country;
         }
     }
 }

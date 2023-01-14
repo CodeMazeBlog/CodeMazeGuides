@@ -1,4 +1,6 @@
-﻿namespace csharp_refactoring.Bloaters.PrimitiveObsession.Correct
+﻿using csharp_refactoring.Bloaters.PrimitiveObsession.Correct;
+
+namespace csharp_refactoring.PrimitiveObsession.Correct
 {
     public abstract class DeveloperSpecialization
     {
@@ -10,7 +12,7 @@
 
         public static DeveloperSpecialization Create(int specialization)
         {
-            return (specialization) switch
+            return specialization switch
             {
                 Frontend => new FrontendDeveloper(),
                 Backend => new BackendDeveloper(),

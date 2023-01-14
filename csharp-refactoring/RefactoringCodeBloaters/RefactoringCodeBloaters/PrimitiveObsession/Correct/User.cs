@@ -1,4 +1,4 @@
-﻿namespace csharp_refactoring.Bloaters.PrimitiveObsession.Correct
+﻿namespace csharp_refactoring.PrimitiveObsession.Correct
 {
     public class User : Person
     {
@@ -7,6 +7,6 @@
             Subscription = subscription;
         }
 
-        public Subscription Subscription {  get; private set; }
+        public Subscription Subscription { get; private set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace csharp_refactoring.Bloaters.PrimitiveObsession.Correct
+﻿namespace csharp_refactoring.PrimitiveObsession.Correct
 {
     public abstract class Employee : Person
     {
@@ -15,7 +15,7 @@
 
         public static Employee Create(string firstName, string lastName, int type)
         {
-            return (type) switch
+            return type switch
             {
                 Administrator => new Administrator(firstName, lastName),
                 ContentWriter => new ContentWriter(firstName, lastName),

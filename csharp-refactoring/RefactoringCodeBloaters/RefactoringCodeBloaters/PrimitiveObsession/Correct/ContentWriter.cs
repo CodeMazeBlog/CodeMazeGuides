@@ -1,11 +1,11 @@
-﻿namespace csharp_refactoring.Bloaters.PrimitiveObsession.Correct
+﻿namespace csharp_refactoring.PrimitiveObsession.Correct
 {
     public class ContentWriter : Employee
     {
         public ContentWriter(string firstName, string lastName) : base(firstName, lastName)
         { }
 
-        public override int Type { get { return Employee.ContentWriter; } }
+        public override int Type { get { return ContentWriter; } }
 
         public override double GetMonthlyBonus(double monthlySalary)
         {
