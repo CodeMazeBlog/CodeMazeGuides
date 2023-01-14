@@ -4,10 +4,10 @@ using RefactoringCodeBloaters.PrimitiveObsession.Correct;
 namespace Tests
 {
     [TestClass]
-    public class PersonTests
+    public class PersonUnitTest
     {
         [TestMethod]
-        public void Constructor_ValidInput_PropertiesAreSet()
+        public void WhenCreatingPersonWithConstructor_ThenObjectIsCreatedCorrecly()
         {
             // Arrange
             var firstName = "John";
@@ -23,7 +23,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void AssignAddress_ValidInput_AddressIsAssigned()
+        public void GivenValidAddress_WhenAddingAddressToPerson_ThenAddressIsAssigned()
         {
             // Arrange
             var person = new Person("John", "Doe");

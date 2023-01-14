@@ -4,13 +4,13 @@ using RefactoringCodeBloaters.PrimitiveObsession.Correct;
 namespace Tests
 {
     [TestClass]
-    public class EmployeeTests
+    public class EmployeeUnitTest
     {
         [DataTestMethod]
         [DataRow(0, typeof(Administrator))]
         [DataRow(1, typeof(ContentWriter))]
         [DataRow(2, typeof(Developer))]
-        public void GetType_CreateCorrectTypeOfEmployee(int employeeTypeCode, Type expectedType)
+        public void GivenEmployeeTypeCode_WhenCreatingNewEmployee_ThenCorrectObjectIsCreated(int employeeTypeCode, Type expectedType)
         {
             // Arrange
             var firstName = "John";
@@ -27,7 +27,7 @@ namespace Tests
         [DataRow(0, 0.1)]
         [DataRow(1, 0.05)]
         [DataRow(2, 0.15)]
-        public void GetMonthlyBonus_ReturnsCorrectValues(int employeeTypeCode, double expectedBonus)
+        public void GivenBonusRateBasedOnEmployeeType_WhenGettingMonthlyBonus_ThenCorrectValueIsReturned(int employeeTypeCode, double expectedBonus)
         {
             // Arrange
             var firstName = "John";

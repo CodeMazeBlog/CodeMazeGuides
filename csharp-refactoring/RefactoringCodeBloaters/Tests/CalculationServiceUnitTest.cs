@@ -4,16 +4,16 @@ using RefactoringCodeBloaters.LongMethod.Correct;
 namespace Tests
 {
     [TestClass]
-    public class CalculationServiceTests
+    public class CalculationServiceUnitTest
     {
         private readonly CalculationService calculationService;
-        public CalculationServiceTests()
+        public CalculationServiceUnitTest()
         {
             calculationService = new CalculationService();
         }
 
         [TestMethod]
-        public void CalculateDiscount_LessThan250_ReturnsOriginalPrice()
+        public void GivenPriceLessThan250_WhenCalculatingPriceAfterDiscount_ThenOriginalPriceIsReturned()
         {
             // Arrange
             int quantity = 2;
@@ -28,7 +28,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void CalculateDiscount_GreaterThan250_ReturnsDiscountedPrice()
+        public void GivenPriceGreaterThan250_WhenCalculatingPriceAfterDiscount_ThenPriceIsLowered()
         {
             // Arrange
             int quantity = 5;

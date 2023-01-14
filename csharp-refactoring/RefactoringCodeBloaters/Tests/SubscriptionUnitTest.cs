@@ -4,10 +4,10 @@ using RefactoringCodeBloaters.PrimitiveObsession.Correct;
 namespace Tests
 {
     [TestClass]
-    public class SubscriptionTests
+    public class SubscriptionUnitTest
     {
         [TestMethod]
-        public void Equals_ValidInput_ReturnsTrue()
+        public void WhenTwoSubscriptionsAreEqual_ThenResultIsTrue()
         {
             // Arrange
             var subscription1 = Subscription.Free;
@@ -21,7 +21,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void Equals_InvalidInput_ReturnsFalse()
+        public void WhenTwoSubscriptionsAreNotEqual_ThenResultIsFalse()
         {
             // Arrange
             var subscription1 = Subscription.Free;
@@ -35,7 +35,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GetHashCode_FreeSubscription_ReturnsExpectedValue()
+        public void GivenFreeSubscription_WhenGettingHashCode_CorrectCodeIsReturned()
         {
             // Arrange
             var subscription = Subscription.Free;
@@ -48,7 +48,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GetHashCode_FamilySubscription_ReturnsExpectedValue()
+        public void GivenFamilySubscription_WhenGettingHashCode_CorrectCodeIsReturned()
         {
             // Arrange
             var subscription = Subscription.Family;
@@ -61,7 +61,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GetHashCode_PremiumSubscription_ReturnsExpectedValue()
+        public void GivenPremiumSubscription_WhenGettingHashCode_CorrectCodeIsReturned()
         {
             // Arrange
             var subscription = Subscription.Premium;

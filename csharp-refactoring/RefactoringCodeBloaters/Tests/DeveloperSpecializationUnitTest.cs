@@ -4,13 +4,13 @@ using RefactoringCodeBloaters.PrimitiveObsession.Correct;
 namespace Tests
 {
     [TestClass]
-    public class DeveloperSpecializationTests
+    public class DeveloperSpecializationUnitTest
     {
         [TestMethod]
         [DataRow(DeveloperSpecialization.Frontend, DeveloperSpecialization.Frontend)]
         [DataRow(DeveloperSpecialization.Backend, DeveloperSpecialization.Backend)]
         [DataRow(DeveloperSpecialization.FullStack, DeveloperSpecialization.FullStack)]
-        public void Create_ValidInput_ReturnsCorrectSpecialization(int input, int expected)
+        public void WhenCreatingDeveloperSpecialization_ThenCorrectSpecializationIsReturned(int input, int expected)
         {
             // Arrange
             var developerSpecialization = DeveloperSpecialization.Create(input);
@@ -23,7 +23,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void Create_InvalidInput_ThrowsArgumentOutOfRangeException()
+        public void GivenInvalidDeveloperSpecializationTypeCode_WhenCreatingDeveloperSpecialization_ThenExceptionIsThrown()
         {
             // Arrange
             var invalidInput = 100;
