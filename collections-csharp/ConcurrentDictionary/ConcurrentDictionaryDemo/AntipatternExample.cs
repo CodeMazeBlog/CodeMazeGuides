@@ -27,6 +27,7 @@ public class AntipatternExample
                 _sharedState[entryKey] = 0;
             }
             _sharedState[entryKey]++;
+            Thread.Sleep(1);
         }
     }
 

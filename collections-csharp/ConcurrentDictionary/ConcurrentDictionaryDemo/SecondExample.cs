@@ -24,6 +24,7 @@ public class SecondExample
         {
             var entryKey = iteration % MaxStateEntries;
             _sharedState[entryKey]++;
+            Thread.Sleep(1);
         }
     }
 

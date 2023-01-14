@@ -25,6 +25,7 @@ public class NaiveExample
                 entryValue = 0;
             }
             _sharedState[entryKey] = entryValue + 1;
+            Thread.Sleep(1);
         }
     }
 
