@@ -1,14 +1,18 @@
 using System.Collections.Concurrent;
 
-class BetterApproach
+public class BetterApproach
 {
-    private const int MaxIterations = 100;
-    private const int MaxStateEntries = 10;
+    public const int MaxIterations = 100;
+    public const int MaxStateEntries = 10;
+    public const int ProcessingSteps = 20;
+
+    public IEnumerable<int> State => _sharedState.Values;
+
     private ConcurrentDictionary<int, int> _sharedState = new();
 
     public void Run()
     {
-        Parallel.ForEach(Enumerable.Range(0, 20), ProcessingStep);
+        Parallel.ForEach(Enumerable.Range(0, ProcessingSteps), ProcessingStep);
 
         PrintState();
     }
@@ -33,4 +37,3 @@ class BetterApproach
         }
     }
 }
-

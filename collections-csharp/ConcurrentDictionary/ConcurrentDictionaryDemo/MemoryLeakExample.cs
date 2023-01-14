@@ -1,14 +1,22 @@
 using System.Collections.Concurrent;
 
-class MemoryLeakExample
+public class MemoryLeakExample
 {
-    private const int MaxIterations = 100;
-    private const int MaxStateEntries = 10;
+    public const int MaxIterations = 100;
+    public const int MaxStateEntries = 10;
+    public const int ProcessingSteps = 20;
+
+    public IEnumerable<int> State => _sharedState.Values;
+
+    public int[] NewValueCreated { get; private set; } = new int[MaxStateEntries];
+
+    public int[] UpdateValueCreated { get; private set; } = new int[MaxStateEntries];
+
     private ConcurrentDictionary<int, int> _sharedState = new();
 
     public void Run()
     {
-        Parallel.ForEach(Enumerable.Range(0, 20), ProcessingStep);
+        Parallel.ForEach(Enumerable.Range(0, ProcessingSteps), ProcessingStep);
 
         PrintState();
     }
@@ -27,13 +35,14 @@ class MemoryLeakExample
 
     private int UpdatedValueFactory(int key, int currentValue)
     {
-        Console.WriteLine($@"Update value for key [{key}] created from [{currentValue}].");
+        Interlocked.Increment(ref UpdateValueCreated[key]);
         return currentValue + 1;
     }
 
     private int InitialValueFactory(int key)
     {
-        Console.WriteLine($@"Initial value for key [{key}] created.");
+        Thread.Sleep(3);
+        Interlocked.Increment(ref NewValueCreated[key]);
         return 1;
     }
 
@@ -42,6 +51,20 @@ class MemoryLeakExample
         foreach (var entry in _sharedState)
         {
             Console.WriteLine($"{entry.Key}\t{entry.Value}");
+        }
+
+        Console.WriteLine(new string('-', 20));
+
+        for (int key = 0; key < MaxStateEntries; key++)
+        {
+            Console.WriteLine($@"Initial value for key [{key}] created {NewValueCreated[key]} times.");
+        }
+
+        Console.WriteLine(new string('-', 20));
+
+        for (int key = 0; key < MaxStateEntries; key++)
+        {
+            Console.WriteLine($@"Update value for key [{key}] created {UpdateValueCreated[key]} times.");
         }
     }
 }

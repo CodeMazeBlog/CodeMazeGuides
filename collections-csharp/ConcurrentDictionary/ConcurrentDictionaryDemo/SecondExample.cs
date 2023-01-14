@@ -1,12 +1,19 @@
-class SecondExample
+public class SecondExample
 {
-    private const int MaxIterations = 100;
-    private const int MaxStateEntries = 10;
-    private Dictionary<int, int> _sharedState = new(MaxStateEntries) { { 0, 0 }, { 1, 0 }, { 2, 0 }, { 3, 0 }, { 4, 0 }, { 5, 0 }, { 6, 0 }, { 7, 0 }, { 8, 0 }, { 9, 0 }, };
+    public const int MaxIterations = 100;
+    public const int MaxStateEntries = 10;
+    public const int ProcessingSteps = 20;
+
+    public IEnumerable<int> State => _sharedState.Values;
+
+    private Dictionary<int, int> _sharedState = new(MaxStateEntries) { { 0, 0 }, { 1, 0 }, { 2, 0 },
+                                                                       { 3, 0 }, { 4, 0 }, { 5, 0 },
+                                                                       { 6, 0 }, { 7, 0 }, { 8, 0 },
+                                                                       { 9, 0 }, };
 
     public void Run()
     {
-        Parallel.ForEach(Enumerable.Range(0, 20), ProcessingStep);
+        Parallel.ForEach(Enumerable.Range(0, ProcessingSteps), ProcessingStep);
 
         PrintState();
     }

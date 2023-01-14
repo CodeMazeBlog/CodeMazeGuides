@@ -6,8 +6,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Update="strings.txt" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
 </Project>

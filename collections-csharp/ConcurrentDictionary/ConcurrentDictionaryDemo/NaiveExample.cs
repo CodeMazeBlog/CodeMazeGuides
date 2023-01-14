@@ -1,12 +1,16 @@
-class NaiveExample
+public class NaiveExample
 {
-    private const int MaxIterations = 100;
-    private const int MaxStateEntries = 10;
+    public const int MaxIterations = 100;
+    public const int MaxStateEntries = 10;
+    public const int ProcessingSteps = 20;
+
+    public IEnumerable<int> State => _sharedState.Values;
+
     private Dictionary<int, int> _sharedState = new(MaxStateEntries);
 
     public void Run()
     {
-        Parallel.ForEach(Enumerable.Range(0, 20), ProcessingStep);
+        Parallel.ForEach(Enumerable.Range(0, ProcessingSteps), ProcessingStep);
 
         PrintState();
     }
