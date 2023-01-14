@@ -5,7 +5,7 @@ public class ContentionExample
 {
     public const int MaxIterations = 100000;
     public const int MaxStateEntries = 10;
-    public const int ProcessingSteps = 40;
+    public const int ProcessingSteps = 20;
 
     public IEnumerable<int> State => _sharedState.Values;
 
@@ -16,24 +16,24 @@ public class ContentionExample
     public void Run()
     {
         var stopwatch = Stopwatch.StartNew();
-        RunFirstVariant();
+        RunWithEntryCheck();
 
         Console.WriteLine($"\nChecking entries processing took {stopwatch.Elapsed.TotalSeconds:N2} s.\n");
 
         stopwatch.Restart();
-        RunSecondVariant();
+        RunWithKeysCheck();
 
         Console.WriteLine($"\nChecking keys processing took {stopwatch.Elapsed.TotalSeconds:N2} s.\n");
     }
 
-    public void RunSecondVariant()
+    public void RunWithKeysCheck()
     {
         _sharedState = new();
         CheckStateIsEmpty = () => !_sharedState.Keys.Any();
         Parallel.ForEach(Enumerable.Range(0, ProcessingSteps), ProcessingStep);
     }
 
-    public void RunFirstVariant()
+    public void RunWithEntryCheck()
     {
         _sharedState = new();
         CheckStateIsEmpty = () => !_sharedState.Any();

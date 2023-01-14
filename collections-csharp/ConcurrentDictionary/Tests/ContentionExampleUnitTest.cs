@@ -16,7 +16,7 @@ namespace Tests
         [Test]
         public void WhenRunFirstVariant_ThenAllStateEntriesHaveExpectedValue()
         {
-            sut.RunFirstVariant();
+            sut.RunWithEntryCheck();
 
             Assert.IsFalse(sut.State.Where(entry => entry != expectedEntryValue).Any());
         }
@@ -24,7 +24,7 @@ namespace Tests
         [Test]
         public void WhenRunSecondVariant_ThenAllStateEntriesHaveExpectedValue()
         {
-            sut.RunSecondVariant();
+            sut.RunWithKeysCheck();
 
             Assert.IsFalse(sut.State.Where(entry => entry != expectedEntryValue).Any());
         }
@@ -36,11 +36,11 @@ namespace Tests
             var secondVariant = new ContentionExample();
 
             Stopwatch stopwatch = Stopwatch.StartNew();
-            firstVariant.RunFirstVariant();
+            firstVariant.RunWithEntryCheck();
             var firstVariantTime = stopwatch.ElapsedTicks;
 
             stopwatch = Stopwatch.StartNew();
-            secondVariant.RunSecondVariant();
+            secondVariant.RunWithKeysCheck();
             var secondVariantTime = stopwatch.ElapsedTicks;
 
             Assert.Greater(secondVariantTime, firstVariantTime);
