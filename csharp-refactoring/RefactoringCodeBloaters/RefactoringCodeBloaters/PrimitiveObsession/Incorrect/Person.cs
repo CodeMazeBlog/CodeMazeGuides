@@ -1,4 +1,4 @@
-﻿namespace csharp_refactoring.PrimitiveObsession.Incorrect
+﻿namespace RefactoringCodeBloaters.PrimitiveObsession.Incorrect
 {
     public class Person
     {

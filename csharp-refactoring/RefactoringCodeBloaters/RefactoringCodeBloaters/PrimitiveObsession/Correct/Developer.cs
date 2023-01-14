@@ -1,4 +1,4 @@
-﻿namespace csharp_refactoring.PrimitiveObsession.Correct
+﻿namespace RefactoringCodeBloaters.PrimitiveObsession.Correct
 {
     public class Developer : Employee
     {

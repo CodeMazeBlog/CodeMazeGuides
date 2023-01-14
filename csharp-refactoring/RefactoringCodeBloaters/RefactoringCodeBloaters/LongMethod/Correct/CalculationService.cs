@@ -1,8 +1,8 @@
-﻿namespace csharp_refactoring.LongMethod.Correct
+﻿namespace RefactoringCodeBloaters.LongMethod.Correct
 {
     public class CalculationService
     {
-        public double CalculateDiscount(int quantity, int itemPrice)
+        public double CalculatePriceAfterDiscount(int quantity, int itemPrice)
         {
             if (GetOrderValue(quantity, itemPrice) < 250)
             {

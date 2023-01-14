@@ -1,6 +1,4 @@
-﻿using csharp_refactoring.Bloaters.PrimitiveObsession.Correct;
-
-namespace csharp_refactoring.PrimitiveObsession.Correct
+﻿namespace RefactoringCodeBloaters.PrimitiveObsession.Correct
 {
     public abstract class DeveloperSpecialization
     {

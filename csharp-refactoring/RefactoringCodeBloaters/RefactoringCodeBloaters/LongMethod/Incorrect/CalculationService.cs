@@ -1,8 +1,8 @@
-﻿namespace csharp_refactoring.LongMethod.Incorrect
+﻿namespace RefactoringCodeBloaters.LongMethod.Incorrect
 {
     public class CalculationService
     {
-        public double CalculateDiscount(int quantity, int itemPrice)
+        public double CalculatePriceAfterDiscount(int quantity, int itemPrice)
         {
             double orderValue = quantity * itemPrice;
 
