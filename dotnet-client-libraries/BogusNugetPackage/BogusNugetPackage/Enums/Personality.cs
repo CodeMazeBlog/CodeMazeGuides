@@ -1,7 +1,7 @@
 ﻿namespace BogusNugetPackage.Enums;
 public enum Personality
 {
-    Happy,
-    Sad,
+    Positive,
+    Negative,
     Neutral
 }
