@@ -16,6 +16,7 @@ builder.Services.AddOpenTelemetry()
         {
             opt.EnrichWithHttpRequest = (activity, httpRequest) => activity.SetBaggage("UserId", "1234");
         })
+        .AddHttpClientInstrumentation()
         .AddSqlClientInstrumentation()
         .AddConsoleExporter()
         .AddJaegerExporter()
