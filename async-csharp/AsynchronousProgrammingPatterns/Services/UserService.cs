@@ -1,7 +1,6 @@
 ﻿using Services.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 
 namespace Services
 {
@@ -15,7 +14,8 @@ namespace Services
 
         public User GetUser(int userId)
         {
-            Thread.Sleep(3000);
+            // Long-running operation
+
             return _users.FirstOrDefault(x => x.Id == userId);
         }
     }

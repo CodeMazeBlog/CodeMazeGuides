@@ -1,21 +1,34 @@
+using Services.Models;
+
 namespace Tests;
 
 public class AsynchronousProgrammingPatternsUnitTest
 {
     [Fact]
-    public void WhenValidatorForValidTypeFetched_ThenReturnValidator()
+    public void WhenUserFetchedUsingEvent_ThenUserReturned()
     {
+        var userProvider = new EventBasedAsyncPattern.Providers.UserProvider();
+
+        userProvider.GetUserAsync(100, null);
+
+        userProvider.GetUserCompleted += (sender, args) =>
+        {
+            User? user = args.UserState as User;
+            Assert.NotNull(user);
+            Assert.Equal(100, user.Id);
+            Assert.Equal("Adam", user.Name);
+        };
     }
 
     [Fact]
-    public void WhenValidatorForInValidTypeFetched_ThenReturnNull()
+    public async Task WhenUserFetchedUsingTask_ThenUserReturned()
     {
-    }
+        var userProvider = new TaskBasedAsyncPattern.Providers.UserProvider();
 
-    [Theory]
-    [InlineData(true, true)]
-    [InlineData(false, false)]
-    public void WhenCarValidated_ThenValidatesType(bool isConvertible, bool expectedValidationResult)
-    {
+        var user = await userProvider.GetUserAsync(100);
+
+        Assert.NotNull(user);
+        Assert.Equal(100, user.Id);
+        Assert.Equal("Adam", user.Name);
     }
 }

@@ -2,9 +2,10 @@
 
 public static class Program
 {
-    public static void Main()
+    public async static Task Main()
     {
-        TaskBasedAsyncPattern.FetchAndPrintUser(100);
+        await TaskBasedAsyncPatternHelper.FetchAndPrintUser(100);
+
         Console.ReadKey();
     }
 }

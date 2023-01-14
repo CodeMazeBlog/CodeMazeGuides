@@ -6,7 +6,8 @@ namespace AsynchronousProgrammingModel
     {
         static void Main(string[] args)
         {
-            AsyncProgrammingModel.FetchAndPrintUser(100);
+            AsyncProgrammingModelHelper.FetchAndPrintUser(100);
+
             Console.ReadKey();
         }
     }

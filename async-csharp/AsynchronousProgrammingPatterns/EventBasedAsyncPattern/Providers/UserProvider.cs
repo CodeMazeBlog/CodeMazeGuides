@@ -6,7 +6,6 @@ namespace EventBasedAsyncPattern.Providers;
 
 public class UserProvider
 {
-    //private bool _isOperationRunning = false;
     private readonly SendOrPostCallback _operationFinished;
     private readonly UserService _userService;
 
@@ -23,14 +22,9 @@ public class UserProvider
 
     public void GetUserAsync(int userId, object userState)
     {
-        //if (_isOperationRunning)
-        //    throw new InvalidOperationException();
-
-        //_isOperationRunning = true;
         AsyncOperation operation = AsyncOperationManager
          .CreateOperation(userState);
 
-        // Running GetUser asynchronously
         ThreadPool.QueueUserWorkItem(state =>
         {
             GetUserCompletedEventArgs args = null;
@@ -45,9 +39,6 @@ public class UserProvider
                 args = new GetUserCompletedEventArgs(e, false, null);
             }
 
-            // Using AsyncOperation that will marshal control
-            // flow to the synchronization context that was
-            // captured at the beginning of this method.
             operation.PostOperationCompleted(_operationFinished, args);
 
         }, userState);
@@ -55,9 +46,6 @@ public class UserProvider
 
     private void ProcessOperationFinished(object state)
     {
-        // Mark that current operation is completed
-        //_isOperationRunning = false;
-
         var args = (GetUserCompletedEventArgs)state;
 
         GetUserCompleted?.Invoke(this, args);
