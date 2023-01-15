@@ -3,15 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBasedAsyncPattern", "EventBasedAsyncPattern\EventBasedAsyncPattern.csproj", "{80906DFB-87FB-4C80-B49E-944EE31D5970}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{4D27AEC0-C8FC-4E3F-8C7B-A057A7EA52AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncProgrammingModel", "AsyncProgrammingModel\AsyncProgrammingModel.csproj", "{E355644A-BBDE-41C5-B4FF-F84EF07B143B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{35F028F5-73A1-4188-8598-84F6BD602466}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskBasedAsyncPattern", "TaskBasedAsyncPattern\TaskBasedAsyncPattern.csproj", "{EF05F3F7-513D-4BBF-A4AC-8C59E6118489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsynchronousProgrammingPatterns", "AsynchronousProgrammingPatterns\AsynchronousProgrammingPatterns.csproj", "{EF05F3F7-513D-4BBF-A4AC-8C59E6118489}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,22 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{80906DFB-87FB-4C80-B49E-944EE31D5970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80906DFB-87FB-4C80-B49E-944EE31D5970}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80906DFB-87FB-4C80-B49E-944EE31D5970}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80906DFB-87FB-4C80-B49E-944EE31D5970}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D27AEC0-C8FC-4E3F-8C7B-A057A7EA52AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D27AEC0-C8FC-4E3F-8C7B-A057A7EA52AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D27AEC0-C8FC-4E3F-8C7B-A057A7EA52AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D27AEC0-C8FC-4E3F-8C7B-A057A7EA52AB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E355644A-BBDE-41C5-B4FF-F84EF07B143B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E355644A-BBDE-41C5-B4FF-F84EF07B143B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E355644A-BBDE-41C5-B4FF-F84EF07B143B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E355644A-BBDE-41C5-B4FF-F84EF07B143B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35F028F5-73A1-4188-8598-84F6BD602466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35F028F5-73A1-4188-8598-84F6BD602466}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35F028F5-73A1-4188-8598-84F6BD602466}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35F028F5-73A1-4188-8598-84F6BD602466}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EF05F3F7-513D-4BBF-A4AC-8C59E6118489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EF05F3F7-513D-4BBF-A4AC-8C59E6118489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF05F3F7-513D-4BBF-A4AC-8C59E6118489}.Release|Any CPU.ActiveCfg = Release|Any CPU

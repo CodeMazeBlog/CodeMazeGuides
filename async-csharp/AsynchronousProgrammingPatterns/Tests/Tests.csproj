@@ -22,8 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\EventBasedAsyncPattern\EventBasedAsyncPattern.csproj" />
-	  <ProjectReference Include="..\TaskBasedAsyncPattern\TaskBasedAsyncPattern.csproj" />
+	  <ProjectReference Include="..\AsynchronousProgrammingPatterns\AsynchronousProgrammingPatterns.csproj" />
 	</ItemGroup>
 
 </Project>

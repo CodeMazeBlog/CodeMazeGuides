@@ -1,13 +1,13 @@
-﻿using Services;
-using Services.Models;
+﻿using AsynchronousProgrammingPatterns.Services;
+using AsynchronousProgrammingPatterns.Services.Models;
 
-namespace TaskBasedAsyncPattern.Providers;
+namespace AsynchronousProgrammingPatterns.Providers;
 
-public class UserProvider
+public class TapUserProvider
 {
     private readonly UserService _userService;
 
-    public UserProvider()
+    public TapUserProvider()
     {
         _userService = new UserService();
     }

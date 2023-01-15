@@ -1,15 +1,15 @@
-﻿using System.ComponentModel;
-using Services;
-using Services.Models;
+﻿using AsynchronousProgrammingPatterns.Services;
+using AsynchronousProgrammingPatterns.Services.Models;
+using System.ComponentModel;
 
-namespace EventBasedAsyncPattern.Providers;
+namespace AsynchronousProgrammingPatterns.Providers;
 
-public class UserProvider
+public class EapUserProvider
 {
     private readonly SendOrPostCallback _operationFinished;
     private readonly UserService _userService;
 
-    public UserProvider()
+    public EapUserProvider()
     {
         _operationFinished = ProcessOperationFinished;
         _userService = new UserService();
