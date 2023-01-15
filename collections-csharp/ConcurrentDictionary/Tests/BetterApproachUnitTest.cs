@@ -6,7 +6,7 @@ namespace Tests
         public void WhenRun_ThenAllStateEntriesHaveExpectedValue()
         {
             int expectedEntryValue = BetterApproach.ProcessingSteps * BetterApproach.MaxIterations / BetterApproach.MaxStateEntries;
-            BetterApproach sut = new BetterApproach();
+            BetterApproach sut = new();
 
             sut.Run();
 

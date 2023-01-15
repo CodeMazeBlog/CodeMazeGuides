@@ -6,7 +6,7 @@ namespace Tests
         public void WhenRun_ThenStateContainsEntriesWithLowerValueThanExpected()
         {
             int expectedEntryValue = AntipatternExample.ProcessingSteps * AntipatternExample.MaxIterations / AntipatternExample.MaxStateEntries;
-            AntipatternExample sut = new AntipatternExample();
+            AntipatternExample sut = new();
 
             sut.Run();
 

@@ -6,7 +6,7 @@ namespace Tests
         public void WhenRun_ThenStateContainsEntriesWithLowerValueThanExpected()
         {
             int expectedEntryValue = NaiveExample.ProcessingSteps * NaiveExample.MaxIterations / NaiveExample.MaxStateEntries;
-            NaiveExample sut = new NaiveExample();
+            NaiveExample sut = new();
 
             sut.Run();
 

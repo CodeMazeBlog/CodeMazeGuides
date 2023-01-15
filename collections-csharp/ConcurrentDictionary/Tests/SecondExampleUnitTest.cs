@@ -6,7 +6,7 @@ namespace Tests
         public void WhenRun_ThenStateContainsEntriesWithLowerValueThanExpected()
         {
             int expectedEntryValue = SecondExample.ProcessingSteps * SecondExample.MaxIterations / SecondExample.MaxStateEntries;
-            SecondExample sut = new SecondExample();
+            SecondExample sut = new();
 
             sut.Run();
 

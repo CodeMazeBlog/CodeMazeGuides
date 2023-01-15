@@ -5,12 +5,12 @@ namespace Tests
     public class ContentionExampleUnitTest
     {
         private int expectedEntryValue = ContentionExample.ProcessingSteps * ContentionExample.MaxIterations / ContentionExample.MaxStateEntries;
-        private ContentionExample sut = new ContentionExample();
+        private ContentionExample sut = new();
 
         [SetUp]
         public void SetUp()
         {
-            sut = new ContentionExample();
+            sut = new();
         }
 
         [Test]
@@ -32,8 +32,8 @@ namespace Tests
         [Test]
         public void WhenBothVariantsRun_ThenTheSecondVariantTakesMoreTime()
         {
-            var firstVariant = new ContentionExample();
-            var secondVariant = new ContentionExample();
+            ContentionExample firstVariant = new();
+            ContentionExample secondVariant = new();
 
             Stopwatch stopwatch = Stopwatch.StartNew();
             firstVariant.RunWithEntryCheck();
