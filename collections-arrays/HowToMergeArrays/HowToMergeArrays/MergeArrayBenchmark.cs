@@ -14,11 +14,9 @@ namespace HowToMergeArrays
         }
 
         [Benchmark]
-        public int[] MergeUsingArrayCopyWithNewArray()
+        [ArgumentsSource(nameof(GetSourceArrayPopulatedWithNumbers))]
+        public int[] MergeUsingArrayCopyWithNewArray(int[] firstArray, int[] secondArray)
         {
-            var firstArray = GetSourceArrayPopulatedWithNumber(1);
-            var secondArray = GetSourceArrayPopulatedWithNumber(2);
-
             var combinedArray = new int[firstArray.Length + secondArray.Length];
             Array.Copy(firstArray, combinedArray, firstArray.Length);
             Array.Copy(secondArray, 0, combinedArray, firstArray.Length, secondArray.Length);
@@ -27,25 +25,22 @@ namespace HowToMergeArrays
         }
 
         [Benchmark]
-        public int[] MergeUsingArrayCopyWithResize()
+        [ArgumentsSource(nameof(GetSourceArrayPopulatedWithNumbers))]
+        public int[] MergeUsingArrayCopyWithResize(int[] firstArray, int[] secondArray)
         {
-            var firstArray = GetSourceArrayPopulatedWithNumber(1);
-            var secondArray = GetSourceArrayPopulatedWithNumber(2);
-
             var originalFirstArrayLength = firstArray.Length;
+            int[] firstTempArray = Array.Empty<int>();
 
-            Array.Resize(ref firstArray, firstArray.Length + secondArray.Length);
-            Array.Copy(secondArray, 0, firstArray, originalFirstArrayLength, secondArray.Length);
+            Array.Resize(ref firstTempArray, firstArray.Length + secondArray.Length);
+            Array.Copy(secondArray, 0, firstTempArray, originalFirstArrayLength, secondArray.Length);
 
-            return firstArray;
+            return firstTempArray;
         }
 
         [Benchmark]
-        public int[] MergeUsingArrayCopyTo()
+        [ArgumentsSource(nameof(GetSourceArrayPopulatedWithNumbers))]
+        public int[] MergeUsingArrayCopyTo(int[] firstArray, int[] secondArray)
         {
-            var firstArray = GetSourceArrayPopulatedWithNumber(1);
-            var secondArray = GetSourceArrayPopulatedWithNumber(2);
-
             var combinedArray = new int[firstArray.Length + secondArray.Length];
             firstArray.CopyTo(combinedArray, 0);
             secondArray.CopyTo(combinedArray, firstArray.Length);
@@ -54,33 +49,27 @@ namespace HowToMergeArrays
         }
 
         [Benchmark]
-        public int[] MergeUsingLinqConcat()
+        [ArgumentsSource(nameof(GetSourceArrayPopulatedWithNumbers))]
+        public int[] MergeUsingLinqConcat(int[] firstArray, int[] secondArray)
         {
-            var firstArray = GetSourceArrayPopulatedWithNumber(1);
-            var secondArray = GetSourceArrayPopulatedWithNumber(2);
-
             var combinedArray = firstArray.Concat(secondArray).ToArray();
 
             return combinedArray;
         }
 
         [Benchmark]
-        public int[] MergeUsingLinqUnion()
+        [ArgumentsSource(nameof(GetSourceArrayPopulatedWithNumbers))]
+        public int[] MergeUsingLinqUnion(int[] firstArray, int[] secondArray)
         {
-            var firstArray = GetSourceArrayPopulatedWithNumber(1);
-            var secondArray = GetSourceArrayPopulatedWithNumber(2);
-
             var combinedArray = firstArray.Union(secondArray).ToArray();
 
             return combinedArray;
         }
 
         [Benchmark]
-        public int[] MergeUsingLinqSelectMany()
+        [ArgumentsSource(nameof(GetSourceArrayPopulatedWithNumbers))]
+        public int[] MergeUsingLinqSelectMany(int[] firstArray, int[] secondArray)
         {
-            var firstArray = GetSourceArrayPopulatedWithNumber(1);
-            var secondArray = GetSourceArrayPopulatedWithNumber(2);
-
             var firstAndSecondArray = new[] { firstArray, secondArray };
             var combinedArray = firstAndSecondArray.SelectMany(animal => animal).ToArray();
 
@@ -88,11 +77,9 @@ namespace HowToMergeArrays
         }
 
         [Benchmark]
-        public int[] MergeUsingBlockCopy()
+        [ArgumentsSource(nameof(GetSourceArrayPopulatedWithNumbers))]
+        public int[] MergeUsingBlockCopy(int[] firstArray, int[] secondArray)
         {
-            var firstArray = GetSourceArrayPopulatedWithNumber(1);
-            var secondArray = GetSourceArrayPopulatedWithNumber(2);
-
             var combinedArray = new int[firstArray.Length + secondArray.Length];
 
             Buffer.BlockCopy(firstArray, 0, combinedArray, 0, firstArray.Length);
@@ -102,11 +89,9 @@ namespace HowToMergeArrays
         }
 
         [Benchmark]
-        public int[] MergeUsingNewArrayManually()
+        [ArgumentsSource(nameof(GetSourceArrayPopulatedWithNumbers))]
+        public int[] MergeUsingNewArrayManually(int[] firstArray, int[] secondArray)
         {
-            var firstArray = GetSourceArrayPopulatedWithNumber(1);
-            var secondArray = GetSourceArrayPopulatedWithNumber(2);
-
             var combinedArray = new int[firstArray.Length + secondArray.Length];
             for (int i = 0; i < combinedArray.Length; i++)
             {
@@ -125,9 +110,12 @@ namespace HowToMergeArrays
 
         // Helper methods
 
-        private static int[] GetSourceArrayPopulatedWithNumber(int number)
+        public IEnumerable<object[]> GetSourceArrayPopulatedWithNumbers()
         {
-            return Enumerable.Repeat(number, _arraySize).ToArray();
+            var first = Enumerable.Repeat(1, _arraySize).ToArray();
+            var second = Enumerable.Repeat(2, _arraySize).ToArray();
+
+            yield return new object[] { first, second };
         }
     }
 }

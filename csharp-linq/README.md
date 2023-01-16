@@ -9,3 +9,4 @@ This section contains LINQ related topics
 - [LINQ Improvements in .NET](https://code-maze.com/dotnet-linq-improvements/)
 - [Sorting and Filtering With LINQ](https://code-maze.com/linq-sorting-and-filtering/)
 - [Using Dynamic LINQ With System.Linq.Dynamic.Core Library](https://code-maze.com/using-dynamic-linq/)
+- [Understanding PLINQ in .NET](https://code-maze.com/dotnet-understanding-plinq/)
