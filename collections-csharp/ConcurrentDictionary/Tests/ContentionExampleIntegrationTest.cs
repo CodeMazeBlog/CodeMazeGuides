@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 namespace Tests
 {
-    public class ContentionExampleUnitTest
+    public class ContentionExampleIntegrationTest
     {
         private int expectedEntryValue = ContentionExample.ProcessingSteps * ContentionExample.MaxIterations / ContentionExample.MaxStateEntries;
         private ContentionExample sut = new();

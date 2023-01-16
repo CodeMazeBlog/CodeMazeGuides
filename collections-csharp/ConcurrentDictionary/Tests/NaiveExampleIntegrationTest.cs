@@ -1,6 +1,6 @@
 namespace Tests
 {
-    public class NaiveExampleUnitTest
+    public class NaiveExampleIntegrationTest
     {
         [Test]
         public void WhenRun_ThenStateContainsEntriesWithLowerValueThanExpected()

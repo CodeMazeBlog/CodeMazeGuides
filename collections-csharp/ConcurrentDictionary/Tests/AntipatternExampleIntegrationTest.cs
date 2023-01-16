@@ -1,12 +1,12 @@
 namespace Tests
 {
-    public class SecondExampleUnitTest
+    public class AntipatternExampleIntegrationTest
     {
         [Test]
         public void WhenRun_ThenStateContainsEntriesWithLowerValueThanExpected()
         {
-            int expectedEntryValue = SecondExample.ProcessingSteps * SecondExample.MaxIterations / SecondExample.MaxStateEntries;
-            SecondExample sut = new();
+            int expectedEntryValue = AntipatternExample.ProcessingSteps * AntipatternExample.MaxIterations / AntipatternExample.MaxStateEntries;
+            AntipatternExample sut = new();
 
             sut.Run();
 

@@ -1,6 +1,6 @@
 namespace Tests
 {
-    public class MemoryLeakExampleUnitTest
+    public class MemoryLeakExampleIntegrationTest
     {
         private int expectedEntryValue = MemoryLeakExample.ProcessingSteps * MemoryLeakExample.MaxIterations / MemoryLeakExample.MaxStateEntries;
 

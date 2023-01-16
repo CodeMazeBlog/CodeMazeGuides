@@ -1,6 +1,6 @@
 namespace Tests
 {
-    public class BetterApproachUnitTest
+    public class BetterApproachIntegrationTest
     {
         [Test]
         public void WhenRun_ThenAllStateEntriesHaveExpectedValue()
