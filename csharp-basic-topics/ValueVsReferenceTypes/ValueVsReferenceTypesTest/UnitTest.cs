@@ -10,8 +10,7 @@ namespace ValueVsReferenceTypesTest
         [TestMethod]
         public void WhenChangeCarModel_ThenMethodReturnsCorrectValue()
         {
-            var defaultModelName = "Toyota";
-            Car car = new(defaultModelName);
+            Car car = new();
             var newModelName = "Nissan";
             car.ChangeCarModel(newModelName);
             var expectedResults = "Nissan";
@@ -32,8 +31,9 @@ namespace ValueVsReferenceTypesTest
         [TestMethod]
         public void WhenWeeklyWorkDays_ThenMethodReturnsCorrectValue()
         {
+            var daysInAWeek = workingDaysCalculator.DaysOfTheWeek;
             var expectedResults = 5;
-            var actualResults = workingDaysCalculator.WeeklyWorkDays(workingDaysCalculator.DaysOfTheWeek);
+            var actualResults = workingDaysCalculator.WeeklyWorkDays(daysInAWeek);
 
             Assert.AreEqual(expectedResults, actualResults);
         }

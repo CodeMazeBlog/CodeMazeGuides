@@ -8,7 +8,7 @@ namespace ValueVsReferenceTypes
 {
     public  class Boxing
     {
-        public void BoxUbox() {
+        public void BoxUnbox() {
             int carTyreCount = 4; 
 
             object boxedCarTyreCount = carTyreCount;

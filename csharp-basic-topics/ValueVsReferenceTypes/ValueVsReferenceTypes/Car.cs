@@ -2,14 +2,13 @@
 {
     public class Car
     {
-        public Car(string modelName)=> ModelName = modelName;
-
         public string ChangeCarModel(string newModel)
         {
             ModelName = newModel;
+
             return ModelName;
         }
 
-        public string ModelName { get; set; }
+        public string ModelName { get; set; } = "Toyota";
     }
 }
