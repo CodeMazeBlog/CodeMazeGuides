@@ -16,6 +16,7 @@ namespace Tests
             var resultFunc = FuncDelegates.PrintNumbersByFormula(formula, input);
             Assert.Equal(resultFunc, formula(input));
         }
+
         [Theory]
         [InlineData(100)]
         [InlineData(200)]
@@ -23,9 +24,6 @@ namespace Tests
         public void GivenActionDelegate_WhenWritingActionDelegate_ThenReturnMessage(int input)
         {
             ActionDelegates.WriteMessage(x => Console.WriteLine(ActionDelegates.Message), input);
-
-            //Func<int, string> formula = x => string.Format("{0:n0}", x);
-            //var resultFunc = FuncDelegates.PrintNumbersByFormula(formula, input);
             Assert.Equal(ActionDelegates.Message, $"Number: {input}");
         }
     }
