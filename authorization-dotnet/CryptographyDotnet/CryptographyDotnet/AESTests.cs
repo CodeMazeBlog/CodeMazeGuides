@@ -114,7 +114,7 @@ namespace CryptographyDotnet
 
         public static byte[] GenerateAESKey()
         {
-            var rnd = new RNGCryptoServiceProvider();
+            var rnd = RandomNumberGenerator.Create();
             var b = new byte[16];
             rnd.GetNonZeroBytes(b);
 
