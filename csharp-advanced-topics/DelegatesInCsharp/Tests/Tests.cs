@@ -1,3 +1,4 @@
+using Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -90,5 +91,12 @@ namespace Tests
 			var invocationList = executeReverseWriteAction.GetInvocationList();
 			Assert.AreEqual(invocationList.Length, 1);
 		}
-	}
+
+        [TestMethod]
+        public void whenSalaryIsSent_DelegateExecutesGetTaxMethod()
+        {
+            var tax = DelegateHelper.GetTax(100000);
+            Assert.AreEqual(100000 * .3, tax);
+        }
+    }
 }
