@@ -11,6 +11,7 @@ namespace ValueVsReferenceTypesTest
         public void WhenChangeCarModel_ThenMethodReturnsCorrectValue()
         {
             Car car = new();
+
             var newModelName = "Nissan";
             car.ChangeCarModel(newModelName);
             var expectedResults = "Nissan";
