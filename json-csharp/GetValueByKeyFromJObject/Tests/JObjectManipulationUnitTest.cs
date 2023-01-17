@@ -5,6 +5,7 @@ namespace Tests
     public class JObjectManipulationUnitTest
     {
         private readonly JObjectManipulation _jObjectManipulation;
+
         public JObjectManipulationUnitTest()
         {
             _jObjectManipulation = new JObjectManipulation();

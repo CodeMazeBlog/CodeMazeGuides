@@ -65,7 +65,6 @@ namespace GetValueByKeyFromJObject
 
             Console.WriteLine($"A {make} {name} {model} {year} costs {amount} {currency} \n");
 
-
             return jsonObject.Count;
         }
 
