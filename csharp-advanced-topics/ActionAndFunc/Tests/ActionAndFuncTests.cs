@@ -2,10 +2,10 @@ using ActionAndFunc;
 
 namespace Tests
 {
-    public class UnitTests
+    public class ActionAndFuncTests
     {
         [Fact]
-        public void whenActionDelegate_DelegateInvocationPrintsExpectedResult()
+        public void WhenActionDelegate_DelegateInvocationPrintsExpectedResult()
         {
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -22,7 +22,7 @@ namespace Tests
         }
 
         [Fact]
-        public void whenFuncDelegate_DelegateInvocationReturnsExpectedResult()
+        public void WhenFuncDelegate_DelegateInvocationReturnsExpectedResult()
         {
             Func<string, string> func = Program.AddToping;
 
