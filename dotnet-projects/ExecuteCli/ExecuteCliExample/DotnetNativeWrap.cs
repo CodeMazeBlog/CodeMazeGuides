@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace ExecuteCliExample;
 
@@ -9,15 +10,19 @@ public class DotnetNativeWrapper
 
     public async Task<Version> GetVersionFromScript()
     {
+        var isWin = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+        var args = isWin ? "/c \"version.bat\"" : "-c \"./version.sh\"";
+        var tool = isWin ? "cmd" : "bash";
         ProcessStartInfo startInfo = new()
         {
-            FileName = "bash",
-            Arguments = "-c \"./version.sh\"",
+            FileName = tool,
+            Arguments = args,
             UseShellExecute = false,
             CreateNoWindow = true,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
         };
+        
         var proc = Process.Start(startInfo);
 
         ArgumentNullException.ThrowIfNull(proc);
@@ -87,10 +92,10 @@ public class DotnetNativeWrapper
 
         var stdOut = new CliEventStreamReader(proc.StandardOutput);
         var stdErr = new CliEventStreamReader(proc.StandardError);
-        
+
         AttachStdOutEventHandler(stdOut);
         AttachStdErrEventHandler(stdErr);
-        
+
         await proc.WaitForExitAsync();
     }
 
