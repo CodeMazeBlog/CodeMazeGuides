@@ -12,7 +12,7 @@ namespace Tests
         [TestInitialize]
         public void Setup()
         {
-            _address = new Address();
+            _address = new Address() { Area = "Test Area"};
         }
 
         [TestMethod]
