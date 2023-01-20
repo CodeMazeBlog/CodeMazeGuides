@@ -1,21 +1,28 @@
 ﻿using ExecuteCliExample;
 
-var version = await new DotnetNativeWrapper().GetVersionFromScript();
-System.Console.WriteLine(version);
+await RunNativeExample();
+
+static async Task RunInvalidCommandExample()
+{
+    DotnetNativeWrapper native = new();
+    var (exitCode, errorOutput) = await native.RunInvalidCommand();
+
+    Console.WriteLine($"ExitCode: {exitCode}");
+    Console.WriteLine($"ErrorLogs: \n{errorOutput}");
+}
+
 static async Task RunNativeExample()
 {
     DotnetNativeWrapper native = new();
 
-    native.OnStdOutput += (ArraySegment<char> chunk) =>
+    native.OnStdOutput += (string chunk) =>
     {
-        Console.WriteLine($"CHUNK OUTPUT:");
-        Console.WriteLine(new String(chunk));
+        Console.WriteLine($"CHUNK OUTPUT : \n{chunk}");
     };
 
-    native.OnStdErr += (ArraySegment<char> chunk) =>
+    native.OnStdErr += (string chunk) =>
     {
-        Console.WriteLine($"CHUNK ERROR:");
-        Console.WriteLine(new String(chunk));
+        Console.WriteLine($"CHUNK ERROR : \n{chunk}");
     };
 
     await native.ListProjects();

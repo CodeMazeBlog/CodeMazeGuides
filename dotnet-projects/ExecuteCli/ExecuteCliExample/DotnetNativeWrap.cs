@@ -8,16 +8,15 @@ public class DotnetNativeWrapper
     public event OnChunkStreamHandler? OnStdOutput;
     public event OnChunkStreamHandler? OnStdErr;
 
-    public async Task<Version> GetVersionFromScript()
+    public async Task<string> GetInfo()
     {
         var isWin = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-        var args = isWin ? "/c \"version.bat\"" : "-c \"./version.sh\"";
+        var args = isWin ? "/c \"info.bat\"" : "-c \"./info.sh\"";
         var tool = isWin ? "cmd" : "bash";
         ProcessStartInfo startInfo = new()
         {
             FileName = tool,
             Arguments = args,
-            UseShellExecute = false,
             CreateNoWindow = true,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -30,7 +29,7 @@ public class DotnetNativeWrapper
         string output = proc.StandardOutput.ReadToEnd();
         await proc.WaitForExitAsync();
 
-        return Version.Parse(output);
+        return output;
     }
 
     public async Task<Version> GetVersion()
@@ -39,7 +38,6 @@ public class DotnetNativeWrapper
         {
             FileName = "dotnet",
             Arguments = "--version",
-            UseShellExecute = false,
             CreateNoWindow = true,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -54,34 +52,12 @@ public class DotnetNativeWrapper
         return Version.Parse(output);
     }
 
-    public async Task<bool> CreateNewProject(string projectName, string outputDir)
-    {
-        ProcessStartInfo startInfo = new()
-        {
-            FileName = "dotnet",
-            Arguments = $"new console --name \"{projectName}\" --output \"{outputDir}\"",
-            UseShellExecute = false,
-            CreateNoWindow = true,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-        };
-        var proc = Process.Start(startInfo);
-
-        ArgumentNullException.ThrowIfNull(proc);
-
-        string output = proc.StandardOutput.ReadToEnd();
-        await proc.WaitForExitAsync();
-
-        return proc.ExitCode == 0;
-    }
-
     public async Task ListProjects()
     {
         ProcessStartInfo startInfo = new()
         {
             FileName = "dotnet",
             Arguments = "new list",
-            UseShellExecute = false,
             CreateNoWindow = true,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -90,8 +66,8 @@ public class DotnetNativeWrapper
 
         ArgumentNullException.ThrowIfNull(proc);
 
-        var stdOut = new CliEventStreamReader(proc.StandardOutput);
-        var stdErr = new CliEventStreamReader(proc.StandardError);
+        var stdOut = new CliEventStreamer(proc.StandardOutput);
+        var stdErr = new CliEventStreamer(proc.StandardError);
 
         AttachStdOutEventHandler(stdOut);
         AttachStdErrEventHandler(stdErr);
@@ -105,7 +81,6 @@ public class DotnetNativeWrapper
         {
             FileName = "dotnet",
             Arguments = "invalid command",
-            UseShellExecute = false,
             CreateNoWindow = true,
             RedirectStandardOutput = true,
             RedirectStandardError = true,
@@ -120,7 +95,7 @@ public class DotnetNativeWrapper
         return (proc.ExitCode, errorOutput);
     }
 
-    private void AttachStdOutEventHandler(CliEventStreamReader stdOut)
+    private void AttachStdOutEventHandler(CliEventStreamer stdOut)
     {
         if (OnStdOutput is not null)
         {
@@ -128,7 +103,7 @@ public class DotnetNativeWrapper
         }
     }
 
-    private void AttachStdErrEventHandler(CliEventStreamReader stdErr)
+    private void AttachStdErrEventHandler(CliEventStreamer stdErr)
     {
         if (OnStdErr is not null)
         {

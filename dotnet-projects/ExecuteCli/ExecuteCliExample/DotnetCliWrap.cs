@@ -17,31 +17,11 @@ public class DotnetCliWrap
 
     public async Task<Version> GetVersion()
     {
-        BufferedCommandResult result = await Cli.Wrap("dotnet")
+        var result = await Cli.Wrap("dotnet")
                             .WithArguments("--version")
                             .ExecuteBufferedAsync();
 
         return Version.Parse(result.StandardOutput);
-    }
-
-    public async Task<bool> CreateNewConsoleProject(string projectName, string outputDir)
-    {
-        var result = await Cli.Wrap("dotnet")
-                        .WithArguments(new List<string>
-                        {
-                            "new",
-                            "console",
-                            "--name",
-                            projectName,
-                            "--output",
-                            outputDir
-                        })
-                        .WithStandardOutputPipe(PipeTarget.ToDelegate(Console.WriteLine))
-                        .WithStandardErrorPipe(PipeTarget.ToDelegate(Console.WriteLine))
-                        .WithValidation(CommandResultValidation.None)
-                        .ExecuteAsync();
-
-        return result.ExitCode == 0;
     }
 
     public async Task ListProjects()
@@ -70,7 +50,7 @@ public class DotnetCliWrap
 
     public async Task<(int exitCode, string? error)> RunInvalidCommand()
     {
-        BufferedCommandResult result = await Cli.Wrap("dotnet")
+        var result = await Cli.Wrap("dotnet")
                     .WithArguments("invalid command")
                     .WithValidation(CommandResultValidation.None)
                     .ExecuteBufferedAsync();

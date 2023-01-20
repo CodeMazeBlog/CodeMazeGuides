@@ -1,26 +1,27 @@
 namespace ExecuteCliExample;
 
-public delegate void OnChunkStreamHandler(ArraySegment<char> line);
+public delegate void OnChunkStreamHandler(string chunk);
 
-public class CliEventStreamReader
+public class CliEventStreamer
 {
-    public CliEventStreamReader(StreamReader streamReader)
+    public CliEventStreamer(StreamReader streamReader)
     {
         ArgumentNullException.ThrowIfNull(streamReader);
         _streamReader = streamReader;
-        Task.Factory.StartNew(StartListening);
+        Task.Factory.StartNew(Start);
     }
 
     public event OnChunkStreamHandler? OnChunkReceived;
     private readonly StreamReader _streamReader;
 
-    private async Task StartListening()
+    private async Task Start()
     {
         int bufferSize = 8 * 1024;
         var buffer = new char[bufferSize];
 
         while (true)
         {
+
             var chunkLength = await _streamReader.ReadAsync(buffer, 0, buffer.Length);
 
             if (chunkLength == 0)
@@ -28,11 +29,11 @@ public class CliEventStreamReader
                 break;
             }
 
-            OnChunk(new ArraySegment<char>(buffer, 0, chunkLength));
+            OnChunk(new string(buffer, 0, chunkLength));
         }
     }
 
-    private void OnChunk(ArraySegment<char> chunk)
+    private void OnChunk(string chunk)
     {
         OnChunkReceived?.Invoke(chunk);
     }
