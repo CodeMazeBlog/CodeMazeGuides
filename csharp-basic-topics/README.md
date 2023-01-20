@@ -8,6 +8,7 @@ This section contains the topics considered basic level in C#.
 - [Base64 Encode and Decode in C#](https://code-maze.com/base64-encode-decode-csharp/)
 - [Break and Continue Statements in C#](https://code-maze.com/csharp-break-continue-statements/)
 - [Constructor Overloading in C#](https://code-maze.com/csharp-constructor-overloading/)
+- [Convert String and Int to Enum in C#](https://code-maze.com/csharp-convert-string-and-int-to-enum/)
 - [Default Interface Method in C# And When to Use It](https://code-maze.com/csharp-default-interface-method/)
 - [Difference Between Is and Equality Operators in C# – “is null” vs “== null”](https://code-maze.com/csharp-difference-between-isnull-and-equality-operators/)
 - [Expression-bodied Members in C#](https://code-maze.com/csharp-expression-bodied-members/)
