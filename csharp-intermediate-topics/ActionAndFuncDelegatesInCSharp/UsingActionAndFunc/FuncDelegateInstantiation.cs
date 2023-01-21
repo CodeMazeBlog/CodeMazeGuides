@@ -4,12 +4,7 @@
     {
         public FuncDelegateInstantiation()
         {
-            var persons = new List<Person>
-            {
-               new () { Name = "Jon", Age = 15 },
-               new () { Name = "Bob", Age = 20 },
-               new () { Name = "Mike", Age = 35 }
-            };
+            var persons = Persons.GetAll();
 
             // reference existing methods
             Func<Person, bool> funcDelegate = PersonIsAdult;
