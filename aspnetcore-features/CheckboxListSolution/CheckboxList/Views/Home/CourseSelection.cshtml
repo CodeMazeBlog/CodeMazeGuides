@@ -7,7 +7,7 @@
     <form method="post" class="m-5">
         <h4>Select Multiple Courses</h4>
         <div>
-            @for (int index = 0; index < @Model.Count(); index++)
+            @for (var index = 0; index < @Model.Count(); index++)
             {
                 <input type="checkbox" asp-for="@Model[index].IsChecked" class="form-check-input" />
                 <label class="form-check-label" asp-for="@Model[index].IsChecked">@Model[index].LabelName</label>
@@ -26,7 +26,7 @@
     <form method="post" class="m-5" id="CoursesForm">
         <h4>Select Multiple Courses - jQuery Submit</h4>
         <div>
-            @for (int index = 0; index < @Model.Count(); index++)
+            @for (var index = 0; index < @Model.Count(); index++)
             {
                 <input type="checkbox" asp-for="@Model[index].IsChecked" class="form-check-input" />
                 <label class="form-check-label" asp-for="@Model[index].IsChecked">@Model[index].LabelName</label>

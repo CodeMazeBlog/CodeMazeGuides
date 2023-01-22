@@ -29,7 +29,7 @@ namespace CheckboxList.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CourseSelection(List<CheckboxViewModel> courses)
         {
-            var selectedCourses = courses.Where(x => x.IsChecked == true).ToList();
+            var selectedCourses = courses.Where(x => x.IsChecked).ToList();
             return RedirectToAction("CourseSelection");
         }
 
