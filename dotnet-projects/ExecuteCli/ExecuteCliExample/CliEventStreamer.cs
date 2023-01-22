@@ -21,7 +21,6 @@ public class CliEventStreamer
 
         while (true)
         {
-
             var chunkLength = await _streamReader.ReadAsync(buffer, 0, buffer.Length);
 
             if (chunkLength == 0)

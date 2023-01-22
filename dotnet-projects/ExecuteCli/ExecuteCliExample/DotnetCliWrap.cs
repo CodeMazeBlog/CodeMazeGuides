@@ -18,8 +18,8 @@ public class DotnetCliWrap
     public async Task<Version> GetVersion()
     {
         var result = await Cli.Wrap("dotnet")
-                            .WithArguments("--version")
-                            .ExecuteBufferedAsync();
+            .WithArguments("--version")
+            .ExecuteBufferedAsync();
 
         return Version.Parse(result.StandardOutput);
     }
@@ -51,9 +51,9 @@ public class DotnetCliWrap
     public async Task<(int exitCode, string? error)> RunInvalidCommand()
     {
         var result = await Cli.Wrap("dotnet")
-                    .WithArguments("invalid command")
-                    .WithValidation(CommandResultValidation.None)
-                    .ExecuteBufferedAsync();
+            .WithArguments("invalid command")
+            .WithValidation(CommandResultValidation.None)
+            .ExecuteBufferedAsync();
 
         return (result.ExitCode, result.StandardError);
     }
