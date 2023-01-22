@@ -7,15 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddOpenTelemetry()
     .WithMetrics(builder => builder
-        //.SetResourceBuilder(
-        //    ResourceBuilder.CreateDefault()
-        //    .AddService("Metrics.NET"))
         .AddConsoleExporter()
         .AddAspNetCoreInstrumentation()
         .AddHttpClientInstrumentation()
         .AddRuntimeInstrumentation()
         .AddPrometheusExporter()
         .AddMeter("Metrics.NET")
+        .AddView(
+            instrumentName: "components-per-order",
+            new ExplicitBucketHistogramConfiguration { Boundaries = new double[] { 1, 2, 5, 10 } })
     ).StartWithHost();
 
 builder.Services.AddSingleton<ComputerComponentsMetrics>();
