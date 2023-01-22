@@ -17,17 +17,17 @@ public class EapUserProvider
 
     public User GetUser(int userId) => _userService.GetUser(userId);
 
-    public event EventHandler<GetUserCompletedEventArgs>
-      GetUserCompleted;
+    public event EventHandler<GetUserCompletedEventArgs> GetUserCompleted;
+
+    public void GetUserAsync(int userId) => GetUserAsync(userId, null);
 
     public void GetUserAsync(int userId, object userState)
     {
-        AsyncOperation operation = AsyncOperationManager
-         .CreateOperation(userState);
+        AsyncOperation operation = AsyncOperationManager.CreateOperation(userState);
 
         ThreadPool.QueueUserWorkItem(state =>
         {
-            GetUserCompletedEventArgs args = null;
+            GetUserCompletedEventArgs args;
             try
             {
                 var user = GetUser(userId);
@@ -52,11 +52,16 @@ public class EapUserProvider
     }
 }
 
-public class GetUserCompletedEventArgs : AsyncCompletedEventArgs
+public class GetUserCompletedEventArgs : EventArgs
 {
-    public GetUserCompletedEventArgs(
-        Exception error, bool cancelled, object userState)
-        : base(error, cancelled, userState)
+    public Exception Error { get; }
+    public bool Cancelled { get; }
+    public User User { get; }
+
+    public GetUserCompletedEventArgs(Exception error, bool cancelled, User user)
     {
+        Error = error;
+        Cancelled = cancelled;
+        User = user;
     }
 }

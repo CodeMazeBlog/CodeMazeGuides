@@ -1,5 +1,4 @@
 ﻿using AsynchronousProgrammingPatterns.Providers;
-using AsynchronousProgrammingPatterns.Services.Models;
 
 namespace AsynchronousProgrammingPatterns;
 
@@ -11,10 +10,10 @@ public static class EventBasedAsyncPatternHelper
 
         eapUserProvider.GetUserCompleted += (sender, args) =>
         {
-            var result = args.UserState as User;
-            Console.WriteLine($"Id: {result?.Id}\nName: {result?.Name}");
+            var result = args.User;
+            Console.WriteLine($"Id: {result.Id}\nName: {result.Name}");
         };
 
-        eapUserProvider.GetUserAsync(userId, null);
+        eapUserProvider.GetUserAsync(userId);
     }
 }
