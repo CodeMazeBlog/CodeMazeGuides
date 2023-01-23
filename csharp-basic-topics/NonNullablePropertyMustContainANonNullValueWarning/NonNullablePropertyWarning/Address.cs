@@ -17,5 +17,7 @@
         public string? Country { get; set; }
 
         public string PostalCode { get; set; } = null!;
+
+        public required string Area { get; set; }
     }
 }
