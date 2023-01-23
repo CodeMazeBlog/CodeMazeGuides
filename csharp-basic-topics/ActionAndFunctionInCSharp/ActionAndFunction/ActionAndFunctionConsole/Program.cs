@@ -10,5 +10,3 @@ Console.WriteLine(converterUpper.Convert("upper-example"));
 ConverterService converterLower = new ConverterService((_) => _.ToLower());
 converterLower.beforeAction = Utils.MethodStarted;
 Console.WriteLine(converterLower.Convert("LOWER-EXAMPLE"));
-
-Console.ReadLine();
