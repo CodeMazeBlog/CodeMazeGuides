@@ -4,9 +4,9 @@
     {
         public string Color { get; set; }
 
-        public virtual void Draw()
+        public virtual string Draw()
         {
-            Console.WriteLine($"Drawing a {Color} colored shape");
+            return $"Drawing a {Color} colored shape";
         }
     }
 }

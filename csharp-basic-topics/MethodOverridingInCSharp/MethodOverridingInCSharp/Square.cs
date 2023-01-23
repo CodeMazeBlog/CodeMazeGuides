@@ -4,9 +4,10 @@
     {
         public int Side { get; set; }
 
-        public override void Draw()
+        public override string Draw()
         {
-            Console.WriteLine($"Drawing a square of color {Color} with its sides having length and width of {Side} units");
+            return $"Drawing a square of color {Color} " +
+                   $"with its sides having length and width of {Side} units";
         }
     }
 }

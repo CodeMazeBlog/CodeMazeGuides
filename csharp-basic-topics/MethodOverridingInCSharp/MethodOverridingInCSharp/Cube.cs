@@ -1,13 +1,19 @@
-﻿namespace MethodOverridingInCSharp
+﻿using System.Text;
+
+namespace MethodOverridingInCSharp
 {
     public class Cube : Shape
     {
         public int Edge { get; set; }
 
-        public override void Draw()
+        public override string Draw()
         {
-            base.Draw();
-            Console.WriteLine($"Drawing a cube with edges of length, width, and height of {Edge} units");
+            var builder = new StringBuilder();
+
+            builder.AppendLine(base.Draw());
+            builder.AppendLine($"Drawing a cube with edges of length, width, and height of {Edge} units");
+
+            return builder.ToString();
         }
     }
 }
