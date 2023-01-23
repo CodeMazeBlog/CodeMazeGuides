@@ -10,7 +10,7 @@ namespace TestProject
         }
 
         [Test]
-        public void Test1()
+        public void ConvertServiceTestResult()
         {
             ConverterService converterService = new ConverterService((_) => _.ToUpper());
             string result = converterService.Convert("toupperexample");
