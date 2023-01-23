@@ -10,7 +10,7 @@
 
     protected void show()
     {
-      worker(oddNumbers, (num) => Console.WriteLine($"{num} IS devisible by 2!"));
+      worker(oddNumbers, (num) => Console.WriteLine($"{num} IS divisible by 2!"));
     }
 
     protected void worker(Action<int> onOddNumber, Action<int> onEvenNumber)
@@ -26,7 +26,7 @@
 
     protected void oddNumbers(int number)
     {
-      Console.WriteLine($"{number} IS NOT devisible by 2!");
+      Console.WriteLine($"{number} IS NOT divisible by 2!");
     }
   }
 }
