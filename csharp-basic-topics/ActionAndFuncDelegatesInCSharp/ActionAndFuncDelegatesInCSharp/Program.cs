@@ -3,9 +3,19 @@ using System.Drawing;
 
 var printWithColor = PrintWithColor;
 
-printWithColor(ConsoleColor.Blue, "This is an informational message");
-printWithColor(ConsoleColor.Yellow, "This is a warning message");
-printWithColor(ConsoleColor.Red, "This is an error message");
+var printDate1 = printWithColor(ConsoleColor.Blue, "This is an informational message");
+Thread.Sleep(5000);
+var printDate2 = printWithColor(ConsoleColor.Yellow, "This is a warning message");
+Thread.Sleep(5000);
+var printDate3 = printWithColor(ConsoleColor.Red, "This is an error message");
+
+Console.ForegroundColor = ConsoleColor.White;
+Console.WriteLine("-------------------");
+Console.WriteLine("Returned Timestamps");
+Console.WriteLine("-------------------");
+Console.WriteLine(printDate1);
+Console.WriteLine(printDate2);
+Console.WriteLine(printDate3);
 
 Console.ReadLine();
 
