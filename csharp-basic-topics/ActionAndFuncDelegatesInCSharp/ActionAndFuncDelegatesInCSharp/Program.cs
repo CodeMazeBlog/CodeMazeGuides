@@ -9,8 +9,10 @@ printWithColor(ConsoleColor.Red, "This is an error message");
 
 Console.ReadLine();
 
-static void PrintWithColor(ConsoleColor color, String msg)
+static DateTime PrintWithColor(ConsoleColor color, String msg)
 {
+    var logDate = DateTime.UtcNow;
     Console.ForegroundColor = color;
-    Console.WriteLine(msg);
+    Console.WriteLine($"{logDate} {msg}");
+    return logDate;
 }
