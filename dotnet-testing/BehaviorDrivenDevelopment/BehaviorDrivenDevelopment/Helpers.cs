@@ -10,5 +10,9 @@
         return a - b;
     }
 
+    public static int GetAverage(int a, int b, int c)
+    {
+        return (int)new int[] { a, b, c }.Average();
+    }
 
 }
