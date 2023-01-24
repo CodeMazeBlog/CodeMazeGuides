@@ -4,6 +4,7 @@ namespace BehaviorDrivenDevelopment.Tests.StepDefinitions
     public class HelpersStepDefinitions
     {
         ScenarioContext scenarioContext;
+
         public HelpersStepDefinitions(ScenarioContext context)
         {
             scenarioContext = context;
@@ -26,7 +27,6 @@ namespace BehaviorDrivenDevelopment.Tests.StepDefinitions
         public void ThenTheResultShouldBe(int p0)
         {
             var result = Helpers.SumTwoNumbers((int)scenarioContext["FirstNumber"], (int)scenarioContext["SecondNumber"]);
-            scenarioContext["Result"] = p0;
             
             Assert.IsTrue(result == p0);
         }

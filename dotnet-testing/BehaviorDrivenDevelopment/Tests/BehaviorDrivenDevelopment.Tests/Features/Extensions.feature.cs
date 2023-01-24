@@ -91,20 +91,23 @@ namespace BehaviorDrivenDevelopment.Tests.Features
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 4
+#line hidden
+#line 5
+ testRunner.Given("the phrase prefix is Phrase: .", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+        }
+        
         public virtual void GetWordCount(string phrase, string count, string[] exampleTags)
         {
-            string[] @__tags = new string[] {
-                    "StringExtensions"};
-            if ((exampleTags != null))
-            {
-                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
-            }
-            string[] tagsOfScenario = @__tags;
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("phrase", phrase);
             argumentsOfScenario.Add("count", count);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Word Count", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 5
+#line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -124,10 +127,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 6
+#line 4
+this.FeatureBackground();
+#line hidden
+#line 8
  testRunner.When(string.Format("the phrase is {0}", phrase), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 7
+#line 9
  testRunner.Then(string.Format("the word count is {0}", count), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -137,42 +143,39 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get Word Count: Behavior Driven Development")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Extensions")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("StringExtensions")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Behavior Driven Development")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:phrase", "Behavior Driven Development")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "3")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "4")]
         public virtual void GetWordCount_BehaviorDrivenDevelopment()
         {
-#line 5
-this.GetWordCount("Behavior Driven Development", "3", ((string[])(null)));
+#line 7
+this.GetWordCount("Behavior Driven Development", "4", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get Word Count: Code-Maze articles are amazing")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Extensions")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("StringExtensions")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Code-Maze articles are amazing")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:phrase", "Code-Maze articles are amazing")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "4")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "5")]
         public virtual void GetWordCount_Code_MazeArticlesAreAmazing()
         {
-#line 5
-this.GetWordCount("Code-Maze articles are amazing", "4", ((string[])(null)));
+#line 7
+this.GetWordCount("Code-Maze articles are amazing", "5", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get Word Count: And I will subscribe for more")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Extensions")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("StringExtensions")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "And I will subscribe for more")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:phrase", "And I will subscribe for more")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "6")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "7")]
         public virtual void GetWordCount_AndIWillSubscribeForMore()
         {
-#line 5
-this.GetWordCount("And I will subscribe for more", "6", ((string[])(null)));
+#line 7
+this.GetWordCount("And I will subscribe for more", "7", ((string[])(null)));
 #line hidden
         }
         
@@ -183,7 +186,7 @@ this.GetWordCount("And I will subscribe for more", "6", ((string[])(null)));
             argumentsOfScenario.Add("phrase", phrase);
             argumentsOfScenario.Add("count", count);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Charachter Count", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 15
+#line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -203,10 +206,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 4
+this.FeatureBackground();
+#line hidden
+#line 18
  testRunner.When(string.Format("the phrase is {0}", phrase), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 17
+#line 19
  testRunner.Then(string.Format("the char count is {0}", count), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -218,11 +224,11 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Extensions")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Behavior Driven Development")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:phrase", "Behavior Driven Development")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "25")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "32")]
         public virtual void GetCharachterCount_BehaviorDrivenDevelopment()
         {
-#line 15
-this.GetCharachterCount("Behavior Driven Development", "25", ((string[])(null)));
+#line 17
+this.GetCharachterCount("Behavior Driven Development", "32", ((string[])(null)));
 #line hidden
         }
         
@@ -231,11 +237,11 @@ this.GetCharachterCount("Behavior Driven Development", "25", ((string[])(null)))
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Extensions")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Code-Maze articles are amazing")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:phrase", "Code-Maze articles are amazing")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "27")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "34")]
         public virtual void GetCharachterCount_Code_MazeArticlesAreAmazing()
         {
-#line 15
-this.GetCharachterCount("Code-Maze articles are amazing", "27", ((string[])(null)));
+#line 17
+this.GetCharachterCount("Code-Maze articles are amazing", "34", ((string[])(null)));
 #line hidden
         }
         
@@ -244,11 +250,11 @@ this.GetCharachterCount("Code-Maze articles are amazing", "27", ((string[])(null
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Extensions")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "And I will subscribe for more")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:phrase", "And I will subscribe for more")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "24")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:count", "31")]
         public virtual void GetCharachterCount_AndIWillSubscribeForMore()
         {
-#line 15
-this.GetCharachterCount("And I will subscribe for more", "24", ((string[])(null)));
+#line 17
+this.GetCharachterCount("And I will subscribe for more", "31", ((string[])(null)));
 #line hidden
         }
     }

@@ -14,5 +14,4 @@
     {
         return (int)new int[] { a, b, c }.Average();
     }
-
 }

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="StepDefinitions\HelpersStepDefinitions1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\Helpers - Copy.feature.cs" />
   </ItemGroup>
 

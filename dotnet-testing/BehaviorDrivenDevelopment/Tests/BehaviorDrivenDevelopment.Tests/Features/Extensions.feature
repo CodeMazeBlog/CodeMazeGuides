@@ -1,16 +1,18 @@
 ﻿Feature: Extensions
 	Provide string extension methods
 
-@StringExtensions
+Background:
+	Given the phrase prefix is Phrase: .
+
 Scenario: Get Word Count
 	When the phrase is <phrase>
 	Then the word count is <count>
 
 Examples:
 	| phrase                         | count |
-	| Behavior Driven Development    | 3     |
-	| Code-Maze articles are amazing | 4     |
-	| And I will subscribe for more  | 6     |
+	| Behavior Driven Development    | 4     |
+	| Code-Maze articles are amazing | 5     |
+	| And I will subscribe for more  | 7     |
 
 Scenario: Get Charachter Count
 	When the phrase is <phrase>
@@ -18,8 +20,6 @@ Scenario: Get Charachter Count
 
 Examples:
 	| phrase                         | count |
-	| Behavior Driven Development    | 25    |
-	| Code-Maze articles are amazing | 27    |
-	| And I will subscribe for more  | 24    |
-
-
+	| Behavior Driven Development    | 32    |
+	| Code-Maze articles are amazing | 34    |
+	| And I will subscribe for more  | 31    |
