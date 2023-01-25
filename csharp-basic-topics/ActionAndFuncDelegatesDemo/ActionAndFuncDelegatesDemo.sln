@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegatesDemo", "ActionAndFuncDelegatesDemo\ActionAndFuncDelegatesDemo.csproj", "{5AEC7630-283A-49D4-88F5-49A3FF2652F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionAndFuncDelegatesDemo", "ActionAndFuncDelegatesDemo\ActionAndFuncDelegatesDemo.csproj", "{5AEC7630-283A-49D4-88F5-49A3FF2652F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegatesDemoTests", "ActionAndFuncDelegatesDemoTests\ActionAndFuncDelegatesDemoTests.csproj", "{51769177-4C69-45C0-AD84-621E304888F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5AEC7630-283A-49D4-88F5-49A3FF2652F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AEC7630-283A-49D4-88F5-49A3FF2652F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AEC7630-283A-49D4-88F5-49A3FF2652F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51769177-4C69-45C0-AD84-621E304888F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51769177-4C69-45C0-AD84-621E304888F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51769177-4C69-45C0-AD84-621E304888F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51769177-4C69-45C0-AD84-621E304888F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
