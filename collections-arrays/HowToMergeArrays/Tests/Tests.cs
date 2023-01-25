@@ -1,4 +1,5 @@
 ﻿using HowToMergeArrays;
+using System.Linq;
 using Xunit;
 
 namespace Tests
@@ -9,16 +10,21 @@ namespace Tests
         private readonly int _combinedExpectedSize;
         private readonly int _combinedExpectedSizeDistinct = 2;
 
+        private readonly int[] first;
+        private readonly int[] second;
+
         public Tests()
         {
             _mergeArrayRunner = new MergeArrayBenchmark();
             _combinedExpectedSize = _mergeArrayRunner.ArraySize * 2;
+            first = Enumerable.Repeat(1, _mergeArrayRunner.ArraySize).ToArray();
+            second =Enumerable.Repeat(2, _mergeArrayRunner.ArraySize).ToArray();
         }
 
         [Fact]
         public void WhenMergingWithArrayCopyAndNewArray_ThenCombinedArrayNotEmptyAndLengthEqualsDoubleSize()
         {
-            var combinedArray = _mergeArrayRunner.MergeUsingArrayCopyWithNewArray();
+            var combinedArray = _mergeArrayRunner.MergeUsingArrayCopyWithNewArray(first, second);
 
             Assert.NotEmpty(combinedArray);
             Assert.Equal(_combinedExpectedSize, combinedArray.Length);
@@ -27,7 +33,7 @@ namespace Tests
         [Fact]
         public void WhenMergingWithArrayCopyAndResize_ThenCombinedArrayNotEmptyAndLengthEqualsDoubleSize()
         {
-            var combinedArray = _mergeArrayRunner.MergeUsingArrayCopyWithResize();
+            var combinedArray = _mergeArrayRunner.MergeUsingArrayCopyWithResize(first, second);
 
             Assert.NotEmpty(combinedArray);
             Assert.Equal(_combinedExpectedSize, combinedArray.Length);
@@ -36,7 +42,7 @@ namespace Tests
         [Fact]
         public void WhenMergingWithArrayCopyTo_ThenCombinedArrayNotEmptyAndLengthEqualsDoubleSize()
         {
-            var combinedArray = _mergeArrayRunner.MergeUsingArrayCopyTo();
+            var combinedArray = _mergeArrayRunner.MergeUsingArrayCopyTo(first, second);
 
             Assert.NotEmpty(combinedArray);
             Assert.Equal(_combinedExpectedSize, combinedArray.Length);
@@ -45,7 +51,7 @@ namespace Tests
         [Fact]
         public void WhenMergingWithLinqConcat_ThenCombinedArrayNotEmptyAndLengthEqualsDoubleSize()
         {
-            var combinedArray = _mergeArrayRunner.MergeUsingLinqConcat();
+            var combinedArray = _mergeArrayRunner.MergeUsingLinqConcat(first, second);
 
             Assert.NotEmpty(combinedArray);
             Assert.Equal(_combinedExpectedSize, combinedArray.Length);
@@ -54,7 +60,7 @@ namespace Tests
         [Fact]
         public void WhenMergingWithLinqUnion_ThenCombinedArrayNotEmptyAndLengthEqualsDoubleSizeDistinct()
         {
-            var combinedArray = _mergeArrayRunner.MergeUsingLinqUnion();
+            var combinedArray = _mergeArrayRunner.MergeUsingLinqUnion(first, second);
 
             Assert.NotEmpty(combinedArray);
             Assert.Equal(_combinedExpectedSizeDistinct, combinedArray.Length);
@@ -63,7 +69,7 @@ namespace Tests
         [Fact]
         public void WhenMergingWithLinqSelectMany_ThenCombinedArrayNotEmptyAndLengthEqualsDoubleSize()
         {
-            var combinedArray = _mergeArrayRunner.MergeUsingLinqSelectMany();
+            var combinedArray = _mergeArrayRunner.MergeUsingLinqSelectMany(first, second);
 
             Assert.NotEmpty(combinedArray);
             Assert.Equal(_combinedExpectedSize, combinedArray.Length);
@@ -72,7 +78,7 @@ namespace Tests
         [Fact]
         public void WhenMergingWithBlockCopy_ThenCombinedArrayNotEmptyAndLengthEqualsDoubleSize()
         {
-            var combinedArray = _mergeArrayRunner.MergeUsingBlockCopy();
+            var combinedArray = _mergeArrayRunner.MergeUsingBlockCopy(first, second);
 
             Assert.NotEmpty(combinedArray);
             Assert.Equal(_combinedExpectedSize, combinedArray.Length);
@@ -81,7 +87,7 @@ namespace Tests
         [Fact]
         public void WhenMergingWithNewArrayManually_ThenCombinedArrayNotEmptyAndLengthEqualsDoubleSize()
         {
-            var combinedArray = _mergeArrayRunner.MergeUsingNewArrayManually();
+            var combinedArray = _mergeArrayRunner.MergeUsingNewArrayManually(first, second);
 
             Assert.NotEmpty(combinedArray);
             Assert.Equal(_combinedExpectedSize, combinedArray.Length);

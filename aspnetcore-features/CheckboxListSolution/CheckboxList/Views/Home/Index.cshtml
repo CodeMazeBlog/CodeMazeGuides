@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model InitialModel
+
+<form method="post">
+    <input asp-for="@Model.IsChecked" />
+    <label>Checkbox</label>
+
+    <div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+
+

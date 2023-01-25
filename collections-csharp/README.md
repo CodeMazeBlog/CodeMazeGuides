@@ -4,9 +4,16 @@ This section contains articles about C#/.NET collections.
 
 ### Relevant articles:
 
+- [Working With Collections in .NET](https://code-maze.com/dotnet-collections-overview/)
+- [Concurrent Collections in C#](https://code-maze.com/csharp-concurrent-collections/)
+- [ConcurrentBag in C#](https://code-maze.com/csharp-concurrentbag/)
 - [List Collection in C#](https://code-maze.com/csharp-list-collection/)
 - [Dictionary in C#](https://code-maze.com/dictionary-csharp/)
+- [HashSet vs SortedSet in C#](https://code-maze.com/csharp-hashset-vs-sortedset/)
+- [HashSet in C#](https://code-maze.com/csharp-hashset/)
+- [How to Implement a LinkedList in C#](https://code-maze.com/csharp-linkedlist/)
 - [Queue in C#](https://code-maze.com/queue-csharp/)
 - [SortedList in C#](https://code-maze.com/csharp-sortedlist/)
+- [SortedSet in C#](https://code-maze.com/csharp-sortedset/)
 - [Priority Queue in C#](https://code-maze.com/csharp-priority-queue/)
 - [Stack in C#](https://code-maze.com/stack-csharp/)
