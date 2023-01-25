@@ -10,7 +10,7 @@ public static class EventBasedAsyncPatternHelper
 
         eapUserProvider.GetUserCompleted += (sender, args) =>
         {
-            var result = args.User;
+            var result = args.Result;
             Console.WriteLine($"Id: {result.Id}\nName: {result.Name}");
         };
 

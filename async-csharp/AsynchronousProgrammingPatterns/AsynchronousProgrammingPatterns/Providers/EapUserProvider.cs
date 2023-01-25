@@ -52,16 +52,22 @@ public class EapUserProvider
     }
 }
 
-public class GetUserCompletedEventArgs : EventArgs
+public class GetUserCompletedEventArgs : AsyncCompletedEventArgs
 {
-    public Exception Error { get; }
-    public bool Cancelled { get; }
-    public User User { get; }
+    private User _result;
+
+    public User Result
+    {
+        get
+        {
+            RaiseExceptionIfNecessary();
+            return _result;
+        }
+    }
 
     public GetUserCompletedEventArgs(Exception error, bool cancelled, User user)
+        : base(error, cancelled, user)
     {
-        Error = error;
-        Cancelled = cancelled;
-        User = user;
+        _result = user;
     }
 }
