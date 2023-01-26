@@ -7,7 +7,10 @@ namespace DependencyInjectionWithConstructorParameters
     {
         public readonly List<string> AnimalSounds;
 
-        public AnimalSoundService(IDogSoundService dogSoundService, IConfiguration configuration, IOptions<CowOptions> options, string sheepSound)
+        public AnimalSoundService(IDogSoundService dogSoundService,
+            IConfiguration configuration,
+            IOptions<CowOptions> options,
+            string sheepSound)
         {
             AnimalSounds = new List<string>()
             {
