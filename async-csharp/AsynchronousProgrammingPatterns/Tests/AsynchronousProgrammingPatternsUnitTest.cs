@@ -13,7 +13,7 @@ public class AsynchronousProgrammingPatternsUnitTest
 
         userProvider.GetUserCompleted += (sender, args) =>
         {
-            var user = args.User;
+            var user = args.Result;
             Assert.NotNull(user);
             Assert.Equal(100, user.Id);
             Assert.Equal("Adam", user.Name);
