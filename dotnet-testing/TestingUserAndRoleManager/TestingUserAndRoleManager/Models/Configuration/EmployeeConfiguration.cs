@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IdentityByExamples.Models.Configuration
+namespace TestingUserAndRoleManager.Models.Configuration
 {
     public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
     {

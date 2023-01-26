@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace IdentityByExamples.Models
+namespace TestingUserAndRoleManager.Models
 {
     public class Employee
     {

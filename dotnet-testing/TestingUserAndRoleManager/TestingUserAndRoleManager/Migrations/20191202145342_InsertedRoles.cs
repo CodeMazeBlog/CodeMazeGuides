@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace IdentityByExamples.Migrations
+namespace TestingUserAndRoleManager.Migrations
 {
     public partial class InsertedRoles : Migration
     {

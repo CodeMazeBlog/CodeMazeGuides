@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace IdentityByExamples.Models
+namespace TestingUserAndRoleManager.Models
 {
     public class UserRegistrationModel
     {

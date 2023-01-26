@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using IdentityByExamples.Models;
+using TestingUserAndRoleManager.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace IdentityByExamples.Controllers
+namespace TestingUserAndRoleManager.Controllers
 {
     public class AccountController : Controller
     {

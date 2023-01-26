@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace IdentityByExamples.Models
+namespace TestingUserAndRoleManager.Models
 {
     public class User : IdentityUser
     {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using IdentityByExamples.Models;
+using TestingUserAndRoleManager.Models;
 
-namespace IdentityByExamples
+namespace TestingUserAndRoleManager
 {
     public class MappingProfile : Profile
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace IdentityByExamples.Models
+namespace TestingUserAndRoleManager.Models
 {
     public class ErrorViewModel
     {

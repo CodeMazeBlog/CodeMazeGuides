@@ -1,8 +1,8 @@
-﻿using IdentityByExamples.Models.Configuration;
+﻿using TestingUserAndRoleManager.Models.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdentityByExamples.Models
+namespace TestingUserAndRoleManager.Models
 {
     public class ApplicationContext : IdentityDbContext<User>
     {

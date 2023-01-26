@@ -5,10 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using IdentityByExamples.Models;
+using TestingUserAndRoleManager.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdentityByExamples.Controllers
+namespace TestingUserAndRoleManager.Controllers
 {
     public class HomeController : Controller
     {

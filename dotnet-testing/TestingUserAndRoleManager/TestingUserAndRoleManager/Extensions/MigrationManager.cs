@@ -1,10 +1,10 @@
-﻿using IdentityByExamples.Models;
+﻿using TestingUserAndRoleManager.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 
-namespace IdentityByExamples.Extensions
+namespace TestingUserAndRoleManager.Extensions
 {
     public static class MigrationManager
     {
