@@ -41,36 +41,47 @@
             Console.WriteLine("Copied with ConverAll: " + string.Join(", ", toppingsCopiedWithConvertAll));
             Console.WriteLine("Copied with ICloneable: " + string.Join(", ", toppingsCopiedWithICloneable));
 
-            #region Reference Types
-            //var pizzas = new List<Pizza>
-            //{
-            //    new Pizza
-            //    {
-            //        Name= "Margherita",
-            //        Toppings = new List<string>
-            //        {
-            //            "Mozzarella",
-            //            "Olive oil",
-            //            "Basil"
-            //        }
-            //    },
-            //    new Pizza
-            //    {
-            //        Name= "Diavola",
-            //        Toppings = new List<string>
-            //        {
-            //            "Mozzarella",
-            //            "Ventricina",
-            //            "Chili peppers"
-            //        }
-            //    }
-            //};
+            var pizzas = new List<Pizza>
+            {
+                new Pizza
+                {
+                    Name= "Margherita",
+                    Toppings = new List<string>
+                    {
+                        "Mozzarella",
+                        "Olive oil",
+                        "Basil"
+                    }
+                },
+                new Pizza
+                {
+                    Name= "Diavola",
+                    Toppings = new List<string>
+                    {
+                        "Mozzarella",
+                        "Ventricina",
+                        "Chili peppers"
+                    }
+                }
+            };
 
-            //foreach(var pizza in pizzas)
-            //{
-            //    Console.WriteLine(pizza.ToString());
-            //}
-            #endregion
+            var copiedPizzas = pizzas.ToList();            
+
+            var pizzasCopiedWithICloneable = new List<Pizza>();
+            
+            foreach(var pizza in pizzas)
+            {
+                pizzasCopiedWithICloneable.Add((Pizza)pizza.Clone());
+            }
+
+            var margherita = pizzas
+                .FirstOrDefault(x => x.Name == "Margherita");
+
+            margherita.Toppings.Clear();
+
+            Console.WriteLine($"Original Margherita: {pizzas.First()}");
+            Console.WriteLine($"Copied Margherita: {copiedPizzas.First()}");
+            Console.WriteLine($"Copied with ICloneable Margherita: {pizzasCopiedWithICloneable.First()}");
         }
     }
 }
