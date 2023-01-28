@@ -2,30 +2,24 @@
 {
     internal class Program
     {
-        public delegate void VoidDelegate(string input);
-        public delegate int ReturnDelegate(int input);
         static void Main(string[] args)
         {
-            VoidDelegate DisplayMessageDelegate = (input) => Console.WriteLine(input);
-            DisplayMessageDelegate("I am a custom delegate that takes single parameter");
+            CustomDelegates customDelegate = new CustomDelegates();
 
-            ReturnDelegate ReturnValueDelegate = (input) => input * input;
-            var result = ReturnValueDelegate(2);
+            customDelegate.DisplayMessage("I am a custom delegate that takes single parameter");
+
+            var result = customDelegate.ReturnValue(2);
             Console.WriteLine(result.ToString());
 
-            Action<string> DisplayMessageAction = (input) => Console.WriteLine(input);
-            DisplayMessageAction("I am Action<T> Delegate");
+            ActionDelegate actionDelegate = new ActionDelegate();
 
-            Action<string, string> DisplayMessagesAction = (input1, input2) => Console.WriteLine(input1 + input2);
-            DisplayMessagesAction("I am Action<T,T> Delegate.", " So I can display many parameters!");
+            actionDelegate.DisplayMessage("I am Action<T> Delegate");
+            actionDelegate.DisplayMessages("I am Action<T,T> Delegate.", " So I can display many parameters!");
 
-            Func<int, int, int> FuncReturnSumOfTwoNumbers = (a, b) => (a + b);
-            Console.WriteLine(FuncReturnSumOfTwoNumbers(2, 3).ToString());
+            FuncDelegate funcDelegate = new FuncDelegate();
 
-            Func<int, int, int> sum = (a, b) => a + b;
-            Func<int, int, int> multiply = (a, b) => a * b;
-            DisplayUnknownResult(2, 3, sum);
-            DisplayUnknownResult(2, 3, multiply);
+            DisplayUnknownResult(2, 3, funcDelegate.Sum);
+            DisplayUnknownResult(2, 3, funcDelegate.Multiply);
 
             void DisplayUnknownResult(int a, int b, Func<int, int, int> func)
             {
@@ -40,13 +34,6 @@
                     new Developer { Name = "David", City = "Tokyo" }
                 };
             //developers.Where    //*used just to get the snippet picture.
-
-
-        }
-        public class Developer
-        {
-            public string Name { get; set; }
-            public string City { get; set; }
         }
     }
 }
