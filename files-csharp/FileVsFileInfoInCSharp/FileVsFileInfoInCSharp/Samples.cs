@@ -4,7 +4,7 @@ namespace FileVsFileInfoInCSharp
 {
     public static class Samples
     {
-       
+
         public static (FileStream, FileStream) CreateFile()
         {
             //Create file Using the File class
@@ -12,8 +12,8 @@ namespace FileVsFileInfoInCSharp
 
             //Create a file using the FileInfo class 
             FileInfo fileInfo = new("myfileTwo.txt");
-            using FileStream fileCreatedUsingFileInfoClass = fileInfo.Create(); 
-            
+            using FileStream fileCreatedUsingFileInfoClass = fileInfo.Create();
+
             return (fileCreatedUsingFileClass, fileCreatedUsingFileInfoClass);
         }
 
@@ -109,7 +109,7 @@ namespace FileVsFileInfoInCSharp
             using StreamReader streamReader = fileInfo.OpenText();
             string result;
 
-            StringBuilder sr= new ();
+            StringBuilder sr = new();
             while ((result = streamReader.ReadLine()) != null)
             {
                 sr.Append(result);
@@ -122,7 +122,7 @@ namespace FileVsFileInfoInCSharp
         {
             FileInfo fileInfo = new("myfileFifteen.txt");
 
-            fileInfo.Attributes = FileAttributes.Hidden; 
+            fileInfo.Attributes = FileAttributes.Hidden;
             fileInfo.Refresh();
             Console.WriteLine(fileInfo.Attributes.ToString());
             fileInfo.Delete();
@@ -130,21 +130,21 @@ namespace FileVsFileInfoInCSharp
 
         public static void UsingFileOnMultipleFiles()
         {
-File.Copy("myFileSix.txt", "myFileSeven.txt");
-File.Encrypt("myFileSix.txt");
-File.Decrypt("myFileSix.txt");             
-File.Move("myFileSeven.txt", "myFileSix.txt");
-File.Delete("myFileSix.txt");
-File.Delete("myFileSeven.txt");
+            File.Copy("myFileSix.txt", "myFileSeven.txt");
+            File.Encrypt("myFileSix.txt");
+            File.Decrypt("myFileSix.txt");
+            File.Move("myFileSeven.txt", "myFileSix.txt");
+            File.Delete("myFileSix.txt");
+            File.Delete("myFileSeven.txt");
         }
 
         public static void UsingFileInfoOnOneFile()
         {
-FileInfo fileInfo = new("myFileSixteen.txt"); 
-fileInfo.OpenText(); 
-fileInfo.Encrypt(); 
-fileInfo.Decrypt();
-fileInfo.Delete();
+            FileInfo fileInfo = new("myFileSixteen.txt");
+            fileInfo.OpenText();
+            fileInfo.Encrypt();
+            fileInfo.Decrypt();
+            fileInfo.Delete();
         }
     }
 }
