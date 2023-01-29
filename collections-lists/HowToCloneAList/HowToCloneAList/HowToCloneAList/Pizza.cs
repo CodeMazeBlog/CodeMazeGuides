@@ -2,6 +2,16 @@
 {
     public class Pizza : ICloneable
     {
+        public Pizza()
+        {
+        }
+
+        public Pizza(Pizza pizza)
+        {
+            Name = pizza.Name;
+            Toppings = pizza.Toppings.ToList();
+        }
+
         public string Name { get; set; }
         public List<string> Toppings { get; set; }
 

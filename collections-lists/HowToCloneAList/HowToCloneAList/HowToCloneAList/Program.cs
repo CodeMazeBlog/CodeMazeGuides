@@ -11,35 +11,35 @@
                 "Basil"
             };
 
-            var toppingsCopiedWithConstructor = new List<string>(toppings);
+            var toppingsClonedWithConstructor = new List<string>(toppings);
 
-            var toppingsCopiedWithCopyTo = new string[toppings.Count];
-            toppings.CopyTo(toppingsCopiedWithCopyTo);
+            var toppingsClonedWithCopyTo = new string[toppings.Count];
+            toppings.CopyTo(toppingsClonedWithCopyTo);
 
-            var toppingsCopiedWithAddRange = new List<string>();
-            toppingsCopiedWithAddRange.AddRange(toppings);
+            var toppingsClonedWithAddRange = new List<string>();
+            toppingsClonedWithAddRange.AddRange(toppings);
 
-            var toppingsCopiedWithToList = toppings.ToList();
+            var toppingsClonedWithToList = toppings.ToList();
 
-            var toppingsCopiedWithConvertAll = toppings
+            var toppingsClonedWithConvertAll = toppings
                 .ConvertAll(new Converter<string, string>(x => x));
 
             var customToppingsList = new ToppingsList<string>
             {
                 "Mozzarella",
                 "Olive oil",
-                "Basil"                
+                "Basil"
             };
 
-            var toppingsCopiedWithICloneable = (ToppingsList<string>)customToppingsList.Clone();
+            var toppingsClonedWithICloneable = (ToppingsList<string>)customToppingsList.Clone();
 
             Console.WriteLine("Original list: " + string.Join(", ", toppings));
-            Console.WriteLine("Copied with Constructor: " + string.Join(", ", toppingsCopiedWithConstructor));
-            Console.WriteLine("Copied with CopyTo: " + string.Join(", ", toppingsCopiedWithCopyTo));
-            Console.WriteLine("Copied with AddRange: " + string.Join(", ", toppingsCopiedWithAddRange));
-            Console.WriteLine("Copied with ToList: " + string.Join(", ", toppingsCopiedWithToList));
-            Console.WriteLine("Copied with ConverAll: " + string.Join(", ", toppingsCopiedWithConvertAll));
-            Console.WriteLine("Copied with ICloneable: " + string.Join(", ", toppingsCopiedWithICloneable));
+            Console.WriteLine("Cloned with Constructor: " + string.Join(", ", toppingsClonedWithConstructor));
+            Console.WriteLine("Cloned with CopyTo: " + string.Join(", ", toppingsClonedWithCopyTo));
+            Console.WriteLine("Cloned with AddRange: " + string.Join(", ", toppingsClonedWithAddRange));
+            Console.WriteLine("Cloned with ToList: " + string.Join(", ", toppingsClonedWithToList));
+            Console.WriteLine("Cloned with ConverAll: " + string.Join(", ", toppingsClonedWithConvertAll));
+            Console.WriteLine("Cloned with ICloneable: " + string.Join(", ", toppingsClonedWithICloneable));
 
             var pizzas = new List<Pizza>
             {
@@ -65,13 +65,20 @@
                 }
             };
 
-            var copiedPizzas = pizzas.ToList();            
+            var clonedPizzas = pizzas.ToList();
 
-            var pizzasCopiedWithICloneable = new List<Pizza>();
-            
-            foreach(var pizza in pizzas)
+            var pizzasClonedWithICloneable = new List<Pizza>();
+
+            foreach (var pizza in pizzas)
             {
-                pizzasCopiedWithICloneable.Add((Pizza)pizza.Clone());
+                pizzasClonedWithICloneable.Add((Pizza)pizza.Clone());
+            }
+
+            var pizzasClonedWithCopyConstructor = new List<Pizza>();
+
+            foreach (var pizza in pizzas)
+            {
+                pizzasClonedWithCopyConstructor.Add(new Pizza(pizza));
             }
 
             var margherita = pizzas
@@ -80,8 +87,9 @@
             margherita.Toppings.Clear();
 
             Console.WriteLine($"Original Margherita: {pizzas.First()}");
-            Console.WriteLine($"Copied Margherita: {copiedPizzas.First()}");
-            Console.WriteLine($"Copied with ICloneable Margherita: {pizzasCopiedWithICloneable.First()}");
+            Console.WriteLine($"Cloned with ToList: {clonedPizzas.First()}");
+            Console.WriteLine($"Cloned with ICloneable: {pizzasClonedWithICloneable.First()}");
+            Console.WriteLine($"Cloned with Copy Constructor: {pizzasClonedWithCopyConstructor.First()}");
         }
     }
 }
