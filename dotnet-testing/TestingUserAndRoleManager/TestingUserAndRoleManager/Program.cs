@@ -1,27 +1,52 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TestingUserAndRoleManager.Extensions;
-using Microsoft.AspNetCore.Hosting;
+using TestingUserAndRoleManager.Models;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using TestingUserAndRoleManager;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
-namespace TestingUserAndRoleManager
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ApplicationContext>(opts =>
+    opts.UseSqlServer(builder.Configuration.GetConnectionString("sqlConnection")));
+
+builder.Services.AddIdentity<User, IdentityRole>(opt =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().MigrateDatabase().Run();
-        }
+    opt.Password.RequiredLength = 7;
+    opt.Password.RequireDigit = false;
+    opt.Password.RequireUppercase = false;
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+    opt.User.RequireUniqueEmail = true;
+})
+.AddEntityFrameworkStores<ApplicationContext>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
 }
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();

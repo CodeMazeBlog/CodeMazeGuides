@@ -3,6 +3,7 @@ using TestingUserAndRoleManager.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace TestingUserAndRoleManager.Controllers
 {
@@ -10,16 +11,20 @@ namespace TestingUserAndRoleManager.Controllers
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(IMapper mapper, UserManager<User> userManager)
+        public AccountController(IMapper mapper, 
+            UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             _mapper = mapper;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
         public IActionResult Register()
         {
+            ViewData["roles"] = _roleManager.Roles.ToList();
             return View();
         }
 
@@ -27,7 +32,9 @@ namespace TestingUserAndRoleManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(UserRegistrationModel userModel)
         {
-            if(!ModelState.IsValid)
+            ViewData["roles"] = _roleManager.Roles.ToList();
+
+            if (!ModelState.IsValid)
             {
                 return View(userModel);
             }
@@ -45,7 +52,7 @@ namespace TestingUserAndRoleManager.Controllers
                 return View(userModel);
             }
 
-            await _userManager.AddToRoleAsync(user, "Visitor");
+            await _userManager.AddToRoleAsync(user, userModel.Role);
 
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }

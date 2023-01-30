@@ -49,10 +49,27 @@ namespace TestingUserAndRoleManagerUnitTests
             userManagerMock
                 .Setup(userManager => userManager.AddToRoleAsync(It.IsAny<User>(), It.IsAny<string>()));
 
+            var roleManagerMock = new Mock<RoleManager<IdentityRole>>(
+            new Mock<IRoleStore<User>>().Object,
+            new IRoleValidator<User>[0],
+            new Mock<ILookupNormalizer>().Object,
+            new Mock<IdentityErrorDescriber>().Object,
+            new Mock<ILogger<RoleManager<User>>>().Object);
+
+            var list = new List<IdentityRole>()
+                {
+                    new IdentityRole("Administrator"),
+                    new IdentityRole("Visitor")
+                };
+
+            //QueryableDbSetMock.GetQueryableMockDbSet<RoleManager<IdentityRole>>(list);
+
+            MockExtensions.SetupIQueryable<RoleManager<IdentityRole>>(roleManagerMock..Roles, list.AsQueryable());
+
             var mapperMock = new Mock<IMapper>();
             mapperMock.Setup(m => m.Map<User>(userRegistrationModel)).Returns(user);
 
-            var controller = new AccountController(mapperMock.Object, userManagerMock.Object);
+            var controller = new AccountController(mapperMock.Object, userManagerMock.Object, roleManagerMock.Object);
             var result = (RedirectToActionResult) await controller.Register(userRegistrationModel);
 
             Assert.Equal("Index", result.ActionName);
@@ -95,10 +112,16 @@ namespace TestingUserAndRoleManagerUnitTests
             userManagerMock
                 .Setup(userManager => userManager.AddToRoleAsync(It.IsAny<User>(), It.IsAny<string>()));
 
+            var roleManagerMock = new Mock<RoleManager<IdentityRole>>(
+            new Mock<IRoleStore<User>>().Object,
+            new IRoleValidator<User>[0],
+            new Mock<ILookupNormalizer>().Object,
+            new Mock<IdentityErrorDescriber>().Object,
+            new Mock<ILogger<RoleManager<User>>>().Object);
             var mapperMock = new Mock<IMapper>();
             mapperMock.Setup(m => m.Map<User>(userRegistrationModel)).Returns(user);
 
-            var controller = new AccountController(mapperMock.Object, userManagerMock.Object);
+            var controller = new AccountController(mapperMock.Object, userManagerMock.Object, roleManagerMock.Object);
             var validationResultList = new List<ValidationResult>();
             Validator.TryValidateObject(userRegistrationModel,new ValidationContext(userRegistrationModel), validationResultList);
             foreach (var valResult in validationResultList)
@@ -156,14 +179,47 @@ namespace TestingUserAndRoleManagerUnitTests
             userManagerMock
                 .Setup(userManager => userManager.AddToRoleAsync(It.IsAny<User>(), It.IsAny<string>()));
 
+            var roleManagerMock = new Mock<RoleManager<IdentityRole>>(
+            new Mock<IRoleStore<User>>().Object,
+            new IRoleValidator<User>[0],
+            new Mock<ILookupNormalizer>().Object,
+            new Mock<IdentityErrorDescriber>().Object,
+            new Mock<ILogger<RoleManager<User>>>().Object);
             var mapperMock = new Mock<IMapper>();
             mapperMock.Setup(m => m.Map<User>(userRegistrationModel)).Returns(user);
 
-            var controller = new AccountController(mapperMock.Object, userManagerMock.Object);
+            var controller = new AccountController(mapperMock.Object, userManagerMock.Object, roleManagerMock.Object);
             var result = (ViewResult)await controller.Register(userRegistrationModel);
 
             Assert.Null(result.ViewName);
         }
 
+    }
+    //public class QueryableDbSetMock
+    //{
+    //    public static IDbSet<T> GetQueryableMockDbSet<T>(params T[] sourceList) where T : class
+    //    {
+    //        var queryable = sourceList.AsQueryable();
+
+    //        var dbSet = new Mock<IDbSet<T>>();
+    //        dbSet.As<IQueryable<T>>().Setup(m => m.Provider).Returns(queryable.Provider);
+    //        dbSet.As<IQueryable<T>>().Setup(m => m.Expression).Returns(queryable.Expression);
+    //        dbSet.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(queryable.ElementType);
+    //        dbSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(queryable.GetEnumerator());
+
+    //        return dbSet.Object;
+    //    }
+    //}
+
+    public static class MockExtensions
+    {
+        public static void SetupIQueryable<T>(this Mock<T> mock, IQueryable queryable)
+            where T : class, IQueryable
+        {
+            mock.Setup(r => r.GetEnumerator()).Returns(queryable.GetEnumerator());
+            mock.Setup(r => r.Provider).Returns(queryable.Provider);
+            mock.Setup(r => r.ElementType).Returns(queryable.ElementType);
+            mock.Setup(r => r.Expression).Returns(queryable.Expression);
+        }
     }
 }
