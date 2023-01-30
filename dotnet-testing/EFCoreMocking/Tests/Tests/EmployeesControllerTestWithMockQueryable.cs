@@ -1,7 +1,4 @@
-using EFCoreMocking.Controllers;
-using EFCoreMocking.Data;
 using MockQueryable.Moq;
-using Moq;
 
 namespace Tests
 {
@@ -9,7 +6,7 @@ namespace Tests
     {
 
         [Fact]
-        public void GetEmployee_WhenCalled_ReturnsEmployeeList()
+        public async Task GetEmployee_WhenCalled_ReturnsEmployeeListAsync()
         {
             // Arrange
             var mock = TestDataHelper.GetFakeEmployeeList().BuildMock().BuildMockDbSet();
@@ -18,7 +15,7 @@ namespace Tests
 
             //Act
             EmployeesController employeesController = new(employeeContextMock.Object);
-            var employees = employeesController.GetEmployee().Result.Value;
+            var employees = (await employeesController.GetEmployees()).Value;
 
             //Assert
             Assert.NotNull(employees);
@@ -26,7 +23,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GetEmployeeById_WhenCalled_ReturnsEmployee()
+        public async Task GetEmployeeById_WhenCalled_ReturnsEmployeeAsync()
         {
             // Arrange
             var mock = TestDataHelper.GetFakeEmployeeList().BuildMock().BuildMockDbSet();
@@ -39,7 +36,7 @@ namespace Tests
 
             //Act
             EmployeesController employeesController = new(employeeContextMock.Object);
-            var employee = employeesController.GetEmployeeById(1).Result.Value;
+            var employee = (await employeesController.GetEmployeeById(1)).Value;
 
             //Assert
             Assert.NotNull(employee);

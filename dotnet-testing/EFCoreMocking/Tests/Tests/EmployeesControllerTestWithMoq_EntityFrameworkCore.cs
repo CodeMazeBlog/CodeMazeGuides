@@ -1,8 +1,4 @@
-using EFCoreMocking.Controllers;
-using EFCoreMocking.Data;
-using EFCoreMocking.Models;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 using Moq.EntityFrameworkCore;
 
 namespace Tests
@@ -11,7 +7,7 @@ namespace Tests
     {
 
         [Fact]
-        public void GetEmployee_WhenCalled_ReturnsEmployeeList()
+        public async Task GetEmployee_WhenCalled_ReturnsEmployeeListAsync()
         {
             // Arrange
             var employeeContextMock = new Mock<EmployeeDBContext>();
@@ -20,16 +16,15 @@ namespace Tests
 
             //Act
             EmployeesController employeesController = new(employeeContextMock.Object);
-            var employees = employeesController.GetEmployee().Result.Value;
+            var employees = (await employeesController.GetEmployees()).Value;
 
             //Assert
             Assert.NotNull(employees);
             Assert.Equal(2, employees.Count());
-
         }
 
         [Fact]
-        public void GetEmployeeById_WhenCalled_ReturnsEmployee()
+        public async Task GetEmployeeById_WhenCalled_ReturnsEmployeeAsync()
         {
             // Arrange            
             var employeeContextMock = new Mock<EmployeeDBContext>();
@@ -38,7 +33,7 @@ namespace Tests
 
             //Act
             EmployeesController employeesController = new(employeeContextMock.Object);
-            var employee = employeesController.GetEmployeeById(1).Result.Value;
+            var employee = (await employeesController.GetEmployeeById(1)).Value;
 
             //Assert
             Assert.NotNull(employee);

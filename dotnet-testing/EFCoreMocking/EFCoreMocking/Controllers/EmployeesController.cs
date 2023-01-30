@@ -18,7 +18,7 @@ namespace EFCoreMocking.Controllers
 
         // GET: api/Employees
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployee()
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
             return await _context.Employees.ToListAsync();
         }
@@ -29,7 +29,7 @@ namespace EFCoreMocking.Controllers
         {
             var employee = await _context.Employees.FindAsync(id);
 
-            if (employee == null)
+            if (employee is null)
             {
                 return NotFound();
             }
