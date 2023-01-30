@@ -15,17 +15,14 @@ namespace IEnumeralbleVsICollectionVsIListVsList
             return count;
         }
 
-        public IEnumerable<int> FilterNumbers(List<int> numbers)
+        public IEnumerable<int> GetEvenNumberUpToTen()
         {
-            int total = 0;
-            foreach(int num in numbers)
-            {
-                if(num > 2)
-                {
-                    total += num;
-                    yield return total;
-                }   
-            }
+            yield return 0;
+            yield return 2;
+            yield return 4;
+            yield return 6;
+            yield return 8;
+            yield return 10;
         }
     }
 }
