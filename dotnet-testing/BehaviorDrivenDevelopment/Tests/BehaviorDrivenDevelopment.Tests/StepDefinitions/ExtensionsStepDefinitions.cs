@@ -25,14 +25,18 @@ namespace BehaviorDrivenDevelopment.Tests.StepDefinitions
         [Then(@"the word count is (\d+)")]
         public void ThenTheWordCountIs(int count)
         {
-            var _count = ($"{(string)scenarioContext["Prefix"]}{(string)scenarioContext["Phrase"]}").GetWordCount();
+            var input = $"{(string)scenarioContext["Prefix"]}{(string)scenarioContext["Phrase"]}";
+            var _count = input.GetWordCount();
+
             Assert.IsTrue(count == _count);
         }
 
         [Then(@"the char count is (\d+)")]
         public void ThenTheCharCountIs(int count)
         {
-            var _count = ($"{(string)scenarioContext["Prefix"]}{(string)scenarioContext["Phrase"]}").GetCharCount();
+            var input = $"{(string)scenarioContext["Prefix"]}{(string)scenarioContext["Phrase"]}";
+            var _count = input.GetCharCount();
+
             Assert.IsTrue(count == _count);
         }
 

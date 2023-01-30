@@ -26,7 +26,8 @@ namespace BehaviorDrivenDevelopment.Tests.StepDefinitions
         [Then(@"the result should be (\d+)")]
         public void ThenTheResultShouldBe(int p0)
         {
-            var result = Helpers.SumTwoNumbers((int)scenarioContext["FirstNumber"], (int)scenarioContext["SecondNumber"]);
+            var result = Helpers.SumTwoNumbers((int)scenarioContext["FirstNumber"], 
+                (int)scenarioContext["SecondNumber"]);
             
             Assert.IsTrue(result == p0);
         }
@@ -34,7 +35,8 @@ namespace BehaviorDrivenDevelopment.Tests.StepDefinitions
         [Then(@"the subtract result should be (\d+)")]
         public void ThenTheSubtractResultShouldBe(int p0)
         {
-            var result = Helpers.SubtractTwoNumbers((int)scenarioContext["FirstNumber"], (int)scenarioContext["SecondNumber"]);
+            var result = Helpers.SubtractTwoNumbers((int)scenarioContext["FirstNumber"], 
+                (int)scenarioContext["SecondNumber"]);
             
             Assert.IsTrue(result == p0);
         }
