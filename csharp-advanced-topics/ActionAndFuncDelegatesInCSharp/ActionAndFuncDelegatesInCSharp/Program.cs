@@ -2,13 +2,14 @@
 {
     internal class Program
     {
+        private static double _circumference;
+
         static void Main(string[] args)
         {
             var areaDelegate = new Func<int, int, double>(Area);
-            Console.WriteLine(areaDelegate.Invoke(3, 7));
 
-            var displayDelegate = new Action<string>(Display);
-            displayDelegate("Hello, World!");
+            var circumferenceDelegate = new Action<int>(Circumference);
+            circumferenceDelegate.Invoke(2);
         }
 
         public static double Area(int b, int h)
@@ -16,9 +17,9 @@
             return (b * h) / 2.0;
         }
 
-        public static void Display(string message)
+        public static void Circumference(int r)
         {
-            Console.WriteLine(message);
+            _circumference = 2 * 3.14 * r;
         }
     }
 }
