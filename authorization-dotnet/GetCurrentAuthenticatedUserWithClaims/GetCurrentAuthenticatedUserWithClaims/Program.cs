@@ -1,11 +1,9 @@
 using GetCurrentAuthenticatedUserWithClaims.Models;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using GetCurrentAuthenticatedUserWithClaims.Factory;
 using GetCurrentAuthenticatedUserWithClaims;
-using AutoMapper;
-using GetCurrentAuthenticatedUserWithClaims.Services;
+using GetCurrentUserWithClaims.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,14 +15,12 @@ builder.Services.AddIdentity<User, IdentityRole>(opt =>
     opt.Password.RequiredLength = 7;
     opt.Password.RequireDigit = false;
     opt.Password.RequireUppercase = false;
-
     opt.User.RequireUniqueEmail = true;
 })
 .AddEntityFrameworkStores<ApplicationContext>();
 
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsFactory>();
-builder.Services.AddScoped<EmployeeService>();
-
+builder.Services.AddScoped<IEmployeeService>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 

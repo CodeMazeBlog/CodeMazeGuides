@@ -1,10 +1,11 @@
 ﻿using GetCurrentAuthenticatedUserWithClaims.Models;
+using GetCurrentUserWithClaims.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace GetCurrentAuthenticatedUserWithClaims.Services
 {
-    public class EmployeeService 
+    public class EmployeeService : IEmployeeService
     { 
         private readonly ApplicationContext _context; 
         private readonly IHttpContextAccessor _httpContextAccessor; 

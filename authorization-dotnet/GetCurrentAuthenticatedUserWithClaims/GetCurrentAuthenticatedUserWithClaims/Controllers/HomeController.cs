@@ -1,5 +1,6 @@
 ﻿using GetCurrentAuthenticatedUserWithClaims.Models;
 using GetCurrentAuthenticatedUserWithClaims.Services;
+using GetCurrentUserWithClaims.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,11 @@ namespace GetCurrentAuthenticatedUserWithClaims.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly EmployeeService _service;
+        private readonly IEmployeeService _service;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public HomeController(ILogger<HomeController> logger,
-            EmployeeService service, 
+            IEmployeeService service, 
             IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
