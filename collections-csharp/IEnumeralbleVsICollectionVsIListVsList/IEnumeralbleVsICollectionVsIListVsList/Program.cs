@@ -7,7 +7,6 @@ namespace IEnumeralbleVsICollectionVsIListVsList
         static void Main(string[] args)
         {
             var specialCharacter = new List<char>() {'#','@','$' };
-            var numbers = new List<int>() { 1, 2, 3, 4 };
             var arrayOfSpecialCharacter = new char[] { '=', '!' };
 
             //IEnumerable<T>
