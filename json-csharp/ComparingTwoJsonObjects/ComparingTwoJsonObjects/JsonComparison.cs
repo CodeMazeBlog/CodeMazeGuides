@@ -66,7 +66,7 @@ public class JsonComparison
             Console.WriteLine("The two deserialized plain json objects are not equal");
         }
 
-        if (car3.Equals(car1))
+        if (car1.Equals(car3))
         {
             Console.WriteLine("The plain and nested deserialized objects are equal");
         }
