@@ -15,10 +15,16 @@
             _sumOperation = InternalSumOperation;
         }
 
+        public long LastResult { get; internal set; }
+        public string? LastLogMessage { get; internal set; }
+
         public void Sum(int first, int second)
         {
             var result = _sumOperation(first, second);
-            _logger("The result is: " + result);
+            var logMessage = "The result is: " + result;
+            _logger(logMessage);
+            LastResult = result;
+            LastLogMessage = logMessage;
         }
 
         private void InternalLogger(string message)

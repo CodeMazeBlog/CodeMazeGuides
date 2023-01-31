@@ -16,6 +16,9 @@ namespace ActionAndFuncDelegatesTests
         public void WhenSum_ThenItRunsWIthSuccess()
         {
             _target.Sum(1, 1);
+
+            Assert.AreEqual(2, _target.LastResult);
+            Assert.AreEqual("The result is: 2", _target.LastLogMessage);
         }
     }
 }
