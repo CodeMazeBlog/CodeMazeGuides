@@ -159,5 +159,6 @@ namespace Tests
             // Assert
             result.Should().BeEquivalentTo(expectedResult);
         }
+
     }
 }

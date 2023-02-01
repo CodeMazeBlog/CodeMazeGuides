@@ -1,6 +1,4 @@
-﻿using Bogus;
-
-namespace LinqInnerJoin
+﻿namespace LinqInnerJoin
 {
     public class Student
     {

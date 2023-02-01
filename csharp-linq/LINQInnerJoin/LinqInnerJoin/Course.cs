@@ -1,7 +1,4 @@
-﻿using Bogus;
-using System.Linq;
-
-namespace LinqInnerJoin
+﻿namespace LinqInnerJoin
 {
     public class Course
     {
