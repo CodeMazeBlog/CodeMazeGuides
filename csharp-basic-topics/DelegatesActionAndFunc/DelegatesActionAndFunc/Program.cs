@@ -1,6 +1,6 @@
 ﻿namespace DelegatesActionAndFunc;
 
-public class Program
+public static class Program
 {
     public static string Capitalize(string input)
     {
