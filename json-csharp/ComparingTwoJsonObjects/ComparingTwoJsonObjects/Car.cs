@@ -15,6 +15,7 @@ public class Car
         }
 
         var car = (Car)obj;
+
         return Name == car.Name && Model == car.Model && Make == car.Make && Price == car.Price;
     }
 }

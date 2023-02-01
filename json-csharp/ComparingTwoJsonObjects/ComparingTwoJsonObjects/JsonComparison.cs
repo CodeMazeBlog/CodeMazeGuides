@@ -32,6 +32,7 @@ public class JsonComparison
         var isPlainAndNestedObjectEqual = JToken.DeepEquals(secondJsonObject, nestedJsonObject);
 
         string responseString;
+
         if (arePlainObjectsEqual)
         {
             responseString = "The plain json objects are equal";
@@ -66,6 +67,7 @@ public class JsonComparison
         var car3 = JsonConvert.DeserializeObject<Car>(NestedJsonString);
 
         string responseString;
+
         if (car1.Equals(car2))
         {
             responseString = "The two deserialized plain json objects are equal";
@@ -102,6 +104,7 @@ public class JsonComparison
         var isPlainAndNestedObjectEqual = car3.Properties().All(p => p.Value.Equals(car1[p.Name]));
 
         string responseString;
+
         if (arePlainObjectsEqual)
         {
             responseString = "The plain JSON objects are equal";
