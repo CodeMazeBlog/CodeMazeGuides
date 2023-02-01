@@ -5,7 +5,7 @@ namespace DependencyInjectionWithConstructorParameters
 {
     public class AnimalSoundService : IAnimalSoundService
     {
-        public readonly List<string> AnimalSounds;
+        public List<string> AnimalSounds { get; }
 
         public AnimalSoundService(IDogSoundService dogSoundService,
             IConfiguration configuration,
