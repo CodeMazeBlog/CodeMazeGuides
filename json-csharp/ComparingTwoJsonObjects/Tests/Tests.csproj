@@ -21,4 +21,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ComparingTwoJsonObjects\ComparingTwoJsonObjects.csproj" />
+  </ItemGroup>
+
 </Project>
