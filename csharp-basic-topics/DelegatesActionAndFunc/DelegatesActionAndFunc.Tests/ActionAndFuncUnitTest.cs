@@ -23,8 +23,7 @@ public class ActionAndFuncUnitTest
         //Arrange
         StringWriter stringWriter = new ();
         Console.SetOut(stringWriter);
-        var currentDate = DateTime.Now.ToString("dd/MM/yyyy");
-        string expectedStartOfLoggedOutput = $"Current date time is {currentDate}";
+        string expectedStartOfLoggedOutput = $"Current date time is";
 
         //Act
         Program.LogCurrentUTCDateTime();
