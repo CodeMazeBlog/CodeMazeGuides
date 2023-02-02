@@ -1,39 +1,18 @@
+using ActionAndFuncInCSharp;
+
 namespace Tests
 {
     [TestClass]
     public class ActionAndFuncUnitTest
     {
-        static void WriteText(string text) => Console.Write($"Text: {text}");
-        static string ReverseText(string text) => Reverse(text);
-
-        static string Reverse(string s)
-        {
-            char[] charArray = s.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
-        }
-
         [TestMethod]
-        public void WhenStringIsSent_ActionExecutesTheReferencedMethod()
+        public void WhenStringIsSent_ThenActionExecutesTheReferencedMethod()
         {
             using var sw = new StringWriter();
+            sw.NewLine = "";
             Console.SetOut(sw);
 
-            Action<string> executeNamedAction = new Action<string>(WriteText);
-
-            executeNamedAction("Action delegate in CSharp");
-
-            string expectedResult = "Text: Action delegate in CSharp";
-
-            Assert.AreEqual(expectedResult, sw.ToString());
-        }
-        [TestMethod]
-        public void WhenStringIsSent_ActionExecutesTheReferencedShorterMethod()
-        {
-            using var sw = new StringWriter();
-            Console.SetOut(sw);
-
-            Action<string> executeNamedAction = WriteText;
+            Action<string> executeNamedAction = new Action<string>(Program.WriteText);
 
             executeNamedAction("Action delegate in CSharp");
 
@@ -42,9 +21,24 @@ namespace Tests
             Assert.AreEqual(expectedResult, sw.ToString());
         }
 
+        [TestMethod]
+        public void WhenStringIsSent_ThenActionExecutesTheReferencedShorterMethod()
+        {
+            using var sw = new StringWriter();
+            sw.NewLine = "";
+            Console.SetOut(sw);
+
+            Action<string> executeNamedAction = Program.WriteText;
+
+            executeNamedAction("Action delegate in CSharp");
+
+            string expectedResult = "Text: Action delegate in CSharp";
+
+            Assert.AreEqual(expectedResult, sw.ToString());
+        }
 
         [TestMethod]
-        public void WhenStringIsSent_ActionExecutesTheAnonymousMethod()
+        public void WhenStringIsSent_ThenActionExecutesTheAnonymousMethod()
         {
             using var sw = new StringWriter();
             Console.SetOut(sw);
@@ -62,7 +56,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenStringIsSent_ActionExecutesTheLambdaMethod()
+        public void WhenStringIsSent_ThenActionExecutesTheLambdaMethod()
         {
             using var sw = new StringWriter();
             Console.SetOut(sw);
@@ -78,67 +72,68 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenStringIsSent_FuncExecutesTheReferencedMethod()
+        public void WhenStringIsSent_ThenFuncExecutesTheReferencedMethod()
         {
-            Func<string, string> executeNamedFunc = new Func<string, string>(ReverseText);
+            Func<string, string> executeNamedFunc = new Func<string, string>(Program.Reverse);
 
             string result = executeNamedFunc("Func delegate in CSharp");
 
-            string expectedResult = Reverse("Func delegate in CSharp");
+            string expectedResult = Program.Reverse("Func delegate in CSharp");
 
             Assert.AreEqual(expectedResult, result);
         }
 
 
         [TestMethod]
-        public void WhenStringIsSent_FuncExecutesTheReferencedShorterMethod()
+        public void WhenStringIsSent_ThenFuncExecutesTheReferencedShorterMethod()
         {
-            Func<string, string> executeNamedFunc = ReverseText;
+            Func<string, string> executeNamedFunc = Program.Reverse;
 
             string result = executeNamedFunc("Func delegate in CSharp");
 
-            string expectedResult = Reverse("Func delegate in CSharp");
+            string expectedResult = Program.Reverse("Func delegate in CSharp");
 
             Assert.AreEqual(expectedResult, result);
         }
 
         [TestMethod]
-        public void WhenStringIsSent_FuncExecutesTheAnonymousMethod()
+        public void WhenStringIsSent_ThenFuncExecutesTheAnonymousMethod()
         {
             Func<string, string> executeAnonymousFunc
                 = delegate (string text) {
-                    return Reverse(text);
+                    return Program.Reverse(text);
                 };
 
             string result = executeAnonymousFunc("Func delegate in CSharp");
 
-            string expectedResult = Reverse("Func delegate in CSharp");
+            string expectedResult = Program.Reverse("Func delegate in CSharp");
 
             Assert.AreEqual(expectedResult, result);
         }
 
         [TestMethod]
-        public void WhenStringIsSent_FuncExecutesTheLambdaMethod()
+        public void WhenStringIsSent_ThenFuncExecutesTheLambdaMethod()
         {
             Func<string, string> executeLambdaFunc
-                = text => ReverseText(text);
+                = text => Program.Reverse(text);
 
             string result = executeLambdaFunc("Func delegate in CSharp");
 
-            string expectedResult = Reverse("Func delegate in CSharp");
+            string expectedResult = Program.Reverse("Func delegate in CSharp");
 
             Assert.AreEqual(expectedResult, result);
         }
 
         [TestMethod]
-        public void GivenMultipleDelegate_WhenTwoLambaMethodAndPlusSign_ChainActionExecutesTheMethods()
+        public void GivenMultipleDelegate_WhenTwoLambaMethodAndPlusSign_ThenChainActionExecutesTheMethods()
         {
             using var sw = new StringWriter();
+            sw.NewLine = "";
             Console.SetOut(sw);
 
-            Action executeChainAction = () => WriteText("Call Number One");
-            executeChainAction += () => WriteText("Call Number Two");
-            executeChainAction += () => WriteText("Call Number Three");
+            Action executeChainAction = () => Program.WriteText("Call Number One");
+            executeChainAction += () => Program.WriteText("Call Number Two");
+            executeChainAction += () => Program.WriteText("Call Number Three");
 
             executeChainAction();
 
@@ -148,15 +143,15 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenMultipleDelegate_WhenTwoLambaMethodAndPlusSign_ChainFuncReturnsLastValue()
+        public void GivenMultipleDelegate_WhenTwoLambaMethodAndPlusSign_ThenChainFuncReturnsLastValue()
         {
-            Func<string> executeChainFunc = () => ReverseText("Call Number One");
-            executeChainFunc += () => ReverseText("Call Number Two");
-            executeChainFunc += () => ReverseText("Call Number Three");
+            Func<string> executeChainFunc = () => Program.Reverse("Call Number One");
+            executeChainFunc += () => Program.Reverse("Call Number Two");
+            executeChainFunc += () => Program.Reverse("Call Number Three");
 
             var result = executeChainFunc();
 
-            string expectedResult = Reverse("Call Number Three");
+            string expectedResult = Program.Reverse("Call Number Three");
 
             Assert.AreEqual(expectedResult, result);
         }

@@ -1,70 +1,82 @@
-﻿static void WriteText(string text) => Console.WriteLine($"Text: {text}");
-
-static string Reverse(string s)
+﻿namespace ActionAndFuncInCSharp
 {
-    char[] charArray = s.ToCharArray();
-    Array.Reverse(charArray);
-    return new string(charArray);
-}
+    public static class Program
+    {
+        public static void WriteText(string text) => Console.WriteLine($"Text: {text}");
 
-// Action delegate assigned in different ways 
+        public static string Reverse(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
 
-Action<string> executeNamedAction = new Action<string>(WriteText);
+            return new string(charArray);
+        }
 
-Action<string> executeNamedActionShorter = WriteText;
+        public static void Main(string[] args)
+        {
+            // Action delegate assigned in different ways 
 
-Action<string> executeAnonymousAction
-    = delegate(string text) {
-        Console.WriteLine($"Text: {text}");
-    };
+            Action<string> executeNamedAction = new Action<string>(WriteText);
 
-Action<string> executeLambdaAction
-    = text => Console.WriteLine($"Text: {text}");
+            Action<string> executeNamedActionShorter = WriteText;
 
-executeNamedAction("Action delegate in CSharp");
-executeNamedActionShorter("Action delegate in CSharp");
-executeAnonymousAction("Action delegate in CSharp");
-executeLambdaAction("Action delegate in CSharp");
+            Action<string> executeAnonymousAction
+                = delegate (string text)
+                {
+                    Console.WriteLine($"Text: {text}");
+                };
 
-// Func delegate assigned in different ways
+            Action<string> executeLambdaAction
+                = text => Console.WriteLine($"Text: {text}");
 
-Func<string, string> executeNamedFunc = new Func<string, string>(Reverse);
+            executeNamedAction("Action delegate in CSharp");
+            executeNamedActionShorter("Action delegate in CSharp");
+            executeAnonymousAction("Action delegate in CSharp");
+            executeLambdaAction("Action delegate in CSharp");
 
-Func<string, string> executeNamedFuncShorter = Reverse;
+            // Func delegate assigned in different ways
 
-Func<string, string> executeAnonymousFunc
-    = delegate (string text) {
-        return Reverse(text);
-    };
+            Func<string, string> executeNamedFunc = new Func<string, string>(Reverse);
 
-Func<string, string> executeLambdaFunc
-    = text => Reverse(text);
+            Func<string, string> executeNamedFuncShorter = Reverse;
 
-WriteText(executeNamedFunc("Func delegate in CSharp"));
-WriteText(executeNamedFuncShorter("Func delegate in CSharp"));
-WriteText(executeAnonymousFunc("Func delegate in CSharp"));
-WriteText(executeLambdaFunc("Func delegate in CSharp"));
+            Func<string, string> executeAnonymousFunc
+                = delegate (string text)
+                {
+                    return Reverse(text);
+                };
 
-// Chain Action delegate
+            Func<string, string> executeLambdaFunc
+                = text => Reverse(text);
 
-Action executeChainAction = () => WriteText("Call Number One");
-executeChainAction += () => WriteText("Call Number Two");
-executeChainAction += () => WriteText("Call Number Three");
+            WriteText(executeNamedFunc("Func delegate in CSharp"));
+            WriteText(executeNamedFuncShorter("Func delegate in CSharp"));
+            WriteText(executeAnonymousFunc("Func delegate in CSharp"));
+            WriteText(executeLambdaFunc("Func delegate in CSharp"));
 
-executeChainAction();
+            // Chain Action delegate
 
-// Chain Func delegate
+            Action executeChainAction = () => WriteText("Call Number One");
+            executeChainAction += () => WriteText("Call Number Two");
+            executeChainAction += () => WriteText("Call Number Three");
 
-Func<string> executeChainFunc = () => Reverse("Call Number One");
-executeChainFunc += () => Reverse("Call Number Two");
-executeChainFunc += () => Reverse("Call Number Three");
+            executeChainAction();
 
-WriteText(executeChainFunc());
+            // Chain Func delegate
 
-// Chain Func delegate GetInvocationList method
+            Func<string> executeChainFunc = () => Reverse("Call Number One");
+            executeChainFunc += () => Reverse("Call Number Two");
+            executeChainFunc += () => Reverse("Call Number Three");
 
-foreach (var function in executeChainFunc.GetInvocationList())
-{
-    var chainFunc = (Func<string>)function;
-    WriteText(chainFunc());
+            WriteText(executeChainFunc());
+
+            // Chain Func delegate GetInvocationList method
+
+            foreach (var function in executeChainFunc.GetInvocationList())
+            {
+                var chainFunc = (Func<string>)function;
+                WriteText(chainFunc());
+            }
+        }
+    }
 }
