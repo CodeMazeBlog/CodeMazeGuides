@@ -8,7 +8,6 @@ public static class Program
     }
 
     public static void LogCurrentUTCDateTime()
-
     {
         Console.WriteLine($"Current date time is {DateTime.Now}");
     }

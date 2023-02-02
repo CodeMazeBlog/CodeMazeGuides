@@ -8,7 +8,7 @@ public class ActionAndFuncUnitTest
     [Theory]
     [InlineData("JOHN", "JOHN")]
     [InlineData("penny", "Penny")]
-    public void Capitalize_DifferentInput_ReturnsCorrectOutput(string input, string expectedOutput)
+    public void WhenInputIsProvided_ThenItCapitalizesFirstLetter(string input, string expectedOutput)
     {
         //Act
         var capitalizedWord = Program.Capitalize(input);
@@ -18,10 +18,10 @@ public class ActionAndFuncUnitTest
     }
 
     [Fact]
-    public void LogCurrentUTCDateTime_WritesOutputToConsole()
+    public void WhenLogCurrentUTCDateTimeIsCalled_ThenCurrentDateTimeIsPrinted()
     {
         //Arrange
-        StringWriter stringWriter = new ();
+        StringWriter stringWriter = new();
         Console.SetOut(stringWriter);
         string expectedStartOfLoggedOutput = $"Current date time is";
 
