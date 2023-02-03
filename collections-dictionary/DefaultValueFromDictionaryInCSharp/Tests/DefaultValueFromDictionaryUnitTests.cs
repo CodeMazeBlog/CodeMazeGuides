@@ -5,7 +5,7 @@ namespace Tests
     [TestClass]
     public class DefaultValueFromDictionaryUnitTests
     {
-        private readonly Dictionary<string, int> myDictionary = new Dictionary<string, int> {
+        private readonly Dictionary<string, int> _myDictionary = new Dictionary<string, int> {
             {"alice", 1 },
             {"bob", 2 },
             {"tom", 3 }
@@ -15,7 +15,7 @@ namespace Tests
         public void GivenMethodGetValueOrDefault_WhenKeyNotExisting_ThenDefaultValueZero()
         {
             var key = "sam";
-            var value = MethodGetValueOrDefault.GetValueFromDictionary(myDictionary, key);
+            var value = MethodGetValueOrDefault.GetValueFromDictionary(_myDictionary, key);
 
             Assert.AreEqual(value, 0);
         }
@@ -24,7 +24,7 @@ namespace Tests
         public void GivenMethodGetValueOrDefault_WhenKeyBob_ThenValueTwo()
         {
             var key = "bob";
-            var value = MethodGetValueOrDefault.GetValueFromDictionary(myDictionary, key);
+            var value = MethodGetValueOrDefault.GetValueFromDictionary(_myDictionary, key);
 
             Assert.AreEqual(value, 2);
         }
@@ -33,7 +33,7 @@ namespace Tests
         public void GivenMethodTryGetValue_WhenKeyNotExisting_ThenDefaultValueZero()
         {
             var key = "sam";
-            var value = MethodGetValueOrDefault.GetValueFromDictionary(myDictionary, key);
+            var value = MethodGetValueOrDefault.GetValueFromDictionary(_myDictionary, key);
 
             Assert.AreEqual(value, 0);
         }
@@ -42,7 +42,7 @@ namespace Tests
         public void GivenMethodTryGetValue_WhenKeyBob_ThenValueTwo()
         {
             var key = "bob";
-            var value = MethodGetValueOrDefault.GetValueFromDictionary(myDictionary, key);
+            var value = MethodGetValueOrDefault.GetValueFromDictionary(_myDictionary, key);
 
             Assert.AreEqual(value, 2);
         }
@@ -51,7 +51,7 @@ namespace Tests
         public void GivenMethodContainsKey_WhenKeyNotExisting_ThenDefaultValueZero()
         {
             var key = "sam";
-            var value = MethodGetValueOrDefault.GetValueFromDictionary(myDictionary, key);
+            var value = MethodGetValueOrDefault.GetValueFromDictionary(_myDictionary, key);
 
             Assert.AreEqual(value, 0);
         }
@@ -60,7 +60,7 @@ namespace Tests
         public void GivenMethodContainsKey_WhenKeyBob_ThenValueTwo()
         {
             var key = "bob";
-            var value = MethodGetValueOrDefault.GetValueFromDictionary(myDictionary, key);
+            var value = MethodGetValueOrDefault.GetValueFromDictionary(_myDictionary, key);
 
             Assert.AreEqual(value, 2);
         }

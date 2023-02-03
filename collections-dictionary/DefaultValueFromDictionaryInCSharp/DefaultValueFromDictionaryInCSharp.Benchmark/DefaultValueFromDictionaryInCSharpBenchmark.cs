@@ -8,9 +8,9 @@ namespace BenchmarkRunner
     [RankColumn]
     public class DefaultValueFromDictionaryInCSharpBenchmark
     {
-        private Dictionary<string, int> myDictionary = fillDictionary();
+        private Dictionary<string, int> _myDictionary = FillDictionary();
 
-        public static Dictionary<string, int> fillDictionary()
+        public static Dictionary<string, int> FillDictionary()
         {
             var myDictionary = new Dictionary<string, int>();
 
@@ -21,25 +21,25 @@ namespace BenchmarkRunner
             return myDictionary;
         }
 
-        private readonly string key = "number_1000";
+        private readonly string _key = "number_1000";
 
         [Benchmark]
         public int ContainsKey()
         {
-            return myDictionary.ContainsKey(key) ? myDictionary[key] : default;
+            return _myDictionary.ContainsKey(_key) ? _myDictionary[_key] : default;
         }
 
 
         [Benchmark]
         public int TryGetValue()
         {
-            return myDictionary.TryGetValue(key, out var value) ? value : default;
+            return _myDictionary.TryGetValue(_key, out var value) ? value : default;
         }
 
         [Benchmark]
         public int GetValueOrDefault()
         {
-            return myDictionary.GetValueOrDefault(key);
+            return _myDictionary.GetValueOrDefault(_key);
         }
     }
 }

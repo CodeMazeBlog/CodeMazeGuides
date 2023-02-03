@@ -17,4 +17,3 @@ Console.WriteLine($"{MethodTryGetValue.GetValueFromDictionary(myDictionary, key)
 Console.WriteLine($"{MethodGetValueOrDefault.GetValueFromDictionary(myDictionary, key)}");
 
 Console.ReadKey();
-
