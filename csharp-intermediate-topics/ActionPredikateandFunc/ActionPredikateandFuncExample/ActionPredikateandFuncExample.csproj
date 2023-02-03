@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Remove="X:\razvoj\CodeMazeGuides\csharp-intermediate-topics\ActionPredikateandFunc\ActionPredikateandFuncExample\.editorconfig" />
+    <EditorConfigFiles Remove=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="X:\razvoj\CodeMazeGuides\csharp-intermediate-topics\ActionPredikateandFunc\ActionPredikateandFuncExample\.editorconfig" />
+    <None Include=".editorconfig" />
   </ItemGroup>
 
 </Project>
