@@ -7,4 +7,12 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="X:\razvoj\CodeMazeGuides\csharp-intermediate-topics\ActionPredikateandFunc\ActionPredikateandFuncExample\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="X:\razvoj\CodeMazeGuides\csharp-intermediate-topics\ActionPredikateandFunc\ActionPredikateandFuncExample\.editorconfig" />
+  </ItemGroup>
+
 </Project>
