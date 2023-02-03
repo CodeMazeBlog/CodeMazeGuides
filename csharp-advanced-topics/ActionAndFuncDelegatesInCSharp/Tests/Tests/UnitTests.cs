@@ -1,26 +1,24 @@
+using ActionAndFuncDelegatesInCSharp;
+
 namespace Tests
 {
     public class UnitTests
     {
-        private static double _circumference;
-        private static double Area(int b, int h) { return (b * h) / 2.0; }
-        private static void Circumference(int r) { _circumference = 2 * 3.14 * r; }
-
         [Test]
         public void GivenFuncDelegate_WhenInvokingArea_CalculateAreaOfTriangle()
         {
-            var areaDelegate = new Func<int, int, double>(Area);
+            var triangle = new Triangle();
 
-            Assert.That(areaDelegate.Invoke(3,7), Is.EqualTo(10.5));
+            Assert.That(triangle.AreaDelegate.Invoke(3, 7), Is.EqualTo(10.5));
         }
 
         [Test]
-        public void GivenActionDelegate_WhenInvokingDisplay_Circumference()
+        public void GivenActionDelegate_WhenInvokingCircumference_CalculateCircumferenceOfCircle()
         {
-            var circumferenceDelegate = new Action<int>(Circumference);
-            circumferenceDelegate.Invoke(2);
+            var circle = new Circle();
+            circle.CircumferenceDelegate.Invoke(2);
 
-            Assert.That(_circumference, Is.EqualTo(12.56));
+            Assert.That(circle.Result, Is.EqualTo(12.56));
         }
     }
 }

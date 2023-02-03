@@ -1,25 +1,15 @@
 ﻿namespace ActionAndFuncDelegatesInCSharp
 {
-    internal class Program
+public class Program
+{
+    static void Main(string[] args)
     {
-        private static double _circumference;
+        var triangle = new Triangle();
+        Console.WriteLine(triangle.AreaDelegate.Invoke(5, 2));
 
-        static void Main(string[] args)
-        {
-            var areaDelegate = new Func<int, int, double>(Area);
-
-            var circumferenceDelegate = new Action<int>(Circumference);
-            circumferenceDelegate.Invoke(2);
-        }
-
-        public static double Area(int b, int h)
-        {
-            return (b * h) / 2.0;
-        }
-
-        public static void Circumference(int r)
-        {
-            _circumference = 2 * 3.14 * r;
-        }
+        var circle = new Circle();
+        circle.CircumferenceDelegate.Invoke(2);
+        Console.WriteLine(circle.Result);
     }
+}
 }
