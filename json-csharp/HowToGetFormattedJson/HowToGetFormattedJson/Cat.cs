@@ -18,6 +18,7 @@ namespace HowToGetFormattedJson
                 WriteIndented = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 NumberHandling = JsonNumberHandling.WriteAsString,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             };
 
             return JsonSerializer.Serialize(this, options);
