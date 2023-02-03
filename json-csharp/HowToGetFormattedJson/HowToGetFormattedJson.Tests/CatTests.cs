@@ -2,12 +2,12 @@
 
 namespace HowToGetFormattedJson.Tests
 {
-    public class DogTests
+    public class CatTests
     {
         [Fact]
-        public void GivenAValidDog_WhenToStringMethodIsInvoked_ThenToStringMethodMethodReturnsExpectedOutput()
+        public void GivenAValidCat_WhenToStringMethodIsInvoked_ThenToStringMethodMethodReturnsExpectedOutput()
         {
-            var dog = new Dog
+            var cat = new Cat
             {
                 Name = "One",
                 Breed = "Two",
@@ -16,7 +16,7 @@ namespace HowToGetFormattedJson.Tests
                 FavoriteFoods = new List<string> { "Five", "Six" }
             };
 
-            var result = dog.ToString();
+            var result = cat.ToString();
 
             result.Should().NotBeNull();
             result.Should().NotBeEmpty();

@@ -15,9 +15,9 @@ namespace HowToGetFormattedJson
         {
             var options = new JsonSerializerOptions()
             {
-                NumberHandling = JsonNumberHandling.WriteAsString,
                 WriteIndented = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                NumberHandling = JsonNumberHandling.WriteAsString,
             };
 
             return JsonSerializer.Serialize(this, options);
