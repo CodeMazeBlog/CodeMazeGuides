@@ -14,7 +14,7 @@ namespace ActionAndFuncDelegatesInCSharpTests
         {
             string u = string.Empty;
             var stateResult = ContinueExecutionUsingFunc.Operation1(u);
-            var result = stateResult.result;
+            var result = stateResult.Result;
 
             Assert.Equal($"{nameof(ContinueExecutionUsingFunc.Operation1)}_{nameof(ContinueExecutionUsingFunc.Operation2)}_{nameof(ContinueExecutionUsingFunc.Operation3)}_{nameof(ContinueExecutionUsingFunc.Operation4)}", result);
         }
@@ -24,7 +24,7 @@ namespace ActionAndFuncDelegatesInCSharpTests
         {
             string u = string.Empty;
             var stateResult = ContinueExecutionUsingFunc.Operation3(u);
-            var result = stateResult.result;
+            var result = stateResult.Result;
 
             Assert.Equal($"{nameof(ContinueExecutionUsingFunc.Operation3)}_{nameof(ContinueExecutionUsingFunc.Operation4)}", result);
         }
