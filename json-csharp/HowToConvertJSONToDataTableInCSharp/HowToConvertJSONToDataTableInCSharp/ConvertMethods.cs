@@ -26,9 +26,9 @@ namespace HowToConvertJSONToDataTableInCSharp
             return dataTable;
         }
 
-        public static DataTable UseSystemTextJson(string sampleJson = _sampleJson)
+        public static DataTable? UseSystemTextJson(string sampleJson = _sampleJson)
         {
-            DataTable dataTable = new();
+            DataTable? dataTable = new();
             if (string.IsNullOrWhiteSpace(sampleJson))
             {
                 return dataTable;
@@ -63,9 +63,9 @@ namespace HowToConvertJSONToDataTableInCSharp
             return dataTable;
         }
 
-        public static DataTable ManuallyConvertJsonToDataTable(string sampleJson = _sampleJson)
+        public static DataTable? ManuallyConvertJsonToDataTable(string sampleJson = _sampleJson)
         {
-            DataTable dataTable = new();
+            DataTable? dataTable = new();
             if (string.IsNullOrWhiteSpace(sampleJson))
             {
                 return dataTable;

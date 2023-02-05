@@ -4,7 +4,7 @@ namespace HowToConvertJSONToDataTableInCSharp
 {
     public class GenerateBenchmarkStudentJson
     {
-        public static string Generate10000StudentsJsonData()
+        public static string? Generate10000StudentsJsonData()
         {
             var students = new List<Student>();
             for (int i = 0; i < 10000; i++)
