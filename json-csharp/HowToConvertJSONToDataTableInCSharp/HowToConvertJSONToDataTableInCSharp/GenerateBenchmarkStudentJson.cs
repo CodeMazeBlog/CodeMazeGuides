@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HowToConvertJSONToDataTableInCSharp;
+using Newtonsoft.Json;
 
 namespace HowToConvertJSONToDataTableInCSharp
 {
@@ -17,6 +18,7 @@ namespace HowToConvertJSONToDataTableInCSharp
                     Subject = "Physics"
                 });
             }
+
             var json = JsonConvert.SerializeObject(students);
 
             return json;

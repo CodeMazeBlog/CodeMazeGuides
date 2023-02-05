@@ -21,6 +21,7 @@ namespace HowToConvertJSONToDataTableInCSharp
             {
                 return dataTable;
             }
+
             dataTable = JsonConvert.DeserializeObject<DataTable>(sampleJson);
 
             return dataTable;
@@ -70,21 +71,23 @@ namespace HowToConvertJSONToDataTableInCSharp
             {
                 return dataTable;
             }
+
             var cleanedJson = Regex.Replace(sampleJson, "\\\\| |\n|\r|\t|\\[|\\]|\"", "");
             var items = Regex.Split(cleanedJson, "},{").AsSpan<string>();
-
+            
             for (int i = 0; i < items.Length; i++)
             {
                 items[i] = items[i].Replace("{", "").Replace("}", "");
             }
-            var columns = Regex.Split(items[0], ",").AsSpan<string>();
 
+            var columns = Regex.Split(items[0], ",").AsSpan<string>();
+           
             foreach (string column in columns)
             {
                 var parts = Regex.Split(column, ":").AsSpan<string>();
                 dataTable.Columns.Add(parts[0].Trim());
             }
-
+            
             for (int i = 0; i < items.Length; i++)
             {
                 var row = dataTable.NewRow();
