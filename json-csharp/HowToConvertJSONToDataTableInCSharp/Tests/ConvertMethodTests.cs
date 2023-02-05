@@ -15,7 +15,7 @@ namespace Tests
             var BirthYear = 1995;
             var Subject = "Physics";
 
-            Assert.IsType<DataTable>(dataTable);
+            Assert.IsType<DataTable?>(dataTable);
             Assert.True(dataTable.Rows.Count > 0);
             Assert.Equal(studentRow["FirstName"].ToString(), FirstName);
             Assert.Equal(studentRow["LastName"].ToString(), LastName);

@@ -14,9 +14,9 @@ namespace HowToConvertJSONToDataTableInCSharp
                           ""BirthYear"":1995,
                           ""Subject"":""Physics""}]";
 
-        public static DataTable UseNewtonsoftJson(string sampleJson = _sampleJson)
+        public static DataTable? UseNewtonsoftJson(string sampleJson = _sampleJson)
         {
-            DataTable dataTable = new();
+            DataTable? dataTable = new();
             if (string.IsNullOrWhiteSpace(sampleJson))
             {
                 return dataTable;
