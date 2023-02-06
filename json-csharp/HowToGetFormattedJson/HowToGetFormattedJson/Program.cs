@@ -1,4 +1,7 @@
-﻿namespace HowToGetFormattedJson
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+
+namespace HowToGetFormattedJson
 {
     internal class Program
     {
@@ -25,6 +28,16 @@
             };
 
             Console.WriteLine(felix);
+            
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings()
+            {
+                Formatting = Formatting.Indented,
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
+            Console.WriteLine(JsonConvert.SerializeObject(rex));
+            Console.WriteLine(JsonConvert.SerializeObject(felix));
         }
     }
 }
