@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FuncAndActionDelegatesInCsharp\FuncAndActionDelegatesInCsharp.csproj" />
+    <ProjectReference Include="..\FuncAndActionDelegatesInCsharp\FuncAndActionDelegatesInCsharp_kometEvalArticle.csproj" />
   </ItemGroup>
 
 </Project>
