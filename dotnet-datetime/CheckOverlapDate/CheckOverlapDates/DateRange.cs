@@ -1,9 +1,9 @@
 ﻿public class DateRange
 {
-    public DateTime Start { get; private set; }
-    public DateTime End { get; private set; }
+    public DateOnly Start { get; private set; }
+    public DateOnly End { get; private set; }
 
-    public DateRange(DateTime start, DateTime end)
+    public DateRange(DateOnly start, DateOnly end)
     {
         Start = start;
         End = end;

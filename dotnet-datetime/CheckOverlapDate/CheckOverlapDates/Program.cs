@@ -34,6 +34,21 @@ Console.WriteLine(fourthScenario);
 Console.WriteLine(fifthScenario);
 Console.WriteLine(" ---");
 
+var overlapTimeRange = OverlapChecker.OverlapTime(new TimeOnly(10, 00),
+    new TimeOnly(12, 00),
+    new TimeOnly(11, 00),
+    new TimeOnly(15, 00));
+Console.WriteLine(overlapTimeRange);
+Console.WriteLine(" ---");
+
+var dontOverlapTimeRange = OverlapChecker.OverlapTime(new(10, 00),
+    new TimeOnly(12, 00),
+    new TimeOnly(15, 00),
+    new TimeOnly(16, 00));
+Console.WriteLine(dontOverlapTimeRange);
+Console.WriteLine(" ---");
+
+
 var firstOverlapDateRange = new DateRange(new(2023, 01, 06), new(2023, 01, 12));
 var secondOverlapDateRange = new DateRange(new(2023, 01, 04), new(2023, 01, 14));
 Console.WriteLine(firstOverlapDateRange.Overlap(secondOverlapDateRange));

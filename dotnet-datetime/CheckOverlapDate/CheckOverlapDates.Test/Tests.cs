@@ -21,6 +21,24 @@ public class Tests
     }
 
     [Theory]
+    [MemberData(nameof(DontOverlapTimeOnly))]
+    public void GivenTwoTimeRanges_WhenUsingOverlapCheckerClass_ThenReturnFalseIfTheyOverlap(TimeOnly firstTimeOnly, TimeOnly secondTime, TimeOnly thirdTimeOnly, TimeOnly fourthTime)
+    {
+        var result = OverlapChecker.OverlapTime(firstTimeOnly, secondTime, thirdTimeOnly, fourthTime);
+
+        Assert.False(result);
+    }
+
+    [Theory]
+    [MemberData(nameof(OverlapTimeOnly))]
+    public void GivenTwoTimeRanges_WhenUsingOverlapCheckerClass_ThenReturnTrueIfTheyOverlap(TimeOnly firstTimeOnly, TimeOnly secondTime, TimeOnly thirdTimeOnly, TimeOnly fourthTime)
+    {
+        var result = OverlapChecker.OverlapTime(firstTimeOnly, secondTime, thirdTimeOnly, fourthTime);
+
+        Assert.True(result);
+    }
+
+    [Theory]
     [MemberData(nameof(DontOverlapDateRanges))]
     public void GivenTwoDateRanges_WhenUsingDateRangeClass_ThanReturnFalseIfTheyOverlap(DateRange firstDateRange, DateRange secondDateRange)
     {
@@ -89,6 +107,71 @@ public class Tests
         {
             new DateRange(new(2023, 01, 10), new(2023, 01, 16)),
             new DateRange(new(2023, 01, 07), new(2023, 01, 13))
+        };
+    }
+
+    public static IEnumerable<object[]> DontOverlapTimeOnly()
+    {
+        //The first Time starts at 12:00 and ends at 13:00
+        //The second Time starts at 14:00 and ends at 15:00.
+        yield return new object[]
+        {
+            new TimeOnly(12, 00),
+            new TimeOnly(13, 00),
+            new TimeOnly(14, 00),
+            new TimeOnly(15, 00)
+        };
+
+        //The first Time starts at 12:00 and ends at 13:00
+        //The second Time starts at 08:00 and ends at 09:00.
+        yield return new object[]
+        {
+            new TimeOnly(12,00),
+            new TimeOnly(13,00),
+            new TimeOnly(08,00),
+            new TimeOnly(09,00)
+        };
+    }
+    public static IEnumerable<object[]> OverlapTimeOnly()
+    {
+        //The first Time starts at 12:00 and ends at 14:00
+        //The second Time starts at 10:00 and ends at 16:00
+        yield return new object[]
+        {
+            new TimeOnly(12, 00),
+            new TimeOnly(14, 00),
+            new TimeOnly(10, 00),
+            new TimeOnly(16, 00)
+        };
+
+        //The first Time starts at 12:00 and ends at 16:00
+        //The second Time starts at 13:00 and ends at 14:00
+        yield return new object[]
+        {
+            new TimeOnly(12, 00),
+            new TimeOnly(16, 00),
+            new TimeOnly(13, 00),
+            new TimeOnly(14, 00)
+        };
+
+        //The first Time starts at 12:00 and ends at 14:00
+        //The second Time starts at 13:00 and ends at 16:00
+        yield return new object[]
+        {
+            new TimeOnly(12, 00),
+            new TimeOnly(14, 00),
+            new TimeOnly(13, 00),
+            new TimeOnly(16, 00)
+        };
+
+        //The first Time starts at 12:00 and ends at 16:00
+        //The second Time starts at 11:00 and ends at 15:00
+        yield return new object[]
+        {
+            new TimeOnly(12, 00),
+            new TimeOnly(16, 00),
+            new TimeOnly(11, 00),
+            new TimeOnly(15, 00)
         };
     }
 }
