@@ -6,7 +6,7 @@ namespace Tests
     {
 
         [Fact]
-        public async Task GetEmployee_WhenCalled_ReturnsEmployeeListAsync()
+        public async Task GetEmployees_WhenCalled_ReturnsEmployeeListAsync()
         {
             // Arrange
             var mock = TestDataHelper.GetFakeEmployeeList().BuildMock().BuildMockDbSet();
