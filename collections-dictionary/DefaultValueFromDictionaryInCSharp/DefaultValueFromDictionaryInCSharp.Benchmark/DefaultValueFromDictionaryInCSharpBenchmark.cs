@@ -10,17 +10,6 @@ namespace BenchmarkRunner
     {
         private Dictionary<string, int> _myDictionary = FillDictionary();
 
-        public static Dictionary<string, int> FillDictionary()
-        {
-            var myDictionary = new Dictionary<string, int>();
-
-            for (int i = 1; i < 10000; i++)
-            {
-                myDictionary.Add($"number_{i}", i);
-            }
-            return myDictionary;
-        }
-
         private readonly string _key = "number_1000";
 
         [Benchmark]
@@ -28,7 +17,6 @@ namespace BenchmarkRunner
         {
             return _myDictionary.ContainsKey(_key) ? _myDictionary[_key] : default;
         }
-
 
         [Benchmark]
         public int TryGetValue()
@@ -40,6 +28,17 @@ namespace BenchmarkRunner
         public int GetValueOrDefault()
         {
             return _myDictionary.GetValueOrDefault(_key);
+        }
+
+        private static Dictionary<string, int> FillDictionary()
+        {
+            var myDictionary = new Dictionary<string, int>();
+
+            for (int i = 1; i < 10000; i++)
+            {
+                myDictionary.Add($"number_{i}", i);
+            }
+            return myDictionary;
         }
     }
 }
