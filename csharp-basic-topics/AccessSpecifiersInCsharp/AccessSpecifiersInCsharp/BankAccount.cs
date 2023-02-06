@@ -2,23 +2,23 @@
 {
     public class BankAccount
     {
-        private int balance;
+        private int _balance;
 
         public int GetBalance()
         {
-            return balance;
+            return _balance;
         }
 
         public void Deposit(int amount)
         {
-            balance += amount;
+            _balance += amount;
         }
 
         public void Withdraw(int amount)
         {
-            if (balance - amount >= 0)
+            if (_balance - amount >= 0)
             {
-                balance -= amount;
+                _balance -= amount;
             }
         }
     }
