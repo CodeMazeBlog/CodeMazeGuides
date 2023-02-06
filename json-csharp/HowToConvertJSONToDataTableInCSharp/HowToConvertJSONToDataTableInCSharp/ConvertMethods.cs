@@ -73,28 +73,28 @@ namespace HowToConvertJSONToDataTableInCSharp
             }
 
             var cleanedJson = Regex.Replace(sampleJson, "\\\\| |\n|\r|\t|\\[|\\]|\"", "");
-            var items = Regex.Split(cleanedJson, "},{").AsSpan<string>();
+            var items = Regex.Split(cleanedJson, "},{").AsSpan();
             
             for (int i = 0; i < items.Length; i++)
             {
                 items[i] = items[i].Replace("{", "").Replace("}", "");
             }
 
-            var columns = Regex.Split(items[0], ",").AsSpan<string>();
+            var columns = Regex.Split(items[0], ",").AsSpan();
            
             foreach (string column in columns)
             {
-                var parts = Regex.Split(column, ":").AsSpan<string>();
+                var parts = Regex.Split(column, ":").AsSpan();
                 dataTable.Columns.Add(parts[0].Trim());
             }
             
             for (int i = 0; i < items.Length; i++)
             {
                 var row = dataTable.NewRow();
-                var values = Regex.Split(items[i], ",").AsSpan<string>();
+                var values = Regex.Split(items[i], ",").AsSpan();
                 for (int j = 0; j < values.Length; j++)
                 {
-                    var parts = Regex.Split(values[j], ":").AsSpan<string>();
+                    var parts = Regex.Split(values[j], ":").AsSpan();
                     if (int.TryParse(parts[1].Trim(), out int temp))
                         row[j] = temp;
                     else
