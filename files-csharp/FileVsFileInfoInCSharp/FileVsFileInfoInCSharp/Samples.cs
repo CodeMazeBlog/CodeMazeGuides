@@ -35,13 +35,13 @@ namespace FileVsFileInfoInCSharp
             openFileWithFileClassWithFileAccess.Close();
             File.Delete("myFileThree.txt");
 
-            //Open a file with FileMode.Create FileAccess.Write using File 
+            //Open a file with FileMode.Create FileAccess.Write using FileInfo 
             using FileStream openFileInfoWithFileClassWithFileAccess = fileInfo.Open(FileMode.Create, FileAccess.Write);
             openFileInfoWithFileClassWithFileAccess.Close();
             openFileInfoWithFileClassWithFileAccess.Dispose();
             fileInfo.Delete();
 
-            //Open a file with FileMode.Create, FileAccess.Write using File 
+            //Open a file with FileMode.Create, FileAccess.Write, FileShare.ReadWrite using File 
             using FileStream openFileWithFileClassWithFileShare = File.Open("myFileTwentyOne.txt", FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
             openFileWithFileClassWithFileAccess.Close();
             openFileWithFileClassWithFileAccess.Dispose();            
@@ -51,7 +51,7 @@ namespace FileVsFileInfoInCSharp
             openFileInfoWithFileClassWithFileAccess.Close();
             openFileInfoWithFileClassWithFileAccess.Dispose();            
 
-            //Open a file with FileStreamOptions using File
+            //Open a file with FileStreamOptions
             var fileStreamOptions = new FileStreamOptions()
             {
                 Access = FileAccess.Read,
