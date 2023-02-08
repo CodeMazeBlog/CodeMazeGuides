@@ -5,6 +5,7 @@ This section contains articles about working with projects in .NET (templates, C
 ### Relevant articles:
 
 - [Generating Source Code Documentation With DocFx](https://code-maze.com/docfx-generating-source-code-documentation/)
+- [How to Execute CLI Applications From C#](https://code-maze.com/csharp-execute-cli-applications/)
 - [How to Create and Publish a NuGet Package with .NET CLI](https://code-maze.com/dotnet-nuget-create-publish/)
 - [Creating .NET Project Templates](https://code-maze.com/dotnet-project-templates-creation/)
 - [Console Class in C#](https://code-maze.com/csharp-console/)

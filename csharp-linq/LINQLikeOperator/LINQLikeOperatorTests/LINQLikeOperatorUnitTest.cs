@@ -60,4 +60,28 @@ public class LINQLikeOperatorUnitTest : IClassFixture<DatabaseFixture>
         Assert.Contains(_fixture.endsWithN, articles.Select(x => x.Title));
         Assert.DoesNotContain(_fixture.notContainsN, articles.Select(x => x.Title));
     }
+
+    [Fact]
+    public void WhenUsingWildcardsWithWhereAndStartsWith_ThenWildcardDoesNotWork()
+    {
+        List<Article> articles = _fixture.blogDbContext!.Articles.Where(x => x.Title.StartsWith("_n")).ToList();
+
+        Assert.True(articles.Count == 0);
+        Assert.DoesNotContain(_fixture.startsWithN, articles.Select(x => x.Title));
+        Assert.DoesNotContain(_fixture.containsN, articles.Select(x => x.Title));
+        Assert.DoesNotContain(_fixture.endsWithN, articles.Select(x => x.Title));
+        Assert.DoesNotContain(_fixture.notContainsN, articles.Select(x => x.Title));
+    }
+
+    [Fact]
+    public void WhenUsingWildcardsWithWhereAndEFFunctionLike_ThenCorrectArticles()
+    {
+        List<Article> articles = _fixture.blogDbContext!.Articles.Where(x => EF.Functions.Like(x.Title, "_n%")).ToList();
+
+        Assert.True(articles.Count == 1);
+        Assert.DoesNotContain(_fixture.startsWithN, articles.Select(x => x.Title));
+        Assert.Contains(_fixture.containsN, articles.Select(x => x.Title));
+        Assert.DoesNotContain(_fixture.endsWithN, articles.Select(x => x.Title));
+        Assert.DoesNotContain(_fixture.notContainsN, articles.Select(x => x.Title));
+    }
 }
