@@ -12,7 +12,7 @@ namespace ActionAndFuncDelegates.UnitTests
         }
 
         [Fact]
-        public void GivenCartWithProducts_ActionLogsTheContent()
+        public void WhenGivenCartWithProducts_ThenActionLogsTheContent()
         {
             string expectedResult = "Cart contains: Apple, Banana, Carrot";
             string actualResult = string.Empty;
@@ -23,7 +23,7 @@ namespace ActionAndFuncDelegates.UnitTests
         }
 
         [Fact]
-        public void GivenCartWithProducts_FuncCalculatesTotalValue()
+        public void WhenGivenCartWithProducts_ThenFuncCalculatesTotalValue()
         {
             decimal expectedCost = 0.75m;
             decimal actualCost = 0;
