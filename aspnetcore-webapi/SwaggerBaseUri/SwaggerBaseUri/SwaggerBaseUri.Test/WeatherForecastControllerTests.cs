@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Logging;
 using Moq;
 using SwaggerBaseUri.Controllers;
+using Xunit;
 
 namespace SwaggerBaseUri.Tests
 {
