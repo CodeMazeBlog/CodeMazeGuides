@@ -2,7 +2,7 @@
 
 namespace FileVsFileInfoInCSharp
 {
-    public static class Samples
+    public static class FileVsFileInfoSamples
     {
         public static (FileStream, FileStream) CreateFile()
         {
@@ -18,38 +18,37 @@ namespace FileVsFileInfoInCSharp
 
         public static (FileStream, FileStream) OpenFile()
         {
-            FileInfo fileInfo = new("myFileTwelve.txt");
-
             //Open a file using File classs
-            using FileStream openFileWithFileClass = File.Open("myFileThree.txt", FileMode.Create);
-            openFileWithFileClass.Dispose();
+            using FileStream fileOne = File.Open("myFileThree.txt", FileMode.Create);
+            fileOne.Dispose();
             File.Delete("myFileThree.txt");
 
-            //Open a file in Create mode with FileInfo            
+            //Open a file in Create mode with FileInfo
+            FileInfo fileInfo = new("myFileTwelve.txt");
             using FileStream result = fileInfo.Open(FileMode.Create);
             result.Dispose();
             fileInfo.Delete();
 
             //Open a file with FileMode.Create, FileAccess.Write using File 
-            using FileStream openFileWithFileClassWithFileAccess = File.Open("myFileThree.txt", FileMode.Create, FileAccess.Write);
-            openFileWithFileClassWithFileAccess.Close();
+            using FileStream fileAccess = File.Open("myFileThree.txt", FileMode.Create, FileAccess.Write);
+            fileAccess.Close();
             File.Delete("myFileThree.txt");
 
             //Open a file with FileMode.Create FileAccess.Write using FileInfo 
-            using FileStream openFileInfoWithFileClassWithFileAccess = fileInfo.Open(FileMode.Create, FileAccess.Write);
-            openFileInfoWithFileClassWithFileAccess.Close();
-            openFileInfoWithFileClassWithFileAccess.Dispose();
+            using FileStream fileInfoAccess = fileInfo.Open(FileMode.Create, FileAccess.Write);
+            fileInfoAccess.Close();
+            fileInfoAccess.Dispose();
             fileInfo.Delete();
 
             //Open a file with FileMode.Create, FileAccess.Write, FileShare.ReadWrite using File 
-            using FileStream openFileWithFileClassWithFileShare = File.Open("myFileTwentyOne.txt", FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
-            openFileWithFileClassWithFileAccess.Close();
-            openFileWithFileClassWithFileAccess.Dispose();            
+            using FileStream fileShare = File.Open("myFileTwentyOne.txt", FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
+            fileShare.Close();
+            fileShare.Dispose();
 
             //Open a file with FileMode.Create FileAccess.Write using File 
-            using FileStream openFileInfoWithFileClassWithFileShare = fileInfo.Open(FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
-            openFileInfoWithFileClassWithFileAccess.Close();
-            openFileInfoWithFileClassWithFileAccess.Dispose();            
+            using FileStream fileInfoShare = fileInfo.Open(FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
+            fileInfoShare.Close();
+            fileInfoShare.Dispose();
 
             //Open a file with FileStreamOptions
             var fileStreamOptions = new FileStreamOptions()
@@ -59,29 +58,29 @@ namespace FileVsFileInfoInCSharp
                 Mode = FileMode.OpenOrCreate
             };
 
-            using FileStream openFileWithFileClassUsingFileStreamOptions = File.Open("myFileTwentyTwo.txt", fileStreamOptions);
-            openFileWithFileClassUsingFileStreamOptions.Dispose();
+            using FileStream fileStream = File.Open("myFileTwentyTwo.txt", fileStreamOptions);
+            fileStream.Dispose();
             File.Delete("myFileTwentyTwo.txt");
 
             //Open a file with FileStreamOptions using FileInfo
-            using FileStream openFileWithFileInfoClassUsingFileStreamOptions = fileInfo.Open(fileStreamOptions);
-            openFileWithFileInfoClassUsingFileStreamOptions.Close();
-            openFileWithFileInfoClassUsingFileStreamOptions.Dispose();
-            
-            return (openFileWithFileClass, result);
+            using FileStream fileInfoFileStream = fileInfo.Open(fileStreamOptions);
+            fileInfoFileStream.Close();
+            fileInfoFileStream.Dispose();
+
+            return (fileOne, result);
         }
 
         public static (FileStream, FileStream) OpenReadFile()
         {
             //Create a read-only file stream with static File.OpenRead()
-            using FileStream openReadFileResult = File.Create("sampleReadOnlyFileTwo.txt");
+            using FileStream openReadFileResult = File.OpenRead("sampleReadOnlyFileTwo.txt");
             openReadFileResult.Dispose();
             File.Delete("myFileOne.txt");
 
             //Create a read-only file stream with instance FileInfo.OpenRead()
             FileInfo fileInfo = new("myFileTwo.txt");
 
-            using FileStream openReadFileInfoResult = fileInfo.Create();
+            using FileStream openReadFileInfoResult = fileInfo.OpenRead();
             openReadFileInfoResult.Dispose();
             fileInfo.Delete();
 
@@ -126,8 +125,7 @@ namespace FileVsFileInfoInCSharp
             {
                 sr.Append(result);
             }
-            sr.ToString();
-                Console.WriteLine(sr.ToString());
+
             return sr.ToString();
         }
 

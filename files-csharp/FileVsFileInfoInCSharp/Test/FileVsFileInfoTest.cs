@@ -1,4 +1,4 @@
-﻿using static FileVsFileInfoInCSharp.Samples;
+﻿using static FileVsFileInfoInCSharp.FileVsFileInfoSamples;
 
 namespace Test
 {

@@ -2,4 +2,4 @@
 using FileVsFileInfoInCSharp;
 
 Console.WriteLine("Hello, World!");
-Samples.OpenFile();
+FileVsFileInfoSamples.OpenFile();
