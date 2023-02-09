@@ -22,7 +22,8 @@ namespace SwaggerBaseUri
 
                 app.UseSwaggerUI(option =>
                 {
-                    option.SwaggerEndpoint("/codeMaze/v1/swagger.json", "CodeMaze API"); option.RoutePrefix = "codeMaze";
+                    option.SwaggerEndpoint("/codeMaze/v1/swagger.json", "CodeMaze API");
+                    option.RoutePrefix = "codeMaze";
                 });
             }
 
