@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var engine = new Engine(150, 4, "Inline", 250, FuelType.Diesel);
+            var car = new Car(engine);
         }
     }
 }
