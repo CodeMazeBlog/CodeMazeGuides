@@ -20,7 +20,7 @@
             
             var rectangle = new Rectangle(10, 5);
             
-            int area = rectangle.GetArea();
+            var area = rectangle.GetArea();
             
             Console.WriteLine(area);
 
