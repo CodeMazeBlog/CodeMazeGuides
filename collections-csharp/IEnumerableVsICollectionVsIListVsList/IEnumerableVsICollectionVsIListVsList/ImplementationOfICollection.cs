@@ -1,4 +1,4 @@
-﻿namespace IEnumeralbleVsICollectionVsIListVsList
+﻿namespace IEnumerableVsICollectionVsIListVsList
 {
     public class ImplementationOfICollection
     {

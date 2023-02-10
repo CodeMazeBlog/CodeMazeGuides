@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IEnumeralbleVsICollectionVsIListVsList\IEnumeralbleVsICollectionVsIListVsList", "IEnumeralbleVsICollectionVsIListVsList\IEnumeralbleVsICollectionVsIListVsList.csproj", "{1677CEFE-3D61-4AF0-969D-501792807E1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IEnumerableVsICollectionVsIListVsList", "IEnumerableVsICollectionVsIListVsList\IEnumerableVsICollectionVsIListVsList.csproj", "{1677CEFE-3D61-4AF0-969D-501792807E1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{A3D5342E-74BD-4D8F-8578-3FA6D7245D59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{A3D5342E-74BD-4D8F-8578-3FA6D7245D59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

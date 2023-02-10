@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IEnumeralbleVsICollectionVsIListVsList
+namespace IEnumerableVsICollectionVsIListVsList
 {
     class Program
     {

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IEnumeralbleVsICollectionVsIListVsList\IEnumeralbleVsICollectionVsIListVsList.csproj" />
+    <ProjectReference Include="..\IEnumerableVsICollectionVsIListVsList\IEnumerableVsICollectionVsIListVsList.csproj" />
   </ItemGroup>
 
 </Project>

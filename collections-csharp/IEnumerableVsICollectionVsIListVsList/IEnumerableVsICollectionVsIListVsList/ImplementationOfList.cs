@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Intrinsics.X86;
 
-namespace IEnumeralbleVsICollectionVsIListVsList
+namespace IEnumerableVsICollectionVsIListVsList
 {
     public class ImplementationOfList
     {

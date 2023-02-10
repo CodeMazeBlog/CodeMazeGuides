@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace IEnumeralbleVsICollectionVsIListVsList
+namespace IEnumerableVsICollectionVsIListVsList
 {
     public class ImplementationOfIEnumerable
     {
