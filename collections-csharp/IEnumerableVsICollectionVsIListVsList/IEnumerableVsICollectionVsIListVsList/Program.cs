@@ -11,7 +11,8 @@ namespace IEnumerableVsICollectionVsIListVsList
 
             //IEnumerable<T>
             var enu = new ImplementationOfIEnumerable();
-            Console.WriteLine($"IEnumerable:{enu.CountSpecialCharacters(specialCharacter)}");            
+            var output = enu.CountSpecialCharacters(specialCharacter);
+            Console.WriteLine($"IEnumerable:{output}");            
             Console.WriteLine($"IEnumerable With Yield:");
             foreach (var num in enu.GetEvenNumberUpToTen())
             {
@@ -20,16 +21,22 @@ namespace IEnumerableVsICollectionVsIListVsList
                   
             //ICollection<T>
             var icl = new ImplementationOfICollection();
-            Console.WriteLine($"ICollection:{icl.CountSpecialCharacters(specialCharacter)}");
+            output = icl.CountSpecialCharacters(specialCharacter);
+            Console.WriteLine($"ICollection:{output}");
 
             //IList
             var ils = new ImplementationOfIList();
-            Console.WriteLine($"IList with List input:{ils.CountSpecialCharacters(specialCharacter)}");
-            Console.WriteLine($"IList with Array input:{ils.CountSpecialCharactersArray(arrayOfSpecialCharacter)}");
+            output = ils.CountSpecialCharacters(specialCharacter);
+            Console.WriteLine($"IList with List input:{output}");
+            //Uncomment below line to generate runtime exception
+            //output = ils.CountSpecialCharacters(arrayOfSpecialCharacter);
+            output = ils.CountSpecialCharactersArray(arrayOfSpecialCharacter);
+            Console.WriteLine($"IList with Array input:{output}");
 
             //List
             var lst = new ImplementationOfList();
-            Console.WriteLine($"List:{lst.CountSpecialCharacters(specialCharacter)}");
+            output = lst.CountSpecialCharacters(specialCharacter);
+            Console.WriteLine($"List:{output}");
 
             Console.ReadLine();
         }       
