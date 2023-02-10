@@ -1,4 +1,3 @@
-
 using Microsoft.Extensions.Logging;
 using Moq;
 using SwaggerBaseUri.Controllers;
@@ -23,6 +22,7 @@ namespace SwaggerBaseUri.Test
             Assert.True(result.Count() == 5);
 
             var firstItem = result.First();
+
             Assert.NotNull(firstItem);
             Assert.NotEqual(0, firstItem.TemperatureC);
             Assert.NotNull(firstItem.Summary);
