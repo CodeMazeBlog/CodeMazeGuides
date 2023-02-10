@@ -24,7 +24,6 @@
             
             Console.WriteLine(area);
 
-            //Code removed for brevity
             var logger = new Logger();
             
             var messageLog = logger.LogMessage("This is a message");
