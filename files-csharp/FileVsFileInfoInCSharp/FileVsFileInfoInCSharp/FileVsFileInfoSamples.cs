@@ -34,21 +34,21 @@ namespace FileVsFileInfoInCSharp
             fileAccess.Close();
             File.Delete("myFileThree.txt");
 
-            //Open a file with FileMode.Create FileAccess.Write using FileInfo 
+            //Open a file with FileMode.Create, FileAccess.Write using FileInfo 
             using FileStream fileInfoAccess = fileInfo.Open(FileMode.Create, FileAccess.Write);
             fileInfoAccess.Close();
             fileInfoAccess.Dispose();
             fileInfo.Delete();
 
             //Open a file with FileMode.Create, FileAccess.Write, FileShare.ReadWrite using File 
-            using FileStream fileShare = File.Open("myFileTwentyOne.txt", FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
-            fileShare.Close();
-            fileShare.Dispose();
+            using FileStream share = File.Open("myFileZ.txt", FileMode.Create, FileAccess.Write, FileShare.ReadWrite);
+            share.Close();
+            share.Dispose();
 
-            //Open a file with FileMode.Create FileAccess.Write using File 
-            using FileStream fileInfoShare = fileInfo.Open(FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
-            fileInfoShare.Close();
-            fileInfoShare.Dispose();
+            //Open a file with FileMode.Create, FileAccess.Write using File 
+            using FileStream infoShare = fileInfo.Open(FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite);
+            infoShare.Close();
+            infoShare.Dispose();
 
             //Open a file with FileStreamOptions
             var fileStreamOptions = new FileStreamOptions()
@@ -72,13 +72,16 @@ namespace FileVsFileInfoInCSharp
 
         public static (FileStream, FileStream) OpenReadFile()
         {
-            //Create a read-only file stream with static File.OpenRead()
+            //Open a read-only file stream with static File.OpenRead()            
+            if (!File.Exists("sampleReadOnlyFileTwo.txt")) File.Create("sampleReadOnlyFileTwo.txt");
+
             using FileStream openReadFileResult = File.OpenRead("sampleReadOnlyFileTwo.txt");
             openReadFileResult.Dispose();
-            File.Delete("myFileOne.txt");
+            File.Delete("sampleReadOnlyFileTwo.txt");
 
-            //Create a read-only file stream with instance FileInfo.OpenRead()
+            //Open a read-only file stream with instance FileInfo.OpenRead()
             FileInfo fileInfo = new("myFileTwo.txt");
+            if (!fileInfo.Exists) fileInfo.Create();
 
             using FileStream openReadFileInfoResult = fileInfo.OpenRead();
             openReadFileInfoResult.Dispose();
@@ -89,15 +92,15 @@ namespace FileVsFileInfoInCSharp
 
         public static (FileStream, FileStream) OpenWriteFile()
         {
-            FileInfo fileInfo = new("myFileFourteen.txt");
-
-            //Create a write-only file stream with static File.OpenWrite()
+            //Open or Create a write-only file stream with static File.OpenWrite()
             using FileStream openWriteFileResult = File.OpenWrite("myFileFive.txt");
             openWriteFileResult.Dispose();
             File.Delete("myFileFive.txt");
 
-            //Create a write-only file stream with instance FileInfo.OpenWrite()
+            //Open or Create a write-only file stream with instance FileInfo.OpenWrite()
+            FileInfo fileInfo = new("myFileFourteen.txt");
             using FileStream openWriteFileInfoResult = fileInfo.OpenWrite();
+
             openWriteFileInfoResult.Dispose();
             fileInfo.Delete();
 
