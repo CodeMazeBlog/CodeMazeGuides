@@ -20,6 +20,43 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        //const inputFileToBase64 = file => new Promise((resolve, reject) => {
+        //    const reader = new FileReader()
+        //    reader.readAsDataURL(file)
+
+        //    reader.onload = () => resolve(reader.result)
+        //    reader.onerror = error => reject(error)
+        //})
+
+        //const getBase64Files = async (items) => {
+        //    const base64Files = []
+
+        //    for (const item of items) {
+        //        const base64 = await inputFileToBase64(item.getAsFile())
+
+        //        base64Files.push(base64)
+        //    }
+
+        //    return base64Files
+        //}
+
+        //const items = event.clipboardData.items
+        //const files = await getBase64Files(items)
+
+        Blazor.registerCustomEventType('filechange', {
+            browserEventName: 'change',
+            createEventArgs: event => {
+                // This example only deals with pasting text, but you could use arbitrary JavaScript APIs
+                // to deal with users pasting other types of data, such as images
+                return {
+                    eventTimestamp: new Date(),
+                    //fileData: files,
+                    //fileExtension: ".json"
+                };
+            }
+        });
+    </script>
 </body>
 
 </html>
