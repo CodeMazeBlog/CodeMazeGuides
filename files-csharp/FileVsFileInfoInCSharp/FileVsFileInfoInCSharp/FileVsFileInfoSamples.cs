@@ -74,8 +74,8 @@ namespace FileVsFileInfoInCSharp
         {
             //Open a read-only file stream with static File.OpenRead()            
             if (!File.Exists("sampleReadOnlyFileTwo.txt")) File.Create("sampleReadOnlyFileTwo.txt");
-
             using FileStream openReadFileResult = File.OpenRead("sampleReadOnlyFileTwo.txt");
+
             openReadFileResult.Dispose();
             File.Delete("sampleReadOnlyFileTwo.txt");
 
@@ -84,6 +84,7 @@ namespace FileVsFileInfoInCSharp
             if (!fileInfo.Exists) fileInfo.Create();
 
             using FileStream openReadFileInfoResult = fileInfo.OpenRead();
+
             openReadFileInfoResult.Dispose();
             fileInfo.Delete();
 
