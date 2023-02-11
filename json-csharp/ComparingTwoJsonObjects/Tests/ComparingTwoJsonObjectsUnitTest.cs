@@ -5,6 +5,7 @@ namespace Tests
     public class ComparingTwoJsonObjectsUnitTest
     {
         private readonly JsonComparison _jsonComparison;
+
         public ComparingTwoJsonObjectsUnitTest()
         {
             _jsonComparison= new JsonComparison();
@@ -12,7 +13,7 @@ namespace Tests
 
         [Theory]
         [InlineData("Plain Objects Result", "The plain json objects are equal")]
-        [InlineData("Nested Objects Result","The plain and nested json objects not are equal")]
+        [InlineData("Nested Objects Result","The plain and nested json objects are not equal")]
         public void WhenJTokenDeepEqualsIsUsed_ThenCompareObjectsAndPopulateDictionary(string key, string expectedValue)
         {
             var result = _jsonComparison.CompareJsonObjectsUsingDeepEquals();

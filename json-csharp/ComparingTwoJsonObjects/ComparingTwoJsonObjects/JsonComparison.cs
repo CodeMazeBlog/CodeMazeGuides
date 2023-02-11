@@ -52,7 +52,7 @@ public class JsonComparison
         }
         else
         {
-            responseString = "The plain and nested json objects not are equal";
+            responseString = "The plain and nested json objects are not equal";
             result.Add("Nested Objects Result", responseString);
         }
 

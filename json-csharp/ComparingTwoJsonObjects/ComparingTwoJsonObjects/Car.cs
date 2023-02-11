@@ -19,9 +19,3 @@ public class Car
         return Name == car.Name && Model == car.Model && Make == car.Make && Price == car.Price;
     }
 }
-
-public class Price
-{
-    public double Amount { get; set; }
-    public string Currency { get; set; }
-}
