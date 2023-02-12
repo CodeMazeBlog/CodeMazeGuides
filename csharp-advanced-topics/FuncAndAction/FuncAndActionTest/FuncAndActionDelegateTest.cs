@@ -29,7 +29,7 @@ namespace FuncAndActionTest
             _sut.FromAction(message);
             //Assert
             var output = stringWriter.ToString();
-            Assert.Equal($"{message}\r\n", output);
+            Assert.Equal($"{message}\n", output);
         }
     }
 
