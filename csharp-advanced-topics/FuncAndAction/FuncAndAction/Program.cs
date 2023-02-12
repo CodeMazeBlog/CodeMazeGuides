@@ -6,7 +6,6 @@ internal class Program
     {
         var sut = new FuncAndActionDelegates();
         var resultFromFunc = sut.FromFunc(23);
-
         sut.FromAction("Welcome To CodeMaze From The Action Delegate");
         Console.WriteLine($"This result is coming from a Func delegate {resultFromFunc}");
     }
