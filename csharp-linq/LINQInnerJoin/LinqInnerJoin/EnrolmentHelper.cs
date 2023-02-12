@@ -125,19 +125,19 @@
             }
         }
 
-        public static void PrintEnrolments(IEnumerable<dynamic> enrollments)
+        public static void PrintEnrolments(IEnumerable<dynamic> enrolments)
         {
-            foreach (var enrolment in enrollments)
+            foreach (var enrolment in enrolments)
             {
                 Console.WriteLine($"Id: {enrolment.Id}, Student Name: {enrolment.StudentName}, Course: {enrolment.CourseName} \n");
             }
         }
 
-        public static void PrintEnrolmentsGroup(IEnumerable<dynamic> enrollmentGroups)
+        public static void PrintEnrolmentsGroup(IEnumerable<dynamic> enrolmentGroups)
         {
-            foreach (var group in enrollmentGroups)
+            foreach (var group in enrolmentGroups)
             {
-                Console.WriteLine($"Enrollements for Course Id: {group.Key} \n");
+                Console.WriteLine($"Enrolments for Course Id: {group.Key} \n");
                 foreach (var enrolment in group)
                 {
                     Console.WriteLine($"Id: {enrolment.Id}, Student Name: {enrolment.StudentName}, Course: {enrolment.CourseName} \n");

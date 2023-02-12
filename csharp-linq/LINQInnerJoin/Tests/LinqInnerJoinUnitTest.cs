@@ -8,7 +8,6 @@ namespace Tests
         [Fact]
         public void WhenFetchingCourses_ThenGetCoursesWithCategoryName()
         {
-            // Arrange
             var courses = new List<Course>
             {
                 new Course { Id = 1, Name = "C#", CategoryId = 1 },
@@ -16,10 +15,8 @@ namespace Tests
                 new Course { Id = 3, Name = "Python", CategoryId = 1 },
             };
 
-            // Act
             var result = EnrolmentHelper.GetCoursesWithCategoryName(courses).ToList();
 
-            // Assert
             var expectedResult = new List<dynamic>
             {
                 new { Id = 1, Name = "C#", CategoryName = "Programming" },
@@ -33,7 +30,6 @@ namespace Tests
         [Fact]
         public void WhenFetchingCourses_ThenGetCoursesWithCategory()
         {
-            // Arrange
             var courses = new List<Course>
             {
                 new Course { Id = 1, Name = "C#", CategoryId = 1 },
@@ -42,10 +38,8 @@ namespace Tests
                 new Course { Id = 4, Name = "Jenkins", CategoryId = 2 },
             };
 
-            // Act
             var result = EnrolmentHelper.GetCoursesWithCategory(courses).ToList();
 
-            // Assert
             var expectedResult = new List<dynamic>
             {
                 new { Id = 1, Name = "C#", CategoryName = "Programming" },
@@ -58,20 +52,17 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenFetchingEnrollments_ThenFetchWithStudentAndCourseName()
+        public void WhenFetchingEnrolments_ThenFetchWithStudentAndCourseName()
         {
-            // Arrange
-            var enrollments = new List<Enrolment>
+            var enrolments = new List<Enrolment>
             {
                 new Enrolment { Id = 1, StudentId = 1, CourseId = 1 },
                 new Enrolment { Id = 2, StudentId = 2, CourseId = 6 },
                 new Enrolment { Id = 3, StudentId = 3, CourseId = 8 },
             };
 
-            // Act
-            var result = EnrolmentHelper.GetEnrolments(enrollments).ToList();
+            var result = EnrolmentHelper.GetEnrolments(enrolments).ToList();
 
-            // Assert
             var expectedResult = new List<dynamic>
             {
                 new { Id = 1, StudentName = "John", CourseName = "CSHARP" },
@@ -83,46 +74,39 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenFilterEnrollments_ThenReturnsCorrectData()
+        public void WhenFilterEnrolments_ThenReturnsCorrectData()
         {
-            // Arrange
-            IEnumerable<Enrolment> enrollments = new List<Enrolment>
+            IEnumerable<Enrolment> enrolments = new List<Enrolment>
             {
                 new Enrolment { Id = 1, StudentId = 1, CourseId = 1 },
                 new Enrolment { Id = 2, StudentId = 2, CourseId = 2 },
                 new Enrolment { Id = 3, StudentId = 3, CourseId = 1 },
             };
+
             var expected = new List<dynamic>
             {
                 new { Id = 1, StudentName = "John", CourseId = 1, CourseName = "CSHARP" },
                 new { Id = 3, StudentName = "Rahul", CourseId = 1, CourseName = "CSHARP" },
             };
 
-            // Act
-            var actual = EnrolmentHelper.FilterEnrolments(enrollments).ToList();
+            var actual = EnrolmentHelper.FilterEnrolments(enrolments).ToList();
 
-            // Assert
             actual.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
-        public void WhenFilterAndGroupEnrollments_ThenReturnCorrectData()
+        public void WhenFilterAndGroupEnrolments_ThenReturnCorrectData()
         {
-            // Arrange
-            IEnumerable<Enrolment> enrollments = Enrolment.GetDummyEnrolment();
+            IEnumerable<Enrolment> enrolments = Enrolment.GetDummyEnrolment();
 
-            // Act
-            var result = EnrolmentHelper.FilterAndGroupEnrolments(enrollments).ToList();
+            var result = EnrolmentHelper.FilterAndGroupEnrolments(enrolments).ToList();
 
-            // Assert
             result.Should().NotBeNull();
 
-            // Check if the number of groups is correct
             int expectedGroupCount = 4;
             int actualGroupCount = result.Count();
             actualGroupCount.Should().Be(expectedGroupCount);
 
-            // Check if the number of items in each group is correct
             int[] expectedGroupSizes = { 3, 1, 1, 1 };
             int index = 0;
             foreach (var group in result)
@@ -156,7 +140,6 @@ namespace Tests
               }
             };
 
-            // Assert
             result.Should().BeEquivalentTo(expectedResult);
         }
 
