@@ -4,24 +4,44 @@
     {
         static void Main(string[] args)
         {
-             //// print dummy courses
+            //// print dummy courses
             Console.WriteLine("\n-----the courses-----\n");
             EnrolmentHelper.PrintDummyCourses();
             //// print dummy categories
             Console.WriteLine("\n-----the categories-----\n");
             EnrolmentHelper.PrintDummyCategories();
 
-            EnrolmentHelper.PrintCoursesWithCategory(EnrolmentHelper.GetCoursesWithCategory(Course.GetDummyCourses()));
-            EnrolmentHelper.PrintCoursesWithCategory(EnrolmentHelper.GetCoursesWithCategoryName(Course.GetDummyCourses()));
+            var coursesWithCategory = EnrolmentHelper.GetCoursesWithCategory(
+                Course.GetDummyCourses()
+            );
 
-            EnrolmentHelper.PrintEnrollments(EnrolmentHelper.GetEnrollments(Enrolment.GetDummyEnrolment()));
+            EnrolmentHelper.PrintCoursesWithCategory(coursesWithCategory);
 
-            EnrolmentHelper.PrintEnrollments(EnrolmentHelper.FilterEnrollments(Enrolment.GetDummyEnrolment()));
-            EnrolmentHelper.PrintEnrollmentsGroup(EnrolmentHelper.FilterAndGroupEnrollments(Enrolment.GetDummyEnrolment()));
+            var coursesWithCategoryName = EnrolmentHelper.GetCoursesWithCategoryName(
+                Course.GetDummyCourses()
+            );
+
+            EnrolmentHelper.PrintCoursesWithCategory(coursesWithCategoryName);
+
+            var enrollments = EnrolmentHelper.GetEnrollments(
+                Enrolment.GetDummyEnrolment()
+            );
+
+            EnrolmentHelper.PrintEnrollments(enrollments);
+
+            var filteredEnrollments = EnrolmentHelper.FilterEnrollments(
+                Enrolment.GetDummyEnrolment()
+            );
+
+            EnrolmentHelper.PrintEnrollments(filteredEnrollments);
+
+            var filteredAndGroupedEnrollments = EnrolmentHelper.FilterAndGroupEnrollments(
+                Enrolment.GetDummyEnrolment()
+            );
+
+            EnrolmentHelper.PrintEnrollmentsGroup(filteredAndGroupedEnrollments);
 
             Console.ReadKey();
-
         }
-        
     }
 }
