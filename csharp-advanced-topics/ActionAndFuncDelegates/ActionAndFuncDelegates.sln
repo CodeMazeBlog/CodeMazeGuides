@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegates", "ActionAndFuncDelegates\ActionAndFuncDelegates.csproj", "{67002008-69E4-4C7C-9002-3444C4B9EB54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegatesTests", "ActionAndFuncDelegatesTests\ActionAndFuncDelegatesTests.csproj", "{4A4C95F0-0E07-43CC-BC7E-5779DC8CF360}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67002008-69E4-4C7C-9002-3444C4B9EB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67002008-69E4-4C7C-9002-3444C4B9EB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67002008-69E4-4C7C-9002-3444C4B9EB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67002008-69E4-4C7C-9002-3444C4B9EB54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A4C95F0-0E07-43CC-BC7E-5779DC8CF360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A4C95F0-0E07-43CC-BC7E-5779DC8CF360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A4C95F0-0E07-43CC-BC7E-5779DC8CF360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A4C95F0-0E07-43CC-BC7E-5779DC8CF360}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
