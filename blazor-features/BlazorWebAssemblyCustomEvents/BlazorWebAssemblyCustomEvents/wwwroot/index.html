@@ -21,25 +21,25 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script>
-        //const inputFileToBase64 = file => new Promise((resolve, reject) => {
-        //    const reader = new FileReader()
-        //    reader.readAsDataURL(file)
+        const inputFileToBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.readAsDataURL(file)
 
-        //    reader.onload = () => resolve(reader.result)
-        //    reader.onerror = error => reject(error)
-        //})
+            reader.onload = () => resolve(reader.result)
+            reader.onerror = error => reject(error)
+        })
 
-        //const getBase64Files = async (items) => {
-        //    const base64Files = []
+        const getBase64Files = async (items) => {
+            const base64Files = []
 
-        //    for (const item of items) {
-        //        const base64 = await inputFileToBase64(item.getAsFile())
+            for (const item of items) {
+                const base64 = await inputFileToBase64(item.getAsFile())
 
-        //        base64Files.push(base64)
-        //    }
+                base64Files.push(base64)
+            }
 
-        //    return base64Files
-        //}
+            return base64Files
+        }
 
         //const items = event.clipboardData.items
         //const files = await getBase64Files(items)
@@ -49,10 +49,35 @@
             createEventArgs: event => {
                 // This example only deals with pasting text, but you could use arbitrary JavaScript APIs
                 // to deal with users pasting other types of data, such as images
+                //const items = event.clipboardData.items
+                //const files = await getBase64Files(items)
+                //return event;
+                let myString;
+                const fileText = event.target.files[0].text().then((str) => { return str; });
+                const text = () => {
+                    fileText.then((a) => {
+                        //myString = a;
+                        console.log(a)
+                        return a;
+                    });
+                };
+                //const text = async () => {
+                //    const a = await fileText;
+                //    console.log(a);
+                //};
+                //console.log(fileText)
+                //const reader = new FileReader();
+                //const content = text();
+                //console.log(text())
                 return {
                     eventTimestamp: new Date(),
-                    //fileData: files,
-                    //fileExtension: ".json"
+                    //fileData: event.clipboardData.files,
+                    //fileData: event.clipboardData.getData('file'),
+                    fileExtension: '.json',
+                    //value: event.target.value
+                    //value: event.target.files[0].text().then((str) => str)
+                    value: text
+                    //eventArgs: event.toString()
                 };
             }
         });
