@@ -23,23 +23,23 @@
 
             EnrolmentHelper.PrintCoursesWithCategory(coursesWithCategoryName);
 
-            var enrollments = EnrolmentHelper.GetEnrolments(
+            var enrolments = EnrolmentHelper.GetEnrolments(
                 Enrolment.GetDummyEnrolment()
             );
 
-            EnrolmentHelper.PrintEnrollments(enrollments);
+            EnrolmentHelper.PrintEnrolments(enrolments);
 
-            var filteredEnrollments = EnrolmentHelper.FilterEnrolments(
+            var filteredEnrolments = EnrolmentHelper.FilterEnrolments(
                 Enrolment.GetDummyEnrolment()
             );
 
-            EnrolmentHelper.PrintEnrollments(filteredEnrollments);
+            EnrolmentHelper.PrintEnrolments(filteredEnrolments);
 
-            var filteredAndGroupedEnrollments = EnrolmentHelper.FilterAndGroupEnrolments(
+            var filteredAndGroupedEnrolments = EnrolmentHelper.FilterAndGroupEnrolments(
                 Enrolment.GetDummyEnrolment()
             );
 
-            EnrolmentHelper.PrintEnrollmentsGroup(filteredAndGroupedEnrollments);
+            EnrolmentHelper.PrintEnrolmentsGroup(filteredAndGroupedEnrolments);
 
             Console.ReadKey();
         }

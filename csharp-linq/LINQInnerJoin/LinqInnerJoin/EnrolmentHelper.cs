@@ -125,7 +125,7 @@
             }
         }
 
-        public static void PrintEnrollments(IEnumerable<dynamic> enrollments)
+        public static void PrintEnrolments(IEnumerable<dynamic> enrollments)
         {
             foreach (var enrolment in enrollments)
             {
@@ -133,7 +133,7 @@
             }
         }
 
-        public static void PrintEnrollmentsGroup(IEnumerable<dynamic> enrollmentGroups)
+        public static void PrintEnrolmentsGroup(IEnumerable<dynamic> enrollmentGroups)
         {
             foreach (var group in enrollmentGroups)
             {
