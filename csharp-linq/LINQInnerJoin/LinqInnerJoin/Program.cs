@@ -23,19 +23,19 @@
 
             EnrolmentHelper.PrintCoursesWithCategory(coursesWithCategoryName);
 
-            var enrollments = EnrolmentHelper.GetEnrollments(
+            var enrollments = EnrolmentHelper.GetEnrolments(
                 Enrolment.GetDummyEnrolment()
             );
 
             EnrolmentHelper.PrintEnrollments(enrollments);
 
-            var filteredEnrollments = EnrolmentHelper.FilterEnrollments(
+            var filteredEnrollments = EnrolmentHelper.FilterEnrolments(
                 Enrolment.GetDummyEnrolment()
             );
 
             EnrolmentHelper.PrintEnrollments(filteredEnrollments);
 
-            var filteredAndGroupedEnrollments = EnrolmentHelper.FilterAndGroupEnrollments(
+            var filteredAndGroupedEnrollments = EnrolmentHelper.FilterAndGroupEnrolments(
                 Enrolment.GetDummyEnrolment()
             );
 

@@ -2,99 +2,78 @@
 {
     public static class EnrolmentHelper
     {
-        public static IEnumerable<dynamic> GetEnrollments(IEnumerable<Enrolment> enrollments)
+        public static IEnumerable<dynamic> GetEnrolments(IEnumerable<Enrolment> enrolments)
         {
             var students = Student.GetDummyStudents();
+
             var courses = Course.GetDummyCourses();
 
-            var enrollements = enrollments  //Enrolment data source                            
-                               .Join(   // First Join - Joining Student with Enrolment
-                                   students,
-                                   enrolment_lv1 => enrolment_lv1.StudentId,
-                                   student => student.Id,
-                                   (enrolment_lv1, student) => new { enrolment_lv1, student }   // result from first join
-                                )
-                               .Join(   // Second Join - Joining Course with the result of first join 
-                                   courses,
-                                   enrolment_lv2 => enrolment_lv2.enrolment_lv1.CourseId,
-                                   course => course.Id,
-                                   (enrolment_lv2, course) => new { enrolment_lv2, course }  // result fromn second join
-                                )
-                               .Select(e => new      // Selecting result from the selection of two joins
-                               {
-                                   e.enrolment_lv2.enrolment_lv1.Id,
-                                   StudentName = e.enrolment_lv2.student.Name,
-                                   CourseName = e.course.Name,
-                               });
+            var enrolmensRelation = GetEnrolmentsRelation(enrolments, students, courses);
 
-            return enrollements;
+            var result = enrolmensRelation
+                             .Select(e => new
+                             {
+                                 e.enrolmentLevel2.enrolmentLevel1.Id,
+                                 StudentName = e.enrolmentLevel2.student.Name,
+                                 CourseName = e.course.Name,
+                             });
+
+            return result;
+
         }
 
-        public static IEnumerable<dynamic> FilterEnrollments(IEnumerable<Enrolment> enrollments)
+        public static IEnumerable<dynamic> FilterEnrolments(IEnumerable<Enrolment> enrolments)
         {
             var students = Student.GetDummyStudents();
+
             var courses = Course.GetDummyCourses();
 
-            var enrollements = enrollments  //Enrolment data source            
-                               .Join(       // First Join - Joining Student with Enrolment
-                                  students,
-                                  enrolment_lv1 => enrolment_lv1.StudentId,
-                                  student => student.Id,
-                                  (enrolment_lv1, student) => new { enrolment_lv1, student })   // result from first join
-                               .Join(  // Second Join - Joining Course with the result of first join
-                                  courses,
-                                  enrolment_lv2 => enrolment_lv2.enrolment_lv1.CourseId,
-                                  course => course.Id,
-                                  (enrolment_lv2, course) => new { enrolment_lv2, course })  // result fromn second join
-                               .Select(e => new      // Selecting result from the selection of two joins
-                                {
-                                  e.enrolment_lv2.enrolment_lv1.Id,
-                                  StudentName = e.enrolment_lv2.student.Name,
-                                  CourseId = e.course.Id,
-                                  CourseName = e.course.Name,
-                                })
-                               .Where(x => x.CourseId == 1);
+            var enrolmensRelation = GetEnrolmentsRelation(enrolments, students, courses);
 
-            return enrollements;
+            var result = enrolmensRelation
+                             .Select(e => new
+                             {
+                                 e.enrolmentLevel2.enrolmentLevel1.Id,
+                                 StudentName = e.enrolmentLevel2.student.Name,
+                                 CourseId = e.course.Id,
+                                 CourseName = e.course.Name,
+                             })
+                             .Where(x => x.CourseId == 1);
+
+            return result;
+
         }
 
-        public static IEnumerable<dynamic> FilterAndGroupEnrollments(IEnumerable<Enrolment> enrollments)
+        public static IEnumerable<dynamic> FilterAndGroupEnrolments(IEnumerable<Enrolment> enrolments)
         {
             var students = Student.GetDummyStudents();
+
             var courses = Course.GetDummyCourses();
 
-            var enrollements = enrollments  //Enrolment data source                            
-                               .Join(          // First Join - Joining Student with Enrolment
-                                  students,
-                                  enrolment_lv1 => enrolment_lv1.StudentId,
-                                  student => student.Id,
-                                  (enrolment_lv1, student) => new { enrolment_lv1, student })   // result from first join
-                               .Join(      // Second Join - Joining Course with the result of first join 
-                                  courses,
-                                  enrolment_lv2 => enrolment_lv2.enrolment_lv1.CourseId,
-                                  course => course.Id,
-                                  (enrolment_lv2, course) => new { enrolment_lv2, course })  // result fromn second join
-                               .Select(e => new            // Selecting result from the selection of two joins
-                                {
-                                   e.enrolment_lv2.enrolment_lv1.Id,
-                                   StudentName = e.enrolment_lv2.student.Name,
-                                   CourseId = e.course.Id,
-                                   CourseName = e.course.Name,
-                                })
-                               .Where(x => x.CourseId < 5) // filter on course id
-                               .GroupBy(x => x.CourseId);  // group on course id
+            var enrolmensRelation = GetEnrolmentsRelation(enrolments, students, courses);
 
-            return enrollements;
+            var result = enrolmensRelation
+                            .Select(e => new
+                            {
+                                e.enrolmentLevel2.enrolmentLevel1.Id,
+                                StudentName = e.enrolmentLevel2.student.Name,
+                                CourseId = e.course.Id,
+                                CourseName = e.course.Name,
+                            })
+                            .Where(x => x.CourseId < 5)
+                            .GroupBy(x => x.CourseId);
+
+            return result;
         }
 
         public static IEnumerable<dynamic> GetCoursesWithCategory(IEnumerable<Course> courses)
         {
             var catrgories = Category.GetDummyCourseCategories();
 
-            var courseWithCategory = from course in courses  // outer sequence
-                                     join category in catrgories // inner sequence
-                                     on course.CategoryId equals category.Id //  key selector
-                                     select new  // anonymous object to return
+            var courseWithCategory = from course in courses
+                                     join category in catrgories
+                                     on course.CategoryId equals category.Id
+                                     select new
                                      {
                                          course.Id,
                                          course.Name,
@@ -108,11 +87,11 @@
         {
             var categories = Category.GetDummyCourseCategories();
 
-            var courseWithCategoryName = courses.Join(   // outer sequence
-                                         categories,     // inner sequence
-                                         course => course.CategoryId, // outer sequence key selector
-                                         category => category.Id,     // inner sequence key selector
-                                         (course, category) => new     // // anonymous object to return
+            var courseWithCategoryName = courses.Join(
+                                         categories,
+                                         course => course.CategoryId,
+                                         category => category.Id,
+                                         (course, category) => new
                                          {
                                              course.Id,
                                              course.Name,
@@ -164,6 +143,21 @@
                     Console.WriteLine($"Id: {enrolment.Id}, Student Name: {enrolment.StudentName}, Course: {enrolment.CourseName} \n");
                 }
             }
+        }
+
+        private static IEnumerable<dynamic> GetEnrolmentsRelation(IEnumerable<Enrolment> enrolments, IEnumerable<Student> students, IEnumerable<Course> courses)
+        {
+            return enrolments
+                                        .Join(
+                                           students,
+                                           enrolmentLevel1 => enrolmentLevel1.StudentId,
+                                           student => student.Id,
+                                           (enrolmentLevel1, student) => new { enrolmentLevel1, student })
+                                        .Join(
+                                           courses,
+                                           enrolmentLevel2 => enrolmentLevel2.enrolmentLevel1.CourseId,
+                                           course => course.Id,
+                                           (enrolmentLevel2, course) => new { enrolmentLevel2, course });
         }
     }
 }

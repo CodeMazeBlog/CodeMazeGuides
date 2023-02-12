@@ -69,7 +69,7 @@ namespace Tests
             };
 
             // Act
-            var result = EnrolmentHelper.GetEnrollments(enrollments).ToList();
+            var result = EnrolmentHelper.GetEnrolments(enrollments).ToList();
 
             // Assert
             var expectedResult = new List<dynamic>
@@ -99,7 +99,7 @@ namespace Tests
             };
 
             // Act
-            var actual = EnrolmentHelper.FilterEnrollments(enrollments).ToList();
+            var actual = EnrolmentHelper.FilterEnrolments(enrollments).ToList();
 
             // Assert
             actual.Should().BeEquivalentTo(expected);
@@ -112,7 +112,7 @@ namespace Tests
             IEnumerable<Enrolment> enrollments = Enrolment.GetDummyEnrolment();
 
             // Act
-            var result = EnrolmentHelper.FilterAndGroupEnrollments(enrollments).ToList();
+            var result = EnrolmentHelper.FilterAndGroupEnrolments(enrollments).ToList();
 
             // Assert
             result.Should().NotBeNull();
