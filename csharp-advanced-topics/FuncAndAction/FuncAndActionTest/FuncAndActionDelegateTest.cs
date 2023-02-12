@@ -32,4 +32,5 @@ namespace FuncAndActionTest
             Assert.Equal($"{message}\r\n", output);
         }
     }
+
 }
