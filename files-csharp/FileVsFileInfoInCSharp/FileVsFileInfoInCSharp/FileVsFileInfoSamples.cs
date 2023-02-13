@@ -73,9 +73,14 @@ namespace FileVsFileInfoInCSharp
         public static (FileStream, FileStream) OpenReadFile()
         {
             //Open a read-only file stream with static File.OpenRead()            
-            if (!File.Exists("sampleReadOnlyFileTwo.txt")) File.Create("sampleReadOnlyFileTwo.txt");
+            if (!File.Exists("sampleReadOnlyFileTwo.txt"))
+            {
+                var fs = File.Create("sampleReadOnlyFileTwo.txt");
+                fs.Close();
+            }
             using FileStream openReadFileResult = File.OpenRead("sampleReadOnlyFileTwo.txt");
 
+            openReadFileResult.Close();
             openReadFileResult.Dispose();
             File.Delete("sampleReadOnlyFileTwo.txt");
 
