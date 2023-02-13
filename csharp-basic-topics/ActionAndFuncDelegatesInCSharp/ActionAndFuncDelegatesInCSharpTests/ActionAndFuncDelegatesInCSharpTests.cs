@@ -1,5 +1,4 @@
 using ActionAndFuncDelegatesInCSharp;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 
 namespace ActionAndFuncDelegatesInCSharpTests
 {
@@ -40,7 +39,7 @@ namespace ActionAndFuncDelegatesInCSharpTests
             Assert.Equal("message cannot be NULL or empty", exception.Message);
         }
 
-        [Fact] 
+        [Fact]
         public void WhenMessageIsCorrect_ThenProductsArePrinted()
         {
             // Act
@@ -48,9 +47,9 @@ namespace ActionAndFuncDelegatesInCSharpTests
 
             var result = PrintedOutputToArray();
 
-            Assert.Equal("Laptop 999,95 (1002,05 incl. VAT)", result[0]);
-            Assert.Equal("Car 15000 (15000,14 incl. VAT)", result[1]);
-            Assert.Equal("TV 599 (602,51 incl. VAT)", result[2]);
+            Assert.Equal("Laptop 999.95 (1002.05 incl. VAT)", result[0]);
+            Assert.Equal("Car 15000 (15000.14 incl. VAT)", result[1]);
+            Assert.Equal("TV 599 (602.51 incl. VAT)", result[2]);
         }
     }
 }
