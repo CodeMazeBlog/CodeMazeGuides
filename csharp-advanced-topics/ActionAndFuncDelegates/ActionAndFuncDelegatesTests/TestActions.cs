@@ -3,63 +3,62 @@ using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace ActionAndFuncDelegatesTests;
 
-public class TestActions
+public class TestActions : TestDelegates
 {
-    private StringWriter _output;
+    private ActionsDemo _actionDemo;
     
     [SetUp]
     public void Setup()
     {
-        _output = new StringWriter();
-        Console.SetOut(_output);
+        SetupOutput();
+        _actionDemo = new ActionsDemo(SentenceHolder.Sentence);
     }
 
     [TearDown]
     public void TearDown()
     {
-        _output.Dispose();
-        GC.SuppressFinalize(this);
-    }
-
-    private string[] PrintedOutputToArray()
-    {
-        var printedString = _output.ToString();
-        return printedString.Split( Environment.NewLine );
+        DisposeOutput();
     }
 
     [Test]
     public void WhenDemoWordsLengths_ThenPrintsWordsLength()
     {
-        var actionDemo = new ActionsDemo(SentenceHolder.Sentence);
-        actionDemo.WordsLengths();
+        // Act
+        _actionDemo.WordsLengths();
 
+        // Assert
         var equalityArray = PrintedOutputToArray();
-
         Assert.That(equalityArray[0], Is.EqualTo("Word 'This': 4"));
     }
     
     [Test]
     public void WhenDemoWordsLetterLocationsA_ThenPrintsArticle1()
     {
-        var actionDemo = new ActionsDemo(SentenceHolder.Sentence);
-        actionDemo.WordsLetterLocations('a');
+        // Act
+        _actionDemo.WordsLetterLocations('a');
 
+        // Assert
         var equalityArray = PrintedOutputToArray();
-
-        Assert.That(equalityArray[0], Is.EqualTo("Word 'This': -1"));
-        Assert.That(equalityArray[1], Is.EqualTo("Word 'article': 0"));
+        Assert.Multiple(() =>
+        {
+            Assert.That(equalityArray[0], Is.EqualTo("Word 'This': -1"));
+            Assert.That(equalityArray[1], Is.EqualTo("Word 'article': 0"));
+        });
     }
-    
+
     [Test]
     public void WhenDemoWordsHashCodes_ThenPrintsCorrectHashCode()
     {
-        var actionDemo = new ActionsDemo(SentenceHolder.Sentence);
-        actionDemo.WordsHashCodes();
+        // Act
+        _actionDemo.WordsHashCodes();
 
+        // Assert
         var equalityArray = PrintedOutputToArray();
-
-        Assert.That(equalityArray[0].StartsWith("Word 'This': "));
-        Assert.That(int.TryParse(equalityArray[0].Split(" ")[2], out var hashCode));
-        Assert.That(hashCode != 0);
+        Assert.Multiple(() =>
+        {
+            Assert.That(equalityArray[0].StartsWith("Word 'This': "));
+            Assert.That(int.TryParse(equalityArray[0].Split(" ")[2], out var hashCode));
+            Assert.That(hashCode != 0);
+        });
     }
 }
