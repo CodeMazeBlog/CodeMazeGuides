@@ -2,7 +2,14 @@
 
 namespace ActionAndFuncDelegatesInCSharp;
 
-class FileReceiver
+public interface IFileReceiver
+{
+    Action<string> FileReceivedAction { get; set; }
+    Func<string, bool> FileReceivedFunc { get; set; }
+    void Start();
+}
+
+class FileReceiver : IFileReceiver
 {
     private BackgroundWorker _worker;
     
@@ -29,7 +36,7 @@ class FileReceiver
 
             if(FileReceivedFunc != null)
             {
-                Console.WriteLine(FileReceivedFunc($"File content {index++} handled by func"));
+                System.Console.WriteLine(FileReceivedFunc($"File content {index++} handled by func"));
             }
             Thread.Sleep(2000);
         }
