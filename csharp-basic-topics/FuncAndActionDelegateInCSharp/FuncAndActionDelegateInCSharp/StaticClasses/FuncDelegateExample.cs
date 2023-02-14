@@ -4,8 +4,8 @@
     {
         public static void Print(int x, int y)
         {
-            Func<int, int, int> sum = Sum;
-            Func<int, int, int> mutiply = Multiply;
+            IntOperations sum = Sum;
+            IntOperations mutiply = Multiply;
             Console.WriteLine($"Func Delegate Sum result: {sum(x, y)}");
             Console.WriteLine($"Func Delegate Multiply result: {mutiply.Invoke(x, y)}");
         }
@@ -19,5 +19,7 @@
         {
             return x * y;
         }
+
+        public delegate int IntOperations(int x, int y);
     }
 }

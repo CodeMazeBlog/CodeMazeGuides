@@ -20,6 +20,6 @@
             Console.WriteLine($"Action Delegate Multiply Result:{x * y}");
         }
 
-        private delegate void Display(int x, int y);
+        public delegate void Display(int x, int y);
     }
 }
