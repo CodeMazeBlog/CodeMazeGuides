@@ -24,7 +24,7 @@ namespace Tests
             FuncActionDelegatesCodeMaze.Program.PrintToConsole(message);
 
             // Then
-            var expectedOutput = $"Custom print - {message}\r\n";
+            var expectedOutput = $"Custom print - {message}\n";
             Assert.That(consoleOut.ToString(), Is.EqualTo(expectedOutput));
         }
 
