@@ -21,63 +21,28 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script>
-        const inputFileToBase64 = file => new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.readAsDataURL(file)
-
-            reader.onload = () => resolve(reader.result)
-            reader.onerror = error => reject(error)
-        })
-
-        const getBase64Files = async (items) => {
-            const base64Files = []
-
-            for (const item of items) {
-                const base64 = await inputFileToBase64(item.getAsFile())
-
-                base64Files.push(base64)
-            }
-
-            return base64Files
-        }
-
-        //const items = event.clipboardData.items
-        //const files = await getBase64Files(items)
-
-        Blazor.registerCustomEventType('filechange', {
-            browserEventName: 'change',
+        let lastClick = 0;
+        const MAX_DOUBLE_CLICK_TIME = 400
+        Blazor.registerCustomEventType('doubleclick', {
+            browserEventName: 'click',
             createEventArgs: event => {
                 // This example only deals with pasting text, but you could use arbitrary JavaScript APIs
                 // to deal with users pasting other types of data, such as images
-                //const items = event.clipboardData.items
-                //const files = await getBase64Files(items)
-                //return event;
-                let myString;
-                const fileText = event.target.files[0].text().then((str) => { return str; });
-                const text = () => {
-                    fileText.then((a) => {
-                        //myString = a;
-                        console.log(a)
-                        return a;
-                    });
-                };
-                //const text = async () => {
-                //    const a = await fileText;
-                //    console.log(a);
-                //};
-                //console.log(fileText)
-                //const reader = new FileReader();
-                //const content = text();
-                //console.log(text())
+                const timeBetweenClicks = event.timeStamp - lastClick
+                if (timeBetweenClicks > MAX_DOUBLE_CLICK_TIME) {
+                    lastClick = event.timeStamp;
+                    console.log("setting last click");
+                    return;
+                }
+
+
+
+                // Double click happened.
+                console.log("double click");
+                lastClick = 0
                 return {
                     eventTimestamp: new Date(),
-                    //fileData: event.clipboardData.files,
-                    //fileData: event.clipboardData.getData('file'),
-                    fileExtension: '.json',
-                    //value: event.target.value
-                    //value: event.target.files[0].text().then((str) => str)
-                    value: text
-                    //eventArgs: event.toString()
+                    isDoubleClick: true
                 };
             }
         });

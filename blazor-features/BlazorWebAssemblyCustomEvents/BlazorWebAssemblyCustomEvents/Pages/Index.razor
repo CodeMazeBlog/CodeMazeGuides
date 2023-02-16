@@ -4,14 +4,10 @@
 
 <h1>Hello, world!</h1>
 <div class="fileDropArea">
-    @*<Microsoft.AspNetCore.Components.Forms.InputFile OnChange="HandleFileChange">
-    </Microsoft.AspNetCore.Components.Forms.InputFile>*@
-
-    <Microsoft.AspNetCore.Components.Forms.InputFile @onfilechange="HandleFileChange">
-    </Microsoft.AspNetCore.Components.Forms.InputFile>
+    <button @ondoubleclick="HandleDoubleClick"> Click Me
+    </button>
+    <h1>@message</h1>
 </div>
-
-@*<Microsoft.AspNetCore.Components.Forms.InputFile @onFilePaste="HandleFilePaste"> Yo mama</Microsoft.AspNetCore.Components.Forms.InputFile>*@
 
 <style>
     .fileDropArea {
@@ -26,8 +22,15 @@
 @code {
     string message;
 
-    void HandleFileChange(FileChangeEventArgs eventArgs)
+    void HandleDoubleClick(DoubleClickEventArgs eventArgs)
     {
-        message = $"At ";
+        if (eventArgs is not null && eventArgs.isDoubleClick)
+        {
+            message = $"detected double click!";
+        }
+        else
+        {
+            message = "";
+        }
     }
 }
