@@ -32,13 +32,16 @@
                 if (timeBetweenClicks > MAX_DOUBLE_CLICK_TIME) {
                     lastClick = event.timeStamp;
                     console.log("setting last click");
-                    return;
+                    return {
+                        eventTimestamp: new Date(),
+                        isDoubleClick: false
+                    };
                 }
 
 
 
                 // Double click happened.
-                console.log("double click");
+                console.log("double click!");
                 lastClick = 0
                 return {
                     eventTimestamp: new Date(),
