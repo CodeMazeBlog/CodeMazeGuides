@@ -11,7 +11,7 @@
             return Tuple.Create(stringValue, boolValue, intValue);
         }
 
-        public static (string srtValue, bool boolValue, int intValue) GetValuesUsingTupleLiterals()
+        public static (string stringValue, bool boolValue, int intValue) GetValuesUsingTupleLiterals()
         {
             var stringValue = "Some String Value";
             var boolValue = false;
@@ -20,9 +20,9 @@
             return (stringValue, boolValue, intValue);
         }
 
-        public static void GetValuesUsingOutKeyword(out string srtValue, out bool boolValue, out int intValue)
+        public static void GetValuesUsingOutKeyword(out string stringValue, out bool boolValue, out int intValue)
         {
-            srtValue = "Some String Value";
+            stringValue = "Some String Value";
             boolValue = false;
             intValue = int.MaxValue;
         }
@@ -36,9 +36,9 @@
         {
             var results = new Dictionary<string, object>();
 
-            results.Add("key1", "Some String Value");
-            results.Add("key2", false);
-            results.Add("key3", int.MaxValue);
+            results.Add("stringValue", "Some String Value");
+            results.Add("boolValue", false);
+            results.Add("intValue", int.MaxValue);
 
             return results;
         }

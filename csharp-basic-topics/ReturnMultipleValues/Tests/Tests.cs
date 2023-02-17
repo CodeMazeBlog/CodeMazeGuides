@@ -53,9 +53,9 @@ namespace Tests
         {
             var result = MultipleValuesReturner.GetValuesUsingDictionary();
 
-            Assert.Equal("Some String Value", result["key1"]);
-            Assert.False((bool)result["key2"]);
-            Assert.Equal(int.MaxValue, result["key3"]);
+            Assert.Equal("Some String Value", result["stringValue"]);
+            Assert.False((bool)result["boolValue"]);
+            Assert.Equal(int.MaxValue, result["intValue"]);
         }
 
         [Fact]

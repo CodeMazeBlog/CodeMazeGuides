@@ -38,9 +38,9 @@ void UsingTupleDestructuring()
 {
     Console.WriteLine(" Using Tuple Destructuring:");
 
-    var (strValue, boolValue, intValue) = MultipleValuesReturner.GetValuesUsingTuple();
+    var (stringValue, boolValue, intValue) = MultipleValuesReturner.GetValuesUsingTuple();
 
-    Console.WriteLine(strValue);
+    Console.WriteLine(stringValue);
     Console.WriteLine(boolValue);
     Console.WriteLine(intValue);
 
@@ -51,9 +51,9 @@ void UsingTupleLiterals()
 {
     Console.WriteLine(" Using Tuple Literals:");
 
-    var (strValue, boolValue, intValue) = MultipleValuesReturner.GetValuesUsingTupleLiterals();
+    var (stringValue, boolValue, intValue) = MultipleValuesReturner.GetValuesUsingTupleLiterals();
 
-    Console.WriteLine(strValue);
+    Console.WriteLine(stringValue);
     Console.WriteLine(boolValue);
     Console.WriteLine(intValue);
 
@@ -64,13 +64,13 @@ void UsingOutKeyword()
 {
     Console.WriteLine(" Using Out Keyword:");
 
-    string strValue;
+    string stringValue;
     bool boolValue;
     int intValue;
 
-    MultipleValuesReturner.GetValuesUsingOutKeyword(out strValue, out boolValue, out intValue);
+    MultipleValuesReturner.GetValuesUsingOutKeyword(out stringValue, out boolValue, out intValue);
 
-    Console.WriteLine(strValue);
+    Console.WriteLine(stringValue);
     Console.WriteLine(boolValue);
     Console.WriteLine(intValue);
 
@@ -96,9 +96,9 @@ void UsingDictionary()
 
     var multipleValues = MultipleValuesReturner.GetValuesUsingDictionary();
 
-    Console.WriteLine(multipleValues["key1"]);
-    Console.WriteLine(multipleValues["key2"]);
-    Console.WriteLine(multipleValues["key3"]);
+    Console.WriteLine(multipleValues["stringValue"]);
+    Console.WriteLine(multipleValues["boolValue"]);
+    Console.WriteLine(multipleValues["intValue"]);
 
     Console.WriteLine();
 }
