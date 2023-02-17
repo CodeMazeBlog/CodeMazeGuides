@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartEnum", "SmartEnum\SmartEnum.csproj", "{2267B3B6-492A-47C2-854B-B20D2FFACF65}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartEnum.Tests", "SmartEnum.Tests\SmartEnum.Tests.csproj", "{F69606C8-8482-4F32-9004-85A8BE54E399}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2267B3B6-492A-47C2-854B-B20D2FFACF65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2267B3B6-492A-47C2-854B-B20D2FFACF65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2267B3B6-492A-47C2-854B-B20D2FFACF65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F69606C8-8482-4F32-9004-85A8BE54E399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F69606C8-8482-4F32-9004-85A8BE54E399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F69606C8-8482-4F32-9004-85A8BE54E399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F69606C8-8482-4F32-9004-85A8BE54E399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
