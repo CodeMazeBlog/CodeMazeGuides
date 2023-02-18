@@ -14,4 +14,6 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [How to Read AppSettings Values From a JSON File in .NET Core](https://code-maze.com/aspnetcore-read-appsettings-values-from-a-json-file/)
 - [How to Resolve Instances With ASP.NET Core DI](https://code-maze.com/aspnetcore-resolve-instances-with-dependency-injection/)
 - [Response Caching in ASP.NET Core](https://code-maze.com/aspnetcore-response-caching/)
+- [How to Modify a Base URI of Swagger in ASP.NET Core](https://code-maze.com/aspnetcore-modify-a-base-uri-of-swagger/)
 - [Validate User Input With Regular Expressions in Blazor WebAssembly](https://code-maze.com/validate-input-regular-expressions-blazor-webassembly/)
+- [Multipart Form-Data in HttpClient with ASP.NET Core](https://code-maze.com/aspnetcore-multipart-form-data-in-httpclient/)
