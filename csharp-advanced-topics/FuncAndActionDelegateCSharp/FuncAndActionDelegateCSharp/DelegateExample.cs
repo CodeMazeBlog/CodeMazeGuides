@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FuncAndActionInCsharp
+namespace FuncAndActionCsharp
 {
-    internal class DelegateExample
+    public class DelegateExample
     {
         public delegate void Say(string message);
         public delegate int Calculate(int x, int y);
-        private void Greeting(string message)
+        public void Greeting(string message)
         {
             Console.WriteLine(message);
         }
 
-        private int Add(int x, int y)
+        public int Add(int x, int y)
         {
             return x + y;
         }

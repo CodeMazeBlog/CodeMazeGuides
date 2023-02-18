@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FuncAndActionInCsharp
+namespace FuncAndActionCsharp
 {
-    internal class FuncActionExample
+    public class FuncActionExample
     {
         //Does not required creation of delegate
 
-        private void Greeting(string message)
+        public void Greeting(string message)
         {
             Console.WriteLine(message);
         }
 
-        private int Add(int x, int y)
+        public int Add(int x, int y)
         {
             return x + y;
         }
@@ -31,7 +31,6 @@ namespace FuncAndActionInCsharp
             Func<int, int, int> calculate = Add;
             int result = calculate(2, 3);
             Console.WriteLine(result);
-            Console.ReadLine();
         }
 
     }
