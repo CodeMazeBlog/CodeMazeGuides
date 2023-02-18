@@ -10,7 +10,6 @@ namespace ReadAndParseAJSONFileInCSharp
     {
         private static readonly string _jsonFile 
             =  @"..\..\..\..\..\..\..\Data\MethodsBenchmark-json.json";
-
         
         [Benchmark]
         public void UseUserDefinedObjectWithNewtonsoftJson()
