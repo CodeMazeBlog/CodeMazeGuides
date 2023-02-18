@@ -9,8 +9,9 @@ namespace ReadAndParseAJSONFileInCSharp
     public class ReadAndParseJSONFileMethodsBenchMark
     {
         private static readonly string _jsonFile 
-            = Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\MethodsBenchmark-json.json");
+            =  @"..\..\..\..\..\..\..\Data\MethodsBenchmark-json.json";
 
+        
         [Benchmark]
         public void UseUserDefinedObjectWithNewtonsoftJson()
             => ReadAndParseJsonFileWithNewtonsoftJson.UseUserDefinedObjectWithNewtonsoftJson(_jsonFile);

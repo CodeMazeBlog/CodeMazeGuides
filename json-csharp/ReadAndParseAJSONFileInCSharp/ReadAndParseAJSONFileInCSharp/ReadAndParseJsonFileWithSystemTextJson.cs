@@ -4,7 +4,7 @@ namespace ReadAndParseAJSONFileInCSharp
 {
     public class ReadAndParseJsonFileWithSystemTextJson
     {
-        private const string _sampleJsonFile = "teachers-json.json";
+        private const string _sampleJsonFile = @"..\..\..\Data\teachers-json.json";
 
         public static List<Teacher> UseStreamReaderWithSystemTextJson(string sampleJsonFile = _sampleJsonFile)
         {

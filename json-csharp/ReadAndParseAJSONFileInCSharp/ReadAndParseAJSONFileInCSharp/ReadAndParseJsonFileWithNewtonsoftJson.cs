@@ -5,7 +5,7 @@ namespace ReadAndParseAJSONFileInCSharp
 {
     public class ReadAndParseJsonFileWithNewtonsoftJson
     {
-        private const string _sampleJsonFile = "teachers-json.json";
+        private const string _sampleJsonFile = @"..\..\..\Data\teachers-json.json";
 
         public static List<Teacher> UseUserDefinedObjectWithNewtonsoftJson(string sampleJsonFile = _sampleJsonFile)
         {
