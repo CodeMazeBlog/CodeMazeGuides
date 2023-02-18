@@ -9,7 +9,7 @@ namespace ReadAndParseAJSONFileInCSharp
     public class ReadAndParseJSONFileMethodsBenchMark
     {
         private static readonly string _jsonFile 
-            =  @"../../../../../../../Data\MethodsBenchmark-json.json";
+            =  @"../../../../../../../Data/MethodsBenchmark-json.json";
         
         [Benchmark]
         public void UseUserDefinedObjectWithNewtonsoftJson()
