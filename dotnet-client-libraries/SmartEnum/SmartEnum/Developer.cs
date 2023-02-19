@@ -2,27 +2,32 @@
 {
     public class Developer
     {
-        public Developer(string name, DeveloperEnum developerType)
+        public Developer(string name, DeveloperLevel level)
         {
             Name = name;
-            DeveloperType = developerType;
-            Productivity = SetProductivity(DeveloperType);
+            Level = level;
+            Productivity = CalculateProductivity(Level);
         }
 
         public string Name { get; }
-        public DeveloperEnum DeveloperType { get; }
+        public DeveloperLevel Level { get; }
         public double Productivity { get; }
 
-        private static double SetProductivity(DeveloperEnum developerType)
+        public double WriteCode(int linesOfCode)
         {
-            switch (developerType)
+            return linesOfCode / Productivity;
+        }
+
+        private static double CalculateProductivity(DeveloperLevel level)
+        {
+            switch (level)
             {
-                case DeveloperEnum.Junior:
-                    return 0.75;
-                case DeveloperEnum.Regular:
-                    return 1.25;
-                case DeveloperEnum.Senior:
-                    return 1.75;
+                case DeveloperLevel.Junior:
+                    return 75;
+                case DeveloperLevel.Regular:
+                    return 25;
+                case DeveloperLevel.Senior:
+                    return 75;
                 default:
                     return 0;
             }

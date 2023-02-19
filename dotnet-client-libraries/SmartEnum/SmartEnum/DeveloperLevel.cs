@@ -1,6 +1,6 @@
 ﻿namespace SmartEnum
 {
-    public enum DeveloperEnum
+    public enum DeveloperLevel
     {
         Junior,
         Regular,
