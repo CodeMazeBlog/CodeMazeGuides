@@ -1,9 +1,19 @@
-﻿namespace SmartEnum
+﻿using Ardalis.SmartEnum;
+
+namespace SmartEnum
 {
-    public enum DeveloperLevel
+    public sealed class DeveloperLevel : SmartEnum<DeveloperLevel>
     {
-        Junior,
-        Regular,
-        Senior
+        private static readonly DeveloperLevel Junior = new DeveloperLevel(nameof(Junior), 1, 75);
+        private static readonly DeveloperLevel Regular = new DeveloperLevel(nameof(Regular), 2, 125);
+        private static readonly DeveloperLevel Senior = new DeveloperLevel(nameof(Senior), 3, 175);
+
+        public DeveloperLevel(string name, int value, double productivity)
+            : base(name, value)
+        {
+            Productivity = productivity;
+        }
+
+        public double Productivity { get; }
     }
 }

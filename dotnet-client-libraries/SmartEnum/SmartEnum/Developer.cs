@@ -2,7 +2,7 @@
 {
     public class Developer
     {
-        public Developer(string name, DeveloperLevel level)
+        public Developer(string name, Enums.DeveloperLevel level)
         {
             Name = name;
             Level = level;
@@ -10,7 +10,7 @@
         }
 
         public string Name { get; }
-        public DeveloperLevel Level { get; }
+        public Enums.DeveloperLevel Level { get; }
         public double Productivity { get; }
 
         public double WriteCode(int linesOfCode)
@@ -18,15 +18,15 @@
             return linesOfCode / Productivity;
         }
 
-        private static double CalculateProductivity(DeveloperLevel level)
+        private static double CalculateProductivity(Enums.DeveloperLevel level)
         {
             switch (level)
             {
-                case DeveloperLevel.Junior:
+                case Enums.DeveloperLevel.Junior:
                     return 75;
-                case DeveloperLevel.Regular:
+                case Enums.DeveloperLevel.Regular:
                     return 25;
-                case DeveloperLevel.Senior:
+                case Enums.DeveloperLevel.Senior:
                     return 75;
                 default:
                     return 0;
