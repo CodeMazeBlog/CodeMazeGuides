@@ -26,8 +26,6 @@
         Blazor.registerCustomEventType('doubleclick', {
             browserEventName: 'click',
             createEventArgs: event => {
-                // This example only deals with pasting text, but you could use arbitrary JavaScript APIs
-                // to deal with users pasting other types of data, such as images
                 const timeBetweenClicks = event.timeStamp - lastClick
                 if (timeBetweenClicks > MAX_DOUBLE_CLICK_TIME) {
                     lastClick = event.timeStamp;
@@ -37,8 +35,6 @@
                         isDoubleClick: false
                     };
                 }
-
-
 
                 // Double click happened.
                 console.log("double click!");
