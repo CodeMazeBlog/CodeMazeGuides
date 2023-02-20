@@ -9,7 +9,7 @@
     public class User
     {
         public string Name { get; set; }
-        public Language UserLangage { get; set; }
+        public Language UserLanguage { get; set; }
     }
 
     public class AppProfile
@@ -26,7 +26,7 @@
         public void GreetUser()
         {
             Action<string> greetingTarget;
-            switch (_user.UserLangage)
+            switch (_user.UserLanguage)
             {
                 case Language.English:
                     greetingTarget = GreetingsEnglish;
