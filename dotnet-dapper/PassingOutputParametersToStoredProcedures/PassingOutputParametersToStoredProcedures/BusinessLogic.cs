@@ -16,7 +16,9 @@ namespace PassingOutputParametersToStoredProcedures
             parameters.Add("Language", Language);
             parameters.Add("Id", dbType: System.Data.DbType.Int32, direction: System.Data.ParameterDirection.Output);
             parameters.Add("Message", dbType: System.Data.DbType.String, direction: System.Data.ParameterDirection.Output, size: 200);
+
             var result = DataAccess.ExecuteStoredProcedure(parameters);
+
             return result;
         }
     }
