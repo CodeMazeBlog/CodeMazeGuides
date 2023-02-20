@@ -36,7 +36,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenIntIsSentToMultDel_DelExecutesReferencedMethod()
+        public void WhenIntIsSentToMultDel_ThenDelExecutesReferencedMethod()
         {
             MultDel powTwoDel = SquareNumber;
             var res = powTwoDel(2);
@@ -45,7 +45,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenMultDelConvertedToFuncMethod_DelExecutesReferencedMethod()
+        public void WhenMultDelConvertedToFuncMethod_ThenDelExecutesReferencedMethod()
         {
             Func<int, int> powTwoFuncDel = SquareNumber;
             var res = powTwoFuncDel(2);
@@ -54,7 +54,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenMultDelConvertedToFuncMethod_DelInvListEqualsOne()
+        public void WhenMultDelConvertedToFuncMethod_ThenDelInvListEqualsOne()
         {
             Func<int, int> powTwoFuncDel = SquareNumber;
             var invList = powTwoFuncDel.GetInvocationList();
@@ -65,7 +65,7 @@ namespace Tests
         [InlineData("Name", Language.English, "Hello, Name")]
         [InlineData("Name", Language.French, "Bonjour, Name")]
         [InlineData("Name", Language.Spanish, "Hola, Name")]
-        public void WhenUserLanguageAssignedByGreetUser_SwitchStatementAssignsCorrectReferenceMethod(string name,
+        public void WhenUserLanguageAssignedByGreetUser_ThenSwitchStatementAssignsCorrectReferenceMethod(string name,
             Language language, string expOutput)
         {
             var user = new User { Name = name, UserLanguage = language };
@@ -75,7 +75,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenGreetUserActionDel_DelInvocationListEqualsOne()
+        public void WhenGreetUserActionDel_ThenDelInvocationListEqualsOne()
         {
             var user = new User { Name = "Name", UserLanguage = Language.English };
             var profile = new AppProfile(user);
