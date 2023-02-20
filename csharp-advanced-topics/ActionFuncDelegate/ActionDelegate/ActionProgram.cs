@@ -1,18 +1,18 @@
 ﻿namespace ActionDelegate
 {
-    public class Program
+    public class ActionProgram
     {
 
         Action<string, string> displayDel = DisplayMethod;
         //Action<string, string> displayDel = new Action<string, string>(DisplayMethod);
         public static void DisplayMethod(string firstName, string lastName)
         {
-            Console.WriteLine(firstName + " " + lastName);
+            Console.Write(firstName + " " + lastName);
         }
 
         public static void Main(string[] args)
         {
-            var obj = new Program();
+            var obj = new ActionProgram();
             obj.displayDel("John", "Abraham");
 
             Console.WriteLine();

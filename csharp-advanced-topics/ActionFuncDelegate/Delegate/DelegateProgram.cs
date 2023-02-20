@@ -9,7 +9,7 @@
         Sum sumDel = GetSum;
         public static void DisplayMethod(string firstName, string lastName)
         {
-            Console.WriteLine(firstName + " " + lastName);
+            Console.Write(firstName + " " + lastName);
         }
         public static int GetSum(int value1, int value2)
         {
