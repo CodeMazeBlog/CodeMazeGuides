@@ -6,7 +6,7 @@ namespace ReadAndParseAJSONFileInCSharp
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<ReadAndParseJSONFileMethodsBenchMark>();
+           BenchmarkRunner.Run<ReadAndParseJSONFileMethodsBenchMark>();
         }
     }
 }

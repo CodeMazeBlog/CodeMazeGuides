@@ -1,21 +1,21 @@
 [
     {
-        "TeacherId":1,
-        "FirstName":"Clare",
-        "LastName":"Anyanwu",
-        "BirthYear":1987,
-        "Level":8,
-        "Courses":
+        "teacherId":1,
+        "firstName":"Clare",
+        "lastName":"Anyanwu",
+        "birthYear":1987,
+        "level":8,
+        "courses":
         [
             {
-                "Name":"Biology",
-                "CreditUnits":3,
-                "NumberOfStudents":42
+                "name":"Biology",
+                "creditUnits":3,
+                "numberOfStudents":42
             },
             {
-                "Name":"Basic Science",
-                "CreditUnits":4,
-                "NumberOfStudents":35
+                "name":"Basic Science",
+                "creditUnits":4,
+                "numberOfStudents":35
             }
         ]
     }

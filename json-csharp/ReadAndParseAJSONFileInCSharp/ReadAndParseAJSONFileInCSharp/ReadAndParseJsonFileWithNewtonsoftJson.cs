@@ -10,7 +10,7 @@ namespace ReadAndParseAJSONFileInCSharp
         public static List<Teacher> UseUserDefinedObjectWithNewtonsoftJson(string sampleJsonFile = _sampleJsonFile)
         {
             using StreamReader reader = new(sampleJsonFile);
-            string json = reader.ReadToEnd();
+            var json = reader.ReadToEnd();
             List<Teacher> teachers = JsonConvert.DeserializeObject<List<Teacher>>(json);
 
             return teachers;
@@ -19,8 +19,8 @@ namespace ReadAndParseAJSONFileInCSharp
         public static List<Teacher> UseJArrayParseInNewtonsoftJson(string sampleJsonFile = _sampleJsonFile)
         {
             using StreamReader reader = new(sampleJsonFile);
-            string json = reader.ReadToEnd();
-            JArray jarray = JArray.Parse(json);
+            var json = reader.ReadToEnd();
+            var jarray = JArray.Parse(json);
             List<Teacher> teachers = new();
 
             foreach (var item in jarray)

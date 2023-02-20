@@ -4,8 +4,8 @@ namespace Tests
 {
     public class SystemTextJsonReadAndParseMethodsTest
     {
-        private static readonly Teacher _expectedTeacher =
-            new()
+        private static readonly Teacher _expectedTeacher
+            = new()
             {
                 TeacherId = 1,
                 FirstName = "Clare",

@@ -9,7 +9,7 @@ namespace ReadAndParseAJSONFileInCSharp
         public static List<Teacher> UseStreamReaderWithSystemTextJson(string sampleJsonFile = _sampleJsonFile)
         {
             using StreamReader streamReader = new(sampleJsonFile);
-            string json = streamReader.ReadToEnd();
+            var json = streamReader.ReadToEnd();
             List<Teacher> teachers = JsonSerializer.Deserialize<List<Teacher>>(json);
 
             return teachers;
@@ -17,7 +17,7 @@ namespace ReadAndParseAJSONFileInCSharp
 
         public static List<Teacher> UseFileReadAllTextWithSystemTextJson(string sampleJsonFile = _sampleJsonFile)
         {
-            string json = File.ReadAllText(sampleJsonFile);
+            var json = File.ReadAllText(sampleJsonFile);
             List<Teacher> teachers = JsonSerializer.Deserialize<List<Teacher>>(json);
 
             return teachers;
@@ -25,7 +25,7 @@ namespace ReadAndParseAJSONFileInCSharp
 
         public static List<Teacher> UseFileOpenReadTextWithSystemTextJson(string sampleJsonFile = _sampleJsonFile)
         {
-            FileStream json = File.OpenRead(sampleJsonFile);
+            using FileStream json = File.OpenRead(sampleJsonFile);
             List<Teacher> teachers = JsonSerializer.Deserialize<List<Teacher>>(json);
 
             return teachers;
