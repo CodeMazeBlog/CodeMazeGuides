@@ -17,7 +17,7 @@ namespace Tests
         {
             Func<string, string> greetingTarget;
 
-            switch (user.UserLangage)
+            switch (user.UserLanguage)
             {
                 case Language.English:
                     greetingTarget = GreetingsEnglish;
@@ -68,7 +68,7 @@ namespace Tests
         public void WhenUserLanguageAssignedByGreetUser_SwitchStatementAssignsCorrectReferenceMethod(string name,
             Language language, string expOutput)
         {
-            var user = new User { Name = name, UserLangage = language };
+            var user = new User { Name = name, UserLanguage = language };
             var greeting = GreetUser(user);
 
             Assert.Equal(expOutput, greeting);
@@ -77,7 +77,7 @@ namespace Tests
         [Fact]
         public void WhenGreetUserActionDel_DelInvocationListEqualsOne()
         {
-            var user = new User { Name = "Name", UserLangage = Language.English };
+            var user = new User { Name = "Name", UserLanguage = Language.English };
             var profile = new AppProfile(user);
             Action action = profile.GreetUser;
             var invList = action.GetInvocationList();
