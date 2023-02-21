@@ -1,7 +1,5 @@
 using IEnumerableVsICollectionVsIListVsList;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
 using NUnit.Framework;
-using System;
 
 namespace Tests
 {
