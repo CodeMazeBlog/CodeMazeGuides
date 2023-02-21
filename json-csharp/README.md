@@ -3,6 +3,7 @@
 This section contains the topics related to JSON manipulation in C#.
 ### Relevant articles:
 
+- [How to Compare Two Json Objects Using C#](https://code-maze.com/csharp-compare-two-json-objects/)
 - [How to Deserialize a Complex JSON Object in C# .NET](https://code-maze.com/csharp-deserialize-complex-json-object/)
 - [JSON Deserialization to a POCO Class in C#](https://code-maze.com/csharp-json-deserialization-poco-class/)
 - [How to Get Value by Key from JObject in C#](https://code-maze.com/csharp-get-value-by-key-from-jobject/)
