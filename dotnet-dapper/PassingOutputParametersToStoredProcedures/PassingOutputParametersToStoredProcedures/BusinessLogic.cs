@@ -1,9 +1,5 @@
 ﻿using Dapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace PassingOutputParametersToStoredProcedures
 {
@@ -14,8 +10,8 @@ namespace PassingOutputParametersToStoredProcedures
             var parameters = new DynamicParameters();
             parameters.Add("Name", Name);
             parameters.Add("Language", Language);
-            parameters.Add("Id", dbType: System.Data.DbType.Int32, direction: System.Data.ParameterDirection.Output);
-            parameters.Add("Message", dbType: System.Data.DbType.String, direction: System.Data.ParameterDirection.Output, size: 200);
+            parameters.Add("Id", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            parameters.Add("Message", dbType: DbType.String, direction: ParameterDirection.Output, size: 200);
 
             var result = DataAccess.ExecuteStoredProcedure(parameters);
 
