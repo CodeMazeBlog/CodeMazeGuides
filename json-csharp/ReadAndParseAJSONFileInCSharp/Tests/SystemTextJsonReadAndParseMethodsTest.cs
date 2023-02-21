@@ -31,6 +31,7 @@ namespace Tests
             };
 
         [Fact]
+
         public void GivenJsonFile_WhenUsingStreamReaderWithSystemTextJson_ThenParsesToAList()
         {
             var teachers = ReadAndParseJsonFileWithSystemTextJson.UseStreamReaderWithSystemTextJson();
