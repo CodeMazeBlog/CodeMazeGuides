@@ -28,8 +28,6 @@ namespace IEnumerableVsICollectionVsIListVsList
             var ils = new ImplementationOfIList();
             output = ils.CountSpecialCharacters(specialCharacter);
             Console.WriteLine($"IList with List input:{output}");
-            //Uncomment below line to generate runtime exception
-            //output = ils.CountSpecialCharacters(arrayOfSpecialCharacter);
             output = ils.CountSpecialCharactersArray(arrayOfSpecialCharacter);
             Console.WriteLine($"IList with Array input:{output}");
 

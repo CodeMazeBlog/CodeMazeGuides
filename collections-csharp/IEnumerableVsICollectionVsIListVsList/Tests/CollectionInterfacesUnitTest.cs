@@ -1,4 +1,5 @@
 using IEnumerableVsICollectionVsIListVsList;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 using NUnit.Framework;
 using System;
 
@@ -57,6 +58,16 @@ namespace Tests
             List<char> lt = new List<char>() { '^' ,'(', ')'};
 
             Assert.That(lst.CountSpecialCharacters(lt), Is.EqualTo(3));
+        }
+
+        [Test]
+        public void WhenPassedArrayToIList_ThrowsException()
+        {
+            var ils = new ImplementationOfIList();
+            char[] arr = new char[] { '^', '.' };
+            var output = Assert.Throws<NotSupportedException>(() => ils.CountSpecialCharacters(arr));
+
+            Assert.That(output.Message == "Collection was of a fixed size.");
         }
     }
 }
