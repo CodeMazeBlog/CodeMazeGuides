@@ -3,8 +3,6 @@ using Xunit;
 
 namespace Tests
 {
-    delegate int MultDel(int inInt);
-
     public class ActAndFuncDelegatesUnitTests
     {
         [Fact]

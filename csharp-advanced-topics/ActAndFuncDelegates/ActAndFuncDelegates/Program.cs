@@ -1,7 +1,7 @@
 ﻿namespace ActAndFuncDelegates;
 
 // 1) Declare
-delegate int MultDel(int inInt);
+public delegate int MultDel(int inInt);
 
 public class Program
 {
