@@ -6,7 +6,7 @@ delegate int MultDel(int inInt);
 public class Program
 {
     // 2) Method
-    private static int SquareNumber(int inputInt)
+    public static int SquareNumber(int inputInt)
     {
         return inputInt * inputInt;
     }
