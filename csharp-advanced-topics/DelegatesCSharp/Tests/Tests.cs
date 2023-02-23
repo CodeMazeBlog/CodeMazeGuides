@@ -28,7 +28,7 @@ namespace Tests
         public void TestPrintMessage()
         {
             // Arrange
-            string expectedOutput = "Hello, world!\r\n";
+            string expectedOutput = "Hello, world!";
 
             // Act
             using (StringWriter sw = new StringWriter())
