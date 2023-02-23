@@ -9,7 +9,7 @@ namespace ImmutableCollectionsInCSharpTests
         [Fact]
         public void ExploreImmutablStack()
         {
-            var stack1 = ImmutableStack<int>.Empty;
+            var stack1 = ImmutableStack.Create<int>();
             var stack2 = stack1.Push(1);
             var stack3 = stack2.Push(2);
 
@@ -39,6 +39,53 @@ namespace ImmutableCollectionsInCSharpTests
             
             var list5 = list4.Replace(2, 4); 
             Assert.Equal(3, list5.Count);
+        }
+
+        [Fact]
+        public void ExploreImmutableArray()
+        {
+            var immutableArray = ImmutableArray.Create<int>(1, 2, 3, 4);
+
+
+            var firstElement = immutableArray[0];
+            Assert.Equal(1, firstElement);
+
+            var lastElementIndex = immutableArray.BinarySearch(4);
+            Assert.Equal(3, lastElementIndex);
+        }
+
+        [Fact]
+        public void ExploreImmutableDictionary()
+        {
+            var dict1 = ImmutableDictionary.Create<int, char>();
+            var dict2 = dict1.Add(1, 'a');
+
+            Assert.Single(dict2);
+            Assert.True(dict2.ContainsKey(1));
+            Assert.Equal('a', dict2[1]);
+
+            var dict3 = dict2.Add(2, 'b');
+            Assert.Equal(2, dict3.Count);
+
+            var dict4 = dict3.Remove(2);
+            Assert.Single(dict4);
+        }
+
+        [Fact]
+        public void ExploreImmutablSortedSet()
+        {
+            var sortedSet1 = ImmutableSortedSet<int>.Empty;
+
+            var sortedSet2 = sortedSet1.Add(5);
+            var sortedSet3 = sortedSet2.Add(1);
+            Assert.Equal(1, sortedSet3[0]);
+            Assert.Equal(5, sortedSet3[1]);
+            
+            var sortedSet4 = sortedSet2.Add(1);
+            Assert.Equal(2, sortedSet4.Count);
+
+            var sortedSet5 = sortedSet4.Remove(1);
+            Assert.Single(sortedSet5);
         }
     }
 }
