@@ -2,14 +2,14 @@
 {
     public class Developer
     {
+        public string Name { get; }
+        public DeveloperLevel Level { get; }
+
         public Developer(string name, DeveloperLevel level)
         {
             Name = name;
             Level = level;
         }
-
-        public string Name { get; }
-        public DeveloperLevel Level { get; }
 
         public double WriteCode(int linesOfCode)
         {
