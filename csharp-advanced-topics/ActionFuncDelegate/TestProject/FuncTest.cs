@@ -5,6 +5,7 @@ namespace TestProject
     public class FuncTest
     {
         Func<int, int, int> sumDel = FuncProgram.GetSum;
+
         [Fact]
         public void Test_Action_DisplayDelegate()
         {

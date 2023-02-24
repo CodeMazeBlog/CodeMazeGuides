@@ -7,6 +7,7 @@
 
         Display displayDel = DisplayMethod;
         Sum sumDel = GetSum;
+
         public static void DisplayMethod(string firstName, string lastName)
         {
             Console.Write(firstName + " " + lastName);
@@ -16,7 +17,6 @@
             return value1 + value2;
         }
 
-        
         public static void Main(string[] args)
         {
             var obj = new DelegateProgram();

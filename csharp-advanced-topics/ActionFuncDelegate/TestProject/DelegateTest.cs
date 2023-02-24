@@ -6,6 +6,7 @@ namespace TestProject
     {
         public delegate void Display(string firstName, string lastName);
         public delegate int Sum(int value1, int value2);
+
         [Fact]
         public void Test_DisplayDelegate()
         {
@@ -21,6 +22,7 @@ namespace TestProject
 
             Assert.Equal(expectedOutput, sw.ToString());
         }
+
         [Fact]
         public void Test_SumDelegate()
         {

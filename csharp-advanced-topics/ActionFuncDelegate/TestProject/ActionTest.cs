@@ -6,6 +6,7 @@ namespace TestProject
     {
         Action<string, string> displayDel = ActionProgram.DisplayMethod;
         [Fact]
+
         public void Test_Action_DisplayDelegate()
         {
             string expectedOutput = "John Abraham";
