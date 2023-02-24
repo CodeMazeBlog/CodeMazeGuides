@@ -4,7 +4,7 @@
     {
         public string LogMessageFromDerivedClass(string message)
         {
-            return string.Format($"Derived Log: {LogMessage(message)}");
+            return $"Derived Log: {LogMessage(message)}";
         }
     }
 }
