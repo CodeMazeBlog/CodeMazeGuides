@@ -7,7 +7,7 @@ namespace ImmutableCollectionsInCSharpTests
     public class ImmutableCollectionsTests
     {
         [Fact]
-        public void ExploreImmutablStack()
+        public void GivenImmutablStack()
         {
             var stack1 = ImmutableStack.Create<int>();
             var stack2 = stack1.Push(1);
@@ -23,7 +23,7 @@ namespace ImmutableCollectionsInCSharpTests
         }
         
         [Fact]
-        public void ExploreImmutablLists()
+        public void GivenImmutablLists()
         {
             var list1 = ImmutableList.Create<int>(); 
             Assert.Empty(list1); 
@@ -42,7 +42,7 @@ namespace ImmutableCollectionsInCSharpTests
         }
 
         [Fact]
-        public void ExploreImmutableArray()
+        public void GivenImmutableArray()
         {
             var immutableArray = ImmutableArray.Create<int>(1, 2, 3, 4);
 
@@ -55,7 +55,7 @@ namespace ImmutableCollectionsInCSharpTests
         }
 
         [Fact]
-        public void ExploreImmutableDictionary()
+        public void GivenImmutableDictionary()
         {
             var dict1 = ImmutableDictionary.Create<int, char>();
             var dict2 = dict1.Add(1, 'a');
@@ -72,7 +72,7 @@ namespace ImmutableCollectionsInCSharpTests
         }
 
         [Fact]
-        public void ExploreImmutablSortedSet()
+        public void GivenImmutablSortedSet()
         {
             var sortedSet1 = ImmutableSortedSet<int>.Empty;
 
