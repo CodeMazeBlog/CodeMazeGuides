@@ -12,6 +12,7 @@
         {
             Console.Write(firstName + " " + lastName);
         }
+
         public static int GetSum(int value1, int value2)
         {
             return value1 + value2;
