@@ -17,7 +17,7 @@ public class UserService : IUserSevice
     }
 
     public bool Login(string username, string password)
-    {
+    { 
         using var _ = _logger.BeginScope(new List<KeyValuePair<string, object>>
         {
             new KeyValuePair<string, object>("UserName", username)
@@ -27,6 +27,7 @@ public class UserService : IUserSevice
 
         if (_users.Any(u => u.Equals(new(username, password))))
         {
+
             _logger.LogInformation("User found, logging in");
             return true;
         }

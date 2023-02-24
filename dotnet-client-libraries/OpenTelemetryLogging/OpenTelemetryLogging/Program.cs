@@ -15,9 +15,10 @@ using var traceProvider = Sdk.CreateTracerProviderBuilder()
         ResourceBuilder.CreateDefault()
             .AddService("Logging.NET"))
     .AddConsoleExporter()
+    .AddJaegerExporter()
     .Build();
 
-ServiceProvider serviceProvider = new ServiceCollection()
+var serviceProvider = new ServiceCollection()
     .AddLogging((loggingBuilder) => loggingBuilder
         .SetMinimumLevel(LogLevel.Debug)
         .AddOpenTelemetry(options =>
@@ -25,6 +26,7 @@ ServiceProvider serviceProvider = new ServiceCollection()
                 .SetResourceBuilder(
                     ResourceBuilder.CreateDefault()
                         .AddService("Logging.NET"))
+                .AddProcessor(new ActivityEventLogProcessor())
                 .IncludeScopes = true))
     .AddScoped<IUserSevice, UserService>()
     .BuildServiceProvider();
