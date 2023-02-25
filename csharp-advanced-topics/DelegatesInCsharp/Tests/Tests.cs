@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Text.RegularExpressions;
 
 namespace Tests
 {
@@ -9,85 +10,29 @@ namespace Tests
 	[TestClass]
 	public class Tests
 	{
-		public static string WriteText(string text) { return $"Text:{text}"; }
-		public static string ReverseText(string text) { return Reverse(text); }
-		public static void ReverseWriteText(string text) { Console.WriteLine(Reverse(text)); }
+        Action<string> printUpperCase = (s) => Console.WriteLine(s.ToUpper());
+        Action<string> printLowerCase = (s) => Console.WriteLine(s.ToLower());
+        Action<string> printCapitzalizeCase = (s) => Console.WriteLine(Regex.Replace(s, @"((^\w)|(\s|\p{P})\w)",
+                                        match => match.Value.ToUpper()));
 
-		private static string Reverse(string s)
-		{
-			char[] charArray = s.ToCharArray();
-			Array.Reverse(charArray);
-			return new string(charArray);
-		}
+        Func<int, int, int> add = (x, y) => x + y;
+        Func<int, int, int> sub = (x, y) => x - y;
+        Func<int, int, int> mult = (x, y) => x * y;
+        Func<int, int, int> div = (x, y) => x / y;
 
-		[TestMethod]
-		public void whenStringIsSent_DelegateExecutesTheReferencedMethod()
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var result = delegate1("You're gonna need a bigger boat.");
-			Assert.AreEqual("Text:You're gonna need a bigger boat.", result);
-		}
 
-		[TestMethod]
-		public void whenStringIsSent_DelegateReturnsTheReversedString()
-		{
-			var delegate1 = new PrintMessage(ReverseText);
-			var result = delegate1("You're gonna need a bigger boat.");
-			Assert.AreEqual(Reverse("You're gonna need a bigger boat."), result);
-		}
 
-		[TestMethod]
-		public void givenMulticastDelegate_whenTwoReferencedMethodAndPlusSign_DelegateInvocationListContainsTwoMethods()
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseText);
-			var multicastDelegate = delegate1 + delegate2;
-
-			var invocationList = multicastDelegate.GetInvocationList();
-
-			Assert.AreEqual(invocationList.Length, 2);
-			Assert.AreEqual(invocationList[0].Method.Name, "WriteText");
-			Assert.AreEqual(invocationList[1].Method.Name, "ReverseText");
-		}
-
-		[TestMethod]
-		public void givenMulticastDelegate_whenTwoReferencedMethodAndPlusEquals_DelegateInvocationListContainsTwoMethods()
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseText);
-			var multicastDelegate = delegate1;
-			multicastDelegate += delegate2;
-
-			var invocationList = multicastDelegate.GetInvocationList();
-
-			Assert.AreEqual(invocationList.Length, 2);
-			Assert.AreEqual(invocationList[0].Method.Name, "WriteText");
-			Assert.AreEqual(invocationList[1].Method.Name, "ReverseText");
-		}
-
-		[TestMethod]
-		public void whenGenericDelegate_DelegateExecutesTheReferencedMethod()
-		{
-			var delegate1 = new Print<string>(ReverseText);
-			
-			var result = delegate1("You're gonna need a bigger boat.");
-
-			Assert.AreEqual(Reverse("You're gonna need a bigger boat."), result);
-		}
-
-		[TestMethod]
+        [TestMethod]
 		public void whenActionDelegate_DelegateInvocationListNotEmpty()
-		{
-			Action<string> executeReverseWriteAction = ReverseWriteText;
-			var invocationList = executeReverseWriteAction.GetInvocationList();
+		{			
+			var invocationList = printUpperCase.GetInvocationList();
 			Assert.AreEqual(invocationList.Length, 1);
 		}
 
 		[TestMethod]
 		public void whenFuncDelegate_DelegateInvocationListNotEmpty()
 		{
-			Func<string, string> executeReverseWriteAction = ReverseText;
-			var invocationList = executeReverseWriteAction.GetInvocationList();
+			var invocationList = add.GetInvocationList();
 			Assert.AreEqual(invocationList.Length, 1);
 		}
 	}

@@ -1,45 +1,35 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace DelegatesInCsharp
 {
-	delegate void PrintMessage(string text);
-	delegate T Print<T>(T param1);
-
 	class Program
 	{
-		public static void WriteText(string text) => Console.WriteLine($"Text: {text}");
-		public static void ReverseWriteText(string text) => Console.WriteLine($"Text in reverse: {Reverse(text)}");
-		public static string ReverseText(string text) => Reverse(text);
-
-		private static string Reverse(string s)
-		{
-			char[] charArray = s.ToCharArray();
-			Array.Reverse(charArray);
-			return new string(charArray);
-		}
+        
 
 		static void Main(string[] args)
 		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseWriteText);
-			// with + sign
-			var multicastDelegate = delegate1 + delegate2;
+            //Action Delegates
+            Action<string> printUpperCase = (s) => Console.WriteLine(s.ToUpper());
+            Action<string> printLowerCase = (s) => Console.WriteLine(s.ToLower());
+            Action<string> printCapitzalizeCase = (s) => Console.WriteLine(Regex.Replace(s, @"((^\w)|(\s|\p{P})\w)",
+                                            match => match.Value.ToUpper()));
+                       
+            printUpperCase("This is an Action delegate");
+            printLowerCase("This is an Action delegate");
+            printCapitzalizeCase("This is an Action delegate");
 
-			// with =, +=, and -=
-			multicastDelegate = delegate1;
-			multicastDelegate += delegate2;
+            //Func delegates
+            Func<int, int, int> add = (x, y) => x + y;
+            Func<int, int, int> sub = (x, y) => x - y;
+            Func<int, int, int> mult = (x, y) => x * y;
+            Func<int, int, int> div = (x, y) => x / y;
 
-			multicastDelegate.Invoke("Go ahead, make my day.");
-			multicastDelegate("You're gonna need a bigger boat.");
+            int sum = add(2, 3);
+            int substraction = sub(sum, 3);
+            int multiplication = mult(sum, 3);
+            int division = div(sum, 3);
 
-			var delegate3 = new Print<string>(ReverseText);
-			Console.WriteLine(delegate3("I'll be back."));
-
-			// comment out other stuff
-			Action<string> executeReverseWriteAction = ReverseWriteText;
-			executeReverseWriteAction("Are you not entertained?");
-			Func<string, string> executeReverseFunc = ReverseText;
-			Console.WriteLine(executeReverseFunc("Are you not entertained?"));
-		}
-	}
+        }
+    }
 }
