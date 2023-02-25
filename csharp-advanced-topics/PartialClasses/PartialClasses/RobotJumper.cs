@@ -2,8 +2,8 @@ namespace PartialClasses;
 
 public partial class Robot
 {
-    private const int JumpChargeRequired = 5;
-    private const int JumpDistance = 5;
+    public const int JumpChargeRequired = 3;
+    public const int JumpDistance = 3;
         
     public void Jump()
     {

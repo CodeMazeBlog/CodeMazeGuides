@@ -18,7 +18,7 @@ var myRobot = new Robot();
 myRobot.Recharge();
 myRobot.PrintDiagnostics();
 
-bool jump = true;
+var jump = true;
 while (myRobot.DistanceCovered < desiredInstance)
 {
     if (jump)
