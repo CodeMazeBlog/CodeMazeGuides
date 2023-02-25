@@ -13,7 +13,7 @@ public class AsyncLocalUnitTest
     private const string ChildNonAsyncValue = "ChildNonAsync";
 
     [Fact]
-    public async Task ParentTaskCallingAsyncChildTask()
+    public async Task GivenParentAsyncTask_WhenUsingAsyncChildTask_ThenParentContextIsPersisted()
     {
         _context.Value = ParentValue;
 
@@ -35,7 +35,7 @@ public class AsyncLocalUnitTest
     }
 
     [Fact]
-    public async Task ParentTaskCallingNonAsyncChildTask()
+    public async Task GivenParentAsyncTask_WhenUsingNonAsyncChildTask_ThenLocalContextIsPersisted()
     {
         _context.Value = ParentValue;
 
