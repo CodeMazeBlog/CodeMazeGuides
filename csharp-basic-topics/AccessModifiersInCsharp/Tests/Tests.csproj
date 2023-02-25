@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AccessSpecifiersInCsharp\AccessSpecifiersInCsharp.csproj" />
+    <ProjectReference Include="..\AccessModifiersInCsharp\AccessModifiersInCsharp.csproj" />
   </ItemGroup>
 
 </Project>

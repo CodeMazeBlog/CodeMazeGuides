@@ -1,4 +1,4 @@
-﻿namespace AccessSpecifiersInCsharp
+﻿namespace AccessModifiersInCsharp
 {
     class DerivedLogger : Logger
     {

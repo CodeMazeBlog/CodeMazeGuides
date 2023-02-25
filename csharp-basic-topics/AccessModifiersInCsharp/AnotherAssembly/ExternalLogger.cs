@@ -4,7 +4,7 @@
     {
         public void ExternalLogMessage(string message)
         {
-            //var logger = new AccessSpecifiersInCsharp.Logger();
+            //var logger = new AccessModifiersInCsharp.Logger();
             //logger.LogMessage(message);
         }
     }

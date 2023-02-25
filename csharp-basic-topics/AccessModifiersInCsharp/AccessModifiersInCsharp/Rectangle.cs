@@ -1,4 +1,4 @@
-﻿namespace AccessSpecifiersInCsharp
+﻿namespace AccessModifiersInCsharp
 {
     public class Rectangle : Shape
     {

@@ -1,4 +1,4 @@
-﻿using AccessSpecifiersInCsharp;
+﻿using AccessModifiersInCsharp;
 
 namespace Tests
 {

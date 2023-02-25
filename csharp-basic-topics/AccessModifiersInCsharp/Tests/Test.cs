@@ -1,5 +1,4 @@
-using AccessSpecifiersInCsharp;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+using AccessModifiersInCsharp;
 
 namespace Tests
 {
