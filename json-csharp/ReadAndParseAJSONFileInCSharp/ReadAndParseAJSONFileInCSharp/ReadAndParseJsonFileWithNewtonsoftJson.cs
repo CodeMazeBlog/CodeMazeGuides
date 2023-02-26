@@ -5,16 +5,16 @@ namespace ReadAndParseAJSONFileInCSharp
 {
     public class ReadAndParseJsonFileWithNewtonsoftJson
     {
-        public string SampleJsonFilePath { get; set; }
+        private readonly string _sampleJsonFilePath;
 
         public ReadAndParseJsonFileWithNewtonsoftJson(string sampleJsonFilePath)
         {
-            SampleJsonFilePath = sampleJsonFilePath;
+            _sampleJsonFilePath = sampleJsonFilePath;
         }
 
         public List<Teacher> UseUserDefinedObjectWithNewtonsoftJson()
         {
-            using StreamReader reader = new(SampleJsonFilePath);
+            using StreamReader reader = new(_sampleJsonFilePath);
             var json = reader.ReadToEnd();
             List<Teacher> teachers = JsonConvert.DeserializeObject<List<Teacher>>(json);
 
@@ -23,7 +23,7 @@ namespace ReadAndParseAJSONFileInCSharp
 
         public List<Teacher> UseJArrayParseInNewtonsoftJson()
         {
-            using StreamReader reader = new(SampleJsonFilePath);
+            using StreamReader reader = new(_sampleJsonFilePath);
             var json = reader.ReadToEnd();
             var jarray = JArray.Parse(json);
             List<Teacher> teachers = new();
@@ -41,7 +41,7 @@ namespace ReadAndParseAJSONFileInCSharp
         {
             var serializer = new JsonSerializer();
             List<Teacher> teachers = new();
-            using (var streamReader = new StreamReader(SampleJsonFilePath))
+            using (var streamReader = new StreamReader(_sampleJsonFilePath))
             using (var textReader = new JsonTextReader(streamReader))
             {
                 teachers = serializer.Deserialize<List<Teacher>>(textReader);
