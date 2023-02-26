@@ -4,7 +4,10 @@ namespace Tests
 {
     public class SystemTextJsonReadAndParseMethodsTest
     {
-        private static readonly Teacher _expectedTeacher
+        private readonly ReadAndParseJsonFileWithSystemTextJson _readJson
+            = new(Path.GetFullPath("Data/teachers-json.json"));
+
+        private readonly Teacher _expectedTeacher
             = new()
             {
                 TeacherId = 1,
@@ -34,7 +37,7 @@ namespace Tests
 
         public void GivenJsonFile_WhenUsingStreamReaderWithSystemTextJson_ThenParsesToAList()
         {
-            var teachers = ReadAndParseJsonFileWithSystemTextJson.UseStreamReaderWithSystemTextJson();
+            var teachers = _readJson.UseStreamReaderWithSystemTextJson();
             var firstTeacher = teachers.FirstOrDefault();
 
             Assert.IsType<List<Teacher>>(teachers);
@@ -44,7 +47,7 @@ namespace Tests
         [Fact]
         public void GivenJsonFile_WhenUsingFileReadAllTextWithSystemTextJson_ThenParsesToAList()
         {
-            var teachers = ReadAndParseJsonFileWithSystemTextJson.UseFileReadAllTextWithSystemTextJson();
+            var teachers = _readJson.UseFileReadAllTextWithSystemTextJson();
             var firstTeacher = teachers.FirstOrDefault();
 
             Assert.IsType<List<Teacher>>(teachers);
@@ -54,7 +57,7 @@ namespace Tests
         [Fact]
         public void GivenJsonFile_WhenUsingFileOpenReadTextWithSystemTextJson_ThenParsesToAList()
         {
-            var teachers = ReadAndParseJsonFileWithSystemTextJson.UseFileOpenReadTextWithSystemTextJson();
+            var teachers = _readJson.UseFileOpenReadTextWithSystemTextJson();
             var firstTeacher = teachers.FirstOrDefault();
            
             Assert.IsType<List<Teacher>>(teachers);

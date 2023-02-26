@@ -7,31 +7,33 @@ namespace ReadAndParseAJSONFileInCSharp
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class ReadAndParseJSONFileMethodsBenchMark
     {
-        private static readonly string _jsonFile 
-            =  @"../../../../../../../Data/MethodsBenchmark-json.json";
-        
+        private readonly ReadAndParseJsonFileWithNewtonsoftJson _readWithNewtonsoftJson
+            = new(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName, "Data", "MethodsBenchmark-json.json"));
+        private readonly ReadAndParseJsonFileWithSystemTextJson _readWithSystemTextJson
+            = new(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName, "Data", "MethodsBenchmark-json.json"));
+
         [Benchmark]
         public void UseUserDefinedObjectWithNewtonsoftJson()
-            => ReadAndParseJsonFileWithNewtonsoftJson.UseUserDefinedObjectWithNewtonsoftJson(_jsonFile);
+            => _readWithNewtonsoftJson.UseUserDefinedObjectWithNewtonsoftJson();
 
         [Benchmark]
         public void UseJArrayParseInNewtonsoftJson()
-            => ReadAndParseJsonFileWithNewtonsoftJson.UseJArrayParseInNewtonsoftJson(_jsonFile);
+            => _readWithNewtonsoftJson.UseJArrayParseInNewtonsoftJson();
 
         [Benchmark]
         public void UseJsonTextReaderInNewtonsoftJson()
-            => ReadAndParseJsonFileWithNewtonsoftJson.UseJsonTextReaderInNewtonsoftJson(_jsonFile);
+            => _readWithNewtonsoftJson.UseJsonTextReaderInNewtonsoftJson();
 
         [Benchmark]
         public void UseStreamReaderWithSystemTextJson() 
-            => ReadAndParseJsonFileWithSystemTextJson.UseStreamReaderWithSystemTextJson(_jsonFile);
+            => _readWithSystemTextJson.UseStreamReaderWithSystemTextJson();
 
         [Benchmark]
         public void UseFileReadAllTextWithSystemTextJson()
-            => ReadAndParseJsonFileWithSystemTextJson.UseFileReadAllTextWithSystemTextJson(_jsonFile);
+            => _readWithSystemTextJson.UseFileReadAllTextWithSystemTextJson();
         
         [Benchmark]
         public void UseFileOpenReadWithSystemTextJson()
-            => ReadAndParseJsonFileWithSystemTextJson.UseFileOpenReadTextWithSystemTextJson(_jsonFile);
+            => _readWithSystemTextJson.UseFileOpenReadTextWithSystemTextJson();
     }
 }

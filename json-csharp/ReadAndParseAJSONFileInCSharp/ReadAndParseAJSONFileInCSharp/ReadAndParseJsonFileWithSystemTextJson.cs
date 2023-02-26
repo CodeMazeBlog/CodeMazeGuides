@@ -4,33 +4,39 @@ namespace ReadAndParseAJSONFileInCSharp
 {
     public class ReadAndParseJsonFileWithSystemTextJson
     {
-        private const string _sampleJsonFile = @"../../../Data/teachers-json.json";
-        private static readonly JsonSerializerOptions options = new()
+        public string SampleJsonFilePath { get; set; }
+
+        public ReadAndParseJsonFileWithSystemTextJson(string sampleJsonFilePath)
+        {
+            SampleJsonFilePath = sampleJsonFilePath;
+        }
+
+        private readonly JsonSerializerOptions _options = new()
         {
             PropertyNameCaseInsensitive = true
         };
 
-        public static List<Teacher> UseStreamReaderWithSystemTextJson(string sampleJsonFile = _sampleJsonFile)
+        public List<Teacher> UseStreamReaderWithSystemTextJson()
         {
-            using StreamReader streamReader = new(sampleJsonFile);
+            using StreamReader streamReader = new(SampleJsonFilePath);
             var json = streamReader.ReadToEnd();
-            List<Teacher> teachers = JsonSerializer.Deserialize<List<Teacher>>(json, options);
+            List<Teacher> teachers = JsonSerializer.Deserialize<List<Teacher>>(json, _options);
 
             return teachers;
         }
 
-        public static List<Teacher> UseFileReadAllTextWithSystemTextJson(string sampleJsonFile = _sampleJsonFile)
+        public List<Teacher> UseFileReadAllTextWithSystemTextJson()
         {
-            var json = File.ReadAllText(sampleJsonFile);
-            List<Teacher> teachers = JsonSerializer.Deserialize<List<Teacher>>(json, options);
+            var json = File.ReadAllText(SampleJsonFilePath);
+            List<Teacher> teachers = JsonSerializer.Deserialize<List<Teacher>>(json, _options);
 
             return teachers;
         }
 
-        public static List<Teacher> UseFileOpenReadTextWithSystemTextJson(string sampleJsonFile = _sampleJsonFile)
+        public List<Teacher> UseFileOpenReadTextWithSystemTextJson()
         {
-            using FileStream json = File.OpenRead(sampleJsonFile);
-            List<Teacher> teachers = JsonSerializer.Deserialize<List<Teacher>>(json, options);
+            using FileStream json = File.OpenRead(SampleJsonFilePath);
+            List<Teacher> teachers = JsonSerializer.Deserialize<List<Teacher>>(json, _options);
 
             return teachers;
         }

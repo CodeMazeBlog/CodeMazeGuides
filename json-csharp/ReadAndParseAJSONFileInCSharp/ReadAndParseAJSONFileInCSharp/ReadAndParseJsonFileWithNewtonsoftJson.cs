@@ -5,20 +5,25 @@ namespace ReadAndParseAJSONFileInCSharp
 {
     public class ReadAndParseJsonFileWithNewtonsoftJson
     {
-        private const string _sampleJsonFile = @"../../../Data/teachers-json.json";
+        public string SampleJsonFilePath { get; set; }
 
-        public static List<Teacher> UseUserDefinedObjectWithNewtonsoftJson(string sampleJsonFile = _sampleJsonFile)
+        public ReadAndParseJsonFileWithNewtonsoftJson(string sampleJsonFilePath)
         {
-            using StreamReader reader = new(sampleJsonFile);
+            SampleJsonFilePath = sampleJsonFilePath;
+        }
+
+        public List<Teacher> UseUserDefinedObjectWithNewtonsoftJson()
+        {
+            using StreamReader reader = new(SampleJsonFilePath);
             var json = reader.ReadToEnd();
             List<Teacher> teachers = JsonConvert.DeserializeObject<List<Teacher>>(json);
 
             return teachers;
         }
 
-        public static List<Teacher> UseJArrayParseInNewtonsoftJson(string sampleJsonFile = _sampleJsonFile)
+        public List<Teacher> UseJArrayParseInNewtonsoftJson()
         {
-            using StreamReader reader = new(sampleJsonFile);
+            using StreamReader reader = new(SampleJsonFilePath);
             var json = reader.ReadToEnd();
             var jarray = JArray.Parse(json);
             List<Teacher> teachers = new();
@@ -32,11 +37,11 @@ namespace ReadAndParseAJSONFileInCSharp
             return teachers;
         }
 
-        public static List<Teacher> UseJsonTextReaderInNewtonsoftJson(string sampleJsonFile = _sampleJsonFile)
+        public List<Teacher> UseJsonTextReaderInNewtonsoftJson()
         {
             var serializer = new JsonSerializer();
             List<Teacher> teachers = new();
-            using (var streamReader = new StreamReader(sampleJsonFile))
+            using (var streamReader = new StreamReader(SampleJsonFilePath))
             using (var textReader = new JsonTextReader(streamReader))
             {
                 teachers = serializer.Deserialize<List<Teacher>>(textReader);

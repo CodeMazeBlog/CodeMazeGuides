@@ -4,7 +4,10 @@ namespace Tests
 {
     public class NewtonsoftJsonReadAndParseMethodsTest
     {
-        private static readonly Teacher _expectedTeacher 
+        private readonly ReadAndParseJsonFileWithNewtonsoftJson _readJson
+            = new(Path.GetFullPath("Data/teachers-json.json"));
+
+        private readonly Teacher _expectedTeacher 
             = new()
             {
                 TeacherId = 1,
@@ -33,7 +36,7 @@ namespace Tests
         [Fact]
         public void GivenJsonFile_WhenUsingUserDefinedObjectWithNewtonsoftJson_ThenParsesToAList()
         {
-            var teachers = ReadAndParseJsonFileWithNewtonsoftJson.UseUserDefinedObjectWithNewtonsoftJson();
+            var teachers = _readJson.UseUserDefinedObjectWithNewtonsoftJson();
             var firstTeacher = teachers.FirstOrDefault();
             
             Assert.IsType<List<Teacher>>(teachers);
@@ -43,7 +46,7 @@ namespace Tests
         [Fact]
         public void GivenJsonFile_WhenUsingJArrayParseInNewtonsoftJson_ThenParsesToAList()
         {
-            var teachers = ReadAndParseJsonFileWithNewtonsoftJson.UseJArrayParseInNewtonsoftJson();
+            var teachers = _readJson.UseJArrayParseInNewtonsoftJson();
             var firstTeacher = teachers.FirstOrDefault();
 
             Assert.IsType<List<Teacher>>(teachers);
@@ -53,7 +56,7 @@ namespace Tests
         [Fact]
         public void GivenJsonFile_WhenUsingJsonTextReaderInNewtonsoftJson_ThenParsesToAList()
         {
-            var teachers = ReadAndParseJsonFileWithNewtonsoftJson.UseJsonTextReaderInNewtonsoftJson();
+            var teachers = _readJson.UseJsonTextReaderInNewtonsoftJson();
             var firstTeacher = teachers.FirstOrDefault();
 
             Assert.IsType<List<Teacher>>(teachers);
