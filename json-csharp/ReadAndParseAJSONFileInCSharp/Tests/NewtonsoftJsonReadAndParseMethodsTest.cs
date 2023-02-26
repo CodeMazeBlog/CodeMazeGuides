@@ -5,7 +5,7 @@ namespace Tests
     public class NewtonsoftJsonReadAndParseMethodsTest
     {
         private readonly ReadAndParseJsonFileWithNewtonsoftJson _readJson
-            = new(Path.GetFullPath("Data/teachers-json.json"));
+            = new(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Data", "teachers-json.json"));
 
         private readonly Teacher _expectedTeacher 
             = new()
