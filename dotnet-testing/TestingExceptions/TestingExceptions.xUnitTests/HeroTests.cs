@@ -27,6 +27,7 @@ namespace TestingExceptions.xUnitTests
 
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(act);
+            Assert.Throws<ArgumentOutOfRangeException>(() => hero.LevelUp());
         }
 
         [Fact]

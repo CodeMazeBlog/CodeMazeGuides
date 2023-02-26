@@ -8,12 +8,30 @@ namespace TestingExceptions.NUnitTests
         }
 
         [Test]
+        public void GivenSufficientExperience_WhenLevelUpIsInvoked_ThenLeveIsIncreased()
+        {
+            // Arrange
+            var hero = new Hero(1500);
+
+            // Act
+            hero.LevelUp();
+
+            // Assert
+            Assert.That(hero.Level, Is.EqualTo(1));
+            Assert.That(hero.Experience, Is.EqualTo(500));
+        }
+
+        [Test]
         public void GivenInsufficientExperience_WhenLevelUpIsInvoked_ThenExceptionIsThrown()
         {
             // Arrange
             var hero = new Hero(500);
 
+            // Act
+            TestDelegate act = hero.LevelUp;
+
             // Assert
+            Assert.Throws<ArgumentOutOfRangeException>(act);
             Assert.Throws<ArgumentOutOfRangeException>(hero.LevelUp);
         }
 
