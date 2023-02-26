@@ -4,17 +4,17 @@ namespace ReadAndParseAJSONFileInCSharp
 {
     public class ReadAndParseJsonFileWithSystemTextJson
     {
+        private readonly JsonSerializerOptions _options = new()
+        {
+            PropertyNameCaseInsensitive = true
+        };
+
         public string SampleJsonFilePath { get; set; }
 
         public ReadAndParseJsonFileWithSystemTextJson(string sampleJsonFilePath)
         {
             SampleJsonFilePath = sampleJsonFilePath;
         }
-
-        private readonly JsonSerializerOptions _options = new()
-        {
-            PropertyNameCaseInsensitive = true
-        };
 
         public List<Teacher> UseStreamReaderWithSystemTextJson()
         {
