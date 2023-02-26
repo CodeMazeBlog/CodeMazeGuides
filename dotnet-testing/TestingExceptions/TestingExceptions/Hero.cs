@@ -26,8 +26,6 @@
 
         public async Task LevelUpAsync()
         {
-            await Task.Delay(1000);
-
             if (Experience - ExperienceNeeded < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(Experience), "Not enough Experience to level up!");
@@ -35,6 +33,8 @@
 
             Experience -= ExperienceNeeded;
             Level++;
+
+            await Task.Delay(1000);
         }
     }
 }
