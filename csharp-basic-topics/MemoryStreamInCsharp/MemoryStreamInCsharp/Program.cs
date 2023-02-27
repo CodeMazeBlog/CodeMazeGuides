@@ -1,13 +1,9 @@
 ﻿using MemoryStreamInCsharp.Properties;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System;
 using System.Text;
-using System.IO.Compression;
 using MemoryStreamInCsharp;
 
-string phrase1 = "How to Use MemoryStream in C#";
-byte[] phrase1Bytes = Encoding.UTF8.GetBytes(phrase1);
+var phrase1 = "How to Use MemoryStream in C#";
+var phrase1Bytes = Encoding.UTF8.GetBytes(phrase1);
 var phrase2 = " - explanation with examples";
 var phrase2Bytes = Encoding.UTF8.GetBytes(phrase2);
 var memoryStream = new MemoryStream();
@@ -40,11 +36,11 @@ string ShowMemoryStreamProperties(MemoryStream memoryStream, string comment = ""
     return sb.ToString();
 }
 
-
 void SimpleConstructor()
 {
     MemoryStream memoryStream = new MemoryStream();
-    var displyProperties = ShowMemoryStreamProperties(memoryStream, "Simple Constructor");
+    var displyProperties = ShowMemoryStreamProperties(memoryStream, 
+        "Simple Constructor");
 
     Console.WriteLine($"{displyProperties}");
 }
@@ -52,7 +48,8 @@ void SimpleConstructor()
 void ByteArrayConstructor()
 {
     var memoryStream = new MemoryStream(phrase1Bytes);
-    var displyProperties = ShowMemoryStreamProperties(memoryStream, "Constructed From byte array");
+    var displyProperties = ShowMemoryStreamProperties(memoryStream, 
+        "Constructed From byte array");
 
     Console.WriteLine($"{displyProperties}");
 }
@@ -60,7 +57,8 @@ void ByteArrayConstructor()
 void FullConstructor()
 {
     var memoryStream = new MemoryStream(phrase1Bytes, 0, phrase1Bytes.Length - 10, true, true);
-    var displyProperties = ShowMemoryStreamProperties(memoryStream, "Constructed Writable from byte array with GetBuffer() enabled");
+    var displyProperties = ShowMemoryStreamProperties(memoryStream, 
+        "Constructed Writable from byte array with GetBuffer() enabled");
 
     Console.WriteLine($"{displyProperties}\n");
 }
@@ -69,7 +67,8 @@ void WriteToMemoryStream()
 {
     memoryStream.Write(phrase1Bytes, 0, phrase1Bytes.Length);
     memoryStream.Write(phrase2Bytes, 0, phrase2Bytes.Length);
-    var displyProperties = ShowMemoryStreamProperties(memoryStream, "Writing to MemoryStream");
+    var displyProperties = ShowMemoryStreamProperties(memoryStream, 
+        "Writing to MemoryStream");
 
     Console.WriteLine(displyProperties);
 }
@@ -140,5 +139,7 @@ void SerializeAndDeserializeObject()
         };
     }
 
-    Console.WriteLine($"\nFirst Name: {deserializedPerson.FirstName}, Last Name: {deserializedPerson.LastName}, Age: {deserializedPerson.Age}");
+    Console.WriteLine($"\nFirst Name: {deserializedPerson.FirstName}, " +
+        $"Last Name: {deserializedPerson.LastName}, " +
+        $"Age: {deserializedPerson.Age}");
 }

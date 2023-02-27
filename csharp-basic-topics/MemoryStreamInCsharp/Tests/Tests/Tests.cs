@@ -14,7 +14,7 @@ public class Tests
     }
 
     [Fact]
-    public void WhenWritingToExtendibleMemoryStream_ThenCanWrite()
+    public void WhenWritingToExtendibleMemoryStream_ThenSuccess()
     {
         var memoryStream = new MemoryStream();
         Assert.True(memoryStream.CanWrite);
