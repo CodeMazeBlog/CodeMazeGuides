@@ -3,12 +3,14 @@
     public class FuncAndActionDelegates
     {
         Func<double, double> Square = new Func<double, double>(SquareNumbers);
+
         Action<string> WriteMessage = new Action<string>(PrintMessage);
 
         public static double SquareNumbers(double input1)
         {
             return Math.Pow(input1, 2);
         }
+
         public static void PrintMessage(string message)
         {
             Console.WriteLine(message);
@@ -23,5 +25,6 @@
         {
             WriteMessage.Invoke(message);
         }
+
     }
 }
