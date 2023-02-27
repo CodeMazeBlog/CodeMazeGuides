@@ -22,7 +22,7 @@ namespace UsingTrieForPatternSearch
         {
             for (int i = 0; i < _iterations; i++)
             {
-                ListPatternSearcher.Search(_text, _pattern);
+                HashSetPatternSearcher.Search(_text, _pattern);
             }
         }
 
