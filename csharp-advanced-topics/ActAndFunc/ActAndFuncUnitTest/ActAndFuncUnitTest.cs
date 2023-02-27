@@ -15,7 +15,7 @@ public class ActAndFuncUnitTest
         funcAndAction.MultiDelegateMethod(4,5);
         return; // indicates success
     }
-    catch (Exception ex)
+    catch (System.Exception ex)
     {
         Assert.Fail(ex.Message);
     }
@@ -29,7 +29,7 @@ public class ActAndFuncUnitTest
         action.ActionMethod2();
         return; // indicates success
     }
-    catch (Exception ex)
+    catch (System.Exception ex)
     {
         Assert.Fail(ex.Message);
     }
