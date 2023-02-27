@@ -38,7 +38,7 @@ string ShowMemoryStreamProperties(MemoryStream memoryStream, string comment = ""
 
 void SimpleConstructor()
 {
-    MemoryStream memoryStream = new MemoryStream();
+    var memoryStream = new MemoryStream();
     var displyProperties = ShowMemoryStreamProperties(memoryStream, 
         "Simple Constructor");
 
