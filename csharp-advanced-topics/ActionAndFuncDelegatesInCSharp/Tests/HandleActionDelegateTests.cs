@@ -9,9 +9,7 @@ public class HandleActionDelegateTests
     {
         StringWriter consoleOutput = new StringWriter();
         Console.SetOut(consoleOutput);
-
         HandleActionDelegate.PrintActionDelegate();
-
         Assert.Equal($"\nResult = 2{Environment.NewLine}", consoleOutput.ToString());
     }
 }
