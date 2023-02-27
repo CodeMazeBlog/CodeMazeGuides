@@ -10,6 +10,7 @@ namespace ReadAndParseAJSONFileInCSharp
         {
             PropertyNameCaseInsensitive = true
         };
+
         public ReadAndParseJsonFileWithSystemTextJson(string sampleJsonFilePath)
         {
             _sampleJsonFilePath = sampleJsonFilePath;
