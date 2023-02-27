@@ -113,7 +113,7 @@ namespace Tests
 
             NewtonsoftSerializer.ExcludeUsingContractResolver(Program.movie);
 
-            var expectedResult = $"{{{Environment.NewLine}  \"Name\": \"Titanic\",\r\n  \"Description\": \"It is based on accounts of the sinking of the RMS Titanic\"{Environment.NewLine}}}";
+            var expectedResult = $"{{{Environment.NewLine}  \"Name\": \"Titanic\",{Environment.NewLine}  \"Description\": \"It is based on accounts of the sinking of the RMS Titanic\"{Environment.NewLine}}}";
 
             Assert.AreEqual(expectedResult, sw.ToString());
         }
