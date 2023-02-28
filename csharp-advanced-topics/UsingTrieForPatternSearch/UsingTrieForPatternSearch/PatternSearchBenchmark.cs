@@ -9,11 +9,14 @@ namespace UsingTrieForPatternSearch
         private const int _iterations = 1000000;
 
         [Benchmark]
-        public void ListSearch()
+        public void TrieSearch()
         {
+            var trie = new Trie();
+            trie.AddWord(_pattern);
+
             for (int i = 0; i < _iterations; i++)
             {
-                ListPatternSearcher.Search(_text, _pattern);
+                trie.Search(_text);
             }
         }
 
@@ -27,23 +30,20 @@ namespace UsingTrieForPatternSearch
         }
 
         [Benchmark]
+        public void ListSearch()
+        {
+            for (int i = 0; i < _iterations; i++)
+            {
+                ListPatternSearcher.Search(_text, _pattern);
+            }
+        }
+
+        [Benchmark]
         public void SortedListSearch()
         {
             for (int i = 0; i < _iterations; i++)
             {
                 SortedListPatternSearcher.Search(_text, _pattern);
-            }
-        }
-
-        [Benchmark]
-        public void TrieSearch()
-        {
-            var trie = new Trie();
-            trie.AddWord(_pattern);
-
-            for (int i = 0; i < _iterations; i++)
-            {
-                trie.Search(_text);
             }
         }
     }
