@@ -39,38 +39,38 @@ string ShowMemoryStreamProperties(MemoryStream memoryStream, string comment = ""
 void SimpleConstructor()
 {
     var memoryStream = new MemoryStream();
-    var displyProperties = ShowMemoryStreamProperties(memoryStream, 
+    var displayProperties = ShowMemoryStreamProperties(memoryStream, 
         "Simple Constructor");
 
-    Console.WriteLine($"{displyProperties}");
+    Console.WriteLine($"{displayProperties}");
 }
 
 void ByteArrayConstructor()
 {
     var memoryStream = new MemoryStream(phrase1Bytes);
-    var displyProperties = ShowMemoryStreamProperties(memoryStream, 
+    var displayProperties = ShowMemoryStreamProperties(memoryStream, 
         "Constructed From byte array");
 
-    Console.WriteLine($"{displyProperties}");
+    Console.WriteLine($"{displayProperties}");
 }
 
 void FullConstructor()
 {
     var memoryStream = new MemoryStream(phrase1Bytes, 0, phrase1Bytes.Length - 10, true, true);
-    var displyProperties = ShowMemoryStreamProperties(memoryStream, 
+    var displayProperties = ShowMemoryStreamProperties(memoryStream, 
         "Constructed Writable from byte array with GetBuffer() enabled");
 
-    Console.WriteLine($"{displyProperties}\n");
+    Console.WriteLine($"{displayProperties}\n");
 }
 
 void WriteToMemoryStream()
 {
     memoryStream.Write(phrase1Bytes, 0, phrase1Bytes.Length);
     memoryStream.Write(phrase2Bytes, 0, phrase2Bytes.Length);
-    var displyProperties = ShowMemoryStreamProperties(memoryStream, 
+    var displayProperties = ShowMemoryStreamProperties(memoryStream, 
         "Writing to MemoryStream");
 
-    Console.WriteLine(displyProperties);
+    Console.WriteLine(displayProperties);
 }
 
 void ReadFromMemoryStream()
