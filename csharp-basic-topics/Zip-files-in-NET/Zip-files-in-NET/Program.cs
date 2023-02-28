@@ -1,9 +1,9 @@
 ﻿using System.IO.Compression;
 using Zip_files_in_NET;
 
-var reading = new ReadingZipFiles();
-var writing = new CreatingZipFiles();
-var modify = new ModifyingZipFiles();
+var reading = new ReadZipFiles();
+var writing = new CreateZipFiles();
+var modify = new ModifyZipFiles();
 
 string zipFile = "multi-folder.zip";
 
@@ -73,7 +73,7 @@ void wait()
     Console.Clear();
 }
 
-void caption(string caption, string subCaption = null)
+void caption(string caption, string? subCaption = null)
 {
     int size = Console.WindowWidth;
     Console.WriteLine(new string('*', size));

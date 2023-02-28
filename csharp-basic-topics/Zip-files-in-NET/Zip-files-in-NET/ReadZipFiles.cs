@@ -2,7 +2,7 @@
 
 namespace Zip_files_in_NET
 {
-    public class ReadingZipFiles
+    public class ReadZipFiles
     {
         public void ListAllFilesInZipUsingName(string zipFileName) =>
           ExecuteList(zipFileName, (entry) => entry.Name);

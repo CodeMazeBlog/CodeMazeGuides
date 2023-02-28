@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Zip_files_in_NET
 {
-    public class ModifyingZipFiles
+    public class ModifyZipFiles
     {
         public void DeleteFilesFromZipFile(string zipFileName, string filePattern)
         {
@@ -22,7 +22,7 @@ namespace Zip_files_in_NET
                 images[i].Delete();
         }
 
-        private bool IsPatternMach(string fileName, string filePattern)
+        private static bool IsPatternMach(string fileName, string filePattern)
         {
             Regex regPattern = new Regex(
                 filePattern.Replace(".", "[.]")

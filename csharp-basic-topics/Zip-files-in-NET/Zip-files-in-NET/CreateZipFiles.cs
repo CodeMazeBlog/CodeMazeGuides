@@ -2,7 +2,7 @@
 
 namespace Zip_files_in_NET
 {
-    public class CreatingZipFiles
+    public class CreateZipFiles
     {
         public void CreateZipFromFolderUsingFunction(string zipFileName, string sourceFolder) =>
             ZipFile.CreateFromDirectory(sourceFolder, zipFileName);

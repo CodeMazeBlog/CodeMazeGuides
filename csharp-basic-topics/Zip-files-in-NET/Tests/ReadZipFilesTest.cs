@@ -3,7 +3,7 @@
 namespace Tests
 {
     [TestClass]
-    public class ReadingZipFilesTest
+    public class ReadZipFilesTest
     {
         [TestMethod]
         [DataRow("multi-folder.zip", 10)]
@@ -17,7 +17,7 @@ namespace Tests
 
         private int CountOutputLines(string zipName)
         {
-            var reader = new ReadingZipFiles();
+            var reader = new ReadZipFiles();
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
