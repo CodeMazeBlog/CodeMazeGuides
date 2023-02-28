@@ -70,8 +70,6 @@ namespace Zip_files_in_NET
             {
                 Console.WriteLine($"{++counter,3}: {element(entry)}");
             }
-
-            Console.WriteLine("\n----------\n");
         }
     }
 }
