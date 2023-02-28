@@ -1,23 +1,15 @@
-using TimeSpanInCSharp;
-
 namespace TimeSpanInCSharpTests
 {
     [TestClass]
     public class TimeSpanUnitTests
     {
-        private TimeSpanOperations _timeSpanMethods;
-        public TimeSpanUnitTests()
-        {
-            _timeSpanMethods = new TimeSpanOperations();
-        }
-
         [TestMethod]
         public void GivenTwoTimeSpanValues_WhenAddOperationExecuted_VerifyAccurateSum()
         {
             var firstTimeSpan = new TimeSpan(1, 60, 3600);
             var secondTimeSpan = new TimeSpan(2, 60, 3600);
 
-            var actual = _timeSpanMethods.AddTimeSpans(firstTimeSpan, secondTimeSpan);
+            var actual = firstTimeSpan.Add(secondTimeSpan);
             var expected = firstTimeSpan + secondTimeSpan;
 
             Assert.AreEqual(expected, actual);
@@ -30,9 +22,9 @@ namespace TimeSpanInCSharpTests
             var secondTimeSpan = new TimeSpan(1, 60, 3600);
             var thirdTimeSpan = new TimeSpan(3, 60, 4000);
 
-            var equalTo = _timeSpanMethods.CompareTimeSpans(firstTimeSpan, secondTimeSpan);
-            var lessThan = _timeSpanMethods.CompareTimeSpans(secondTimeSpan, thirdTimeSpan);
-            var greaterThan = _timeSpanMethods.CompareTimeSpans(thirdTimeSpan, firstTimeSpan);
+            var equalTo = TimeSpan.Compare(firstTimeSpan, secondTimeSpan);
+            var lessThan = TimeSpan.Compare(secondTimeSpan, thirdTimeSpan);
+            var greaterThan = TimeSpan.Compare(thirdTimeSpan, firstTimeSpan);
 
             Assert.AreEqual(0, equalTo);
             Assert.AreEqual(-1, lessThan);
@@ -46,9 +38,9 @@ namespace TimeSpanInCSharpTests
             var secondTimeSpan = new TimeSpan(1, 60, 3600);
             var thirdTimeSpan = new TimeSpan(3, 60, 4000);
 
-            var equalTo = _timeSpanMethods.CompareToTimeSpans(firstTimeSpan, secondTimeSpan);
-            var lessThan = _timeSpanMethods.CompareToTimeSpans(secondTimeSpan, thirdTimeSpan);
-            var greaterThan = _timeSpanMethods.CompareToTimeSpans(thirdTimeSpan, firstTimeSpan);
+            var equalTo = firstTimeSpan.CompareTo(secondTimeSpan);
+            var lessThan = secondTimeSpan.CompareTo(thirdTimeSpan);
+            var greaterThan = thirdTimeSpan.CompareTo(firstTimeSpan);
 
             Assert.AreEqual(0, equalTo);
             Assert.AreEqual(-1, lessThan);
@@ -61,7 +53,7 @@ namespace TimeSpanInCSharpTests
             var firstTimeSpan = new TimeSpan(2, 60, 3600);
             var secondTimeSpan = new TimeSpan(1, 30, 1800);
 
-            var expected = _timeSpanMethods.DivideTwoTimeSpans(firstTimeSpan, secondTimeSpan);
+            var expected = firstTimeSpan.Divide(secondTimeSpan);
             var actual = firstTimeSpan / secondTimeSpan;
 
             Assert.AreEqual(expected, actual);
@@ -75,7 +67,7 @@ namespace TimeSpanInCSharpTests
             var firstTimeSpan = new TimeSpan(2, 60, 3600);
             var secondTimeSpan = new TimeSpan(1, 30, 1800);
 
-            var divisionByMethod = _timeSpanMethods.DivideTimeSpanWithDivisor(firstTimeSpan, 2);
+            var divisionByMethod = firstTimeSpan.Divide(2);
             var divisionByOperator = firstTimeSpan / 2;
 
             Assert.AreEqual(divisionByMethod, secondTimeSpan);
@@ -107,7 +99,7 @@ namespace TimeSpanInCSharpTests
             var firstTimeSpan = new TimeSpan(1, 30, 1800);
             var factor = 2;
 
-            var multiplyMethod = _timeSpanMethods.MultiplyTimeSpan(firstTimeSpan, factor);
+            var multiplyMethod = firstTimeSpan.Multiply(factor);
             var multiplyOperator = firstTimeSpan * factor;
 
             Assert.AreEqual(multiplyMethod, multiplyOperator);
@@ -124,7 +116,7 @@ namespace TimeSpanInCSharpTests
             var secondTimeSpan = new TimeSpan(1, 30, 1800);
             var expected = new TimeSpan(1, 30, 1800);
 
-            var subtractMethod = _timeSpanMethods.SubtractTimeSpan(firstTimeSpan, secondTimeSpan);
+            var subtractMethod = firstTimeSpan.Subtract(secondTimeSpan);
             var subtractOperator = firstTimeSpan - secondTimeSpan;
 
             Assert.AreEqual(subtractMethod, subtractOperator);
@@ -140,7 +132,7 @@ namespace TimeSpanInCSharpTests
             var firstTimeSpan = new TimeSpan(2, 60, 3600);
             var expected = "04:00:00";
 
-            var actual = _timeSpanMethods.TimeSpanToString(firstTimeSpan);
+            var actual = firstTimeSpan.ToString();
             
             Assert.AreEqual(expected, actual);
             Assert.IsInstanceOfType(actual, typeof(string));
@@ -151,7 +143,7 @@ namespace TimeSpanInCSharpTests
         {
             var firstTimeSpan = new TimeSpan(2, 60, 3600);
 
-            var actual = _timeSpanMethods.TimeSpanToDuration(firstTimeSpan);
+            var actual = firstTimeSpan.Duration();
             var expected = new TimeSpan(04, 00, 00);
 
             Assert.AreEqual(actual, expected);
@@ -164,7 +156,7 @@ namespace TimeSpanInCSharpTests
             var firstTimeSpan = new TimeSpan(2, 60, 3600);
             var expected = new TimeSpan(-2, -60, -3600);
 
-            var negateMethod = _timeSpanMethods.NegateTimeSpan(firstTimeSpan);
+            var negateMethod = firstTimeSpan.Negate();
             var negateOperator = -(firstTimeSpan);
 
             Assert.AreEqual(negateMethod, expected);
