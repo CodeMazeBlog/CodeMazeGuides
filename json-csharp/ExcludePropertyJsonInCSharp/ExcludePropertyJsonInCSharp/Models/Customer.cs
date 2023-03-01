@@ -8,9 +8,9 @@ namespace ExcludePropertyJsonInCSharp.Models
         public int Id { get; set; }
 
         [DataMember]
-        public string Name { get; set; } = default!;
+        public string? Name { get; set; }
 
         [DataMember]
-        public string LastName { get; set; } = default!;
+        public string? LastName { get; set; }
     }
 }

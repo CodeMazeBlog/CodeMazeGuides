@@ -6,16 +6,16 @@ namespace ExcludePropertyJsonInCSharp.Serializers
 {
     public static class MicrosoftSerializer
     {
-        public static void ExcludePropertyJsonIgnore(Person person)
+        public static string ExcludePropertyJsonIgnore(Person person)
         {
             var json = JsonSerializer.Serialize(person,
                 new JsonSerializerOptions { WriteIndented = true }
             );
 
-            Console.WriteLine(json);
+            return json;
         }
 
-        public static void ExcludeAllNullProperties(Book book)
+        public static string ExcludeAllNullProperties(Book book)
         {
             var json = JsonSerializer.Serialize(book,
                 new JsonSerializerOptions
@@ -25,10 +25,10 @@ namespace ExcludePropertyJsonInCSharp.Serializers
                 });
 
 
-            Console.WriteLine(json);
+            return json;
         }
 
-        public static void ExcludeAllDefaultProperties(Book book)
+        public static string ExcludeAllDefaultProperties(Book book)
         {
             var json = JsonSerializer.Serialize(book,
                 new JsonSerializerOptions
@@ -37,7 +37,7 @@ namespace ExcludePropertyJsonInCSharp.Serializers
                     WriteIndented = true
                 });
 
-            Console.WriteLine(json);
+            return json;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ExcludePropertyJsonInCSharp.Models
     {
         [JsonIgnore]
         public int Id { get; set; }
-        public string Name { get; set; } = default!;
-        public string LastName { get; set; } = default!;
+        public string? Name { get; set; }
+        public string? LastName { get; set; }
     }
 }

@@ -6,25 +6,25 @@ namespace ExcludePropertyJsonInCSharp.Serializers
 {
     public static class NewtonsoftSerializer
     {
-        public static void ExcludePropertyJsonIgnore(PersonNewtonsoft person)
+        public static string ExcludePropertyJsonIgnore(PersonNewtonsoft person)
         {
             var json = JsonConvert.SerializeObject(person,
                 Formatting.Indented
             );
 
-            Console.WriteLine(json);
+            return json;
         }
 
-        public static void IncludePropertyDataContract(Customer customer)
+        public static string IncludePropertyDataContract(Customer customer)
         {
             var json = JsonConvert.SerializeObject(customer,
                 Formatting.Indented
             );
 
-            Console.WriteLine(json);
+            return json;
         }
 
-        public static void ExcludeAllNullProperties(Book book)
+        public static string ExcludeAllNullProperties(Book book)
         {
             var json = JsonConvert.SerializeObject(book, 
                 Formatting.Indented,
@@ -33,10 +33,10 @@ namespace ExcludePropertyJsonInCSharp.Serializers
                     NullValueHandling = NullValueHandling.Ignore
                 });
 
-            Console.WriteLine(json);
+            return json;
         }
 
-        public static void ExcludeAllDefaultProperties(Book book)
+        public static string ExcludeAllDefaultProperties(Book book)
         {
             var json = JsonConvert.SerializeObject(book,
                 Formatting.Indented,
@@ -45,10 +45,10 @@ namespace ExcludePropertyJsonInCSharp.Serializers
                     DefaultValueHandling = DefaultValueHandling.Ignore
                 });
 
-            Console.WriteLine(json);
+            return json;
         }
 
-        public static void ExcludeUsingContractResolver(Movie movie)
+        public static string ExcludeUsingContractResolver(Movie movie)
         {
             var json = JsonConvert.SerializeObject(movie,
                 Formatting.Indented,
@@ -57,7 +57,7 @@ namespace ExcludePropertyJsonInCSharp.Serializers
                     ContractResolver = new IgnorePropertiesResolver("Id", "Classification")
                 });
 
-            Console.WriteLine(json);
+            return json;
         }
     }
 }

@@ -5,60 +5,101 @@ namespace ExcludePropertyJsonInCSharp
 {
     public static class Program
     {
-        public static readonly Person person = new Person()
+        public static Person Person
         {
-            Id = 1,
-            Name = "John",
-            LastName = "Smith"
-        };
+            get
+            {
+                return new Person()
+                {
+                    Id = 1,
+                    Name = "John",
+                    LastName = "Smith"
+                };
+            }
+        }
 
-        public static readonly PersonNewtonsoft personNewtonsoft = new PersonNewtonsoft()
+        public static PersonNewtonsoft PersonNewtonsoft 
         {
-            Id = 1,
-            Name = "John",
-            LastName = "Smith"
-        };
+            get
+            {
+                return new PersonNewtonsoft()
+                {
+                    Id = 1,
+                    Name = "John",
+                    LastName = "Smith"
+                };
+            }
+        }
 
-        public static readonly Customer customer = new Customer()
+        public static  Customer Customer
         {
-            Id = 1,
-            Name = "John",
-            LastName = "Smith"
-        };
+            get
+            {
+                return new Customer()
+                {
+                    Id = 1,
+                    Name = "John",
+                    LastName = "Smith"
+                };
+            }
+        }
 
-        public static readonly Book book = new Book()
+        public static Book Book
         {
-            Id = 1,
-            Title = "Dracula"
-        };
+            get
+            {
+                return new Book()
+                {
+                    Id = 1,
+                    Title = "Dracula"
+                };
+            }
+        }
 
-        public static readonly Movie movie = new Movie()
+        public static Movie Movie
         {
-            Id = 1,
-            Name = "Titanic",
-            Classification = 12,
-            Description = "It is based on accounts of the sinking of the RMS Titanic"
-        };
+            get
+            {
+                return new Movie()
+                {
+                    Id = 1,
+                    Name = "Titanic",
+                    Classification = 12,
+                    Description = "It is based on accounts of the sinking of the RMS Titanic"
+                };
+            }
+        }
 
         public static void Main(string[] args)
         {
             // Ignore Individual Properties
-            MicrosoftSerializer.ExcludePropertyJsonIgnore(person);
-            NewtonsoftSerializer.ExcludePropertyJsonIgnore(personNewtonsoft);
+            var json = MicrosoftSerializer.ExcludePropertyJsonIgnore(Person);
+            Console.WriteLine(json);
+
+            json = NewtonsoftSerializer.ExcludePropertyJsonIgnore(PersonNewtonsoft);
+            Console.WriteLine(json);
 
             // DataContract and DataMember Attributes
-            NewtonsoftSerializer.IncludePropertyDataContract(customer);
+            json = NewtonsoftSerializer.IncludePropertyDataContract(Customer);
+            Console.WriteLine(json);
 
             // Ignore all null-value properties
-            MicrosoftSerializer.ExcludeAllNullProperties(book);
-            NewtonsoftSerializer.ExcludeAllNullProperties(book);
+            json = MicrosoftSerializer.ExcludeAllNullProperties(Book);
+            Console.WriteLine(json);
+
+            json = NewtonsoftSerializer.ExcludeAllNullProperties(Book);
+            Console.WriteLine(json);
 
             // Ignore all default-value properties
-            MicrosoftSerializer.ExcludeAllDefaultProperties(book);
-            NewtonsoftSerializer.ExcludeAllDefaultProperties(book);
+            json = MicrosoftSerializer.ExcludeAllDefaultProperties(Book);
+            Console.WriteLine(json);
+
+            json = NewtonsoftSerializer.ExcludeAllDefaultProperties(Book);
+            Console.WriteLine(json);
 
             // Ignore using IContractResolver
-            NewtonsoftSerializer.ExcludeUsingContractResolver(movie);
+            json = NewtonsoftSerializer.ExcludeUsingContractResolver(Movie);
+            Console.WriteLine(json);
         }
     }
 }

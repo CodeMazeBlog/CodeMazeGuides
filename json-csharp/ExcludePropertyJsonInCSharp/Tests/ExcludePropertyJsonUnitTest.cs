@@ -9,113 +9,81 @@ namespace Tests
         [TestMethod]
         public void WhenUsingJsonIgnore_ThenReturnRemainingProperties()
         {
-            using var sw = new StringWriter();
-            sw.NewLine = "";
-            Console.SetOut(sw);
-
-            MicrosoftSerializer.ExcludePropertyJsonIgnore(Program.person);
+            var json = MicrosoftSerializer.ExcludePropertyJsonIgnore(Program.Person);
 
             var expectedResult = $"{{{Environment.NewLine}  \"Name\": \"John\",{Environment.NewLine}  \"LastName\": \"Smith\"{Environment.NewLine}}}";
 
-            Assert.AreEqual(expectedResult, sw.ToString());
+            Assert.AreEqual(expectedResult, json);
         }
 
         [TestMethod]
         public void WhenUsingNewtonsoftJsonIgnore_ThenReturnRemainingProperties()
         {
-            using var sw = new StringWriter();
-            sw.NewLine = "";
-            Console.SetOut(sw);
-
-            NewtonsoftSerializer.ExcludePropertyJsonIgnore(Program.personNewtonsoft);
+            var json = NewtonsoftSerializer.ExcludePropertyJsonIgnore(Program.PersonNewtonsoft);
 
             var expectedResult = $"{{{Environment.NewLine}  \"Name\": \"John\",{Environment.NewLine}  \"LastName\": \"Smith\"{Environment.NewLine}}}";
 
-            Assert.AreEqual(expectedResult, sw.ToString());
+            Assert.AreEqual(expectedResult, json);
         }
 
         [TestMethod]
         public void WhenUsingDataContract_ThenReturnDataMemberProperties()
         {
-            using var sw = new StringWriter();
-            sw.NewLine = "";
-            Console.SetOut(sw);
-
-            NewtonsoftSerializer.IncludePropertyDataContract(Program.customer);
+            var json = NewtonsoftSerializer.IncludePropertyDataContract(Program.Customer);
 
             var expectedResult = $"{{{Environment.NewLine}  \"Name\": \"John\",{Environment.NewLine}  \"LastName\": \"Smith\"{Environment.NewLine}}}";
 
-            Assert.AreEqual(expectedResult, sw.ToString());
+            Assert.AreEqual(expectedResult, json);
         }
 
         [TestMethod]
         public void WhenExcludeAllNullProperties_ThenReturnOnlyValuedOrDefaultProperties()
         {
-            using var sw = new StringWriter();
-            sw.NewLine = "";
-            Console.SetOut(sw);
-
-            MicrosoftSerializer.ExcludeAllNullProperties(Program.book);
+            var json = MicrosoftSerializer.ExcludeAllNullProperties(Program.Book);
 
             var expectedResult = $"{{{Environment.NewLine}  \"Id\": 1,{Environment.NewLine}  \"Title\": \"Dracula\",{Environment.NewLine}  \"Sells\": 0{Environment.NewLine}}}";
 
-            Assert.AreEqual(expectedResult, sw.ToString());
+            Assert.AreEqual(expectedResult, json);
         }
 
         [TestMethod]
         public void WhenExcludeAllNullPropertiesWithNewtonsoft_ThenReturnOnlyValuedOrDefaultProperties()
         {
-            using var sw = new StringWriter();
-            sw.NewLine = "";
-            Console.SetOut(sw);
-
-            NewtonsoftSerializer.ExcludeAllNullProperties(Program.book);
+            var json = NewtonsoftSerializer.ExcludeAllNullProperties(Program.Book);
 
             var expectedResult = $"{{{Environment.NewLine}  \"Id\": 1,{Environment.NewLine}  \"Title\": \"Dracula\",{Environment.NewLine}  \"Sells\": 0{Environment.NewLine}}}";
 
-            Assert.AreEqual(expectedResult, sw.ToString());
+            Assert.AreEqual(expectedResult, json);
         }
 
         [TestMethod]
         public void WhenExcludeAllDefaultProperties_ThenReturnOnlyValuedProperties()
         {
-            using var sw = new StringWriter();
-            sw.NewLine = "";
-            Console.SetOut(sw);
-
-            MicrosoftSerializer.ExcludeAllDefaultProperties(Program.book);
+            var json = MicrosoftSerializer.ExcludeAllDefaultProperties(Program.Book);
 
             var expectedResult = $"{{{Environment.NewLine}  \"Id\": 1,{Environment.NewLine}  \"Title\": \"Dracula\"{Environment.NewLine}}}";
 
-            Assert.AreEqual(expectedResult, sw.ToString());
+            Assert.AreEqual(expectedResult, json);
         }
 
         [TestMethod]
         public void WhenExcludeAllDefaultPropertiesWithNewtonsoft_ThenReturnOnlyValuedProperties()
         {
-            using var sw = new StringWriter();
-            sw.NewLine = "";
-            Console.SetOut(sw);
-
-            NewtonsoftSerializer.ExcludeAllDefaultProperties(Program.book);
+            var json = NewtonsoftSerializer.ExcludeAllDefaultProperties(Program.Book);
 
             var expectedResult = $"{{{Environment.NewLine}  \"Id\": 1,{Environment.NewLine}  \"Title\": \"Dracula\"{Environment.NewLine}}}";
 
-            Assert.AreEqual(expectedResult, sw.ToString());
+            Assert.AreEqual(expectedResult, json);
         }
 
         [TestMethod]
         public void WhenExcludeUsingContractResolver_ThenReturnNotIgnoredPropertiesNames()
         {
-            using var sw = new StringWriter();
-            sw.NewLine = "";
-            Console.SetOut(sw);
-
-            NewtonsoftSerializer.ExcludeUsingContractResolver(Program.movie);
+            var json = NewtonsoftSerializer.ExcludeUsingContractResolver(Program.Movie);
 
             var expectedResult = $"{{{Environment.NewLine}  \"Name\": \"Titanic\",{Environment.NewLine}  \"Description\": \"It is based on accounts of the sinking of the RMS Titanic\"{Environment.NewLine}}}";
 
-            Assert.AreEqual(expectedResult, sw.ToString());
+            Assert.AreEqual(expectedResult, json);
         }
     }
 }

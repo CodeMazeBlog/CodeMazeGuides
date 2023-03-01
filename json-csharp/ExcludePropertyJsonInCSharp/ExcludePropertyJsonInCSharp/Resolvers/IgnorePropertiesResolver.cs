@@ -8,17 +8,17 @@ namespace ExcludePropertyJsonInCSharp.Resolvers
 {
     public class IgnorePropertiesResolver : DefaultContractResolver
     {
-        private readonly HashSet<string> ignoreProps;
+        private readonly HashSet<string> _ignoreProps;
         public IgnorePropertiesResolver(params string[] propNamesToIgnore)
         {
-            ignoreProps = new HashSet<string>(propNamesToIgnore);
+            _ignoreProps = new HashSet<string>(propNamesToIgnore);
         }
 
         protected override JsonProperty CreateProperty(MemberInfo member, MemberSerialization memberSerialization)
         {
             JsonProperty property = base.CreateProperty(member, memberSerialization);
 
-            if (ignoreProps.Contains(property.PropertyName))
+            if (_ignoreProps.Contains(property.PropertyName))
             {
                 property.ShouldSerialize = _ => false;
             }
