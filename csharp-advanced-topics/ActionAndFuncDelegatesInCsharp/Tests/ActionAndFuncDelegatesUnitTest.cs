@@ -2,7 +2,7 @@ using ActionAndFuncDelegatesInCsharp;
 using System;
 namespace Tests
 {
-    public class ActionAndFuncDelegatesTests
+    public class ActionAndFuncDelegatesUnitTest
     {
         //////
         /// Test FindOnlyOne: Find the only one index in list or throw exception using 
