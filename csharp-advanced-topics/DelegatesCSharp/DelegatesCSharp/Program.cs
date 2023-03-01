@@ -7,6 +7,7 @@
         {
             Console.WriteLine("Hello, world!");
         }
+
         static void ExecuteAction(Action action)
         {
             action();
@@ -17,6 +18,7 @@
         {
             return a + b;
         }
+
         static void ExecuteFunc(Func<int, int, int> func)
         {
             int result = func(10, 20);

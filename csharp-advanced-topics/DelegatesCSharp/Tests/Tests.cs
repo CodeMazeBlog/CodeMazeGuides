@@ -1,31 +1,12 @@
+using ActionAndFuncDelegatesInCSharp;
+
 namespace Tests
 {
     [TestClass]
     public class Tests
     {
-        //Example of Action delegate
-        public static void PrintMessage()
-        {
-            Console.WriteLine("Hello, world!");
-        }
-        static void ExecuteAction(Action action)
-        {
-            action();
-        }
-
-        //Example of Func delegates
-        public static int AddNumbers(int a, int b)
-        {
-            return a + b;
-        }
-        static void ExecuteFunc(Func<int, int, int> func)
-        {
-            int result = func(10, 20);
-            Console.WriteLine("Result = " + result);
-        }
-
         [TestMethod]
-        public void TestPrintMessage()
+        public void WhenInvoked_ThenOutputHelloWorld()
         {
             // Arrange
             string expectedOutput = "Hello, world!\r\n";
@@ -34,7 +15,7 @@ namespace Tests
             using (StringWriter sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                PrintMessage();
+                Program.PrintMessage();
                 string actualOutput = sw.ToString();
 
                 // Assert
@@ -43,7 +24,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestAddNumbers()
+        public void WhenTwoNumbersAreProvided_ThenReturnsSumOfNumbers()
         {
             // Arrange
             int a = 10;
@@ -51,7 +32,7 @@ namespace Tests
             int expectedSum = 30;
 
             // Act
-            int actualSum = AddNumbers(a, b);
+            int actualSum = Program.AddNumbers(a, b);
 
             // Assert
             Assert.AreEqual(expectedSum, actualSum);
