@@ -1,0 +1,139 @@
+using ActionAndFuncDelegatesInCsharp;
+using System;
+namespace Tests
+{
+    public class ActionAndFuncDelegatesTests
+    {
+        //////
+        /// Test FindOnlyOne: Find the only one index in list or throw exception using 
+        /// delegate keyword
+        /////
+        [Theory]
+        [InlineData(new int[] { 7, 6, 4, 5, 3 }, 4)]
+        public void GivenListContainsOnlyOneOcurranceOfItem_WhenFindOnlyOne_ThenReturnsTheOnlyItem(int[] list, int input)
+        {
+            Program.Find find = Finder.FindOnlyOne;
+            int index = find.Invoke(list, input);
+
+            Assert.Equal(2, index);
+        }
+        [Theory]
+        [InlineData(new int[] { 7, 6, 4, 5, 3 }, 1)]
+        public void GivenListLacksItem_WhenFindOnlyOne_ThenReturnException(int[] list, int input)
+        {
+            Program.Find find = Finder.FindOnlyOne;
+
+            Assert.Throws<Exception>(() => find.Invoke(list, input));
+        }
+        [Theory]
+        [InlineData(new int[] { 7, 6, 4, 5, 7 }, 7)]
+        public void GivenListContainsTheItemMoreThanOnce_WhenFindOnlyOne_ThenReturnException(int[] list, int input)
+        {
+            Program.Find find = Finder.FindOnlyOne;
+
+            Assert.Throws<Exception>(() => find.Invoke(list, input));
+        }
+
+        //////
+        /// Test FindOnlyOneUsingFunc: Find the only one index in list or throw exception 
+        /// using delegate keyword with Func<I1,I2,...,O>
+        ////// 
+        [Theory]
+        [InlineData(new int[] { 7, 6, 4, 5, 3 }, 4)]
+        public void GivenListContainsOnlyOneOcurranceOfItem_WhenFindOnlyOneUsingFunc_ThenReturnsTheOnlyItem(int[] list, int input)
+        {
+            Func<int[], int, int> find = Finder.FindOnlyOne;
+            int index = find.Invoke(list, input);
+
+            Assert.Equal(2, index);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 7, 6, 4, 5, 3 }, 1)]
+        public void GivenListLacksItem_WhenFindOnlyOneUsingFunc_ThenReturnException(int[] list, int input)
+        {
+            Func<int[], int, int> find = Finder.FindOnlyOne;
+
+            Assert.Throws<Exception>(() => find.Invoke(list, input));
+        }
+
+        [Theory]
+        [InlineData(new int[] { 7, 6, 4, 5, 7 }, 7)]
+        public void GivenListContainsTheItemMoreThanOnce_WhenFindOnlyOneUsingFunc_ThenReturnException(int[] list, int input)
+        {
+
+            Func<int[], int, int> find = Finder.FindOnlyOne;
+
+            Assert.Throws<Exception>(() => find.Invoke(list, input));
+        }
+        //////
+        /// Test FindMaximumOne: Find Zero or One index in list using anonymous  
+        /// delegate definition 
+        /////
+        [Theory]
+        [InlineData(new int[] { 7, 6, 4, 5, 7 }, 8)]
+        public void GivenListLacksItem_WhenFindMaximumOne_ThenReturnsMinuesOne(int[] list, int input)
+        {
+            int index = Finder.FindMaximumOne(list, input);
+
+            Assert.Equal(-1, index);
+        }
+        [Theory]
+        [InlineData(new int[] { 7, 6, 4, 5, 7 }, 7)]
+        public void GivenListContainsItemMoreThanOnce_WhenFindMaximumOne_ThenReturnsException(int[] list, int input)
+        {
+            Assert.Throws<Exception>(() => Finder.FindMaximumOne(list, input));
+        }
+        [Theory]
+        [InlineData(new int[] { 7, 6, 4, 5, 6 }, 5)]
+        public void GivenListContainsItemOnlyOnce_WhenFindMaximumOne_ThenReturnsIndex(int[] list, int input)
+        {
+            int index = Finder.FindMaximumOne(list, input);
+
+            Assert.Equal(3, index);
+        }
+        /////
+        /// Test FindLastIndex: Find last index in list using lambda
+        /////
+        [Theory]
+        [InlineData(new int[] { 1, 7, 9, 1, 6 }, 1)]
+        public void GivenListContainsItemTwice_WhenFindLastIndex_ThenReturnsSecondIndex(int[] list, int input)
+        {
+            int index = Finder.FindLastIndex(list, input);
+
+            Assert.Equal(3, index);
+        }
+        [Theory]
+        [InlineData(new int[] { 1, 7, 9, 6 }, 5)]
+        public void GivenListLacksItem_WhenFindLastIndex_ThenReturnsMinuesOne(int[] list, int input)
+        {
+            int index = Finder.FindLastIndex(list, input);
+
+            Assert.Equal(-1, index);
+        }
+        [Theory]
+        [InlineData(new int[] { 1, 7, 9, 6 }, 6)]
+        public void GivenListContainItemOnlyOnce_WhenFindLastIndex_ThenReturnsIndex(int[] list, int input)
+        {
+            int index = Finder.FindLastIndex(list, input);
+
+            Assert.Equal(3, index);
+        }
+        /////
+        /// Test Greeting
+        /////
+        [Theory]
+        [InlineData("John", "Smith")]
+        public void GivenNameAndFamily_WhenFormalGreeting_GreetingWritesToConsoleCorrectly(string name, string family)
+        {
+            var mockWriter = new MockConsoleWriter();
+            GreetingManager greetingManager = new GreetingManager(mockWriter);
+            Action<string, string> greeting = greetingManager.FormalGreeting;
+            string expectedString = $"Hi {name} {family}! I hope you are doing great! Welcome to CodeMaze!";
+            greeting.Invoke(name, family);
+            var exception = Record.Exception(() => mockWriter.VerifyOutput(expectedString, 1));
+                     
+            Assert.Null(exception);
+        }
+    }
+}
