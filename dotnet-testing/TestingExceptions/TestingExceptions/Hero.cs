@@ -17,7 +17,9 @@
         {
             if (Experience - ExperienceNeeded < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(Experience), "Not enough Experience to level up!");
+                throw new ArgumentOutOfRangeException(
+                    nameof(Experience),
+                    "Not enough Experience to level up!");
             }
 
             Experience -= ExperienceNeeded;
@@ -28,7 +30,9 @@
         {
             if (Experience - ExperienceNeeded < 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(Experience), "Not enough Experience to level up!");
+                throw new ArgumentOutOfRangeException(
+                    nameof(Experience),
+                    "Not enough Experience to level up asynchronously!");
             }
 
             Experience -= ExperienceNeeded;

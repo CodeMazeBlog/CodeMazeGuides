@@ -53,6 +53,35 @@ namespace TestingExceptions.MSTestTests
 
             // Assert
             await Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(act);
+            await Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() => hero.LevelUpAsync());
+        }
+
+        [TestMethod]
+        public void GivenInsufficientExperience_WhenLevelUpIsInvoked_ThenExceptionIsThrownWithCorrectMessage()
+        {
+            // Arrange
+            var hero = new Hero(500);
+
+            // Act
+            var exception = Assert.ThrowsException<ArgumentOutOfRangeException>(() => hero.LevelUp());
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.AreEqual("Not enough Experience to level up! (Parameter 'Experience')", exception.Message);
+        }
+
+        [TestMethod]
+        public async Task GivenInsufficientExperience_WhenLevelUpAsyncIsInvoked_ThenExceptionIsThrownWithCorrectMessage()
+        {
+            // Arrange
+            var hero = new Hero(500);
+
+            // Act
+            var exception = await Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(() => hero.LevelUpAsync());
+
+            // Assert
+            Assert.IsNotNull(exception);
+            Assert.AreEqual("Not enough Experience to level up asynchronously! (Parameter 'Experience')", exception.Message);
         }
     }
 }

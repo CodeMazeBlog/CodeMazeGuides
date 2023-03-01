@@ -1,3 +1,5 @@
+using FluentAssertions;
+
 namespace TestingExceptions.xUnitTests
 {
     public class HeroTests
@@ -31,16 +33,63 @@ namespace TestingExceptions.xUnitTests
         }
 
         [Fact]
-        public void GivenInsufficientExperience_WhenLevelUpAsyncIsInvoked_ThenExceptionIsThrown()
+        public async Task GivenInsufficientExperience_WhenLevelUpAsyncIsInvoked_ThenExceptionIsThrown()
         {
             // Arrange
             var hero = new Hero(500);
 
             // Act
-            async Task act() => await hero.LevelUpAsync();
+            Func<Task> act = () => hero.LevelUpAsync();
 
             // Assert
-            Assert.ThrowsAsync<ArgumentOutOfRangeException>(act);
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(act);
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(hero.LevelUpAsync);
+        }
+
+        [Fact]
+        public void GivenInsufficientExperience_WhenLevelUpIsInvoked_ThenExceptionIsThrownWithCorrectMessage()
+        {
+            // Arrange
+            var hero = new Hero(500);
+
+            // Act
+            var exception = Assert.Throws<ArgumentOutOfRangeException>(() => hero.LevelUp());
+
+            // Assert
+            Assert.NotNull(exception);
+            Assert.Equal("Not enough Experience to level up! (Parameter 'Experience')", exception.Message);
+        }
+
+        [Fact]
+        public async Task GivenInsufficientExperience_WhenLevelUpAsyncIsInvoked_ThenExceptionIsThrownWithCorrectMessage()
+        {
+            // Arrange
+            var hero = new Hero(500);
+
+            // Act
+            var exception = await Assert.ThrowsAsync<ArgumentOutOfRangeException>(hero.LevelUpAsync);
+
+            // Assert
+            Assert.NotNull(exception);
+            Assert.Equal("Not enough Experience to level up asynchronously! (Parameter 'Experience')", exception.Message);
+        }
+
+        [Fact]
+        public async Task GivenInsufficientExperience_WhenLevelUpIsInvoked_ThenExceptionIsThrownWithFluentAssertions()
+        {
+            // Arrange
+            var hero = new Hero(500);
+
+            // Act
+            Action actSync = () => hero.LevelUp();
+            Func<Task> actAsync = () => hero.LevelUpAsync();
+
+            // Assert
+            actSync.Should().Throw<ArgumentOutOfRangeException>()
+                .WithMessage("Not enough Experience to level up! (Parameter 'Experience')");
+
+            await actAsync.Should().ThrowAsync<ArgumentOutOfRangeException>()
+                .WithMessage("Not enough Experience to level up asynchronously! (Parameter 'Experience')");
         }
     }
 }
