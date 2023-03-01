@@ -9,4 +9,8 @@
         <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="obj\Debug" />
+    </ItemGroup>
+
 </Project>
