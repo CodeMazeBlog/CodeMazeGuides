@@ -12,18 +12,12 @@ namespace Tests
         private StringBuilder _output = new StringBuilder();
         public void WriteLine(string? value)
         {
-            _output.AppendLine(value+";");
+            _output.AppendLine(value + ";");
         }
-        public void VerifyOutput(string input,int times)
+        public void VerifyOutput(string input, int times)
         {
-            if (times ==1 ) {
-                _output.ToString().Split(';').Where(p => p == input).Single();
-            }
-            else
-            {
-                if (_output.ToString().Split(';').Where(p => p == input).Count() != times)
-                    throw new Exception();
-            }
+            if (_output.ToString().Split(';').Where(p => p == input).Count() != times)
+                throw new Exception();
         }
     }
 }
