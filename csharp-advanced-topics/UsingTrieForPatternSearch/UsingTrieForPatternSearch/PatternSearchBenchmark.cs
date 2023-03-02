@@ -7,16 +7,20 @@ namespace UsingTrieForPatternSearch
         private const string _text = "abcdefghijklmnopqrstuvwxyz";
         private const string _pattern = "cd";
         private const int _iterations = 1000000;
+        private readonly Trie _trie;
+
+        public PatternSearchBenchmark()
+        {
+            _trie = new Trie();
+            _trie.AddWord(_pattern);
+        }
 
         [Benchmark]
         public void TrieSearch()
         {
-            var trie = new Trie();
-            trie.AddWord(_pattern);
-
             for (int i = 0; i < _iterations; i++)
             {
-                trie.Search(_text);
+                _trie.Search(_text);
             }
         }
 
