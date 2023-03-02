@@ -5,70 +5,40 @@ namespace ExcludePropertyJsonInCSharp
 {
     public static class Program
     {
-        public static Person Person
+        public static Person Person => new Person()
         {
-            get
-            {
-                return new Person()
-                {
-                    Id = 1,
-                    Name = "John",
-                    LastName = "Smith"
-                };
-            }
-        }
+            Id = 1,
+            Name = "John",
+            LastName = "Smith"
+        };
+        
+        public static PersonNewtonsoft PersonNewtonsoft => new PersonNewtonsoft()
+        {
+            Id = 1,
+            Name = "John",
+            LastName = "Smith"
+        };
+        
+        public static  Customer Customer => new Customer()
+        {
+            Id = 1,
+            Name = "John",
+            LastName = "Smith"
+        };
 
-        public static PersonNewtonsoft PersonNewtonsoft 
+        public static Book Book => new Book()
         {
-            get
-            {
-                return new PersonNewtonsoft()
-                {
-                    Id = 1,
-                    Name = "John",
-                    LastName = "Smith"
-                };
-            }
-        }
+            Id = 1,
+            Title = "Dracula"
+        };
 
-        public static  Customer Customer
+        public static Movie Movie => new Movie()
         {
-            get
-            {
-                return new Customer()
-                {
-                    Id = 1,
-                    Name = "John",
-                    LastName = "Smith"
-                };
-            }
-        }
-
-        public static Book Book
-        {
-            get
-            {
-                return new Book()
-                {
-                    Id = 1,
-                    Title = "Dracula"
-                };
-            }
-        }
-
-        public static Movie Movie
-        {
-            get
-            {
-                return new Movie()
-                {
-                    Id = 1,
-                    Name = "Titanic",
-                    Classification = 12,
-                    Description = "It is based on accounts of the sinking of the RMS Titanic"
-                };
-            }
-        }
+            Id = 1,
+            Name = "Titanic",
+            Classification = 12,
+            Description = "It is based on accounts of the sinking of the RMS Titanic"
+        };
 
         public static void Main(string[] args)
         {
