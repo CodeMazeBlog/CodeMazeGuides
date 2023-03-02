@@ -124,15 +124,67 @@ namespace Tests
         /////
         [Theory]
         [InlineData("John", "Smith")]
-        public void GivenNameAndFamily_WhenFormalGreeting_GreetingWritesToConsoleCorrectly(string name, string family)
+        public void GivenNameAndFamily_WhenFormalGreeting_ThenWritesToConsoleCorrectly(string name, string family)
         {
-            var mockWriter = new MockConsoleWriter();
-            GreetingManager greetingManager = new GreetingManager(mockWriter);
+            var mockConsoleWriter = new MockConsoleWriter();
+            GreetingManager greetingManager = new GreetingManager(mockConsoleWriter);
             Action<string, string> greeting = greetingManager.FormalGreeting;
             string expectedString = $"Hi {name} {family}! I hope you are doing great! Welcome to CodeMaze!";
             greeting.Invoke(name, family);
-            var exception = Record.Exception(() => mockWriter.VerifyOutput(expectedString, 1));
+            var exception = Record.Exception(() => mockConsoleWriter.VerifyOutput(expectedString, 1));
                      
+            Assert.Null(exception);
+        }
+        [Theory]
+        [InlineData("John", "")]
+        public void GivenOnlyName_WhenFormalGreeting_ThenWritesToConsoleCorrectly(string name, string family)
+        {
+            var mockConsoleWriter = new MockConsoleWriter();
+            GreetingManager greetingManager = new GreetingManager(mockConsoleWriter);
+            Action<string, string> greeting = greetingManager.FormalGreeting;
+            string expectedString = $"Hi {name}! I hope you are doing great! Welcome to CodeMaze!";
+            greeting.Invoke(name, family);
+            var exception = Record.Exception(() => mockConsoleWriter.VerifyOutput(expectedString, 1));
+
+            Assert.Null(exception);
+        }
+        [Theory]
+        [InlineData(null, "Smith")]
+        public void GivenOnlyFamily_WhenFormalGreeting_ThenWritesToConsoleCorrectly(string name, string family)
+        {
+            var mockConsoleWriter = new MockConsoleWriter();
+            GreetingManager greetingManager = new GreetingManager(mockConsoleWriter);
+            Action<string, string> greeting = greetingManager.FormalGreeting;
+            string expectedString = $"Hi {family}! I hope you are doing great! Welcome to CodeMaze!";
+            greeting.Invoke(name, family);
+            var exception = Record.Exception(() => mockConsoleWriter.VerifyOutput(expectedString, 1));
+
+            Assert.Null(exception);
+        }
+        [Theory]
+        [InlineData(null, null)]
+        public void GivenNoNameAndFamily_WhenFormalGreeting_ThenWritesToConsoleCorrectly(string name, string family)
+        {
+            var mockConsoleWriter = new MockConsoleWriter();
+            GreetingManager greetingManager = new GreetingManager(mockConsoleWriter);
+            Action<string, string> greeting = greetingManager.FormalGreeting;
+            string expectedString = $"Hi ! I hope you are doing great! Welcome to CodeMaze!";
+            greeting.Invoke(name, family);
+            var exception = Record.Exception(() => mockConsoleWriter.VerifyOutput(expectedString, 1));
+
+            Assert.Null(exception);
+        }
+        [Theory]
+        [InlineData("John", "Smith")]
+        public void GivenNameAndFamily_WhenInformalGreeting_ThenWritesToConsoleCorrectly(string name, string family)
+        {
+            var mockConsoleWriter = new MockConsoleWriter();
+            GreetingManager greetingManager = new GreetingManager(mockConsoleWriter);
+            Action<string, string> greeting = greetingManager.InformalGreeting;
+            string expectedString = $"Hey {name} {family}! How is everything?";
+            greeting.Invoke(name, family);
+            var exception = Record.Exception(() => mockConsoleWriter.VerifyOutput(expectedString, 1));
+
             Assert.Null(exception);
         }
     }

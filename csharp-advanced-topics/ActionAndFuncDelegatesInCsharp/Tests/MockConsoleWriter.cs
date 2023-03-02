@@ -16,7 +16,14 @@ namespace Tests
         }
         public void VerifyOutput(string input,int times)
         {
-            _output.ToString().Split(';').Where(p => p == input).Single();
+            if (times ==1 ) {
+                _output.ToString().Split(';').Where(p => p == input).Single();
+            }
+            else
+            {
+                if (_output.ToString().Split(';').Where(p => p == input).Count() != times)
+                    throw new Exception();
+            }
         }
     }
 }
