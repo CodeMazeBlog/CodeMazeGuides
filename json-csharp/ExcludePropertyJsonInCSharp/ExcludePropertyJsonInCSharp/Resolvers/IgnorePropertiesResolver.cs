@@ -9,6 +9,7 @@ namespace ExcludePropertyJsonInCSharp.Resolvers
     public class IgnorePropertiesResolver : DefaultContractResolver
     {
         private readonly HashSet<string> _ignoreProps;
+
         public IgnorePropertiesResolver(params string[] propNamesToIgnore)
         {
             _ignoreProps = new HashSet<string>(propNamesToIgnore);
