@@ -26,7 +26,7 @@
             Level++;
         }
 
-        public Task LevelUpAsync()
+        public async Task LevelUpAsync()
         {
             if (Experience - ExperienceNeeded < 0)
             {
@@ -38,7 +38,7 @@
             Experience -= ExperienceNeeded;
             Level++;
 
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
     }
 }
