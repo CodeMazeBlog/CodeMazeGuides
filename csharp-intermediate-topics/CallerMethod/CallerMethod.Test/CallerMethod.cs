@@ -37,7 +37,7 @@ namespace CallerMethod.Test
             var mockStackFrame = new Mock<StackFrame>(1, false);
             mockStackFrame.Setup(s => s.GetMethod()).Returns(MethodBase.GetCurrentMethod());
 
-            var expectedCallerMethodName = "WhenPrintCallerNameWithoutStack_ShouldPrintCallerAndCalledMethodNames";
+            var expectedCallerMethodName = "WhenPrintCallerNameWithoutStack_ThenShouldPrintCallerAndCalledMethodNames";
             var expectedCalledMethodName = "PrintCallerNameWithoutStack";
 
             // Act
