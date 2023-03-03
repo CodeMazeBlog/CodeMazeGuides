@@ -31,7 +31,7 @@ namespace CallerMethod.Test
         }
 
         [Fact]
-        public void WhenPrintCallerNameWithoutStack_ShouldPrintCallerAndCalledMethodNames()
+        public void WhenPrintCallerNameWithoutStack_ThenShouldPrintCallerAndCalledMethodNames()
         {
             // Arrange
             var mockStackFrame = new Mock<StackFrame>(1, false);
