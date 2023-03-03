@@ -62,6 +62,7 @@ public static class Methods
             writer.Write(person.FirstName);
             writer.Write(person.LastName);
             writer.Write(person.Age);
+
             return memoryStream.ToArray();
         }
     }
@@ -79,6 +80,7 @@ public static class Methods
                 Age = reader.ReadInt32()
             };
         }
+
         return deserializedPerson;
     }
 }

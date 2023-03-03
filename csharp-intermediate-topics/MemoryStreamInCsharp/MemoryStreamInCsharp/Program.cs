@@ -11,7 +11,7 @@ var displayProperties = Methods.ShowMemoryStreamProperties(memoryStream,
     "Simple Constructor");
 Console.WriteLine($"{displayProperties}");
 
-memoryStream = new MemoryStream(phrase1Bytes);
+memoryStream = Constructors.ByteArrayConstructor(phrase1Bytes);
 displayProperties = Methods.ShowMemoryStreamProperties(memoryStream,
     "Constructed From byte array");
 Console.WriteLine($"{displayProperties}");
@@ -24,7 +24,6 @@ Console.WriteLine($"{displayProperties}\n");
 memoryStream = Constructors.SimpleConstructor();
 Methods.WriteToMemoryStream(memoryStream, phrase1Bytes);
 Methods.WriteToMemoryStream(memoryStream, phrase2Bytes);
-
 displayProperties = Methods.ShowMemoryStreamProperties(memoryStream,
     "Writing to MemoryStream");
 Console.WriteLine(displayProperties);
