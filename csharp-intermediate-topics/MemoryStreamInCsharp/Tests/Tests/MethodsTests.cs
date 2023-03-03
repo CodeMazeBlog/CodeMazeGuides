@@ -21,7 +21,6 @@ public class MethodsTests
     public void WhenWritingToExtendibleMemoryStream_ThenSuccess()
     {
         var memoryStream = Constructors.SimpleConstructor();
-
         var addBytes = new byte[20];
         Methods.WriteToMemoryStream(memoryStream, addBytes);
         Assert.True(memoryStream.Length == 20);
@@ -31,7 +30,6 @@ public class MethodsTests
     public void WhenWritingOverTheCapacity_ThenFailure()
     {
         var memoryStream = Constructors.ByteArrayConstructor(new byte[10]);
-
         var addBytes = new byte[20];
         Assert.Throws<NotSupportedException>(() => memoryStream.Write(addBytes, 0, addBytes.Length));
     }
@@ -40,10 +38,8 @@ public class MethodsTests
     public void WhenWritingWithinTheCapacity_ThenSuccess()
     {
         var memoryStream = Constructors.ByteArrayConstructor(new byte[10]);
-
         var addBytes = new byte[5] { 1, 1, 1, 1, 1 };
         Methods.WriteToMemoryStream(memoryStream, addBytes);
-
         Assert.True(memoryStream.Length == 10);
         Assert.True(memoryStream.Capacity == 10);
     }
@@ -52,7 +48,6 @@ public class MethodsTests
     public void WhenReadingFromMemoryStream_ThenSuccess()
     {
         var memoryStream = Constructors.SimpleConstructor();
-
         var phrase1 = "How to Use MemoryStream in C#";
         var phrase1Bytes = Encoding.UTF8.GetBytes(phrase1);
         var phrase2 = " - explanation with examples";
