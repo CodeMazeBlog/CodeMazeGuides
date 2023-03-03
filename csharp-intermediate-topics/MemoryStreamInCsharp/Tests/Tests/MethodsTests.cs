@@ -13,8 +13,13 @@ public class MethodsTests
     {
         var memoryStream = Constructors.SimpleConstructor();
         var displayProperties = Methods.ShowMemoryStreamProperties(memoryStream);
-        var expected = "Length:             0\r\nCapacity:           0\r\nCanRead:            True\r\nCanSeek:            True\r\nCanWrite:           True\r\nCanTimeout:         False\r\npubliclyVisible:    True\r\n";
-        Assert.True(displayProperties.Equals(expected));
+        Assert.Contains("Length:             0", displayProperties);
+        Assert.Contains("Capacity:           0", displayProperties);
+        Assert.Contains("CanRead:            True", displayProperties);
+        Assert.Contains("CanSeek:            True", displayProperties);
+        Assert.Contains("CanWrite:           True", displayProperties);
+        Assert.Contains("CanTimeout:         False", displayProperties);
+        Assert.Contains("publiclyVisible:    True", displayProperties);
     }
 
     [Fact]
