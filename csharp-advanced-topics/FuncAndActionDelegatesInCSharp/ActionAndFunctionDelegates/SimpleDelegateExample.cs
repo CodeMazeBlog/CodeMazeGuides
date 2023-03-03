@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Action_and_Function_Delegates
 {
-    delegate int Calculator(int numberToBeProcessed);
+    public delegate int Calculator(int numberToBeProcessed);
 
     public class SimpleDelegateExample
     {
