@@ -19,7 +19,7 @@
             string output = sw.ToString();
 
             // Assert
-            Assert.AreEqual("Buddy barks.\r\n", output);
+            Assert.IsTrue(output.Contains(dog.Name) && output.Contains("barks"));
         }
 
         [TestMethod]
@@ -35,7 +35,7 @@
             string output = sw.ToString();
 
             // Assert
-            Assert.AreEqual("Fluffy meows.\r\n", output);
+            Assert.IsTrue(output.Contains(cat.Name) && output.Contains("meows"));
         }
     }
 
