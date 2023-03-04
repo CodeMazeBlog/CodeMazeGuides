@@ -13,6 +13,9 @@ switch (x)
     case 2:
         Services.RunMultiCastDelegate(); 
         break;
+    case 3:
+        DelegateSample.TestDelegate(); 
+        break;
     default:
         break;
 }

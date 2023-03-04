@@ -37,7 +37,6 @@ namespace TestActionAndFunctionDelegates
         public void TestRunMultiCastDelegate()
         {
             // Arrange
-            // Arrange
             var expectedKillsByDept = MultiCastDelegateExample.KillsByDeptsUsingDelegate(MultiCastDelegateExample.GroupByDepts());
             var expectedEmpByDept = MultiCastDelegateExample.PersonnelByDeptsUsingDelegate(MultiCastDelegateExample.GroupByDepts());
             Func<IEnumerable<IGrouping<Departments, Employees>>, Dictionary<Departments, int>>? deptDictionaryDelegate = new(MultiCastDelegateExample.PersonnelByDeptsUsingDelegate);
