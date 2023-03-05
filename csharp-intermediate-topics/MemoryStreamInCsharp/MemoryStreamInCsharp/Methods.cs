@@ -22,7 +22,8 @@ public static class Methods
         return sb.ToString();
     }
 
-    public static void WriteToMemoryStream(MemoryStream memoryStream, byte[] bytes) {
+    public static void WriteToMemoryStream(MemoryStream memoryStream, byte[] bytes)
+    {
         memoryStream.Write(bytes, 0, bytes.Length);
     }
 
@@ -34,7 +35,7 @@ public static class Methods
         memoryStream.Position = 0;
         memoryStream.Read(buffer, 0, 10);
         phrases.Add(Encoding.UTF8.GetString(buffer));
-       
+
         buffer = new byte[20];
         memoryStream.Seek(10, SeekOrigin.Begin);
         memoryStream.ReadAtLeast(buffer, 20);
@@ -57,29 +58,26 @@ public static class Methods
     public static byte[] SerializeObject(Person person)
     {
         var memoryStream = Constructors.SimpleConstructor();
-        using (var writer = new BinaryWriter(memoryStream))
-        {
-            writer.Write(person.FirstName);
-            writer.Write(person.LastName);
-            writer.Write(person.Age);
+        using var writer = new BinaryWriter(memoryStream);
+        writer.Write(person.FirstName);
+        writer.Write(person.LastName);
+        writer.Write(person.Age);
 
-            return memoryStream.ToArray();
-        }
+        return memoryStream.ToArray();
+
     }
 
     public static Person DeserializeObject(byte[] serializedData)
     {
         Person deserializedPerson;
         var memoryStream = Constructors.ByteArrayConstructor(serializedData);
-        using (var reader = new BinaryReader(memoryStream))
+        using var reader = new BinaryReader(memoryStream);
+        deserializedPerson = new Person
         {
-            deserializedPerson = new Person
-            {
-                FirstName = reader.ReadString(),
-                LastName = reader.ReadString(),
-                Age = reader.ReadInt32()
-            };
-        }
+            FirstName = reader.ReadString(),
+            LastName = reader.ReadString(),
+            Age = reader.ReadInt32()
+        };
 
         return deserializedPerson;
     }
