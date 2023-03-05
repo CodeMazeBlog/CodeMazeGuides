@@ -34,11 +34,10 @@ using System.Text.RegularExpressions;
     static string RemoveWhitespaces(string str) 
     { 
         var builder = new StringBuilder(str.Length);
-        var whitespaceChars = new List<char>{ ' ', '\t', '\r', '\n' }; 
         for (int i = 0; i < str.Length; i++) 
         { 
             char c = str[i]; 
-            if (!whitespaceChars.Contains(c)) 
+            if (!char.IsWhiteSpace(c))
                 builder.Append(c); 
         } 
         return builder.ToString(); 

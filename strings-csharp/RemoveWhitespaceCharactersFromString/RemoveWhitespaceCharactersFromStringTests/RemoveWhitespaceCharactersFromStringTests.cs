@@ -68,11 +68,10 @@ namespace RemoveWhitespaceCharactersFromStringTests
             static string RemoveWhitespaces(string str)
             {
                 var builder = new System.Text.StringBuilder(str.Length);
-                var whitespaceChars = new List<char> { ' ', '\t', '\r', '\n' };
                 for (int i = 0; i < str.Length; i++)
                 {
                     char c = str[i];
-                    if (!whitespaceChars.Contains(c))
+                    if (!char.IsWhiteSpace(c))
                         builder.Append(c);
                 }
                 return builder.ToString();
