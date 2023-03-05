@@ -15,19 +15,19 @@ namespace HowToSerializeAListToJsonInCSharp
             = new(_benchmarkLists);
 
         [Benchmark]
-        public void UseTheSerializeObjectMethod()
-            => _serializeWithNewtonsoftJson.UseTheSerializeObjectMethod();
+        public void SerializeObjectMethod()
+            => _serializeWithNewtonsoftJson.SerializeObjectMethod();
 
         [Benchmark]
-        public void UseTheJsonSerializerClass()
-            => _serializeWithNewtonsoftJson.UseTheJsonSerializerClass();
+        public void JsonSerializerClass()
+            => _serializeWithNewtonsoftJson.JsonSerializerClass();
 
         [Benchmark]
-        public void UseTheSerializeMethod()
-            => _serializeWithSystemTextJson.UseTheSerializeMethod();
+        public void SerializeMethod()
+            => _serializeWithSystemTextJson.SerializeMethod();
 
         [Benchmark]
-        public void UseTheSerializeToUtf8BytesMethod()
-            => _serializeWithSystemTextJson.UseTheSerializeToUtf8BytesMethod();
+        public void SerializeToUtf8BytesMethod()
+            => _serializeWithSystemTextJson.SerializeToUtf8BytesMethod();
     }
 }

@@ -57,7 +57,7 @@ namespace Tests
         [Fact]
         public void GivenAList_WhenUsingTheSerializeObjectMethod_ThenReturnsAJsonString()
         {
-            var englishClubsJson = _serializeList.UseTheSerializeObjectMethod();
+            var englishClubsJson = _serializeList.SerializeObjectMethod();
 
             Assert.Equal(_expectedResult, englishClubsJson);
         }
@@ -65,7 +65,7 @@ namespace Tests
         [Fact]
         public void GivenAList_WhenUsingTheJsonSerializerClass_ThenReturnsAJsonString()
         {
-            var englishClubsJson = _serializeList.UseTheJsonSerializerClass();
+            var englishClubsJson = _serializeList.JsonSerializerClass();
 
             Assert.Equal(_expectedResult, englishClubsJson);
         }

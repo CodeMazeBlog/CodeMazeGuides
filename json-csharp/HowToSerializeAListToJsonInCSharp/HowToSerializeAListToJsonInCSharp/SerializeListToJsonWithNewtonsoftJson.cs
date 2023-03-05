@@ -19,12 +19,12 @@ namespace HowToSerializeAListToJsonInCSharp
             _clubList = clubList;
         }
 
-        public string UseTheSerializeObjectMethod()
+        public string SerializeObjectMethod()
         {
             return JsonConvert.SerializeObject(_clubList, _settings);
         }
 
-        public string UseTheJsonSerializerClass()
+        public string JsonSerializerClass()
         {
             var serializer = JsonSerializer.Create(_settings);
             var stringBuilder = new StringBuilder();

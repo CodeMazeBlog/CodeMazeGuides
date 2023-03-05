@@ -17,12 +17,12 @@ namespace HowToSerializeAListToJsonInCSharp
             _clubList = clubList;
         }
 
-        public string UseTheSerializeMethod()
+        public string SerializeMethod()
         {
             return JsonSerializer.Serialize(_clubList, _options);
         }
 
-        public string UseTheSerializeToUtf8BytesMethod()
+        public string SerializeToUtf8BytesMethod()
         {
             var result = JsonSerializer.SerializeToUtf8Bytes(_clubList, _options);
             
