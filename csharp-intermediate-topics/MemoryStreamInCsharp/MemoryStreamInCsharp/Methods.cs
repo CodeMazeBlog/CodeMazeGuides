@@ -64,7 +64,6 @@ public static class Methods
         writer.Write(person.Age);
 
         return memoryStream.ToArray();
-
     }
 
     public static Person DeserializeObject(byte[] serializedData)
