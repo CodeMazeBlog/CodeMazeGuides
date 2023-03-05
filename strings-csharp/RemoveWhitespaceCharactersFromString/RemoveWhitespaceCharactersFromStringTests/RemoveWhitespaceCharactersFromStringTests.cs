@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -9,6 +10,8 @@ namespace RemoveWhitespaceCharactersFromStringTests
     public class RemoveWhitespaceCharactersFromStringTests
 
     {
+        
+
         [TestMethod]
         public void GivenStringWithWhitespaces_WhenUsingRegex_ThenResultStringDoesntContainWhitespace()
         {
@@ -22,9 +25,9 @@ namespace RemoveWhitespaceCharactersFromStringTests
         [TestMethod]
         public void GivenStringWithWhitespaces_WhenUsingLinq_ThenResultStringDoesntContainWhitespace()
         {
-            string source = " \t hello worl d";
+            var source = " \t hello worl d";
 
-            string result = string.Concat(source.Where(c => !char.IsWhiteSpace(c)));
+            var result = string.Concat(source.Where(c => !char.IsWhiteSpace(c)));
 
             Assert.AreEqual("helloworld", result);
         }
@@ -32,29 +35,54 @@ namespace RemoveWhitespaceCharactersFromStringTests
         [TestMethod]
         public void GivenStringWithWhitespaces_WhenUsingStringReplace_ThenResultStringDoesntContainWhitespace()
         {
-            string source = " hello worl d";
+            var source = " hello worl d";
 
-            string result = source.Replace(" ", string.Empty);
+            var result = source.Replace(" ", string.Empty);
 
             Assert.AreEqual("helloworld", result);
         }
         [TestMethod]
         public void GivenStringWithTab_WhenUsingStringReplace_ThenResultStringContainsTab()
         {
-            string source = "\t hello";
+            var source = "\t hello";
 
-            string result = source.Replace(" ", string.Empty);
+            var result = source.Replace(" ", string.Empty);
 
             Assert.AreEqual("\thello", result);
         }
         [TestMethod]
         public void GivenStringWithWhitespaces_WhenUsingStringTrim_ThenResultStringDoesntContainLeadingOrTrailingWhitespace()
         {
-            string source = "  \t John Doe ";
+            var source = "  \t John Doe ";
 
-            string result = source.Trim();
+            var result = source.Trim();
 
             Assert.AreEqual("John Doe", result);
         }
+
+        [TestMethod]
+        public void GivenStringWithWhitespaces_WhenUsingStringBuilder_ThenResultStringDoesntContainWhitespace()
+        {
+            var source = "  \t John Doe \r\n ";
+
+            static string RemoveWhitespaces(string str)
+            {
+                var builder = new System.Text.StringBuilder(str.Length);
+                var whitespaceChars = new List<char> { ' ', '\t', '\r', '\n' };
+                for (int i = 0; i < str.Length; i++)
+                {
+                    char c = str[i];
+                    if (!whitespaceChars.Contains(c))
+                        builder.Append(c);
+                }
+                return builder.ToString();
+            }
+
+            var result = RemoveWhitespaces(source);
+
+            Assert.AreEqual("JohnDoe", result);
+        }
+
+        
     }
 }

@@ -34,7 +34,7 @@ using System.Text.RegularExpressions;
     static string RemoveWhitespaces(string str) 
     { 
         var builder = new StringBuilder(str.Length);
-        List<char> whitespaceChars = new List<char>{ ' ', '\t', '\r', '\n' }; 
+        var whitespaceChars = new List<char>{ ' ', '\t', '\r', '\n' }; 
         for (int i = 0; i < str.Length; i++) 
         { 
             char c = str[i]; 
