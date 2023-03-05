@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Zip-files-in-NET\Zip-files-in-NET.csproj" />
+    <ProjectReference Include="..\ZipFilesInNET\ZipFilesInNET.csproj" />
   </ItemGroup>
 
 </Project>

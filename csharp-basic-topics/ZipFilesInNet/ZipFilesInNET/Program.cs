@@ -75,7 +75,7 @@ void wait()
 
 void caption(string caption, string? subCaption = null)
 {
-    int size = Console.WindowWidth;
+    var size = Console.WindowWidth;
     Console.WriteLine(new string('*', size));
     Console.WriteLine($"  ** {caption}");
     if (subCaption != null)

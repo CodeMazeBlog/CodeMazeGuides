@@ -18,7 +18,7 @@ namespace Zip_files_in_NET
             // removing all images 
             // NOTE: here, we can't use a foreach loop, because
             //       we are modifying the collection in the loop
-            for (int i = images.Count - 1; i >= 0; --i)
+            for (var i = images.Count - 1; i >= 0; --i)
                 images[i].Delete();
         }
 

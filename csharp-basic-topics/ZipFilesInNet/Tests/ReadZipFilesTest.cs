@@ -9,7 +9,7 @@ namespace Tests
         [DataRow("multi-folder.zip", 10)]
         [DataRow("multi-file.zip", 2)]
         [DataRow("single-file.zip", 1)]
-        public void GivenZipFile_WhenListContent_ThenExpectenNumberOfLinesShouldExists(
+        public void GivenZipFile_WhenListContent_ThenExpectedNumberOfLinesShouldExists(
             string zipFile, int expectedNumberOfLines)
         {
             Assert.IsTrue(expectedNumberOfLines == CountOutputLines(zipFile));

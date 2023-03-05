@@ -12,20 +12,23 @@ namespace Tests
     [TestClass]
     public class ModifyZipFileTest
     {
+        private string _sourceZipFile = string.Empty;
+        private string _tempZipFile = string.Empty;
+
         [TestInitialize]
         public void Initialize()
         {
-            sourceZipFile = "multi-folder.zip";
-            tempZipFile = "multi-folder-test.zip";
+            _sourceZipFile = "multi-folder.zip";
+            _tempZipFile = "multi-folder-test.zip";
 
-            File.Delete(tempZipFile);
-            File.Copy(sourceZipFile, tempZipFile);
+            File.Delete(_tempZipFile);
+            File.Copy(_sourceZipFile, _tempZipFile);
         }
 
         [TestCleanup]
         public void Cleanup()
         {
-            File.Delete(tempZipFile);
+            File.Delete(_tempZipFile);
         }
 
         [TestMethod]
@@ -34,10 +37,10 @@ namespace Tests
             var pattern = "*.png";
 
             var modify = new ModifyZipFiles();
-            modify.DeleteFilesFromZipFile(tempZipFile, pattern);
+            modify.DeleteFilesFromZipFile(_tempZipFile, pattern);
 
-            using var src = ZipFile.OpenRead(sourceZipFile);
-            using var dest = ZipFile.OpenRead(tempZipFile);
+            using var src = ZipFile.OpenRead(_sourceZipFile);
+            using var dest = ZipFile.OpenRead(_tempZipFile);
             var srcFilesCount = src.Entries.Count(e => IsPatternMach(e.Name, pattern));
             var destFilesCount = dest.Entries.Count(e => IsPatternMach(e.Name, pattern));
 
@@ -53,8 +56,5 @@ namespace Tests
                     .Replace("?", "."));
             return regPattern.IsMatch(fileName);
         }
-
-        private string sourceZipFile = string.Empty;
-        private string tempZipFile = string.Empty;
     }
 }

@@ -42,8 +42,8 @@ namespace Zip_files_in_NET
             var entry = archive.CreateEntry("hello.txt");
 
             // using stream to add text to newly created entry
-            using (Stream st = entry.Open())
-            using (StreamWriter writerManifest = new StreamWriter(st))
+            using (var st = entry.Open())
+            using (var writerManifest = new StreamWriter(st))
                 writerManifest.WriteLine(helloText);
         }
     }
