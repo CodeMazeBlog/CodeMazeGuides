@@ -7,27 +7,27 @@ namespace HowToSerializeAListToJsonInCSharp
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class SerializeMethodsBenchmark
     {
-        private static readonly List<Club> _benchmarkLists
+        private static readonly List<Club> _benchmarkList
             = GenerateBenchmarkData.Generate10000ListsForBenchmark();
         private readonly SerializeListToJsonWithNewtonsoftJson _serializeWithNewtonsoftJson
-            = new(_benchmarkLists);
+            = new(_benchmarkList);
         private readonly SerializeListToJsonWithSystemTextJson _serializeWithSystemTextJson
-            = new(_benchmarkLists);
+            = new(_benchmarkList);
 
         [Benchmark]
-        public void SerializeObjectMethod()
+        public void NewtonsoftJsonSerializeObjectMethod()
             => _serializeWithNewtonsoftJson.SerializeObjectMethod();
 
         [Benchmark]
-        public void JsonSerializerClass()
+        public void NewtonsoftJsonJsonSerializerClass()
             => _serializeWithNewtonsoftJson.JsonSerializerClass();
 
         [Benchmark]
-        public void SerializeMethod()
+        public void SystemTextJsonSerializeMethod()
             => _serializeWithSystemTextJson.SerializeMethod();
 
         [Benchmark]
-        public void SerializeToUtf8BytesMethod()
+        public void SystemTextJsonSerializeToUtf8BytesMethod()
             => _serializeWithSystemTextJson.SerializeToUtf8BytesMethod();
     }
 }

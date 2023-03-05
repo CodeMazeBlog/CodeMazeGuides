@@ -33,26 +33,28 @@ namespace Tests
             = new(_englishClubs);
 
         private readonly string _expectedResult
-            = @"[
-  {
-    ""name"": ""Arsenal"",
-    ""yearFounded"": 1886,
-    ""country"": ""England"",
-    ""numberOfPlayers"": ""26""
-  },
-  {
-    ""name"": ""Manchester City"",
-    ""yearFounded"": 1880,
-    ""country"": ""England"",
-    ""numberOfPlayers"": ""25""
-  },
-  {
-    ""name"": ""Sunderland"",
-    ""yearFounded"": 1879,
-    ""country"": ""England"",
-    ""numberOfPlayers"": ""30""
-  }
-]";
+            = """
+                [
+                  {
+                    "name": "Arsenal",
+                    "yearFounded": 1886,
+                    "country": "England",
+                    "numberOfPlayers": "26"
+                  },
+                  {
+                    "name": "Manchester City",
+                    "yearFounded": 1880,
+                    "country": "England",
+                    "numberOfPlayers": "25"
+                  },
+                  {
+                    "name": "Sunderland",
+                    "yearFounded": 1879,
+                    "country": "England",
+                    "numberOfPlayers": "30"
+                  }
+                ]
+                """;
 
         [Fact]
         public void GivenAList_WhenUsingTheSerializeObjectMethod_ThenReturnsAJsonString()
