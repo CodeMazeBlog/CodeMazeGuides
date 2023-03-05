@@ -53,7 +53,7 @@ namespace Tests
         {
             var key = 3;
             var expectedResult = new int[] { 4, 5, 5, 7 };
-            var value = Methods.DeleteRemoveAll(_myArray, key);
+            var value = Methods.DeleteWithRemoveAll(_myArray, key);
 
             CollectionAssert.AreEqual(value, expectedResult);
         }
@@ -63,7 +63,7 @@ namespace Tests
         {
             var key = 6;
             var expectedResult = new int[] { 3, 4, 5, 3, 5, 7 };
-            var value = Methods.DeleteRemoveAll(_myArray, key);
+            var value = Methods.DeleteWithRemoveAll(_myArray, key);
 
             CollectionAssert.AreEqual(value, expectedResult);
         }

@@ -6,5 +6,5 @@ var elementToDelete = 3;
 Console.WriteLine("Modified arrays with the following methods used: ");
 Console.WriteLine("With FindAll: " + String.Join(",", DeleteWithFindAll(array, elementToDelete)));
 Console.WriteLine("With Where: " + String.Join(",", DeleteWithWhere(array, elementToDelete)));
-Console.WriteLine("With RemoveAll: " + String.Join(",", DeleteRemoveAll(array, elementToDelete)));
+Console.WriteLine("With RemoveAll: " + String.Join(",", DeleteWithRemoveAll(array, elementToDelete)));
 Console.WriteLine("With Loop: " + String.Join(",", DeleteWithLoop(array, elementToDelete)));
