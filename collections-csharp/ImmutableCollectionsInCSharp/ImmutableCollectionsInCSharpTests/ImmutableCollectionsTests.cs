@@ -1,5 +1,4 @@
 using System.Collections.Immutable;
-using System.Linq;
 using Xunit;
 
 namespace ImmutableCollectionsInCSharpTests
@@ -45,7 +44,6 @@ namespace ImmutableCollectionsInCSharpTests
         public void GivenImmutableArray()
         {
             var immutableArray = ImmutableArray.Create<int>(1, 2, 3, 4);
-
 
             var firstElement = immutableArray[0];
             Assert.Equal(1, firstElement);
