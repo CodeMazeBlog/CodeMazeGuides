@@ -14,8 +14,8 @@
                 e =>
                     new
                     {
-                        e.enrolmentLevel2.enrolmentLevel1.Id,
-                        StudentName = e.enrolmentLevel2.student.Name,
+                        e.enrolmentStudentRelation.enrolment.Id,
+                        StudentName = e.enrolmentStudentRelation.student.Name,
                         CourseName = e.course.Name,
                     }
             );
@@ -36,8 +36,8 @@
                     e =>
                         new
                         {
-                            e.enrolmentLevel2.enrolmentLevel1.Id,
-                            StudentName = e.enrolmentLevel2.student.Name,
+                            e.enrolmentStudentRelation.enrolment.Id,
+                            StudentName = e.enrolmentStudentRelation.student.Name,
                             CourseId = e.course.Id,
                             CourseName = e.course.Name,
                         }
@@ -62,8 +62,8 @@
                     e =>
                         new
                         {
-                            e.enrolmentLevel2.enrolmentLevel1.Id,
-                            StudentName = e.enrolmentLevel2.student.Name,
+                            e.enrolmentStudentRelation.enrolment.Id,
+                            StudentName = e.enrolmentStudentRelation.student.Name,
                             CourseId = e.course.Id,
                             CourseName = e.course.Name,
                         }
@@ -161,15 +161,15 @@
             return enrolments
                 .Join(
                     students,
-                    enrolmentLevel1 => enrolmentLevel1.StudentId,
+                    enrolment => enrolment.StudentId,
                     student => student.Id,
-                    (enrolmentLevel1, student) => new { enrolmentLevel1, student }
+                    (enrolment, student) => new { enrolment, student }
                 )
                 .Join(
                     courses,
-                    enrolmentLevel2 => enrolmentLevel2.enrolmentLevel1.CourseId,
+                    enrolmentStudentRelation => enrolmentStudentRelation.enrolment.CourseId,
                     course => course.Id,
-                    (enrolmentLevel2, course) => new { enrolmentLevel2, course }
+                    (enrolmentStudentRelation, course) => new { enrolmentStudentRelation, course }
                 );
         }
     }
