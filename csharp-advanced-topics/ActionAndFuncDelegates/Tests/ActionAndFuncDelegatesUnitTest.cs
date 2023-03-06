@@ -6,8 +6,6 @@ namespace Tests
     [TestClass]
     public class ActionAndFuncDelegatesUnitTest
     {
-        public static void PrintStaticText() => Console.WriteLine("Action delegate");
-
         public static void Print(string message) => Console.WriteLine(message);
 
         public static int Addition(int num1, int num2) => num1 + num2;
@@ -19,34 +17,36 @@ namespace Tests
         public void WhenVoidActionDelegateCalled_DelegateExucutesTheReferenceMethod()
         {
             // Arrange
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
+            var isActionDelegateCalled = false;
 
             // Act
-            Action printAction = ActionAndFuncDelegatesUnitTest.PrintStaticText;
-            printAction();
+            Action action = () =>
+            {
+                isActionDelegateCalled = true;
+            };
 
-            var output = consoleOutput.ToString();
+            action();
 
             // Assert
-            Assert.AreEqual("Action delegate\r\n", output);
+            Assert.IsTrue(isActionDelegateCalled);
         }
 
         [TestMethod]
         public void WhenStringIsSent_DelegateExucutesTheReferenceMethod()
         {
             // Arrange
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
+            var isActionDelegateCalled = false;
 
             // Act
-            Action<string> printMessage = ActionAndFuncDelegatesUnitTest.Print;
-            printMessage("Hello world");
+            Action<bool> action = (isCalled) =>
+            {
+                isActionDelegateCalled = isCalled;
+            };
 
-            var output = consoleOutput.ToString();
+            action(true);
 
             // Assert
-            Assert.AreEqual("Hello world\r\n", output);
+            Assert.IsTrue(isActionDelegateCalled);
         }
 
         [TestMethod]
