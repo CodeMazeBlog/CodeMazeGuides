@@ -1,0 +1,33 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31710.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwaitTaskVsReturnTaskTests", "AwaitTaskVsReturnTaskTests\AwaitTaskVsReturnTaskTests.csproj", "{1A3EEB6C-2545-42EA-82AF-4BCE61871F74}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A3EEB6C-2545-42EA-82AF-4BCE61871F74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3EEB6C-2545-42EA-82AF-4BCE61871F74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3EEB6C-2545-42EA-82AF-4BCE61871F74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3EEB6C-2545-42EA-82AF-4BCE61871F74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A360DDB-86FD-4FF8-8AAA-CE774CE29716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A360DDB-86FD-4FF8-8AAA-CE774CE29716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A360DDB-86FD-4FF8-8AAA-CE774CE29716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A360DDB-86FD-4FF8-8AAA-CE774CE29716}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95401501-3299-4423-9B40-7B52525BF88F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95401501-3299-4423-9B40-7B52525BF88F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95401501-3299-4423-9B40-7B52525BF88F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95401501-3299-4423-9B40-7B52525BF88F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {99A284F3-F7AC-43DD-A330-3AE9BFA3120E}
+	EndGlobalSection
+EndGlobal

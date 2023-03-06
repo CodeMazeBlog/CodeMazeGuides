@@ -3,6 +3,7 @@
 This section contains the topics about Dictionary collection and solving specific problems regarding Dictionary in C#.
 
 ### Relevant articles:
+- [How to Return a Default Value From a Dictionary in C#](https://code-maze.com/csharp-return-default-value-from-dictionary/)
 - [How to Get an Item by Index From Dictionary in C#](https://code-maze.com/csharp-get-item-by-index-from-dictionary/)
 - [Dictionary vs Hashtable in C#](https://code-maze.com/csharp-dictionary-vs-hashtable/)
 - [How to Detect if a Dictionary Key Exists in C#](https://code-maze.com/csharp-detect-dictionary-key-exists/)
