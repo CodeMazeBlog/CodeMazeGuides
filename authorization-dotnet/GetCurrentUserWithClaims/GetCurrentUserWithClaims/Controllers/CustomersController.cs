@@ -17,18 +17,18 @@ namespace GetCurrentUserWithClaims.Controllers
             _httpContextAccessor = httpContextAccessor;
             _service = service;
 
-            var userId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userName = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.Name);
+            Console.WriteLine("User Id: " + _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier));
+            Console.WriteLine("Username: " + _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.Name));
         }
 
         [HttpGet, Authorize]
         public IEnumerable<string> Get()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userName = User.FindFirstValue(ClaimTypes.Name);
-            var role = User.FindFirstValue(ClaimTypes.Role);
-            var firstName = User.FindFirstValue("firstname");
-            var lastName = User.FindFirstValue("lastname");
+            Console.WriteLine("User Id: " + User.FindFirstValue(ClaimTypes.NameIdentifier));
+            Console.WriteLine("Username: " + User.FindFirstValue(ClaimTypes.Name));
+            Console.WriteLine("Role: " + User.FindFirstValue(ClaimTypes.Role));
+            Console.WriteLine("First name: " + User.FindFirstValue("firstname"));
+            Console.WriteLine("Last name: " + User.FindFirstValue("lastname"));
 
             return _service.GetCustomers();            
         }

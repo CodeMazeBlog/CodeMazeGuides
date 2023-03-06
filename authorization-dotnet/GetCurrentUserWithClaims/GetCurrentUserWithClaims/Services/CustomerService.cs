@@ -13,8 +13,8 @@ namespace GetCurrentUserWithClaims.Services
 
         public IEnumerable<string> GetCustomers()
         {
-            var userId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userName = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.Name);
+            Console.WriteLine("User Id: " + _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier));
+            Console.WriteLine("Username: " + _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.Name));
 
             return new string[] { "John Doe", "Jane Doe" };
         }
