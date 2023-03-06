@@ -1,9 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using ActionAndFuncDelegates;
-using System.Diagnostics;
 
-// initilize list items
+// initialize list items
 PersonList personList = new PersonList();
 personList[0] = new Person("Ahmed Elsayed", 25, 'M', null);
 personList[1] = new Person("khaled Elsayed", 30, 'M', null);
