@@ -12,4 +12,5 @@ This section contains the topics related to the DateTime class in .NET.
 - [Difference Between DateTime.Now and DateTime.UtcNow in C#](https://code-maze.com/csharp-datetime-now-vs-datetime-utcnow/)
 - [DateTime Operators in C#](https://code-maze.com/csharp-datetime-operators/)
 - [Remove Time From a DateTime Object in C#](https://code-maze.com/remove-time-from-datetime-csharp/)
+- [TimeSpan in C#](https://code-maze.com/csharp-timespan/)
 - [Timer in C#](https://code-maze.com/timer-csharp/)
