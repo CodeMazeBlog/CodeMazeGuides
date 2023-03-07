@@ -8,7 +8,7 @@ namespace BlazorWebAssemblyCustomEvents.Components
 
         void HandleDoubleClick(DoubleClickEventArgs eventArgs)
         {
-            if (eventArgs is not null && eventArgs.isDoubleClick)
+            if (eventArgs is not null && eventArgs.IsDoubleClick)
             {
                 message = $"detected double click!";
             }

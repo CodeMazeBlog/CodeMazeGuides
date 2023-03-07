@@ -25,7 +25,7 @@ namespace BlazorWebAssemblyCustomEventsTests
             button?.TriggerEvent("ondoubleclick", new DoubleClickEventArgs
             {
                 EventTimestamp = DateTime.Now,
-                isDoubleClick = true
+                IsDoubleClick = true
             });
 
             var headerText = component?.FindAll("h1")[1].TextContent;
@@ -39,13 +39,13 @@ namespace BlazorWebAssemblyCustomEventsTests
             button?.TriggerEvent("ondoubleclick", new DoubleClickEventArgs
             {
                 EventTimestamp = DateTime.Now,
-                isDoubleClick = true
+                IsDoubleClick = true
             });
 
             button?.TriggerEvent("ondoubleclick", new DoubleClickEventArgs
             {
                 EventTimestamp = DateTime.Now,
-                isDoubleClick = false
+                IsDoubleClick = false
             });
 
             var headerText = component?.FindAll("h1")[1].TextContent;

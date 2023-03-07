@@ -12,6 +12,6 @@ namespace BlazorWebAssemblyCustomEvents.CustomEvents
     public class DoubleClickEventArgs : EventArgs
     {
         public DateTime EventTimestamp { get; set; }
-        public bool isDoubleClick { get; set; }
+        public bool IsDoubleClick { get; set; }
     }
 }
