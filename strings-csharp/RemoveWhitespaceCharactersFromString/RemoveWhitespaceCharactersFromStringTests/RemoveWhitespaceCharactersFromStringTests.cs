@@ -1,24 +1,18 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
+using RemoveWhitespaceCharactersFromString;
 
 namespace RemoveWhitespaceCharactersFromStringTests
 {
     [TestClass]
     public class RemoveWhitespaceCharactersFromStringTests
-
     {
-        
-
         [TestMethod]
         public void GivenStringWithWhitespaces_WhenUsingRegex_ThenResultStringDoesntContainWhitespace()
         {
             string source = " \t hello worl d \r\n ";
-            
-            string result = Regex.Replace(source, @"\s+", String.Empty);
-            
+
+            string result = RemoveWhitespaceMethods.RemoveWhitespacesUsingRegex(source);
+
             Assert.AreEqual("helloworld", result);
         }
 
@@ -27,7 +21,7 @@ namespace RemoveWhitespaceCharactersFromStringTests
         {
             var source = " \t hello worl d";
 
-            var result = string.Concat(source.Where(c => !char.IsWhiteSpace(c)));
+            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingLinq(source);
 
             Assert.AreEqual("helloworld", result);
         }
@@ -37,25 +31,27 @@ namespace RemoveWhitespaceCharactersFromStringTests
         {
             var source = " hello worl d";
 
-            var result = source.Replace(" ", string.Empty);
+            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingStringBuilder(source);
 
             Assert.AreEqual("helloworld", result);
         }
+        
         [TestMethod]
         public void GivenStringWithTab_WhenUsingStringReplace_ThenResultStringContainsTab()
         {
             var source = "\t hello";
 
-            var result = source.Replace(" ", string.Empty);
+            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingReplace(source);
 
             Assert.AreEqual("\thello", result);
         }
+        
         [TestMethod]
         public void GivenStringWithWhitespaces_WhenUsingStringTrim_ThenResultStringDoesntContainLeadingOrTrailingWhitespace()
         {
             var source = "  \t John Doe ";
 
-            var result = source.Trim();
+            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingTrim(source);
 
             Assert.AreEqual("John Doe", result);
         }
@@ -65,23 +61,9 @@ namespace RemoveWhitespaceCharactersFromStringTests
         {
             var source = "  \t John Doe \r\n ";
 
-            static string RemoveWhitespaces(string str)
-            {
-                var builder = new System.Text.StringBuilder(str.Length);
-                for (int i = 0; i < str.Length; i++)
-                {
-                    char c = str[i];
-                    if (!char.IsWhiteSpace(c))
-                        builder.Append(c);
-                }
-                return builder.ToString();
-            }
-
-            var result = RemoveWhitespaces(source);
+            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingStringBuilder(source);
 
             Assert.AreEqual("JohnDoe", result);
         }
-
-        
     }
 }
