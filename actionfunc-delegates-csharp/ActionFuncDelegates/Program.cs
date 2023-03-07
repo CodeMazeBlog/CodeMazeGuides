@@ -2,40 +2,47 @@
 
 namespace ActionFuncDelegates
 {
-    class Program
+    public class Solution
     {
-        static void Main(string[] args)
+        public bool isActionCalled = false;
+        public void ActionHandler(int param)
         {
             // Action delegate with named method PrintSomething
             Action<int> myActionDelegate = new Action<int>(PrintSomething);
-            myActionDelegate(567);
-           // myActionDelegate.Invoke(567);
-
-            // Func delegate with named method AddNumbers
-            Func<int, int, int> myFuncDelegate = new Func<int, int, int>(AddNumbers);
-            Console.WriteLine("Func Delegate: " + myFuncDelegate(5, 79));
-
-            // Func delegate with anonymous method
-            Func<int, int, int> myFuncDelegate2 = (param1, param2) => {
-                return param1 + param2;
-            };
-
-            // Invoking Func delegate
-            Console.WriteLine("Func Delegate: " + myFuncDelegate(577, 659));
-            Console.WriteLine("Func Delegate with Lambda expression: " + myFuncDelegate2(65, 823));
-
-            Console.ReadLine();
+            myActionDelegate(param);
+            // myActionDelegate.Invoke(567);
         }
-
-        static void PrintSomething(int i)
+         void PrintSomething(int i)
         {
-            Console.WriteLine("Action Delegte: " + i);
+            isActionCalled = true; ;
         }
 
+        public int FuncHandler(int param1, int param2)
+        {
+
+            Func<int, int, int> myFuncDelegate = new Func<int, int, int>(AddNumbers);
+            // Invoking Func delegate
+            return myFuncDelegate(param1, param2);
+
+
+        }
         static int AddNumbers(int i, int j)
         {
             return i + j;
         }
+    }
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            Solution objSol = new Solution();
+            objSol.ActionHandler(345);
+            Console.WriteLine("Action Called: "+objSol.isActionCalled);
+            Console.WriteLine("Addition Works: " + objSol.FuncHandler(456,890));
+            Console.WriteLine();
+        }       
+
+    
     }
 
 }
