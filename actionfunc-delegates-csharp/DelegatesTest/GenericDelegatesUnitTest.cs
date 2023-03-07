@@ -17,7 +17,7 @@ namespace DelegatesTest
             int result = solution.FuncHandler(50, 60);
 
             // Assert
-            Assert.AreEqual("The sum of 50 and 60 is 110", result);
+            Assert.AreEqual(110, result);
         }
 
         [TestMethod]
