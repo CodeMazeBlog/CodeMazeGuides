@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
+﻿using System.IO.Compression;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Zip_files_in_NET;
+using ZipFilesInNet;
 
 namespace Tests
 {

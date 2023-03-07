@@ -1,4 +1,4 @@
-﻿using Zip_files_in_NET;
+﻿using ZipFilesInNet;
 
 namespace Tests
 {

@@ -1,5 +1,5 @@
 ﻿using System.IO.Compression;
-using Zip_files_in_NET;
+using ZipFilesInNet;
 
 var reading = new ReadZipFiles();
 var writing = new CreateZipFiles();
@@ -33,7 +33,7 @@ wait();
 zipFile = "new-zip-file.zip";
 File.Delete(zipFile);
 var folder = "extracted-files";
-caption($"Creating {zipFile} from all the files in {folder} subfolder", 
+caption($"Creating {zipFile} from all the files in {folder} subfolder",
         $"Open Explorer and check that {zipFile} was created");
 writing.CreateZipFromFolderUsingFunction(zipFile, folder);
 
@@ -42,7 +42,7 @@ wait();
 zipFile = "new-zip-file-with-png.zip";
 File.Delete(zipFile);
 var fileMask = "*.png";
-caption($"Creating {zipFile} from all the {fileMask} files in {folder} subfolder", 
+caption($"Creating {zipFile} from all the {fileMask} files in {folder} subfolder",
         $"Open Explorer and check that {zipFile} was created and contains only zip files");
 writing.CreateZipFromFolderUsingAlgorithm(zipFile, folder, CompressionLevel.Optimal, fileMask);
 
@@ -50,7 +50,7 @@ wait();
 
 zipFile = "hello-world.zip";
 File.Delete(zipFile);
-caption($"Creating {zipFile} zip file on the fly", 
+caption($"Creating {zipFile} zip file on the fly",
         $"Open Explorer and check that {zipFile} was created and contains only one file");
 writing.CreateHelloWorldZipFile(zipFile);
 
@@ -60,7 +60,7 @@ zipFile = "multi-folder-without-png.zip";
 fileMask = "*.png";
 File.Delete(zipFile);
 File.Copy("multi-folder.zip", zipFile);
-caption($"Deleting all {fileMask} files from {zipFile}", 
+caption($"Deleting all {fileMask} files from {zipFile}",
         $"Open Explorer and check that {zipFile}contains no {fileMask} files");
 modify.DeleteFilesFromZipFile(zipFile, fileMask);
 

@@ -1,6 +1,6 @@
 ﻿using System.IO.Compression;
 
-namespace Zip_files_in_NET
+namespace ZipFilesInNet
 {
     public class ReadZipFiles
     {

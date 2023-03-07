@@ -1,5 +1,5 @@
 ﻿using System.IO.Compression;
-using Zip_files_in_NET;
+using ZipFilesInNet;
 
 namespace Tests
 {
@@ -20,8 +20,8 @@ namespace Tests
             File.Delete(_destinationZipFile);
         }
 
-        [TestCleanup] 
-        public void Cleanup() 
+        [TestCleanup]
+        public void Cleanup()
         {
             Directory.Delete(_tempFolder, true);
             File.Delete(_destinationZipFile);
