@@ -8,7 +8,6 @@ namespace ActionAndFuncDelegatesInCsharp
 {
     public class Finder
     {
-        #region Find
         public static int FindOnlyOne(int[] list, int input)
         {
             int index = -1;
@@ -23,8 +22,10 @@ namespace ActionAndFuncDelegatesInCsharp
             }
             if (index == -1)
                 throw new Exception();
+            
             return index;
         }
+        
         public static int FindLastIndex(int[] list, int input)
         {
             // Find last index using lambda
@@ -38,10 +39,13 @@ namespace ActionAndFuncDelegatesInCsharp
                         index = i;
                     }
                 }
+                
                 return index;
             };
+
             return find.Invoke(list, input);
         }
+        
         public static int FindMaximumOne(int[] list, int input)
         {
             Func<int[], int, int> find = delegate (int[] list, int input)
@@ -56,11 +60,12 @@ namespace ActionAndFuncDelegatesInCsharp
                         index = i;
                     }
                 }
+                
                 return index;
 
             };
+
             return find.Invoke(list, input);
         }
-        #endregion
     }
 }
