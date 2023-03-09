@@ -18,3 +18,4 @@ This section contains articles about C#/.NET collections.
 - [SortedSet in C#](https://code-maze.com/csharp-sortedset/)
 - [Priority Queue in C#](https://code-maze.com/csharp-priority-queue/)
 - [Stack in C#](https://code-maze.com/stack-csharp/)
+- [IEnumerable, ICollection, IList and List – Which One To Use?](https://code-maze.com/csharp-ienumerable-icollection-ilist-list/)
