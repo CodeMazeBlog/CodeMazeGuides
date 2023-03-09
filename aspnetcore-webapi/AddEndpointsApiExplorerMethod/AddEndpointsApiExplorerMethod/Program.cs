@@ -10,21 +10,20 @@ builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwa
 builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
 
 builder.Services.AddApiVersioning(options =>
-    {
-        options.ReportApiVersions = true;
-        options.DefaultApiVersion = new ApiVersion(1, 0);
-        options.AssumeDefaultVersionWhenUnspecified = true;
-        options.ApiVersionReader = new QueryStringApiVersionReader();
-    }).AddApiExplorer(
-        options => { options.GroupNameFormat = "'v'VVV"; })
-    .EnableApiVersionBinding();
+{
+    options.ReportApiVersions = true;
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ApiVersionReader = new QueryStringApiVersionReader();
+}).AddApiExplorer(
+    options => { options.GroupNameFormat = "'v'VVV"; });
 
 
 var app = builder.Build();
 
 var versionSet = app.NewApiVersionSet()
-    .HasApiVersion(new ApiVersion(1,0))
-    .HasApiVersion(new ApiVersion(2,0))
+    .HasApiVersion(new ApiVersion(1, 0))
+    .HasApiVersion(new ApiVersion(2, 0))
     .ReportApiVersions()
     .Build();
 
