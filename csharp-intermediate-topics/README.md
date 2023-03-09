@@ -6,6 +6,7 @@ This section contains the topics considered intermediate level in C#.
 
 - [Anonymous Types in C#](https://code-maze.com/anonymous-types-csharp/)
 - [Boxing and Unboxing in C#](https://code-maze.com/csharp-boxing-and-unboxing/)
+- [How to Find the Caller Method in C#](https://code-maze.com/csharp-how-to-find-caller-method/)
 - [Common C# Programming Mistakes](https://code-maze.com/csharp-programming-mistakes/)
 - [Composition vs Inheritance in C#](https://code-maze.com/csharp-composition-vs-inheritance/)
 - [Constructors in C#](https://code-maze.com/csharp-constructors/)
