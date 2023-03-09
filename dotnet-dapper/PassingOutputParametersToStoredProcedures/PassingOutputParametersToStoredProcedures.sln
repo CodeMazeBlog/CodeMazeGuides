@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassingOutputParametersToStoredProcedures", "PassingOutputParametersToStoredProcedures\PassingOutputParametersToStoredProcedures.csproj", "{2C1905E9-D222-4E96-B51B-3A64A63E1E35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B5851E02-CD7C-4D1D-AB16-8990CA23F8FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C1905E9-D222-4E96-B51B-3A64A63E1E35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C1905E9-D222-4E96-B51B-3A64A63E1E35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C1905E9-D222-4E96-B51B-3A64A63E1E35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C1905E9-D222-4E96-B51B-3A64A63E1E35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5851E02-CD7C-4D1D-AB16-8990CA23F8FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5851E02-CD7C-4D1D-AB16-8990CA23F8FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5851E02-CD7C-4D1D-AB16-8990CA23F8FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5851E02-CD7C-4D1D-AB16-8990CA23F8FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5663C378-0372-491D-BB45-6B01A6A343D2}
+	EndGlobalSection
+EndGlobal

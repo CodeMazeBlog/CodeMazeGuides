@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "CodeMazeShop.Grpc";
+
+package API;
+
+service Discounts {
+	rpc GetCouponById (GetCouponByIdRequest) returns (GetCouponByIdResponse);
+	rpc GetCouponByCode (GetCouponByCodeRequest) returns (GetCouponByCodeResponse);
+	rpc UpdateCouponStatus (UpdateCouponStatusRequest) returns (UpdateCouponStatusResponse);
+}
+
+message GetCouponByIdRequest {
+	string couponId = 1;
+}
+
+message GetCouponByIdResponse {
+	PromotionCoupon coupon = 1;
+}
+
+message GetCouponByCodeRequest {
+	string couponCode = 1;
+}
+
+message GetCouponByCodeResponse {
+	PromotionCoupon coupon = 1;
+}
+
+message UpdateCouponStatusRequest {
+	string couponId = 1;
+}
+
+message UpdateCouponStatusResponse {
+	bool success = 1;
+}
+
+message PromotionCoupon {
+	string promotionCouponId = 1;
+	string code = 2;
+	int32 amount = 3;
+	bool isAlreadyUsed = 4;
+}

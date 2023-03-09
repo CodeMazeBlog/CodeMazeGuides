@@ -5,6 +5,8 @@ This section contains the topics considered intermediate level in C#.
 ### Relevant articles:
 
 - [Anonymous Types in C#](https://code-maze.com/anonymous-types-csharp/)
+- [Boxing and Unboxing in C#](https://code-maze.com/csharp-boxing-and-unboxing/)
+- [How to Find the Caller Method in C#](https://code-maze.com/csharp-how-to-find-caller-method/)
 - [Common C# Programming Mistakes](https://code-maze.com/csharp-programming-mistakes/)
 - [Composition vs Inheritance in C#](https://code-maze.com/csharp-composition-vs-inheritance/)
 - [Constructors in C#](https://code-maze.com/csharp-constructors/)
@@ -15,6 +17,7 @@ This section contains the topics considered intermediate level in C#.
 - [How to Convert DataTable to JSON in C#](https://code-maze.com/convert-datatable-json-csharp/)
 - [Flags Attribute For Enum in C#](https://code-maze.com/csharp-flags-attribute-for-enum/)
 - [How to Call Generic Method Using Reflection in C#](https://code-maze.com/csharp-call-generic-method-using-reflection/)
+- [How to Get The List of Properties in C#](https://code-maze.com/csharp-get-list-of-properties/)
 - [Method Overloading In C#](https://code-maze.com/csharp-method-overloading/)
 - [IComparable vs IComparer vs Comparison Delegate](https://code-maze.com/csharp-icomparable-icomparer-comparison-delegate/)
 - [Operator Overloading in C#](https://code-maze.com/csharp-operator-overloading/)
