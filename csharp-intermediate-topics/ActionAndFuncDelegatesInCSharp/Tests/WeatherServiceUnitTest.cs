@@ -4,7 +4,7 @@ namespace Tests
 {
     public class WeatherServiceUnitTest
     {
-        WeatherService weatherService = new WeatherService();
+        WeatherService weatherService = new();
 
         [Fact]
         public void GivenGetWeatherMethod_WhenCalledWithValidCityAndDisplayWeatherAction_ThenCallsDisplayWeatherAction()

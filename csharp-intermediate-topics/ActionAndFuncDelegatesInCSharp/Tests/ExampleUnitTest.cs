@@ -5,7 +5,7 @@ namespace Tests
 {
     public class ExampleUnitTest
     {
-        Example example = new Example();
+        Example example = new();
 
         [Fact]
         public void GivenPrintMethod_WhenCalledWithValidStrValue_ThenPrintsValidStrValue()
