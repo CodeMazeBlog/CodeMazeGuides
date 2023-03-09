@@ -2,25 +2,31 @@
 {
     public class Program
     {
-        public static void PrintStaticText() => Console.WriteLine("Action delegate");
+        private static string output = string.Empty;
 
-        public static void Print(string message) => Console.WriteLine(message);
+        public static void PrintStaticNumber() => output = "The input value is: 10";
+
+        public static void PrintInputNumber(int number) => output = $"The input value is: {number}";
 
         public static int Addition(int num1, int num2) =>  num1 + num2;
 
-        public static string PrintFullName(string firstName, string lastName) => string.Format("Your Name is {0} {1}", firstName, lastName);
+        public static string PrintFullName(string firstName, string lastName) => $"Your Name is {firstName} {lastName}";
 
         static void Main(string[] args)
         {
-            Action printStaticText = PrintStaticText;
-            Action<string> printText = Print;
+            Action printStaticNumber = PrintStaticNumber;
+            printStaticNumber();
+
+            Console.WriteLine("\n***************** Action<> Delegate Methods ***************\n");
+            Console.WriteLine(output);
+
+            Action<int> printInputNumber = PrintInputNumber;
+            printInputNumber(20);
+            Console.WriteLine(output);
 
             Func<int, int, int> addition = Addition;
             Func<string, string, string> fullName = PrintFullName;
 
-            Console.WriteLine("\n***************** Action<> Delegate Methods ***************\n");
-            printStaticText();
-            printText("Hello World!");
 
             Console.WriteLine();
             Console.WriteLine("**************** Func<> Delegate Methods *****************\n");

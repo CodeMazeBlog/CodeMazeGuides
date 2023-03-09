@@ -6,47 +6,43 @@ namespace Tests
     [TestClass]
     public class ActionAndFuncDelegatesUnitTest
     {
-        public static void Print(string message) => Console.WriteLine(message);
+        private static string output = string.Empty;
 
+        public static void PrintStaticNumber() => output = "The input value is: 10";
+
+        public static void PrintInputNumber(int number) => output = $"The input value is: {number}";
         public static int Addition(int num1, int num2) => num1 + num2;
 
-        public static string PrintFullName(string firstName, string lastName) => string.Format("Your Name is {0} {1}", firstName, lastName);
+        public static string PrintFullName(string firstName, string lastName) => $"Your Name is {firstName} {lastName}";
 
 
         [TestMethod]
         public void WhenVoidActionDelegateCalled_DelegateExucutesTheReferenceMethod()
         {
             // Arrange
-            var isActionDelegateCalled = false;
+            string expectedOutput = "The input value is: 10";
+            Action printStaticNumber = PrintStaticNumber;
 
             // Act
-            Action action = () =>
-            {
-                isActionDelegateCalled = true;
-            };
-
-            action();
+            printStaticNumber();
 
             // Assert
-            Assert.IsTrue(isActionDelegateCalled);
+            Assert.AreEqual(expectedOutput, output);
         }
 
         [TestMethod]
-        public void WhenStringIsSent_DelegateExucutesTheReferenceMethod()
+        public void WhenNumberIsSent_DelegateExucutesTheReferenceMethod()
         {
             // Arrange
-            var isActionDelegateCalled = false;
+            int input = 20;
+            string expectedOutput = $"The input value is: {input}";
+            Action<int> printInputNumber = PrintInputNumber;
 
             // Act
-            Action<bool> action = (isCalled) =>
-            {
-                isActionDelegateCalled = isCalled;
-            };
-
-            action(true);
+            printInputNumber(input);
 
             // Assert
-            Assert.IsTrue(isActionDelegateCalled);
+            Assert.AreEqual(expectedOutput, output);
         }
 
         [TestMethod]
@@ -60,6 +56,7 @@ namespace Tests
 
             //Assert
             Assert.AreEqual(9, sum);
+
         }
 
         [TestMethod]
