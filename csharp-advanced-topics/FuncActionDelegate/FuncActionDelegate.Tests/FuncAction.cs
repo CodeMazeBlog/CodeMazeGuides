@@ -3,7 +3,7 @@ namespace FuncActionDelegate.Tests
     public class FuncAction
     {
         [Fact]
-        public void WhenPassToActionDelegate_PrintDogSound()
+        public void WhenPassToActionDelegate_ThenPrintDogSound()
         {
             //arrange 
             var stringWriter = new StringWriter();
@@ -21,7 +21,7 @@ namespace FuncActionDelegate.Tests
         }
 
         [Fact]
-        public void WhenPassToFuncDelegate_ReturnDogSound()
+        public void WhenPassToFuncDelegate_ThenReturnDogSound()
         {
             //arrange 
             Dog dog = new Dog();
