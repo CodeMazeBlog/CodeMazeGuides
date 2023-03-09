@@ -73,7 +73,7 @@ public class MethodsTests
     [Fact]
     public void WhenSerializeAndDeserializePerson_ThenSuccess()
     {
-        Person person = new Person
+        var person = new Person
         {
             FirstName = "Jack",
             LastName = "Black",

@@ -37,7 +37,7 @@ Console.WriteLine("Full phrase: {0}", fullPhrase);
 
 Methods.LoadImageFromResources();
 
-Person person = new Person
+var person = new Person
 {
     FirstName = "Jack",
     LastName = "Black",
