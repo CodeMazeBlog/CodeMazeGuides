@@ -24,6 +24,7 @@ This section contains the topics considered basic level in C#.
 - [Params Keyword in C#](https://code-maze.com/csharp-params-keyword/)
 - [Pattern Matching in C#](https://code-maze.com/csharp-pattern-matching/)
 - [Ranges and Indices in C#](https://code-maze.com/csharp-ranges-and-indices/)
+- [Return Multiple Values to a Method Caller In C#](https://code-maze.com/csharp-return-multiple-values-to-a-method-caller/)
 - [Switch Expression with Multiple Cases That Return the Same Result in C#](https://code-maze.com/csharp-switch-multiple-cases-return-same-result/)
 - [Ternary Operator ? : in C#](https://code-maze.com/csharp-ternary-operator/)
 - [Top-Level Statements in C#](https://code-maze.com/csharp-top-level-statements/)
