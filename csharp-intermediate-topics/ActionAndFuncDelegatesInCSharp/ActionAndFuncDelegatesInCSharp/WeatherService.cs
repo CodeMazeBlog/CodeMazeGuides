@@ -1,4 +1,5 @@
-﻿namespace ActionAndFuncDelegatesInCSharp
+﻿
+namespace ActionAndFuncDelegatesInCSharp
 {
     public class WeatherService
     {
