@@ -11,8 +11,7 @@ builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefault
 
 builder.Services.AddApiVersioning(options =>
 {
-    options.ReportApiVersions = true;
-    options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.DefaultApiVersion = new ApiVersion(1.0);
     options.AssumeDefaultVersionWhenUnspecified = true;
     options.ApiVersionReader = new QueryStringApiVersionReader();
 }).AddApiExplorer(
@@ -22,8 +21,8 @@ builder.Services.AddApiVersioning(options =>
 var app = builder.Build();
 
 var versionSet = app.NewApiVersionSet()
-    .HasApiVersion(new ApiVersion(1, 0))
-    .HasApiVersion(new ApiVersion(2, 0))
+    .HasApiVersion(new ApiVersion(1.0))
+    .HasApiVersion(new ApiVersion(2.0))
     .ReportApiVersions()
     .Build();
 
@@ -49,9 +48,5 @@ app.UseHttpsRedirection();
 app.MapGet("/car-models", () => new[] { "Chevrolet", "Tesla", "Nissan" })
     .WithApiVersionSet(versionSet)
     .HasApiVersion(1.0);
-
-app.MapGet("/car-models", () => new[] { "Chevrolet", "Tesla", "Nissan", "Toyota" })
-    .WithApiVersionSet(versionSet)
-    .HasApiVersion(2.0);
 
 app.Run();
