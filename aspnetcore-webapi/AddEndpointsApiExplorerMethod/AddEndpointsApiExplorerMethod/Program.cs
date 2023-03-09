@@ -50,3 +50,7 @@ app.MapGet("/car-models", () => new[] { "Chevrolet", "Tesla", "Nissan" })
     .HasApiVersion(1.0);
 
 app.Run();
+
+public partial class Program
+{
+}
