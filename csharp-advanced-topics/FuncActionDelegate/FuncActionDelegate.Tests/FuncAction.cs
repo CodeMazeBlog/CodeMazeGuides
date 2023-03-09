@@ -3,7 +3,7 @@ namespace FuncActionDelegate.Tests
     public class FuncAction
     {
         [Fact]
-        public void PrintDogSound_WhenPassToActionDelegate()
+        public void WhenPassToActionDelegate_PrintDogSound()
         {
             //arrange 
             var stringWriter = new StringWriter();
@@ -12,31 +12,25 @@ namespace FuncActionDelegate.Tests
             //declaration
             Action<string> PrintDogSoundDelegate = dog.PrintSound;
 
-
             //act
             //invocation
             PrintDogSoundDelegate("wuff!!!!");
 
-
             //assert
             stringWriter.ToString().Equals("wuff!!!!");
-
-
         }
 
         [Fact]
-        public void ReturnDogSound_WhenPassToFuncDelegate()
+        public void WhenPassToFuncDelegate_ReturnDogSound()
         {
             //arrange 
             Dog dog = new Dog();
             //declaration
             Func<string, string> ReturnDogSoundDelegate = dog.MakeSound;
 
-
             //act
             //invocation
-            var dogSound =  ReturnDogSoundDelegate("wuff!!!wuff!!!");
-
+            var dogSound = ReturnDogSoundDelegate("wuff!!!wuff!!!");
 
             //assert
             dogSound.Equals("wuff!!!wuff!!!");
