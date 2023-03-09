@@ -52,6 +52,29 @@ namespace CallerMethod.Test
             Assert.Equal("The caller method is: " + expectedCallerMethodName, output[0]);
             Assert.Equal("The called method is: " + expectedCalledMethodName, output[1]);
         }
+
+        [Fact]
+        public void WhenPrintCallerNameWithCallerMemberNameAttribute_ThenShouldPrintCallerAndCalledMethodNames()
+        {
+            // Arrange
+            var mockStackFrame = new Mock<StackFrame>(1, false);
+            mockStackFrame.Setup(s => s.GetMethod()).Returns(MethodBase.GetCurrentMethod());
+
+            var expectedCallerMethodName = "WhenPrintCallerNameWithCallerMemberNameAttribute_ThenShouldPrintCallerAndCalledMethodNames";
+            var expectedCalledMethodName = "PrintCallerNameWithCallerMemberNameAttribute";
+
+            // Act
+            ConsoleCapture capture = new();
+            using (capture)
+            {
+                Program.PrintCallerNameWithCallerMemberNameAttribute();
+            }
+
+            // Assert
+            var output = capture.ToString().Split(Environment.NewLine);
+            Assert.Equal("The caller method is: " + expectedCallerMethodName, output[0]);
+            Assert.Equal("The called method is: " + expectedCalledMethodName, output[1]);
+        }
     }
 
     public class ConsoleCapture : IDisposable
