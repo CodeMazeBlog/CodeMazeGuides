@@ -1,13 +1,13 @@
 ﻿namespace ActionAndFuncDelegatesInCsharp
 {
-    internal class Program
+    public class Program
     {
-        private static void WriteToConsole(string text)
+        public static void WriteToConsole(string text)
         {
             Console.WriteLine(text);
         }
 
-        private static int Sum(int first, int second)
+        public static int Sum(int first, int second)
         {
             return first + second;
         }
@@ -33,31 +33,19 @@
             var secondNumber = 3;
 
             Func<int, int, int> sumTwoNumbersFuncNewInstance = new Func<int, int, int>(Sum);
-            Console.WriteLine("Invoking Func instantiated with new instance of the delegate. Sum of {0} and {1} is {2}.",
-                firstNumber,
-                secondNumber,
-                sumTwoNumbersFuncNewInstance(firstNumber, secondNumber));
+            Console.WriteLine($"Invoking Func instantiated with new instance of the delegate. Sum of {firstNumber} and {secondNumber} is {sumTwoNumbersFuncNewInstance(firstNumber, secondNumber)}.");
 
             Func<int, int, int> sumTwoNumbersFuncAssigning = Sum;
-            Console.WriteLine("Invoking Func instantiated by assigning a group method to a delegate type. Sum of {0} and {1} is {2}.",
-                firstNumber,
-                secondNumber,
-                sumTwoNumbersFuncAssigning(firstNumber, secondNumber));
+            Console.WriteLine($"Invoking Func instantiated by assigning a group method to a delegate type. Sum of {firstNumber} and {secondNumber} is {sumTwoNumbersFuncAssigning(firstNumber, secondNumber)}.");
 
             Func<int, int, int> sumTwoNumbersFuncAnonymous = delegate (int first, int second)
             {
                 return Sum(first, second);
             };
-            Console.WriteLine("Invoking Func instantiated by using anonymous method. Sum of {0} and {1} is {2}.",
-                firstNumber,
-                secondNumber,
-                sumTwoNumbersFuncAnonymous(firstNumber, secondNumber));
+            Console.WriteLine($"Invoking Func instantiated by using anonymous method. Sum of {firstNumber} and {secondNumber} is {sumTwoNumbersFuncAnonymous(firstNumber, secondNumber)}.");
 
             Func<int, int, int> sumTwoNumbersFuncLambda = (first, second) => Sum(first, second);
-            Console.WriteLine("Invoking Func instantiated by using lambda expression. Sum of {0} and {1} is {2}.",
-                firstNumber,
-                secondNumber,
-                sumTwoNumbersFuncLambda(firstNumber, secondNumber));
+            Console.WriteLine($"Invoking Func instantiated by using lambda expression. Sum of {firstNumber} and {secondNumber} is {sumTwoNumbersFuncLambda(firstNumber, secondNumber)}.");
 
             writeToConsoleActionNewInstance.Invoke("Invoking Action with Invoke method.");
 

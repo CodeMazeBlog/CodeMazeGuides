@@ -1,37 +1,29 @@
+using ActionAndFuncDelegatesInCsharp;
+
 namespace Tests
 {
     [TestClass]
     public class ActionAndFuncDelegatesInCSharpTests
     {
-        private static int Sum(int first, int second)
-        {
-            return first + second;
-        }
-
-        private static void WriteToConsole(string text)
-        {
-            Console.WriteLine(text);
-        }
-
         [TestMethod]
         public void WhenSumTwoIntegers_ThenCorrectResult()
         {
             var firstNumber = 2;
             var secondNumber = 3;
-            Assert.AreEqual(Sum(firstNumber, secondNumber), 5);
+            Assert.AreEqual(Program.Sum(firstNumber, secondNumber), 5);
         }
 
         [TestMethod]
         public void WhenAddActionWithNewInstance_DelegateInvocationListContainsOneElement()
         {
-            Action<string> writeToConsoleActionNewInstance = new Action<string>(WriteToConsole);
+            Action<string> writeToConsoleActionNewInstance = new Action<string>(Program.WriteToConsole);
             Assert.AreEqual(writeToConsoleActionNewInstance.GetInvocationList().Length, 1);
         }
 
         [TestMethod]
         public void WhenAddActionByAssigningGroupMethod_DelegateInvocationListContainsOneElement()
         {
-            Action<string> writeToConsoleActionNewInstance = WriteToConsole;
+            Action<string> writeToConsoleActionNewInstance = Program.WriteToConsole;
             Assert.AreEqual(writeToConsoleActionNewInstance.GetInvocationList().Length, 1);
         }
 
@@ -54,14 +46,14 @@ namespace Tests
 
         public void WhenAddFuncWithNewInstance_DelegateInvocationListContainsOneElement()
         {
-            Func<int, int, int> sumTwoNumbersFuncNewInstance = new Func<int, int, int>(Sum);
+            Func<int, int, int> sumTwoNumbersFuncNewInstance = new Func<int, int, int>(Program.Sum);
             Assert.AreEqual(sumTwoNumbersFuncNewInstance.GetInvocationList().Length, 1);
         }
 
         [TestMethod]
         public void WhenAddFuncByAssigningGroupMethod_DelegateInvocationListContainsOneElement()
         {
-            Func<int, int, int> sumTwoNumbersFuncAssigning = Sum;
+            Func<int, int, int> sumTwoNumbersFuncAssigning = Program.Sum;
             Assert.AreEqual(sumTwoNumbersFuncAssigning.GetInvocationList().Length, 1);
         }
 
@@ -70,7 +62,7 @@ namespace Tests
         {
             Func<int, int, int> sumTwoNumbersFuncAnonymous = delegate (int first, int second)
             {
-                return Sum(first, second);
+                return Program.Sum(first, second);
             };
             Assert.AreEqual(sumTwoNumbersFuncAnonymous.GetInvocationList().Length, 1);
         }
@@ -78,14 +70,14 @@ namespace Tests
         [TestMethod]
         public void WhenAddFuncByUsingLambdaExpression_DelegateInvocationListContainsOneElement()
         {
-            Func<int, int, int> sumTwoNumbersFuncLambda = (first, second) => Sum(first, second);
+            Func<int, int, int> sumTwoNumbersFuncLambda = (first, second) => Program.Sum(first, second);
             Assert.AreEqual(sumTwoNumbersFuncLambda.GetInvocationList().Length, 1);
         }
 
         [TestMethod]
         public void WhenAddActionTwoMethods_DelegateInvocationListContainsTwoElements()
         {
-            Action<string> writeToConsoleActionMulticasting = WriteToConsole;
+            Action<string> writeToConsoleActionMulticasting = Program.WriteToConsole;
             writeToConsoleActionMulticasting += text => Console.WriteLine(text);
             Assert.AreEqual(writeToConsoleActionMulticasting.GetInvocationList().Length, 2);
         }
