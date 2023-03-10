@@ -25,6 +25,7 @@ namespace Tests
             reader.ListAllFilesInZipUsingName(zipName);
 
             var output = stringWriter.ToString();
+
             return output.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries).Length;
         }
     }

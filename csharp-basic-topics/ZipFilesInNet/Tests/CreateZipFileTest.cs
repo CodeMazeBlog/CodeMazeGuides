@@ -39,6 +39,7 @@ namespace Tests
             using var dest = ZipFile.OpenRead(_destinationZipFile);
             var srcFiles = src.Entries.Where(e => !string.IsNullOrEmpty(e.Name)).Select(e => Path.GetFullPath(e.FullName)).ToArray();
             var destFiles = dest.Entries.Where(e => !string.IsNullOrEmpty(e.Name)).Select(e => Path.GetFullPath(e.FullName)).ToArray();
+
             CollectionAssert.AreEquivalent(srcFiles, destFiles);
         }
     }

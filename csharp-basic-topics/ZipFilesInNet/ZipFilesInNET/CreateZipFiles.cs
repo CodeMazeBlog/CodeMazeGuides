@@ -20,12 +20,12 @@ namespace ZipFilesInNet
             using var archive = ZipFile.Open(zipFileName, ZipArchiveMode.Create);
 
             // loop through each file and add it as an entry into a zip file
-            foreach (var f in files)
+            foreach (var file in files)
             {
                 // NOTE: we have to store relative folder information in a zip file
                 archive.CreateEntryFromFile(
-                    f.FullName,
-                    Path.GetRelativePath(folder.FullName, f.FullName),
+                    file.FullName,
+                    Path.GetRelativePath(folder.FullName, file.FullName),
                     compressionLevel
                 );
             }

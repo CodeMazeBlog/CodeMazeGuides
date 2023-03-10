@@ -49,6 +49,7 @@ namespace Tests
                 filePattern.Replace(".", "[.]")
                     .Replace("*", ".*")
                     .Replace("?", "."));
+
             return regPattern.IsMatch(fileName);
         }
     }

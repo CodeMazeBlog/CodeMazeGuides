@@ -28,6 +28,7 @@ namespace ZipFilesInNet
                 filePattern.Replace(".", "[.]")
                     .Replace("*", ".*")
                     .Replace("?", "."));
+
             return regPattern.IsMatch(fileName);
         }
     }
