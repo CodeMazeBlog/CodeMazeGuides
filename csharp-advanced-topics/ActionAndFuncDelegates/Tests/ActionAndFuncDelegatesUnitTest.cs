@@ -1,3 +1,4 @@
+using ActionAndFuncDelegates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
@@ -6,56 +7,45 @@ namespace Tests
     [TestClass]
     public class ActionAndFuncDelegatesUnitTest
     {
-        private static string output = string.Empty;
-
-        public static void PrintStaticNumber() => output = "The input value is: 10";
-
-        public static void PrintInputNumber(int number) => output = $"The input value is: {number}";
-        public static int Addition(int num1, int num2) => num1 + num2;
-
-        public static string PrintFullName(string firstName, string lastName) => $"Your Name is {firstName} {lastName}";
-
 
         [TestMethod]
         public void WhenVoidActionDelegateCalled_DelegateExucutesTheReferenceMethod()
         {
             // Arrange
-            string expectedOutput = "The input value is: 10";
-            Action printStaticNumber = PrintStaticNumber;
+            string expectedOutput = "The input value is: 50";
 
             // Act
-            printStaticNumber();
+            string result = Program.ActionDelagate();
 
             // Assert
-            Assert.AreEqual(expectedOutput, output);
+            Assert.AreEqual(expectedOutput, result);
         }
 
         [TestMethod]
         public void WhenNumberIsSent_DelegateExucutesTheReferenceMethod()
         {
             // Arrange
-            int input = 20;
-            string expectedOutput = $"The input value is: {input}";
-            Action<int> printInputNumber = PrintInputNumber;
+            int num = 20;
+            string expectedOutput = $"The input value is: {num}";
 
             // Act
-            printInputNumber(input);
+            string result = Program.ActionDelagateWithArguments(num);
 
             // Assert
-            Assert.AreEqual(expectedOutput, output);
+            Assert.AreEqual(expectedOutput, result);
         }
 
         [TestMethod]
         public void WhenTwoNumbersAreSent_FunctionDelegateReturnSum()
         {
             // Arrange
-            Func<int, int, int> addition = Addition;
+            int expectedOutput = 50;
 
             // Act
-            int sum = addition(4, 5);
+            int reult = Program.FunctionDelagate(20, 30);
 
             //Assert
-            Assert.AreEqual(9, sum);
+            Assert.AreEqual(expectedOutput, reult);
 
         }
 
@@ -63,13 +53,15 @@ namespace Tests
         public void WhenTwoStringsAreSent_FunctionDelegateReturnCombinedStrings()
         {
             // Arrange
-            Func<string, string, string> fullName = PrintFullName;
+            string firstName = "code";
+            string lastName = "maze";
+            string expectedOutput = $"Your Name is {firstName} {lastName}";
 
             // Act
-            string name = fullName("code", "maze");
+            string reult = Program.FunctionDelagateWithArguments(firstName, lastName);
 
             //Assert
-            Assert.AreEqual("Your Name is code maze", name);
+            Assert.AreEqual(expectedOutput, reult);
         }
     }
 }

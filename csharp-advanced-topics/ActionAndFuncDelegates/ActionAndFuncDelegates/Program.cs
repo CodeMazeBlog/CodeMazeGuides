@@ -4,7 +4,7 @@
     {
         private static string output = string.Empty;
 
-        public static void PrintStaticNumber() => output = "The input value is: 10";
+        public static void PrintStaticNumber() => output = "The input value is: 50";
 
         public static void PrintInputNumber(int number) => output = $"The input value is: {number}";
 
@@ -14,27 +14,50 @@
 
         static void Main(string[] args)
         {
-            Action printStaticNumber = PrintStaticNumber;
-            printStaticNumber();
+            int num1 = 10;
+            int num2 = 20;
+            string firstName = "code";
+            string lastName = "maze";
 
             Console.WriteLine("\n***************** Action<> Delegate Methods ***************\n");
-            Console.WriteLine(output);
-
-            Action<int> printInputNumber = PrintInputNumber;
-            printInputNumber(20);
-            Console.WriteLine(output);
-
-            Func<int, int, int> addition = Addition;
-            Func<string, string, string> fullName = PrintFullName;
-
+            Console.WriteLine(ActionDelagate());
+            Console.WriteLine(ActionDelagateWithArguments(num1));
 
             Console.WriteLine();
             Console.WriteLine("**************** Func<> Delegate Methods *****************\n");
-            int sum = addition(4,5);
-            string name = fullName("code", "maze");
 
-            Console.WriteLine("Addition: {0}", sum);
-            Console.WriteLine(name);
+            Console.WriteLine("Addition: {0}", FunctionDelagate(num1, num2));
+            Console.WriteLine(FunctionDelagateWithArguments(firstName, lastName));
+        }
+
+        public static string ActionDelagate()
+        {
+            Action printStaticNumber = PrintStaticNumber;
+            printStaticNumber();
+            return output;
+        }
+
+        public static string ActionDelagateWithArguments(int number)
+        {
+            Action<int> printInputNumber = PrintInputNumber;
+            printInputNumber(number);
+            return output;
+        }
+
+        public static int FunctionDelagate(int num1, int num2)
+        {
+            Func<int, int, int> addition = Addition;
+            int sum = addition(num1, num2);
+
+            return sum;
+        }
+
+        public static string FunctionDelagateWithArguments(string firstName, string lastName)
+        {
+            Func<string, string, string> fullName = PrintFullName;
+            string name = fullName(firstName, lastName);
+
+            return name;
         }
     }
 }
