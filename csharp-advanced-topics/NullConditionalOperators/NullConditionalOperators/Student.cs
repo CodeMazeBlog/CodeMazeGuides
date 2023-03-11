@@ -3,21 +3,17 @@
     public class Student
     {
         public string? Name { get; set; }
-        public string[]? Courses { get; set; }
+        public List<string> Courses { get; set; }
 
-        public Student()
-        {
-        }
-
-        public Student(string name, string[] courses)
+        public Student(string name, List<string> courses)
         {
             Name = name;
             Courses = courses;
         }
 
-        public void Study(string course)
+        public void Enroll(string course)
         {
-            Console.WriteLine($"Studying for the {course} exam...");
+            Courses.Add(course);
         }
     }
 }

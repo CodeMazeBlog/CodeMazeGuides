@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var student = new Student("john", null);
+
+            Console.WriteLine(student.Courses?[0]);
         }
     }
 }
