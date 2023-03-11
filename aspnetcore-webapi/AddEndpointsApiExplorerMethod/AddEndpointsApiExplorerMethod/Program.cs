@@ -1,56 +1,30 @@
-using AddEndpointsApiExplorerMethod.Configurations;
-using Asp.Versioning;
-using Microsoft.Extensions.Options;
-using Swashbuckle.AspNetCore.SwaggerGen;
-
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
-
-builder.Services.AddApiVersioning(options =>
-{
-    options.DefaultApiVersion = new ApiVersion(1.0);
-    options.AssumeDefaultVersionWhenUnspecified = true;
-    options.ApiVersionReader = new QueryStringApiVersionReader();
-}).AddApiExplorer(
-    options => { options.GroupNameFormat = "'v'VVV"; });
-
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-var versionSet = app.NewApiVersionSet()
-    .HasApiVersion(new ApiVersion(1.0))
-    .HasApiVersion(new ApiVersion(2.0))
-    .ReportApiVersions()
-    .Build();
+app.MapGet("/", () => "A test endpoint");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(options =>
-    {
-        var descriptions = app.DescribeApiVersions();
-
-        foreach (var description in descriptions)
-        {
-            var url = $"/swagger/{description.GroupName}/swagger.json";
-            var name = description.GroupName.ToUpperInvariant();
-            options.SwaggerEndpoint(url, name);
-        }
-    });
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
-app.MapGet("/car-models", () => new[] { "Chevrolet", "Tesla", "Nissan" })
-    .WithApiVersionSet(versionSet)
-    .HasApiVersion(1.0);
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 
-public partial class Program
-{
-}
+public partial class Program { }
