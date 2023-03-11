@@ -11,7 +11,7 @@
     <None Remove="vegtable-sales.csv" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="vegtable-sales.csv">
+    <Content Include="vegetable-sales.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

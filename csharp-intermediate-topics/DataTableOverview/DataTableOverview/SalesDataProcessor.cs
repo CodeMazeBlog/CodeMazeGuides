@@ -7,13 +7,14 @@ namespace DataTableOverview
     {
         public static void ProcessSales()
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory + "vegtable-sales.csv";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + "vegetable-sales.csv";
             DataTable veggieSales = CsvToDataTable(filePath);
 
-            DataRow[] carrotSales = veggieSales.Select("Vegtable='Carrot'");
+            DataRow[] carrotSales = veggieSales.Select("Vegetable='Carrot'");
             Program.PrintSelectedRows(carrotSales, veggieSales);
 
         }
+
         public static DataTable CsvToDataTable(string filePath)
         {
             DataTable dtRes = new DataTable();

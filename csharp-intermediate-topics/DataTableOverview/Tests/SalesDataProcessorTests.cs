@@ -10,7 +10,7 @@ namespace Tests
         [Fact]
         public void WhenCsvToDataTableCalled_ThenNonEmptyDataTableReturned()
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory + "vegtable-sales.csv";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + "vegetable-sales.csv";
 
             var result = SalesDataProcessor.CsvToDataTable(filePath);
 
@@ -21,7 +21,7 @@ namespace Tests
         [Fact]
         public void WhenProcessSales_ThenPrintsSelectedRows()
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory + "vegtable-sales.csv";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + "vegetable-sales.csv";
             var veggieSales = SalesDataProcessor.CsvToDataTable(filePath);
 
 

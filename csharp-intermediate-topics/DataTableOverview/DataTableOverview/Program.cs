@@ -6,7 +6,7 @@ namespace DataTableOverview
     {
         public static void Main(string[] args)
         {
-            DataTable dt = CreateMainDataTable();
+            var dt = CreateMainDataTable();
 
             PopulateDataTable(dt);
             PrintData(dt);
@@ -26,7 +26,7 @@ namespace DataTableOverview
         public static DataTable CreateMainDataTable()
         {
             // create initial example table
-            DataTable dt = new DataTable();
+            var dt = new DataTable();
 
             dt.Columns.Add("Ticker", typeof(string));
             dt.Columns.Add("Date", typeof(DateTime));
@@ -43,6 +43,7 @@ namespace DataTableOverview
 
             return dt;
         }
+
         public static void PopulateDataTable(DataTable dt)
         {
             // add row
@@ -53,8 +54,7 @@ namespace DataTableOverview
             // 2) set column values
             row["Ticker"] = "MSFT";
             row["Date"] = new DateTime(2023, 3, 3);
-            row["Price"] = 255.29;
-
+            row["Price"] = 255.29;  
             row["Key"] = 0;
 
             // by Ordinal/index
@@ -65,8 +65,8 @@ namespace DataTableOverview
 
             // 3) add populated row to table
             dt.Rows.Add(row);
-
         }
+
         public static void AddNewRow(DataTable dt)
         {
             DataRow row;
