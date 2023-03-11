@@ -24,7 +24,6 @@ namespace Tests
             var filePath = AppDomain.CurrentDomain.BaseDirectory + "vegetable-sales.csv";
             var veggieSales = SalesDataProcessor.CsvToDataTable(filePath);
 
-
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
