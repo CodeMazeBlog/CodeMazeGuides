@@ -28,16 +28,15 @@ namespace Tests
 
 
         [Fact]
-        public async Task WhenWeatherForecastEndpointIsCalled_ThenReturnWeatherForcastData ()
+        public void WhenWeatherForecastEndpointIsCalled_ThenReturnWeatherForcastData ()
         {
-            WeatherForecastController controller = new WeatherForecastController();
+            var controller = new WeatherForecastController();
 
-            // Act
             var result = controller.Get();
+            var resultCount = result.ToList().Count;
 
-            // Assert
             Assert.NotNull(result);
-            Assert.Equal(5, result.ToList().Count);
+            Assert.Equal(5, resultCount);
         }
     }
 }
