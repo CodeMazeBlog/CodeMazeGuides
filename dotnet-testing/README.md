@@ -4,7 +4,9 @@ This section contains the topics related to all kinds of testing in C#/.NET
 ### Relevant articles:
 
 - [Performance Testing of ASP.NET Core APIs With k6](https://code-maze.com/aspnetcore-performance-testing-with-k6/)
+- [Introduction to Behavior Driven Development (BDD) in C#](https://code-maze.com/behavior-driven-development-bdd-csharp/)
 - [Using Moq to Determine If a Method is Called](https://code-maze.com/using-moq-to-determine-if-method-is-called/)
+- [How to Mock EF Core DbContext](https://code-maze.com/ef-core-mock-dbcontext/)
 - [How to Mock the File System for Unit Testing in .NET](https://code-maze.com/dotnet-unit-testing-mock-file-system/)
 - [Improving Unit Tests with Fluent Assertions](https://code-maze.com/unit-tests-with-fluent-assertions/)
 - [How to Use Shouldly to Improve Unit Tests in .NET?](https://code-maze.com/improve-unit-tests-shouldly-dotnet/)

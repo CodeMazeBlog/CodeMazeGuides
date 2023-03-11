@@ -1,0 +1,35 @@
+﻿
+@model OrderViewModel
+
+
+<h2>Your orders</h2>
+@if (Model.Orders is not null && Model.Orders.Count() > 0){
+
+<h4>Here is an overview of your orders.</h4>
+
+<table class="table">
+    <thead>
+        <tr class="columnHeader">
+            <th>ID</th>
+            <th>DATE</th>
+            <th>TOTAL</th>
+            <th>PAID?</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model.Orders)
+        {
+        <tr>
+            <td>@order.OrderId</td>
+            <td>@order.OrderPlaced.ToShortDateString()</td>
+            <td class="bold">$@order.OrderTotal</td>
+            <td class="bold">@order.OrderPaid</td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+else{
+    <h4>You dont have any current orders.</h4>
+}
