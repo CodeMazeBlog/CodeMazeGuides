@@ -12,7 +12,6 @@ namespace DataTableOverview
 
             DataRow[] carrotSales = veggieSales.Select("Vegetable='Carrot'");
             Program.PrintSelectedRows(carrotSales, veggieSales);
-
         }
 
         public static DataTable CsvToDataTable(string filePath)
