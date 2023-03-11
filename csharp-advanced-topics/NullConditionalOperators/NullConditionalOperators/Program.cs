@@ -4,9 +4,14 @@
     {
         static void Main(string[] args)
         {
-            var student = new Student("john", null);
+            Student? student = null;
 
-            Console.WriteLine(student.Courses?[0]);
+            Console.WriteLine($"Student name is: {student?.Name}");
+            Console.WriteLine($"First enrolled course is: {student?.Courses?[0]}");
+
+            var name = student?.Name ?? "John";
+
+            student.Name ??= "John";
         }
     }
 }
