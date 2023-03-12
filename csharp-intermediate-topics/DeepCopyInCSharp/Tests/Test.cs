@@ -20,6 +20,7 @@ namespace Tests
         public void WhenUsingICloneableAllPropertiesCopied()
         {
             var copy = (Person)_person.Clone();
+
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);
             Assert.Equal(copy.Address.Street, _person.Address.Street);
@@ -30,7 +31,8 @@ namespace Tests
         [Fact]
         public void WhenUsingXMLSerializationAllPropertiesCopied()
         {
-            var copy = DeepCopier.DeepCopyXML(_person); ;
+            var copy = DeepCopier.DeepCopyXML(_person);
+
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);
             Assert.Equal(copy.Address.Street, _person.Address.Street);
@@ -41,7 +43,8 @@ namespace Tests
         [Fact]
         public void WhenUsingJsonSerializationAllPropertiesCopied()
         {
-            var copy = DeepCopier.DeepCopyJSON(_person); ;
+            var copy = DeepCopier.DeepCopyJSON(_person);
+
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);
             Assert.Equal(copy.Address.Street, _person.Address.Street);
@@ -52,7 +55,8 @@ namespace Tests
         [Fact]
         public void WhenUsingDataContractSerializationAllPropertiesCopied()
         {
-            var copy = DeepCopier.DeepCopyDataContract(_person); ;
+            var copy = DeepCopier.DeepCopyDataContract(_person);
+
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);
             Assert.Equal(copy.Address.Street, _person.Address.Street);
@@ -63,7 +67,8 @@ namespace Tests
         [Fact]
         public void WhenUsingReflectionAllPropertiesCopied()
         {
-            var copy = DeepCopier.DeepCopyReflection(_person); ;
+            var copy = DeepCopier.DeepCopyReflection(_person);
+
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);
             Assert.Equal(copy.Address.Street, _person.Address.Street);
@@ -74,7 +79,8 @@ namespace Tests
         [Fact]
         public void WhenUsingExpressionTreesAllPropertiesCopied()
         {
-            var copy = DeepCopier.DeepCopyExpressionTrees(_person); ;
+            var copy = DeepCopier.DeepCopyExpressionTrees(_person);
+
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);
             Assert.Equal(copy.Address.Street, _person.Address.Street);

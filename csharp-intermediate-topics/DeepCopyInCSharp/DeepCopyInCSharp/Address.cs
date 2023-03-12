@@ -11,9 +11,9 @@
         {
             return new Address
             {
-                Street = this.Street,
-                City = this.City,
-                State = this.State
+                Street = Street,
+                City = City,
+                State = State
             };
         }
     }

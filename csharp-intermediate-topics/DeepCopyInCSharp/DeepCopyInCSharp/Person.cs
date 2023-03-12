@@ -19,9 +19,9 @@ namespace DeepCopyInCSharp
         {
             var clonedPerson = new Person
             {
-                Name = this.Name,
-                Age = this.Age,
-                Address = (Address)this.Address.Clone()
+                Name = Name,
+                Age = Age,
+                Address = (Address)Address.Clone()
             };
 
             return clonedPerson;
