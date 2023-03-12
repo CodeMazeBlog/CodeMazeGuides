@@ -1,4 +1,7 @@
-﻿namespace RemoveWhitespaceCharactersFromString
+﻿using System.Text;
+using System.Text.RegularExpressions;
+
+namespace RemoveWhitespaceCharactersFromString
 {
     public class RemoveWhitespaceMethods
     {
