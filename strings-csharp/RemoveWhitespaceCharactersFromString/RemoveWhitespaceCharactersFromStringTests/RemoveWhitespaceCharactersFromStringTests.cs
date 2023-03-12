@@ -31,7 +31,7 @@ namespace RemoveWhitespaceCharactersFromStringTests
         {
             var source = " hello worl d";
 
-            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingStringBuilder(source);
+            var result = RemoveWhitespaceMethods.RemoveSpacesUsingReplace(source);
 
             Assert.AreEqual("helloworld", result);
         }
@@ -41,7 +41,7 @@ namespace RemoveWhitespaceCharactersFromStringTests
         {
             var source = "\t hello";
 
-            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingReplace(source);
+            var result = RemoveWhitespaceMethods.RemoveSpacesUsingReplace(source);
 
             Assert.AreEqual("\thello", result);
         }
@@ -51,7 +51,7 @@ namespace RemoveWhitespaceCharactersFromStringTests
         {
             var source = "  \t John Doe ";
 
-            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingTrim(source);
+            var result = RemoveWhitespaceMethods.RemoveLeadingAndTrailingWhitespacesUsingTrim(source);
 
             Assert.AreEqual("John Doe", result);
         }

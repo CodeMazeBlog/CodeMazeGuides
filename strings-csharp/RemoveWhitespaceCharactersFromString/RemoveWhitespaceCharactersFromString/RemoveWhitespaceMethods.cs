@@ -1,7 +1,4 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
-
-namespace RemoveWhitespaceCharactersFromString
+﻿namespace RemoveWhitespaceCharactersFromString
 {
     public class RemoveWhitespaceMethods
     {
@@ -15,12 +12,12 @@ namespace RemoveWhitespaceCharactersFromString
             return string.Concat(source.Where(c => !char.IsWhiteSpace(c)));
         }
 
-        public static string RemoveWhitespacesUsingReplace(string source)
+        public static string RemoveSpacesUsingReplace(string source)
         {
             return source.Replace(" ", string.Empty);
         }
 
-        public static string RemoveWhitespacesUsingTrim(string source)
+        public static string RemoveLeadingAndTrailingWhitespacesUsingTrim(string source)
         {
             return source.Trim();
         }

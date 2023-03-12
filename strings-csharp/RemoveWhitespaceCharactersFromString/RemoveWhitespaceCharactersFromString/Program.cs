@@ -1,10 +1,5 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
+﻿using RemoveWhitespaceCharactersFromString;
 
-
-
-
-using RemoveWhitespaceCharactersFromString;
 //regex
 var sourceRegex = " \t hello worl d";
 var resultRegex = RemoveWhitespaceMethods.RemoveWhitespacesUsingRegex(sourceRegex);
@@ -17,12 +12,12 @@ Console.WriteLine(resultLinq); //prints 'helloworld123'
 
 //replace
 var sourceReplace = " Hello World!";
-var resultReplace = RemoveWhitespaceMethods.RemoveWhitespacesUsingReplace(sourceReplace);
+var resultReplace = RemoveWhitespaceMethods.RemoveSpacesUsingReplace(sourceReplace);
 Console.WriteLine(resultReplace); // prints 'HelloWorld!'
 
 //trim
 var sourceTrim = " \t John Doe ";
-var resultTrim = RemoveWhitespaceMethods.RemoveWhitespacesUsingTrim(sourceTrim);
+var resultTrim = RemoveWhitespaceMethods.RemoveLeadingAndTrailingWhitespacesUsingTrim(sourceTrim);
 Console.WriteLine(resultTrim); //prints 'John Doe'
 
 //string builder
