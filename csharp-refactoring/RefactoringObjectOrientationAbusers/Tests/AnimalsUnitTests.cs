@@ -23,7 +23,7 @@
         }
 
         [TestMethod]
-        public void WhenCatMakseSound_ThenMeowMessageIsPrinted()
+        public void WhenCatMakesSound_ThenMeowMessageIsPrinted()
         {
             // Arrange
             Cat cat = new Cat() { Name = "Fluffy" };

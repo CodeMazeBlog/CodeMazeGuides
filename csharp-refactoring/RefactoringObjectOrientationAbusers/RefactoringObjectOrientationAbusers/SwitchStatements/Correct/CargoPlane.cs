@@ -2,8 +2,6 @@
 {
     public class CargoPlane : Plane
     {
-        public CargoPlane(){ }
-
         public override int Type { get { return Cargo; } }
 
         public override double GetCapacity()

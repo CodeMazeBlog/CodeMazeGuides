@@ -2,8 +2,6 @@
 {
     public class MilitaryPlane : Plane
     {
-        public MilitaryPlane() { }
-
         public override int Type { get { return Military; } }
 
         public override double GetCapacity()

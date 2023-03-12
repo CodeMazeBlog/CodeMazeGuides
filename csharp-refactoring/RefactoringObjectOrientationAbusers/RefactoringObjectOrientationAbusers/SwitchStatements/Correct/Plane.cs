@@ -6,8 +6,6 @@
         public const int Passenger = 1;
         public const int Military = 2;
 
-        protected Plane() { }
-
         public abstract int Type { get; }
         public abstract double GetCapacity();
 
