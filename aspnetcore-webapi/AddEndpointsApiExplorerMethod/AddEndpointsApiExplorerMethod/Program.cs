@@ -10,7 +10,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.MapGet("/", () => "A test endpoint");
+app.MapGet("/car-models", () => new[] { "Chevrolet", "Tesla", "Nissan" });
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

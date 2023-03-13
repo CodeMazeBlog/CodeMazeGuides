@@ -1,6 +1,5 @@
 using System.Net;
 using AddEndpointsApiExplorerMethod.Controllers;
-using AddEndpointsApiExplorerMethod;
 using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace Tests
@@ -17,18 +16,18 @@ namespace Tests
         }
 
         [Fact]
-        public async Task WhenMinimalApiEndpointIsCalled_ThenReturnResponse()
+        public async Task WhenMinimalApiEndpointIsCalled_ThenReturnAnArrayOfCars()
         {
-            var httpResponseMessage = await _client.GetAsync("");
+            var httpResponseMessage = await _client.GetAsync("/car-models");
             var response = await httpResponseMessage.Content.ReadAsStringAsync();
 
             Assert.Equal(HttpStatusCode.OK, httpResponseMessage.StatusCode);
-            Assert.Equal("A test endpoint", response);
+            Assert.Equal("[\"Chevrolet\",\"Tesla\",\"Nissan\"]", response);
         }
 
 
         [Fact]
-        public void WhenWeatherForecastEndpointIsCalled_ThenReturnWeatherForcastData ()
+        public void WhenWeatherForecastEndpointIsCalled_ThenReturnWeatherForecastData()
         {
             var controller = new WeatherForecastController();
 
