@@ -10,8 +10,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.MapGet("/car-models", () => new[] { "Chevrolet", "Tesla", "Nissan" });
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -22,6 +20,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.MapGet("/car-models", () => new[] { "Chevrolet", "Tesla", "Nissan" });
 
 app.MapControllers();
 
