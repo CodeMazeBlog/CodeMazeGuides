@@ -1,0 +1,15 @@
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\bin\Debug\net7.0\FuncDelegate.exe
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\bin\Debug\net7.0\FuncDelegate.deps.json
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\bin\Debug\net7.0\FuncDelegate.runtimeconfig.json
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\bin\Debug\net7.0\FuncDelegate.dll
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\bin\Debug\net7.0\FuncDelegate.pdb
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\obj\Debug\net7.0\FuncDelegate.csproj.AssemblyReference.cache
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\obj\Debug\net7.0\FuncDelegate.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\obj\Debug\net7.0\FuncDelegate.AssemblyInfoInputs.cache
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\obj\Debug\net7.0\FuncDelegate.AssemblyInfo.cs
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\obj\Debug\net7.0\FuncDelegate.csproj.CoreCompileInputs.cache
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\obj\Debug\net7.0\FuncDelegate.dll
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\obj\Debug\net7.0\refint\FuncDelegate.dll
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\obj\Debug\net7.0\FuncDelegate.pdb
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\obj\Debug\net7.0\FuncDelegate.genruntimeconfig.cache
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\FuncDelegate\obj\Debug\net7.0\ref\FuncDelegate.dll

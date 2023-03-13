@@ -1,0 +1,15 @@
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\bin\Debug\net7.0\ActionDelegate.exe
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\bin\Debug\net7.0\ActionDelegate.deps.json
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\bin\Debug\net7.0\ActionDelegate.runtimeconfig.json
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\bin\Debug\net7.0\ActionDelegate.dll
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\bin\Debug\net7.0\ActionDelegate.pdb
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\obj\Debug\net7.0\ActionDelegate.csproj.AssemblyReference.cache
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\obj\Debug\net7.0\ActionDelegate.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\obj\Debug\net7.0\ActionDelegate.AssemblyInfoInputs.cache
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\obj\Debug\net7.0\ActionDelegate.AssemblyInfo.cs
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\obj\Debug\net7.0\ActionDelegate.csproj.CoreCompileInputs.cache
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\obj\Debug\net7.0\ActionDelegate.dll
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\obj\Debug\net7.0\refint\ActionDelegate.dll
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\obj\Debug\net7.0\ActionDelegate.pdb
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\obj\Debug\net7.0\ActionDelegate.genruntimeconfig.cache
+C:\Users\AdilAnsari\OneDrive - Akumina\Personal\Learninig\ActionFuncDelegates\ActionDelegate\obj\Debug\net7.0\ref\ActionDelegate.dll
