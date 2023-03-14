@@ -2,17 +2,17 @@
 {
     public class BookstoreCustomer
     {
-        public int DiscountTreshold { get; set; }
+        public int DiscountThreshold { get; set; }
         public int BoughtBooksCount { get; set; }
         public ICollection<string> BoughtBooks { get; set; }
 
         public double GetDiscountRate()
         {
             BoughtBooksCount = BoughtBooks.Count;
-            DiscountTreshold = GetDiscountThreshold();
+            DiscountThreshold = GetDiscountThreshold();
 
             var discountBase = 0.05;
-            return DiscountTreshold * discountBase;
+            return DiscountThreshold * discountBase;
         }
 
         private int GetDiscountThreshold()

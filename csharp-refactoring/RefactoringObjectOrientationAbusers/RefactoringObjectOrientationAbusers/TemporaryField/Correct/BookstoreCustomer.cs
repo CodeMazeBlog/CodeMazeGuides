@@ -7,10 +7,10 @@
         public double GetDiscountRate()
         {
             var boughtBooksCount = BoughtBooks.Count;
-            var discountTreshold = GetDiscountThreshold(boughtBooksCount);
+            var discountThreshold = GetDiscountThreshold(boughtBooksCount);
 
             var discountBase = 0.05;
-            return discountTreshold * discountBase;
+            return discountThreshold * discountBase;
         }
 
         private int GetDiscountThreshold(double boughtBooksCount)
