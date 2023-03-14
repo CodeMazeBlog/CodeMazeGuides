@@ -6,8 +6,7 @@ namespace AddEndpointsApiExplorerMethod.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
+        private static readonly string[] Summaries = {
             "Freezing",
             "Bracing",
             "Chilly",
@@ -19,11 +18,6 @@ namespace AddEndpointsApiExplorerMethod.Controllers
             "Sweltering",
             "Scorching"
         };
-
-
-        public WeatherForecastController()
-        {
-        }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()

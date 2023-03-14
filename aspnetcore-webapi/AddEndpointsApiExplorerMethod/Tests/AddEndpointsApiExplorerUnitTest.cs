@@ -25,7 +25,6 @@ namespace Tests
             Assert.Equal("[\"Chevrolet\",\"Tesla\",\"Nissan\"]", response);
         }
 
-
         [Fact]
         public void WhenWeatherForecastEndpointIsCalled_ThenReturnWeatherForecastData()
         {
