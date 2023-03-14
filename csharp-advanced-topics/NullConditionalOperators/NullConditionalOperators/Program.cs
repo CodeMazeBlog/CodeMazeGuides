@@ -7,11 +7,13 @@
             Student? student = null;
 
             Console.WriteLine($"Student name is: {student?.Name}");
-            Console.WriteLine($"First enrolled course is: {student?.Courses?[0]}");
+            Console.WriteLine($"First enrolled course is: {student?.Courses?[2]}");
 
             var name = student?.Name ?? "John";
 
             student.Name ??= "John";
+
+            student?.Enroll("Math");
         }
     }
 }
