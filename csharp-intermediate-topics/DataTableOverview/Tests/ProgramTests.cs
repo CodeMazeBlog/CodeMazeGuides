@@ -13,7 +13,6 @@ namespace Tests
             var dt = Program.CreateMainDataTable();
             var expectedColumns = new string[] { "Ticker", "Date", "Price", "Key" };
 
-
             var actualColumns = dt.Columns.Cast<DataColumn>()
                 .Select(x => x.ColumnName)
                 .ToArray();

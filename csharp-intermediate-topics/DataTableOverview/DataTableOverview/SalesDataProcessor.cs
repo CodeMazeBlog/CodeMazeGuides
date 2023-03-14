@@ -7,7 +7,7 @@ namespace DataTableOverview
     {
         public static void ProcessSales()
         {
-            var filePath = AppDomain.CurrentDomain.BaseDirectory + "vegetable-sales.csv";
+            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "vegetable-sales.csv");
             DataTable veggieSales = CsvToDataTable(filePath);
 
             DataRow[] carrotSales = veggieSales.Select("Vegetable='Carrot'");
