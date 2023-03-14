@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace FuncDelegate
 {
-    internal class Program
+    public class Program
     {
-        static int square(int n)
+        public static int square(int n)
         {
             return n * n;
         }
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             // create an Func delegate and assign it a method
             Func<int, int> funcSquare = square;

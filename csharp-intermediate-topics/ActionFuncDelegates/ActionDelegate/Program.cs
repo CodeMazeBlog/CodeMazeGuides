@@ -4,14 +4,14 @@ using System.Xml.Linq;
 
 namespace ActionDelegate
 {
-    internal class Program
+    public class Program
     {
-        static void PrintAWord(string word)
+        public static void PrintAWord(string word)
         {
             Console.WriteLine(word);
         }
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             List<string> words = new List<string> { "apple", "banana", "cherry", "date" };
 
