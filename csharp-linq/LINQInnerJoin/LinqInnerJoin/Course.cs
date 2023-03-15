@@ -28,7 +28,6 @@
                              select new Course { Id = id++, CategoryId = 3, Name = dv});
     
             return courses;
-    
         }
     }
 }

@@ -8,9 +8,9 @@
 
             var courses = Course.GetDummyCourses();
 
-            var enrolmensRelation = GetEnrolmentsRelation(enrolments, students, courses);
+            var enrolmentsRelation = GetEnrolmentsRelation(enrolments, students, courses);
 
-            var result = enrolmensRelation.Select(
+            var result = enrolmentsRelation.Select(
                 e =>
                     new
                     {
@@ -29,9 +29,9 @@
 
             var courses = Course.GetDummyCourses();
 
-            var enrolmensRelation = GetEnrolmentsRelation(enrolments, students, courses);
+            var enrolmentsRelation = GetEnrolmentsRelation(enrolments, students, courses);
 
-            var result = enrolmensRelation
+            var result = enrolmentsRelation
                 .Select(
                     e =>
                         new
@@ -55,9 +55,9 @@
 
             var courses = Course.GetDummyCourses();
 
-            var enrolmensRelation = GetEnrolmentsRelation(enrolments, students, courses);
+            var enrolmentsRelation = GetEnrolmentsRelation(enrolments, students, courses);
 
-            var result = enrolmensRelation
+            var result = enrolmentsRelation
                 .Select(
                     e =>
                         new

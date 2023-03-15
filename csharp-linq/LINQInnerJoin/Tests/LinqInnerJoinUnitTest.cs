@@ -103,12 +103,13 @@ namespace Tests
 
             result.Should().NotBeNull();
 
-            int expectedGroupCount = 4;
-            int actualGroupCount = result.Count();
+            var expectedGroupCount = 4;
+            var actualGroupCount = result.Count();
             actualGroupCount.Should().Be(expectedGroupCount);
 
             int[] expectedGroupSizes = { 3, 1, 1, 1 };
-            int index = 0;
+            var index = 0;
+
             foreach (var group in result)
             {
                 int expectedSize = expectedGroupSizes[index];
@@ -120,24 +121,24 @@ namespace Tests
 
             var expectedResult = new List<List<dynamic>>
             {
-              new List<dynamic>
-              {
-                new  { Id = 1, StudentName = "John", CourseId = 1, CourseName = "CSHARP" },
-                new  { Id = 7, StudentName = "Rahul", CourseId = 1, CourseName = "CSHARP" },
-                new  { Id = 16, StudentName = "Anita", CourseId = 1, CourseName = "CSHARP" }
-              },
-              new List<dynamic>
-              {
-                new  { Id = 4, StudentName = "Abhi", CourseId = 2, CourseName = "PYTHON" }
-              },
-              new List<dynamic>
-              {
-                new  { Id = 5, StudentName = "Abhi", CourseId = 3, CourseName = "JAVA" }
-              },
-              new List<dynamic>
-              {
-                new  { Id = 18, StudentName = "Jenny", CourseId = 4, CourseName = "RUBY" }
-              }
+                new List<dynamic>
+                {
+                  new  { Id = 1, StudentName = "John", CourseId = 1, CourseName = "CSHARP" },
+                  new  { Id = 7, StudentName = "Rahul", CourseId = 1, CourseName = "CSHARP" },
+                  new  { Id = 16, StudentName = "Anita", CourseId = 1, CourseName = "CSHARP" }
+                },
+                new List<dynamic>
+                {
+                  new  { Id = 4, StudentName = "Abhi", CourseId = 2, CourseName = "PYTHON" }
+                },
+                new List<dynamic>
+                {
+                  new  { Id = 5, StudentName = "Abhi", CourseId = 3, CourseName = "JAVA" }
+                },
+                new List<dynamic>
+                {
+                  new  { Id = 18, StudentName = "Jenny", CourseId = 4, CourseName = "RUBY" }
+                }
             };
 
             result.Should().BeEquivalentTo(expectedResult);
