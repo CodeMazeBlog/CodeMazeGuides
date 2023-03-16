@@ -8,11 +8,10 @@ namespace BlazorWebAssemblyCustomEventsTests
     [TestClass]
     public class DoubleClickEventTests
     {
-        public IElement? button;
-        public IRenderedComponent<DoubleClickButton>? component;
+        private readonly IElement? button;
+        private readonly IRenderedComponent<DoubleClickButton>? component;
 
-        [TestInitialize]
-        public void InitTest()
+        public DoubleClickEventTests()
         {
             var context = new Bunit.TestContext();
             component = context.RenderComponent<DoubleClickButton>();
