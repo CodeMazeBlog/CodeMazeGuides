@@ -11,14 +11,14 @@ public class UserIsAuthorAuthorizationHandlerUnitTests
     public async Task WhenUserIsAuthor_ThenUserIsAuthorRequirementSucceeds()
     {
         // Arrange
-
         const string userName = "Jane Doe";
+        const string authorName = userName;
 
         var requirements = new List<IAuthorizationRequirement>();
         var userIsAuthorRequirement = new UserIsAuthorRequirement();
         requirements.Add(userIsAuthorRequirement);
 
-        var blogPost = new BlogPost() { AuthorName = userName };
+        var blogPost = new BlogPost() { AuthorName = authorName };
 
         var user = new ClaimsPrincipal(new ClaimsIdentity());
         user.Identities.First().AddClaim(new Claim(ClaimTypes.Name, userName));

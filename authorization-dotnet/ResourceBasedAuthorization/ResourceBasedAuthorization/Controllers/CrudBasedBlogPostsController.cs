@@ -17,6 +17,7 @@ public class CrudBasedBlogPostsController : ControllerBase
         _authorizationService = authorizationService;
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> CreateBlogPostAsync()
     {
@@ -49,6 +50,7 @@ public class CrudBasedBlogPostsController : ControllerBase
         return Ok(blogPost);
     }
 
+    [Authorize]
     [HttpPut("{blogPostId}")]
     public async Task<IActionResult> UpdateBlogPostAsync(string blogPostId)
     {
@@ -64,6 +66,7 @@ public class CrudBasedBlogPostsController : ControllerBase
         return Ok(blogPost);
     }
 
+    [Authorize]
     [HttpDelete("{blogPostId}")]
     public async Task<IActionResult> DeleteBlogPostAsync(string blogPostId)
     {

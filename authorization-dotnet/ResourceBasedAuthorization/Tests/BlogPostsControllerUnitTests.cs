@@ -12,7 +12,6 @@ public class BlogPostsControllerUnitTests
     public async Task GivenUserIsAuthor_WhenUpdateBlogPost_ThenOk()
     {
         // Arrange
-
         const string policyName = "UserIsAuthorPolicy";
         const string blogPostId = "1";
 
@@ -34,7 +33,6 @@ public class BlogPostsControllerUnitTests
     public async Task GivenUserIsNotAuthor_WhenUpdateBlogPost_ThenForbid()
     {
         // Arrange
-
         const string policyName = "UserIsAuthorPolicy";
         const string blogPostId = "1";
 

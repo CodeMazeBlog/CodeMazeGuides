@@ -16,6 +16,7 @@ public class BlogPostsController : ControllerBase
         _authorizationService = authorizationService;
     }
 
+    [Authorize]
     [HttpPut("{blogPostId}")]
     public async Task<IActionResult> UpdateBlogPostAsync(string blogPostId)
     {

@@ -11,7 +11,6 @@ public class BlogPostCrudOperationsAuthorizationHandlerUnitTests
     public async Task WhenUserHasWriterRole_ThenCreateOperationSucceeds()
     {
         // Arrange
-
         var requirements = new List<IAuthorizationRequirement>();
         var createRequirement = CrudOperationRequirements.CreateRequirement;
         requirements.Add(createRequirement);
@@ -36,7 +35,6 @@ public class BlogPostCrudOperationsAuthorizationHandlerUnitTests
     public async Task WhenUserDoesNotHaveWriterRole_ThenCreateOperationDoesNotSucceed()
     {
         // Arrange
-
         var requirements = new List<IAuthorizationRequirement>();
         var createRequirement = CrudOperationRequirements.CreateRequirement;
         requirements.Add(createRequirement);
@@ -60,7 +58,6 @@ public class BlogPostCrudOperationsAuthorizationHandlerUnitTests
     public async Task WhenUserIsBlank_ThenReadOperationSucceeds()
     {
         // Arrange
-
         var requirements = new List<IAuthorizationRequirement>();
         var readRequirement = CrudOperationRequirements.ReadRequirement;
         requirements.Add(readRequirement);
@@ -84,14 +81,14 @@ public class BlogPostCrudOperationsAuthorizationHandlerUnitTests
     public async Task WhenUserIsBlogPostAuthor_ThenUpdateOperationSucceeds()
     {
         // Arrange
-
         const string userName = "Jane Doe";
+        const string authorName = userName;
 
         var requirements = new List<IAuthorizationRequirement>();
         var updateRequirement = CrudOperationRequirements.UpdateRequirement;
         requirements.Add(updateRequirement);
 
-        var blogPost = new BlogPost() { AuthorName = userName };
+        var blogPost = new BlogPost() { AuthorName = authorName };
 
         var user = new ClaimsPrincipal(new ClaimsIdentity());
         user.Identities.First().AddClaim(new Claim(ClaimTypes.Name, userName));
@@ -111,7 +108,6 @@ public class BlogPostCrudOperationsAuthorizationHandlerUnitTests
     public async Task WhenUserIsNotBlogPostAuthor_ThenUpdateOperationDoesNotSucceed()
     {
         // Arrange
-
         const string userName = "Jane Doe";
         const string authorName = "John Doe";
 
@@ -135,18 +131,18 @@ public class BlogPostCrudOperationsAuthorizationHandlerUnitTests
         Assert.False(context.HasSucceeded);
     }
 
-[Fact]
+    [Fact]
     public async Task WhenUserIsBlogPostAuthor_ThenDeleteOperationSucceeds()
     {
         // Arrange
-
         const string userName = "Jane Doe";
+        const string authorName = userName;
 
         var requirements = new List<IAuthorizationRequirement>();
         var deleteRequirement = CrudOperationRequirements.DeleteRequirement;
         requirements.Add(deleteRequirement);
 
-        var blogPost = new BlogPost() { AuthorName = userName };
+        var blogPost = new BlogPost() { AuthorName = authorName };
 
         var user = new ClaimsPrincipal(new ClaimsIdentity());
         user.Identities.First().AddClaim(new Claim(ClaimTypes.Name, userName));
@@ -166,7 +162,6 @@ public class BlogPostCrudOperationsAuthorizationHandlerUnitTests
     public async Task WhenUserIsNotBlogPostAuthor_ThenDeleteOperationDoesNotSucceed()
     {
         // Arrange
-
         const string userName = "Jane Doe";
         const string authorName = "John Doe";
 
