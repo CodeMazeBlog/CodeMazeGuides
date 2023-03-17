@@ -2,10 +2,10 @@ using ActionAndFuncDelegatesInCSharp;
 
 namespace Tests;
 
-public class HandleActionDelegateTests
+public class HandleActionDelegateTest
 {
     [Fact]
-    public void PrintNumber_PrintsCorrectResult()
+    public void PrintNumber_WhenGivenNumber_ThenPrintTheResult()
     {
         // Arrange
         var writer = new StringWriter();

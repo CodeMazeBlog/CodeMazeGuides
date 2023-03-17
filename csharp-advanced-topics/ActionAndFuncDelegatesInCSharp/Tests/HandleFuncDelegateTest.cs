@@ -2,10 +2,10 @@ using ActionAndFuncDelegatesInCSharp;
 
 namespace Tests;
 
-public class HandleFuncDelegateTests
+public class HandleFuncDelegateTest
 {
     [Fact]
-    public void Add_ReturnsCorrectResult()
+    public void Add_WhenGivenTwoNumbers_ThenReturnTheirSum()
     {
         // Act
         var result = HandleFuncDelegate.Add(10, 30);
