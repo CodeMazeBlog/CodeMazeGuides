@@ -21,6 +21,7 @@ This section contains the topics considered intermediate level in C#.
 - [Method Overloading In C#](https://code-maze.com/csharp-method-overloading/)
 - [IComparable vs IComparer vs Comparison Delegate](https://code-maze.com/csharp-icomparable-icomparer-comparison-delegate/)
 - [Operator Overloading in C#](https://code-maze.com/csharp-operator-overloading/)
+- [Partial Classes In C# And How to Use Them](https://code-maze.com/csharp-partial-classes-and-how-to-use-them/)
 - [Path Class in C#](https://code-maze.com/csharp-path-class/)
 - [Polymorphism in C#](https://code-maze.com/csharp-polymorphism/)
 - [Records in C#](https://code-maze.com/csharp-records/)
@@ -31,3 +32,4 @@ This section contains the topics considered intermediate level in C#.
 - [Tuple in C#](https://code-maze.com/csharp-tuple/)
 - [Unsafe Code in C# (unsafe keyword)](https://code-maze.com/unsafe-code-csharp/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/how-to-enumerate-an-enum-in-c/)
+- [Working With Zip Files in C#/.NET](https://code-maze.com/csharp-zip-files/)

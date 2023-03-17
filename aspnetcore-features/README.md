@@ -12,6 +12,7 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [In-Memory Caching in ASP.NET Core](https://code-maze.com/aspnetcore-in-memory-caching/)
 - [Localization in ASP.NET Core](https://code-maze.com/aspnetcore-localization/)
 - [How to Read AppSettings Values From a JSON File in .NET Core](https://code-maze.com/aspnetcore-read-appsettings-values-from-a-json-file/)
+- [Output Caching in ASP.NET Core](https://code-maze.com/aspnet-core-output-caching/)
 - [How to Resolve Instances With ASP.NET Core DI](https://code-maze.com/aspnetcore-resolve-instances-with-dependency-injection/)
 - [Response Caching in ASP.NET Core](https://code-maze.com/aspnetcore-response-caching/)
 - [How to Modify a Base URI of Swagger in ASP.NET Core](https://code-maze.com/aspnetcore-modify-a-base-uri-of-swagger/)
