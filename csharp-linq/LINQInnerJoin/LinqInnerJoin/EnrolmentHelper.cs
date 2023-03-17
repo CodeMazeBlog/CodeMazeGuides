@@ -93,7 +93,8 @@
             return courseWithCategory;
         }
 
-        public static IEnumerable<dynamic> GetCoursesWithCategoryName(IEnumerable<Course> courses)
+        public static IEnumerable<dynamic> GetCoursesWithCategoryName(
+            IEnumerable<Course> courses)
         {
             var categories = Category.GetDummyCourseCategories();
 
@@ -101,7 +102,12 @@
                 categories,
                 course => course.CategoryId,
                 category => category.Id,
-                (course, category) => new { course.Id, course.Name, CategoryName = category.Name }
+                (course, category) => new
+                {
+                    course.Id,
+                    course.Name,
+                    CategoryName = category.Name
+                }
             );
 
             return courseWithCategoryName;
@@ -153,7 +159,8 @@
             }
         }
 
-        public static void PrintEnrolmentsGroup(IEnumerable<dynamic> enrolmentGroups)
+        public static void PrintEnrolmentsGroup(
+            IEnumerable<dynamic> enrolmentGroups)
         {
             foreach (var group in enrolmentGroups)
             {
