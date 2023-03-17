@@ -6,6 +6,7 @@
         public string Name { get; set; }
         public int Age { get; set; }
         public bool IsActive { get; set; }
+
         public static IEnumerable<Student> GetDummyStudents()
         {
             var studentNames = new List<string>
@@ -21,10 +22,23 @@
                 "Anita",
                 "Jenny"
             };
-        
-            var studentAges = new List<int> { 20, 22, 25, 30, 40, 45, 23, 29, 32, 55 };
+
+            var studentAges = new List<int>
+            {
+                20,
+                22,
+                25,
+                30,
+                40,
+                45,
+                23,
+                29,
+                32,
+                55
+            };
+
             var students = new List<Student>();
-        
+
             for (var i = 0; i < 10; i++)
             {
                 var student = new Student
@@ -34,10 +48,10 @@
                     IsActive = i % 2 == 0,
                     Age = studentAges[i % 10]
                 };
-        
+
                 students.Add(student);
             }
-        
+
             return students;
         }
     }
