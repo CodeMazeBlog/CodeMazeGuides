@@ -31,7 +31,6 @@
                new Enrolment { Id = id++, CourseId = 4, StudentId = 10},
                new Enrolment { Id = id++, CourseId = 10, StudentId = 10},
                new Enrolment { Id = id++, CourseId = 8, StudentId = 10},
-   
            };                                                     
    
            return enrolments;

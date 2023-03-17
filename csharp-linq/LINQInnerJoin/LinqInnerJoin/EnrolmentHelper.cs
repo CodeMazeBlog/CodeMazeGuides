@@ -48,8 +48,7 @@
         }
 
         public static IEnumerable<dynamic> FilterAndGroupEnrolments(
-            IEnumerable<Enrolment> enrolments
-        )
+            IEnumerable<Enrolment> enrolments)
         {
             var students = Student.GetDummyStudents();
 
