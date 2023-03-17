@@ -2,13 +2,17 @@
 {
     public static class EnrolmentHelper
     {
-        public static IEnumerable<dynamic> GetEnrolments(IEnumerable<Enrolment> enrolments)
+        public static IEnumerable<dynamic> GetEnrolments(
+            IEnumerable<Enrolment> enrolments)
         {
             var students = Student.GetDummyStudents();
 
             var courses = Course.GetDummyCourses();
 
-            var enrolmentsRelation = GetEnrolmentsRelation(enrolments, students, courses);
+            var enrolmentsRelation = GetEnrolmentsRelation(
+                enrolments,
+                students,
+                courses);
 
             var result = enrolmentsRelation.Select(
                 e =>
@@ -54,7 +58,10 @@
 
             var courses = Course.GetDummyCourses();
 
-            var enrolmentsRelation = GetEnrolmentsRelation(enrolments, students, courses);
+            var enrolmentsRelation = GetEnrolmentsRelation(
+                enrolments,
+                students,
+                courses);
 
             var result = enrolmentsRelation
                 .Select(
@@ -173,9 +180,11 @@
                 )
                 .Join(
                     courses,
-                    enrolmentStudentRelation => enrolmentStudentRelation.enrolment.CourseId,
+                    enrolmentStudentRelation =>
+                    enrolmentStudentRelation.enrolment.CourseId,
                     course => course.Id,
-                    (enrolmentStudentRelation, course) => new { enrolmentStudentRelation, course }
+                    (enrolmentStudentRelation, course) =>
+                    new { enrolmentStudentRelation, course }
                 );
         }
     }
