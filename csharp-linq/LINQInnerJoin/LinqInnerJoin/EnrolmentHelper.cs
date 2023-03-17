@@ -105,7 +105,9 @@
             foreach (var course in courses)
             {
                 Console.WriteLine(
-                    $"Id: {course.Id} Course: {course.Name}  Category: {course.CategoryName}"
+                    $"Id: {course.Id}" +
+                    $"Course: {course.Name}" +
+                    $"Category: {course.CategoryName}"
                 );
             }
         }
@@ -115,7 +117,7 @@
             foreach (var course in Course.GetDummyCourses())
             {
                 Console.WriteLine(
-                    $"Id: {course.Id} Course: {course.Name}  CategoryId: {course.CategoryId} "
+                    $"Id: {course.Id} Course: {course.Name}  CategoryId: {course.CategoryId}"
                 );
             }
         }
@@ -133,7 +135,9 @@
             foreach (var enrolment in enrolments)
             {
                 Console.WriteLine(
-                    $"Id: {enrolment.Id}, Student Name: {enrolment.StudentName}, Course: {enrolment.CourseName} \n"
+                    $"Id: {enrolment.Id}," +
+                    $"Student Name: {enrolment.StudentName}," +
+                    $"Course: {enrolment.CourseName} \n"
                 );
             }
         }
@@ -143,10 +147,13 @@
             foreach (var group in enrolmentGroups)
             {
                 Console.WriteLine($"Enrolments for Course Id: {group.Key} \n");
+
                 foreach (var enrolment in group)
                 {
                     Console.WriteLine(
-                        $"Id: {enrolment.Id}, Student Name: {enrolment.StudentName}, Course: {enrolment.CourseName} \n"
+                        $"Id: {enrolment.Id}," +
+                        $"Student Name: {enrolment.StudentName}," +
+                        $"Course: {enrolment.CourseName} \n"
                     );
                 }
             }
