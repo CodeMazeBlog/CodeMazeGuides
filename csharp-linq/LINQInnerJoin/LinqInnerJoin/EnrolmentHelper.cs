@@ -87,8 +87,14 @@
 
             var courseWithCategory =
                 from course in courses
-                join category in catrgories on course.CategoryId equals category.Id
-                select new { course.Id, course.Name, CategoryName = category.Name };
+                join category in catrgories on
+                course.CategoryId equals category.Id
+                select new
+                {
+                    course.Id,
+                    course.Name,
+                    CategoryName = category.Name
+                };
 
             return courseWithCategory;
         }
