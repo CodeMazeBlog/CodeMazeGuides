@@ -8,26 +8,26 @@ namespace BlazorWebAssemblyCustomEventsTests
     [TestClass]
     public class DoubleClickEventTests
     {
-        private readonly IElement? button;
-        private readonly IRenderedComponent<DoubleClickButton>? component;
+        private readonly IElement? _button;
+        private readonly IRenderedComponent<DoubleClickButton>? _component;
 
         public DoubleClickEventTests()
         {
             var context = new Bunit.TestContext();
-            component = context.RenderComponent<DoubleClickButton>();
-            button = component.Find("button");
+            _component = context.RenderComponent<DoubleClickButton>();
+            _button = _component.Find("button");
         }
 
         [TestMethod]
         public void WhenDoubleClickEventRaised_ThenDoubleClickHandlerIsInvoked()
         {
-            button?.TriggerEvent("ondoubleclick", new DoubleClickEventArgs
+            _button?.TriggerEvent("ondoubleclick", new DoubleClickEventArgs
             {
                 EventTimestamp = DateTime.Now,
                 IsDoubleClick = true
             });
 
-            var headerText = component?.FindAll("h1")[1].TextContent;
+            var headerText = _component?.FindAll("h1")[1].TextContent;
 
             Assert.AreEqual("detected double click!", headerText);
         }
@@ -35,19 +35,19 @@ namespace BlazorWebAssemblyCustomEventsTests
         [TestMethod]
         public void WhenClickEventRaised_GivenLastInteractionWasADoubleClick_ThenMessageIsReset()
         {
-            button?.TriggerEvent("ondoubleclick", new DoubleClickEventArgs
+            _button?.TriggerEvent("ondoubleclick", new DoubleClickEventArgs
             {
                 EventTimestamp = DateTime.Now,
                 IsDoubleClick = true
             });
 
-            button?.TriggerEvent("ondoubleclick", new DoubleClickEventArgs
+            _button?.TriggerEvent("ondoubleclick", new DoubleClickEventArgs
             {
                 EventTimestamp = DateTime.Now,
                 IsDoubleClick = false
             });
 
-            var headerText = component?.FindAll("h1")[1].TextContent;
+            var headerText = _component?.FindAll("h1")[1].TextContent;
 
             Assert.AreEqual("", headerText);
         }
