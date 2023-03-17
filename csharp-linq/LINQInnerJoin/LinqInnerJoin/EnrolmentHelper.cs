@@ -80,7 +80,8 @@
             return result;
         }
 
-        public static IEnumerable<dynamic> GetCoursesWithCategory(IEnumerable<Course> courses)
+        public static IEnumerable<dynamic> GetCoursesWithCategory(
+            IEnumerable<Course> courses)
         {
             var catrgories = Category.GetDummyCourseCategories();
 
@@ -123,7 +124,9 @@
             foreach (var course in Course.GetDummyCourses())
             {
                 Console.WriteLine(
-                    $"Id: {course.Id} Course: {course.Name}  CategoryId: {course.CategoryId}"
+                    $"Id: {course.Id}" +
+                    $"Course: {course.Name}" +
+                    $"CategoryId: {course.CategoryId}"
                 );
             }
         }
@@ -132,7 +135,9 @@
         {
             foreach (var category in Category.GetDummyCourseCategories())
             {
-                Console.WriteLine($"Id: {category.Id} Category: {category.Name}");
+                Console.WriteLine(
+                    $"Id: {category.Id}" +
+                    $"Category: {category.Name}");
             }
         }
 
