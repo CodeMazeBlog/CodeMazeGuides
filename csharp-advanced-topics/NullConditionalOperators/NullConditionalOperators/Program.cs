@@ -11,7 +11,8 @@
 
             var name = student?.Name ?? "John";
 
-            student.Name ??= "John";
+            Student namelessStudent = new Student(null, null);
+            namelessStudent.Name ??= "John";
 
             student?.Enroll("Math");
         }
