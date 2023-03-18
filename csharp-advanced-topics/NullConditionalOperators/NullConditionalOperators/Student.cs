@@ -7,7 +7,7 @@
         public string? Name { get; set; }
         public List<string> Courses { get; set; }
 
-        public event EventHandler MaxNumberOfCoursesReached;
+        public event EventHandler? MaxNumberOfCoursesReached;
 
         public Student(string name, List<string> courses)
         {
