@@ -12,17 +12,21 @@ namespace RemoveWhitespaceCharactersFromString
 
         public static string RemoveWhitespacesUsingLinq(string source)
         {
-            return string.Concat(source.Where(c => !char.IsWhiteSpace(c)));
+            return String.Concat(source.Where(c => !char.IsWhiteSpace(c)));
         }
 
-        public static string RemoveSpacesUsingReplace(string source)
+        public static string RemoveWhitespacesUsingReplace(string source)
         {
-            return source.Replace(" ", string.Empty);
+            return source.Replace(" ", "").Replace("\t", "").Replace("\r", "").Replace("\n", "");
         }
 
         public static string RemoveLeadingAndTrailingWhitespacesUsingTrim(string source)
         {
             return source.Trim();
+        }
+        public static string RemoveWhitespacesUsingSplitJoin(string source)
+        {
+            return String.Join("", source.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries));
         }
 
         public static string RemoveWhitespacesUsingStringBuilder(string source)
@@ -36,5 +40,6 @@ namespace RemoveWhitespaceCharactersFromString
             }
             return builder.ToString();
         }
+
     }
 }

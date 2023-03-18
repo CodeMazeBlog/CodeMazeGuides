@@ -29,21 +29,11 @@ namespace RemoveWhitespaceCharactersFromStringTests
         [TestMethod]
         public void GivenStringWithWhitespaces_WhenUsingStringReplace_ThenResultStringDoesntContainWhitespace()
         {
-            var source = " hello worl d";
+            var source = "  h\tello worl d \r\n";
 
-            var result = RemoveWhitespaceMethods.RemoveSpacesUsingReplace(source);
+            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingReplace(source);
 
             Assert.AreEqual("helloworld", result);
-        }
-        
-        [TestMethod]
-        public void GivenStringWithTab_WhenUsingStringReplace_ThenResultStringContainsTab()
-        {
-            var source = "\t hello";
-
-            var result = RemoveWhitespaceMethods.RemoveSpacesUsingReplace(source);
-
-            Assert.AreEqual("\thello", result);
         }
         
         [TestMethod]
@@ -54,6 +44,16 @@ namespace RemoveWhitespaceCharactersFromStringTests
             var result = RemoveWhitespaceMethods.RemoveLeadingAndTrailingWhitespacesUsingTrim(source);
 
             Assert.AreEqual("John Doe", result);
+        }
+
+        [TestMethod]
+        public void GivenStringWithWhitespaces_WhenUsingStringSplitJoin_ThenResultStringDoesntContainWhitespaces()
+        {
+            var source = "  \t John \r\n  Doe ";
+
+            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingSplitJoin(source);
+
+            Assert.AreEqual("JohnDoe", result);
         }
 
         [TestMethod]
