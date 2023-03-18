@@ -9,12 +9,12 @@ namespace Tests
         public void WhenCalculatingPay_ThenCorrectValueIsReturn()
         {
             // Arrange
-            decimal hourlyRate = 10.00M;
-            int hoursWorked = 40;
-            Paycheck paycheck = new Paycheck(hourlyRate, hoursWorked);
+            var hourlyRate = 10.00M;
+            var hoursWorked = 40;
+            var paycheck = new Paycheck(hourlyRate, hoursWorked);
 
             // Act
-            decimal pay = paycheck.CalculatePay();
+            var pay = paycheck.CalculatePay();
 
             // Assert
             Assert.AreEqual(400.00M, pay);
@@ -24,12 +24,12 @@ namespace Tests
         public void WhenGetOvertimeRate_ThenCorrectValueIsReturn()
         {
             // Arrange
-            decimal hourlyRate = 10.00M;
-            int hoursWorked = 50;
-            Paycheck paycheck = new Paycheck(hourlyRate, hoursWorked);
+            var hourlyRate = 10.00M;
+            var hoursWorked = 50;
+            var paycheck = new Paycheck(hourlyRate, hoursWorked);
 
             // Act
-            decimal overtimeRate = paycheck.GetOvertimeRate();
+            var overtimeRate = paycheck.GetOvertimeRate();
 
             // Assert
             Assert.AreEqual(15.00M, overtimeRate);
@@ -39,13 +39,13 @@ namespace Tests
         public void WhenCalculatingPayForEmployee_ThenCorrectValueIsReturn()
         {
             // Arrange
-            decimal hourlyRate = 10.00M;
-            int hoursWorked = 40;
-            Paycheck paycheck = new Paycheck(hourlyRate, hoursWorked);
-            Employee employee = new Employee(paycheck);
+            var hourlyRate = 10.00M;
+            var hoursWorked = 40;
+            var paycheck = new Paycheck(hourlyRate, hoursWorked);
+            var employee = new Employee(paycheck);
 
             // Act
-            decimal pay = employee.CalculatePay();
+            var pay = employee.CalculatePay();
 
             // Assert
             Assert.AreEqual(400.00M, pay);

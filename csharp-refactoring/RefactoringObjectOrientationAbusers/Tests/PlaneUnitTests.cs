@@ -9,14 +9,14 @@ namespace Tests
         public void WhenCreatingNewPlane_ThenInstanceOfCorrectTypeIsReturned()
         {
             // Arrange
-            int cargoType = Plane.Cargo;
-            int passengerType = Plane.Passenger;
-            int militaryType = Plane.Military;
+            var cargoType = Plane.Cargo;
+            var passengerType = Plane.Passenger;
+            var militaryType = Plane.Military;
 
             // Act
-            Plane cargoPlane = Plane.Create(cargoType);
-            Plane passengerPlane = Plane.Create(passengerType);
-            Plane militaryPlane = Plane.Create(militaryType);
+            var cargoPlane = Plane.Create(cargoType);
+            var passengerPlane = Plane.Create(passengerType);
+            var militaryPlane = Plane.Create(militaryType);
 
             // Assert
             Assert.IsInstanceOfType(cargoPlane, typeof(CargoPlane));
@@ -28,10 +28,10 @@ namespace Tests
         public void WhenGetCapacityInvoked_ThenCorrectValueIsReturned()
         {
             // Arrange
-            Plane cargoPlane = Plane.Create(Plane.Cargo);
+            var cargoPlane = Plane.Create(Plane.Cargo);
 
             // Act
-            double capacity = cargoPlane.GetCapacity();
+            var capacity = cargoPlane.GetCapacity();
 
             // Assert
             Assert.AreEqual(10000, capacity);

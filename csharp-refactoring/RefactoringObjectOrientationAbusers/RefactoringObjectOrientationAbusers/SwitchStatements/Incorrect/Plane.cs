@@ -5,13 +5,12 @@
         public const int Cargo = 0;
         public const int Passenger = 1;
         public const int Military = 2;
+        public int Type { get; private set; }
 
         public Plane(int type)
         {
             Type = type;
         }
-
-        public int Type { get; private set; }
 
         public double GetCapacity()
         {

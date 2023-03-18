@@ -2,24 +2,25 @@
 {
     public class BookstoreCustomer
     {
-        public int DiscountThreshold { get; set; }
-        public int BoughtBooksCount { get; set; }
+        public int discountThreshold;
+        public int boughtBooksCount;
         public ICollection<string> BoughtBooks { get; set; }
 
         public double GetDiscountRate()
         {
-            BoughtBooksCount = BoughtBooks.Count;
-            DiscountThreshold = GetDiscountThreshold();
-
+            boughtBooksCount = BoughtBooks.Count;
+            discountThreshold = GetDiscountThreshold();
             var discountBase = 0.05;
-            return DiscountThreshold * discountBase;
+
+            return discountThreshold * discountBase;
         }
 
         private int GetDiscountThreshold()
         {
             var firstThreshold = 1;
             var secondThreshold = 2;
-            return BoughtBooksCount < 10 ? firstThreshold : secondThreshold;
+
+            return boughtBooksCount < 10 ? firstThreshold : secondThreshold;
         }
     }
 }
