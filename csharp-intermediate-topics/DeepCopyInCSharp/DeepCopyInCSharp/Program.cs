@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Running;
+﻿using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Running;
 
 namespace DeepCopyInCSharp
 {
@@ -7,7 +8,10 @@ namespace DeepCopyInCSharp
         static void Main(string[] args)
         {
             //Benchmark - start
-            var summary = BenchmarkRunner.Run<DeepCopierBenchmark>();
+            var config = ManualConfig.Create(DefaultConfig.Instance)
+                                     .WithOptions(ConfigOptions.DisableOptimizationsValidator);
+
+            var summary = BenchmarkRunner.Run<DeepCopierBenchmark>(config);
             Console.WriteLine(summary);
             //Benchmark - end
 
@@ -30,19 +34,32 @@ namespace DeepCopyInCSharp
             copiedPerson = (Person)originalPerson.Clone();
 
             //Deep Copy - XML Serializer
-            copiedPerson = DeepCopier.DeepCopyXML(originalPerson);
+            copiedPerson = DeepCopyMaker.DeepCopyXML(originalPerson);
 
             //Deep Copy - JSON Serialzer
-            copiedPerson = DeepCopier.DeepCopyJSON(originalPerson);
+            copiedPerson = DeepCopyMaker.DeepCopyJSON(originalPerson);
 
             //Deep Copy - Data Contract Serialization
-            copiedPerson = DeepCopier.DeepCopyDataContract(originalPerson);
+            copiedPerson = DeepCopyMaker.DeepCopyDataContract(originalPerson);
 
             //Deep Copy - Reflection
-            copiedPerson = DeepCopier.DeepCopyReflection(originalPerson);
+            copiedPerson = DeepCopyMaker.DeepCopyReflection(originalPerson);
 
             //Deep Copy - Expression Trees
-            copiedPerson = DeepCopier.DeepCopyExpressionTrees(originalPerson);
+            copiedPerson = DeepCopyMaker.DeepCopyExpressionTrees(originalPerson);
+
+            //Deep Copy - AutoMapper
+            var copier = new DeepCopyMaker();
+            copiedPerson = copier.DeepCopyAutoMapper(originalPerson);
+
+            //Deep Copy - FastDeepCloner
+            copiedPerson = DeepCopyMaker.DeepCopyFastDeepCloner(originalPerson);
+
+            //Deep Copy - DeepCopy
+            copiedPerson = DeepCopyMaker.DeepCopyLibraryDeepCopy(originalPerson);
+
+            //Deep Copy - JSON.Net
+            copiedPerson = DeepCopyMaker.DeepCopyJsonDotNet(originalPerson);
 
             //Modifying the copied object
             copiedPerson.Name = "Jack Swallow";

@@ -31,31 +31,55 @@ namespace DeepCopyInCSharp
         [Benchmark]
         public Person XMLSerializationBenchmark()
         {
-            return DeepCopier.DeepCopyXML(_person);
+            return DeepCopyMaker.DeepCopyXML(_person);
         }
 
         [Benchmark]
         public Person JSONSerializationBenchmark()
         {
-            return DeepCopier.DeepCopyJSON(_person);
+            return DeepCopyMaker.DeepCopyJSON(_person);
         }
 
         [Benchmark]
         public Person DataContractSerializationBenchmark()
         {
-            return DeepCopier.DeepCopyDataContract(_person);
+            return DeepCopyMaker.DeepCopyDataContract(_person);
         }
 
         [Benchmark]
         public Person ReflectionBenchmark()
         {
-            return DeepCopier.DeepCopyReflection(_person);
+            return DeepCopyMaker.DeepCopyReflection(_person);
         }
 
         [Benchmark]
         public Person ExpressionTreesBenchmark()
         {
-            return DeepCopier.DeepCopyExpressionTrees(_person);
+            return DeepCopyMaker.DeepCopyExpressionTrees(_person);
+        }
+
+        [Benchmark]
+        public Person AutoMapperBenchmark()
+        {
+            return new DeepCopyMaker().DeepCopyAutoMapper(_person);
+        }
+
+        [Benchmark]
+        public Person FastDeepClonerBenchmark()
+        {
+            return DeepCopyMaker.DeepCopyFastDeepCloner(_person);
+        }
+
+        [Benchmark]
+        public Person DeepCopyLibraryBenchmark()
+        {
+            return DeepCopyMaker.DeepCopyLibraryDeepCopy(_person);
+        }
+
+        [Benchmark]
+        public Person JsonDotNetBenchmark()
+        {
+            return DeepCopyMaker.DeepCopyJsonDotNet(_person);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Tests
         [Fact]
         public void WhenUsingXMLSerializationAllPropertiesCopied()
         {
-            var copy = DeepCopier.DeepCopyXML(_person);
+            var copy = DeepCopyMaker.DeepCopyXML(_person);
 
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);
@@ -43,7 +43,7 @@ namespace Tests
         [Fact]
         public void WhenUsingJsonSerializationAllPropertiesCopied()
         {
-            var copy = DeepCopier.DeepCopyJSON(_person);
+            var copy = DeepCopyMaker.DeepCopyJSON(_person);
 
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);
@@ -55,7 +55,7 @@ namespace Tests
         [Fact]
         public void WhenUsingDataContractSerializationAllPropertiesCopied()
         {
-            var copy = DeepCopier.DeepCopyDataContract(_person);
+            var copy = DeepCopyMaker.DeepCopyDataContract(_person);
 
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);
@@ -67,7 +67,7 @@ namespace Tests
         [Fact]
         public void WhenUsingReflectionAllPropertiesCopied()
         {
-            var copy = DeepCopier.DeepCopyReflection(_person);
+            var copy = DeepCopyMaker.DeepCopyReflection(_person);
 
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);
@@ -79,7 +79,56 @@ namespace Tests
         [Fact]
         public void WhenUsingExpressionTreesAllPropertiesCopied()
         {
-            var copy = DeepCopier.DeepCopyExpressionTrees(_person);
+            var copy = DeepCopyMaker.DeepCopyExpressionTrees(_person);
+
+            Assert.Equal(copy.Name, _person.Name);
+            Assert.Equal(copy.Age, _person.Age);
+            Assert.Equal(copy.Address.Street, _person.Address.Street);
+            Assert.Equal(copy.Address.City, _person.Address.City);
+            Assert.Equal(copy.Address.State, _person.Address.State);
+        }
+
+        [Fact]
+        public void WhenUsingAutoMApperAllPropertiesCopied()
+        {
+            var copier = new DeepCopyMaker();
+            var copy = copier.DeepCopyAutoMapper(_person);
+
+            Assert.Equal(copy.Name, _person.Name);
+            Assert.Equal(copy.Age, _person.Age);
+            Assert.Equal(copy.Address.Street, _person.Address.Street);
+            Assert.Equal(copy.Address.City, _person.Address.City);
+            Assert.Equal(copy.Address.State, _person.Address.State);
+        }
+
+        [Fact]
+        public void WhenUsingFastDeepClonerAllPropertiesCopied()
+        {
+            var copy = DeepCopyMaker.DeepCopyFastDeepCloner(_person);
+
+            Assert.Equal(copy.Name, _person.Name);
+            Assert.Equal(copy.Age, _person.Age);
+            Assert.Equal(copy.Address.Street, _person.Address.Street);
+            Assert.Equal(copy.Address.City, _person.Address.City);
+            Assert.Equal(copy.Address.State, _person.Address.State);
+        }
+
+        [Fact]
+        public void WhenUsingDeepCopyLibraryAllPropertiesCopied()
+        {
+            var copy = DeepCopyMaker.DeepCopyLibraryDeepCopy(_person);
+
+            Assert.Equal(copy.Name, _person.Name);
+            Assert.Equal(copy.Age, _person.Age);
+            Assert.Equal(copy.Address.Street, _person.Address.Street);
+            Assert.Equal(copy.Address.City, _person.Address.City);
+            Assert.Equal(copy.Address.State, _person.Address.State);
+        }
+
+        [Fact]
+        public void WhenUsingJsonDotNetAllPropertiesCopied()
+        {
+            var copy = DeepCopyMaker.DeepCopyJsonDotNet(_person);
 
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);

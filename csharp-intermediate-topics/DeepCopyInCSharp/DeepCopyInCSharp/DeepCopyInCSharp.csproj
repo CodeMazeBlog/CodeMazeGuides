@@ -8,7 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
+    <PackageReference Include="DeepCopy" Version="1.0.3" />
+    <PackageReference Include="FastDeepCloner" Version="1.3.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
