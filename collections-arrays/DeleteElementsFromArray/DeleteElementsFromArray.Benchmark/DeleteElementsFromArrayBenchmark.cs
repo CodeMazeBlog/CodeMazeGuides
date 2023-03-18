@@ -33,22 +33,61 @@ namespace BenchmarkRunner
         {
             return _myArray.Where(e => e != _key).ToArray();
         }
-        
+
+        [Benchmark]
+        public int[] DeleteWithArrayCopy() 
+        {
+            var indexToRemove = Array.IndexOf(_myArray, _key);
+
+            if (indexToRemove < 0) 
+            {
+                return _myArray;
+            }
+
+            var newArray = new int[_myArray.Length - 1];
+
+            Array.Copy(_myArray, 0, newArray, 0, indexToRemove);
+
+            Array.Copy(_myArray, indexToRemove + 1, newArray, indexToRemove, _myArray.Length - indexToRemove - 1);
+
+            return newArray;
+        }
+
+        [Benchmark]
+        public int[] DeleteWithArraySegment() 
+        {
+            var indexToRemove = Array.IndexOf(_myArray, _key);
+
+            if (indexToRemove >= 0) 
+            {
+                var segment1 = new ArraySegment<int>(_myArray, 0, indexToRemove);
+                var segment2 = new ArraySegment<int>(_myArray, indexToRemove + 1, _myArray.Length - indexToRemove - 1);
+                _myArray = segment1.Concat(segment2).ToArray();
+            }
+
+            return _myArray;
+        }
+
         [Benchmark]
         public int[] DeleteWithLoop() 
         {
-            var newSize = 0;
+            var indexToRemove = Array.IndexOf(_myArray, _key);
 
-            for (int i = 0; i < _myArray.Length; i++) 
+            if (indexToRemove >= 0) 
             {
-                if (_myArray[i] != _key) 
+                var tempArray = new int[_myArray.Length - 1];
+                for (int i = 0, j = 0; i < _myArray.Length; i++) 
                 {
-                    _myArray[newSize] = _myArray[i];
-                    newSize++;
+                    if (i == indexToRemove) 
+                    {
+                        continue;
+                    }
+                    tempArray[j] = _myArray[i];
+                    j++;
                 }
-            }
 
-            Array.Resize(ref _myArray, newSize);
+                return tempArray;
+            }
 
             return _myArray;
         }

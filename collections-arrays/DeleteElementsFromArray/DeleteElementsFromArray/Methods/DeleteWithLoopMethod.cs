@@ -4,17 +4,23 @@
     {
         public static int[] DeleteWithLoop(int[] inputArray, int elementToDelete) 
         {
-            var newSize = 0;
+            var indexToRemove = Array.IndexOf(inputArray, elementToDelete);
 
-            for (int i = 0; i < inputArray.Length; i++) 
+            if (indexToRemove >= 0) 
             {
-                if (inputArray[i] != elementToDelete) {
-                    inputArray[newSize] = inputArray[i];
-                    newSize++;
+                var tempArray = new int[inputArray.Length - 1];
+                for (int i = 0, j = 0; i < inputArray.Length; i++) 
+                {
+                    if (i == indexToRemove) 
+                    {
+                        continue;
+                    }
+                    tempArray[j] = inputArray[i];
+                    j++;
                 }
-            }
 
-            Array.Resize(ref inputArray, newSize);
+                return tempArray;
+            }
 
             return inputArray;
         }
