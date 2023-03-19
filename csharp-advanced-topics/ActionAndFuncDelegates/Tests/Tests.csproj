@@ -7,8 +7,9 @@
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
-
+  
   <ItemGroup>
+    <ProjectReference Include="../ActionAndFuncDelegates/ActionAndFuncDelegates.csproj" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">

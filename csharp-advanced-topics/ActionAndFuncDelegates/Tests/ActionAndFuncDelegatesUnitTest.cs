@@ -7,7 +7,7 @@ public class ActionAndFuncDelegatesUnitTest
     [Fact]
     public void WhenActionDelegatesInitializedWithoutParams_ThenDelegateInvocation()
     {
-        Action actionDelegate = SayHelloToTheWorld;
+        Action actionDelegate = Program.SayHelloToTheWorld;
         var invocationList = actionDelegate.GetInvocationList();
 
         Assert.Equal(1, invocationList.Length);
@@ -16,7 +16,7 @@ public class ActionAndFuncDelegatesUnitTest
     [Fact]
     public void WhenActionDelegatesInitializedWithParams_ThenDelegateInvocation()
     {
-        Action<string, string> actionDelegateWithParams = ShowYourParameters;
+        Action<string, string> actionDelegateWithParams = Program.ShowYourParameters;
         var invocationList = actionDelegateWithParams.GetInvocationList();
 
         Assert.Equal(1, invocationList.Length);
@@ -26,7 +26,7 @@ public class ActionAndFuncDelegatesUnitTest
     [Fact]
     public void WhenActionDelegatesInitializedWithAnonMethod_ThenDelegateInvocation()
     {
-        Action<int> actionDelegateWithAnonMethod = delegate (int param) { Console.WriteLine("Hello there, you send us " + param + " stars"); };
+        Action<int> actionDelegateWithAnonMethod = Program.GetActionAnonMethod();
         var invocationList = actionDelegateWithAnonMethod.GetInvocationList();
 
         Assert.Equal(1, invocationList.Length);
@@ -36,10 +36,7 @@ public class ActionAndFuncDelegatesUnitTest
     [Fact]
     public void WhenActionDelegatesInitializedWithLambdaAnnotation_ThenDelegateInvocation()
     {
-        Action actionDelegateWithLambda = () =>
-        {
-            Console.Write("I am inside lambda statement");
-        };
+        Action actionDelegateWithLambda = Program.GetActionLambdaStatement();
         var invocationList = actionDelegateWithLambda.GetInvocationList();
 
         Assert.Equal(1, invocationList.Length);
@@ -51,8 +48,8 @@ public class ActionAndFuncDelegatesUnitTest
     [Fact]
     public void WhenFuncDelegatesInitializedWithoutParams_ThenDelegateInvocation()
     {
-        Func<string> funcDelegateWithoutParams = SayHelloWorld;
-        var helloString = SayHelloWorld();
+        Func<string> funcDelegateWithoutParams = Program.SayHelloWorld;
+        var helloString = funcDelegateWithoutParams();
 
         Assert.Equal("Hello, World!", helloString);
     }
@@ -61,8 +58,8 @@ public class ActionAndFuncDelegatesUnitTest
     public void WhenFuncDelegatesInitializedWithParams_ThenDelegateInvocation()
     {
         string testString = "test String";
-        Func<string, int> funcDelegateWithParams = GetCharacterCount;
-        var stringLength = GetCharacterCount(testString);
+        Func<string, int> funcDelegateWithParams = Program.GetCharacterCount;
+        var stringLength = funcDelegateWithParams(testString);
 
         Assert.Equal(testString.Length, stringLength);
     }
@@ -70,10 +67,7 @@ public class ActionAndFuncDelegatesUnitTest
     [Fact]
     public void WhenFuncDelegatesInitializedWithAnonMethod_ThenDelegateInvocation()
     {
-        Func<int, string> funcDelegateWithAnonMethod = delegate (int param)
-        {
-            return "Hello there, you send us " + param + " stars";
-        };
+        Func<int, string> funcDelegateWithAnonMethod = Program.GetFuncAnonMethod();
         var invocationList = funcDelegateWithAnonMethod.GetInvocationList();
 
         Assert.Equal(1, invocationList.Length);
@@ -83,33 +77,11 @@ public class ActionAndFuncDelegatesUnitTest
     [Fact]
     public void WhenFuncDelegatesInitializedWithLambdaAnnotation_ThenDelegateInvocation()
     {
-        Func<string> funcDelegateWithLambda = () =>
-        {
-            return "I am inside the lambda statement";
-        };
+        Func<string> funcDelegateWithLambda = Program.GetFuncLambdaStatement();
         var invocationList = funcDelegateWithLambda.GetInvocationList();
 
         Assert.Equal(1, invocationList.Length);
 
-    }
-    #endregion
-
-    #region Methods
-    public static void SayHelloToTheWorld()
-    {
-        Console.WriteLine("Hello, World!");
-    }
-    public static void ShowYourParameters(string firstParameter, string secondParamter)
-    {
-        Console.WriteLine("First Parameter: " + firstParameter + ", Second Paramter: " + secondParamter);
-    }
-    public static string SayHelloWorld()
-    {
-        return "Hello, World!";
-    }
-    public static int GetCharacterCount(string theBigWord)
-    {
-        return theBigWord.Length;
     }
     #endregion
 }

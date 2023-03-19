@@ -1,6 +1,6 @@
 ﻿namespace delegates;
 
-class Program
+public class Program
 {
     static void Main(string[] args)
     {
@@ -12,16 +12,10 @@ class Program
         Action<string, string> actionDelegateWithParams = ShowYourParameters;
         actionDelegateWithParams("Beautiful", "World");
 
-        Action<int> actionDelegateWithAnonMethod = delegate (int param)
-        {
-            Console.WriteLine("Hello there, you send us " + param + " stars");
-        };
+        Action<int> actionDelegateWithAnonMethod = GetActionAnonMethod();
         actionDelegateWithAnonMethod(3);
 
-        Action actionDelegateWithLambda = () =>
-        {
-            Console.Write("I am inside the lambda statement");
-        };
+        Action actionDelegateWithLambda = GetActionLambdaStatement();
         actionDelegateWithLambda();
 
         #endregion
@@ -35,24 +29,20 @@ class Program
         Func<string> funcDelegateWithoutParams = SayHelloWorld;
         var helloString = SayHelloWorld();
 
-        Func<int, string> funcDelegateWithAnonMethod = delegate (int param)
-        {
-            return "Hello there, you send us " + param + " stars";
-        };
-        funcDelegateWithAnonMethod(3);
+        Func<int, string> funcDelegateWithAnonMethod = GetFuncAnonMethod();
+        var output = funcDelegateWithAnonMethod(3);
 
-        Func<string> funcDelegateWithLambda = () =>
-        {
-            return "I am inside the lambda statement";
-        };
-        funcDelegateWithLambda();
+        Func<string> funcDelegateWithLambda = GetFuncLambdaStatement();
+        var result = funcDelegateWithLambda();
         #endregion
 
     }
+
     public static string SayHelloWorld()
     {
         return "Hello, World!";
     }
+
     public static void SayHelloToTheWorld()
     {
         Console.WriteLine("Hello, World!");
@@ -62,8 +52,41 @@ class Program
     {
         Console.WriteLine("First Parameter: " + firstParameter + ", Second Paramter: " + secondParamter);
     }
+
     public static int GetCharacterCount(string theBigWord)
     {
         return theBigWord.Length;
+    }
+
+    public static Action<int> GetActionAnonMethod()
+    {
+        return delegate (int param)
+        {
+            Console.WriteLine("Hello there, you send us " + param + " stars");
+        };
+    }
+
+    public static Action GetActionLambdaStatement()
+    {
+        return () =>
+        {
+            Console.Write("I am inside the lambda statement");
+        };
+    }
+
+    public static Func<int, string> GetFuncAnonMethod()
+    {
+        return delegate (int param)
+                {
+                    return "Hello there, you send us " + param + " stars";
+                };
+    }
+
+    public static Func<string> GetFuncLambdaStatement()
+    {
+        return () =>
+        {
+            return "I am inside the lambda statement";
+        };
     }
 }
