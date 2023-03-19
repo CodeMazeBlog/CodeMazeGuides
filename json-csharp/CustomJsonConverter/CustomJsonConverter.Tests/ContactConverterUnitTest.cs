@@ -7,7 +7,7 @@ namespace CustomJsonConverter.Tests;
 public class ContactConverterUnitTest
 {
     [Fact]
-    public void GivenListOfContacts_WhenSerializedBySimpleConverter_ThenWritesOnlyNameAndDepartment()
+    public void GivenListOfContacts_WhenSerializedByContactConverter_ThenWritesOnlyNameAndDepartment()
     {
         var contacts = DataSource.GetContacts();
 
@@ -17,7 +17,7 @@ public class ContactConverterUnitTest
     }
 
     [Fact]
-    public void GivenListOfContacts_WhenSerializedByContactConverter_ThenWritesOnlyNameAndDepartment()
+    public void GivenListOfContacts_WhenSerializedByImprovedContactConverter_ThenWritesOnlyNameAndDepartment()
     {
         var contacts = DataSource.GetContacts();
 

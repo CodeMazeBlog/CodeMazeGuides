@@ -18,7 +18,7 @@ public class SmartContactConverterUnitTest
     }
 
     [Fact]
-    public void GivenListOfContacts_WhenDeserializedBySmartConverter_ThenReadObjectsPolymorphously()
+    public void GivenJsonOfMultiContacts_WhenDeserializedBySmartContactConverter_ThenReadObjectsPolymorphously()
     {
         var json = DataSource.GetJsonOfMultiVariantContacts();
 
