@@ -8,7 +8,7 @@ namespace TestingILogger.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+          "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
@@ -22,7 +22,7 @@ namespace TestingILogger.Controllers
         public IEnumerable<WeatherForecast> GetForecastInfo()
         {
             _logger.LogInformation("WeatherForecastController: Severity - Information");
-            
+
             return Enumerable
                 .Range(1, 5)
                 .Select(
@@ -41,7 +41,7 @@ namespace TestingILogger.Controllers
         public IEnumerable<WeatherForecast> GetForecastError()
         {
             _logger.LogError("WeatherForecastController: Severity - Error");
-            
+
             return Enumerable
                 .Range(1, 5)
                 .Select(

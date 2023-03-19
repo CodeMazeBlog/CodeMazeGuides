@@ -27,7 +27,6 @@ namespace TestingILogger
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();
