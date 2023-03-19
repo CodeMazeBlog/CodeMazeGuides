@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandlingCommandTimeoutWithDapper", "HandlingCommandTimeoutWithDapper\HandlingCommandTimeoutWithDapper.csproj", "{20F3D9AE-9F87-4BB9-B2D8-148C29E35244}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20F3D9AE-9F87-4BB9-B2D8-148C29E35244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20F3D9AE-9F87-4BB9-B2D8-148C29E35244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20F3D9AE-9F87-4BB9-B2D8-148C29E35244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20F3D9AE-9F87-4BB9-B2D8-148C29E35244}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18C06C88-2D0B-4F1D-AA21-DC684AFF4364}
+	EndGlobalSection
+EndGlobal
