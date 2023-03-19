@@ -1,4 +1,6 @@
-namespace TestProject
+using Xunit;
+
+namespace ActionFuncDelegateTests
 {
     public class UnitTest1
     {
