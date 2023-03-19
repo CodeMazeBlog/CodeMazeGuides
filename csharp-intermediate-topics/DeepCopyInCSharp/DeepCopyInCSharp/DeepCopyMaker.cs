@@ -131,7 +131,7 @@ namespace DeepCopyInCSharp
 
         public static T DeepCopyJsonDotNet<T>(T input)
         {
-            string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(input);
+            var serialized = Newtonsoft.Json.JsonConvert.SerializeObject(input);
 
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(serialized);            
         }
