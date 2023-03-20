@@ -25,7 +25,8 @@ public class ContactConverter : JsonConverter
         writer.WriteEndObject();
     }
 
-    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
+        JsonSerializer serializer)
     {
         throw new NotImplementedException();
     }

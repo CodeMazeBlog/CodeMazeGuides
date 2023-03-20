@@ -22,7 +22,8 @@ public class SmartContactConverter : JsonConverter<Contact>
         jo.WriteTo(writer);
     }
 
-    public override Contact? ReadJson(JsonReader reader, Type objectType, Contact? existingValue, bool hasExistingValue, JsonSerializer serializer)
+    public override Contact? ReadJson(JsonReader reader, Type objectType, Contact? existingValue,
+        bool hasExistingValue, JsonSerializer serializer)
     {
         JObject jo = JObject.Load(reader);
 

@@ -19,7 +19,8 @@ public class ImprovedContactConverter : JsonConverter<Contact>
         writer.WriteEndObject();
     }
 
-    public override Contact? ReadJson(JsonReader reader, Type objectType, Contact? existingValue, bool hasExistingValue, JsonSerializer serializer)
+    public override Contact? ReadJson(JsonReader reader, Type objectType, Contact? existingValue,
+        bool hasExistingValue, JsonSerializer serializer)
     {
         throw new NotImplementedException();
     }
