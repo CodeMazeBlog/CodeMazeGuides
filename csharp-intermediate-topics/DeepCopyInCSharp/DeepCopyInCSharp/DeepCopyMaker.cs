@@ -10,7 +10,7 @@ namespace DeepCopyInCSharp
 {
     public class DeepCopyMaker
     {
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public DeepCopyMaker()
         {

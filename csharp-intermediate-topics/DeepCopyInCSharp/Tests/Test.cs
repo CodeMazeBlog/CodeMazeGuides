@@ -4,7 +4,7 @@ namespace Tests
 {
     public class Test
     {
-        private Person _person = new Person
+        private readonly Person _person = new Person
         {
             Name = "Steve Doe",
             Age = 30,
@@ -17,7 +17,7 @@ namespace Tests
         };
 
         [Fact]
-        public void WhenUsingICloneableAllPropertiesCopied()
+        public void WhenUsingICloneable_ThenAllPropertiesCopied()
         {
             var copy = (Person)_person.Clone();
 
@@ -29,7 +29,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenUsingXMLSerializationAllPropertiesCopied()
+        public void WhenUsingXMLSerialization_ThenAllPropertiesCopied()
         {
             var copy = DeepCopyMaker.DeepCopyXML(_person);
 
@@ -41,7 +41,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenUsingJsonSerializationAllPropertiesCopied()
+        public void WhenUsingJsonSerialization_ThenAllPropertiesCopied()
         {
             var copy = DeepCopyMaker.DeepCopyJSON(_person);
 
@@ -53,7 +53,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenUsingDataContractSerializationAllPropertiesCopied()
+        public void WhenUsingDataContractSerialization_ThenAllPropertiesCopied()
         {
             var copy = DeepCopyMaker.DeepCopyDataContract(_person);
 
@@ -65,7 +65,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenUsingReflectionAllPropertiesCopied()
+        public void WhenUsingReflection_ThenAllPropertiesCopied()
         {
             var copy = DeepCopyMaker.DeepCopyReflection(_person);
 
@@ -77,7 +77,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenUsingExpressionTreesAllPropertiesCopied()
+        public void WhenUsingExpressionTrees_ThenAllPropertiesCopied()
         {
             var copy = DeepCopyMaker.DeepCopyExpressionTrees(_person);
 
@@ -89,7 +89,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenUsingAutoMApperAllPropertiesCopied()
+        public void WhenUsingAutoMApper_ThenAllPropertiesCopied()
         {
             var copier = new DeepCopyMaker();
             var copy = copier.DeepCopyAutoMapper(_person);
@@ -102,7 +102,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenUsingFastDeepClonerAllPropertiesCopied()
+        public void WhenUsingFastDeepCloner_ThenAllPropertiesCopied()
         {
             var copy = DeepCopyMaker.DeepCopyFastDeepCloner(_person);
 
@@ -114,7 +114,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenUsingDeepCopyLibraryAllPropertiesCopied()
+        public void WhenUsingDeepCopyLibrary_ThenAllPropertiesCopied()
         {
             var copy = DeepCopyMaker.DeepCopyLibraryDeepCopy(_person);
 
@@ -126,7 +126,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenUsingJsonDotNetAllPropertiesCopied()
+        public void WhenUsingJsonDotNet_ThenAllPropertiesCopied()
         {
             var copy = DeepCopyMaker.DeepCopyJsonDotNet(_person);
 

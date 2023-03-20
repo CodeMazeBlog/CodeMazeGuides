@@ -7,13 +7,13 @@ namespace DeepCopyInCSharp
     public class Person : ICloneable
     {
         [DataMember]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [DataMember]
-        public int Age { get; set; }
+        public required int Age { get; set; }
 
         [DataMember]
-        public Address Address { get; set; }
+        public required Address Address { get; set; }
 
         public object Clone()
         {

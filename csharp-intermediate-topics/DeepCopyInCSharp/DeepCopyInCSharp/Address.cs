@@ -3,9 +3,9 @@
     [Serializable]
     public class Address : ICloneable
     {
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
+        public required string Street { get; set; }
+        public required string City { get; set; }
+        public required string State { get; set; }
 
         public object Clone()
         {

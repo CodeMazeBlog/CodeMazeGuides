@@ -4,7 +4,7 @@ namespace DeepCopyInCSharp
 {
     public class DeepCopierBenchmark
     {
-        private Person _person;
+        private Person? _person;
 
         [GlobalSetup]
         public void Setup()
