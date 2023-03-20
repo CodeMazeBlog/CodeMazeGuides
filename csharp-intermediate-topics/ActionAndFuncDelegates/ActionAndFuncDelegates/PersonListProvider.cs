@@ -8,8 +8,7 @@ namespace ActionAndFuncDelegates
 {
     public class PersonListProvider
     {
-        public PersonList PersonList => new PersonList();
-      
+        public PersonList PersonList { get;  private set; } = new PersonList();
         public PersonListProvider()
         {
             // initialize list items

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -9,7 +10,11 @@ namespace ActionAndFuncDelegates
 {
     public class PersonList
     {
-        private readonly List<Person> _persons = new List<Person>();
+        public readonly List<Person> _persons = new List<Person>();
+        public PersonList()
+        {
+           
+        }
         public Person this[int index]
         {
             get
@@ -33,8 +38,16 @@ namespace ActionAndFuncDelegates
         }
 
         public void Update(Action<Person> action) 
-        { 
-            _persons.ForEach(action);
+        {
+            foreach (var item in _persons)
+            {
+                if(item != null)
+                    action(item);
+            }
+        }
+        ~PersonList()
+        {
+            Console.WriteLine("sdddddddddddddddddddddd");
         }
     }
 }
