@@ -9,7 +9,7 @@ namespace ActionAndFuncDelegates
     public class PersonListProvider
     {
 
-        public PersonList PersonList = new PersonList();
+        private readonly PersonList PersonList = new PersonList();
         public PersonListProvider()
         {
             // initialize list items

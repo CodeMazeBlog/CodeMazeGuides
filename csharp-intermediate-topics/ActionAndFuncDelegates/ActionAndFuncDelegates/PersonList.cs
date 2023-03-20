@@ -32,7 +32,8 @@ namespace ActionAndFuncDelegates
             return _persons.Select(mapper).ToList();
         }
 
-        public void Update(Action<Person> action) { 
+        public void Update(Action<Person> action) 
+        { 
             _persons.ForEach(action);
         }
     }

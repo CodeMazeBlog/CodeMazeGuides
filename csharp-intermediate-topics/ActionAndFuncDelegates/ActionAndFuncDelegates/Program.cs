@@ -4,7 +4,7 @@ using ActionAndFuncDelegates;
 
 var personList = (new PersonListProvider()).PersonList;
 
-// update all defined person age to increase +1 year 
+// update all defined person's age to increase +1 year 
 personList.Update(IncrementAge);
 
 // get age for all defined people
