@@ -8,8 +8,8 @@ namespace ActionAndFuncDelegates
 {
     public class PersonListProvider
     {
-
-        private readonly PersonList PersonList = new PersonList();
+        public PersonList PersonList => new PersonList();
+      
         public PersonListProvider()
         {
             // initialize list items
