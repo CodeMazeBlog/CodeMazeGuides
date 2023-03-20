@@ -19,6 +19,7 @@ This section contains the topics considered intermediate level in C#.
 - [How to Call Generic Method Using Reflection in C#](https://code-maze.com/csharp-call-generic-method-using-reflection/)
 - [How to Get The List of Properties in C#](https://code-maze.com/csharp-get-list-of-properties/)
 - [Method Overloading In C#](https://code-maze.com/csharp-method-overloading/)
+- [How to Use MemoryStream in C#](https://code-maze.com/csharp-memorystream/)
 - [IComparable vs IComparer vs Comparison Delegate](https://code-maze.com/csharp-icomparable-icomparer-comparison-delegate/)
 - [Operator Overloading in C#](https://code-maze.com/csharp-operator-overloading/)
 - [Partial Classes In C# And How to Use Them](https://code-maze.com/csharp-partial-classes-and-how-to-use-them/)
