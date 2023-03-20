@@ -6,6 +6,7 @@ This section contains the topics considered intermediate level in C#.
 
 - [Anonymous Types in C#](https://code-maze.com/anonymous-types-csharp/)
 - [Boxing and Unboxing in C#](https://code-maze.com/csharp-boxing-and-unboxing/)
+- [How to Find the Caller Method in C#](https://code-maze.com/csharp-how-to-find-caller-method/)
 - [Common C# Programming Mistakes](https://code-maze.com/csharp-programming-mistakes/)
 - [Composition vs Inheritance in C#](https://code-maze.com/csharp-composition-vs-inheritance/)
 - [Constructors in C#](https://code-maze.com/csharp-constructors/)
@@ -18,8 +19,10 @@ This section contains the topics considered intermediate level in C#.
 - [How to Call Generic Method Using Reflection in C#](https://code-maze.com/csharp-call-generic-method-using-reflection/)
 - [How to Get The List of Properties in C#](https://code-maze.com/csharp-get-list-of-properties/)
 - [Method Overloading In C#](https://code-maze.com/csharp-method-overloading/)
+- [How to Use MemoryStream in C#](https://code-maze.com/csharp-memorystream/)
 - [IComparable vs IComparer vs Comparison Delegate](https://code-maze.com/csharp-icomparable-icomparer-comparison-delegate/)
 - [Operator Overloading in C#](https://code-maze.com/csharp-operator-overloading/)
+- [Partial Classes In C# And How to Use Them](https://code-maze.com/csharp-partial-classes-and-how-to-use-them/)
 - [Path Class in C#](https://code-maze.com/csharp-path-class/)
 - [Polymorphism in C#](https://code-maze.com/csharp-polymorphism/)
 - [Records in C#](https://code-maze.com/csharp-records/)
@@ -30,3 +33,4 @@ This section contains the topics considered intermediate level in C#.
 - [Tuple in C#](https://code-maze.com/csharp-tuple/)
 - [Unsafe Code in C# (unsafe keyword)](https://code-maze.com/unsafe-code-csharp/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/how-to-enumerate-an-enum-in-c/)
+- [Working With Zip Files in C#/.NET](https://code-maze.com/csharp-zip-files/)
