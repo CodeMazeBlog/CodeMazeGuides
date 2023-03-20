@@ -2,8 +2,8 @@
 {
     public class BookstoreCustomer
     {
-        public int discountThreshold;
-        public int boughtBooksCount;
+        private int discountThreshold;
+        private int boughtBooksCount;
         public ICollection<string> BoughtBooks { get; set; }
 
         public double GetDiscountRate()
