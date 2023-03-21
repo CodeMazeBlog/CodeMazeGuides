@@ -11,6 +11,7 @@ This section contains the topics considered intermediate level in C#.
 - [Composition vs Inheritance in C#](https://code-maze.com/csharp-composition-vs-inheritance/)
 - [Constructors in C#](https://code-maze.com/csharp-constructors/)
 - [Covariance and Contravariance in C#](https://code-maze.com/csharp-covariance-and-contravariance/)
+- [DataTable Class in C#](https://code-maze.com/csharp-datatable-class/)
 - [Difference Between ValueTuple and Tuple in C#](https://code-maze.com/csharp-valuetuple-vs-tuple/)
 - [What is the Difference Between a DTO and a POCO?](https://code-maze.com/difference-dto-poco/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/enumerate-enum-csharp/)
