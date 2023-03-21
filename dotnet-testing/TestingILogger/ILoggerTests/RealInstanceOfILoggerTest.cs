@@ -27,6 +27,7 @@ namespace ILoggerTests
 
             //Assert
             var logMessage = _stringWriter.ToString();
+            
             Assert.NotEmpty(response);
             Assert.Contains("WeatherForecastController: Severity - Information", logMessage);
         }
@@ -38,6 +39,7 @@ namespace ILoggerTests
 
             //Assert
             var logMessage = _stringWriter.ToString();
+            
             Assert.NotEmpty(response);
             Assert.Contains("WeatherForecastController: Severity - Error", logMessage);
         }
