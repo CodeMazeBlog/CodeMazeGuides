@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Return XML Web API\ReturnXmlWebApi.csproj" />
+    <ProjectReference Include="..\ReturnXmlWebApi\ReturnXmlWebApi.csproj" />
   </ItemGroup>
 
 </Project>
