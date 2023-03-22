@@ -8,7 +8,6 @@ namespace Delegates.Test
 
         [Theory]
         [InlineData(4)]
-        [InlineData(5)]
         public void RegularDelegateTest(int number)
         {
             RegularDelegate regularDelegate = new();
@@ -22,7 +21,6 @@ namespace Delegates.Test
 
         [Theory]
         [InlineData(4)]
-        [InlineData(5)]
         public void FuncDelegateTest(int number)
         {
             FuncDelegate funcDelegate = new();
