@@ -16,35 +16,58 @@ namespace HandlingCommandTimeoutWithDapper.Controllers
         }
 
         [HttpGet("timeoutInConnectionString")]
-        public async Task<IEnumerable<Company>> GetCompaniesWithTimeoutInConnectionStringAndDelayInQuery()
+        public async Task<ActionResult<IEnumerable<Company>>> GetCompaniesWithTimeoutInConnectionStringAndDelayInQuery()
         {
-            var companies = await _companyRepo.GetCompaniesWithTimeoutInConnectionStringAndDelayInQuery();
+            try
+            {
+                var companies = await _companyRepo.GetCompaniesWithTimeoutInConnectionStringAndDelayInQuery();
 
-            return companies;
+                return Ok(companies);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status504GatewayTimeout, new ProblemDetails { Status = StatusCodes.Status504GatewayTimeout });
+            }
+
         }
 
         [HttpGet("timeoutInQueryMultiple")]
-        public async Task<IEnumerable<Company>> GetCompaniesWithTimeoutInInQueryMultiple()
+        public async Task<ActionResult<IEnumerable<Company>>> GetCompaniesWithTimeoutInInQueryMultiple()
         {
-            var companies = await _companyRepo.GetCompaniesWithTimeoutInInQueryMultiple();
+            try
+            {
+                var companies = await _companyRepo.GetCompaniesWithTimeoutInInQueryMultiple();
 
-            return companies;
+                return Ok(companies);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status504GatewayTimeout, new ProblemDetails { Status = StatusCodes.Status504GatewayTimeout });
+            }
+
         }
 
         [HttpGet("timeoutInQuery")]
-        public async Task<IEnumerable<Company>> GetCompaniesWithTimeoutInQuery()
+        public async Task<ActionResult<IEnumerable<Company>>> GetCompaniesWithTimeoutInQuery()
         {
-            var companies = await _companyRepo.GetCompaniesWithTimeoutInQuery();
+            try
+            {
+                var companies = await _companyRepo.GetCompaniesWithTimeoutInQuery();
 
-            return companies;
+                return Ok(companies);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status504GatewayTimeout, new ProblemDetails { Status = StatusCodes.Status504GatewayTimeout });
+            }
         }
 
         [HttpGet("timeoutCorrect")]
-        public async Task<IEnumerable<Company>> GetCompanies()
+        public async Task<ActionResult<IEnumerable<Company>>> GetCompanies()
         {
             var companies = await _companyRepo.GetCompanies();
 
-            return companies;
+            return Ok(companies);
         }
     }
 }
