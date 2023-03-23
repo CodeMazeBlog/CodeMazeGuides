@@ -23,16 +23,13 @@ namespace ILoggerTests
 
             //Assert
             Assert.NotEmpty(response);
-            _mockLogger.Verify(
-                l =>
-                    l.Log(
-                        LogLevel.Information,
+            _mockLogger.Verify(l =>
+                    l.Log(LogLevel.Information,
                         It.IsAny<EventId>(),
                         It.Is<It.IsAnyType>((v, _) => v.ToString().Contains("Info")),
                         It.IsAny<Exception>(),
                         It.IsAny<Func<It.IsAnyType, Exception, string>>()
-                    ),
-                Times.Once
+                    ),Times.Once
             );
         }
 
@@ -44,16 +41,14 @@ namespace ILoggerTests
 
             //Assert
             Assert.NotEmpty(response);
-            _mockLogger.Verify(
-                l =>
+            _mockLogger.Verify(l =>
                     l.Log(
                         LogLevel.Error,
                         It.IsAny<EventId>(),
                         It.Is<It.IsAnyType>((v, _) => v.ToString().Contains("Error")),
                         It.IsAny<Exception>(),
                         It.IsAny<Func<It.IsAnyType, Exception, string>>()
-                    ),
-                Times.Once
+                    ),Times.Once
             );
         }
     }
