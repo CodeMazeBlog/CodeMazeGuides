@@ -5,7 +5,7 @@ namespace NullConditionalOperators.Tests
     public class StudentTests
     {
         [Fact]
-        public void GivenValidParamaters_WhenConstructorIsInvoked_ValidObjectIsReturned()
+        public void GivenValidParamaters_WhenConstructorIsInvoked_ThenValidObjectIsReturned()
         {
             // Arrange
             var name = "John";
@@ -22,7 +22,7 @@ namespace NullConditionalOperators.Tests
         }
 
         [Fact]
-        public void GivenValidCourse_WhenEnrollIsInvoked_CourseIsAddedToCourses()
+        public void GivenValidCourse_WhenEnrollIsInvoked_ThenCourseIsAddedToCourses()
         {
             // Arrange
             var name = "John";
