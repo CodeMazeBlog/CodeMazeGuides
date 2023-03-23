@@ -14,7 +14,6 @@ public class MiscellaneousUnitTest
     }
 
     // Bad code - this will cause deadlock if called from UI thread
-    // Won't be a problem in Console or ASP.NET Core application
     private static string ReadContent()
     {
         var task = ReadContentTaskAsync();
