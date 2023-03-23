@@ -42,8 +42,7 @@ namespace ILoggerTests
             //Assert
             Assert.NotEmpty(response);
             _mockLogger.Verify(l =>
-                    l.Log(
-                        LogLevel.Error,
+                    l.Log(LogLevel.Error,
                         It.IsAny<EventId>(),
                         It.Is<It.IsAnyType>((v, _) => v.ToString().Contains("Error")),
                         It.IsAny<Exception>(),
