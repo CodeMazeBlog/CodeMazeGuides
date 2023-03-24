@@ -5,10 +5,10 @@ namespace GetClassNameAsString.Tests
 {
     public class ProgramUnitTest
     {
-        [Fact]
-        public void WhenUseNameOf_ThenCorrectName()
+        [Theory]
+        [InlineData(nameof(Program))]
+        public void WhenUseNameOf_ThenCorrectName(string expected)
         {
-            string expected = "Program";
             var name = nameof(Program);
             Assert.Equal(expected, name);
         }
