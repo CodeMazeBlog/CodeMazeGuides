@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
-using System.Net;
-
-namespace Tests
+﻿namespace Tests
 {
     public class LoggingFromProgramTest : IClassFixture<WebApplicationFactory<Program>>
     {

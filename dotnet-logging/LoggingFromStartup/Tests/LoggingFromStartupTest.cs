@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Mvc.Testing;
-using System.Net;
-
 namespace Tests
 {
     public class LoggingFromStartupTest : IClassFixture<WebApplicationFactory<LoggingFromStartup.Program>>
