@@ -13,7 +13,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task GetCompanies_WithTimeoutInConnectionString_ReturnsGatewayTimeout()
+        public async Task WhenGetCompaniesWithTimeoutInConnectionString_ThenReturnsGatewayTimeout()
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -26,7 +26,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task GetCompanies_WithTimeoutInQueryMultiple_ReturnsGatewayTimeout()
+        public async Task WhenGetCompaniesWithTimeoutInQueryMultiple_ThenReturnsGatewayTimeout()
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -39,7 +39,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task GetCompanies_WithTimeoutInQuery_ReturnsGatewayTimeout()
+        public async Task WhenGetCompaniesWithTimeoutInQuery_ThenReturnsGatewayTimeout()
         {
             // Arrange
             var client = _factory.CreateClient();
@@ -52,7 +52,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task GetCompanies_ReturnsListCompanies()
+        public async Task WhenGetCompanies_ThenReturnsListCompanies()
         {
             // Arrange
             var client = _factory.CreateClient();
