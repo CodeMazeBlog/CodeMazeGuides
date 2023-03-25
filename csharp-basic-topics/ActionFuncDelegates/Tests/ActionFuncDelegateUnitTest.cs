@@ -34,7 +34,6 @@ public class ActionFuncDelegateUnitTest
     }
     public static string TestFunc(int age, string name)
     {
-        Console.WriteLine($"{name} is {age} years old");
-        return name;
+        return $"{name} is {age} years old";
     }
 }
