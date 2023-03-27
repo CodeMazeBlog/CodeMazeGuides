@@ -14,6 +14,7 @@ public class MyMathOperationsUnitTests
     public void GivenTwoNumbers_WhenAdding_ThenComputesSum(int a, int b)
     {
         var result = MyMathOperations.AddTwoNumbers(a, b);
+
         Assert.Equal((double) a + b, result);
     }
 
@@ -26,6 +27,7 @@ public class MyMathOperationsUnitTests
     public void GivenTwoNumbers_WhenSubtracting_ThenComputesDifference(int a, int b)
     {
         var result = MyMathOperations.SubtractTwoNumbers(a, b);
+
         Assert.Equal((double) a - b, result);
     }
 
@@ -38,6 +40,7 @@ public class MyMathOperationsUnitTests
     public void GivenTwoNumbers_WhenDividing_ThenComputesQuotient(double a, int b)
     {
         var result = MyMathOperations.DivideTwoNumbers(a, b);
+
         Assert.Equal(a / b, result);
     }
 
