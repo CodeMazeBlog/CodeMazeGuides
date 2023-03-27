@@ -19,9 +19,9 @@ namespace Tests
 
             var expectedResult = new List<dynamic>
             {
-                new { Id = 1, Name = "C#", CategoryName = "Programming" },
+                new { Id = 1, Name = "C#", CategoryName = "Programming Language" },
                 new { Id = 2, Name = "Docker", CategoryName = "DevOps" },
-                new { Id = 3, Name = "Python", CategoryName = "Programming" },
+                new { Id = 3, Name = "Python", CategoryName = "Programming Language" },
             };
 
             result.Should().BeEquivalentTo(expectedResult);
@@ -42,7 +42,7 @@ namespace Tests
 
             var expectedResult = new List<dynamic>
             {
-                new { Id = 1, Name = "C#", CategoryName = "Programming" },
+                new { Id = 1, Name = "C#", CategoryName = "Programming Language" },
                 new { Id = 2, Name = "Docker", CategoryName = "DevOps" },
                 new { Id = 3, Name = "SQL", CategoryName = "Database System" },
                 new { Id = 4, Name = "Jenkins", CategoryName = "DevOps" },
