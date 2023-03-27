@@ -42,8 +42,6 @@
             EnrolmentHelper.PrintEnrolmentsGroup(filteredAndGroupedEnrolments);
 
             Console.ReadKey();
-
         }
     }
-
 }

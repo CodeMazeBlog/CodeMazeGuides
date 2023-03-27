@@ -83,11 +83,11 @@
         public static IEnumerable<dynamic> GetCoursesWithCategory(
             IEnumerable<Course> courses)
         {
-            var catrgories = Category.GetDummyCourseCategories();
+            var categories = Category.GetDummyCourseCategories();
 
             var courseWithCategory =
                 from course in courses
-                join category in catrgories on
+                join category in categories on
                 course.CategoryId equals category.Id
                 select new
                 {
@@ -124,8 +124,8 @@
             foreach (var course in courses)
             {
                 Console.WriteLine(
-                    $"Id: {course.Id}" +
-                    $"Course: {course.Name}" +
+                    $"Id: {course.Id} " +
+                    $"Course: {course.Name} " +
                     $"Category: {course.CategoryName}"
                 );
             }
@@ -136,8 +136,8 @@
             foreach (var course in Course.GetDummyCourses())
             {
                 Console.WriteLine(
-                    $"Id: {course.Id}" +
-                    $"Course: {course.Name}" +
+                    $"Id: {course.Id} " +
+                    $"Course: {course.Name} " +
                     $"CategoryId: {course.CategoryId}"
                 );
             }
@@ -148,8 +148,8 @@
             foreach (var category in Category.GetDummyCourseCategories())
             {
                 Console.WriteLine(
-                    $"Id: {category.Id}" +
-                    $"Category: {category.Name}");
+                    $"Id: {category.Id} " +
+                    $"Category: {category.Name} ");
             }
         }
 

@@ -143,7 +143,5 @@ namespace Tests
 
             result.Should().BeEquivalentTo(expectedResult);
         }
-
     }
-
 }

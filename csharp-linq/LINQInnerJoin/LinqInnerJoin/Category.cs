@@ -9,7 +9,7 @@
         {
             List<string> categories = new()
             {
-                "Programming",
+                "Programming Language",
                 "DevOps",
                 "Database System"
             };
