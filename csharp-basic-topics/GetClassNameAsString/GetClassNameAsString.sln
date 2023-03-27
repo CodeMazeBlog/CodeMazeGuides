@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetClassNameAsString", "GetClassNameAsString\GetClassNameAsString.csproj", "{78C48D3E-EB24-4DDA-8AA9-645CF9389566}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetClassNameAsString", "GetClassNameAsString\GetClassNameAsString.csproj", "{78C48D3E-EB24-4DDA-8AA9-645CF9389566}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetClassNameAsString.Tests", "GetClassNameAsString.Tests\GetClassNameAsString.Tests.csproj", "{78C162EB-6E70-4D90-8789-0B272E9D9EE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{78C162EB-6E70-4D90-8789-0B272E9D9EE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
