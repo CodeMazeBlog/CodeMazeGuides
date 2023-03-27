@@ -170,7 +170,7 @@ namespace TestActionAndFunctionDelegates
 
             var output = writer.ToString().Trim();
 
-            Assert.That(output, Is.EqualTo("Printing LeaderBoards of Battle\r\n0. Teethering Heavens - 2147483647\r\n1. Jaina Proudmore - 222118\r\n2. Legolas Mirkwood - 98088\r\n3. Thrall Stormhammer - 15924\r\n4. Greenwich Hollow - 9999\r\n5. Diablo Nevermore - 8000\r\n6. Abyssal Grounds - 4902\r\n7. Cloudburst Inferno - 3349\r\n8. Harry Potter - 2112\r\n9. Harry Styles - 980\r\n10. Samwise Gamgee - 400\r\n11. Frodo Baggins - 200"));
+            Assert.That(output, Is.EqualTo("Printing LeaderBoards of Battle\n0. Teethering Heavens - 2147483647\r\n1. Jaina Proudmore - 222118\r\n2. Legolas Mirkwood - 98088\r\n3. Thrall Stormhammer - 15924\r\n4. Greenwich Hollow - 9999\r\n5. Diablo Nevermore - 8000\r\n6. Abyssal Grounds - 4902\r\n7. Cloudburst Inferno - 3349\r\n8. Harry Potter - 2112\r\n9. Harry Styles - 980\r\n10. Samwise Gamgee - 400\r\n11. Frodo Baggins - 200"));
             
         }
 
@@ -185,7 +185,7 @@ namespace TestActionAndFunctionDelegates
 
             var output = writer.ToString().Trim();
 
-            Assert.That(output, Is.EqualTo("Printing LeaderBoards of Battle\r\n0. Teethering Heavens - 2147483647\r\n1. Jaina Proudmore - 222118\r\n2. Legolas Mirkwood - 98088\r\n3. Thrall Stormhammer - 15924\r\n4. Greenwich Hollow - 9999\r\n5. Diablo Nevermore - 8000\r\n6. Abyssal Grounds - 4902\r\n7. Cloudburst Inferno - 3349\r\n8. Harry Potter - 2112\r\n9. Harry Styles - 980\r\n10. Samwise Gamgee - 400\r\n11. Frodo Baggins - 200"));
+            Assert.That(output, Is.EqualTo("Printing LeaderBoards of Battle\n0. Teethering Heavens - 2147483647\r\n1. Jaina Proudmore - 222118\r\n2. Legolas Mirkwood - 98088\r\n3. Thrall Stormhammer - 15924\r\n4. Greenwich Hollow - 9999\r\n5. Diablo Nevermore - 8000\r\n6. Abyssal Grounds - 4902\r\n7. Cloudburst Inferno - 3349\r\n8. Harry Potter - 2112\r\n9. Harry Styles - 980\r\n10. Samwise Gamgee - 400\r\n11. Frodo Baggins - 200"));
 
         }
     }
