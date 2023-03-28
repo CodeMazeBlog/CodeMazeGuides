@@ -28,7 +28,7 @@ namespace DeepCopyInCSharp
             };
 
             //Shallow Copy
-            var copiedPerson = originalPerson;
+            var copiedPerson = originalPerson.ShallowCopy();
 
             //Deep Copy - ICloneable
             copiedPerson = (Person)originalPerson.Clone();
