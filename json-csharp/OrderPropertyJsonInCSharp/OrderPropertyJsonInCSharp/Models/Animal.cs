@@ -1,9 +1,5 @@
-﻿using OrderPropertyJsonInCSharp.Converters;
-using System.Text.Json.Serialization;
-
-namespace OrderPropertyJsonInCSharp.Models
+﻿namespace OrderPropertyJsonInCSharp.Models
 {
-    [JsonConverter(typeof(MicrosoftOrderedPropertiesConverter<Animal>))]
     public class Animal
     {
         public int Id { get; set; }

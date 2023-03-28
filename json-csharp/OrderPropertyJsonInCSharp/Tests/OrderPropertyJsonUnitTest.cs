@@ -33,7 +33,7 @@ namespace Tests
         [TestMethod]
         public void WhenUsingJsonConverter_ThenReturnOrderedProperties()
         {
-            var json = MicrosoftSerializer.Serialize(Program.Animal);
+            var json = MicrosoftSerializer.Serialize(Program.Animal, new MicrosoftOrderedPropertiesConverter<Animal>());
 
             var expectedResult = $"{{{Environment.NewLine}  \"Age\": 3,{Environment.NewLine}  \"Id\": 1,{Environment.NewLine}  \"Name\": \"Miau\"{Environment.NewLine}}}";
 
@@ -54,6 +54,16 @@ namespace Tests
         public void WhenUsingNewtonsoftContractResolver_ThenReturnOrderedProperties()
         {
             var json = NewtonsoftSerializer.Serialize(Program.Animal, new OrderedPropertiesContractResolver());
+
+            var expectedResult = $"{{{Environment.NewLine}  \"Age\": 3,{Environment.NewLine}  \"Id\": 1,{Environment.NewLine}  \"Name\": \"Miau\"{Environment.NewLine}}}";
+
+            Assert.AreEqual(expectedResult, json);
+        }
+
+        [TestMethod]
+        public void WhenUsingMicrosoftTypeInfoResolver_ThenReturnOrderedProperties()
+        {
+            var json = MicrosoftSerializer.Serialize(Program.Animal, new OrderedPropertiesJsonTypeInfoResolver());
 
             var expectedResult = $"{{{Environment.NewLine}  \"Age\": 3,{Environment.NewLine}  \"Id\": 1,{Environment.NewLine}  \"Name\": \"Miau\"{Environment.NewLine}}}";
 

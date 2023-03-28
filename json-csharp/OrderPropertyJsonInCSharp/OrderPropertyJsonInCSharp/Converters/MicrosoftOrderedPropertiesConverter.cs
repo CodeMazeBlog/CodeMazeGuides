@@ -17,9 +17,9 @@ namespace OrderPropertyJsonInCSharp.Converters
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
-            var properties = typeof(T).GetProperties().OrderBy(p => p.Name).ToList();
-
             writer.WriteStartObject();
+
+            var properties = typeof(T).GetProperties().OrderBy(p => p.Name).ToList();
 
             foreach (var property in properties)
             {

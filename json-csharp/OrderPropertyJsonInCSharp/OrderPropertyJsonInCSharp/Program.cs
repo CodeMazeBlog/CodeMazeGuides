@@ -42,7 +42,7 @@ namespace OrderPropertyJsonInCSharp
             Console.WriteLine(json);
 
             // Using JsonConverter
-            json = MicrosoftSerializer.Serialize(Animal);
+            json = MicrosoftSerializer.Serialize(Animal, new MicrosoftOrderedPropertiesConverter<Animal>());
             Console.WriteLine(json);
 
             json = NewtonsoftSerializer.Serialize(Animal, new NewtonsoftOrderedPropertiesConverter<Animal>());
@@ -50,6 +50,10 @@ namespace OrderPropertyJsonInCSharp
 
             // Using DefaultContractResolver
             json = NewtonsoftSerializer.Serialize(Animal, new OrderedPropertiesContractResolver());
+            Console.WriteLine(json);
+
+            // Using DefaultJsonTypeInfoResolver
+            json = MicrosoftSerializer.Serialize(Animal, new OrderedPropertiesJsonTypeInfoResolver());
             Console.WriteLine(json);
         }
     }
