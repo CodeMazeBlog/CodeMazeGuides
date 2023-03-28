@@ -10,7 +10,6 @@ namespace Tests
             _factory = factory;
         }
 
-
         [Fact]
         public async Task WhenGettingWeatherForecast_ThenReturnSuccess()
         {
