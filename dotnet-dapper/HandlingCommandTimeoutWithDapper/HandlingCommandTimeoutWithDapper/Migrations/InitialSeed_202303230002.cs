@@ -21,6 +21,15 @@ namespace HandlingCommandTimeoutWithDapper.Migrations
             Delete.FromTable("Company")
                 .Row(new Company
                 {
+                    Id = new Guid("330f9f7b-9ffd-48a0-8eae-416cd2b26702"),
+                    Address = "Test Address 1",
+                    Country = "Spain",
+                    Name = "Test Name 1",
+                });
+
+            Delete.FromTable("Company")
+                .Row(new Company
+                {
                     Id = new Guid("67fbac34-1ee1-4697-b916-1748861dd275"),
                     Address = "Test Address",
                     Country = "USA",
@@ -33,10 +42,19 @@ namespace HandlingCommandTimeoutWithDapper.Migrations
             Insert.IntoTable("Company")
                 .Row(new Company
                 {
+                    Id = new Guid("330f9f7b-9ffd-48a0-8eae-416cd2b26702"),
+                    Address = "Test Address 1",
+                    Country = "Spain",
+                    Name = "Test Name 1",
+                });
+
+            Insert.IntoTable("Company")
+                .Row(new Company
+                {
                     Id = new Guid("67fbac34-1ee1-4697-b916-1748861dd275"),
-                    Address = "Test Address",
+                    Address = "Test Address 2",
                     Country = "USA",
-                    Name = "Test Name",
+                    Name = "Test Name 2",
                 });
 
             Insert.IntoTable("Employee")

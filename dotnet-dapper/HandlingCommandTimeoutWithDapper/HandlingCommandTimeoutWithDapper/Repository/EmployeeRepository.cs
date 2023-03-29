@@ -17,9 +17,9 @@ namespace HandlingCommandTimeoutWithDapper.Repository
         public async Task<IEnumerable<Employee>> GetEmployees()
         {
             SqlMapper.Settings.CommandTimeout = TimeoutInSeconds;
-            string query = @$"SELECT e.* FROM Employee e WAITFOR DELAY {Delay}";
+            string query = @"SELECT * FROM Employee";
 
-            using var connection = _context.CreateConnection();
+            using var connection = _context.CreateConnectionWithoutTimeout();
             var employees = await connection.QueryAsync<Employee>(query);
 
             return employees;

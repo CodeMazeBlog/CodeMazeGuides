@@ -16,7 +16,7 @@ namespace HandlingCommandTimeoutWithDapper.Context
             _connectionStringMaster = configuration.GetConnectionString("SqlMasterConnection");
         }
 
-        public IDbConnection CreateConnection()
+        public IDbConnection CreateConnectionWithoutTimeout()
             => new SqlConnection(_connectionString);
 
         public IDbConnection CreateConnectionWithTimeout()
