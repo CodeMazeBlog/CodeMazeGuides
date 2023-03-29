@@ -88,15 +88,9 @@ namespace Action_and_Function_Delegates
 
             string baseJson = JsonSerializer.Serialize(baseHighestKills, new JsonSerializerOptions { WriteIndented = true } );
 
-            Console.WriteLine($"My highest kill warrior is : {baseJson}");
-
             Defender funcHighestKills = funcDelegateGetDefenderWithHighestKill(Defenders, true);
 
             string funcJson = JsonSerializer.Serialize(funcHighestKills, new JsonSerializerOptions { WriteIndented = true });
-
-            Console.WriteLine($"My highest kill warrior is : {funcJson}");
-
-            Console.WriteLine($"My highest kill warrior is : {highestKills.Name}");
 
             Action<List<Defender>> actionDelegatePrintLeaderBoards = OrderByAccordingToKills;
 
@@ -105,7 +99,6 @@ namespace Action_and_Function_Delegates
             actionDelegatePrintLeaderBoards(Defenders);
 
             baseDelegatePrintLeaderBoards(Defenders);
-
 
             var defendersWithHighKills = Defenders.Where(Defender => Defender.OrcKills > 5000);
 
@@ -116,8 +109,6 @@ namespace Action_and_Function_Delegates
             Defenders.ForEach(defender => GetDefenderWithKillsHigherThan5000(defender, actionFuncHighKillDefenders)); 
 
             string json = JsonSerializer.Serialize(actionFuncHighKillDefenders, new  JsonSerializerOptions { WriteIndented = true });
-
-            Console.WriteLine($"actionFuncHighKillDefenders {json}");
 
         }
 
