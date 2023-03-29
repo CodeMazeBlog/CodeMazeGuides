@@ -8,7 +8,6 @@ namespace HandlingCommandTimeoutWithDapper.Repository
     public class EmployeeRepository : IEmployeeRepository
     {
         private const int TimeoutInSeconds = 50;
-        private const string Delay = "'00:00:25'";
 
         private readonly DapperContext _context;
 
