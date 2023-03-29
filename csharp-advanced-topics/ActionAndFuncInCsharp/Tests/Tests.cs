@@ -13,6 +13,7 @@ namespace Tests
             Console.WriteLine($"This is an Action with {str} as string parameter");
         }
 
+
         static void MyVoidMethod()
         {
             Console.WriteLine("This is my first Action");
