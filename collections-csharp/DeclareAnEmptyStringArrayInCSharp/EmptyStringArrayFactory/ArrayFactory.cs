@@ -15,6 +15,7 @@
         public static string[] CreateEmptyArrayExample3()
         {
             string[] myArray = { };
+
             return myArray;
         }
 
