@@ -8,7 +8,7 @@ public class ActionAndFuncDelegateAssessmentUnitTest
     public void GivenNumbers_WhenPrinting_ThenAllNumbersArePrinted()
     {
         var numbers = new List<int> { 1, 2, 3, 4, 5 };
-        const string expectedOutput = "1\r\n2\r\n3\r\n4\r\n5\r\n";
+        const string expectedOutput = "1\n2\n3\n4\n5\n";
 
         using var consoleOutput = new StringWriter();
         Console.SetOut(consoleOutput);
