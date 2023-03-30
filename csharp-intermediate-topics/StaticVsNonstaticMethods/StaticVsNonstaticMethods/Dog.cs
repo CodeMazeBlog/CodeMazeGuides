@@ -9,9 +9,9 @@
             Console.WriteLine("Woof");
         }
 
-        public static void Bark(int howLong)
+        public static void Bark(int barkCount)
         {
-            for (int i = 0; i < Math.Min(20, howLong); i++) 
+            for (int i = 0; i < Math.Min(20, barkCount); i++) 
             {
                 Console.WriteLine("Woof");
             }
