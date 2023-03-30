@@ -5,7 +5,7 @@ namespace ActionAndFuncDelegatesTests
 {
     public class UserTest
     {
-        public Mock<IBillingService> _billingService { get; set; }
+        public Mock<IBillingService> _billingService;
 
         [SetUp]
         public void Setup()

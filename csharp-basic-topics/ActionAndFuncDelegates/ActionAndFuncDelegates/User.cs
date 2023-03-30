@@ -3,17 +3,17 @@
     public class User
     {
         private Action<string, string> _listeners;
-        private string Name { get; set; }
-        private string Surname { get; set; }
+        private string _name;
+        private string _surname;
 
         public void UpdateUserDetails(string name, string surname)
         {
-            Name = name;
-            Surname = surname;
+            _name = name;
+            _surname = surname;
 
             if (_listeners != null)
             {
-                _listeners(Name, Surname);
+                _listeners(_name, _surname);
             }
         }
         
