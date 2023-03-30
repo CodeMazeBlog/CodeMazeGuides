@@ -59,10 +59,10 @@ public class UnitTest
         var output = new StringBuilder();
         var stringwriter = new StringWriter(output);
         Console.SetOut(stringwriter);
+        string result = "This is my first Action";
 
         // Act
         action1();
-        string result = "This is my first Action";
         string expected = output.ToString();
         // Assert
         Assert.AreEqual(result.Trim(), expected.Trim());
@@ -77,12 +77,15 @@ public class UnitTest
         var output = new StringBuilder();
         var stringwriter = new StringWriter(output);
         Console.SetOut(stringwriter);
+        string result = "This is my first Action with Lambda";
 
         // Act
         action2();
 
+        string expected = output.ToString();
+
         // Assert
-        Assert.AreEqual("This is my first Action with Lambda\r\n", output.ToString());
+        Assert.AreEqual(result.Trim(), expected.Trim());
     }
 
     [TestMethod]
@@ -94,11 +97,14 @@ public class UnitTest
         var output = new StringBuilder();
         var stringwriter = new StringWriter(output);
         Console.SetOut(stringwriter);
+        string result = $"This is an Action with {arg1} as string parameter";
 
         // Act
         action3(arg1);
 
+        string expected = output.ToString();
+
         // Assert
-        Assert.AreEqual($"This is an Action with {arg1} as string parameter\r\n", output.ToString());
+        Assert.AreEqual(result.Trim(), expected.Trim());
     }
 }
