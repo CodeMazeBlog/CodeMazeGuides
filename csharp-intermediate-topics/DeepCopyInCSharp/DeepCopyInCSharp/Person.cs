@@ -15,6 +15,8 @@ namespace DeepCopyInCSharp
         [DataMember]
         public required Address Address { get; set; }
 
+        public Person ShallowCopy() => (Person)this.MemberwiseClone();
+
         public object Clone()
         {
             var clonedPerson = new Person
