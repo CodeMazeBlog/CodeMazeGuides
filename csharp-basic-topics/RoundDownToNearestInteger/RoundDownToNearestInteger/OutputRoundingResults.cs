@@ -2,84 +2,84 @@
 {
     internal static class OutputRoundingResults
     {
-        private static void WriteResultsToConsole(double[] testCases, int[] results)
+        private static void WriteResultsToConsole(double[] testCases, int[] results, int[] desiredResults)
         {
             for (var cnt = 0; cnt < testCases.Length; cnt++)
             {
-                Console.WriteLine($"Rounding {testCases[cnt]} results in {results[cnt]}");
+                Console.WriteLine($"Rounding {testCases[cnt]} results in {results[cnt]} (desired result: {desiredResults[cnt]})");
             }
 
             Console.WriteLine();
         }
 
-        public static void RoundDownUsingMathFloor(double[] testCases)
+        public static void RoundDownUsingMathFloor(double[] testCases, int[] desiredResults)
         {
-            Console.WriteLine($"Round down using Math.Floor:");
+            Console.WriteLine($"Round down using Math.Floor():");
             var results = RoundingMethods.RoundDownUsingMathFloor(testCases);
-            WriteResultsToConsole(testCases, results);
+            WriteResultsToConsole(testCases, results, desiredResults);
         }
 
-        public static void RoundDownUsingMathTruncate(double[] testCases)
+        public static void RoundDownUsingMathTruncate(double[] testCases, int[] desiredResults)
         {
-            Console.WriteLine($"Round down using Math.Truncate:");
+            Console.WriteLine($"Round down using Math.Truncate():");
             var results = RoundingMethods.RoundDownUsingMathTruncate(testCases);
-            WriteResultsToConsole(testCases, results);
+            WriteResultsToConsole(testCases, results, desiredResults);
         }
 
-        public static void RoundDownUsingMathRoundWithToEvenMode(double[] testCases)
+        public static void RoundDownUsingMathRoundWithToEvenMode(double[] testCases, int[] desiredResults)
         {
-            Console.WriteLine($"Round down using Math.Round with ToEven mode:");
+            Console.WriteLine($"Round down using Math.Round() with ToEven mode:");
             var results = RoundingMethods.RoundDownUsingMathRoundWithToEvenMode(testCases);
-            WriteResultsToConsole(testCases, results);
+            WriteResultsToConsole(testCases, results, desiredResults);
         }
 
-        public static void RoundDownUsingMathRoundWithAwayFromZeroMode(double[] testCases)
+        public static void RoundDownUsingMathRoundWithAwayFromZeroMode(double[] testCases, int[] desiredResults)
         {
-            Console.WriteLine($"Round down using Math.Round with AwayFromZero mode:");
+            Console.WriteLine($"Round down using Math.Round() with AwayFromZero mode:");
             var results = RoundingMethods.RoundDownUsingMathRoundWithAwayFromZeroMode(testCases);
-            WriteResultsToConsole(testCases, results);
+            WriteResultsToConsole(testCases, results, desiredResults);
         }
 
-        public static void RoundDownUsingMathRoundWithToZeroMode(double[] testCases)
+        public static void RoundDownUsingMathRoundWithToZeroMode(double[] testCases, int[] desiredResults)
         {
-            Console.WriteLine($"Round down using Math.Round with ToZero mode:");
+            Console.WriteLine($"Round down using Math.Round() with ToZero mode:");
             var results = RoundingMethods.RoundDownUsingMathRoundWithToZeroMode(testCases);
-            WriteResultsToConsole(testCases, results);
+            WriteResultsToConsole(testCases, results, desiredResults);
         }
 
-        public static void RoundDownUsingMathRoundWithToNegativeInfinityMode(double[] testCases)
+        public static void RoundDownUsingMathRoundWithToNegativeInfinityMode(double[] testCases, int[] desiredResults)
         {
-            Console.WriteLine($"Round down using Math.Round with ToNegativeInfinity mode:");
+            Console.WriteLine($"Round down using Math.Round() with ToNegativeInfinity mode:");
             var results = RoundingMethods.RoundDownUsingMathRoundWithToNegativeInfinityMode(testCases);
-            WriteResultsToConsole(testCases, results);
+            WriteResultsToConsole(testCases, results, desiredResults);
         }
 
-        public static void RoundDownUsingMathRoundWithToPositiveInfinityMode(double[] testCases)
+        public static void RoundDownUsingMathRoundWithToPositiveInfinityMode(double[] testCases, int[] desiredResults)
         {
-            Console.WriteLine($"Round down using Math.Round with ToPositiveInfinity mode:");
+            Console.WriteLine($"Round down using Math.Round() with ToPositiveInfinity mode:");
             var results = RoundingMethods.RoundDownUsingMathRoundWithToPositiveInfinityMode(testCases);
-            WriteResultsToConsole(testCases, results);
+            WriteResultsToConsole(testCases, results, desiredResults);
         }
 
-        public static void RoundDownUsingConvertToInt32(double[] testCases)
+        public static void RoundDownUsingConvertToInt32(double[] testCases, int[] desiredResults)
         {
-            Console.WriteLine($"Round down using Convert.ToInt32:");
+            Console.WriteLine($"Round down using Convert.ToInt32():");
             var results = RoundingMethods.RoundDownUsingConvertToInt32(testCases);
-            WriteResultsToConsole(testCases, results);
+            WriteResultsToConsole(testCases, results, desiredResults);
         }
 
-        public static void RoundDownUsingCasting(double[] testCases)
+        public static void RoundDownUsingCasting(double[] testCases, int[] desiredResults)
         {
             Console.WriteLine($"Round down using casting:");
             var results = RoundingMethods.RoundDownUsingCasting(testCases);
-            WriteResultsToConsole(testCases, results);
+            WriteResultsToConsole(testCases, results, desiredResults);
         }
 
-        public static void RoundDownUsingSubtractionWithModulo(double[] testCases)
+        public static void RoundDownUsingSubtractionWithModulo(double[] testCases, int[] desiredResults)
         {
             Console.WriteLine($"Round down using subtraction with modulo:");
             var results = RoundingMethods.RoundDownUsingSubtractionWithModulo(testCases);
-            WriteResultsToConsole(testCases, results);
+            WriteResultsToConsole(testCases, results, desiredResults);
         }
     }
 }

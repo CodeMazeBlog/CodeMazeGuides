@@ -1,6 +1,6 @@
 ﻿namespace RoundDownToNearestInteger
 {
-    internal class RoundingMethods
+    public class RoundingMethods
     {
         public static int[] RoundDownUsingMathFloor(double[] testCases)
         {
