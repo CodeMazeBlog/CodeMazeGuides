@@ -15,6 +15,7 @@ This section contains the topics about the client libraries in .NET.
 - [Tracking Application Health With OpenTelemetry Metrics in .NET](https://code-maze.com/tracking-dotnet-opentelemetry-metrics/)
 - [Tracing .NET Applications Easily With OpenTelemetry](https://code-maze.com/tracing-dotnet-applications-opentelemetry/)
 - [Alternative Way of Logging With OpenTelemetry Logging in .NET](https://code-maze.com/dotnet-opentelemetry-logging/)
+- [Vendor-Agnostic Telemetry Using OpenTelemetry Collector in .NET](https://code-maze.com/vendor-agnostic-telemetry-opentelemetry-collector-dotnet/)
 - [Schedule Jobs with Quartz.NET](https://code-maze.com/schedule-jobs-with-quartz-net/)
 - [Rebus in .NET – Service Bus Implementation](https://code-maze.com/rebus-dotnet/)
 - [Using Refit to Consume APIs in C#](https://code-maze.com/using-refit-to-consume-apis-in-csharp/)
