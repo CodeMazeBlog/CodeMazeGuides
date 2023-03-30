@@ -62,9 +62,10 @@ public class UnitTest
 
         // Act
         action1();
-
+        string result = "This is my first Action";
+        string expected = output.ToString();
         // Assert
-        Assert.AreEqual("This is my first Action\r\n", output.ToString());
+        Assert.AreEqual(result.Trim(), expected.Trim());
 
     }
 
