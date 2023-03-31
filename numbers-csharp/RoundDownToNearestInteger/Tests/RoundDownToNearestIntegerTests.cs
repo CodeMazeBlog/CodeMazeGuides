@@ -12,6 +12,7 @@ namespace Tests
         {
             var result = RoundingMethods.RoundDownUsingMathFloor(testCases);
             var expected = new int[] { 2, 1, 1, 1, -2, -2, -2, -3 };
+
             CollectionAssert.AreEqual(expected, result);
         }
 
@@ -20,6 +21,7 @@ namespace Tests
         {
             var result = RoundingMethods.RoundDownUsingMathTruncate(testCases);
             var expected = new int[] { 2, 1, 1, 1, -1, -1, -1, -2 };
+
             CollectionAssert.AreEqual(expected, result);
         }
 
@@ -28,6 +30,7 @@ namespace Tests
         {
             var result = RoundingMethods.RoundDownUsingMathRoundWithToEvenMode(testCases);
             var expected = new int[] { 2, 2, 2, 1, -1, -2, -2, -2 };
+
             CollectionAssert.AreEqual(expected, result);
         }
 
@@ -36,6 +39,7 @@ namespace Tests
         {
             var result = RoundingMethods.RoundDownUsingMathRoundWithAwayFromZeroMode(testCases);
             var expected = new int[] { 3, 2, 2, 1, -1, -2, -2, -3 };
+
             CollectionAssert.AreEqual(expected, result);
         }
 
@@ -44,6 +48,7 @@ namespace Tests
         {
             var result = RoundingMethods.RoundDownUsingMathRoundWithToZeroMode(testCases);
             var expected = new int[] { 2, 1, 1, 1, -1, -1, -1, -2 };
+
             CollectionAssert.AreEqual(expected, result);
         }
 
@@ -52,6 +57,7 @@ namespace Tests
         {
             var result = RoundingMethods.RoundDownUsingMathRoundWithToNegativeInfinityMode(testCases);
             var expected = new int[] { 2, 1, 1, 1, -2, -2, -2, -3 };
+
             CollectionAssert.AreEqual(expected, result);
         }
 
@@ -60,6 +66,7 @@ namespace Tests
         {
             var result = RoundingMethods.RoundDownUsingMathRoundWithToPositiveInfinityMode(testCases);
             var expected = new int[] { 3, 2, 2, 2, -1, -1, -1, -2 };
+
             CollectionAssert.AreEqual(expected, result);
         }
 
@@ -68,6 +75,7 @@ namespace Tests
         {
             var result = RoundingMethods.RoundDownUsingConvertToInt32(testCases);
             var expected = new int[] { 2, 2, 2, 1, -1, -2, -2, -2 };
+
             CollectionAssert.AreEqual(expected, result);
         }
 
@@ -76,6 +84,7 @@ namespace Tests
         {
             var result = RoundingMethods.RoundDownUsingCasting(testCases);
             var expected = new int[] { 2, 1, 1, 1, -1, -1, -1, -2 };
+
             CollectionAssert.AreEqual(expected, result);
         }
 
@@ -84,6 +93,7 @@ namespace Tests
         {
             var result = RoundingMethods.RoundDownUsingSubtractionWithModulo(testCases);
             var expected = new int[] { 2, 1, 1, 1, -1, -1, -1, -2 };
+
             CollectionAssert.AreEqual(expected, result);
         }
     }
