@@ -106,6 +106,27 @@ namespace Tests
             CollectionAssert.AreEqual(value, expectedResult);
         }
 
+
+        [TestMethod]
+        public void GivenMethodBufferCopy_WhenDeleteElement3_ThenArray4557()
+        {
+            var key = 3;
+            var expectedResult = new int[] { 4, 5, 3, 5, 7 };
+            var value = Methods.DeleteWithBufferCopy(_myArray, key);
+
+            CollectionAssert.AreEqual(value, expectedResult);
+        }
+
+        [TestMethod]
+        public void GivenMethodBufferCopy_WhenDeleteElement6_ThenArray345357()
+        {
+            var key = 6;
+            var expectedResult = new int[] { 3, 4, 5, 3, 5, 7 };
+            var value = Methods.DeleteWithBufferCopy(_myArray, key);
+
+            CollectionAssert.AreEqual(value, expectedResult);
+        }
+
         [TestMethod]
         public void GivenMethodArraySegment_WhenDeleteElement3_ThenArray4557() 
         {

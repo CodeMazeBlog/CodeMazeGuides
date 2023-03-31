@@ -9,7 +9,7 @@ namespace BenchmarkRunner
     [RankColumn]
     public class DeleteElementsFromAnArrayBenchmark 
     {
-        private int[] _myArray = FillArray();
+        private readonly int[] _myArray = FillArray();
 
         private readonly int _key = 7;
 
@@ -24,6 +24,22 @@ namespace BenchmarkRunner
         {
             var list = new List<int>(_myArray);
             list.RemoveAll(e => e == _key);
+
+            return list.ToArray();
+        }
+
+        [Benchmark]
+        public int[] DeleteWithList()
+        {
+            var list = new List<int>(_myArray.Length);
+
+            for (int i = 0; i < _myArray.Length; i++)
+            {
+                if (_myArray[i] != _key)
+                {
+                    list.Add(_myArray[i]);
+                }
+            }
 
             return list.ToArray();
         }
@@ -54,18 +70,42 @@ namespace BenchmarkRunner
         }
 
         [Benchmark]
-        public int[] DeleteWithArraySegment() 
+        public int[] DeleteWithBufferCopy()
         {
             var indexToRemove = Array.IndexOf(_myArray, _key);
 
-            if (indexToRemove >= 0) 
+            if (indexToRemove < 0)
+            {
+                return _myArray;
+            }
+
+            var newArray = new int[_myArray.Length - 1];
+
+            Buffer.BlockCopy(_myArray, 0, newArray, 0, indexToRemove*4);
+
+            Buffer.BlockCopy(_myArray, (indexToRemove + 1) * 4, newArray, indexToRemove * 4, (_myArray.Length - indexToRemove - 1) * 4);
+
+            return newArray;
+        }
+
+        [Benchmark]
+        public int[] DeleteWithArraySegment()
+        {
+            var indexToRemove = Array.IndexOf(_myArray, _key);
+
+            int[] newArray;
+            if (indexToRemove >= 0)
             {
                 var segment1 = new ArraySegment<int>(_myArray, 0, indexToRemove);
                 var segment2 = new ArraySegment<int>(_myArray, indexToRemove + 1, _myArray.Length - indexToRemove - 1);
-                _myArray = segment1.Concat(segment2).ToArray();
+                newArray = segment1.Concat(segment2).ToArray();
+            }
+            else
+            {
+                newArray = _myArray;
             }
 
-            return _myArray;
+            return newArray;
         }
 
         [Benchmark]
