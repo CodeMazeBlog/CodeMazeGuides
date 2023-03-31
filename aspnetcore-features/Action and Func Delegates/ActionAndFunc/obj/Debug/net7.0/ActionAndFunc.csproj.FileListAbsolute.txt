@@ -1,0 +1,15 @@
+F:\CodeM\ActionAndFunc\bin\Debug\net7.0\ActionAndFunc.exe
+F:\CodeM\ActionAndFunc\bin\Debug\net7.0\ActionAndFunc.deps.json
+F:\CodeM\ActionAndFunc\bin\Debug\net7.0\ActionAndFunc.runtimeconfig.json
+F:\CodeM\ActionAndFunc\bin\Debug\net7.0\ActionAndFunc.dll
+F:\CodeM\ActionAndFunc\bin\Debug\net7.0\ActionAndFunc.pdb
+F:\CodeM\ActionAndFunc\obj\Debug\net7.0\ActionAndFunc.csproj.AssemblyReference.cache
+F:\CodeM\ActionAndFunc\obj\Debug\net7.0\ActionAndFunc.GeneratedMSBuildEditorConfig.editorconfig
+F:\CodeM\ActionAndFunc\obj\Debug\net7.0\ActionAndFunc.AssemblyInfoInputs.cache
+F:\CodeM\ActionAndFunc\obj\Debug\net7.0\ActionAndFunc.AssemblyInfo.cs
+F:\CodeM\ActionAndFunc\obj\Debug\net7.0\ActionAndFunc.csproj.CoreCompileInputs.cache
+F:\CodeM\ActionAndFunc\obj\Debug\net7.0\ActionAndFunc.dll
+F:\CodeM\ActionAndFunc\obj\Debug\net7.0\refint\ActionAndFunc.dll
+F:\CodeM\ActionAndFunc\obj\Debug\net7.0\ActionAndFunc.pdb
+F:\CodeM\ActionAndFunc\obj\Debug\net7.0\ActionAndFunc.genruntimeconfig.cache
+F:\CodeM\ActionAndFunc\obj\Debug\net7.0\ref\ActionAndFunc.dll
