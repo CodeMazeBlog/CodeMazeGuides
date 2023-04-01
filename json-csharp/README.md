@@ -4,8 +4,10 @@ This section contains the topics related to JSON manipulation in C#.
 ### Relevant articles:
 
 - [How to Compare Two Json Objects Using C#](https://code-maze.com/csharp-compare-two-json-objects/)
+- [How to Create a Custom JsonConverter in Json.NET](https://code-maze.com/json-dotnet-create-custom-jsonconverter/)
 - [How to Deserialize a Complex JSON Object in C# .NET](https://code-maze.com/csharp-deserialize-complex-json-object/)
 - [JSON Deserialization to a POCO Class in C#](https://code-maze.com/csharp-json-deserialization-poco-class/)
+- [How to Exclude Properties From JSON Serialization in C#](https://code-maze.com/csharp-exclude-properties-from-json-serialization/)
 - [How to Get Value by Key from JObject in C#](https://code-maze.com/csharp-get-value-by-key-from-jobject/)
 - [How to Turn a C# Object Into a JSON String in .NET?](https://code-maze.com/csharp-object-into-json-string-dotnet/)
 - [How to Get Formatted JSON in .Net Using C#](https://code-maze.com/csharp-how-to-get-formatted-json/)
