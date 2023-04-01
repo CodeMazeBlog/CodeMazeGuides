@@ -1,13 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework;
-using ReturnXmlWebApi;
-using ReturnXmlWebApi.Controllers;
+using WebApiReturnXml;
+using WebApiReturnXml.Controllers;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Tests
 {
-    [TestClass]
     public class Tests
     {
         private UserController _controller;

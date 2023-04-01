@@ -1,4 +1,4 @@
-﻿namespace ReturnXmlWebApi
+﻿namespace WebApiReturnXml
 {
     public class User
     {

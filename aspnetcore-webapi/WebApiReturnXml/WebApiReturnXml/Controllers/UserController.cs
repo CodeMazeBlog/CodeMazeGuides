@@ -1,6 +1,7 @@
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ReturnXmlWebApi.Controllers
+namespace WebApiReturnXml.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -10,7 +11,7 @@ namespace ReturnXmlWebApi.Controllers
         [Produces("application/xml")]
         public IActionResult GetUser(int id)
         {
-            var user = new User { Id = id, Name = "Steve James" }; 
+            var user = new User { Id = id, Name = "Steve James" };
             return Ok(user);
         }
     }
