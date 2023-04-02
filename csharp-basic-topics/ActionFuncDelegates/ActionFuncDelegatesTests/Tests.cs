@@ -51,5 +51,4 @@ public class Tests
     {
         return a + b;
     }
-
 }
