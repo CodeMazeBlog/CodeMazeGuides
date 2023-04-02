@@ -2,6 +2,6 @@
 {
     public class AnimalEventArgs : EventArgs
     {
-        public Animal Animal { get; set; }
+        public required Animal Animal { get; set; }
     }
 }

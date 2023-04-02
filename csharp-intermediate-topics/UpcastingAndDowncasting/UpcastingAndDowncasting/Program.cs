@@ -11,9 +11,9 @@
                 new Owl()
             };
 
-            foreach (var ani in animals)
+            foreach (var animalObj in animals)
             {
-                Console.WriteLine("It says: " + ani.MakeSound());
+                Console.WriteLine("It says: " + animalObj.MakeSound());
             }
 
             //Downcasting
@@ -21,9 +21,8 @@
             animal.MakeSound();
             ((Snake)animal).Move();
 
-            if (animal is Snake)
+            if (animal is Snake snake)
             {
-                var snake = (Snake)animal;
                 snake.Move();
             }
 
@@ -32,9 +31,7 @@
 
             EventHandler<AnimalEventArgs> animalEventHandler = (sender, args) =>
             {
-                var owl = args.Animal as Owl;
-
-                if (owl != null)
+                if (args.Animal is Owl owl)
                 {
                     owl.Fly();
                 }
@@ -46,7 +43,7 @@
             var obj = new object();
             var owlObj = obj as Owl;
 
-            if(owlObj != null)
+            if (owlObj != null)
             {
                 owlObj.Fly();
             }
