@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 
 namespace DateTimeCalendar
 {
@@ -45,6 +46,22 @@ namespace DateTimeCalendar
             var saudiDate = new DateTime(1444, 8, 10, saudiCulture.Calendar);
 
             Assert.True(usDate > saudiDate);
+        }
+
+        [Fact]
+        public void WhenUsingCultureInfo_CanChangeCalendar()
+        {
+            var saudiCulture = new CultureInfo("ar-SA");
+            var optionalCalendars = saudiCulture.OptionalCalendars;
+
+            if (Array.Exists(optionalCalendars, c => c.GetType() == typeof(GregorianCalendar)))
+            {
+                saudiCulture.DateTimeFormat.Calendar = new GregorianCalendar();
+            }
+
+            var saudiCalendar = saudiCulture.DateTimeFormat.Calendar.GetType();
+
+            Assert.Equal(typeof(GregorianCalendar), saudiCalendar);
         }
     }
 }
