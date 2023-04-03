@@ -74,16 +74,5 @@ public class UsersController : ControllerBase
         var result = _userService.CreateUserCollection(users);
         return CreatedAtRoute("UserCollection", new { result.ids}, result.users);
     }
-
-    [HttpPut("{id:guid}")]
-    public IActionResult UpdateUser(Guid id, [FromBody] UserForCreationAndUpdateDto user)
-    {
-        if (user is null)
-            return BadRequest("UserDto object is null");
-
-        var newOrUpdatedUser = _userService.UpdateUser(id, user);
-
-        return NoContent();
-    }
 }
 
