@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Service.Contracts\" />
+    <None Remove="Service\" />
+    <None Remove="Repository\" />
+    <None Remove="Entities\" />
+    <None Remove="Shared\" />
+    <None Remove="Shared\DataTransferObjects\" />
+    <None Remove="Entities\Models\" />
+    <None Remove="AutoMapper" />
+    <None Remove="Extensions\" />
+    <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="ModelBinders\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service.Contracts\" />
+    <Folder Include="Service\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Entities\" />
+    <Folder Include="Shared\" />
+    <Folder Include="Shared\DataTransferObjects\" />
+    <Folder Include="Entities\Models\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="ModelBinders\" />
+  </ItemGroup>
+</Project>
