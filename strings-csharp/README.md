@@ -14,6 +14,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [How to Get an Enum Member as a String in C#](https://code-maze.com/enum-member-as-string-csharp/)
 - [How to Check if StringBuilder Is Empty](https://code-maze.com/csharp-stringbuilder-check-if-empty/)
 - [Make The First Letter of a String Upper Case in C#](https://code-maze.com/csharp-first-letter-upper-case/)
+- [How to Remove All Whitespace Characters From a String in C#?](https://code-maze.com/replace-whitespaces-string-csharp/)
 - [StringBuilder in C#](https://code-maze.com/stringbuilder-csharp/)
 - [How to Convert String to Title Case in C#](https://code-maze.com/csharp-convert-string-title-case/)
 - [ToString Method in C#](https://code-maze.com/tostring-method-csharp/)
