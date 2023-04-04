@@ -1,5 +1,6 @@
 namespace GetClassNameAsString.Tests;
 
+[Collection("Sequential")]
 public class BaseClassUnitTest
 {
     [Fact]

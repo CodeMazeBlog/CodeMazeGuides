@@ -37,3 +37,8 @@ Console.WriteLine($"ChildClass.StaticGetNameByGetCurrentMethod result: {name}");
 
 myPropertyInt = childClass.MyPropertyInt;
 childClass.MyPropertyInt = 1;
+
+// Service
+Service service = new();
+var greeting = service.Greeting("");
+Console.WriteLine(greeting);
