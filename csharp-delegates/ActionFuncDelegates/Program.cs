@@ -15,7 +15,7 @@
 
             // Invoke the delegate
             greetMessage();
-            greetWithName("John");
+            greetWithName("Tanveer");
 
 
 
@@ -34,7 +34,7 @@
             double per = percentageScore(100, 70);
             Console.WriteLine($"You got {per}% marks.");
 
-            string name = getFullname("Jonh", "Obrero");
+            string name = getFullname("Tanveer", "Hussain");
             Console.WriteLine($"Name: {name}");
 
 
