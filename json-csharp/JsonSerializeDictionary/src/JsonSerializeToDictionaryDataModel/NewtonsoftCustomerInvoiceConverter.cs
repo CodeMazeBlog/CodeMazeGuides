@@ -22,6 +22,7 @@ public class NewtonsoftCustomerInvoiceConverter : JsonConverter<Dictionary<Custo
         }
 
         writer.WriteStartObject();
+
         foreach (var (customer, invoices) in value)
         {
             writer.WritePropertyName($"Customer-{customer.CustomerId:N}");
@@ -51,4 +52,6 @@ public class NewtonsoftCustomerInvoiceConverter : JsonConverter<Dictionary<Custo
         // Since we are only dealing with Serializing in this article, we don't need to implement the Read method
         throw new NotImplementedException();
     }
+
+    public override bool CanRead { get; } = false;
 }

@@ -15,19 +15,19 @@ var fruitInventory = new Dictionary<string, int>
 // Using Newtonsoft.Json
 Console.WriteLine("============ Newtonsoft.Json ============");
 var newtonsoftJson = JsonConvert.SerializeObject(fruitInventory);
-Console.WriteLine("Newtonsoft.Json output:\n" + newtonsoftJson);
+Console.WriteLine(newtonsoftJson);
 Console.WriteLine();
 
 // Using System.Text.Json
 Console.WriteLine("============ System.Text.Json ============");
 var systemJson = JsonSerializer.Serialize(fruitInventory);
-Console.WriteLine("System.Text.Json output:\n" + systemJson);
+Console.WriteLine(systemJson);
 Console.WriteLine();
 
 // Using Newtonsoft.Json
 Console.WriteLine("============ Newtonsoft.Json - Indented ============");
 var newtonsoftJsonReadable = JsonConvert.SerializeObject(fruitInventory, Formatting.Indented);
-Console.WriteLine("Newtonsoft.Json output:\n" + newtonsoftJsonReadable);
+Console.WriteLine(newtonsoftJsonReadable);
 Console.WriteLine();
 
 // Using System.Text.Json
@@ -36,7 +36,7 @@ var systemJsonReadable = JsonSerializer.Serialize(fruitInventory, new JsonSerial
 {
     WriteIndented = true
 });
-Console.WriteLine("System.Text.Json output:\n" + systemJsonReadable);
+Console.WriteLine(systemJsonReadable);
 Console.WriteLine();
 
 // Serializing a Dictionary of Invoices
