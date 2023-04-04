@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFAGoogleAuthenticatorAngular", "TFAGoogleAuthenticatorAngular\TFAGoogleAuthenticatorAngular.csproj", "{81C68635-15D9-4100-BAC7-3254AAB3F82F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81C68635-15D9-4100-BAC7-3254AAB3F82F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81C68635-15D9-4100-BAC7-3254AAB3F82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81C68635-15D9-4100-BAC7-3254AAB3F82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81C68635-15D9-4100-BAC7-3254AAB3F82F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C478617-9031-4A79-85B1-7D7DF70FC23A}
+	EndGlobalSection
+EndGlobal
