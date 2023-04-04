@@ -2,11 +2,12 @@
 
 public static class Examples
 {
-    public static int FuncDelegateExample(IEnumerable<int> numbers) => numbers.Sum();
+    public static int FuncDelegateExample(IEnumerable<int> numbers) => numbers.Sum(n => n);
 
-    public static void ActionDelegateExample(IEnumerable<int> numbers)
+    public static void ActionDelegateExample(List<int> numbers)
     {
-        foreach (var number in numbers) Console.WriteLine(number);
+        Action<int> printToConsole = number => Console.WriteLine(number);
+        numbers.ForEach(printToConsole);
     }
 
     public static async Task<double> MultithreadExample()
