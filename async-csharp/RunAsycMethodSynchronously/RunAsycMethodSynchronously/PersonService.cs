@@ -4,14 +4,18 @@ public class PersonService
 {
     public List<Person> GetPeople()
     {
-        var task = new Task<List<Person>>(() => new List<Person>
+        var task = new Task<List<Person>>(() =>
         {
-            new() { Name = "Alice", Age = 25 },
-            new() { Name = "Bob", Age = 30 },
-            new() { Name = "Charlie", Age = 35 }
+            Thread.Sleep(5000);
+
+            return new List<Person>
+            {
+                new() { Name = "Alice", Age = 25 },
+                new() { Name = "Bob", Age = 30 },
+                new() { Name = "Charlie", Age = 35 }
+            };
         });
 
-        Thread.Sleep(5000);
         task.RunSynchronously();
         
         return task.Result;
