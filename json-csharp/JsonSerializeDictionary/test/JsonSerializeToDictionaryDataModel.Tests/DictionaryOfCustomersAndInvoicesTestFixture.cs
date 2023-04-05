@@ -6,7 +6,11 @@ namespace JsonSerializeToDictionaryDataModel.Tests;
 public class DictionaryOfCustomersAndInvoicesTestFixture
 {
     private const int CustomerCount = 10;
+    private const int ProductCount = 100;
+    private const int MaxLineItemCount = 35;
     private const int MaxInvoiceCount = 50;
+    private const int MaxYearsBack = 3;
+    private static readonly DateTime Today = new(2023, 4, 1);
 
     static DictionaryOfCustomersAndInvoicesTestFixture()
     {
@@ -44,7 +48,7 @@ public class DictionaryOfCustomersAndInvoicesTestFixture
                 )
             );
 
-        var products = productFaker.Generate(100);
+        var products = productFaker.Generate(ProductCount);
 
         var invoiceItemFaker = new Faker<InvoiceLineItem>()
             .CustomInstantiator(f =>
@@ -55,9 +59,9 @@ public class DictionaryOfCustomersAndInvoicesTestFixture
 
         var invoiceFaker = new Faker<Invoice>()
             .CustomInstantiator(f =>
-                new Invoice(f.Date.Past(2),
+                new Invoice(f.Date.Past(MaxYearsBack, Today),
                     Guid.NewGuid(),
-                    invoiceItemFaker.Generate(f.Random.Number(1, 50))
+                    invoiceItemFaker.Generate(f.Random.Number(1, MaxLineItemCount))
                 )
             );
 

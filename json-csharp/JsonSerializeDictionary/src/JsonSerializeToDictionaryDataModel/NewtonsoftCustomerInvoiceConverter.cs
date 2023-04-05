@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace JsonSerializeToDictionaryDataModel;
 
-public class NewtonsoftCustomerInvoiceConverter : JsonConverter<Dictionary<Customer, List<Invoice>>>
+public sealed class NewtonsoftCustomerInvoiceConverter : JsonConverter<Dictionary<Customer, List<Invoice>>>
 {
     public override void WriteJson(JsonWriter writer, Dictionary<Customer, List<Invoice>>? value,
         JsonSerializer serializer)
