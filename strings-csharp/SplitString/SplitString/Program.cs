@@ -14,7 +14,7 @@
             SplitStringUsingCharacterArrayUsingCount("apple,banana,cherry,orange", new[] { ',' }, 3);
 
             Console.WriteLine("\n***************** Split the String Using Character Array with Options Using Count ***************\n");
-            SplitStringUsingCharacterArrayWithoptionsUsingCount("   apple , banana , cherry  ,,orange,   ", new[] { ',' }, 2);
+            SplitStringUsingCharacterArrayWithoptionsUsingCount(" apple , banana ; cherry,orange ", new[] { ',', ';' }, 3);
 
             Console.WriteLine("\n***************** Split the String Using String Array with String Split Options ***************\n");
             SplitStringUsingStringArrayWithoptions("apple,banana,kiwi;grape,mango,orange", new[] { ",", ";" });
