@@ -1,4 +1,4 @@
-﻿namespace MoreLINQ
+﻿namespace ExpandingLIQNwithMoreLINQ
 {
     internal class Program
     {
