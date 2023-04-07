@@ -98,5 +98,20 @@ namespace SplitStringTests
             // Assert
             CollectionAssert.AreEqual(expectedOutput, result);
         }
+
+        [TestMethod]
+        public void WhenSplittingAStringIntoNewLine_ThenReturnArrayOfSubstrings()
+        {
+            // Arrange
+            string input = "Line 1\nLine 2\nLine 3\nLine 4\nLine 5";
+            string[] separators = { Environment.NewLine };
+            string[] expectedOutput = { "Line 1\nLine 2\nLine 3\nLine 4\nLine 5" };
+
+            // Act
+            string[] result = Program.SplitStringIntoNewLines(input, separators);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedOutput, result);
+        }
     }
 }

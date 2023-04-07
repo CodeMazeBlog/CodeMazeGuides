@@ -21,6 +21,9 @@
 
             Console.WriteLine("\n***************** Split the String Using String Array with String Split Options Using Count ***************\n");
             SplitStringUsingStringArrayWithoptionsUsingCount("apple,banana,cherry,orange,pear", new[] { "," }, 3);
+
+            Console.WriteLine("\n***************** Split a String Into New Lines ***************\n");
+            SplitStringIntoNewLines("Line 1\nLine 2\nLine 3\nLine 4\nLine 5", new[] { Environment.NewLine });
         }
 
         public static string[] SplitStringUsingCharacterArray(string input, char[] separators)
@@ -92,6 +95,18 @@
             }
 
             return result;
+        }
+
+        public static string[] SplitStringIntoNewLines(string multiLineText, string[] separators)
+        {
+            string[] lines = multiLineText.Split(separators, StringSplitOptions.None);
+
+            foreach (string line in lines) 
+            { 
+                Console.WriteLine(line); 
+            }
+
+            return lines;
         }
     }
 }
