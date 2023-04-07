@@ -1,4 +1,8 @@
-﻿namespace ExpandingLIQNwithMoreLINQ
+﻿using MoreLinq;
+using System;
+using System.Collections.Generic;
+
+namespace ExpandingLIQNwithMoreLINQ
 {
     public class Flight
     {
@@ -37,52 +41,38 @@
             Tickets.Add(ticket);
         }
 
-        public Ticket GetCheapestTicket()
+        public IEnumerable<Ticket> GetCheapestTickets()
         {
-            var cheapestPrice = Tickets.Min(t => t.Price);
-            return Tickets.First(x => x.Price == cheapestPrice);
+            return MoreEnumerable.MinBy(Tickets, x => x.Price);
         }
 
-        public Ticket GetMostExpensiveTicket()
+        public IEnumerable<Ticket> GetMostExpensiveTickets()
         {
-            var highestPrice = Tickets.Max(t => t.Price);
-            return Tickets.First(x => x.Price == highestPrice);
+            return MoreEnumerable.MaxBy(Tickets, x => x.Price);
         }
 
         public bool AreThereFreeSeats()
         {
-            return Tickets.Count < MaxNumberOfTickets;
+            return MoreEnumerable.AtMost(Tickets, MaxNumberOfTickets);
         }
 
         public bool WillFligthTakePlace()
         {
-            return Tickets.Count >= MaxNumberOfTickets && Tickets.Count <= MaxNumberOfTickets;
+            return MoreEnumerable.CountBetween(Tickets, MinNumberOfTickets, MaxNumberOfTickets);
         }
 
-        public IEnumerable<Ticket> GetBordingGroups(int numberOfGroups)
+        public IEnumerable<IEnumerable<Ticket>> GetBordingGroups(int numberOfGroups)
         {
-            var groups = new List<Ticket>();
             var groupSize = (int)Math.Ceiling((double)Tickets.Count / numberOfGroups);
 
-            for (int i = 0; i < numberOfGroups; i++)
-            {
-                groups.AddRange(Tickets.Skip(i * groupSize).Take(groupSize));
-            }
-
-            return groups;
+            return MoreEnumerable.Batch(Tickets, groupSize);
         }
 
         public IEnumerable<Ticket> GetPassangersForSecurityCheck()
         {
-            var passangersForSecurityCheck = new List<Ticket>();
-            var ticketsInRandomOrder = Tickets.OrderBy(a => Guid.NewGuid()).ToList();
+            var ticketsInRandomOrder = MoreEnumerable.Shuffle(Tickets);
 
-            for (int i = 0; i < ticketsInRandomOrder.Count; i += 5)
-            {
-                passangersForSecurityCheck.Add(ticketsInRandomOrder[i]);
-            }
-
-            return passangersForSecurityCheck;
+            return MoreEnumerable.TakeEvery(ticketsInRandomOrder, 5);
         }
     }
 }
