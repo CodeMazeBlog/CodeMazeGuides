@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace JsonSerializeToDictionaryDataModel.Tests;
 
-namespace JsonSerializeToDictionaryDataModel.Tests;
 public class PersonRecordTests
 {
     [Fact]
@@ -13,7 +8,7 @@ public class PersonRecordTests
         const string expected = "Han Solo";
         var names = expected.Split(" ");
         var person = new Person(names[0], names[1]);
-        
+
         Assert.Equal(expected, person.ToString());
     }
 
@@ -22,9 +17,8 @@ public class PersonRecordTests
     {
         const string last = "Solo";
         var person = new Person(string.Empty, last);
-        
-        Assert.Equal(last, person.ToString());
 
+        Assert.Equal(last, person.ToString());
     }
 
     [Fact]
@@ -32,9 +26,8 @@ public class PersonRecordTests
     {
         const string first = "Han`";
         var person = new Person(first, string.Empty);
-        
-        Assert.Equal(first, person.ToString());
 
+        Assert.Equal(first, person.ToString());
     }
 
     [Fact]

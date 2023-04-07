@@ -56,11 +56,11 @@ public sealed class SystemJsonCustomerInvoiceConverter : JsonConverter<Dictionar
         writer.WritePropertyName(nameof(invoice.Items));
         writer.WriteStartArray();
 
-        foreach (var item in invoice.Items)
+        foreach (var lineItem in invoice.Items)
         {
             writer.WriteStartObject();
 
-            WriteItem(writer, item);
+            WriteLineItem(writer, lineItem);
 
             writer.WriteEndObject();
         }
@@ -70,25 +70,30 @@ public sealed class SystemJsonCustomerInvoiceConverter : JsonConverter<Dictionar
         writer.WriteEndObject();
     }
 
-    private static void WriteItem(Utf8JsonWriter writer, InvoiceLineItem item)
+    private static void WriteLineItem(Utf8JsonWriter writer, InvoiceLineItem lineItem)
     {
         writer.WritePropertyName("Item");
 
+        WriteProductItem(writer, lineItem.Item);
+
+        writer.WritePropertyName(nameof(lineItem.Quantity));
+        writer.WriteNumberValue(lineItem.Quantity);
+    }
+
+    private static void WriteProductItem(Utf8JsonWriter writer, Product productItem)
+    {
         writer.WriteStartObject();
 
-        writer.WritePropertyName(nameof(item.Item.Name));
-        writer.WriteStringValue(item.Item.Name);
+        writer.WritePropertyName(nameof(productItem.Name));
+        writer.WriteStringValue(productItem.Name);
 
-        writer.WritePropertyName(nameof(item.Item.CostPerItem));
-        writer.WriteNumberValue(item.Item.CostPerItem);
+        writer.WritePropertyName(nameof(productItem.CostPerItem));
+        writer.WriteNumberValue(productItem.CostPerItem);
 
-        writer.WritePropertyName(nameof(item.Item.ProductId));
-        writer.WriteStringValue(item.Item.ProductId);
+        writer.WritePropertyName(nameof(productItem.ProductId));
+        writer.WriteStringValue(productItem.ProductId);
 
         writer.WriteEndObject();
-
-        writer.WritePropertyName(nameof(item.Quantity));
-        writer.WriteNumberValue(item.Quantity);
     }
 
     private static void WriteCustomerProperties(Utf8JsonWriter writer, Customer customer)
