@@ -111,7 +111,12 @@ namespace SplitStringTests
             string[] result = Program.SplitStringIntoNewLines(input, separators);
 
             // Assert
-            CollectionAssert.AreEqual(expectedOutput, result);
+            Assert.AreEqual(expectedOutput.Length, result.Length);
+
+            for (int i = 0; i < expectedOutput.Length; i++)
+            {
+                Assert.AreEqual(expectedOutput[i], result[i]);
+            }
         }
     }
 }
