@@ -20,63 +20,86 @@ public sealed class SystemJsonCustomerInvoiceConverter : JsonConverter<Dictionar
         foreach (var (customer, invoices) in value)
         {
             writer.WritePropertyName($"Customer-{customer.CustomerId:N}");
+
             writer.WriteStartObject();
 
-            writer.WritePropertyName(nameof(customer.Client));
-            writer.WriteStringValue(customer.Client.ToString());
-            writer.WritePropertyName(nameof(customer.Address));
-            writer.WriteStringValue(customer.Address);
+            WriteCustomerProperties(writer, customer);
 
-            writer.WritePropertyName(nameof(customer.PhoneNumber));
-            writer.WriteStringValue(customer.PhoneNumber);
-
-            writer.WritePropertyName("Invoices");
-            writer.WriteStartArray();
-
-            foreach (var invoice in invoices)
-            {
-                writer.WriteStartObject();
-
-                writer.WritePropertyName(nameof(invoice.InvoiceDate));
-                writer.WriteStringValue(invoice.InvoiceDate);
-
-                writer.WritePropertyName(nameof(invoice.InvoiceId));
-                writer.WriteStringValue(invoice.InvoiceId);
-
-                writer.WritePropertyName(nameof(invoice.Items));
-                writer.WriteStartArray();
-
-                foreach (var item in invoice.Items)
-                {
-                    writer.WriteStartObject();
-
-                    writer.WritePropertyName("Item");
-                    writer.WriteStartObject();
-
-                    writer.WritePropertyName(nameof(item.Item.Name));
-                    writer.WriteStringValue(item.Item.Name);
-                    writer.WritePropertyName(nameof(item.Item.CostPerItem));
-                    writer.WriteNumberValue(item.Item.CostPerItem);
-                    writer.WritePropertyName(nameof(item.Item.ProductId));
-                    writer.WriteStringValue(item.Item.ProductId);
-                    writer.WriteEndObject();
-
-                    writer.WritePropertyName(nameof(item.Quantity));
-                    writer.WriteNumberValue(item.Quantity);
-
-                    writer.WriteEndObject();
-                }
-
-                writer.WriteEndArray();
-
-                writer.WriteEndObject();
-            }
-
-            writer.WriteEndArray();
+            WriteInvoices(writer, invoices);
 
             writer.WriteEndObject();
         }
 
         writer.WriteEndObject();
+    }
+
+    private static void WriteInvoices(Utf8JsonWriter writer, List<Invoice> invoices)
+    {
+        writer.WritePropertyName("Invoices");
+        writer.WriteStartArray();
+
+        foreach (var invoice in invoices) WriteInvoiceProperties(writer, invoice);
+
+        writer.WriteEndArray();
+    }
+
+    private static void WriteInvoiceProperties(Utf8JsonWriter writer, Invoice invoice)
+    {
+        writer.WriteStartObject();
+
+        writer.WritePropertyName(nameof(invoice.InvoiceDate));
+        writer.WriteStringValue(invoice.InvoiceDate);
+
+        writer.WritePropertyName(nameof(invoice.InvoiceId));
+        writer.WriteStringValue(invoice.InvoiceId);
+
+        writer.WritePropertyName(nameof(invoice.Items));
+        writer.WriteStartArray();
+
+        foreach (var item in invoice.Items)
+        {
+            writer.WriteStartObject();
+
+            WriteItem(writer, item);
+
+            writer.WriteEndObject();
+        }
+
+        writer.WriteEndArray();
+
+        writer.WriteEndObject();
+    }
+
+    private static void WriteItem(Utf8JsonWriter writer, InvoiceLineItem item)
+    {
+        writer.WritePropertyName("Item");
+
+        writer.WriteStartObject();
+
+        writer.WritePropertyName(nameof(item.Item.Name));
+        writer.WriteStringValue(item.Item.Name);
+
+        writer.WritePropertyName(nameof(item.Item.CostPerItem));
+        writer.WriteNumberValue(item.Item.CostPerItem);
+
+        writer.WritePropertyName(nameof(item.Item.ProductId));
+        writer.WriteStringValue(item.Item.ProductId);
+
+        writer.WriteEndObject();
+
+        writer.WritePropertyName(nameof(item.Quantity));
+        writer.WriteNumberValue(item.Quantity);
+    }
+
+    private static void WriteCustomerProperties(Utf8JsonWriter writer, Customer customer)
+    {
+        writer.WritePropertyName(nameof(customer.Client));
+        writer.WriteStringValue(customer.Client.ToString());
+
+        writer.WritePropertyName(nameof(customer.Address));
+        writer.WriteStringValue(customer.Address);
+
+        writer.WritePropertyName(nameof(customer.PhoneNumber));
+        writer.WriteStringValue(customer.PhoneNumber);
     }
 }
