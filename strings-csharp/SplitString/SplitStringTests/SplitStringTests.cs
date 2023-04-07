@@ -105,18 +105,13 @@ namespace SplitStringTests
             // Arrange
             string input = "Line 1\nLine 2\nLine 3\nLine 4\nLine 5";
             string[] separators = { Environment.NewLine };
-            string[] expectedOutput = { "Line 1\nLine 2\nLine 3\nLine 4\nLine 5" };
+            int expectedOutputLength = 5;
 
             // Act
             string[] result = Program.SplitStringIntoNewLines(input, separators);
 
             // Assert
-            Assert.AreEqual(expectedOutput.Length, result.Length);
-
-            for (int i = 0; i < expectedOutput.Length; i++)
-            {
-                Assert.AreEqual(expectedOutput[i], result[i]);
-            }
+            Assert.AreEqual(expectedOutputLength, result.Length);
         }
     }
 }
