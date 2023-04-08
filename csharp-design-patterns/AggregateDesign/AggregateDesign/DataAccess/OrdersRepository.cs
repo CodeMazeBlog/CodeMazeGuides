@@ -17,11 +17,11 @@ public class OrdersRepository : IOrdersRepository
 
     public async Task<Order?> GetByIdAsync(long id)
     {
-        var dataModel = await _dbContext.orders
+        var dataModel = await _dbContext.Orders
             .Include(x => x.Items)
             .FirstAsync(x => x.OrderId == id);
 
-        if (dataModel == null)
+        if (dataModel is null)
             return null;
 
         var entity = _mapper.Map<OrderModel, Order>(dataModel);
@@ -40,7 +40,7 @@ public class OrdersRepository : IOrdersRepository
     public async Task<Order> UpdateAsync(Order entity)
     {
         var dataModel = _mapper.Map<Order, OrderModel>(entity);
-        var attached = await _dbContext.orders
+        var attached = await _dbContext.Orders
             .Include(x => x.Items)
             .SingleAsync(x => x.OrderId == entity.OrderId);
 

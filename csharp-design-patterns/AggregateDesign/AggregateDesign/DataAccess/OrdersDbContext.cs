@@ -6,8 +6,8 @@ namespace AggregateDesign.DataAccess;
 
 public class OrdersDbContext : DbContext
 {
-    public DbSet<OrderModel> orders { get; set; }
-    public DbSet<OrderItemModel> orderItems { get; set; }
+    public DbSet<OrderModel> Orders { get; set; }
+    public DbSet<OrderItemModel> OrderItems { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

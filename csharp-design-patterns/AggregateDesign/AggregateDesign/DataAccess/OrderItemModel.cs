@@ -11,9 +11,9 @@ public class OrderItemModel
 
     public long OrderId { get; set; }
 
-    public OrderModel Order { get; set; }
+    public OrderModel? Order { get; set; }
 
-    public string ItemName { get; set; }
+    public string? ItemName { get; set; }
 
     public uint Quantity { get; set; }
 
