@@ -7,4 +7,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="P:\Projects\CM\CodeMazeGuides\dotnet-compiler\DotnetCompilerExample\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="P:\Projects\CM\CodeMazeGuides\dotnet-compiler\DotnetCompilerExample\.editorconfig" />
+  </ItemGroup>
+
 </Project>

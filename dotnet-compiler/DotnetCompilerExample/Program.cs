@@ -1,8 +1,2 @@
-﻿using System;
-internal class Program
-{
-    private static void Main(string[] args)
-    {
-        Console.WriteLine("Hello, World!");
-    }
-}
+﻿string message = "Hello, There!";
+Console.WriteLine(message);
