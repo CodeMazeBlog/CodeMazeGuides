@@ -2,6 +2,12 @@
 
 public class ExceptionObject
 {
+    public string Message { get; set; }
+
+    public string? StackTrace { get; set; }
+
+    public ExceptionObject? InnerException { get; set; }
+
     public ExceptionObject(Exception exception)
     {
         Message = exception.Message;
@@ -10,10 +16,4 @@ public class ExceptionObject
         if (exception.InnerException is { } innerException)
             InnerException = new ExceptionObject(innerException);
     }
-
-    public string Message { get; set; }
-
-    public string? StackTrace { get; set; }
-
-    public ExceptionObject? InnerException { get; set; }
 }

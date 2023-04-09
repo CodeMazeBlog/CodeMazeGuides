@@ -2,6 +2,8 @@
 
 public class CustomException : Exception
 {
+    public string Mitigation { get; }
+
     public CustomException(string message, string mitigation) 
         : this(message, mitigation, null)
     { }
@@ -10,7 +12,5 @@ public class CustomException : Exception
         : base(message, innerException)
     {
         Mitigation = mitigation;
-    }
-
-    public string Mitigation { get; }
+    }    
 }
