@@ -2,11 +2,11 @@
 {
     public class Ticket
     {
-        public int TicketNumber { get; set; }
-        public int SeatNumber { get; set; }
-        public string PassengerName { get; set; }
-        public string TicketClass { get; set; }
-        public decimal Price { get; set; }
+        public int? TicketNumber { get; set; }
+        public int? SeatNumber { get; set; }
+        public string? PassengerName { get; set; }
+        public string? TicketClass { get; set; }
+        public decimal? Price { get; set; }
 
         public Ticket()
         {            

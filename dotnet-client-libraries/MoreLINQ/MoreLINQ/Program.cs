@@ -50,11 +50,6 @@ namespace ExpandingLIQNwithMoreLINQ
                 .RuleFor(x => x.Price, f => f.Random.Decimal(20.00m, 250.00m));
         }
 
-        private static Ticket GetBogusticket()
-        {
-            var generator = GetTicketGenerator();
-
-            return generator.Generate();
-        }
+        private static Ticket GetBogusticket() => GetTicketGenerator().Generate();
     }
 }
