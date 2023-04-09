@@ -8,8 +8,10 @@ Console.WriteLine("Remove first instance of element: ");
 Console.WriteLine("With ArrayCopy: " + String.Join(",", DeleteWithArrayCopy(array, elementToDelete)));
 Console.WriteLine("With ArraySegment: " + String.Join(",", DeleteWithArraySegment(array, elementToDelete)));
 Console.WriteLine("With Loop: " + String.Join(",", DeleteWithLoop(array, elementToDelete)));
+Console.WriteLine("With BufferCopy: " + String.Join(",", DeleteWithBufferCopy(array, elementToDelete)));
 
 Console.WriteLine("Remove every instance of the element: ");
 Console.WriteLine("With FindAll: " + String.Join(",", DeleteWithFindAll(array, elementToDelete)));
 Console.WriteLine("With Where: " + String.Join(",", DeleteWithWhere(array, elementToDelete)));
 Console.WriteLine("With RemoveAll: " + String.Join(",", DeleteWithRemoveAll(array, elementToDelete)));
+Console.WriteLine("With List: " + String.Join(",", DeleteWithList(array, elementToDelete)));
