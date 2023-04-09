@@ -9,7 +9,6 @@ namespace SievePackage.Controllers;
 [ApiController]
 public class ShoesController : ControllerBase
 {
-
     private readonly ISieveProcessor _sieveProcessor;
     private readonly IShoeRetrievalService _shoeRetrievalService;
 
