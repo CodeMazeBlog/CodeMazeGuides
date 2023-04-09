@@ -1,4 +1,4 @@
-﻿using static DeleteElementsFromAnArray.Methods;
+using static DeleteElementsFromAnArray.Methods;
 
 var array = new int[] { 3, 4, 5, 3, 5, 7 };
 var elementToDelete = 3;

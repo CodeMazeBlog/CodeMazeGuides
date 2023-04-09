@@ -1,4 +1,4 @@
-﻿namespace DeleteElementsFromAnArray 
+namespace DeleteElementsFromAnArray 
 {
     public static partial class Methods 
     {
@@ -6,7 +6,7 @@
         {
             var list = new List<int>(inputArray);
             list.RemoveAll(e => e == elementToRemove);
-
+            
             return list.ToArray();
         }
     }

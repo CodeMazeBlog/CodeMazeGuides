@@ -1,4 +1,4 @@
-﻿namespace DeleteElementsFromAnArray
+namespace DeleteElementsFromAnArray
 {
     public static partial class Methods
     {
