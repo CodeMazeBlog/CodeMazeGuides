@@ -8,6 +8,10 @@
         public string TicketClass { get; set; }
         public decimal Price { get; set; }
 
+        public Ticket()
+        {            
+        }
+
         public Ticket(
             int ticketNumber,
             int seatNumber,

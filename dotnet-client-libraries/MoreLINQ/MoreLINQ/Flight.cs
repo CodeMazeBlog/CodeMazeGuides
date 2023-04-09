@@ -1,6 +1,9 @@
 ﻿using MoreLinq;
+using MoreLinq.Extensions;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ExpandingLIQNwithMoreLINQ
 {
@@ -14,7 +17,7 @@ namespace ExpandingLIQNwithMoreLINQ
         public string ArrivalCity { get; set; }
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
-        public List<Ticket> Tickets { get; set; }
+        public List<Ticket> Tickets { get; set; }         
 
         public Flight(
             int flightNumber,
@@ -53,7 +56,7 @@ namespace ExpandingLIQNwithMoreLINQ
 
         public bool AreThereFreeSeats()
         {
-            return MoreEnumerable.AtMost(Tickets, MaxNumberOfTickets);
+            return MoreEnumerable.AtMost(Tickets, MaxNumberOfTickets - 1);
         }
 
         public bool WillFligthTakePlace()
@@ -68,7 +71,7 @@ namespace ExpandingLIQNwithMoreLINQ
             return MoreEnumerable.Batch(Tickets, groupSize);
         }
 
-        public IEnumerable<Ticket> GetPassangersForSecurityCheck()
+        public IEnumerable<Ticket> GetPassengersForSecurityCheck()
         {
             var ticketsInRandomOrder = MoreEnumerable.Shuffle(Tickets);
 
