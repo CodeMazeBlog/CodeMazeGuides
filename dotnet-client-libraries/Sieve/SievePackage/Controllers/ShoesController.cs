@@ -9,48 +9,20 @@ namespace SievePackage.Controllers;
 [ApiController]
 public class ShoesController : ControllerBase
 {
-    private static readonly List<Shoe> _shoes = new()
-    {
-        new()
-        {
-            Id = 1,
-            Name = "Pegasus 39",
-            Brand = "Nike",
-            Price = 119.99M,
-            Category = "Running",
-            Rating = 4.5M
-        },
-        new()
-        {
-            Id = 2,
-            Name = "Pegasus Trail 3",
-            Brand = "Nike",
-            Price = 119.99M,
-            Category = "Trail",
-            Rating = 3.8M
-        },
-        new()
-        {
-            Id = 3,
-            Name = "Ride 15",
-            Brand = "Saucony",
-            Price = 59.99M,
-            Category = "Neutral",
-            Rating = 4.9M
-        }
-    };
 
-    private readonly SieveProcessor _sieveProcessor;
+    private readonly ISieveProcessor _sieveProcessor;
+    private readonly IShoeRetrievalService _shoeRetrievalService;
 
-    public ShoesController(SieveProcessor sieveProcessor)
+    public ShoesController(ISieveProcessor sieveProcessor, IShoeRetrievalService shoeRetrievalService)
     {
         _sieveProcessor = sieveProcessor;
+        _shoeRetrievalService = shoeRetrievalService;
     }
 
     [HttpGet]
     public IActionResult GetShoes([FromQuery]SieveModel sieveModel)
     {
-        var result = _sieveProcessor.Apply(sieveModel, _shoes.AsQueryable());
+        var result = _sieveProcessor.Apply(sieveModel, _shoeRetrievalService.GetShoes());
 
         return Ok(result);
     }

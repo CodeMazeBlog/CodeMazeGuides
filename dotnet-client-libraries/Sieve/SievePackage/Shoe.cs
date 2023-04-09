@@ -3,8 +3,6 @@
 namespace SievePackage;
 public class Shoe
 {
-    public int Id { get; set; }
-
     public required string Name { get; set; }
 
     [Sieve(CanFilter = true)]
