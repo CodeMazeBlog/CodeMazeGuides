@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace JsonSerializeExceptions;
+﻿namespace JsonSerializeExceptions;
 
 public class CustomException : Exception
 {
