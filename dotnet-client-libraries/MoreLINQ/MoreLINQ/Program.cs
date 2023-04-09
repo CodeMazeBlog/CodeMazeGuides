@@ -20,10 +20,12 @@ namespace ExpandingLIQNwithMoreLINQ
             }
 
             var cheapestTickets = flight.GetCheapestTickets();
-            Console.WriteLine($"The cheapest ticket costs: {cheapestTickets.First().Price}, there are {cheapestTickets.Count()} such tickets.");
+            Console.WriteLine($"Cheapest ticket costs: {cheapestTickets.First().Price}.");
+            Console.WriteLine($"{cheapestTickets.Count()} such ticket/s sold.");
 
             var mostExpensiveTickets = flight.GetMostExpensiveTickets();
-            Console.WriteLine($"The the most expensive ticket costs: {mostExpensiveTickets.First().Price}, there are {mostExpensiveTickets.Count()} such ticket/s.");
+            Console.WriteLine($"Most expensive ticket costs: {mostExpensiveTickets.First().Price}.");
+            Console.WriteLine($"{mostExpensiveTickets.Count()} such ticket/s sold.");
 
             var boardingGroups = flight.GetBordingGroups(4);
             Console.WriteLine($"We have {boardingGroups.Count()} boarding groups.");
