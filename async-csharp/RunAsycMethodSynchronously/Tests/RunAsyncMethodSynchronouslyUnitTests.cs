@@ -46,4 +46,16 @@ public class RunAsyncMethodSynchronouslyUnitTests
 
         Assert.Equal(count, actual.Count);
     }
+
+    [Fact]
+    public void WhenWaitMethodThrowsException_ThenThrowAggregateException()
+    {
+        Assert.Throws<AggregateException>(() => _personService.ExceptionHandlingUsingWaitMethod());
+    }
+
+    [Fact]
+    public void WhenGetAwaiterMethodThrowsException_ThenThrowException()
+    {
+        Assert.Throws<Exception>(() => _personService.ExceptionHandlingUsingGetAwaiterMethod());
+    }
 }

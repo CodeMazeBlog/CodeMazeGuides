@@ -6,7 +6,7 @@ public class PersonService
     {
         var task = new Task<List<Person>>(() =>
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(1000);
 
             return new List<Person>
             {
@@ -17,10 +17,10 @@ public class PersonService
         });
 
         task.RunSynchronously();
-        
+
         return task.Result;
     }
-    
+
     public List<Person> GetPeopleUsingWaitMethod()
     {
         var task = GetPeopleAsync();
@@ -43,9 +43,10 @@ public class PersonService
         return response;
     }
 
+
     private async Task<List<Person>> GetPeopleAsync()
     {
-        await Task.Delay(2000);
+        await Task.Delay(1000);
 
         return new List<Person>
         {
@@ -53,5 +54,43 @@ public class PersonService
             new() { Name = "Bob", Age = 30 },
             new() { Name = "Charlie", Age = 35 }
         };
+    }
+
+    public async Task ThrowExceptionAsync()
+    {
+        await Task.Delay(1000);
+
+        throw new Exception("The task threw an exception");
+    }
+
+    public void ExceptionHandlingUsingWaitMethod()
+    {
+        var task = ThrowExceptionAsync();
+        try
+        {
+            task.Wait();
+        }
+        catch (AggregateException e)
+        {
+            foreach (var innerException in e.InnerExceptions)
+            {
+                Console.WriteLine(innerException.Message);
+                throw;
+            }
+        }
+    }
+
+    public void ExceptionHandlingUsingGetAwaiterMethod()
+    {
+        var task = ThrowExceptionAsync();
+        try
+        {
+            task.GetAwaiter().GetResult();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error Message: {e.Message}");
+            throw;
+        }
     }
 }
