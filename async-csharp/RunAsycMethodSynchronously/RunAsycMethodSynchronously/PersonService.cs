@@ -8,7 +8,7 @@ public class PersonService
     {
         var task = new Task<List<Person>>(() =>
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(200);
 
             return new List<Person>
             {
@@ -48,7 +48,7 @@ public class PersonService
 
     private async Task<List<Person>> GetPeopleAsync()
     {
-        await Task.Delay(1000);
+        await Task.Delay(200);
 
         return new List<Person>
         {
@@ -60,7 +60,7 @@ public class PersonService
 
     public async Task ThrowExceptionAsync()
     {
-        await Task.Delay(1000);
+        await Task.Delay(200);
 
         throw new InvalidOperationException("The task threw an invalid operation exception");
     }
