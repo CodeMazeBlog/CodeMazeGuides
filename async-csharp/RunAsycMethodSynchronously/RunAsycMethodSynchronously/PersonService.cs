@@ -89,7 +89,7 @@ public class PersonService
         {
             task.GetAwaiter().GetResult();
         }
-        catch (Exception e)
+        catch (InvalidOperationException e)
         {
             Console.WriteLine($"Error Message: {e.Message}");
             throw;
