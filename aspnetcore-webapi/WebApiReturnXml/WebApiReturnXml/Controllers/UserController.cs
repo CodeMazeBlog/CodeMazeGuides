@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebApiReturnXml.Controllers
 {
@@ -12,6 +11,7 @@ namespace WebApiReturnXml.Controllers
         public IActionResult GetUser(int id)
         {
             var user = new User { Id = id, Name = "Steve James" };
+
             return Ok(user);
         }
     }

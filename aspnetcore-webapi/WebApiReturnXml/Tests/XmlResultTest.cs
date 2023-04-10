@@ -6,9 +6,10 @@ using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Tests
 {
-    public class Tests
+    [TestClass]
+    public class XmlResultTest
     {
-        private UserController _controller;
+        public UserController? _controller;
 
         [TestInitialize]
         public void Setup()
@@ -17,7 +18,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GetUser_WhenCalled_ReturnsXmlResult_WithUserObject()
+        public void WhenCalled_ThenReturnsXmlResult_UserObject()
         {
             // Arrange
             var id = 1;
