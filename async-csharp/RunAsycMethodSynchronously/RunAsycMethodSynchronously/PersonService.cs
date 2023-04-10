@@ -1,4 +1,6 @@
-﻿namespace RunAsyncMethodSynchronously;
+﻿using System;
+
+namespace RunAsyncMethodSynchronously;
 
 public class PersonService
 {
@@ -60,7 +62,7 @@ public class PersonService
     {
         await Task.Delay(1000);
 
-        throw new Exception("The task threw an exception");
+        throw new InvalidOperationException("The task threw an invalid operation exception");
     }
 
     public void ExceptionHandlingUsingWaitMethod()

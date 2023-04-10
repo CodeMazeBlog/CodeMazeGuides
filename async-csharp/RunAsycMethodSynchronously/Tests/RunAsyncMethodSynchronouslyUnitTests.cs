@@ -56,6 +56,6 @@ public class RunAsyncMethodSynchronouslyUnitTests
     [Fact]
     public void WhenGetAwaiterMethodThrowsException_ThenThrowException()
     {
-        Assert.Throws<Exception>(() => _personService.ExceptionHandlingUsingGetAwaiterMethod());
+        Assert.Throws<InvalidOperationException>(() => _personService.ExceptionHandlingUsingGetAwaiterMethod());
     }
 }
