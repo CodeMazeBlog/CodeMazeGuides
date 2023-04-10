@@ -29,10 +29,10 @@
 
   <ItemGroup>
     <None Update="Files\SampleDoc1.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Files\SampleFile2.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Files\SampleFile3.zip">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

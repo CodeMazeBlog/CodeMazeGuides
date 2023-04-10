@@ -5,6 +5,8 @@ namespace Tests
 {
     public class FileTests
     {
+        private string baseDir = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(
+            Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory))));
         private readonly WebApplicationFactory<Program> _factory;
 
         public FileTests()
@@ -20,9 +22,11 @@ namespace Tests
 
             // Act
             HttpResponseMessage response;
-            await using (var file1 = File.OpenRead(@"Files\SampleDoc1.pdf"))
+            var sampleFile1 = Path.Combine(baseDir, "Files", "SampleDoc1.pdf");
+            var sampleFile2 = Path.Combine(baseDir, "Files", "SampleFile2.zip");
+            await using (var file1 = File.OpenRead(sampleFile1))
             using (var content1 = new StreamContent(file1))
-            await using (var file2 = File.OpenRead(@"Files\SampleFile2.zip"))
+            await using (var file2 = File.OpenRead(sampleFile2))
             using (var content2 = new StreamContent(file2))
             using (var formData = new MultipartFormDataContent())
             {
