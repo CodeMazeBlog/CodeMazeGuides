@@ -9,31 +9,33 @@ namespace ActionFuncDelegatesTest
     {
         private readonly StringWriter _stringWriter;
         private readonly StringBuilder _outputBuilder;
+
         public ProgramTests()
         {
             _stringWriter = new StringWriter();
             _outputBuilder = new StringBuilder();
             Console.SetOut(_stringWriter);
         }
+
         public void Dispose()
         {
-            Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
-            string output = _stringWriter.ToString();
-            _outputBuilder.Append(output);
             _stringWriter.Dispose();
         }
+
         [Fact]
         public void TestActionDelegate_Greet()
         {
             // Arrange
             Action greetMessage = ActionFuncDelegates.Program.Greet;
+
             // Act
             greetMessage();
             // Assert
             string expectedOutput = "Hello, how can I help you?";
-            string actualOutput = _outputBuilder.ToString().TrimEnd();
+            string actualOutput = _stringWriter.ToString().TrimEnd();
             Assert.Equal(expectedOutput, actualOutput);
         }
+
         [Fact]
         public void TestActionDelegate_GreetWithName()
         {
@@ -44,7 +46,7 @@ namespace ActionFuncDelegatesTest
             greetWithName(name);
             // Assert
             string expectedOutput = $"Hello {name}, how can I help you?";
-            string actualOutput = _outputBuilder.ToString().TrimEnd();
+            string actualOutput = _stringWriter.ToString().TrimEnd();
             Assert.Equal(expectedOutput, actualOutput);
         }
 
@@ -73,6 +75,7 @@ namespace ActionFuncDelegatesTest
             string result = getFullname(firstName, lastName);
             // Assert
             string expectedOutput = $"{firstName} {lastName}";
+            string actualOutput = _stringWriter.ToString().TrimEnd();
             Assert.Equal(expectedOutput, result);
         }
     }
