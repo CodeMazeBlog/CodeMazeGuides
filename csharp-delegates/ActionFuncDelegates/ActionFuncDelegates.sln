@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionFuncDelegates", "ActionFuncDelegates.csproj", "{C3809ACF-7D89-4BB8-8406-0338D500A7A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionFuncDelegates", "ActionFuncDelegates.csproj", "{C3809ACF-7D89-4BB8-8406-0338D500A7A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionFuncelegatesTest", "..\ActionFuncelegatesTest\ActionFuncelegatesTest.csproj", "{4A576E2F-5978-4BC6-82D3-795B8AD8185E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C3809ACF-7D89-4BB8-8406-0338D500A7A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3809ACF-7D89-4BB8-8406-0338D500A7A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3809ACF-7D89-4BB8-8406-0338D500A7A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A576E2F-5978-4BC6-82D3-795B8AD8185E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A576E2F-5978-4BC6-82D3-795B8AD8185E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A576E2F-5978-4BC6-82D3-795B8AD8185E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A576E2F-5978-4BC6-82D3-795B8AD8185E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

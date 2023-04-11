@@ -1,6 +1,6 @@
 ﻿namespace ActionFuncDelegates
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -26,19 +26,19 @@
         }
 
         #region Function Definations
-        static void Greet()
+        public static void Greet()
         {
             Console.WriteLine("Hello, how can I help you?");
         }
-        static void GreetWithName(string name)
+        public static void GreetWithName(string name)
         {
             Console.WriteLine($"Hello {name}, how can I help you?");
         }
-        static double PercentageScore(int totalMarks, int obtainedMarks)
+        public static double PercentageScore(int totalMarks, int obtainedMarks)
         {
             return obtainedMarks * 100 / totalMarks;
         }
-        static string GetFullname(string firtsName, string lastame)
+        public static string GetFullname(string firtsName, string lastame)
         {
             return firtsName + " " + lastame;
         }
