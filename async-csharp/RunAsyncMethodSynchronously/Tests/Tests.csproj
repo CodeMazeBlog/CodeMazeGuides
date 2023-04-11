@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RunAsycMethodSynchronously\RunAsyncMethodSynchronously.csproj" />
+    <ProjectReference Include="..\RunAsyncMethodSynchronously\RunAsyncMethodSynchronously.csproj" />
   </ItemGroup>
 
 </Project>
