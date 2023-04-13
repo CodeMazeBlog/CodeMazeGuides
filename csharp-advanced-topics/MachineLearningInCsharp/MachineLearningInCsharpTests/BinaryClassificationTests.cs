@@ -1,6 +1,7 @@
 using MachineLearningInCsharpEngine.DataModels.BinaryClassification;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 
 namespace MachineLearningInCsharpTests;
 
@@ -14,7 +15,9 @@ public class BinaryClassificationTests
         if(modelBuilder == null)
         {
             modelBuilder = new ModelBuilder();
-            modelBuilder.CreateModel(@"DataSets\credit_customers.csv", "binaryCreditClassificationModel.zip");
+            var currentDir = Directory.GetCurrentDirectory();
+            modelBuilder.CreateModel(Path.Combine(currentDir, @"DataSets\credit_customers.csv"),
+                Path.Combine(currentDir, "binaryCreditClassificationModel.zip"));
         }
     }
 

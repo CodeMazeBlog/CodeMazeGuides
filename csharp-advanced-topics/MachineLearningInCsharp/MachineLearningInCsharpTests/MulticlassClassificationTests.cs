@@ -1,5 +1,6 @@
 using MachineLearningInCsharpEngine.DataModels.MulticlassClassification;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace MachineLearningInCsharpTests;
 
@@ -13,7 +14,9 @@ public class MulticlassClassificationTests
         if(modelBuilder == null)
         {
             modelBuilder = new ModelBuilder();
-            modelBuilder.CreateModel(@"DataSets\credit_customers.csv", "multiclassCreditClassificationModel.zip");
+            var currentDir = Directory.GetCurrentDirectory();
+            modelBuilder.CreateModel(Path.Combine(currentDir, @"DataSets\credit_customers.csv"),
+                Path.Combine(currentDir,"multiclassCreditClassificationModel.zip"));
         }
     }
 
