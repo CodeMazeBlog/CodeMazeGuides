@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <None Update="DataSets\credit_customers.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
