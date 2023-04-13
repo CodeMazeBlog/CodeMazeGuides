@@ -1,9 +1,4 @@
 ﻿using MoreLinq;
-using MoreLinq.Extensions;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ExpandingLIQNwithMoreLINQ
 {
@@ -17,7 +12,7 @@ namespace ExpandingLIQNwithMoreLINQ
         public string ArrivalCity { get; set; }
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
-        public List<Ticket> Tickets { get; set; }         
+        public List<Ticket> Tickets { get; set; }
 
         public Flight(
             int flightNumber,
@@ -40,8 +35,10 @@ namespace ExpandingLIQNwithMoreLINQ
             {
                 Console.WriteLine("No free seats on the plane!");
             }
-
-            Tickets.Add(ticket);
+            else
+            {
+                Tickets.Add(ticket);
+            }
         }
 
         public IEnumerable<Ticket> GetCheapestTickets()

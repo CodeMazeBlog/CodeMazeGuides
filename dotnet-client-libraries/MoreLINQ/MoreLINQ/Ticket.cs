@@ -9,7 +9,7 @@
         public decimal? Price { get; set; }
 
         public Ticket()
-        {            
+        {
         }
 
         public Ticket(
