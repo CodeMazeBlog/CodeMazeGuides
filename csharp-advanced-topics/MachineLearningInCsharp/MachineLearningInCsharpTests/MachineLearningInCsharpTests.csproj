@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="DataSets\credit_customers.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="DataSets\credit_customers.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.7" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.7" />
@@ -16,12 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MachineLearningInCsharpEngine\MachineLearningInCsharpEngine.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="DataSets\credit_customers.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
