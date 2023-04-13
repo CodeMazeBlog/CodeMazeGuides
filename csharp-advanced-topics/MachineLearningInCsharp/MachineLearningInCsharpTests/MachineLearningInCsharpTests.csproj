@@ -18,4 +18,10 @@
     <ProjectReference Include="..\MachineLearningInCsharpEngine\MachineLearningInCsharpEngine.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="DataSets\credit_customers.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
