@@ -24,7 +24,8 @@ public class CrudBasedBlogPostsController : ControllerBase
     {
         var blogPost = new BlogPost() { AuthorName = User.Identity?.Name ?? "Guest" };
 
-        var authorizationResult = await _authorizationService.AuthorizeAsync(User, blogPost, CrudOperationRequirements.CreateRequirement);
+        var authorizationResult = await _authorizationService.AuthorizeAsync(User, blogPost,
+            CrudOperationRequirements.CreateRequirement);
 
         if (!authorizationResult.Succeeded)
         {
@@ -41,7 +42,8 @@ public class CrudBasedBlogPostsController : ControllerBase
     {
         BlogPost blogPost = await _blogPostsRepository.GetByIdAsync(blogPostId);
 
-        var authorizationResult = await _authorizationService.AuthorizeAsync(User, blogPost, CrudOperationRequirements.ReadRequirement);
+        var authorizationResult = await _authorizationService.AuthorizeAsync(User, blogPost,
+            CrudOperationRequirements.ReadRequirement);
 
         if (!authorizationResult.Succeeded)
         {
@@ -57,7 +59,8 @@ public class CrudBasedBlogPostsController : ControllerBase
     {
         BlogPost blogPost = await _blogPostsRepository.GetByIdAsync(blogPostId);
 
-        var authorizationResult = await _authorizationService.AuthorizeAsync(User, blogPost, CrudOperationRequirements.UpdateRequirement);
+        var authorizationResult = await _authorizationService.AuthorizeAsync(User, blogPost,
+            CrudOperationRequirements.UpdateRequirement);
 
         if (!authorizationResult.Succeeded)
         {
@@ -73,7 +76,8 @@ public class CrudBasedBlogPostsController : ControllerBase
     {
         BlogPost blogPost = await _blogPostsRepository.GetByIdAsync(blogPostId);
 
-        var authorizationResult = await _authorizationService.AuthorizeAsync(User, blogPost, CrudOperationRequirements.DeleteRequirement);
+        var authorizationResult = await _authorizationService.AuthorizeAsync(User, blogPost,
+            CrudOperationRequirements.DeleteRequirement);
 
         if (!authorizationResult.Succeeded)
         {
