@@ -7,17 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="DataSets\credit_customers.csv" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="DataSets\credit_customers.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.ML" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataSets\credit_customers.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

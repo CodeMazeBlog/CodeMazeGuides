@@ -15,7 +15,8 @@ public class MulticlassClassificationTests
         {
             modelBuilder = new ModelBuilder();
             var currentDir = Directory.GetCurrentDirectory();
-            modelBuilder.CreateModel(Path.Combine(currentDir, @"DataSets\credit_customers.csv"),
+            var parentDir = Directory.GetParent(currentDir).Parent.Parent;
+            modelBuilder.CreateModel(Path.Combine(parentDir.FullName, @"DataSets\credit_customers.csv"),
                 Path.Combine(currentDir,"multiclassCreditClassificationModel.zip"));
         }
     }
