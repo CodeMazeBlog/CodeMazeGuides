@@ -6,6 +6,7 @@ This section contains articles about ASP.NET Core Web API related topics.
 
 - [Web API Analyzers in ASP.NET Core](https://code-maze.com/web-api-analyzers-aspnetcore/)
 - [How to Use RabbitMQ in ASP.NET Core](https://code-maze.com/aspnetcore-rabbitmq/)
+- [The AddEndpointsApiExplorer Method in ASP.NET Core](https://code-maze.com/apsnetcore-webapi-addendpointsapiexplorer-method/)
 - [ApiController Attribute in ASP.NET Core Web API](https://code-maze.com/apicontroller-attribute-in-asp-net-core-web-api/)
 - [Implementing API Gateway with Ocelot in ASP.NET Core](https://code-maze.com/aspnetcore-api-gateway-with-ocelot/)
 - [Creating Multiple Resources with a Single Request in ASP.NET Core](https://code-maze.com/aspnetcore-creating-multiple-resources-with-single-request/)
