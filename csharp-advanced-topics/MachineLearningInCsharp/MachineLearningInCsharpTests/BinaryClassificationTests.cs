@@ -17,7 +17,7 @@ public class BinaryClassificationTests
             modelBuilder = new ModelBuilder();
             var currentDir = Directory.GetCurrentDirectory();
             var parentDir = Directory.GetParent(currentDir).Parent.Parent;  
-            modelBuilder.CreateModel(Path.Combine(parentDir.FullName, @"DataSets\credit_customers.csv"),
+            modelBuilder.CreateModel(Path.Combine(parentDir.FullName, @"DataSets/credit_customers.csv"),
                 Path.Combine(currentDir, "binaryCreditClassificationModel.zip"));
         }
     }
