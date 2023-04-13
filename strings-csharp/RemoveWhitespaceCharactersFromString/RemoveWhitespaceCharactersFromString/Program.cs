@@ -1,32 +1,35 @@
 ﻿using RemoveWhitespaceCharactersFromString;
 
-//regex
-var sourceRegex = " \t hello worl d";
-var resultRegex = RemoveWhitespaceMethods.RemoveWhitespacesUsingRegex(sourceRegex);
-Console.WriteLine(resultRegex); // prints 'helloworld'
+const string sourceHelloWorld = "\v\tHello World!\r\n";
 
-//linq
-var sourceLinq = "hello \t world\r\n123";
-var resultLinq = RemoveWhitespaceMethods.RemoveWhitespacesUsingLinq(sourceLinq);
-Console.WriteLine(resultLinq); //prints 'helloworld123'
+//regex
+var resultRegex = RemoveWhitespaceMethods.RemoveWhitespacesUsingRegexClass(sourceHelloWorld);
+Console.WriteLine(resultRegex); // prints 'HelloWorld!'
+
+//linq with string concat
+var resultLinqConcat = RemoveWhitespaceMethods.RemoveWhitespacesUsingLinqWithStringConcat(sourceHelloWorld);
+Console.WriteLine(resultLinqConcat); //prints 'HelloWorld!'
+
+//linq with string construct
+var resultLinqConstruct = RemoveWhitespaceMethods.RemoveWhitespacesUsingLinqWithStringConstruct(sourceHelloWorld);
+Console.WriteLine(resultLinqConstruct); //prints 'HelloWorld!'
 
 //replace
-var sourceReplace = " Hello World!";
-var resultReplace = RemoveWhitespaceMethods.RemoveWhitespacesUsingReplace(sourceReplace);
+var resultReplace = RemoveWhitespaceMethods.RemoveWhitespacesUsingReplace(sourceHelloWorld);
 Console.WriteLine(resultReplace); // prints 'HelloWorld!'
 
-//trim
-var sourceTrim = " \t John Doe ";
-var resultTrim = RemoveWhitespaceMethods.RemoveLeadingAndTrailingWhitespacesUsingTrim(sourceTrim);
-Console.WriteLine(resultTrim); //prints 'John Doe'
-
 //split+join
-var sourceSplitJoin= " \t Hello World ";
-var resultSplitJoin = RemoveWhitespaceMethods.RemoveWhitespacesUsingSplitJoin(sourceSplitJoin);
-Console.WriteLine(resultSplitJoin); //prints 'HelloWorld'
+var resultSplitJoin = RemoveWhitespaceMethods.RemoveWhitespacesUsingSplitJoin(sourceHelloWorld);
+Console.WriteLine(resultSplitJoin); //prints 'HelloWorld!'
 
 //string builder
-var sourceStringBuilder = " Hello World! \r\n";
-var resultStringBuilder = RemoveWhitespaceMethods.RemoveWhitespacesUsingStringBuilder(sourceStringBuilder);
+var resultStringBuilder = RemoveWhitespaceMethods.RemoveWhitespacesUsingStringBuilder(sourceHelloWorld);
 Console.WriteLine(resultStringBuilder); //prints "HelloWorld!"
 
+// array
+var resultArray = RemoveWhitespaceMethods.RemoveWhitespacesUsingArray(sourceHelloWorld);
+Console.WriteLine(resultArray); // prints "HelloWorld!"
+
+//trim
+var resultTrim = RemoveWhitespaceMethods.RemoveLeadingAndTrailingWhitespacesUsingTrim(sourceHelloWorld);
+Console.WriteLine(resultTrim); //prints 'Hello World!'
