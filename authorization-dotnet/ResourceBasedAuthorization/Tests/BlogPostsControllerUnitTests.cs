@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using ResourceBasedAuthorization.Controllers;
+using ResourceBasedAuthorization.Repositories;
 
 namespace ResourceBasedAuthorization.Tests;
 
@@ -20,7 +21,9 @@ public class BlogPostsControllerUnitTests
             .AuthorizeAsync(It.IsAny<ClaimsPrincipal>(), It.IsAny<BlogPost>(), It.Is<string>(y => y == policyName)))
             .ReturnsAsync(AuthorizationResult.Success());
 
-        var blogPostsController = new BlogPostsController(authorizationService.Object);
+        var blogPostsRepository = new BlogPostsRepository();
+
+        var blogPostsController = new BlogPostsController(authorizationService.Object, blogPostsRepository);
 
         // Act
         var result = await blogPostsController.UpdateBlogPostAsync(blogPostId);
@@ -41,7 +44,9 @@ public class BlogPostsControllerUnitTests
             .AuthorizeAsync(It.IsAny<ClaimsPrincipal>(), It.IsAny<BlogPost>(), It.Is<string>(y => y == policyName)))
             .ReturnsAsync(AuthorizationResult.Failed());
 
-        var blogPostsController = new BlogPostsController(authorizationService.Object);
+        var blogPostsRepository = new BlogPostsRepository();
+
+        var blogPostsController = new BlogPostsController(authorizationService.Object, blogPostsRepository);
 
         // Act
         var result = await blogPostsController.UpdateBlogPostAsync(blogPostId);

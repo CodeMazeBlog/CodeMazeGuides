@@ -9,11 +9,12 @@ namespace ResourceBasedAuthorization.Controllers;
 public class BlogPostsController : ControllerBase
 {
     private readonly IAuthorizationService _authorizationService;
-    private readonly BlogPostsRepository _blogPostsRepository = new();
+    private readonly BlogPostsRepository _blogPostsRepository;
 
-    public BlogPostsController(IAuthorizationService authorizationService)
+    public BlogPostsController(IAuthorizationService authorizationService, BlogPostsRepository blogPostsRepository)
     {
         _authorizationService = authorizationService;
+        _blogPostsRepository = blogPostsRepository;
     }
 
     [Authorize]

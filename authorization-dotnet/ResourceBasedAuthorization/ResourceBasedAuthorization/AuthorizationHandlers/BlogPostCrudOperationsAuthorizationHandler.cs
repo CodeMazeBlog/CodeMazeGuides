@@ -7,7 +7,10 @@ namespace ResourceBasedAuthorization.AuthorizationHandlers;
 
 public class BlogPostCrudOperationsAuthorizationHandler : AuthorizationHandler<OperationAuthorizationRequirement, BlogPost>
 {
-    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, OperationAuthorizationRequirement requirement, BlogPost blogPost)
+    protected override Task HandleRequirementAsync(
+        AuthorizationHandlerContext context,
+        OperationAuthorizationRequirement requirement,
+        BlogPost blogPost)
     {
         switch (requirement.Name)
         {

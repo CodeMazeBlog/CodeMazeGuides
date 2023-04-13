@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using ResourceBasedAuthorization.AuthorizationHandlers;
 using ResourceBasedAuthorization.AuthorizationRequirements;
+using ResourceBasedAuthorization.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IAuthorizationHandler, UserIsAuthorAuthorizationHandler>();
+builder.Services.AddScoped<BlogPostsRepository>();
+
+builder.Services.AddTransient<IAuthorizationHandler, UserIsAuthorAuthorizationHandler>();
+builder.Services.AddTransient<IAuthorizationHandler, BlogPostCrudOperationsAuthorizationHandler>();
 
 builder.Services.AddAuthorization(options =>
 {
