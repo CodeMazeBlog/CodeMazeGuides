@@ -24,7 +24,7 @@ namespace Tests
             Console.SetOut(consoleOutput);
             logger.Log(message);
 
-            Assert.Equal($"Log: {message}\r\n", consoleOutput.ToString());
+            Assert.Equal($"Log: {message}", consoleOutput.ToString().Trim());
         }
     }
 }
