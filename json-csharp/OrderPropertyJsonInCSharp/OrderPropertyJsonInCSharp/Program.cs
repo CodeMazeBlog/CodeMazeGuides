@@ -31,7 +31,7 @@ namespace OrderPropertyJsonInCSharp
 
             foreach (var property in properties)
             {
-                Console.WriteLine(property.Name + " " + property.MetadataToken);
+                Console.WriteLine($"{property.Name} {property.MetadataToken}");
             }
 
             // Using Property Order
