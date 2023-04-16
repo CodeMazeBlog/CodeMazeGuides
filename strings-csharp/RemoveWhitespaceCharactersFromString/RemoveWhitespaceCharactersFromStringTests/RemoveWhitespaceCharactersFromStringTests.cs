@@ -1,4 +1,3 @@
-using System.Text;
 using RemoveWhitespaceCharactersFromString;
 
 namespace RemoveWhitespaceCharactersFromStringTests;
@@ -10,7 +9,7 @@ public class RemoveWhitespaceCharactersFromStringTests
     public void GivenStringWithWhitespaces_WhenUsingRegexClass_ThenResultStringDoesNotContainWhitespace(string source,
         string expected)
     {
-        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingRegexClass(source);
+        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingStaticRegexClass(source);
 
         Assert.Equal(expected, result);
     }
@@ -101,7 +100,18 @@ public class RemoveWhitespaceCharactersFromStringTests
         GivenStringWithWhitespaces_WhenUsingStringTrim_ThenResultStringDoesNotContainLeadingOrTrailingWhitespace(
             string source, string expected)
     {
-        var result = RemoveWhitespaceMethods.RemoveLeadingAndTrailingWhitespacesUsingTrim(source);
+        var result = RemoveWhitespaceMethods.TrimWhitespacesUsingStringTrim(source);
+
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [ClassData(typeof(WhitespaceStringTrimTestData))]
+    public void
+        GivenStringWithWhitespaces_WhenUsingRegexTrim_ThenResultStringDoesNotContainLeadingOrTrailingWhitespace(
+            string source, string expected)
+    {
+        var result = RemoveWhitespaceMethods.TrimWhitespacesUsingSourceGenRegex(source);
 
         Assert.Equal(expected, result);
     }

@@ -3,7 +3,7 @@
 const string sourceHelloWorld = "\v\tHello World!\r\n";
 
 //regex
-var resultRegex = RemoveWhitespaceMethods.RemoveWhitespacesUsingRegexClass(sourceHelloWorld);
+var resultRegex = RemoveWhitespaceMethods.RemoveWhitespacesUsingStaticRegexClass(sourceHelloWorld);
 Console.WriteLine(resultRegex); // prints 'HelloWorld!'
 
 //linq with string concat
@@ -31,5 +31,5 @@ var resultArray = RemoveWhitespaceMethods.RemoveWhitespacesUsingArray(sourceHell
 Console.WriteLine(resultArray); // prints "HelloWorld!"
 
 //trim
-var resultTrim = RemoveWhitespaceMethods.RemoveLeadingAndTrailingWhitespacesUsingTrim(sourceHelloWorld);
+var resultTrim = RemoveWhitespaceMethods.TrimWhitespacesUsingStringTrim(sourceHelloWorld);
 Console.WriteLine(resultTrim); //prints 'Hello World!'

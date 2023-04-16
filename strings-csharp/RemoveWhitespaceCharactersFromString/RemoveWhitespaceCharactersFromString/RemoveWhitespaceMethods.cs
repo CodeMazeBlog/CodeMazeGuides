@@ -6,7 +6,7 @@ namespace RemoveWhitespaceCharactersFromString;
 
 public static partial class RemoveWhitespaceMethods
 {
-    private static readonly string[] AllWhitespaceCharacters =
+    public static readonly string[] AllWhitespaceCharacters =
     {
         "\u0009", // Tab
         "\u000A", // LineFeed
@@ -32,17 +32,20 @@ public static partial class RemoveWhitespaceMethods
         "\u2029", // ParagraphSeparator
         "\u202F", // NarrowNoBreakSpace
         "\u205F", // MediumMathematicalSpace
-        "\u3000" // IdeoGraphicSpace
+        "\u3000", // IdeoGraphicSpace
     };
 
-    private static readonly Regex RemoveWhitespaceCachedRegex = new(@"\s+", RegexOptions.Compiled);
+    private static readonly Regex RemoveWhitespaceCachedRegex = new(@"\s");
 
-    [GeneratedRegex(@"\s+")]
-    private static partial Regex RemoveWhitespaceRegexSourceGen();
+    [GeneratedRegex(@"\s")]
+    public static partial Regex SourceGenRemoveWhitespaceRegex();
 
-    public static string RemoveWhitespacesUsingRegexClass(string source)
+    [GeneratedRegex(@"(^\s+|\s+$)")]
+    public static partial Regex SourceGenTrimWhitespaceRegex();
+
+    public static string RemoveWhitespacesUsingStaticRegexClass(string source)
     {
-        return Regex.Replace(source, @"\s+", string.Empty);
+        return Regex.Replace(source, @"\s", string.Empty);
     }
 
     public static string RemoveWhitespacesUsingCachedRegex(string source)
@@ -52,7 +55,7 @@ public static partial class RemoveWhitespaceMethods
 
     public static string RemoveWhitespacesUsingSourceGenRegex(string source)
     {
-        return RemoveWhitespaceRegexSourceGen().Replace(source, string.Empty);
+        return SourceGenRemoveWhitespaceRegex().Replace(source, string.Empty);
     }
 
     public static string RemoveWhitespacesUsingLinqWithStringConcat(string source)
@@ -70,11 +73,6 @@ public static partial class RemoveWhitespaceMethods
         foreach (var c in AllWhitespaceCharacters) source = source.Replace(c, string.Empty);
 
         return source;
-    }
-
-    public static string RemoveLeadingAndTrailingWhitespacesUsingTrim(string source)
-    {
-        return source.Trim();
     }
 
     public static string RemoveWhitespacesUsingSplitJoin(string source)
@@ -123,8 +121,16 @@ public static partial class RemoveWhitespaceMethods
         }
 
         // Don't allocate a new string if no whitespace was found
-        if (source.Length == pos) return source;
+        return source.Length == pos ? source : new string(dest[..pos]);
+    }
 
-        return new string(dest[..pos]);
+    public static string TrimWhitespacesUsingStringTrim(string source)
+    {
+        return source.Trim();
+    }
+
+    public static string TrimWhitespacesUsingSourceGenRegex(string source)
+    {
+        return SourceGenTrimWhitespaceRegex().Replace(source, string.Empty);
     }
 }

@@ -1,4 +1,9 @@
 ﻿using BenchmarkDotNet.Running;
+using Bogus;
 using RemoveWhitespaceCharactersFromStringBenchmarks;
 
-BenchmarkRunner.Run<MyBenchmarks>();
+// Initialize random seed to static value for reproducible results
+Randomizer.Seed = new Random(42);
+
+BenchmarkRunner.Run<ReplaceWhitespaceBenchmarks>();
+BenchmarkRunner.Run<TrimWhitespaceBenchmarks>();
