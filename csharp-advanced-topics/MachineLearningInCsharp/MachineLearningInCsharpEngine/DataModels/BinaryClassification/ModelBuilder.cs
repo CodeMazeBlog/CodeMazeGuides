@@ -40,6 +40,12 @@ public class ModelBuilder
         predictionEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
     }
 
+    public void LoadModel(string path)
+    {
+        mlModel = mlContext.Model.Load(path, out _);
+        predictionEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
+    }
+
     public IEstimator<ITransformer> ProcessData()
     {
         var lookupData = new[] {
