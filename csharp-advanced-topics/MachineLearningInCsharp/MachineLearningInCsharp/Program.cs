@@ -1,10 +1,10 @@
-﻿using MachineLearningInCsharpEngine.DataModels.BinaryClassification;
+﻿using MachineLearningInCsharpEngine.DataModels.MulticlassClassification;
 
 namespace MachineLearningInCsharp;
 
 public class Program
 {
-    private static string savedModelFilename = "binaryCreditClassificationModel.zip";
+    private static string savedModelFilename = "trainedModel.zip";
     public static void Main()
     {
         var modelBuilder = new ModelBuilder();
@@ -24,7 +24,7 @@ public class Program
             Console.WriteLine("Incorrect input. Try again:");
             inputString = Console.ReadLine();
         }
-        modelInput.age = inputValue;
+        modelInput.Age = inputValue;
 
         Console.Write("Credit Amount:\t\t");
         inputString = Console.ReadLine();
@@ -33,7 +33,7 @@ public class Program
             Console.WriteLine("Incorrect input. Try again:");
             inputString = Console.ReadLine();
         }
-        modelInput.credit_amount = inputValue;
+        modelInput.CreditAmount = inputValue;
 
         Console.Write("Duration in months:\t");
         inputString = Console.ReadLine();
@@ -42,11 +42,10 @@ public class Program
             Console.WriteLine("Incorrect input. Try again:");
             inputString = Console.ReadLine();
         }
-        modelInput.duration = inputValue;
+        modelInput.Duration = inputValue;
 
         var prediction = modelBuilder?.Predict(modelInput);
 
-        Console.WriteLine(prediction.Prediction ? 
-            "\nApplication is acceptable!" : "\nApplication is not acceptable!");
+        Console.WriteLine($"\nYour credit application class is {prediction?.Prediction.ToUpper()}!");
     }
 }

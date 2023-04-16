@@ -12,4 +12,7 @@ public class ModelInput
 
     [ColumnName("age"), LoadColumn(12)]
     public float Age { get; set; }
+
+    [ColumnName("class"), LoadColumn(20)]
+    public string Class { get; set; }
 }

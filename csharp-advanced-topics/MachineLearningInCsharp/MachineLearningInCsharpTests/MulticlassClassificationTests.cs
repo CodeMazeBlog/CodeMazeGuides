@@ -5,19 +5,20 @@ using System.IO;
 namespace MachineLearningInCsharpTests;
 
 [TestClass]
-public class MulticlassClassificationTests  
+public class MulticlassClassificationTests
 {
     private static ModelBuilder? modelBuilder;
+    private string savedModelFilename = "multiclassCreditClassificationModel.zip";
 
     public MulticlassClassificationTests()
     {
-        if(modelBuilder == null)
+        if (modelBuilder == null)
         {
             modelBuilder = new ModelBuilder();
             var currentDir = Directory.GetCurrentDirectory();
             var parentDir = Directory.GetParent(currentDir)?.Parent?.Parent;
             modelBuilder.CreateModel(Path.Combine(parentDir == null ? string.Empty : parentDir.FullName, @"DataSets/credit_customers.csv"),
-                Path.Combine(currentDir,"multiclassCreditClassificationModel.zip"));
+                Path.Combine(currentDir, savedModelFilename));
         }
     }
 
@@ -46,6 +47,23 @@ public class MulticlassClassificationTests
         });
 
         Assert.IsTrue(prediction?.Prediction.Equals("bad"));
+    }
+
+    [TestMethod]
+    public void WhenPredictUsingSavedModel_ThanSuccess()
+    {
+        var loadedModelBuilder = new ModelBuilder();
+        var currentDir = Directory.GetCurrentDirectory();
+        loadedModelBuilder.LoadModel(Path.Combine(currentDir, savedModelFilename));
+
+        var prediction = loadedModelBuilder?.Predict(new ModelInput()
+        {
+            Age = 340,
+            CreditAmount = 25000,
+            Duration = 80
+        });
+
+        Assert.IsTrue(prediction?.Prediction.Equals("good"));
     }
 
 }
