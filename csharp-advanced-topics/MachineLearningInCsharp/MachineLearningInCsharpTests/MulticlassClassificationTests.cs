@@ -26,9 +26,9 @@ public class MulticlassClassificationTests
     {
         var prediction = modelBuilder?.Predict(new ModelInput()
         {
-            age = 340,
-            credit_amount = 25000,
-            duration = 80
+            Age = 340,
+            CreditAmount = 25000,
+            Duration = 80
         });
 
         Assert.IsTrue(prediction?.Prediction.Equals("good"));
@@ -40,9 +40,9 @@ public class MulticlassClassificationTests
     {
         var prediction = modelBuilder?.Predict(new ModelInput()
         {
-            age = 240,
-            credit_amount = 45000,
-            duration = 480
+            Age = 240,
+            CreditAmount = 45000,
+            Duration = 480
         });
 
         Assert.IsTrue(prediction?.Prediction.Equals("bad"));
