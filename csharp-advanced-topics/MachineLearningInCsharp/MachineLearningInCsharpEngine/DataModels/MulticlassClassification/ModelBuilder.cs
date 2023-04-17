@@ -1,5 +1,4 @@
 ﻿using Microsoft.ML;
-
 namespace MachineLearningInCsharpEngine.DataModels.MulticlassClassification;
 
 public class ModelBuilder
@@ -8,21 +7,13 @@ public class ModelBuilder
     private PredictionEngine<ModelInput, ModelOutput> predictionEngine;
     private IDataView trainingDataView;
     private IDataView testDataView;
-    ITransformer mlModel;
+    private ITransformer mlModel;
 
     public void CreateModel(string dataFilePath, string savingPath)
     {
-        // Load Data
-        var allDataView = mlContext.Data.LoadFromTextFile<ModelInput>(
-                                        path: dataFilePath,
-                                        hasHeader: true,
-                                        separatorChar: ',');
+        LoadAndSplitData(dataFilePath);
 
-        var split = mlContext.Data.TrainTestSplit(allDataView, testFraction: 0.1);
-        trainingDataView = split.TrainSet;
-        testDataView = split.TestSet;
-
-        var pipeline = ProcessData();
+        var pipeline = PreProcessData();
         
         BuildAndTrainModel(trainingDataView, pipeline);
        
@@ -30,16 +21,27 @@ public class ModelBuilder
 
         SaveModel(savingPath);
 
-        predictionEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
+        CreatePredictionEngine();
     }
 
     public void LoadModel(string path)
     {
         mlModel = mlContext.Model.Load(path, out _);
-        predictionEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
+        CreatePredictionEngine();    }
+
+    private void LoadAndSplitData(string dataFilePath)
+    {
+        var allDataView = mlContext.Data.LoadFromTextFile<ModelInput>(
+                                      path: dataFilePath,
+                                      hasHeader: true,
+                                      separatorChar: ',');
+
+        var split = mlContext.Data.TrainTestSplit(allDataView, testFraction: 0.1);
+        trainingDataView = split.TrainSet;
+        testDataView = split.TestSet;
     }
 
-    public IEstimator<ITransformer> ProcessData()
+    public IEstimator<ITransformer> PreProcessData()
     {
         var pipeline = mlContext.Transforms.Conversion
             .MapValueToKey(inputColumnName: "class", outputColumnName: "Label")
@@ -61,26 +63,22 @@ public class ModelBuilder
     public void EvaluateModel()
     {
         var testMetrics = mlContext.MulticlassClassification.Evaluate(mlModel.Transform(testDataView));
-        Console.WriteLine($"=============== Evaluating to get model's accuracy metrics - Ending time: {DateTime.Now.ToString()} ===============");
-        Console.WriteLine($"*************************************************************************************************************");
-        Console.WriteLine($"*       Metrics for Multi-class Classification model - Test Data     ");
-        Console.WriteLine($"*------------------------------------------------------------------------------------------------------------");
-        Console.WriteLine($"*       MicroAccuracy:    {testMetrics.MicroAccuracy:0.###}");
-        Console.WriteLine($"*       MacroAccuracy:    {testMetrics.MacroAccuracy:0.###}");
-        Console.WriteLine($"*       LogLoss:          {testMetrics.LogLoss:#.###}");
-        Console.WriteLine($"*       LogLossReduction: {testMetrics.LogLossReduction:#.###}");
-        Console.WriteLine($"*************************************************************************************************************");
-
+        Console.WriteLine($"Evaluation Metrics:");
+        Console.WriteLine($"- MicroAccuracy:\t{testMetrics.MicroAccuracy:0.###}");
+        Console.WriteLine($"- MacroAccuracy:\t{testMetrics.MacroAccuracy:0.###}");
+        Console.WriteLine($"- LogLoss:\t\t{testMetrics.LogLoss:#.###}");
+        Console.WriteLine($"- LogLossReduction:\t{testMetrics.LogLossReduction:#.###}");
     }
 
-    private void SaveModel(string modelRelativePath)
+    private void SaveModel(string saveModelPath)
     {
-        mlContext.Model.Save(mlModel, trainingDataView.Schema, GetAbsolutePath(modelRelativePath));
+        mlContext.Model.Save(mlModel, trainingDataView.Schema, 
+            Path.Combine(Environment.CurrentDirectory, saveModelPath));
     }
 
-    public string GetAbsolutePath(string relativePath)
+    private void CreatePredictionEngine()
     {
-        return Path.Combine(Environment.CurrentDirectory, relativePath);
+        predictionEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
     }
 
     public ModelOutput Predict(ModelInput input)
