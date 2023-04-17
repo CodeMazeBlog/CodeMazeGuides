@@ -1,8 +1,6 @@
 ﻿using System.Net;
 using System.Web;
 
-Console.WriteLine("Hello, World!");
-
 var url = @"http://example.com/resource?foo=bar#fragment";
 
 var httpUtilityEncoded = HttpUtility.UrlEncode(url);
