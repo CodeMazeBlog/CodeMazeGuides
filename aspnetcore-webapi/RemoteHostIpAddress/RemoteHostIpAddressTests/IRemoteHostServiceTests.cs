@@ -1,23 +1,21 @@
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
-using RemoteHostIpAddress.Controllers;
+using RemoteHostIpAddress;
 using System.Net;
 using Xunit;
 
 namespace RemoteHostIpAddressTests
 {
-    public class RemoteHostIpAddressTests
+    public class IRemoteHostServiceTests
     {
-        private readonly WeatherForecastController _controller;
-
-        public RemoteHostIpAddressTests()
+        private readonly IRemoteHostService _service;
+        public IRemoteHostServiceTests()
         {
-            _controller = new WeatherForecastController(new NullLogger<WeatherForecastController>());
+            _service = new RemoteHostService();
         }
 
         [Fact]
-        public void WhenGetRemoteHostIpAddressUsingRemoteIpAddress_ThenReturnsValidIpAddress()
+        public void WhenGetRemoteHostIpAddressWithValidRemoteIpAddres_ThenReturnsValidIpAddress()
         {
             // Arrange
             var connection = new Mock<ConnectionInfo>();
@@ -26,17 +24,15 @@ namespace RemoteHostIpAddressTests
             var httpContext = new Mock<HttpContext>();
             httpContext.SetupGet(h => h.Connection).Returns(connection.Object);
 
-            _controller.ControllerContext.HttpContext = httpContext.Object;
-
             // Act
-            var result = _controller.GetRemoteHostIpAddressUsingRemoteIpAddress();
+            var result = _service.GetRemoteHostIpAddressUsingRemoteIpAddress(httpContext.Object);
 
             // Assert
             Assert.Equal(IPAddress.Parse("192.168.1.1"), result);
         }
 
         [Fact]
-        public void WhenGetRemoteHostIpAddressUsingXForwardedFor_ThenReturnsValidIpAddress()
+        public void WhenGetRemoteHostIpAddressUsingXForwardedForWithValidRemoteIpAddres_ThenReturnsValidIpAddress()
         {
             // Arrange
             var headerDictionary = new HeaderDictionary
@@ -47,17 +43,15 @@ namespace RemoteHostIpAddressTests
             var httpContext = new Mock<HttpContext>();
             httpContext.SetupGet(h => h.Request.Headers).Returns(headerDictionary);
 
-            _controller.ControllerContext.HttpContext = httpContext.Object;
-
             // Act
-            var result = _controller.GetRemoteHostIpAddressUsingXForwardedFor();
+            var result = _service.GetRemoteHostIpAddressUsingXForwardedFor(httpContext.Object);
 
             // Assert
             Assert.Equal(IPAddress.Parse("192.168.1.1"), result);
         }
 
         [Fact]
-        public void WhenGetRemoteHostIpAddressUsingXForwardedFor_WithInvalidIp_ThenReturnsNull()
+        public void WhenGetRemoteHostIpAddressUsingXForwardedForWithInvalidIp_ThenReturnsNull()
         {
             // Arrange
             var headerDictionary = new HeaderDictionary
@@ -68,17 +62,15 @@ namespace RemoteHostIpAddressTests
             var httpContext = new Mock<HttpContext>();
             httpContext.SetupGet(h => h.Request.Headers).Returns(headerDictionary);
 
-            _controller.ControllerContext.HttpContext = httpContext.Object;
-
             // Act
-            var result = _controller.GetRemoteHostIpAddressUsingXForwardedFor();
+            var result = _service.GetRemoteHostIpAddressUsingXForwardedFor(httpContext.Object);
 
             // Assert
             Assert.Null(result);
         }
 
         [Fact]
-        public void WhenGetRemoteHostIpAddressUsingXRealIp_WithInvalidIp_ThenReturnsValidIpAddress()
+        public void WhenGetRemoteHostIpAddressUsingXRealIp_ThenReturnsValidIpAddress()
         {
             // Arrange
             var headerDictionary = new HeaderDictionary
@@ -89,17 +81,15 @@ namespace RemoteHostIpAddressTests
             var httpContext = new Mock<HttpContext>();
             httpContext.SetupGet(h => h.Request.Headers).Returns(headerDictionary);
 
-            _controller.ControllerContext.HttpContext = httpContext.Object;
-
             // Act
-            var result = _controller.GetRemoteHostIpAddressUsingXRealIp();
+            var result = _service.GetRemoteHostIpAddressUsingXRealIp(httpContext.Object);
 
             // Assert
             Assert.Equal(IPAddress.Parse("192.168.1.1"), result);
         }
 
         [Fact]
-        public void WhenGetRemoteHostIpAddressUsingXRealIp_WithInvalidIp_ThenReturnsNull()
+        public void WhenGetRemoteHostIpAddressUsingXRealIpWithInvalidIp_ThenReturnsNull()
         {
             // Arrange
             var headerDictionary = new HeaderDictionary
@@ -110,10 +100,8 @@ namespace RemoteHostIpAddressTests
             var httpContext = new Mock<HttpContext>();
             httpContext.SetupGet(h => h.Request.Headers).Returns(headerDictionary);
 
-            _controller.ControllerContext.HttpContext = httpContext.Object;
-
             // Act
-            var result = _controller.GetRemoteHostIpAddressUsingXRealIp();
+            var result = _service.GetRemoteHostIpAddressUsingXRealIp(httpContext.Object);
 
             // Assert
             Assert.Null(result);
