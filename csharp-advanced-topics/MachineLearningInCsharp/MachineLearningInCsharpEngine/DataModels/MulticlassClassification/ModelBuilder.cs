@@ -44,8 +44,9 @@ public class ModelBuilder
     public IEstimator<ITransformer> PreProcessData()
     {
         var pipeline = mlContext.Transforms.Conversion
-            .MapValueToKey(inputColumnName: "class", outputColumnName: "Label")
-            .Append(mlContext.Transforms.Concatenate("Features", "duration", "credit_amount", "age"));
+            .MapValueToKey(inputColumnName: "class", outputColumnName: "Label");
+        pipeline.Append(mlContext.Transforms.Concatenate("Features", "duration", "credit_amount", "age"));
+
         return pipeline;
     }
 
