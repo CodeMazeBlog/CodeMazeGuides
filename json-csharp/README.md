@@ -19,4 +19,5 @@ This section contains the topics related to JSON manipulation in C#.
 - [How to Serialize Enum to a String in C#](https://code-maze.com/csharp-serialize-enum-to-string/)
 - [How to Write a JSON Into a File in C#](https://code-maze.com/csharp-write-json-into-a-file/)
 - [How to Convert JSON to XML or XML to JSON in C#](https://code-maze.com/csharp-convert-json-to-xml-or-xml-to-json/)
+- [https://code-maze.com/csharp-property-ordering-json-serialization/](Property Ordering in C# JSON Serialization)
 - [How to Read and Parse a JSON File in C#](https://code-maze.com/csharp-read-and-process-json-file/)
