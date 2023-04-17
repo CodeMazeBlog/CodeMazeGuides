@@ -10,7 +10,7 @@ namespace Tests
     public class Tests
     {
         [TestMethod]
-        public void TestPrintSumUsingActionWithParameter()
+        public void whenActionDelegateCreateWithParameter_thenActionDelegateExecutesTheAnnonymousReferencedMethod()
         {
             // Arrange
             int x = 10;
@@ -29,7 +29,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestPrintGreetingUsingActionWithoutParameter()
+        public void whenActionDelegateCreate_thenActionDelegateExecutesTheAnnonymousReferencedMethod()
         {
             // Arrange
             string expectedOutput = "Hello, World!";
@@ -46,7 +46,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestPrintSumUsingFuncWithParameter()
+        public void whenFuncDelegateCreateWithParameter_thenFuncDelegateExecutesTheAnnonymousReferencedMethod()
         {
             // Arrange
             int x = 10;
@@ -65,7 +65,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestPrintGreetingUsingFuncWithoutParameter()
+        public void whenFuncDelegateCreate_thenFuncDelegateExecutesTheAnnonymousReferencedMethod()
         {
             // Arrange
             string expectedOutput = "Hello, World!";
@@ -82,7 +82,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestMain()
+        public void whenMain_thenMainExecutesMethod()
         {
             // Arrange
             string expectedOutput = "Sum of 10 and 20 is 30\r\nHello, World!\r\nSum of 10 and 20 is 30\r\nHello, World!";
