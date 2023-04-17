@@ -1,5 +1,20 @@
+using System.Runtime.InteropServices;
+
 namespace SizeOfOperatorInCSharpTests
 {
+    public struct MyStruct 
+    {
+        public byte byteVar;
+        public int intVar;
+        public long longVar;
+        public double doubleVar;
+        public float floatVar;
+        public short shortVar;
+        public char charVar;
+        public decimal decimalVar;
+        public bool boolVar;
+    }
+
     [TestClass]
     public class SizeOfOperatorUnitTests
     {
@@ -24,6 +39,16 @@ namespace SizeOfOperatorInCSharpTests
             Assert.IsTrue(sizeof(int) == sizeof(float));
             Assert.IsTrue(sizeof(long) == sizeof(double));
             Assert.IsTrue(sizeof(decimal) > sizeof(bool));
+        }
+
+        [TestMethod]
+        public void GivenAStructTypeVerifyAccurateSize()
+        {
+            var expected = 56;
+            var actual = Marshal.SizeOf(typeof(MyStruct));
+
+            Assert.AreEqual(expected, actual);
+            Assert.IsInstanceOfType(actual, typeof(int));
         }
     }
 }
