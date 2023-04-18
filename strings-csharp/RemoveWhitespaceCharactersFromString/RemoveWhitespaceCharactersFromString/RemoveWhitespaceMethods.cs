@@ -32,10 +32,10 @@ public static partial class RemoveWhitespaceMethods
         "\u2029", // ParagraphSeparator
         "\u202F", // NarrowNoBreakSpace
         "\u205F", // MediumMathematicalSpace
-        "\u3000", // IdeoGraphicSpace
+        "\u3000" // IdeoGraphicSpace
     };
 
-    private static readonly Regex RemoveWhitespaceCachedRegex = new(@"\s");
+    private static readonly Regex RemoveWhitespaceCachedRegex = new(@"\s", RegexOptions.Compiled);
 
     [GeneratedRegex(@"\s")]
     public static partial Regex SourceGenRemoveWhitespaceRegex();
@@ -90,7 +90,7 @@ public static partial class RemoveWhitespaceMethods
                 builder.Append(c);
         }
 
-        return builder.ToString();
+        return source.Length == builder.Length ? source : builder.ToString();
     }
 
     public static string RemoveWhitespacesUsingArray(string source)
@@ -116,9 +116,8 @@ public static partial class RemoveWhitespaceMethods
     {
         var pos = 0;
         foreach (var c in source)
-        {
-            if (!char.IsWhiteSpace(c)) dest[pos++] = c;
-        }
+            if (!char.IsWhiteSpace(c))
+                dest[pos++] = c;
 
         // Don't allocate a new string if no whitespace was found
         return source.Length == pos ? source : new string(dest[..pos]);

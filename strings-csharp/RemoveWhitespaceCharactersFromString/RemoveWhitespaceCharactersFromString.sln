@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoveWhitespaceCharactersF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoveWhitespaceCharactersFromString", "RemoveWhitespaceCharactersFromString\RemoveWhitespaceCharactersFromString.csproj", "{594C8F03-B25B-4FC9-AB98-9E3FD4B485C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoveWhitespaceCharactersFromStringBenchmarks", "RemoveWhitespaceCharactersFromStringBenchmarks\RemoveWhitespaceCharactersFromStringBenchmarks.csproj", "{0875E6F9-CA33-4F44-9BCD-A6B9DA335747}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoveWhitespaceCharactersFromStringBenchmarks", "RemoveWhitespaceCharactersFromStringBenchmarks\RemoveWhitespaceCharactersFromStringBenchmarks.csproj", "{0875E6F9-CA33-4F44-9BCD-A6B9DA335747}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

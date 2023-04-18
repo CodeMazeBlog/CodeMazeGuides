@@ -30,6 +30,10 @@ Console.WriteLine(resultStringBuilder); //prints "HelloWorld!"
 var resultArray = RemoveWhitespaceMethods.RemoveWhitespacesUsingArray(sourceHelloWorld);
 Console.WriteLine(resultArray); // prints "HelloWorld!"
 
-//trim
+//String.Trim
 var resultTrim = RemoveWhitespaceMethods.TrimWhitespacesUsingStringTrim(sourceHelloWorld);
 Console.WriteLine(resultTrim); //prints 'Hello World!'
+
+// regex trim
+var regexTrim = RemoveWhitespaceMethods.TrimWhitespacesUsingSourceGenRegex(sourceHelloWorld);
+Console.Write(regexTrim); // prints 'Hello World!'

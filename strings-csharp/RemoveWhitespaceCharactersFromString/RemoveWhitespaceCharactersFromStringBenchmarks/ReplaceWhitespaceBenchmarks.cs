@@ -5,6 +5,7 @@ using RemoveWhitespaceCharactersFromString;
 namespace RemoveWhitespaceCharactersFromStringBenchmarks;
 
 [MemoryDiagnoser]
+[MinIterationTime(500)]
 public class ReplaceWhitespaceBenchmarks
 {
     private const string CommonSenseFilename = @"./Resources/CommonSense.ThomasPaine.txt";
