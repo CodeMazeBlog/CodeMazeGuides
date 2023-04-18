@@ -37,15 +37,23 @@ namespace RemoteHostIpAddress
         public IPAddress? GetRemoteHostIpAddressUsingXRealIp(HttpContext httpContext)
         {
             IPAddress? remoteIpAddress = null;
-            var xRealIpHeaderValue = httpContext.Request.Headers["X-Real-IP"].FirstOrDefault();
+            var xRealIpExists = httpContext.Request.Headers.TryGetValue("X-Real-IP", out var xRealIp);
 
-            if (IPAddress.TryParse(xRealIpHeaderValue, out var address))
+            if(xRealIpExists)
             {
+                if (!IPAddress.TryParse(xRealIp, out IPAddress? address))
+                {
+                    return remoteIpAddress;
+                }
+
                 var isValidIP = (address.AddressFamily == AddressFamily.InterNetwork || address.AddressFamily == AddressFamily.InterNetworkV6);
+                
                 if (isValidIP)
                 {
                     remoteIpAddress = address;
                 }
+
+                return remoteIpAddress;
             }
 
             return remoteIpAddress;
