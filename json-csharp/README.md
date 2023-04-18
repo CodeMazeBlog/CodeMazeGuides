@@ -17,6 +17,7 @@ This section contains the topics related to JSON manipulation in C#.
 - [How to Insert a Key Value Pair Into an Existing JSON in C#](https://code-maze.com/csharp-insert-a-key-value-pair-into-an-existing-json/)
 - [Polymorphic Serialization and Deserialization with System.Text.Json](https://code-maze.com/csharp-polymorphic-serialization-and-deserialization/)
 - [How to Serialize Enum to a String in C#](https://code-maze.com/csharp-serialize-enum-to-string/)
+- [How to Serialize a Dictionary to JSON in C#](https://code-maze.com/csharp-how-to-serialize-a-dictionary-to-json/)
 - [How to Write a JSON Into a File in C#](https://code-maze.com/csharp-write-json-into-a-file/)
 - [How to Convert JSON to XML or XML to JSON in C#](https://code-maze.com/csharp-convert-json-to-xml-or-xml-to-json/)
 - [https://code-maze.com/csharp-property-ordering-json-serialization/](Property Ordering in C# JSON Serialization)
