@@ -4,15 +4,15 @@ namespace SizeOfOperatorInCSharpTests
 {
     public struct MyStruct 
     {
-        //public byte byteVar;//1
+        public byte byteVar;//1
         public int intVar;//4
         public long longVar;//8
-        //public double doubleVar;//8
-        //public float floatVar;//4
-        //public short shortVar;//2
-        //public char charVar;//2
-        //public decimal decimalVar;//16
-        //public bool boolVar;//1
+        public double doubleVar;//8
+        public float floatVar;//4
+        public short shortVar;//2
+        public char charVar;//2
+        public decimal decimalVar;//16
+        public bool boolVar;//1
     }
 
     [TestClass]
