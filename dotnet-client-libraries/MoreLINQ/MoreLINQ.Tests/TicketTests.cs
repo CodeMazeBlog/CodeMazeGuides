@@ -13,6 +13,7 @@ namespace MoreLINQ.Tests
             // Assert
             ticket.Should().NotBeNull();
         }
+
         [Fact]
         public void GivenValidParameters_WhenConstructorIsInvoked_ThenValidTicketIsReturned()
         {

@@ -5,45 +5,49 @@ namespace ExpandingLINQwithMoreLINQ.Tests
 {
     public class FlightTests
     {
+        private readonly int _flightNumber;
+        private readonly string _departureCity;
+        private readonly string _arrivalCity;
+        private readonly DateTime _departureTime;
+        private readonly DateTime _arrivalTime;
+
+        public FlightTests()
+        {
+            _flightNumber = 1;
+            _departureCity = "Sofia, Bulgaria";
+            _arrivalCity = "Nis, Serbia";
+            _departureTime = DateTime.UtcNow;
+            _arrivalTime = DateTime.UtcNow;
+
+        }
+
         [Fact]
         public void GivenValidParameters_WhenConstructorIsInvoked_ThenValidFlightIsReturned()
         {
-            // Arrange
-            int flightNumber = 1;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
-
             // Act
-            var flight = new Flight(flightNumber, departureCity, arrivalCity, departureTime, arrivalTime);
+            var flight = new Flight(_flightNumber, _departureCity, _arrivalCity, _departureTime, _arrivalTime);
 
             // Assert
             flight.Should().NotBeNull();
-            flight.FlightNumber.Should().Be(flightNumber);
-            flight.DepartureCity.Should().Be(departureCity);
-            flight.ArrivalCity.Should().Be(arrivalCity);
-            flight.DepartureCity.Should().Be(departureCity);
-            flight.ArrivalTime.Should().Be(arrivalTime);
+            flight.FlightNumber.Should().Be(_flightNumber);
+            flight.DepartureCity.Should().Be(_departureCity);
+            flight.ArrivalCity.Should().Be(_arrivalCity);
+            flight.DepartureCity.Should().Be(_departureCity);
+            flight.ArrivalTime.Should().Be(_arrivalTime);
         }
 
         [Fact]
         public void GivenFreeSeats_WhenAddTicketIsInvoked_ThenTicketIsAdded()
         {
             // Arrange
-            int flightNumber = 1;
             int ticketsCount = 30;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
 
             var flight = new Flight(
-                flightNumber,
-                departureCity,
-                arrivalCity,
-                departureTime,
-                arrivalTime);
+                _flightNumber,
+                _departureCity,
+                _arrivalCity,
+                _departureTime,
+                _arrivalTime);
 
             for (int i = 0; i < ticketsCount; i++)
             {
@@ -61,19 +65,14 @@ namespace ExpandingLINQwithMoreLINQ.Tests
         public void GivenNoFreeSeats_WhenAddTicketIsInvoked_ThenTicketIsNotAdded()
         {
             // Arrange
-            int flightNumber = 1;
             int ticketsCount = 50;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
 
             var flight = new Flight(
-                flightNumber,
-                departureCity,
-                arrivalCity,
-                departureTime,
-                arrivalTime);
+                _flightNumber,
+                _departureCity,
+                _arrivalCity,
+                _departureTime,
+                _arrivalTime);
 
             for (int i = 0; i < ticketsCount; i++)
             {
@@ -91,19 +90,14 @@ namespace ExpandingLINQwithMoreLINQ.Tests
         public void WhenGetCheapestTicketsIsInvoked_ThenCheapestTicketsAreReturned()
         {
             // Arrange
-            int flightNumber = 1;
             int ticketsCount = 20;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
 
             var flight = new Flight(
-                flightNumber,
-                departureCity,
-                arrivalCity,
-                departureTime,
-                arrivalTime);
+                _flightNumber,
+                _departureCity,
+                _arrivalCity,
+                _departureTime,
+                _arrivalTime);
 
             for (int i = 0; i < ticketsCount; i++)
             {
@@ -121,19 +115,14 @@ namespace ExpandingLINQwithMoreLINQ.Tests
         public void WhenGetMostExpensiveTicketsIsInvoked_ThenMostExpensiveTicketsAreReturned()
         {
             // Arrange
-            int flightNumber = 1;
             int ticketsCount = 20;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
 
             var flight = new Flight(
-                flightNumber,
-                departureCity,
-                arrivalCity,
-                departureTime,
-                arrivalTime);
+                _flightNumber,
+                _departureCity,
+                _arrivalCity,
+                _departureTime,
+                _arrivalTime);
 
             for (int i = 0; i < ticketsCount; i++)
             {
@@ -151,19 +140,14 @@ namespace ExpandingLINQwithMoreLINQ.Tests
         public void GivenFreeSeats_WhenAreThereFreeSeatsIsInvoked_ThenTrueIsReturned()
         {
             // Arrange
-            int flightNumber = 1;
             int ticketsCount = 20;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
 
             var flight = new Flight(
-                flightNumber,
-                departureCity,
-                arrivalCity,
-                departureTime,
-                arrivalTime);
+                _flightNumber,
+                _departureCity,
+                _arrivalCity,
+                _departureTime,
+                _arrivalTime);
 
             for (int i = 0; i < ticketsCount; i++)
             {
@@ -181,19 +165,14 @@ namespace ExpandingLINQwithMoreLINQ.Tests
         public void GivenNoFreeSeats_WhenAreThereFreeSeatsIsInvoked_ThenFalseIsReturned()
         {
             // Arrange
-            int flightNumber = 1;
             int ticketsCount = 50;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
 
             var flight = new Flight(
-                flightNumber,
-                departureCity,
-                arrivalCity,
-                departureTime,
-                arrivalTime);
+                _flightNumber,
+                _departureCity,
+                _arrivalCity,
+                _departureTime,
+                _arrivalTime);
 
             for (int i = 0; i < ticketsCount; i++)
             {
@@ -211,19 +190,14 @@ namespace ExpandingLINQwithMoreLINQ.Tests
         public void GivenEnoughPassengers_WhenWillFligthTakePlaceIsInvoked_ThenTrueIsReturned()
         {
             // Arrange
-            int flightNumber = 1;
             int ticketsCount = 21;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
 
             var flight = new Flight(
-                flightNumber,
-                departureCity,
-                arrivalCity,
-                departureTime,
-                arrivalTime);
+                _flightNumber,
+                _departureCity,
+                _arrivalCity,
+                _departureTime,
+                _arrivalTime);
 
             for (int i = 0; i < ticketsCount; i++)
             {
@@ -241,19 +215,14 @@ namespace ExpandingLINQwithMoreLINQ.Tests
         public void GivenNotEnoughPassengers_WhenWillFligthTakePlaceIsInvoked_ThenFalseIsReturned()
         {
             // Arrange
-            int flightNumber = 1;
             int ticketsCount = 19;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
 
             var flight = new Flight(
-                flightNumber,
-                departureCity,
-                arrivalCity,
-                departureTime,
-                arrivalTime);
+                _flightNumber,
+                _departureCity,
+                _arrivalCity,
+                _departureTime,
+                _arrivalTime);
 
             for (int i = 0; i < ticketsCount; i++)
             {
@@ -271,19 +240,14 @@ namespace ExpandingLINQwithMoreLINQ.Tests
         public void WhenGetBordingGroupsIsInvoked_ThenAccurateNumberOfGroupsIsReturned()
         {
             // Arrange
-            int flightNumber = 1;
             int ticketsCount = 30;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
 
             var flight = new Flight(
-                flightNumber,
-                departureCity,
-                arrivalCity,
-                departureTime,
-                arrivalTime);
+                _flightNumber,
+                _departureCity,
+                _arrivalCity,
+                _departureTime,
+                _arrivalTime);
 
             for (int i = 0; i < ticketsCount; i++)
             {
@@ -302,19 +266,14 @@ namespace ExpandingLINQwithMoreLINQ.Tests
         public void WhenGetPassengersForSecurityCheckIsInvoked_ThenAccurateNumberOfPassangersIsReturned()
         {
             // Arrange
-            int flightNumber = 1;
             int ticketsCount = 30;
-            string departureCity = "Sofia, Bulgaria";
-            string arrivalCity = "Nis, Serbia";
-            DateTime departureTime = DateTime.UtcNow;
-            DateTime arrivalTime = DateTime.UtcNow;
 
             var flight = new Flight(
-                flightNumber,
-                departureCity,
-                arrivalCity,
-                departureTime,
-                arrivalTime);
+                _flightNumber,
+                _departureCity,
+                _arrivalCity,
+                _departureTime,
+                _arrivalTime);
 
             for (int i = 0; i < ticketsCount; i++)
             {
