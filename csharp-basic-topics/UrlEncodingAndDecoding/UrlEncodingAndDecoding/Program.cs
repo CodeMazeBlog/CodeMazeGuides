@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Web;
 
-var url = @"http://example.com/resource?foo=bar#fragment";
+var url = @"http://example.com/resource?foo=bar with space#fragment";
 
 var httpUtilityEncoded = HttpUtility.UrlEncode(url);
 var httpUtilityDecoded = HttpUtility.UrlDecode(httpUtilityEncoded);

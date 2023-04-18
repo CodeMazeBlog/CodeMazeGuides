@@ -6,56 +6,74 @@ namespace Tests
     [TestClass]
     public class UrlEncodingDecodingTest
     {
-        string url = @"http://example.com/resource?foo=bar#fragment";
-        string encodedUrlLower = @"http%3a%2f%2fexample.com%2fresource%3ffoo%3dbar%23fragment";
-        string encodedUrlUpper = @"http%3A%2F%2Fexample.com%2Fresource%3Ffoo%3Dbar%23fragment";
+        private const string Url = @"http://example.com/resource?foo=bar with space#fragment";
+        private const string EncodedUrlLowerPlus = @"http%3a%2f%2fexample.com%2fresource%3ffoo%3dbar+with+space%23fragment";
+        private const string EncodedUrlUpperPercent = @"http%3A%2F%2Fexample.com%2Fresource%3Ffoo%3Dbar%20with%20space%23fragment";
+        private const string EncodedUrlUpperPlus = @"http%3A%2F%2Fexample.com%2Fresource%3Ffoo%3Dbar+with+space%23fragment";
 
         [TestMethod]
         public void GivenAUrl_WhenEncodingWithHttpUtility_ThenCharactersEncoded()
         {
-            var encoded = HttpUtility.UrlEncode(url);
+            var encoded = HttpUtility.UrlEncode(Url);
 
-            Assert.AreEqual(encodedUrlLower, encoded);
+            Assert.AreEqual(EncodedUrlLowerPlus, encoded);
         }
 
-        [TestMethod]
-        public void GivenAUrl_WhenDecodingWithHttpUtility_ThenCharactersDecoded()
+        [DataRow(EncodedUrlLowerPlus)]
+        [DataRow(EncodedUrlUpperPercent)]
+        [DataRow(EncodedUrlUpperPlus)]
+        [DataTestMethod]
+        public void GivenAUrl_WhenDecodingWithHttpUtility_ThenCharactersDecoded(string encodedUrl)
         {
-            var decoded = HttpUtility.UrlDecode(encodedUrlUpper);
+            var decoded = HttpUtility.UrlDecode(encodedUrl);
 
-            Assert.AreEqual(url, decoded);
+            Assert.AreEqual(Url, decoded);
         }
 
         [TestMethod]
         public void GivenAUrl_WhenEncodingWithWebUtility_ThenCharactersEncoded()
         {
-            var encoded = WebUtility.UrlEncode(url);
+            var encoded = WebUtility.UrlEncode(Url);
 
-            Assert.AreEqual(encodedUrlUpper, encoded);
+            Assert.AreEqual(EncodedUrlUpperPlus, encoded);
         }
 
-        [TestMethod]
-        public void GivenAUrl_WhenDecodingWithWebUtility_ThenCharactersDecoded()
+        [DataRow(EncodedUrlLowerPlus)]
+        [DataRow(EncodedUrlUpperPercent)]
+        [DataRow(EncodedUrlUpperPlus)]
+        [DataTestMethod]
+        public void GivenAUrl_WhenDecodingWithWebUtility_ThenCharactersDecoded(string encodedUrl)
         {
-            var decoded = WebUtility.UrlDecode(encodedUrlUpper);
+            var decoded = WebUtility.UrlDecode(encodedUrl);
 
-            Assert.AreEqual(url, decoded);
+            Assert.AreEqual(Url, decoded);
         }
 
         [TestMethod]
         public void GivenAUrl_WhenEncodingWithUri_ThenCharactersEncoded()
         {
-            var encoded = Uri.EscapeDataString(url);
+            var encoded = Uri.EscapeDataString(Url);
 
-            Assert.AreEqual(encodedUrlUpper, encoded);
+            Assert.AreEqual(EncodedUrlUpperPercent, encoded);
         }
 
-        [TestMethod]
-        public void GivenAUrl_WhenDecodingWithUri_ThenCharactersDecoded()
+        [DataRow(EncodedUrlUpperPercent)]
+        [DataTestMethod]
+        public void GivenAUrl_WhenDecodingWithUri_ThenCharactersDecoded(string encodedUrl)
         {
-            var decoded = Uri.UnescapeDataString(encodedUrlUpper);
+            var decoded = Uri.UnescapeDataString(encodedUrl);
 
-            Assert.AreEqual(url, decoded);
+            Assert.AreEqual(Url, decoded);
+        }
+
+        [DataRow(EncodedUrlLowerPlus)]
+        [DataRow(EncodedUrlUpperPlus)]
+        [DataTestMethod]
+        public void GivenAUrl_WhenDecodingWithUri_ThenCharactersNotDecoded(string encodedUrl)
+        {
+            var decoded = Uri.UnescapeDataString(encodedUrl);
+
+            Assert.AreNotEqual(Url, decoded); //Uri.UnescapeDataString does not decode + character to space
         }
     }
 }
