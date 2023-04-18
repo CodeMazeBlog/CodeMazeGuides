@@ -85,7 +85,7 @@ namespace Tests
         public void whenMain_thenMainExecutesMethod()
         {
             // Arrange
-            string expectedOutput = "Sum of 10 and 20 is 30\r\nHello, World!\r\nSum of 10 and 20 is 30\r\nHello, World!";
+            string expectedOutput = $"Sum of 10 and 20 is 30{System.Environment.NewLine}Hello, World!{System.Environment.NewLine}Sum of 10 and 20 is 30{System.Environment.NewLine}Hello, World!";
             var consoleOutput = new StringWriter();
             Console.SetOut(consoleOutput);
 
