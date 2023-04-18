@@ -10,12 +10,20 @@ public class Program
         var modelBuilder = new ModelBuilder();
         modelBuilder.LoadModel(savedModelFilename);
 
-        var modelInput = new ModelInput();
+        var modelInput = new ModelInput()
+        {
+            Age = 300,
+            CreditAmount = 100000,
+            Duration = 120
+        };
+
+        var prediction = modelBuilder?.Predict(modelInput);
+        Console.WriteLine($"\nExample input class is {prediction?.Prediction.ToUpper()}!");
 
         string? inputString;
         float inputValue;
 
-        Console.WriteLine("Input data:");
+        Console.WriteLine("\nInput data:");
 
         Console.Write("Age in months:\t\t");
         inputString = Console.ReadLine();
@@ -44,8 +52,7 @@ public class Program
         }
         modelInput.Duration = inputValue;
 
-        var prediction = modelBuilder?.Predict(modelInput);
-
+        prediction = modelBuilder?.Predict(modelInput);
         Console.WriteLine($"\nYour credit application class is {prediction?.Prediction.ToUpper()}!");
     }
 }

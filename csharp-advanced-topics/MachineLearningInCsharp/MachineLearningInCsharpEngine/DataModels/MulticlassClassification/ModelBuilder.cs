@@ -44,8 +44,8 @@ public class ModelBuilder
     public IEstimator<ITransformer> PreProcessData()
     {
         var pipeline = mlContext.Transforms.Conversion
-            .MapValueToKey(inputColumnName: "class", outputColumnName: "Label");
-        pipeline.Append(mlContext.Transforms.Concatenate("Features", "duration", "credit_amount", "age"));
+            .MapValueToKey(inputColumnName: "class", outputColumnName: "Label")
+            .Append(mlContext.Transforms.Concatenate("Features", "duration", "credit_amount", "age"));
 
         return pipeline;
     }
@@ -53,7 +53,7 @@ public class ModelBuilder
     public IEstimator<ITransformer> BuildAndTrainModel(IDataView trainingDataView, IEstimator<ITransformer> pipeline)
     {
         var trainingPipeline = pipeline
-                .Append(mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy("Label", "Features"))
+                .Append(mlContext.MulticlassClassification.Trainers.SdcaNonCalibrated("Label", "Features"))
                 .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel"));
 
         mlModel = trainingPipeline.Fit(trainingDataView);
