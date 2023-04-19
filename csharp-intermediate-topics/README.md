@@ -35,4 +35,5 @@ This section contains the topics considered intermediate level in C#.
 - [Tuple in C#](https://code-maze.com/csharp-tuple/)
 - [Unsafe Code in C# (unsafe keyword)](https://code-maze.com/unsafe-code-csharp/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/how-to-enumerate-an-enum-in-c/)
+- [Upcasting and Downcasting in C#](https://code-maze.com/csharp-upcasting-downcasting/)
 - [Working With Zip Files in C#/.NET](https://code-maze.com/csharp-zip-files/)

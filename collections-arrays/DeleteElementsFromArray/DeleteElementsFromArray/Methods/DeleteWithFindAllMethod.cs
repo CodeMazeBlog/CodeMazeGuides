@@ -1,10 +1,10 @@
-﻿namespace DeleteElementsFromAnArray 
+namespace DeleteElementsFromAnArray 
 {
     public static partial class Methods 
     {
-        public static int[] DeleteWithFindAll(int[] inputArray, int elementToDelete) 
+        public static int[] DeleteWithFindAll(int[] inputArray, int elementToRemove) 
         {
-            return Array.FindAll(inputArray, i => i != elementToDelete);
+            return Array.FindAll(inputArray, i => i != elementToRemove);
         }
     }
 }
