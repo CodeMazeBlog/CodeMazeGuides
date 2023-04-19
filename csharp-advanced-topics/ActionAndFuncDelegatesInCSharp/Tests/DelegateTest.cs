@@ -18,7 +18,7 @@ public class DelegateTest
 
     [Theory]
     [InlineData(10, 20, "Sum of 10 and 20 is 30")]
-    public void WhenSumActionIsDefined_ThemWriteTheSum(int operator1, int operator2, string expectedOutput)
+    public void WhenSumActionIsDefined_ThenWriteTheSum(int operator1, int operator2, string expectedOutput)
     {
         Action<int, int> WriteSumOfDelegate = (operator1, operator2) =>
         {
@@ -32,7 +32,7 @@ public class DelegateTest
     }
 
     [Fact]
-    public void WhenActionDelegateIsDefined_ThemWriteHelloWorld()
+    public void WhenActionDelegateIsDefined_ThenWriteHelloWorld()
     {
         Action helloWorldDelegate = () => Console.Write("Hello, World!");
         helloWorldDelegate();
@@ -43,7 +43,7 @@ public class DelegateTest
 
     [Theory]
     [InlineData(2, 4)]
-    public void WhenFuncDoubleIsDefined_ThemReturnDoubleOfInput(int operator1, int expectedOutput)
+    public void WhenFuncDoubleIsDefined_ThenReturnDoubleOfInput(int operator1, int expectedOutput)
     {
         Func<int, int> DoubleItDelegate = (operator1) =>
         {
