@@ -8,12 +8,10 @@ namespace ActionFuncDelegatesTest
     public class ProgramTests : IDisposable
     {
         private readonly StringWriter _stringWriter;
-        private readonly StringBuilder _outputBuilder;
 
         public ProgramTests()
         {
             _stringWriter = new StringWriter();
-            _outputBuilder = new StringBuilder();
             Console.SetOut(_stringWriter);
         }
 
@@ -23,13 +21,14 @@ namespace ActionFuncDelegatesTest
         }
 
         [Fact]
-        public void TestActionDelegate_Greet()
+        public void When_GreetCalled_Then_DisplayGreetingMessage()
         {
             // Arrange
-            Action greetMessage = ActionFuncDelegates.Program.Greet;
+            Action greetMessage = ActionFuncDelegates.DelegateMethods.Greet;
 
             // Act
             greetMessage();
+
             // Assert
             string expectedOutput = "Hello, how can I help you?";
             string actualOutput = _stringWriter.ToString().TrimEnd();
@@ -37,13 +36,15 @@ namespace ActionFuncDelegatesTest
         }
 
         [Fact]
-        public void TestActionDelegate_GreetWithName()
+        public void When_GreetWithNameCalled_Then_DisplayGreetingMessageWithName()
         {
             // Arrange
-            Action<string> greetWithName = ActionFuncDelegates.Program.GreetWithName;
+            Action<string> greetWithName = ActionFuncDelegates.DelegateMethods.GreetWithName;
             string name = "Tanveer";
+
             // Act
             greetWithName(name);
+
             // Assert
             string expectedOutput = $"Hello {name}, how can I help you?";
             string actualOutput = _stringWriter.ToString().TrimEnd();
@@ -51,31 +52,34 @@ namespace ActionFuncDelegatesTest
         }
 
         [Fact]
-        public void TestFuncDelegate_PercentageScore()
+        public void When_PercentageScoreCalled_Then_ReturnPercentageScore()
         {
             // Arrange
-            Func<int, int, double> percentageScore = ActionFuncDelegates.Program.PercentageScore;
+            Func<int, int, double> percentageScore = ActionFuncDelegates.DelegateMethods.PercentageScore;
             int totalMarks = 100;
             int obtainedMarks = 70;
+
             // Act
             double result = percentageScore(totalMarks, obtainedMarks);
+
             // Assert
             double expectedOutput = 70.0;
             Assert.Equal(expectedOutput, result);
         }
 
         [Fact]
-        public void TestFuncDelegate_GetFullname()
+        public void When_GetFullnameCalled_Then_ReturnFullName()
         {
             // Arrange
-            Func<string, string, string> getFullname = ActionFuncDelegates.Program.GetFullname;
+            Func<string, string, string> getFullname = ActionFuncDelegates.DelegateMethods.GetFullname;
             string firstName = "Tanveer";
             string lastName = "Hussain";
+
             // Act
             string result = getFullname(firstName, lastName);
+
             // Assert
             string expectedOutput = $"{firstName} {lastName}";
-            string actualOutput = _stringWriter.ToString().TrimEnd();
             Assert.Equal(expectedOutput, result);
         }
     }
