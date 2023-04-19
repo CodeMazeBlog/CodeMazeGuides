@@ -1,11 +1,8 @@
 ﻿using EFCoreJsonInEntityField.Filters;
 using EFCoreJsonInEntityField.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
-using Microsoft.AspNetCore.JsonPatch.Operations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace EFCoreJsonInEntityField.Controllers
 {
@@ -13,11 +10,11 @@ namespace EFCoreJsonInEntityField.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private OrderContext context;
+        private readonly OrderContext _context;
 
         public OrderController(OrderContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         [HttpPost]
@@ -26,10 +23,10 @@ namespace EFCoreJsonInEntityField.Controllers
         {
             order.Id = Guid.NewGuid();
             order.OrderDate = DateTime.Now;
-            context.Orders.Add(order);
-            await context.SaveChangesAsync();
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
 
-            return Ok();
+            return CreatedAtRoute(new {action = nameof(OrderController.GetOrderById), id = order.Id },order);
         }
 
         [HttpPatch("{id}")]
@@ -37,32 +34,42 @@ namespace EFCoreJsonInEntityField.Controllers
         [CustomExceptionFilter]
         public async Task<IActionResult> UpdateOrder(Guid id, JsonPatchDocument<Order> patch)
         {
-            var findOrder = context.Orders.Where(p => p.Id == id).FirstOrDefault();
-            patch.ApplyTo(findOrder);
-            await context.SaveChangesAsync();
+            var findOrder = _context.Orders.Where(p => p.Id == id).FirstOrDefault();
+            if (findOrder is null)
+                return NotFound();
 
-            return Ok();
+            patch.ApplyTo(findOrder);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
         [HttpPost("{id}/shipments")]
         [CustomExceptionFilter]
         public async Task<IActionResult> AddShipmentToOrder(Guid id, Shipment shipment)
         {
-            var findOrder = context.Orders.Where(p => p.Id == id).FirstOrDefault();
-            findOrder.ShippingInfo.Shipments.Add(shipment);
-            await context.SaveChangesAsync();
+            var findOrder = _context.Orders.Where(p => p.Id == id).FirstOrDefault();
+            if (findOrder is null)
+                return NotFound();
 
-            return Ok();
+            findOrder.ShippingInfo.Shipments.Add(shipment);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtRoute(new { action = nameof(OrderController.GetOrderById), id = findOrder.Id }, findOrder);
         }
 
         [HttpPost("{id}/deliveries")]
+        [CustomExceptionFilter]
         public async Task<IActionResult> AddDeliveryToOrder(Guid id, Delivery delivery)
         {
-            var findOrder = context.Orders.Where(p => p.Id == id).FirstOrDefault();
-            findOrder.ShippingInfo.Deliveries.Add(delivery);
-            await context.SaveChangesAsync();
+            var findOrder = _context.Orders.Where(p => p.Id == id).FirstOrDefault();
+            if (findOrder is null)
+                return NotFound();
 
-            return Ok();
+            findOrder.ShippingInfo.Deliveries.Add(delivery);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtRoute(new { action = nameof(OrderController.GetOrderById), id = findOrder.Id }, findOrder);
         }
 
         [HttpPatch("{id}/shipments/{trackingNumber}")]
@@ -70,31 +77,37 @@ namespace EFCoreJsonInEntityField.Controllers
         [CustomExceptionFilter]
         public async Task<IActionResult> UpdateShipmentInOrder(Guid id, string trackingNumber, JsonPatchDocument<Shipment> patch)
         {
-            var findOrder = context.Orders.Where(p => p.Id == id).FirstOrDefault();
+            var findOrder = _context.Orders.Where(p => p.Id == id).FirstOrDefault();
+            if (findOrder is null)
+                return NotFound();
+
             var shipment = findOrder.ShippingInfo.Shipments.FirstOrDefault(sh => sh.TrackingNumber == trackingNumber);
             patch.ApplyTo(shipment);
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
-            return Ok();
+            return NoContent();
         }
 
         [HttpDelete("{id}/deliveries")]
         [CustomExceptionFilter]
         public async Task<IActionResult> DeleteDeliveryFromOrder(Guid id, Delivery delivery)
         {
-            var findOrder = context.Orders.Where(p => p.Id == id).FirstOrDefault();
-            if (findOrder == null)
+            var findOrder = _context.Orders.Where(p => p.Id == id).FirstOrDefault();
+            if (findOrder is null)
                 return NotFound();
+
             if (!findOrder.ShippingInfo.Deliveries.Any())
                 return NotFound();
+
             var findDelivery = findOrder.ShippingInfo.Deliveries
                         .FirstOrDefault(d => d.ReceiverName == delivery.ReceiverName
                         && d.DeliveryDate == delivery.DeliveryDate
                         && d.Signature == delivery.Signature);
-            if (findDelivery == null)
+            if (findDelivery is null)
                 return NotFound();
+
             findOrder.ShippingInfo.Deliveries.Remove(findDelivery);
-            await context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -102,7 +115,7 @@ namespace EFCoreJsonInEntityField.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var orders = await context.Orders.ToListAsync();
+            var orders = await _context.Orders.ToListAsync();
 
             return Ok(orders);
         }
@@ -110,7 +123,7 @@ namespace EFCoreJsonInEntityField.Controllers
         [HttpGet("id/{id}")]
         public async Task<IActionResult> GetOrderById(Guid id)
         {
-            var order = await context.Orders.FirstOrDefaultAsync(o => o.Id == id);
+            var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == id);
 
             return Ok(order);
         }
@@ -118,7 +131,7 @@ namespace EFCoreJsonInEntityField.Controllers
         [HttpGet("city/{city}")]
         public async Task<IActionResult> GetOrdersByCity(string city)
         {
-            var orders = await context.Orders.Where(o => o.ShippingInfo.City == city)
+            var orders = await _context.Orders.Where(o => o.ShippingInfo.City == city)
                                              .ToListAsync();
 
             return Ok(orders);
@@ -127,7 +140,7 @@ namespace EFCoreJsonInEntityField.Controllers
         [HttpGet("shipmentDate/{shipmentDate}")]
         public async Task<IActionResult> GetOrdersByShipmentDate(DateTime shipmentDate)
         {
-            var orders = await context.Orders
+            var orders = await _context.Orders
                    .Select(o => new { order = o, shipments = o.ShippingInfo.Shipments })
                    .Where(o => o.shipments.Any(sh => sh.ShipDate.Date == shipmentDate.Date))
                    .Select(o => o.order)

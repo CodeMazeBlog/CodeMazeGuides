@@ -1,9 +1,6 @@
 ﻿using EFCoreJsonInEntityField.Mapping;
 using EFCoreJsonInEntityField.Models;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
-using System;
 
 namespace EFCoreJsonInEntityField
 {

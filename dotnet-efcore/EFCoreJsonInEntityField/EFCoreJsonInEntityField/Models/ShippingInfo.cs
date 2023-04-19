@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-public class ShippingInfo
+﻿public class ShippingInfo
 {
     public string Address { get; set; }
 
