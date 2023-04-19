@@ -5,7 +5,7 @@ namespace Delegates
     {
         public void LogCalculation(int x, int y)
         {
-            Console.WriteLine($"Calculation performed with operands {x} and {y}");
+            Console.Write($"Calculation performed with operands {x} and {y}");
         }
     }
 }
