@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FunctionActionDelegatesInCsharp
+﻿namespace FunctionActionDelegatesInCsharp
 {
     public class FunctionAction
     {
-
         static void Main(string[] args)
         {
             Func<int, int, int> add = (int first, int second) => first + second;

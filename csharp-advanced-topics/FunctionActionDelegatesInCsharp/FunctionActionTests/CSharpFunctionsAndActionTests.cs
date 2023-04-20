@@ -3,10 +3,10 @@ using FunctionActionDelegatesInCsharp;
 namespace FunctionActionTests
 {
     [TestClass]
-    public class UnitTest1
+    public class CSharpFunctionsAndActionTests
     {
         [TestMethod]
-        public void GivenAddLamdaFunction_ThenAssertResult()
+        public void WhenAddingTwoNumbers_ThenResultIsCorrect()
         {
             //arrange
             Func<int, int, int> add = (int first, int second) => first + second;
@@ -19,7 +19,7 @@ namespace FunctionActionTests
         }
 
         [TestMethod]
-        public void GivenSubMethod_ThenAssertResult()
+        public void WhenSubstractMethodIsCalled_ThenItShouldReturnCorrectResult()
         {
             //arrange
             Func<int, int, int> sub = FunctionAction.Subtract;
@@ -32,7 +32,7 @@ namespace FunctionActionTests
         }
 
         [TestMethod]
-        public void GivenMultLambda_ThenAssertMultIsValid()
+        public void WhenMultLambdaIsCalled_ThenMultResultShouldNotBeNull()
         {
             //arrange
             var random = new Random();
@@ -45,7 +45,7 @@ namespace FunctionActionTests
         }
 
         [TestMethod]
-        public void GivenActionValue_ThenAssertUpdatedValue()
+        public void WhenActionValueIsUpdated_ThenAssertValueShouldBeUpdated()
         {
             //arrange
             int value = 1;
@@ -56,6 +56,5 @@ namespace FunctionActionTests
             //assert
             Assert.AreEqual(50, value);
         }
-
     }
 }
