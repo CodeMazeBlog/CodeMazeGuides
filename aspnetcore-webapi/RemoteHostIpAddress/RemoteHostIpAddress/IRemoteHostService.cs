@@ -4,7 +4,7 @@ namespace RemoteHostIpAddress
 {
     public interface IRemoteHostService
     {
-        public IPAddress GetRemoteHostIpAddressUsingRemoteIpAddress(HttpContext httpContext);
+        public IPAddress? GetRemoteHostIpAddressUsingRemoteIpAddress(HttpContext httpContext);
 
         public IPAddress? GetRemoteHostIpAddressUsingXForwardedFor(HttpContext httpContext);
 

@@ -6,16 +6,16 @@ using Xunit;
 
 namespace RemoteHostIpAddressTests
 {
-    public class IRemoteHostServiceTests
+    public class RemoteHostServiceTests
     {
         private readonly IRemoteHostService _service;
-        public IRemoteHostServiceTests()
+        public RemoteHostServiceTests()
         {
             _service = new RemoteHostService();
         }
 
         [Fact]
-        public void WhenGetRemoteHostIpAddressWithValidRemoteIpAddres_ThenReturnsValidIpAddress()
+        public void WhenGetRemoteHostIpAddressWithValidRemoteIpAddress_ThenReturnsValidIpAddress()
         {
             // Arrange
             var connection = new Mock<ConnectionInfo>();
@@ -32,7 +32,7 @@ namespace RemoteHostIpAddressTests
         }
 
         [Fact]
-        public void WhenGetRemoteHostIpAddressUsingXForwardedForWithValidRemoteIpAddres_ThenReturnsValidIpAddress()
+        public void WhenGetRemoteHostIpAddressUsingXForwardedForWithValidRemoteIpAddress_ThenReturnsValidIpAddress()
         {
             // Arrange
             var headerDictionary = new HeaderDictionary

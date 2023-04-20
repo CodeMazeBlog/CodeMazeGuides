@@ -5,7 +5,7 @@ namespace RemoteHostIpAddress
 {
     public class RemoteHostService : IRemoteHostService
     {
-        public IPAddress GetRemoteHostIpAddressUsingRemoteIpAddress(HttpContext httpContext)
+        public IPAddress? GetRemoteHostIpAddressUsingRemoteIpAddress(HttpContext httpContext)
         {
             return httpContext.Connection.RemoteIpAddress;
         }
@@ -23,7 +23,8 @@ namespace RemoteHostIpAddress
                 foreach (var ip in ips)
                 {
                     if (IPAddress.TryParse(ip, out var address) &&
-                        (address.AddressFamily == AddressFamily.InterNetwork || address.AddressFamily == AddressFamily.InterNetworkV6))
+                        (address.AddressFamily is AddressFamily.InterNetwork
+                        or AddressFamily.InterNetworkV6))
                     {
                         remoteIpAddress = address;
                         break;
@@ -46,7 +47,8 @@ namespace RemoteHostIpAddress
                     return remoteIpAddress;
                 }
 
-                var isValidIP = (address.AddressFamily == AddressFamily.InterNetwork || address.AddressFamily == AddressFamily.InterNetworkV6);
+                var isValidIP = (address.AddressFamily is AddressFamily.InterNetwork
+                        or AddressFamily.InterNetworkV6);
                 
                 if (isValidIP)
                 {
