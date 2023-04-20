@@ -14,14 +14,16 @@ namespace UploadingLargeFiles.Controllers
         {
             _fileService = fileService;
         }
-        
-        [HttpPost("upload")]
-        [ContentTypeValidation]
+
+        [HttpPost("upload-stream-multipartreader")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
+        [MultipartFormData]
         public async Task<IActionResult> Upload()
         {
-           var fileUploadSummary = await _fileService.UploadFileAsync(HttpContext.Request.Body, Request.ContentType);
+            var fileUploadSummary = await _fileService.UploadFileAsync(HttpContext.Request.Body, Request.ContentType);
 
-            return Ok(fileUploadSummary);
+            return CreatedAtAction(nameof(Upload), fileUploadSummary);
         }
     }
 }

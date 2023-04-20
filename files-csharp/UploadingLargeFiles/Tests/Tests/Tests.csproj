@@ -27,16 +27,4 @@
     <ProjectReference Include="..\..\UploadingLargeFiles\UploadingLargeFiles.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Files\SampleDoc1.pdf">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Files\SampleFile2.zip">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-    <None Update="Files\SampleFile3.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

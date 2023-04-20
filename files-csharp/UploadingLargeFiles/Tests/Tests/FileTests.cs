@@ -22,7 +22,7 @@ namespace Tests
 
             // Act
             HttpResponseMessage response;
-            var sampleFile1 = Path.Combine(baseDir, "Files", "SampleDoc1.pdf");
+            var sampleFile1 = Path.Combine(baseDir, "Files", "SampleDoc1.png");
             var sampleFile2 = Path.Combine(baseDir, "Files", "SampleFile2.zip");
             await using (var file1 = File.OpenRead(sampleFile1))
             using (var content1 = new StreamContent(file1))
@@ -33,11 +33,11 @@ namespace Tests
                 formData.Add(content1, "files", "SampleDoc1.pdf");
                 formData.Add(content2, "files", "SampleFile2.zip");
 
-                response = await client.PostAsync("/file/upload", formData);
+                response = await client.PostAsync("/file/upload-stream-multipartreader", formData);
             }
 
             // Assert
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         }
 
         [Fact]
@@ -53,11 +53,11 @@ namespace Tests
                 var textContent = new StringContent("Just text");
                 formData.Add(textContent, "text-sample");
 
-                response = await client.PostAsync("/file/upload", formData);
+                response = await client.PostAsync("/file/upload-stream-multipartreader", formData);
             }
 
             // Assert
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
         }
 
         [Fact]
@@ -67,10 +67,10 @@ namespace Tests
             var client = _factory.CreateClient();
 
             // Act
-            var response = await client.PostAsync("/file/upload", null);
+            var response = await client.PostAsync("/file/upload-stream-multipartreader", null);
 
             // Assert
-            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            Assert.Equal(HttpStatusCode.UnsupportedMediaType, response.StatusCode);
         }
     }
 }

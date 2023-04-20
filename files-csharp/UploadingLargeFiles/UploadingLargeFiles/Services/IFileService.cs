@@ -4,6 +4,6 @@ namespace UploadingLargeFiles.Services
 {
     public interface IFileService
     {
-        Task<FileUploadSummary> UploadFileAsync(Stream files, string contentType);
+        Task<FileUploadSummary> UploadFileAsync(Stream fileStream, string contentType);
     }
 }

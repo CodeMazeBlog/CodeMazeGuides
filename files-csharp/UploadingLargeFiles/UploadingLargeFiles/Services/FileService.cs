@@ -6,49 +6,71 @@ namespace UploadingLargeFiles.Services
 {
     public class FileService : IFileService
     {
-        private const string SubDirectory = "FilesUploaded";
+        private const string UploadsSubDirectory = "FilesUploaded";
 
-        public async Task<FileUploadSummary> UploadFileAsync(Stream files, string contentType)
+        private readonly IEnumerable<string> allowedExtensions = new List<string> { ".zip", ".bin", ".png", ".jpg" };
+
+        public async Task<FileUploadSummary> UploadFileAsync(Stream fileStream, string contentType)
         {
-            var count = 0;
-            var totalSize = 0L;
+            var fileCount = 0;
+            long totalSizeInBytes = 0;
+
             var boundary = GetBoundary(MediaTypeHeaderValue.Parse(contentType));
-            var reader = new MultipartReader(boundary, files);
-            var section = await reader.ReadNextSectionAsync();
-            do
+            var multipartReader = new MultipartReader(boundary, fileStream);
+            var section = await multipartReader.ReadNextSectionAsync();
+
+            var filePaths = new List<string>();
+            var notUploadedFiles = new List<string>();
+            while (section != null)
             {
-                var fileSection = section?.AsFileSection();
+                var fileSection = section.AsFileSection();
                 if (fileSection != null)
                 {
-                    totalSize += await SaveFileAsync(fileSection);
-                    count++;
+                    totalSizeInBytes += await SaveFileAsync(fileSection, filePaths, notUploadedFiles);
+                    fileCount++;
                 }
 
-                section = await reader.ReadNextSectionAsync();
-            } while (section != null);
+                section = await multipartReader.ReadNextSectionAsync();
+            }
 
-            var result = new FileUploadSummary
+            return new FileUploadSummary
             {
-                TotalFilesUploaded = count, 
-                TotalSizeUploaded = SizeConverter(totalSize)
+                TotalFilesUploaded = fileCount,
+                TotalSizeUploaded = ConvertSizeToString(totalSizeInBytes),
+                FilePaths = filePaths,
+                NotUploadedFiles = notUploadedFiles
             };
-
-            return await Task.FromResult(result);
         }
 
-        private async Task<long> SaveFileAsync(FileMultipartSection fileSection)
+        private async Task<long> SaveFileAsync(FileMultipartSection fileSection, IList<string> filePaths, IList<string> notUploadedFiles)
         {
-            Directory.CreateDirectory(SubDirectory);
+            var extension = Path.GetExtension(fileSection.FileName);
+            if (!allowedExtensions.Contains(extension))
+            {
+                notUploadedFiles.Add(fileSection.FileName);
+                return 0;
+            }
 
-            var filePath = Path.Combine(SubDirectory, fileSection?.FileName);
+            Directory.CreateDirectory(UploadsSubDirectory);
+
+            var filePath = Path.Combine(UploadsSubDirectory, fileSection?.FileName);
 
             await using var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, 1024);
-            await fileSection.FileStream?.CopyToAsync(stream)!;
+            await fileSection.FileStream?.CopyToAsync(stream);
+
+            filePaths.Add(GetFullFilePath(fileSection));
 
             return fileSection.FileStream.Length;
-        } 
+        }
 
-        private string SizeConverter(long bytes)
+        private string GetFullFilePath(FileMultipartSection fileSection)
+        {
+            return !string.IsNullOrEmpty(fileSection.FileName)
+                ? Path.Combine(Directory.GetCurrentDirectory(), UploadsSubDirectory, fileSection.FileName)
+                : string.Empty;
+        }
+
+        private string ConvertSizeToString(long bytes)
         {
             var fileSize = new decimal(bytes);
             var kilobyte = new decimal(1024);
