@@ -48,7 +48,7 @@ namespace RemoteHostIpAddress
                 }
 
                 var isValidIP = (address.AddressFamily is AddressFamily.InterNetwork
-                        or AddressFamily.InterNetworkV6);
+                                or AddressFamily.InterNetworkV6);
                 
                 if (isValidIP)
                 {
