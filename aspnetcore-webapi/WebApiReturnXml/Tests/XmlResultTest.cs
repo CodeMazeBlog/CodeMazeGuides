@@ -9,7 +9,7 @@ namespace Tests
     [TestClass]
     public class XmlResultTest
     {
-        public UserController? _controller;
+        private UserController _controller;
 
         [TestInitialize]
         public void Setup()
