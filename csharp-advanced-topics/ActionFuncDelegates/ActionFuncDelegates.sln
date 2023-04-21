@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionDelegates", "ActionDelegates\ActionDelegates.csproj", "{FB469D09-8FC5-4591-B370-02F6826C93D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionDelegate", "ActionDelegates\ActionDelegate.csproj", "{FB469D09-8FC5-4591-B370-02F6826C93D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuncDelegate", "FuncDelegate\FuncDelegate.csproj", "{6D90EEC9-119A-40E8-A943-21617CC6F139}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuncDelegate", "FuncDelegate\FuncDelegate.csproj", "{6D90EEC9-119A-40E8-A943-21617CC6F139}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithoutDelegate", "WithoutDelegate\WithoutDelegate.csproj", "{688DE743-7738-4342-BA88-BE3023575386}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WithoutDelegate", "WithoutDelegate\WithoutDelegate.csproj", "{688DE743-7738-4342-BA88-BE3023575386}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithDelegates", "WithDelegates\WithDelegates.csproj", "{0BD8DD01-1D83-4843-8080-8C5021F2F756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WithDelegate", "WithDelegates\WithDelegate.csproj", "{0BD8DD01-1D83-4843-8080-8C5021F2F756}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionDelegate.Tests", "ActionDelegate.Tests\ActionDelegate.Tests.csproj", "{7261A4F7-7814-4BDF-A51A-1F9CF7B91C51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuncDelegate.Tests", "FuncDelegate.Tests\FuncDelegate.Tests.csproj", "{538632C1-6592-43F8-8A34-72788D1668BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithDelegate.Tests", "WithDelegate.Tests\WithDelegate.Tests.csproj", "{376C3781-7FA0-477E-9328-8B556CB36998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WithoutDelegate.Tests", "WithoutDelegate.Tests\WithoutDelegate.Tests.csproj", "{1E063F5E-025B-46E2-AE5A-50980D1053A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +41,22 @@ Global
 		{0BD8DD01-1D83-4843-8080-8C5021F2F756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BD8DD01-1D83-4843-8080-8C5021F2F756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BD8DD01-1D83-4843-8080-8C5021F2F756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7261A4F7-7814-4BDF-A51A-1F9CF7B91C51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7261A4F7-7814-4BDF-A51A-1F9CF7B91C51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7261A4F7-7814-4BDF-A51A-1F9CF7B91C51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7261A4F7-7814-4BDF-A51A-1F9CF7B91C51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{538632C1-6592-43F8-8A34-72788D1668BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{538632C1-6592-43F8-8A34-72788D1668BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{538632C1-6592-43F8-8A34-72788D1668BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{538632C1-6592-43F8-8A34-72788D1668BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{376C3781-7FA0-477E-9328-8B556CB36998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{376C3781-7FA0-477E-9328-8B556CB36998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{376C3781-7FA0-477E-9328-8B556CB36998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{376C3781-7FA0-477E-9328-8B556CB36998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E063F5E-025B-46E2-AE5A-50980D1053A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E063F5E-025B-46E2-AE5A-50980D1053A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E063F5E-025B-46E2-AE5A-50980D1053A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E063F5E-025B-46E2-AE5A-50980D1053A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

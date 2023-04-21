@@ -1,4 +1,4 @@
-﻿namespace ActionDelegates
+﻿namespace ActionDelegate
 {
     public class ActionDelegate
     {

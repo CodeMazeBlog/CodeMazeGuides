@@ -1,4 +1,4 @@
-﻿namespace WithDelegates
+﻿namespace WithDelegate
 {
     public class WithDelegate
     {
