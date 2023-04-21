@@ -14,8 +14,12 @@ If you like what you've learned and would like to support us, you can check some
 Here's the "Ultimate ASP.NET Core WEB API - Second Edition": <br/>
 **[ULTIMATE ASP.NET CORE WEB API](https://code-maze.com/ultimate-aspnetcore-webapi-second-edition/?source=github)**
 
-Here's the Blazor WebAssembly Video Course: <br/>
+Here's the "Blazor WebAssembly (.NET 7)" Video Course: <br/>
 **[BLAZOR WEBASSEMBLY VIDEO COURSE](https://code-maze.com/blazor-webassembly-course/?source=github)**
+
+| Ultimate Web API  | Blazor WebAssembly |
+| - | - |
+| [<img src="https://code-maze.com/wp-content/uploads/2022/08/ultimate-aspnet-core-banner-v3-690-min.webp"  width="500">](https://code-maze.com/ultimate-aspnetcore-webapi-second-edition/?source=github) | [<img src="https://code-maze.com/wp-content/uploads/2021/04/banner-blog-final-min.png"  width="500">](https://code-maze.com/blazor-webassembly-course/?source=github) |
 
 We appreciate your support. It helps us provide even more free materials on the blog.
 

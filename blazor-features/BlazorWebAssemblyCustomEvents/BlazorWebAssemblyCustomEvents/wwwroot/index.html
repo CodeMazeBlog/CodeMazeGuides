@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>BlazorWebAssemblyCustomEvents</title>
+    <base href="/" />
+    <link href="css/app.css" rel="stylesheet" />
+    
+    <!-- If you add any scoped CSS files, uncomment the following to load them
+    <link href="BlazorWebAssemblyCustomEvents.styles.css" rel="stylesheet" /> -->
+</head>
+
+<body>
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        let lastClick = 0;
+        const MAX_DOUBLE_CLICK_TIME = 400
+        Blazor.registerCustomEventType('doubleclick', {
+            browserEventName: 'click',
+            createEventArgs: event => {
+                const timeBetweenClicks = event.timeStamp - lastClick
+                if (timeBetweenClicks > MAX_DOUBLE_CLICK_TIME) {
+                    lastClick = event.timeStamp;
+                    console.log("setting last click");
+                    return {
+                        eventTimestamp: new Date(),
+                        isDoubleClick: false
+                    };
+                }
+
+                // Double click happened.
+                console.log("double click!");
+                lastClick = 0
+                return {
+                    eventTimestamp: new Date(),
+                    isDoubleClick: true
+                };
+            }
+        });
+    </script>
+</body>
+
+</html>
