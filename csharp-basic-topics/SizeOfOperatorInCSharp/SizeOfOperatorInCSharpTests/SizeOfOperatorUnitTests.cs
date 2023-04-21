@@ -21,15 +21,15 @@ namespace SizeOfOperatorInCSharpTests
         [TestMethod]
         public void GivenAPrimitiveType_WhenSizeofInvoked_VerifyAccurateSize()
         {
-            //Assert.AreEqual(1, sizeof(byte));
-            //Assert.AreEqual(2, sizeof(short));
+            Assert.AreEqual(1, sizeof(byte));
+            Assert.AreEqual(2, sizeof(short));
             Assert.AreEqual(4, sizeof(int));
             Assert.AreEqual(8, sizeof(long));
-            //Assert.AreEqual(2, sizeof(char));
-            //Assert.AreEqual(4, sizeof(float));
-            //Assert.AreEqual(8, sizeof(double));
-            //Assert.AreEqual(16, sizeof(decimal));
-            //Assert.AreEqual(1, sizeof(bool));
+            Assert.AreEqual(2, sizeof(char));
+            Assert.AreEqual(4, sizeof(float));
+            Assert.AreEqual(8, sizeof(double));
+            Assert.AreEqual(16, sizeof(decimal));
+            Assert.AreEqual(1, sizeof(bool));
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace SizeOfOperatorInCSharpTests
         [TestMethod]
         public void GivenAStructType_WhenSizeofInvoked_VerifyAccurateSize()
         {
-            var expected = 12;
+            var expected = 56;
             var actual = Marshal.SizeOf(typeof(MyStruct));
 
             Assert.AreEqual(expected, actual);
