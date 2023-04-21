@@ -29,12 +29,12 @@
         
         for (int i = 0; i < input.Shipments.Count; i++)
         {
-            andRes=andRes && (Shipments[i] == input.Shipments[i]);
+            andRes=andRes && (Shipments[i].Equals(input.Shipments[i]));
             if (!andRes) return false;
         }        
         for (int i = 0; i < input.Deliveries.Count; i++)
         {
-            andRes = andRes && (Deliveries[i] == input.Deliveries[i]);
+            andRes = andRes && (Deliveries[i].Equals(input.Deliveries[i]));
             if (!andRes) return false;
         }
 
