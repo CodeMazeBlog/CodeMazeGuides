@@ -1,7 +1,7 @@
 namespace WithDelegate.Tests
 {
     [TestClass]
-    public class WithDelegateTests
+    public class WithDelegateUnitTest
     {
         [TestMethod]
         public void GivenTwoNumbers_WhenAdditionIsPerformed_ThenResultShouldBeCorrect()

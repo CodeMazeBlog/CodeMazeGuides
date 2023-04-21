@@ -1,7 +1,7 @@
 namespace ActionDelegate.Tests
 {
     [TestClass]
-    public class ActionDelegateTests
+    public class ActionDelegateUnitTest
     {
         [TestMethod]
         public void GivenTwoNumbers_WhenSubtracting_ThenResultShouldBeTheDifference()

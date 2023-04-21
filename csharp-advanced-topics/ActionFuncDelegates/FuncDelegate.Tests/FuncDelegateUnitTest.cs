@@ -1,7 +1,7 @@
 namespace FuncDelegate.Tests
 {
     [TestClass]
-    public class FuncDelegateTests
+    public class FuncDelegateUnitTest
     {
         [TestMethod]
         public void GivenTwoIntegers_WhenMultiplicationIsPerformed_ThenResultShouldBeCorrect()

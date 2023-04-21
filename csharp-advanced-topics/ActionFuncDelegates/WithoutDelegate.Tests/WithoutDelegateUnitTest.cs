@@ -1,7 +1,7 @@
 namespace WithoutDelegate.Tests
 {
     [TestClass]
-    public class WithoutDelegateTests
+    public class WithoutDelegateUnitTest
     {
         [TestMethod]
         public void GivenTwoIntegers_WhenAdditionMethodIsCalled_ThenReturnTheSum()
