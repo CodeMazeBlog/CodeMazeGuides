@@ -6,10 +6,10 @@ using Xunit;
 
 namespace RemoteHostIpAddressTests
 {
-    public class RemoteHostServiceTests
+    public class RemoteHostServiceUnitTest
     {
         private readonly IRemoteHostService _service;
-        public RemoteHostServiceTests()
+        public RemoteHostServiceUnitTest()
         {
             _service = new RemoteHostService();
         }
