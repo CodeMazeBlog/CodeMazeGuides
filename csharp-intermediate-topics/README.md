@@ -31,6 +31,7 @@ This section contains the topics considered intermediate level in C#.
 - [Reflection in C#](https://code-maze.com/csharp-reflection/)
 - [How to Implement Retry Logic in C#](https://code-maze.com/csharp-implement-retry-logic/)
 - [How to Return null From a Generic Method in C#](https://code-maze.com/return-null-from-generic-method-csharp/)
+- [Static Methods vs. Non-Static Methods in C#](https://code-maze.com/csharp-static-vs-non-static-methods/)
 - [Static Classes in C#](https://code-maze.com/static-classes-csharp/)
 - [Tuple in C#](https://code-maze.com/csharp-tuple/)
 - [Unsafe Code in C# (unsafe keyword)](https://code-maze.com/unsafe-code-csharp/)
