@@ -3,7 +3,7 @@
 namespace ExpressionTreesInCSharp.EntityFramework;
 public class EntityFrameworkSqlite
 {
-    private readonly UserDbContext _dbContext = new UserDbContext();
+    private readonly UserDbContext _dbContext = new();
 
     public EntityFrameworkSqlite()
     {

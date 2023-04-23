@@ -4,7 +4,7 @@ namespace Tests;
 public class EntityFrameworkTests
 {
     [Fact]
-    public void GivenAUserDbContext_WhenListedUsers_ShouldUseCorrectQuery()
+    public void GivenAUserDbContext_WhenListedUsers_ThenShouldUseCorrectQuery()
     {
         var efSqlite = new EntityFrameworkSqlite();
 
@@ -19,7 +19,7 @@ public class EntityFrameworkTests
     }
 
     [Fact]
-    public void GivenAUserDbContext_WhenListedUsersWithFilters_ShouldUseCorrectQuery()
+    public void GivenAUserDbContext_WhenListedUsersWithFilters_ThenShouldUseCorrectQuery()
     {
         var efSqlite = new EntityFrameworkSqlite();
 

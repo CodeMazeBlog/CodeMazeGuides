@@ -4,7 +4,7 @@ namespace Tests;
 public class DynamicMethodTests
 {
     [Fact]
-    public void GivenAMathStatement_WhenParsed_ShouldReturnExecutableFunction()
+    public void GivenAMathStatement_WhenConvertedToExpressionTree_ThenShouldReturnExecutableFunction()
     {
         var productFunc = DynamicMethodGenerator.GenerateExecutableFunctionFromMathStatement("=a*b");
 

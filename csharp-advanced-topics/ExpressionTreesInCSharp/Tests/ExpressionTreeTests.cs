@@ -6,7 +6,7 @@ namespace Tests;
 public class ExpressionTreeTests
 {
     [Fact]
-    public void GivenALambdaExpression_WhenConvertedToExpressionTree_ShouldContainTheExpectedValues()
+    public void WhenCreateExpressionTreeFromLambdaExpression_ThenShouldContainTheExpectedValues()
     {
         var sumExpressionTree = ExpressionTrees.CreateExpressionTreeFromLambdaExpression();
         AssertExpressionTreeProperties(sumExpressionTree);
@@ -42,7 +42,7 @@ public class ExpressionTreeTests
     }
 
     [Fact]
-    public void GivenAnExpressionTreeFromAPI_WhenInspected_ShouldContainTheExpectedValues()
+    public void WhenCreateExpressionTreeUsingExpressionTreeClass_ThenShouldContainTheExpectedValues()
     {
         var expressionTree = ExpressionTrees.CreateExpressionTreeUsingExpressionTreeClass();
 
@@ -50,7 +50,7 @@ public class ExpressionTreeTests
     }
 
     [Fact]
-    public void GivenALambdaExpression_WhenInvoked_ShouldReturnCorrectValue()
+    public void GivenASumLambdaExpression_WhenExecutedWithTwoNumbersAsParameters_ThenShouldReturnTheCorrectSum()
     {
         var sumLambda = ExpressionTrees.CreateLambdaExpression();
 
@@ -60,9 +60,11 @@ public class ExpressionTreeTests
     }
 
     [Fact]
-    public void GivenAnExpressionTree_WhenCompiled_ShouldExecuteAndReturnResult()
+    public void GivenAnExpressionTree_WhenCompiled_ThenShouldExecuteAndReturnResult()
     {
-        var compiledSumLambdaExpression = ExpressionTrees.CompileExpressionTreeToLambdaExpression();
+        var expression = ExpressionTrees.CreateExpressionTreeFromLambdaExpression();
+
+        var compiledSumLambdaExpression = ExpressionTrees.CompileExpressionTreeToLambdaExpression(expression);
 
         var sum = compiledSumLambdaExpression(1, 1);
 

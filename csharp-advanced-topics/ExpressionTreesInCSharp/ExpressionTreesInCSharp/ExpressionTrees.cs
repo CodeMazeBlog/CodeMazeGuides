@@ -27,10 +27,8 @@ public class ExpressionTrees
         return sumExpression;
     }
 
-    public static Func<int, int, int> CompileExpressionTreeToLambdaExpression()
+    public static Func<int, int, int> CompileExpressionTreeToLambdaExpression(Expression<Func<int, int, int>> expressionTree)
     {
-        Expression<Func<int, int, int>> expressionTree = CreateExpressionTreeFromLambdaExpression();
-
         var lambdaExpression = expressionTree.Compile();
 
         return lambdaExpression;

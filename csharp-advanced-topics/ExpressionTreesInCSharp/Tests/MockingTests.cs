@@ -4,7 +4,7 @@ namespace Tests;
 public class MockingTests
 {
     [Fact]
-    public void GivenAMockCalculator_WhenUsedAsDependency_ShouldReturnMockValues()
+    public void GivenAMockCalculator_WhenUsedAsDependency_ThenShouldReturnMockValues()
     {
         var calculatorMock = new Mock<ICalculator>();
 
