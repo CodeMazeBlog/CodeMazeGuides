@@ -49,18 +49,18 @@ namespace TestingUserAndRoleManagerUnitTests
                 .Setup(userManager => userManager.AddToRoleAsync(It.IsAny<User>(), It.IsAny<string>()));
 
             var list = new List<IdentityRole>()
-                {
-                    new IdentityRole("Administrator"),
-                    new IdentityRole("Visitor")
-                }
-                .AsQueryable();
+            {
+                new IdentityRole("Administrator"),
+                new IdentityRole("Visitor")
+            }
+            .AsQueryable();
 
             var roleManagerMock = new Mock<RoleManager<IdentityRole>>(
-            new Mock<IRoleStore<IdentityRole>>().Object,
-            new IRoleValidator<IdentityRole>[0],
-            new Mock<ILookupNormalizer>().Object,
-            new Mock<IdentityErrorDescriber>().Object,
-            new Mock<ILogger<RoleManager<IdentityRole>>>().Object);
+                new Mock<IRoleStore<IdentityRole>>().Object,
+                new IRoleValidator<IdentityRole>[0],
+                new Mock<ILookupNormalizer>().Object,
+                new Mock<IdentityErrorDescriber>().Object,
+                new Mock<ILogger<RoleManager<IdentityRole>>>().Object);
 
             roleManagerMock
                 .Setup(r => r.Roles).Returns(list);
@@ -120,18 +120,18 @@ namespace TestingUserAndRoleManagerUnitTests
                 .Setup(userManager => userManager.AddToRoleAsync(It.IsAny<User>(), It.IsAny<string>()));
 
             var roleManagerMock = new Mock<RoleManager<IdentityRole>>(
-            new Mock<IRoleStore<IdentityRole>>().Object,
-            new IRoleValidator<IdentityRole>[0],
-            new Mock<ILookupNormalizer>().Object,
-            new Mock<IdentityErrorDescriber>().Object,
-            new Mock<ILogger<RoleManager<IdentityRole>>>().Object);
+                new Mock<IRoleStore<IdentityRole>>().Object,
+                new IRoleValidator<IdentityRole>[0],
+                new Mock<ILookupNormalizer>().Object,
+                new Mock<IdentityErrorDescriber>().Object,
+                new Mock<ILogger<RoleManager<IdentityRole>>>().Object);
 
             var list = new List<IdentityRole>()
-                {
-                    new IdentityRole("Administrator"),
-                    new IdentityRole("Visitor")
-                }
-                .AsQueryable();
+            {
+                new IdentityRole("Administrator"),
+                new IdentityRole("Visitor")
+            }
+            .AsQueryable();
 
             roleManagerMock
                 .Setup(r => r.Roles).Returns(list);

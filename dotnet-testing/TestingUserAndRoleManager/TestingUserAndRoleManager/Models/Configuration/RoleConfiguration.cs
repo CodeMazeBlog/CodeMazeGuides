@@ -9,16 +9,16 @@ namespace TestingUserAndRoleManager.Models.Configuration
         public void Configure(EntityTypeBuilder<IdentityRole> builder)
         {
             builder.HasData(
-            new IdentityRole
-            {
-                Name = "Visitor",
-                NormalizedName = "VISITOR"
-            },
-            new IdentityRole
-            {
-                Name = "Administrator",
-                NormalizedName = "ADMINISTRATOR"
-            });
+                new IdentityRole
+                {
+                    Name = "Visitor",
+                    NormalizedName = "VISITOR"
+                },
+                new IdentityRole
+                {
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR"
+                });
         }
     }
 }
