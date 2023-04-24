@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncInCsharp", "ActionAndFuncInCsharp\ActionAndFuncInCsharp.csproj", "{C8EFEA3D-91DD-4163-B4C6-E507EB477E30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionsAndFuncInCsharpTests", "Tests\ActionsAndFuncInCsharpTests\ActionsAndFuncInCsharpTests.csproj", "{E1AEC8AF-76EF-40D7-8C5E-3CC778D3BE48}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E23076BE-313E-46E8-9A26-D829CEDC3A32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8EFEA3D-91DD-4163-B4C6-E507EB477E30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8EFEA3D-91DD-4163-B4C6-E507EB477E30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8EFEA3D-91DD-4163-B4C6-E507EB477E30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8EFEA3D-91DD-4163-B4C6-E507EB477E30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1AEC8AF-76EF-40D7-8C5E-3CC778D3BE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1AEC8AF-76EF-40D7-8C5E-3CC778D3BE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1AEC8AF-76EF-40D7-8C5E-3CC778D3BE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1AEC8AF-76EF-40D7-8C5E-3CC778D3BE48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E1AEC8AF-76EF-40D7-8C5E-3CC778D3BE48} = {E23076BE-313E-46E8-9A26-D829CEDC3A32}
+	EndGlobalSection
+EndGlobal
