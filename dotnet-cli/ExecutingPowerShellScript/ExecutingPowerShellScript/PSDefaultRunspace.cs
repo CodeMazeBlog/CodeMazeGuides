@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Management.Automation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExecutingPowerShellScript
 {
@@ -20,6 +15,7 @@ namespace ExecutingPowerShellScript
                 return processes;
             }
         }
+
         public Collection<PSObject> GetRunningProcessesDetails()
         {
             using (var ps = PowerShell.Create())
@@ -30,6 +26,7 @@ namespace ExecutingPowerShellScript
                 return processes;
             }
         }
+
         public bool StartAProcess(string processName)
         {
             try

@@ -7,14 +7,15 @@ namespace ExecutingPowerShellScript
     {
         static void Main(string[] args)
         {
-            PSDefaultRunspace defaultRunspace = new PSDefaultRunspace();
+            PSDefaultRunspace defaultRunspace = new();
             var processes=defaultRunspace.GetRunningProcesses();
             PrintToConsole(processes);
+
             var detailedProcesses= defaultRunspace.GetRunningProcessesDetails();
             PrintToConsole(detailedProcesses);
             defaultRunspace.StartAProcess("notepad");
 
-            PSCustomRunspace customRunspace = new PSCustomRunspace();
+            PSCustomRunspace customRunspace = new();
             var processStarted= customRunspace.StartAProcess("notepad");
             if (!processStarted)
             {

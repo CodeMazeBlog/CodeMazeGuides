@@ -1,24 +1,17 @@
 ﻿using ExecutingPowerShellScript;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests
 {
-   
-    public class PSDefaultRunspaceTest
+    public class PSDefaultRunspaceLiveTest
     {
         private PSDefaultRunspace defaultRunspace;
-        public PSDefaultRunspaceTest()
+        public PSDefaultRunspaceLiveTest()
         {
             defaultRunspace= new PSDefaultRunspace();
         }
 
         [Fact]
-        public void WhenInvokedReturnsListOfProcesses()
+        public void WhenInvokedThenReturnsListOfProcesses()
         {
             var result = defaultRunspace.GetRunningProcesses();
             var expectedType = "System.Collections.ObjectModel.Collection`1[System.Management.Automation.PSObject]";
@@ -27,7 +20,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenInvokedReturnsDetailedListOfProcesses()
+        public void WhenInvokedThenReturnsDetailedListOfProcesses()
         {
             var result = defaultRunspace.GetRunningProcessesDetails();
             var expectedType = "System.Collections.ObjectModel.Collection`1[System.Management.Automation.PSObject]";
@@ -36,7 +29,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenNameWhenInvokedStartsAProcess()
+        public void GivenNameWhenInvokedThenStartsAProcess()
         {
             var result = defaultRunspace.StartAProcess("notepad");
             var expectedResult = true;

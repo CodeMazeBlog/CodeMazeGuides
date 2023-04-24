@@ -1,9 +1,4 @@
 ﻿using ExecutingPowerShellScript;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -16,7 +11,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenNameWhenInvokedDoesntStartAProcess()
+        public void GivenNameWhenInvokedThenDoesntStartAProcess()
         {
             var result = customRunspace.StartAProcess("notepad");
             var expectedResult = false;
