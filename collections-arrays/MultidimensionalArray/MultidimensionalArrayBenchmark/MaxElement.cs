@@ -13,7 +13,9 @@ public class MaxElement
         }
 
         elementsMulti[elementsMulti.GetLength(0) / 2, elementsMulti.GetLength(1) / 2] = 1;
-        elementsJagged[elementsJagged.Length / 2][elementsJagged[elementsJagged.Length / 2].Length / 2] = 1;
+
+        int middleArrayIndex = elementsJagged.Length / 2;
+        elementsJagged[middleArrayIndex][elementsJagged[middleArrayIndex].Length / 2] = 1;
     }
 
     [Benchmark(Baseline = true)]

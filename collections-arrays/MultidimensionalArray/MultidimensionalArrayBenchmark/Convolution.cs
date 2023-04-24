@@ -41,7 +41,13 @@ public class Convolution
                 g /= 3;
                 b /= 3;
 
-                destImage.SetPixel(col, row, Color.FromArgb((byte)Math.Round(r), (byte)Math.Round(g), (byte)Math.Round(b)));
+                destImage.SetPixel(
+                    col,
+                    row,
+                    Color.FromArgb(
+                        (byte)Math.Round(r),
+                        (byte)Math.Round(g),
+                        (byte)Math.Round(b)));
             }
         }
     }
@@ -51,7 +57,12 @@ public class Convolution
     {
         var image = (Bitmap)Image.FromFile("example.png");
         var destImage = new Bitmap(image.Width, image.Height);
-        var kernel = new double[][] { new double[] { 2, 1, 0 }, new double[] { 1, 0, -1 }, new double[] { 0, -1, -2 } };
+        var kernel = new double[][]
+        {
+            new double[] { 2, 1, 0 },
+            new double[] { 1, 0, -1 },
+            new double[] { 0, -1, -2 }
+        };
         int kernelOffset = 1;
 
         for (int row = 0; row < image.Height; row++)
@@ -84,7 +95,13 @@ public class Convolution
                 g /= 3;
                 b /= 3;
 
-                destImage.SetPixel(col, row, Color.FromArgb((byte)Math.Round(r), (byte)Math.Round(g), (byte)Math.Round(b)));
+                destImage.SetPixel(
+                    col,
+                    row,
+                    Color.FromArgb(
+                        (byte)Math.Round(r),
+                        (byte)Math.Round(g),
+                        (byte)Math.Round(b)));
             }
         }
     }
