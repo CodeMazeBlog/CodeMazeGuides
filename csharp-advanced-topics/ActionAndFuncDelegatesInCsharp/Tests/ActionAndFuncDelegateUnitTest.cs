@@ -10,7 +10,7 @@ namespace Tests
     public class ActionAndFuncDelegateUnitTest
     {
         [Fact]
-        public void whenActionDelegate_ExecuteTheMethod()
+        public void whenFuncDelegate_ExecuteTheMethod()
         {
             //Arrange
             Func<int, int, int> calculatorFunc = Calculator.Multiply;
@@ -25,17 +25,17 @@ namespace Tests
         }
 
         [Fact]
-        public void whenFuncDelegate_ExecuteTheMethod()
+        public void whenActionDelegate_ExecuteTheMethod()
         {
             //Arrange
-            var expectedOutput = "Our world\r\n";
+            var expectedOutput = "Our world";
             Action<string> displayMessage = Display.DisplayText;
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
             //Act
-            displayMessage("Our world");
+            displayMessage(expectedOutput);
             var outPut = stringWriter.ToString();
 
             //Assert
