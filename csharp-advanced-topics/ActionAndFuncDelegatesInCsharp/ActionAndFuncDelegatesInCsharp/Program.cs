@@ -3,8 +3,8 @@
 using ActionAndFuncDelegatesInCsharp;
 
 Action<string> writeMessage = Display.DisplayText;
-            writeMessage("Our world");
+writeMessage("Our world");
 
-            Func<int, int, int> multiply = Calculator.Multiply;
-            int myResult = multiply(1, 2);
-            Console.WriteLine(myResult);
+Func<int, int, int> multiply = Calculator.Multiply;
+int result = multiply(1, 2);
+Console.WriteLine(result);
