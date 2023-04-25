@@ -4,27 +4,22 @@
     {
         public virtual string IntroduceYourSelf()
         {
-            return "I am the base class!";
+            return "Base class's IntroduceYourSelf method.";
         }
 
         public virtual string IntroduceBaseClass()
         {
-            return "I am the base class!";
+            return "Base class's IntroduceBaseClass method.";
         }
 
-        public virtual string IntroduceYourSelfNotOverriden()
+        public static string IntroduceYourSelfForNewKeyword()
         {
-            return "I am the base class!";
-        }
-
-        public virtual string IntroduceYourSelfForNewKeyword()
-        {
-            return "I am the base class!";
+            return "Base class's IntroduceYourSelfForNewKeyword method.";
         }
 
         public virtual string IntroduceYourSelfForSealedKeyword()
         {
-            return "I am the base class!";
+            return "Base class's IntroduceYourSelfForSealedKeyword method.";
         }
     }
 }

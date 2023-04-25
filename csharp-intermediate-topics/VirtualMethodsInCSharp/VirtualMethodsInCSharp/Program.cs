@@ -5,17 +5,20 @@ BaseClass derivedClassAsBaseClass = new DerivedClass();
 
 var baseClassIntroduction = baseClass.IntroduceYourSelf();
 Console.WriteLine(baseClassIntroduction);
-var derivedClassIntroduction = derivedClassAsBaseClass.IntroduceYourSelf();
-Console.WriteLine(derivedClassIntroduction);
+var derivedClassAsBaseClassIntroduction = derivedClassAsBaseClass.IntroduceYourSelf();
+Console.WriteLine(derivedClassAsBaseClassIntroduction);
 
 DerivedClass derivedClass = new();
+var derivedClassIntroduction = derivedClass.IntroduceYourSelf();
+Console.WriteLine(derivedClassIntroduction);
+
+var callingBaseClassIntroduction = derivedClass.CallBaseClassIntroduction();
+Console.WriteLine(callingBaseClassIntroduction);
+
 var baseClassFromDerivedClassIntroduction = derivedClass.IntroduceBaseClass();
 Console.WriteLine(baseClassFromDerivedClassIntroduction);
 
-var derivedClassNotOverriden = derivedClass.IntroduceYourSelfNotOverriden();
-Console.WriteLine(derivedClassNotOverriden);
-
-var derivedClassNewKeyword = derivedClass.IntroduceYourSelfForNewKeyword();
+var derivedClassNewKeyword = DerivedClass.IntroduceYourSelfForNewKeyword();
 Console.WriteLine(derivedClassNewKeyword);
 
 var derivedClassSealedKeyword = derivedClass.IntroduceYourSelfForSealedKeyword();
