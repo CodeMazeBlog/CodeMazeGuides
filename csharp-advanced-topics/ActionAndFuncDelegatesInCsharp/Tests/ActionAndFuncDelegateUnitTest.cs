@@ -13,7 +13,6 @@ namespace Tests
         public void whenActionDelegate_ExecuteTheMethod()
         {
             //Arrange
-            var calculator = new Calculator();
             Func<int, int, int> calculatorFunc = Calculator.Multiply;
             int a = 2;
             int b = 3;
@@ -29,14 +28,14 @@ namespace Tests
         public void whenFuncDelegate_ExecuteTheMethod()
         {
             //Arrange
-            var expectedOutput = "WARAP\r\n";
+            var expectedOutput = "Our world\r\n";
             Action<string> displayMessage = Display.DisplayText;
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
             //Act
-            displayMessage("WARAP");
+            displayMessage("Our world");
             var outPut = stringWriter.ToString();
 
             //Assert
