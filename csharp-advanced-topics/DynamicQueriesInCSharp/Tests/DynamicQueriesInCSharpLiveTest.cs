@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 namespace Tests
 {
     [TestClass]
-    public class DynamicQueriesInCSharpUnitTest
+    public class DynamicQueriesInCSharpLiveTest
     {
         private readonly DbSet<Person> _persons;
 
-        public DynamicQueriesInCSharpUnitTest()
+        public DynamicQueriesInCSharpLiveTest()
         {
             var context = Program.CreateDbContext();
 
