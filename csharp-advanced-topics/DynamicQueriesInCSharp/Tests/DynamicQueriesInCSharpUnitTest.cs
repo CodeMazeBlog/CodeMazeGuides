@@ -1,0 +1,90 @@
+using DynamicQueriesInCSharp;
+using DynamicQueriesInCSharp.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace Tests
+{
+    [TestClass]
+    public class DynamicQueriesInCSharpUnitTest
+    {
+        private readonly DbSet<Person> _persons;
+
+        public DynamicQueriesInCSharpUnitTest()
+        {
+            var context = Program.CreateDbContext();
+
+            _persons = context.Persons;
+        }
+
+        [TestMethod]
+        public void WhenCreateExpresisonTree_ThenReturnGeneratedQuery()
+        {
+            var json = Program.GetExpressionTree(_persons);
+
+            var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[FirstName] = N'Manoel'";
+
+            Assert.AreEqual(expectedResult, json);
+        }
+
+        [TestMethod]
+        public void WhenCreateEqualExpresisonTree_ThenReturnGeneratedQuery()
+        {
+            var json = Program.GetEqualExpression(_persons);
+
+            var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[FirstName] = N'Manoel'";
+
+            Assert.AreEqual(expectedResult, json);
+        }
+
+        [TestMethod]
+        public void WhenCreateEqualExpresisonConjuctionTree_ThenReturnGeneratedQuery()
+        {
+            var json = Program.GetEqualExpressionConjuction(_persons);
+
+            var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[FirstName] = N'Manoel' AND [p].[LastName] = N'Nobrega'";
+
+            Assert.AreEqual(expectedResult, json);
+        }
+
+        [TestMethod]
+        public void WhenCreateContainsExpressionTree_ThenReturnGeneratedQuery()
+        {
+            var json = Program.GetContainsExpression(_persons);
+
+            var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[FirstName] LIKE N'%Man%'";
+
+            Assert.AreEqual(expectedResult, json);
+        }
+
+        [TestMethod]
+        public void WhenCreateInExpressionTree_ThenReturnGeneratedQuery()
+        {
+            var json = Program.GetInExpression(_persons);
+
+            var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[Id] IN (1, 2, 3)";
+
+            Assert.AreEqual(expectedResult, json);
+        }
+
+
+        [TestMethod]
+        public void WhenCreateNestedExpressionTree_ThenReturnGeneratedQuery()
+        {
+            var json = Program.GetNestedExpression(_persons);
+
+            var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[Address_Country] = N'USA'";
+
+            Assert.AreEqual(expectedResult, json);
+        }
+
+        [TestMethod]
+        public void WhenCreateBetweenExpressionTree_ThenReturnGeneratedQuery()
+        {
+            var json = Program.GetBetweenExpression(_persons);
+
+            var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[Age] >= 18 AND [p].[Age] <= 25";
+
+            Assert.AreEqual(expectedResult, json);
+        }
+    }
+}
