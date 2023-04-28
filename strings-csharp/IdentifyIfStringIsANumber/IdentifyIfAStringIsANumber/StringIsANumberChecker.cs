@@ -17,8 +17,8 @@ public class StringIsANumberChecker
     public static bool UsingRegex(string stringValue)
     {
         var pattern = @"^-?\d+(?:\.\d+)?$";
-
         var regex = new Regex(pattern);
+
         return regex.IsMatch(stringValue);
     }
 

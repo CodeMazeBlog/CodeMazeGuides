@@ -1,6 +1,6 @@
 namespace IdentifyIfAStringIsANumber.Tests;
 
-public class Tests
+public class StringIsNumberTests
 {
     [Theory]
     [InlineData("123", true)]
