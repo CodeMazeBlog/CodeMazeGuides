@@ -1,10 +1,12 @@
-﻿namespace BenchmarkDotNet_MemoryDiagnoser_Attribute
+﻿using BenchmarkDotNet.Running;
+
+namespace BenchmarkDotNet_MemoryDiagnoser_Attribute
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var summary = BenchmarkRunner.Run<SortingBenchmark>();
         }
     }
 }
