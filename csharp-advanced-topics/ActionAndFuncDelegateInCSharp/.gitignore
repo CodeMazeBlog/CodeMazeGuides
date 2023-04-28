@@ -1,0 +1,75 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/VPMS/FileContentIndex
+/.vs/VPMS/v17
+/.vs/VPMS/config
+/VPMS.Api/.config
+/VPMS.Api/Properties/ServiceDependencies/ASPCore6AngularSample20220626214811 - Web Deploy/profile.arm.json
+/.vs
+/VPMSUI/.angular/cache/13.3.4
+/VPMSUI/.vscode
+/VPMS.Application/obj
+/VPMS.Domain/obj
+/VPMS.Infrastructure/obj
+/VPMS.Persistence/obj
+/VPMS.SharedKernel/obj
+/VPMS.Application/bin/Debug/net6.0
+/VPMS.Domain/bin/Debug/net6.0
+/VPMS.Infrastructure/bin/Debug/net6.0
+/VPMS.Persistence/bin/Debug/net6.0
+/VPMS.SharedKernel/bin/Debug/net6.0
+*.xml
+/VPMS.Application/bin/Release/net6.0
+/VPMS.Api/Logs
+/VPMSUI-old/.angular/cache/13.3.4
+/VPMS.Domain/bin/Release/net6.0
+/VPMS.Infrastructure/bin/Release/net6.0
+/VPMS.Persistence/bin/Release/net6.0
+/VPMS.SharedKernel/bin/Release/net6.0
+/VPMS.AzFunctionApps/VPMS.FuncApp/Properties/PublishProfiles
+/VPMS.AzFunctionApps/VPMS.FuncApp/Properties/ServiceDependencies/vpms-test-func-app - Zip Deploy/profile.arm.json
+/VPMS.AzFunctionApps/VPMS.FuncApp/Properties
+/VPMS.Api/Properties/ServiceDependencies/vpms-test-app - Zip Deploy/profile.arm.json
+/VPMSUI/package-lock.json
+/VPMS.Application/bin
+/VPMS.Domain/bin
+/VPMS.Infrastructure/bin
+/VPMS.Persistence/bin
+/VPMS.SharedKernel/bin
+/package-lock.json
+/VPMS.Api/VPMSDbContext.dgml
+/VPMS.Api/Properties/ServiceDependencies/client-uat-vpms-uat-api - Zip Deploy/profile.arm.json
+/VPMS.QBSyncer/bin/Debug/net7.0
+/VPMS.QBSyncer/obj/Debug/net7.0
+/VPMS.QBSyncer/obj
+/VPMS.Api/Properties/ServiceDependencies/vpms-uat-api - Zip Deploy/profile.arm.json
+/VPMS.QBSyncer/bin/x86/Debug/net7.0
+/VPMS.QBSyncer/bin/x86/Release/net7.0
+/VPMS.FuncApp.ASP/Properties
+/VPMS.GLAccountSyncer/obj/Debug/net7.0
+/VPMS.GLAccountSyncer/bin/Debug/net7.0
+/VPMS.GLAccountSyncer/bin/x86/Debug/net7.0
+/VPMS.GLAccountSyncer/bin/x86/Release/net7.0
+/VPMS.GLAccountSyncer/obj
+/VPMS.QBSyncer/bin/Release/net7.0
+/VPMS.QBSyncer/Properties/PublishProfiles
+*.user
+/Encryptor/bin/Debug/net7.0
+/Encryptor/obj
+/VPMS.QB.Authenticator/bin
+/VPMS.QB.Authenticator/obj/Debug/net7.0
+/VPMS.QB.Authenticator/obj/x86/Debug/net7.0
+/VPMS.QB.Authenticator/obj
+/VPMS.GLAccountSyncer/bin/Release/net7.0
+/VPMS.GLAccountSyncer/Properties/PublishProfiles/ClickOnceProfile.pubxml
+/Encryptor/bin/Release/net7.0
+/VPMS.Syncer/bin/x86/Debug/net7.0
+/VPMS.Syncer/obj/x86/Debug/net7.0
+/VPMS.Syncer/obj
+/__azurite_db_blob_extent__.json
+/__azurite_db_blob__.json
+/VPMS.Syncer/bin/Debug/net7.0
+/VPMS.Api/Properties/ServiceDependencies/vpms-prod-app - Zip Deploy/profile.arm.json
+/VPMS.QBSyncer/bin/x64/Debug/net7.0
