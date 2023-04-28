@@ -8,15 +8,17 @@ namespace ExecutingPowerShellScript
         static void Main(string[] args)
         {
             PSDefaultRunspace defaultRunspace = new();
-            var processes=defaultRunspace.GetRunningProcesses();
+            defaultRunspace.ExecuteScript(@".\pws.ps1");//use full ath to script
+
+            var processes = defaultRunspace.GetRunningProcesses();
             PrintToConsole(processes);
 
-            var detailedProcesses= defaultRunspace.GetRunningProcessesDetails();
+            var detailedProcesses = defaultRunspace.GetRunningProcessesDetails();
             PrintToConsole(detailedProcesses);
             defaultRunspace.StartAProcess("notepad");
 
             PSCustomRunspace customRunspace = new();
-            var processStarted= customRunspace.StartAProcess("notepad");
+            var processStarted = customRunspace.StartAProcess("notepad");
             if (!processStarted)
             {
                 Console.WriteLine("This is a custom runspace that can only run Get-Process command");
@@ -32,8 +34,6 @@ namespace ExecutingPowerShellScript
                 }
             }
         }
-       
-
     }
 
 }

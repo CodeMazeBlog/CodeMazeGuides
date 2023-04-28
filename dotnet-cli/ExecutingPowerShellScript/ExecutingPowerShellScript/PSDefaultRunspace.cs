@@ -5,6 +5,23 @@ namespace ExecutingPowerShellScript
 {
     public class PSDefaultRunspace
     {
+        public bool ExecuteScript(string path)
+        {
+            using (var ps = PowerShell.Create())
+            {
+                try
+                {
+                    ps.AddScript((path)).Invoke();
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
         public Collection<PSObject> GetRunningProcesses()
         {
             using (var ps = PowerShell.Create())
@@ -35,6 +52,7 @@ namespace ExecutingPowerShellScript
                 {
                     ps.AddCommand("Start-Process").AddArgument(processName);
                     ps.Invoke();
+
                     return true;
                 }
             }

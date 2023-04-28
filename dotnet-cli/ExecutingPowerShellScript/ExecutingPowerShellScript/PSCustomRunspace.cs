@@ -38,6 +38,7 @@ namespace ExecutingPowerShellScript
                     ps.Runspace = rs;
                     ps.AddCommand("Start-Process").AddArgument(processName);
                     ps.Invoke();
+
                     return true;
                 }
             }

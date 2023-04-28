@@ -11,7 +11,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenNameWhenInvokedThenDoesntStartAProcess()
+        public void GivenName_WhenInvoked_ThenDoesntStartAProcess()
         {
             var result = customRunspace.StartAProcess("notepad");
             var expectedResult = false;
