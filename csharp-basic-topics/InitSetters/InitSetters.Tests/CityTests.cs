@@ -15,8 +15,6 @@ namespace InitSetters.Tests
             var city = new City(_name, _lat, _lon);
 
             // Assert
-            city.Should().NotBeNull();
-            city.Should().BeOfType<City>();
             city.Name.Should().Be(_name);
             city.Latitude.Should().Be(_lat);
             city.Longitude.Should().Be(_lon);
