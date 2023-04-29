@@ -5,7 +5,7 @@ namespace Tests
     public class ActionAndFuncDelegateUnitTest
     {
         [Fact]
-        public void whenFuncDelegate_ExecuteTheMethod()
+        public void WhenFuncDelegate_ThenExecuteTheMethod()
         {
             //Arrange
             Func<int, int, int> calculatorFunc = Calculator.Multiply;
@@ -20,7 +20,7 @@ namespace Tests
         }
 
         [Fact]
-        public void whenActionDelegate_ExecuteTheMethod()
+        public void WhenActionDelegate_ThenExecuteTheMethod()
         {
             //Arrange
             var expectedOutput = "Our world";
