@@ -13,10 +13,10 @@ namespace Tests
             int b = 3;
 
             //Act
-            calculatorFunc(a, b);
+            int result = calculatorFunc(a, b);
             
             //Assert
-            Assert.Equal(6, calculatorFunc(a,b));
+            Assert.Equal(6, result);
         }
 
         [Fact]
@@ -35,7 +35,6 @@ namespace Tests
 
             //Assert
             Assert.Equal(expectedOutput, outPut);
-
         }
     }
 }
