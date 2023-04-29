@@ -4,7 +4,7 @@ using System.Web;
 namespace Tests
 {
     [TestClass]
-    public class UrlEncodingDecodingTest
+    public class UrlEncodingDecodingUnitTest
     {
         private const string Url = @"http://example.com/resource?foo=bar with space#fragment";
         private const string EncodedUrlLowerPlus = @"http%3a%2f%2fexample.com%2fresource%3ffoo%3dbar+with+space%23fragment";
