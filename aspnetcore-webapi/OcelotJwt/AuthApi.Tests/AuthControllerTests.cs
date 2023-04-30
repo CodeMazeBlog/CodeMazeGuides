@@ -23,7 +23,7 @@ public class AuthControllerTests : IClassFixture<WebApplicationFactory<Program>>
         var user = new LoginModel("admin", "aDm1n");
 
         // Act
-        var result = await client.PostAsJsonAsync("api/auth/login", user);
+        var result = await client.PostAsJsonAsync("api/auth", user);
         var content = await result.Content.ReadAsStringAsync();
         var jwtToken = JsonConvert.DeserializeObject<AuthenticationToken>(content);
 
@@ -39,7 +39,7 @@ public class AuthControllerTests : IClassFixture<WebApplicationFactory<Program>>
         var user = new LoginModel("invalid-user", "invalid-password");
 
         // Act
-        var result = await client.PostAsJsonAsync("api/auth/login", user);
+        var result = await client.PostAsJsonAsync("api/auth", user);
 
         // Assert
         Assert.Equal(HttpStatusCode.Unauthorized, result.StatusCode);
