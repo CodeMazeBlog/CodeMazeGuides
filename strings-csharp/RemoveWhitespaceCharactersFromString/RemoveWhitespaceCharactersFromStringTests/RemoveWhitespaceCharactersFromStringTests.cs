@@ -1,69 +1,118 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RemoveWhitespaceCharactersFromString;
 
-namespace RemoveWhitespaceCharactersFromStringTests
+namespace RemoveWhitespaceCharactersFromStringTests;
+
+public class RemoveWhitespaceCharactersFromStringTests
 {
-    [TestClass]
-    public class RemoveWhitespaceCharactersFromStringTests
+    [Theory]
+    [ClassData(typeof(WhitespaceStringsTestData))]
+    public void GivenStringWithWhitespaces_WhenUsingRegexClass_ThenResultStringDoesNotContainWhitespace(string source,
+        string expected)
     {
-        [TestMethod]
-        public void GivenStringWithWhitespaces_WhenUsingRegex_ThenResultStringDoesntContainWhitespace()
-        {
-            string source = " \t hello worl d \r\n ";
+        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingStaticRegexClass(source);
 
-            string result = RemoveWhitespaceMethods.RemoveWhitespacesUsingRegex(source);
+        Assert.Equal(expected, result);
+    }
 
-            Assert.AreEqual("helloworld", result);
-        }
+    [Theory]
+    [ClassData(typeof(WhitespaceStringsTestData))]
+    public void GivenStringWithWhitespaces_WhenUsingCachedRegex_ThenResultStringDoesNotContainWhitespace(string source,
+        string expected)
+    {
+        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingCachedRegex(source);
 
-        [TestMethod]
-        public void GivenStringWithWhitespaces_WhenUsingLinq_ThenResultStringDoesntContainWhitespace()
-        {
-            var source = " \t hello worl d";
+        Assert.Equal(expected, result);
+    }
 
-            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingLinq(source);
+    [Theory]
+    [ClassData(typeof(WhitespaceStringsTestData))]
+    public void GivenStringWithWhitespaces_WhenUsingSourceGenRegex_ThenResultStringDoesNotContainWhitespace(
+        string source, string expected)
+    {
+        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingSourceGenRegex(source);
 
-            Assert.AreEqual("helloworld", result);
-        }
-        
-        [TestMethod]
-        public void GivenStringWithWhitespaces_WhenUsingStringReplace_ThenResultStringDoesntContainWhitespace()
-        {
-            var source = "  h\tello worl d \r\n";
+        Assert.Equal(expected, result);
+    }
 
-            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingReplace(source);
+    [Theory]
+    [ClassData(typeof(WhitespaceStringsTestData))]
+    public void GivenStringWithWhitespaces_WhenUsingLinqWithStringConcat_ThenResultStringDoesNotContainWhitespace(
+        string source, string expected)
+    {
+        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingLinqWithStringConcat(source);
 
-            Assert.AreEqual("helloworld", result);
-        }
-        
-        [TestMethod]
-        public void GivenStringWithWhitespaces_WhenUsingStringTrim_ThenResultStringDoesntContainLeadingOrTrailingWhitespace()
-        {
-            var source = "  \t John Doe ";
+        Assert.Equal(expected, result);
+    }
 
-            var result = RemoveWhitespaceMethods.RemoveLeadingAndTrailingWhitespacesUsingTrim(source);
+    [Theory]
+    [ClassData(typeof(WhitespaceStringsTestData))]
+    public void GivenStringWithWhitespaces_WhenUsingLinqWithStringConstruct_ThenResultStringDoesNotContainWhitespace(
+        string source, string expected)
+    {
+        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingLinqWithStringConstruct(source);
 
-            Assert.AreEqual("John Doe", result);
-        }
+        Assert.Equal(expected, result);
+    }
 
-        [TestMethod]
-        public void GivenStringWithWhitespaces_WhenUsingStringSplitJoin_ThenResultStringDoesntContainWhitespaces()
-        {
-            var source = "  \t John \r\n  Doe ";
+    [Theory]
+    [ClassData(typeof(WhitespaceStringsTestData))]
+    public void GivenStringWithWhitespaces_WhenUsingStringReplace_ThenResultStringDoesNotContainWhitespace(
+        string source, string expected)
+    {
+        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingReplace(source);
 
-            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingSplitJoin(source);
+        Assert.Equal(expected, result);
+    }
 
-            Assert.AreEqual("JohnDoe", result);
-        }
+    [Theory]
+    [ClassData(typeof(WhitespaceStringsTestData))]
+    public void GivenStringWithWhitespaces_WhenUsingStringSplitJoin_ThenResultStringDoesNotContainWhitespaces(
+        string source, string expected)
+    {
+        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingSplitJoin(source);
 
-        [TestMethod]
-        public void GivenStringWithWhitespaces_WhenUsingStringBuilder_ThenResultStringDoesntContainWhitespace()
-        {
-            var source = "  \t John Doe \r\n ";
+        Assert.Equal(expected, result);
+    }
 
-            var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingStringBuilder(source);
+    [Theory]
+    [ClassData(typeof(WhitespaceStringsTestData))]
+    public void GivenStringWithWhitespaces_WhenUsingStringBuilderForLoop_ThenResultStringDoesNotContainWhitespace(
+        string source, string expected)
+    {
+        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingStringBuilder(source);
 
-            Assert.AreEqual("JohnDoe", result);
-        }
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [ClassData(typeof(WhitespaceStringsTestData))]
+    public void GivenStringWithWhitespaces_WhenUsingArray_ThenResultStringDoesNotContainWhitespace(string source,
+        string expected)
+    {
+        var result = RemoveWhitespaceMethods.RemoveWhitespacesUsingArray(source);
+
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [ClassData(typeof(WhitespaceStringTrimTestData))]
+    public void
+        GivenStringWithWhitespaces_WhenUsingStringTrim_ThenResultStringDoesNotContainLeadingOrTrailingWhitespace(
+            string source, string expected)
+    {
+        var result = RemoveWhitespaceMethods.TrimWhitespacesUsingStringTrim(source);
+
+        Assert.Equal(expected, result);
+    }
+
+    [Theory]
+    [ClassData(typeof(WhitespaceStringTrimTestData))]
+    public void
+        GivenStringWithWhitespaces_WhenUsingRegexTrim_ThenResultStringDoesNotContainLeadingOrTrailingWhitespace(
+            string source, string expected)
+    {
+        var result = RemoveWhitespaceMethods.TrimWhitespacesUsingSourceGenRegex(source);
+
+        Assert.Equal(expected, result);
     }
 }
