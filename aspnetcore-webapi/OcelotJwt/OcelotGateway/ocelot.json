@@ -22,7 +22,11 @@
           "Host": "localhost",
           "Port": 5001
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": ["shoe.read"]
+      }
     },
     {
       "UpstreamPathTemplate": "/shoes/{id}",

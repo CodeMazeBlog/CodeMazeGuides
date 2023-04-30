@@ -12,8 +12,8 @@ public class JwtTokenService
 {
     private readonly List<User> _users = new()
     {
-        new("admin", "aDm1n", "Administrator"),
-        new("user01", "u$3r01", "User")
+        new("admin", "aDm1n", "Administrator", new[] { "shoes.read" }),
+        new("user01", "u$3r01", "User", new[] { "shoes.read" })
     };
 
     public AuthenticationToken? GenerateAuthToken(LoginModel loginModel)
@@ -32,7 +32,8 @@ public class JwtTokenService
         var claims = new List<Claim>
         {
             new Claim(JwtRegisteredClaimNames.Name, user.Username),
-            new Claim("role", user.Role)
+            new Claim("role", user.Role),
+            new Claim("scope", string.Join(" ", user.Scopes))
         };
 
         var tokenOptions = new JwtSecurityToken(
