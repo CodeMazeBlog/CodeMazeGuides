@@ -1,6 +1,5 @@
 ﻿using ArrayListVsList;
-using System.Collections;
 
-Demo demo= new Demo();
-demo.ArrayListDemo();
-demo.ListDemo();    
+Collection collection = new Collection();
+collection.ArrayListExample();
+collection.ListExample();    

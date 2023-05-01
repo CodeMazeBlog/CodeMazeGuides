@@ -3,26 +3,30 @@ namespace Tests
 {
     public class Test
     {
-        Demo Demo { get; set; }
+        private readonly Collection _collection;
         public Test()
         {
-            Demo = new();
+            _collection = new();
         }
 
         [Fact]
         public void WhenValidObjectsAddedToArrayList_ThenSumSuccessful()
         {
             var expectedResult = 6;
-            Demo.ArrayListDemo();
-            Assert.Equal(expectedResult, Demo.Sum);
+
+            _collection.ArrayListExample();
+
+            Assert.Equal(expectedResult, _collection.Sum);
         }
 
         [Fact]
         public void WhenValidObjectsAddedToList_ThenSumSuccessful()
         {
             var expectedResult = 6;
-            Demo.ListDemo();
-            Assert.Equal(expectedResult, Demo.Sum);
+
+            _collection.ListExample();
+
+            Assert.Equal(expectedResult, _collection.Sum);
         }
 
         [Fact]
@@ -30,20 +34,23 @@ namespace Tests
         {
             var expectedResult = "FormatException";
 
-            Demo.ArrayList.Add(1);
-            Demo.ArrayList.Add("2");
-            Demo.ArrayList.Add("Three");
+            _collection.ArrayList.Add(1);
+            _collection.ArrayList.Add("2"); // Convert.TInt32()  will convert
+                                            // this to integer equivalent "2" to 2
+            _collection.ArrayList.Add("Three"); // Convert.ToInt32() fails
+                                                // to convert this to integer equivalent
+                                                // and throw FormatException
+
 
             try
             {
-                var actualResult = Demo.ArrayListSum(Demo.ArrayList);
+                var actualResult = _collection.GetSum(_collection.ArrayList);
 
             }
             catch (Exception ex)
             {
                 Assert.Equal(expectedResult, ex.GetType().Name);
             }
-
         }
     }
 }

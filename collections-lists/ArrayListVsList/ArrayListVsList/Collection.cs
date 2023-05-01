@@ -2,36 +2,38 @@
 
 namespace ArrayListVsList
 {
-    public class Demo
+    public class Collection
     {
-        public ArrayList ArrayList = new ArrayList();
-        public List<int> List = new List<int>();
+        public ArrayList ArrayList { get; set; } = new();
+        public List<int> List { get; set; } = new();
+        public int Sum { get; set; }
 
-        public int Sum;
-
-        public void ArrayListDemo()
+        public void ArrayListExample()
         {
             Sum = 0;
+
             ArrayList.Add(1);
             ArrayList.Add(2);
             ArrayList.Add("3");
 
-            Sum = ArrayListSum(ArrayList);
-           
+            Sum = GetSum(ArrayList);
+
             Console.WriteLine($"Sum is {Sum}");
         }
 
-        public int ArrayListSum(ArrayList arrayList)
+        public int GetSum(ArrayList arrayList)
         {
             Sum = 0;
+
             foreach (var item in ArrayList)
             {
                 Sum += Convert.ToInt32(item);
             }
+
             return Sum;
         }
 
-        public void ListDemo()
+        public void ListExample()
         {
             Sum = 0;
 
@@ -39,10 +41,12 @@ namespace ArrayListVsList
             List.Add(2);
             List.Add(3);
             //list.Add("4"); // Gives compile error
+
             foreach (var item in List)
             {
                 Sum += item;
             }
+
             Console.WriteLine($"Sum is {Sum}");
         }
     }
