@@ -4,9 +4,6 @@
     {
         public static string? ReverseXorMethod(string s)
         {
-            if (s == null) 
-                return s;
-
             var charArray = s.ToCharArray();
             var len = s.Length - 1;
 

@@ -8,10 +8,7 @@ namespace BenchmarkRunner
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn]
     public class StringReverseBenchmark
-    {
-        private readonly static string _ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
-        "abcdefghijklmnopqrstuvwxyz" +
-        "0123456789";
+    {        
         private readonly string _randomString = GenerateText();
 
         [Benchmark]
@@ -62,17 +59,24 @@ namespace BenchmarkRunner
             Methods.StringExtensionReverseMethod(_randomString);
         }
 
+        [Benchmark]
+        public void UsingTextElementEnumeratorReverseMethod()
+        {
+            Methods.TextElementEnumeratorMethod(_randomString);
+        }
+
         public static string GenerateText()
         {
+            var _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var random = new Random();
             var length = 64;
             var builder = new StringBuilder(length);
 
             for (int i = 0; i < length; ++i)
             {
-                int index = random.Next(_ALPHABET.Length);
+                int index = random.Next(_alphabet.Length);
 
-                builder.Append(_ALPHABET[index]);
+                builder.Append(_alphabet[index]);
             }
 
             return builder.ToString();

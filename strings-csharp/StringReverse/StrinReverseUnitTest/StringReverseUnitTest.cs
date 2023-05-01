@@ -1,4 +1,4 @@
-using StringReverse;
+﻿using StringReverse;
 using System.Reflection;
 
 namespace StrinReverseUnitTest
@@ -7,9 +7,15 @@ namespace StrinReverseUnitTest
     public class StringReverseUnitTest
     {
         private readonly string _input = "abcdef";
-        private readonly string _expected = "fedcba";
+        private readonly string _expected = "fedcba";        
         private readonly string _inputEmpty = string.Empty;
-        private readonly string _expectedEmpty = string.Empty;
+        private readonly string _expectedEmpty = string.Empty;        
+        private readonly string _inputSpecial = "LesMisérables";
+        private readonly string _expectedSpecial = "selbarésiMseL";
+        private readonly string _inputSpecial2 = "č, ć, dž, đ";
+        private readonly string _expectedSpecial2 = "đ ,žd ,ć ,č";
+        private readonly string _inputMusicNotes = "𝅗𝅥𝄞𝅘𝅥𝅮𝅘𝅥𝅯";
+        private readonly string _expectedMusicNotes = "𝅘𝅥𝅯𝅘𝅥𝅮𝄞𝅗𝅥";
 
         [TestMethod]
         public void GivenMethodArrayReverse_WhenAbcdef_Thenfedcba()
@@ -121,6 +127,31 @@ namespace StrinReverseUnitTest
         {
             var result = Methods.StringExtensionReverseMethod(_inputEmpty);
             Assert.AreEqual(_expectedEmpty, result);
+        }
+
+        [TestMethod]
+        public void GivenMethodTextEnumerator_WhenAbcdef_Thenfedcba()
+        {
+            var result = Methods.TextElementEnumeratorMethod(_input);
+            Assert.AreEqual(_expected, result);
+        }
+
+        [TestMethod]
+        public void GivenMethodTextEnumerator_WhenStringEmpty_ThenStringEmpty()
+        {
+            var result = Methods.TextElementEnumeratorMethod(_inputEmpty);
+            Assert.AreEqual(_expectedEmpty, result);
+        }
+
+        [TestMethod]
+        public void GivenMethodTextEnumerator_WhenSpecialCharacters_ThenSpecialCharacters()
+        {
+            var result = Methods.TextElementEnumeratorMethod(_inputSpecial);
+            var result2 = Methods.TextElementEnumeratorMethod(_inputSpecial2);
+            var result3 = Methods.TextElementEnumeratorMethod(_inputMusicNotes);
+            Assert.AreEqual(_expectedSpecial, result);
+            Assert.AreEqual(_expectedSpecial2, result2);
+            Assert.AreEqual(_expectedMusicNotes, result3);
         }
     }
 }

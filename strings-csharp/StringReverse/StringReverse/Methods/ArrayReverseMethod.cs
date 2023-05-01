@@ -2,9 +2,9 @@
 {
     public partial class Methods
     {
-        public static string ArrayReverseString(string input)
+        public static string? ArrayReverseString(string s)
         {
-            var charArray = input.ToCharArray();
+            var charArray = s.ToCharArray();
             Array.Reverse(charArray);
 
             return new string(charArray);
