@@ -2,14 +2,14 @@
 {
     public struct ValueTypeRectangle
     {
-        public int breadth;
-        public int length;
-        public int area;
+        public int Length { get; set; }
+        public int Breadth { get; set; }
+
         public int Area()
         {
-            int area = length * breadth;
-            Console.WriteLine($"length = {length}");
-            Console.WriteLine($"breadth = {breadth}");
+            int area = Length * Breadth;
+            Console.WriteLine($"length = {Length}");
+            Console.WriteLine($"breadth = {Breadth}");
             Console.WriteLine($"area = {area}");
 
             return area;
