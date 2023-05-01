@@ -40,12 +40,9 @@ namespace Tests
             _collection.ArrayList.Add("Three"); // Convert.ToInt32() fails
                                                 // to convert this to integer equivalent
                                                 // and throw FormatException
-
-
             try
             {
                 var actualResult = _collection.GetSum(_collection.ArrayList);
-
             }
             catch (Exception ex)
             {
