@@ -3,23 +3,18 @@
 BaseClass baseClass = new();
 BaseClass derivedClassAsBaseClass = new DerivedClass();
 
-var baseClassIntroduction = baseClass.IntroduceYourSelf();
-Console.WriteLine(baseClassIntroduction);
-var derivedClassAsBaseClassIntroduction = derivedClassAsBaseClass.IntroduceYourSelf();
-Console.WriteLine(derivedClassAsBaseClassIntroduction);
+var baseClassVirtualMethodA = baseClass.VirtualMethodA();
+Console.WriteLine(baseClassVirtualMethodA);
+var derivedClassAsBaseClassVirtual = derivedClassAsBaseClass.VirtualMethodA();
+Console.WriteLine(derivedClassAsBaseClassVirtual);
 
 DerivedClass derivedClass = new();
-var derivedClassIntroduction = derivedClass.IntroduceYourSelf();
-Console.WriteLine(derivedClassIntroduction);
+var baseClassVirtualMethodB = baseClass.VirtualMethodB();
+Console.WriteLine(baseClassVirtualMethodB);
+var derivedClassNotOverridingVirtualMethod = derivedClass.VirtualMethodB();
+Console.WriteLine(derivedClassNotOverridingVirtualMethod);
 
-var callingBaseClassIntroduction = derivedClass.CallBaseClassIntroduction();
-Console.WriteLine(callingBaseClassIntroduction);
-
-var baseClassFromDerivedClassIntroduction = derivedClass.IntroduceBaseClass();
-Console.WriteLine(baseClassFromDerivedClassIntroduction);
-
-var derivedClassNewKeyword = DerivedClass.IntroduceYourSelfForNewKeyword();
-Console.WriteLine(derivedClassNewKeyword);
-
-var derivedClassSealedKeyword = derivedClass.IntroduceYourSelfForSealedKeyword();
-Console.WriteLine(derivedClassSealedKeyword);
+var baseClassNonVirtualMethod = baseClass.NonVirtualMethod();
+Console.WriteLine(baseClassNonVirtualMethod);
+var derivedClassNonVirtualMethodWithNewKeyword = derivedClass.NonVirtualMethod();
+Console.WriteLine(derivedClassNonVirtualMethodWithNewKeyword);

@@ -2,24 +2,19 @@
 {
     public class BaseClass
     {
-        public virtual string IntroduceYourSelf()
+        public virtual string VirtualMethodA()
         {
-            return "Base class's IntroduceYourSelf method.";
+            return "This is a virtual method";
         }
 
-        public virtual string IntroduceBaseClass()
+        public virtual string VirtualMethodB()
         {
-            return "Base class's IntroduceBaseClass method.";
+            return "This is another virtual method";
         }
 
-        public static string IntroduceYourSelfForNewKeyword()
+        public string NonVirtualMethod()
         {
-            return "Base class's IntroduceYourSelfForNewKeyword method.";
-        }
-
-        public virtual string IntroduceYourSelfForSealedKeyword()
-        {
-            return "Base class's IntroduceYourSelfForSealedKeyword method.";
+            return "This is non-virtual method";
         }
     }
 }

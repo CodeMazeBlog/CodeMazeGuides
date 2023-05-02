@@ -6,56 +6,57 @@ namespace Tests
     public class VirtualMethodsInCSharpUnitTests
     {
         [TestMethod]
-        public void WhenIntroducingBaseClass_ThenBaseClassIntroduction()
+        public void WhenBaseClassVirtualMethodA_ThenBaseClassVirtualMethodAResult()
         {
             var baseClass = new BaseClass();
-            var baseClassIntroduction = baseClass.IntroduceYourSelf();
+            var baseClassVirtualMethodA = baseClass.VirtualMethodA();
 
-            Assert.AreEqual("Base class's IntroduceYourSelf method.", baseClassIntroduction);
+            Assert.AreEqual("This is a virtual method", baseClassVirtualMethodA);
         }
 
         [TestMethod]
-        public void WhenIntroducingDerivedClass_ThenDerivedClassIntroduction()
+        public void WhenBaseClassVirtualMethodB_ThenBaseClassVirtualMethodBResult()
         {
-            BaseClass derivedClass = new DerivedClass();
-            var derivedClassIntroduction = derivedClass.IntroduceYourSelf();
+            var baseClass = new BaseClass();
+            var baseClassVirtualMethodB = baseClass.VirtualMethodB();
 
-            Assert.AreEqual("Derived class's IntroduceYourSelf method.", derivedClassIntroduction);
+            Assert.AreEqual("This is another virtual method", baseClassVirtualMethodB);
         }
 
         [TestMethod]
-        public void WhenCallingBaseClassMethodFromDerivedClassMethod_ThenBaseClassIntroduction()
+        public void WhenBaseClassNonVirtualMethod_ThenBaseClassNonVirtualMethodResult()
         {
-            var derivedClass = new DerivedClass();
-            var derivedClassBaseClassIntroduction = derivedClass.CallBaseClassIntroduction();
+            var baseClass = new BaseClass();
+            var baseClassNonVirtualMethod = baseClass.NonVirtualMethod();
 
-            Assert.AreEqual("Base class's IntroduceBaseClass method.", derivedClassBaseClassIntroduction);
+            Assert.AreEqual("This is non-virtual method", baseClassNonVirtualMethod);
         }
 
         [TestMethod]
-        public void WhenIntroducingBaseClassFromDerivedClass_ThenBaseClassIntroduction()
-        {
-            var derivedClass = new DerivedClass();
-            var derivedClassBaseClassIntroduction = derivedClass.IntroduceBaseClass();
-
-            Assert.AreEqual("Base class's IntroduceBaseClass method.", derivedClassBaseClassIntroduction);
-        }
-
-        [TestMethod]
-        public void WhenIntroducingDerivedClassNewKeyword_ThenDerivedClassIntroduction()
-        {
-            var derivedClassBaseClassIntroduction = DerivedClass.IntroduceYourSelfForNewKeyword();
-
-            Assert.AreEqual("Derived class's IntroduceYourSelfForNewKeyword method.", derivedClassBaseClassIntroduction);
-        }
-
-        [TestMethod]
-        public void WhenIntroducingDerivedClassSealedKeyword_ThenDerivedClassIntroduction()
+        public void WhenDerivedClassVirtualMethodA_ThenDerivedClassVirtualMethodAResult()
         {
             var derivedClass = new DerivedClass();
-            var derivedClassBaseClassIntroduction = derivedClass.IntroduceYourSelfForSealedKeyword();
+            var derivedClassVirtualMethodA = derivedClass.VirtualMethodA();
 
-            Assert.AreEqual("Derived class's IntroduceYourSelfForSealedKeyword method.", derivedClassBaseClassIntroduction);
+            Assert.AreEqual("This method overrides a virtual method", derivedClassVirtualMethodA);
+        }
+
+        [TestMethod]
+        public void WhenDerivedClassVirtualMethodB_ThenDerivedClassVirtualMethodBResult()
+        {
+            var derivedClass = new DerivedClass();
+            var derivedClassVirtualMethodB = derivedClass.VirtualMethodB();
+
+            Assert.AreEqual("This is another virtual method", derivedClassVirtualMethodB);
+        }
+
+        [TestMethod]
+        public void WhenDerivedClassNonVirtualMethod_ThenDerivedClassNonVirtualMethodResult()
+        {
+            var derivedClass = new DerivedClass();
+            var derivedClassNonVirtualMethod = derivedClass.NonVirtualMethod();
+
+            Assert.AreEqual("This method hides the inherited non virtual method", derivedClassNonVirtualMethod);
         }
     }
 }
