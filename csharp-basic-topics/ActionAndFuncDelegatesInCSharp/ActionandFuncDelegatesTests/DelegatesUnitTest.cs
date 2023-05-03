@@ -1,8 +1,7 @@
-﻿using ActionAndFuncDelegatesInCSharp;
+﻿using ActionandFuncDelegatesInCSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace ActionAndFuncDelegatesInCSharpTests
+namespace ActionandFuncDelegatesTests
 {
     [TestClass]
     public class DelegatesUnitTest
