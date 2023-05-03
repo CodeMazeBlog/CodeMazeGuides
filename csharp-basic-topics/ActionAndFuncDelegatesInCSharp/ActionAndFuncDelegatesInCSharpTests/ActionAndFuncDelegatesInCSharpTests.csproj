@@ -55,6 +55,9 @@
     <Compile Include="DelegatesUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
+	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="MSTest.TestAdapter" Version="3.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
