@@ -1,11 +1,13 @@
-﻿using ActionandFuncDelegatesInCSharp;
+using ActionandFunc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
-namespace ActionandFuncDelegatesInCSharpTests
+namespace TernaryOperatorTests
 {
     [TestClass]
     public class DelegatesUnitTest
     {
+        
         [TestMethod]
         public void GivenAction_WhenInvoked_ThenActionExecuted()
         {
