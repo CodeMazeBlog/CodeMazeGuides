@@ -12,7 +12,6 @@ namespace ActionAndFuncDelegatesInCSharp
         {
             action(42, "hello");
         }
-
         public static int DoFunc(Func<int, int, int> func)
         {
             return func(10, 20);

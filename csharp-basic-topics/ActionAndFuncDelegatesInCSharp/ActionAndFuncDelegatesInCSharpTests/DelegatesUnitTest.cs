@@ -1,6 +1,5 @@
 ﻿using ActionAndFuncDelegatesInCSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace ActionAndFuncDelegatesInCSharpTests
 {
