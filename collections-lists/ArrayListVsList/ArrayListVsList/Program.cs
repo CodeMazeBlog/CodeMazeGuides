@@ -1,5 +1,5 @@
 ﻿using ArrayListVsList;
 
-Collection collection = new Collection();
+var collection = new Collection();
 collection.ArrayListExample();
 collection.ListExample();    

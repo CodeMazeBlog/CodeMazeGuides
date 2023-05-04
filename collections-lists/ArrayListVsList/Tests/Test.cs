@@ -35,11 +35,9 @@ namespace Tests
             var expectedResult = "FormatException";
 
             _collection.ArrayList.Add(1);
-            _collection.ArrayList.Add("2"); // Convert.TInt32()  will convert
-                                            // this to integer equivalent "2" to 2
-            _collection.ArrayList.Add("Three"); // Convert.ToInt32() fails
-                                                // to convert this to integer equivalent
-                                                // and throw FormatException
+            _collection.ArrayList.Add("2"); 
+            _collection.ArrayList.Add("Three"); 
+
             try
             {
                 var actualResult = _collection.GetSum(_collection.ArrayList);
