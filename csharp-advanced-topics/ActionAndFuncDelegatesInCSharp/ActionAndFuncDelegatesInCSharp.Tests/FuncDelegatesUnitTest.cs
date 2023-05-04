@@ -1,9 +1,9 @@
 using ActionAndFuncDelegatesInCSharp;
 namespace ActionAndFuncDelegatesInCSharp.Tests;
-public class FuncDelegatesTest : IDisposable
+public class FuncDelegatesUnitTest : IDisposable
 {
     private readonly StringWriter _stringWriter;
-    public FuncDelegatesTest()
+    public FuncDelegatesUnitTest()
     {
         _stringWriter = new StringWriter();
         Console.SetOut(_stringWriter);
@@ -17,16 +17,16 @@ public class FuncDelegatesTest : IDisposable
     public void When_GreetWithName_Then_ReturnGreetingWithName()
     {
         // Arrange
-        Func<string, string, string> greetWithName = FuncDelegates.GreetWithName;
+        Func<string, string, string> greetWithNameTest = FuncDelegates.GreetWithName;
         string firstName = "Ralph";
         string lastName = "Nyoni";
 
         // Act
-        string result = greetWithName(firstName, lastName);
+        string result = greetWithNameTest(firstName, lastName);
 
         // Assert
         string expectedResult = $"Hello: {firstName + ' ' + lastName}";
         Assert.Equal(expectedResult, result);
-    }
+    } 
 }
 

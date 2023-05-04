@@ -5,7 +5,7 @@ public class ActionDelegates
     {
 
         Action<int, int> addNumbersFirst = new Action<int, int>(AddNumbers);
-        addNumbersFirst(6, 7);
+        addNumbersFirst(5, 2);
 
         Action<int, int> addNumbersSecond = AddNumbers;
         addNumbersSecond(2, 5);
