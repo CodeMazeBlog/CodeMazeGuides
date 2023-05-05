@@ -7,25 +7,25 @@ namespace MachineLearningInCsharpTests;
 [TestClass]
 public class MulticlassClassificationTests
 {
-    private static ModelBuilder? modelBuilder;
-    private string savedModelFilename = "multiclassCreditClassificationModel.zip";
+    private static ModelBuilder? _modelBuilder;
+    private string _savedModelFilename = "multiclassCreditClassificationModel.zip";
 
     public MulticlassClassificationTests()
     {
-        if (modelBuilder == null)
+        if (_modelBuilder is null)
         {
-            modelBuilder = new ModelBuilder();
+            _modelBuilder = new ModelBuilder();
             var currentDir = Directory.GetCurrentDirectory();
             var parentDir = Directory.GetParent(currentDir)?.Parent?.Parent;
-            modelBuilder.CreateModel(Path.Combine(parentDir == null ? string.Empty : parentDir.FullName, @"DataSets/credit_customers.csv"),
-                Path.Combine(currentDir, savedModelFilename));
+            _modelBuilder.CreateModel(Path.Combine(parentDir == null ? string.Empty : parentDir.FullName, @"DataSets/credit_customers.csv"),
+                Path.Combine(currentDir, _savedModelFilename));
         }
     }
 
     [TestMethod]
     public void WhenPredictGoodCreditClass_ThanSuccess()
     {
-        var prediction = modelBuilder?.Predict(new ModelInput()
+        var prediction = _modelBuilder?.Predict(new ModelInput()
         {
             Age = 340,
             CreditAmount = 25000,
@@ -35,11 +35,10 @@ public class MulticlassClassificationTests
         Assert.IsTrue(prediction?.Prediction.Equals("good"));
     }
 
-
     [TestMethod]
     public void WhenPredictBadCreditClass_ThanSuccess()
     {
-        var prediction = modelBuilder?.Predict(new ModelInput()
+        var prediction = _modelBuilder?.Predict(new ModelInput()
         {
             Age = 240,
             CreditAmount = 45000,
@@ -54,7 +53,7 @@ public class MulticlassClassificationTests
     {
         var loadedModelBuilder = new ModelBuilder();
         var currentDir = Directory.GetCurrentDirectory();
-        loadedModelBuilder.LoadModel(Path.Combine(currentDir, savedModelFilename));
+        loadedModelBuilder.LoadModel(Path.Combine(currentDir, _savedModelFilename));
 
         var prediction = loadedModelBuilder?.Predict(new ModelInput()
         {
@@ -65,5 +64,4 @@ public class MulticlassClassificationTests
 
         Assert.IsTrue(prediction?.Prediction.Equals("good"));
     }
-
 }

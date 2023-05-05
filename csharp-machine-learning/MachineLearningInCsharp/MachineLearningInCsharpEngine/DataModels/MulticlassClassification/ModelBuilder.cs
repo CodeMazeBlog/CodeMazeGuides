@@ -3,11 +3,11 @@ namespace MachineLearningInCsharpEngine.DataModels.MulticlassClassification;
 
 public class ModelBuilder
 {
-    private MLContext mlContext = new MLContext(seed: 0);
-    private PredictionEngine<ModelInput, ModelOutput> predictionEngine;
-    private IDataView trainingDataView;
-    private IDataView testDataView;
-    private ITransformer mlModel;
+    private MLContext _mlContext = new MLContext(seed: 0);
+    private PredictionEngine<ModelInput, ModelOutput> _predictionEngine;
+    private IDataView _trainingDataView;
+    private IDataView _testDataView;
+    private ITransformer _mlModel;
 
     public void CreateModel(string dataFilePath, string savingPath)
     {
@@ -15,7 +15,7 @@ public class ModelBuilder
 
         var pipeline = PreProcessData();
         
-        BuildAndTrainModel(trainingDataView, pipeline);
+        BuildAndTrainModel(_trainingDataView, pipeline);
        
         EvaluateModel();
 
@@ -26,26 +26,26 @@ public class ModelBuilder
 
     public void LoadModel(string path)
     {
-        mlModel = mlContext.Model.Load(path, out _);
+        _mlModel = _mlContext.Model.Load(path, out _);
         CreatePredictionEngine();    }
 
     private void LoadAndSplitData(string dataFilePath)
     {
-        var allDataView = mlContext.Data.LoadFromTextFile<ModelInput>(
+        var allDataView = _mlContext.Data.LoadFromTextFile<ModelInput>(
                                       path: dataFilePath,
                                       hasHeader: true,
                                       separatorChar: ',');
 
-        var split = mlContext.Data.TrainTestSplit(allDataView, testFraction: 0.1);
-        trainingDataView = split.TrainSet;
-        testDataView = split.TestSet;
+        var split = _mlContext.Data.TrainTestSplit(allDataView, testFraction: 0.1);
+        _trainingDataView = split.TrainSet;
+        _testDataView = split.TestSet;
     }
 
     public IEstimator<ITransformer> PreProcessData()
     {
-        var pipeline = mlContext.Transforms.Conversion
+        var pipeline = _mlContext.Transforms.Conversion
             .MapValueToKey(inputColumnName: "class", outputColumnName: "Label")
-            .Append(mlContext.Transforms.Concatenate("Features", "duration", "credit_amount", "age"));
+            .Append(_mlContext.Transforms.Concatenate("Features", "duration", "credit_amount", "age"));
 
         return pipeline;
     }
@@ -53,17 +53,17 @@ public class ModelBuilder
     public IEstimator<ITransformer> BuildAndTrainModel(IDataView trainingDataView, IEstimator<ITransformer> pipeline)
     {
         var trainingPipeline = pipeline
-                .Append(mlContext.MulticlassClassification.Trainers.SdcaNonCalibrated("Label", "Features"))
-                .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel"));
+                .Append(_mlContext.MulticlassClassification.Trainers.SdcaNonCalibrated("Label", "Features"))
+                .Append(_mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel"));
 
-        mlModel = trainingPipeline.Fit(trainingDataView);
+        _mlModel = trainingPipeline.Fit(trainingDataView);
 
         return trainingPipeline;
     }
 
     public void EvaluateModel()
     {
-        var testMetrics = mlContext.MulticlassClassification.Evaluate(mlModel.Transform(testDataView));
+        var testMetrics = _mlContext.MulticlassClassification.Evaluate(_mlModel.Transform(_testDataView));
         Console.WriteLine($"Evaluation Metrics:");
         Console.WriteLine($"- MicroAccuracy:\t{testMetrics.MicroAccuracy:0.###}");
         Console.WriteLine($"- MacroAccuracy:\t{testMetrics.MacroAccuracy:0.###}");
@@ -73,17 +73,17 @@ public class ModelBuilder
 
     private void SaveModel(string saveModelPath)
     {
-        mlContext.Model.Save(mlModel, trainingDataView.Schema, 
+        _mlContext.Model.Save(_mlModel, _trainingDataView.Schema, 
             Path.Combine(Environment.CurrentDirectory, saveModelPath));
     }
 
     private void CreatePredictionEngine()
     {
-        predictionEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
+        _predictionEngine = _mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(_mlModel);
     }
 
     public ModelOutput Predict(ModelInput input)
     {
-        return predictionEngine.Predict(input);
+        return _predictionEngine.Predict(input);
     }
 }

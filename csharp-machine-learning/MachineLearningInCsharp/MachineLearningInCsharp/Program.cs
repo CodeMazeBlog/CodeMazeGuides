@@ -4,11 +4,10 @@ namespace MachineLearningInCsharp;
 
 public class Program
 {
-    private static string savedModelFilename = "trainedModel.zip";
     public static void Main()
     {
         var modelBuilder = new ModelBuilder();
-        modelBuilder.LoadModel(savedModelFilename);
+        modelBuilder.LoadModel("trainedModel.zip");
 
         var modelInput = new ModelInput()
         {
