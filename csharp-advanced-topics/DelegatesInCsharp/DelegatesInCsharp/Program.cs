@@ -5,6 +5,9 @@ namespace DelegatesInCsharp
 	delegate void PrintMessage(string text);
 	delegate T Print<T>(T param1);
 
+	public delegate string FormatString(string s); 	
+	public readonly FormatString Format = s => s.Trim();
+
 	class Program
 	{
 		public static void WriteText(string text) => Console.WriteLine($"Text: {text}");
@@ -16,6 +19,12 @@ namespace DelegatesInCsharp
 			char[] charArray = s.ToCharArray();
 			Array.Reverse(charArray);
 			return new string(charArray);
+		}
+
+		public static string DoSomething(FormatString format)
+		{
+			var s = "a string";
+			return format(s);
 		}
 
 		static void Main(string[] args)
@@ -40,6 +49,27 @@ namespace DelegatesInCsharp
 			executeReverseWriteAction("Are you not entertained?");
 			Func<string, string> executeReverseFunc = ReverseText;
 			Console.WriteLine(executeReverseFunc("Are you not entertained?"));
+
+			// Action delegate
+			var doSomething = () => Console.WriteLine("action");
+			doSomething();
+
+			Action<string> print = Console.WriteLine;
+			print("hello world");
+
+			Action<int, int> printSum = (x, y) => Console.WriteLine(x + y);
+			printSum(3, 4);
+
+			// Func delegate
+			Func<string> getString = () => "hardcoded string";
+			var s = getString();
+
+			Func<int, int, int> sum = (x, y) => x + y;
+			var result = sum(5, 6);
+
+			Func<int, bool> isOdd = x => x % 2 == 0;
+			var numbers = new[] { 1, 2, 3 };
+			var oddNumbers = numbers.Where(isOdd);
 		}
 	}
 }
