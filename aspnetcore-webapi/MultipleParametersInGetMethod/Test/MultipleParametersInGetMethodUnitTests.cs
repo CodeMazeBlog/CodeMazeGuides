@@ -22,16 +22,16 @@ namespace Test
         public async Task GivenARequestWithQueryParams_WhenGetProductIsCalled_ThenReturnMatchingProduct()
         {
             // Arrange
-            List<ProductDto>? expectedProducts = new List<ProductDto>()
+            var expectedProducts = new List<ProductDto>()
             {
                 new ProductDto{ Id = 1, Category = "Electronic", Brand = "Sony", Name = "Play Station", WarrantyYears = 2, IsAvailable = true },
                 new ProductDto{ Id = 2, Category = "Electronic", Brand = "Sony", Name = "Mobile", WarrantyYears = 2, IsAvailable = true }
             };
 
             //Act
-            HttpResponseMessage? response = await _client.GetAsync("api/Product?category=Electronic&brand=Sony");
-            string? content = await response.Content.ReadAsStringAsync();
-            List<ProductDto>? products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
+            HttpResponseMessage response = await _client.GetAsync("api/Product?category=Electronic&brand=Sony");
+            string content = await response.Content.ReadAsStringAsync();
+            List<ProductDto> products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
 
             //Assert
             Assert.IsNotNull(products);
@@ -48,9 +48,9 @@ namespace Test
             string expectedCategory = "Electronic";
 
             //Act
-            HttpResponseMessage? response = await _client.GetAsync("api/Product/2");
-            string? content = await response.Content.ReadAsStringAsync();
-            ProductDto? product = JsonConvert.DeserializeObject<ProductDto>(content);
+            HttpResponseMessage response = await _client.GetAsync("api/Product/2");
+            string content = await response.Content.ReadAsStringAsync();
+            ProductDto product = JsonConvert.DeserializeObject<ProductDto>(content);
 
             //Assert
             Assert.IsNotNull(product);
@@ -61,30 +61,30 @@ namespace Test
         public async Task GivenARequestWithBody_WhenGetProductIsCalled_ThenReturnMatchingProduct()
         {
             // Arrange
-            ProductDto productDto = new()
+            var productDto = new ProductDto()
             {
                 Category = "Sports",
             };
 
-            List<ProductDto>? expectedProducts = new List<ProductDto>()
+            var expectedProducts = new List<ProductDto>()
             {
                 new ProductDto{ Id = 5, Category = "Sports", Brand = "Nike", Name = "Sneakers", WarrantyYears = 3, IsAvailable = false },
                 new ProductDto{ Id = 6, Category = "Sports", Brand = "Adidas", Name = "Football", WarrantyYears = 3, IsAvailable = false }
             };
 
-            string? json = JsonConvert.SerializeObject(productDto);
+            string json = JsonConvert.SerializeObject(productDto);
 
-            HttpRequestMessage? request = new HttpRequestMessage(HttpMethod.Get, "api/Product/category")
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "api/Product/category")
             {
                 Content = new StringContent(json, Encoding.UTF8, System.Net.Mime.MediaTypeNames.Application.Json)
             };
 
 
             //Act
-            HttpResponseMessage? response = await _client.SendAsync(request);
-            string? content = await response.Content.ReadAsStringAsync();
+            HttpResponseMessage response = await _client.SendAsync(request);
+            string content = await response.Content.ReadAsStringAsync();
 
-            List<ProductDto>? products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
+            List<ProductDto> products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
 
             //Assert
             Assert.IsNotNull(products);
@@ -98,17 +98,17 @@ namespace Test
         public async Task GivenARequestWithRouteAndQueryParams_WhenGetProductIsCalled_ThenReturnMatchingProduct()
         {
             //Arrange
-            List<ProductDto>? expectedProducts = new List<ProductDto>()
+            var expectedProducts = new List<ProductDto>()
             {
                 new ProductDto{ Id = 1, Category = "Electronic", Brand = "Sony", Name = "Play Station", WarrantyYears = 2, IsAvailable = true },
                 new ProductDto{ Id = 2, Category = "Electronic", Brand = "Sony", Name = "Mobile", WarrantyYears = 2, IsAvailable = true },
             };
 
             //Act
-            HttpResponseMessage? response = await _client.GetAsync("api/Product/brand/Sony/warranty?waranty=2");
-            string? content = await response.Content.ReadAsStringAsync();
+            HttpResponseMessage response = await _client.GetAsync("api/Product/brand/Sony?waranty=2");
+            string content = await response.Content.ReadAsStringAsync();
 
-            List<ProductDto>? products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
+            List<ProductDto> products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
 
             //Assert
             Assert.IsNotNull(products);
@@ -122,29 +122,29 @@ namespace Test
         public async Task GivenARequest_WhenGetProductIsCalled_ThenReturnMatchingProduct()
         {
             //Arrange
-            string productName = "Mobile";
-            bool isProductAvailable = true;
-            List<ProductDto>? expectedProducts = new List<ProductDto>()
+            string category = "Electronic";
+            string brand = "Sony";
+            var expectedProducts = new List<ProductDto>()
             {
+                new ProductDto{ Id = 1, Category = "Electronic", Brand = "Sony", Name = "Play Station", WarrantyYears = 2, IsAvailable = true },
                 new ProductDto{ Id = 2, Category = "Electronic", Brand = "Sony", Name = "Mobile", WarrantyYears = 2, IsAvailable = true },
-                new ProductDto{ Id = 7, Category = "Electronic", Brand = "Apple", Name = "Mobile", WarrantyYears = 2, IsAvailable = true }
             };
 
             //Act
-            var request = new HttpRequestMessage(HttpMethod.Get, "api/Product/v1/filter");
-            request.Headers.Add("name", productName);
-            request.Headers.Add("isAvailable", isProductAvailable.ToString());
+            var request = new HttpRequestMessage(HttpMethod.Get, "api/Product/filter");
+            request.Headers.Add("category", category);
+            request.Headers.Add("brand", brand);
 
             var response = await _client.SendAsync(request);
-            string? content = await response.Content.ReadAsStringAsync();
+            string content = await response.Content.ReadAsStringAsync();
 
-            List<ProductDto>? products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
+            List<ProductDto> products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
 
             //Assert
             Assert.IsNotNull(products);
             foreach (var product in products)
             {
-                Assert.AreEqual(expectedProducts.FirstOrDefault(x => x.Brand == product.Brand)?.Id, product.Id);
+                Assert.AreEqual(expectedProducts.FirstOrDefault(x => x.Name == product.Name)?.Id, product.Id);
             }
         }
     }
