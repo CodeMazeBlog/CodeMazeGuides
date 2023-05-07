@@ -23,14 +23,6 @@
             }
         }
 
-        public static void BogoSort(int[] arr)
-        {
-            while (!IsSorted(arr))
-            {
-                Shuffle(arr);
-            }
-        }
-
         private static void Merge(int[] arr, int left, int middle, int right)
         {
             int[] temp = new int[right - left + 1];
@@ -89,28 +81,6 @@
 
             Swap(arr, i + 1, right);
             return i + 1;
-        }
-
-        private static bool IsSorted(int[] arr)
-        {
-            for (int i = 0; i < arr.Length - 1; i++)
-            {
-                if (arr[i] > arr[i + 1])
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private static void Shuffle(int[] arr)
-        {
-            Random rng = new Random();
-            for (int i = arr.Length - 1; i > 0; i--)
-            {
-                int j = rng.Next(i + 1);
-                Swap(arr, i, j);
-            }
         }
 
         private static void Swap(int[] arr, int i, int j)

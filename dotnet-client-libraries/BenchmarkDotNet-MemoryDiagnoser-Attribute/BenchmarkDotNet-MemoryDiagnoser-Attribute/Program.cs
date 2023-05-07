@@ -6,7 +6,7 @@ namespace BenchmarkDotNet_MemoryDiagnoser_Attribute
     {
         static void Main(string[] args)
         {
-            var summary = BenchmarkRunner.Run<SortingBenchmark>();
+            BenchmarkRunner.Run<SortingBenchmark>();
         }
     }
 }
