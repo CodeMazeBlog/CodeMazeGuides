@@ -15,6 +15,7 @@
             List<byte> totalStream = new();
             byte[] buffer = new byte[32];
             int read;
+
             while ((read = _stream.Read(buffer, 0, buffer.Length)) > 0)
             {
                 totalStream.AddRange(buffer.Take(read));
@@ -27,6 +28,7 @@
         public byte[] UseABinaryReader()
         {
             byte[] bytes;
+
             using (var binaryReader = new BinaryReader(_stream))
             {
                 bytes = binaryReader.ReadBytes((int)_stream.Length);
@@ -38,6 +40,7 @@
         public byte[] UseAStreamReader()
         {
             byte[] bytes;
+
             using (var reader = new StreamReader(_stream))
             {
                 bytes = System.Text.Encoding.UTF8.GetBytes(reader.ReadToEnd());
@@ -49,10 +52,12 @@
         public byte[] UseAMemoryStream()
         {
             byte[] bytes;
+
             if (_stream is MemoryStream stream)
             {
                 return stream.ToArray();
             }
+
             using (var memoryStream = new MemoryStream())
             {
                 _stream.CopyTo(memoryStream);
@@ -65,6 +70,7 @@
         public byte[] UseABufferedStream()
         {
             byte[] bytes;
+
             using (var bufferedStream = new BufferedStream(_stream))
             {
                 using var memoryStream = new MemoryStream();
