@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwashbuckleVsNSwag", "SwashbuckleVsNSwag\SwashbuckleVsNSwag.csproj", "{99E33DAB-E0F7-40D8-9F16-939327DF0F76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99E33DAB-E0F7-40D8-9F16-939327DF0F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E33DAB-E0F7-40D8-9F16-939327DF0F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E33DAB-E0F7-40D8-9F16-939327DF0F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E33DAB-E0F7-40D8-9F16-939327DF0F76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {41376AFE-D97C-4240-9A7A-E5CE2684DE40}
+	EndGlobalSection
+EndGlobal
