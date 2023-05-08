@@ -2,24 +2,27 @@ namespace ActionAndFuncDelegatesInCSharp.Tests;
 
 public class ActionDelegatesUnitTest : IDisposable
 {
-
+    private readonly StringWriter _stringWriter;
+    public ActionDelegatesUnitTest()
+    {
+        _stringWriter = new StringWriter();
+        Console.SetOut(_stringWriter);
+    }
     public void Dispose()
     {
+        _stringWriter.Dispose();
     }
-
     [Fact]
-    public void When_AddNumbersCalled_Then_DisplaySum()
+    public void WhenAddNumbersCalled_ThenDisplaySum()
     {
         // Arrange
         Action<int, int> addNumbers = ActionDelegates.AddNumbers;
-        var consoleOutput = new StringWriter();
-        Console.SetOut(consoleOutput);
+        Console.SetOut(_stringWriter);
         // Act
         addNumbers(1, 10);
-
         // Assert
         string expectedResult = "The sum is: 11";
-        string actualResult = consoleOutput.ToString().TrimEnd();
+        string actualResult = _stringWriter.ToString().TrimEnd();
         Assert.Equal(expectedResult, actualResult);
     }
 }
