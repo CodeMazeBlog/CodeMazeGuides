@@ -4,12 +4,12 @@ namespace StringReverse
 {
     public partial class Methods
     {
-        public static string? StringBuilderReverseMethod(string s)
+        public static string? StringBuilderReverseMethod(string stringToReverse)
         {
-            var sb = new StringBuilder(s.Length);
-            for (int i = s.Length - 1; i >= 0; i--)
+            var sb = new StringBuilder(stringToReverse.Length);
+            for (int i = stringToReverse.Length - 1; i >= 0; i--)
             {
-                sb.Append(s[i]);
+                sb.Append(stringToReverse[i]);
             }
 
             return sb.ToString();

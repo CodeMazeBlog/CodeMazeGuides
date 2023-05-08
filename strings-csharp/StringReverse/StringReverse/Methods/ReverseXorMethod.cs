@@ -2,10 +2,10 @@
 {
     public partial class Methods
     {
-        public static string? ReverseXorMethod(string s)
+        public static string? ReverseXorMethod(string stringToReverse)
         {
-            var charArray = s.ToCharArray();
-            var len = s.Length - 1;
+            var charArray = stringToReverse.ToCharArray();
+            var len = stringToReverse.Length - 1;
 
             for (int i = 0; i < len; i++, len--)
             {

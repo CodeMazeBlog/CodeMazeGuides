@@ -2,12 +2,12 @@
 {
     public partial class Methods
     {
-        public static string? RecursiveStringReverseMethod(string s)
+        public static string? RecursiveStringReverseMethod(string stringToReverse)
         {
-            if (s.Length <= 1)
-                return s;
+            if (stringToReverse.Length <= 1)
+                return stringToReverse;
 
-            return s[^1] + RecursiveStringReverseMethod(s[1..^1]) + s[0];
+            return stringToReverse[^1] + RecursiveStringReverseMethod(stringToReverse[1..^1]) + stringToReverse[0];
         }
     }
 }

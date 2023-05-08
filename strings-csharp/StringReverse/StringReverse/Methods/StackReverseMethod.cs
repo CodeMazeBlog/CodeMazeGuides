@@ -4,10 +4,10 @@ namespace StringReverse
 {
     public partial class Methods
     {
-        public static string? StackReverseMethod(string s)
+        public static string? StackReverseMethod(string stringToReverse)
         {
             var resultStack = new Stack<char>();
-            foreach (char c in s)
+            foreach (char c in stringToReverse)
             {
                 resultStack.Push(c);
             }

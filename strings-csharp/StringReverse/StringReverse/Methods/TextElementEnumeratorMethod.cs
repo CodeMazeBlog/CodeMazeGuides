@@ -4,9 +4,9 @@ namespace StringReverse
 {
     public partial class Methods
     {
-        public static string? TextElementEnumeratorMethod(string s)
+        public static string? TextElementEnumeratorMethod(string stringToReverse)
         {
-            return string.Create(s.Length, s, (chars, val) =>
+            return string.Create(stringToReverse.Length, stringToReverse, (chars, val) =>
             {
                 var en = StringInfo.GetTextElementEnumerator(val);
                 en.MoveNext();

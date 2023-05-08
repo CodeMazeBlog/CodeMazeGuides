@@ -2,9 +2,9 @@
 {
     public partial class Methods
     {
-        public static string? StringExtensionReverseMethod(string s)
+        public static string? StringExtensionReverseMethod(string stringToReverse)
         {
-            return new string(s.Reverse().ToArray());
+            return new string(stringToReverse.Reverse().ToArray());
         }
     }
 }

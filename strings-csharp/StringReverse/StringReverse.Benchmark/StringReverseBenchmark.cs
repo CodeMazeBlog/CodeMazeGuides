@@ -74,7 +74,7 @@ namespace BenchmarkRunner
 
             for (int i = 0; i < length; ++i)
             {
-                int index = random.Next(_alphabet.Length);
+                var index = random.Next(_alphabet.Length);
 
                 builder.Append(_alphabet[index]);
             }
