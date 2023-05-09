@@ -17,3 +17,4 @@ This section contains the topics related to all kinds of testing in C#/.NET
 - [How to Unit Test ILogger in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-unit-test-ilogger/)
 - [Introduction to Unit Testing With NUnit in C#](https://code-maze.com/csharp-nunit-unit-testing/)
 - [Testing Repository Pattern Using Entity Framework](https://code-maze.com/testing-repository-pattern-entity-framework/)
+- [Unit Testing With UserManager and RoleManager in ASP.NET Core Identity](https://code-maze.com/aspnetcore-identity-testing-usermanager-rolemanager/)
