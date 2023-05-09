@@ -30,13 +30,5 @@ namespace SwashbuckleVsNSwag.NSwag.Controllers
 
             return product;
         }
-
-        [HttpDelete(Name = "DeleteProductById")]
-        public ActionResult Delete(Guid productId)
-        {
-            _products.Remove(productId);
-
-            return Ok();
-        }
     }
 }

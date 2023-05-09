@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SwashbuckleVsNSwag.Models\SwashbuckleVsNSwag.Models.csproj" />
     <ProjectReference Include="..\SwashbuckleVsNSwag.Repositories\SwashbuckleVsNSwag.Repositories.csproj" />
   </ItemGroup>
 

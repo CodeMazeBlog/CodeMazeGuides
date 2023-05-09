@@ -7,9 +7,9 @@ namespace SwashbuckleVsNSwag.Models.Customers
         public Guid CustomerId { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
-        public Address Address { get; set; }
+        public Address? Address { get; set; }
     }
 }

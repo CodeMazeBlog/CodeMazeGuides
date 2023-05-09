@@ -30,13 +30,5 @@ namespace SwashbuckleVsNSwag.NSwag.Controllers
 
             return customer;
         }
-
-        [HttpDelete(Name = "DeleteCustomerById")]
-        public ActionResult Delete(Guid customerId)
-        {
-            _customers.Remove(customerId);
-
-            return Ok();
-        }
     }
 }
