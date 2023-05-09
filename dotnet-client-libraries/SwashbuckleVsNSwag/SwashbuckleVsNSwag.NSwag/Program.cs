@@ -1,4 +1,3 @@
-using Microsoft.OpenApi.Models;
 using SwashbuckleVsNSwag.Repositories.CustomerRepository;
 using SwashbuckleVsNSwag.Repositories.OrderRepository;
 using SwashbuckleVsNSwag.Repositories.ProductRepository;
@@ -6,13 +5,15 @@ using SwashbuckleVsNSwag.Repositories.ProductRepository;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services.AddControllers();
 
-//Swashbuckle configuration
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "API using Swashbuckle", Version = "v1" });
+//NSwag configuration
+builder.Services.AddOpenApiDocument(c => 
+{ 
+    c.DocumentName = "v1"; 
+    c.Title = "API using NSwag"; 
+    c.Version = "v1"; 
 });
 
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
@@ -25,11 +26,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     //Enable Swagger
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "API using Swashbuckle");
-    });
+    app.UseOpenApi(p => p.Path = "/swagger/v1/swagger.yaml"); 
+    app.UseSwaggerUi3(p => p.DocumentPath = "/swagger/v1/swagger.yaml");
 }
 
 app.UseHttpsRedirection();
