@@ -15,7 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwashbuckleVsNSwag.Reposito
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwashbuckleVsNSwag.Models", "SwashbuckleVsNSwag.Models\SwashbuckleVsNSwag.Models.csproj", "{4DCE704D-783F-4D0C-990A-FAA33E7B0D3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwashbuckleVsNSwag.NSwag", "SwashbuckleVsNSwag.NSwag\SwashbuckleVsNSwag.NSwag.csproj", "{1DA92176-6C46-422A-A59A-85958BACDA67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwashbuckleVsNSwag.NSwag", "SwashbuckleVsNSwag.NSwag\SwashbuckleVsNSwag.NSwag.csproj", "{1DA92176-6C46-422A-A59A-85958BACDA67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwashbuckleVsNSwag.Benchmark", "SwashbuckleVsNSwag.Benchmark\SwashbuckleVsNSwag.Benchmark.csproj", "{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1DA92176-6C46-422A-A59A-85958BACDA67} = {1DA92176-6C46-422A-A59A-85958BACDA67}
+		{C1D99F47-4DB0-4351-9FBE-C323AF28B589} = {C1D99F47-4DB0-4351-9FBE-C323AF28B589}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,10 @@ Global
 		{1DA92176-6C46-422A-A59A-85958BACDA67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DA92176-6C46-422A-A59A-85958BACDA67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DA92176-6C46-422A-A59A-85958BACDA67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

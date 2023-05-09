@@ -27,7 +27,7 @@ if (app.Environment.IsDevelopment())
 {
     //Enable Swagger
     app.UseOpenApi(p => p.Path = "/swagger/v1/swagger.yaml"); 
-    app.UseSwaggerUi3(p => p.DocumentPath = "/swagger/v1/swagger.yaml");
+    app.UseReDoc(p => p.DocumentPath = "/swagger/v1/swagger.yaml");
 }
 
 app.UseHttpsRedirection();
