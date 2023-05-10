@@ -9,7 +9,7 @@
 
         public new string NonVirtualMethod()
         {
-            return "This method hides the inherited non virtual method";
+            return "This method hides the inherited non-virtual method";
         }
     }
 }

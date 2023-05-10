@@ -8,13 +8,16 @@ Console.WriteLine(baseClassVirtualMethodA);
 var derivedClassAsBaseClassVirtual = derivedClassAsBaseClass.VirtualMethodA();
 Console.WriteLine(derivedClassAsBaseClassVirtual);
 
-DerivedClass derivedClass = new();
 var baseClassVirtualMethodB = baseClass.VirtualMethodB();
 Console.WriteLine(baseClassVirtualMethodB);
-var derivedClassNotOverridingVirtualMethod = derivedClass.VirtualMethodB();
-Console.WriteLine(derivedClassNotOverridingVirtualMethod);
+var derivedClassAsBaseClassNotOverridingVirtualMethod = derivedClassAsBaseClass.VirtualMethodB();
+Console.WriteLine(derivedClassAsBaseClassNotOverridingVirtualMethod);
 
 var baseClassNonVirtualMethod = baseClass.NonVirtualMethod();
 Console.WriteLine(baseClassNonVirtualMethod);
-var derivedClassNonVirtualMethodWithNewKeyword = derivedClass.NonVirtualMethod();
-Console.WriteLine(derivedClassNonVirtualMethodWithNewKeyword);
+var derivedClassAsBaseClassNonVirtualMethodWithNewKeyword = derivedClassAsBaseClass.NonVirtualMethod();
+Console.WriteLine(derivedClassAsBaseClassNonVirtualMethodWithNewKeyword);
+
+DerivedClass derivedClass = new();
+var derivedClassNonVirtualMethod = derivedClass.NonVirtualMethod();
+Console.WriteLine(derivedClassNonVirtualMethod);
