@@ -9,7 +9,7 @@
             _stream = stream;
         }
 
-        public byte[] UseTheStreamDotReadMethod()
+        public byte[] UseStreamDotReadMethod()
         {
             byte[] bytes;
             List<byte> totalStream = new();
@@ -25,7 +25,7 @@
             return bytes;
         }
 
-        public byte[] UseABinaryReader()
+        public byte[] UseBinaryReader()
         {
             byte[] bytes;
 
@@ -37,7 +37,7 @@
             return bytes;
         }
 
-        public byte[] UseAStreamReader()
+        public byte[] UseStreamReader()
         {
             byte[] bytes;
 
@@ -49,7 +49,7 @@
             return bytes;
         }
 
-        public byte[] UseAMemoryStream()
+        public byte[] UseMemoryStream()
         {
             byte[] bytes;
 
@@ -67,7 +67,7 @@
             return bytes;
         }
 
-        public byte[] UseABufferedStream()
+        public byte[] UseBufferedStream()
         {
             byte[] bytes;
 

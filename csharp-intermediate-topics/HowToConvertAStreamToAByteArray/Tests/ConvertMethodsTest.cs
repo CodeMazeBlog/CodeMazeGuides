@@ -13,37 +13,37 @@ namespace Tests
         private readonly byte[] _expected = File.ReadAllBytes(_sampleFilePath);
 
         [Fact]
-        public void GivenAStream_WhenConvertingWithAMemoryStream_ThenReturnsAByteArray()
+        public void GivenAStream_WhenConvertingWithMemoryStream_ThenReturnsAByteArray()
         {
             var converter = new ConvertStreamToByteArray(_stream);
-            var result = converter.UseAMemoryStream();
+            var result = converter.UseMemoryStream();
 
             Assert.Equal(_expected, result);
         }
 
         [Fact]
-        public void GivenAStream_WhenConvertingWithABinaryReader_ThenReturnsAByteArray()
+        public void GivenAStream_WhenConvertingWithBinaryReader_ThenReturnsAByteArray()
         {
             var converter = new ConvertStreamToByteArray(_stream);
-            var result = converter.UseABinaryReader();
+            var result = converter.UseBinaryReader();
 
             Assert.Equal(_expected, result);
         }
 
         [Fact]
-        public void GivenAStream_WhenConvertingWithABufferedStream_ThenReturnsAByteArray()
+        public void GivenAStream_WhenConvertingWithBufferedStream_ThenReturnsAByteArray()
         {
             var converter = new ConvertStreamToByteArray(_stream);
-            var result = converter.UseABufferedStream();
+            var result = converter.UseBufferedStream();
 
             Assert.Equal(_expected, result);
         }
 
         [Fact]
-        public void GivenAStream_WhenConvertingWithTheStreamReadMethod_ThenReturnsAByteArray()
+        public void GivenAStream_WhenConvertingWithStreamDotReadMethod_ThenReturnsAByteArray()
         {
             var converter = new ConvertStreamToByteArray(_stream);
-            var result = converter.UseTheStreamDotReadMethod();
+            var result = converter.UseStreamDotReadMethod();
 
             Assert.Equal(_expected, result);
         }
@@ -52,7 +52,7 @@ namespace Tests
         public void GivenAStream_WhenConvertingWithAStreamReader_ThenReturnsAByteArray()
         {
             var converter = new ConvertStreamToByteArray(_stream);
-            var result = converter.UseAStreamReader();
+            var result = converter.UseStreamReader();
 
             Assert.Equal(_expected, result);
         }

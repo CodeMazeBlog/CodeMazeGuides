@@ -3,56 +3,50 @@ using BenchmarkDotNet.Order;
 
 namespace HowToConvertAStreamToAByteArray
 {
-    [MemoryDiagnoser(false)]
+    [MemoryDiagnoser]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class ConvertMethodsBenchmark
     {
         private static readonly string _sampleFilePath
             = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName, "benchmarkfile.txt");
 
-        [Benchmark]
-        public void UseTheStreamDotReadMethod()
-        {
-            using var benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
-            var convertStreamToByteArray = new ConvertStreamToByteArray(benchmarkStream);
+        private ConvertStreamToByteArray _convertStreamToByteArray;
 
-            convertStreamToByteArray.UseTheStreamDotReadMethod();
+        [IterationSetup]
+        public void IterationSetup()
+        {
+           var benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
+           _convertStreamToByteArray = new ConvertStreamToByteArray(benchmarkStream);
         }
 
         [Benchmark]
-        public void UseAMemoryStream()
+        public void UseStreamDotReadMethod()
         {
-            using var benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
-            var convertStreamToByteArray = new ConvertStreamToByteArray(benchmarkStream);
-
-            convertStreamToByteArray.UseAMemoryStream();
+            _convertStreamToByteArray.UseStreamDotReadMethod();
         }
 
         [Benchmark]
-        public void UseABufferedStream()
+        public void UseMemoryStream()
         {
-            using var benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
-            var convertStreamToByteArray = new ConvertStreamToByteArray(benchmarkStream);
-
-            convertStreamToByteArray.UseABufferedStream();
+            _convertStreamToByteArray.UseMemoryStream();
         }
 
         [Benchmark]
-        public void UseAStreamReader()
+        public void UseBufferedStream()
         {
-            using var benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
-            var convertStreamToByteArray = new ConvertStreamToByteArray(benchmarkStream);
-
-            convertStreamToByteArray.UseAStreamReader();
+            _convertStreamToByteArray.UseBufferedStream();
         }
 
         [Benchmark]
-        public void UseABinaryReader()
+        public void UseStreamReader()
         {
-            using var benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
-            var convertStreamToByteArray = new ConvertStreamToByteArray(benchmarkStream);
+            _convertStreamToByteArray.UseStreamReader();
+        }
 
-            convertStreamToByteArray.UseABinaryReader();
+        [Benchmark]
+        public void UseBinaryReader()
+        {
+            _convertStreamToByteArray.UseBinaryReader();
         }
     }
 }
