@@ -1,11 +1,6 @@
 ﻿using log4net;
 using Moq;
 using StructuredLoggingUsingLog4Net.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests
 {
