@@ -7,7 +7,7 @@ namespace MachineLearningInCsharpTests;
 [TestClass]
 public class MulticlassClassificationTests
 {
-    private static ModelBuilder? _modelBuilder;
+    private ModelBuilder? _modelBuilder;
     private string _savedModelFilename = "multiclassCreditClassificationModel.zip";
 
     public MulticlassClassificationTests()
