@@ -6,8 +6,8 @@ namespace Delegation
         static void Main(string[] args)
         {
             //delegate(multicast)
-            MathCalculation mathCalculation1 = new MathCalculation(AddNums);
-            MathCalculation mathCalculation2 = new MathCalculation(DivideNums);
+            var mathCalculation1 = new MathCalculation(AddNums);
+            var mathCalculation2 = new MathCalculation(DivideNums);
             Console.WriteLine("Addition value is : " + mathCalculation1.Invoke(100, 3));//with invoke keyword/method
             Console.WriteLine("Division value is : " + mathCalculation2(100, 3));//without invoke keyword
             Console.ReadKey();
