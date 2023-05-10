@@ -29,27 +29,6 @@
             //DateTime Comparison using Relational Operators
             DateTimeComparisonWithRelationalOperator(firstDate, secondDate);
 
-            //Checking if the given date is in past
-            var isDatePast = Examples.IsDatePast(firstDate);
-            if (isDatePast)
-            {
-                Console.WriteLine($"{firstDate} is in past.");
-            }
-
-            //Checking if the given date is within range
-            var isDateWithinRange = Examples.IsDateWithinRange(DateTime.Now, firstDate, secondDate);
-            if (isDateWithinRange)
-            {
-                Console.WriteLine($"{DateTime.Now} is within {firstDate} to {secondDate}.");
-            }
-
-            //Checking if the given date is in future
-            var isDateInFuture = Examples.IsDateInFuture(firstDate);
-            if (isDateInFuture)
-            {
-                Console.WriteLine($"{firstDate} is in future.");
-            }
-
             // Comparing DateTime objects in a specific time zone
             var isDateInSameTimeZone = Examples.IsDateInSameTimeZone();
             if (isDateInSameTimeZone)
@@ -111,7 +90,6 @@
             {
                 Console.WriteLine($"{firstDate} is not the same as {secondDate}");
             }
-
         }
     }
 }

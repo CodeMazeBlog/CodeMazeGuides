@@ -1,6 +1,6 @@
 namespace Tests
 {
-    public class Test
+    public class DateTimeComparisonTests
     {
         [Fact]
         public void GivenDateTime_WhenComparedUsingRelationalOperators_ThenReturnBool()
