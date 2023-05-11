@@ -18,6 +18,7 @@ This section contains the topics considered basic level in C#.
 - [How to Manage IDisposable Objects in C#](https://code-maze.com/csharp-manage-idisposable-objects/)
 - [Indexers in C#](https://code-maze.com/csharp-indexers/)
 - [Differences Between != And Is Not Operators in C#](https://code-maze.com/csharp-differences-between-inequality-is-not-operators/)
+- [Init Only Setters in C#](https://code-maze.com/csharp-init-only-setter-properties/)
 - [Method Overriding in C#](https://code-maze.com/csharp-method-overriding/)
 - [Named Arguments and Optional Parameters in C#](https://code-maze.com/csharp-named-arguments-optional-parameters/)
 - [Null-Coalescing ?? And Null-Coalescing Assignment ??= Operators in C#](https://code-maze.com/null-coalescing-operator-null-coalescing-assignment-operator-csharp/)
