@@ -56,7 +56,7 @@ namespace Tests
             var derivedClass = new DerivedClass();
             var derivedClassNonVirtualMethod = derivedClass.NonVirtualMethod();
 
-            Assert.AreEqual("This method hides the inherited non virtual method", derivedClassNonVirtualMethod);
+            Assert.AreEqual("This method hides the inherited non-virtual method", derivedClassNonVirtualMethod);
         }
     }
 }
