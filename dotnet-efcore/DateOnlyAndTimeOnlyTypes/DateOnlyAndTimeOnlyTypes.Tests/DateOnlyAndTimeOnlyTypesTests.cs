@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 using Xunit;
 
@@ -9,7 +11,12 @@ public class DateOnlyAndTimeOnlyTypesTest
 
     public DateOnlyAndTimeOnlyTypesTest()
     {
-        _context = new AppDbContext();
+        var contextOptions = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase("DateOnlyDemo")
+            .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
+            .Options;
+
+        _context = new AppDbContext(contextOptions);
         _context.Database.EnsureDeleted();
         _context.Database.EnsureCreated();
     }

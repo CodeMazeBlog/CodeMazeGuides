@@ -29,4 +29,6 @@ public class AppDbContext : DbContext
         builder.Properties<TimeOnly>()
             .HaveConversion<TimeOnlyConverter, TimeOnlyComparer>();
     }
+
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 }
