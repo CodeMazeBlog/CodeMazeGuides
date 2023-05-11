@@ -79,7 +79,6 @@ namespace Test
                 Content = new StringContent(json, Encoding.UTF8, System.Net.Mime.MediaTypeNames.Application.Json)
             };
 
-
             //Act
             HttpResponseMessage response = await _client.SendAsync(request);
             string content = await response.Content.ReadAsStringAsync();
