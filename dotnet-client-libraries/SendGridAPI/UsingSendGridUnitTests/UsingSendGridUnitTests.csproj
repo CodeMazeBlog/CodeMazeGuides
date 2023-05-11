@@ -27,7 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\UsingSendGridApi\UsingSendGridApi.csproj" />
+	  <ProjectReference Include="..\UsingSendGridApi\UsingSendGridApi.csproj" />
 	</ItemGroup>
 
 </Project>

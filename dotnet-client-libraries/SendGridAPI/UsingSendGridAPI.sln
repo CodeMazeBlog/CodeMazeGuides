@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsingSendGridUnitTests", "test\UsingSendGridUnitTests\UsingSendGridUnitTests.csproj", "{27B6491F-1556-49E6-9AFB-B5BB4DCCFE54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsingSendGridApi", "UsingSendGridApi\UsingSendGridApi.csproj", "{EB3139D1-3192-4B4D-8180-9614EF0619C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsingSendGridApi", "src\UsingSendGridApi\UsingSendGridApi.csproj", "{D8EB0C89-0B0E-4B09-B392-70E2C0382665}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsingSendGridConsoleApp", "UsingSendGridConsoleApp\UsingSendGridConsoleApp.csproj", "{257054CA-CF0B-404B-BE16-1B8DBB456F62}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsingSendGridConsoleApp", "src\UsingSendGridConsoleApp\UsingSendGridConsoleApp.csproj", "{AD5FB621-D17C-4B64-9A4C-C48D39D531B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsingSendGridUnitTests", "UsingSendGridUnitTests\UsingSendGridUnitTests.csproj", "{CDA15E1B-84DC-4F66-9487-A25C81C26C26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{27B6491F-1556-49E6-9AFB-B5BB4DCCFE54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27B6491F-1556-49E6-9AFB-B5BB4DCCFE54}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27B6491F-1556-49E6-9AFB-B5BB4DCCFE54}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27B6491F-1556-49E6-9AFB-B5BB4DCCFE54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8EB0C89-0B0E-4B09-B392-70E2C0382665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8EB0C89-0B0E-4B09-B392-70E2C0382665}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8EB0C89-0B0E-4B09-B392-70E2C0382665}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8EB0C89-0B0E-4B09-B392-70E2C0382665}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD5FB621-D17C-4B64-9A4C-C48D39D531B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD5FB621-D17C-4B64-9A4C-C48D39D531B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD5FB621-D17C-4B64-9A4C-C48D39D531B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD5FB621-D17C-4B64-9A4C-C48D39D531B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB3139D1-3192-4B4D-8180-9614EF0619C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB3139D1-3192-4B4D-8180-9614EF0619C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB3139D1-3192-4B4D-8180-9614EF0619C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB3139D1-3192-4B4D-8180-9614EF0619C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257054CA-CF0B-404B-BE16-1B8DBB456F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257054CA-CF0B-404B-BE16-1B8DBB456F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257054CA-CF0B-404B-BE16-1B8DBB456F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257054CA-CF0B-404B-BE16-1B8DBB456F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDA15E1B-84DC-4F66-9487-A25C81C26C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDA15E1B-84DC-4F66-9487-A25C81C26C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDA15E1B-84DC-4F66-9487-A25C81C26C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDA15E1B-84DC-4F66-9487-A25C81C26C26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
