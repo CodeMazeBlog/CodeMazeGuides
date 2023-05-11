@@ -131,7 +131,7 @@ namespace Test
             };
 
             //Act
-            var request = new HttpRequestMessage(HttpMethod.Get, "api/Product/filter");
+            var request = new HttpRequestMessage(HttpMethod.Get, "api/Product/category-brand");
             request.Headers.Add("category", category);
             request.Headers.Add("brand", brand);
 
