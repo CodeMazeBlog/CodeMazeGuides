@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RecordsAsModelClasses.Core.Entities;
+using RecordsAsModelClasses.Core.Entities.Classes;
+using RecordsAsModelClasses.Core.Entities.Records;
 
 namespace RecordsAsModelClasses.Core.Context;
 
 public class CarDbContext : DbContext
 {
-    public DbSet<Car> Cars { get; set; }
-    public DbSet<VintageCar> VintageCars { get; set; }
+    public DbSet<RecordCar> RecordCars { get; set; }
+    public DbSet<ClassCar> ClassCars { get; set; }
 
     public CarDbContext(DbContextOptions<CarDbContext> options)
         : base(options)

@@ -1,6 +1,6 @@
-﻿namespace RecordsAsModelClasses.Core.Entities;
+﻿namespace RecordsAsModelClasses.Core.Entities.Classes;
 
-public class VintageCar
+public class ClassCar
 {
     public int Id { get; set; }
     public string Make { get; set; }
