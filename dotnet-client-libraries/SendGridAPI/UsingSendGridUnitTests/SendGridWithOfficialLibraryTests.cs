@@ -66,4 +66,42 @@ public class SendGridWithOfficialLibraryTests : IClassFixture<SendGridUnitTestFi
         Assert.True(success);
         Assert.Equal(HttpStatusCode.Accepted, statusCode);
     }
+
+    [Fact]
+    public async Task GivenTooLargeFileToEmail_WhenAttaching_ResultArgumentException()
+    {
+        await using var largeFile =
+            await Utilities.CreateTemporaryFileWithSpecifiedSize((int) Utilities.MaxAttachmentSize + 124, ".txt");
+
+        var sendGrid = new SendGridClient(_httpClient, SendGridUnitTestFixture.SendGridAuthorizationKey);
+        await Assert.ThrowsAsync<ArgumentException>(async () => await sendGrid
+                                                                     .SendMailWithAttachment(ToEmail,
+                                                                       FromEmail, "Email with Attachment",
+                                                                       largeFile.FileName,
+                                                                       "application/pdf",
+                                                                       null,
+                                                                       false,
+                                                                       "This is the email content", null)
+                                                                     .ConfigureAwait(false)
+                                                   );
+    }
+
+    [Fact]
+    public async Task GivenNonExistentFileToEmail_WhenAttaching_ResultFileNotFoundException()
+    {
+        var tempFile = Path.GetTempFileName();
+        File.Delete(tempFile);
+
+        var sendGrid = new SendGridClient(_httpClient, SendGridUnitTestFixture.SendGridAuthorizationKey);
+        await Assert.ThrowsAsync<FileNotFoundException>(async () => await sendGrid
+                                                                     .SendMailWithAttachment(ToEmail,
+                                                                       FromEmail, "Email with Attachment",
+                                                                       tempFile,
+                                                                       "application/pdf",
+                                                                       null,
+                                                                       false,
+                                                                       "This is the email content", null)
+                                                                     .ConfigureAwait(false)
+                                                   );
+    }
 }

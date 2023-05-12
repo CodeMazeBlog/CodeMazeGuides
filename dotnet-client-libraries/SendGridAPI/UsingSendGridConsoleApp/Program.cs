@@ -37,25 +37,19 @@ httpClient.DefaultRequestHeaders.Add("authorization", $"Bearer {apiKey}");
 
 // ----- Sending Simple Email with HttpClient -----
 Console.WriteLine("-----Sending simple email with HttpClient-----");
-var (isSuccess, statusCode) = await httpClient.SendSimpleEmail(toEmail, fromEmail, emailSubject, plainTextEmailContent);
+var (isSuccess, statusCode) = await httpClient.SendSimpleEmail(toEmail, fromEmail, emailSubject, plainTextEmailContent)
+                                              .ConfigureAwait(false);
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
-Console.WriteLine("Sent mail:");
-var mails = await httpClient.GetStringAsync("/api/mails").ConfigureAwait(false);
-Console.WriteLine(mails);
-await httpClient.DeleteAsync("/api/mails").ConfigureAwait(false);
-Console.WriteLine();
+await PrintAndCleanUpSentMails(httpClient).ConfigureAwait(false);
 
 // ----- Sending Attachment with HttpClient -----
 Console.WriteLine("-----Sending email with attachment with HttpClient-----");
-(isSuccess, statusCode) = await httpClient.SendEmailWithAttachment(toEmail, fromEmail, emailWithAttachmentSubject,
-                                                                   pdfFile.FileName, "application/pdf",
-                                                                   plainTextEmailContent, htmlEmailContent);
+(isSuccess, statusCode) = await httpClient
+                               .SendEmailWithAttachment(toEmail, fromEmail, emailWithAttachmentSubject,
+                                                        pdfFile.FileName, "application/pdf", plainTextEmailContent,
+                                                        htmlEmailContent).ConfigureAwait(false);
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
-Console.WriteLine("Sent mail:");
-mails = await httpClient.GetStringAsync("/api/mails").ConfigureAwait(false);
-Console.WriteLine(mails);
-await httpClient.DeleteAsync("/api/mails").ConfigureAwait(false);
-Console.WriteLine();
+await PrintAndCleanUpSentMails(httpClient).ConfigureAwait(false);
 
 // ---------------------------- Using SendGridClient ----------------------------
 var sendGridClient = new SendGridClient(apiKey, url.AbsoluteUri);
@@ -67,11 +61,7 @@ Console.WriteLine("-----Sending simple email with SendGrid MailHelper class-----
                                .ConfigureAwait(false);
 
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
-Console.WriteLine("Sent mail:");
-mails = await httpClient.GetStringAsync("/api/mails").ConfigureAwait(false);
-Console.WriteLine(mails);
-await httpClient.DeleteAsync("/api/mails").ConfigureAwait(false);
-Console.WriteLine();
+await PrintAndCleanUpSentMails(httpClient).ConfigureAwait(false);
 
 
 // ----- Sending Attachment with SendGrid -----
@@ -82,11 +72,7 @@ Console.WriteLine("-----Sending email and attachment with SendGrid MailHelper cl
                                                        htmlEmailContent).ConfigureAwait(false);
 
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
-Console.WriteLine("Sent mail:");
-mails = await httpClient.GetStringAsync("/api/mails").ConfigureAwait(false);
-Console.WriteLine(mails);
-await httpClient.DeleteAsync("/api/mails").ConfigureAwait(false);
-Console.WriteLine();
+await PrintAndCleanUpSentMails(httpClient).ConfigureAwait(false);
 
 // ----- Sending Scheduled Email with SendGrid -----
 Console.WriteLine("-----Sending scheduled email with SendGrid -----");
@@ -95,13 +81,18 @@ Console.WriteLine("-----Sending scheduled email with SendGrid -----");
                                                                   htmlEmailContent).ConfigureAwait(false);
 
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
-Console.WriteLine("Sent mail:");
-mails = await httpClient.GetStringAsync("/api/mails").ConfigureAwait(false);
-Console.WriteLine(mails);
-await httpClient.DeleteAsync("/api/mails").ConfigureAwait(false);
-Console.WriteLine();
+await PrintAndCleanUpSentMails(httpClient).ConfigureAwait(false);
 
 await testContainer.StopAsync().ConfigureAwait(false);
 
 Console.WriteLine();
 Console.WriteLine("Finished");
+
+static async Task PrintAndCleanUpSentMails(HttpClient httpClient1)
+{
+    Console.WriteLine("Sent mail:");
+    var mails = await httpClient1.GetStringAsync("/api/mails").ConfigureAwait(false);
+    Console.WriteLine(mails);
+    await httpClient1.DeleteAsync("/api/mails").ConfigureAwait(false);
+    Console.WriteLine();
+}

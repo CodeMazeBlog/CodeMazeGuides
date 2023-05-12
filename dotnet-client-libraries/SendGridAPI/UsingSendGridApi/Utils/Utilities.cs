@@ -6,7 +6,7 @@ namespace UsingSendGridApi.Utils;
 
 public static class Utilities
 {
-    private const long MaxAttachmentSize = 31_457_280;
+    public const long MaxAttachmentSize = 31_457_280;
 
     public static async Task<TemporaryFile> CreateTemporaryFileWithSpecifiedSize(int sizeInBytes, string extension)
     {
@@ -22,7 +22,7 @@ public static class Utilities
         return tempFile;
     }
 
-    public static async Task<string> GetFileContentsAsBase64(string file)
+    public static async Task<string> GetAttachmentFileContentsAsBase64(string file)
     {
         var fi = new FileInfo(file);
         if (!fi.Exists)

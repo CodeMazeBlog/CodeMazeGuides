@@ -72,4 +72,36 @@ public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture
         Assert.True(success);
         Assert.Equal(HttpStatusCode.Accepted, statusCode);
     }
+
+    [Fact]
+    public async Task GivenTooLargeFileToEmail_WhenAttaching_ResultArgumentException()
+    {
+        await using var largeFile =
+            await Utilities.CreateTemporaryFileWithSpecifiedSize((int) Utilities.MaxAttachmentSize + 124, ".txt");
+
+        await Assert.ThrowsAsync<ArgumentException>(async () => await _fixture.AuthorizedClient
+                                                                              .SendEmailWithAttachment(ToEmail,
+                                                                                FromEmail, "Email with Attachment",
+                                                                                largeFile.FileName,
+                                                                                "application/pdf",
+                                                                                "This is the email content")
+                                                                              .ConfigureAwait(false)
+                                                   );
+    }
+
+    [Fact]
+    public async Task GivenNonExistentFileToEmail_WhenAttaching_ResultFileNotFoundException()
+    {
+        var tempFile = Path.GetTempFileName();
+        File.Delete(tempFile);
+
+        await Assert.ThrowsAsync<FileNotFoundException>(async () => await _fixture.AuthorizedClient
+                                                           .SendEmailWithAttachment(ToEmail,
+                                                             FromEmail, "Email with Attachment",
+                                                             tempFile,
+                                                             "application/pdf",
+                                                             "This is the email content")
+                                                           .ConfigureAwait(false)
+                                                       );
+    }
 }

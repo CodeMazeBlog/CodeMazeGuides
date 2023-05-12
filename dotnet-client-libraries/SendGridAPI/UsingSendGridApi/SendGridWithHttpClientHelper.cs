@@ -37,7 +37,7 @@ public static class SendGridWithHttpClientHelper
         emailContent += "]";
 
         var fileName = Path.GetFileName(fileToAttach);
-        var fileContent = await Utilities.GetFileContentsAsBase64(fileToAttach);
+        var fileContent = await Utilities.GetAttachmentFileContentsAsBase64(fileToAttach);
 
         var requestBody = $$"""
         {"personalizations":[{"to":[{"email":"{{to}}"}]}],"from":{"email":"{{from}}"},"subject":"{{subject}}","attachments":[{"content":"{{fileContent}}","type":"{{fileMimeType}}","filename":"{{fileName}}"}],{{emailContent}}}
