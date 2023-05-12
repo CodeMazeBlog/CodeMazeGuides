@@ -67,16 +67,16 @@ namespace BenchmarkRunner
 
         public static string GenerateText()
         {
-            var _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var random = new Random();
             var length = 64;
             var builder = new StringBuilder(length);
 
             for (int i = 0; i < length; ++i)
             {
-                var index = random.Next(_alphabet.Length);
+                var index = random.Next(alphabet.Length);
 
-                builder.Append(_alphabet[index]);
+                builder.Append(alphabet[index]);
             }
 
             return builder.ToString();
