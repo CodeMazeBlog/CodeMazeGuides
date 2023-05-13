@@ -5,6 +5,7 @@
 
 using DotNet.Testcontainers.Builders;
 using SendGrid;
+using SendGrid.Helpers.Mail;
 using UsingSendGridApi;
 using UsingSendGridApi.Utils;
 
@@ -52,12 +53,15 @@ Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
 await PrintAndCleanUpSentMails(httpClient).ConfigureAwait(false);
 
 // ---------------------------- Using SendGridClient ----------------------------
+var toAddress = new EmailAddress(toEmail);
+var fromAddress = new EmailAddress(fromEmail);
 var sendGridClient = new SendGridClient(apiKey, url.AbsoluteUri);
 
 // ----- Using SendGrid MailHelper -----
 Console.WriteLine("-----Sending simple email with SendGrid MailHelper class-----");
 (isSuccess, statusCode) = await sendGridClient
-                               .SendMailUsingMailHelper(toEmail, fromEmail, emailSubject, plainTextEmailContent, null)
+                               .SendMailUsingMailHelper(toAddress, fromAddress, emailSubject, plainTextEmailContent,
+                                                        null)
                                .ConfigureAwait(false);
 
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
@@ -67,7 +71,7 @@ await PrintAndCleanUpSentMails(httpClient).ConfigureAwait(false);
 // ----- Sending Attachment with SendGrid -----
 Console.WriteLine("-----Sending email and attachment with SendGrid MailHelper class-----");
 (isSuccess, statusCode) = await sendGridClient
-                               .SendMailWithAttachment(toEmail, fromEmail, emailSubject, pdfFile.FileName,
+                               .SendMailWithAttachment(toAddress, fromAddress, emailSubject, pdfFile.FileName,
                                                        "application/pdf", "PdfFile_1", false, plainTextEmailContent,
                                                        htmlEmailContent).ConfigureAwait(false);
 
@@ -76,7 +80,7 @@ await PrintAndCleanUpSentMails(httpClient).ConfigureAwait(false);
 
 // ----- Sending Scheduled Email with SendGrid -----
 Console.WriteLine("-----Sending scheduled email with SendGrid -----");
-(isSuccess, statusCode) = await sendGridClient.SendScheduledEmail(toEmail, fromEmail, null, null, emailSubject,
+(isSuccess, statusCode) = await sendGridClient.SendScheduledEmail(toAddress, fromAddress, null, null, emailSubject,
                                                                   DateTime.Now.AddDays(1), plainTextEmailContent,
                                                                   htmlEmailContent).ConfigureAwait(false);
 
