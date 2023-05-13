@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Repos\\csharp-ActionAndFuncDelegates\\csharp-ActionAndFuncDelegates.csproj": {}
+    "C:\\Repos\\CodeMazeGuides\\csharp-ActionAndFuncDelegates\\csharp-ActionAndFuncDelegates.csproj": {}
   },
   "projects": {
-    "C:\\Repos\\csharp-ActionAndFuncDelegates\\csharp-ActionAndFuncDelegates.csproj": {
+    "C:\\Repos\\CodeMazeGuides\\csharp-ActionAndFuncDelegates\\csharp-ActionAndFuncDelegates.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repos\\csharp-ActionAndFuncDelegates\\csharp-ActionAndFuncDelegates.csproj",
+        "projectUniqueName": "C:\\Repos\\CodeMazeGuides\\csharp-ActionAndFuncDelegates\\csharp-ActionAndFuncDelegates.csproj",
         "projectName": "csharp-ActionAndFuncDelegates",
-        "projectPath": "C:\\Repos\\csharp-ActionAndFuncDelegates\\csharp-ActionAndFuncDelegates.csproj",
+        "projectPath": "C:\\Repos\\CodeMazeGuides\\csharp-ActionAndFuncDelegates\\csharp-ActionAndFuncDelegates.csproj",
         "packagesPath": "C:\\Users\\Alejandro Aguilera\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\csharp-ActionAndFuncDelegates\\obj\\",
+        "outputPath": "C:\\Repos\\CodeMazeGuides\\csharp-ActionAndFuncDelegates\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
