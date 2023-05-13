@@ -1,4 +1,4 @@
-﻿namespace DotnetCompilerExample;
+﻿namespace IntroductionToRoslyn;
 
 public interface IEmptyInterface
 {
