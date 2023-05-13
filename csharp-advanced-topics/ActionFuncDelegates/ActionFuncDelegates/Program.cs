@@ -8,32 +8,32 @@
 
         public static string DoSomething(FormatString format)
         {
-            string s = "a string";
+            var s = "a string";
             return format(s);
         }
 
-        private static void Main(string[] args)
+        static void Main()
         {
             // Action delegate
-            Action doSomething = () => Console.WriteLine("action");
+            var doSomething = () => Console.WriteLine("action");
             doSomething();
 
             Action<string> print = Console.WriteLine;
             print("hello world");
 
-            static void printSum(int x, int y) => Console.WriteLine(x + y);
+            Action<int, int> printSum = (x, y) => Console.WriteLine(x + y);
             printSum(3, 4);
 
             // Func delegate
-            static string getString() => "hardcoded string";
-            string s = getString();
+            Func<string> getString = () => "hardcoded string";
+            var s = getString();
 
-            static int sum(int x, int y) => x + y;
-            int result = sum(5, 6);
+            Func<int, int, int> sum = (x, y) => x + y;
+            var result = sum(5, 6);
 
-            static bool isOdd(int x) => x % 2 == 0;
-            int[] numbers = new[] { 1, 2, 3 };
-            IEnumerable<int> oddNumbers = numbers.Where(isOdd);
+            Func<int, bool> isOdd = x => x % 2 == 0;
+            var numbers = new[] { 1, 2, 3 };
+            var oddNumbers = numbers.Where(isOdd);
         }
     }
 }
