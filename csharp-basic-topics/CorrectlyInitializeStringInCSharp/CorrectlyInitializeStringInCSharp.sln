@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorrectlyInitializeStringInCSharp", "CorrectlyInitializeStringInCSharp\CorrectlyInitializeStringInCSharp.csproj", "{3C4A4583-D610-498D-B598-5B39D440A14B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorrectlyInitializeStringInCsharpTest", "CorrectlyInitializeStringInCsharpTest\CorrectlyInitializeStringInCsharpTest.csproj", "{6B43E46F-53CA-4A79-8763-BEC729B113CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CorrectlyInitializeStringInCsharpTest", "CorrectlyInitializeStringInCsharpTest\CorrectlyInitializeStringInCsharpTest.csproj", "{6B43E46F-53CA-4A79-8763-BEC729B113CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
