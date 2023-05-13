@@ -67,7 +67,5 @@ namespace MultipleParametersInGetMethod.Controllers
                         .Where(x => x.Category == category && x.Brand == brand)
                         .ToList()));
         }
-
-        
     }
 }

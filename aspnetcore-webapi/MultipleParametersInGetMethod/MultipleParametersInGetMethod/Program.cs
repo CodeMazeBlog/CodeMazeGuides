@@ -26,7 +26,6 @@ namespace MultipleParametersInGetMethod
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();
