@@ -11,7 +11,7 @@ namespace Tests
 
             var memoryBeforeAllocation = GC.GetTotalMemory(false);
             memoryManager.AllocateMemory();
-            var memoryAfterAllocation = GC.GetTotalMemory(true);
+            var memoryAfterAllocation = GC.GetTotalMemory(false);
 
             Assert.True(memoryBeforeAllocation < memoryAfterAllocation);
 

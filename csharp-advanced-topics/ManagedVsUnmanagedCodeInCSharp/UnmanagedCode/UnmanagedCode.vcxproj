@@ -128,10 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArrayCreator.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="UnmanagedCode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayCreator.h" />
+    <ClInclude Include="FileHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
