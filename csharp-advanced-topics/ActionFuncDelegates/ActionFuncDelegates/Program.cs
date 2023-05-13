@@ -9,6 +9,7 @@
         public static string DoSomething(FormatString format)
         {
             var s = "a string";
+
             return format(s);
         }
 
