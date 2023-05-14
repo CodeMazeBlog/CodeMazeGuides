@@ -14,7 +14,6 @@ namespace Tests
             var memoryAfterAllocation = GC.GetTotalMemory(false);
 
             Assert.True(memoryBeforeAllocation < memoryAfterAllocation);
-
         }
     }
 }

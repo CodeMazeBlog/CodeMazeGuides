@@ -11,7 +11,7 @@
 
         public void AllocateMemory()
         {
-            for (var i = 0; i < 10000; i++)
+            for (var i = 0; i < 1000000; i++)
             {
                 _numbers.Add(i);
             }
