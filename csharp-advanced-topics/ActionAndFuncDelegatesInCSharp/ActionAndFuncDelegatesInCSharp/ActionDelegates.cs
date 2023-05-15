@@ -9,6 +9,7 @@ public class ActionDelegates
         Action<int, int> addNumbersSecond = AddNumbers;
         addNumbersSecond(2, 5);
     }
+    
     public static void AddNumbers(int firstNumber, int secondNumber)
     {
         int sum = firstNumber + secondNumber;

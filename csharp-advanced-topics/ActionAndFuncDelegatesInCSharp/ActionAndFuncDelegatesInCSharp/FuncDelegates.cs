@@ -9,6 +9,7 @@ public class FuncDelegates
         Func<string, string, string> greetWithNameSecond = GreetWithName;
         Console.WriteLine(greetWithNameSecond("Nyoni", "Ralph"));
     }
+    
     public static string GreetWithName(string firstName, string lastName)
     {
         return $"Hello: {firstName + ' ' + lastName}";
