@@ -29,7 +29,7 @@
             actionDelegateWithZeroParameter();
 
             //Assert
-            Assert.That(stringWriter.ToString(), Is.EqualTo("Action delegate with zero parameter and return void\r\n"));
+            Assert.That(stringWriter.ToString(), Is.EqualTo("Action delegate with zero parameter and return void\n"));
         }
 
         [Test]
@@ -43,7 +43,7 @@
             actionDelegateWithOneParameter(expectedMessage);
 
             //Assert
-            Assert.That(stringWriter.ToString(), Is.EqualTo(expectedMessage + "\r\n"));
+            Assert.That(stringWriter.ToString(), Is.EqualTo(expectedMessage + "\n"));
         }
 
         [Test]
@@ -58,7 +58,7 @@
             actionDelegateWithTwoParameters(expectedValue1, expectedValue2);
 
             //Assert
-            Assert.That(stringWriter.ToString(), Is.EqualTo($"The Action delegate can take {expectedValue1} to {expectedValue2} parameters and returns void\r\n"));
+            Assert.That(stringWriter.ToString(), Is.EqualTo($"The Action delegate can take {expectedValue1} to {expectedValue2} parameters and returns void\n"));
         }
     }
 }
