@@ -2,36 +2,25 @@
 
 namespace Delegation
 {
-    class Program
+    public class Program
     {
         delegate double MathCalculation(float value1, float value2);
         static void Main(string[] args)
         {
-            var mathCalculation1 = new MathCalculation(AddNums);
-            var mathCalculation2 = new MathCalculation(DivideNums);
+            var methods=new GenericMethods();
+            var mathCalculation1 = new MathCalculation(methods.Addition);
+            var mathCalculation2 = new MathCalculation(methods.Multiplication);
             Console.WriteLine("Addition value is : " + mathCalculation1.Invoke(100, 3));//with invoke keyword/method
             Console.WriteLine("Division value is : " + mathCalculation2(100, 3));//without invoke keyword
             Console.ReadKey();
 
 
             //comment above code to test Func and Action delegates
-            Action<string> executeActionDelegate = PrintActionDelegate;
+            Action<string> executeActionDelegate = methods.PrintString;
             executeActionDelegate("Hey ! I'm Action Delegate");
-            Func<float, float, double> executeFuncDelegate = AddNums;
+            Func<float, float, double> executeFuncDelegate = methods.Addition;
             Console.WriteLine("Output from Func Delegate : " + executeFuncDelegate(100, 3));
             Console.ReadKey();            
-        }
-        public static void PrintActionDelegate(string str)
-        {
-            Console.WriteLine(str);
-        }
-        public static double AddNums(float value1, float value2)
-        {
-            return value1 + value2;
-        }
-        public static double DivideNums(float value1, float value2)
-        {
-            return (value1 / value2);
         }
     }
 }
