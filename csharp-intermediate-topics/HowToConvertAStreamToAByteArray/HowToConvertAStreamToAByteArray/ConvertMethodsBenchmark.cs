@@ -12,41 +12,45 @@ namespace HowToConvertAStreamToAByteArray
 
         private ConvertStreamToByteArray _convertStreamToByteArray;
 
-        [IterationSetup]
-        public void IterationSetup()
+        [GlobalSetup]
+        public void Setup()
         {
-           var benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
-           _convertStreamToByteArray = new ConvertStreamToByteArray(benchmarkStream);
+            _convertStreamToByteArray = new ConvertStreamToByteArray();
         }
 
         [Benchmark]
         public void UseStreamDotReadMethod()
         {
-            _convertStreamToByteArray.UseStreamDotReadMethod();
+            using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);     
+            _convertStreamToByteArray.UseStreamDotReadMethod(_benchmarkStream);
         }
 
         [Benchmark]
         public void UseMemoryStream()
         {
-            _convertStreamToByteArray.UseMemoryStream();
+            using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
+            _convertStreamToByteArray.UseMemoryStream(_benchmarkStream);
         }
 
         [Benchmark]
         public void UseBufferedStream()
         {
-            _convertStreamToByteArray.UseBufferedStream();
+            using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
+            _convertStreamToByteArray.UseBufferedStream(_benchmarkStream);
         }
 
         [Benchmark]
         public void UseStreamReader()
         {
-            _convertStreamToByteArray.UseStreamReader();
+            using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read); 
+            _convertStreamToByteArray.UseStreamReader(_benchmarkStream);
         }
 
         [Benchmark]
         public void UseBinaryReader()
         {
-            _convertStreamToByteArray.UseBinaryReader();
+            using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
+            _convertStreamToByteArray.UseBinaryReader(_benchmarkStream);
         }
     }
 }

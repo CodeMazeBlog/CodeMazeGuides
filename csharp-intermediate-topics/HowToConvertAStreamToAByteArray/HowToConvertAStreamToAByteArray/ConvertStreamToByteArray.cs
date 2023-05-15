@@ -2,21 +2,14 @@
 {
     public class ConvertStreamToByteArray
     {
-        private readonly Stream _stream;
-
-        public ConvertStreamToByteArray(Stream stream)
-        {
-            _stream = stream;
-        }
-
-        public byte[] UseStreamDotReadMethod()
+        public byte[] UseStreamDotReadMethod(Stream stream)
         {
             byte[] bytes;
             List<byte> totalStream = new();
             byte[] buffer = new byte[32];
             int read;
 
-            while ((read = _stream.Read(buffer, 0, buffer.Length)) > 0)
+            while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
             {
                 totalStream.AddRange(buffer.Take(read));
             }
@@ -25,23 +18,23 @@
             return bytes;
         }
 
-        public byte[] UseBinaryReader()
+        public byte[] UseBinaryReader(Stream stream)
         {
             byte[] bytes;
 
-            using (var binaryReader = new BinaryReader(_stream))
+            using (var binaryReader = new BinaryReader(stream))
             {
-                bytes = binaryReader.ReadBytes((int)_stream.Length);
+                bytes = binaryReader.ReadBytes((int)stream.Length);
             }
 
             return bytes;
         }
 
-        public byte[] UseStreamReader()
+        public byte[] UseStreamReader(Stream stream)
         {
             byte[] bytes;
 
-            using (var reader = new StreamReader(_stream))
+            using (var reader = new StreamReader(stream))
             {
                 bytes = System.Text.Encoding.UTF8.GetBytes(reader.ReadToEnd());
             }
@@ -49,29 +42,29 @@
             return bytes;
         }
 
-        public byte[] UseMemoryStream()
+        public byte[] UseMemoryStream(Stream stream)
         {
             byte[] bytes;
 
-            if (_stream is MemoryStream stream)
+            if (stream is MemoryStream memStream)
             {
-                return stream.ToArray();
+                return memStream.ToArray();
             }
 
             using (var memoryStream = new MemoryStream())
             {
-                _stream.CopyTo(memoryStream);
+                stream.CopyTo(memoryStream);
                 bytes = memoryStream.ToArray();
             }
 
             return bytes;
         }
 
-        public byte[] UseBufferedStream()
+        public byte[] UseBufferedStream(Stream stream)
         {
             byte[] bytes;
 
-            using (var bufferedStream = new BufferedStream(_stream))
+            using (var bufferedStream = new BufferedStream(stream))
             {
                 using var memoryStream = new MemoryStream();
                 bufferedStream.CopyTo(memoryStream);
