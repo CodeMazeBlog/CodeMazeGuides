@@ -26,28 +26,28 @@ namespace HowToConvertAStreamToAByteArray
         }
 
         [Benchmark]
-        public void UseAMemoryStream()
+        public void UseMemoryStream()
         {
             using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
             _convertStreamToByteArray.UseMemoryStream(_benchmarkStream);
         }
 
         [Benchmark]
-        public void UseABufferedStream()
+        public void UseBufferedStream()
         {
             using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
             _convertStreamToByteArray.UseBufferedStream(_benchmarkStream);
         }
 
         [Benchmark]
-        public void UseAStreamReader()
+        public void UseStreamReader()
         {
             using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
             _convertStreamToByteArray.UseStreamReader(_benchmarkStream);
         }
 
         [Benchmark]
-        public void UseABinaryReader()
+        public void UseBinaryReader()
         {
             using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
             _convertStreamToByteArray.UseBinaryReader(_benchmarkStream);
