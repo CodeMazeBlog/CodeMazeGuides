@@ -4,10 +4,10 @@ using Action = RefactoringChangePreventers.ShotgunSurgery.Correct.Action;
 namespace RefactoringChangePreventersTests;
 
 [TestClass]
-public class UserTests
+public class UserUnitTests
 {
     [TestMethod]
-    public void ModifyFirstName_FirstNameShouldBeModifiedAndActionsShouldBeUpdated()
+    public void WhenModifyingFirstName_ThenFirstNameShouldBeModifiedAndActionsShouldBeUpdated()
     {
         // Arrange
         var user = new User { Id = 1, FirstName = "John", LastName = "Doe", Actions = new List<Action>() };
@@ -24,7 +24,7 @@ public class UserTests
     }
 
     [TestMethod]
-    public void ModifyLastName_LastNameShouldBeModifiedAndActionsShouldBeUpdated()
+    public void WhenModifyingLastName_ThenLastNameShouldBeModifiedAndActionsShouldBeUpdated()
     {
         // Arrange
         var user = new User { Id = 1, FirstName = "John", LastName = "Doe", Actions = new List<Action>() };

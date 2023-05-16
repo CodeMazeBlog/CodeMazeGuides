@@ -2,9 +2,9 @@
 
 public class Patient
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public List<string> TreatmentHistory { get; set; }
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
+    public List<string> TreatmentHistory { get; private set; }
 
     public Patient(string firstName, string lastName, string insuranceNumber)
     {
@@ -16,11 +16,6 @@ public class Patient
     public void AddTreatment(string treatment)
     {
         TreatmentHistory.Add(treatment);
-    }
-
-    public string GetPatientData()
-    {
-        return $"Name: {FirstName} {LastName}";
     }
 
     public void ExportTreatmentHistory(string fileName)

@@ -3,10 +3,10 @@
 namespace RefactoringChangePreventersTests;
 
 [TestClass]
-public class TeachersTests
+public class TeachersUnitTests
 {
     [TestMethod]
-    public void LanguageTeacher_ShowCurriculum_ReturnsExpectedString()
+    public void WhenShowingCurriculumForLanguageTeacher_ThenExpectedStringIsReturned()
     {
         // Arrange
         var teacher = new LanguageTeacher();
@@ -19,7 +19,7 @@ public class TeachersTests
     }
 
     [TestMethod]
-    public void PhysicalEducationTeacher_ShowCurriculum_ReturnsExpectedString()
+    public void WhenShowingCurriculumForPhysicalEducationTeacher_ThenExpectedStringIsReturned()
     {
         // Arrange
         var teacher = new PhysicalEducationTeacher();

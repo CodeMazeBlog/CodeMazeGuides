@@ -3,10 +3,10 @@
 namespace RefactoringChangePreventersTests;
 
 [TestClass]
-public class TreatmentHistoryExporterTests
+public class TreatmentHistoryExporterUnitTests
 {
     [TestMethod]
-    public void ExportTreatmentHistory_ShouldCreateCsvFileWithTreatments()
+    public void WhenExportingTreatmentHistory_ThenCsvFileWithTreatmentsShouldBeCreated()
     {
         // Arrange
         var fileName = "test.csv";
@@ -25,7 +25,7 @@ public class TreatmentHistoryExporterTests
     }
 
     [TestMethod]
-    public void ExportTreatmentHistoryToJson_ShouldCreateJsonFileWithCorrectData()
+    public void WhenExportingTreatmentHistoryToJson_ThenJsonFileWithCorrectDataShouldBeCreated()
     {
         // Arrange
         var exporter = new TreatmentHistoryExporter();
