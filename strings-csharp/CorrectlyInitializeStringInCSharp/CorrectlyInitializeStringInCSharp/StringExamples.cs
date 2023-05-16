@@ -64,14 +64,41 @@ namespace CorrectlyInitializeStringInCSharp
 
         public static string StringBuilderString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("Hello");
             sb.Append(" World");
-            string myString4 = sb.ToString();
+            var myString4 = sb.ToString();
 
             return myString4;
         }
 
+        public static string StringBuilderInsert()
+        {
+            var stringBuilder = new StringBuilder("Hello World!");
+            stringBuilder.Insert(5, ", ");
+            var result = stringBuilder.ToString();
+
+            return result;
+
+        }
+
+        public static string StringBuilderReplace()
+        {
+            var stringBuilder = new StringBuilder("Hello World!");
+            stringBuilder.Replace("World", "Universe");
+            var result = stringBuilder.ToString();
+
+            return result;
+        }
+
+        public static string StringBuilderClear()
+        {
+            var stringBuilder = new StringBuilder("Hello World!");
+            stringBuilder.Clear();
+            var result = stringBuilder.ToString();
+
+            return result;
+        }
         public static string SumString(int num1, int num2)
         {
             var myString5 = $"The sum of {num1} and {num2} is {num1 + num2}";

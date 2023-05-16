@@ -125,6 +125,43 @@ namespace CorrectlyInitializeStringInCsharpTest
         }
 
         [TestMethod]
+        public void GivenStringBuilderClearString_WhenExecuted_ThenClearsString()
+        {
+            // Arrange
+            string expected = string.Empty;
+
+            // Act
+            string actual = StringExamples.StringBuilderClear();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void GivenStringBuilderReplaceString_WhenExecuted_ThenReplaceString()
+        {
+            // Arrange
+            string expected = "Hello Universe!";
+
+            // Act
+            string actual = StringExamples.StringBuilderReplace();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
+        public void GivenStringBuilderInsertString_WhenExecuted_ThenInsertString()
+        {
+            // Arrange
+            string expected = "Hello,  World!";
+
+            // Act
+            string actual = StringExamples.StringBuilderInsert();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod]
         public void GivenTwoNumbers_WhenSumStringCalled_ThenReturnsStringWithSum()
         {
             // Arrange
