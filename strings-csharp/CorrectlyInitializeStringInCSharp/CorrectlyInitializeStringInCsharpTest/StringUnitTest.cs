@@ -10,10 +10,10 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenMyString1_WhenExecuted_ThenReturnsHelloWorld()
         {
             // Arrange
-            string expected = "Hello, World!";
+            var expected = "Hello, World!";
 
             // Act
-            string actual = StringExamples.MyString1();
+            var actual = StringExamples.MyString1();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -23,10 +23,10 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenMyString2_WhenExecuted_ThenReturnsHelloNewlineWorld()
         {
             // Arrange
-            string expected = "Hello,\nWorld!";
+            var expected = "Hello,\nWorld!";
 
             // Act
-            string actual = StringExamples.MyString2();
+            var actual = StringExamples.MyString2();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -36,12 +36,12 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenFirstNameAndLastName_WhenFullNameCalled_ThenReturnsFullName()
         {
             // Arrange
-            string firstName = "John";
-            string lastName = "Doe";
-            string expected = "John Doe";
+            var firstName = "John";
+            var lastName = "Doe";
+            var expected = "John Doe";
 
             // Act
-            string actual = StringExamples.FullName(firstName, lastName);
+            var actual = StringExamples.FullName(firstName, lastName);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -51,10 +51,10 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenEmptyPath_WhenPathCalled_ThenReturnsPath()
         {
             // Arrange
-            string expected = @"C:\Users\Codemaze\Documents";
+            var expected = @"C:\Users\Codemaze\Documents";
 
             // Act
-            string actual = StringExamples.Path();
+            var actual = StringExamples.Path();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -64,11 +64,11 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenMultiLineString_WhenExecuted_ThenReturnsStringWithNewlines()
         {
             // Arrange            
-            string expected = @"This is
+            var expected = @"This is
             a multi-line
             string.";
             // Act
-            string actual = StringExamples.MultiLineString();
+            var actual = StringExamples.MultiLineString();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -78,10 +78,10 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenEmptyString_WhenExecuted_ThenReturnsEmptyString()
         {
             // Arrange
-            string expected = string.Empty;
+            var expected = string.Empty;
 
             // Act
-            string actual = StringExamples.EmptyString();
+            var actual = StringExamples.EmptyString();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -90,10 +90,8 @@ namespace CorrectlyInitializeStringInCsharpTest
         [TestMethod]
         public void GivenNullString_WhenExecuted_ThenReturnsNull()
         {
-            // Arrange
-
             // Act
-            string? actual = StringExamples.NullString();
+            var actual = StringExamples.NullString();
 
             // Assert
             Assert.IsNull(actual);
@@ -102,10 +100,8 @@ namespace CorrectlyInitializeStringInCsharpTest
         [TestMethod]
         public void GivenDefaultString_WhenExecuted_ThenReturnsNull()
         {
-            // Arrange
-
             // Act
-            string? actual = StringExamples.DefaultString();
+            var actual = StringExamples.DefaultString();
 
             // Assert
             Assert.IsNull(actual);
@@ -115,10 +111,10 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenStringBuilderString_WhenExecuted_ThenReturnsHelloWorld()
         {
             // Arrange
-            string expected = "Hello World";
+            var expected = "Hello World";
 
             // Act
-            string actual = StringExamples.StringBuilderString();
+            var actual = StringExamples.StringBuilderString();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -128,10 +124,10 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenStringBuilderClearString_WhenExecuted_ThenClearsString()
         {
             // Arrange
-            string expected = string.Empty;
+            var expected = string.Empty;
 
             // Act
-            string actual = StringExamples.StringBuilderClear();
+            var actual = StringExamples.StringBuilderClear();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -141,10 +137,10 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenStringBuilderReplaceString_WhenExecuted_ThenReplaceString()
         {
             // Arrange
-            string expected = "Hello Universe!";
+            var expected = "Hello Universe!";
 
             // Act
-            string actual = StringExamples.StringBuilderReplace();
+            var actual = StringExamples.StringBuilderReplace();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -153,10 +149,9 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenStringBuilderInsertString_WhenExecuted_ThenInsertString()
         {
             // Arrange
-            string expected = "Hello,  World!";
-
+            var expected = "Hello,  World!";
             // Act
-            string actual = StringExamples.StringBuilderInsert();
+            var actual = StringExamples.StringBuilderInsert();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -165,12 +160,12 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenTwoNumbers_WhenSumStringCalled_ThenReturnsStringWithSum()
         {
             // Arrange
-            int a = 5;
-            int b = 10;
-            string expected = "The sum of 5 and 10 is 15";
+            var a = 5;
+            var b = 10;
+            var expected = "The sum of 5 and 10 is 15";
 
             // Act
-            string actual = StringExamples.SumString(a, b);
+            var actual = StringExamples.SumString(a, b);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -180,11 +175,11 @@ namespace CorrectlyInitializeStringInCsharpTest
         public void GivenAsteriskCount_WhenAsteriskStringCalled_ThenReturnsStringWithAsterisks()
         {
             // Arrange
-            int count = 10;
-            string expected = "**********";
+            var count = 10;
+            var expected = "**********";
 
             // Act
-            string actual = StringExamples.AsteriskString(count);
+            var actual = StringExamples.AsteriskString(count);
 
             // Assert
             Assert.AreEqual(expected, actual);
