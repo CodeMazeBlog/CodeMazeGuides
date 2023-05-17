@@ -65,24 +65,21 @@ public class RecordsAsModelClassesUnitTest
         Assert.Equal(expectedResponse, deserializedResponse);
     }
 
-    [Fact]  
-    public async Task WhenIdPassedToGetEndpoint_ThenReturnCreatedAction()       
-    {
-        var httpResponseMessage = await _client.GetAsync($"api/v2/cars/{1}");
-
-        Assert.Equal(HttpStatusCode.Created, httpResponseMessage.StatusCode);
-    }
-
     [Fact]
     public async Task WhenUpdateClassCarEndpointIsCalled_ThenUpdateClassCar()
     {
         var carDto = new CarDto(1,"Chevrolet", "Corvette", 1972);
 
-        var httpResponseMessage = await _client.PutAsJsonAsync("api/v2/cars/1", carDto);
+        var httpResponseMessage = await _client.PutAsJsonAsync("api/v2/cars/1", carDto);    
 
         Assert.Equal(HttpStatusCode.NoContent, httpResponseMessage.StatusCode);
     }
 
+    [Fact]
+    public async Task WhenIdPassedToGetCarEndpoint_ThenReturnCreatedAction()
+    {
+        var httpResponseMessage = await _client.GetAsync($"api/v2/cars/{1}");
 
-    
+        Assert.Equal(HttpStatusCode.Created, httpResponseMessage.StatusCode);
+    }
 }
