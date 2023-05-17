@@ -29,7 +29,7 @@ public static class Utilities
             throw new FileNotFoundException("Attachment source not found.", $"{file}");
         if (fi.Length > MaxAttachmentSize)
             throw new ArgumentException("File size exceeds maximum attachment size limit. " +
-                                        "Limit: {MaxAttachmentSize} bytes, Attachment size: {fi.Length}");
+                "Limit: {MaxAttachmentSize} bytes, Attachment size: {fi.Length}");
 
         using var buffer = MemoryOwner<byte>.Allocate((int) fi.Length);
         await using var fs = fi.OpenRead();

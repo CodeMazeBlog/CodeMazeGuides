@@ -26,12 +26,12 @@ public static class SendGridWithOfficialLibraryHelper
     {
         var fileName = Path.GetFileName(fileToAttach);
         var attachment = new Attachment
-                         {
-                             Content = await Utilities.GetAttachmentFileContentsAsBase64(fileToAttach),
-                             Filename = fileName,
-                             Disposition = inlineAttachment ? "inline" : "attachment",
-                             Type = mimeType,
-                         };
+        {
+            Content = await Utilities.GetAttachmentFileContentsAsBase64(fileToAttach),
+            Filename = fileName,
+            Disposition = inlineAttachment ? "inline" : "attachment",
+            Type = mimeType
+        };
         if (contentId is not null) attachment.ContentId = contentId;
 
         var message =
@@ -49,23 +49,23 @@ public static class SendGridWithOfficialLibraryHelper
 
     {
         var personalizations = new List<Personalization>(new[]
-                                                         {
-                                                             new Personalization
-                                                             {
-                                                                 Tos = to.ToList(),
-                                                                 Ccs = cc?.ToList(),
-                                                                 Bccs = bcc?.ToList(),
-                                                             },
-                                                         });
+        {
+            new Personalization
+            {
+                Tos = to.ToList(),
+                Ccs = cc?.ToList(),
+                Bccs = bcc?.ToList()
+            }
+        });
         var message = new SendGridMessage
-                      {
-                          Personalizations = personalizations,
-                          Subject = subject,
-                          From = from,
-                          SendAt = sendAt.ToUnixTime(),
-                          PlainTextContent = plainTextContent,
-                          HtmlContent = htmlContent,
-                      };
+        {
+            Personalizations = personalizations,
+            Subject = subject,
+            From = from,
+            SendAt = sendAt.ToUnixTime(),
+            PlainTextContent = plainTextContent,
+            HtmlContent = htmlContent
+        };
         var response = await sendGridClient.SendEmailAsync(message);
 
         return (response.IsSuccessStatusCode, response.StatusCode);

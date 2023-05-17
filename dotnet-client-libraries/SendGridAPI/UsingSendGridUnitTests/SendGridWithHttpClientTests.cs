@@ -26,7 +26,7 @@ public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture
     public async Task GivenAuthorizedClient_WhenSendingMail_ThenResultIsAccepted()
     {
         var (success, statusCode) = await _fixture.AuthorizedClient.SendSimpleEmail(ToEmail, FromEmail, "Test Email",
-         "This is the email content").ConfigureAwait(false);
+            "This is the email content").ConfigureAwait(false);
 
         Assert.True(success);
         Assert.Equal(HttpStatusCode.Accepted, statusCode);
@@ -37,7 +37,7 @@ public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture
     {
         using var client = GetTestClient("UnauthorizedApiKey");
         var (success, statusCode) = await client.SendSimpleEmail(ToEmail, FromEmail, "Test Email",
-                                                                 "This is the email content").ConfigureAwait(false);
+            "This is the email content").ConfigureAwait(false);
 
         Assert.False(success);
         Assert.Equal(HttpStatusCode.Unauthorized, statusCode);
@@ -51,8 +51,9 @@ public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture
         Assert.False(client.DefaultRequestHeaders.Contains("Authorization"));
 
         var (success, statusCode) = await client
-                                         .SendSimpleEmail(ToEmail, FromEmail, "Test Email", "This is the email content")
-                                         .ConfigureAwait(false);
+                                          .SendSimpleEmail(ToEmail, FromEmail, "Test Email",
+                                              "This is the email content")
+                                          .ConfigureAwait(false);
 
         Assert.False(success);
         Assert.Equal(HttpStatusCode.Unauthorized, statusCode);
@@ -65,8 +66,8 @@ public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture
             await Utilities.CreateTemporaryFileWithSpecifiedSize(1024, ".pdf").ConfigureAwait(false);
         var (success, statusCode) = await _fixture.AuthorizedClient
                                                   .SendEmailWithAttachment(ToEmail, FromEmail, "Email with Attachment",
-                                                                           pdfFile.FileName, "application/pdf",
-                                                                           "This is the email content")
+                                                      pdfFile.FileName, "application/pdf",
+                                                      "This is the email content")
                                                   .ConfigureAwait(false);
 
         Assert.True(success);
@@ -81,12 +82,12 @@ public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture
 
         await Assert.ThrowsAsync<ArgumentException>(async () => await _fixture.AuthorizedClient
                                                                               .SendEmailWithAttachment(ToEmail,
-                                                                                FromEmail, "Email with Attachment",
-                                                                                largeFile.FileName,
-                                                                                "application/pdf",
-                                                                                "This is the email content")
+                                                                                  FromEmail, "Email with Attachment",
+                                                                                  largeFile.FileName,
+                                                                                  "application/pdf",
+                                                                                  "This is the email content")
                                                                               .ConfigureAwait(false)
-                                                   );
+        );
     }
 
     [Fact]
@@ -96,12 +97,12 @@ public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture
         File.Delete(tempFile);
 
         await Assert.ThrowsAsync<FileNotFoundException>(async () => await _fixture.AuthorizedClient
-                                                           .SendEmailWithAttachment(ToEmail,
-                                                             FromEmail, "Email with Attachment",
-                                                             tempFile,
-                                                             "application/pdf",
-                                                             "This is the email content")
-                                                           .ConfigureAwait(false)
-                                                       );
+            .SendEmailWithAttachment(ToEmail,
+                FromEmail, "Email with Attachment",
+                tempFile,
+                "application/pdf",
+                "This is the email content")
+            .ConfigureAwait(false)
+        );
     }
 }
