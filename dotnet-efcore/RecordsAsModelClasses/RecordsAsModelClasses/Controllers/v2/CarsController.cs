@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RecordsAsModelClasses.Core.Context;
 using RecordsAsModelClasses.Core.DTOs;
 using RecordsAsModelClasses.Core.Entities.Classes;
@@ -20,7 +21,7 @@ namespace RecordsAsModelClasses.Controllers.v2
         [HttpPost]
         public async Task<ActionResult<CarDto>> CreateCar([FromBody] CarDto carDto)
         {
-            var car = new ClassCar
+            var car = new Car
             {
                 Make = carDto.Make,
                 Model = carDto.Model,
@@ -36,7 +37,10 @@ namespace RecordsAsModelClasses.Controllers.v2
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateCar(int id, [FromBody] CarDto carDto)
         {
-            var car = await _context.ClassCars.FindAsync(id);
+            var car = await _context
+                .ClassCars
+                .Where(c => c.Id==id)
+                .FirstOrDefaultAsync();
 
             if (car == null)
             {
@@ -49,6 +53,21 @@ namespace RecordsAsModelClasses.Controllers.v2
 
             await _context.SaveChangesAsync();
             return NoContent();
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetCar(int id)
+        {
+            var car = await _context.ClassCars.FindAsync(id);
+
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            var carDto = new CarDto(car.Id, car.Make, car.Model, car.Year);
+
+            return CreatedAtAction(nameof(GetCar), new { id }, carDto);
         }
     }
 }

@@ -21,11 +21,12 @@ public class RecordsAsModelClassesUnitTest
     [Fact]
     public async Task WhenCreateCarEndpointIsCalled_ThenCreateCar()
     {
-        var httpResponseMessage = await _client.PostAsync("api/v1/cars", new StringContent(""));
+        var carDto = new CarDto(1,"Toyota", "Crown", 1960);
+        var httpResponseMessage = await _client.PostAsJsonAsync("api/v1/cars",carDto);
         var response = await httpResponseMessage.Content.ReadAsStringAsync();
 
-        var deserializedResponse = JsonConvert.DeserializeObject<RecordCar>(response);
-        var expectedResponse = new RecordCar(1, "Toyota", "Crown", 1952);
+        var deserializedResponse = JsonConvert.DeserializeObject<Car>(response);
+        var expectedResponse = new Car(1, "Toyota", "Crown", 1960);
 
         Assert.Equal(HttpStatusCode.Created, httpResponseMessage.StatusCode);
         Assert.Equal(expectedResponse, deserializedResponse);
@@ -34,7 +35,7 @@ public class RecordsAsModelClassesUnitTest
     [Fact]
     public async Task WhenUpdateCarEndpointIsCalled_ThenUpdateCar()
     {
-        var carDto = new CarDto("Honda", "Accord", 2023);
+        var carDto = new CarDto(1,"Honda", "Accord", 2023);
 
         var httpResponseMessage = await _client.PutAsJsonAsync("api/v1/cars/1", carDto);
 
@@ -42,19 +43,17 @@ public class RecordsAsModelClassesUnitTest
     }
 
     [Fact]
-    public async Task WhenUpdateCarUsingRecordsEndpointIsCalled_ThenUpdateCar()
-    {
-        var car = new RecordCar(1, "Honda", "Civic", 2023);
+    public async Task WhenGetCarUsingRecordsEndpointIsCalled_ThenReturnCreatedAction()
+    {   
+        var httpResponseMessage = await _client.GetAsync($"api/v1/cars/{1}");
 
-        var httpResponseMessage = await _client.PutAsJsonAsync($"api/v1/cars/car/{car.Id}", car);
-
-        Assert.Equal(HttpStatusCode.NoContent, httpResponseMessage.StatusCode);
+        Assert.Equal(HttpStatusCode.Created, httpResponseMessage.StatusCode);
     }
 
-    [Fact]
+    [Fact]  
     public async Task WhenCreateClassCarEndpointIsCalled_ThenCreateClassCar()
     {
-        var carDto = new CarDto("Chevrolet", "Corvette", 1972);
+        var carDto = new CarDto(1,"Chevrolet", "Corvette", 1972);
 
         var httpResponseMessage = await _client.PostAsJsonAsync("api/v2/cars", carDto);
         var response = await httpResponseMessage.Content.ReadAsStringAsync();
@@ -66,13 +65,24 @@ public class RecordsAsModelClassesUnitTest
         Assert.Equal(expectedResponse, deserializedResponse);
     }
 
+    [Fact]  
+    public async Task WhenIdPassedToGetEndpoint_ThenReturnCreatedAction()       
+    {
+        var httpResponseMessage = await _client.GetAsync($"api/v2/cars/{1}");
+
+        Assert.Equal(HttpStatusCode.Created, httpResponseMessage.StatusCode);
+    }
+
     [Fact]
     public async Task WhenUpdateClassCarEndpointIsCalled_ThenUpdateClassCar()
     {
-        var carDto = new CarDto("Chevrolet", "Corvette", 1972);
+        var carDto = new CarDto(1,"Chevrolet", "Corvette", 1972);
 
         var httpResponseMessage = await _client.PutAsJsonAsync("api/v2/cars/1", carDto);
 
         Assert.Equal(HttpStatusCode.NoContent, httpResponseMessage.StatusCode);
     }
+
+
+    
 }

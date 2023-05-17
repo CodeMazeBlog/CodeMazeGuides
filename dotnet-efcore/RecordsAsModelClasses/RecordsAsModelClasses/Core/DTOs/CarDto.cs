@@ -1,3 +1,3 @@
 ﻿namespace RecordsAsModelClasses.Core.DTOs;
 
-public record CarDto(string Make, string Model, int Year);
+public record CarDto(int Id, string Make, string Model, int Year);

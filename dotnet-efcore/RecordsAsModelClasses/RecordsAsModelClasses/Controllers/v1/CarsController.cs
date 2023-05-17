@@ -18,18 +18,18 @@ public class CarsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateCarAsync()
+    public async Task<IActionResult> CreateCarAsync([FromBody] CarDto carDto)
     {
-        var car = new RecordCar(1, "Toyota", "Crown", 1952);
-
+        var car = new Car(carDto.Id, carDto.Make, carDto.Model, carDto.Year);
+        
         _context.RecordCars.Add(car);
         await _context.SaveChangesAsync();
-
+        
         return Created("api/v1/cars", car);
     }
 
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> UpdateCar(int id, [FromBody] CarDto updatedCar)
+    public async Task<IActionResult> UpdateCar(int id, [FromBody] Car updatedCar)
     {
         var car = await _context
             .RecordCars
@@ -47,8 +47,24 @@ public class CarsController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("car/{id:int}")]
-    public async Task<IActionResult> UpdateCarUsingRecords(int id, [FromBody] RecordCar updatedRecordCar)
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetCar(int id)
+    {
+        var car = await _context.RecordCars.FindAsync(id);
+
+        if (car == null)
+        {
+            return NotFound();
+        }
+
+        var carDto = new CarDto(car.Id, car.Make, car.Model, car.Year);
+
+        return CreatedAtAction(nameof(GetCar), new { id}, carDto);
+    }
+
+    // Uncomment this to test System.InvalidOperationException
+    /*[HttpPut("car/{id:int}")]
+    public async Task<IActionResult> UpdateCarUsingRecords(int id, [FromBody] Car updatedCar)
     {
         var car = await _context
             .RecordCars
@@ -61,11 +77,16 @@ public class CarsController : ControllerBase
             return NotFound();
         }
 
-        car = car with { Make = updatedRecordCar.Make, Model = updatedRecordCar.Model, Year = updatedRecordCar.Year };
+        car = car with
+        {
+            Make = updatedCar.Make,
+            Model = updatedCar.Model,
+            Year = updatedCar.Year
+        };
 
         _context.RecordCars.Update(car);
         await _context.SaveChangesAsync();
 
         return NoContent();
-    }
+    }*/
 }
