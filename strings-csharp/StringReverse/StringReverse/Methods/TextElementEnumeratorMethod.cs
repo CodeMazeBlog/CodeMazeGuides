@@ -8,6 +8,7 @@ namespace StringReverse
         {
             return string.Create(stringToReverse.Length, stringToReverse, (chars, val) =>
             {
+                var valSpan = val.AsSpan();
                 var en = StringInfo.GetTextElementEnumerator(val);
                 en.MoveNext();
                 var start = en.ElementIndex;
@@ -16,13 +17,13 @@ namespace StringReverse
                 {
                     var next = en.ElementIndex;
                     var len = next - start;
-                    val[start..next].CopyTo(chars[(pos - len)..pos]);
+                    valSpan[start..next].CopyTo(chars[(pos - len)..pos]);
                     pos -= len;
                     start = next;
                 }
 
                 if (start != 0)
-                    val[start..].CopyTo(chars[0..pos]);
+                    valSpan[start..].CopyTo(chars[0..pos]);
             });
         }
     }
