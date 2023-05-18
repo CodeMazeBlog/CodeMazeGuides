@@ -19,6 +19,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [Different Ways to Split a String in C#](https://code-maze.com/csharp-different-ways-to-split-a-string/)
 - [StringBuilder in C#](https://code-maze.com/stringbuilder-csharp/)
 - [How to Convert String to Title Case in C#](https://code-maze.com/csharp-convert-string-title-case/)
+- [How to Reverse a String in C#](https://code-maze.com/csharp-reverse-string/)
 - [ToString Method in C#](https://code-maze.com/tostring-method-csharp/)
 - [Using Variables Inside Strings in C#](https://code-maze.com/csharp-using-variables-inside-strings/)
 - [C# String Interpolation](https://code-maze.com/csharp-string-interpolation/)
