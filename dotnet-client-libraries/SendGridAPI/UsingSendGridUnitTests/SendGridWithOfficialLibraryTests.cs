@@ -10,11 +10,15 @@ public class SendGridWithOfficialLibraryTests : IClassFixture<SendGridUnitTestFi
 {
     private const string ToEmail = "recipient@test.com";
     private const string FromEmail = "sender@test.com";
+    private readonly SendGridUnitTestFixture _fixture;
 
     private readonly HttpClient _httpClient;
 
-    public SendGridWithOfficialLibraryTests(SendGridUnitTestFixture fixture) =>
-        _httpClient = fixture.MessageHandler.ToHttpClient();
+    public SendGridWithOfficialLibraryTests(SendGridUnitTestFixture fixture)
+    {
+        _fixture = fixture;
+        _httpClient = _fixture.MessageHandler.ToHttpClient();
+    }
 
     [Fact]
     public async Task GivenAuthorizedClient_WhenSendingMail_ThenResultIsAccepted()
@@ -43,13 +47,13 @@ public class SendGridWithOfficialLibraryTests : IClassFixture<SendGridUnitTestFi
     [Fact]
     public async Task GivenFileToEmail_WhenAttaching_ResultIsAccepted()
     {
-        await using var pdfFile =
-            await Utilities.CreateTemporaryFileWithSpecifiedSize(1024, ".pdf").ConfigureAwait(false);
+        var pdfFile = _fixture.GetTempFileName();
+        await Utilities.FillFileWithRandomDataOfSpecifiedLength(pdfFile, 1024).ConfigureAwait(false);
         var sendGrid = new SendGridClient(_httpClient, SendGridUnitTestFixture.SendGridAuthorizationKey);
         var (success, statusCode) = await sendGrid
                                           .SendMailWithAttachment(new EmailAddress(ToEmail),
                                               new EmailAddress(FromEmail),
-                                              "Test Email", pdfFile.FileName,
+                                              "Test Email", pdfFile,
                                               "application/pdf", null, false, "This is the content",
                                               null).ConfigureAwait(false);
 
@@ -74,20 +78,21 @@ public class SendGridWithOfficialLibraryTests : IClassFixture<SendGridUnitTestFi
     [Fact]
     public async Task GivenTooLargeFileToEmail_WhenAttaching_ResultArgumentException()
     {
-        await using var largeFile =
-            await Utilities.CreateTemporaryFileWithSpecifiedSize((int) Utilities.MaxAttachmentSize + 124, ".txt");
-
+        var largeFile = _fixture.GetTempFileName();
+        await Utilities.FillFileWithRandomDataOfSpecifiedLength(largeFile, (int) Utilities.MaxAttachmentSize + 124);
         var sendGrid = new SendGridClient(_httpClient, SendGridUnitTestFixture.SendGridAuthorizationKey);
-        await Assert.ThrowsAsync<ArgumentException>(async () => await sendGrid
-                                                                      .SendMailWithAttachment(new EmailAddress(ToEmail),
-                                                                          new EmailAddress(FromEmail),
-                                                                          "Email with Attachment",
-                                                                          largeFile.FileName,
-                                                                          "application/pdf",
-                                                                          null,
-                                                                          false,
-                                                                          "This is the email content", null)
-                                                                      .ConfigureAwait(false)
+
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
+            await sendGrid
+                  .SendMailWithAttachment(new EmailAddress(ToEmail),
+                      new EmailAddress(FromEmail),
+                      "Email with Attachment",
+                      largeFile,
+                      "application/pdf",
+                      null,
+                      false,
+                      "This is the email content", null)
+                  .ConfigureAwait(false)
         );
     }
 
@@ -96,19 +101,20 @@ public class SendGridWithOfficialLibraryTests : IClassFixture<SendGridUnitTestFi
     {
         var tempFile = Path.GetTempFileName();
         File.Delete(tempFile);
-
         var sendGrid = new SendGridClient(_httpClient, SendGridUnitTestFixture.SendGridAuthorizationKey);
-        await Assert.ThrowsAsync<FileNotFoundException>(async () => await sendGrid
-                                                                          .SendMailWithAttachment(
-                                                                              new EmailAddress(ToEmail),
-                                                                              new EmailAddress(FromEmail),
-                                                                              "Email with Attachment",
-                                                                              tempFile,
-                                                                              "application/pdf",
-                                                                              null,
-                                                                              false,
-                                                                              "This is the email content", null)
-                                                                          .ConfigureAwait(false)
+
+        await Assert.ThrowsAsync<FileNotFoundException>(async () =>
+            await sendGrid
+                  .SendMailWithAttachment(
+                      new EmailAddress(ToEmail),
+                      new EmailAddress(FromEmail),
+                      "Email with Attachment",
+                      tempFile,
+                      "application/pdf",
+                      null,
+                      false,
+                      "This is the email content", null)
+                  .ConfigureAwait(false)
         );
     }
 }

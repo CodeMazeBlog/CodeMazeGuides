@@ -23,6 +23,7 @@ public static class SendGridWithHttpClientHelper
 
         using var content = new StringContent(simpleSendRequestBody, Encoding.UTF8, JsonContent);
         using var response = await client.PostAsync(SendUriEndpoint, content).ConfigureAwait(false);
+
         return (response.IsSuccessStatusCode, response.StatusCode);
     }
 
@@ -37,13 +38,14 @@ public static class SendGridWithHttpClientHelper
         emailContent += "]";
 
         var fileName = Path.GetFileName(fileToAttach);
-        var fileContent = await Utilities.GetAttachmentFileContentsAsBase64(fileToAttach);
+        var fileContent = await Utilities.GetFileContentsAsBase64(fileToAttach);
 
         var requestBody = $$"""
         {"personalizations":[{"to":[{"email":"{{to}}"}]}],"from":{"email":"{{from}}"},"subject":"{{subject}}","attachments":[{"content":"{{fileContent}}","type":"{{fileMimeType}}","filename":"{{fileName}}"}],{{emailContent}}}
         """;
         using var content = new StringContent(requestBody, Encoding.UTF8, JsonContent);
         using var response = await client.PostAsync(SendUriEndpoint, content).ConfigureAwait(false);
+
         return (response.IsSuccessStatusCode, response.StatusCode);
     }
 }

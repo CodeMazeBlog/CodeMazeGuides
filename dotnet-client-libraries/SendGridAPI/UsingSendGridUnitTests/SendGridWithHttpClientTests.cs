@@ -19,6 +19,7 @@ public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture
         client.BaseAddress = new Uri("https://api.sendgrid.com/");
         if (!string.IsNullOrEmpty(apiKey))
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+
         return client;
     }
 
@@ -62,11 +63,11 @@ public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture
     [Fact]
     public async Task GivenFileToEmail_WhenAttaching_ResultIsAccepted()
     {
-        await using var pdfFile =
-            await Utilities.CreateTemporaryFileWithSpecifiedSize(1024, ".pdf").ConfigureAwait(false);
+        var pdfFile = _fixture.GetTempFileName();
+        await Utilities.FillFileWithRandomDataOfSpecifiedLength(pdfFile, 1024).ConfigureAwait(false);
         var (success, statusCode) = await _fixture.AuthorizedClient
                                                   .SendEmailWithAttachment(ToEmail, FromEmail, "Email with Attachment",
-                                                      pdfFile.FileName, "application/pdf",
+                                                      pdfFile, "application/pdf",
                                                       "This is the email content")
                                                   .ConfigureAwait(false);
 
@@ -77,16 +78,17 @@ public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture
     [Fact]
     public async Task GivenTooLargeFileToEmail_WhenAttaching_ResultArgumentException()
     {
-        await using var largeFile =
-            await Utilities.CreateTemporaryFileWithSpecifiedSize((int) Utilities.MaxAttachmentSize + 124, ".txt");
+        var largeFile = _fixture.GetTempFileName();
+        await Utilities.FillFileWithRandomDataOfSpecifiedLength(largeFile, (int) Utilities.MaxAttachmentSize + 124);
 
-        await Assert.ThrowsAsync<ArgumentException>(async () => await _fixture.AuthorizedClient
-                                                                              .SendEmailWithAttachment(ToEmail,
-                                                                                  FromEmail, "Email with Attachment",
-                                                                                  largeFile.FileName,
-                                                                                  "application/pdf",
-                                                                                  "This is the email content")
-                                                                              .ConfigureAwait(false)
+        await Assert.ThrowsAsync<ArgumentException>(async () =>
+            await _fixture.AuthorizedClient
+                          .SendEmailWithAttachment(ToEmail,
+                              FromEmail, "Email with Attachment",
+                              largeFile,
+                              "application/pdf",
+                              "This is the email content")
+                          .ConfigureAwait(false)
         );
     }
 
