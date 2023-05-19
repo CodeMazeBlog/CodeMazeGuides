@@ -31,7 +31,7 @@ namespace RecordsAsModelClasses.Controllers.v2
             _context.ClassCars.Add(car);
             await _context.SaveChangesAsync();
 
-            return Created("api/v2/cars", car);
+            return CreatedAtAction(nameof(GetCar), new {car.Id}, car);
         }
 
         [HttpPut("{id:int}")]
@@ -39,7 +39,7 @@ namespace RecordsAsModelClasses.Controllers.v2
         {
             var car = await _context
                 .ClassCars
-                .Where(c => c.Id==id)
+                .Where(c => c.Id == id)
                 .FirstOrDefaultAsync();
 
             if (car == null)
@@ -67,7 +67,7 @@ namespace RecordsAsModelClasses.Controllers.v2
 
             var carDto = new CarDto(car.Id, car.Make, car.Model, car.Year);
 
-            return CreatedAtAction(nameof(GetCar), new { id }, carDto);
+            return Ok(carDto);
         }
     }
 }

@@ -21,11 +21,11 @@ public class CarsController : ControllerBase
     public async Task<IActionResult> CreateCarAsync([FromBody] CarDto carDto)
     {
         var car = new Car(carDto.Id, carDto.Make, carDto.Model, carDto.Year);
-        
+
         _context.RecordCars.Add(car);
         await _context.SaveChangesAsync();
-        
-        return Created("api/v1/cars", car);
+
+        return CreatedAtAction(nameof(GetCar), new {car.Id}, car);
     }
 
     [HttpPut("{id:int}")]
@@ -59,11 +59,12 @@ public class CarsController : ControllerBase
 
         var carDto = new CarDto(car.Id, car.Make, car.Model, car.Year);
 
-        return CreatedAtAction(nameof(GetCar), new { id}, carDto);
+        return Ok(carDto);
     }
 
     // Uncomment this to test System.InvalidOperationException
-    /*[HttpPut("car/{id:int}")]
+    //[HttpPut("car/{id:int}")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> UpdateCarUsingRecords(int id, [FromBody] Car updatedCar)
     {
         var car = await _context
@@ -88,5 +89,5 @@ public class CarsController : ControllerBase
         await _context.SaveChangesAsync();
 
         return NoContent();
-    }*/
+    }
 }

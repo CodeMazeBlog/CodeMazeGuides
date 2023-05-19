@@ -47,7 +47,7 @@ public class RecordsAsModelClassesUnitTest
     {   
         var httpResponseMessage = await _client.GetAsync($"api/v1/cars/{1}");
 
-        Assert.Equal(HttpStatusCode.Created, httpResponseMessage.StatusCode);
+        Assert.Equal(HttpStatusCode.OK, httpResponseMessage.StatusCode);
     }
 
     [Fact]  
@@ -80,6 +80,6 @@ public class RecordsAsModelClassesUnitTest
     {
         var httpResponseMessage = await _client.GetAsync($"api/v2/cars/{1}");
 
-        Assert.Equal(HttpStatusCode.Created, httpResponseMessage.StatusCode);
+        Assert.Equal(HttpStatusCode.OK, httpResponseMessage.StatusCode);
     }
 }
