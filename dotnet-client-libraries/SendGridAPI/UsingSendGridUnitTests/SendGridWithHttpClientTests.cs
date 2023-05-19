@@ -4,7 +4,7 @@ using UsingSendGridApi.Utils;
 
 namespace UsingSendGridUnitTests;
 
-public class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture>
+public sealed class SendGridWithHttpClientTests : IClassFixture<SendGridUnitTestFixture>
 {
     private const string ToEmail = "recipient@test.com";
     private const string FromEmail = "sender@test.com";

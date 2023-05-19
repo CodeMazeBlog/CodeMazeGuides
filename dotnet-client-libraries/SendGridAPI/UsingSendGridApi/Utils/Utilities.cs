@@ -8,14 +8,19 @@ public static class Utilities
 
     public static async Task FillFileWithRandomDataOfSpecifiedLength(string fileName, int sizeInBytes)
     {
-        using var buffer = MemoryOwner<byte>.Allocate(sizeInBytes);
-        Random.Shared.NextBytes(buffer.Span);
-
+        using var buffer = MemoryOwner<byte>.Allocate(Math.Min(sizeInBytes, 8192));
         await using var fs = File.OpenWrite(fileName);
-        await fs.WriteAsync(buffer.Memory).ConfigureAwait(false);
+        var memory = buffer.Memory;
+        while (sizeInBytes > 0)
+        {
+            if (sizeInBytes < buffer.Length) memory = memory[..sizeInBytes];
+            Random.Shared.NextBytes(memory.Span);
+            await fs.WriteAsync(memory).ConfigureAwait(false);
+            sizeInBytes -= buffer.Length;
+        }
     }
 
-    public static async Task<string> GetFileContentsAsBase64(string file)
+    public static async Task<string> GetAttachmentContentsAsBase64(string file)
     {
         var fi = new FileInfo(file);
 

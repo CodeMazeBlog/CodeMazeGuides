@@ -27,7 +27,7 @@ public static class SendGridWithOfficialLibraryHelper
         var fileName = Path.GetFileName(fileToAttach);
         var attachment = new Attachment
         {
-            Content = await Utilities.GetFileContentsAsBase64(fileToAttach),
+            Content = await Utilities.GetAttachmentContentsAsBase64(fileToAttach),
             Filename = fileName,
             Disposition = inlineAttachment ? "inline" : "attachment",
             Type = mimeType
