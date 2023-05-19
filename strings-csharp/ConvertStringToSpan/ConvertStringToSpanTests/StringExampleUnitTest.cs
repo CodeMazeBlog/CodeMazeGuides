@@ -47,5 +47,19 @@ namespace ConvertStringToSpanTests
             Assert.AreEqual(myString.Length, span.Length);
             Assert.AreEqual(myString, span.ToString());
         }
+
+        [TestMethod]
+        public void ConvertStringToReadOnlySpanUsingAsSpan_ShouldReturnSpan()
+        {
+            // Arrange
+            var myString = "Hello, World!";
+
+            // Act
+            var span = StringExample.ConvertStringToReadOnlySpanUsingAsSpan(myString);
+
+            // Assert
+            Assert.AreEqual(myString.Length, span.Length);
+            Assert.AreEqual(myString, span.ToString());
+        }
     }
 }

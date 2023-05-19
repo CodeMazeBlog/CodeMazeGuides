@@ -22,12 +22,17 @@ namespace ConvertStringToSpan
                 }
             }
         }
-        public static Span<char> ConvertStringToSpanUsingAsSpan(string myString)
+        public static ReadOnlySpan<char> ConvertStringToReadOnlySpanUsingAsSpan(string myString)
         {
-            var charArray = myString.ToCharArray();
-            var span = new Span<char>(charArray);
+            var span = myString.AsSpan();
 
             return span;
+        }
+        public static Span<char> ConvertStringToSpanUsingAsSpan(string myString)
+        {
+            var span = myString.AsSpan();
+
+            return span.ToArray();
         }
     }
 }
