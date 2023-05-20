@@ -39,7 +39,7 @@ public class Tests
 
         // Assert
         // Check that the output matches the expected result
-        Assert.That(sb.ToString(), Is.EqualTo("18\r\n"));
+        Assert.That(sb.ToString(), Is.EqualTo("18\n"));
     }
 
     // Define a test method that checks the behavior of the TakeActionAndPrintSumOfSquares method
@@ -58,7 +58,7 @@ public class Tests
 
         // Assert
         // Check that the output matches the expected result
-        Assert.That(sb.ToString(), Is.EqualTo("245\r\n"));
+        Assert.That(sb.ToString(), Is.EqualTo("245\n"));
     }
 
     // Define a test method that checks the output of the func delegate
