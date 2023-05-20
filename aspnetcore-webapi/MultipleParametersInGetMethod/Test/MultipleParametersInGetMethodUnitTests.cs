@@ -42,6 +42,29 @@ namespace Test
         }
 
         [TestMethod]
+        public async Task GivenARequestUsingFromQueryAttribute_WhenGetProductIsCalled_ThenReturnMatchingProduct()
+        {
+            // Arrange
+            var expectedProducts = new List<ProductDto>()
+            {
+                new ProductDto{ Id = 1, Category = "Electronic", Brand = "Sony", Name = "Play Station", WarrantyYears = 2, IsAvailable = true },
+                new ProductDto{ Id = 2, Category = "Electronic", Brand = "Sony", Name = "Mobile", WarrantyYears = 2, IsAvailable = true }
+            };
+
+            //Act
+            HttpResponseMessage response = await _client.GetAsync("api/Product/type-manufacturer?type=Electronic&manufacturer=Sony");
+            string content = await response.Content.ReadAsStringAsync();
+            List<ProductDto> products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
+
+            //Assert
+            Assert.IsNotNull(products);
+            foreach (var product in products)
+            {
+                Assert.AreEqual(expectedProducts.FirstOrDefault(x => x.Id == product.Id)?.Id, product.Id);
+            }
+        }
+
+        [TestMethod]
         public async Task GivenARequestWithRouteParams_WhenGetProductIsCalled_ThenReturnMatchingProduct()
         {
             // Arrange
@@ -49,6 +72,22 @@ namespace Test
 
             //Act
             HttpResponseMessage response = await _client.GetAsync("api/Product/2");
+            string content = await response.Content.ReadAsStringAsync();
+            ProductDto product = JsonConvert.DeserializeObject<ProductDto>(content);
+
+            //Assert
+            Assert.IsNotNull(product);
+            Assert.AreEqual(expectedCategory, product.Category);
+        }
+
+        [TestMethod]
+        public async Task GivenARequestUsingFromRouteAttribute_WhenGetProductIsCalled_ThenReturnMatchingProduct()
+        {
+            // Arrange
+            string expectedCategory = "Electronic";
+
+            //Act
+            HttpResponseMessage response = await _client.GetAsync("api/Product/id/2");
             string content = await response.Content.ReadAsStringAsync();
             ProductDto product = JsonConvert.DeserializeObject<ProductDto>(content);
 
@@ -105,6 +144,30 @@ namespace Test
 
             //Act
             HttpResponseMessage response = await _client.GetAsync("api/Product/brand/Sony?waranty=2");
+            string content = await response.Content.ReadAsStringAsync();
+
+            List<ProductDto> products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
+
+            //Assert
+            Assert.IsNotNull(products);
+            foreach (var product in products)
+            {
+                Assert.AreEqual(expectedProducts.FirstOrDefault(x => x.Id == product.Id)?.Name, product.Name);
+            }
+        }
+
+        [TestMethod]
+        public async Task GivenARequestUsingFromQueryAndFromRouteAttributes_WhenGetProductIsCalled_ThenReturnMatchingProduct()
+        {
+            //Arrange
+            var expectedProducts = new List<ProductDto>()
+            {
+                new ProductDto{ Id = 1, Category = "Electronic", Brand = "Sony", Name = "Play Station", WarrantyYears = 2, IsAvailable = true },
+                new ProductDto{ Id = 2, Category = "Electronic", Brand = "Sony", Name = "Mobile", WarrantyYears = 2, IsAvailable = true },
+            };
+
+            //Act
+            HttpResponseMessage response = await _client.GetAsync("api/Product/manufacturer/Sony?warranty=2");
             string content = await response.Content.ReadAsStringAsync();
 
             List<ProductDto> products = JsonConvert.DeserializeObject<List<ProductDto>>(content);

@@ -27,7 +27,17 @@ namespace MultipleParametersInGetMethod.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetProductsByCategoryAndBrand([FromQuery] string category, [FromQuery] string brand)
+        public IActionResult GetProductsByCategoryAndBrand(string category, string brand)
+        {
+            List<Product> result = _products
+                        .Where(x => x.Category == category && x.Brand == brand)
+                        .ToList();
+
+            return Ok(_mapper.Map<List<ProductDto>>(result));
+        }
+
+        [HttpGet("type-manufacturer")]
+        public IActionResult GetProductsByCategoryAndBrandUsingFromQuery([FromQuery(Name = "type")] string category, [FromQuery(Name = "manufacturer")] string brand)
         {
             List<Product> result = _products
                         .Where(x => x.Category == category && x.Brand == brand)
@@ -37,18 +47,34 @@ namespace MultipleParametersInGetMethod.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProductById([FromRoute] int id)
+        public IActionResult GetProductById(int id)
         {
             return Ok(_mapper.Map<ProductDto>(_products
                         .Where(x => x.Id == id)
                         .FirstOrDefault()));
         }
 
+        [HttpGet("id/{id}")]
+        public IActionResult GetProductByIdUsingFromRoute([FromRoute(Name = "id")] int productId)
+        {
+            return Ok(_mapper.Map<ProductDto>(_products
+                        .Where(x => x.Id == productId)
+                        .FirstOrDefault()));
+        }
+
         [HttpGet("brand/{brand}")]
-        public IActionResult GetProductsByBrandAndWarranty([FromRoute] string brand, [FromQuery] int waranty)
+        public IActionResult GetProductsByBrandAndWarranty(string brand, int warranty)
         {
             return Ok(_mapper.Map<List<ProductDto>>(_products
-                        .Where(x => x.Brand == brand && x.WarrantyYears == waranty)
+                        .Where(x => x.Brand == brand && x.WarrantyYears == warranty)
+                        .ToList()));
+        }
+
+        [HttpGet("manufacturer/{manufacturer}")]
+        public IActionResult GetProductsByBrandAndWarrantyUsingAttributes([FromRoute(Name = "manufacturer")] string brand, [FromQuery(Name = "warranty")] int coverage)
+        {
+            return Ok(_mapper.Map<List<ProductDto>>(_products
+                        .Where(x => x.Brand == brand && x.WarrantyYears == coverage)
                         .ToList()));
         }
 
