@@ -11,10 +11,10 @@ public class TreatmentHistoryExporterUnitTests
         // Arrange
         var fileName = "test.csv";
         var treatments = new List<string> { "Cough", "Fever", "Flu" };
-        var exporter = new TreatmentHistoryExporter();
+        var exporter = new CsvTreatmentHistoryExporter();
 
         // Act
-        exporter.ExportTreatmentHistoryToCsv(fileName, treatments);
+        exporter.ExportTreatmentHistory(fileName, treatments);
 
         // Assert
         Assert.IsTrue(File.Exists(fileName));
@@ -28,12 +28,12 @@ public class TreatmentHistoryExporterUnitTests
     public void WhenExportingTreatmentHistoryToJson_ThenJsonFileWithCorrectDataShouldBeCreated()
     {
         // Arrange
-        var exporter = new TreatmentHistoryExporter();
+        var exporter = new JsonTreatmentHistoryExporter();
         var treatments = new List<string> { "Flu", "Cold", "Broken leg" };
         var fileName = "test.json";
 
         // Act
-        exporter.ExportTreatmentHistoryToJson(fileName, treatments);
+        exporter.ExportTreatmentHistory(fileName, treatments);
 
         // Assert
         Assert.IsTrue(File.Exists(fileName), "File was not created.");

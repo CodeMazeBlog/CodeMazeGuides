@@ -6,7 +6,7 @@ public class Patient
     public string LastName { get; private set; }
     public List<string> TreatmentHistory { get; private set; }
 
-    public Patient(string firstName, string lastName, string insuranceNumber)
+    public Patient(string firstName, string lastName)
     {
         FirstName = firstName;
         LastName = lastName;
