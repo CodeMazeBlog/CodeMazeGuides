@@ -1,11 +1,12 @@
 using ManagedVsUnmanagedCodeInCSharp;
+using System.Runtime.InteropServices;
 
 namespace Tests
 {
     public class Test
     {
         [Fact]
-        public void WhenAllocateMemoryCalled_ThenAllocateMemory()
+        public void GivenManagedResource_WhenAllocatingMemory_ThenSucceed()
         {
             var memoryManager = new ManagedMemoryManager();
 
@@ -14,6 +15,17 @@ namespace Tests
             var memoryAfterAllocation = GC.GetTotalMemory(false);
 
             Assert.True(memoryBeforeAllocation < memoryAfterAllocation);
+        }
+
+        [Fact]
+        public void GivenUnmangedResource_WhenAllocatingMemory_ThenSucceed()
+        {
+            var size = 1024;
+            var ptr = UnmanagedMemoryManager.AllocateUnmanagedMemory(size);
+
+            Assert.NotEqual(IntPtr.Zero, ptr);
+
+            UnmanagedMemoryManager.FreeUnmanagedMemory(ptr);
         }
     }
 }
