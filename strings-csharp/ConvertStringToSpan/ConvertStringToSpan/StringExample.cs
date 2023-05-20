@@ -40,7 +40,7 @@ namespace ConvertStringToSpan
 
         public static ReadOnlySpan<char> ConvertStringToSpan(string myString)
         {
-            ReadOnlySpan<char> span = myString;
+           var span = myString;
 
             return span;
         }       
