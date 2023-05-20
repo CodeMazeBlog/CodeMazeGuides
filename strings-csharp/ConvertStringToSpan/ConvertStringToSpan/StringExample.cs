@@ -12,6 +12,7 @@ namespace ConvertStringToSpan
 
             return span;
         }
+
         public static unsafe Span<char> ConvertStringToSpanUsingUnsafe(string myString)
         {
             unsafe
@@ -22,17 +23,26 @@ namespace ConvertStringToSpan
                 }
             }
         }
+
         public static ReadOnlySpan<char> ConvertStringToReadOnlySpanUsingAsSpan(string myString)
         {
             var span = myString.AsSpan();
 
             return span;
         }
+
         public static Span<char> ConvertStringToSpanUsingAsSpan(string myString)
         {
             var span = myString.AsSpan();
 
             return span.ToArray();
         }
+
+        public static ReadOnlySpan<char> ConvertStringToSpan(string myString)
+        {
+            ReadOnlySpan<char> span = myString;
+
+            return span;
+        }       
     }
 }

@@ -7,7 +7,7 @@ namespace ConvertStringToSpanTests
     public class StringExampleUnitTest
     {
         [TestMethod]
-        public void ConvertStringToSpanUsingMemoryMarshal_ShouldReturnSpan()
+        public void GivenString_WhenConvertStringToSpanUsingMemoryMarshal_ThenReturnSpan()
         {
             // Arrange
             var myString = "Hello, World!";
@@ -21,7 +21,7 @@ namespace ConvertStringToSpanTests
         }
 
         [TestMethod]
-        public unsafe void ConvertStringToSpanUsingUnsafe_ShouldReturnSpan()
+        public unsafe void GivenString_WhenConvertStringToSpanUsingUnsafe_ThenReturnSpan()
         {
             // Arrange
             var myString = "Hello, World!";
@@ -35,7 +35,7 @@ namespace ConvertStringToSpanTests
         }
 
         [TestMethod]
-        public void ConvertStringToSpanUsingAsSpan_ShouldReturnSpan()
+        public void GivenString_WhenConvertStringToSpanUsingAsSpan_ThenReturnSpan()
         {
             // Arrange
             var myString = "Hello, World!";
@@ -49,7 +49,7 @@ namespace ConvertStringToSpanTests
         }
 
         [TestMethod]
-        public void ConvertStringToReadOnlySpanUsingAsSpan_ShouldReturnSpan()
+        public void GivenString_WhenConvertStringToReadOnlySpanUsingAsSpan_ThenReturnSpan()
         {
             // Arrange
             var myString = "Hello, World!";
@@ -61,5 +61,20 @@ namespace ConvertStringToSpanTests
             Assert.AreEqual(myString.Length, span.Length);
             Assert.AreEqual(myString, span.ToString());
         }
+
+        [TestMethod]
+        public void GivenString_WhenImplicitlyConvertString_ThenReturnSpan()
+        {
+            // Arrange
+            var myString = "Hello, World!";
+
+            // Act
+            var span = StringExample.ConvertStringToSpan(myString);
+
+            // Assert
+            Assert.AreEqual(myString.Length, span.Length);
+            Assert.AreEqual(myString, span.ToString());
+        }
+
     }
 }

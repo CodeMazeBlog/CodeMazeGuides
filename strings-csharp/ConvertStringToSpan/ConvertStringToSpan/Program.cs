@@ -16,7 +16,8 @@ class Program
 
         var span4 = StringExample.ConvertStringToReadOnlySpanUsingAsSpan(myString);
         Console.WriteLine(span4.ToString());
+
+        var span5 = StringExample.ConvertStringToSpan(myString);
+        Console.WriteLine(span5.ToString());
     }
 }
-
-
