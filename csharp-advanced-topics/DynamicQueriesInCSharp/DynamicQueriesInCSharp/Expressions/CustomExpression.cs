@@ -7,7 +7,7 @@ namespace DynamicQueriesInCSharp.Expressions
     {
         public static Expression<Func<Person, bool>> CreateBetweenExpression(string propertyName, object lowerValue, object upperValue)
         {
-            var param = Expression.Parameter(typeof(Person), "x");
+            var param = Expression.Parameter(typeof(Person), "p");
 
             var member = Expression.Property(param, propertyName);
 

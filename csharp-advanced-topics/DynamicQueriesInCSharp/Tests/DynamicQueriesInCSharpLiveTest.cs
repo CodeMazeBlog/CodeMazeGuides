@@ -1,5 +1,7 @@
-using DynamicQueriesInCSharp;
+using DynamicQueriesInCSharp.Context;
 using DynamicQueriesInCSharp.Entities;
+using DynamicQueriesInCSharp.Helper;
+using DynamicQueriesInCSharp.Queries;
 using Microsoft.EntityFrameworkCore;
 
 namespace Tests
@@ -11,25 +13,16 @@ namespace Tests
 
         public DynamicQueriesInCSharpLiveTest()
         {
-            var context = Program.CreateDbContext();
+            var context = new ContextFactory().CreateDbContext();
 
             _persons = context.Persons;
         }
 
         [TestMethod]
-        public void WhenCreateExpresisonTree_ThenReturnGeneratedQuery()
-        {
-            var json = Program.GetExpressionTree(_persons);
-
-            var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[FirstName] = N'Manoel'";
-
-            Assert.AreEqual(expectedResult, json);
-        }
-
-        [TestMethod]
         public void WhenCreateEqualExpresisonTree_ThenReturnGeneratedQuery()
         {
-            var json = Program.GetEqualExpression(_persons);
+            var expression = ExpressionQueries.GetEqualExpression();
+            var json = QueryableHelper.Create(_persons, expression).ToQueryString();
 
             var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[FirstName] = N'Manoel'";
 
@@ -39,7 +32,8 @@ namespace Tests
         [TestMethod]
         public void WhenCreateEqualExpresisonConjuctionTree_ThenReturnGeneratedQuery()
         {
-            var json = Program.GetEqualExpressionConjuction(_persons);
+            var expression = ExpressionQueries.GetEqualConjuctionExpression();
+            var json = QueryableHelper.Create(_persons, expression).ToQueryString();
 
             var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[FirstName] = N'Manoel' AND [p].[LastName] = N'Nobrega'";
 
@@ -49,7 +43,8 @@ namespace Tests
         [TestMethod]
         public void WhenCreateContainsExpressionTree_ThenReturnGeneratedQuery()
         {
-            var json = Program.GetContainsExpression(_persons);
+            var expression = ExpressionQueries.GetContainsExpression();
+            var json = QueryableHelper.Create(_persons, expression).ToQueryString();
 
             var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[FirstName] LIKE N'%Man%'";
 
@@ -59,7 +54,8 @@ namespace Tests
         [TestMethod]
         public void WhenCreateInExpressionTree_ThenReturnGeneratedQuery()
         {
-            var json = Program.GetInExpression(_persons);
+            var expression = ExpressionQueries.GetInExpression();
+            var json = QueryableHelper.Create(_persons, expression).ToQueryString();
 
             var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[Id] IN (1, 2, 3)";
 
@@ -70,7 +66,8 @@ namespace Tests
         [TestMethod]
         public void WhenCreateNestedExpressionTree_ThenReturnGeneratedQuery()
         {
-            var json = Program.GetNestedExpression(_persons);
+            var expression = ExpressionQueries.GetNestedExpression();
+            var json = QueryableHelper.Create(_persons, expression).ToQueryString();
 
             var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[Address_Country] = N'USA'";
 
@@ -80,7 +77,8 @@ namespace Tests
         [TestMethod]
         public void WhenCreateBetweenExpressionTree_ThenReturnGeneratedQuery()
         {
-            var json = Program.GetBetweenExpression(_persons);
+            var expression = ExpressionQueries.GetBetweenExpression();
+            var json = QueryableHelper.Create(_persons, expression).ToQueryString();
 
             var expectedResult = $"SELECT [p].[Id], [p].[Age], [p].[FirstName], [p].[LastName], [p].[Address_AddressLine], [p].[Address_City], [p].[Address_Country], [p].[Address_State]{Environment.NewLine}FROM [Persons] AS [p]{Environment.NewLine}WHERE [p].[Age] >= 18 AND [p].[Age] <= 25";
 

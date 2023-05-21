@@ -8,7 +8,7 @@ namespace DynamicQueriesInCSharp.Expressions
     {
         public static Expression<Func<Person, bool>> CreateContainsExpression(string propertyName, string value)
         {
-            var param = Expression.Parameter(typeof(Person), "x");
+            var param = Expression.Parameter(typeof(Person), "p");
 
             var member = Expression.Property(param, propertyName);
 
@@ -21,7 +21,7 @@ namespace DynamicQueriesInCSharp.Expressions
 
         public static Expression<Func<Person, bool>> CreateInExpression(string propertyName, object value)
         {
-            var param = Expression.Parameter(typeof(Person), "x");
+            var param = Expression.Parameter(typeof(Person), "p");
 
             var member = Expression.Property(param, propertyName);
 

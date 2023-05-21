@@ -1,6 +1,7 @@
 ﻿using DynamicQueriesInCSharp.Context;
 using DynamicQueriesInCSharp.Entities;
-using DynamicQueriesInCSharp.Expressions;
+using DynamicQueriesInCSharp.Helper;
+using DynamicQueriesInCSharp.Queries;
 using Microsoft.EntityFrameworkCore;
 
 namespace DynamicQueriesInCSharp
@@ -9,90 +10,53 @@ namespace DynamicQueriesInCSharp
     {
         public static void Main(string[] args)
         {
-            var context = CreateDbContext();
+            var context = new ContextFactory().CreateDbContext();
 
             DbSet<Person> persons = context.Persons;
 
-            var query = GetExpressionTree(persons);
+            // Example of expression
+
+            var expression = LambdaQueries.GetEqualExpression();
+            var query = QueryableHelper.Create(persons, expression).ToQueryString();
             Console.WriteLine(query);
 
-            query = GetEqualExpression(persons);
+            // Dynamic queries with expression
+
+            expression = ExpressionQueries.GetEqualExpression();
+            query = QueryableHelper.Create(persons, expression).ToQueryString();
             Console.WriteLine(query);
 
-            query = GetEqualExpressionConjuction(persons);
+            expression = ExpressionQueries.GetEqualConjuctionExpression();
+            query = QueryableHelper.Create(persons, expression).ToQueryString();
             Console.WriteLine(query);
 
-            query = GetContainsExpression(persons);
+            expression = ExpressionQueries.GetContainsExpression();
+            query = QueryableHelper.Create(persons, expression).ToQueryString();
             Console.WriteLine(query);
 
-            query = GetInExpression(persons);
+            expression = ExpressionQueries.GetInExpression();
+            query = QueryableHelper.Create(persons, expression).ToQueryString();
             Console.WriteLine(query);
 
-            query = GetNestedExpression(persons);
+            expression = ExpressionQueries.GetNestedExpression();
+            query = QueryableHelper.Create(persons, expression).ToQueryString();
             Console.WriteLine(query);
 
-            query = GetBetweenExpression(persons);
+            expression = ExpressionQueries.GetHandleNullExpression();
+            query = QueryableHelper.Create(persons, expression).ToQueryString();
             Console.WriteLine(query);
-        }
 
-        public static ApplicationDbContext CreateDbContext()
-        {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=test;Integrated Security=True")
-                .Options;
+            // Compiled expression
 
-            var context = new ApplicationDbContext(options);
+            expression = ExpressionQueries.GetEqualExpression();
+            var predicate = ExpressionCacheHelper.GetPredicate(expression);
+            var enumerable = QueryableHelper.Create(persons, predicate);
+            Console.WriteLine(enumerable);
 
-            context.Database.EnsureCreated();
-
-            return context;
-        }
-
-        public static string GetExpressionTree(DbSet<Person> persons)
-        {
-            var query = persons.Where(p => p.FirstName == "Manoel");
-
-            return query.ToQueryString();
-        }
-
-        public static string GetEqualExpression(DbSet<Person> persons)
-        {
-            var expression = EqualExpression.CreateEqualExpression("FirstName", "Manoel");
-            return persons.Where(expression).ToQueryString();
-        }
-
-        public static string GetEqualExpressionConjuction(DbSet<Person> persons)
-        {
-            var filters = new Dictionary<string, object>();
-            filters.Add("FirstName", "Manoel");
-            filters.Add("LastName", "Nobrega");
-
-            var expression = EqualExpression.CreateEqualExpression(filters);
-            return persons.Where(expression).ToQueryString();
-        }
-
-        public static string GetContainsExpression(DbSet<Person> persons)
-        {
-            var expression = ContainsExpression.CreateContainsExpression("FirstName", "Man");
-            return persons.Where(expression).ToQueryString();
-        }
-
-        public static string GetInExpression(DbSet<Person> persons)
-        {
-            var expression = ContainsExpression.CreateInExpression("Id", new int[] { 1, 2, 3 });
-            return persons.Where(expression).ToQueryString();
-        }
-
-        public static string GetNestedExpression(DbSet<Person> persons)
-        {
-            var expression = NestedExpression.CreateNestedExpression("Address.Country", "USA");
-            return persons.Where(expression).ToQueryString();
-        }
-
-        public static string GetBetweenExpression(DbSet<Person> persons)
-        {
-            var expression = CustomExpression.CreateBetweenExpression("Age", 18, 25);
-            return persons.Where(expression).ToQueryString();
+            // Type check expression
+            expression = ExpressionQueries.GetTypeCheckExpression();
+            query = QueryableHelper.Create(persons, expression).ToQueryString();
+            Console.WriteLine(query);
         }
     }
 }
