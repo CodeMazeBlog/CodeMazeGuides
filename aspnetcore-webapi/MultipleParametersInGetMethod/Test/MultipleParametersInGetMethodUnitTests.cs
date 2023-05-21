@@ -167,7 +167,7 @@ namespace Test
             };
 
             //Act
-            HttpResponseMessage response = await _client.GetAsync("api/Product/manufacturer/Sony?warranty=2");
+            HttpResponseMessage response = await _client.GetAsync("api/Product/manufacturer/Sony?coverage=2");
             string content = await response.Content.ReadAsStringAsync();
 
             List<ProductDto> products = JsonConvert.DeserializeObject<List<ProductDto>>(content);
