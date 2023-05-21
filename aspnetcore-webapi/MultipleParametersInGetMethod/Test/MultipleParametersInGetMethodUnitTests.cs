@@ -87,7 +87,7 @@ namespace Test
             string expectedCategory = "Electronic";
 
             //Act
-            HttpResponseMessage response = await _client.GetAsync("api/Product/id/2");
+            HttpResponseMessage response = await _client.GetAsync("api/Product/productId/2");
             string content = await response.Content.ReadAsStringAsync();
             ProductDto product = JsonConvert.DeserializeObject<ProductDto>(content);
 
