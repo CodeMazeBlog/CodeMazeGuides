@@ -32,5 +32,4 @@ app.UseEndpoints(endpoints =>
     app.MapControllers();
 });
 
-
 app.Run();

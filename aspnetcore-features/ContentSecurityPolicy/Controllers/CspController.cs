@@ -15,6 +15,7 @@ public class CspController : Controller
     public IActionResult CSPReport([FromBody] CspViolation cspViolation)
     {
         _logger.LogWarning($"URI: {cspViolation.CspReport.DocumentUri}, Blocked: {cspViolation.CspReport.BlockedUri}");
+
         return Ok();
     }
 }
