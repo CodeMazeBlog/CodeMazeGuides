@@ -37,7 +37,9 @@ namespace MultipleParametersInGetMethod.Controllers
         }
 
         [HttpGet("type-manufacturer")]
-        public IActionResult GetProductsByCategoryAndBrandUsingFromQuery([FromQuery(Name = "type")] string category, [FromQuery(Name = "manufacturer")] string brand)
+        public IActionResult GetProductsByCategoryAndBrandUsingFromQuery(
+            [FromQuery(Name = "type")] string category,
+            [FromQuery(Name = "manufacturer")] string brand)
         {
             List<Product> result = _products
                         .Where(x => x.Category == category && x.Brand == brand)
@@ -54,11 +56,11 @@ namespace MultipleParametersInGetMethod.Controllers
                         .FirstOrDefault()));
         }
 
-        [HttpGet("id/{id}")]
-        public IActionResult GetProductByIdUsingFromRoute([FromRoute(Name = "id")] int productId)
+        [HttpGet("productId/{productId}")]
+        public IActionResult GetProductByIdUsingFromRoute([FromRoute(Name = "productId")] int id)
         {
             return Ok(_mapper.Map<ProductDto>(_products
-                        .Where(x => x.Id == productId)
+                        .Where(x => x.Id == id)
                         .FirstOrDefault()));
         }
 
@@ -71,10 +73,12 @@ namespace MultipleParametersInGetMethod.Controllers
         }
 
         [HttpGet("manufacturer/{manufacturer}")]
-        public IActionResult GetProductsByBrandAndWarrantyUsingAttributes([FromRoute(Name = "manufacturer")] string brand, [FromQuery(Name = "warranty")] int coverage)
+        public IActionResult GetProductsByBrandAndWarrantyUsingAttributes(
+            [FromRoute(Name = "manufacturer")] string brand,
+            [FromQuery(Name = "coverage")] int warranty)
         {
             return Ok(_mapper.Map<List<ProductDto>>(_products
-                        .Where(x => x.Brand == brand && x.WarrantyYears == coverage)
+                        .Where(x => x.Brand == brand && x.WarrantyYears == warranty)
                         .ToList()));
         }
 
