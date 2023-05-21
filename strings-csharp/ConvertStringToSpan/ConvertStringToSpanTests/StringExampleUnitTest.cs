@@ -6,6 +6,7 @@ namespace ConvertStringToSpanTests
     [TestClass]
     public class StringExampleUnitTest
     {
+        private StringExample stringExample = new();
         [TestMethod]
         public void GivenString_WhenConvertStringToSpanUsingMemoryMarshal_ThenReturnSpan()
         {
@@ -13,7 +14,7 @@ namespace ConvertStringToSpanTests
             var myString = "Hello, World!";
 
             // Act
-            var span = StringExample.ConvertStringToSpanUsingMemoryMarshal(myString);
+            var span = stringExample.ConvertStringToSpanUsingMemoryMarshal();
 
             // Assert
             Assert.AreEqual(myString.Length, span.Length);
@@ -27,7 +28,7 @@ namespace ConvertStringToSpanTests
             var myString = "Hello, World!";
 
             // Act
-            var span = StringExample.ConvertStringToSpanUsingUnsafe(myString);
+            var span = stringExample.ConvertStringToSpanUsingUnsafe();
 
             // Assert
             Assert.AreEqual(myString.Length, span.Length);
@@ -41,7 +42,7 @@ namespace ConvertStringToSpanTests
             var myString = "Hello, World!";
 
             // Act
-            var span = StringExample.ConvertStringToSpanUsingAsSpan(myString);
+            var span = stringExample.ConvertStringToSpanUsingAsSpan();
 
             // Assert
             Assert.AreEqual(myString.Length, span.Length);
@@ -55,7 +56,7 @@ namespace ConvertStringToSpanTests
             var myString = "Hello, World!";
 
             // Act
-            var span = StringExample.ConvertStringToReadOnlySpanUsingAsSpan(myString);
+            var span = stringExample.ConvertStringToReadOnlySpanUsingAsSpan();
 
             // Assert
             Assert.AreEqual(myString.Length, span.Length);
@@ -69,12 +70,11 @@ namespace ConvertStringToSpanTests
             var myString = "Hello, World!";
 
             // Act
-            var span = StringExample.ConvertStringToSpan(myString);
+            var span = stringExample.ConvertStringToSpan();
 
             // Assert
             Assert.AreEqual(myString.Length, span.Length);
             Assert.AreEqual(myString, span.ToString());
         }
-
     }
 }

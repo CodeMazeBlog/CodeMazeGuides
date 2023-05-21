@@ -1,10 +1,16 @@
-﻿using System.Runtime.InteropServices;
+﻿using BenchmarkDotNet.Attributes;
+using System.Runtime.InteropServices;
+using BenchmarkDotNet.Order;
 
 namespace ConvertStringToSpan
 {
-    public static class StringExample
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
+    [MemoryDiagnoser]
+    public class StringExample
     {
-        public static Span<char> ConvertStringToSpanUsingMemoryMarshal(string myString)
+        private string myString = "Hello, World!";
+        [Benchmark]
+        public Span<char> ConvertStringToSpanUsingMemoryMarshal()
         {
             var charArray = myString.ToCharArray();
             var memory = new Memory<char>(charArray);
@@ -13,7 +19,8 @@ namespace ConvertStringToSpan
             return span;
         }
 
-        public static unsafe Span<char> ConvertStringToSpanUsingUnsafe(string myString)
+        [Benchmark]
+        public unsafe Span<char> ConvertStringToSpanUsingUnsafe()
         {
             unsafe
             {
@@ -24,25 +31,28 @@ namespace ConvertStringToSpan
             }
         }
 
-        public static ReadOnlySpan<char> ConvertStringToReadOnlySpanUsingAsSpan(string myString)
+        [Benchmark]
+        public ReadOnlySpan<char> ConvertStringToReadOnlySpanUsingAsSpan()
         {
             var span = myString.AsSpan();
 
             return span;
         }
 
-        public static Span<char> ConvertStringToSpanUsingAsSpan(string myString)
+        [Benchmark]
+        public Span<char> ConvertStringToSpanUsingAsSpan()
         {
             var span = myString.AsSpan();
 
             return span.ToArray();
         }
 
-        public static ReadOnlySpan<char> ConvertStringToSpan(string myString)
+        [Benchmark]
+        public ReadOnlySpan<char> ConvertStringToSpan()
         {
-           var span = myString;
+            var span = myString;
 
             return span;
-        }       
+        }
     }
 }

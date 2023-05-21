@@ -1,23 +1,26 @@
-﻿using ConvertStringToSpan;
+﻿using BenchmarkDotNet.Running;
+using ConvertStringToSpan;
 class Program
 {
     static void Main(string[] args)
     {
-        var myString = "Hello, World!";
+        var stringExample = new StringExample();       
 
-        var span1 = StringExample.ConvertStringToSpanUsingMemoryMarshal(myString);
+        var span1 = stringExample.ConvertStringToSpanUsingMemoryMarshal();
         Console.WriteLine(span1.ToString());
 
-        var span2 = StringExample.ConvertStringToSpanUsingUnsafe(myString);
+        var span2 = stringExample.ConvertStringToSpanUsingUnsafe();
         Console.WriteLine(span2.ToString());
 
-        var span3 = StringExample.ConvertStringToSpanUsingAsSpan(myString);
+        var span3 = stringExample.ConvertStringToSpanUsingAsSpan();
         Console.WriteLine(span3.ToString());
 
-        var span4 = StringExample.ConvertStringToReadOnlySpanUsingAsSpan(myString);
+        var span4 = stringExample.ConvertStringToReadOnlySpanUsingAsSpan();
         Console.WriteLine(span4.ToString());
 
-        var span5 = StringExample.ConvertStringToSpan(myString);
+        var span5 = stringExample.ConvertStringToSpan();
         Console.WriteLine(span5.ToString());
+
+        var summary = BenchmarkRunner.Run<StringExample>();    
     }
 }
