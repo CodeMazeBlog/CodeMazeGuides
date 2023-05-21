@@ -9,6 +9,7 @@ public partial class Endpoints
     {
         IConfigurationSection usersSection = configuration.GetSection("AppSettings:Users");
         IEnumerable<IConfigurationSection> usersArray = usersSection.GetChildren();
+
         return usersArray.Select(configSection => 
             new User 
             (

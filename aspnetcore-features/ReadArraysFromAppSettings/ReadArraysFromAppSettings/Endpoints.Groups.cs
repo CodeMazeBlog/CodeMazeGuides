@@ -7,6 +7,7 @@ public partial class Endpoints
     public static IEnumerable<Member>? GetGroupMembers(IConfiguration configuration)
     {
         AppSettings? appSettings = configuration.GetSection("AppSettings")?.Get<AppSettings>();
+
         return appSettings?.Groups?.SelectMany(x => x.Members).Distinct();
     }
 }
