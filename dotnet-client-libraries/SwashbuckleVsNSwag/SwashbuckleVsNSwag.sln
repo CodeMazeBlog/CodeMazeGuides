@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwashbuckleVsNSwag.Swashbuckle", "SwashbuckleVsNSwag.Swashbuckle\SwashbuckleVsNSwag.Swashbuckle.csproj", "{C1D99F47-4DB0-4351-9FBE-C323AF28B589}"
+	ProjectSection(ProjectDependencies) = postProject
+		{77D4DC0D-2DCE-439A-AA77-A164C1317FAD} = {77D4DC0D-2DCE-439A-AA77-A164C1317FAD}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwashbuckleVsNSwag.Repositories", "SwashbuckleVsNSwag.Repositories\SwashbuckleVsNSwag.Repositories.csproj", "{77D4DC0D-2DCE-439A-AA77-A164C1317FAD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4DCE704D-783F-4D0C-990A-FAA33E7B0D3D} = {4DCE704D-783F-4D0C-990A-FAA33E7B0D3D}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwashbuckleVsNSwag.Models", "SwashbuckleVsNSwag.Models\SwashbuckleVsNSwag.Models.csproj", "{4DCE704D-783F-4D0C-990A-FAA33E7B0D3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwashbuckleVsNSwag.NSwag", "SwashbuckleVsNSwag.NSwag\SwashbuckleVsNSwag.NSwag.csproj", "{1DA92176-6C46-422A-A59A-85958BACDA67}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwashbuckleVsNSwag.Benchmark", "SwashbuckleVsNSwag.Benchmark\SwashbuckleVsNSwag.Benchmark.csproj", "{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1DA92176-6C46-422A-A59A-85958BACDA67} = {1DA92176-6C46-422A-A59A-85958BACDA67}
+		{C1D99F47-4DB0-4351-9FBE-C323AF28B589} = {C1D99F47-4DB0-4351-9FBE-C323AF28B589}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D811AB7B-F881-4AE0-B0E3-9B02309079A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwashbuckleVsNSwag.Swachbuckle.Tests", "SwashbuckleVsNSwag.Swachbuckle.Tests\SwashbuckleVsNSwag.Swachbuckle.Tests.csproj", "{554FF5E1-32E2-41C4-A3C2-E3BB3A6DD260}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwashbuckleVsNSwag.NSwag.Tests", "SwashbuckleVsNSwag.NSwag.Tests\SwashbuckleVsNSwag.NSwag.Tests.csproj", "{A6BF4305-EC13-4AAD-B206-393EE2428219}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1D99F47-4DB0-4351-9FBE-C323AF28B589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1D99F47-4DB0-4351-9FBE-C323AF28B589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1D99F47-4DB0-4351-9FBE-C323AF28B589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1D99F47-4DB0-4351-9FBE-C323AF28B589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77D4DC0D-2DCE-439A-AA77-A164C1317FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77D4DC0D-2DCE-439A-AA77-A164C1317FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77D4DC0D-2DCE-439A-AA77-A164C1317FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77D4DC0D-2DCE-439A-AA77-A164C1317FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DCE704D-783F-4D0C-990A-FAA33E7B0D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DCE704D-783F-4D0C-990A-FAA33E7B0D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DCE704D-783F-4D0C-990A-FAA33E7B0D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DCE704D-783F-4D0C-990A-FAA33E7B0D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DA92176-6C46-422A-A59A-85958BACDA67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DA92176-6C46-422A-A59A-85958BACDA67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DA92176-6C46-422A-A59A-85958BACDA67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DA92176-6C46-422A-A59A-85958BACDA67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{554FF5E1-32E2-41C4-A3C2-E3BB3A6DD260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{554FF5E1-32E2-41C4-A3C2-E3BB3A6DD260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{554FF5E1-32E2-41C4-A3C2-E3BB3A6DD260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{554FF5E1-32E2-41C4-A3C2-E3BB3A6DD260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6BF4305-EC13-4AAD-B206-393EE2428219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6BF4305-EC13-4AAD-B206-393EE2428219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6BF4305-EC13-4AAD-B206-393EE2428219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6BF4305-EC13-4AAD-B206-393EE2428219}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3E87ECED-4DF0-4E1B-932D-1E3F5178BB7C} = {D811AB7B-F881-4AE0-B0E3-9B02309079A2}
+		{554FF5E1-32E2-41C4-A3C2-E3BB3A6DD260} = {D811AB7B-F881-4AE0-B0E3-9B02309079A2}
+		{A6BF4305-EC13-4AAD-B206-393EE2428219} = {D811AB7B-F881-4AE0-B0E3-9B02309079A2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {41376AFE-D97C-4240-9A7A-E5CE2684DE40}
+	EndGlobalSection
+EndGlobal
