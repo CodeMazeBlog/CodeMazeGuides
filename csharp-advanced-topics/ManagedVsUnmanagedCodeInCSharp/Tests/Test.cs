@@ -1,5 +1,4 @@
 using ManagedVsUnmanagedCodeInCSharp;
-using System.Runtime.InteropServices;
 
 namespace Tests
 {
