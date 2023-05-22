@@ -7,20 +7,28 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Create and Execute Expression Tree From Lambda Expression");
-        var sumExpressionTree = ExpressionTrees.CreateExpressionTreeFromLambdaExpression();
-        Console.WriteLine(sumExpressionTree.Compile()(1, 2));
+       Console.WriteLine("Create Expression Tree From Lambda Expression");
+        var sumExpressionTreeFromLambdaExpression = ExpressionTrees.CreateExpressionTreeFromLambdaExpression();
+
+        Console.WriteLine("Create Expression Tree From Expression Class API");
+        var sumExpressionTreeFromExpressionApi = ExpressionTrees.CreateExpressionTreeUsingExpressionTreeClass();
+
+        Console.WriteLine("Compile and Execute Expression Tree");
+        var delegateSumExpressionTree = ExpressionTrees.CompileExpressionTreeToLambdaExpression(sumExpressionTreeFromLambdaExpression)(1, 2);
+        Console.WriteLine(delegateSumExpressionTree);
+        var delegateSumExpressionTreeFromExpressionApi = ExpressionTrees.CompileExpressionTreeToLambdaExpression(sumExpressionTreeFromExpressionApi)(1, 2);
+        Console.WriteLine(delegateSumExpressionTreeFromExpressionApi);
 
         Console.WriteLine("Printing the properties of the Expression Tree in Root Node");
-        Console.WriteLine(sumExpressionTree.NodeType);
-        Console.WriteLine(sumExpressionTree.Parameters[0].Name);
-        Console.WriteLine(sumExpressionTree.Parameters[1].Name);
-        Console.WriteLine(sumExpressionTree.Body.ToString());
-        Console.WriteLine(sumExpressionTree.ReturnType);
-        Console.WriteLine(sumExpressionTree.Body.NodeType);
+        Console.WriteLine(sumExpressionTreeFromLambdaExpression.NodeType);
+        Console.WriteLine(sumExpressionTreeFromLambdaExpression.Parameters[0].Name);
+        Console.WriteLine(sumExpressionTreeFromLambdaExpression.Parameters[1].Name);
+        Console.WriteLine(sumExpressionTreeFromLambdaExpression.Body.ToString());
+        Console.WriteLine(sumExpressionTreeFromLambdaExpression.ReturnType);
+        Console.WriteLine(sumExpressionTreeFromLambdaExpression.Body.NodeType);
 
         Console.WriteLine("Printing the properties of Left Node");
-        BinaryExpression body = (BinaryExpression)sumExpressionTree.Body;
+        BinaryExpression body = (BinaryExpression)sumExpressionTreeFromLambdaExpression.Body;
         Console.WriteLine(body.Left.NodeType);
         ParameterExpression leftParam = (ParameterExpression)body.Left;
         Console.WriteLine(leftParam.Name);
@@ -30,11 +38,6 @@ internal class Program
         ParameterExpression rightParam = (ParameterExpression)body.Right;
 
         Console.WriteLine(rightParam.Name);
-
-        Console.WriteLine("Create, Compile and Execute Expression Tree From Expression Class API");
-        var sumFromClass = ExpressionTrees.CreateExpressionTreeUsingExpressionTreeClass();
-
-        Console.WriteLine(ExpressionTrees.CompileExpressionTreeToLambdaExpression(sumFromClass)(1, 2));
 
         Console.WriteLine("Inspecting EF Core Query:");
         var efCore = new EntityFrameworkSqlite();
