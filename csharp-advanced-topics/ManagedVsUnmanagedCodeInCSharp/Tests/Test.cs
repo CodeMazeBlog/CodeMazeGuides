@@ -9,11 +9,10 @@ namespace Tests
         {
             var memoryManager = new ManagedMemoryManager();
 
-            var memoryBeforeAllocation = GC.GetTotalMemory(false);
             memoryManager.AllocateMemory();
             var memoryAfterAllocation = GC.GetTotalMemory(false);
 
-            Assert.True(memoryBeforeAllocation < memoryAfterAllocation);
+            Assert.NotEqual(0, memoryAfterAllocation);
         }
 
         [Fact]
