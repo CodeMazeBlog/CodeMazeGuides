@@ -6,34 +6,34 @@ namespace BenchmarkDotNet_MemoryDiagnoser_Attribute
     public class SortingBenchmark
     {
         private const int ARRAY_SIZE = 10_000;
-        private int[] quickSortArray;
-        private int[] mergeSortArray;
+        private int[] _quickSortArray;
+        private int[] _mergeSortArray;
 
         [GlobalSetup]
         public void Setup()
         {
             Random random = new Random();
-            quickSortArray = new int[ARRAY_SIZE];
-            mergeSortArray = new int[ARRAY_SIZE];
+            _quickSortArray = new int[ARRAY_SIZE];
+            _mergeSortArray = new int[ARRAY_SIZE];
 
             for (int i = 0; i < ARRAY_SIZE; i++)
             {
                 int randomNumber = random.Next();
-                quickSortArray[i] = randomNumber;
-                mergeSortArray[i] = randomNumber;
+                _quickSortArray[i] = randomNumber;
+                _mergeSortArray[i] = randomNumber;
             }
         }
 
         [Benchmark]
         public void QuickSort()
         {
-            Sort.QuickSort(quickSortArray, 0, quickSortArray.Length - 1);
+            Sort.QuickSort(_quickSortArray, 0, _quickSortArray.Length - 1);
         }
 
         [Benchmark]
         public void MergeSort()
         {
-            Sort.MergeSort(mergeSortArray, 0, mergeSortArray.Length - 1);
+            Sort.MergeSort(_mergeSortArray, 0, _mergeSortArray.Length - 1);
         }
     }
 }
