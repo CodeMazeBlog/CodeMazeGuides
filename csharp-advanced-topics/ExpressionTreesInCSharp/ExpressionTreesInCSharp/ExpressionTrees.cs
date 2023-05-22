@@ -10,9 +10,9 @@ public class ExpressionTrees
 
     public static Expression<Func<int, int, int>> CreateExpressionTreeFromLambdaExpression()
     {
-        Expression<Func<int, int, int>> lambdaExpressionTree = (int number1, int number2) => number1 + number2;
+        Expression<Func<int, int, int>> sumExpressionTree = (int number1, int number2) => number1 + number2;
 
-        return lambdaExpressionTree;
+        return sumExpressionTree;
     }
 
     public static Expression<Func<int, int, int>> CreateExpressionTreeUsingExpressionTreeClass()
