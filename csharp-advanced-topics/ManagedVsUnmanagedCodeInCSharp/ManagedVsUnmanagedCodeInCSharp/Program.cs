@@ -14,7 +14,6 @@ namespace ManagedVsUnmanagedCodeInCSharp
 
             MessageBox(IntPtr.Zero, "Hello, World!", "Message", 0);
 
-
             var numbers = new int[] { 1, 2, 3, 4, 5 };
 
             unsafe
