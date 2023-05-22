@@ -29,8 +29,8 @@ public class ExpressionTrees
 
     public static Func<int, int, int> CompileExpressionTreeToLambdaExpression(Expression<Func<int, int, int>> expressionTree)
     {
-        var lambdaExpression = expressionTree.Compile();
+        var delegateRepresentingLambdaExpression = expressionTree.Compile();
 
-        return lambdaExpression;
+        return delegateRepresentingLambdaExpression;
     }
 }
