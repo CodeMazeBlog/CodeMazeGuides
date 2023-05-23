@@ -29,11 +29,12 @@ internal sealed class SampleSetupAndConfigurationHelper : IDisposable, IAsyncDis
     public static async Task<SampleSetupAndConfigurationHelper> Create()
     {
         var testContainer = new ContainerBuilder()
-                            .WithImage(@"ghashange/sendgrid-mock:1.8.4")
-                            .WithEnvironment("API_KEY", SampleConstants.ApiKey)
-                            .WithPortBinding(TestingPort, true)
-                            .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(TestingPort))
-                            .Build();
+            .WithImage(@"ghashange/sendgrid-mock:1.8.4")
+            .WithEnvironment("API_KEY", SampleConstants.ApiKey)
+            .WithPortBinding(TestingPort, true)
+            .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(TestingPort))
+            .Build();
+
         await testContainer.StartAsync().ConfigureAwait(false);
         var containerUri =
             new UriBuilder("http", testContainer.Hostname, testContainer.GetMappedPublicPort(TestingPort)).Uri;

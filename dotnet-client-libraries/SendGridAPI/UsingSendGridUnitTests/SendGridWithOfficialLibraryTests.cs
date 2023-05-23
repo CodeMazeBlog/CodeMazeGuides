@@ -51,11 +51,9 @@ public sealed class SendGridWithOfficialLibraryTests : IClassFixture<SendGridUni
         await Utilities.FillFileWithRandomDataOfSpecifiedLength(pdfFile, 1024).ConfigureAwait(false);
         var sendGrid = new SendGridClient(_httpClient, SendGridUnitTestFixture.SendGridAuthorizationKey);
         var (success, statusCode) = await sendGrid
-                                          .SendMailWithAttachment(new EmailAddress(ToEmail),
-                                              new EmailAddress(FromEmail),
-                                              "Test Email", pdfFile,
-                                              "application/pdf", null, false, "This is the content",
-                                              null).ConfigureAwait(false);
+            .SendMailWithAttachment(new EmailAddress(ToEmail), new EmailAddress(FromEmail),
+                "Test Email", pdfFile, "application/pdf", null, false, "This is the content", null)
+            .ConfigureAwait(false);
 
         Assert.True(success);
         Assert.Equal(HttpStatusCode.Accepted, statusCode);
@@ -66,10 +64,10 @@ public sealed class SendGridWithOfficialLibraryTests : IClassFixture<SendGridUni
     {
         var sendGrid = new SendGridClient(_httpClient, SendGridUnitTestFixture.SendGridAuthorizationKey);
         var (success, statusCode) = await sendGrid
-                                          .SendScheduledEmail(new EmailAddress(ToEmail), new EmailAddress(FromEmail),
-                                              null, null, "Scheduled Email",
-                                              DateTime.Now.AddDays(1), "This is the content", null)
-                                          .ConfigureAwait(false);
+            .SendScheduledEmail(new EmailAddress(ToEmail), new EmailAddress(FromEmail),
+                null, null, "Scheduled Email",
+                DateTime.Now.AddDays(1), "This is the content", null)
+            .ConfigureAwait(false);
 
         Assert.True(success);
         Assert.Equal(HttpStatusCode.Accepted, statusCode);
@@ -85,13 +83,8 @@ public sealed class SendGridWithOfficialLibraryTests : IClassFixture<SendGridUni
         await Assert.ThrowsAsync<ArgumentException>(async () =>
             await sendGrid
                   .SendMailWithAttachment(new EmailAddress(ToEmail),
-                      new EmailAddress(FromEmail),
-                      "Email with Attachment",
-                      largeFile,
-                      "application/pdf",
-                      null,
-                      false,
-                      "This is the email content", null)
+                      new EmailAddress(FromEmail), "Email with Attachment", largeFile,
+                      "application/pdf", null, false, "This is the email content", null)
                   .ConfigureAwait(false)
         );
     }
@@ -105,14 +98,8 @@ public sealed class SendGridWithOfficialLibraryTests : IClassFixture<SendGridUni
 
         await Assert.ThrowsAsync<FileNotFoundException>(async () =>
             await sendGrid
-                  .SendMailWithAttachment(
-                      new EmailAddress(ToEmail),
-                      new EmailAddress(FromEmail),
-                      "Email with Attachment",
-                      tempFile,
-                      "application/pdf",
-                      null,
-                      false,
+                  .SendMailWithAttachment(new EmailAddress(ToEmail), new EmailAddress(FromEmail),
+                      "Email with Attachment", tempFile, "application/pdf", null, false,
                       "This is the email content", null)
                   .ConfigureAwait(false)
         );

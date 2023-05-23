@@ -18,18 +18,18 @@ client.DefaultRequestHeaders.Add("authorization", $"Bearer {SampleConstants.ApiK
 
 Console.WriteLine("-----Sending simple email with HttpClient-----");
 var (isSuccess, statusCode) = await client.SendSimpleEmail(SampleConstants.ToEmail, SampleConstants.FromEmail,
-                                              SampleConstants.EmailSubject,
-                                              SampleConstants.PlainTextEmailContent)
+                                              SampleConstants.EmailSubject, SampleConstants.PlainTextEmailContent)
                                           .ConfigureAwait(false);
+
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
 await PrintAndCleanUpSentMails(client).ConfigureAwait(false);
 
 Console.WriteLine("-----Sending email with attachment with HttpClient-----");
-(isSuccess, statusCode) = await client
-                                .SendEmailWithAttachment(SampleConstants.ToEmail, SampleConstants.FromEmail,
-                                    SampleConstants.EmailWithAttachmentSubject,
-                                    helper.PdfFile, "application/pdf", SampleConstants.PlainTextEmailContent,
-                                    SampleConstants.HtmlEmailContent).ConfigureAwait(false);
+(isSuccess, statusCode) = await client.SendEmailWithAttachment(SampleConstants.ToEmail, 
+        SampleConstants.FromEmail, SampleConstants.EmailWithAttachmentSubject, helper.PdfFile, 
+        "application/pdf", SampleConstants.PlainTextEmailContent, SampleConstants.HtmlEmailContent)
+    .ConfigureAwait(false);
+
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
 await PrintAndCleanUpSentMails(client).ConfigureAwait(false);
 
@@ -39,29 +39,28 @@ var sendGridClient = new SendGridClient(SampleConstants.ApiKey, helper.Container
 
 Console.WriteLine("-----Sending simple email with SendGrid MailHelper class-----");
 (isSuccess, statusCode) = await sendGridClient
-                                .SendMailUsingMailHelper(toAddress, fromAddress, SampleConstants.EmailSubject,
-                                    SampleConstants.PlainTextEmailContent,
-                                    null)
-                                .ConfigureAwait(false);
+    .SendMailUsingMailHelper(toAddress, fromAddress, SampleConstants.EmailSubject,
+        SampleConstants.PlainTextEmailContent, null)
+    .ConfigureAwait(false);
 
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
 await PrintAndCleanUpSentMails(client).ConfigureAwait(false);
 
 Console.WriteLine("-----Sending email and attachment with SendGrid MailHelper class-----");
 (isSuccess, statusCode) = await sendGridClient
-                                .SendMailWithAttachment(toAddress, fromAddress, SampleConstants.EmailSubject,
-                                    helper.PdfFile,
-                                    "application/pdf", "PdfFile_1", false, SampleConstants.PlainTextEmailContent,
-                                    SampleConstants.HtmlEmailContent).ConfigureAwait(false);
+    .SendMailWithAttachment(toAddress, fromAddress, SampleConstants.EmailSubject,
+        helper.PdfFile, "application/pdf", "PdfFile_1", false, SampleConstants.PlainTextEmailContent,
+        SampleConstants.HtmlEmailContent)
+    .ConfigureAwait(false);
 
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
 await PrintAndCleanUpSentMails(client).ConfigureAwait(false);
 
 Console.WriteLine("-----Sending scheduled email with SendGrid -----");
 (isSuccess, statusCode) = await sendGridClient.SendScheduledEmail(toAddress, fromAddress, null, null,
-    SampleConstants.EmailSubject,
-    DateTime.Now.AddDays(1), SampleConstants.PlainTextEmailContent,
-    SampleConstants.HtmlEmailContent).ConfigureAwait(false);
+        SampleConstants.EmailSubject, DateTime.Now.AddDays(1), SampleConstants.PlainTextEmailContent,
+        SampleConstants.HtmlEmailContent)
+    .ConfigureAwait(false);
 
 Console.WriteLine($"Success: {isSuccess}\tStatusCode: {statusCode}");
 await PrintAndCleanUpSentMails(client).ConfigureAwait(false);
