@@ -23,5 +23,5 @@ public class CspReport
     public string? BlockedUri { get; set; }
 
     [JsonPropertyName("status-code")]
-    public int? StatusCode { get; set; }
+    public int StatusCode { get; set; }
 }
