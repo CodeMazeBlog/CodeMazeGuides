@@ -8,6 +8,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [How to Convert Char Array to String in C#](https://code-maze.com/csharp-convert-char-array-to-string/)
 - [How to Convert Int to String in C#](https://code-maze.com/csharp-convert-int-to-string/)
 - [How to Convert String to Bool in C#](https://code-maze.com/csharp-convert-string-to-bool/)
+- [Different Ways to Initialize a String in C#](https://code-maze.com/csharp-correctly-initialize-a-string/)
 - [How to Convert String from Title Case to camelCase in C#](https://code-maze.com/csharp-convert-string-titlecase-camelcase/)
 - [Counting Occurrences of a Char Within a String in C#](https://code-maze.com/counting-char-within-string-csharp/)
 - [How to Create a Comma-Separated String From a List of Strings in C#](https://code-maze.com/csharp-create-comma-separated-string-from-list-of-strings/)
