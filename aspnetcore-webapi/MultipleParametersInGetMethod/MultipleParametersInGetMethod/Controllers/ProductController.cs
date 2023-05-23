@@ -30,8 +30,8 @@ namespace MultipleParametersInGetMethod.Controllers
         public IActionResult GetProductsByCategoryAndBrand(string category, string brand)
         {
             List<Product> result = _products
-                        .Where(x => x.Category == category && x.Brand == brand)
-                        .ToList();
+                .Where(x => x.Category == category && x.Brand == brand)
+                .ToList();
 
             return Ok(_mapper.Map<List<ProductDto>>(result));
         }
@@ -42,8 +42,8 @@ namespace MultipleParametersInGetMethod.Controllers
             [FromQuery(Name = "manufacturer")] string brand)
         {
             List<Product> result = _products
-                        .Where(x => x.Category == category && x.Brand == brand)
-                        .ToList();
+                .Where(x => x.Category == category && x.Brand == brand)
+                .ToList();
 
             return Ok(_mapper.Map<List<ProductDto>>(result));
         }
@@ -52,24 +52,24 @@ namespace MultipleParametersInGetMethod.Controllers
         public IActionResult GetProductById(int id)
         {
             return Ok(_mapper.Map<ProductDto>(_products
-                        .Where(x => x.Id == id)
-                        .FirstOrDefault()));
+                .Where(x => x.Id == id)
+                .FirstOrDefault()));
         }
 
         [HttpGet("productId/{productId}")]
         public IActionResult GetProductByIdUsingFromRoute([FromRoute(Name = "productId")] int id)
         {
             return Ok(_mapper.Map<ProductDto>(_products
-                        .Where(x => x.Id == id)
-                        .FirstOrDefault()));
+                .Where(x => x.Id == id)
+                .FirstOrDefault()));
         }
 
         [HttpGet("brand/{brand}")]
         public IActionResult GetProductsByBrandAndWarranty(string brand, int warranty)
         {
             return Ok(_mapper.Map<List<ProductDto>>(_products
-                        .Where(x => x.Brand == brand && x.WarrantyYears == warranty)
-                        .ToList()));
+                .Where(x => x.Brand == brand && x.WarrantyYears == warranty)
+                .ToList()));
         }
 
         [HttpGet("manufacturer/{manufacturer}")]
@@ -78,24 +78,24 @@ namespace MultipleParametersInGetMethod.Controllers
             [FromQuery(Name = "coverage")] int warranty)
         {
             return Ok(_mapper.Map<List<ProductDto>>(_products
-                        .Where(x => x.Brand == brand && x.WarrantyYears == warranty)
-                        .ToList()));
+                .Where(x => x.Brand == brand && x.WarrantyYears == warranty)
+                .ToList()));
         }
 
         [HttpGet("category")]
         public IActionResult GetProductsByCategory([FromBody] ProductDto model)
         {
             return Ok(_mapper.Map<List<ProductDto>>(_products
-                        .Where(x => x.Category == model.Category)
-                        .ToList()));
+                .Where(x => x.Category == model.Category)
+                .ToList()));
         }
 
         [HttpGet("category-brand")]
         public IActionResult GetProductsByCategoryAndBrandViaHeaders([FromHeader] string category, [FromHeader] string brand)
         {
             return Ok(_mapper.Map<List<ProductDto>>(_products
-                        .Where(x => x.Category == category && x.Brand == brand)
-                        .ToList()));
+                .Where(x => x.Category == category && x.Brand == brand)
+                .ToList()));
         }
     }
 }
