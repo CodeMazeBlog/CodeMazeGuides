@@ -8,11 +8,12 @@ namespace ConvertStringToSpan
     [MemoryDiagnoser]
     public class StringExample
     {
-        private string myString = "Hello, World!";
+        private string _myString = "Hello, World!";
+
         [Benchmark]
         public Span<char> ConvertStringToSpanUsingMemoryMarshal()
         {
-            var charArray = myString.ToCharArray();
+            var charArray = _myString.ToCharArray();
             var memory = new Memory<char>(charArray);
             var span = MemoryMarshal.Cast<char, char>(memory.Span);
 
@@ -24,9 +25,9 @@ namespace ConvertStringToSpan
         {
             unsafe
             {
-                fixed (char* ptr = myString)
+                fixed (char* ptr = _myString)
                 {
-                    return new Span<char>(ptr, myString.Length);
+                    return new Span<char>(ptr, _myString.Length);
                 }
             }
         }
@@ -34,7 +35,7 @@ namespace ConvertStringToSpan
         [Benchmark]
         public ReadOnlySpan<char> ConvertStringToReadOnlySpanUsingAsSpan()
         {
-            var span = myString.AsSpan();
+            var span = _myString.AsSpan();
 
             return span;
         }
@@ -42,7 +43,7 @@ namespace ConvertStringToSpan
         [Benchmark]
         public Span<char> ConvertStringToSpanUsingAsSpan()
         {
-            var span = myString.AsSpan();
+            var span = _myString.AsSpan();
 
             return span.ToArray();
         }
@@ -50,7 +51,7 @@ namespace ConvertStringToSpan
         [Benchmark]
         public ReadOnlySpan<char> ConvertStringToSpan()
         {
-            var span = myString;
+            var span = _myString;
 
             return span;
         }
