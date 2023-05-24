@@ -22,3 +22,4 @@ This section contains the topics about the client libraries in .NET.
 - [Easy Sorting, Filtering and Pagination in .NET With Sieve Package](https://code-maze.com/dotnet-sorting-filtering-pagination-sieve-package/)
 - [Using Refit to Consume APIs in C#](https://code-maze.com/using-refit-to-consume-apis-in-csharp/)
 - [How to Improve Enums With the SmartEnum Library](https://code-maze.com/csharp-improve-enums-with-the-smartenum-library/)
+- [Swashbuckle vs. NSwag in ASP.NET Core](https://code-maze.com/aspnetcore-swashbuckle-vs-nswag/)
