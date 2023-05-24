@@ -7,7 +7,6 @@ public class DynamicMethodGenerator
     {
         // Parse the math statement
         var parts = mathStatement.Split('=');
-
         var variables = parts[1].Split('*');
 
         var left = Expression.Parameter(typeof(int), variables[0]);

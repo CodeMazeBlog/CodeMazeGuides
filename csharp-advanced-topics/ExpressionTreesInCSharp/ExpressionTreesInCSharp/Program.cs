@@ -7,7 +7,7 @@ internal class Program
 {
     static void Main(string[] args)
     {
-       Console.WriteLine("Create Expression Tree From Lambda Expression");
+        Console.WriteLine("Create Expression Tree From Lambda Expression");
         var sumExpressionTreeFromLambdaExpression = ExpressionTrees.CreateExpressionTreeFromLambdaExpression();
 
         Console.WriteLine("Create Expression Tree From Expression Class API");

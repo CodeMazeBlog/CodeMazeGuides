@@ -12,19 +12,17 @@ public class EntityFrameworkSqlite
 
     public string GetUsersListQuery()
     {
-        var listQuery = _dbContext
-                            .Users
-                            .ToQueryString();
+        var listQuery = _dbContext.Users
+            .ToQueryString();
 
         return listQuery;
     }
 
     public string GetWhereQuery()
     {
-        var whereQuery = _dbContext
-                            .Users
-                            .Where(x => x.Age > 20)
-                            .ToQueryString();
+        var whereQuery = _dbContext.Users
+            .Where(x => x.Age > 20)
+            .ToQueryString();
 
         return whereQuery;
     }
