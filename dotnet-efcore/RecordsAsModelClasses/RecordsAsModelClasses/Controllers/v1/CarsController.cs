@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RecordsAsModelClasses.Core.Context;
 using RecordsAsModelClasses.Core.DTOs;
@@ -11,25 +12,30 @@ namespace RecordsAsModelClasses.Controllers.v1;
 public class CarsController : ControllerBase
 {
     private readonly CarDbContext _context;
+    private readonly IMapper _mapper;
 
-    public CarsController(CarDbContext context)
+    public CarsController(CarDbContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateCarAsync([FromBody] CarDto carDto)
+    public async Task<IActionResult> CreateCarAsync([FromBody] UpsertCarDto carDto)
     {
-        var car = new Car(carDto.Id, carDto.Make, carDto.Model, carDto.Year);
+        var car = _mapper.Map<UpsertCarDto, Car>(carDto);
 
         _context.RecordCars.Add(car);
+
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetCar), new {car.Id}, car);
+        var carResponse = _mapper.Map<Car, CarDto>(car);
+
+        return CreatedAtAction(nameof(GetCar), new { car.Id }, carResponse);
     }
 
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> UpdateCar(int id, [FromBody] Car updatedCar)
+    public async Task<IActionResult> UpdateCar(int id, [FromBody] UpsertCarDto updatedCar)
     {
         var car = await _context
             .RecordCars
@@ -44,6 +50,7 @@ public class CarsController : ControllerBase
         _context.Entry(car).CurrentValues.SetValues(updatedCar);
 
         await _context.SaveChangesAsync();
+
         return NoContent();
     }
 
@@ -57,15 +64,15 @@ public class CarsController : ControllerBase
             return NotFound();
         }
 
-        var carDto = new CarDto(car.Id, car.Make, car.Model, car.Year);
+        var carResponse = _mapper.Map<Car, CarDto>(car);
 
-        return Ok(carDto);
+        return Ok(carResponse);
     }
 
     // Uncomment this to test System.InvalidOperationException
     //[HttpPut("car/{id:int}")]
     [ApiExplorerSettings(IgnoreApi = true)]
-    public async Task<IActionResult> UpdateCarUsingRecords(int id, [FromBody] Car updatedCar)
+    public async Task<IActionResult> UpdateCarUsingRecords(int id, [FromBody] UpsertCarDto updatedCar)
     {
         var car = await _context
             .RecordCars
@@ -86,6 +93,7 @@ public class CarsController : ControllerBase
         };
 
         _context.RecordCars.Update(car);
+
         await _context.SaveChangesAsync();
 
         return NoContent();

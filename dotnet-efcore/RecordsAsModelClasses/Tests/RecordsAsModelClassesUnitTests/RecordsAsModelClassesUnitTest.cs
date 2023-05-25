@@ -21,12 +21,12 @@ public class RecordsAsModelClassesUnitTest
     [Fact]
     public async Task WhenCreateCarEndpointIsCalled_ThenCreateCar()
     {
-        var carDto = new CarDto(1,"Toyota", "Crown", 1960);
-        var httpResponseMessage = await _client.PostAsJsonAsync("api/v1/cars",carDto);
+        var carDto = new UpsertCarDto("Toyota", "Crown", 1960);
+        var httpResponseMessage = await _client.PostAsJsonAsync("api/v1/cars", carDto);
         var response = await httpResponseMessage.Content.ReadAsStringAsync();
 
-        var deserializedResponse = JsonConvert.DeserializeObject<Car>(response);
-        var expectedResponse = new Car(1, "Toyota", "Crown", 1960);
+        var deserializedResponse = JsonConvert.DeserializeObject<CarDto>(response);
+        var expectedResponse = new CarDto(1, "Toyota", "Crown", 1960);
 
         Assert.Equal(HttpStatusCode.Created, httpResponseMessage.StatusCode);
         Assert.Equal(expectedResponse, deserializedResponse);
@@ -35,7 +35,7 @@ public class RecordsAsModelClassesUnitTest
     [Fact]
     public async Task WhenUpdateCarEndpointIsCalled_ThenUpdateCar()
     {
-        var carDto = new CarDto(1,"Honda", "Accord", 2023);
+        var carDto = new UpsertCarDto("Honda", "Accord", 2023);
 
         var httpResponseMessage = await _client.PutAsJsonAsync("api/v1/cars/1", carDto);
 
@@ -44,22 +44,22 @@ public class RecordsAsModelClassesUnitTest
 
     [Fact]
     public async Task WhenGetCarUsingRecordsEndpointIsCalled_ThenReturnCreatedAction()
-    {   
+    {
         var httpResponseMessage = await _client.GetAsync($"api/v1/cars/{1}");
 
         Assert.Equal(HttpStatusCode.OK, httpResponseMessage.StatusCode);
     }
 
-    [Fact]  
+    [Fact]
     public async Task WhenCreateClassCarEndpointIsCalled_ThenCreateClassCar()
     {
-        var carDto = new CarDto(1,"Chevrolet", "Corvette", 1972);
+        var carDto = new UpsertCarDto("Chevrolet", "Corvette", 1972);
 
         var httpResponseMessage = await _client.PostAsJsonAsync("api/v2/cars", carDto);
         var response = await httpResponseMessage.Content.ReadAsStringAsync();
 
         var deserializedResponse = JsonConvert.DeserializeObject<CarDto>(response);
-        var expectedResponse = carDto;
+        var expectedResponse = new CarDto(1, "Chevrolet", "Corvette", 1972);
 
         Assert.Equal(HttpStatusCode.Created, httpResponseMessage.StatusCode);
         Assert.Equal(expectedResponse, deserializedResponse);
@@ -68,9 +68,9 @@ public class RecordsAsModelClassesUnitTest
     [Fact]
     public async Task WhenUpdateClassCarEndpointIsCalled_ThenUpdateClassCar()
     {
-        var carDto = new CarDto(1,"Chevrolet", "Corvette", 1972);
+        var carDto = new UpsertCarDto("Chevrolet", "Corvette", 1972);
 
-        var httpResponseMessage = await _client.PutAsJsonAsync("api/v2/cars/1", carDto);    
+        var httpResponseMessage = await _client.PutAsJsonAsync("api/v2/cars/1", carDto);
 
         Assert.Equal(HttpStatusCode.NoContent, httpResponseMessage.StatusCode);
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RecordsAsModelClasses.Core.Context;
 using RecordsAsModelClasses.Core.DTOs;
@@ -11,31 +12,31 @@ namespace RecordsAsModelClasses.Controllers.v2
     public class CarsController : ControllerBase
     {
         private readonly CarDbContext _context;
+        private readonly IMapper _mapper;
 
-        public CarsController(CarDbContext context)
+        public CarsController(CarDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<CarDto>> CreateCar([FromBody] CarDto carDto)
+        public async Task<ActionResult<CarDto>> CreateCar([FromBody] UpsertCarDto carDto)
         {
-            var car = new Car
-            {
-                Make = carDto.Make,
-                Model = carDto.Model,
-                Year = carDto.Year
-            };
+            var car = _mapper.Map<UpsertCarDto, Car>(carDto);
 
             _context.ClassCars.Add(car);
+
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetCar), new {car.Id}, car);
+            var carResponse = _mapper.Map<Car, CarDto>(car);
+
+            return CreatedAtAction(nameof(GetCar), new { car.Id }, carResponse);
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateCar(int id, [FromBody] CarDto carDto)
+        public async Task<IActionResult> UpdateCar(int id, [FromBody] UpsertCarDto carDto)
         {
             var car = await _context
                 .ClassCars
@@ -47,11 +48,10 @@ namespace RecordsAsModelClasses.Controllers.v2
                 return NotFound();
             }
 
-            car.Make = carDto.Make;
-            car.Model = carDto.Model;
-            car.Year = carDto.Year;
+            _mapper.Map<UpsertCarDto, Car>(carDto);
 
             await _context.SaveChangesAsync();
+
             return NoContent();
         }
 
@@ -65,9 +65,9 @@ namespace RecordsAsModelClasses.Controllers.v2
                 return NotFound();
             }
 
-            var carDto = new CarDto(car.Id, car.Make, car.Model, car.Year);
+            var carResponse = _mapper.Map<Car, CarDto>(car);
 
-            return Ok(carDto);
+            return Ok(carResponse);
         }
     }
 }
