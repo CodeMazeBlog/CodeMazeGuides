@@ -15,3 +15,4 @@ Console.WriteLine("With FindAll: " + String.Join(",", DeleteWithFindAll(array, e
 Console.WriteLine("With Where: " + String.Join(",", DeleteWithWhere(array, elementToDelete)));
 Console.WriteLine("With RemoveAll: " + String.Join(",", DeleteWithRemoveAll(array, elementToDelete)));
 Console.WriteLine("With List: " + String.Join(",", DeleteWithList(array, elementToDelete)));
+Console.WriteLine("With Pooled Array: " + String.Join(",", DeleteWithPooledArray(array, elementToDelete)));
