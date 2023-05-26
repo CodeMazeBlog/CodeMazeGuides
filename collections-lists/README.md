@@ -3,6 +3,7 @@
 This section contains the topics about the List collection and solving specific problems regarding Lists in C#.
 
 ### Relevant articles:
+- [ArrayList and List Comparasion in C#](https://code-maze.com/csharp-arraylist-vs-list/)
 - [Concatenate Lists in C#](https://code-maze.com/csharp-concatenate-lists/)
 - [How to Clone a List in C#?](https://code-maze.com/csharp-how-to-clone-a-list/)
 - [Remove Duplicates From a List in C#](https://code-maze.com/remove-duplicates-from-a-list-csharp/)

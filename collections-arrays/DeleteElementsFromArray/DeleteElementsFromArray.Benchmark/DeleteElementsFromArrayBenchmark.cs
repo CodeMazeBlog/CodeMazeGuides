@@ -1,5 +1,6 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
+using System.Buffers;
 
 namespace BenchmarkRunner
 {
@@ -139,6 +140,27 @@ namespace BenchmarkRunner
             }
 
             return tempArray;
+        }
+
+        [Benchmark]
+        public int[] DeleteWithPooledArray()
+        {
+            var tempArray = ArrayPool<int>.Shared.Rent(_myArray.Length);
+            try
+            {
+                var tempSpan = tempArray.AsSpan();
+                var index = 0;
+                foreach (var element in _myArray.AsSpan())
+                {
+                    if (element != _key) tempSpan[index++] = element;
+                }
+
+                return tempSpan[0..index].ToArray();
+            }
+            finally
+            {
+                ArrayPool<int>.Shared.Return(tempArray);
+            }
         }
 
         private static int[] FillArray()

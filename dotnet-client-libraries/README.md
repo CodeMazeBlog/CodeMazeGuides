@@ -14,6 +14,7 @@ This section contains the topics about the client libraries in .NET.
 - [HttpClient vs RestSharp - Which One to Use in .NET](https://code-maze.com/httpclient-vs-restsharp/)
 - [Tracking Application Health With OpenTelemetry Metrics in .NET](https://code-maze.com/tracking-dotnet-opentelemetry-metrics/)
 - [Tracing .NET Applications Easily With OpenTelemetry](https://code-maze.com/tracing-dotnet-applications-opentelemetry/)
+- [Extending LINQ to Objects With MoreLINQ Library](https://code-maze.com/morelinq-library-linq/)
 - [Alternative Way of Logging With OpenTelemetry Logging in .NET](https://code-maze.com/dotnet-opentelemetry-logging/)
 - [Vendor-Agnostic Telemetry Using OpenTelemetry Collector in .NET](https://code-maze.com/vendor-agnostic-telemetry-opentelemetry-collector-dotnet/)
 - [Schedule Jobs with Quartz.NET](https://code-maze.com/schedule-jobs-with-quartz-net/)
@@ -21,3 +22,4 @@ This section contains the topics about the client libraries in .NET.
 - [Easy Sorting, Filtering and Pagination in .NET With Sieve Package](https://code-maze.com/dotnet-sorting-filtering-pagination-sieve-package/)
 - [Using Refit to Consume APIs in C#](https://code-maze.com/using-refit-to-consume-apis-in-csharp/)
 - [How to Improve Enums With the SmartEnum Library](https://code-maze.com/csharp-improve-enums-with-the-smartenum-library/)
+- [Swashbuckle vs. NSwag in ASP.NET Core](https://code-maze.com/aspnetcore-swashbuckle-vs-nswag/)

@@ -164,5 +164,15 @@ namespace Tests
 
             CollectionAssert.AreEqual(value, expectedResult);
         }
+
+        [TestMethod]
+        public void GivenPooledArray_WhenDeleteElement3_ThenArray4557()
+        {
+            var key = 3;
+            var expectedResult = new int[] { 4, 5, 5, 7 };
+            var value = Methods.DeleteWithPooledArray(_myArray, key);
+
+            CollectionAssert.AreEqual(value, expectedResult);
+        }
     }
 }
