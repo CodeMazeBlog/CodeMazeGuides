@@ -4,7 +4,7 @@ namespace Tests
 	public class CalculatorUnitTest
 	{
 		[Fact]
-		public void whenTwoNumbersAreAdded_thenConfirmAdditionIsSuccessful()
+		public void WhenTwoNumbersAreAdded_ThenConfirmAdditionIsSuccessful()
 		{
 			// Arrange
 			var calculator = new Calculator();
@@ -17,7 +17,7 @@ namespace Tests
 		}
 
 		[Fact]
-		public void whenTwoNumbersAreSubtracted_thenConfirmSubtractionIsSuccessful()
+		public void WhenTwoNumbersAreSubtracted_ThenConfirmSubtractionIsSuccessful()
 		{
 			// Arrange
 			var calculator = new Calculator();
@@ -30,7 +30,7 @@ namespace Tests
 		}
 
 		[Fact]
-		public void whenTwoNumbersAreMultiplied_thenConfirmMultiplicationIsSuccessful()
+		public void WhenTwoNumbersAreMultiplied_ThenConfirmMultiplicationIsSuccessful()
 		{
 			// Arrange
 			var calculator = new Calculator();
@@ -43,7 +43,7 @@ namespace Tests
 		}
 
 		[Fact]
-		public void whenTwoNumbersAreDivided_thenConfirmDivisionIsSuccessful()
+		public void WhenTwoNumbersAreDivided_ThenConfirmDivisionIsSuccessful()
 		{
 			// Arrange
 			var calculator = new Calculator();
