@@ -17,9 +17,10 @@ namespace StructuredLoggingUsingLog4Net.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            _logger.Info("This is an informational log.");
+            _logger.Debug("This is a debug log.");
+            _logger.Info("This is an informational log.");            
+            _logger.Warn("This is a warning log.");            
             _logger.Error("This is an error log.");
-            _logger.Info(new { id = 1, name = "John" });
 
             return Ok("Test success!");
         }

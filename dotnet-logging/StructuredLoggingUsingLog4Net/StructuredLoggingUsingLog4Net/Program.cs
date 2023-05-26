@@ -1,3 +1,5 @@
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+
 namespace StructuredLoggingUsingLog4Net
 {
     public class Program
@@ -13,6 +15,12 @@ namespace StructuredLoggingUsingLog4Net
             builder.Services.AddSwaggerGen();
             builder.Services.AddLog4net();
 
+            builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
+            {
+                ConnectionString = builder.Configuration["ApplicationInsights:ConnectionString"],
+                EnableActiveTelemetryConfigurationSetup = true
+            });
+                        
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -7,7 +7,7 @@ namespace StructuredLoggingUsingLog4Net
     {
         public static void AddLog4net(this IServiceCollection services)
         {
-            XmlConfigurator.Configure(new FileInfo("log4net.config"));
+            XmlConfigurator.ConfigureAndWatch(new FileInfo("log4net.config"));
             services.AddSingleton(LogManager.GetLogger(typeof(Program)));
         }
     }

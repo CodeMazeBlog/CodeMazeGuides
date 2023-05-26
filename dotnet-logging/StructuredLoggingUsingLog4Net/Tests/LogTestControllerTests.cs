@@ -1,4 +1,5 @@
 ﻿using log4net;
+using log4net.Config;
 using Moq;
 using StructuredLoggingUsingLog4Net.Controllers;
 
@@ -19,6 +20,6 @@ namespace Tests
             //assert
             mock.Verify(m => m.Info(It.IsAny<object>()), Times.AtLeastOnce);
             mock.Verify(m => m.Error(It.IsAny<object>()), Times.AtLeastOnce);            
-        }
+        }        
     }
 }
