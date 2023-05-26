@@ -2,12 +2,12 @@
 
 public class RemoveDuplicateElements
 {
-    public string[] WithDistinctLINQMethod(string[] arrayWithDuplicateValues)
+    public int[] WithDistinctLINQMethod(int[] arrayWithDuplicateValues)
     {
         return arrayWithDuplicateValues.Distinct().ToArray();
     }
 
-    public string[] WithGroupByAndSelectLINQMethod(string[] arrayWithDuplicateValues)
+    public int[] WithGroupByAndSelectLINQMethod(int[] arrayWithDuplicateValues)
     {
         return arrayWithDuplicateValues.GroupBy(d => d).Select(d => d.First()).ToArray();
     }
@@ -24,7 +24,7 @@ public class RemoveDuplicateElements
     }
 
     // This method will re-arrange the elements in the array
-    public string[] IterationAndShiftingElements(string[] arrayWithDuplicateValues)
+    public int[] IterationAndShiftingElements(int[] arrayWithDuplicateValues)
     {
         var size = arrayWithDuplicateValues.Length;
 
@@ -47,7 +47,7 @@ public class RemoveDuplicateElements
         return arrayWithDuplicateValues[0..size];
     }
 
-    public string[] IterationAndSwappingElements(string[] arrayWithDuplicateValues)
+    public int[] IterationAndSwappingElements(int[] arrayWithDuplicateValues)
     {
         var size = arrayWithDuplicateValues.Length;
 
@@ -67,21 +67,21 @@ public class RemoveDuplicateElements
         return arrayWithDuplicateValues[0..size];
     }
 
-    public string[] IterationWithDictionary(string[] arrayWithDuplicateValues)
+    public int[] IterationWithDictionary(int[] arrayWithDuplicateValues)
     {
-        var dic = new Dictionary<string, int>();
+        var dic = new Dictionary<int, int>();
 
         foreach (var s in arrayWithDuplicateValues)
         {
             dic.TryAdd(s, 1);
         }
 
-        return dic.Select(x => x.Key.ToString()).ToArray();
+        return dic.Select(x => x.Key).ToArray();
     }
 
-    public string[] IterationWithDictionaryOpt(string[] arrayWithDuplicateValues)
+    public int[] IterationWithDictionaryOpt(int[] arrayWithDuplicateValues)
     {
-        var dic = new Dictionary<string, int>();
+        var dic = new Dictionary<int, int>();
 
         foreach (var s in arrayWithDuplicateValues)
         {
@@ -91,11 +91,11 @@ public class RemoveDuplicateElements
         return dic.Keys.ToArray();
     }
 
-    public string[] RecursiveMethod(string[] arrayWithDuplicateValues, List<string>? mem = default, int index = 0)
+    public int[] RecursiveMethod(int[] arrayWithDuplicateValues, List<int>? mem = default, int index = 0)
     {
         if (mem == null)
         {
-            mem = new List<string>();
+            mem = new List<int>();
         }
 
         if (index >= arrayWithDuplicateValues.Length)

@@ -3,10 +3,10 @@
 class Program
 {
     private static readonly RemoveDuplicateElements _duplicatesRemoval = new RemoveDuplicateElements();
-    
+
     static void Main(string[] args)
     {
-        string[] arrayWithDuplicateValues = new string[] { "value1", "value1", "value2", "value2"};
+        var arrayWithDuplicateValues = new int[] { 1, 1, 2, 2 };
         Console.WriteLine("Input = {0}", string.Join(",", arrayWithDuplicateValues));
 
         Console.WriteLine();

@@ -6,12 +6,12 @@ namespace Tests;
 public class Tests
 {
     private readonly RemoveDuplicateElements _duplicatesRemoval;
-    private string[] _arrayWithDuplicateValues;
+    private int[] _arrayWithDuplicateValues;
     
     public Tests()
     {
         _duplicatesRemoval = new RemoveDuplicateElements();
-        _arrayWithDuplicateValues = new string[] { "value1", "value1", "value2", "value2" };
+        _arrayWithDuplicateValues = new int[] { 1,1,2,2 };
     }
 
     [Fact]
