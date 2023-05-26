@@ -2,25 +2,25 @@
 {
 	public class ConsoleOutput : IDisposable
 	{
-		private readonly StringWriter consoleOutputWriter;
-		private readonly TextWriter originalOutputWriter;
+		private readonly StringWriter _consoleOutputWriter;
+		private readonly TextWriter _originalOutputWriter;
 
 		public ConsoleOutput()
 		{
-			consoleOutputWriter = new StringWriter();
-			originalOutputWriter = Console.Out;
-			Console.SetOut(consoleOutputWriter);
+			_consoleOutputWriter = new StringWriter();
+			_originalOutputWriter = Console.Out;
+			Console.SetOut(_consoleOutputWriter);
 		}
 
 		public string GetOutput()
 		{
-			return consoleOutputWriter.ToString();
+			return _consoleOutputWriter.ToString();
 		}
 
 		public void Dispose()
 		{
-			Console.SetOut(originalOutputWriter);
-			consoleOutputWriter.Dispose();
+			Console.SetOut(_originalOutputWriter);
+			_consoleOutputWriter.Dispose();
 		}
 	}
 }
