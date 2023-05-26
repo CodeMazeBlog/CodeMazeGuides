@@ -4,7 +4,7 @@ namespace Tests
 	public class ActionAndFuncUnitTests
 	{
 		[Fact]
-		public void whenTwoNumbersAreEntered_thenPerformActionDelegateCalculations()
+		public void WhenTwoNumbersAreEntered_ThenPerformActionDelegateCalculations()
 		{
 			// Arrange
 			var expectedAdditionResult = "Addition result: 6";
@@ -27,7 +27,7 @@ namespace Tests
 		}
 
 		[Fact]
-		public void whenTwoNumbersAreEntered_thenPerformFuncDelegateCalculations()
+		public void WhenTwoNumbersAreEntered_ThenPerformFuncDelegateCalculations()
 		{
 			// Arrange
 			var expectedAdditionResult = "Addition result: 6";
