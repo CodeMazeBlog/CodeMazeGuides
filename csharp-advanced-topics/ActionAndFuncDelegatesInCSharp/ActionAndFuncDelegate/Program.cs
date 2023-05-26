@@ -25,6 +25,7 @@
 
 			ActionCalculator(4, 2);
 		}
+		
 		public static void FuncDelegateSample()
 		{
 			Console.WriteLine("Func Delegate Result");
