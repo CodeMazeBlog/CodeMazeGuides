@@ -7,15 +7,14 @@ namespace ConvertByteArrayToHexConsole;
 
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
-[RankColumn]
-[MemoryDiagnoser]
 public class ConvertByteArrayToHexUpperBenchmarks
 {
     private static readonly int[] Sizes =
     {
+        32,
         128,
         4096,
-        //1_048_576
+        1_048_576
     };
 
     private readonly List<byte[]> _sourceData = new();
@@ -40,38 +39,43 @@ public class ConvertByteArrayToHexUpperBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToHexUsingBitConverter(byte[] source) => ConversionHelpers.ToHexStringWithBitConverter(source);
+    public string ConvertToUpperHexUsingBitConverter(byte[] source) => ConversionHelpers.ToHexWithBitConverter(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToHexUsingBitConverterNoDashes(byte[] source) =>
-        ConversionHelpers.ToHexStringWithBitConverter(source, true);
+    public string ConvertToUpperHexUsingBitConverterNoDashes(byte[] source) =>
+        ConversionHelpers.ToHexWithBitConverter(source, true);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToHexUsingStringBuilderAppend(byte[] source) =>
-        ConversionHelpers.ToHexStringWithStringBuilderAppend(source);
+    public string ConvertToUpperHexUsingStringBuilderAppend(byte[] source) =>
+        ConversionHelpers.ToHexWithStringBuilderAppend(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToHexUsingBitManipulation(byte[] source) =>
-        ConversionHelpers.ToHexStringWithBitManipulation(source);
+    public string ConvertToUpperHexUsingTryFormatAndCreate(byte[] source) =>
+        ConversionHelpers.ToHexWithTryFormatAndStringCreate(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToHexUsingAlphabetSpanLookup(byte[] source) =>
-        ConversionHelpers.ToHexStringWithAlphabetSpanLookup(source);
+    public string ConvertToUpperHexUsingBitManipulation(byte[] source) =>
+        ConversionHelpers.ToHexWithBitManipulation(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToHexUsingLookup(byte[] source) => ConversionHelpers.ToHexStringWithLookup(source);
+    public string ConvertToUpperHexUsingAlphabetSpanLookup(byte[] source) =>
+        ConversionHelpers.ToHexWithAlphabetSpanLookup(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToHexUsingLookupNetStandard20(byte[] source) =>
-        ConversionHelpers.ToHexStringWithLookupNetStandard20(source);
+    public string ConvertToUpperHexUsingLookup(byte[] source) => ConversionHelpers.ToHexWithLookup(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToHexUsingConvert(byte[] source) => ConversionHelpers.ToHexStringWithConvert(source);
+    public string ConvertToUpperHexUsingLookupNetStandard20(byte[] source) =>
+        ConversionHelpers.ToHexWithLookupNetStandard20(source);
+
+    [Benchmark]
+    [ArgumentsSource(nameof(ArrayData))]
+    public string ConvertToUpperHexUsingConvert(byte[] source) => ConversionHelpers.ToHexWithConvert(source);
 }

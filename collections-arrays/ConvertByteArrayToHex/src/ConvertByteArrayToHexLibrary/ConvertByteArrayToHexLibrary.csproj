@@ -5,6 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
   </PropertyGroup>
 
+      <ItemGroup>
+	      <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+		      <_Parameter1>ConvertByteArrayToHexUnitTests</_Parameter1>
+	      </AssemblyAttribute>
+      </ItemGroup>
 </Project>

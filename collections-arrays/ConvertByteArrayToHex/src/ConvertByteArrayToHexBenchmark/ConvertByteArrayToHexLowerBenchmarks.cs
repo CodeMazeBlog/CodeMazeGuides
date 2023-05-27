@@ -1,19 +1,20 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
 using ConvertByteArrayToHexLibrary;
 
 namespace ConvertByteArrayToHexConsole;
 
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-[RankColumn]
-[MemoryDiagnoser]
+[GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
 public class ConvertByteArrayToHexLowerBenchmarks
 {
     private static readonly int[] Sizes =
     {
+        32,
         128,
         4096,
-        //1_048_576
+        1_048_576
     };
 
     private readonly List<byte[]> _sourceData = new();
@@ -39,29 +40,33 @@ public class ConvertByteArrayToHexLowerBenchmarks
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
     public string ConvertToLowerHexUsingStringBuilderAppend(byte[] source) =>
-        ConversionHelpers.ToHexStringWithStringBuilderAppend(source, true);
+        ConversionHelpers.ToHexWithStringBuilderAppend(source, true);
+
+    [Benchmark]
+    [ArgumentsSource(nameof(ArrayData))]
+    public string ConvertToLowerHexUsingTryFormatAndCreate(byte[] source) =>
+        ConversionHelpers.ToHexWithTryFormatAndStringCreate(source, true);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
     public string ConvertToLowerHexUsingBitManipulation(byte[] source) =>
-        ConversionHelpers.ToHexStringWithBitManipulation(source, true);
+        ConversionHelpers.ToHexWithBitManipulation(source, true);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
     public string ConvertToLowerHexUsingAlphabetSpanLookup(byte[] source) =>
-        ConversionHelpers.ToHexStringWithAlphabetSpanLookup(source, true);
+        ConversionHelpers.ToHexWithAlphabetSpanLookup(source, true);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToLowerHexUsingLookup(byte[] source) => ConversionHelpers.ToHexStringWithLookup(source, true);
+    public string ConvertToLowerHexUsingLookup(byte[] source) => ConversionHelpers.ToHexWithLookup(source, true);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
     public string ConvertToLowerHexUsingLookupNetStandard20(byte[] source) =>
-        ConversionHelpers.ToHexStringWithLookupNetStandard20(source, true);
+        ConversionHelpers.ToHexWithLookupNetStandard20(source, true);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToLowerHexUsingConvert(byte[] source) =>
-        ConversionHelpers.ToHexStringWithConvert(source, true);
+    public string ConvertToLowerHexUsingConvert(byte[] source) => ConversionHelpers.ToHexWithConvert(source, true);
 }

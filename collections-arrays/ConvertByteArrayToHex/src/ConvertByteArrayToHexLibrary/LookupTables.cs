@@ -1,8 +1,8 @@
 ﻿namespace ConvertByteArrayHexLibrary;
 
-internal static class LookupTables
+public static class LookupTables
 {
-    private static readonly uint[] HexLookupUpperLittleEndian =
+    internal static readonly uint[] HexLookupUpperLittleEndian =
     {
         3145776, 3211312, 3276848, 3342384, 3407920, 3473456, 3538992, 3604528, 3670064, 3735600,
         4259888, 4325424, 4390960, 4456496, 4522032, 4587568, 3145777, 3211313, 3276849, 3342385,
@@ -32,7 +32,7 @@ internal static class LookupTables
         4259910, 4325446, 4390982, 4456518, 4522054, 4587590
     };
 
-    private static readonly uint[] HexLookupLowerLittleEndian =
+    internal static readonly uint[] HexLookupLowerLittleEndian =
     {
         3145776, 3211312, 3276848, 3342384, 3407920, 3473456, 3538992, 3604528, 3670064, 3735600,
         6357040, 6422576, 6488112, 6553648, 6619184, 6684720, 3145777, 3211313, 3276849, 3342385,
@@ -62,7 +62,7 @@ internal static class LookupTables
         6357094, 6422630, 6488166, 6553702, 6619238, 6684774
     };
 
-    private static readonly uint[] HexLookupUpperBigEndian =
+    internal static readonly uint[] HexLookupUpperBigEndian =
     {
         3145776, 3145777, 3145778, 3145779, 3145780, 3145781, 3145782, 3145783, 3145784, 3145785,
         3145793, 3145794, 3145795, 3145796, 3145797, 3145798, 3211312, 3211313, 3211314, 3211315,
@@ -92,7 +92,7 @@ internal static class LookupTables
         4587585, 4587586, 4587587, 4587588, 4587589, 4587590
     };
 
-    private static readonly uint[] HexLookupLowerBigEndian =
+    internal static readonly uint[] HexLookupLowerBigEndian =
     {
         3145776, 3145777, 3145778, 3145779, 3145780, 3145781, 3145782, 3145783, 3145784, 3145785,
         3145825, 3145826, 3145827, 3145828, 3145829, 3145830, 3211312, 3211313, 3211314, 3211315,
@@ -125,7 +125,7 @@ internal static class LookupTables
     private static ReadOnlySpan<byte> HexAlphabetSpanUpper => "0123456789ABCDEF"u8;
     private static ReadOnlySpan<byte> HexAlphabetSpanLower => "0123456789abcdef"u8;
 
-    internal static uint[] GetLookupTable(bool toLower) =>
+    public static uint[] GetLookupTable(bool toLower) =>
         toLower
             ? BitConverter.IsLittleEndian ? HexLookupLowerLittleEndian : HexLookupLowerBigEndian
             : BitConverter.IsLittleEndian
@@ -134,4 +134,22 @@ internal static class LookupTables
 
     internal static ReadOnlySpan<byte> GetAlphabetSpan(bool toLower) =>
         toLower ? HexAlphabetSpanLower : HexAlphabetSpanUpper;
+
+    public static uint[] CreateLookup(bool lowercase, bool littleEndian)
+    {
+        var format = lowercase ? "x2" : "X2";
+
+        Span<char> s = stackalloc char[2];
+        var result = new uint[256];
+        for (var i = 0; i < 256; i++)
+        {
+            i.TryFormat(s, out _, format);
+            if (littleEndian)
+                result[i] = s[0] + ((uint) s[1] << 16);
+            else
+                result[i] = s[1] + ((uint) s[0] << 16);
+        }
+
+        return result;
+    }
 }
