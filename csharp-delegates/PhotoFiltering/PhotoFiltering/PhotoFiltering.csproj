@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="PhotoFilters">
+      <HintPath>..\..\PhotoFilters\PhotoFilters\bin\Debug\net7.0\PhotoFilters.dll</HintPath>
+    </Reference>
+    <Reference Include="PhotoFilters.v02">
+      <HintPath>..\..\PhotoFilters.v02\PhotoFilters.v02\bin\Debug\net7.0\PhotoFilters.v02.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
