@@ -51,7 +51,7 @@ namespace WireMock.NET.Tests
 
         public void Dispose()
         {
-            _server.Dispose();
+            _server.Stop();
             _httpClient.Dispose();
         }
     }
