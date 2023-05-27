@@ -1,5 +1,7 @@
 using FluentAssertions;
 using System.Net;
+using System.Text.Json;
+using WireMock.NET.Tests.Contracts;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
@@ -26,14 +28,21 @@ namespace WireMock.NET.Tests
         public async Task GivenThatPlanetExists_WhenGetPlanetIsInvoked_ThenOKAndValidPlanetIsReturned()
         {
             // Arrange
+            var planet = new Planet("Mars", 6779, 2, true);
             _server.Given(Request.Create().WithPath("/planets/3").UsingGet())
-                .RespondWith(Response.Create().WithBodyAsJson(new object()).WithStatusCode(HttpStatusCode.OK));
+                .RespondWith(Response.Create().WithBodyAsJson(planet).WithStatusCode(HttpStatusCode.OK));
 
             // Act
             var response = await _httpClient.GetAsync(_httpClient.BaseAddress + "planets/3");
+            var result = JsonSerializer.Deserialize<Planet>(await response.Content.ReadAsStringAsync());
 
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
+            result.Should().NotBeNull();
+            result.Name.Should().Be(planet.Name);
+            result.Diameter.Should().Be(planet.Diameter);
+            result.NumberOfMoons.Should().Be(planet.NumberOfMoons);
+            result.HasAtmosphere.Should().Be(planet.HasAtmosphere);            
         }
 
         [Fact]
