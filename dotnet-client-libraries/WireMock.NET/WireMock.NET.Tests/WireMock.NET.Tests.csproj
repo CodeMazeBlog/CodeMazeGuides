@@ -24,4 +24,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WireMockNet\WireMockNet.csproj" />
+  </ItemGroup>
+
 </Project>
