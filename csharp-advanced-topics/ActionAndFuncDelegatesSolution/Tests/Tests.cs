@@ -9,8 +9,8 @@ namespace Tests
         [TestMethod]
         public void whenGetCubeActionDelegateInvoked_ThenOutputResult()
         {
-            int number = 33;
-            string expected = "The result is 66";
+            int number = 7;
+            string expected = "The result is 343";
             string actual = "";
 
             Action<int> actionDelegate = Programs.GetCube;
@@ -27,8 +27,8 @@ namespace Tests
         [TestMethod]
         public void whenGetSquareFuncDelegateInvoked_ThenReturnResult()
         {
-            int number = 19;
-            int expected = 38;
+            int number = 6;
+            int expected = 36;
             int actual = 0;
 
             Func<int, int> funcDelegate = Programs.GetSquare;
@@ -42,13 +42,13 @@ namespace Tests
     {
         public static void GetCube(int number)
         {
-            int result = number * 3;
+            int result = number * number * number;
             Console.WriteLine($"The result is {result}");
         }
 
         public static int GetSquare(int number)
         {
-            return number * 2;
+            return number * number;
         }
     }
 }

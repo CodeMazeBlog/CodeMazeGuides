@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace delegate_namespace
 {
@@ -10,21 +6,21 @@ namespace delegate_namespace
     {
         public static int GetSquare(int number)
         {
-            return number * 2;
+            return number * number;
         }
         public static void GetCube(int number)
         {
-            int result = number * 3;
+            int result = number * number * number;
             Console.WriteLine($"The result is {result}");
         }
         public static void Main(string[] args)
         {
             Func<int, int> funcDelegate = GetSquare;
-            int result = funcDelegate.Invoke(19);
+            int result = funcDelegate.Invoke(11);
             Console.WriteLine($"The result is {result}");
 
             Action<int> actionDelegate = GetCube;
-            actionDelegate.Invoke(33);
+            actionDelegate.Invoke(6);
 
             Console.ReadKey();
         }
