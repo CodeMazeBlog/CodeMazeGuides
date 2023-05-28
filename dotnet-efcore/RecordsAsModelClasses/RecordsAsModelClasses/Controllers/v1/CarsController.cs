@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RecordsAsModelClasses.Core.Context;
 using RecordsAsModelClasses.Core.DTOs;
@@ -12,26 +11,24 @@ namespace RecordsAsModelClasses.Controllers.v1;
 public class CarsController : ControllerBase
 {
     private readonly CarDbContext _context;
-    private readonly IMapper _mapper;
 
-    public CarsController(CarDbContext context, IMapper mapper)
+    public CarsController(CarDbContext context)
     {
         _context = context;
-        _mapper = mapper;
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateCarAsync([FromBody] UpsertCarDto carDto)
     {
-        var car = _mapper.Map<UpsertCarDto, Car>(carDto);
+        var car = new Car(carDto.Make, carDto.Model, carDto.Year);
 
         _context.RecordCars.Add(car);
 
         await _context.SaveChangesAsync();
 
-        var carResponse = _mapper.Map<Car, CarDto>(car);
+        var carResponse = new CarDto(car.Id, car.Make, car.Model, car.Year);
 
-        return CreatedAtAction(nameof(GetCar), new { car.Id }, carResponse);
+        return CreatedAtAction(nameof(GetCar), new {car.Id}, carResponse);
     }
 
     [HttpPut("{id:int}")]
@@ -64,7 +61,7 @@ public class CarsController : ControllerBase
             return NotFound();
         }
 
-        var carResponse = _mapper.Map<Car, CarDto>(car);
+        var carResponse = new CarDto(car.Id, car.Make, car.Model, car.Year);
 
         return Ok(carResponse);
     }
