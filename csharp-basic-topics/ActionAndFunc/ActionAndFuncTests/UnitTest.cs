@@ -9,7 +9,7 @@ namespace ActionAndFuncDelegateTests
         public class ExampleTests
         {
             [TestMethod]
-            public void PrintNumbersWithoutAction_UnitTest_PrintsNumbersCorrectly()
+            public void WhenPrintNumbersWithoutAction_ThenNumbersPrintedCorrectly()
             {
                 // Arrange
                 var numbers = new List<int> { 1, 2, 3, 4, 5 };
@@ -26,7 +26,7 @@ namespace ActionAndFuncDelegateTests
             }
 
             [TestMethod]
-            public void PrintNumbersWithAction_UnitTest_PrintsNumbersCorrectly()
+            public void WhenPrintNumbersWithAction_ThenNumbersPrintedCorrectly()
             {
                 // Arrange
                 var numbers = new List<int> { 1, 2, 3, 4, 5 };
