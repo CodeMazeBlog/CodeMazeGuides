@@ -1,5 +1,4 @@
-﻿
-using ActionAndFuncDelegatesInCSharp;
+﻿using ActionAndFunc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ActionAndFuncDelegateTests
 {
@@ -10,7 +9,7 @@ namespace ActionAndFuncDelegateTests
         public class ExampleTests
         {
             [TestMethod]
-            public void PrintNumbersWithoutAction_PrintsNumbersCorrectly()
+            public void PrintNumbersWithoutAction_UnitTest_PrintsNumbersCorrectly()
             {
                 // Arrange
                 var numbers = new List<int> { 1, 2, 3, 4, 5 };
@@ -27,7 +26,7 @@ namespace ActionAndFuncDelegateTests
             }
 
             [TestMethod]
-            public void PrintNumbersWithAction_PrintsNumbersCorrectly()
+            public void PrintNumbersWithAction_UnitTest_PrintsNumbersCorrectly()
             {
                 // Arrange
                 var numbers = new List<int> { 1, 2, 3, 4, 5 };

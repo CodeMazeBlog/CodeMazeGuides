@@ -1,4 +1,4 @@
-﻿namespace ActionAndFuncDelegatesInCSharp
+﻿namespace ActionAndFunc
 {
     public static class Example
     {
