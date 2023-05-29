@@ -53,12 +53,12 @@ namespace ActionAndFuncDelegateTests
             public void AddNumbers_WhenValidInputProvided_ReturnsCorrectSum()
             {
                 // Arrange
-                int expectedSum = 8;
-                int a = 5;
-                int b = 3;
+                var expectedSum = 8;
+                var a = 5;
+                var b = 3;
 
                 // Act
-                int actualSum = Example.AddNumbers(a, b);
+                var actualSum = Example.AddNumbers(a, b);
 
                 // Assert
                 Assert.AreEqual(expectedSum, actualSum);
