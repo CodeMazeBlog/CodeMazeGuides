@@ -15,14 +15,14 @@ namespace ActionAndFuncDelegateTests
                 var numbers = new List<int> { 1, 2, 3, 4, 5 };
                 var stringWriter = new StringWriter();
                 Console.SetOut(stringWriter);
-                var expectedOutput = "1\r\n2\r\n3\r\n4\r\n5"; // Remove the trailing \r\n
+                var expectedOutput = "1\r\n2\r\n3\r\n4\r\n5\r\n";
 
                 // Act
                 Example.PrintNumbersWithoutAction(numbers);
-                var actualOutput = stringWriter.ToString().TrimEnd(); // Trim trailing white space
+                var actualOutput = stringWriter.ToString();
 
                 // Assert
-                Assert.AreEqual(expectedOutput, actualOutput);
+                Assert.AreEqual(expectedOutput, actualOutput, "The printed numbers do not match the expected output.");
             }
 
             [TestMethod]
@@ -32,17 +32,16 @@ namespace ActionAndFuncDelegateTests
                 var numbers = new List<int> { 1, 2, 3, 4, 5 };
                 var stringWriter = new StringWriter();
                 Console.SetOut(stringWriter);
-                var expectedOutput = "1\r\n2\r\n3\r\n4\r\n5"; // Remove the trailing \r\n
+                var expectedOutput = "1\r\n2\r\n3\r\n4\r\n5\r\n";
+                Action<int> printNumber = Console.WriteLine;
 
                 // Act
-                Action<int> printNumber = Console.WriteLine;
                 Example.PrintNumbersWithAction(numbers, printNumber);
-                var actualOutput = stringWriter.ToString().TrimEnd(); // Trim trailing white space
+                var actualOutput = stringWriter.ToString();
 
                 // Assert
-                Assert.AreEqual(expectedOutput, actualOutput);
+                Assert.AreEqual(expectedOutput, actualOutput, "The printed numbers do not match the expected output.");
             }
-
         }
     }
 }
