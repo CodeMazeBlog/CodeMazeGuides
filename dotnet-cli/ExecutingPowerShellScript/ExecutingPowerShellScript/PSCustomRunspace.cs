@@ -20,7 +20,6 @@ namespace ExecutingPowerShellScript
             SessionStateCmdletEntry getDateCmdlet = new SessionStateCmdletEntry(
                 "Get-Date", typeof(Microsoft.PowerShell.Commands.GetDateCommand), "");
             iss.Commands.Add(getDateCmdlet);
-
             rs = RunspaceFactory.CreateRunspace(iss);
             rs.Open();
         }

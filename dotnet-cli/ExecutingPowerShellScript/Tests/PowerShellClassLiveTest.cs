@@ -29,6 +29,5 @@ namespace Tests
 
             Assert.Equal(expectedResult, result.ToString());
         }
-
     }
 }
