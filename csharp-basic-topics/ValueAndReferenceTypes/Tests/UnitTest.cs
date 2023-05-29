@@ -11,11 +11,13 @@ namespace Tests
             var firstRectangle = new ValueTypeRectangle();
             firstRectangle.Length = 10;
             firstRectangle.Breadth = 10;
+            firstRectangle.MyShape = new Shape { Name = "Square" };
 
             var secondRectangle = firstRectangle;
 
             firstRectangle.Length = 20;
             firstRectangle.Breadth = 20;
+            firstRectangle.MyShape.Name = "Circle";
 
             Assert.AreNotEqual(firstRectangle.Area(), secondRectangle.Area());
         }
@@ -36,23 +38,46 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenPassByValue_ThenCounterHaveDifferentCopies()
+        public void WhenValueTypesPassByValue_ThenCounterHaveDifferentCopies()
         {
             var pass = new PassByValueAndReferenceSample();
             int counter = 100;
-            pass.PassByValue(counter);
+            pass.PassValueTypesByValue(counter);
 
             Assert.AreEqual(100, counter);
         }
 
         [TestMethod]
-        public void WhenPassByReference_ThenCounterHaveReferenceToSameAddress()
+        public void WhenReferenceTypesPassByValue_ThenCounterHaveDifferentCopies()
+        {
+            var pass = new PassByValueAndReferenceSample();
+            ReferenceTypeRectangle rect = new ReferenceTypeRectangle { Length = 20, Breadth = 20 };
+            pass.PassReferenceTypesByValue(rect);
+            Console.WriteLine($"Value outside after call Length = {rect.Length}, Breadth = {rect.Breadth} ");
+
+            Assert.AreEqual(400, rect.Length * rect.Breadth);
+        }
+
+
+        [TestMethod]
+        public void WhenValueTypesPassByReference_ThenCounterHaveReferenceToSameAddress()
         {
             var pass = new PassByValueAndReferenceSample();
             int counter = 100;
-            pass.PassByReference(ref counter);
+            pass.PassValueTypesByReference(ref counter);
 
             Assert.AreEqual(101, counter);
+        }
+
+        [TestMethod]
+        public void WhenReferenceTypesPassByReference_ThenCounterHaveReferenceToSameAddress()
+        {
+            var pass = new PassByValueAndReferenceSample();
+            ReferenceTypeRectangle rect = new ReferenceTypeRectangle { Length = 20, Breadth = 20 };
+            pass.PassReferenceTypesByReference(rect);
+            Console.WriteLine($"Value outside after call Length = {rect.Length}, Breadth = {rect.Breadth} ");
+
+            Assert.AreEqual(100, rect.Length * rect.Breadth);
         }
 
         [TestMethod]
