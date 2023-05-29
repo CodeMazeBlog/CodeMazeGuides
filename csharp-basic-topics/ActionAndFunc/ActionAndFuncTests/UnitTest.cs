@@ -15,7 +15,11 @@ namespace ActionAndFuncDelegateTests
                 var numbers = new List<int> { 1, 2, 3, 4, 5 };
                 var stringWriter = new StringWriter();
                 Console.SetOut(stringWriter);
-                var expectedOutput = "1\r\n2\r\n3\r\n4\r\n5\r\n";
+                var expectedOutput = "1" + Environment.NewLine +
+                                     "2" + Environment.NewLine +
+                                     "3" + Environment.NewLine +
+                                     "4" + Environment.NewLine +
+                                     "5" + Environment.NewLine;
 
                 // Act
                 Example.PrintNumbersWithoutAction(numbers);
