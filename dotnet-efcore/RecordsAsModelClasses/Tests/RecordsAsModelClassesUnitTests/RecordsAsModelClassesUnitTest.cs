@@ -3,7 +3,6 @@ using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using RecordsAsModelClasses.Core.DTOs;
-using RecordsAsModelClasses.Core.Entities.Records;
 using Xunit;
 
 namespace Tests;
