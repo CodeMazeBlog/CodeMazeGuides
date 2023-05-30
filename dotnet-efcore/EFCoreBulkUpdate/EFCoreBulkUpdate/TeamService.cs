@@ -22,7 +22,8 @@ namespace EFCoreBulkUpdate
 
         public async Task<int> UpdateAllTeamsYearFounded_V1()
         {
-            var teams = await _context.Teams.ToListAsync();
+            var teams = await _context.Teams
+                .ToListAsync();
             teams.ForEach(t => t.YearFounded += 1);
 
             return await _context.SaveChangesAsync();
@@ -30,7 +31,9 @@ namespace EFCoreBulkUpdate
 
         public async Task<int> UpdateTeamsYearFounded_V1(int minYearFounded)
         {
-            var teams = await _context.Teams.Where(t => t.YearFounded >= minYearFounded).ToListAsync();
+            var teams = await _context.Teams
+                .Where(t => t.YearFounded >= minYearFounded)
+                .ToListAsync();
             teams.ForEach(t => t.YearFounded += 1);
 
             return await _context.SaveChangesAsync();
@@ -38,7 +41,8 @@ namespace EFCoreBulkUpdate
 
         public async Task<int> UpdateAllTeamsYearAndDescription_V1(string addedDescription)
         {
-            var teams = await _context.Teams.ToListAsync();
+            var teams = await _context.Teams
+                .ToListAsync();
             teams.ForEach(t =>
             {
                 t.YearFounded += 1;
@@ -50,18 +54,22 @@ namespace EFCoreBulkUpdate
 
         public async Task<int> UpdateAllTeamsYearFounded_V2()
         {
-            return await _context.Teams.ExecuteUpdateAsync(t => t.SetProperty(b => b.YearFounded, b => b.YearFounded + 1));
+            return await _context.Teams
+                .ExecuteUpdateAsync(t => t.SetProperty(b => b.YearFounded, b => b.YearFounded + 1));
         }
 
         public async Task UpdateTeamsYearFounded_V2(int minYearFounded)
         {
-            await _context.Teams.Where(t => t.YearFounded >= minYearFounded)
+            await _context.Teams
+                .Where(t => t.YearFounded >= minYearFounded)
                 .ExecuteUpdateAsync(t => t.SetProperty(b => b.YearFounded, b => b.YearFounded + 1));
         }
 
         public async Task<int> UpdateTeamsYearAndDescription_V1(int minYearFounded, string addedDescription)
         {
-            var teams = await _context.Teams.Where(t => t.YearFounded >= minYearFounded).ToListAsync();
+            var teams = await _context.Teams
+                .Where(t => t.YearFounded >= minYearFounded)
+                .ToListAsync();
             teams.ForEach(t =>
             {
                 t.YearFounded += 1;
@@ -113,12 +121,14 @@ namespace EFCoreBulkUpdate
 
         public async Task DeleteAllTeams()
         {
-            await _context.Teams.ExecuteDeleteAsync();
+            await _context.Teams
+                .ExecuteDeleteAsync();
         }
 
         public async Task<int> DeleteAllTeams_V1()
         {
-            var teams = await _context.Teams.ToListAsync();
+            var teams = await _context.Teams
+                .ToListAsync();
             _context.RemoveRange(teams);
             
             return await _context.SaveChangesAsync();
@@ -126,7 +136,8 @@ namespace EFCoreBulkUpdate
 
         public async Task<int> DeleteAllTeams_V2()
         {
-            return await _context.Teams.ExecuteDeleteAsync();
+            return await _context.Teams
+                .ExecuteDeleteAsync();
         }
 
         public async Task DeleteTeams_V2(int minYearFounded)
