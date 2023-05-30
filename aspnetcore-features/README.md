@@ -5,6 +5,7 @@ This section contains articles about specific ASP.NET Core Web API features.
 ### Relevant articles:
 
 - [How to Implement Checkbox List in ASP.NET Core](https://code-maze.com/implement-checkbox-list-aspnetcore/)
+- [Content Security Policy in ASP.NET Core](https://code-maze.com/aspnetcore-content-security-policy/)
 - [Custom Attributes in .NET](https://code-maze.com/dotnet-custom-attributes/)
 - [How to Create a Custom Authorize Attribute in ASP.NET Core](https://code-maze.com/custom-authorize-attribute-aspnetcore/)
 - [Distributed Caching in ASP.NET Core](https://code-maze.com/aspnetcore-distributed-caching/)
