@@ -1,5 +1,6 @@
 ﻿using EFCoreBulkUpdate;
 using EFCoreBulkUpdate.Creator;
+using EFCoreBulkUpdate.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 

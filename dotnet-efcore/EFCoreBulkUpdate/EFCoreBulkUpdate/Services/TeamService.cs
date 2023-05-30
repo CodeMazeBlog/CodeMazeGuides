@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 
-namespace EFCoreBulkUpdate
+namespace EFCoreBulkUpdate.Services
 {
     public class TeamService
     {
@@ -24,6 +24,7 @@ namespace EFCoreBulkUpdate
         {
             var teams = await _context.Teams
                 .ToListAsync();
+
             teams.ForEach(t => t.YearFounded += 1);
 
             return await _context.SaveChangesAsync();
@@ -34,6 +35,7 @@ namespace EFCoreBulkUpdate
             var teams = await _context.Teams
                 .Where(t => t.YearFounded >= minYearFounded)
                 .ToListAsync();
+
             teams.ForEach(t => t.YearFounded += 1);
 
             return await _context.SaveChangesAsync();
@@ -43,12 +45,13 @@ namespace EFCoreBulkUpdate
         {
             var teams = await _context.Teams
                 .ToListAsync();
+
             teams.ForEach(t =>
             {
                 t.YearFounded += 1;
                 t.Description += " " + addedDescription;
             });
-            
+
             return await _context.SaveChangesAsync();
         }
 
@@ -70,6 +73,7 @@ namespace EFCoreBulkUpdate
             var teams = await _context.Teams
                 .Where(t => t.YearFounded >= minYearFounded)
                 .ToListAsync();
+
             teams.ForEach(t =>
             {
                 t.YearFounded += 1;
@@ -114,8 +118,9 @@ namespace EFCoreBulkUpdate
 
         public async Task AddPlayersToTeams(ICollection<Player> players)
         {
-            await _context.Players.AddRangeAsync(players);
-            
+            await _context.Players
+                .AddRangeAsync(players);
+
             await _context.SaveChangesAsync();
         }
 
@@ -129,8 +134,9 @@ namespace EFCoreBulkUpdate
         {
             var teams = await _context.Teams
                 .ToListAsync();
+
             _context.RemoveRange(teams);
-            
+
             return await _context.SaveChangesAsync();
         }
 
@@ -154,6 +160,7 @@ namespace EFCoreBulkUpdate
             sb.AppendLine("------------------------------------------------------");
             if (!teams.Any())
                 sb.AppendLine("[Empty]");
+            
             foreach (var team in teams)
             {
                 sb.AppendLine(team.Name + "    " + team.YearFounded + "    " + team.Description);

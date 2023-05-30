@@ -1,6 +1,6 @@
-using EFCoreBulkUpdate;
 using EFCoreBulkUpdate.Creator;
 using EFCoreBulkUpdate.Model;
+using EFCoreBulkUpdate.Services;
 using FluentAssertions;
 
 namespace Tests

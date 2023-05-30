@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 
-namespace EFCoreBulkUpdate
+namespace EFCoreBulkUpdate.Services
 {
     public class GameService
     {
@@ -16,7 +16,7 @@ namespace EFCoreBulkUpdate
         public async Task AddGames(IEnumerable<Game> games)
         {
             _context.Games.AddRange(games);
-            
+
             await _context.SaveChangesAsync();
         }
 
@@ -30,7 +30,7 @@ namespace EFCoreBulkUpdate
         public async Task<int> UpdateAllGames(string newOponent)
         {
             return await _context.Games
-                .ExecuteUpdateAsync(g => g.SetProperty(b => b.Opponent,b=> newOponent));
+                .ExecuteUpdateAsync(g => g.SetProperty(b => b.Opponent, b => newOponent));
         }
 
         public async Task DeleteAllBasketballGames()
@@ -48,21 +48,21 @@ namespace EFCoreBulkUpdate
                 sb.AppendLine("[Empty]");
             }
             else
-            {
-                var footballGames = games.OfType<FootballGame>().ToList();
-                var basketballGames = games.OfType<BasketballGame>().ToList();
+            {                              
                 sb.AppendLine("TeamName" + "    " + "Opponent" + "      " + "1stHalfScore" + "    " + "2ndHalfScore");
                 sb.AppendLine("-----------------------------------------------------------------");
+                var footballGames = games.OfType<FootballGame>().ToList();
                 if (!footballGames.Any())
                     sb.AppendLine("[Empty]");
                 foreach (var football in footballGames)
                 {
                     sb.AppendLine(football.Team.Name + "    " + football.Opponent + "         " + football.FirstHalfTimeScore + "             " + football.SecondHalfTimeScore);
                 }
-                sb.AppendLine();
-
-                sb.AppendLine("TeamName" + "    " + "Opponent" + "      " + "Q1Score" + "      " + "Q2Score"+"      "+"Q3Score"+"      "+"Q4Score"+"      ");
+                sb.AppendLine();                
+                
+                sb.AppendLine("TeamName" + "    " + "Opponent" + "      " + "Q1Score" + "      " + "Q2Score" + "      " + "Q3Score" + "      " + "Q4Score" + "      ");
                 sb.AppendLine("----------------------------------------------------------------------------");
+                var basketballGames = games.OfType<BasketballGame>().ToList();
                 if (!basketballGames.Any())
                     sb.AppendLine("[Empty]");
                 foreach (var basketball in basketballGames)
