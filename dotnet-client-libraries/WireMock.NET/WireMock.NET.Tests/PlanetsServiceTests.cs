@@ -3,43 +3,41 @@ using System.Net;
 using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
+using WireMock.Settings;
 using WireMockNet;
 
 namespace WireMock.NET.Tests
 {
-    public class WireMockNETTests : IDisposable
+    public class PlanetsServiceTests : IDisposable
     {
         private readonly HttpClient _httpClient;
         private readonly WireMockServer _mockServer;
         private readonly PlanetsService _planetService;
 
-        public WireMockNETTests()
+        public PlanetsServiceTests()
         {
-            _mockServer = WireMockServer.Start(new Settings.WireMockServerSettings
+            _mockServer = WireMockServer.Start(new WireMockServerSettings
             {
-                Urls = new[] { "https://localhost:8888" }
+                StartAdminInterface = true
             });
 
             _httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:8888")
+                BaseAddress = new Uri(_mockServer.Urls[0])
             };
 
             _planetService = new PlanetsService(_httpClient);
         }
 
         [Fact]
-        public async Task GivenThatPlanetExists_WhenGetPlanetByIdIsInvoked_ThenOKAndValidPlanetIsReturned()
+        public async Task GivenThatPlanetExists_WhenGetPlanetByIdIsInvoked_ThenValidPlanetIsReturned()
         {
             // Arrange
             var planet = new Planet(4, "Mars", 6779, 2, true);
 
             _mockServer
-                .Given(Request.Create()
-                    .WithPath("/planets/4").UsingGet())
-                .RespondWith(Response.Create()
-                    .WithBodyAsJson(planet)
-                    .WithStatusCode(HttpStatusCode.OK));
+                .Given(Request.Create().UsingGet().WithPath("/planets/4"))
+                .RespondWith(Response.Create().WithStatusCode(HttpStatusCode.OK).WithBodyAsJson(planet));
 
             // Act
             var result = await _planetService.GetPlanetByIdAsync(planet.Id);
@@ -53,9 +51,11 @@ namespace WireMock.NET.Tests
         }
 
         [Fact]
-        public async Task GivenThatPlanetDoesntExists_WhenGetPlanetIsInvoked_ThenNotFoundIsReturned()
+        public async Task GivenThatPlanetDoesntExists_WhenGetPlanetIsInvoked_ThenNullIsReturned()
         {
-            _mockServer.Given(Request.Create().WithPath("/planets/9").UsingGet())
+            // Arrange
+            _mockServer
+                .Given(Request.Create().UsingGet().WithPath("/planets/9"))
                 .RespondWith(Response.Create().WithStatusCode(HttpStatusCode.NotFound));
 
             // Act

@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="WireMock.Net" Version="1.5.26" />
+  </ItemGroup>
+
 </Project>
