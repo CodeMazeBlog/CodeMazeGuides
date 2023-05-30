@@ -20,21 +20,24 @@ namespace EFCoreBulkUpdate
             await _context.SaveChangesAsync();
         }
 
-        public async Task<int> DeleteAllFootballs()
+        public async Task<int> DeleteAllFootballGames()
         {
-            return await _context.Games.Where(p => p is FootballGame)
-                                .OfType<FootballGame>().ExecuteDeleteAsync();
+            return await _context.Games
+                .OfType<FootballGame>()
+                .ExecuteDeleteAsync();
         }
 
         public async Task<int> UpdateAllGames(string newOponent)
         {
-            return await _context.Games.ExecuteUpdateAsync(g => g.SetProperty(b => b.Opponent,b=> newOponent));
+            return await _context.Games
+                .ExecuteUpdateAsync(g => g.SetProperty(b => b.Opponent,b=> newOponent));
         }
 
-        public async Task DeleteAllBasketballs()
+        public async Task DeleteAllBasketballGames()
         {
-            await _context.Games.Where(p => p is BasketballGame)
-                                .OfType<BasketballGame>().ExecuteDeleteAsync();
+            await _context.Games
+                .OfType<BasketballGame>()
+                .ExecuteDeleteAsync();
         }
 
         public string PrintGames(ICollection<Game> games)
@@ -46,24 +49,25 @@ namespace EFCoreBulkUpdate
             }
             else
             {
-                var footballs = games.Where(p => p is FootballGame).OfType<FootballGame>().ToList();
-                var basketballs = games.Where(p => p is BasketballGame).OfType<BasketballGame>().ToList();
-                sb.AppendLine("Team Name" + "    " + "Opponent Name" + "    " + "FirstHalfTimeScore" + "    " + "SecondHalfTimeScore");
+                var footballGames = games.OfType<FootballGame>().ToList();
+                var basketballGames = games.OfType<BasketballGame>().ToList();
+                sb.AppendLine("TeamName" + "    " + "Opponent" + "      " + "1stHalfScore" + "    " + "2ndHalfScore");
                 sb.AppendLine("-----------------------------------------------------------------");
-                if (!footballs.Any())
+                if (!footballGames.Any())
                     sb.AppendLine("[Empty]");
-                foreach (var football in footballs)
+                foreach (var football in footballGames)
                 {
-                    sb.AppendLine(football.Team.Name + "    " + football.Opponent + "    " + football.FirstHalfTimeScore + "    " + football.SecondHalfTimeScore);
+                    sb.AppendLine(football.Team.Name + "    " + football.Opponent + "         " + football.FirstHalfTimeScore + "             " + football.SecondHalfTimeScore);
                 }
+                sb.AppendLine();
 
-                sb.AppendLine("TeamName" + "    " + "OpponentName" + "    " + "Q1Score" + "    " + "Q2Score"+"    "+"Q3Score"+"    "+"Q4Score"+"    ");
+                sb.AppendLine("TeamName" + "    " + "Opponent" + "      " + "Q1Score" + "      " + "Q2Score"+"      "+"Q3Score"+"      "+"Q4Score"+"      ");
                 sb.AppendLine("----------------------------------------------------------------------------");
-                if (!basketballs.Any())
+                if (!basketballGames.Any())
                     sb.AppendLine("[Empty]");
-                foreach (var basketball in basketballs)
+                foreach (var basketball in basketballGames)
                 {
-                    sb.AppendLine(basketball.Team.Name + "    " + basketball.Opponent + "    " + basketball.Quarter1Score + "    " + basketball.Quarter2Score + "    " + basketball.Quarter3Score + "    " + basketball.Quarter4Score);
+                    sb.AppendLine(basketball.Team.Name + "    " + basketball.Opponent + "         " + basketball.Quarter1Score + "         " + basketball.Quarter2Score + "    " + basketball.Quarter3Score + "    " + basketball.Quarter4Score);
                 }
             }
 

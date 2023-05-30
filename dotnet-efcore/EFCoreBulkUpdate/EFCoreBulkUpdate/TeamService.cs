@@ -90,15 +90,18 @@ namespace EFCoreBulkUpdate
 
         public async Task<List<Team>> FindAllTeams()
         {
-            return await _context.Teams.AsNoTracking()
-                                       .ToListAsync();
+            return await _context.Teams
+                .Include("Players")
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<List<Team>> FindTeams(int minFoundedYear)
         {
-            return await _context.Teams.Where(p => p.YearFounded >= minFoundedYear)
-                                       .AsNoTracking()
-                                       .ToListAsync();
+            return await _context.Teams
+                .Where(p => p.YearFounded >= minFoundedYear)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task AddPlayersToTeams(ICollection<Player> players)
@@ -128,7 +131,9 @@ namespace EFCoreBulkUpdate
 
         public async Task DeleteTeams_V2(int minYearFounded)
         {
-            await _context.Teams.Where(t => t.YearFounded >= minYearFounded).ExecuteDeleteAsync();
+            await _context.Teams
+                .Where(t => t.YearFounded >= minYearFounded)
+                .ExecuteDeleteAsync();
         }
 
         public string PrintTeams(ICollection<Team> teams)

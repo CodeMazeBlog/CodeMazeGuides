@@ -1,7 +1,7 @@
 using EFCoreBulkUpdate;
+using EFCoreBulkUpdate.Creator;
 using EFCoreBulkUpdate.Model;
 using FluentAssertions;
-using Tests.Creator;
 
 namespace Tests
 {
@@ -117,15 +117,15 @@ namespace Tests
             //Arrange
             var context = CreateContext();
             EmployeeService employeeService = new EmployeeService(context);
-            var footballs = GameCreator.CreateFootballGames(GameCount);
+            var footballGames = GameCreator.CreateFootballGames(GameCount);
             GameService gameService = new GameService(context);
             TeamService teamService = new TeamService(context);
-            var teams = new List<Team>() { footballs.FirstOrDefault().Team };
+            var teams = new List<Team>() { footballGames.FirstOrDefault().Team };
             await teamService.AddTeams(teams);
-            await gameService.AddGames(footballs);
+            await gameService.AddGames(footballGames);
 
             //Act and Assert
-            await Assert.ThrowsAsync<InvalidOperationException>(() => gameService.DeleteAllFootballs());
+            await Assert.ThrowsAsync<InvalidOperationException>(() => gameService.DeleteAllFootballGames());
         }
 
         [Fact]
@@ -134,12 +134,12 @@ namespace Tests
             //Arrange
             var context = CreateContext();
             EmployeeService employeeService = new EmployeeService(context);
-            var footballs = GameCreator.CreateFootballGames(GameCount);
-            var teams = new List<Team>() { footballs.FirstOrDefault().Team };
+            var footballGames = GameCreator.CreateFootballGames(GameCount);
+            var teams = new List<Team>() { footballGames.FirstOrDefault().Team };
             GameService gameService = new GameService(context);
             TeamService teamService = new TeamService(context);
             await teamService.AddTeams(teams);
-            await gameService.AddGames(footballs);
+            await gameService.AddGames(footballGames);
 
             //Act and Assert
             await Assert.ThrowsAsync<InvalidOperationException>(() => gameService.UpdateAllGames("new opponent"));

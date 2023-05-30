@@ -1,6 +1,6 @@
 ﻿using EFCoreBulkUpdate.Model;
 
-namespace Tests.Creator
+namespace EFCoreBulkUpdate.Creator
 {
     public static class EmployeeCreator
     {

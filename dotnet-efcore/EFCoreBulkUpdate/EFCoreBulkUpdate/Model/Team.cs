@@ -18,6 +18,6 @@ namespace EFCoreBulkUpdate.Model
 
         public ICollection<Player> Players { get; set; }
 
-        public List<Game> Games { get; set; }
+        public ICollection<Game> Games { get; set; }
     }
 }
