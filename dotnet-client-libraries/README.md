@@ -5,6 +5,7 @@ This section contains the topics about the client libraries in .NET.
 ### Relevant articles:
 
 - [AutoMapper vs Mapster in .NET](https://code-maze.com/automapper-vs-mapster-dotnet/)
+- [Memory Allocation Optimization With BenchmarkDotNet](https://code-maze.com/csharp-memory-allocation-optimization-with-benchmarkdotnet/)
 - [Realistic Data Generation in .NET With Bogus](https://code-maze.com/data-generation-bogus-dotnet/)
 - [Google Sheets API with .NET Core](https://code-maze.com/google-sheets-api-with-net-core/)
 - [Create Clean Guard Clauses With GuardClauses in C#](https://code-maze.com/csharp-guard-clauses/)
