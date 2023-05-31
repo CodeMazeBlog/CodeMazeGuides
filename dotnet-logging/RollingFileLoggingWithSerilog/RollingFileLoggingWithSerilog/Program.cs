@@ -4,20 +4,21 @@ using Serilog;
 Log.Logger = new LoggerConfiguration()
     .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
     .CreateLogger();
-
 try
 {
-    Log.Information("Starting wb host");
-
+    Log.Information("Web Host started");
     var builder = WebApplication.CreateBuilder(args);
 
-    builder.Services.AddRazorPages();
+    // Add services to the container.
+    builder.Services.AddControllersWithViews();
 
     var app = builder.Build();
 
+    // Configure the HTTP request pipeline.
     if (!app.Environment.IsDevelopment())
     {
-        app.UseExceptionHandler("/Error");
+        app.UseExceptionHandler("/Home/Error");
+        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
     }
 
@@ -28,13 +29,15 @@ try
 
     app.UseAuthorization();
 
-    app.MapRazorPages();
+    app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
 
     app.Run();
 }
 catch (Exception exception)
 {
-    Log.Fatal(exception, "Host terminated unexpectedly");
+    Log.Fatal(exception, "Host Terminated");
 }
 finally
 {
