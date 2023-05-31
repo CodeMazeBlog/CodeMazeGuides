@@ -6,10 +6,12 @@
         {
             Load(path);
         }
+
         public void Load(string path)
         {
             Console.WriteLine("Loading photo...");
         }
+
         public void Save(string path)
         {
             Console.WriteLine("Saving photo...");

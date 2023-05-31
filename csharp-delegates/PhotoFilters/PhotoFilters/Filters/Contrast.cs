@@ -8,6 +8,7 @@ namespace PhotoFilters.Filters
         {
             Console.WriteLine("Contrasting photo...");
             Console.WriteLine("Done!");
+
             return photo;
         }
     }

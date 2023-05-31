@@ -7,6 +7,7 @@ namespace PhotoFilters.Delegates
         public Photo Process(Photo photo, Func<Photo, Photo> handler)
         {
             handler(photo);
+
             return photo;
         }
     }

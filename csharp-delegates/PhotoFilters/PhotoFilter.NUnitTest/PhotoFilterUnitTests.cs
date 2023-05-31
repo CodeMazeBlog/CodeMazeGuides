@@ -4,7 +4,7 @@ using PhotoFilters.Models;
 
 namespace PhotoFilter.NUnitTest
 {
-    public class Tests
+    public class PhotoFilterUnitTests
     {
         //[SetUp]
         //public void Setup()
@@ -12,14 +12,14 @@ namespace PhotoFilter.NUnitTest
         //}
 
         [Test]
-        public void ActionPhotoProcessor_Brightness()
+        public void ActionPhotoProcessor_When_ApplyBrightnessAndSave_Then_Photo()
         {
             bool success = false;
             try
             {
                 Photo photo = new("path");
 
-                ActionPhotoProcessor actionPhotoProcessor = new ActionPhotoProcessor();
+                ActionPhotoProcessor actionPhotoProcessor = new();
                 Action<Photo> actionProcessorHandler = Brightness.ApplyBrightnessAndSave;
 
                 Console.WriteLine("Action Delegate");
@@ -33,15 +33,16 @@ namespace PhotoFilter.NUnitTest
             }
             Assert.That(success, Is.True);
         }
+
         [Test]
-        public void FuncPhotoProcessor_Brightness()
+        public void FuncPhotoProcessor_When_ApplyBrightness_Then_Photo()
         {
             bool success = false;
             try
             {
                 Photo photo = new("path");
 
-                FuncPhotoProcessor funcPhotoProcessor = new FuncPhotoProcessor();
+                FuncPhotoProcessor funcPhotoProcessor = new();
                 Func<Photo, Photo> funcProcessorHandler = Brightness.ApplyBrightness;
 
                 Console.WriteLine("Func Delegate");
@@ -55,15 +56,16 @@ namespace PhotoFilter.NUnitTest
             }
             Assert.That(success, Is.True);
         }
+
         [Test]
-        public void FuncPhotoProcessor_Resize()
+        public void FuncPhotoProcessor_When_Resize_Then_Photo()
         {
             bool success = false;
             try
             {
                 Photo photo = new("path");
 
-                FuncPhotoProcessor funcPhotoProcessor = new FuncPhotoProcessor();
+                FuncPhotoProcessor funcPhotoProcessor = new();
                 Func<Photo, Photo> funcProcessorHandler = Resize.ResizePhoto;
 
                 Console.WriteLine("Func Delegate");
@@ -77,15 +79,16 @@ namespace PhotoFilter.NUnitTest
             }
             Assert.That(success, Is.True);
         }
+
         [Test]
-        public void FuncPhotoProcessor_Contrast()
+        public void FuncPhotoProcessor_When_Contrast_Then_Photo()
         {
             bool success = false;
             try
             {
                 Photo photo = new("path");
 
-                FuncPhotoProcessor funcPhotoProcessor = new FuncPhotoProcessor();
+                FuncPhotoProcessor funcPhotoProcessor = new();
                 Func<Photo, Photo> funcProcessorHandler = Contrast.ContrastPhoto;
 
                 Console.WriteLine("Func Delegate");

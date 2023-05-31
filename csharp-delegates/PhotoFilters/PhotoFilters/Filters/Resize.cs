@@ -8,6 +8,7 @@ namespace PhotoFilters.Filters
         {
             Console.WriteLine("Resizing photo...");
             Console.WriteLine("Done!");
+
             return photo;
         }
     }
