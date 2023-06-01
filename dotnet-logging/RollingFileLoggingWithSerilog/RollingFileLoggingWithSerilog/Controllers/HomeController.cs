@@ -6,16 +6,16 @@ namespace RollingFileLoggingWithSerilog.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger logger)
         {
             _logger = logger;
         }
 
-        public IActionResult Index(string message)
+        public IActionResult Index()
         {
-            _logger.LogInformation("Recevied message: {message}",message);
+            _logger.LogInformation("TESTING MESSAGE 123..");
             return View();
         }
 
