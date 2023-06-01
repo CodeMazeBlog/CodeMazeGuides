@@ -12,6 +12,8 @@ try
     // Add services to the container.
     builder.Services.AddControllersWithViews();
 
+    builder.Host.UseSerilog();
+
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
