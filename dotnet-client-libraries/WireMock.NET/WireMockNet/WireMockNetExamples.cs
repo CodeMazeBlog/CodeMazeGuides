@@ -10,7 +10,6 @@ namespace WireMockNet
     {
         public static void Examples()
         {
-
             var server = WireMockServer.Start(new WireMockServerSettings
             {
                 Urls = new[] {
@@ -22,26 +21,54 @@ namespace WireMockNet
             });
 
             server
-                .Given(Request.Create().UsingGet().WithPath("/planets/9"))
-                .RespondWith(Response.Create().WithStatusCode(HttpStatusCode.NotFound).WithRandomDelay());
+                .Given(
+                    Request.Create()
+                        .UsingGet()
+                        .WithPath("/planets/9"))
+                .RespondWith(
+                    Response.Create()
+                        .WithStatusCode(HttpStatusCode.NotFound)
+                        .WithRandomDelay());
 
             server
-                .Given(Request.Create().UsingGet().WithPath("/planets/3"))
-                .RespondWith(Response.Create().WithFault(FaultType.MALFORMED_RESPONSE_CHUNK));
+                .Given(
+                    Request.Create()
+                        .UsingGet()
+                        .WithPath("/planets/3"))
+                .RespondWith(
+                    Response.Create()
+                        .WithFault(FaultType.MALFORMED_RESPONSE_CHUNK));
 
             server
-                .Given(Request.Create().UsingGet().WithPath("/planets/4").WithHeader("AwesomeRedHeader", "AwesomeRedHeader"))
-                .RespondWith(Response.Create().WithSuccess().WithBody("The Red Planet is responging to the awesome header"));
+                .Given(
+                    Request.Create()
+                        .UsingGet()
+                        .WithPath("/planets/4")
+                        .WithHeader("AwesomeRedHeader", "MarsIsAwesome"))
+                .RespondWith(
+                    Response.Create()
+                        .WithSuccess()
+                        .WithBody("The Red Planet is responding to the awesome header"));
 
             server
-                .Given(Request.Create().UsingPost().WithPath("/planets/*"))
+                .Given(
+                    Request.Create()
+                        .UsingPost()
+                        .WithPath("/planets/*"))
                 .AtPriority(5)
-                .RespondWith(Response.Create().WithStatusCode(HttpStatusCode.Unauthorized));
+                .RespondWith(
+                    Response.Create()
+                        .WithStatusCode(HttpStatusCode.Unauthorized));
 
             server
-                .Given(Request.Create().UsingPost().WithPath("/planets/10"))
+                .Given(
+                    Request.Create()
+                    .UsingPost()
+                    .WithPath("/planets/10"))
                 .AtPriority(1)
-                .RespondWith(Response.Create().WithStatusCode(HttpStatusCode.Created));
+                .RespondWith(
+                    Response.Create()
+                    .WithStatusCode(HttpStatusCode.Created));
         }
     }
 }
