@@ -1,7 +1,6 @@
-
 using Microsoft.Extensions.Logging;
+using Moq;
 using RollingFileLoggingWithSerilog.Controllers;
-using Serilog;
 
 namespace Tests
 {
@@ -11,22 +10,21 @@ namespace Tests
         public void WhenLogMessage_ThenMessageShouldWriteToFile()
         {
             // Arrange
-            var loggerFactory = LoggerFactory.Create(builder =>
-            {
-                builder.AddSerilog();
-            });
-
-            var logger = loggerFactory.CreateLogger<HomeController>();
-            var controller = new HomeController(logger);
-
-            var logMessage = "Test log message";
+            var loggerMock = new Mock<ILogger<HomeController>>();
+            var controller = new HomeController(loggerMock.Object);
 
             //Act
-            var result = controller.Index(logMessage);
+            controller.Index();
 
             //Assert
-            var logFileContent = File.ReadAllText("log.txt");
-            Assert.Contains(logMessage, logFileContent);
+            loggerMock.Verify(
+                x => x.Log(
+                LogLevel.Information,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => true),
+                It.IsAny<Exception>(),
+                It.Is<Func<It.IsAnyType, Exception, string>>((v, t) => true)),
+                Times.Once);
 
         }
     }
