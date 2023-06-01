@@ -9,6 +9,7 @@ namespace PhotoFilters.Delegates
         public Photo Process(Photo photo, PhotoProcessorHandler handler)
         {
             handler(photo);
+
             return photo;
         }
     }

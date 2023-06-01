@@ -8,6 +8,7 @@ namespace PhotoFilters.Filters
         {
             Console.WriteLine("Aplying brightness to photo...");
             Console.WriteLine("Done!");
+
             return photo;
         }
 

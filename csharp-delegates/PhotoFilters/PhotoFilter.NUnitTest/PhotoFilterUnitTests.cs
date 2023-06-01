@@ -31,6 +31,7 @@ namespace PhotoFilter.NUnitTest
             {
                 success = false;
             }
+
             Assert.That(success, Is.True);
         }
 
@@ -54,6 +55,7 @@ namespace PhotoFilter.NUnitTest
             {
                 success = false;
             }
+
             Assert.That(success, Is.True);
         }
 
@@ -77,6 +79,7 @@ namespace PhotoFilter.NUnitTest
             {
                 success = false;
             }
+
             Assert.That(success, Is.True);
         }
 
@@ -100,6 +103,7 @@ namespace PhotoFilter.NUnitTest
             {
                 success = false;
             }
+
             Assert.That(success, Is.True);
         }
     }
