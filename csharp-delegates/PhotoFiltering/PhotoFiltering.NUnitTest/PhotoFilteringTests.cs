@@ -5,7 +5,7 @@ using PhotoFilters.v02.Filters;
 
 namespace PhotoFiltering.NUnitTest
 {
-    public class Tests
+    public class PhotoFilteringTests
     {
         //[SetUp]
         //public void Setup()
@@ -32,11 +32,12 @@ namespace PhotoFiltering.NUnitTest
             {
                 success = false;
             }
+
             Assert.That(success, Is.True);
         }
 
         [Test]
-        public void ActionPhotoProcessor_ActionDelegate_Brightness()
+        public void When_BrightnessAndSave_Then_Void()
         {
             bool success = false;
             try
@@ -55,11 +56,12 @@ namespace PhotoFiltering.NUnitTest
             {
                 success = false;
             }
+
             Assert.That(success, Is.True);
         }
 
         [Test]
-        public void ActionPhotoProcessor_CustomDelegate_Brightness_Contrast_Noise()
+        public void When_Brightness_Contrast_Noise_Then_Photo()
         {
             bool success = false;
             try
@@ -80,6 +82,7 @@ namespace PhotoFiltering.NUnitTest
             {
                 success = false;
             }
+
             Assert.That(success, Is.True);
         }
 

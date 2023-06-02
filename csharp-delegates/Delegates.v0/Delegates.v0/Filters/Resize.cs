@@ -8,6 +8,7 @@ namespace Delegates.v0.Filters
         {
             Console.WriteLine("Resizing photo...");
             Console.WriteLine("Done!");
+
             return photo;
         }
     }

@@ -8,12 +8,14 @@ namespace PhotoFilters.v02.Filters
         {
             Console.WriteLine("Aplying NR White to photo...");
             Console.WriteLine("Done!");
+
             return photo;
         }
         public static Photo SuppressBlackNoise(Photo photo)
         {
             Console.WriteLine("Aplying NR Black to photo...");
             Console.WriteLine("Done!");
+
             return photo;
         }
     }

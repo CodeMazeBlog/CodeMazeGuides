@@ -10,6 +10,7 @@ namespace Delegates.v0.Filters
             Console.WriteLine("Done!");
             return photo;
         }
+
         public static void ApplyBrightnessAndSave(Photo photo)
         {
             Console.WriteLine("Aplying brightness to photo...");

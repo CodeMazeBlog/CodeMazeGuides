@@ -1,6 +1,6 @@
  namespace Delegate.v0.NUnitTest
 {
-    public class Tests
+    public class FilterTests
     {
         //[SetUp]
         //public void Setup()
@@ -8,12 +8,13 @@
         //}
 
         [Test]
-        public void FilterBrightnessApplied_OK()
+        public void When_BrightnessApplied_Then_OK()
         {
             Assert.Pass();
         }
+
         [Test]
-        public void FilterBrightnessAndSaveApplied_OK()
+        public void When_FilterBrightnessAndSave_Then_OK()
         {
             Assert.Pass();
         }
