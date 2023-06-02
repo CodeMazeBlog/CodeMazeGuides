@@ -5,7 +5,7 @@ using PhotoFilters.v02.Filters;
 
 namespace PhotoFilters.v02.NUnitTest
 {
-    public class Tests
+    public class PhotoFilterTests
     {
         //[SetUp]
         //public void Setup()
@@ -13,7 +13,7 @@ namespace PhotoFilters.v02.NUnitTest
         //}
 
         [Test]
-        public void FuncPhotoProcessor_NoiseReduction()
+        public void When_NoiseReduction_Then_OK()
         {
             bool success = false;
             try
@@ -32,6 +32,7 @@ namespace PhotoFilters.v02.NUnitTest
             {
                 success = false;
             }
+
             Assert.That(success, Is.True);
         }
     }
