@@ -60,7 +60,7 @@ namespace PhotoFilter.NUnitTest
         }
 
         [Test]
-        public void FuncPhotoProcessor_When_Resize_Then_Photo()
+        public void When_Resize_Then_Photo()
         {
             bool success = false;
             try
@@ -84,7 +84,7 @@ namespace PhotoFilter.NUnitTest
         }
 
         [Test]
-        public void FuncPhotoProcessor_When_Contrast_Then_Photo()
+        public void When_Contrast_Then_Photo()
         {
             bool success = false;
             try
