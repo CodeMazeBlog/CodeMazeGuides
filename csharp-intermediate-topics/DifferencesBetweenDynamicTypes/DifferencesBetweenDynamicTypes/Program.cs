@@ -1,4 +1,1 @@
-﻿using DifferencesBetweenDynamicTypes;
-
-dynamic person = new Person();
-
+﻿Console.WriteLine("Application Started");

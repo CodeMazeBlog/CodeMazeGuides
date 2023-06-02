@@ -1,53 +1,102 @@
-﻿using DifferencesBetweenDynamicTypes;
-using System;
+﻿using System.ComponentModel;
+using DifferencesBetweenDynamicTypes;
+using System.Dynamic;
+using Microsoft.CSharp.RuntimeBinder;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Tests;
 
 public class DynamicTypesUnitTest
 {
-    private readonly DynamicTypeService _dynamicTypeService;
+    private readonly ITestOutputHelper _testOutputHelper;
 
-    public DynamicTypesUnitTest()
+    public DynamicTypesUnitTest(ITestOutputHelper testOutputHelper)
     {
-        _dynamicTypeService = new DynamicTypeService();
+        _testOutputHelper = testOutputHelper;
+    }
+
+    [Fact]
+    public void WhenAccessingNonExistentDynamicMember_ThenThrowError()
+    {
+        dynamic person = new
+        {
+            Name = "Test"
+        };
+
+        Assert.Throws<RuntimeBinderException>(() => person.Age);
+    }
+
+    [Fact]
+    public void WhenAssigningDifferentTypesToObjects_ThenReturnObjectTypes()
+    {
+        dynamic count = 1;
+
+        Assert.IsType<int>(count);
     }
 
     [Fact]
     public void WhenCreateExpandoObjectMethodIsCalled_ThenReturnExpandoObject()
     {
-        dynamic actual = _dynamicTypeService.CreateExpandoObject();
+        dynamic book = new ExpandoObject();
 
-        Assert.Equal("John Doe", actual.Author);
-        Assert.Equal(2023, actual.Year);    
+        book.Author = "John Doe";
+        book.Year = 2023;
+        book.copiesSold = 1000;
+        book.Sell = (Action)(() => { book.copiesSold++; });
+        book.Sell();
+
+        Assert.Equal("John Doe", book.Author);
+        Assert.Equal(2023, book.Year);
+        Assert.Equal(1001, book.copiesSold);
     }
 
     [Fact]
-    public void WhenReadingValuesFromExpandoObject_ThenReturnExpandoObjectValues()
+    public void WhenEnumeratingExpandoObjectMembers_ThenReturnExpandoObjectValues()
     {
-        dynamic actual = _dynamicTypeService.ReadValuesFromExpandoObject();
+        dynamic country = new ExpandoObject();
 
-        Assert.Equal("Asia", actual.Continent);
-        Assert.Equal("3 Billion people", actual.Population);    
+        country.Continent = "Asia";
+        country.Population = "3 Billion people";
+
+        foreach (KeyValuePair<string, object> keyValuePair in country)
+        {
+            _testOutputHelper.WriteLine($"{keyValuePair.Key} : {keyValuePair.Value}");
+        }
+
+        Assert.Equal("Asia", country.Continent);
+        Assert.Equal("3 Billion people", country.Population);
     }
-    
-    [Fact]  
+
+    [Fact]
     public void WhenRemoveValuesFromExpandoObjectMethodIsCalled_ThenReturnRemoveValues()
     {
-        dynamic actual = _dynamicTypeService.RemoveValuesFromExpandoObject();
+        dynamic person = new ExpandoObject();
 
-        Assert.Equal("Jane Doe", actual.Name);
+        person.Age = 30;
+        person.Name = "Jane Doe";
+
+        ((IDictionary<string, object>)person).Remove("Age");
+
+        Assert.Equal("Jane Doe", person.Name);
     }
-    
-    [Fact]      
+
+    [Fact]
     public void WhenHandlePropertyChangesMethodIsCalled_ThenChangeDynamicObjectProperties()
     {
-        dynamic actual = _dynamicTypeService.HandlePropertyChanges();
+        dynamic person = new ExpandoObject();
 
-        Assert.Equal("John Doe", actual.Name);
+        ((INotifyPropertyChanged)person).PropertyChanged += (sender, e) =>
+        {
+            _testOutputHelper.WriteLine($"Property changed: {e.PropertyName}");
+        };
+
+        person.Name = "John Doe";
+
+        Assert.Equal("John Doe", person.Name);
     }
 
-    [Fact]      
+    [Fact]
     public void WhenDynamicObjectIsInherited_ThenSetDynamicObjectValues()
     {
         dynamic dynamicPerson = new Person();
@@ -56,6 +105,8 @@ public class DynamicTypesUnitTest
         dynamicPerson.Age = 30;
         dynamicPerson.Address = "1234 Good Street";
 
-        Assert.NotNull(dynamicPerson);
+        Assert.Equal("Daniel", dynamicPerson.Name);
+        Assert.Equal(30, dynamicPerson.Age);
+        Assert.Equal("1234 Good Street", dynamicPerson.Address);
     }
-}   
+}
