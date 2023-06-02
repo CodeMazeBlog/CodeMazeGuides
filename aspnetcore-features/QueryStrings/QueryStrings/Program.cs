@@ -26,5 +26,7 @@ app.Run();
 
 namespace QueryStringsApi
 {
-    public partial class Program { }
+    public partial class Program
+    {
+    }
 }

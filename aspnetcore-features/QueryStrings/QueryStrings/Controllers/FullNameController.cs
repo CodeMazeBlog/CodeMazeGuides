@@ -9,28 +9,23 @@ namespace QueryStrings.Controllers;
 [Route("[controller]")]
 public class FullNameController : ControllerBase
 {
-   
-    
-    [HttpGet(template:"/v1",Name = "GetQueryStringsAsScalerValues")]
+    [HttpGet(template: "/v1", Name = "GetQueryStringsAsScalerValues")]
     public IActionResult GetFullNameFromScalerValues([FromQuery] string firstName, [FromQuery] string lastName)
     {
-        
-        return Ok(new {FullName = $"{firstName} {lastName}"});
+        return Ok(new { FullName = $"{firstName} {lastName}" });
     }
-    
-        [HttpGet(template:"/v2",Name = "GetMultipleQueryStringsAsArray")]
-        public IActionResult GetProductsByIds([FromQuery] int[] ids)
-        {
-            return Ok(new {ProductIds=ids});
-        }
+
+    [HttpGet(template: "/v2", Name = "GetMultipleQueryStringsAsArray")]
+    public IActionResult GetProductsByIds([FromQuery] int[] ids)
+    {
+        return Ok(new { ProductIds = ids });
+    }
 
     [HttpGet("/v3", Name = "GetMultipleQueryStringsAsObject")]
     public IActionResult GetFullNameFromObject([FromQuery] Person queryStringParameters)
     {
-        return Ok(new {FullName =$"{queryStringParameters.FirstName} {queryStringParameters.LastName}"});
+        return Ok(new { FullName = $"{queryStringParameters.FirstName} {queryStringParameters.LastName}" });
     }
-    
-    
 }
 
 public record Person(string FirstName, string LastName);
