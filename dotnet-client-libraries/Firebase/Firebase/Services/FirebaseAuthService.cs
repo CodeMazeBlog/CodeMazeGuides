@@ -23,7 +23,7 @@ public class FirebaseAuthService : IFirebaseAuthService
 	{
 		var userCredentials = await _firebaseAuth.SignInWithEmailAndPasswordAsync(email, password);
 
-		return userCredentials is null ? null : await userCredentials.User.GetIdTokenAsync();
+        return userCredentials is null ? null : await userCredentials.User.GetIdTokenAsync();
 	}
 
 	public void SignOut() => _firebaseAuth.SignOut();
