@@ -7,8 +7,8 @@
 
             //ACTION DELEGETES
 
-            Action<int> _printAge = (age) => Console.WriteLine($"Age is: {age}");
-            _printAge(20);  // Output -  Age is: 20
+            Action<int> printAge = (age) => Console.WriteLine($"Age is: {age}");
+            printAge(20);  // Output -  Age is: 20
 
             Action<int, string> ageAndName = PrintNameAndAge;
             ageAndName(20, "John Doe"); //Output - Hello John Doe, your age is 20
