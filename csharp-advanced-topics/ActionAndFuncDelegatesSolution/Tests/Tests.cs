@@ -1,5 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using delegate_namespace;
+using System;
+using System.IO;
+
 
 namespace Tests
 {
@@ -7,48 +11,40 @@ namespace Tests
     public class Tests
     {
         [TestMethod]
-        public void whenGetCubeActionDelegateInvoked_ThenOutputResult()
+        public void WhenGetCubeActionDelegateInvoked_ThenOutputResult()
         {
             int number = 7;
             string expected = "The result is 343";
-            string actual = "";
 
-            Action<int> actionDelegate = Programs.GetCube;
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                actionDelegate.Invoke(number);
-                actual = sw.ToString().Trim();
-            }
+            string actual = GetCubeResult(number);
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void whenGetSquareFuncDelegateInvoked_ThenReturnResult()
+        public void WhenGetSquareFuncDelegateInvoked_ThenReturnResult()
         {
             int number = 6;
             int expected = 36;
-            int actual = 0;
 
-            Func<int, int> funcDelegate = Programs.GetSquare;
-            actual = funcDelegate.Invoke(number);
+            int actual = GetSquareResult(number);
 
             Assert.AreEqual(expected, actual);
         }
-    }
 
-    public class Programs
-    {
-        public static void GetCube(int number)
+        private string GetCubeResult(int number)
         {
-            int result = number * number * number;
-            Console.WriteLine($"The result is {result}");
+            using (StringWriter sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                Delegates.GetCube(number);
+                return sw.ToString().Trim();
+            }
         }
 
-        public static int GetSquare(int number)
+        private int GetSquareResult(int number)
         {
-            return number * number;
+            return Delegates.GetSquare(number);
         }
     }
 }
