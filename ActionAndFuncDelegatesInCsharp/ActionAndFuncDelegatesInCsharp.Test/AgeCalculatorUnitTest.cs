@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestPlatform.TestHost;
 using ActionAndFuncDelegatesInCsharp;
 namespace ActionAndFuncDelegatesInCsharp.Test
 {
-    public class AgeCalculatorTest
+    public class AgeCalculatorUnitTest
     {
         private StringWriter stringWriter;
         private TextWriter originalOutput;
@@ -23,13 +23,26 @@ namespace ActionAndFuncDelegatesInCsharp.Test
         }
 
         [Test]
-        public void CalculateAge_ValidBirthYear_ReturnsCorrectAge()
+        public void GivenYearofBirth_WhenYearIs2000_ThenAgeIs23()
         {
             // Arrange
-            int expectedAge = DateTime.Now.Year - 2000;
+            int expectedAge = 23;
 
             // Act
-            int actualAge = AgeCalculator.ageCalculator(2000);
+            int actualAge = AgeCalculatorClass.AgeCalculator(2000);
+
+            // Assert
+            Assert.AreEqual(expectedAge, actualAge);
+        }
+
+        [Test]
+        public void GivenYearofBirth_WhenYearIs2010_ThenAgeIs13()
+        {
+            // Arrange
+            int expectedAge = 13;
+
+            // Act
+            int actualAge = AgeCalculatorClass.AgeCalculator(2010);
 
             // Assert
             Assert.AreEqual(expectedAge, actualAge);

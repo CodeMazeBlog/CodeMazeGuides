@@ -1,22 +1,22 @@
 ﻿namespace ActionAndFuncDelegatesInCsharp
 {
-    public class AgeCalculator
+    public class AgeCalculatorClass
     {
         static void Main(string[] args)
         {
 
             //ACTION DELEGETES
 
-            Action<int> printAge = (age) => Console.WriteLine($"Age is: {age}");
-            printAge(20);  // Output -  Age is: 20
+            Action<int> _printAge = (age) => Console.WriteLine($"Age is: {age}");
+            _printAge(20);  // Output -  Age is: 20
 
-            Action<int, string> ageAndName = printNameAndAge;
+            Action<int, string> ageAndName = PrintNameAndAge;
             ageAndName(20, "John Doe"); //Output - Hello John Doe, your age is 20
 
 
             //FUNC DELEGATES
 
-            Func<int, int> calculateAge = ageCalculator;
+            Func<int, int> calculateAge = AgeCalculator;
             int age = calculateAge(2000);
             Console.WriteLine($"Age is: {age}"); // Output - Age is: 23
 
@@ -35,12 +35,12 @@
 
         }
 
-        public static void printNameAndAge(int age, string name)
+        public static void PrintNameAndAge(int age, string name)
         {
             Console.WriteLine($"Hello {name}, your age is {age}");
         }
 
-        public static int ageCalculator(int birthYear)
+        public static int AgeCalculator(int birthYear)
         {
             int currentYear = DateTime.Now.Year;
             return currentYear - birthYear;
