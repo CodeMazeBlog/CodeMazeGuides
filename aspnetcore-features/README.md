@@ -5,6 +5,7 @@ This section contains articles about specific ASP.NET Core Web API features.
 ### Relevant articles:
 
 - [How to Implement Checkbox List in ASP.NET Core](https://code-maze.com/implement-checkbox-list-aspnetcore/)
+- [Content Security Policy in ASP.NET Core](https://code-maze.com/aspnetcore-content-security-policy/)
 - [Custom Attributes in .NET](https://code-maze.com/dotnet-custom-attributes/)
 - [How to Create a Custom Authorize Attribute in ASP.NET Core](https://code-maze.com/custom-authorize-attribute-aspnetcore/)
 - [Distributed Caching in ASP.NET Core](https://code-maze.com/aspnetcore-distributed-caching/)
@@ -17,6 +18,7 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [How to Resolve Instances With ASP.NET Core DI](https://code-maze.com/aspnetcore-resolve-instances-with-dependency-injection/)
 - [Response Caching in ASP.NET Core](https://code-maze.com/aspnetcore-response-caching/)
 - [How to Modify a Base URI of Swagger in ASP.NET Core](https://code-maze.com/aspnetcore-modify-a-base-uri-of-swagger/)
+- [URI Encode and Decode in .NET](https://code-maze.com/dotnet-uri-encode-and-decode/)
 - [Validate User Input With Regular Expressions in Blazor WebAssembly](https://code-maze.com/validate-input-regular-expressions-blazor-webassembly/)
 - [Multipart Form-Data in HttpClient with ASP.NET Core](https://code-maze.com/aspnetcore-multipart-form-data-in-httpclient/)
 - [How to Read Connection Strings in .NET](https://code-maze.com/dotnet-read-connection-strings/)
