@@ -2,8 +2,8 @@
 {
     public class Department
     {
-        public string Name { get; }
-        public List<Employee> Employees { get; }
+        public string Name { get; set; }
+        public List<Employee> Employees { get; set; }
 
         public Department(string name)
         {
