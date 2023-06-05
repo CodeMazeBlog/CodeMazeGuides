@@ -16,7 +16,7 @@ namespace EntityFrameworkCoreVsDapper.Repositories
             using (var dbConnection = new SqlConnection(ConnectionString))
             {
                 dbConnection.Open();
-                List<Person> items = (List<Person>)dbConnection.Query<Person>("SELECT TOP(1000) * FROM Persons");
+                var items = (List<Person>)dbConnection.Query<Person>("SELECT TOP(1000) * FROM Persons");
                 dbConnection.Close();
 
                 return items;
@@ -29,7 +29,7 @@ namespace EntityFrameworkCoreVsDapper.Repositories
             using (var dbConnection = new SqlConnection(ConnectionString))
             {
                 dbConnection.Open();
-                List<Person> items = (List<Person>)dbConnection.Query<Person>("SELECT TOP(10000) * FROM Persons");
+                var items = (List<Person>)dbConnection.Query<Person>("SELECT TOP(10000) * FROM Persons");
                 dbConnection.Close();
 
                 return items;
@@ -42,7 +42,7 @@ namespace EntityFrameworkCoreVsDapper.Repositories
             using (var dbConnection = new SqlConnection(ConnectionString))
             {
                 dbConnection.Open();
-                List<Person> items = (List<Person>)dbConnection.Query<Person>("SELECT TOP(100000) * FROM Persons");
+                var items = (List<Person>)dbConnection.Query<Person>("SELECT TOP(100000) * FROM Persons");
                 dbConnection.Close();
 
                 return items;

@@ -11,7 +11,7 @@ namespace EntityFrameworkCoreVsDapper.Repositories
         {
             using (var db = new PersonsContext())
             {
-                List<Person> items = db.Persons.Take(1000).ToList();
+                var items = db.Persons.Take(1000).ToList();
 
                 return items;
             }
@@ -22,7 +22,7 @@ namespace EntityFrameworkCoreVsDapper.Repositories
         {
             using (var db = new PersonsContext())
             {
-                List<Person> items = db.Persons.Take(10000).ToList();
+                var items = db.Persons.Take(10000).ToList();
 
                 return items;
             }
@@ -33,7 +33,7 @@ namespace EntityFrameworkCoreVsDapper.Repositories
         {
             using (var db = new PersonsContext())
             {
-                List<Person> items = db.Persons.Take(100000).ToList();
+                var items = db.Persons.Take(100000).ToList();
 
                 return items;
             }
