@@ -5,7 +5,7 @@ namespace Tests;
 public class FullNameControllerIntegrationTest
 {
     [Fact]
-    public async Task WhenPassingQueryStringsAsScalerValues_ThenStatusCodeShouldBe200()
+    public async Task WhenPassingQueryStringsAsScalarValues_ThenStatusCodeShouldBe200()
     {
         await using var app = new Api();
         using var client = app.CreateClient();
