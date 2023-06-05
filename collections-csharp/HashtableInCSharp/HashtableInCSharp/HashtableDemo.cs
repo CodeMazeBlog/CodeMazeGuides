@@ -4,85 +4,99 @@ namespace HashtableInCSharp
 {
     public class HashtableDemo
     {
-        public Hashtable CreateHashTable()
+        public static Hashtable CreateEmptyHashTable()
         {
             var firstHashTable = new Hashtable();
 
-            var secondHashTable = new Hashtable(100);
+            return firstHashTable;
+        }
 
-            var dictionary = new Dictionary<int, User>()
-            {
-                { 1, new User() { FirstName = "Sam", LastName = "Manalt"} },
-                { 2, new User() { FirstName = "Lone", LastName = "Costa"}},
-                { 3, new User() { FirstName = "Alberto", LastName = "Daci"} },
-            };
-            
-            var thirdHashTable = new Hashtable(dictionary);
+        public static Hashtable CreateHashTableWithInitialCapacity()
+        {
+            var secondHashTable = new Hashtable(100);
 
             return secondHashTable;
         }
 
-        public Hashtable AddToHashTable(Hashtable hashTable)
+        public static Hashtable CreateHashTableFromDictionary()
         {
-            hashTable.Add(1, new User() { FirstName = "Goddy", LastName = "Opara"});
-            hashTable.Add(2, new User() { FirstName = "Rafa", LastName = "Lopez" });
-            hashTable.Add(3, new User() { FirstName = "Michael", LastName = "Sam" });
-            hashTable.Add(4, new User() { FirstName = "Judit", LastName = "Peter" });
+            var dictionary = new Dictionary<int, User>()
+            {
+                { 1, new User() { Id = 1, FirstName = "Rafa", LastName = "Lopez" } },
+                { 2, new User() { Id = 2, FirstName = "Michael", LastName = "Sam" } },
+                { 3, new User() { Id = 3, FirstName = "Sam", LastName = "Manalt"} },
+                { 4, new User() { Id = 4, FirstName = "Lone", LastName = "Costa"} },
+                { 5, new User() { Id = 5, FirstName = "Alberto", LastName = "Daci"} },
+            };
+            
+            var userHashTable = new Hashtable(dictionary);
 
-            hashTable[5] = new User() { FirstName = "Steve", LastName = "Billing" };
-
-            return hashTable;
+            return userHashTable;
         }
 
-        public User RetrieveAnElementFromHashTable(Hashtable hashTable)
+        public static Hashtable AddSampleDataToHashTable(Hashtable userHashTable, List<User> userList)
         {
-            if (hashTable.ContainsKey(1))
+            foreach(var user in userList)
             {
-                User firstUser = (User)hashTable[1];
+                userHashTable.Add(user.Id, user);
+            }
 
-                return firstUser;
+            return userHashTable;
+        }
+
+        public static User RetrieveElementFromHashTable(Hashtable userHashTable, int id)
+        {
+            if (userHashTable.ContainsKey(id))
+            {
+                User user = (User)userHashTable[id];
+
+                return user;
             }
 
             return default;
         }
 
-        public void RetrieveAllElementsFromHashTable(Hashtable hashTable)
+        public static IList<User> RetrieveAllElementsFromHashTable(Hashtable userHashTable)
         {
-            foreach(DictionaryEntry entry in hashTable)
+            var userList = new List<User>();
+
+            foreach(DictionaryEntry entry in userHashTable)
             {
-                Console.WriteLine($"User ID - {entry.Key}, User Name - {entry.Value}");
+                userList.Add((User)entry.Value);
             }
+
+            return userList;
         }
 
-        public Hashtable UpdateAnElementInHashTable(Hashtable hashTable)
+        public static Hashtable UpdateElementInHashTable(Hashtable userHashTable, int id)
         {
-            hashTable[1] = new User() { FirstName = "Henry", LastName = "Stafford" };
+            userHashTable[id] = new User() { FirstName = "Henry", LastName = "Stafford" };
 
-            return hashTable;
+            return userHashTable;
         }
 
-        public Hashtable RemoveAnElementFromHashTable(Hashtable hashTable)
+        public static Hashtable RemoveElementFromHashTable(Hashtable userHashTable, int id)
         {
-            hashTable.Remove(2);
+            userHashTable.Remove(id);
 
-            return hashTable;
+            return userHashTable;
         }
 
-        public Hashtable RemoveAllElementsFromHashTable(Hashtable hashTable)
+        public static Hashtable RemoveAllElementsFromHashTable(Hashtable userHashTable)
         {
-            hashTable.Clear();
+            userHashTable.Clear();
 
-            return hashTable;
+            return userHashTable;
         }
 
-        public Hashtable CloneHashTable(Hashtable hashTable)
+        public static Hashtable CloneHashTable(Hashtable userHashTable)
         {
-            return (Hashtable)hashTable.Clone();
+            return (Hashtable)userHashTable.Clone();
         }
 
-        public Hashtable SynchronizeHashtable(Hashtable hashTable)
+        public static Hashtable SynchronizeHashtable(Hashtable userHashTable)
         {
-            return Hashtable.Synchronized(hashTable);
+            return Hashtable.Synchronized(userHashTable);
         }
     }
 }

@@ -5,71 +5,120 @@ namespace Tests
 {
     public class HashtableInCSharpTest
     {
-        private readonly HashtableDemo _hashtableDemo;
-        private readonly Hashtable _users;
+        private readonly Hashtable _userHashtable;
+
         public HashtableInCSharpTest()
         {
-            _hashtableDemo = new HashtableDemo();
-            _users = _hashtableDemo.AddToHashTable(new Hashtable());
-        }
-        [Fact]
-        public void GivenAnEmptyHashtable_WhenAddingToAHashtable_ThenReturnsFilledEmptyHashTable()
-        {
-            Assert.IsType<Hashtable>(_users);
-            Assert.NotEmpty(_users);
+            _userHashtable = HashtableDemo.CreateHashTableFromDictionary();
         }
 
         [Fact]
-        public void GivenAnEmptyHashtable_WhenRetrievingFromHashtable_ThenReturnsAUser()
+        public void GivenHashtable_WhenCreatingHashtable_ThenReturnsEmptyHashTable()
         {
-            var user = _hashtableDemo.RetrieveAnElementFromHashTable(_users);
+            var userHashtable = HashtableDemo.CreateEmptyHashTable();
+
+            Assert.IsType<Hashtable>(userHashtable);
+            Assert.Empty(userHashtable);
+        }
+
+        [Fact]
+        public void GivenHashtable_WhenCreatingHashtableWithInitialCapacity_ThenReturnsHashTable()
+        {
+            var userHashtable = HashtableDemo.CreateHashTableWithInitialCapacity();
+
+            Assert.IsType<Hashtable>(userHashtable);
+            Assert.Empty(userHashtable);
+        }
+
+        [Fact]
+        public void GivenHashtable_WhenCreatingHashtableFromDictionary_ThenReturnsHashTable()
+        {
+            var userHashtable = HashtableDemo.CreateHashTableFromDictionary();
+
+            Assert.IsType<Hashtable>(userHashtable);
+            Assert.NotEmpty(userHashtable);
+            Assert.Equal(5, userHashtable.Count);
+        }
+
+        [Fact]
+        public void GivenHashtable_WhenAddingSampleDataToHashtable_ThenReturnsHashTable()
+        {
+            List<User> userList = new()
+            {
+                new User() { Id = 6, FirstName = "Judit", LastName = "Peter" },
+                new User() { Id = 7, FirstName = "Steve", LastName = "Billing" },
+                new User() { Id = 8, FirstName = "Goddy", LastName = "Opara" },
+            };
+
+            var populatedUserHashtable = HashtableDemo.AddSampleDataToHashTable(_userHashtable, userList);
+
+            Assert.IsType<Hashtable>(populatedUserHashtable);
+            Assert.NotEmpty(populatedUserHashtable);
+            Assert.Equal(8, populatedUserHashtable.Count);
+        }
+
+        [Fact]
+        public void GivenEmptyHashtable_WhenRetrievingElementFromHashtable_ThenReturnsUser()
+        {
+            var user = HashtableDemo.RetrieveElementFromHashTable(_userHashtable, 3);
             var userFirstName = user.FirstName;
             var userLastName = user.LastName;
 
-            Assert.Equal("Goddy", userFirstName);
-            Assert.Equal("Opara", userLastName);
+            Assert.Equal("Sam", userFirstName);
+            Assert.Equal("Manalt", userLastName);
         }
 
         [Fact]
-        public void GivenAnEmptyHashtable_WhenUpdatingElementInHashtable_ThenReturnsUpdatedHashTable()
+        public void GivenEmptyHashtable_WhenRetrievingAllElementFromHashtable_ThenReturnsAllUsers()
         {
-            var newUsers = _hashtableDemo.UpdateAnElementInHashTable(_users);
-            User user = (User)newUsers[1];
+            var users = HashtableDemo.RetrieveAllElementsFromHashTable(_userHashtable);
+
+            Assert.IsType<List<User>>(users);
+            Assert.NotEmpty(users);
+            Assert.Equal(5, users.Count);
+        }
+
+        [Fact]
+        public void GivenEmptyHashtable_WhenUpdatingElementInHashtable_ThenReturnsUpdatedHashTable()
+        {
+            var newUsers = HashtableDemo.UpdateElementInHashTable(_userHashtable, 3);
+            User user = (User)newUsers[3];
             var userFirstName = user.FirstName;
             var userLastName = user.LastName;
 
+            Assert.Equal(5, newUsers.Count);
             Assert.Equal("Henry", userFirstName);
             Assert.Equal("Stafford", userLastName);
         }
 
         [Fact]
-        public void GivenAnEmptyHashtable_WhenRemovingAnElementFromHashtable_ThenReturnsUpdatedHashTable()
+        public void GivenEmptyHashtable_WhenRemovingElementFromHashtable_ThenReturnsUpdatedHashTable()
         {
-            var newUsers = _hashtableDemo.RemoveAnElementFromHashTable(_users);
-           
+            var newUsers = HashtableDemo.RemoveElementFromHashTable(_userHashtable, 2);
+
             Assert.Equal(4, newUsers.Count);
         }
 
         [Fact]
-        public void GivenAnEmptyHashtable_WhenRemovingAllElementsFromHashtable_ThenReturnsUpdatedHashTable()
+        public void GivenEmptyHashtable_WhenRemovingAllElementsFromHashtable_ThenReturnsUpdatedHashTable()
         {
-            var newUsers = _hashtableDemo.RemoveAllElementsFromHashTable(_users);
+            var newUsers = HashtableDemo.RemoveAllElementsFromHashTable(_userHashtable);
 
             Assert.Empty(newUsers);
         }
 
         [Fact]
-        public void GivenAnEmptyHashtable_WhenCloningHashtable_ThenReturnsUpdatedHashTable()
+        public void GivenEmptyHashtable_WhenCloningHashtable_ThenReturnsUpdatedHashTable()
         {
-            var newUsers = _hashtableDemo.CloneHashTable(_users);
+            var newUsers = HashtableDemo.CloneHashTable(_userHashtable);
 
-            Assert.Equal(_users.Count, newUsers.Count);
+            Assert.Equal(_userHashtable.Count, newUsers.Count);
         }
 
         [Fact]
-        public void GivenAnEmptyHashtable_WhenSynchronizingHashtable_ThenReturnsUpdatedHashTable()
+        public void GivenEmptyHashtable_WhenSynchronizingHashtable_ThenReturnsUpdatedHashTable()
         {
-            var newUsers = _hashtableDemo.SynchronizeHashtable(_users);
+            var newUsers = HashtableDemo.SynchronizeHashtable(_userHashtable);
 
             Assert.True(newUsers.IsSynchronized);
         }
