@@ -29,9 +29,7 @@ public class FullNameControllerIntegrationTest
     {
         await using var app = new Api();
         using var client = app.CreateClient();
-
         using var response = await client.GetAsync("/v3?FirstName=John&LastName=Doe");
-
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         Assert.Equal("{\"fullName\":\"John Doe\"}", await response.Content.ReadAsStringAsync());
     }
