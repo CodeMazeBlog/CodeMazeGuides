@@ -2,9 +2,9 @@
 {
     public partial class GuidClassInCSharpMethods
     {
-        public static string GuidToString(Guid guid)
+        public static string GuidToString(Guid guid, string? stringFormat = "N")
         {
-            return guid.ToString();
+            return guid.ToString(stringFormat);
         }
     }
 }

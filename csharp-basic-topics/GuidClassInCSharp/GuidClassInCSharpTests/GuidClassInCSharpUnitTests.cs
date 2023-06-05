@@ -4,14 +4,14 @@ namespace GuidClassInCSharpTests
 {
     public class Tests
     {
-        [Test]
-        public void GivenCheckGuidEqualityMethod_WhenEqualGuids_ThenTrue()
+        [TestCase("B5724FB4-2FA0-4E68-B108-93C24A1EA6DF")]
+        public void GivenCheckGuidEqualityMethod_WhenEqualGuids_ThenTrue(string guidValue)
         {
-            var guidA = new Guid("B5724FB4-2FA0-4E68-B108-93C24A1EA6DF");
+            var guidA = new Guid(guidValue);
             var guidB = new Guid("B5724FB4-2FA0-4E68-B108-93C24A1EA6DF");
             var checkEquality = CheckGuidEquality(guidA, guidB);
 
-            Assert.That(checkEquality, Is.EqualTo(true));
+            Assert.That(checkEquality, Is.True);
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace GuidClassInCSharpTests
             var guidB = Guid.NewGuid();
             var checkEquality = CheckGuidEquality(guidA, guidB);
 
-            Assert.That(checkEquality, Is.EqualTo(false));
+            Assert.That(checkEquality, Is.False);
         }
 
         [Test]
@@ -39,13 +39,14 @@ namespace GuidClassInCSharpTests
             var createdGuid = CreateRandomGuid();
             var isValidGuid = Guid.TryParse(createdGuid.ToString(), out _);
 
-            Assert.That(isValidGuid, Is.EqualTo(true));
+            Assert.That(createdGuid, Is.Not.EqualTo(Guid.Empty));
+            Assert.That(isValidGuid, Is.True);
         }
 
-        [Test]
-        public void GivenGuidToByteStringMethod_WhenGivenGuid_ThenByteArray()
+        [TestCase("e2f24f93-5f43-405f-8109-c41eff03025a")]
+        public void GivenGuidToByteStringMethod_WhenGivenGuid_ThenByteArray(string guidValue)
         {
-            var createdGuid = GuidToByteString(new Guid("e2f24f93-5f43-405f-8109-c41eff03025a"));
+            var createdGuid = GuidToByteString(new Guid(guidValue));
             var expectedByteString = "93-4F-F2-E2-43-5F-5F-40-81-09-C4-1E-FF-03-02-5A";
 
             Assert.That(createdGuid, Is.EqualTo(expectedByteString));
