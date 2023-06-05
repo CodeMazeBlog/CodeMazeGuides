@@ -8,7 +8,7 @@ namespace EntityFrameworkCoreVsDapper.Repositories
     public class PersonsRepositoryDapper : IPersonsRepository
     {
         //ADD THE CONNECTION STRING TO YOUR DATABASE HERE
-        private string ConnectionString = "Data Source=DESKTOP-VM6E980;User ID=sa;Password=P@ssw0rd;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;Database=EntityFrameworkVsDapperDB";
+        private string ConnectionString = "";
 
         [Benchmark]
         public List<Person> Get_1000_Persons()
