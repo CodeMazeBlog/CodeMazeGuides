@@ -11,42 +11,15 @@ namespace EntityFrameworkCoreVsDapper.Repositories
         private string ConnectionString = "";
 
         [Benchmark]
-        public List<Person> Get_1000_Persons()
+        [Arguments(1000)]
+        [Arguments(10000)]
+        [Arguments(100000)]
+        public List<Person> Get_X_Persons(int personsNumber)
         {
-            using (var dbConnection = new SqlConnection(ConnectionString))
-            {
-                dbConnection.Open();
-                var items = (List<Person>)dbConnection.Query<Person>("SELECT TOP(1000) * FROM Persons");
-                dbConnection.Close();
+            using var dbConnection = new SqlConnection(ConnectionString);
 
-                return items;
-            }
-        }
-
-        [Benchmark]
-        public List<Person> Get_10000_Persons()
-        {
-            using (var dbConnection = new SqlConnection(ConnectionString))
-            {
-                dbConnection.Open();
-                var items = (List<Person>)dbConnection.Query<Person>("SELECT TOP(10000) * FROM Persons");
-                dbConnection.Close();
-
-                return items;
-            }
-        }
-
-        [Benchmark]
-        public List<Person> Get_100000_Persons()
-        {
-            using (var dbConnection = new SqlConnection(ConnectionString))
-            {
-                dbConnection.Open();
-                var items = (List<Person>)dbConnection.Query<Person>("SELECT TOP(100000) * FROM Persons");
-                dbConnection.Close();
-
-                return items;
-            }
+            dbConnection.Open();
+            return (List<Person>)dbConnection.Query<Person>($"SELECT TOP({personsNumber}) * FROM Persons");
         }
     }
 }

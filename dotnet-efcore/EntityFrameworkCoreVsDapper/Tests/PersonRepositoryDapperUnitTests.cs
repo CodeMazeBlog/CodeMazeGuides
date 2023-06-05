@@ -8,27 +8,11 @@ namespace Tests
         private PersonsRepositoryDapper repository = new PersonsRepositoryDapper();
 
         [Fact]
-        public void When_Quering1000Persons_ThenReturn1000Objects()
+        public void When_Quering100Persons_ThenReturn100Persons()
         {
-            var queryResults = repository.Get_1000_Persons();
+            var queryResults = repository.Get_X_Persons(100);
 
-            Assert.Equal(1000, queryResults.Count);
-        }
-
-        [Fact]
-        public void When_Quering10000Persons_ThenReturn10000Objects()
-        {
-            var queryResults = repository.Get_10000_Persons();
-
-            Assert.Equal(10000, queryResults.Count);
-        }
-
-        [Fact]
-        public void When_Quering10000Persons_ThenReturn100000Objects()
-        {
-            var queryResults = repository.Get_100000_Persons();
-
-            Assert.Equal(100000, queryResults.Count);
+            Assert.Equal(100, queryResults.Count);
         }
     }
 }

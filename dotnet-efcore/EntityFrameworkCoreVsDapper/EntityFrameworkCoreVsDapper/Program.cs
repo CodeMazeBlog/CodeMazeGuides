@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
-using EntityFrameworkCoreVsDapper;
 using EntityFrameworkCoreVsDapper.Repositories;
 
 public class Program
@@ -10,13 +9,9 @@ public class Program
 
 
         PersonsRepositoryEFCore EFCore_Repository = new PersonsRepositoryEFCore();
-        EFCore_Repository.Get_1000_Persons();
-        EFCore_Repository.Get_10000_Persons();
-        EFCore_Repository.Get_100000_Persons();
+        EFCore_Repository.Get_X_Persons(1000);
 
         PersonsRepositoryDapper Dapper_Repository = new PersonsRepositoryDapper();
-        Dapper_Repository.Get_1000_Persons();
-        Dapper_Repository.Get_10000_Persons();
-        Dapper_Repository.Get_100000_Persons();
+        Dapper_Repository.Get_X_Persons(1000);
     } 
 }
