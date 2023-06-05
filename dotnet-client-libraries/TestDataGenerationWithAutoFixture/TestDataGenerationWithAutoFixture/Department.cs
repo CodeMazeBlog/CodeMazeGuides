@@ -22,14 +22,14 @@
                 .FirstOrDefault(e => e.FirstName == firstName);
         }
 
-        public decimal? CalculateAverageSalary()
+        public decimal CalculateAverageSalary()
         {
             if (!Employees.Any())
             {
                 return 0;
             }
 
-            decimal? sumOfSalaries = Employees.Sum(e => e.Salary);
+            decimal sumOfSalaries = Employees.Sum(e => e.Salary);
 
             return sumOfSalaries / Employees.Count;
         }

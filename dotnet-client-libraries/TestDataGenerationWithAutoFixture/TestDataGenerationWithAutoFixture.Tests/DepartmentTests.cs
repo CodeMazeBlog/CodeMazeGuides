@@ -47,24 +47,45 @@ namespace TestDataGenerationWithAutoFixture.Tests
         }
 
         [Theory, AutoData]
-        public void GivenEmployeeExists_WhenGetEmployeeIsInvoked_ThenEmployeeIsReturned(string name)
+        public void GivenEmployeeExists_WhenGetEmployeeIsInvoked_ThenEmployeeIsReturned(
+            string firstName,
+            string lastName)
         {
             // Arrange
             var department = _fixture.Build<Department>()
                 .With(x => x.Employees, _fixture.Build<Employee>()
                                                 .OmitAutoProperties()
-                                                .With(x => x.FirstName, name)
+                                                .With(x => x.FirstName, firstName)
+                                                .With(x => x.LastName, lastName)
                                                 .CreateMany(1)
                                                 .ToList())
                 .Create();
 
             // Act
-            var employee = department.GetEmployee(name);
+            var employee = department.GetEmployee(firstName);
 
             // Assert
             employee.Should().NotBeNull();
-            employee.FirstName.Should().Be(name);
-            employee.LastName.Should().BeNull();
+            employee.LastName.Should().Be(lastName);
+            employee.Age.Should().BeNull();
+        }
+
+        [Fact]
+        public void WhenCalculateAverageSalaryIsInvoked_ThenAccurateResultIsReturned()
+        {
+            // Arrange
+            var department = _fixture.Build<Department>()
+                .With(x => x.Employees, _fixture.Build<Employee>()
+                                                .WithAutoProperties()
+                                                .CreateMany(5)
+                                                .ToList())
+                .Create();
+
+            // Act
+            var averageSalary = department.CalculateAverageSalary();
+
+            // Assert
+            averageSalary.Should().BeGreaterThan(0);
         }
     }
 }
