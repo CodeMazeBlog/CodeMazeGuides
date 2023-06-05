@@ -3,12 +3,12 @@ using Assert = Xunit.Assert;
 
 namespace Tests
 {
-    public class PersonRepositoryDapperUnitTests
+    public class PersonRepositoryDapperLiveTest
     {
         private PersonsRepositoryDapper repository = new PersonsRepositoryDapper();
 
         [Fact]
-        public void When_Quering100Persons_ThenReturn100Persons()
+        public void WhenQuering100Persons_ThenReturnListHas100Objects()
         {
             var queryResults = repository.Get_X_Persons(100);
 

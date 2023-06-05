@@ -19,7 +19,7 @@ namespace EntityFrameworkCoreVsDapper.Repositories
             using var dbConnection = new SqlConnection(ConnectionString);
 
             dbConnection.Open();
-            return (List<Person>)dbConnection.Query<Person>($"SELECT TOP({personsNumber}) * FROM Persons");
+            return dbConnection.Query<Person>($"SELECT TOP({personsNumber}) * FROM Persons").ToList();
         }
     }
 }
