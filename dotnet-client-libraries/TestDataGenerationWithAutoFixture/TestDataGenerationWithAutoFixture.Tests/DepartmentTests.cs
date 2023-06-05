@@ -28,9 +28,15 @@ namespace TestDataGenerationWithAutoFixture.Tests
         public void WhenAddEmployeeIsInvoked_ThenEmployeeIsAddedToTheList()
         {
             // Arrange
-            var employee = _fixture.Create<Employee>();
+            var employee = _fixture.Build<Employee>()
+                                   .OmitAutoProperties()
+                                   .Create();
+
             var department = _fixture.Build<Department>()
-                .With(x => x.Employees, _fixture.CreateMany<Employee>(5).ToList())
+                .With(x => x.Employees, _fixture.Build<Employee>()
+                                               .OmitAutoProperties()
+                                               .CreateMany(5)
+                                               .ToList())
                 .Create();
 
             // Act
@@ -38,6 +44,27 @@ namespace TestDataGenerationWithAutoFixture.Tests
 
             // Assert
             department.Employees.Count.Should().Be(6);
+        }
+
+        [Theory, AutoData]
+        public void GivenEmployeeExists_WhenGetEmployeeIsInvoked_ThenEmployeeIsReturned(string name)
+        {
+            // Arrange
+            var department = _fixture.Build<Department>()
+                .With(x => x.Employees, _fixture.Build<Employee>()
+                                                .OmitAutoProperties()
+                                                .With(x => x.FirstName, name)
+                                                .CreateMany(1)
+                                                .ToList())
+                .Create();
+
+            // Act
+            var employee = department.GetEmployee(name);
+
+            // Assert
+            employee.Should().NotBeNull();
+            employee.FirstName.Should().Be(name);
+            employee.LastName.Should().BeNull();
         }
     }
 }
