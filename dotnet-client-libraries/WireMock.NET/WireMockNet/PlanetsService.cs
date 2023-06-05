@@ -15,7 +15,7 @@ namespace WireMockNet
 
         public async Task<Planet?> GetPlanetByIdAsync(int id)
         {
-            var response = await _httpClient.GetAsync(_httpClient.BaseAddress + $"planets/{id}");
+            var response = await _httpClient.GetAsync($"planets/{id}");
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
