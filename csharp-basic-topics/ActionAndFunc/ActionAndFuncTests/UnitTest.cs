@@ -49,8 +49,9 @@ namespace ActionAndFuncDelegateTests
                 // Assert
                 Assert.AreEqual(expectedOutput, actualOutput, "The printed numbers do not match the expected output.");
             }
+
             [TestMethod]
-            public void AddNumbers_WhenValidInputProvided_ReturnsCorrectSum()
+            public void AddNumbers_WhenValidInputProvided_ThenReturnsCorrectSum()
             {
                 // Arrange
                 var expectedSum = 8;

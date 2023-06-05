@@ -9,10 +9,12 @@
                 Console.WriteLine(number);
             }
         }
+
         public static void PrintNumbersWithAction(List<int> numbers, Action<int> action)
         {
             numbers.ForEach(action);
         }
+
         public static int AddNumbers(int a, int b)
         {
             return a + b;
