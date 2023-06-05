@@ -9,8 +9,8 @@ namespace QueryStrings.Controllers;
 [Route("[controller]")]
 public class FullNameController : ControllerBase
 {
-    [HttpGet(template: "/v1", Name = "GetQueryStringsAsScalerValues")]
-    public IActionResult GetFullNameFromScalerValues([FromQuery] string firstName, [FromQuery] string lastName)
+    [HttpGet(template: "/v1", Name = "GetQueryStringsAsScalarValues")]
+    public IActionResult GetFullNameFromScalarValues([FromQuery] string firstName, [FromQuery] string lastName)
     {
         return Ok(new { FullName = $"{firstName} {lastName}" });
     }
