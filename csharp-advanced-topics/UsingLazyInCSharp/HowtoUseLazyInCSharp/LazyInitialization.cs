@@ -87,18 +87,17 @@ namespace HowtoUseLazyInCSharp
             // Use the initialized object outside the parallel loop
             // ...
         }
-        public SqlConnection RunLazyDatabaseConnectionExample()
+        public ExpensiveObject RunLazyInitializationExample()
         {
-            string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=MyDatabase;Trusted_Connection=True;";
-            Lazy<SqlConnection> lazyConnection = new Lazy<SqlConnection>(() =>
+            Lazy<ExpensiveObject> lazyObject = new Lazy<ExpensiveObject>(() =>
             {
-                var connection = new SqlConnection(connectionString);
-                connection.Open();
-                return connection;
+                // Create and initialize the expensive object
+                return new ExpensiveObject();
             });
 
-            return lazyConnection.Value;
+            return lazyObject.Value;
         }
+
         public Configuration RunLazyConfigurationExample()
         {
 

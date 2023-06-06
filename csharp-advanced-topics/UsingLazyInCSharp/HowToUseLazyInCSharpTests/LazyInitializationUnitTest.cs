@@ -95,17 +95,17 @@ namespace HowToUseLazyInCSharpTests
         }
 
         [TestMethod]
-        public void GivenLazyDatabaseConnectionExample_WhenRun_ThenConnectionIsInitialized()
+        public void GivenLazyInitializationExample_WhenRun_ThenExpensiveObjectIsInitialized()
         {
             // Arrange
             var initialization = new LazyInitialization();
 
             // Act
-            SqlConnection connection = initialization.RunLazyDatabaseConnectionExample();
+            ExpensiveObject expensiveObject = initialization.RunLazyInitializationExample();
 
             // Assert
-            Assert.IsNotNull(connection);
-            Assert.IsTrue(connection.State == System.Data.ConnectionState.Open);
+            Assert.IsNotNull(expensiveObject);
+            // Add more assertions based on the behavior of the ExpensiveObject class
         }
 
         [TestMethod]
