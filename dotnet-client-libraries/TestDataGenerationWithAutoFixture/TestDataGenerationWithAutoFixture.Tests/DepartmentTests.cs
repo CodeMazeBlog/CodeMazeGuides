@@ -1,6 +1,8 @@
 ﻿using AutoFixture;
+using AutoFixture.AutoMoq;
 using AutoFixture.Xunit2;
 using FluentAssertions;
+using Moq;
 
 namespace TestDataGenerationWithAutoFixture.Tests
 {
@@ -10,14 +12,20 @@ namespace TestDataGenerationWithAutoFixture.Tests
 
         public DepartmentTests()
         {
-            _fixture = new Fixture();
+            _fixture = new Fixture()
+                .Customize(new AutoMoqCustomization()
+                {
+                    ConfigureMembers = true
+                });
         }
 
         [Theory, AutoData]
         public void WhenConstructorIsInvoked_ThenValidInstanceIsReturned(string name)
         {
             // Act
-            var department = new Department(name);
+            var manager = new Mock<Manager>();
+            var payrollService = new Mock<IPayrollService>();
+            var department = new Department(name, manager.Object, payrollService.Object);
 
             // Assert
             department.Name.Should().Be(name);
@@ -64,7 +72,7 @@ namespace TestDataGenerationWithAutoFixture.Tests
             // Act
             var employee = department.GetEmployee(firstName);
 
-            // Assert
+            // Assert 
             employee.Should().NotBeNull();
             employee.LastName.Should().Be(lastName);
             employee.Age.Should().BeNull();
@@ -86,6 +94,25 @@ namespace TestDataGenerationWithAutoFixture.Tests
 
             // Assert
             averageSalary.Should().BeGreaterThan(0);
+            department.Manager.Should().NotBeNull();
+            department.Manager.Name.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void GivenNoEmployees_WhenCalculateAverageSalaryIsInvoked_ThenZeroIsReturned()
+        {
+            // Arrange
+            var department = _fixture.Build<Department>()
+                .With(x => x.Employees, _fixture.Build<Employee>()
+                                                .CreateMany(0)
+                                                .ToList())
+                .Create();
+
+            // Act
+            var averageSalary = department.CalculateAverageSalary();
+
+            // Assert
+            averageSalary.Should().Be(0);
         }
     }
 }
