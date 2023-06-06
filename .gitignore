@@ -351,3 +351,4 @@ MigrationBackup/
 
 **/*.idea/
 global.json
+.editorconfig
