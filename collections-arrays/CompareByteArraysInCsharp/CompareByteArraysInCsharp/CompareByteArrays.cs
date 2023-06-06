@@ -20,7 +20,7 @@ namespace CompareByteArraysInCsharp
         }
         public IEnumerable<object[]> SampleByteArray()
         {
-            //yield return new object[] { GenerateRandomArray(10000000), GenerateRandomArray(10000000) };
+            yield return new object[] { GenerateRandomArray(10000000), GenerateRandomArray(10000000) };
             yield return new object[] { _byteArray, _byteArray };
         }
 
