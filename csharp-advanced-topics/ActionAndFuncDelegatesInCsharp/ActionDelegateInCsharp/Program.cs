@@ -2,53 +2,33 @@
 
 public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        // Define an action that prints Hello World!
-        Action greet = () => Console.WriteLine("Hello World!");
+        Execute(() => Console.WriteLine("Hello World!"));
 
-        // Invoke the action
-        greet(); // prints: Hello World!
-        greet.Invoke(); // prints: Hello World!
+        Execute(message => Console.WriteLine(message));
 
-        // Define an action that takes a string and prints it
-        Action<string> greetMessage = message => Console.WriteLine(message);
-
-        // Invoke the action with a message
-        greetMessage("Hello, world!"); // prints: Hello, world!
-        greetMessage.Invoke("Hello, world!"); // prints: Hello, world!
-
-        //=== Passing Methods as arguments ===//
-
-        // Pass a lambda expression as an argument to Execute method
-        Execute(() => Console.WriteLine("Hello World!")); // prints: Hello World!
-
-        // Pass a lambda expression with a parameter as an argument to Execute method
-        Execute(message => Console.WriteLine(message)); // prints: Hello World!
-
-        // Pass a string and a lambda expression as arguments to Execute method
-        Execute("John", message => Console.WriteLine(message)); // prints: Hello John!
+        Execute((greeting, name) => Console.WriteLine($"{greeting} {name}!"));
 
         Console.Read();
     }
 
-    // Execute a given action
     public static void Execute(Action callback)
     {
-        callback();
+        callback.Invoke();
     }
 
-    // Execute a given action with a name
     public static void Execute(Action<string> callback)
     {
-        var name = "World";
-        callback(name + "!");
+        var message = "Hello World!";
+        callback.Invoke(message);
     }
 
-    // Execute a given action with a name
-    public static void Execute(string name, Action<string> greet)
+    public static void Execute(Action<string, string> callback)
     {
-        greet("Hello " + name + "!");
+        var greeting = "Hello";
+        var name = "World";
+        callback.Invoke(greeting, name);
     }
 }
 

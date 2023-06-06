@@ -2,41 +2,29 @@
 
 public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        // Func delegate with lambda expression
-        Func<int, int, int> add = (a, b) => a + b;
+        Execute(() => Add(2, 3));
 
-        // Invoke the delegate
-        int result = add(2, 3); // result = 5
-
-        //=== Passing Methods as arguments ===//
-
-        // Pass a lambda expression to PrintSum
-        PrintSum((_, _) => Add(2, 3));
-
-        // Pass a lambda expression that calls Add to PrintSum
-        PrintSum((a, b) => Add(a, b));
-
-        // Pass the Add method to PrintSum
-        PrintSum(2, 3, Add);
+        Execute((arg1, arg2) => Add(arg1, arg2));
 
         Console.Read();
     }
 
-    // Print the return value of a func delegate
-    public static void PrintSum(Func<int, int, int> add)
+    public static int Execute(Func<int> callback)
     {
-        Console.WriteLine(add(2, 3));
+        var result = callback.Invoke();
+        return result;
     }
 
-    // Print the return value of a func delegate with two ints
-    public static void PrintSum(int x, int y, Func<int, int, int> add)
+    public static int Execute(Func<int, int, int> callback)
     {
-        Console.WriteLine(add(x, y));
+        var arg1 = 2;
+        var arg2 = 3;
+        var result = callback.Invoke(arg1, arg2);
+        return result;
     }
 
-    // Return the sum of two ints
     public static int Add(int a, int b)
     {
         return a + b;
