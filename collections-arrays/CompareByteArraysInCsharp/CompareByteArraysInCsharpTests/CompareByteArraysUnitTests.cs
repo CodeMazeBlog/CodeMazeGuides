@@ -1,6 +1,4 @@
 using CompareByteArraysInCsharp;
-using System;
-using System.Globalization;
 
 namespace CompareByteArraysInCsharpTests
 {
