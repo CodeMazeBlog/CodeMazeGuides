@@ -1,65 +1,26 @@
-﻿namespace FuncDelegatesInCsharpTests;
+﻿using FuncDelegatesInCsharp;
 
-public class ProgramUnitTests
+namespace FuncDelegatesInCsharpTests;
+
+public class ProgramTests
 {
-    private string CaptureConsoleOutput(Action action)
-    {
-        using var writer = new StringWriter();
-        Console.SetOut(writer);
-        action();
-        return writer.ToString().Trim();
-    }
-
     [Fact]
-    public void WhenInvokingAdd_ThenReturnSum()
+    public void GivenTheAddMethodWithTwoArguments2And3_WhenExecuteCalled_ThenAddMethodInvokedAndExecuteReturns5()
     {
-        // Arrange
-        Func<int, int, int> add = (a, b) => a + b;
+        // When
+        var result = Program.Execute(() => Program.Add(2, 3));
 
-        // Act
-        int result = add(2, 3);
-
-        // Assert
+        // Then
         Assert.Equal(5, result);
     }
 
     [Fact]
-    public void WhenPrintingSum_ThenPrintReturnValueOfGivenFunc()
+    public void GivenTheAddMethodWithParametersFromExecute_WhenExecuteCalled_ThenAddMethodInvokedWithParametersAsArgumentsReturns5()
     {
-        // Arrange
-        var consoleOutput = "5";
-        Func<int, int, int> add = (a, b) => a + b;
+        // When
+        var result = Program.Execute((arg1, arg2) => Program.Add(arg1, arg2));
 
-        // Act
-        var output = CaptureConsoleOutput(() => FuncDelegatesInCsharp.Program.PrintSum(add));
-
-        // Assert
-        Assert.Equal(consoleOutput, output);
-    }
-
-    [Fact]
-    public void WhenPrintingSumWithTwoInts_ThenPrintReturnValueOfGivenFuncWithTwoInts()
-    {
-        // Arrange
-        var consoleOutput = "5";
-        Func<int, int, int> add = (a, b) => a + b;
-
-        // Act
-        var output = CaptureConsoleOutput(() => FuncDelegatesInCsharp.Program.PrintSum(2, 3, add));
-
-        // Assert
-        Assert.Equal(consoleOutput, output);
-    }
-
-    [Fact]
-    public void WhenAddingTwoInts_ThenReturnSum()
-    {
-        // Arrange
-
-        // Act
-        int result = FuncDelegatesInCsharp.Program.Add(2, 3);
-
-        // Assert
+        // Then
         Assert.Equal(5, result);
     }
 }

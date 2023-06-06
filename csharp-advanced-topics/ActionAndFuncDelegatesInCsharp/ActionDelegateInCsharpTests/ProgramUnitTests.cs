@@ -1,68 +1,57 @@
-﻿namespace ActionDelegateInCsharpTests;
+﻿using ActionDelegateInCsharp;
 
-public class ProgramUnitTests
+namespace ActionDelegateInCsharpTests;
+
+public class ProgramTests
 {
-    private string CaptureConsoleOutput(Action action)
+    [Fact]
+    public void GivenCallbackMethod_WhenExecuteWithActionCallbackCalled_ThenCallbackMethodInvoked()
     {
-        using var writer = new StringWriter();
-        Console.SetOut(writer);
-        action();
-        return writer.ToString().Trim();
+        // Given
+        bool isCallbackInvoked = false;
+        Action callback = () => { isCallbackInvoked = true; };
+
+        // When
+        Program.Execute(callback);
+
+        // Then
+        Assert.True(isCallbackInvoked);
     }
 
     [Fact]
-    public void WhenInvokingGreet_ThenPrintHelloWorld()
+    public void GivenCallbackMethodWithOneStringArgument_WhenExecuteWithActionStringCallbackCalled_ThenCallbackMethodInvokedWithArgument()
     {
-        // Arrange
-        var message = "Hello World!";
-        Action greet = () => Console.WriteLine(message);
+        // Given
+        string expectedMessage = "Hello World!";
+        string? actualMessage = null;
+        Action<string> callback = message => { actualMessage = message; };
 
-        // Act
-        var output = CaptureConsoleOutput(() => greet());
+        // When
+        Program.Execute(callback);
 
-        // Assert
-        Assert.Equal(message, output);
+        // Then
+        Assert.Equal(expectedMessage, actualMessage);
     }
 
     [Fact]
-    public void WhenInvokingGreetMessage_ThenPrintGivenMessage()
+    public void GivenCallbackMethodWithTwoStringArguments_WhenExecuteWithActionStringStringCallbackCalled_ThenCallbackMethodInvokedWithArguments()
     {
-        // Arrange
-        var message = "Hello World!";
-        Action<string> greetMessage = message => Console.WriteLine(message);
+        // Given
+        string expectedGreeting = "Hello";
+        string expectedName = "World";
+        string? actualGreeting = null;
+        string? actualName = null;
+        Action<string, string> callback = (greeting, name) =>
+        {
+            actualGreeting = greeting;
+            actualName = name;
+        };
 
-        // Act
-        var output = CaptureConsoleOutput(() => greetMessage(message));
+        // When
+        Program.Execute(callback);
 
-        // Assert
-        Assert.Equal(message, output);
-    }
-
-    [Fact]
-    public void WhenExecutingCallback_ThenPrintGivenMessage()
-    {
-        // Arrange
-        var message = "Hello World!";
-        Action callback = () => Console.WriteLine(message);
-
-        // Act
-        var output = CaptureConsoleOutput(() => ActionDelegateInCsharp.Program.Execute(callback));
-
-        // Assert
-        Assert.Equal(message, output);
-    }
-
-    [Fact]
-    public void WhenExecutingGreetWithName_ThenPrintHelloName()
-    {
-        // Arrange
-        var message = "Hello John!";
-        Action<string> greet = message => Console.WriteLine(message);
-
-        // Act
-        var output = CaptureConsoleOutput(() => ActionDelegateInCsharp.Program.Execute("John", greet));
-
-        // Assert
-        Assert.Equal(message, output);
+        // Then
+        Assert.Equal(expectedGreeting, actualGreeting);
+        Assert.Equal(expectedName, actualName);
     }
 }
