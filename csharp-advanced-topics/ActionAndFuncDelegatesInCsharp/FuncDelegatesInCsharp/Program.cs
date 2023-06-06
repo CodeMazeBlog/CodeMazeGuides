@@ -19,15 +19,20 @@ public class Program
 
     public static int Execute(Func<int, int, int> callback)
     {
-        var arg1 = 2;
-        var arg2 = 3;
-        var result = callback.Invoke(arg1, arg2);
+        var argument1 = 3;
+        var argument2 = 2;
+        var result = callback.Invoke(argument1, argument2);
         return result;
     }
 
     public static int Add(int a, int b)
     {
         return a + b;
+    }
+
+    public static int Subtract(int a, int b)
+    {
+        return a - b;
     }
 }
 
