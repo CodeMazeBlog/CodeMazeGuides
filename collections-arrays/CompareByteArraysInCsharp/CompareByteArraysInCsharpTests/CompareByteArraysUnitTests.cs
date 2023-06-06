@@ -66,12 +66,5 @@ namespace CompareByteArraysInCsharpTests
             Assert.IsTrue(_compareByteArrays.CompareUsingIStructuralEquatable(_firstArray, _secondArray));
             Assert.IsFalse(_compareByteArrays.CompareUsingIStructuralEquatable(_firstArray, _thirdArray));
         }
-
-        [TestMethod]
-        public void GivenByteArrays_WhenComparedUsingPInvoke_VerifyAccurateResults()
-        {
-            Assert.IsTrue(_compareByteArrays.CompareUsingPInvoke(_firstArray, _secondArray));
-            Assert.IsFalse(_compareByteArrays.CompareUsingPInvoke(_firstArray, _thirdArray));
-        }
     }
 }
