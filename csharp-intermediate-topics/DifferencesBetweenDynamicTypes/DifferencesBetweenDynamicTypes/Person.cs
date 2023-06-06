@@ -4,30 +4,31 @@ namespace DifferencesBetweenDynamicTypes;
 
 public class Person : DynamicObject
 {
-    private Dictionary<string, object> personalInformation;
+    private readonly Dictionary<string, object?> _personalInformation;
 
     public Person()
     {
-        personalInformation = new Dictionary<string, object>();
+        _personalInformation = new Dictionary<string, object?>();
     }
 
-    public override bool TryGetMember(GetMemberBinder binder, out object result)
+    public override bool TryGetMember(GetMemberBinder binder, out object? result)
     {
         var key = binder.Name;
-        return personalInformation.TryGetValue(key, out result);
+        return _personalInformation.TryGetValue(key, out result);
     }
 
-    public override bool TrySetMember(SetMemberBinder binder, object value)
+    public override bool TrySetMember(SetMemberBinder binder, object? value)
     {
         var key = binder.Name;
-        personalInformation[key] = value;
+        _personalInformation[key] = value;
         return true;
     }
 
     public void PrintInfo()
     {
         Console.WriteLine("Personal Information:");
-        foreach (var info in personalInformation)
+
+        foreach (var info in _personalInformation)
         {
             Console.WriteLine($"{info.Key}: {info.Value}");
         }

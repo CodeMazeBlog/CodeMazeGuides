@@ -36,7 +36,7 @@ public class DynamicTypesUnitTest
     }
 
     [Fact]
-    public void WhenCreateExpandoObjectMethodIsCalled_ThenReturnExpandoObject()
+    public void WhenAddingMembersToExpandoObject_ThenReturnExpandoObjectMembers()   
     {
         dynamic book = new ExpandoObject();
 
@@ -69,12 +69,12 @@ public class DynamicTypesUnitTest
     }
 
     [Fact]
-    public void WhenRemoveValuesFromExpandoObjectMethodIsCalled_ThenReturnRemoveValues()
+    public void WhenRemovingValuesFromExpandoObject_ThenReturnRemainingValues()
     {
         dynamic person = new ExpandoObject();
 
         person.Age = 30;
-        person.Name = "Jane Doe";
+        person.Name = "Jane Doe";   
 
         ((IDictionary<string, object>)person).Remove("Age");
 
@@ -86,7 +86,7 @@ public class DynamicTypesUnitTest
     {
         dynamic person = new ExpandoObject();
 
-        ((INotifyPropertyChanged)person).PropertyChanged += (sender, e) =>
+        ((INotifyPropertyChanged)person).PropertyChanged += (_, e) =>
         {
             _testOutputHelper.WriteLine($"Property changed: {e.PropertyName}");
         };
