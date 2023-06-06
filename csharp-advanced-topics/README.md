@@ -8,6 +8,7 @@ This section contains the topics considered advanced level in C#.
 - [How to Build Dynamic Queries With Expression Trees in C#](https://code-maze.com/dynamic-queries-expression-trees-csharp/)
 - [How to Create a Class Dynamically in C#?](https://code-maze.com/create-class-dynamically-csharp/)
 - [Events in C#](https://code-maze.com/csharp-events/)
+- [Expression Trees in C#](https://code-maze.com/csharp-expression-trees/)
 - [Generic Attributes in C#](https://code-maze.com/csharp-generic-attributes/)
 - [Using Generics in C#](https://code-maze.com/using-generics-in-csharp/)
 - [Introduction to Regular Expressions in C#](https://code-maze.com/regular-expressions-csharp/)
