@@ -8,7 +8,7 @@ namespace GlobalRoutePrefixInAspNetCore.API.Controllers
     public class ProductsController : ControllerBase
     {
         [HttpGet]
-        public IActionResult GetAll()
+        public ActionResult<List<Product>> GetProducts()
         {
             var products = new List<Product>()
             {
