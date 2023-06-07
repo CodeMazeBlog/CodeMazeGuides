@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 public class ProductsControllerTests
 {
     [Fact]
-    public void GetProducts_ReturnsOkResult()
+    public void WhenGettingProducts_ThenReturnOkResult()
     {
         // Arrange
         var controller = new ProductsController();
@@ -19,7 +19,7 @@ public class ProductsControllerTests
     }
 
     [Fact]
-    public void GetProducts_ReturnsCorrectProducts()
+    public void WhenGettingProducts_ThenReturnValidProducts()
     {
         // Arrange
         var controller = new ProductsController();
@@ -34,20 +34,5 @@ public class ProductsControllerTests
         Assert.Equal(2, products.Count);
         Assert.Contains(products, p => p.Id == 1 && p.Name == "The Secret Recipes of Chef Uyi");
         Assert.Contains(products, p => p.Id == 2 && p.Name == "Lenovo Yoga Laptop");
-    }
-
-    [Fact]
-    public void GetProducts_ReturnsOkResult_WithEmptyList()
-    {
-        // Arrange
-        var emptyProductsController = new ProductsController();
-
-        // Act
-        var result = emptyProductsController.GetProducts();
-        var okResult = Assert.IsType<OkObjectResult>(result.Result);
-        var products = Assert.IsAssignableFrom<List<Product>>(okResult.Value);
-
-        // Assert
-        Assert.NotNull(products);
     }
 }
