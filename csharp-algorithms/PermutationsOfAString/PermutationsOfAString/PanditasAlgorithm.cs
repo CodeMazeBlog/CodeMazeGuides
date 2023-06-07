@@ -79,7 +79,7 @@
             Span<char> spanInput = array.AsSpan();
 
             if (NextPermutation(spanInput))
-                return spanInput.ToString();
+                return new string(spanInput);
 
             return string.Join("", input.ToCharArray().OrderBy(c => c).ToArray());
         }
@@ -89,9 +89,9 @@
             var array = input.ToCharArray().OrderBy(c => c).ToArray();
             Span<char> spanInput = array.AsSpan();
 
-            var result = new List<string>() { spanInput.ToString() };
+            var result = new List<string>() { new string(spanInput) };
             while (NextPermutation(spanInput))
-                result.Add(spanInput.ToString());
+                result.Add(new string(spanInput));
 
             return result;
         }
