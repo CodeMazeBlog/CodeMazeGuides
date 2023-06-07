@@ -47,6 +47,5 @@ namespace ActionAndFuncDelegatesInCsharp.Test
             // Assert
             Assert.AreEqual(expectedAge, actualAge);
         }
-
     }
 }
