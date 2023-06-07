@@ -6,7 +6,7 @@ public class Car
 {
     public string DisplayClassNameWithGetType()
     {
-        return this.GetType().Name;
+        return GetType().Name;
     }
 
     public string DisplayClassNameWithTypeOf()

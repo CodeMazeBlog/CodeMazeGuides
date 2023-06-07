@@ -9,7 +9,7 @@ public class CarUnitTest
         var car = new Car();
 
         // Act
-        string className = car.DisplayClassNameWithGetType();
+        var className = car.DisplayClassNameWithGetType();
 
         // Assert
         Assert.Equal("Car", className);
@@ -22,7 +22,7 @@ public class CarUnitTest
         var car = new Car();
 
         // Act
-        string className = car.DisplayClassNameWithTypeOf();
+        var className = car.DisplayClassNameWithTypeOf();
 
         // Assert
         Assert.Equal("Car", className);
@@ -35,7 +35,27 @@ public class CarUnitTest
         var car = new Car();
 
         // Act
-        string className = car.DisplayClassNameWithNameOf();
+        var className = car.DisplayClassNameWithNameOf();
+
+        // Assert
+        Assert.Equal("Car", className);
+    }
+
+    [Fact]
+    public void GivenCarClass_WhenTypeOfInvoked_ThenReturnCar()
+    {
+        // Act
+        var className = typeof(Car).Name;
+
+        // Assert
+        Assert.Equal("Car", className);
+    }
+
+    [Fact]
+    public void GivenCarClass_WhenNameOfInvoked_ThenReturnCar()
+    {
+        // Act
+        var className = nameof(Car);
 
         // Assert
         Assert.Equal("Car", className);
@@ -48,7 +68,7 @@ public class CarUnitTest
         var car = new Car();
 
         // Act
-        string? className = car.DisplayClassNameWithReflection();
+        var className = car.DisplayClassNameWithReflection();
 
         // Assert
         Assert.Equal("Car", className);
