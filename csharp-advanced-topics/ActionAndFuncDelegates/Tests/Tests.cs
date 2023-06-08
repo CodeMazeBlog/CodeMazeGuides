@@ -5,39 +5,35 @@ namespace Tests
     [TestClass]
     public class Tests
     {
-        [TestMethod]
-        public void WhenStringIsPassed_DisplaysItemInConsole()
+        private Example Example { get; set; }
+        private StringWriter StringWriter { get; set; }
+
+        public Tests()
         {
-            //arrange
-            var example = new Example();
+            this.Example = new Example();
+            this.StringWriter = new StringWriter();
+            Console.SetOut(this.StringWriter);
+        }
 
-            var stringWriter = new StringWriter();
-            Console.SetOut(stringWriter);
-
+        [TestMethod]
+        public void WhenStringIsPassed_ThenDisplaysItemInConsole()
+        {
             //act
-            example.ActionDemo();
+            this.Example.ActionDemo();
 
             //assert
-            // List<string> items = new List<string>() { "Foo", "Bar", "Bob", "Alice" };
-            var outputLines = stringWriter.ToString().Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var outputLines = this.StringWriter.ToString().Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             Assert.AreEqual("Foo", outputLines[0]);
         }
 
         [TestMethod]
-        public void WhenStringIsPassed_ConvertsItemToLowercase()
+        public void WhenStringIsPassed_ThenConvertsItemToLowercase()
         {
-            //arrange
-            var example = new Example();
-
-            var stringWriter = new StringWriter();
-            Console.SetOut(stringWriter);
-
             //act
-            example.FuncDemo();
+            this.Example.FuncDemo();
 
             //assert
-            // List<string> items = new List<string>() { "Foo", "Bar", "Bob", "Alice" };
-            var outputLines = stringWriter.ToString().Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+            var outputLines = this.StringWriter.ToString().Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             Assert.AreEqual("foo", outputLines[0]);
         }
     }

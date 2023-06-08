@@ -4,7 +4,7 @@
     {
         public void ActionDemo()
         {
-            List<string> items = new List<string>() { "Foo", "Bar", "Bob", "Alice" };
+            var items = new List<string>() { "Foo", "Bar", "Bob", "Alice" };
 
             Action<string> displayItem = delegate (string item) { Console.WriteLine(item); };
 
@@ -13,7 +13,7 @@
 
         public void FuncDemo()
         {
-            List<string> items = new List<string>() { "Foo", "Bar", "Bob", "Alice" };
+            var items = new List<string>() { "Foo", "Bar", "Bob", "Alice" };
 
             Func<string, string> convertItem = delegate (string item) { return item.ToLower(); };
 
