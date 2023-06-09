@@ -8,7 +8,6 @@ PrintResult(result);
 result = ConversionHelpers.FromHexWithSwitchComputation(source);
 PrintResult(result);
 
-
 result = ConversionHelpers.FromHexWithLookup(source);
 PrintResult(result);
 

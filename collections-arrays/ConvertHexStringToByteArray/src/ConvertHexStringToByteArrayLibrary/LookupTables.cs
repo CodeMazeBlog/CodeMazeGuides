@@ -2,8 +2,7 @@
 
 public static class LookupTables
 {
-    // values for '\0' to 'f' where 255 indicates invalid input character
-    internal static ReadOnlySpan<byte> FromHexLookup => new byte[]
+    internal static ReadOnlySpan<byte> FromHexLowBitsLookup => new byte[]
     {
         255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
         255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
@@ -15,11 +14,10 @@ public static class LookupTables
         15, 255, 255, 255, 255, 255, 255, 255, 255, 255,
         255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
         255, 255, 255, 255, 255, 255, 255, 10, 11, 12,
-        13, 14, 15,
+        13, 14, 15
     };
 
-    // Same table but values are multiplied by 16
-    internal static ReadOnlySpan<byte> FromHex16Lookup => new byte[]
+    internal static ReadOnlySpan<byte> FromHexHighBitsLookup => new byte[]
     {
         255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
         255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
@@ -31,12 +29,25 @@ public static class LookupTables
         240, 255, 255, 255, 255, 255, 255, 255, 255, 255,
         255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
         255, 255, 255, 255, 255, 255, 255, 160, 176, 192,
-        208, 224, 240,
+        208, 224, 240
     };
 
-    public static uint[] CreateLookup(bool lowercase, bool littleEndian)
+    public static (byte[] lowBits, byte[] highBits) CreateLookups()
     {
-        // TODO:
-        return Array.Empty<uint>();
+        const string hexValues = "0123456789ABCDEFabcdef";
+
+        var lowBits = GC.AllocateUninitializedArray<byte>('f' + 1);
+        var highBits = GC.AllocateUninitializedArray<byte>('f' + 1);
+        Array.Fill(lowBits, (byte) 255);
+        Array.Fill(highBits, (byte) 255);
+
+        foreach (var c in hexValues.AsSpan())
+        {
+            var value = ConversionHelpers.ComputeNibbleFromHexChar(c);
+            lowBits[c] = value;
+            highBits[c] = (byte) (value << 4);
+        }
+
+        return (lowBits, highBits);
     }
 }
