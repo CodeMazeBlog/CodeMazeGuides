@@ -3,60 +3,35 @@ namespace Tests;
 [TestClass]
 public class ActionTests
 {
-    // Define the methods being tested
-    private static void MethodName1(string message)
+    [TestMethod]
+    public void GivenMessage_WhenInvokingMethodName1_ThenAssignExpectedMessageToActual()
     {
-        Console.WriteLine(message);
-    }
+        // Arrange
+        string expected = "Version 1: Initialization of Action delegate";
+        string? actual = null;
 
-    private static void MethodName2(string message)
-    {
-        Console.WriteLine(message);
+        // Act
+        Action<string> delegateName1 = ActionMethods.MethodName1;
+        delegateName1 += (s) => actual = s;
+        delegateName1.Invoke("Version 1: Initialization of Action delegate");
+
+        // Assert
+        Assert.AreEqual(expected, actual);
     }
 
     [TestMethod]
-    public void GivenMessage_WhenInvokingMethodName1_ThenWriteExpectedMessageToConsole()
+    public void GivenEmptyMessage_WhenInvokingMethodName2_ThenWriteExpectedMessageToActual()
     {
         // Arrange
-        string expectedMessage = "Test Message";
-        string actualOutput = "";
+        string expected = "Version 2: Initialization of Action delegate";
+        string? actual = null;
 
         // Act
-        Action<string> delegateName1 = MethodName1;
-        delegateName1.Invoke(expectedMessage);
-
-        // Capture the console output
-        using (StringWriter sw = new StringWriter())
-        {
-            Console.SetOut(sw);
-            MethodName1(expectedMessage);
-            actualOutput = sw.ToString().Trim();
-        }
+        Action<string> delegateName2 = new Action<string>(ActionMethods.MethodName2);
+        delegateName2 += (s) => actual = s;
+        delegateName2.Invoke("Version 2: Initialization of Action delegate");
 
         // Assert
-        Assert.AreEqual(expectedMessage, actualOutput);
-    }
-
-    [TestMethod]
-    public void GivenMessage_WhenInvokingMethodName2_ThenWriteExpectedMessageToConsole()
-    {
-        // Arrange
-        string expectedMessage = "Test Message";
-        string actualOutput = "";
-
-        // Act
-        Action<string> delegateName2 = new Action<string>(MethodName2);
-        delegateName2.Invoke(expectedMessage);
-
-        // Capture the console output
-        using (StringWriter sw = new StringWriter())
-        {
-            Console.SetOut(sw);
-            MethodName2(expectedMessage);
-            actualOutput = sw.ToString().Trim();
-        }
-
-        // Assert
-        Assert.AreEqual(expectedMessage, actualOutput);
+        Assert.AreEqual(expected, actual);
     }
 }

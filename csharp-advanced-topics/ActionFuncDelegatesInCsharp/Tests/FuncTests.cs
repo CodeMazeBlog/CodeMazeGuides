@@ -3,64 +3,52 @@
 [TestClass]
 public class FuncTests
 {
-    // Define the methods being tested
-    private static int Addition(int x, int y)
-    {
-        return x + y;
-    }
-
-    private static string DisplayAddition(int a, int b)
-    {
-        return $"Addition of {a} and {b} is {a + b}";
-    }
-
-    private static string ShowCompleteName(string firstName, string lastName)
-    {
-        return $"Author of this Article is {firstName} {lastName}";
-    }
-
-    [TestMethod]
-    public void GivenTwoIntegers_WhenCalculatingSum_ThenReturnExpectedSum()
-    {
-        // Arrange
-        int x = 3;
-        int y = 4;
-        int expectedSum = 7;
-
-        // Act
-        int actualSum = Addition(x, y);
-
-        // Assert
-        Assert.AreEqual(expectedSum, actualSum);
-    }
-
     [TestMethod]
     public void GivenTwoIntegers_WhenDisplayingAddition_ThenReturnExpectedMessage()
     {
         // Arrange
+        Func<int, int, string> completeName = FuncMethods.DisplayAddition;
         int a = 5;
         int b = 6;
-        string expectedMessage = $"Addition of {a} and {b} is {a + b}";
+        int sum = FuncMethods.Addition(a, b);
+        string expected = $"Addition of {a} and {b} is {sum}";
 
-        // Act
-        string actualMessage = DisplayAddition(a, b);
+        //// Act
+        string actual = completeName(a, b);
 
         // Assert
-        Assert.AreEqual(expectedMessage, actualMessage);
+        Assert.AreEqual(expected, actual);
     }
 
     [TestMethod]
-    public void GivenFirstAndLastName_WhenCreatingCompleteName_ThenReturnExpectedFullName()
+    public void GivenTwoIntegers_WhenCalculatingAddition_ThenReturnExpectedSum()
     {
         // Arrange
-        string firstName = "Code";
-        string lastName = "Maze";
-        string expectedFullName = $"Author of this Article is {firstName} {lastName}";
+        Func<int, int, int> addition2 = FuncMethods.Addition;
+        int num1 = 3;
+        int num2 = 4;
+        int expected = num1 + num2;
 
         // Act
-        string actualFullName = ShowCompleteName(firstName, lastName);
+        int actual = addition2(num1, num2);
 
         // Assert
-        Assert.AreEqual(expectedFullName, actualFullName);
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void GivenTwoStrings_WhenShowingCompleteName_ThenReturnExpectedMessage()
+    {
+        // Arrange
+        Func<string, string, string> completeName = FuncMethods.ShowCompleteName;
+        string firstName = "Code";
+        string lastName = "Maze";
+        string expected = $"Author of this Article is {firstName} {lastName}";
+
+        // Act
+        string actual = completeName(firstName, lastName);
+
+        // Assert
+        Assert.AreEqual(expected, actual);
     }
 }
