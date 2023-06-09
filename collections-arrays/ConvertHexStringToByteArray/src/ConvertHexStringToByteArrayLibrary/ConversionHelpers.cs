@@ -7,26 +7,22 @@ public static class ConversionHelpers
     public static unsafe byte[] FromHexWithLookup(ReadOnlySpan<char> source)
     {
         if (source.StartsWith("0x")) source = source[2..];
-        if (source.Length == 0) return Array.Empty<byte>();
+        if (source.IsEmpty) return Array.Empty<byte>();
         if (source.Length % 2 == 1) throw new ArgumentException("Source has invalid length", nameof(source));
 
         var destLength = source.Length >> 1; 
 
         fixed (char* sourceRef = source)
         {
-            var firstChar = 0;
             var dest = GC.AllocateUninitializedArray<byte>(destLength);
 
-            // Pin the lookups and the destination
             fixed (byte* hiRef = LookupTables.FromHex16Lookup)
             fixed (byte* lowRef = LookupTables.FromHexLookup)
             fixed (byte* destRef = dest)
             {
-                // Get incrementable reference to the source and the destination
-                var s = &sourceRef[firstChar];
+                var s = &sourceRef[0];
                 var d = destRef;
 
-                // Walk through the source, computing the destination entries
                 while (*s != 0)
                 {
                     // check for non valid characters in pairs
@@ -36,7 +32,6 @@ public static class ConversionHelpers
                        )
                         throw new ArgumentException($"Invalid character found in string: '{*s}'", nameof(source));
 
-                    // set final value of current result byte and move pointer to next byte
                     *d++ += lowValue;
                 }
 
@@ -53,10 +48,10 @@ public static class ConversionHelpers
 
     public static unsafe byte[] FromHexWithBitFiddle(ReadOnlySpan<char> source)
     {
-        if (source.Length == 0) return Array.Empty<byte>();
-
         if (source.StartsWith("0x")) source = source[2..];
-        if (source.IsEmpty || source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
+        if (source.IsEmpty) return Array.Empty<byte>();
+        if (source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
+
         var dest = GC.AllocateUninitializedArray<byte>(source.Length / 2);
         fixed (char* srcPtr = source)
         fixed (byte* destPtr = dest)
@@ -81,10 +76,9 @@ public static class ConversionHelpers
 
     public static unsafe byte[] FromHexWithSwitchComputation(ReadOnlySpan<char> source)
     {
-        if (source.Length == 0) return Array.Empty<byte>();
-
         if (source.StartsWith("0x")) source = source[2..];
-        if (source.IsEmpty || source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
+        if (source.IsEmpty) return Array.Empty<byte>();
+        if (source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
 
         var dest = GC.AllocateUninitializedArray<byte>(source.Length / 2);
         fixed(char* s = source)
