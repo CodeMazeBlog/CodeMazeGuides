@@ -2,38 +2,15 @@
 
 namespace HashtableInCSharp
 {
-    public class HashtableDemo
+    public static class HashtableDemo
     {
-        public static Hashtable CreateEmptyHashTable()
-        {
-            var firstHashTable = new Hashtable();
+        public static Hashtable CreateEmptyHashTable() => new();
 
-            return firstHashTable;
-        }
+        public static Hashtable CreateHashTableWithInitialCapacity(int initialCapacity) 
+            => new(initialCapacity);
 
-        public static Hashtable CreateHashTableWithInitialCapacity()
-        {
-            var secondHashTable = new Hashtable(100);
-
-            return secondHashTable;
-        }
-
-        public static Hashtable CreateHashTableFromDictionary()
-        {
-            var dictionary = new Dictionary<int, User>()
-            {
-                { 1, new User() { Id = 1, FirstName = "Rafa", LastName = "Lopez" } },
-                { 2, new User() { Id = 2, FirstName = "Michael", LastName = "Sam" } },
-                { 3, new User() { Id = 3, FirstName = "Sam", LastName = "Manalt"} },
-                { 4, new User() { Id = 4, FirstName = "Lone", LastName = "Costa"} },
-                { 5, new User() { Id = 5, FirstName = "Alberto", LastName = "Daci"} },
-            };
-            
-            var userHashTable = new Hashtable(dictionary);
-
-            return userHashTable;
-        }
-
+        public static Hashtable CreateHashTableFromDictionary(Dictionary<int, User> dictionary) => new(dictionary);
+        
         public static Hashtable AddSampleDataToHashTable(Hashtable userHashTable, List<User> userList)
         {
             foreach(var user in userList)
@@ -70,14 +47,24 @@ namespace HashtableInCSharp
 
         public static Hashtable UpdateElementInHashTable(Hashtable userHashTable, int id)
         {
-            userHashTable[id] = new User() { FirstName = "Henry", LastName = "Stafford" };
+            if (userHashTable.ContainsKey(id))
+            {
+                userHashTable[id] = new User() { FirstName = "Henry", LastName = "Stafford" };
+
+                return userHashTable;
+            }
 
             return userHashTable;
         }
 
         public static Hashtable RemoveElementFromHashTable(Hashtable userHashTable, int id)
         {
-            userHashTable.Remove(id);
+            if (userHashTable.ContainsKey(id))
+            {
+                userHashTable.Remove(id);
+
+                return userHashTable;
+            }
 
             return userHashTable;
         }

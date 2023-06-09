@@ -1,5 +1,4 @@
-﻿using HashtableInCSharp;
-using System.Collections;
+﻿using System.Collections;
 
 namespace HashtableInCSharp
 {
@@ -7,21 +6,13 @@ namespace HashtableInCSharp
     {
         static void Main(string[] args)
         {
-            var userHashTable = HashtableDemo.CreateHashTableFromDictionary();
+            var userHashTable = HashtableDemo.CreateHashTableFromDictionary(SharedData.UserDictionary);
 
             // Hashtable content before adding data to it
-            PrintHashTableContent(userHashTable);
-
-            // List of users to add to the Hashtable
-            List<User> userList = new()
-            {
-                new User() { Id = 6, FirstName = "Judit", LastName = "Peter" },
-                new User() { Id = 7, FirstName = "Steve", LastName = "Billing" },
-                new User() { Id = 8, FirstName = "Goddy", LastName = "Opara" },
-            };
+            PrintHashTableContent(userHashTable);               
 
             // Adding data to the Hashtable
-            HashtableDemo.AddSampleDataToHashTable(userHashTable, userList);
+            HashtableDemo.AddSampleDataToHashTable(userHashTable, SharedData.UserList);
             
             // Hashtable content after adding data to it
             PrintHashTableContent(userHashTable);
