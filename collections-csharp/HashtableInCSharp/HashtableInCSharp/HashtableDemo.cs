@@ -6,14 +6,14 @@ namespace HashtableInCSharp
     {
         public static Hashtable CreateEmptyHashTable() => new();
 
-        public static Hashtable CreateHashTableWithInitialCapacity(int initialCapacity) 
+        public static Hashtable CreateHashTableWithInitialCapacity(int initialCapacity)
             => new(initialCapacity);
 
         public static Hashtable CreateHashTableFromDictionary(Dictionary<int, User> dictionary) => new(dictionary);
-        
+
         public static Hashtable AddSampleDataToHashTable(Hashtable userHashTable, List<User> userList)
         {
-            foreach(var user in userList)
+            foreach (var user in userList)
             {
                 userHashTable.Add(user.Id, user);
             }
@@ -37,7 +37,7 @@ namespace HashtableInCSharp
         {
             var userList = new List<User>();
 
-            foreach(DictionaryEntry entry in userHashTable)
+            foreach (DictionaryEntry entry in userHashTable)
             {
                 userList.Add((User)entry.Value);
             }
@@ -59,12 +59,7 @@ namespace HashtableInCSharp
 
         public static Hashtable RemoveElementFromHashTable(Hashtable userHashTable, int id)
         {
-            if (userHashTable.ContainsKey(id))
-            {
-                userHashTable.Remove(id);
-
-                return userHashTable;
-            }
+            userHashTable.Remove(id);
 
             return userHashTable;
         }
