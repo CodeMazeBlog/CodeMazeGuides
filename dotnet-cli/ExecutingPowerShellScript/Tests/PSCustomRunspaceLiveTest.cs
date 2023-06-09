@@ -7,7 +7,7 @@ namespace Tests
         [Fact]
         public void GivenCommand_WhenInvoked_ThenExecutesCommandGiven()
         {
-            PSCustomRunspace customRunspace = new PSCustomRunspace(); 
+            var customRunspace = new PSCustomRunspace(); 
             var result = customRunspace.ExecuteCommand("Get-Date");
             var expectedResult = true;
 
@@ -17,12 +17,11 @@ namespace Tests
         [Fact]
         public void GivenName_WhenInvoked_ThenDoesntStartAProcess()
         {
-            PSCustomRunspace customRunspace = new PSCustomRunspace(); 
-            var result = customRunspace.StartAProcess("notepad");
+            var customRunspace = new PSCustomRunspace(); 
+            var result = customRunspace.StartProcess("notepad");
             var expectedResult = "False";
 
             Assert.Equal(expectedResult, result.ToString());
         }
-
     }
 }
