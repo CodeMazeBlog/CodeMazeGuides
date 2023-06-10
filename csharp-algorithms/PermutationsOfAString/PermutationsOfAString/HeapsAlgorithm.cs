@@ -7,6 +7,7 @@
         public List<byte[]> GetPermutations(byte number)
         {
             var input = Enumerable.Range(0, number).Select(i => (byte)i).ToArray();
+
             return GeneratePermutations(input, false);
         }
 

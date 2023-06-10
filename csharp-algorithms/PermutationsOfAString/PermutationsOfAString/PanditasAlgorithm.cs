@@ -6,6 +6,7 @@
         public List<byte[]> GetPermutations(byte number)
         {
             var input = Enumerable.Range(0, number).Select(i => (byte)i).ToArray();
+
             return GeneratePermutations(input, false);
         }
 
@@ -48,6 +49,7 @@
             (number[i], number[j]) = (number[j], number[i]);
 
             Reverse(number, i + 1);
+
             return true;
         }
 
@@ -114,6 +116,7 @@
             (input[i], input[j]) = (input[j], input[i]);
 
             Reverse(input, i + 1);
+
             return true;
         }
 
