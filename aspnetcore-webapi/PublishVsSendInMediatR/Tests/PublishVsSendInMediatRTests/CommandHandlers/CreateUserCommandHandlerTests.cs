@@ -8,7 +8,6 @@ namespace PublishVsSendInMediatRTests.CommandHandlers
 {
     public class CreateUserCommandHandlerTests
     {
-
         [Fact]
         public async Task WhenCreateANewUserHandle_ThenReturnValidUserId()
         {
