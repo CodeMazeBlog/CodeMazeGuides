@@ -23,9 +23,11 @@ namespace PublishVsSendInMediatRTests
 
             // Act
             var response = await client.PostAsJsonAsync("/api/users", new CreateUserCommand { Email = "sample@sample.com", UserName = "SampleUser" });
+            var idUserCreated = await response.Content.ReadAsStringAsync();
 
             // Assert
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            Assert.True(int.Parse(idUserCreated) > 0);
         }
 
         [Fact]
