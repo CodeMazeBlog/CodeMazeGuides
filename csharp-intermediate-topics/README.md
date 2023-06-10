@@ -38,4 +38,5 @@ This section contains the topics considered intermediate level in C#.
 - [Unsafe Code in C# (unsafe keyword)](https://code-maze.com/unsafe-code-csharp/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/how-to-enumerate-an-enum-in-c/)
 - [Upcasting and Downcasting in C#](https://code-maze.com/csharp-upcasting-downcasting/)
+- [Virtual Methods in C#](https://code-maze.com/virtual-methods-csharp/)
 - [Working With Zip Files in C#/.NET](https://code-maze.com/csharp-zip-files/)
