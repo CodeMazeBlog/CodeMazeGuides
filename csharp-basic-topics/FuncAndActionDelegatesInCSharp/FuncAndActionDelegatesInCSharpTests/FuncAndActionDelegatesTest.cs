@@ -1,175 +1,159 @@
 using FuncAndActionDelegatesInCSharp;
-using NUnit.Framework;
-using System;
-using System.IO;
 
-public class ConsoleOutputTester : IDisposable
-{
-    private StringWriter consoleOutput;
-    private TextWriter originalOutput;
-
-    public ConsoleOutputTester()
-    {
-        consoleOutput = new StringWriter();
-        originalOutput = Console.Out;
-        Console.SetOut(consoleOutput);
-    }
-
-    public void Dispose()
-    {
-        Console.SetOut(originalOutput);
-        consoleOutput.Dispose();
-    }
-
-    public string GetOutput()
-    {
-        return consoleOutput.ToString();
-    }
-}
+namespace FuncAndActionDelegatesInCSharpTests;
 
 [TestFixture]
-public class ProgramTests
+public class FuncAndActionDelegatesUnitTest
 {
     [Test]
-    public void Delegate_WritesCorrectConsoleOutput()
+    public void WhenInvokingADelegate_ThenItWritesCorrectConsoleOutput()
     {
         // Arrange
         using (var consoleOutputTester = new ConsoleOutputTester())
         {
             // Act
-            Program.Delegate();
+            Delegates.Delegate();
 
             // Assert
             string expectedOutput = "Hello, Code Maze" + Environment.NewLine;
             string actualOutput = consoleOutputTester.GetOutput();
+
             Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
 
     [Test]
-    public void ActionDelegate_WritesCorrectConsoleOutput()
+    public void WhenInvokingAnActionDelegate_ThenItWritesCorrectConsoleOutput()
     {
         // Arrange
         using (var consoleOutputTester = new ConsoleOutputTester())
         {
             // Act
-            Program.ActionDelegate();
+            ActionDelegates.ActionDelegate();
 
             // Assert
             string expectedOutput = "Hello, Code Maze" + Environment.NewLine;
             string actualOutput = consoleOutputTester.GetOutput();
+
             Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
 
     [Test]
-    public void ActionDelegateMultipleParameters_WritesCorrectConsoleOutput()
+    public void WhenInvokingActionDelegateWithMultipleParameters_ThenItWritesCorrectConsoleOutput()
     {
         // Arrange
         using (var consoleOutputTester = new ConsoleOutputTester())
         {
             // Act
-            Program.ActionDelegateMultipleParameters();
+            ActionDelegates.ActionDelegateMultipleParameters();
 
             // Assert
             string expectedOutput = $"Hello, Code Maze @ {DateTime.Now:dd/MM/yyyy HH:mm}" + Environment.NewLine;
             string actualOutput = consoleOutputTester.GetOutput();
+
             Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
 
     [Test]
-    public void FuncDelegates_WritesCorrectConsoleOutput()
+    public void WhenInvokingFuncDelegates_ThenItWritesCorrectConsoleOutput()
     {
         // Arrange
         using (var consoleOutputTester = new ConsoleOutputTester())
         {
             // Act
-            Program.FuncDelegates();
+            FuncDelegates.FuncDelegate();
 
             // Assert
             string expectedOutput = $"Hello, Code Maze @ {DateTime.Now:dd/MM/yyyy HH:mm}" + Environment.NewLine;
             string actualOutput = consoleOutputTester.GetOutput();
+
             Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
 
     [Test]
-    public void LambdaExpressions_WritesCorrectConsoleOutput()
+    public void WhenInvokingLambdaExpressions_ThenItWritesCorrectConsoleOutput()
     {
         // Arrange
         using (var consoleOutputTester = new ConsoleOutputTester())
         {
             // Act
-            Program.LambdaExpressions();
+            LambdaExpressions.LambdaExpression();
 
             // Assert
             string expectedOutput = "Hello, Code Maze" + Environment.NewLine;
             string actualOutput = consoleOutputTester.GetOutput();
+
             Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
 
     [Test]
-    public void LambdaExpressionsAsParameters_WritesCorrectConsoleOutput()
+    public void WhenPassingLambdaExpressionsAsArguments_ThenItWritesCorrectConsoleOutput()
     {
         // Arrange
         using (var consoleOutputTester = new ConsoleOutputTester())
         {
             // Act
-            Program.LambdaExpressionsAsParameters();
+            LambdaExpressions.LambdaExpressionsAsParameters();
 
             // Assert
             string expectedOutput = "Hello, Code Maze" + Environment.NewLine;
             string actualOutput = consoleOutputTester.GetOutput();
+
             Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
 
     [Test]
-    public void DelegatesDataTransformation_WritesCorrectConsoleOutput()
+    public void WhenPerformingDelegatesDataTransformation_ThenItWritesCorrectConsoleOutput()
     {
         // Arrange
         using (var consoleOutputTester = new ConsoleOutputTester())
         {
             // Act
-            Program.DelegatesDataTransformation();
+            DelegateUseCases.DelegatesDataTransformation();
 
             // Assert
             string expectedOutput = "CODE MAZE" + Environment.NewLine + "C#" + Environment.NewLine + "DELEGATES" + Environment.NewLine;
             string actualOutput = consoleOutputTester.GetOutput();
+
             Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
 
     [Test]
-    public void DelegatesConditionalFiltering_WritesCorrectConsoleOutput()
+    public void WhenPerformingDelegatesConditionalFiltering_ThenItWritesCorrectConsoleOutput()
     {
         // Arrange
         using (var consoleOutputTester = new ConsoleOutputTester())
         {
             // Act
-            Program.DelegatesConditionalFiltering();
+            DelegateUseCases.DelegatesConditionalFiltering();
 
             // Assert
             string expectedOutput = "this string contains Code Maze" + Environment.NewLine;
             string actualOutput = consoleOutputTester.GetOutput();
+
             Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
 
     [Test]
-    public void DelegatesCallback_WritesCorrectConsoleOutput()
+    public void WhenUsingDelegatesCallback_ThenItWritesCorrectConsoleOutput()
     {
         // Arrange
         using (var consoleOutputTester = new ConsoleOutputTester())
         {
             // Act
-            Program.DelegatesCallback();
+            DelegateUseCases.DelegatesCallback();
 
             // Assert
             string expectedOutput = "Callback invoked with value: Code Maze" + Environment.NewLine;
             string actualOutput = consoleOutputTester.GetOutput();
+
             Assert.AreEqual(expectedOutput, actualOutput);
         }
     }
