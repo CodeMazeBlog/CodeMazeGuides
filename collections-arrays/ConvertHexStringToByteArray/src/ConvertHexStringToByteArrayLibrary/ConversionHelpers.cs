@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace ConvertHexStringToByteArray.Library;
 
@@ -58,7 +59,7 @@ public static class ConversionHelpers
 
         if (source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
 
-        var dest = GC.AllocateUninitializedArray<byte>(source.Length / 2);
+        var dest = GC.AllocateUninitializedArray<byte>(source.Length >> 1);
         fixed (char* srcPtr = source)
         fixed (byte* destPtr = dest)
         {
@@ -99,6 +100,50 @@ public static class ConversionHelpers
                 var result = (byte) (ComputeNibbleFromHexChar(*srcPtr++) << 4);
                 result |= ComputeNibbleFromHexChar(*srcPtr++);
                 *destPtr++ = result;
+            }
+        }
+
+        return dest;
+    }
+
+    public static byte[] FromHexStringWithDictionaryLookup(ReadOnlySpan<char> source)
+    {
+        if (source.StartsWith("0x")) source = source[2..];
+
+        if (source.IsEmpty) return Array.Empty<byte>();
+
+        if (source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
+
+        var lookupRef = LookupTables.LookupDictionaryLittleEndian;
+        var dest = GC.AllocateUninitializedArray<byte>(source.Length >> 1);
+        ref var destPtr = ref MemoryMarshal.GetArrayDataReference(dest);
+        ref var srcPtr = ref Unsafe.As<char, uint>(ref MemoryMarshal.GetReference(source));
+        for (var i = 0; i < dest.Length; ++i)
+        {
+            var val = Unsafe.Add(ref srcPtr, i);
+            Unsafe.Add(ref destPtr, i) = lookupRef[val];
+        }
+
+        return dest;
+    }
+
+    public static unsafe byte[] FromHexStringWithBigTableLookup(ReadOnlySpan<char> source)
+    {
+        if (source.StartsWith("0x")) source = source[2..];
+
+        if (source.IsEmpty) return Array.Empty<byte>();
+
+        if (source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
+
+        var dest = GC.AllocateUninitializedArray<byte>(source.Length >> 1);
+        fixed (char* srcPtr = source)
+        fixed (byte* destPtr = dest)
+        fixed (int* tblPtr = LookupTables.LookupTable)
+        {
+            var sPtr = (int*) srcPtr;
+            for (var i = 0; i < dest.Length; ++i)
+            {
+                destPtr[i] = (byte)tblPtr[*sPtr++];
             }
         }
 
