@@ -14,6 +14,7 @@ public class Person : DynamicObject
     public override bool TryGetMember(GetMemberBinder binder, out object? result)
     {
         var key = binder.Name;
+
         return _personalInformation.TryGetValue(key, out result);
     }
 
@@ -21,6 +22,7 @@ public class Person : DynamicObject
     {
         var key = binder.Name;
         _personalInformation[key] = value;
+
         return true;
     }
 
