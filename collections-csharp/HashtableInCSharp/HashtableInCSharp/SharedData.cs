@@ -14,7 +14,8 @@
                 { 5, new User() { Id = 5, FirstName = "Alberto", LastName = "Daci" } }
             };
 
-        public static readonly List<User> UserList = new()
+        public static readonly List<User> UserList 
+            = new()
             {
                 new User() { Id = 6, FirstName = "Judit", LastName = "Peter" },
                 new User() { Id = 7, FirstName = "Steve", LastName = "Billing" },

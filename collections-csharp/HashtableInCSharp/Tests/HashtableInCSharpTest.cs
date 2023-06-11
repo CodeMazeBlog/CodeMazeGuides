@@ -78,12 +78,13 @@ namespace Tests
         [Fact]
         public void WhenUpdatingElementInHashtable_ThenReturnsUpdatedHashTable()
         {
+            var userHashtableCount = _userHashtable.Count;
             var newUsers = HashtableDemo.UpdateElementInHashTable(_userHashtable, 3);
             User user = (User)newUsers[3];
             var userFirstName = user.FirstName;
             var userLastName = user.LastName;
 
-            Assert.Equal(_userHashtable.Count, newUsers.Count);
+            Assert.Equal(userHashtableCount, newUsers.Count);
             Assert.Equal("Henry", userFirstName);
             Assert.Equal("Stafford", userLastName);
         }
