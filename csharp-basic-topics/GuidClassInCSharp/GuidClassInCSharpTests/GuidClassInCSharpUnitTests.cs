@@ -51,5 +51,14 @@ namespace GuidClassInCSharpTests
 
             Assert.That(createdGuid, Is.EqualTo(expectedByteString));
         }
+
+        [TestCase("e2f24f93-5f43-405f-8109-c41eff03025a")]
+        public void GivenGuidToByteStringStackAllocationMethod_WhenGivenGuid_ThenByteArray(string guidValue)
+        {
+            var createdGuid = GuidToByteStringStackAllocation(new Guid(guidValue));
+            var expectedByteString = "93-4F-F2-E2-43-5F-5F-40-81-09-C4-1E-FF-03-02-5A";
+
+            Assert.That(createdGuid, Is.EqualTo(expectedByteString));
+        }
     }
 }
