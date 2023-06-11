@@ -35,4 +35,13 @@ public class ConvertByteArrayLookupTablesTests
 
         Assert.Equal(LookupTables.HexLookupLowerBigEndian, table);
     }
+
+    [Fact]
+    public void WhenComputingLittleEndianAndBigEndian_TablesDiffer()
+    {
+        var leTable = LookupTables.CreateLookup(false, true);
+        var beTable = LookupTables.CreateLookup(false, false);
+
+        Assert.NotEqual(leTable, beTable);
+    }
 }

@@ -59,7 +59,8 @@ public class ConvertByteArrayToHexLowerBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToLowerHexUsingLookup(byte[] source) => ConversionHelpers.ToHexWithLookup(source, true);
+    public string ConvertToLowerHexUsingLookup(byte[] source) =>
+        ConversionHelpers.ToHexWithLookup(source, true);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
@@ -68,5 +69,6 @@ public class ConvertByteArrayToHexLowerBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToLowerHexUsingConvert(byte[] source) => ConversionHelpers.ToHexWithConvert(source, true);
+    public string ConvertToLowerHexUsingConvert(byte[] source) =>
+        ConversionHelpers.ToHexWithConvert(source, true);
 }

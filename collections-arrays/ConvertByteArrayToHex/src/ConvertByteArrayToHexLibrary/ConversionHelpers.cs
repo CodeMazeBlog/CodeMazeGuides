@@ -47,18 +47,20 @@ public static class ConversionHelpers
     {
         if (source.Length == 0) return string.Empty;
 
-        return string.Create(source.Length * 2, (Source: source, Lowercase: lowercase), (chars, args) =>
-        {
-            var format = args.Lowercase ? "x2" : "X2";
-            ref var srcPtr = ref MemoryMarshal.GetArrayDataReference(args.Source);
-            var destIndex = 0;
-            for (var i = 0; i < source.Length; ++i)
+        return string.Create(source.Length * 2,
+            (Source: source, Lowercase: lowercase),
+            (chars, args) =>
             {
-                var b = Unsafe.Add(ref srcPtr, i);
-                b.TryFormat(chars[destIndex..], out _, format);
-                destIndex += 2;
-            }
-        });
+                var format = args.Lowercase ? "x2" : "X2";
+                ref var srcPtr = ref MemoryMarshal.GetArrayDataReference(args.Source);
+                var destIndex = 0;
+                for (var i = 0; i < source.Length; ++i)
+                {
+                    var b = Unsafe.Add(ref srcPtr, i);
+                    b.TryFormat(chars[destIndex..], out _, format);
+                    destIndex += 2;
+                }
+            });
     }
 
     public static string ToHexWithBitManipulation(byte[] source, bool lowercase = false)
@@ -71,7 +73,8 @@ public static class ConversionHelpers
         var letterOffset = lowercase ? lowerOffset : upperOffset;
         var digitOffset = '0' - letterOffset;
 
-        return string.Create(source.Length * 2, (Source: source, LetterOffset: letterOffset, DigitOffset: digitOffset),
+        return string.Create(source.Length * 2,
+            (Source: source, LetterOffset: letterOffset, DigitOffset: digitOffset),
             (chars, args) =>
             {
                 ref var srcPtr = ref MemoryMarshal.GetArrayDataReference(args.Source);
@@ -88,46 +91,54 @@ public static class ConversionHelpers
             });
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        static char ComputeCharFromNibble(int nibble, int letterOffset, int digitOffset) =>
-            (char) (letterOffset + nibble + (((nibble - 10) >> 31) & digitOffset));
+        static char ComputeCharFromNibble(int nibble, int letterOffset, int digitOffset)
+        {
+            var digitCalculation = ((nibble - 10) >> 31) & digitOffset;
+
+            return (char) (letterOffset + nibble + digitCalculation);
+        }
     }
 
     public static string ToHexWithAlphabetSpanLookup(byte[] source, bool lowercase = false)
     {
         if (source.Length == 0) return string.Empty;
 
-        return string.Create(source.Length * 2, (Source: source, Lowercase: lowercase), (chars, args) =>
-        {
-            ref var srcPtr = ref MemoryMarshal.GetArrayDataReference(args.Source);
-            ref var hexSpan = ref MemoryMarshal.GetReference(LookupTables.GetAlphabetSpan(args.Lowercase));
-            ref var destPtr = ref MemoryMarshal.GetReference(chars);
-            for (var i = 0; i < args.Source.Length; ++i)
+        return string.Create(source.Length * 2,
+            (Source: source, Lowercase: lowercase),
+            (chars, args) =>
             {
-                var b = Unsafe.Add(ref srcPtr, i);
-                destPtr = (char) Unsafe.Add(ref hexSpan, b >> 4);
-                destPtr = ref Unsafe.Add(ref destPtr, 1);
-                destPtr = (char) Unsafe.Add(ref hexSpan, b & 0xF);
-                destPtr = ref Unsafe.Add(ref destPtr, 1);
-            }
-        });
+                ref var srcPtr = ref MemoryMarshal.GetArrayDataReference(args.Source);
+                ref var hexSpan = ref MemoryMarshal.GetReference(LookupTables.GetAlphabetSpan(args.Lowercase));
+                ref var destPtr = ref MemoryMarshal.GetReference(chars);
+                for (var i = 0; i < args.Source.Length; ++i)
+                {
+                    var b = Unsafe.Add(ref srcPtr, i);
+                    destPtr = (char)Unsafe.Add(ref hexSpan, b >> 4);
+                    destPtr = ref Unsafe.Add(ref destPtr, 1);
+                    destPtr = (char)Unsafe.Add(ref hexSpan, b & 0xF);
+                    destPtr = ref Unsafe.Add(ref destPtr, 1);
+                }
+            });
     }
 
     public static string ToHexWithLookup(byte[] source, bool lowercase = false)
     {
         if (source.Length == 0) return string.Empty;
 
-        return string.Create(source.Length * 2, (Source: source, Lowercase: lowercase), (chars, args) =>
-        {
-            ref var sPtr = ref MemoryMarshal.GetArrayDataReference(args.Source);
-            ref var lookupTable = ref MemoryMarshal.GetArrayDataReference(LookupTables.GetLookupTable(args.Lowercase));
-            ref var cPtr = ref MemoryMarshal.GetReference(chars);
-            for (var i = 0; i < args.Source.Length; ++i)
+        return string.Create(source.Length * 2,
+            (Source: source, Lowercase: lowercase),
+            (chars, args) =>
             {
-                var b = Unsafe.Add(ref sPtr, i);
-                Unsafe.As<char, uint>(ref cPtr) = Unsafe.Add(ref lookupTable, b);
-                cPtr = ref Unsafe.Add(ref cPtr, 2);
-            }
-        });
+                ref var sPtr = ref MemoryMarshal.GetArrayDataReference(args.Source);
+                ref var lookupTable = ref MemoryMarshal.GetArrayDataReference(LookupTables.GetLookupTable(args.Lowercase));
+                ref var cPtr = ref MemoryMarshal.GetReference(chars);
+                for (var i = 0; i < args.Source.Length; ++i)
+                {
+                    var b = Unsafe.Add(ref sPtr, i);
+                    Unsafe.As<char, uint>(ref cPtr) = Unsafe.Add(ref lookupTable, b);
+                    cPtr = ref Unsafe.Add(ref cPtr, 2);
+                }
+            });
     }
 
     public static unsafe string ToHexWithLookupNetStandard20(byte[] source, bool lowercase = false)

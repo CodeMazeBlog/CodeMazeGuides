@@ -140,7 +140,7 @@ public static class LookupTables
         var format = lowercase ? "x2" : "X2";
 
         Span<char> s = stackalloc char[2];
-        var result = new uint[256];
+        var result = GC.AllocateUninitializedArray<uint>(256);
         for (var i = 0; i < 256; i++)
         {
             i.TryFormat(s, out _, format);

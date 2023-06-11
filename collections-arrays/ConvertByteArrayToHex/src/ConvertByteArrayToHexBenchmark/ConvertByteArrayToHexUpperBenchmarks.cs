@@ -39,7 +39,8 @@ public class ConvertByteArrayToHexUpperBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToUpperHexUsingBitConverter(byte[] source) => ConversionHelpers.ToHexWithBitConverter(source);
+    public string ConvertToUpperHexUsingBitConverter(byte[] source) =>
+        ConversionHelpers.ToHexWithBitConverter(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
@@ -68,7 +69,8 @@ public class ConvertByteArrayToHexUpperBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToUpperHexUsingLookup(byte[] source) => ConversionHelpers.ToHexWithLookup(source);
+    public string ConvertToUpperHexUsingLookup(byte[] source) =>
+        ConversionHelpers.ToHexWithLookup(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
@@ -77,5 +79,6 @@ public class ConvertByteArrayToHexUpperBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public string ConvertToUpperHexUsingConvert(byte[] source) => ConversionHelpers.ToHexWithConvert(source);
+    public string ConvertToUpperHexUsingConvert(byte[] source) =>
+        ConversionHelpers.ToHexWithConvert(source);
 }
