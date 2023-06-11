@@ -44,13 +44,8 @@ public class ConvertHexStringToByteArrayBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingBigTableLookup(string source) =>
-        ConversionHelpers.FromHexStringWithBigTableLookup(source);
-
-    [Benchmark]
-    [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingDictionaryLookup(string source) =>
-        ConversionHelpers.FromHexStringWithDictionaryLookup(source);
+    public byte[] ConvertToByteArrayUsingLargeTableLookup(string source) =>
+        ConversionHelpers.FromHexStringWithLargeTableLookup(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]

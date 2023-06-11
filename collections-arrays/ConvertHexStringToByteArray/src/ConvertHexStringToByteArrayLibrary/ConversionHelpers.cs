@@ -106,28 +106,7 @@ public static class ConversionHelpers
         return dest;
     }
 
-    public static byte[] FromHexStringWithDictionaryLookup(ReadOnlySpan<char> source)
-    {
-        if (source.StartsWith("0x")) source = source[2..];
-
-        if (source.IsEmpty) return Array.Empty<byte>();
-
-        if (source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
-
-        var lookupRef = LookupTables.LookupDictionaryLittleEndian;
-        var dest = GC.AllocateUninitializedArray<byte>(source.Length >> 1);
-        ref var destPtr = ref MemoryMarshal.GetArrayDataReference(dest);
-        ref var srcPtr = ref Unsafe.As<char, uint>(ref MemoryMarshal.GetReference(source));
-        for (var i = 0; i < dest.Length; ++i)
-        {
-            var val = Unsafe.Add(ref srcPtr, i);
-            Unsafe.Add(ref destPtr, i) = lookupRef[val];
-        }
-
-        return dest;
-    }
-
-    public static unsafe byte[] FromHexStringWithBigTableLookup(ReadOnlySpan<char> source)
+    public static unsafe byte[] FromHexStringWithLargeTableLookup(ReadOnlySpan<char> source)
     {
         if (source.StartsWith("0x")) source = source[2..];
 
@@ -138,12 +117,17 @@ public static class ConversionHelpers
         var dest = GC.AllocateUninitializedArray<byte>(source.Length >> 1);
         fixed (char* srcPtr = source)
         fixed (byte* destPtr = dest)
-        fixed (int* tblPtr = LookupTables.LookupTable)
+        fixed (int* tblPtr = LookupTables.LargeLookupTable)
         {
             var sPtr = (int*) srcPtr;
+            var dPtr = destPtr;
             for (var i = 0; i < dest.Length; ++i)
             {
-                destPtr[i] = (byte)tblPtr[*sPtr++];
+                Unsafe.SkipInit(out int value);
+                if ((value = tblPtr[*sPtr++ % LookupTables.LargeLookupHashKey]) == -1)
+                    throw new ArgumentException($"Invalid character found in string", nameof(source));
+
+                *dPtr++ = (byte)value;
             }
         }
 
