@@ -8,9 +8,9 @@ namespace Tests
         private PersonsRepositoryEFCore repository = new PersonsRepositoryEFCore();
 
         [Fact]
-        public void WhenQuering100Persons_ThenReturnListHas100Objects()
+        public void WhenQuerying100Persons_ThenReturnListHas100Persons()
         {
-            var queryResults = repository.Get_X_Persons(100);
+            var queryResults = repository.GetXPersons(100);
 
             Assert.Equal(100, queryResults.Count);
         }

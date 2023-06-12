@@ -1,16 +1,16 @@
 ﻿using EntityFrameworkCoreVsDapper.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace EntityFrameworkCoreVsDapper.EFCore
 {
     public class PersonsContext : DbContext
     {
         public DbSet<Person> Persons{ get; set; }
-
+ 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //ADD THE CONNECTION STRING TO YOUR DATABASE HERE
-            optionsBuilder.UseSqlServer("");
+            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["PersonsDB"].ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

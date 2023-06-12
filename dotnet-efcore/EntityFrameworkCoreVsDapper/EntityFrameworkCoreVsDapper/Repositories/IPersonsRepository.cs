@@ -4,6 +4,6 @@ namespace EntityFrameworkCoreVsDapper.Repositories
 {
     public interface IPersonsRepository
     {
-        public List<Person> Get_X_Persons(int personsNumber);
+        public List<Person> GetXPersons(int personsNumber);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using EntityFrameworkCoreVsDapper.Repositories;
+using System.Configuration;
 using Assert = Xunit.Assert;
 
 namespace Tests
@@ -8,9 +9,9 @@ namespace Tests
         private PersonsRepositoryDapper repository = new PersonsRepositoryDapper();
 
         [Fact]
-        public void WhenQuering100Persons_ThenReturnListHas100Objects()
+        public void WhenQuerying100Persons_ThenReturnListHas100Persons()
         {
-            var queryResults = repository.Get_X_Persons(100);
+            var queryResults = repository.GetXPersons(100);
 
             Assert.Equal(100, queryResults.Count);
         }
