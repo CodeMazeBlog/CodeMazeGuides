@@ -352,3 +352,6 @@ MigrationBackup/
 **/*.idea/
 global.json
 .editorconfig
+
+# MacOS
+**/.DS_Store
