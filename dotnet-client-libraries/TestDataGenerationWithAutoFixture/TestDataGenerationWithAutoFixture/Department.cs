@@ -37,9 +37,7 @@
                 return 0;
             }
 
-            decimal sumOfSalaries = Employees.Sum(e => e.Salary);
-
-            return sumOfSalaries / Employees.Count;
+            return Employees.Average(e => e.Salary);
         }
     }
 }

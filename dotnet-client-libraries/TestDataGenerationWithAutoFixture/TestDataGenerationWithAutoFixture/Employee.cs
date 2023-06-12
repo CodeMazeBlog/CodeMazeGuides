@@ -10,7 +10,7 @@
         public Employee
             (string firstName,
             decimal salary)
-        {            
+        {
             FirstName = firstName;
             Salary = salary;
         }
@@ -20,11 +20,10 @@
             string lastName,
             int age,
             decimal salary)
+            : this(firstName, salary)
         {
-            FirstName = firstName;
             LastName = lastName;
             Age = age;
-            Salary = salary;
         }
 
         public string GetFullName() => $"{FirstName} {LastName}";
