@@ -39,11 +39,12 @@ namespace Tests
         public void WhenAddingSampleDataToHashtable_ThenReturnsPopulatedHashTable()
         {
             var userList = SharedData.UserList;
+            var expectedCount = _userHashtable.Count + userList.Count;
             var populatedUserHashtable = HashtableDemo.AddSampleDataToHashTable(_userHashtable, userList);
-            
+
             Assert.IsType<Hashtable>(populatedUserHashtable);
             Assert.NotEmpty(populatedUserHashtable);
-            Assert.Equal(_userHashtable.Count, populatedUserHashtable.Count);
+            Assert.Equal(expectedCount, populatedUserHashtable.Count);
 
             foreach (var user in userList)
             {
@@ -78,13 +79,13 @@ namespace Tests
         [Fact]
         public void WhenUpdatingElementInHashtable_ThenReturnsUpdatedHashTable()
         {
-            var userHashtableCount = _userHashtable.Count;
+            var expectedCount = _userHashtable.Count;
             var newUsers = HashtableDemo.UpdateElementInHashTable(_userHashtable, 3);
             User user = (User)newUsers[3];
             var userFirstName = user.FirstName;
             var userLastName = user.LastName;
 
-            Assert.Equal(userHashtableCount, newUsers.Count);
+            Assert.Equal(expectedCount, newUsers.Count);
             Assert.Equal("Henry", userFirstName);
             Assert.Equal("Stafford", userLastName);
         }
@@ -92,9 +93,10 @@ namespace Tests
         [Fact]
         public void WhenRemovingElementFromHashtable_ThenReturnsHashtableWithRemovedElement()
         {
+            var expectedCount = _userHashtable.Count - 1;
             var newUsers = HashtableDemo.RemoveElementFromHashTable(_userHashtable, 2);
 
-            Assert.Equal(_userHashtable.Count, newUsers.Count);
+            Assert.Equal(expectedCount, newUsers.Count);
             Assert.False(_userHashtable.ContainsKey(2));
         }
 

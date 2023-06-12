@@ -9,7 +9,8 @@ namespace HashtableInCSharp
         public static Hashtable CreateHashTableWithInitialCapacity(int initialCapacity)
             => new(initialCapacity);
 
-        public static Hashtable CreateHashTableFromDictionary(Dictionary<int, User> dictionary) => new(dictionary);
+        public static Hashtable CreateHashTableFromDictionary(Dictionary<int, User> dictionary) 
+            => new(dictionary);
 
         public static Hashtable AddSampleDataToHashTable(Hashtable userHashTable, List<User> userList)
         {
