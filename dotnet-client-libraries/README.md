@@ -5,8 +5,10 @@ This section contains the topics about the client libraries in .NET.
 ### Relevant articles:
 
 - [AutoMapper vs Mapster in .NET](https://code-maze.com/automapper-vs-mapster-dotnet/)
+- [Memory Allocation Optimization With BenchmarkDotNet](https://code-maze.com/csharp-memory-allocation-optimization-with-benchmarkdotnet/)
 - [Realistic Data Generation in .NET With Bogus](https://code-maze.com/data-generation-bogus-dotnet/)
 - [Google Sheets API with .NET Core](https://code-maze.com/google-sheets-api-with-net-core/)
+- [Introduction to Firebase in .NET](https://code-maze.com/dotnet-firebase/)
 - [Create Clean Guard Clauses With GuardClauses in C#](https://code-maze.com/csharp-guard-clauses/)
 - [How to Use HTML Agility Pack in C#](https://code-maze.com/html-agility-pack-csharp/)
 - [Using Refit to Consume APIs in C#](https://code-maze.com/using-refit-to-consume-apis-in-csharp/)
@@ -22,5 +24,6 @@ This section contains the topics about the client libraries in .NET.
 - [Rebus in .NET – Service Bus Implementation](https://code-maze.com/rebus-dotnet/)
 - [Easy Sorting, Filtering and Pagination in .NET With Sieve Package](https://code-maze.com/dotnet-sorting-filtering-pagination-sieve-package/)
 - [Using Refit to Consume APIs in C#](https://code-maze.com/using-refit-to-consume-apis-in-csharp/)
+- [How to Send Emails With the SendGrid API in C#](https://code-maze.com/csharp-send-emails-with-sendgrid-api/)
 - [How to Improve Enums With the SmartEnum Library](https://code-maze.com/csharp-improve-enums-with-the-smartenum-library/)
 - [Swashbuckle vs. NSwag in ASP.NET Core](https://code-maze.com/aspnetcore-swashbuckle-vs-nswag/)
