@@ -8,11 +8,8 @@ namespace Tests
     public class EFCoreBulkUpdateLiveTest : TestDatabaseFixture
     {
         private const int TeamCount = 3;
-
         private const int PlayerCountPerTeam = 2;
-
         private const int GameCount = 2;
-
         private const int RefereeCount = 2;
 
         [Fact]
@@ -143,7 +140,6 @@ namespace Tests
 
             //Act and Assert
             await Assert.ThrowsAsync<InvalidOperationException>(() => gameService.UpdateAllGames("new opponent"));
-
         }
     }
 }

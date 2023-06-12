@@ -25,7 +25,10 @@ namespace EFCoreBulkUpdate.Services
             var teams = await _context.Teams
                 .ToListAsync();
 
-            teams.ForEach(t => t.YearFounded += 1);
+            foreach (var team in teams)
+            {
+                team.YearFounded += 1;
+            }
 
             return await _context.SaveChangesAsync();
         }
@@ -36,7 +39,10 @@ namespace EFCoreBulkUpdate.Services
                 .Where(t => t.YearFounded >= minYearFounded)
                 .ToListAsync();
 
-            teams.ForEach(t => t.YearFounded += 1);
+            foreach (var team in teams)
+            {
+                team.YearFounded += 1;
+            }
 
             return await _context.SaveChangesAsync();
         }
@@ -46,11 +52,11 @@ namespace EFCoreBulkUpdate.Services
             var teams = await _context.Teams
                 .ToListAsync();
 
-            teams.ForEach(t =>
+            foreach (var team in teams)
             {
-                t.YearFounded += 1;
-                t.Description += " " + addedDescription;
-            });
+                team.YearFounded += 1;
+                team.Description += " " + addedDescription;
+            }
 
             return await _context.SaveChangesAsync();
         }
@@ -74,11 +80,11 @@ namespace EFCoreBulkUpdate.Services
                 .Where(t => t.YearFounded >= minYearFounded)
                 .ToListAsync();
 
-            teams.ForEach(t =>
+            foreach (var team in teams)
             {
-                t.YearFounded += 1;
-                t.Description += " " + addedDescription;
-            });
+                team.YearFounded += 1;
+                team.Description += " " + addedDescription;
+            }
 
             return await _context.SaveChangesAsync();
         }
@@ -87,17 +93,17 @@ namespace EFCoreBulkUpdate.Services
         {
             await _context.Teams
                 .Where(t => t.YearFounded >= minYearFounded)
-                .ExecuteUpdateAsync(
-                  t => t.SetProperty(b => b.YearFounded, b => b.YearFounded + 1)
-                        .SetProperty(b => b.Description, b => b.Description + " " + description));
+                .ExecuteUpdateAsync(t =>
+                   t.SetProperty(b => b.YearFounded, b => b.YearFounded + 1)
+                    .SetProperty(b => b.Description, b => b.Description + " " + description));
         }
 
         public async Task<int> UpdateAllTeamsYearAndDescription_V2(string description)
         {
             return await _context.Teams
-                .ExecuteUpdateAsync(
-                  t => t.SetProperty(b => b.YearFounded, b => b.YearFounded + 1)
-                        .SetProperty(b => b.Description, b => b.Description + " " + description));
+                .ExecuteUpdateAsync(t =>
+                   t.SetProperty(b => b.YearFounded, b => b.YearFounded + 1)
+                    .SetProperty(b => b.Description, b => b.Description + " " + description));
         }
 
         public async Task<List<Team>> FindAllTeams()

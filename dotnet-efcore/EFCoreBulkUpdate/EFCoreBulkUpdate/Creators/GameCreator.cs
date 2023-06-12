@@ -13,15 +13,17 @@ namespace EFCoreBulkUpdate.Creator
                 Name = $"Team {0}",
                 YearFounded = new Random().Next(1970, 2023)
             };
-            return Enumerable.Range(1, footbalGameCount).Select(j => new FootballGame()
-            {
-                Opponent = $"Opponent {footbalGameCount + j}",
-                Id = Guid.NewGuid(),
-                FirstHalfTimeScore = j,
-                SecondHalfTimeScore = j,
-                Date = DateTime.Now,
-                Team = newTeam
-            });
+
+            return Enumerable.Range(1, footbalGameCount)
+                .Select(j => new FootballGame()
+                {
+                    Opponent = $"Opponent {footbalGameCount + j}",
+                    Id = Guid.NewGuid(),
+                    FirstHalfTimeScore = j,
+                    SecondHalfTimeScore = j,
+                    Date = DateTime.Now,
+                    Team = newTeam
+                });
         }
     }
 }

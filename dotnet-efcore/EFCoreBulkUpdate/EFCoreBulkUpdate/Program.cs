@@ -22,7 +22,7 @@ using var dbcontext = new TeamDBContext(optionsBuilder.Options);
 TeamService service = new TeamService(dbcontext);
 await service.AddTeams(teams);
 teams = await service.FindAllTeams();
-Console.WriteLine(service.PrintTeams(teams));
+Console.WriteLine(service.PrintTeams(teams.ToList()));
 
 await service.UpdateAllTeamsYearAndDescription_V2("Newly Added");
 var teamsAfterUpdate = await service.FindAllTeams();
