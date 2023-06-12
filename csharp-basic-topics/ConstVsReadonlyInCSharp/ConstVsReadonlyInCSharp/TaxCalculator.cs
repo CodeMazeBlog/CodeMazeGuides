@@ -2,25 +2,24 @@
 {
     public class TaxCalculator
     {
-        private readonly double countryVAT;
-        private readonly double euroToDollarConvertionRate = 1.08;
-
-        private readonly MathCalculator calculator = new MathCalculator();
+        private readonly double _countryVAT;
+        private readonly double _euroToDollarConvertionRate = 1.08;
+        private readonly MathCalculator _calculator = new MathCalculator();
 
 
         public TaxCalculator(double countryVAT)
         {
-            this.countryVAT = countryVAT;
+            _countryVAT = countryVAT;
         }
 
         public double CalculateCountryVatInEuro(double productValue)
         {
-            return calculator.Multiply(productValue, countryVAT);
+            return _calculator.Multiply(productValue, _countryVAT);
         }
 
         public double CalculateCountryVatInDollars(double productValue)
         {
-            return CalculateCountryVatInEuro(productValue) * euroToDollarConvertionRate;
+            return CalculateCountryVatInEuro(productValue) * _euroToDollarConvertionRate;
         }
     }
 }
