@@ -5,7 +5,7 @@
         public const int InitialCapacity = 100;
 
         public static readonly Dictionary<int, User> UserDictionary
-            = new()
+            = new(5)
             {
                 { 1, new User() { Id = 1, FirstName = "Rafa", LastName = "Lopez" } },
                 { 2, new User() { Id = 2, FirstName = "Michael", LastName = "Sam" } },
@@ -15,7 +15,7 @@
             };
 
         public static readonly List<User> UserList 
-            = new()
+            = new(3)
             {
                 new User() { Id = 6, FirstName = "Judit", LastName = "Peter" },
                 new User() { Id = 7, FirstName = "Steve", LastName = "Billing" },
