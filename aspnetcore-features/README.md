@@ -14,6 +14,7 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [Download Multiple Files From Azure Blob Storage in ASP.NET Core](https://code-maze.com/aspnetcore-download-multiple-files-from-azure-blob-storage/)
 - [Feature Flags in ASP.NET Core](https://code-maze.com/aspnetcore-feature-flags/)
 - [In-Memory Caching in ASP.NET Core](https://code-maze.com/aspnetcore-in-memory-caching/)
+- [InProcess and OutOfProcess Hosting Models in ASP.NET Core](https://code-maze.com/aspnetcore-inprocess-outofprocess-hosting-models/)
 - [Localization in ASP.NET Core](https://code-maze.com/aspnetcore-localization/)
 - [How to Read AppSettings Values From a JSON File in .NET Core](https://code-maze.com/aspnetcore-read-appsettings-values-from-a-json-file/)
 - [Output Caching in ASP.NET Core](https://code-maze.com/aspnet-core-output-caching/)
