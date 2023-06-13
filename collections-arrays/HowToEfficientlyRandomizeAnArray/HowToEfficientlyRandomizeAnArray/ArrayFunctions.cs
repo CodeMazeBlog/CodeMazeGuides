@@ -15,13 +15,13 @@
         }
 
         public static int[] RandomizeWithOrderByAndGuid(int[] array) =>
-            array.OrderBy(x => Guid.NewGuid()).ToArray();
+            array.OrderByDescending(x => Guid.NewGuid()).ToArray();
 
         public static int[] RandomizeWithOrderByAndRandom(int[] array)
         {
             var rnd = new Random();
 
-            return array.OrderBy(x => rnd.Next()).ToArray();
+            return array.OrderByDescending(x => rnd.Next()).ToArray();
         }
 
         public static int[] RandomizeWithFisherYates(int[] array)
