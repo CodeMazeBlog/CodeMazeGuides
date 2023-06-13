@@ -9,9 +9,9 @@ namespace Tests
         {
             var customRunspace = new PSCustomRunspace(); 
             var result = customRunspace.ExecuteCommand("Get-Date");
-            var expectedResult = true;
+            var expectedResult = DateTime.Now.ToShortDateString();
 
-            Assert.Equal(expectedResult, result!="");
+            Assert.Equal(expectedResult, DateTime.Parse(result).ToShortDateString());
         }
 
         [Fact]
@@ -19,9 +19,9 @@ namespace Tests
         {
             var customRunspace = new PSCustomRunspace(); 
             var result = customRunspace.StartProcess("notepad");
-            var expectedResult = "False";
+            var expectedResult = false;
 
-            Assert.Equal(expectedResult, result.ToString());
+            Assert.Equal(expectedResult, result);
         }
     }
 }
