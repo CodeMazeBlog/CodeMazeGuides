@@ -26,9 +26,7 @@ namespace HashtableInCSharp
         {
             if (userHashTable.ContainsKey(id))
             {
-                User user = (User)userHashTable[id];
-
-                return user;
+                return (User)userHashTable[id];
             }
 
             return default;
@@ -36,7 +34,7 @@ namespace HashtableInCSharp
 
         public static IList<User> RetrieveAllElementsFromHashTable(Hashtable userHashTable)
         {
-            var userList = new List<User>();
+            var userList = new List<User>(userHashTable.Count);
 
             foreach (DictionaryEntry entry in userHashTable)
             {
