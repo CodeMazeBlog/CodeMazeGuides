@@ -32,9 +32,7 @@
             while (count > 1)
             {
                 int i = rnd.Next(count--);
-                var temp = array[count];
-                array[count] = array[i];
-                array[i] = temp;
+                (array[i], array[count]) = (array[count], array[i]);
             }
 
             return array;
