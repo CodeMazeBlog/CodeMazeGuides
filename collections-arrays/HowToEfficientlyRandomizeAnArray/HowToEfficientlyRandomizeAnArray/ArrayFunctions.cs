@@ -1,8 +1,15 @@
 ﻿namespace HowToEfficientlyRandomizeAnArray
 {
-    public static class ArrayFunctions
+    public class ArrayFunctions
     {
-        public static int[] GerOrderedArray(int numberOfElements)
+        private readonly Random _rnd;
+
+        public ArrayFunctions()
+        {
+            _rnd = new Random();
+        }
+
+        public int[] GerOrderedArray(int numberOfElements)
         {
             int[] array = new int[numberOfElements];
 
@@ -14,24 +21,18 @@
             return array;
         }
 
-        public static int[] RandomizeWithOrderByAndGuid(int[] array) =>
+        public int[] RandomizeWithOrderByAndGuid(int[] array) =>
             array.OrderByDescending(x => Guid.NewGuid()).ToArray();
 
-        public static int[] RandomizeWithOrderByAndRandom(int[] array)
-        {
-            var rnd = new Random();
+        public int[] RandomizeWithOrderByAndRandom(int[] array) => array.OrderByDescending(x => _rnd.Next()).ToArray();
 
-            return array.OrderByDescending(x => rnd.Next()).ToArray();
-        }
-
-        public static int[] RandomizeWithFisherYates(int[] array)
+        public int[] RandomizeWithFisherYates(int[] array)
         {
-            var rnd = new Random();
             int count = array.Length;
 
             while (count > 1)
             {
-                int i = rnd.Next(count--);
+                int i = _rnd.Next(count--);
                 (array[i], array[count]) = (array[count], array[i]);
             }
 

@@ -4,13 +4,21 @@ namespace HowToEfficientlyRandomizeAnArray.Tests
 {
     public class ArrayFunctionsTests
     {
-        private const int ARRAY_SIZE = 100;
+        private readonly int[] _array;
+        private const int ARRAY_SIZE = 1000;
+        private readonly ArrayFunctions _arrayFunctions;
+
+        public ArrayFunctionsTests()
+        {
+            _arrayFunctions = new ArrayFunctions();
+            _array = _arrayFunctions.GerOrderedArray(ARRAY_SIZE);
+        }
 
         [Fact]
         public void WhenGerOrderedArrayIsInvoked_ThenOrderedArrayIsReturned()
         {
             // Act
-            var array = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
+            var array = _arrayFunctions.GerOrderedArray(ARRAY_SIZE);
 
             // Assert
             array.Should().NotBeNullOrEmpty();
@@ -20,46 +28,40 @@ namespace HowToEfficientlyRandomizeAnArray.Tests
         [Fact]
         public void WhenRandomizeWithOrderByAndGuidIsInvoked_ThenArrayIsRandomized()
         {
-            // Arrange
-            var array = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
-
             // Act
-            var randomizedArray = ArrayFunctions.RandomizeWithOrderByAndGuid(array);
+            var randomizedArray = _arrayFunctions.RandomizeWithOrderByAndGuid(_array);
 
             // Assert
-            randomizedArray.Should().NotBeNullOrEmpty();
-            randomizedArray.Should().NotBeInAscendingOrder();
-            randomizedArray.Should().NotBeInDescendingOrder();
+            randomizedArray
+                .Should().NotBeNullOrEmpty()
+                .And.NotBeInAscendingOrder()
+                .And.NotBeInDescendingOrder();
         }
 
         [Fact]
         public void WhenRandomizeWithOrderByAndRandomIsInvoked_ThenArrayIsRandomized()
         {
-            // Arrange
-            var array = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
-
             // Act
-            var randomizedArray = ArrayFunctions.RandomizeWithOrderByAndRandom(array);
+            var randomizedArray = _arrayFunctions.RandomizeWithOrderByAndRandom(_array);
 
             // Assert
-            randomizedArray.Should().NotBeNullOrEmpty();
-            randomizedArray.Should().NotBeInAscendingOrder();
-            randomizedArray.Should().NotBeInDescendingOrder();
+            randomizedArray
+                .Should().NotBeNullOrEmpty()
+                .And.NotBeInAscendingOrder()
+                .And.NotBeInDescendingOrder();
         }
 
         [Fact]
         public void WhenRandomizeWithFisherYatesIsInvoked_ThenArrayIsRandomized()
         {
-            // Arrange
-            var array = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
-
             // Act
-            var randomizedArray = ArrayFunctions.RandomizeWithFisherYates(array);
+            var randomizedArray = _arrayFunctions.RandomizeWithFisherYates(_array);
 
             // Assert
-            randomizedArray.Should().NotBeNullOrEmpty();
-            randomizedArray.Should().NotBeInAscendingOrder();
-            randomizedArray.Should().NotBeInDescendingOrder();
+            randomizedArray
+                .Should().NotBeNullOrEmpty()
+                .And.NotBeInAscendingOrder()
+                .And.NotBeInDescendingOrder();
         }
     }
 }
