@@ -6,11 +6,6 @@ namespace Tests;
 [TestClass]
 public class ActionAndFuncDelegatesUnitTest
 {
-    //public static string DisplayMessage(string message)
-    //{
-    //    return message;
-    //}
-
     [TestMethod]
     public void GivenStringMessage_WhenActionDeleGateInvoked_ThenDisplayStringMessage()
     {
