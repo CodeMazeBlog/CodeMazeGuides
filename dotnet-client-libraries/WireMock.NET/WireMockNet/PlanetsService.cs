@@ -9,8 +9,7 @@ namespace WireMockNet
 
         public PlanetsService(HttpClient httpClient)
         {
-            _httpClient = httpClient ??
-                throw new ArgumentNullException(nameof(httpClient));
+            _httpClient = httpClient;
         }
 
         public async Task<Planet?> GetPlanetByIdAsync(int id)

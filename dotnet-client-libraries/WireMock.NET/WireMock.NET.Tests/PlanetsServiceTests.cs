@@ -35,25 +35,22 @@ namespace WireMock.NET.Tests
             // Arrange
             var planet = new Planet(4, "Mars", 6779, 2, true);
 
-_mockServer
-    .Given(
-        Request.Create()
-            .UsingGet()
-            .WithPath("/planets/4"))
-    .RespondWith(
-        Response.Create()
-            .WithStatusCode(HttpStatusCode.OK)
-            .WithBodyAsJson(planet));
+            _mockServer
+                .Given(
+                    Request.Create()
+                        .UsingGet()
+                        .WithPath("/planets/4"))
+                .RespondWith(
+                    Response.Create()
+                        .WithStatusCode(HttpStatusCode.OK)
+                        .WithBodyAsJson(planet));
 
             // Act
             var result = await _planetService.GetPlanetByIdAsync(planet.Id);
 
             // Assert
             result.Should().NotBeNull();
-            result.Name.Should().Be(planet.Name);
-            result.Diameter.Should().Be(planet.Diameter);
-            result.NumberOfMoons.Should().Be(planet.NumberOfMoons);
-            result.HasAtmosphere.Should().Be(planet.HasAtmosphere);
+            result.Should().Be(planet);
         }
 
         [Fact]
@@ -63,11 +60,11 @@ _mockServer
             _mockServer
                 .Given(
                     Request.Create()
-                    .UsingGet()
-                    .WithPath("/planets/9"))
+                        .UsingGet()
+                        .WithPath("/planets/9"))
                 .RespondWith(
                     Response.Create()
-                    .WithStatusCode(HttpStatusCode.NotFound));
+                        .WithStatusCode(HttpStatusCode.NotFound));
 
             // Act
             var result = await _planetService.GetPlanetByIdAsync(9);
