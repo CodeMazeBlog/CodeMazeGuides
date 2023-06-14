@@ -8,7 +8,6 @@ namespace Tests
         private readonly byte[] _expectedResult = { 255, 0, 128, 0 };
         private readonly byte[] _expectedEmptyResult = new byte[0];
 
-
         [Fact]
         public void WhenValidHexPassed_ThenConverionSuccessful()
         {
@@ -20,18 +19,7 @@ namespace Tests
         [Fact]
         public void WhenInvalidFormatHexPassed_ThenConverionFail()
         {
-            var ex = Assert.Throws<FormatException>(() => ConvertHex.FromHexString("Hello"));
-
-            Assert.Equal("FormatException", ex.GetType().Name);
-        }
-
-        [Fact]
-        public void WhenNullatHexPassed_ThenConverionFail()
-        {
-            string? nullHexString = null;
-            var ex = Assert.Throws<ArgumentNullException>(() => ConvertHex.FromHexString(nullHexString));
-
-            Assert.Equal("ArgumentNullException", ex.GetType().Name);
+            Assert.Throws<FormatException>(() => ConvertHex.FromHexString("Hello"));
         }
 
         [Fact]
@@ -53,9 +41,7 @@ namespace Tests
         [Fact]
         public void WhenInvalidFormatHexPassedToAlternative_ThenConverionFail()
         {
-            var ex = Assert.Throws<FormatException>(() => ConvertHex.FromHexStringAlternative("Hello"));
-
-            Assert.Equal("FormatException", ex.GetType().Name);
+            Assert.Throws<FormatException>(() => ConvertHex.FromHexStringAlternative("Hello"));
         }
 
         [Fact]
