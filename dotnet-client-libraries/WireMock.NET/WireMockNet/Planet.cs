@@ -1,11 +1,4 @@
 ﻿namespace WireMockNet
 {
-    public record class Planet
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public double Diameter { get; set; }
-        public int NumberOfMoons { get; set; }
-        public bool HasAtmosphere { get; set; }
-    }
+    public record class Planet(int Id, string Name, double Diameter, int NumberOfMoons, bool HasAtmosphere);
 }

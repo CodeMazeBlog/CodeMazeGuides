@@ -33,14 +33,7 @@ namespace WireMock.NET.Tests
         public async Task GivenThatPlanetExists_WhenGetPlanetByIdIsInvoked_ThenValidPlanetIsReturned()
         {
             // Arrange
-            var planet = new Planet 
-            {
-                Id = 4, 
-                Name = "Mars", 
-                Diameter = 6779, 
-                NumberOfMoons = 2, 
-                HasAtmosphere = true
-            };
+            var planet = new Planet(4, "Mars", 6779, 2, true);
 
             _mockServer
                 .Given(
