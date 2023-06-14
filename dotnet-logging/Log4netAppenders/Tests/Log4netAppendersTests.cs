@@ -4,7 +4,6 @@ namespace Tests
 {
     public class Log4netAppendersTests : IClassFixture<WebApplicationFactory<Program>>
     {
-
         private readonly WebApplicationFactory<Program> _factory;
 
         public Log4netAppendersTests(WebApplicationFactory<Program> factory)
@@ -13,7 +12,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task WhenInvokingLogTest_ThenLogAllEvents()
+        public async Task GivenLog4NetConfigured_WhenInvokingLogTest_ThenAllEventsAreLogged()
         {
             // arrange
             var client = _factory.CreateClient();
