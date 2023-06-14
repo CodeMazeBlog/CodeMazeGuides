@@ -20,6 +20,7 @@ This section contains articles about ASP.NET Core Web API related topics.
 - [Minimal APIs in .NET 6](https://code-maze.com/dotnet-minimal-api/)
 - [How to Use ModelState Validation in ASP.NET Core Web API](https://code-maze.com/aspnetcore-modelstate-validation-web-api/)
 - [How to Build a Multitenant Application with ASP.NET Core](https://code-maze.com/aspnetcore-multitenant-application/)
+- [How to Pass Parameters With a GET Request in ASP.NET Core](https://code-maze.com/aspnetcore-pass-parameters-to-http-get-action/)
 - [How to Add Multiple POST Actions in ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-add-multiple-post-actions/)
 - [Secure Microservices Using JWT With Ocelot in .NET Core](https://code-maze.com/dotnetcore-secure-microservices-jwt-ocelot/)
 - [Optional Parameters in ASP.NET Core Web API Routing](https://code-maze.com/aspnetcore-web-api-optional-parameters/)
