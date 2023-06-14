@@ -6,7 +6,6 @@ namespace Tests
     {
         private const string HexString = "FF008000";
         private readonly byte[] _expectedResult = { 255, 0, 128, 0 };
-        private readonly byte[] _expectedEmptyResult = new byte[0];
 
         [Fact]
         public void WhenValidHexPassed_ThenConverionSuccessful()
@@ -25,9 +24,7 @@ namespace Tests
         [Fact]
         public void WhenEmptyHexPassedPassed_ThenConverionFail()
         {
-            var result = ConvertHex.FromHexString(string.Empty);
-
-            Assert.Equal(_expectedEmptyResult, result);
+            Assert.Empty(ConvertHex.FromHexString(string.Empty));
         }
 
         [Fact]
@@ -47,9 +44,7 @@ namespace Tests
         [Fact]
         public void WhenEmptyHexPassedToAlternative_ThenConverionFail()
         {
-            var result = ConvertHex.FromHexStringAlternative(string.Empty);
-
-            Assert.Equal(_expectedEmptyResult, result);
+            Assert.Empty(ConvertHex.FromHexStringAlternative(string.Empty));
         }
     }
 }
