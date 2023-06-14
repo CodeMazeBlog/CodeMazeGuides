@@ -6,7 +6,7 @@ namespace ExecutingPowerShellScript
 {
     public class PSCustomRunspace
     {
-        private static Runspace? rs;
+        private readonly Runspace? _rs;
 
         public PSCustomRunspace()
         {
@@ -20,14 +20,14 @@ namespace ExecutingPowerShellScript
             var getDateCmdlet = new SessionStateCmdletEntry("Get-Date", 
                 typeof(GetDateCommand), "");
             iss.Commands.Add(getDateCmdlet);
-            rs = RunspaceFactory.CreateRunspace(iss);
-            rs.Open();
+            _rs = RunspaceFactory.CreateRunspace(iss);
+            _rs.Open();
         }
 
         public string ExecuteCommand(string command)
         {
             using var ps = PowerShell.Create();
-            ps.Runspace = rs;
+            ps.Runspace = _rs;
             ps.AddCommand(command);
             var processes = ps.Invoke();
 
@@ -40,7 +40,7 @@ namespace ExecutingPowerShellScript
             {
                 using (var ps = PowerShell.Create())
                 {
-                    ps.Runspace = rs;
+                    ps.Runspace = _rs;
                     ps.AddCommand("Start-Process").AddArgument(processName);
                     ps.Invoke();
 
