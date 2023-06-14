@@ -1,17 +1,10 @@
 ﻿namespace HowToEfficientlyRandomizeAnArray
 {
-    public class ArrayFunctions
+    public static class ArrayFunctions
     {
-        private readonly Random _rnd;
-
-        public ArrayFunctions()
+        public static int[] GerOrderedArray(int numberOfElements)
         {
-            _rnd = new Random();
-        }
-
-        public int[] GerOrderedArray(int numberOfElements)
-        {
-            int[] array = new int[numberOfElements];
+            var array = new int[numberOfElements];
 
             for (int i = 0; i < numberOfElements; i++)
             {
@@ -21,22 +14,38 @@
             return array;
         }
 
-        public int[] RandomizeWithOrderByAndGuid(int[] array) =>
+        public static int[] RandomizeWithOrderByAndGuid(int[] array) =>
             array.OrderByDescending(x => Guid.NewGuid()).ToArray();
 
-        public int[] RandomizeWithOrderByAndRandom(int[] array) => array.OrderByDescending(x => _rnd.Next()).ToArray();
+        public static int[] RandomizeWithOrderByAndRandom(int[] array) => array.OrderByDescending(x => Random.Shared.Next()).ToArray();
 
-        public int[] RandomizeWithFisherYates(int[] array)
+        public static int[] RandomizeWithFisherYates(int[] array)
         {
             int count = array.Length;
 
             while (count > 1)
             {
-                int i = _rnd.Next(count--);
+                int i = Random.Shared.Next(count--);
                 (array[i], array[count]) = (array[count], array[i]);
             }
 
             return array;
+        }
+
+        public static int[] RandomizeWithFisherYatesCopiedArray(int[] array)
+        {
+            int count = array.Length;
+            var arrayCopy = new int[count];
+
+            Array.Copy(array, arrayCopy, count);
+
+            while (count > 1)
+            {
+                int i = Random.Shared.Next(count--);
+                (arrayCopy[i], arrayCopy[count]) = (arrayCopy[count], arrayCopy[i]);
+            }
+
+            return arrayCopy;
         }
     }
 }

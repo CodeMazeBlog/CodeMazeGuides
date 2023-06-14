@@ -6,19 +6,17 @@ namespace HowToEfficientlyRandomizeAnArray.Tests
     {
         private readonly int[] _array;
         private const int ARRAY_SIZE = 1000;
-        private readonly ArrayFunctions _arrayFunctions;
 
         public ArrayFunctionsTests()
         {
-            _arrayFunctions = new ArrayFunctions();
-            _array = _arrayFunctions.GerOrderedArray(ARRAY_SIZE);
+            _array = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
         }
 
         [Fact]
         public void WhenGerOrderedArrayIsInvoked_ThenOrderedArrayIsReturned()
         {
             // Act
-            var array = _arrayFunctions.GerOrderedArray(ARRAY_SIZE);
+            var array = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
 
             // Assert
             array.Should().NotBeNullOrEmpty();
@@ -29,7 +27,7 @@ namespace HowToEfficientlyRandomizeAnArray.Tests
         public void WhenRandomizeWithOrderByAndGuidIsInvoked_ThenArrayIsRandomized()
         {
             // Act
-            var randomizedArray = _arrayFunctions.RandomizeWithOrderByAndGuid(_array);
+            var randomizedArray = ArrayFunctions.RandomizeWithOrderByAndGuid(_array);
 
             // Assert
             randomizedArray
@@ -42,7 +40,7 @@ namespace HowToEfficientlyRandomizeAnArray.Tests
         public void WhenRandomizeWithOrderByAndRandomIsInvoked_ThenArrayIsRandomized()
         {
             // Act
-            var randomizedArray = _arrayFunctions.RandomizeWithOrderByAndRandom(_array);
+            var randomizedArray = ArrayFunctions.RandomizeWithOrderByAndRandom(_array);
 
             // Assert
             randomizedArray
@@ -55,7 +53,20 @@ namespace HowToEfficientlyRandomizeAnArray.Tests
         public void WhenRandomizeWithFisherYatesIsInvoked_ThenArrayIsRandomized()
         {
             // Act
-            var randomizedArray = _arrayFunctions.RandomizeWithFisherYates(_array);
+            var randomizedArray = ArrayFunctions.RandomizeWithFisherYates(_array);
+
+            // Assert
+            randomizedArray
+                .Should().NotBeNullOrEmpty()
+                .And.NotBeInAscendingOrder()
+                .And.NotBeInDescendingOrder();
+        }
+
+        [Fact]
+        public void WhenRandomizeWithFisherYatesCopiedArrayIsInvoked_ThenArrayIsRandomized()
+        {
+            // Act
+            var randomizedArray = ArrayFunctions.RandomizeWithFisherYatesCopiedArray(_array);
 
             // Assert
             randomizedArray

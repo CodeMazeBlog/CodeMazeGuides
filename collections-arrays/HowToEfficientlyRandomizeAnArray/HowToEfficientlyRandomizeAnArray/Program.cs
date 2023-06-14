@@ -1,12 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
+using HowToEfficientlyRandomizeAnArray;
 
-namespace HowToEfficientlyRandomizeAnArray
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            BenchmarkRunner.Run<ArrayBenchmarks>();
-        }
-    }
-}
+BenchmarkRunner.Run<ArrayBenchmarks>();
