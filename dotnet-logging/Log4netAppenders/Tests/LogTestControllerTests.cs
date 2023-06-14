@@ -7,7 +7,7 @@ namespace Tests
     public class LogTestControllerTests
     {
         [Fact]
-        public void Get_WhenCalled_InvokesLog4netMethods()
+        public void GivenLog4NetConfigured_WhenGetMethodIsCalled_ThenLog4netMethodsAreInvoked()
         {
             //arrange
             Mock<ILog> mock = new();

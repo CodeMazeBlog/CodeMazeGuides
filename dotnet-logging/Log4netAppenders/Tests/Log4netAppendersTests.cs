@@ -12,7 +12,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task GivenLog4NetConfigured_WhenInvokingLogTest_ThenAllEventsAreLogged()
+        public async Task GivenLog4NetConfigured_WhenLogTestIsInvoked_ThenAllEventsAreLogged()
         {
             // arrange
             var client = _factory.CreateClient();
