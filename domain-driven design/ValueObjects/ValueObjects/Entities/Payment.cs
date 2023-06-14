@@ -2,7 +2,7 @@
 
 namespace ValueObjects.Entities;
 
-public sealed class Payment
+public class Payment
 {
     public Guid Id { get; private set; }
     public Money Quoted { get; private set; }

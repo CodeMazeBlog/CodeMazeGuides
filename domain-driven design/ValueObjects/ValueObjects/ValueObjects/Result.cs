@@ -1,6 +1,6 @@
 namespace ValueObjects.ValueObjects;
 
-public sealed record Result<T>
+public record Result<T>
 {
     public bool IsSuccess { get; private init; }
     public T? Value { get; private init; }

@@ -1,6 +1,6 @@
 namespace ValueObjects.ValueObjects;
 
-public sealed record Money
+public record Money
 {
     private static readonly IReadOnlyCollection<string> SupportedCurrencies = new[]{"USD", "EUR"};
 

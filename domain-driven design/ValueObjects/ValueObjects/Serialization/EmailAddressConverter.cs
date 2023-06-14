@@ -3,7 +3,7 @@ using ValueObjects.ValueObjects;
 
 namespace ValueObjects.Serialization;
 
-public sealed class EmailAddressConverter : System.Text.Json.Serialization.JsonConverter<EmailAddress>
+public class EmailAddressConverter : System.Text.Json.Serialization.JsonConverter<EmailAddress>
 {
     public override EmailAddress? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {

@@ -1,3 +1,3 @@
 namespace ValueObjects.ValueObjects;
 
-public sealed record EmailAddress(string Address); //validation omitted for brevity
+public record EmailAddress(string Address); //validation omitted for brevity

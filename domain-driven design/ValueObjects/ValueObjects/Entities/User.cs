@@ -2,7 +2,7 @@ using ValueObjects.ValueObjects;
 
 namespace ValueObjects.Entities;
 
-public sealed class User
+public class User
 {
     public EmailAddress EmailAddress { get; private set; }
 
