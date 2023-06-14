@@ -7,7 +7,7 @@ namespace Tests;
 public sealed class SerializationUnitTest
 {
     [Test]
-    public void WhenAnEmailAddress_ThenCanSerializeItIntoString()
+    public void GivenAUserWithEmailAddressObject_WhenUsingEmailAddressConverter_ThenCanSerializeItIntoString()
     {
         var user = new User(new("email@example.com"));
         var settings = new JsonSerializerOptions {Converters = {new EmailAddressConverter()}};
@@ -18,7 +18,7 @@ public sealed class SerializationUnitTest
     }
 
     [Test]
-    public void WhenAJson_ThenCanDeserializeItIntoUser()
+    public void GivenAUserWithEmailAddressJson_WhenUsingEmailAddressConverter_ThenCanDeserializeItIntoUser()
     {
         const string json = "{\"EmailAddress\":\"email@example.com\"}";
         var settings = new JsonSerializerOptions {Converters = {new EmailAddressConverter()}};
