@@ -16,8 +16,9 @@ namespace PublishVsSendInMediatRTests.EventHandlers
             var userId = new Random().Next();
             var userRepositoryMock = new Mock<IUserRepository>();
             userRepositoryMock
-              .Setup(x => x.GetAdminUserAsync())
-              .ReturnsAsync(new User { UserId = 1 });
+                .Setup(x => x.GetAdminUserAsync())
+                .ReturnsAsync(new User { UserId = 1 });
+
             var notificationServiceMock = new Mock<INotificationService>();
             var userCreatedEventHandler = new UserCreatedEventHandler(userRepositoryMock.Object, notificationServiceMock.Object);
             var request = new UserCreatedEvent { UserId = 1, UserName = "sampleUser" };

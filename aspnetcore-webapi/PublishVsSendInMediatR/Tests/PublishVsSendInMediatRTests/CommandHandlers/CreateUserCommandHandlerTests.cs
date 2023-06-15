@@ -15,8 +15,9 @@ namespace PublishVsSendInMediatRTests.CommandHandlers
             var userId = new Random().Next();
             var userRepositoryMock = new Mock<IUserRepository>();
             userRepositoryMock
-            .Setup(x => x.CreateUserAsync(It.IsAny<User>()))
-            .ReturnsAsync(userId);
+                .Setup(x => x.CreateUserAsync(It.IsAny<User>()))
+                .ReturnsAsync(userId);
+
             var createUserCommandHandler = new CreateUserCommandHandler(userRepositoryMock.Object);
             var request = new CreateUserCommand { Email = "sample@email.com", UserName = "sample" };
 
