@@ -12,6 +12,8 @@ var app = builder.Build();
 
 app.UseMiddleware<GlobalRoutePrefixMiddleware>("/api/v1");
 
+app.UsePathBase("/api/v1");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -22,7 +24,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.MapControllers();
 
