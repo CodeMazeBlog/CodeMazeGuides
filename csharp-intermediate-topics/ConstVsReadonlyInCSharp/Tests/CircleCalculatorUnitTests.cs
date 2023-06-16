@@ -4,12 +4,12 @@ namespace Tests
 {
     public class CircleCalculatorUnitTests
     {
-        private CircleCalculator circleCalculator = new CircleCalculator();
+        private CircleCalculator _circleCalculator = new CircleCalculator();
 
         [Fact]
         public void WhenCalculatingCircumferenceFor3_ThenReturn18_84()
         {
-            var result = circleCalculator.GetCircumference(3);
+            var result = _circleCalculator.GetCircumference(3);
 
             Assert.Equal(18.84, result);
         }
@@ -17,7 +17,7 @@ namespace Tests
         [Fact]
         public void WhenCalculatingAccurateCircumferenceFor3_ThenReturn18_849555921540002()
         {
-            var result = circleCalculator.GetAccurateCircumference(3);
+            var result = _circleCalculator.GetAccurateCircumference(3);
 
             Assert.Equal(18.849555921540002, result);
         }

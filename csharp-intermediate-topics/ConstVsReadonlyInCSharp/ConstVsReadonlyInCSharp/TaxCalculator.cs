@@ -3,7 +3,7 @@
     public class TaxCalculator
     {
         private readonly double _countryVAT;
-        private readonly double _euroToDollarConvertionRate = 1.08;
+        private readonly double _euroToDollarConversionRate = 1.08;
         private readonly MathCalculator _calculator = new MathCalculator();
 
 
@@ -19,7 +19,7 @@
 
         public double CalculateCountryVatInDollars(double productValue)
         {
-            return CalculateCountryVatInEuro(productValue) * _euroToDollarConvertionRate;
+            return CalculateCountryVatInEuro(productValue) * _euroToDollarConversionRate;
         }
     }
 }

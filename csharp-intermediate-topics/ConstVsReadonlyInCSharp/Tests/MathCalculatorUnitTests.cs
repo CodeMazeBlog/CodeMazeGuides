@@ -15,9 +15,9 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenSubstracting5And3_TheReturn2()
+        public void WhenSubtracting5And3_TheReturn2()
         {
-            var result = mathCalculator.Substract(5, 3);
+            var result = mathCalculator.Subtract(5, 3);
 
             Assert.Equal(2, result);
         }
