@@ -11,10 +11,10 @@ public class ConvertHexStringToByteArrayBenchmarks
 {
     private static readonly int[] Sizes =
     {
-        //32,
-        //128,
+        32,
+        128,
         4096,
-        //1_048_576
+        1_048_576
     };
 
     private readonly List<string> _sourceData = new();
@@ -44,11 +44,6 @@ public class ConvertHexStringToByteArrayBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingLargeTableLookup(string source) =>
-        ConversionHelpers.FromHexStringWithLargeTableLookup(source);
-
-    [Benchmark]
-    [ArgumentsSource(nameof(ArrayData))]
     public byte[] ConvertToByteArrayUsingSwitchComputation(string source) =>
         ConversionHelpers.FromHexWithSwitchComputation(source);
 
@@ -56,6 +51,11 @@ public class ConvertHexStringToByteArrayBenchmarks
     [ArgumentsSource(nameof(ArrayData))]
     public byte[] ConvertToByteArrayUsingBitFiddle(string source) =>
         ConversionHelpers.FromHexWithBitFiddle(source);
+
+    [Benchmark]
+    [ArgumentsSource(nameof(ArrayData))]
+    public byte[] ConvertToByteArrayUsingModularArithmetic(string source) =>
+        ConversionHelpers.FromHexWithModularArithmetic(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]

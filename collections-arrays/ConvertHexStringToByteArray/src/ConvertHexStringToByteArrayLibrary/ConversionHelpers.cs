@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 
 namespace ConvertHexStringToByteArray.Library;
 
@@ -13,34 +12,28 @@ public static class ConversionHelpers
 
         if (source.Length % 2 == 1) throw new ArgumentException("Source has invalid length", nameof(source));
 
-        var destLength = source.Length >> 1;
-
+        var dest = GC.AllocateUninitializedArray<byte>(source.Length >> 1);
         fixed (char* sourceRef = source)
+        fixed (byte* hiRef = LookupTables.FromHexHighBitsLookup)
+        fixed (byte* lowRef = LookupTables.FromHexLowBitsLookup)
+        fixed (byte* destRef = dest)
         {
-            var dest = GC.AllocateUninitializedArray<byte>(destLength);
+            var s = &sourceRef[0];
+            var d = destRef;
 
-            fixed (byte* hiRef = LookupTables.FromHexHighBitsLookup)
-            fixed (byte* lowRef = LookupTables.FromHexLowBitsLookup)
-            fixed (byte* destRef = dest)
+            while (*s != 0)
             {
-                var s = &sourceRef[0];
-                var d = destRef;
+                Unsafe.SkipInit(out byte lowValue);
 
-                while (*s != 0)
-                {
-                    // check for non valid characters in pairs
-                    Unsafe.SkipInit(out byte lowValue);
+                if (*s > 102 || (*d = hiRef[*s++]) == 255 ||
+                    *s > 102 || (lowValue = lowRef[*s++]) == 255
+                )
+                    throw new ArgumentException($"Invalid character found in string: '{*s}'", nameof(source));
 
-                    if (*s > 102 || (*d = hiRef[*s++]) == 255 ||
-                        *s > 102 || (lowValue = lowRef[*s++]) == 255
-                    )
-                        throw new ArgumentException($"Invalid character found in string: '{*s}'", nameof(source));
-
-                    *d++ += lowValue;
-                }
-
-                return dest;
+                *d++ += lowValue;
             }
+
+            return dest;
         }
     }
 
@@ -63,23 +56,50 @@ public static class ConversionHelpers
         fixed (char* srcPtr = source)
         fixed (byte* destPtr = dest)
         {
+            var sPtr = &srcPtr[0];
+            var dPtr = &destPtr[0];
             unchecked
             {
-                for (var i = 0; i < dest.Length; ++i)
+                while (*sPtr != 0)
                 {
-                    var hi = srcPtr[i * 2] - 65;
-                    hi = hi + 10 + ((hi >> 31) & 7);
+                    var hi = PerformBitFiddleCalculation(*sPtr++);
+                    var lo = PerformBitFiddleCalculation(*sPtr++) & 0x0F;
 
-                    var lo = srcPtr[i * 2 + 1] - 65;
-                    lo = (lo + 10 + ((lo >> 31) & 7)) & 0x0f;
-
-                    destPtr[i] = (byte) (lo | (hi << 4));
+                    *dPtr++ = (byte) (lo | (hi << 4));
                 }
             }
         }
 
         return dest;
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int PerformBitFiddleCalculation(int value)
+    {
+        value -= 65;
+
+        return value + 10 + ((value >> 31) & 7);
+    }
+
+    public static byte[] FromHexWithModularArithmetic(ReadOnlySpan<char> source)
+    {
+        if (source.StartsWith("0x")) source = source[2..];
+
+        if (source.IsEmpty) return Array.Empty<byte>();
+
+        if (source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
+
+        // fastest method for old school people... miss you pointers
+        var dest = GC.AllocateUninitializedArray<byte>(source.Length >> 1);
+        for (int i = 0, j = 0; j < dest.Length; i += 2, j++)
+            dest[j] = (byte) ((PerformModularArithmeticCalculation(source[i]) << 4) +
+                PerformModularArithmeticCalculation(source[i + 1]));
+
+        return dest;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static int PerformModularArithmeticCalculation(char value) => (value % 32 + 9) % 25;
 
     public static unsafe byte[] FromHexWithSwitchComputation(ReadOnlySpan<char> source)
     {
@@ -89,7 +109,7 @@ public static class ConversionHelpers
 
         if (source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
 
-        var dest = GC.AllocateUninitializedArray<byte>(source.Length / 2);
+        var dest = GC.AllocateUninitializedArray<byte>(source.Length >> 1);
         fixed (char* s = source)
         fixed (byte* d = dest)
         {
@@ -100,34 +120,6 @@ public static class ConversionHelpers
                 var result = (byte) (ComputeNibbleFromHexChar(*srcPtr++) << 4);
                 result |= ComputeNibbleFromHexChar(*srcPtr++);
                 *destPtr++ = result;
-            }
-        }
-
-        return dest;
-    }
-
-    public static unsafe byte[] FromHexStringWithLargeTableLookup(ReadOnlySpan<char> source)
-    {
-        if (source.StartsWith("0x")) source = source[2..];
-
-        if (source.IsEmpty) return Array.Empty<byte>();
-
-        if (source.Length % 2 != 0) throw new ArgumentException("Invalid hex string", nameof(source));
-
-        var dest = GC.AllocateUninitializedArray<byte>(source.Length >> 1);
-        fixed (char* srcPtr = source)
-        fixed (byte* destPtr = dest)
-        fixed (int* tblPtr = LookupTables.LargeLookupTable)
-        {
-            var sPtr = (int*) srcPtr;
-            var dPtr = destPtr;
-            for (var i = 0; i < dest.Length; ++i)
-            {
-                Unsafe.SkipInit(out int value);
-                if ((value = tblPtr[*sPtr++ % LookupTables.LargeLookupHashKey]) == -1)
-                    throw new ArgumentException($"Invalid character found in string", nameof(source));
-
-                *dPtr++ = (byte)value;
             }
         }
 

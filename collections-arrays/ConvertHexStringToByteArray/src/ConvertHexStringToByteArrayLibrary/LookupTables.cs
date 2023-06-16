@@ -1,6 +1,6 @@
 ﻿namespace ConvertHexStringToByteArray.Library;
 
-public static partial class LookupTables
+public static class LookupTables
 {
     internal static ReadOnlySpan<byte> FromHexLowBitsLookup => new byte[]
     {

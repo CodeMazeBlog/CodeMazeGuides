@@ -16,9 +16,10 @@ public class ConvertByteArrayToHexTests
             189, 224, 3, 26, 15, 176, 66, 212, 1, 21, 64, 185, 3, 250, 37, 90, 237, 92, 92, 202,
             18, 63, 63, 15, 185, 255, 158, 78, 17
         })]
-    public void UsingLargeTableLookup_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source, byte[] expected)
+    public void UsingModularArithmetic_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source,
+        byte[] expected)
     {
-        var result = ConversionHelpers.FromHexStringWithLargeTableLookup(source);
+        var result = ConversionHelpers.FromHexWithModularArithmetic(source);
 
         Assert.Equal(expected, result);
     }
