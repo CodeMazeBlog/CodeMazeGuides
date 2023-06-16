@@ -7,7 +7,7 @@ namespace Tests
         private CircleCalculator circleCalculator = new CircleCalculator();
 
         [Fact]
-        public void WhenCalculatingCerconferenceFor3_ThenReturn18_84()
+        public void WhenCalculatingCircumferenceFor3_ThenReturn18_84()
         {
             var result = circleCalculator.GetCircumference(3);
 
@@ -15,7 +15,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenCalculatingAccurateCerconferenceFor3_ThenReturn18_849555921540002()
+        public void WhenCalculatingAccurateCircumferenceFor3_ThenReturn18_849555921540002()
         {
             var result = circleCalculator.GetAccurateCircumference(3);
 
