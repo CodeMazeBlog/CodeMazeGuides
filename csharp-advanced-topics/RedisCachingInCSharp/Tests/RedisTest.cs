@@ -1,41 +1,51 @@
 using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
-using Microsoft.Extensions.Configuration;
+using Moq;
 using RedisCachingInCSharp.Services;
+using System.Text.Json;
 
 namespace Tests
 {
     public class RedisTest
     {
-        private readonly RedisCacheService _redisCacheService;
-        private readonly IDistributedCache _cache;
-
-        public RedisTest()
+        [Fact]
+        public void GivenRedisCacheService_WhenGetCachedData_ThenReturnCachedValue()
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            var cacheData = new Dictionary<string, byte[]>();
+            var cacheMock = new Mock<IDistributedCache>();
+            var redisCacheService = new RedisCacheService(cacheMock.Object);
+            var expectedValue = "How you like them?";
+            var key = "Apples";
 
-            var cacheOptions = new RedisCacheOptions
-            {
-                Configuration = configuration.GetConnectionString("RedisConn"),
-                InstanceName = "RedisTests_"
-            };
+            cacheMock.Setup(x => x.Get(It.IsAny<string>()))
+                .Returns((string key) => cacheData.ContainsKey(key) ? cacheData[key] : null);
 
-            _cache = new RedisCache(cacheOptions);
+            cacheData[key] = System.Text.Encoding.UTF8.GetBytes($"\"{expectedValue}\"");
 
-            _redisCacheService = new RedisCacheService(_cache);
+            var result = redisCacheService.GetCachedData<string>(key);
+
+            Assert.Equal(expectedValue, result);
         }
 
         [Fact]
-        public void GivenRedisDatabase_WhenRetrieveDataUsingKey_ThenReturnData()
+        public void GivenRedisCacheService_WhenSetCachedData_ThenCacheValue()
         {
+            var cacheData = new Dictionary<string, byte[]>();
+            var cacheMock = new Mock<IDistributedCache>();
+            var redisCacheService = new RedisCacheService(cacheMock.Object);
+            var expectedValue = "How you like them?";
             var key = "Apples";
-            var expectedValue = "How'd you like them?";
+            var cacheDuration = TimeSpan.FromMinutes(10);
 
-            _redisCacheService.SetCachedData(key, expectedValue, TimeSpan.FromSeconds(10));
+            cacheMock.Setup(x => x.Set(It.IsAny<string>(), It.IsAny<byte[]>(), It.IsAny<DistributedCacheEntryOptions>()))
+                .Callback((string key, byte[] value, DistributedCacheEntryOptions options) =>
+                {
+                    cacheData[key] = value;
+                });
 
-            var actualValue = _redisCacheService.GetCachedData<string>(key);
+            redisCacheService.SetCachedData(key, expectedValue, cacheDuration);
 
-            Assert.Equal(expectedValue, actualValue);
+            Assert.True(cacheData.ContainsKey(key));
+            Assert.Equal(expectedValue, JsonSerializer.Deserialize<string>(cacheData[key]));
         }
     }
 }
