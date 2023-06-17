@@ -16,6 +16,7 @@ This section contains the topics considered basic level in C#.
 - [Extended Property Patterns in C#](https://code-maze.com/csharp-extended-property-patterns/)
 - [How to Get Class Name as String in C#](https://code-maze.com/csharp-get-class-name-as-string/)
 - [Global Using Directives in C#](https://code-maze.com/csharp-global-using-directives/)
+- [Working With Guid in C#](https://code-maze.com/csharp-guid-class/)
 - [How to Manage IDisposable Objects in C#](https://code-maze.com/csharp-manage-idisposable-objects/)
 - [Indexers in C#](https://code-maze.com/csharp-indexers/)
 - [Differences Between != And Is Not Operators in C#](https://code-maze.com/csharp-differences-between-inequality-is-not-operators/)
