@@ -8,7 +8,7 @@ public class Program
         Console.WriteLine($"A circle with radius 5.59 has a circumference: {circleCalculator.GetCircumference(5.59)}");
         Console.WriteLine($"A more accurate estimation of this circle's circumference is: {circleCalculator.GetAccurateCircumference(5.59):0.0000}");
 
-        var taxCalculator = new TaxCalculator(0.15);
+        var taxCalculator = new TaxCalculator((decimal)0.15);
         Console.WriteLine($"The VAT for a product valued at 14 euros is: {taxCalculator.CalculateCountryVatInEuro(14):0.00} euros");
         Console.WriteLine($"The VAT for a product valued at 14 euros is: {taxCalculator.CalculateCountryVatInDollars(14):0.00} dollars");
     }

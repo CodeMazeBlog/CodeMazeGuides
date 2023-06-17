@@ -11,7 +11,7 @@ namespace Tests
         {
             var result = mathCalculator.Add(1, 3);
 
-            Assert.Equal(4, result);
+            Assert.Equal((decimal)4.0, result);
         }
 
         [Fact]
@@ -19,7 +19,7 @@ namespace Tests
         {
             var result = mathCalculator.Subtract(5, 3);
 
-            Assert.Equal(2, result);
+            Assert.Equal((decimal)2.0, result);
         }
 
         [Fact]
@@ -27,7 +27,7 @@ namespace Tests
         {
             var result = mathCalculator.Multiply(10, 3);
 
-            Assert.Equal(30, result);
+            Assert.Equal((decimal)30.0, result);
         }
 
         [Fact]
@@ -35,7 +35,7 @@ namespace Tests
         {
             var result = mathCalculator.Divide(10, 5);
 
-            Assert.Equal(2, result);
+            Assert.Equal((decimal)2.0, result);
         }
     }
 }

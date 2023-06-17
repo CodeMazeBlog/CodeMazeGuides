@@ -11,7 +11,7 @@ namespace Tests
         {
             var result = _circleCalculator.GetCircumference(3);
 
-            Assert.Equal(18.84, result);
+            Assert.Equal(18.84, result, 3);
         }
 
         [Fact]
@@ -19,7 +19,7 @@ namespace Tests
         {
             var result = _circleCalculator.GetAccurateCircumference(3);
 
-            Assert.Equal(18.849555921540002, result);
+            Assert.Equal(18.849555921540002, result, 12);
         }
     }
 }

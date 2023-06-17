@@ -2,22 +2,22 @@
 {
     public class TaxCalculator
     {
-        private readonly double _countryVAT;
-        private readonly double _euroToDollarConversionRate = 1.08;
+        private readonly decimal _countryVAT;
+        private readonly decimal _euroToDollarConversionRate = (decimal)1.08;
         private readonly MathCalculator _calculator = new MathCalculator();
 
 
-        public TaxCalculator(double countryVAT)
+        public TaxCalculator(decimal countryVAT)
         {
             _countryVAT = countryVAT;
         }
 
-        public double CalculateCountryVatInEuro(double productValue)
+        public decimal CalculateCountryVatInEuro(decimal productValue)
         {
             return _calculator.Multiply(productValue, _countryVAT);
         }
 
-        public double CalculateCountryVatInDollars(double productValue)
+        public decimal CalculateCountryVatInDollars(decimal productValue)
         {
             return CalculateCountryVatInEuro(productValue) * _euroToDollarConversionRate;
         }
