@@ -26,12 +26,20 @@ public class OrdersController : ControllerBase
     [HttpGet("findProductById")]
     public IActionResult GetProductById(int id)
     {
-        return Ok(_ordersService.FindProduct(id));
+        var getProductResult = _ordersService.FindProduct(id);
+
+        return getProductResult.Match<IActionResult>(
+            product => Ok(product),
+            notFound => NotFound());
     }
 
     [HttpGet("findProductByName")]
     public IActionResult GetProductByName(string name)
     {
-        return Ok(_ordersService.FindProduct(name));
+        var getProductResult = _ordersService.FindProduct(name);
+
+        return getProductResult.Match<IActionResult>(
+            product => Ok(product),
+            notFound => NotFound());
     }
 }

@@ -1,4 +1,6 @@
-﻿using OneOf;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using OneOf;
+using OneOf.Types;
 
 namespace API;
 
@@ -39,13 +41,21 @@ public class OrdersService : IOrdersService
         return receipt;
     }
 
-    public Product? FindProduct(OneOf<string, int> productNameOrId)
+    public OneOf<Product, OneOf.Types.NotFound> FindProduct(OneOf<string, int> productNameOrId)
     {
+        Product? product;
+
         if (productNameOrId.IsT0)
         {
-            return _products.SingleOrDefault(product => product.Name.Equals(productNameOrId.AsT0));
+            product = _products.SingleOrDefault(product => product.Name.Equals(productNameOrId.AsT0));
+        }
+        else
+        {
+            product = _products.SingleOrDefault(product => product.ProductId == productNameOrId.AsT1);
         }
 
-        return _products.SingleOrDefault(product => product.ProductId == productNameOrId.AsT1);
+        return product == null
+            ? new OneOf.Types.NotFound()
+            : product;
     }
 }

@@ -13,8 +13,9 @@ public class OrdersControllerUnitTests
         var ordersService = new Mock<IOrdersService>();
         var controller = new OrdersController(ordersService.Object);
         var order = new Order(1, 100);
-        ordersService.Setup(x => x.PlaceOrder(order))
-                     .Returns(new Receipt(1, order.Payment));
+        ordersService
+            .Setup(x => x.PlaceOrder(order))
+            .Returns(new Receipt(1, order.Payment));
 
         var okResult = controller.Post(order) as OkObjectResult;
 
@@ -27,8 +28,9 @@ public class OrdersControllerUnitTests
         var ordersService = new Mock<IOrdersService>();
         var controller = new OrdersController(ordersService.Object);
         var order = new Order(1, 100);
-        ordersService.Setup(x => x.PlaceOrder(order))
-                     .Returns(PlaceOrderError.InsufficientFunds);
+        ordersService
+            .Setup(x => x.PlaceOrder(order))
+            .Returns(PlaceOrderError.InsufficientFunds);
 
         var objectResult = controller.Post(order) as ObjectResult;
 

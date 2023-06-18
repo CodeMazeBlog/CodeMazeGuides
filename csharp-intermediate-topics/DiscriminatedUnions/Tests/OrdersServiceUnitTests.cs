@@ -4,11 +4,10 @@ namespace Tests;
 
 public class OrdersServiceUnitTests
 {
-    private readonly OrdersService _ordersService = new();
-    
+    private readonly OrdersService _ordersService = new();    
 
     [Fact]
-    public void GivenAnProductIdThatDoesntExist_WhenCallingPlaceOrder_ThenPlaceOrderErrorDoesntExistIsReturned()
+    public void GivenAProductIdThatDoesntExist_WhenCallingPlaceOrder_ThenPlaceOrderErrorDoesntExistIsReturned()
     {
         var order = new Order(100, 1);
 
