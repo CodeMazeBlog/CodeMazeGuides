@@ -14,4 +14,18 @@ public class DotNetClrVersionUnitTests
         // Then
         Assert.StartsWith(expectedVersion, actualVersion);
     }
+    
+    [Fact]
+    public void GivenPathToDllBuiltWithDotNet_WhenCallingGetAssemblySupportedMinimumClrVersion_ThenReturnExpectedVersion()
+    {
+        // Given
+        var path = typeof(DotNetClrVersionUnitTests).Assembly.Location;
+        var expectedVersion = "v4.0";
+        
+        // When
+        var actualVersion = DotNetClrVersion.GetAssemblySupportedMinimumClrVersion(path);
+
+        // Then
+        Assert.StartsWith(expectedVersion, actualVersion);
+    }
 }
