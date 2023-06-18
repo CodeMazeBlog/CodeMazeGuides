@@ -10,6 +10,6 @@ public static class DotNetTargetFrameworkName
         return Assembly
             .GetEntryAssembly()?
             .GetCustomAttribute<TargetFrameworkAttribute>()?
-            .FrameworkName;
+            .FrameworkName ?? "";
     }
 }
