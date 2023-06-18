@@ -2,6 +2,7 @@ namespace HowToDetermineDotNetVersionProgramaticallyTests;
 
 public class DotNetTargetFrameworkNameUnitTests
 {
+    /* for use in library build on .NET Framework
     [Fact]
     public void GivenThisProcessBuiltWithDotNetFramework_WhenCallingGetTargetFrameworkName_ThenReturnExpectedFrameworkName()
     {
@@ -14,6 +15,7 @@ public class DotNetTargetFrameworkNameUnitTests
         // Then
         Assert.StartsWith(expectedFrameworkName, actualFrameworkName);
     }
+    */
 
     [Fact]
     public void GivenThisProcessBuiltWithDotNetCore_WhenCallingGetTargetFrameworkName_ThenReturnExpectedFrameworkName()
