@@ -19,8 +19,6 @@ namespace RedisCachingInCSharp.Pages
             _cache = cache;
         }
 
-        public void OnGet() { }
-
         public void OnPostListGames()
         {
             var cacheKey = $"Games_{DateTime.Now:yyyyMMdd_hhmm}";

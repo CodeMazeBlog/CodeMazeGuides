@@ -5,7 +5,7 @@ namespace RedisCachingInCSharp.Services
 {
     public class RedisCacheService
     {
-        private readonly IDistributedCache? _cache;
+        private readonly IDistributedCache _cache;
 
         public RedisCacheService(IDistributedCache cache)
         {
@@ -26,7 +26,8 @@ namespace RedisCachingInCSharp.Services
         {
             var options = new DistributedCacheEntryOptions
             {
-                AbsoluteExpirationRelativeToNow = cacheDuration
+                AbsoluteExpirationRelativeToNow = cacheDuration,
+                SlidingExpiration = cacheDuration
             };
 
             var jsonData = JsonSerializer.Serialize(data);
