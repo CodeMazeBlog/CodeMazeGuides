@@ -54,13 +54,6 @@ namespace CompareByteArraysInCsharpTests
         }
 
         [TestMethod]
-        public void GivenByteArrays_WhenComparedUsingHashSet_VerifyAccurateResults()
-        {
-            Assert.IsTrue(_compareByteArrays.CompareUsingHashSet(_firstArray, _secondArray));
-            Assert.IsFalse(_compareByteArrays.CompareUsingHashSet(_firstArray, _thirdArray));
-        }
-
-        [TestMethod]
         public void GivenByteArrays_WhenComparedUsingIStructuralEquatable_VerifyAccurateResults()
         {
             Assert.IsTrue(_compareByteArrays.CompareUsingIStructuralEquatable(_firstArray, _secondArray));

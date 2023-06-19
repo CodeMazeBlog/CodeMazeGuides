@@ -18,6 +18,7 @@ namespace CompareByteArraysInCsharp
             _rand = new Random();
             _byteArray = GenerateRandomArray(10000000);
         }
+
         public IEnumerable<object[]> SampleByteArray()
         {
             yield return new object[] { GenerateRandomArray(10000000), GenerateRandomArray(10000000) };
@@ -76,16 +77,6 @@ namespace CompareByteArraysInCsharp
 
         [ArgumentsSource(nameof(SampleByteArray))]
         [Benchmark]
-        public bool CompareUsingHashSet(byte[] firstArray, byte[] secondArray)
-        {
-            var firstSet = new HashSet<byte>(firstArray);
-            var secondSet = new HashSet<byte>(secondArray);
-
-            return firstSet.SetEquals(secondSet);
-        }
-
-        [ArgumentsSource(nameof(SampleByteArray))]
-        [Benchmark]
         public bool CompareUsingBinaryEquality(byte[] firstArray, byte[] secondArray)
         {
             if (firstArray == null || secondArray == null || firstArray.Length != secondArray.Length)
@@ -117,7 +108,6 @@ namespace CompareByteArraysInCsharp
         [Benchmark]
         public bool CompareUsingIStructuralEquatable(byte[] firstArray, byte[] secondArray)
         {
-
             if (firstArray == null || secondArray == null || firstArray.Length != secondArray.Length)
                 return false;
 
@@ -135,6 +125,7 @@ namespace CompareByteArraysInCsharp
 
             return memcmp(firstArray, secondArray, firstArray.Length) == 0;
         }
+
         private byte[] GenerateRandomArray(int size) 
         {
             var byteArray = new byte[size];
