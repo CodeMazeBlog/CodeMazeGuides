@@ -6,7 +6,7 @@ namespace EntityFrameworkCoreVsDapper.EFCore
 {
     public class PersonsContext : DbContext
     {
-        public DbSet<Person> Persons{ get; set; }
+        public DbSet<Person> Persons { get; set; }
  
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

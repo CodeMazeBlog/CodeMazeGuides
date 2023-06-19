@@ -5,11 +5,11 @@ public class Program
 {
     static void Main(string[] args)
     {
-        PersonsRepositoryEFCore EFCoreRepository = new PersonsRepositoryEFCore();
-        EFCoreRepository.GetXPersons(1000);
+        var efCoreRepository = new PersonsRepositoryEFCore();
+        efCoreRepository.GetXPersons(1000);
 
-        PersonsRepositoryDapper DapperRepository = new PersonsRepositoryDapper();
-        DapperRepository.GetXPersons(1000);
+        var dapperRepository = new PersonsRepositoryDapper();
+        dapperRepository.GetXPersons(1000);
 
         BenchmarkRunner.Run(typeof(Program).Assembly);
     } 

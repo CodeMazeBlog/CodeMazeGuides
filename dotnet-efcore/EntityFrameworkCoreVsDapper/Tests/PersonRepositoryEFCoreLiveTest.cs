@@ -5,12 +5,12 @@ namespace Tests
 {
     public class PersonRepositoryEFCoreLiveTest
     {
-        private PersonsRepositoryEFCore repository = new PersonsRepositoryEFCore();
+        private PersonsRepositoryEFCore _repository = new PersonsRepositoryEFCore();
 
         [Fact]
         public void WhenQuerying100Persons_ThenReturnListHas100Persons()
         {
-            var queryResults = repository.GetXPersons(100);
+            var queryResults = _repository.GetXPersons(100);
 
             Assert.Equal(100, queryResults.Count);
         }

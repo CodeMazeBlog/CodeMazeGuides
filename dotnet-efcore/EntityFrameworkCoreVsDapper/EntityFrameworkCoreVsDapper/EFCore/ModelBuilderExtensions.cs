@@ -8,7 +8,7 @@ namespace EntityFrameworkCoreVsDapper.EFCore
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            int id = 1;
+            var id = 1;
             var fakePersons = new Faker<Person>().StrictMode(true)
                 .RuleFor(o => o.Id, f => id++)
                 .RuleFor(u => u.Name, (f, u) => f.Name.FullName());
