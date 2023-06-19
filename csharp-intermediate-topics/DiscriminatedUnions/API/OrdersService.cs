@@ -38,6 +38,7 @@ public class OrdersService : IOrdersService
 
         var receipt = new Receipt(++_receiptId, order.Payment);
         _receipts.Add(receipt);
+
         return receipt;
     }
 
