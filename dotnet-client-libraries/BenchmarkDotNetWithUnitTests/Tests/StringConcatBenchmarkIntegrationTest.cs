@@ -1,10 +1,10 @@
 namespace Tests;
 
-public class StringConcatBenchmarkTest : IClassFixture<BenchmarkFixture>
+public class StringConcatBenchmarkIntegrationTest : IClassFixture<BenchmarkFixture>
 {
     private readonly BenchmarkFixture _benchmarkFixture;
 
-    public StringConcatBenchmarkTest(BenchmarkFixture benchmarkFixture)
+    public StringConcatBenchmarkIntegrationTest(BenchmarkFixture benchmarkFixture)
     {
         _benchmarkFixture = benchmarkFixture;
     }
