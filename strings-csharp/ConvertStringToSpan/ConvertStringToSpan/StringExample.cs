@@ -11,13 +11,11 @@ namespace ConvertStringToSpan
         private string _myString = "Hello, World!";
 
         [Benchmark]
-        public Span<char> ConvertStringToSpanUsingMemoryMarshal()
+        public Span<char> ConvertStringToSpanUsingToCharArray()
         {
             var charArray = _myString.ToCharArray();
-            var memory = new Memory<char>(charArray);
-            var span = MemoryMarshal.Cast<char, char>(memory.Span);
 
-            return span;
+            return charArray;
         }
 
         [Benchmark]
