@@ -14,14 +14,17 @@ public class Program
 
     public static void PrintMessageWithAction(string message)
     {
-        var action = ShowMessage;
+        Action<string> action = ShowMessage;
+
         action(message);
     }
 
     public static int GetMessageLengthWithFunc(string message)
     {
-        var getMessageLength = MessageLength;
+        Func<string, int> getMessageLength = MessageLength;
+
         var length = getMessageLength(message);
+
         return length;
     }
 

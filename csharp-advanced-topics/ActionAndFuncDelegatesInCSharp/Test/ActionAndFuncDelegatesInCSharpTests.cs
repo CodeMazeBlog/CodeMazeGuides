@@ -1,4 +1,3 @@
-
 using Xunit;
 using ActionAndFuncDelegatesInCSharp;
 
@@ -6,28 +5,26 @@ namespace ActionAndFuncDelegatesInCSharpTest;
 
 public class ActionAndFuncDelegatesInCSharpTests
 {
-    private readonly StringWriter consoleOutput = new();
+    private readonly StringWriter _consoleOutput = new();
 
     public ActionAndFuncDelegatesInCSharpTests()
     {
-        Console.SetOut(consoleOutput);
+        Console.SetOut(_consoleOutput);
     }
 
-
     [Fact]
-    public void WhenPrintMessageWithAction_ExpectedMessageShouldBeDisplayed()
+    public void WhenPrintMessageWithAction_ThenExpectedMessageShouldBeDisplayed()
     {
         const string message = "Hello World!";
-  
+
         Program.PrintMessageWithAction(message);
-        
         var printedMessage = PrintedOutputToArray();
+
         Assert.Equal(message, printedMessage[0]);
     }
 
-
     [Fact]
-    public void WhenGetMessageLengthWithFunc_ResultMustBeAsExpected()
+    public void WhenGetMessageLengthWithFunc_ThenResultMustBeAsExpected()
     {
         const string message = "Hello World!";
         var expected = message.Length;
@@ -39,7 +36,7 @@ public class ActionAndFuncDelegatesInCSharpTests
 
     private string[] PrintedOutputToArray()
     {
-        var printedString = consoleOutput.ToString();
+        var printedString = _consoleOutput.ToString();
         return printedString.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
     }
 }
