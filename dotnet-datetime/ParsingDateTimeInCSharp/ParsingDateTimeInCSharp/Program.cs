@@ -295,8 +295,8 @@ namespace ParsingDateTimeInCSharp
              * TryParseExact(String, String, IFormatProvider, DateTimeStyles, DateTime)
              */
             Console.WriteLine("\nOverload: TryParseExact(String, String, IFormatProvider, DateTimeStyles, DateTime)");
-            dateString = "01-15-2023";
-            format = "MM-dd-yyyy";
+            dateString = "15-01-2023";
+            format = "dd-MM-yyyy";
             provider = CultureInfo.InvariantCulture;
             styles = DateTimeStyles.None;
             isValidDate = DateTime.TryParseExact(dateString, format, provider, styles, out parsedDate);
