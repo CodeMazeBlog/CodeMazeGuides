@@ -27,10 +27,18 @@
         </div>
     }
 
-    <div class="my-5">
+    <div class="my-5 d-flex justify-content-between">
         <form method="post">
             <button type="submit" class="btn btn-primary btn-lg" asp-page-handler="ListGames">List All Games</button>
         </form>
+        @if (Model.IsFromCache)
+        {
+            <form method="post">
+                <button type="submit" class="btn btn-danger btn-lg" asp-page-handler="RemoveCache">
+                    Remove Cached Data
+                </button>
+            </form>
+        }
     </div>
 
     @if (Model.Games != null && Model.Games.Length > 0)

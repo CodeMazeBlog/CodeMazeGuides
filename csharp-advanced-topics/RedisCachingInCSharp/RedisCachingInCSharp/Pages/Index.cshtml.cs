@@ -21,7 +21,8 @@ namespace RedisCachingInCSharp.Pages
 
         public void OnPostListGames()
         {
-            var cacheKey = $"Games_{DateTime.Now:yyyyMMdd_hhmm}";
+            var instanceId = GetInstanceId();
+            var cacheKey = $"Games_Cache_{instanceId}";
 
             Games = _cache.GetCachedData<Game[]>(cacheKey);
 
@@ -35,6 +36,29 @@ namespace RedisCachingInCSharp.Pages
             {
                 IsFromCache = true;
             }
+        }
+
+        public void OnPostRemoveCache()
+        {
+            var instanceId = GetInstanceId();
+            var cacheKey = $"Games_Cache_{instanceId}";
+
+            _cache.RemoveCachedData(cacheKey);
+
+            OnPostListGames();
+        }
+
+        private string GetInstanceId()
+        {
+            var instanceId = HttpContext.Session.GetString("InstanceId");
+
+            if (string.IsNullOrEmpty(instanceId))
+            {
+                instanceId = Guid.NewGuid().ToString();
+                HttpContext.Session.SetString("InstanceId", instanceId);
+            }
+
+            return instanceId;
         }
     }
 }

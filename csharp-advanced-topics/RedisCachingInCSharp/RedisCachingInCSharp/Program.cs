@@ -1,6 +1,5 @@
 using RedisCachingInCSharp.Data;
 using RedisCachingInCSharp.Services;
-using StackExchange.Redis;
 
 namespace RedisCachingInCSharp
 {
@@ -11,6 +10,11 @@ namespace RedisCachingInCSharp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(60);
+            });
+
             builder.Services.AddRazorPages();
 
             builder.Services.AddStackExchangeRedisCache(options =>
@@ -34,11 +38,9 @@ namespace RedisCachingInCSharp
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.MapRazorPages();
 
             app.Run();

@@ -33,5 +33,10 @@ namespace RedisCachingInCSharp.Services
             var jsonData = JsonSerializer.Serialize(data);
             _cache.SetString(key, jsonData, options);
         }
+
+        public void RemoveCachedData(string key)
+        {
+            _cache.Remove(key);
+        }
     }
 }
