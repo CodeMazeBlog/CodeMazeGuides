@@ -7,25 +7,25 @@ namespace ParsingDateTimeInCSharp.Test
 
         [Fact]
         public void GivenAStringRepresentationOfDateTimeAndAStringFormatWithProvider_WhenParseExactToDateTime_ThenReturnsValidDateTime()
-        {            
-            string dateString = "15/1/2023 10:12:12";
-            string format = "dd/M/yyyy hh:mm:ss";
-            IFormatProvider provider = new CultureInfo("fr-FR");
-            DateTime expectedDate = new DateTime(2023, 1, 15, 10, 12, 12);
-            DateTime actualDate = DateTime.ParseExact(dateString, format, provider);
+        {
+            var dateString = "15/1/2023 10:12:12";
+            var format = "dd/M/yyyy hh:mm:ss";
+            var provider = new CultureInfo("fr-FR");
+            DateTime expectedDate = new(2023, 1, 15, 10, 12, 12);
+            var actualDate = DateTime.ParseExact(dateString, format, provider);
 
             Assert.Equal(expectedDate, actualDate);
         }
 
         [Fact]
         public void GivenAStringRepresentationOfDateTimeAndAStringFormatWithProviderAndStyle_WhenParseExactToDateTime_ThenReturnsValidDateTime()
-        {            
-            string dateString = "2023-01-15T14:12:12.0000000Z";
-            string format = "o";
-            IFormatProvider provider = new CultureInfo("fr-FR");
-            DateTimeStyles style = DateTimeStyles.RoundtripKind;
-            DateTime expectedDate = new DateTime(2023, 1, 15, 14, 12, 12);
-            DateTime actualDate = DateTime.ParseExact(dateString, format, provider, style);
+        {
+            var dateString = "2023-01-15T14:12:12.0000000Z";
+            var format = "o";
+            var provider = new CultureInfo("fr-FR");
+            var style = DateTimeStyles.RoundtripKind;
+            DateTime expectedDate = new(2023, 1, 15, 14, 12, 12);
+            var actualDate = DateTime.ParseExact(dateString, format, provider, style);
 
             Assert.Equal(expectedDate, actualDate);
         }
@@ -33,13 +33,13 @@ namespace ParsingDateTimeInCSharp.Test
         [Fact]
         public void GivenASpanRepresentationOfDateTimeAndASpanFormatWithProviderAndStyle_WhenParseExactToDateTime_ThenReturnsValidDateTime()
         {
-            ReadOnlySpan<char> dateSpan = "2023-01-15T14:12:12.0000000Z".AsSpan();
-            ReadOnlySpan<char> format = "o".AsSpan();
-            IFormatProvider provider = new CultureInfo("fr-FR");
-            DateTimeStyles style = DateTimeStyles.RoundtripKind;
-            DateTime expectDate = new DateTime(2023, 1, 15, 14, 12, 12);
+            var dateSpan = "2023-01-15T14:12:12.0000000Z".AsSpan();
+            var format = "o".AsSpan();
+            var provider = new CultureInfo("fr-FR");
+            var style = DateTimeStyles.RoundtripKind;
+            DateTime expectDate = new(2023, 1, 15, 14, 12, 12);
 
-            DateTime actualDate = DateTime.ParseExact(dateSpan, format, provider, style);
+            var actualDate = DateTime.ParseExact(dateSpan, format, provider, style);
 
             // Assert
             Assert.Equal(expectDate, actualDate);
@@ -61,12 +61,12 @@ namespace ParsingDateTimeInCSharp.Test
                 { "dd/MM/yyyy HH:mm:ss", "15/01/2023 14:12:12" }
             };
 
-            foreach (string format in formats)
+            foreach (var format in formats)
             {
-                string dateString = dateStringsByFormat[format];
-                DateTime result = DateTime.ParseExact(dateString, format, culture, styles);
-                DateTime expected = new DateTime(2023, 1, 15, 14, 12, 12, DateTimeKind.Utc);
-                
+                var dateString = dateStringsByFormat[format];
+                var result = DateTime.ParseExact(dateString, formats, culture, styles);
+                DateTime expected = new(2023, 1, 15, 14, 12, 12, DateTimeKind.Utc);
+
                 Assert.Equal(expected, result);
             }
         }
@@ -87,12 +87,12 @@ namespace ParsingDateTimeInCSharp.Test
                 { "dd/MM/yyyy HH:mm:ss", "15/01/2023 14:12:12" }
             };
 
-            foreach (string format in formats)
+            foreach (var format in formats)
             {
-                string dateString = dateStringsByFormat[format];
-                DateTime result = DateTime.ParseExact(dateString.AsSpan(), format.AsSpan(), culture, styles);
-                DateTime expected = new DateTime(2023, 1, 15, 14, 12, 12, DateTimeKind.Utc);
-                
+                var dateString = dateStringsByFormat[format];
+                var result = DateTime.ParseExact(dateString.AsSpan(), formats, culture, styles);
+                DateTime expected = new(2023, 1, 15, 14, 12, 12, DateTimeKind.Utc);
+
                 Assert.Equal(expected, result);
             }
         }

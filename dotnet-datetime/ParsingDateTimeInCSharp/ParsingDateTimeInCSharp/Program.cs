@@ -9,14 +9,21 @@ namespace ParsingDateTimeInCSharp
             /*
              * Printing the Current Culture
              */
-            Console.WriteLine($"Current Culture: {Thread.CurrentThread.CurrentCulture.Name}");
+            DateTime date = new DateTime(2023, 1, 15, 14, 21, 37);
+            Console.WriteLine($"My current culture: {CultureInfo.CurrentCulture}");
+            Console.WriteLine($"My date in the current culture({CultureInfo.CurrentCulture}): {date}");
 
             /*
-             * 
+             * Changing the Current Culture
              */
+            CultureInfo culture = CultureInfo.GetCultureInfo("en-GB");
+            Console.WriteLine($"My date in the culture({culture}): {date.ToString(culture)}");
+            Console.WriteLine($"Current Culture: {Thread.CurrentThread.CurrentCulture.Name}");
+
             string dateString;
             string format;
-            string[] formats = { };
+            bool isValidDate;
+            string[] formats;
             ReadOnlySpan<char> dateSpan;
             ReadOnlySpan<char> formatSpan;
             DateTime parsedDate;
@@ -24,63 +31,56 @@ namespace ParsingDateTimeInCSharp
             DateTimeStyles styles;
             Dictionary<string, string> dateStringsByFormat;
 
-            /*
-             * 
-             */
-            dateString = "1/12/2023 2:21:37 PM";
-            Console.WriteLine($"US: {DateTime.Parse(dateString, CultureInfo.CreateSpecificCulture("en-US"))}");
-            Console.WriteLine($"GB: {DateTime.Parse(dateString, CultureInfo.CreateSpecificCulture("en-GB"))}");
-            Console.WriteLine($"JP: {DateTime.Parse(dateString, CultureInfo.CreateSpecificCulture("ja-JP"))}");
 
             #region Parse overloads
 
-            Console.WriteLine("\nOverload: Parse(String)");
+            Console.WriteLine("\nOverload: Parse()");
             try
             {
                 /*
                  * Parse(String)
                  */
-                dateString = "1/15/2023 2:21:37 PM";
+                dateString = "15/1/2023 02:21:37";
                 parsedDate = DateTime.Parse(dateString);
-                Console.WriteLine(parsedDate); /* Output: 1/15/2023 2:21:37 PM */
+                Console.WriteLine(parsedDate); /* Output: 1/15/2023 2:21:37 AM */
 
                 /*
                  * Parse(String, IFormatProvider) 
                  */
                 Console.WriteLine("\nOverload: Parse(String, IFormatProvider)");
-                dateString = "1/12/2023 2:21:37 PM";
+                dateString = "15/1/2023 02:21:37";
                 provider = new CultureInfo("fr-FR");
                 parsedDate = DateTime.Parse(dateString, provider);
-                Console.WriteLine(parsedDate); /* Output: FR: 12/1/2023 2:21:37 PM */
+                Console.WriteLine(parsedDate); /* Output: 15/1/2023 2:21:37 AM */
 
                 /*
                  * Parse(String, IFormatProvider, DateTimeStyles)
                  */
                 Console.WriteLine("\nParse(String, IFormatProvider, DateTimeStyles)");
-                dateString = "1/12/2023 2:21:37 PM";
+                dateString = "15/1/2023 02:21:37";
                 provider = new CultureInfo("fr-FR");
-                styles = DateTimeStyles.None;
+                styles = DateTimeStyles.AssumeUniversal;
                 parsedDate = DateTime.Parse(dateString, provider, styles);
-                Console.WriteLine(parsedDate); /* Output: 12/1/2023 2:21:37 PM */
+                Console.WriteLine(parsedDate); /* Output: 15/01/2023 1:21:37 PM */
 
                 /*
                  * Parse(ReadOnlySpan<Char>, IFormatProvider)
                  */
                 Console.WriteLine("\nParse(ReadOnlySpan<Char>, IFormatProvider)");
-                dateSpan = "1/12/2023 2:21:37 PM".AsSpan();
+                dateSpan = "15/1/2023 02:21:37".AsSpan();
                 provider = new CultureInfo("fr-FR");
                 parsedDate = DateTime.Parse(dateSpan, provider);
-                Console.WriteLine(parsedDate); /* Output: 12/1/2023 2:21:37 PM */
+                Console.WriteLine(parsedDate); /* Output: 15/01/2023 2:21:37 AM */
 
                 /*
                  * Parse(ReadOnlySpan<Char>, IFormatProvider, DateTimeStyles)
                  */
                 Console.WriteLine("\nParse(ReadOnlySpan<Char>, IFormatProvider, DateTimeStyles)");
-                dateSpan = "2023/12/01T14:21:37-3:00".AsSpan();
+                dateSpan = "15/1/2023 02:21:37".AsSpan();
                 provider = new CultureInfo("fr-FR");
-                styles = DateTimeStyles.AssumeLocal; /* The output can change depending of current timezone */
+                styles = DateTimeStyles.AssumeUniversal;
                 parsedDate = DateTime.Parse(dateSpan, provider, styles);
-                Console.WriteLine(parsedDate); /* Output: 12/1/2023 9:21:37 AM */
+                Console.WriteLine(parsedDate); /* Output: 15/01/2023 1:21:37 PM */
             }
             catch (ArgumentNullException e)
             {
@@ -104,7 +104,7 @@ namespace ParsingDateTimeInCSharp
              */
             Console.WriteLine("\nOverload: TryParse(String, DateTime)");
             dateString = "1/15/2023";
-            bool isValidDate = DateTime.TryParse(dateString, out parsedDate);
+            isValidDate = DateTime.TryParse(dateString, out parsedDate);
             if (isValidDate)
                 Console.WriteLine(parsedDate); /* Output: 1/15/2023 12:00:00 AM */
             else
@@ -118,7 +118,7 @@ namespace ParsingDateTimeInCSharp
             provider = new CultureInfo("en-GB");
             isValidDate = DateTime.TryParse(dateString, provider, out parsedDate);
             if (isValidDate)
-                Console.WriteLine(parsedDate); /* Output: 1/15/2023 12:00:00 AM */
+                Console.WriteLine(parsedDate); /* Output: 15/01/2023 12:00:00 AM */
             else
                 Console.WriteLine($"Unable to parse date: {dateString}");
 
@@ -126,12 +126,12 @@ namespace ParsingDateTimeInCSharp
              * TryParse(String, IFormatProvider, DateTimeStyles, DateTime)
              */
             Console.WriteLine("\nOverload: TryParse(String, IFormatProvider, DateTimeStyles, DateTime)");
-            dateString = "2023/1/15 14:21:37-03:00";
+            dateString = "2023/1/15 14:21:37-05:00";
             provider = new CultureInfo("en-GB");
             styles = DateTimeStyles.AdjustToUniversal;
             isValidDate = DateTime.TryParse(dateString, provider, styles, out parsedDate);
             if (isValidDate)
-                Console.WriteLine(parsedDate);
+                Console.WriteLine(parsedDate); /* Output: 15/01/2023 7:21:37 PM */
             else
                 Console.WriteLine($"Unable to parse date: {dateString}");
 
@@ -151,10 +151,10 @@ namespace ParsingDateTimeInCSharp
              */
             Console.WriteLine("\nOverload: TryParse(ReadOnlySpan<Char>, IFormatProvider, DateTime)");
             dateSpan = "15/1/2023".AsSpan();
-            provider = new CultureInfo("fr-FR");
+            provider = new CultureInfo("en-GB");
             isValidDate = DateTime.TryParse(dateSpan, provider, out parsedDate);
             if (isValidDate)
-                Console.WriteLine(parsedDate); /* Output: 1/15/2023 12:00:00 AM */
+                Console.WriteLine(parsedDate); /* Output: 15/01/2023 12:00:00 AM */
             else
                 Console.WriteLine($"Unable to parse date: {dateSpan}");
 
@@ -163,11 +163,11 @@ namespace ParsingDateTimeInCSharp
              */
             Console.WriteLine("\nOverload: TryParse(ReadOnlySpan<Char>, IFormatProvider, DateTimeStyles, DateTime)");
             dateSpan = "15/1/2023".AsSpan();
-            provider = new CultureInfo("fr-FR");
+            provider = new CultureInfo("en-GB");
             styles = DateTimeStyles.None;
             isValidDate = DateTime.TryParse(dateSpan, provider, styles, out parsedDate);
             if (isValidDate)
-                Console.WriteLine(parsedDate);
+                Console.WriteLine(parsedDate); /* Output: 15/01/2023 12:00:00 AM */
             else
                 Console.WriteLine($"Unable to parse date: {dateSpan}");
 
@@ -184,7 +184,7 @@ namespace ParsingDateTimeInCSharp
             try
             {
                 parsedDate = DateTime.ParseExact(dateString, format, provider);
-                Console.WriteLine(parsedDate);
+                Console.WriteLine(parsedDate); /* Output: 15/01/2023 10:12:12 AM */
             }
             catch (FormatException ex)
             {
@@ -201,7 +201,7 @@ namespace ParsingDateTimeInCSharp
             try
             {
                 parsedDate = DateTime.ParseExact(dateString, "o", provider, styles);
-                Console.WriteLine(parsedDate); /* Output: 1/15/2023 2:12:12 PM */
+                Console.WriteLine(parsedDate); /* Output: 15/01/2023 2:12:12 PM */
             }
             catch (FormatException ex)
             {
@@ -247,7 +247,7 @@ namespace ParsingDateTimeInCSharp
                 foreach (string newFormat in formats)
                 {
                     dateString = dateStringsByFormat[newFormat];
-                    parsedDate = DateTime.ParseExact(dateString, newFormat, provider, styles);
+                    parsedDate = DateTime.ParseExact(dateString, formats, provider, styles);
                     Console.WriteLine(parsedDate);
                 }
             }
@@ -278,7 +278,7 @@ namespace ParsingDateTimeInCSharp
                 foreach (string newFormat in formats)
                 {
                     dateString = dateStringsByFormat[newFormat];
-                    parsedDate = DateTime.ParseExact(dateString.AsSpan(), newFormat, provider, styles);
+                    parsedDate = DateTime.ParseExact(dateString.AsSpan(), formats, provider, styles);
                     Console.WriteLine(parsedDate);
                 }
             }
@@ -295,8 +295,8 @@ namespace ParsingDateTimeInCSharp
              * TryParseExact(String, String, IFormatProvider, DateTimeStyles, DateTime)
              */
             Console.WriteLine("\nOverload: TryParseExact(String, String, IFormatProvider, DateTimeStyles, DateTime)");
-            dateString = "15-01-2023";
-            format = "dd-MM-yyyy";
+            dateString = "01-15-2023";
+            format = "MM-dd-yyyy";
             provider = CultureInfo.InvariantCulture;
             styles = DateTimeStyles.None;
             isValidDate = DateTime.TryParseExact(dateString, format, provider, styles, out parsedDate);
@@ -339,7 +339,7 @@ namespace ParsingDateTimeInCSharp
             foreach (var newFormat in formats)
             {
                 dateString = dateStringsByFormat[newFormat];
-                isValidDate = DateTime.TryParseExact(dateString, newFormat, provider, styles, out parsedDate);
+                isValidDate = DateTime.TryParseExact(dateString, formats, provider, styles, out parsedDate);
                 if (isValidDate)
                     Console.WriteLine(parsedDate);
                 else
