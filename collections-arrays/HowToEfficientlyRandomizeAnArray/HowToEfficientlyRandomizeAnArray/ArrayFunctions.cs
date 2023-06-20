@@ -2,7 +2,7 @@
 {
     public static class ArrayFunctions
     {
-        public static int[] GerOrderedArray(int numberOfElements)
+        public static int[] GetOrderedArray(int numberOfElements)
         {
             var array = new int[numberOfElements];
 
@@ -17,7 +17,8 @@
         public static int[] RandomizeWithOrderByAndGuid(int[] array) =>
             array.OrderByDescending(x => Guid.NewGuid()).ToArray();
 
-        public static int[] RandomizeWithOrderByAndRandom(int[] array) => array.OrderByDescending(x => Random.Shared.Next()).ToArray();
+        public static int[] RandomizeWithOrderByAndRandom(int[] array) =>
+            array.OrderByDescending(x => Random.Shared.Next()).ToArray();
 
         public static int[] RandomizeWithFisherYates(int[] array)
         {

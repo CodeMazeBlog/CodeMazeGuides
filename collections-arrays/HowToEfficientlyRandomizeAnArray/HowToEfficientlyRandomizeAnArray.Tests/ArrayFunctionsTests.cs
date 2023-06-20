@@ -9,14 +9,14 @@ namespace HowToEfficientlyRandomizeAnArray.Tests
 
         public ArrayFunctionsTests()
         {
-            _array = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
+            _array = ArrayFunctions.GetOrderedArray(ARRAY_SIZE);
         }
 
         [Fact]
-        public void WhenGerOrderedArrayIsInvoked_ThenOrderedArrayIsReturned()
+        public void WhenGetOrderedArrayIsInvoked_ThenOrderedArrayIsReturned()
         {
             // Act
-            var array = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
+            var array = ArrayFunctions.GetOrderedArray(ARRAY_SIZE);
 
             // Assert
             array.Should().NotBeNullOrEmpty();

@@ -16,10 +16,10 @@ namespace HowToEfficientlyRandomizeAnArray
         [GlobalSetup]
         public void Setup()
         {
-            _guidArray = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
-            _randomArray = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
-            _fisherYatesArray = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
-            _fisherYatesArrayCopy = ArrayFunctions.GerOrderedArray(ARRAY_SIZE);
+            _guidArray = ArrayFunctions.GetOrderedArray(ARRAY_SIZE);
+            _randomArray = ArrayFunctions.GetOrderedArray(ARRAY_SIZE);
+            _fisherYatesArray = ArrayFunctions.GetOrderedArray(ARRAY_SIZE);
+            _fisherYatesArrayCopy = ArrayFunctions.GetOrderedArray(ARRAY_SIZE);
         }
 
         [Benchmark]
