@@ -24,7 +24,6 @@ namespace Tests
             Assert.Equal(27, dateTime.Day);
         }
 
-
         [Fact]
         public void WhenUsingCultureInfo_ThenGetOptionalCalendars()
         {
@@ -37,7 +36,6 @@ namespace Tests
             Assert.Equal("HijriCalendar", optionalCalendars[2].GetType().Name);
         }
 
-
         [Fact]
         public void WhenUsingCultureInfo_ThenPrintCorrectFormat()
         {
@@ -48,7 +46,6 @@ namespace Tests
 
             Assert.Equal("dimanche 18 juin 2023 14:00", formattedDate);
         }
-
 
         [Fact]
         public void WhenUsingSaudiCultureInfoWithFrenchFormatProvider_ThenPrintFrenchFormat()
@@ -68,7 +65,7 @@ namespace Tests
             var usCalendar = usCulture.Calendar;
 
             var daysInMonth = usCalendar.GetDaysInMonth(2023, 3);
-            
+
             Assert.Equal(31, daysInMonth);
         }
 
