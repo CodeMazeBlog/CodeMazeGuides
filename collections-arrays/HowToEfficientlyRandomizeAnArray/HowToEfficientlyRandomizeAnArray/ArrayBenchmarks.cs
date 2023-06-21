@@ -12,7 +12,6 @@ namespace HowToEfficientlyRandomizeAnArray
         private int[] _fisherYatesArrayCopy;
         private const int ARRAY_SIZE = 100000;
 
-
         [GlobalSetup]
         public void Setup()
         {
