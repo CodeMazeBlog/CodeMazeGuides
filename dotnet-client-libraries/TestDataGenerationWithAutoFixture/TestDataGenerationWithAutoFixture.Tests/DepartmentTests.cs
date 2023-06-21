@@ -40,11 +40,13 @@ namespace TestDataGenerationWithAutoFixture.Tests
                                    .OmitAutoProperties()
                                    .Create();
 
+            var employees = _fixture.Build<Employee>()
+                                    .OmitAutoProperties()
+                                    .CreateMany(5)
+                                    .ToList();
+
             var department = _fixture.Build<Department>()
-                .With(x => x.Employees, _fixture.Build<Employee>()
-                                               .OmitAutoProperties()
-                                               .CreateMany(5)
-                                               .ToList())
+                .With(x => x.Employees, employees)
                 .Create();
 
             // Act
@@ -60,13 +62,15 @@ namespace TestDataGenerationWithAutoFixture.Tests
             string lastName)
         {
             // Arrange
+            var employees = _fixture.Build<Employee>()
+                                    .OmitAutoProperties()
+                                    .With(x => x.FirstName, firstName)
+                                    .With(x => x.LastName, lastName)
+                                    .CreateMany(1)
+                                    .ToList();
+
             var department = _fixture.Build<Department>()
-                .With(x => x.Employees, _fixture.Build<Employee>()
-                                                .OmitAutoProperties()
-                                                .With(x => x.FirstName, firstName)
-                                                .With(x => x.LastName, lastName)
-                                                .CreateMany(1)
-                                                .ToList())
+                .With(x => x.Employees, employees)
                 .Create();
 
             // Act
@@ -82,11 +86,13 @@ namespace TestDataGenerationWithAutoFixture.Tests
         public void WhenCalculateAverageSalaryIsInvoked_ThenAccurateResultIsReturned()
         {
             // Arrange
+            var employees = _fixture.Build<Employee>()
+                                    .WithAutoProperties()
+                                    .CreateMany(5)
+                                    .ToList();
+
             var department = _fixture.Build<Department>()
-                .With(x => x.Employees, _fixture.Build<Employee>()
-                                                .WithAutoProperties()
-                                                .CreateMany(5)
-                                                .ToList())
+                .With(x => x.Employees, employees)
                 .Create();
 
             // Act
@@ -102,10 +108,12 @@ namespace TestDataGenerationWithAutoFixture.Tests
         public void GivenNoEmployees_WhenCalculateAverageSalaryIsInvoked_ThenZeroIsReturned()
         {
             // Arrange
+            var employees = _fixture.Build<Employee>()
+                                    .CreateMany(0)
+                                    .ToList();
+
             var department = _fixture.Build<Department>()
-                .With(x => x.Employees, _fixture.Build<Employee>()
-                                                .CreateMany(0)
-                                                .ToList())
+                .With(x => x.Employees, employees)
                 .Create();
 
             // Act

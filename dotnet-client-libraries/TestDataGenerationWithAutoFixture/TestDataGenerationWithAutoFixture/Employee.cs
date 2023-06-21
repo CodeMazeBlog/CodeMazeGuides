@@ -7,19 +7,13 @@
         public int? Age { get; set; }
         public decimal Salary { get; set; }
 
-        public Employee
-            (string firstName,
-            decimal salary)
+        public Employee(string firstName, decimal salary)
         {
             FirstName = firstName;
             Salary = salary;
         }
 
-        public Employee(
-            string firstName,
-            string lastName,
-            int age,
-            decimal salary)
+        public Employee(string firstName, string lastName, int age, decimal salary)
             : this(firstName, salary)
         {
             LastName = lastName;
