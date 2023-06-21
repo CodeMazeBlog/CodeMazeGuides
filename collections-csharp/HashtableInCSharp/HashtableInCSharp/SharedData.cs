@@ -4,7 +4,7 @@
     {
         public const int InitialCapacity = 100;
 
-        public static readonly Dictionary<int, User> UserDictionary
+        public static Dictionary<int, User> UserDictionary { get; }
             = new(5)
             {
                 { 1, new User() { Id = 1, FirstName = "Rafa", LastName = "Lopez" } },
@@ -14,7 +14,7 @@
                 { 5, new User() { Id = 5, FirstName = "Alberto", LastName = "Daci" } }
             };
 
-        public static readonly List<User> UserList 
+        public static List<User> UserList { get; }
             = new(3)
             {
                 new User() { Id = 6, FirstName = "Judit", LastName = "Peter" },
