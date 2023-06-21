@@ -8,8 +8,6 @@ namespace Tests;
 
 public class BenchmarkFixture
 {
-    private Summary? _benchmarkSummary;
-
     public BenchmarkFixture()
     {
         var config = new ManualConfig
@@ -19,9 +17,8 @@ public class BenchmarkFixture
             Options = ConfigOptions.Default
         };
 
-        _benchmarkSummary = BenchmarkRunner.Run<StringConcatBenchmarks>(config);
+        BenchmarkSummary = BenchmarkRunner.Run<StringConcatBenchmarks>(config);
     }
 
-    public Summary BenchmarkSummary =>
-        _benchmarkSummary ?? throw new NullReferenceException("BenchmarkSummary is null");
+    public Summary BenchmarkSummary { get; }
 }

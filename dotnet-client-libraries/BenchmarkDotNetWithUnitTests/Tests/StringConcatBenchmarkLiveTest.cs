@@ -13,7 +13,7 @@ public class StringConcatBenchmarkLiveTest : IClassFixture<BenchmarkFixture>
     }
 
     [Fact]
-    public void Given_When_BenchmarkTests_Are_Run_Then_Four_Cases_Must_Be_Executed()
+    public void WhenBenchmarkTestsAreRun_ThenFourCasesMustBeExecuted()
     {
         var benchmarkCases = _benchmarkReports.Length;
         Assert.Equal(4, benchmarkCases);
@@ -21,7 +21,7 @@ public class StringConcatBenchmarkLiveTest : IClassFixture<BenchmarkFixture>
 
 
     [Fact]
-    public void Given_When_StringInterpolation_Case_Is_Executed_Then_It_ShouldNotTakeMoreThanFifteenNanoSecs()
+    public void WhenStringInterpolationCaseIsExecuted_ThenItShouldNotTakeMoreThanFifteenNanoSecs()
     {
         var stats = _benchmarkReports.First(x =>
             x.BenchmarkCase.Descriptor.DisplayInfo == "StringConcatBenchmarks.StringInterpolation").ResultStatistics;
@@ -29,7 +29,7 @@ public class StringConcatBenchmarkLiveTest : IClassFixture<BenchmarkFixture>
     }
 
     [Fact]
-    public void Given_When_StringInterpolation_Case_Is_Executed_Then_It_ShouldNotConsumeMemoryMoreThanMaxAllocation()
+    public void WhenStringInterpolationCaseIsExecuted_ThenItShouldNotConsumeMemoryMoreThanMaxAllocation()
     {
         const int maxAllocation = 1342178216;
         var memoryStats = _benchmarkReports.First(x =>
@@ -40,12 +40,12 @@ public class StringConcatBenchmarkLiveTest : IClassFixture<BenchmarkFixture>
         var allocation = memoryStats.GetBytesAllocatedPerOperation(stringInterpolationCase);
         Assert.True(allocation <= maxAllocation, $"Allocation was {allocation}");
 
-        Assert.True(memoryStats.GetTotalAllocatedBytes(true) is <= maxAllocation,
+        Assert.True(memoryStats.GetTotalAllocatedBytes(true) <= maxAllocation,
             $"TotalAllocatedBytes was {memoryStats.GetTotalAllocatedBytes(true)}");
     }
 
     [Fact]
-    public void Given_When_StringInterpolation_Case_Is_Executed_Then_ZeroAllocationInGen1AndGen2()
+    public void WhenStringInterpolationCaseIsExecuted_ThenZeroAllocationInGen1AndGen2()
     {
         var memoryStats = _benchmarkReports.First(x =>
             x.BenchmarkCase.Descriptor.DisplayInfo == "StringConcatBenchmarks.StringInterpolation").GcStats;
