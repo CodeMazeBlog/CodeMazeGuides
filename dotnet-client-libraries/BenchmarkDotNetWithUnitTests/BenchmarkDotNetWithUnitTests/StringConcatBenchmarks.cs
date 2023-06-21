@@ -8,49 +8,31 @@ namespace BenchmarkDotNetWithUnitTests;
 [RankColumn]
 public class StringConcatBenchmarks
 {
-    private string? _firstName;
-    private string? _lastName;
+    private const string FirstName = "John";
+    private const string LastName = "Doe";
 
-    [GlobalSetup]
-    public void Setup()
-    {
-        _firstName = "John";
-        _lastName = "Doe";
-    }
 
     [Benchmark]
     public string StringConcat()
     {
-        return _firstName + " " + _lastName;
+        return FirstName + " " + LastName;
     }
 
     [Benchmark]
     public string StringFormat()
     {
-        return string.Format("{0} {1}", _firstName, _lastName);
+        return string.Format("{0} {1}", FirstName, LastName);
     }
 
     [Benchmark]
     public string StringInterpolation()
     {
-        return $"{_firstName} {_lastName}";
+        return $"{FirstName} {LastName}";
     }
 
     [Benchmark]
     public string StringConcatWithJoin()
     {
-        return string.Join(" ", _firstName, _lastName);
-    }
-
-    [Benchmark]
-    public string StringConcatWithJoinAndArray()
-    {
-        return string.Join(" ", _firstName, _lastName);
-    }
-
-    [Benchmark]
-    public string StringConcatWithJoinAndParams()
-    {
-        return string.Join(" ", _firstName, _lastName);
+        return string.Join(" ", FirstName, LastName);
     }
 }

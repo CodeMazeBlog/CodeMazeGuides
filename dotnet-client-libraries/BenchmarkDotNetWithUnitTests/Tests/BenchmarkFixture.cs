@@ -6,7 +6,7 @@ using BenchmarkDotNetWithUnitTests;
 
 namespace Tests;
 
-public class BenchmarkFixture : IDisposable
+public class BenchmarkFixture
 {
     private Summary? _benchmarkSummary;
 
@@ -19,14 +19,9 @@ public class BenchmarkFixture : IDisposable
             Options = ConfigOptions.Default
         };
 
-        _benchmarkSummary = BenchmarkRunner.Run(typeof(StringConcatBenchmarks), config);
+        _benchmarkSummary = BenchmarkRunner.Run<StringConcatBenchmarks>(config);
     }
 
     public Summary BenchmarkSummary =>
         _benchmarkSummary ?? throw new NullReferenceException("BenchmarkSummary is null");
-
-    public void Dispose()
-    {
-        _benchmarkSummary = null;
-    }
 }
