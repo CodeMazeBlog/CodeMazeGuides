@@ -37,13 +37,13 @@ namespace TestDataGenerationWithAutoFixture.Tests
         {
             // Arrange
             var employee = _fixture.Build<Employee>()
-                                   .OmitAutoProperties()
-                                   .Create();
+                .OmitAutoProperties()
+                .Create();
 
             var employees = _fixture.Build<Employee>()
-                                    .OmitAutoProperties()
-                                    .CreateMany(5)
-                                    .ToList();
+                .OmitAutoProperties()
+                .CreateMany(5)
+                .ToList();
 
             var department = _fixture.Build<Department>()
                 .With(x => x.Employees, employees)
@@ -63,11 +63,11 @@ namespace TestDataGenerationWithAutoFixture.Tests
         {
             // Arrange
             var employees = _fixture.Build<Employee>()
-                                    .OmitAutoProperties()
-                                    .With(x => x.FirstName, firstName)
-                                    .With(x => x.LastName, lastName)
-                                    .CreateMany(1)
-                                    .ToList();
+                .OmitAutoProperties()
+                .With(x => x.FirstName, firstName)
+                .With(x => x.LastName, lastName)
+                .CreateMany(1)
+                .ToList();
 
             var department = _fixture.Build<Department>()
                 .With(x => x.Employees, employees)
@@ -87,9 +87,9 @@ namespace TestDataGenerationWithAutoFixture.Tests
         {
             // Arrange
             var employees = _fixture.Build<Employee>()
-                                    .WithAutoProperties()
-                                    .CreateMany(5)
-                                    .ToList();
+                .WithAutoProperties()
+                .CreateMany(5)
+                .ToList();
 
             var department = _fixture.Build<Department>()
                 .With(x => x.Employees, employees)
@@ -109,8 +109,8 @@ namespace TestDataGenerationWithAutoFixture.Tests
         {
             // Arrange
             var employees = _fixture.Build<Employee>()
-                                    .CreateMany(0)
-                                    .ToList();
+                .CreateMany(0)
+                .ToList();
 
             var department = _fixture.Build<Department>()
                 .With(x => x.Employees, employees)
