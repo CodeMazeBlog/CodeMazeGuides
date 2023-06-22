@@ -6,10 +6,13 @@ namespace Tests;
 public class StringConcatBenchmarkLiveTest : IClassFixture<BenchmarkFixture>
 {
     private readonly ImmutableArray<BenchmarkReport> _benchmarkReports;
+    private readonly BenchmarkReport _stringInterpolationReport;
 
     public StringConcatBenchmarkLiveTest(BenchmarkFixture benchmarkFixture)
     {
         _benchmarkReports = benchmarkFixture.BenchmarkSummary.Reports;
+        _stringInterpolationReport = _benchmarkReports.First(x =>
+            x.BenchmarkCase.Descriptor.DisplayInfo == "StringConcatBenchmarks.StringInterpolation");
     }
 
     [Fact]
@@ -23,8 +26,7 @@ public class StringConcatBenchmarkLiveTest : IClassFixture<BenchmarkFixture>
     [Fact]
     public void WhenStringInterpolationCaseIsExecuted_ThenItShouldNotTakeMoreThanFifteenNanoSecs()
     {
-        var stats = _benchmarkReports.First(x =>
-            x.BenchmarkCase.Descriptor.DisplayInfo == "StringConcatBenchmarks.StringInterpolation").ResultStatistics;
+        var stats = _stringInterpolationReport.ResultStatistics;
         Assert.True(stats is { Mean: < 15 }, $"Mean was {stats.Mean}");
     }
 
@@ -32,11 +34,9 @@ public class StringConcatBenchmarkLiveTest : IClassFixture<BenchmarkFixture>
     public void WhenStringInterpolationCaseIsExecuted_ThenItShouldNotConsumeMemoryMoreThanMaxAllocation()
     {
         const int maxAllocation = 1342178216;
-        var memoryStats = _benchmarkReports.First(x =>
-            x.BenchmarkCase.Descriptor.DisplayInfo == "StringConcatBenchmarks.StringInterpolation").GcStats;
+        var memoryStats = _stringInterpolationReport.GcStats;
 
-        var stringInterpolationCase = _benchmarkReports.First(x =>
-            x.BenchmarkCase.Descriptor.DisplayInfo == "StringConcatBenchmarks.StringInterpolation").BenchmarkCase;
+        var stringInterpolationCase = _stringInterpolationReport.BenchmarkCase;
         var allocation = memoryStats.GetBytesAllocatedPerOperation(stringInterpolationCase);
         Assert.True(allocation <= maxAllocation, $"Allocation was {allocation}");
 
@@ -47,8 +47,7 @@ public class StringConcatBenchmarkLiveTest : IClassFixture<BenchmarkFixture>
     [Fact]
     public void WhenStringInterpolationCaseIsExecuted_ThenZeroAllocationInGen1AndGen2()
     {
-        var memoryStats = _benchmarkReports.First(x =>
-            x.BenchmarkCase.Descriptor.DisplayInfo == "StringConcatBenchmarks.StringInterpolation").GcStats;
+        var memoryStats = _stringInterpolationReport.GcStats;
 
         Assert.True(memoryStats.Gen1Collections == 0, $"Gen1Collections was {memoryStats.Gen1Collections}");
         Assert.True(memoryStats.Gen2Collections == 0, $"Gen2Collections was {memoryStats.Gen2Collections}");
