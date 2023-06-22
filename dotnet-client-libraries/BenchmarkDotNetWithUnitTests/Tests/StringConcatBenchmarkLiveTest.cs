@@ -22,7 +22,6 @@ public class StringConcatBenchmarkLiveTest : IClassFixture<BenchmarkFixture>
         Assert.Equal(4, benchmarkCases);
     }
 
-
     [Fact]
     public void WhenStringInterpolationCaseIsExecuted_ThenItShouldNotTakeMoreThanFifteenNanoSecs()
     {
@@ -35,20 +34,18 @@ public class StringConcatBenchmarkLiveTest : IClassFixture<BenchmarkFixture>
     {
         const int maxAllocation = 1342178216;
         var memoryStats = _stringInterpolationReport.GcStats;
-
         var stringInterpolationCase = _stringInterpolationReport.BenchmarkCase;
         var allocation = memoryStats.GetBytesAllocatedPerOperation(stringInterpolationCase);
         Assert.True(allocation <= maxAllocation, $"Allocation was {allocation}");
-
-        Assert.True(memoryStats.GetTotalAllocatedBytes(true) <= maxAllocation,
-            $"TotalAllocatedBytes was {memoryStats.GetTotalAllocatedBytes(true)}");
+        var totalAllocatedBytes = memoryStats.GetTotalAllocatedBytes(true);
+        Assert.True(totalAllocatedBytes <= maxAllocation,
+            $"TotalAllocatedBytes was {totalAllocatedBytes}");
     }
 
     [Fact]
     public void WhenStringInterpolationCaseIsExecuted_ThenZeroAllocationInGen1AndGen2()
     {
         var memoryStats = _stringInterpolationReport.GcStats;
-
         Assert.True(memoryStats.Gen1Collections == 0, $"Gen1Collections was {memoryStats.Gen1Collections}");
         Assert.True(memoryStats.Gen2Collections == 0, $"Gen2Collections was {memoryStats.Gen2Collections}");
     }

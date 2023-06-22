@@ -11,7 +11,6 @@ public class StringConcatBenchmarks
     private const string FirstName = "John";
     private const string LastName = "Doe";
 
-
     [Benchmark]
     public string StringConcat()
     {
