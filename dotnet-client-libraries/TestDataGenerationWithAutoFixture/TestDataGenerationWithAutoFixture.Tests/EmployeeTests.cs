@@ -15,10 +15,7 @@ namespace TestDataGenerationWithAutoFixture.Tests
 
         [Theory, AutoData]
         public void WhenConstructorIsInvoked_ThenValidInstanceIsReturned(
-            string firstName,
-            string lastName,
-            int age,
-            decimal salary)
+            string firstName, string lastName, int age, decimal salary)
         {
             // Act
             var employee = new Employee(firstName, lastName, age, salary);

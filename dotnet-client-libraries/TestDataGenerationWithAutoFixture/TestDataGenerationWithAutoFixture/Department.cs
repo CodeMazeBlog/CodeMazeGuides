@@ -8,10 +8,7 @@
         public Manager Manager { get; set; }
         public List<Employee> Employees { get; set; }
 
-        public Department(
-            string name,
-            Manager manager,
-            IPayrollService payrollService)
+        public Department(string name, Manager manager, IPayrollService payrollService)
         {
             Name = name;
             Manager = manager;

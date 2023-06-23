@@ -58,8 +58,7 @@ namespace TestDataGenerationWithAutoFixture.Tests
 
         [Theory, AutoData]
         public void GivenEmployeeExists_WhenGetEmployeeIsInvoked_ThenEmployeeIsReturned(
-            string firstName,
-            string lastName)
+            string firstName, string lastName)
         {
             // Arrange
             var employees = _fixture.Build<Employee>()
