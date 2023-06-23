@@ -49,7 +49,7 @@ namespace ParsingDateTimeInCSharp
             /*
              * Changing the Current Culture
              */
-            CultureInfo culture = CultureInfo.GetCultureInfo("en-GB");
+            var culture = CultureInfo.GetCultureInfo("en-GB");
             Console.WriteLine($"My date in the culture({culture}): {date.ToString(culture)}");
             Console.WriteLine($"Current Culture: {Thread.CurrentThread.CurrentCulture.Name}");
 
