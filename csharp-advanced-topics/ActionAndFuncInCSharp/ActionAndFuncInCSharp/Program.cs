@@ -24,7 +24,9 @@ Func<int, bool> isEvenFunc = IsNumberEven;
 Console.WriteLine(isEvenFunc(10));
 
 // Func lambda
-Func<int, int> squareFunc = x => x * x; int squareResult = squareFunc(5);
+Func<int, int> squareFunc = x => x * x;
+
+int squareResult = squareFunc(5);
 
 Console.WriteLine(squareResult);
 
