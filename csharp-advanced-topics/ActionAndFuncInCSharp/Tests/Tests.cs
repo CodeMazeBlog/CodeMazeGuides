@@ -27,6 +27,7 @@ namespace Tests
 
             //assert
             var output = stringWriter.ToString();
+
             Assert.Equal($"{name}\r\n", output);
         }
 
@@ -45,6 +46,7 @@ namespace Tests
 
             //assert
             var output = stringWriter.ToString();
+
             Assert.Equal($"{expectedResult}\r\n", output);
         }
 
@@ -84,6 +86,7 @@ namespace Tests
 
             //assert
             var output = stringWriter.ToString();
+
             Assert.Equal($"{hello}\r\n", output);
         }
     }
