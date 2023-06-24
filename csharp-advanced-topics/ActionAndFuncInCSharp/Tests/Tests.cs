@@ -49,7 +49,7 @@ namespace Tests
         }
 
         [Fact]
-        public void whenGivenOneIntegerParameter_FuncInvokesTheReferencedIsEvenFunctionAndReturnsTheResult()
+        public void whenGivenOneIntegerParameter_FuncCorrectlyReturnsTheResultFromTheInvokedMehod()
         {
             Func<int, bool> isEvenFunc = IsNumberEven;
 
