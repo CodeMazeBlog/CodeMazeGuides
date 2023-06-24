@@ -11,5 +11,5 @@ namespace ClassStructOrRecordInCSharp
         public int Id { get; set; }
     }
 
-    public record OtherApiData(string id);
+    public record OtherApiData(string Id);
 }

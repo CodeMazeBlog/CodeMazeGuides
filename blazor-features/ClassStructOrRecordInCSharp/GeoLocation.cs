@@ -9,9 +9,9 @@ namespace ClassStructOrRecordInCSharp
 {
     public struct GeoLocation
     {
-        public string latitude;
-        public string longitude;
+        public string Latitude;
+        public string Longitude;
 
-        public override string ToString() => $"(lat: {latitude}, lon:{longitude})";
+        public override string ToString() => $"(lat: {Latitude}, lon:{Longitude})";
     }
 }
