@@ -1,14 +1,14 @@
-﻿using ActionAndFuncDelegates;
+﻿using ActionAndFuncDelegatesDemo;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Text;
 
 public class Program
-{
+{    
     public static void Main()
     {
-        string[] fruits = { "Banana", "Mango", "Raspberry", "Guava", "Papaya", "Cranberry", "Apple", "Plum", "Grapes", "Blueberry", "Pineapple", "Strawberry" };
+        string[] fruits = { "Banana", "Mango", "Raspberry","Guava", "Papaya", "Cranberry", "Apple", "Plum", "Grapes", "Blueberry", "Pineapple", "Strawberry" };
         string subStr = "berry";
 
         FuncDelegates funcDel = new FuncDelegates(fruits, subStr);
@@ -24,5 +24,5 @@ public class Program
         actionDel.ActionDelegateWithLambdaExpression();
 
         Console.ReadKey();
-    }
+    }   
 }

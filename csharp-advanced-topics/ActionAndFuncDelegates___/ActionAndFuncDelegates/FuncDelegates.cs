@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ActionAndFuncDelegates
+namespace ActionAndFuncDelegatesDemo
 {
-    public class FuncDelegates
+    public sealed class FuncDelegates
     {
         public string Substring { get; set; }
         public string[] Arr { get; set; }
@@ -20,15 +22,15 @@ namespace ActionAndFuncDelegates
             if (input != null && input.Length != 0 && !string.IsNullOrEmpty(substring))
             {
                 results = new List<string>();
-                IsValidInputFlag = true;
+                IsValidInputFlag = true;  
                 Message = string.Empty;
             }
             else
             {
                 IsValidInputFlag = false;
             }
-        }
-
+        }        
+ 
         //Func delegate invoke parameterless method
         public void FuncDelegateWithParameterlessMethod()
         {
@@ -49,7 +51,7 @@ namespace ActionAndFuncDelegates
             }
             Func<string[], string, List<string>> FuncWithParameterizedMethod = ParameterizedMethod;
             results = new List<string>();
-            results = FuncWithParameterizedMethod(Arr, Substring);
+            results = FuncWithParameterizedMethod(Arr, Substring);            
             Console.WriteLine(string.Join("\n", results) + "\n");
 
         }

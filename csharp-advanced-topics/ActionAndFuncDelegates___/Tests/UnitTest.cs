@@ -1,4 +1,5 @@
-using ActionAndFuncDelegates;
+using ActionAndFuncDelegatesDemo;
+using System;
 
 namespace Tests
 {
@@ -18,11 +19,11 @@ namespace Tests
             string[] expectedResults = { "Papaya", "Apple", "Grapes", "Pineapple" };
 
             FuncDelegates funcDelegates = new(sampleArray, substring);
-
+            
             //Act
             funcDelegates.FuncDelegateWithAnonymousMethod();
             List<string> output = funcDelegates.results;
-            string r = string.Join(",", output);
+            string r = string.Join(",", output); 
             string s = string.Join(",", expectedResults);
 
             //assert
