@@ -1,8 +1,9 @@
 ## List Collection
 
-This section contains the topics about the List collection and solving specific problems regarding Lists in C#.
+This section contains topics about the List collection and solving specific problems regarding Lists in C#.
 
 ### Relevant articles:
+- [ArrayList in C#](https://code-maze.com/csharp-arraylist/)
 - [ArrayList and List Comparasion in C#](https://code-maze.com/csharp-arraylist-vs-list/)
 - [Concatenate Lists in C#](https://code-maze.com/csharp-concatenate-lists/)
 - [How to Clone a List in C#?](https://code-maze.com/csharp-how-to-clone-a-list/)
