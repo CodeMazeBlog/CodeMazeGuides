@@ -38,46 +38,23 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenValueTypesPassByValue_ThenCounterHaveDifferentCopies()
+        public void WhenValueTypeArguments_ThenLengthHaveDifferentCopies()
         {
-            var pass = new PassByValueAndReferenceSample();
-            int counter = 100;
-            pass.PassValueTypesByValue(counter);
+            var pass = new ValueAndReferenceAsMethodArgumentsSample();
+            ValueTypeRectangle rect = new ValueTypeRectangle { Length = 20};
+            pass.ValueTypeArguments(rect);
 
-            Assert.AreEqual(100, counter);
+            Assert.AreEqual(20, rect.Length);
         }
 
         [TestMethod]
-        public void WhenReferenceTypesPassByValue_ThenCounterHaveDifferentCopies()
+        public void WhenReferenceTypeArguments_ThenLengthHaveSameReference()
         {
-            var pass = new PassByValueAndReferenceSample();
-            ReferenceTypeRectangle rect = new ReferenceTypeRectangle { Length = 20, Breadth = 20 };
-            pass.PassReferenceTypesByValue(rect);
-            Console.WriteLine($"Value outside after call Length = {rect.Length}, Breadth = {rect.Breadth} ");
+            var pass = new ValueAndReferenceAsMethodArgumentsSample();
+            ReferenceTypeRectangle rect = new ReferenceTypeRectangle { Length = 20 };
+            pass.ReferenceTypeArguments(rect);
 
-            Assert.AreEqual(400, rect.Length * rect.Breadth);
-        }
-
-
-        [TestMethod]
-        public void WhenValueTypesPassByReference_ThenCounterHaveReferenceToSameAddress()
-        {
-            var pass = new PassByValueAndReferenceSample();
-            int counter = 100;
-            pass.PassValueTypesByReference(ref counter);
-
-            Assert.AreEqual(101, counter);
-        }
-
-        [TestMethod]
-        public void WhenReferenceTypesPassByReference_ThenCounterHaveReferenceToSameAddress()
-        {
-            var pass = new PassByValueAndReferenceSample();
-            ReferenceTypeRectangle rect = new ReferenceTypeRectangle { Length = 20, Breadth = 20 };
-            pass.PassReferenceTypesByReference(rect);
-            Console.WriteLine($"Value outside after call Length = {rect.Length}, Breadth = {rect.Breadth} ");
-
-            Assert.AreEqual(100, rect.Length * rect.Breadth);
+            Assert.AreEqual(21, rect.Length);
         }
 
         [TestMethod]
@@ -91,12 +68,18 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenString_ThenReferenceType()
+        public void WhenReferenceTypes_ThenAllObjectsAreAffected()
         {
-            var str = new StringSample();
-            var result = str.PrintWords();
+            var firstRectangle = new ValueTypeRectangle();
+            firstRectangle.MyShape = new Shape { Name = "Square" };
 
-            Assert.AreEqual("CodeMaze", result);
+            var secondRectangle = firstRectangle;
+            secondRectangle.MyShape.Name = "Circle";
+
+            Console.WriteLine($"First rectangle shape -> {firstRectangle.MyShape.Name}");
+            Console.WriteLine($"Second rectangle shape -> {secondRectangle.MyShape.Name}");
+
+            Assert.AreEqual(firstRectangle.MyShape.Name, secondRectangle.MyShape.Name);
         }
     }
 }

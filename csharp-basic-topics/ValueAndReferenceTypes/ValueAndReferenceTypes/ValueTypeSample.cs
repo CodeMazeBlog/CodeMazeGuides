@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata;
-
-namespace ValueAndReferenceTypes
+﻿namespace ValueAndReferenceTypes
 {
     public struct ValueTypeRectangle
     {
