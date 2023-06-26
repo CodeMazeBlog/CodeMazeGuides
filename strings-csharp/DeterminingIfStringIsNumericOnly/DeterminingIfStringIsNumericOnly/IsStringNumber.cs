@@ -1,26 +1,34 @@
 using System.Text.RegularExpressions;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Order;
 
 namespace DeterminingIfStringIsNumericOnly;
 
+[Orderer(SummaryOrderPolicy.SlowestToFastest)]
 public partial class IsStringNumber
 {
+    private const string IntegerString = "123456789123456789";
+
     [GeneratedRegex("^\\d+$")]
     private static partial Regex IsDigitRegex();
     
     [Benchmark]
-    public bool IsNumericWithNewRegex() => new Regex("^\\d+$").IsMatch("123456789123456789");
+    [Arguments(IntegerString)]
+    public bool IsNumericWithNewRegex(string input) => new Regex("^\\d+$").IsMatch(input);
 
     [Benchmark]
-    public bool IsNumericWithCompiledRegex() => IsDigitRegex().IsMatch("123456789123456789");
+    [Arguments(IntegerString)]
+    public bool IsNumericWithCompiledRegex(string input) => IsDigitRegex().IsMatch(input);
 
     [Benchmark]
-    public bool IsNumericWithTryParse() => int.TryParse("123456789123456789", out _);
+    [Arguments(IntegerString)]
+    public bool IsNumericWithTryParse(string input) => int.TryParse(input, out _);
 
     [Benchmark]
-    public bool IsNumericWithForeachCharIsDigit()
+    [Arguments(IntegerString)]
+    public bool IsNumericWithForeachCharIsDigit(string input)
     {
-        foreach (var c in "123456789123456789")
+        foreach (var c in input)
         {
             if (!char.IsDigit(c))
                 return false;
@@ -30,9 +38,10 @@ public partial class IsStringNumber
     }
 
     [Benchmark]
-    public bool IsNumericWithForeachCharIsBetween09()
+    [Arguments(IntegerString)]
+    public bool IsNumericWithForeachCharIsBetween09(string input)
     {
-        foreach(var c in "123456789123456789")
+        foreach(var c in input)
         {
             if (c is < '0' or > '9')
                 return false;
@@ -42,8 +51,10 @@ public partial class IsStringNumber
     }
 
     [Benchmark]
-    public bool IsNumericWithLinqAllCharIsBetween09() => "123456789123456789".All(c => c is < '0' or > '9');
+    [Arguments(IntegerString)]
+    public bool IsNumericWithLinqAllCharIsBetween09(string input) => input.All(c => c is >= '0' and <= '9');
     
     [Benchmark]
-    public bool IsNumericWithLinqAllCharIsDigit() => "123456789123456789".All(char.IsDigit);
+    [Arguments(IntegerString)]
+    public bool IsNumericWithLinqAllCharIsDigit(string input) => input.All(char.IsDigit);
 }

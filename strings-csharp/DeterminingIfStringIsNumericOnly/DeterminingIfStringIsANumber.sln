@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeterminingIfStringIsNumericOnly", "DeterminingIfStringIsNumericOnly\DeterminingIfStringIsNumericOnly.csproj", "{7E92BFB0-B21C-4A2C-A9C0-4910B704AACF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{3B09004F-4C1F-45C9-9FC9-7EBD8EBB49DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{7E92BFB0-B21C-4A2C-A9C0-4910B704AACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E92BFB0-B21C-4A2C-A9C0-4910B704AACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E92BFB0-B21C-4A2C-A9C0-4910B704AACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B09004F-4C1F-45C9-9FC9-7EBD8EBB49DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B09004F-4C1F-45C9-9FC9-7EBD8EBB49DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B09004F-4C1F-45C9-9FC9-7EBD8EBB49DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B09004F-4C1F-45C9-9FC9-7EBD8EBB49DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
