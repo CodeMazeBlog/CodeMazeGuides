@@ -29,7 +29,7 @@ namespace Tests
             //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{name}\r\n", output);
+            Assert.Equal($"{name}\n", output);
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace Tests
             //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{expectedResult}\r\n", output);
+            Assert.Equal($"{expectedResult}\n", output);
         }
 
         [Fact]
@@ -87,7 +87,7 @@ namespace Tests
             //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{param}\r\n", output);
+            Assert.Equal($"{param}\n", output);
         }
     }
 }
