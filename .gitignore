@@ -355,3 +355,5 @@ global.json
 
 # MacOS
 **/.DS_Store
+csharp-advanced-topics/ActionAndFuncInCSharp/ActionAndFuncInCSharp/ActionAndFuncInCSharp.csproj
+csharp-advanced-topics/ActionAndFuncInCSharp/Tests/Tests.csproj
