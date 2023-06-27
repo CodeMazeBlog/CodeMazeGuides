@@ -1,93 +1,99 @@
-using System.Xml.Linq;
+using ActionAndFuncDelegates;
 
 namespace Tests
 {
     public class Tests
     {
-        void Print(string name)
+
+        private readonly PrintRepository printRepository;
+
+        public Tests()
         {
-            Console.WriteLine(name);
+            printRepository = new PrintRepository();
+
         }
 
-        void PrintSum(int x, int y) { Console.WriteLine(x + y); }
-
-        bool IsNumberEven(int number) { return number % 2 == 0; }
-
-
         [Fact]
-        public void whenOneParameterIsPassed_ActionPrintsItTroughRefferencedMethod()
+        public void GivenStringInput_WhenActionIsCalled_ThenPrintsTheInput()
         {
-            Action<string> printAction = Print;
 
-            var name = "John";
+            Action<string> printAction = printRepository.DisplayInput;
+
+            var input = "Michael";
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
-            printAction(name);
+            printAction(input);
 
-            //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{name}\n", output);
+            // assert
+
+            Assert.Equal($"{input}\r\n", output);
         }
 
         [Fact]
-        public void whenTwoParameterAreGiven_ActionPrintsTheSumTroughRefferencedMethod()
+        public void GivenTwoNumbers_WhenActionIsInvoked_ThenPrintsCorrectAddition()
         {
-            Action<int, int> printSumAction = PrintSum;
-
-
+            Action<int, int> printSumAction = printRepository.DispalySum;
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
-            printSumAction.Invoke(2, 3);
+            var firstNumber = 2;
+            var secondNumber = 3;
 
-            var expectedResult = 5;
+            printSumAction.Invoke(firstNumber, secondNumber);
 
-            //assert
+            var expectedResult = firstNumber + secondNumber;
+
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{expectedResult}\n", output);
+            //assert
+
+            Assert.Equal($"{expectedResult}\r\n", output);
         }
 
-        [Fact]
-        public void whenPassedEvenNumber_FuncReturnsTheCorrectResultOfTheRefferencedMethod()
-        {
-            Func<int, bool> isEvenFunc = IsNumberEven;
-
-            var result = isEvenFunc(10);
-
-            Assert.True(result);
-        }
 
         [Fact]
-        public void whenIntegerParamIsGiven_FuncCorrectlyReturnsTheSquareTroughLambda()
-        {
-            Func<int, int> squareFunc = x => x * x;
-
-            int squareResult = squareFunc(5);
-
-            Assert.Equal(25, squareResult);
-        }
-
-        [Fact]
-        public void whenStringParamIsGiven_ActionPrintsItTroughLambda()
+        public void GivenStringInput_WhenActionIsCalled_ThenActionPrintsItTroughLambda()
         {
             Action<string> printMessageAction = message => Console.WriteLine(message);
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
-            var param = "Hello, world!";
+            var input = "Hello, world!";
 
-            printMessageAction(param);
+            printMessageAction(input);
 
-            //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{param}\n", output);
+            // assert
+
+            Assert.Equal($"{input}\r\n", output);
         }
+
+        //[Fact]
+        //public void whenPassedEvenNumber_FuncReturnsTheCorrectResultOfTheRefferencedMethod()
+        //{
+        //    Func<int, bool> isEvenFunc = IsNumberEven;
+
+        //    var result = isEvenFunc(10);
+
+        //    Assert.True(result);
+        //}
+
+        //[Fact]
+        //public void whenIntegerParamIsGiven_FuncCorrectlyReturnsTheSquareTroughLambda()
+        //{
+        //    Func<int, int> squareFunc = x => x * x;
+
+        //    int squareResult = squareFunc(5);
+
+        //    Assert.Equal(25, squareResult);
+        //}
+
     }
 }
