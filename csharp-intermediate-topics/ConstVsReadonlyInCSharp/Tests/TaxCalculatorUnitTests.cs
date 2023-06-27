@@ -4,7 +4,7 @@ namespace Tests
 {
     public class TaxCalculatorUnitTests
     {
-        private TaxCalculator _taxCalculator = new TaxCalculator((decimal)0.20);
+        private TaxCalculator _taxCalculator = new TaxCalculator(0.20M);
 
         [Fact]
         public void WhenCalculatingTaxForValue15InEuros_ThenReturn3()
@@ -19,7 +19,7 @@ namespace Tests
         {
             var result = _taxCalculator.CalculateCountryVatInDollars(15);
 
-            Assert.Equal((decimal)3.24, result, 5);
+            Assert.Equal(3.24M, result, 5);
         }
     }
 }

@@ -13,6 +13,7 @@
         public double GetAccurateCircumference(double radius)
         {
             const double accuratePi = 3.14159265359;
+
             return 2 * accuratePi * radius;
         }
     }
