@@ -26,7 +26,7 @@ public class OrdersService : IOrdersService
     {
         var product = _products.SingleOrDefault(p => p.ProductId == order.ProductId);
         
-        if (product == null)
+        if (product is null)
         {
             return PlaceOrderError.DoesntExist;
         }
@@ -55,7 +55,7 @@ public class OrdersService : IOrdersService
             product = _products.SingleOrDefault(product => product.ProductId == productNameOrId.AsT1);
         }
 
-        return product == null
+        return product is null
             ? new OneOf.Types.NotFound()
             : product;
     }
