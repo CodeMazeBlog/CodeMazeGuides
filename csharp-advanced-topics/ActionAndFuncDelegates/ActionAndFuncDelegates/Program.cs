@@ -1,42 +1,25 @@
-﻿public class Program
+﻿using ActionAndFuncDelegates;
+
+public class Program
 {
     public static void Main(string[] args)
     {
-        // Action example
-        void Print(string name)
-        {
-            Console.WriteLine(name);
-        }
+        // Action examples
 
-        Action<string> printAction = Print;
+        var printRepository = new PrintRepository();
 
-        printAction("John");
+        Action<string> printAction = printRepository.DisplayInput;
 
-        printAction.Invoke("John");
+        printAction(Console.ReadLine());
 
-        void PrintSum(int x, int y) { Console.WriteLine(x + y); }
+        printAction.Invoke(Console.ReadLine());
 
-        Action<int, int> printSumAction = PrintSum;
+        Action<int, int> printSumAction = printRepository.DispalySum;
 
-        printSumAction.Invoke(2, 3);
+        var firstNumber = Convert.ToInt32(Console.ReadLine());
 
-        // Func example
-        bool IsNumberEven(int number) { return number % 2 == 0; }
+        var secondNumber = Convert.ToInt32(Console.ReadLine());
 
-        Func<int, bool> isEvenFunc = IsNumberEven;
-
-        Console.WriteLine(isEvenFunc(10));
-
-        // Func lambda
-        Func<int, int> squareFunc = x => x * x;
-
-        int squareResult = squareFunc(5);
-
-        Console.WriteLine(squareResult);
-
-        // Action lambda
-        Action<string> printMessageAction = message => Console.WriteLine(message);
-
-        printMessageAction("Hello, world!");
+        printSumAction.Invoke(firstNumber, secondNumber);
     }
 }
