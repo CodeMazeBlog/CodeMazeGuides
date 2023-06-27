@@ -7,7 +7,7 @@ namespace DeterminingIfStringIsNumericOnly;
 [Orderer(SummaryOrderPolicy.SlowestToFastest)]
 public partial class IsStringNumber
 {
-    private const string IntegerString = "123456789123456789";
+    private const string IntegerString = "1234567890";
 
     [GeneratedRegex("^\\d+$")]
     private static partial Regex IsDigitRegex();
