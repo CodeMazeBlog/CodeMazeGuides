@@ -3,6 +3,7 @@
 This section contains the topics related to JSON manipulation in C#.
 ### Relevant articles:
 
+- [Using System.Text.Json for Camel Case Serialization](https://code-maze.com/csharp-using-system-text-json-for-camel-case-serialization/)
 - [How to Compare Two Json Objects Using C#](https://code-maze.com/csharp-compare-two-json-objects/)
 - [How to Create a Custom JsonConverter in Json.NET](https://code-maze.com/json-dotnet-create-custom-jsonconverter/)
 - [How to Deserialize a Complex JSON Object in C# .NET](https://code-maze.com/csharp-deserialize-complex-json-object/)

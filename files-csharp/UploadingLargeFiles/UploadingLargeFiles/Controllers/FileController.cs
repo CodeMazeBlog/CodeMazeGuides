@@ -19,6 +19,7 @@ namespace UploadingLargeFiles.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status415UnsupportedMediaType)]
         [MultipartFormData]
+        [DisableFormValueModelBinding]
         public async Task<IActionResult> Upload()
         {
             var fileUploadSummary = await _fileService.UploadFileAsync(HttpContext.Request.Body, Request.ContentType);
