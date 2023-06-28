@@ -6,11 +6,14 @@ namespace Tests
     {
 
         private readonly PrintRepository printRepository;
+        private readonly MathOperationsRepository mathOperations;
+        private StringWriter stringWriter;
 
         public Tests()
         {
             printRepository = new PrintRepository();
-
+            mathOperations = new MathOperationsRepository();
+            stringWriter = new StringWriter();
         }
 
         [Fact]
@@ -21,8 +24,7 @@ namespace Tests
 
             var input = "Michael";
 
-            var stringWriter = new StringWriter();
-            Console.SetOut(stringWriter);
+            SetUpStringWriter();
 
             printAction(input);
 
@@ -36,10 +38,9 @@ namespace Tests
         [Fact]
         public void GivenTwoNumbers_WhenActionIsInvoked_ThenPrintsCorrectAddition()
         {
-            Action<int, int> printSumAction = printRepository.DispalySum;
+            Action<int, int> printSumAction = printRepository.DisplaySum;
 
-            var stringWriter = new StringWriter();
-            Console.SetOut(stringWriter);
+            SetUpStringWriter();
 
             var firstNumber = 2;
             var secondNumber = 3;
@@ -57,12 +58,11 @@ namespace Tests
 
 
         [Fact]
-        public void GivenStringInput_WhenActionIsCalled_ThenActionPrintsItTroughLambda()
+        public void GivenStringInput_WhenActionIsCalled_ThenPrintsItTroughLambda()
         {
             Action<string> printMessageAction = message => Console.WriteLine(message);
 
-            var stringWriter = new StringWriter();
-            Console.SetOut(stringWriter);
+            SetUpStringWriter();
 
             var input = "Hello, world!";
 
@@ -75,25 +75,32 @@ namespace Tests
             Assert.Equal($"{input}\r\n", output);
         }
 
-        //[Fact]
-        //public void whenPassedEvenNumber_FuncReturnsTheCorrectResultOfTheRefferencedMethod()
-        //{
-        //    Func<int, bool> isEvenFunc = IsNumberEven;
+        [Fact]
+        public void GivenAnEvenNumber_WhenFuncIsInvoked_ThenReturnsTheCorrectBooleanValue()
+        {
+            Func<int, bool> isEvenFunc = mathOperations.IsNumberEven;
 
-        //    var result = isEvenFunc(10);
+            var result = isEvenFunc(10);
 
-        //    Assert.True(result);
-        //}
+            Assert.True(result);
+        }
 
-        //[Fact]
-        //public void whenIntegerParamIsGiven_FuncCorrectlyReturnsTheSquareTroughLambda()
-        //{
-        //    Func<int, int> squareFunc = x => x * x;
+        [Fact]
+        public void GivenOneNumber_WhenFuncIsInvoked_ThenCorrectlyReturnsTheSquareTroughLambda()
+        {
+            Func<int, int> squareFunc = x => x * x;
 
-        //    int squareResult = squareFunc(5);
+            int squareResult = squareFunc(5);
 
-        //    Assert.Equal(25, squareResult);
-        //}
+            Assert.Equal(25, squareResult);
+        }
+
+        [Fact]
+
+        private void SetUpStringWriter()
+        {
+            Console.SetOut(stringWriter);
+        }
 
     }
 }

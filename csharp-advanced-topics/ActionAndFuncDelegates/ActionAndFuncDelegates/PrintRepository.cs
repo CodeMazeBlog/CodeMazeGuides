@@ -7,7 +7,7 @@ public class PrintRepository
         Console.WriteLine(input);
     }
 
-    public void DispalySum(int x, int y)
+    public void DisplaySum(int x, int y)
     {
         Console.WriteLine(x + y);
     }
