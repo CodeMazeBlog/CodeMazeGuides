@@ -1,119 +1,120 @@
-﻿namespace EqualityOperatorVsEqualsMethodInCSharp
+﻿using EqualityOperatorVsEqualsMethodInCSharp.Classes;
+using EqualityOperatorVsEqualsMethodInCSharp.Records;
+using EqualityOperatorVsEqualsMethodInCSharp.Structs;
+
+namespace EqualityOperatorVsEqualsMethodInCSharp
 {
-    public class MyClass
-    {
-        public string Property1 { get; set; }
-        public int Property2 { get; set; }
-
-        public MyClass(string property1, int property2)
-        {
-            Property1 = property1;
-            Property2 = property2;
-        }
-    }
-
-    public struct MyStruct
-    {
-        public string Property1 { get; set; }
-        public int Property2 { get; set; }
-
-        public MyStruct(string property1, int property2)
-        {
-            Property1 = property1;
-            Property2 = property2;
-        }
-    }
-
     public class Program
     {
         static void Main()
         {
-            BehaviorForValueTypes();
-            BehaviorForReferenceTypes();
-            BehaviorForUserDefinedTypes();
-            BehaviorForNullableTypes();
+            ComparisonBetweenIntegers();
+            ComparisonBetweenObjects();
+            ComparisonBetweenStrings();
+            ComparisonBetweenObjectAndString();
+            ComparisonBetweenClasses();
+            ComparisonBetweenStructs();
+            ComparisonBetweenRecords();
+            ComparisonBetweenNullables();
         }
 
-        public static void BehaviorForValueTypes()
+        public static string ComparisonBetweenIntegers()
         {
-            int valueType1 = 5;
-            int valueType2 = 5;
+            int firstNumber = 5;
+            int secondNumber = 5;
 
-            CompareResults(
-                ReferenceEquals(valueType1, valueType2), // false
-                valueType1 == valueType2, // true
-                valueType1.Equals(valueType2) // true
+            return PrintFormattedResult(
+                ReferenceEquals(firstNumber, secondNumber), // false
+                firstNumber == secondNumber, // true
+                firstNumber.Equals(secondNumber) // true
             );
         }
 
-        public static void BehaviorForReferenceTypes()
+        public static string ComparisonBetweenObjects()
         {
-            object referenceType1 = new string(new[] { 'a', 'b', 'c' });
-            object referenceType2 = new string(new[] { 'a', 'b', 'c' });
+            object firstObject = new string(new[] { 'a', 'b', 'c' });
+            object secondObject = new string(new[] { 'a', 'b', 'c' });
 
-            CompareResults(
-                ReferenceEquals(referenceType1, referenceType2), // false
-                referenceType1 == referenceType2, // false
-                referenceType1.Equals(referenceType2) // true
-            );
-
-            string string1 = "pqr";
-            string string2 = "pqr";
-
-            CompareResults(
-                ReferenceEquals(string1, string2), // true
-                string1 == string2, // true
-                string1.Equals(string2) // true
-            );
-
-            object referenceType3 = new string(new[] { 'x', 'y', 'z' });
-            string string3 = "xyz";
-
-            CompareResults(
-                ReferenceEquals(referenceType3, string3), // false
-                referenceType3 == string3, // false
-                referenceType3.Equals(string3) // true
+            return PrintFormattedResult(
+                ReferenceEquals(firstObject, secondObject), // false
+                firstObject == secondObject, // false
+                firstObject.Equals(secondObject) // true
             );
         }
 
-        public static void BehaviorForUserDefinedTypes()
+        public static string ComparisonBetweenStrings()
         {
-            // Class
-            var classInstance1 = new MyClass("Ahmed", 2);
-            var classInstance2 = new MyClass("Ahmed", 2);
+            string firstWord = "pqr";
+            string secondWord = "pqr";
 
-            CompareResults(
-                ReferenceEquals(classInstance1, classInstance2), // false
-                classInstance1 == classInstance2, // false
-                classInstance1.Equals(classInstance2) // false
-            );
-
-            // Struct
-            var structInstance1 = new MyStruct("Ahmed", 2);
-            var structInstance2 = new MyStruct("Ahmed", 2);
-
-            CompareResults(
-                ReferenceEquals(structInstance1, structInstance2), // false
-                null, // structInstance1 == structInstance2 throws a compilation error
-                structInstance1.Equals(structInstance2) // true
+            return PrintFormattedResult(
+                ReferenceEquals(firstWord, secondWord), // true
+                firstWord == secondWord, // true
+                firstWord.Equals(secondWord) // true
             );
         }
 
-        public static void BehaviorForNullableTypes()
+        public static string ComparisonBetweenObjectAndString()
         {
-            int? nullableType1 = null;
-            int? nullableType2 = null;
+            object thirdObject = new string(new[] { 'x', 'y', 'z' });
+            string thirdWord = "xyz";
 
-            CompareResults(
-                ReferenceEquals(nullableType1, nullableType2), // true
-                nullableType1 == nullableType2, // true
-                nullableType1.Equals(nullableType2) // true
+            return PrintFormattedResult(
+                ReferenceEquals(thirdObject, thirdWord), // false
+                thirdObject == thirdWord, // false
+                thirdObject.Equals(thirdWord) // true
             );
         }
 
-        public static void CompareResults(bool? a, bool? b, bool? c)
+        public static string ComparisonBetweenClasses()
         {
-            Console.WriteLine($"Reference: {a}, Equality: {b}, Equals: {c}");
+            var firstEmployee = new Employee("Hermione Granger", 5000);
+            var secondEmployee = new Employee("Hermione Granger", 5000);
+
+            return PrintFormattedResult(
+                ReferenceEquals(firstEmployee, secondEmployee), // false
+                firstEmployee == secondEmployee, // false
+                firstEmployee.Equals(secondEmployee) // false
+            );
         }
+
+        public static string ComparisonBetweenStructs()
+        {
+            var firstCar = new Car("Audi R8", 3715);
+            var secondCar = new Car("Audi R8", 3715);
+
+            return PrintFormattedResult(
+                ReferenceEquals(firstCar, secondCar), // false
+                firstCar == secondCar, // true
+                firstCar.Equals(secondCar) // true
+            );
+        }
+
+        public static string ComparisonBetweenRecords()
+        {
+            var firstLaptop = new Laptop("ASUS TUF A15", 1499);
+            var secondLaptop = new Laptop("ASUS TUF A15", 1499);
+
+            return PrintFormattedResult(
+                ReferenceEquals(firstLaptop, secondLaptop), // false
+                firstLaptop == secondLaptop, // true
+                firstLaptop.Equals(secondLaptop) // true
+            );
+        }
+
+        public static string ComparisonBetweenNullables()
+        {
+            int? firstNullableNumber = null;
+            int? secondNullableNumber = null;
+
+            return PrintFormattedResult(
+                ReferenceEquals(firstNullableNumber, secondNullableNumber), // true
+                firstNullableNumber == secondNullableNumber, // true
+                firstNullableNumber.Equals(secondNullableNumber) // true
+            );
+        }
+
+        public static string PrintFormattedResult(bool? a, bool? b, bool? c) =>
+            $"Reference: {a}, Equality: {b}, Equals: {c}";
     }
 }
