@@ -32,7 +32,7 @@ namespace Tests
 
             // assert
 
-            Assert.Equal($"{input}\r\n", output);
+            Assert.Equal($"{input}", output.Trim());
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace Tests
 
             //assert
 
-            Assert.Equal($"{expectedResult}\r\n", output);
+            Assert.Equal($"{expectedResult}", output.Trim());
         }
 
 
@@ -72,7 +72,7 @@ namespace Tests
 
             // assert
 
-            Assert.Equal($"{input}\r\n", output);
+            Assert.Equal($"{input}", output.Trim());
         }
 
         [Fact]
