@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using System.Collections;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
@@ -11,30 +12,29 @@ namespace CompareByteArraysInCsharp
     public class CompareByteArrays
     {
         private readonly Random _rand;
-        private readonly byte[] _byteArray;  
 
         public CompareByteArrays()
         {
             _rand = new Random();
-            _byteArray = GenerateRandomArray(10000000);
         }
 
         public IEnumerable<object[]> SampleByteArray()
         {
-            yield return new object[] { GenerateRandomArray(10000000), GenerateRandomArray(10000000) };
-            yield return new object[] { _byteArray, _byteArray };
+            yield return new object[] { GenerateOrderedArray(true, false, 10000000), GenerateOrderedArray(true, false, 10000000), "Best Case" };
+            yield return new object[] { GenerateOrderedArray(false, true, 10000000), GenerateOrderedArray(false, true, 10000000), "Average Case" };
+            yield return new object[] { GenerateOrderedArray(false, false, 10000000), GenerateOrderedArray(false, false, 10000000), "Worst Case" };
         }
 
         [ArgumentsSource(nameof(SampleByteArray))]
         [Benchmark]
-        public bool CompareUsingSequenceEqual(byte[] firstArray, byte[] secondArray)
+        public bool CompareUsingSequenceEqual(byte[] firstArray, byte[] secondArray, string arrayName)
         {
             return firstArray.SequenceEqual(secondArray);
         }
 
         [ArgumentsSource(nameof(SampleByteArray))]
         [Benchmark]
-        public bool CompareUsingExcept(byte[] firstArray, byte[] secondArray)
+        public bool CompareUsingExcept(byte[] firstArray, byte[] secondArray, string arrayName)
         {
             var onlyFirst = firstArray.Except(secondArray);
             var onlySecond = secondArray.Except(firstArray);
@@ -44,7 +44,7 @@ namespace CompareByteArraysInCsharp
 
         [ArgumentsSource(nameof(SampleByteArray))]
         [Benchmark]
-        public bool CompareUsingForLoop(byte[] firstArray, byte[] secondArray)
+        public bool CompareUsingForLoop(byte[] firstArray, byte[] secondArray, string arrayName)
         {
             if (firstArray.Length != secondArray.Length)
             {
@@ -64,49 +64,43 @@ namespace CompareByteArraysInCsharp
 
         [ArgumentsSource(nameof(SampleByteArray))]
         [Benchmark]
-        public bool CompareUsingHash(byte[] firstArray, byte[] secondArray) 
-        {
-            using (var hashInstance = SHA256.Create()) 
-            {
-                var hashFirstArray = hashInstance.ComputeHash(firstArray);
-                var hashSecondArray = hashInstance.ComputeHash(secondArray);
-
-                return hashFirstArray.SequenceEqual(hashSecondArray);
-            }
-        }
-
-        [ArgumentsSource(nameof(SampleByteArray))]
-        [Benchmark]
-        public bool CompareUsingBinaryEquality(byte[] firstArray, byte[] secondArray)
+        public unsafe bool CompareUsingBinaryEquality(byte[] firstArray, byte[] secondArray, string arrayName)
         {
             if (firstArray == null || secondArray == null || firstArray.Length != secondArray.Length)
                 return false;
 
-            unsafe
+            var arrayLength = firstArray.Length;
+            var vectorSize = Vector<byte>.Count;
+
+            fixed (byte* pbtr1 = firstArray, pbtr2 = secondArray)
             {
-                fixed (byte* ptr1 = firstArray, ptr2 = secondArray)
+                for (int i = 0; i <= arrayLength - vectorSize; i += vectorSize)
                 {
-                    byte* bptr1 = ptr1;
-                    byte* bptr2 = ptr2;
-                    var length = firstArray.Length;
+                    if (!VectorEquality(pbtr1 + i, pbtr2 + i))
+                        return false;
+                }
 
-                    for (int i = 0; i < length; i++)
-                    {
-                        if (*bptr1 != *bptr2)
-                            return false;
-
-                        bptr1++;
-                        bptr2++;
-                    }
+                for (int i = 0; i < arrayLength; i++)
+                {
+                    if (pbtr1[i] != pbtr2[i])
+                        return false;
                 }
             }
 
             return true;
         }
 
+        private unsafe bool VectorEquality(byte* firstPointer, byte* secondPointer)
+        {
+            var firstVector = *(Vector<byte>*)firstPointer;
+            var secondVector = *(Vector<byte>*)secondPointer;
+
+            return Vector.EqualsAll(firstVector, secondVector);
+        }
+
         [ArgumentsSource(nameof(SampleByteArray))]
         [Benchmark]
-        public bool CompareUsingIStructuralEquatable(byte[] firstArray, byte[] secondArray)
+        public bool CompareUsingIStructuralEquatable(byte[] firstArray, byte[] secondArray, string arrayName)
         {
             if (firstArray == null || secondArray == null || firstArray.Length != secondArray.Length)
                 return false;
@@ -114,23 +108,56 @@ namespace CompareByteArraysInCsharp
             return StructuralComparisons.StructuralEqualityComparer.Equals(firstArray, secondArray);
         }
 
-        [DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int memcmp(byte[] firstArray, byte[] secondArray, int size);
+#if NET
+        [DllImport("msvcrt", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
+        private static extern int memcmp(byte[] firstArray, byte[] secondArray, long size);
+#else
+        [DllImport("libc", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
+        private static extern int memcmp(byte[] firstArray, byte[] secondArray, ulong size);
+#endif
+
         [ArgumentsSource(nameof(SampleByteArray))]
         [Benchmark]
-        public bool CompareUsingPInvoke(byte[] firstArray, byte[] secondArray)
+        public bool CompareUsingPInvoke(byte[] firstArray, byte[] secondArray, string arrayName)
         {
             if (firstArray == null || secondArray == null || firstArray.Length != secondArray.Length)
+            {
                 return false;
+            }
 
-            return memcmp(firstArray, secondArray, firstArray.Length) == 0;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return memcmp(firstArray, secondArray, firstArray.Length) == 0;
+            }
+
+            else
+            {
+                return memcmp(firstArray, secondArray, firstArray.Length) == 0;
+            }
         }
 
-        private byte[] GenerateRandomArray(int size) 
+        private byte[] GenerateOrderedArray(bool firstElement, bool middleElement, int size)
         {
-            var byteArray = new byte[size];
+            var intArray = new int[size];
+            var byteArray = new byte[size * sizeof(int)];
 
-            _rand.NextBytes(byteArray);
+            for (int i = 0; i < size; i++)
+            {
+                if (firstElement == true && i == 0)
+                {
+                    intArray[i] = _rand.Next();
+                }
+                else if (middleElement == true && i == (size / 2))
+                {
+                    intArray[i] = _rand.Next();
+                }
+                else 
+                {
+                    intArray[i] = i;
+                }
+            }
+
+            Buffer.BlockCopy(intArray, 0, byteArray, 0, byteArray.Length);
 
             return byteArray;
         }
