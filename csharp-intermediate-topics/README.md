@@ -21,6 +21,7 @@ This section contains the topics considered intermediate level in C#.
 - [How to Call Generic Method Using Reflection in C#](https://code-maze.com/csharp-call-generic-method-using-reflection/)
 - [How to Get The List of Properties in C#](https://code-maze.com/csharp-get-list-of-properties/)
 - [Method Overloading In C#](https://code-maze.com/csharp-method-overloading/)
+- [How to Convert Stream to Byte Array in C#](https://code-maze.com/create-byte-array-from-stream-in-csharp/)
 - [How to Use MemoryStream in C#](https://code-maze.com/csharp-memorystream/)
 - [IComparable vs IComparer vs Comparison Delegate](https://code-maze.com/csharp-icomparable-icomparer-comparison-delegate/)
 - [Operator Overloading in C#](https://code-maze.com/csharp-operator-overloading/)
@@ -37,4 +38,5 @@ This section contains the topics considered intermediate level in C#.
 - [Unsafe Code in C# (unsafe keyword)](https://code-maze.com/unsafe-code-csharp/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/how-to-enumerate-an-enum-in-c/)
 - [Upcasting and Downcasting in C#](https://code-maze.com/csharp-upcasting-downcasting/)
+- [Virtual Methods in C#](https://code-maze.com/virtual-methods-csharp/)
 - [Working With Zip Files in C#/.NET](https://code-maze.com/csharp-zip-files/)

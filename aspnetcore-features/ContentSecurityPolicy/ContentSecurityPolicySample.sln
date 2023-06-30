@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentSecurityPolicySample", "ContentSecurityPolicySample.csproj", "{434932D5-A678-4140-8AAE-9C5D7F0B1A02}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{434932D5-A678-4140-8AAE-9C5D7F0B1A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{434932D5-A678-4140-8AAE-9C5D7F0B1A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{434932D5-A678-4140-8AAE-9C5D7F0B1A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{434932D5-A678-4140-8AAE-9C5D7F0B1A02}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F55633E1-203A-4295-A35A-A7C182E45523}
+	EndGlobalSection
+EndGlobal
