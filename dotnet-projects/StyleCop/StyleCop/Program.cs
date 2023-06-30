@@ -1,6 +1,10 @@
+// <copyright file="Program.cs" company="CodeMaze">
+// Copyright (c) CodeMaze. All rights reserved.
+// </copyright>
+
 namespace StyleCop
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -8,6 +12,7 @@ namespace StyleCop
 
             // Add services to the container.
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

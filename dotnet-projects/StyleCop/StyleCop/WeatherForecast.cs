@@ -1,3 +1,7 @@
+// <copyright file="WeatherForecast.cs" company="CodeMaze">
+// Copyright (c) CodeMaze. All rights reserved.
+// </copyright>
+
 namespace StyleCop
 {
     public class WeatherForecast

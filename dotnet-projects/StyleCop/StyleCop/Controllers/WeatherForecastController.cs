@@ -1,3 +1,7 @@
+// <copyright file="WeatherForecastController.cs" company="CodeMaze">
+// Copyright (c) CodeMaze. All rights reserved.
+// </copyright>
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace StyleCop.Controllers
