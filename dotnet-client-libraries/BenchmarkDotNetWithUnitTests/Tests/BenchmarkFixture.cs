@@ -3,11 +3,10 @@ using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 using BenchmarkDotNetWithUnitTests;
-
 namespace Tests;
-
 public class BenchmarkFixture
 {
+    public Summary BenchmarkSummary { get; }
     public BenchmarkFixture()
     {
         var config = new ManualConfig
@@ -16,9 +15,6 @@ public class BenchmarkFixture
             Orderer = new DefaultOrderer(SummaryOrderPolicy.FastestToSlowest),
             Options = ConfigOptions.Default
         };
-
         BenchmarkSummary = BenchmarkRunner.Run<StringConcatBenchmarks>(config);
     }
-
-    public Summary BenchmarkSummary { get; }
 }
