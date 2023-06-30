@@ -7,6 +7,7 @@ namespace Tests;
 public class BenchmarkFixture
 {
     public Summary BenchmarkSummary { get; }
+    
     public BenchmarkFixture()
     {
         var config = new ManualConfig
