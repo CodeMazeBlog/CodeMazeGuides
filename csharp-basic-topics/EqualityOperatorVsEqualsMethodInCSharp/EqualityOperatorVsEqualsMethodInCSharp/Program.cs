@@ -114,7 +114,12 @@ namespace EqualityOperatorVsEqualsMethodInCSharp
             );
         }
 
-        public static string PrintFormattedResult(bool? a, bool? b, bool? c) =>
-            $"Reference: {a}, Equality: {b}, Equals: {c}";
+        public static string PrintFormattedResult(bool? a, bool? b, bool? c)
+        {
+            var result = $"Reference: {a}, Equality: {b}, Equals: {c}";
+            Console.WriteLine(result);
+
+            return result;
+        }
     }
 }
