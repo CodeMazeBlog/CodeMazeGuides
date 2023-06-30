@@ -10,3 +10,7 @@ using System.Diagnostics.CodeAnalysis;
     Justification = "For testing purposes",
     Scope = "member",
     Target = "~F:StyleCop.Controllers.WeatherForecastController.Summaries")]
+[assembly: SuppressMessage(
+    "StyleCop.CSharp.DocumentationRules",
+    "SA1600:Elements should be documented",
+    Justification = "For testing purposes")]
