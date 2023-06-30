@@ -136,28 +136,30 @@ namespace CompareByteArraysInCsharp
             }
         }
 
-        private byte[] GenerateOrderedArray(bool firstElement, bool middleElement, int size)
+        private unsafe byte[] GenerateOrderedArray(bool firstElement, bool middleElement, int size)
         {
-            var intArray = new int[size];
             var byteArray = new byte[size * sizeof(int)];
 
-            for (int i = 0; i < size; i++)
+            fixed (byte* bytePtr = byteArray)
             {
-                if (firstElement == true && i == 0)
+                int* intPtr = (int*)bytePtr;
+
+                for (int i = 0; i < size; i++)
                 {
-                    intArray[i] = _rand.Next();
-                }
-                else if (middleElement == true && i == (size / 2))
-                {
-                    intArray[i] = _rand.Next();
-                }
-                else 
-                {
-                    intArray[i] = i;
+                    if (firstElement && i == 0)
+                    {
+                        intPtr[i] = _rand.Next();
+                    }
+                    else if (middleElement && i == (size / 2))
+                    {
+                        intPtr[i] = _rand.Next();
+                    }
+                    else
+                    {
+                        intPtr[i] = i;
+                    }
                 }
             }
-
-            Buffer.BlockCopy(intArray, 0, byteArray, 0, byteArray.Length);
 
             return byteArray;
         }
