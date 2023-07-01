@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="ConstVsReadonlyInCSharp.Library">
-      <HintPath>..\ConstVsReadonlyInCSharp.Library\bin\Release\net7.0\ConstVsReadonlyInCSharp.Library.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\ConstVsReadonlyInCSharp.Library\ConstVsReadonlyInCSharp.Library.csproj" />
   </ItemGroup>
 
 </Project>
