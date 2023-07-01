@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="ConstVsReadonlyInCSharp.Library">
+      <HintPath>..\ConstVsReadonlyInCSharp.Library\bin\Release\net7.0\ConstVsReadonlyInCSharp.Library.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
