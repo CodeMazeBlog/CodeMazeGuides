@@ -6,7 +6,7 @@ class Program
     {
         var stringExample = new StringExample();       
 
-        var span1 = stringExample.ConvertStringToSpanUsingMemoryMarshal();
+        var span1 = stringExample.ConvertStringToSpanUsingToCharArray();
         Console.WriteLine(span1.ToString());
 
         var span2 = stringExample.ConvertStringToSpanUsingUnsafe();

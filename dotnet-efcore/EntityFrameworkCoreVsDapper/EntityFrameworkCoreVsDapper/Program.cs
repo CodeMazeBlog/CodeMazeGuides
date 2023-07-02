@@ -1,7 +1,8 @@
-﻿using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
+
 using EntityFrameworkCoreVsDapper.Repositories;
 
 public class Program

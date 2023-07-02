@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace ArrayListTests
 {
@@ -16,7 +14,7 @@ namespace ArrayListTests
                 56.89
             };
 
-            Assert.Equal("Hello", arrayList[0]);
+            Assert.Equal(3, arrayList.Count);
         }
 
         [Fact]
@@ -29,7 +27,7 @@ namespace ArrayListTests
                 56.89
             };
             var secondArrayList = new ArrayList
-            { 
+            {
                 "World",
                 456,
                 59.95
@@ -90,7 +88,7 @@ namespace ArrayListTests
         public void GivenArrayList_WhenRemoveAt_ThenRemoveItemAtIndex()
         {
             var arrayList = new ArrayList() { "Apple", "Banana", "Orange" };
-            
+
             arrayList.RemoveAt(1);
 
             Assert.False(arrayList.Contains("Banana"));
@@ -100,7 +98,7 @@ namespace ArrayListTests
         public void GivenArrayList_WhenRemoveRange_ThenRemoveItemsWithinRange()
         {
             var arrayList = new ArrayList() { 1, 2, 3, 4, 5 };
-            
+
             arrayList.RemoveRange(1, 3);
 
             Assert.Equal(new ArrayList() { 1, 5 }, arrayList);
@@ -110,7 +108,7 @@ namespace ArrayListTests
         public void GivenArrayList_WhenClear_ThenRemoveAllItems()
         {
             var arrayList = new ArrayList() { 1, 2, 3, 4, 5 };
-            
+
             arrayList.Clear();
 
             Assert.Empty(arrayList);
@@ -151,7 +149,7 @@ namespace ArrayListTests
         {
             var arrayList = new ArrayList() { "Apple", "Banana", "Orange" };
             var expectedIndex = 1;
-            
+
             var actualIndex = arrayList.IndexOf("Banana");
 
             Assert.Equal(expectedIndex, actualIndex);
@@ -170,7 +168,7 @@ namespace ArrayListTests
         public void GivenArrayList_WhenSearchingAnItem_ThenReturnItemLastOccurrrenceIndex()
         {
             var arrayList = new ArrayList() { "Apple", "Banana", "Orange", "Banana", "Grapes" };
-            
+
             var index = arrayList.LastIndexOf("Banana");
 
             Assert.Equal(3, index);
@@ -180,7 +178,7 @@ namespace ArrayListTests
         public void GivenArrayList_WhenCloneArrayList_ThenCloneArrayList()
         {
             var originalArrayList = new ArrayList() { 1, 2, 3, "Hello" };
-            
+
             var clonedArrayList = (ArrayList)originalArrayList.Clone();
 
             Assert.Equal(originalArrayList, clonedArrayList);
@@ -191,7 +189,7 @@ namespace ArrayListTests
         public void GivenArrayList_WhenGetItemsWithinRange_ThenGetRange()
         {
             var arrayList = new ArrayList() { 1, 2, 3, 4, 5 };
-            
+
             var arrayListRange = arrayList.GetRange(1, 3);
 
             Assert.Equal(new ArrayList { 2, 3, 4 }, arrayListRange);

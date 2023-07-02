@@ -11,6 +11,7 @@ This section contains articles about ASP.NET Core Web API related topics.
 - [Implementing API Gateway with Ocelot in ASP.NET Core](https://code-maze.com/aspnetcore-api-gateway-with-ocelot/)
 - [Creating Multiple Resources with a Single Request in ASP.NET Core](https://code-maze.com/aspnetcore-creating-multiple-resources-with-single-request/)
 - [How to Add Custom Headers in ASP.NET Core Web API](https://code-maze.com/aspnetcore-add-custom-headers/)
+- [How to Add a Global Route Prefix in ASP.NET Core](https://code-maze.com/aspnetcore-add-global-route-prefix/)
 - [How to Extract Custom Header in ASP.NET Core Web API](https://code-maze.com/how-to-extract-custom-header-in-asp-net-core-web-api/)
 - [Health Checks in ASP.NET Core](https://code-maze.com/health-checks-aspnetcore/)
 - [How to Block IP Addresses in ASP.NET Core Web API](https://code-maze.com/block-ip-addresses-aspnetcore-webapi/)
