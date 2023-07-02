@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 namespace EntityFrameworkCoreVsDapper.Repositories
 {
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
-    [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByMethod)]
+    [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
     public class PersonsRepository
     {
         private SqlConnection _dbConnection;
@@ -52,6 +52,13 @@ namespace EntityFrameworkCoreVsDapper.Repositories
             {
                 return _context.Persons.Take(personsNumber).ToList();
             }  
+        }
+
+        [IterationCleanup]
+        public void Cleanup()
+        {
+            _dbConnection.Close();
+            _context.Dispose();
         }
     }
 }

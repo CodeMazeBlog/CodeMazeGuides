@@ -8,10 +8,10 @@ public class Program
 {
     static void Main(string[] args)
     {
-        var PersonsRepository = new PersonsRepository();
-        PersonsRepository.GetXPersonsEFCore(1000);
+        var personsRepository = new PersonsRepository();
+        personsRepository.GetXPersonsEFCore(1000);
 
-        PersonsRepository.GetXPersonsDapper(1000);
+        personsRepository.GetXPersonsDapper(1000);
 
         BenchmarkRunner.Run(typeof(Program).Assembly);
     } 
