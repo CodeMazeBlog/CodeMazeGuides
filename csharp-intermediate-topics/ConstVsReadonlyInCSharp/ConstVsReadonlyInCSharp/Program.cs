@@ -15,8 +15,8 @@ public class Program
 
         Console.WriteLine(CircleCalculator.E);
 
-        Console.WriteLine(Values.DateConst);
-        Console.WriteLine(new Values().DateReadonly);
+        Console.WriteLine(Values.ReadonlyValue);
+        Console.WriteLine(Values.ConstValue);
 
         Console.ReadLine();
     }

@@ -2,7 +2,14 @@
 {
     public class Values
     {
-        public const string DateConst = "03/07/2023";
-        public readonly string DateReadonly = "03/07/2023";
+        //V1
+        public const string ConstValue = "Const field of version 1.";
+        //V2
+        //public const string ConstValue = "Const field of version 2.";
+
+        // V1
+        public static readonly string ReadonlyValue = "Readonly field of version 1.";
+        // V2
+        //public static readonly string ReadonlyValue = "Readonly field of version 2.";
     }
 }
