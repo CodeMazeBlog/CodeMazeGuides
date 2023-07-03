@@ -6,8 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuth0WebAppAuthentication(options =>
 {
-    options.Domain = builder.Configuration["Auth0:Domain"];
-    options.ClientId = builder.Configuration["Auth0:ClientId"];
+    options.Domain = builder.Configuration["Auth0:Domain"] ?? string.Empty;
+    options.ClientId = builder.Configuration["Auth0:ClientId"]?? string.Empty;
 });
 
 builder.Services.AddControllersWithViews();
