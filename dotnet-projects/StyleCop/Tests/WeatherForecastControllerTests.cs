@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using StyleCop.Controllers;
 using Xunit;
 
-namespace Tests.cs
+namespace Tests
 {
     public class WeatherForecastControllerTests
     {
