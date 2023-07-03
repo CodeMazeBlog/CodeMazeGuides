@@ -1,4 +1,4 @@
-namespace Auth0UserLogin.Models
+namespace Auth0Login.Models
 {
     public class ErrorViewModel
     {

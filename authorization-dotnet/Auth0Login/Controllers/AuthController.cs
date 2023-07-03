@@ -1,10 +1,10 @@
 ﻿using Auth0.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Auth0UserLogin.Controllers;
+namespace Auth0Login.Controllers;
 
 public class AuthController : Controller
 {

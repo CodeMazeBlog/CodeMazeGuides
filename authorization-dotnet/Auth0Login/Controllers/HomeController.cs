@@ -1,8 +1,8 @@
-﻿using Auth0UserLogin.Models;
+﻿using Auth0Login.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Auth0UserLogin.Controllers
+namespace Auth0Login.Controllers
 {
     public class HomeController : Controller
     {
