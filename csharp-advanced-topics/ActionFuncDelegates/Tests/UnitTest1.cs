@@ -1,6 +1,6 @@
-using ActionFuncDelegates;
+using Microsoft.VisualStudio.TestPlatform.TestHost;
 
-namespace ActionFuncTests
+namespace Tests
 {
 	[TestClass]
 	public class UnitTest1

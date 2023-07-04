@@ -1,33 +1,30 @@
-﻿namespace ActionFuncDelegates
+﻿public class Program
 {
-	public class Program
+	static void Main(string[] args)
 	{
-		static void Main(string[] args)
+		// Example using Action delegate
+		GreetUser("John", (greeting) =>
 		{
-			// Example using Action delegate
-			GreetUser("John", (greeting) =>
-			{
-				Console.WriteLine(greeting);
-			});
+			Console.WriteLine(greeting);
+		});
 
-			// Example using Func delegate
-			int sum = AddNumbers(5, 3, (a, b) =>
-			{
-				return a + b;
-			});
-
-			Console.WriteLine("Sum: " + sum);
-		}
-		public static void GreetUser(string name, Action<string> callback)
+		// Example using Func delegate
+		int sum = AddNumbers(5, 3, (a, b) =>
 		{
-			string greeting = $"Hello, {name}!";
-			callback(greeting);
-		}
+			return a + b;
+		});
 
-		// Func delegate example
-		public static int AddNumbers(int a, int b, Func<int, int, int> calculation)
-		{
-			return calculation(a, b);
-		}
+		Console.WriteLine("Sum: " + sum);
+	}
+	public static void GreetUser(string name, Action<string> callback)
+	{
+		string greeting = $"Hello, {name}!";
+		callback(greeting);
+	}
+
+	// Func delegate example
+	public static int AddNumbers(int a, int b, Func<int, int, int> calculation)
+	{
+		return calculation(a, b);
 	}
 }
