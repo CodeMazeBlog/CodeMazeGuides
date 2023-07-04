@@ -6,7 +6,7 @@ namespace RequiredParametersInBlazor.Tests
     public class AgeCardTests : TestContext
     {
         [Fact]
-        public void WhenYearOfBirthIsSupplied_ThenAgeIsReturned()
+        public void GivenTheYearOfBirth_WhenYearOfBirthIsPassedToComponent_ThenAgeIsReturned()
         {
             // Arrange
             var yearOfBirthInput = 1993;

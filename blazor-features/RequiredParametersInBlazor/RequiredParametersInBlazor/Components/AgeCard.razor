@@ -12,9 +12,9 @@
     // Method that calculates current age from the supplied year of birth
     public int GetAge()
     {
-        DateTime currentYear = DateTime.Now;
-        int year = currentYear.Year;
-        int age = year - YearOfBirthInput;
+        var currentYear = DateTime.Now;
+        var year = currentYear.Year;
+        var age = year - YearOfBirthInput;
 
         return age;
     }
