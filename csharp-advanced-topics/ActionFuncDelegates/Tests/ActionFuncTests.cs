@@ -3,10 +3,10 @@ using Microsoft.VisualStudio.TestPlatform.TestHost;
 namespace Tests
 {
 	[TestClass]
-	public class UnitTest1
+	public class ActionFuncTests
 	{
 		[TestMethod]
-		public void GreetUser_ShouldInvokeCallbackWithCorrectGreeting()
+		public void When_GreetUserWithValidName_Then_InvokeCallbackWithCorrectGreeting()
 		{
 			string name = "John";
 			string expectedGreeting = "Hello, John!";
@@ -23,7 +23,7 @@ namespace Tests
 		}
 
 		[TestMethod]
-		public void AddNumbers_ShouldReturnCorrectSum()
+		public void When_AddNumbersWithValidInputs_Then_ReturnCorrectSum()
 		{
 			// Arrange
 			int a = 5;

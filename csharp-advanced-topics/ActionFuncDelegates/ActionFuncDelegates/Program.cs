@@ -16,6 +16,8 @@
 
 		Console.WriteLine("Sum: " + sum);
 	}
+
+	//Action delegate example
 	public static void GreetUser(string name, Action<string> callback)
 	{
 		string greeting = $"Hello, {name}!";
