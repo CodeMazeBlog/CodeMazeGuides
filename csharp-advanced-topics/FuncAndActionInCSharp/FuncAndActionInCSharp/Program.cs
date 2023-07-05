@@ -43,7 +43,7 @@
             Console.WriteLine("The string length is: " + stringLength);
         }
 
-        static void PrintMessage(string message)
+        private static void PrintMessage(string message)
         {
             Console.WriteLine(message);
         }
