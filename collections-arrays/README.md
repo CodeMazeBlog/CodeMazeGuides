@@ -6,6 +6,7 @@ This section contains the topics about arrays and solving specific problems with
 - [Different Ways to Add Values to a C# Array](https://code-maze.com/add-values-to-csharp-array/)
 - [Check If a String Array Contains a Value and Get Index](https://code-maze.com/csharp-find-index-of-value-in-string-array/)
 - [Compare Arrays in C#](https://code-maze.com/csharp-compare-arrays/)
+- [Converting a Byte Array to Hexadecimal String in C#](https://code-maze.com/csharp-convert-byte-array-to-hexadecimal-string/)
 - [How to Convert String Array to String in C#](https://code-maze.com/csharp-convert-string-array-to-string/)
 - [How to Copy Array Elements to New Array in C#](https://code-maze.com/csharp-copy-array-elements-to-new-array/)
 - [How to Declare an Empty Array in C#](https://code-maze.com/csharp-how-to-declare-an-empty-array/)
