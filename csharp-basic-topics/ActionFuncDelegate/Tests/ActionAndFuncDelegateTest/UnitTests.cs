@@ -17,7 +17,7 @@ namespace ActionAndFuncDelegateTest
         [Fact]
         public void WhenCallDelgateIsCalled_CorrectValueIsPrited()
         {
-            var expected = "Hello world!\r\n";
+            var expected = "Hello world!" + Environment.NewLine;
 
             Program.CallDelegate();
 
@@ -29,7 +29,7 @@ namespace ActionAndFuncDelegateTest
         [Fact]
         public void WhenCallActionIsCalled_CorrectValueIsPrinted()
         {
-            var expected = "Hello world!\r\n";
+            var expected = "Hello world!" + Environment.NewLine;
 
             Program.CallDelegate();
 
