@@ -1,9 +1,9 @@
 namespace FuncAndActionInCSharp.Test
 {
-    public class UnitTest
+    public class FuncUnitTest
     {
         [Fact]
-        public void Test()
+        public void WhenAStringIsPassed_ThenCorrectLengthIsReturned()
         {
             // ARRANGE
             string testString = "Hello World!";
