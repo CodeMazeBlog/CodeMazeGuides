@@ -1,18 +1,14 @@
-﻿namespace DelegateDemo
+﻿namespace ActionAndFuncDelegate
 {
-    internal class Program
+    public class Program
     {
         public delegate void Del(string message);
 
         static void Main(string[] args)
         {
-            Del del = PrintMessage;
+            CallDelegate();
 
-            del("Hello world!");
-
-            Action<string> action = PrintMessage;
-
-            action("Hello world!");
+            CallAction();
 
             string hi = "Hello world!";
 
@@ -34,6 +30,20 @@
             SelectFromList(list, x => x > 10);
 
             Console.ReadKey();
+        }
+
+        public static void CallAction()
+        {
+            Action<string> action = PrintMessage;
+
+            action("Hello world!");
+        }
+
+        public static void CallDelegate()
+        {
+            Del del = PrintMessage;
+
+            del("Hello world!");
         }
 
         public static void PrintMessage(string message)
