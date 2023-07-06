@@ -17,13 +17,13 @@ public partial class StringIsANumberChecker
 
     public static bool UsingRegex(string stringValue)
     {
-        var pattern = @"^-?\d+(?:\.\d+)?$";
+        const string pattern = @"^-?[0-9]+(?:\.[0-9]+)?$";
         var regex = new Regex(pattern);
 
         return regex.IsMatch(stringValue);
     }
     
-    [GeneratedRegex(@"^-?\d+(?:\.\d+)?$")] 
+    [GeneratedRegex(@"^-?[0-9]+(?:\.[0-9]+)?$")] 
     private static partial Regex IsDigitRegex();
     
     public static bool UsingCompiledRegex(string stringValue)
@@ -33,14 +33,14 @@ public partial class StringIsANumberChecker
 
     public static bool UsingCharIsDigit(string stringValue)
     {
-        return stringValue.All(char.IsDigit);
+        return stringValue.All(char.IsAsciiDigit);
     }
 
     public static bool UsingCharIsDigitWithForeach(string stringValue)
     {
         foreach (var c in stringValue)
         {
-            if (!char.IsDigit(c))
+            if (!char.IsAsciiDigit(c))
                 return false;
         }
         return true;
