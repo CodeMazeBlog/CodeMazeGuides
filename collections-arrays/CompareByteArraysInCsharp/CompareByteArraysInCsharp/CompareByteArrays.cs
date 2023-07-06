@@ -2,12 +2,10 @@
 using System.Collections;
 using System.Numerics;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 
 namespace CompareByteArraysInCsharp
 {
     [MemoryDiagnoser]
-    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn]
     public class CompareByteArrays
     {
