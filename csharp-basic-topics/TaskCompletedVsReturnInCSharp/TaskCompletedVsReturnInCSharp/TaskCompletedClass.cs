@@ -1,6 +1,6 @@
 ﻿namespace TaskCompletedVsReturnInCSharp
 {
-    internal class TaskCompletedClass
+    public class TaskCompletedClass
     {
         public Task UseTaskCompletedMethodAsync()
         {
