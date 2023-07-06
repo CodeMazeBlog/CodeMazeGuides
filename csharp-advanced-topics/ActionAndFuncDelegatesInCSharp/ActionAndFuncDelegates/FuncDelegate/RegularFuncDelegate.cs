@@ -1,21 +1,24 @@
+using ActionAndFuncDelegates.Logic;
+
 public partial class FuncDelegateInCSharp
 {
-    private readonly NameValidator nameValidator;
-    public FuncDelegateInCSharp()
+    public readonly Counter counter;
+    public FuncDelegateInCSharp(Counter counter)
     {
-        nameValidator = new();
+        this.counter = counter;
     }
 
-    public void ExecuteWithoutParameter()
+    public bool ExecuteWithoutParameter()
     {
-        Func<bool> validationMethod = nameValidator.IsNameValid; 
-        Console.WriteLine(validationMethod());
+        Func<bool> checkEvenNumberMethod = counter.IsCountEven;
+        return checkEvenNumberMethod();
     }
 
-    public void ExecuteWithParameter()
+    public bool ExecuteWithParameter()
     {
-        Func<string, bool> validationFromParameterMethod = nameValidator.IsNameValid;
-        Console.WriteLine(validationFromParameterMethod("Code Maze from Parameter should return false"));
+        Func<int, bool> greaterthanMethodFromParameter = counter.IsCountGreaterThanValue;
+        return greaterthanMethodFromParameter(20);
+        
     }
 
 }

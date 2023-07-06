@@ -1,17 +1,17 @@
 public partial class FuncDelegateInCSharp
 {
-    public void ExecuteWithoutParameterUsingAnonymousMethod()
+    public bool ExecuteWithoutParameterUsingAnonymousMethod()
     {
-        Func<bool> validationMethodUsingAnonymousMethod 
-                =  delegate(){return nameValidator.IsNameValid();} ;  
-        Console.WriteLine(validationMethodUsingAnonymousMethod());
+        Func<bool> checkEvenNumberMethodUsingAnonymousMethod
+                =  delegate(){return counter.IsCountEven();} ;
+         return checkEvenNumberMethodUsingAnonymousMethod();
     }
 
-    public void ExecuteWithParameterUsingAnonymousMethod()
+    public bool ExecuteWithParameterUsingAnonymousMethod()
     {
-       Func<string, bool> validationFromParameterMethodUsingAnonymousMethod 
-            = delegate(string name){return nameValidator.IsNameValid(name);} ;
-        Console.WriteLine(validationFromParameterMethodUsingAnonymousMethod("Code Maze from Parameter should return false"));
+       Func<int, bool> greaterthanMethodFromParameterUsingAnonymousMethod
+            = delegate(int value){ return counter.IsCountGreaterThanValue(value); } ;
+        return greaterthanMethodFromParameterUsingAnonymousMethod(30);
     }
 
 }

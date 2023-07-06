@@ -2,14 +2,14 @@ public partial  class ActionDelegateInCSharp
 {
      public void ExecuteWithoutParameterUsingAnonymousMethod()
     {
-        Action showMethodUsingAnonymousMethod = delegate(){nameDisplay.DisplayValue();};
-        showMethodUsingAnonymousMethod();
+        Action incrementMethodUsingAnonymousMethod = delegate(){counter.Increment();};
+        incrementMethodUsingAnonymousMethod();
     }
 
     public void ExecuteWithParameterUsingAnonymousMethod()
     {
-        Action<string> showMethodWithParameterUsingAnonymousMethod 
-            = delegate(string name){nameDisplay.DisplayValue(name);};
-        showMethodWithParameterUsingAnonymousMethod("Code Maze from Parameters using Anonymous Method");
+        Action<int> incrementMethodWithParameterUsingAnonymousMethod
+            = delegate(int value){counter.IncrementBy(value);};
+        incrementMethodWithParameterUsingAnonymousMethod(20);
     }
 }

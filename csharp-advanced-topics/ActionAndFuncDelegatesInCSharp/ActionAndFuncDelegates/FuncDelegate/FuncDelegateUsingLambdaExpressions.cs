@@ -1,16 +1,18 @@
    public partial class FuncDelegateInCSharp
 {
-   public void ExecuteWithoutParameterUsingLambdaExpressions()
+   public bool ExecuteWithoutParameterUsingLambdaExpressions()
     {
-        Func<bool> validationMethodUsingLambdaExpression 
-                =  delegate(){return nameValidator.IsNameValid();} ; 
-        Console.WriteLine(validationMethodUsingLambdaExpression());
+        Func<bool> checkEvenNumberMethodUsingLambdaExpression
+                = () => counter.IsCountEven() ;
+
+         return checkEvenNumberMethodUsingLambdaExpression();
     }
 
-    public void ExecuteWithParameterUsingLambdaExpressions()
+    public bool ExecuteWithParameterUsingLambdaExpressions()
     {
-      Func<string, bool> validationFromParameterMethodUsingLambdaExpression 
-            = delegate(string name){return nameValidator.IsNameValid(name);} ;
-        Console.WriteLine(validationFromParameterMethodUsingLambdaExpression("Code Maze from Parameter should return false"));
+      Func<int, bool> greaterthanMethodFromParameterUsingLambdaExpression 
+            = value => counter.IsCountGreaterThanValue(value) ;
+
+         return greaterthanMethodFromParameterUsingLambdaExpression(30);
     }
 }

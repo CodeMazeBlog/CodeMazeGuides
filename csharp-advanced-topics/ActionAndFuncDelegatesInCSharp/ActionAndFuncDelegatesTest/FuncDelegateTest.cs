@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ActionAndFuncDelegates.Logic;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,77 +10,115 @@ namespace ActionAndFuncDelegatesTest
 {
     public  class FuncDelegateTest
     {
-        private readonly FuncDelegateInCSharp sut;
+        private  FuncDelegateInCSharp sut;
 
-        public FuncDelegateTest()
+
+        [Fact]
+        public void ExecuteWithoutParameter_ShouldReturnTrueIfNumberIsEven()
         {
-            sut = new();
+            sut = new(new Counter(10));
+            var output = sut.ExecuteWithoutParameter();
+
+            Assert.True(output);
         }
 
         [Fact]
-        public void ExecuteWithoutParameter_ShouldPrintToConsole()
+        public void ExecuteWithoutParameter_ShouldReturnFalseIfNumberIsNotEven()
         {
-            StringWriter sw = new();
-            Console.SetOut(sw);
+            sut = new(new Counter(9));
+            var output = sut.ExecuteWithoutParameter();
 
-            sut.ExecuteWithoutParameter();
-
-            Assert.Equal("True\r\n", sw.ToString());
+            Assert.False(output);
         }
 
         [Fact]
-        public void ExecuteWithParameter_ShouldPrintToConsole()
+        public void ExecuteWithParameter_ShouldReturnTrueIfCountIsGreaterThanValue()
         {
-            StringWriter sw = new();
-            Console.SetOut(sw);
+            sut = new(new Counter(40));
+            var output = sut.ExecuteWithParameter();
 
-            sut.ExecuteWithParameter();
-
-            Assert.Equal("False\r\n", sw.ToString());
+            Assert.True(output);
         }
 
         [Fact]
-        public void ExecuteWithoutParameterUsingAnonymousMethod_ShouldPrintToConsole()
+        public void ExecuteWithParameter_ShouldReturnFalseIfCountIsNotGreaterThanValue()
         {
-            StringWriter sw = new();
-            Console.SetOut(sw);
+            sut = new(new Counter(20));
+            var output = sut.ExecuteWithParameter();
 
-            sut.ExecuteWithoutParameterUsingAnonymousMethod();
-
-            Assert.Equal("True\r\n", sw.ToString());
+            Assert.False(output);
         }
 
         [Fact]
-        public void ExecuteWithParameterUsingAnonymousMethod_ShouldPrintToConsole()
+        public void ExecuteWithoutParameterUsingAnonymousMethod_ShouldReturnTrueIfNumberIsEven()
         {
-            StringWriter sw = new();
-            Console.SetOut(sw);
-
-            sut.ExecuteWithParameterUsingAnonymousMethod();
-
-            Assert.Equal("False\r\n", sw.ToString());
+            sut = new(new Counter(10));           
+            var output = sut.ExecuteWithoutParameterUsingAnonymousMethod();
+            
+            Assert.True(output);
         }
 
         [Fact]
-        public void ExecuteWithoutParameterUsingLambdaExpressions_ShouldPrintToConsole()
+        public void ExecuteWithoutParameterUsingAnonymousMethod_ShouldReturnFalseIfNumberNotIsEven()
         {
-            StringWriter sw = new();
-            Console.SetOut(sw);
+            sut = new(new Counter(9));
+            var output = sut.ExecuteWithoutParameterUsingAnonymousMethod();
 
-            sut.ExecuteWithoutParameterUsingLambdaExpressions();
-
-            Assert.Equal("True\r\n", sw.ToString());
+            Assert.False(output);
         }
 
         [Fact]
-        public void ExecuteWithParameterUsingLambdaExpressions_ShouldPrintToConsole()
+        public void ExecuteWithParameterUsingAnonymousMethod_ShouldReturnTrueIfCountIsGreaterThanValue()
         {
-            StringWriter sw = new();
-            Console.SetOut(sw);
+            sut = new(new Counter(40));
+            var output = sut.ExecuteWithParameterUsingAnonymousMethod();
 
-            sut.ExecuteWithParameterUsingLambdaExpressions();
+            Assert.True(output);
+        }
 
-            Assert.Equal("False\r\n", sw.ToString());
+        [Fact]
+        public void ExecuteWithParameterUsingAnonymousMethod_ShouldReturnFalseIfCountIsNotGreaterThanValue()
+        {
+            sut = new(new Counter(20));
+            var output = sut.ExecuteWithParameterUsingAnonymousMethod();
+
+            Assert.False(output);
+        }
+
+        [Fact]
+        public void ExecuteWithoutParameterUsingLambdaExpressions_ShouldReturnTrueIfNumberIsEven()
+        {
+            sut = new(new Counter(10));
+            var output = sut.ExecuteWithoutParameterUsingLambdaExpressions();
+
+            Assert.True(output);
+        }
+
+        [Fact]
+        public void ExecuteWithoutParameterUsingLambdaExpressions_ShouldReturnFalseIfNumberIsNotEven()
+        {
+            sut = new(new Counter(9));
+            var output = sut.ExecuteWithoutParameterUsingLambdaExpressions();
+
+            Assert.False(output);
+        }
+
+        [Fact]
+        public void ExecuteWithParameterUsingLambdaExpressions_ShouldReturnTrueIfCountIsGreaterThanValue()
+        {
+            sut = new(new Counter(40));
+            var output = sut.ExecuteWithParameterUsingLambdaExpressions();
+
+            Assert.True(output);
+        }
+
+        [Fact]
+        public void ExecuteWithParameterUsingLambdaExpressions_ShouldReturnFalseIfCountIsNotGreaterThanValue()
+        {
+            sut = new(new Counter(20));
+            var output = sut.ExecuteWithParameterUsingLambdaExpressions();
+
+            Assert.False(output);
         }
     }
 }

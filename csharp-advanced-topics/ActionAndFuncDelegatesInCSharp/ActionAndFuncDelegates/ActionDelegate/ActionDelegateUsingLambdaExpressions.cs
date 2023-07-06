@@ -3,13 +3,13 @@ public partial  class ActionDelegateInCSharp
     
      public void ExecuteWithoutParameterUsingLambdaExpressions()
     {
-        Action showMethodUsingLambdaExpression = () => nameDisplay.DisplayValue();
-        showMethodUsingLambdaExpression();
+        Action incrementMethodUsingLambdaExpression = () => counter.Increment();
+        incrementMethodUsingLambdaExpression();
     }
 
     public void ExecuteWithParameterUsingLambdaExpressions()
     {
-        Action<string> showMethodWithParameterUsingLambdaExpression = name => nameDisplay.DisplayValue(name);
-        showMethodWithParameterUsingLambdaExpression("Code Maze from Parameters using Lambda Expressions");
+        Action<int> incrementMethodWithParameterUsingLambdaExpression = value => counter.IncrementBy(value);
+        incrementMethodWithParameterUsingLambdaExpression(20);
     }
 }

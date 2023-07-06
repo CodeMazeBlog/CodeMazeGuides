@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ActionAndFuncDelegates.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,82 +9,67 @@ namespace ActionAndFuncDelegatesTest
 {
     public class ActionDelegateTest
     {
-        private readonly ActionDelegateInCSharp sut;
-        public ActionDelegateTest()
-        {
-            sut = new();
-        }
+        private ActionDelegateInCSharp sut;
 
-        [Fact]
-        public void ExecuteWithoutParameter_ShouldPrintToConsole()
+        [Theory]
+        [InlineData(10, 11)]
+        public void ExecuteWithoutParameter_ShouldReturnNumberWithIncrementOfOne(int testvalue, int expected)
         {
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
+            sut = new(new Counter(testvalue));
             sut.ExecuteWithoutParameter();
 
-            var output = sw.ToString();
-            Assert.Equal("Code Maze\r\n", output);
+            Assert.Equal(expected, sut.counter.Count);
         }
 
-        [Fact]
-        public void ExecuteWithParameter_ShouldPrintToConsole()
+        [Theory]
+        [InlineData(10, 30)]
+        public void ExecuteWithParameter_ShouldReturnNumberWithIncrementOftwenty(int testvalue, int expected)
         {
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
+            sut = new(new Counter(testvalue));
             sut.ExecuteWithParameter();
 
-            var output = sw.ToString();
-            Assert.Equal("Code Maze from Parameters\r\n", output);
+            Assert.Equal(expected, sut.counter.Count);
         }
 
-        [Fact]
-        public void ExecuteWithoutParameterUsingAnonymousMethod_ShouldPrintToConsole()
+        [Theory]
+        [InlineData(10, 11)]
+        public void ExecuteWithoutParameterUsingAnonymousMethod_ShouldReturnNumberWithIncrementOfOne(int testvalue, int expected)
         {
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
+            sut = new(new Counter(testvalue));
             sut.ExecuteWithoutParameterUsingAnonymousMethod();
 
-            var output = sw.ToString();
-            Assert.Equal("Code Maze\r\n", output);
+            Assert.Equal(expected, sut.counter.Count);
         }
 
-        [Fact]
-        public void ExecuteWithParameterUsingAnonymousMethod_ShouldPrintToConsole()
+        [Theory]
+        [InlineData(10, 30)]
+        public void ExecuteWithParameterUsingAnonymousMethod_ShouldReturnNumberWithIncrementOftwenty(int testvalue, int expected)
         {
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
+            sut = new(new Counter(testvalue));
             sut.ExecuteWithParameterUsingAnonymousMethod();
 
-            var output = sw.ToString();
-            Assert.Equal("Code Maze from Parameters using Anonymous Method\r\n", output);
+            Assert.Equal(expected, sut.counter.Count);
         }
 
-        [Fact]
-        public void ExecuteWithoutParameterUsingLambdaExpressions_ShouldPrintToConsole()
+        [Theory]
+        [InlineData(10, 11)]
+        public void ExecuteWithoutParameterUsingLambdaExpressions_ShouldReturnNumberWithIncrementOfOne(int testvalue, int expected)
         {
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
 
+            sut = new(new Counter(testvalue));
             sut.ExecuteWithoutParameterUsingLambdaExpressions();
 
-            var output = sw.ToString();
-            Assert.Equal("Code Maze\r\n", output);
+            Assert.Equal(expected, sut.counter.Count);
         }
 
-        [Fact]
-        public void ExecuteWithParameterUsingLambdaExpressions_ShouldPrintToConsole()
+        [Theory]
+        [InlineData(10, 30)]
+        public void ExecuteWithParameterUsingLambdaExpressions_ShouldReturnNumberWithIncrementOftwenty(int testvalue, int expected)
         {
-            StringWriter sw = new StringWriter();
-            Console.SetOut(sw);
-
+            sut = new(new Counter(testvalue));
             sut.ExecuteWithParameterUsingLambdaExpressions();
 
-            var output = sw.ToString();
-            Assert.Equal("Code Maze from Parameters using Lambda Expressions\r\n", output);
+            Assert.Equal(expected, sut.counter.Count);
         }
     }
 }

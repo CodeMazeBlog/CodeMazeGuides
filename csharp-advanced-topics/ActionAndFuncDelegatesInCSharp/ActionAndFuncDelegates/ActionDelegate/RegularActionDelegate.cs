@@ -1,21 +1,23 @@
+using ActionAndFuncDelegates.Logic;
+
 public partial  class ActionDelegateInCSharp
 {
-    private readonly NameDisplay nameDisplay;
-    public ActionDelegateInCSharp()
+    public readonly Counter counter;
+    public ActionDelegateInCSharp(Counter counter)
     {
-        nameDisplay = new();
+        this.counter = counter;
     }
 
     public void ExecuteWithoutParameter()
     {
-        Action showMethod = nameDisplay.DisplayValue; 
-        showMethod();
+        Action incrementMethod = counter.Increment;
+        incrementMethod();
     }
 
     public void ExecuteWithParameter()
     {
-        Action<string> showMethodWithParameter = nameDisplay.DisplayValue;
-        showMethodWithParameter("Code Maze from Parameters");
+        Action<int> incrementMethodWithParameter = counter.IncrementBy;
+        incrementMethodWithParameter(20);
     }
-   
+
 }
