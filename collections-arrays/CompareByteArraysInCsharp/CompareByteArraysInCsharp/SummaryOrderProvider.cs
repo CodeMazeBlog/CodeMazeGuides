@@ -3,9 +3,7 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 
 namespace CompareByteArraysInCsharp
 {
