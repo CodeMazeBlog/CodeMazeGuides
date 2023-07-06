@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TaskCompletedVsReturnInCSharp\TaskCompletedVsReturnInCSharp.csproj" />
+    <ProjectReference Include="..\TaskCompletedVsReturnInCSharp\TaskCompletedVsReturnInCSharp.csproj" />
   </ItemGroup>
 
 </Project>
