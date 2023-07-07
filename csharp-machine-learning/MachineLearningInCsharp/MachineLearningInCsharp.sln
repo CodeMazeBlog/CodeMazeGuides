@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineLearningInCsharpTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineLearningInCsharpEngine", "MachineLearningInCsharpEngine\MachineLearningInCsharpEngine.csproj", "{F2636091-9C4B-4B10-A0F9-EA4C8ED59510}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML_NET_ModelBuilderDemo", "ML_NET_ModelBuilderDemo\ML_NET_ModelBuilderDemo.csproj", "{BDF99A82-F5BB-4053-9994-60935B0B1E36}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MLModel1_DemoConsoleApp", "MLModel1_DemoConsoleApp\MLModel1_DemoConsoleApp.csproj", "{A77AC0D8-A6D9-4AFE-AD61-D143B1ADAA5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{F2636091-9C4B-4B10-A0F9-EA4C8ED59510}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2636091-9C4B-4B10-A0F9-EA4C8ED59510}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2636091-9C4B-4B10-A0F9-EA4C8ED59510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDF99A82-F5BB-4053-9994-60935B0B1E36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF99A82-F5BB-4053-9994-60935B0B1E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDF99A82-F5BB-4053-9994-60935B0B1E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDF99A82-F5BB-4053-9994-60935B0B1E36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A77AC0D8-A6D9-4AFE-AD61-D143B1ADAA5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A77AC0D8-A6D9-4AFE-AD61-D143B1ADAA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A77AC0D8-A6D9-4AFE-AD61-D143B1ADAA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A77AC0D8-A6D9-4AFE-AD61-D143B1ADAA5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
