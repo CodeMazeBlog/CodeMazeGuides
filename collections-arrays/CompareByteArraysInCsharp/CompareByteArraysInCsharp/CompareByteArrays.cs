@@ -1,4 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Order;
 using System.Collections;
 using System.Numerics;
 using System.Runtime.InteropServices;
@@ -7,6 +9,8 @@ namespace CompareByteArraysInCsharp
 {
     [MemoryDiagnoser]
     [RankColumn]
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
+    [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
     public class CompareByteArrays
     {
         private readonly Random _rand;
