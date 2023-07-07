@@ -7,7 +7,7 @@
 
     // Demonstrates how a parent component can supply required parameters
     [Parameter, EditorRequired]
-    public int YearOfBirthInput { get; set; }
+    public int? YearOfBirthInput { get; set; }
 
     // Method that calculates current age from the supplied year of birth
     public int GetAge()
@@ -16,6 +16,6 @@
         var year = currentYear.Year;
         var age = year - YearOfBirthInput;
 
-        return age;
+        return (int)age;
     }
 }
