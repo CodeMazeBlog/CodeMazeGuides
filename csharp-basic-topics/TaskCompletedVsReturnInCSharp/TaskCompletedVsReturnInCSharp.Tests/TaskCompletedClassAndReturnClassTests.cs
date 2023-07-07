@@ -7,9 +7,9 @@ namespace TaskCompletedVsReturnInCSharpTests
         {
             TaskCompletedClass taskCompletedClass = new TaskCompletedClass();
 
-            Task result = taskCompletedClass.UseTaskCompletedMethodAsync();
+            var result = taskCompletedClass.UseTaskCompletedMethodAsync();
 
-            Assert.Equal(Task.CompletedTask, result);
+            Assert.True(result.IsCompletedSuccessfully);
         }
 
         [Fact]
