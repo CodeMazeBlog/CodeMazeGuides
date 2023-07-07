@@ -24,16 +24,16 @@ namespace SagaPattern
 
             builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 
-            builder.Host.UseNServiceBus(context =>
-            {
-                var endpointConfiguration = new EndpointConfiguration("OrderEndpoint");
-                var transport = endpointConfiguration.UseTransport<LearningTransport>();
-                var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
-                var routing = transport.Routing();
-                routing.RouteToEndpoint(typeof(StartOrder), "OrderEndpoint");
+        builder.Host.UseNServiceBus(context =>
+        {
+            var endpointConfiguration = new EndpointConfiguration("OrderEndpoint");
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+            var routing = transport.Routing();
+            routing.RouteToEndpoint(typeof(StartOrder), "OrderEndpoint");
 
-                return endpointConfiguration;
-            });
+            return endpointConfiguration;
+        });
             
             var app = builder.Build();
 
