@@ -5,7 +5,7 @@ namespace FixUnableToResolveServiceIssue.Services
 {
     public class UserService : IUserService
     {
-        public User? GetUser()
+        public User GetUser()
         {
             return new User
             {
