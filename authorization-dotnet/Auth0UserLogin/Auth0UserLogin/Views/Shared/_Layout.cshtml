@@ -29,7 +29,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li><a id="qsLogoutBtn" asp-controller="Auth" asp-action="Logout">Logout</a></li>
+                            <li class="py-2 m-2"><a asp-controller="Auth" asp-action="Profile">Hello @User.Identity.Name!</a></li>
+                            <li class="py-2 m-2"><a id="qsLogoutBtn" asp-controller="Auth" asp-action="Logout">Logout</a></li>
                         }
                         else
                         {
