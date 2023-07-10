@@ -1,6 +1,4 @@
 ﻿using FixUnableToResolveServiceIssue.Interfaces;
-using FixUnableToResolveServiceIssue.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FixUnableToResolveServiceIssue.Controllers
@@ -23,6 +21,7 @@ namespace FixUnableToResolveServiceIssue.Controllers
         public IActionResult GetUser()
         {
             var user = _userService.GetUser();
+
             return Ok(user);
         }
     }

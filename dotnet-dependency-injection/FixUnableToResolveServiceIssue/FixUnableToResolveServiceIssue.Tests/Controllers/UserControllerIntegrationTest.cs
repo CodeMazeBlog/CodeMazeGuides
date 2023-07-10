@@ -1,19 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 using FixUnableToResolveServiceIssue.Models;
+using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace FixUnableToResolveServiceIssue.Tests.Controllers
 {
-    internal class UserControllerIntegrationTest : BaseIntegrationTest
+    internal class UserControllerIntegrationTest
     {
+        private readonly HttpClient _httpClient;
+        public UserControllerIntegrationTest()
+        {
+            var application = new WebApplicationFactory<Program>();
+            _httpClient = application.CreateClient();
+        }
+
         [Test]
-        public async Task WhenInvokingGet_ReturnsStatusCode500()
+        public async Task WhenInvokingGet_ReturnsStatusCode200()
         {
             //Arrange
             const int expectedId = 1;
@@ -21,7 +23,7 @@ namespace FixUnableToResolveServiceIssue.Tests.Controllers
             const string expectedLastName = "Maze";
 
             //Act
-            var response = await httpClient.GetAsync("/api/User");
+            var response = await _httpClient.GetAsync("/api/User");
             var responseBody = await response.Content.ReadFromJsonAsync<User>();
 
             //Assert
