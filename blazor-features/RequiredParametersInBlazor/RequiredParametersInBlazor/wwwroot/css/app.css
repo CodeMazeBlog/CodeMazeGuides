@@ -99,3 +99,12 @@ a, .btn-link {
     .loading-progress-text:after {
         content: var(--blazor-load-percentage-text, "Loading");
     }
+
+.box-custom {
+    color: #41464b;
+    background-color: #e2e3e5;
+    border-color: #d3d6d8;
+    border-radius: 0.4rem;
+    width: 50%;
+    padding: 1.2rem;
+}
