@@ -2,7 +2,7 @@
 {
     public record ApiData
     {
-        public int Id { get; set; }
+        public int Id { get; init; }
     }
 
     public record OtherApiData(string Id);
