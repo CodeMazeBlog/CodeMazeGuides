@@ -1,45 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DelegatesInCsharp
 {
-	delegate void PrintMessage(string text);
-	delegate T Print<T>(T param1);
-
 	class Program
 	{
-		public static void WriteText(string text) => Console.WriteLine($"Text: {text}");
-		public static void ReverseWriteText(string text) => Console.WriteLine($"Text in reverse: {Reverse(text)}");
-		public static string ReverseText(string text) => Reverse(text);
-
-		private static string Reverse(string s)
-		{
-			char[] charArray = s.ToCharArray();
-			Array.Reverse(charArray);
-			return new string(charArray);
-		}
-
 		static void Main(string[] args)
 		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseWriteText);
-			// with + sign
-			var multicastDelegate = delegate1 + delegate2;
+            Action<int> printSquare = (x) =>
+            {
+                int square = x * x;
+                Console.WriteLine(square);
+            };
 
-			// with =, +=, and -=
-			multicastDelegate = delegate1;
-			multicastDelegate += delegate2;
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            numbers.ForEach(printSquare);
 
-			multicastDelegate.Invoke("Go ahead, make my day.");
-			multicastDelegate("You're gonna need a bigger boat.");
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
 
-			var delegate3 = new Print<string>(ReverseText);
-			Console.WriteLine(delegate3("I'll be back."));
+            Func<int, bool> isEven = (x) => x % 2 == 0;
 
-			// comment out other stuff
-			Action<string> executeReverseWriteAction = ReverseWriteText;
-			executeReverseWriteAction("Are you not entertained?");
-			Func<string, string> executeReverseFunc = ReverseText;
-			Console.WriteLine(executeReverseFunc("Are you not entertained?"));
-		}
-	}
+            List<int> evenNumbers = numbers.Where(isEven).ToList();
+
+            foreach (int number in evenNumbers)
+            {
+                Console.WriteLine(number);
+            }
+            Console.ReadLine();
+
+        }
+    }
 }

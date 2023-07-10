@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace Tests
 {
@@ -9,86 +10,41 @@ namespace Tests
 	[TestClass]
 	public class Tests
 	{
-		public static string WriteText(string text) { return $"Text:{text}"; }
-		public static string ReverseText(string text) { return Reverse(text); }
-		public static void ReverseWriteText(string text) { Console.WriteLine(Reverse(text)); }
-
-		private static string Reverse(string s)
-		{
-			char[] charArray = s.ToCharArray();
-			Array.Reverse(charArray);
-			return new string(charArray);
-		}
-
+		
 		[TestMethod]
-		public void whenStringIsSent_DelegateExecutesTheReferencedMethod()
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var result = delegate1("You're gonna need a bigger boat.");
-			Assert.AreEqual("Text:You're gonna need a bigger boat.", result);
-		}
+        public void Test_PrintSquare_WhenCalled_PrintsSquareOfEachNumber()
+        {
+            // Arrange
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            List<int> expectedSquares = new List<int> { 1, 4, 9, 16, 25 };
+            List<int> actualSquares = new List<int>();
 
-		[TestMethod]
-		public void whenStringIsSent_DelegateReturnsTheReversedString()
-		{
-			var delegate1 = new PrintMessage(ReverseText);
-			var result = delegate1("You're gonna need a bigger boat.");
-			Assert.AreEqual(Reverse("You're gonna need a bigger boat."), result);
-		}
+            Action<int> printSquare = (x) =>
+            {
+                int square = x * x;
+                actualSquares.Add(square);
+            };
 
-		[TestMethod]
-		public void givenMulticastDelegate_whenTwoReferencedMethodAndPlusSign_DelegateInvocationListContainsTwoMethods()
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseText);
-			var multicastDelegate = delegate1 + delegate2;
+            // Act
+            numbers.ForEach(printSquare);
 
-			var invocationList = multicastDelegate.GetInvocationList();
+            // Assert
+            CollectionAssert.AreEqual(expectedSquares, actualSquares);
+        }
+        [TestMethod]
+        public void Test_GetEvenNumbers()
+        {
+            // Arrange
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            List<int> expectedEvenNumbers = new List<int> { 2, 4 };
 
-			Assert.AreEqual(invocationList.Length, 2);
-			Assert.AreEqual(invocationList[0].Method.Name, "WriteText");
-			Assert.AreEqual(invocationList[1].Method.Name, "ReverseText");
-		}
+            Func<int, bool> isEven = (x) => x % 2 == 0;
 
-		[TestMethod]
-		public void givenMulticastDelegate_whenTwoReferencedMethodAndPlusEquals_DelegateInvocationListContainsTwoMethods()
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseText);
-			var multicastDelegate = delegate1;
-			multicastDelegate += delegate2;
+            // Act
+            List<int> evenNumbers = numbers.Where(isEven).ToList();
 
-			var invocationList = multicastDelegate.GetInvocationList();
-
-			Assert.AreEqual(invocationList.Length, 2);
-			Assert.AreEqual(invocationList[0].Method.Name, "WriteText");
-			Assert.AreEqual(invocationList[1].Method.Name, "ReverseText");
-		}
-
-		[TestMethod]
-		public void whenGenericDelegate_DelegateExecutesTheReferencedMethod()
-		{
-			var delegate1 = new Print<string>(ReverseText);
-			
-			var result = delegate1("You're gonna need a bigger boat.");
-
-			Assert.AreEqual(Reverse("You're gonna need a bigger boat."), result);
-		}
-
-		[TestMethod]
-		public void whenActionDelegate_DelegateInvocationListNotEmpty()
-		{
-			Action<string> executeReverseWriteAction = ReverseWriteText;
-			var invocationList = executeReverseWriteAction.GetInvocationList();
-			Assert.AreEqual(invocationList.Length, 1);
-		}
-
-		[TestMethod]
-		public void whenFuncDelegate_DelegateInvocationListNotEmpty()
-		{
-			Func<string, string> executeReverseWriteAction = ReverseText;
-			var invocationList = executeReverseWriteAction.GetInvocationList();
-			Assert.AreEqual(invocationList.Length, 1);
-		}
-	}
+            // Assert
+            CollectionAssert.AreEqual(expectedEvenNumbers, evenNumbers);
+        }
+    }
 }
