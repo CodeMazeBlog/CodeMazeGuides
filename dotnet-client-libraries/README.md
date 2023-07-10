@@ -6,6 +6,7 @@ This section contains the topics about the client libraries in .NET.
 
 - [AutoMapper vs Mapster in .NET](https://code-maze.com/automapper-vs-mapster-dotnet/)
 - [Memory Allocation Optimization With BenchmarkDotNet](https://code-maze.com/csharp-memory-allocation-optimization-with-benchmarkdotnet/)
+- [How to Integrate BenchmarkDotNet With Unit Tests](https://code-maze.com/how-to-integrate-benchmarkdotnet-with-unit-tests/)
 - [Realistic Data Generation in .NET With Bogus](https://code-maze.com/data-generation-bogus-dotnet/)
 - [Google Sheets API with .NET Core](https://code-maze.com/google-sheets-api-with-net-core/)
 - [Introduction to Firebase in .NET](https://code-maze.com/dotnet-firebase/)
