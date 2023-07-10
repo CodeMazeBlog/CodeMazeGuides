@@ -1,0 +1,72 @@
+[
+  {
+    "Id": 1,
+    "Title": "The Witcher 3: Wild Hunt",
+    "Genre": "Action RPG",
+    "Platform": "PlayStation 4",
+    "ReleaseYear": 2015
+  },
+  {
+    "Id": 2,
+    "Title": "Red Dead Redemption 2",
+    "Genre": "Action Adventure",
+    "Platform": "Xbox One",
+    "ReleaseYear": 2018
+  },
+  {
+    "Id": 3,
+    "Title": "The Legend of Zelda: Breath of the Wild",
+    "Genre": "Action Adventure",
+    "Platform": "Nintendo Switch",
+    "ReleaseYear": 2017
+  },
+  {
+    "Id": 4,
+    "Title": "God of War",
+    "Genre": "Action Adventure",
+    "Platform": "PlayStation 4",
+    "ReleaseYear": 2018
+  },
+  {
+    "Id": 5,
+    "Title": "Assassin's Creed Valhalla",
+    "Genre": "Action RPG",
+    "Platform": "PC",
+    "ReleaseYear": 2020
+  },
+  {
+    "Id": 6,
+    "Title": "Halo Infinite",
+    "Genre": "First-person shooter",
+    "Platform": "Xbox Series X/S",
+    "ReleaseYear": 2021
+  },
+  {
+    "Id": 7,
+    "Title": "Cyberpunk 2077",
+    "Genre": "Action RPG",
+    "Platform": "PC",
+    "ReleaseYear": 2020
+  },
+  {
+    "Id": 8,
+    "Title": "Super Mario Odyssey",
+    "Genre": "Platform",
+    "Platform": "Nintendo Switch",
+    "ReleaseYear": 2017
+  },
+  {
+    "Id": 9,
+    "Title": "Call of Duty: Warzone",
+    "Genre": "Battle royale",
+    "Platform": "PlayStation 5",
+    "ReleaseYear": 2020
+  },
+  {
+    "Id": 10,
+    "Title": "Minecraft",
+    "Genre": "Sandbox",
+    "Platform": "Multiplatform",
+    "ReleaseYear": 2011
+  }
+]

@@ -14,6 +14,7 @@ This section contains the topics considered intermediate level in C#.
 - [DataTable Class in C#](https://code-maze.com/csharp-datatable-class/)
 - [Deep Copy of an Object in C#](https://code-maze.com/csharp-deep-copy-of-object/)
 - [Difference Between ValueTuple and Tuple in C#](https://code-maze.com/csharp-valuetuple-vs-tuple/)
+- [Discriminated Unions in C# With OneOf](https://code-maze.com/csharp-discriminated-unions-with-oneof/)
 - [What is the Difference Between a DTO and a POCO?](https://code-maze.com/difference-dto-poco/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/enumerate-enum-csharp/)
 - [How to Convert DataTable to JSON in C#](https://code-maze.com/convert-datatable-json-csharp/)
