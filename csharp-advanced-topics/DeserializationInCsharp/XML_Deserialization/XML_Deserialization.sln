@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XML_Deserialization", "XML_Deserialization\XML_Deserialization.csproj", "{94E55751-75BF-4D8A-B0F2-D6ACF1E7CB5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeserializationTests", "DeserializationTests\DeserializationTests.csproj", "{B3311F20-CAA6-4D85-B045-9885FA71104C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94E55751-75BF-4D8A-B0F2-D6ACF1E7CB5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E55751-75BF-4D8A-B0F2-D6ACF1E7CB5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E55751-75BF-4D8A-B0F2-D6ACF1E7CB5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E55751-75BF-4D8A-B0F2-D6ACF1E7CB5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3311F20-CAA6-4D85-B045-9885FA71104C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3311F20-CAA6-4D85-B045-9885FA71104C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3311F20-CAA6-4D85-B045-9885FA71104C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3311F20-CAA6-4D85-B045-9885FA71104C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E30BCD87-57ED-45C0-AA53-6B789221B74E}
+	EndGlobalSection
+EndGlobal
