@@ -21,6 +21,9 @@ public class CustomersController : ControllerBase
         var fullName = string.Join(' ', user.FirstName, user.LastName);
         var customerId = Random.Shared.Next(1000);
 
-        return Created($"/Customers/{customerId}",_customerService.CreateCustomer(customerId, fullName));
+        return Created(
+            $"/Customers/{customerId}",
+            _customerService.CreateCustomer(customerId, fullName)
+        );
     }
 }
