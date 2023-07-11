@@ -8,17 +8,17 @@ public class Program
 {
     public static void Main()
     {
-        string[] fruits = { "Banana", "Mango", "Raspberry", "Guava", "Papaya", "Cranberry", "Apple", "Plum", "Grapes", "Blueberry", "Pineapple", "Strawberry" };
+        string[] inputStr = { "Banana", "Mango", "Raspberry", "Guava", "Papaya", "Cranberry", "Apple", "Plum", "Grapes", "Blueberry", "Pineapple", "Strawberry" };
         string subStr = "berry";
 
-        FuncDelegates funcDel = new FuncDelegates(fruits, subStr);
-        funcDel.FuncDelegateWithParameterlessMethod();
+        FuncDelegates funcDel = new(inputStr, subStr);
+        FuncDelegates.FuncDelegateWithParameterlessMethod();
         funcDel.FuncDelegateWithParameterizedMethod();
         funcDel.FuncDelegateWithAnonymousMethod();
         funcDel.FuncDelegateWithLambdaExpression();
 
-        ActionDelegates actionDel = new ActionDelegates(fruits, subStr);
-        actionDel.ActionDelegateParameterlessMethod();
+        ActionDelegates actionDel = new(inputStr, subStr);
+        ActionDelegates.ActionDelegateParameterlessMethod();
         actionDel.ActionDelegateWithParameterizedMethod();
         actionDel.ActionDelegateWithAnonymousMethod();
         actionDel.ActionDelegateWithLambdaExpression();

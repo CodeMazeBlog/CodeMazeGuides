@@ -1,4 +1,5 @@
 using ActionAndFuncDelegates;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace Tests
 {
@@ -21,7 +22,7 @@ namespace Tests
 
             //Act
             funcDelegates.FuncDelegateWithAnonymousMethod();
-            List<string> output = funcDelegates.results;
+            List<string> output = funcDelegates.Results;
             string r = string.Join(",", output);
             string s = string.Join(",", expectedResults);
 
@@ -41,12 +42,28 @@ namespace Tests
 
             //Act
             actionDelegates.ActionDelegateWithLambdaExpression();
-            List<string> output = actionDelegates.results;
+            List<string> output = actionDelegates.Results;
             string r = string.Join(",", output);
             string s = string.Join(",", expectedResults);
 
             //assert
             Assert.That(s, Is.EqualTo(r));
+        }
+        
+        [TestCase(null, "berry")]
+        [TestCase(new string[] { "Banana", "Mango", "Raspberry", "Papaya" }, "")]
+        [TestCase(null, null)]
+        public void ValidateInput(string[] arr, string substr)
+        {
+            //assign
+            string expectedError = "Input Error!!";
+
+            //Act
+            FuncDelegates funcDelegates = new(arr, substr);
+            funcDelegates.FuncDelegateWithParameterizedMethod();
+            
+            //Assert
+            Assert.That(expectedError, Is.EqualTo(funcDelegates.Message));            
         }
     }
 }

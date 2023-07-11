@@ -1,40 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ActionAndFuncDelegates
+﻿namespace ActionAndFuncDelegates
 {
-    public class FuncDelegates
+    public class FuncDelegates : Common
     {
-        public string Substring { get; set; }
-        public string[] Arr { get; set; }
-        public List<string> results { get; set; }
-        public bool IsValidInputFlag { get; set; }
-        public string? Message { get; set; }
         public FuncDelegates(string[] input, string substring)
         {
             Substring = substring;
             Arr = input;
             if (input != null && input.Length != 0 && !string.IsNullOrEmpty(substring))
-            {
-                results = new List<string>();
+            {                
                 IsValidInputFlag = true;
                 Message = string.Empty;
             }
             else
             {
                 IsValidInputFlag = false;
+                Message = "Input Error!!";
+                Console.WriteLine(Message);
             }
         }
 
         //Func delegate invoke parameterless method
-        public void FuncDelegateWithParameterlessMethod()
+        public static void FuncDelegateWithParameterlessMethod()
         {
-            // Func delegate invoke parameterless method
             Func<string> FuncWithParameterlessMethod = PrintMessageOnConsole;
+
             string temp = FuncWithParameterlessMethod();
+
             Console.WriteLine(temp);
         }
 
@@ -43,15 +34,16 @@ namespace ActionAndFuncDelegates
         {
             if (!IsValidInputFlag)
             {
-                Message = "Input Error!!";
-                Console.WriteLine(Message);
+                //Message = "Input Error!!";
+                //Console.WriteLine(Message);
                 return;
             }
-            Func<string[], string, List<string>> FuncWithParameterizedMethod = ParameterizedMethod;
-            results = new List<string>();
-            results = FuncWithParameterizedMethod(Arr, Substring);
-            Console.WriteLine(string.Join("\n", results) + "\n");
 
+            Func<string[], string, List<string>> FuncWithParameterizedMethod = ParameterizedMethod;
+
+            Results = new();
+            Results = FuncWithParameterizedMethod(Arr, Substring);
+            PrintFilteredList(Results);
         }
 
         //Func delegate invoke Anonymous method
@@ -59,20 +51,25 @@ namespace ActionAndFuncDelegates
         {
             if (!IsValidInputFlag)
             {
-                Message = "Input Error!!";
-                Console.WriteLine(Message);
+                //Message = "Input Error!!";
+                //Console.WriteLine(Message);
                 return;
             }
+
             Func<string[], string, List<string>> FuncWithAnonMethod = delegate (string[] list, string substring)
             {
                 List<string> filteredList = list.Select(i => i.ToString())
-                        .Where(i => i.ToLower().Contains(substring)).ToList();
-                Console.WriteLine("Print all the elements containing substring '" + substring + "' using Func with Anonymous method:");
+                .Where(i => i.ToLower().Contains(substring))
+                .ToList();
+
+                Console.WriteLine("Print all the elements containing substring '" + substring + "' using Func with Anonymous method:");                
+
                 return filteredList;
             };
-            results = new List<string>();
-            results = FuncWithAnonMethod(Arr, Substring);
-            Console.WriteLine(string.Join("\n", results) + "\n");
+
+            Results = new();
+            Results = FuncWithAnonMethod(Arr, Substring);
+            PrintFilteredList(Results);
         }
 
         // Func delegate invoke Lambda expression 
@@ -80,32 +77,39 @@ namespace ActionAndFuncDelegates
         {
             if (!IsValidInputFlag)
             {
-                Message = "Input Error!!";
-                Console.WriteLine(Message);
+                //Message = "Input Error!!";
+                //Console.WriteLine(Message);
                 return;
             }
+
             Func<string[], string, List<string>> FuncWithLambdaExp = (string[] list, string substring) =>
             {
                 List<string> filteredList = list.Select(i => i.ToString())
-            .Where(i => i.ToLower().Contains(substring)).ToList();
-                Console.WriteLine("Print all the elements containing substring '" + substring + "' using Func with lambda expression:");
+                .Where(i => i.ToLower().Contains(substring))
+                .ToList();
+
+                Console.WriteLine("Print all the elements containing substring '" + substring + "' using Func with lambda expression:");                
+
                 return filteredList;
             };
-            results = new List<string>();
-            results = FuncWithLambdaExp(Arr, Substring);
-            Console.WriteLine(string.Join("\n", results) + "\n");
+
+            Results = new();
+            Results = FuncWithLambdaExp(Arr, Substring);
+            PrintFilteredList(Results);
         }
 
-        public string PrintMessageOnConsole()
+        public static string PrintMessageOnConsole()
         {
             return "Func Delegate invoked a parameterless method called. \n";
         }
 
-        public List<string> ParameterizedMethod(string[] list, string substring)
+        public static List<string> ParameterizedMethod(string[] list, string substring)
         {
             Console.WriteLine("Print all the elements containing substring '" + substring + "' using Func with parameterized method:");
+
             List<string> filteredList = list.Select(i => i.ToString())
-            .Where(i => i.ToLower().Contains(substring)).ToList();
+                .Where(i => i.ToLower().Contains(substring))
+                .ToList();
 
             return filteredList;
         }
