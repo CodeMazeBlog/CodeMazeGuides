@@ -15,7 +15,7 @@ public class Ticket
         return Available;
     }
 
-    private bool CanAfford(decimal points)
+    private bool CanAfford(int points)
     {
         return points >= Price;
     }
