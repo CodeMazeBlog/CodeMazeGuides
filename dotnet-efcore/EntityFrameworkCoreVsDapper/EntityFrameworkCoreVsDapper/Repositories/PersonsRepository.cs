@@ -11,12 +11,12 @@ namespace EntityFrameworkCoreVsDapper.Repositories
 {
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
     [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
-    public class PersonsRepository
+    public class PersonsRepository : IDisposable
     {
         private SqlConnection _dbConnection;
         private PersonsContext _context;
 
-        public PersonsRepository() 
+        public PersonsRepository()
         {
             Setup();
         }
@@ -34,12 +34,9 @@ namespace EntityFrameworkCoreVsDapper.Repositories
         [Arguments(1000000)]
         public List<Person> GetXPersonsDapper(int personsNumber)
         {
-            using (_dbConnection)
-            {
-                _dbConnection.Open();
+            _dbConnection.Open();
 
-                return _dbConnection.Query<Person>($"SELECT TOP({personsNumber}) * FROM Persons").ToList();
-            }
+            return _dbConnection.Query<Person>($"SELECT TOP({personsNumber}) * FROM Persons").ToList();
         }
 
         [Benchmark]
@@ -48,14 +45,16 @@ namespace EntityFrameworkCoreVsDapper.Repositories
         [Arguments(1000000)]
         public List<Person> GetXPersonsEFCore(int personsNumber)
         {
-            using (_context)
-            {
-                return _context.Persons.Take(personsNumber).ToList();
-            }  
+            return _context.Persons.Take(personsNumber).ToList();
         }
 
         [IterationCleanup]
         public void Cleanup()
+        {
+            Dispose();
+        }
+
+        public void Dispose()
         {
             _dbConnection.Close();
             _context.Dispose();

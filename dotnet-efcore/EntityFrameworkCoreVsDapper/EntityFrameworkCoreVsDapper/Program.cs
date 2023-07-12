@@ -14,6 +14,8 @@ public class Program
 
         personsRepository.GetXPersonsDapper(1000);
 
-        BenchmarkRunner.Run(typeof(Program).Assembly);
-    } 
+        personsRepository.Dispose();
+
+        BenchmarkRunner.Run<PersonsRepository>();
+    }
 }
