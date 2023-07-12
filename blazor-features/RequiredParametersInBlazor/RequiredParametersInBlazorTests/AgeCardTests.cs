@@ -24,7 +24,7 @@ namespace RequiredParametersInBlazor.Tests
 
         private int GetCurrentYear()
         {
-            return 2023;
+            return DateTime.UtcNow.Year;
         }
     }
 }
