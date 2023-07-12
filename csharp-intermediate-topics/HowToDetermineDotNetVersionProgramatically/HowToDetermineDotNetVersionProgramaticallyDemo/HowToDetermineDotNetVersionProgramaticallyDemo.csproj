@@ -7,4 +7,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\HowToDetermineDotNetVersionProgramatically\HowToDetermineDotNetVersionProgramatically.csproj" />
+    </ItemGroup>
+
 </Project>
