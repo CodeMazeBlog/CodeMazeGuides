@@ -12,7 +12,6 @@ namespace SagaPattern
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers().AddJsonOptions(x =>
             {
                 x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -24,16 +23,17 @@ namespace SagaPattern
 
             builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 
-        builder.Host.UseNServiceBus(context =>
-        {
-            var endpointConfiguration = new EndpointConfiguration("OrderEndpoint");
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
-            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(StartOrder), "OrderEndpoint");
+            // Setup NServiceBus host
+            builder.Host.UseNServiceBus(context =>
+            {
+                var endpointConfiguration = new EndpointConfiguration("OrderEndpoint");
+                var transport = endpointConfiguration.UseTransport<LearningTransport>();
+                var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+                var routing = transport.Routing();
+                routing.RouteToEndpoint(typeof(StartOrder), "OrderEndpoint");
 
-            return endpointConfiguration;
-        });
+                return endpointConfiguration;
+            });
             
             var app = builder.Build();
 

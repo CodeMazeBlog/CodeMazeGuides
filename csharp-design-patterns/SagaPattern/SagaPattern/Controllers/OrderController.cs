@@ -10,16 +10,16 @@ namespace SagaPattern.Controllers
     public class OrderController : ControllerBase
     {
         private readonly ILogger<OrderController> _logger;
-        private readonly IOrderRepository repository;
-        private readonly IMessageSession messageSession;
+        private readonly IOrderRepository _repository;
+        private readonly IMessageSession _messageSession;
 
         public OrderController(ILogger<OrderController> logger, 
             IOrderRepository repository, 
             IMessageSession messageSession)
         {
             _logger = logger;
-            this.repository = repository;
-            this.messageSession = messageSession;
+            _repository = repository;
+            _messageSession = messageSession;
         }
 
         [HttpGet(Name = "GetOrder")]
@@ -30,7 +30,7 @@ namespace SagaPattern.Controllers
 
             if (validGuid) 
             {
-                var order = await repository.GetOrderById(orderGuid);
+                var order = await _repository.GetOrderById(orderGuid);
 
                 return Ok(order);
             }
@@ -42,16 +42,16 @@ namespace SagaPattern.Controllers
         public async Task<ActionResult> Post([FromBody] OrderRequest request)
         {
             var order = MapToOrder(request);
-            await repository.AddOrder(order);
+            await _repository.AddOrder(order);
 
             var startOrderMessage = new StartOrder
             {
                 OrderId = order.OrderId,
             };
 
-            await messageSession.Send(startOrderMessage);
+            await _messageSession.Send(startOrderMessage);
 
-            return Ok(order.OrderId);
+            return CreatedAtRoute("GetOrder", new { order.OrderId });
         }
 
         private Order MapToOrder(OrderRequest request)

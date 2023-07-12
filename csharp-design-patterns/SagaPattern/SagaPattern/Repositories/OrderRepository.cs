@@ -30,10 +30,4 @@ namespace SagaPattern.Repositories
             return Task.FromResult(order);
         }
     }
-
-    public interface IOrderRepository
-    {
-        Task<Order> GetOrderById(Guid orderId);
-        Task AddOrder(Order order);
-    }
 }
