@@ -11,8 +11,8 @@ namespace XMLDeserializationInCsharpTests
         {
             // Arrange
             var xmlData = "<Person>" +
-                          "<Name>John Doe</Name>" +
-                          "<Age>30</Age>" +
+                          "<Name>Jane Smith</Name>" +
+                          "<Age>25</Age>" +
                           "</Person>";
             var expectedPerson = new Person { Name = "Jane Smith", Age = 25 };
 
