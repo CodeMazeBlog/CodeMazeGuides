@@ -2,32 +2,6 @@
 
 namespace XMLDeserializationInCsharp
 {
-    #region Simple XML
-    public class Person
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
-    #endregion
-
-    #region Complex XML
-    [XmlRoot("Library")]
-    public class Library
-    {
-        [XmlArray("Books")]
-        [XmlArrayItem("Book")]
-        public List<Book> Books { get; set; }
-    }
-
-    public class Book
-    {
-        [XmlElement("Title")]
-        public string Title { get; set; }
-
-        [XmlElement("Author")]
-        public string Author { get; set; }
-    }
-    #endregion
 
     public class Program
     {
