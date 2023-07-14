@@ -1,120 +1,130 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ValueAndReferenceTypes;
-namespace Tests
+namespace Tests;
+
+[TestClass]
+public class UnitTest
 {
-    [TestClass]
-    public class UnitTest
+    [TestMethod]
+    public void WhenValueTypeAssignation_ThenValueTypeMembersHaveDifferentReference()
     {
-        [TestMethod]
-        public void WhenValueTypeAssignation_ThenValueTypeMembersHaveDifferentReference()
+        var firstRectangle = new ValueTypeRectangle
         {
-            var firstRectangle = new ValueTypeRectangle();
-            firstRectangle.Length = 10;
-            firstRectangle.Breadth = 10;
-            firstRectangle.MyShape = new Shape { Name = "Square" };
+            Length = 10,
+            Breadth = 10,
+            MyShape = new Shape { Name = "Square" }
+        };
 
-            var secondRectangle = firstRectangle;
+        var secondRectangle = firstRectangle;
 
-            firstRectangle.Length = 20;
-            firstRectangle.Breadth = 20;
-            firstRectangle.MyShape.Name = "Circle";
+        firstRectangle.Length = 20;
+        firstRectangle.Breadth = 20;
+        firstRectangle.MyShape.Name = "Circle";
 
-            Assert.AreNotEqual(firstRectangle.Area(), secondRectangle.Area());
-        }
+        Assert.AreNotEqual(firstRectangle.Area(), secondRectangle.Area());
+    }
 
-        [TestMethod]
-        public void WhenValueTypeAssignation_ThenReferenceTypeMembersHaveSameReference()
+    [TestMethod]
+    public void WhenValueTypeAssignation_ThenReferenceTypeMembersHaveSameReference()
+    {
+        var firstRectangle = new ValueTypeRectangle
         {
-            var firstRectangle = new ValueTypeRectangle();
-            firstRectangle.MyShape = new Shape { Name = "Square" };
+            MyShape = new Shape { Name = "Square" }
+        };
 
-            var secondRectangle = firstRectangle;
-            secondRectangle.MyShape.Name = "Circle";
+        var secondRectangle = firstRectangle;
+        secondRectangle.MyShape.Name = "Circle";
 
-            Console.WriteLine($"First rectangle shape -> {firstRectangle.MyShape.Name}");
-            Console.WriteLine($"Second rectangle shape -> {secondRectangle.MyShape.Name}");
+        Assert.AreEqual(firstRectangle.MyShape.Name, secondRectangle.MyShape.Name);
+    }
 
-            Assert.AreEqual(firstRectangle.MyShape.Name, secondRectangle.MyShape.Name);
-        }
-
-        [TestMethod]
-        public void WhenValueTypeEquality_ThenBothObjectsHaveSameValues()
+    [TestMethod]
+    public void WhenValueTypesMemberAreEqual_ThenTheValueTypeInstancesAreEqual()
+    {
+        var firstRectangle = new ValueTypeRectangle
         {
-            var firstRectangle = new ValueTypeRectangle();
-            firstRectangle.Length = 10;
-            firstRectangle.Breadth = 10;
-            firstRectangle.MyShape = new Shape { Name = "Square" };
+            Length = 10,
+            Breadth = 10,
+        };
 
-            var secondRectangle = firstRectangle;
-
-            secondRectangle.Length = 10;
-            secondRectangle.Breadth = 10;
-            secondRectangle.MyShape.Name = "Square";
-
-            Assert.AreEqual(firstRectangle, secondRectangle);
-        }
-       
-        [TestMethod]
-        public void WhenReferenceTypeAssignation_ThenBothRectanglesHaveReferencesToSameAddress()
+        var secondRectangle = new ValueTypeRectangle
         {
-            var firstRectangle = new ReferenceTypeRectangle();
-            firstRectangle.Length = 10;
-            firstRectangle.Breadth = 10;
+            Length = 10,
+            Breadth = 10,
+        };
 
-            var secondRectangle = firstRectangle;
+        Assert.AreEqual(firstRectangle, secondRectangle);
+    }
 
-            firstRectangle.Length = 20;
-            firstRectangle.Breadth = 20;
-
-            Assert.AreEqual(firstRectangle.Area(), secondRectangle.Area());
-        }
-
-        [TestMethod]
-        public void WhenReferenceTypeEquality_ThenBothObjectsHaveSameReference()
+    [TestMethod]
+    public void WhenReferenceTypeAssignation_ThenBothRectanglesHaveReferencesToSameAddress()
+    {
+        var firstRectangle = new ReferenceTypeRectangle()
         {
-            var firstRectangle = new ReferenceTypeRectangle();
-            firstRectangle.Length = 10;
-            firstRectangle.Breadth = 10;
+            Length = 10,
+            Breadth = 10
+        };
 
-            var secondRectangle = firstRectangle;
+        var secondRectangle = firstRectangle;
 
-            secondRectangle.Length = 20;
-            secondRectangle.Breadth = 20;
+        firstRectangle.Length = 20;
+        firstRectangle.Breadth = 20;
 
-            Assert.AreEqual(firstRectangle, secondRectangle);
-        }
+        Assert.AreEqual(firstRectangle.Area(), secondRectangle.Area());
+    }
 
-        [TestMethod]
-        public void WhenValueTypeAsMethodArguments_ThenLengthHaveDifferentCopies()
+    [TestMethod]
+    public void WhenReferenceTypesHaveDifferentReferences_ThenInstancesAreEqual()
+    {
+        var firstRectangle = new ReferenceTypeRectangle()
         {
-            var pass = new ValueAndReferenceAsMethodArgumentsSample();
-            ValueTypeRectangle rect = new ValueTypeRectangle { Length = 20 };
-            pass.ValueTypeArguments(rect);
+            Length = 10,
+            Breadth = 10
+        };
 
-            Console.WriteLine($"Length outside function = {rect.Length}");
-
-            Assert.AreEqual(20, rect.Length);
-        }
-
-        [TestMethod]
-        public void WhenReferenceTypeAsMethodArguments_ThenLengthHaveSameReference()
+        var secondRectangle = new ReferenceTypeRectangle()
         {
-            var pass = new ValueAndReferenceAsMethodArgumentsSample();
-            ReferenceTypeRectangle rect = new ReferenceTypeRectangle { Length = 20 };
-            pass.ReferenceTypeArguments(rect);
-            Console.WriteLine($"Length outside function = {rect.Length}");
+            Length = 10,
+            Breadth = 10
+        };
 
-            Assert.AreEqual(21, rect.Length);
-        }
+        Assert.AreNotEqual(firstRectangle, secondRectangle);
+    }
 
-        [TestMethod]
-        public void WhenBoxingUnBoxing_ThenValueToReferenceAndReferenceToValueConversion()
+    [TestMethod]
+    public void WhenValueTypeIsPassedAsArgument_ThenACopyIsPassed()
+    {
+        var lengthIncrementer = new RectangleLengthIncrementer();
+        ValueTypeRectangle rect = new ValueTypeRectangle
         {
-            var conv = new BoxingAndUnboxing();
-            int input = 500;
-            var output = conv.BoxingUnBoxing(input);
+            Length = 20
+        };
+        lengthIncrementer.IncrementRectangleLength(rect);
 
-            Assert.AreEqual(output, input);
-        }
+        Assert.AreEqual(20, rect.Length);
+    }
+
+    [TestMethod]
+    public void WhenReferenceTypeIsPassedAsArgument_ThenAReferenceIsPassed()
+    {
+        var lengthIncrementer = new RectangleLengthIncrementer();
+        ReferenceTypeRectangle rect = new ReferenceTypeRectangle
+        {
+            Length = 20
+        };
+        lengthIncrementer.IncrementRectangleLength(rect);
+
+        Assert.AreEqual(21, rect.Length);
+    }
+
+    [TestMethod]
+    public void WhenBoxingAndUnboxing_ThenResultIsEqualToOriginalValue()
+    {
+        int number = 10;
+
+        object boxedNumber = number;
+        int unboxedNumber = (int)boxedNumber;
+
+        Assert.AreEqual(number, unboxedNumber);
     }
 }
