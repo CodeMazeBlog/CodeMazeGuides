@@ -11,7 +11,7 @@ namespace Tests
         }
 
         [Test]
-        public void TestFunc()
+        public void WhenFuncInvoke_ThenGenerateFilteredArray()
         {
             //Assign
             string[] sampleArray = { "Banana", "Mango", "Raspberry", "Papaya", "Cranberry", "Apple", "Plum", "Grapes", "Blueberry", "Pineapple", "Strawberry" };
@@ -31,7 +31,7 @@ namespace Tests
         }
 
         [Test]
-        public void TestAction()
+        public void WhenActionDelegateWithLambdaExpInvoke_ThenGenerateFilteredArray()
         {
             //Assign
             string[] sampleArray = { "Banana", "Mango", "Raspberry", "Papaya", "Cranberry", "Apple", "Plum", "Grapes", "Blueberry", "Pineapple", "Strawberry" };
@@ -53,7 +53,7 @@ namespace Tests
         [TestCase(null, "berry")]
         [TestCase(new string[] { "Banana", "Mango", "Raspberry", "Papaya" }, "")]
         [TestCase(null, null)]
-        public void ValidateInput(string[] arr, string substr)
+        public void GivenInvalidInput_WhenFuncInvoke_ThenGenerateErrorMessage(string[] arr, string substr)
         {
             //assign
             string expectedError = "Input Error!!";

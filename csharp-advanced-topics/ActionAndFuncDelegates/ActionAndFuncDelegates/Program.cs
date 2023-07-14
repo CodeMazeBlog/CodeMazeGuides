@@ -1,8 +1,4 @@
 ﻿using ActionAndFuncDelegates;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Text;
 
 public class Program
 {
