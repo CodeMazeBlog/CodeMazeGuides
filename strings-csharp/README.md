@@ -7,6 +7,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [How to Check if a String Ends With a Number in C#](https://code-maze.com/csharp-check-if-string-ends-with-a-number/)
 - [How to Convert Char Array to String in C#](https://code-maze.com/csharp-convert-char-array-to-string/)
 - [How to Convert Int to String in C#](https://code-maze.com/csharp-convert-int-to-string/)
+- [How to Convert a String to a Span in C#](https://code-maze.com/csharp-how-to-convert-string-to-span/)
 - [How to Convert String to Bool in C#](https://code-maze.com/csharp-convert-string-to-bool/)
 - [Different Ways to Initialize a String in C#](https://code-maze.com/csharp-correctly-initialize-a-string/)
 - [How to Convert String from Title Case to camelCase in C#](https://code-maze.com/csharp-convert-string-titlecase-camelcase/)
