@@ -3,17 +3,12 @@ public class Ticket
 {
     public Ticket(bool available, int price)
     {
-        Available = available;
+        IsAvailable = available;
         Price = price;
     }
 
-    private bool Available { get; set; }
+    public bool IsAvailable { get; private set; }
     public int Price { get; init; }
-
-    public bool IsAvailable()
-    {
-        return Available;
-    }
 
     public bool CanAfford(int points)
     {
@@ -22,6 +17,6 @@ public class Ticket
 
     public void BuyTicket()
     {
-        Available = false;
+        IsAvailable = false;
     }
 }

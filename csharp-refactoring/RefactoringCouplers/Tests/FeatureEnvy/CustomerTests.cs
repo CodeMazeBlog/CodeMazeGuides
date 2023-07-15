@@ -22,7 +22,7 @@ public class CustomerTests
 
         // Assert
         Assert.AreEqual(customerPointsBefore - ticketPrice, customer.Points);
-        Assert.IsFalse(ticket.IsAvailable());
+        Assert.IsFalse(ticket.IsAvailable);
     }
 
     [TestMethod]
@@ -41,6 +41,6 @@ public class CustomerTests
 
         // Assert
         Assert.AreEqual(customerPointsBefore, customer.Points);
-        Assert.IsTrue(ticket.IsAvailable());
+        Assert.IsTrue(ticket.IsAvailable);
     }
 }

@@ -3,31 +3,26 @@ public class Ticket
 {
     public Ticket(bool available, int price)
     {
-        Available = available;
+        IsAvailable = available;
         Price = price;
     }
 
-    private bool Available { get; set; }
+    public bool IsAvailable { get; private set; }
     private int Price { get; init; }
-
-    public bool IsAvailable()
-    {
-        return Available;
-    }
 
     private bool CanAfford(int points)
     {
         return points >= Price;
     }
 
-    public int BuyTicket(int points)
+    public int TryToBuyTicket(int points)
     {
-        if (!IsAvailable() || !CanAfford(points))
+        if (!IsAvailable || !CanAfford(points))
         {
             return 0;
         }
 
-        Available = false;
+        IsAvailable = false;
         return Price;
     }
 }

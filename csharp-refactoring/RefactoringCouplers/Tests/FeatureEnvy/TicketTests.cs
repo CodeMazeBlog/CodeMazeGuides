@@ -14,11 +14,11 @@ public class TicketTests
         var points = 300;
 
         // Act
-        var result = ticket.BuyTicket(points);
+        var result = ticket.TryToBuyTicket(points);
 
         // Assert
         Assert.IsTrue(result == ticketPrice);
-        Assert.IsFalse(ticket.IsAvailable());
+        Assert.IsFalse(ticket.IsAvailable);
     }
 
     [TestMethod]
@@ -29,7 +29,7 @@ public class TicketTests
         var points = 300;
 
         // Act
-        var result = ticket.BuyTicket(points);
+        var result = ticket.TryToBuyTicket(points);
 
         // Assert
         Assert.IsTrue(result == 0);
@@ -43,10 +43,10 @@ public class TicketTests
         var points = 100;
 
         // Act
-        var result = ticket.BuyTicket(points);
+        var result = ticket.TryToBuyTicket(points);
 
         // Assert
         Assert.IsTrue(result == 0);
-        Assert.IsTrue(ticket.IsAvailable());
+        Assert.IsTrue(ticket.IsAvailable);
     }
 }

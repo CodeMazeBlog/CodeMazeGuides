@@ -3,7 +3,7 @@ public class Customer
 {
     public Customer(string name)
     {
-        this.Name = name;
+        Name = name;
     }
 
     public string Name { get; init; }
@@ -16,7 +16,7 @@ public class Customer
 
     public void ExchangePointsToTicket(Ticket ticket)
     {
-        if (ticket.IsAvailable() && ticket.CanAfford(Points))
+        if (ticket.IsAvailable && ticket.CanAfford(Points))
         {
             ticket.BuyTicket();
             SubtractPoints(ticket.Price);
