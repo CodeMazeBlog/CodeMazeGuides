@@ -1,0 +1,63 @@
+using APIKeyAuthentication.CustomAttribute;
+using APIKeyAuthentication.CustomMiddleware;
+using APIKeyAuthentication.EndpointFilter;
+using APIKeyAuthentication.Interface;
+using APIKeyAuthentication.PolicyBased;
+using Microsoft.AspNetCore.Authorization;
+
+namespace APIKeyAuthentication
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+
+            // Add services to the container.
+
+            builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("ApiKeyPolicy", policy =>
+                {
+                    policy.Requirements.Add(new ApiKeyRequirement());
+                });
+            });
+
+            builder.Services.AddTransient<IApiKeyValidation, ApiKeyValidation>();
+            builder.Services.AddScoped<ApiKeyAuthFilter>();
+            builder.Services.AddScoped<IAuthorizationHandler, ApiKeyHandler>();
+
+            builder.Services.AddHttpContextAccessor();
+
+            var app = builder.Build();
+
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            //app.UseMiddleware<ApiKeyMiddleware>();
+
+            app.UseHttpsRedirection();
+
+            app.UseAuthorization();
+
+            app.MapControllers();
+
+            app.MapGet("api/prodcut", () =>
+            {
+                return Results.Ok();
+
+            }).AddEndpointFilter<ApiKeyEndpointFilter>();
+
+            app.Run();
+        }
+    }
+}
