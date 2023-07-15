@@ -11,6 +11,13 @@
 
         public void NotifyUser(User user, string message)
         {
+            if (user is null ||
+                user.Email is null ||
+                string.IsNullOrWhiteSpace(message))
+            {
+                return;
+            }
+
             _emailService.SendEmail(user.Email, "Notification from CodeMaze", message);
         }
     }
