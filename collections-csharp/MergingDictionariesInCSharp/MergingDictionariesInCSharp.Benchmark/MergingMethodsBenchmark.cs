@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Order;
 using static MergingDictionariesInCSharp.Methods;
 
+
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
@@ -11,18 +12,18 @@ public class MergingMethodsBenchmark
     private Dictionary<int, string> _dictionaryB;
 
     [GlobalSetup]
-    private void Setup()
+    public void Setup()
     {
         _dictionaryA = new Dictionary<int, string>();
         _dictionaryB = new Dictionary<int, string>();
 
-        Random random = new Random();
+        var random = Random.Shared;
 
         // Generate random values for dictionaryA
-        for (int i = 0; i < 100; i++)
+        for (var i = 0; i < 100; i++)
         {
-            int key = random.Next(100);
-            string value = GenerateRandomValue();
+            var key = random.Next(100);
+            var value = GenerateRandomValue();
 
             if (!_dictionaryA.ContainsKey(key))
             {
@@ -35,12 +36,12 @@ public class MergingMethodsBenchmark
         }
 
         // Generate random values for dictionaryB
-        foreach (var kvp in _dictionaryA)
+        for (int i = 0; i < _dictionaryA.Count; i++)
         {
-            int key = random.Next(100, 200);
-            string value = GenerateRandomValue();
+            var key = random.Next(100, 200);
+            var value = GenerateRandomValue();
 
-            if (!_dictionaryB.ContainsKey(key) && !_dictionaryA.ContainsKey(key))
+            if (!_dictionaryB.ContainsKey(key))
             {
                 _dictionaryB.Add(key, value);
             }
@@ -49,7 +50,7 @@ public class MergingMethodsBenchmark
 
     private string GenerateRandomValue()
     {
-        Random random = new Random();
+        var random = Random.Shared;
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         return new string(Enumerable.Repeat(chars, 5).Select(s => s[random.Next(s.Length)]).ToArray());
@@ -86,8 +87,8 @@ public class MergingMethodsBenchmark
     }
 
     [Benchmark]
-    public Dictionary<int, string> HashSetBenchmark()
+    public Dictionary<int, string> ListsBenchmark()
     {
-        return UsingHashSetMethod(_dictionaryA, _dictionaryB);
+        return UsingListsMethod(_dictionaryA, _dictionaryB);
     }
 }

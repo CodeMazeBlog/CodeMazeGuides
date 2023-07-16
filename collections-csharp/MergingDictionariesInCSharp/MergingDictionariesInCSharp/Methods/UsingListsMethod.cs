@@ -2,10 +2,10 @@
 {
     public partial class Methods
     {
-        public static Dictionary<TKey, TValue> UsingHashSetMethod<TKey, TValue>(params Dictionary<TKey, TValue>[] dictionaries)
+        public static Dictionary<TKey, TValue> UsingListsMethod<TKey, TValue>(params Dictionary<TKey, TValue>[] dictionaries)
         {
-            HashSet<TKey> keys = new HashSet<TKey>();
-            HashSet<TValue> values = new HashSet<TValue>();
+            var keys = new List<TKey>();
+            var values = new List<TValue>();
 
             foreach (var dictionary in dictionaries)
             {

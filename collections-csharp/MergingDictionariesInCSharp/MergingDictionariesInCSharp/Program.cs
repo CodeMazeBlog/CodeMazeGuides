@@ -26,5 +26,5 @@ Console.WriteLine("Using Lookup: ");
 PrintDictionary(LookupMethod(dictionaryA, dictionaryB));
 Console.WriteLine("Using Union: ");
 PrintDictionary(UnionMethod(dictionaryA, dictionaryB));
-Console.WriteLine("Using Hashet: ");
-PrintDictionary(UnionMethod(dictionaryA, dictionaryB));
+Console.WriteLine("Using Lists: ");
+PrintDictionary(UsingListsMethod(dictionaryA, dictionaryB));
