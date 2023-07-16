@@ -37,7 +37,7 @@ public class AuthController : Controller
     [Authorize]
     public async Task Logout()
     {
-        await HttpContext.SignOutAsync("Auth0", new AuthenticationProperties
+        await HttpContext.SignOutAsync(Auth0Constants.AuthenticationScheme, new AuthenticationProperties
         {
             RedirectUri = Url.Action("Index", "Home")
         });
