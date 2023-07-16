@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Tests;
 
-public class ApplicationUserIntegrationTest
+public class ApplicationUserLiveTest
 {
     [Test]
     public async Task GivenAnApplicationUserWithCustomPrimitiveProperties_WhenLoadingFromDatabase_ThenCanRetrieve()
