@@ -2,7 +2,7 @@
 
 namespace ActionandFuncDelegates
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -19,13 +19,13 @@ namespace ActionandFuncDelegates
         }
 
         // Method for printing a message
-        static void PrintMessage(string message)
+        public static void PrintMessage(string message)
         {
             Console.WriteLine(message);
         }
 
         // Method for adding two numbers
-        static int AddNumbers(int a, int b)
+       public static int AddNumbers(int a, int b)
         {
             return a + b;
         }
