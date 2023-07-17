@@ -1,6 +1,6 @@
-namespace TaskCompletedVsReturnInCSharpTests
+namespace TaskCompletedVsTaskFromResultVsReturnInCSharpTests
 {
-    public class TaskCompletedClassAndReturnClassTests
+    public class TaskCompletedClassVsTaskFromResultClassVsReturnClassTests
     {
         [Fact]
         public void WhenCallingUseTaskCompletedMethodAsync_ThenUseTaskCompleted()
@@ -10,6 +10,17 @@ namespace TaskCompletedVsReturnInCSharpTests
             var result = taskCompletedClass.UseTaskCompletedMethodAsync();
 
             Assert.True(result.IsCompletedSuccessfully);
+        }
+
+        [Fact]
+        public async Task WhenCallingUseTaskFromResultMethodAsync_ThenUseFromResult()
+        {
+            TaskFromResultClass taskFromResultClass = new TaskFromResultClass();
+
+            var result =  taskFromResultClass.UseTaskFromResultMethodAsync();
+            string message = await result;
+
+            Assert.Equal("Hello, world!", message);
         }
 
         [Fact]
