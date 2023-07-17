@@ -8,7 +8,7 @@ namespace Tests
     public class EmailControllerTests
     {
         [Fact]
-        public async Task WhenSendSingleEmailCalled_ThenSendInvokedAsync()
+        public async Task GivenFluentEmailConfigured_WhenSendSingleEmailCalled_ThenSendInvokedAsync()
         {
             // Arrange
             var mockEmailService = new Mock<IEmailService>();
@@ -22,7 +22,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task WhenSendEmailWithRazorTemplateCalled_ThenSendUsingTemplateInvokedAsync()
+        public async Task GivenFluentEmailConfigured_WhenSendEmailWithRazorTemplateCalled_ThenSendUsingTemplateInvokedAsync()
         {
             // Arrange
             var mockEmailService = new Mock<IEmailService>();
@@ -36,7 +36,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task WhenSendEmailWithLiquidTemplateCalled_ThenSendUsingTemplateInvokedAsync()
+        public async Task GivenFluentEmailConfigured_WhenSendEmailWithLiquidTemplateCalled_ThenSendUsingTemplateInvokedAsync()
         {
             // Arrange
             var mockEmailService = new Mock<IEmailService>();
@@ -50,7 +50,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task WhenSendEmailWithRazorTemplateFromFileCalled_ThenSendUsingTemplateFromFileInvokedAsync()
+        public async Task GivenFluentEmailConfigured_WhenSendEmailWithRazorTemplateFromFileCalled_ThenSendUsingTemplateFromFileInvokedAsync()
         {
             // Arrange
             var mockEmailService = new Mock<IEmailService>();
@@ -64,7 +64,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task WhenSendEmailWithAttachmentCalled_ThenSendWithAttachmentInvokedAsync()
+        public async Task GivenFluentEmailConfigured_WhenSendEmailWithAttachmentCalled_ThenSendWithAttachmentInvokedAsync()
         {
             // Arrange
             var mockEmailService = new Mock<IEmailService>();
@@ -78,7 +78,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task WhenSendMultipleEmailCalled_ThenSendMultipleInvokedAsync()
+        public async Task GivenFluentEmailConfigured_WhenSendMultipleEmailCalled_ThenSendMultipleInvokedAsync()
         {
             // Arrange
             var mockEmailService = new Mock<IEmailService>();

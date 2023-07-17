@@ -2,7 +2,8 @@
 {
     public static class FluentEmailExtensions
     {
-        public static void AddFluentEmail(this IServiceCollection services, ConfigurationManager configuration)
+        public static void AddFluentEmail(this IServiceCollection services,
+            ConfigurationManager configuration)
         {
             var defaultFromEmail = configuration.GetValue<string>("EmailSettings:DefaultFromEmail");
             var host = configuration.GetValue<string>("EmailSettings:SMTPSetting:Host");

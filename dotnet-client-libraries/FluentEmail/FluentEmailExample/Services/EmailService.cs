@@ -8,8 +8,8 @@ namespace FluentEmailExample.Services
         private readonly IFluentEmail _fluentEmail;
         private readonly IFluentEmailFactory _fluentEmailFactory;
 
-        public EmailService(IFluentEmail fluentEmail
-            , IFluentEmailFactory fluentEmailFactory)
+        public EmailService(IFluentEmail fluentEmail,
+            IFluentEmailFactory fluentEmailFactory)
         {
             _fluentEmail = fluentEmail
                 ?? throw new ArgumentNullException(nameof(fluentEmail));
