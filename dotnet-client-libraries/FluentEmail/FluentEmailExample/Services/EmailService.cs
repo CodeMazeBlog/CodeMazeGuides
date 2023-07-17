@@ -25,9 +25,9 @@ namespace FluentEmailExample.Services
                 .SendAsync();
         }
 
-        public async Task SendUsingTemplate(EmailMetadata emailMetadata
-            , string template
-            , User user)
+        public async Task SendUsingTemplate(EmailMetadata emailMetadata,
+            string template,
+            User user)
         {
 
             await _fluentEmail.To(emailMetadata.ToAddress)
@@ -36,9 +36,9 @@ namespace FluentEmailExample.Services
                 .SendAsync();
         }
 
-        public async Task SendUsingTemplateFromFile(EmailMetadata emailMetadata
-            , string templateFile
-            , User user)
+        public async Task SendUsingTemplateFromFile(EmailMetadata emailMetadata,
+            string templateFile,
+            User user)
         {
 
             await _fluentEmail.To(emailMetadata.ToAddress)

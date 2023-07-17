@@ -39,9 +39,7 @@ namespace FluentEmailExample.Controllers
             var template = "Dear <b>@Model.Name</b>, </br>" +
             "Thank you for being an esteemed <b>@Model.MemberType</b> member.";
 
-            await _emailService.SendUsingTemplate(emailMetadata,
-                template,
-                model);
+            await _emailService.SendUsingTemplate(emailMetadata, template, model);
 
             return Ok();
         }
@@ -55,11 +53,9 @@ namespace FluentEmailExample.Controllers
                 "FluentEmail test email with liquid template");
 
             var template = @"Dear <b>{{ Name }}</b>,</br>
-            Thank you for being an esteemed <b>{{ MemberType }}</b> member.";
+        Thank you for being an esteemed <b>{{ MemberType }}</b> member.";
 
-            await _emailService.SendUsingTemplate(emailMetadata,
-                template,
-                model);
+            await _emailService.SendUsingTemplate(emailMetadata, template, model);
 
             return Ok();
         }
@@ -75,9 +71,7 @@ namespace FluentEmailExample.Controllers
 
             var templateFile = $"{Directory.GetCurrentDirectory()}/MyTemplate.cshtml";
 
-            await _emailService.SendUsingTemplateFromFile(emailMetadata,
-                templateFile,
-                model);
+            await _emailService.SendUsingTemplateFromFile(emailMetadata, templateFile, model);
 
             return Ok();
         }
@@ -85,13 +79,12 @@ namespace FluentEmailExample.Controllers
         [HttpGet("withattachment")]
         public async Task<IActionResult> SendEmailWithAttachment()
         {
-            EmailMetadata emailMetadata = new("john.doe@gmail.com"
-                , "FluentEmail Test email"
-                , "This is a test email from FluentEmail."
-                , $"{Directory.GetCurrentDirectory()}/Test.txt");
+            EmailMetadata emailMetadata = new("john.doe@gmail.com",
+                "FluentEmail Test email",
+                "This is a test email from FluentEmail.",
+                $"{Directory.GetCurrentDirectory()}/Test.txt");
 
-            await _emailService.SendWithAttachment(
-                emailMetadata);
+            await _emailService.SendWithAttachment(emailMetadata);
 
             return Ok();
         }
@@ -100,10 +93,10 @@ namespace FluentEmailExample.Controllers
         public async Task<IActionResult> SendMultipleEmails()
         {
             List<User> users = new()
-            {
-                new("John Doe","john.doe@gmail.com","Platinum"),
-                new("Jane Doe", "jane.doe@gmail.com", "Gold")
-            };
+        {
+            new("John Doe","john.doe@gmail.com","Platinum"),
+            new("Jane Doe", "jane.doe@gmail.com", "Gold")
+        };
 
             List<EmailMetadata> emailsMetadata = new();
 

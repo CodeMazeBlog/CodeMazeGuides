@@ -2,10 +2,10 @@
 {
     public class EmailMetadata
     {
-        public EmailMetadata(string toAddress
-            , string subject
-            , string? body = ""
-            , string? attachmentPath = "")
+        public EmailMetadata(string toAddress,
+            string subject,
+            string? body = "",
+            string? attachmentPath = "")
         {
             ToAddress = toAddress;
             Subject = subject;
