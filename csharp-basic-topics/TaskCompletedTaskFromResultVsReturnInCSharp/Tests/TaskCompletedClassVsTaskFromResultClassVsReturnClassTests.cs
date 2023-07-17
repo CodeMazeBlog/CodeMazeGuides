@@ -1,6 +1,6 @@
-namespace TaskCompletedVsReturnInCSharpTests
+namespace TaskCompletedVsTaskFromResultVsReturnInCSharpTests
 {
-    public class TaskCompletedClassAndReturnClassTests
+    public class TaskCompletedClassVsTaskFromResultClassVsReturnClassTests
     {
         [Fact]
         public void WhenCallingUseTaskCompletedMethodAsync_ThenUseTaskCompleted()

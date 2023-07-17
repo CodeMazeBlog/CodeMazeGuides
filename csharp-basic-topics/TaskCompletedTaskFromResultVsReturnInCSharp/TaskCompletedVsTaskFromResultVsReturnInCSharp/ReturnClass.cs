@@ -1,4 +1,4 @@
-﻿namespace TaskCompletedVsReturnInCSharp
+﻿namespace TaskCompletedVsTaskFromResultVsReturnInCSharp
 {
     public class ReturnClass
     {

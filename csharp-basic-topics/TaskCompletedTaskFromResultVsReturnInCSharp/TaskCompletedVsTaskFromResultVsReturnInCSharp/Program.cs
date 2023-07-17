@@ -1,4 +1,4 @@
-﻿using TaskCompletedVsReturnInCSharp;
+﻿using TaskCompletedVsTaskFromResultVsReturnInCSharp;
 
 var taskCompletedClass = new TaskCompletedClass();
 await taskCompletedClass.UseTaskCompletedMethodAsync();
