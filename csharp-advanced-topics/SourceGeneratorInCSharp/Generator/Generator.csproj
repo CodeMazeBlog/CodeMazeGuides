@@ -6,6 +6,7 @@
 		<IsRoslynComponent>true</IsRoslynComponent>
 		<RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
 		<PackageScribanIncludeSource>true</PackageScribanIncludeSource>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
 	</PropertyGroup>
 
 	<ItemGroup>
