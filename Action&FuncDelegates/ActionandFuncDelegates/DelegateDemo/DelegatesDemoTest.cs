@@ -1,11 +1,10 @@
-﻿using NUnit.Framework;
+using ActionandFuncDelegates;
+using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
-namespace ActionandFuncDelegates
+namespace DelegateDemo
 {
-    [TestFixture]
     [TestFixture]
     public class ProgramTests
     {
@@ -13,12 +12,13 @@ namespace ActionandFuncDelegates
         public void PrintMessage_ShouldPrintCorrectMessage()
         {
             // Arrange
-            string printedMessage = string.Empty;
+            string printedMessage;
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
 
             // Act
-            Console.SetOut(new System.IO.StringWriter());
             Program.PrintMessage("Hello, Test!");
-            printedMessage = Console.Out.ToString().Trim();
+            printedMessage = stringWriter.ToString().Trim();
 
             // Assert
             Assert.AreEqual("Hello, Test!", printedMessage);
