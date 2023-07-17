@@ -8,6 +8,7 @@ namespace FixUnableToResolveServiceIssue.Tests.Controllers
     internal class UserControllerIntegrationTest
     {
         private readonly HttpClient _httpClient;
+        
         public UserControllerIntegrationTest()
         {
             var application = new WebApplicationFactory<Program>();
