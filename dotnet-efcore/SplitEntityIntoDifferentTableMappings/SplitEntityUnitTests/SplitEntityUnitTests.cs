@@ -26,10 +26,11 @@ namespace SplitEntityUnitTests
             {
                 if (context.Database.EnsureCreated())
                 {
-                    context.Add(new User(1, "John Doe", "john@doe.com", true, "Classic"));
+                    var user = new User(1, "John Doe", "john@doe.com", true, "Classic");
+                    context.Add(user);
                     context.SaveChanges();
 
-                    var user = context.Users.Where(o => o.Id == 1).Single();
+                    user = context.Users.Single();
 
                     var name = context.Database.SqlQuery<string>($"select Name from Users")
                         .ToList();
@@ -62,7 +63,7 @@ namespace SplitEntityUnitTests
                     context.Add(new User(1, "John Doe", "john@doe.com", true, "Classic"));
                     context.SaveChanges();
 
-                    var user = context.Users.Where(o => o.Id == 1).Single();
+                    var user = context.Users.Single();
                     user.Theme = "Flashy";
                     context.SaveChanges();
 
@@ -97,7 +98,7 @@ namespace SplitEntityUnitTests
                     context.Add(new User(1, "John Doe", "john@doe.com", true, "Classic"));
                     context.SaveChanges();
 
-                    var user = context.Users.Where(o => o.Id == 1).Single();
+                    var user = context.Users.Single();
                     context.Users.Remove(user);
                     context.SaveChanges();
 
