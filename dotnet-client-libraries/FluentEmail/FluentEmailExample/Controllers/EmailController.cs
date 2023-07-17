@@ -33,8 +33,8 @@ namespace FluentEmailExample.Controllers
         {
             User model = new("John Doe", "john.doe@gmail.com", "Platinum");
 
-            EmailMetadata emailMetadata = new(model.Email
-                , "FluentEmail test email with razor template");
+            EmailMetadata emailMetadata = new(model.Email,
+                "FluentEmail test email with razor template");
 
             var template = "Dear <b>@Model.Name</b>, </br>" +
             "Thank you for being an esteemed <b>@Model.MemberType</b> member.";
