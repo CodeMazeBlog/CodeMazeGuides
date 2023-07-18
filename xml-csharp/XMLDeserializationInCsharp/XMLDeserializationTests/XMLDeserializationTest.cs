@@ -8,17 +8,14 @@ namespace XMLDeserializationInCsharpTests
         [TestMethod]
         public void When_DeserializingXmlData_Then_ReturnExpectedPerson()
         {
-            // Arrange
             var xmlData = @"<Person>
                               <Name>Jane Smith</Name> 
                               <Age>25</Age>
                           </Person>";
             var expectedPerson = new Person { Name = "Jane Smith", Age = 25 };
 
-            // Act
             var actualPerson = Program.DeserializeXmlData<Person>(xmlData);
 
-            // Assert
             Assert.AreEqual(expectedPerson.Name, actualPerson.Name);
             Assert.AreEqual(expectedPerson.Age, actualPerson.Age);
         }
@@ -26,7 +23,6 @@ namespace XMLDeserializationInCsharpTests
         [TestMethod]
         public void When_DeserializingcomplexXML_Then_ReturnBooks()
         {
-            // Arrange
             var complexXML = @"<Library>
                                   <Books>
                                      <Book>
@@ -40,10 +36,8 @@ namespace XMLDeserializationInCsharpTests
                                   </Books>
                                </Library>";
 
-            // Act
             var library = Program.DeserializeXmlData<Library>(complexXML);
 
-            // Assert
             Assert.IsNotNull(library);
             Assert.IsNotNull(library.Books);
             Assert.AreEqual(2, library.Books.Count);
@@ -59,17 +53,14 @@ namespace XMLDeserializationInCsharpTests
         [TestMethod]
         public void When_DeserializingXmlData_Then_ReturnPersonrecord()
         {
-            // Arrange
             var personXML = @"<PersonRecord>
                                 <Name>John Wick</Name>
                                 <Age>35</Age>
                             </PersonRecord>";
             var expectedPerson = new PersonRecord { Name = "John Wick", Age = 35 };
 
-            // Act
             var actualPerson = Program.DeserializeXmlData<PersonRecord>(personXML);
 
-            // Assert
             Assert.AreEqual(expectedPerson.Name, actualPerson.Name);
             Assert.AreEqual(expectedPerson.Age, actualPerson.Age);
         }
@@ -77,7 +68,6 @@ namespace XMLDeserializationInCsharpTests
         [TestMethod]
         public void When_DeserializingXmlData_Then_ReturnBooks()
         {
-            // Arrange
             var libraryXML = @"<LibraryRecord>
                                 <Books>
                                 <BookRecord>
@@ -91,10 +81,8 @@ namespace XMLDeserializationInCsharpTests
                                 </Books>
                           </LibraryRecord>";
 
-            // Act
             var library = Program.DeserializeXmlData<LibraryRecord>(libraryXML);
 
-            // Assert
             Assert.IsNotNull(library);
             Assert.IsNotNull(library.Books);
             Assert.AreEqual(2, library.Books.Count);
