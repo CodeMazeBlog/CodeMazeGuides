@@ -9,10 +9,10 @@ namespace XMLDeserializationInCsharpTests
         public void When_DeserializingXmlData_Then_ReturnExpectedPerson()
         {
             // Arrange
-            var xmlData = "<Person>" +
-                          "<Name>Jane Smith</Name>" +
-                          "<Age>25</Age>" +
-                          "</Person>";
+            var xmlData = @"<Person>
+                              <Name>Jane Smith</Name> 
+                              <Age>25</Age>
+                          </Person>";
             var expectedPerson = new Person { Name = "Jane Smith", Age = 25 };
 
             // Act
@@ -27,17 +27,18 @@ namespace XMLDeserializationInCsharpTests
         public void When_DeserializingcomplexXML_Then_ReturnBooks()
         {
             // Arrange
-            var complexXML = "<Library>" +
-                              "<Books><Book>" +
-                              "<Title>The Catcher in the Rye</Title>" +
-                              "<Author>J.D. Salinger</Author>" +
-                              "</Book>" +
-                              "<Book>" +
-                              "<Title>To Kill a Mockingbird</Title>" +
-                              "<Author>Harper Lee</Author>" +
-                              "</Book>" +
-                              "</Books>" +
-                              "</Library>";
+            var complexXML = @"<Library>
+                                  <Books>
+                                     <Book>
+                                       <Title>The Catcher in the Rye</Title>
+                                       <Author>J.D. Salinger</Author>
+                                     </Book>
+                                     <Book>
+                                      <Title>To Kill a Mockingbird</Title>
+                                      <Author>Harper Lee</Author>
+                                     </Book>
+                                  </Books>
+                               </Library>";
 
             // Act
             var library = Program.DeserializeXmlData<Library>(complexXML);
