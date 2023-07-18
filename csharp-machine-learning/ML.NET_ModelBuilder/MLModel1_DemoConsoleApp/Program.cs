@@ -2,7 +2,7 @@
 using MLModel1_DemoConsoleApp;
 
 // Create single instance of sample data from first line of dataset for model input
-MLModel1.ModelInput sampleData = new MLModel1.ModelInput()
+var sampleData = new MLModel1.ModelInput()
 {
     Duration = 480F,
     Credit_amount = 59510F,
@@ -10,7 +10,6 @@ MLModel1.ModelInput sampleData = new MLModel1.ModelInput()
 };
 
 Console.WriteLine("Using model to make single prediction -- Comparing actual Class with predicted Class from sample data...\n\n");
-
 Console.WriteLine($"Duration: {480F}");
 Console.WriteLine($"Credit_amount: {59510F}");
 Console.WriteLine($"Age: {220F}");
@@ -21,9 +20,7 @@ Console.WriteLine($"{"Class",-40}{"Score",-20}");
 Console.WriteLine($"{"-----",-40}{"-----",-20}");
 
 foreach (var score in sortedScoresWithLabel)
-{
     Console.WriteLine($"{score.Key,-40}{score.Value,-20}");
-}
 
 Console.WriteLine("=============== End of process, hit any key to finish ===============");
 Console.ReadKey();
