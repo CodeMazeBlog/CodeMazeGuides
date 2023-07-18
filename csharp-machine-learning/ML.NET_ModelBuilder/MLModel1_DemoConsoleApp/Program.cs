@@ -9,7 +9,8 @@ var sampleData = new MLModel1.ModelInput()
     Age = 220F,
 };
 
-Console.WriteLine("Using model to make single prediction -- Comparing actual Class with predicted Class from sample data...\n\n");
+Console.WriteLine("Using model to make single prediction -- " +
+    "Comparing actual Class with predicted Class from sample data...\n\n");
 Console.WriteLine($"Duration: {480F}");
 Console.WriteLine($"Credit_amount: {59510F}");
 Console.WriteLine($"Age: {220F}");
