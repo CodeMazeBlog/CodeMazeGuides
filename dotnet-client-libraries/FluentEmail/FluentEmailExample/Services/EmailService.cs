@@ -29,7 +29,6 @@ namespace FluentEmailExample.Services
             string template,
             User user)
         {
-
             await _fluentEmail.To(emailMetadata.ToAddress)
                 .Subject(emailMetadata.Subject)
                 .UsingTemplate(template, user)
@@ -40,7 +39,6 @@ namespace FluentEmailExample.Services
             string templateFile,
             User user)
         {
-
             await _fluentEmail.To(emailMetadata.ToAddress)
                 .Subject(emailMetadata.Subject)
                 .UsingTemplateFromFile(templateFile, user)

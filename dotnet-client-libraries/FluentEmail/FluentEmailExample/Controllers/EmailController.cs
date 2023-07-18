@@ -93,10 +93,10 @@ namespace FluentEmailExample.Controllers
         public async Task<IActionResult> SendMultipleEmails()
         {
             List<User> users = new()
-        {
-            new("John Doe","john.doe@gmail.com","Platinum"),
-            new("Jane Doe", "jane.doe@gmail.com", "Gold")
-        };
+            {
+                new("John Doe","john.doe@gmail.com","Platinum"),
+                new("Jane Doe", "jane.doe@gmail.com", "Gold")
+            };
 
             List<EmailMetadata> emailsMetadata = new();
 
