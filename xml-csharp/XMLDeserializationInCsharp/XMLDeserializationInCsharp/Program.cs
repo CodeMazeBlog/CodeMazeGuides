@@ -8,10 +8,12 @@ namespace XMLDeserializationInCsharp
         {
             #region Deserialization_Of_Class
             #region Simple Deserialization
-            var xmlData = @"<Person>
+            var xmlData = """
+                            <Person>
                                 <Name>John Doe</Name>
                                 <Age>30</Age>
-                            </Person>";
+                            </Person>
+                            """;
 
 
             var person = DeserializeXmlData<Person>(xmlData);
@@ -19,18 +21,21 @@ namespace XMLDeserializationInCsharp
             #endregion
 
             #region Complex Deserialization
-            var complexXML = @"<Library>
-                            <Books>
-                                <Book>
-                                    <Title>Book 1</Title>
-                                    <Author>Author 1</Author>
-                                </Book>
-                                <Book>
-                                    <Title>Book 2</Title>
-                                    <Author>Author 2</Author>
-                                </Book>
-                            </Books>
-                          </Library>";
+            var complexXML = """
+                                <Library>
+                                     <Books>
+                                    <Book>
+                                        <Title> Book 1 </Title>
+                                        <Author> Author 1 </Author>
+                                    </Book>
+                                    <Book>
+                                        <Title> Book 2 </Title>
+                                        <Author> Author 2 </Author>
+                                    </Book>
+                                </Books>
+                                </Library>
+                                """;
+
 
             var library = DeserializeXmlData<Library>(complexXML);
             foreach (Book book in library.Books)
@@ -44,15 +49,18 @@ namespace XMLDeserializationInCsharp
             #region Deserialization_Of_Records
 
             //Simple Deserialization
-            var personXML = @"<PersonRecord>
+            var personXML = """
+                            <PersonRecord>
                                 <Name>John Wick</Name>
                                 <Age>35</Age>
-                            </PersonRecord>";
+                            </PersonRecord>
+                            """;
             var personRecord = DeserializeXmlData<PersonRecord>(personXML);
             Console.WriteLine($"Name: {personRecord.Name}, Age: {personRecord.Age}");
 
             //Complex Deserialization
-            var libraryXML = @"<LibraryRecord>
+            var libraryXML = """
+                            <LibraryRecord>
                                 <Books>
                                 <BookRecord>
                                     <Title>Book 3</Title>
@@ -63,7 +71,8 @@ namespace XMLDeserializationInCsharp
                                     <Author>Author 4</Author>
                                 </BookRecord>
                                 </Books>
-                          </LibraryRecord>";
+                            </LibraryRecord>
+                          """;
             var libraryRecord = DeserializeXmlData<LibraryRecord>(libraryXML);
             foreach (BookRecord book in libraryRecord.Books)
             {

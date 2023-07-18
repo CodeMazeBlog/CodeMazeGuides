@@ -8,10 +8,12 @@ namespace XMLDeserializationInCsharpTests
         [TestMethod]
         public void When_DeserializingXmlData_Then_ReturnExpectedPerson()
         {
-            var xmlData = @"<Person>
-                              <Name>Jane Smith</Name> 
-                              <Age>25</Age>
-                          </Person>";
+            var xmlData = """
+                            <Person>
+                                <Name>Jane Smith</Name>
+                                <Age>25</Age>
+                            </Person>
+                            """;
             var expectedPerson = new Person { Name = "Jane Smith", Age = 25 };
 
             var actualPerson = Program.DeserializeXmlData<Person>(xmlData);
@@ -23,18 +25,20 @@ namespace XMLDeserializationInCsharpTests
         [TestMethod]
         public void When_DeserializingcomplexXML_Then_ReturnBooks()
         {
-            var complexXML = @"<Library>
-                                  <Books>
-                                     <Book>
-                                       <Title>The Catcher in the Rye</Title>
-                                       <Author>J.D. Salinger</Author>
-                                     </Book>
-                                     <Book>
-                                      <Title>To Kill a Mockingbird</Title>
-                                      <Author>Harper Lee</Author>
-                                     </Book>
-                                  </Books>
-                               </Library>";
+            var complexXML = """
+                                <Library>
+                                     <Books>
+                                    <Book>
+                                        <Title> The Catcher in the Rye </Title>
+                                        <Author> J.D. Salinger </Author>
+                                    </Book>
+                                    <Book>
+                                        <Title> To Kill a Mockingbird </Title>
+                                        <Author> Harper Lee </Author>
+                                    </Book>
+                                </Books>
+                                </Library>
+                                """;
 
             var library = Program.DeserializeXmlData<Library>(complexXML);
 
@@ -53,10 +57,12 @@ namespace XMLDeserializationInCsharpTests
         [TestMethod]
         public void When_DeserializingXmlData_Then_ReturnPersonrecord()
         {
-            var personXML = @"<PersonRecord>
+            var personXML = """
+                            <PersonRecord>
                                 <Name>John Wick</Name>
                                 <Age>35</Age>
-                            </PersonRecord>";
+                            </PersonRecord>
+                            """;
             var expectedPerson = new PersonRecord { Name = "John Wick", Age = 35 };
 
             var actualPerson = Program.DeserializeXmlData<PersonRecord>(personXML);
@@ -68,7 +74,8 @@ namespace XMLDeserializationInCsharpTests
         [TestMethod]
         public void When_DeserializingXmlData_Then_ReturnBooks()
         {
-            var libraryXML = @"<LibraryRecord>
+            var libraryXML = """
+                            <LibraryRecord>
                                 <Books>
                                 <BookRecord>
                                     <Title>John Wick : Chapter 4</Title>
@@ -79,7 +86,8 @@ namespace XMLDeserializationInCsharpTests
                                     <Author>BRZRKR</Author>
                                 </BookRecord>
                                 </Books>
-                          </LibraryRecord>";
+                            </LibraryRecord>
+                          """;
 
             var library = Program.DeserializeXmlData<LibraryRecord>(libraryXML);
 
