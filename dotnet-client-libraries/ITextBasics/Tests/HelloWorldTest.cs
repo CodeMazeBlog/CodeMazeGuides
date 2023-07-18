@@ -9,37 +9,29 @@ namespace Tests
         [TestMethod]
         public void GivenBasicPdfCommand_WhenRunning_ThenExpectCreatedFile()
         {
-            var helloWorld = new HelloWorld();
-            var tmpFileName = Path.GetTempFileName();
             var runner = new PdfRunnerTest();
-            runner.DoTest(tmpFileName, helloWorld.CreateBasicPDF);
+            runner.DoTest(HelloWorld.CreateBasicPDF);
         }
 
         [TestMethod]
         public void GivenAdvancedHeaderPDFCommand_WhenRunning_ThenExpectCreatedFile()
         {
-            var helloWorld = new HelloWorld();
-            var tmpFileName = Path.GetTempFileName();
             var runner = new PdfRunnerTest();
-            runner.DoTest(tmpFileName, helloWorld.CreateAdvancedHeaderPDF);
+            runner.DoTest(HelloWorld.CreateAdvancedHeaderPDF);
         }
 
         [TestMethod]
         public void GivenAdvancedMoreParagraphsPDFCommand_WhenRunning_ThenExpectCreatedFile()
         {
-            var helloWorld = new HelloWorld();
-            var tmpFileName = Path.GetTempFileName();
             var runner = new PdfRunnerTest();
-            runner.DoTest(tmpFileName, helloWorld.CreateAdvancedMoreParagraphsPDF);
+            runner.DoTest(HelloWorld.CreateAdvancedMoreParagraphsPDF);
         }
 
         [TestMethod]
         public void GivenCreatePDFWithImageCommand_WhenRunning_ThenExpectCreatedFile()
         {
-            var helloWorld = new HelloWorld();
-            var tmpFileName = Path.GetTempFileName();
             var runner = new PdfRunnerTest();
-            runner.DoTest(tmpFileName, helloWorld.CreatePDFWithImage);
+            runner.DoTest(HelloWorld.CreatePDFWithImage);
         }
     }
 }

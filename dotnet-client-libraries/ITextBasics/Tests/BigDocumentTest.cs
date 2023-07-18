@@ -9,10 +9,8 @@ namespace Tests
         [TestMethod]
         public void GivenCreateCommand_WhenRunning_ThenExpectCreatedFile()
         {
-            var bigDocument = new BigDocument();
-            var tmpFileName = Path.GetTempFileName();
             var runner = new PdfRunnerTest();
-            runner.DoTest(tmpFileName, bigDocument.Create);
+            runner.DoTest(BigDocument.Create);
         }
     }
 }

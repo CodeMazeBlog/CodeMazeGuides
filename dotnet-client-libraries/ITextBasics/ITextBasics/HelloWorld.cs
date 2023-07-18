@@ -9,9 +9,9 @@ using System.Reflection;
 
 namespace ITextBasics
 {
-    public class HelloWorld
+    public static class HelloWorld
     {
-        public void CreateBasicPDF(string pdfFileName)
+        public static void CreateBasicPDF(string pdfFileName)
         {
             using var writer = new PdfWriter(pdfFileName);
             using var pdfDocument = new PdfDocument(writer);
@@ -22,7 +22,7 @@ namespace ITextBasics
             document.Add(para);
         }
 
-        public void CreateAdvancedHeaderPDF(string pdfFileName)
+        public static void CreateAdvancedHeaderPDF(string pdfFileName)
         {
             using var writer = new PdfWriter(pdfFileName);
             using var pdfDocument = new PdfDocument(writer);
@@ -38,7 +38,7 @@ namespace ITextBasics
             document.Add(para);
         }
 
-        public void CreateAdvancedMoreParagraphsPDF(string pdfFileName)
+        public static void CreateAdvancedMoreParagraphsPDF(string pdfFileName)
         {
             using var writer = new PdfWriter(pdfFileName);
             using var pdfDocument = new PdfDocument(writer);
@@ -53,7 +53,7 @@ namespace ITextBasics
             }
         }
 
-        public void CreatePDFWithImage(string pdfFileName)
+        public static void CreatePDFWithImage(string pdfFileName)
         {
             using var writer = new PdfWriter(pdfFileName);
             using var pdfDocument = new PdfDocument(writer);

@@ -4,6 +4,10 @@ namespace ITextBasics.ConsoleManager
 {
     public class FakeConsole : IConsole
     {
+        private StringBuilder _screenOutput;
+        private List<ConsoleKeyInfo> _pressedKeys;
+        private int _currentKeyIndex;
+
         public FakeConsole(StringBuilder screenOutput, List<ConsoleKeyInfo> pressedKeys)
         {
             _screenOutput = screenOutput;
@@ -28,14 +32,10 @@ namespace ITextBasics.ConsoleManager
 
         public ConsoleKeyInfo ReadKey()
         {
-            if ((_pressedKeys is null) || (_pressedKeys.Count < _currentKeyIndex))
+            if ((_pressedKeys is null) || (_pressedKeys.Count <= _currentKeyIndex))
                 throw new InvalidOperationException("No keys pressed");
 
             return _pressedKeys[_currentKeyIndex++];
         }
-
-        private StringBuilder _screenOutput;
-        private List<ConsoleKeyInfo> _pressedKeys;
-        private int _currentKeyIndex;
     }
 }

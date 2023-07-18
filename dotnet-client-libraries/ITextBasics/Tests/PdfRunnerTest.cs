@@ -4,23 +4,30 @@ namespace Tests
 {
     internal class PdfRunnerTest
     {
-        public void DoTest(string fileName, Action<string> action)
+        public void DoTest(Action<string> action)
         {
-            // file exists
-            Assert.IsTrue(File.Exists(fileName));
+            var tmpFileName = Path.GetTempFileName();
 
-            // is empty
-            Assert.AreEqual(0, new FileInfo(fileName).Length);
+            try
+            {
+                // file exists
+                Assert.IsTrue(File.Exists(tmpFileName));
 
-            action(fileName);
+                // is empty
+                Assert.AreEqual(0, new FileInfo(tmpFileName).Length);
 
-            // file still exists
-            Assert.IsTrue(File.Exists(fileName));
+                action(tmpFileName);
 
-            // is not empty
-            Assert.IsTrue(new FileInfo(fileName).Length > 0);
+                // file still exists
+                Assert.IsTrue(File.Exists(tmpFileName));
 
-            File.Delete(fileName);
+                // is not empty
+                Assert.IsTrue(new FileInfo(tmpFileName).Length > 0);
+            }
+            finally
+            {
+                File.Delete(tmpFileName);
+            }
         }
     }
 }

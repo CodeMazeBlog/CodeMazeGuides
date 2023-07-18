@@ -11,8 +11,8 @@ namespace Tests
         [TestMethod]
         public void GivenKey_WhenGettingUserInput_ThenExpectCorrectAction()
         {
-            var screenOutput = new StringBuilder();
-            var pressedKeys = new List<ConsoleKeyInfo>()
+            StringBuilder screenOutput = new();
+            List<ConsoleKeyInfo> pressedKeys = new()
             {
                 new ConsoleKeyInfo('1', ConsoleKey.D1, false, false, false),
                 new ConsoleKeyInfo('x', ConsoleKey.X, false, false, false),
@@ -20,8 +20,8 @@ namespace Tests
                 new ConsoleKeyInfo('3', ConsoleKey.D3, false, false, false)
             };
 
-            var console = new FakeConsole(screenOutput, pressedKeys);
-            var userMenu = new UserMenu(console);
+            FakeConsole console = new(screenOutput, pressedKeys);
+            UserMenu userMenu = new(console);
 
             Assert.AreEqual(UserMenu.UserAction.CreateBasicPDF, userMenu.GetSelection());
             Assert.AreEqual(UserMenu.UserAction.Exit, userMenu.GetSelection());

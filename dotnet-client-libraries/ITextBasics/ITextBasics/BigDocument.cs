@@ -3,14 +3,17 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
-using System.Diagnostics;
 using System.Reflection;
+using System.Text;
 
 namespace ITextBasics
 {
-    public class BigDocument
+    public static class BigDocument
     {
-        public void Create(string pdfFileName)
+        private static readonly string loremIpsumText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        private static readonly string[] loremIpsumWords = loremIpsumText.Split(' ');
+
+        public static void Create(string pdfFileName)
         {
             using var writer = new PdfWriter(pdfFileName);
             using var pdfDocument = new PdfDocument(writer);
@@ -38,7 +41,7 @@ namespace ITextBasics
             }
         }
 
-        private Paragraph CreateHeader1(string caption)
+        private static Paragraph CreateHeader1(string caption)
         {
             return new Paragraph(caption)
                 .SetTextAlignment(TextAlignment.CENTER)
@@ -46,7 +49,7 @@ namespace ITextBasics
                 .SetBold();
         }
 
-        private Paragraph CreateHeader2(string caption)
+        private static Paragraph CreateHeader2(string caption)
         {
             return new Paragraph(caption)
                 .SetTextAlignment(TextAlignment.LEFT)
@@ -54,12 +57,12 @@ namespace ITextBasics
                 .SetBold();
         }
 
-        private Paragraph CreateNormalParagraph(string text)
+        private static Paragraph CreateNormalParagraph(string text)
         {
             return new Paragraph(text);
         }
 
-        private Paragraph CreatePictureParagraph(string imageFile)
+        private static Paragraph CreatePictureParagraph(string imageFile)
         {
             var imageData = ImageDataFactory.Create(imageFile);
             var image = new Image(imageData);
@@ -68,20 +71,17 @@ namespace ITextBasics
                 .Add(image);
         }
 
-        private string LoremIpsum(int numberOfWords)
+        private static string LoremIpsum(int numberOfWords)
         {
-            var loremIpsumText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-            var words = loremIpsumText.Split(' ');
-
-            var sentences = new List<string>();
+            StringBuilder sb = new(numberOfWords * 10);
             while (numberOfWords > 0)
             {
-                var wordsToTake = Math.Min(numberOfWords, words.Length);
-                sentences.Add(string.Join(' ', words.Take(wordsToTake)));
+                int wordsToTake = Math.Min(numberOfWords, loremIpsumWords.Length);
+                _ = sb.AppendJoin(' ', loremIpsumWords.Take(wordsToTake));
                 numberOfWords -= wordsToTake;
             }
 
-            return string.Join(' ', sentences);
+            return sb.ToString();
         }
     }
 }
