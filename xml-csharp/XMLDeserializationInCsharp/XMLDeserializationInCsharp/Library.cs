@@ -7,6 +7,6 @@ namespace XMLDeserializationInCsharp
     {
         [XmlArray("Books")]
         [XmlArrayItem("Book")]
-        public List<Book> Books { get; set; }
+        public List<Book> Books { get; set; } = new();
     }
 }
