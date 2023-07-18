@@ -31,14 +31,14 @@ namespace XMLDeserializationInCsharpTests
                                 <Library>
                                      <Books>
                                     <Book>
-                                        <Title> The Catcher in the Rye </Title>
-                                        <Author> J.D. Salinger </Author>
+                                        <Title>The Catcher in the Rye</Title>
+                                        <Author>J.D. Salinger</Author>
                                     </Book>
                                     <Book>
-                                        <Title> To Kill a Mockingbird </Title>
-                                        <Author> Harper Lee </Author>
+                                        <Title>To Kill a Mockingbird</Title>
+                                        <Author>Harper Lee</Author>
                                     </Book>
-                                </Books>
+                                     </Books>
                                 </Library>
                                 """;
 
