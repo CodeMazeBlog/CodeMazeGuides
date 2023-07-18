@@ -9,16 +9,20 @@
             _emailService = emailService;
         }
 
-        public void NotifyUser(User user, string message)
+        public bool NotifyUser(User user, string message)
         {
             if (user is null ||
                 user.Email is null ||
+                !_emailService.IsValidEmail(user.Email) ||
                 string.IsNullOrWhiteSpace(message))
             {
-                return;
+                return false;
             }
 
-            _emailService.SendEmail(user.Email, "Notification from CodeMaze", message);
+            var sentSuccessfully = _emailService
+                .SendEmail(user.Email, "Notification from CodeMaze", message);
+
+            return sentSuccessfully;
         }
     }
 }

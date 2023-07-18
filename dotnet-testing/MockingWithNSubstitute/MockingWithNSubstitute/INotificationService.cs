@@ -2,6 +2,6 @@
 {
     public interface INotificationService
     {
-        void NotifyUser(User user, string message);
+        bool NotifyUser(User user, string message);
     }
 }
