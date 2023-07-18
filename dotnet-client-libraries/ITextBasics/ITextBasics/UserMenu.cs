@@ -4,6 +4,8 @@ namespace ITextBasics
 {
     public class UserMenu
     {
+        private readonly IConsole _console;
+
         public enum UserAction
         {
             CreateBasicPDF,
@@ -51,7 +53,5 @@ namespace ITextBasics
             _console.WriteLine("5. Create PDF file with few paragraphs");
             _console.WriteLine("X. Exit");
         }
-
-        private readonly IConsole _console;
     }
 }

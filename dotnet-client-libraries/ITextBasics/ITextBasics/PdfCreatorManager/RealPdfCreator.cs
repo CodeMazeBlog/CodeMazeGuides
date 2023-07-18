@@ -5,6 +5,8 @@ namespace ITextBasics.PdfCreatorManager
 {
     public class RealPdfCreator : IPdfCreator
     {
+        private readonly IConsole _console;
+
         public RealPdfCreator(IConsole console)
         {
             _console = console;
@@ -54,7 +56,5 @@ namespace ITextBasics.PdfCreatorManager
 
             _console.WriteLine($"\n Displaying PDF file '{pdfFileName}'");
         }
-
-        private readonly IConsole _console;
     }
 }
