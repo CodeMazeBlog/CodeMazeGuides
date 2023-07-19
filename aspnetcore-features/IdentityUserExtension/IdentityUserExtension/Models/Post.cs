@@ -1,6 +1,6 @@
 namespace IdentityUserExtension.Models;
 
-public sealed class Post
+public class Post
 {
     public Guid Id { get; set; }
     public string Title { get; set; }
