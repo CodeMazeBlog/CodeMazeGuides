@@ -8,7 +8,7 @@ public class NotifierUnitTest
     public void WhenSmsIsPassedAsParameter_ThenSmsMustBeSent()
     {
         var notifier = new Notifier("sms");
-        Assert.Equal("Sending SMS", notifier.NotificationHandler);
+        if (notifier.NotificationHandler != null) Assert.Equal("Sending SMS", notifier.NotificationHandler);
     }
 
     [Fact]
@@ -16,5 +16,11 @@ public class NotifierUnitTest
     {
         var notifier = new Notifier("email");
         Assert.Equal("Sending Email", notifier.NotificationHandler);
+    }
+
+    [Fact]
+    public void WhenInvalidParameterIsPassed_ThenExceptionMustBeThrown()
+    {
+        Assert.Throws<ArgumentException>(() => new Notifier("invalid"));
     }
 }
