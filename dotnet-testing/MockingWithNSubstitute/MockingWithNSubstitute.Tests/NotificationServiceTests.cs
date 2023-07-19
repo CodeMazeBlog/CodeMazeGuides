@@ -5,11 +5,13 @@ namespace MockingWithNSubstitute.Tests
 {
     public class NotificationServiceTests
     {
+        private readonly User _user;
         private readonly IEmailService _emailService;
         private readonly NotificationService _notificationService;
 
         public NotificationServiceTests()
         {
+            _user = new User("Code-Maze", "email@code-maze.com");
             _emailService = Substitute.For<IEmailService>();
             _notificationService = new NotificationService(_emailService);
         }
@@ -17,14 +19,13 @@ namespace MockingWithNSubstitute.Tests
         [Fact]
         public void GivenInputIsCorrect_WhenNotifyUserIsInvoked_ThenTrueIsReturned()
         {
-            // Arrange
-            var user = new User("Some Name", "email@code-maze.com");
+            // Arrange            
             var message = "Mocking behaviors and expectations with NSubstitute";
-            _emailService.IsValidEmail(user.Email).Returns(true);
-            _emailService.SendEmail(user.Email, "Notification from CodeMaze", message).Returns(true);
+            _emailService.IsValidEmail(_user.Email).Returns(true);
+            _emailService.SendEmail(_user.Email, "Notification from CodeMaze", message).Returns(true);
 
             // Act
-            var result = _notificationService.NotifyUser(user, message);
+            var result = _notificationService.NotifyUser(_user, message);
 
             // Assert
             result.Should().BeTrue();
@@ -34,13 +35,30 @@ namespace MockingWithNSubstitute.Tests
         public void GivenInputIsNotCorrect_WhenNotifyUserIsInvoked_ThenFalseIsReturned()
         {
             // Arrange
-            var user = new User("Some Name", "email@code-maze.com");
             var message = "Ignoring or Conditionally Matching Arguments";
             _emailService.IsValidEmail(default).ReturnsForAnyArgs(false);
             _emailService.SendEmail(Arg.Any<string>(), Arg.Is<string>(x => x.Length > 5), message).Returns(true);
 
             // Act
-            var result = _notificationService.NotifyUser(user, message);
+            var result = _notificationService.NotifyUser(_user, message);
+
+            // Assert
+            result.Should().BeFalse();
+            _emailService.Received().IsValidEmail(Arg.Any<string>());
+            _emailService.DidNotReceive().SendEmail(Arg.Any<string>(), Arg.Is<string>(x => x.Length > 5), message);
+        }
+
+        [Fact]
+        public void GivenExceptionIsThrown_WhenNotifyUserIsInvoked_ThenFalseIsReturned()
+        {
+            // Arrange
+            var message = "Throwing Exceptions When Mocking With NSubstitute";
+            _emailService.IsValidEmail(_user.Email).Returns(true);
+            _emailService.When(x => x.SendEmail(_user.Email, "Notification from CodeMaze", message))
+                .Do(x => { throw new Exception(); });
+
+            // Act
+            var result = _notificationService.NotifyUser(_user, message);
 
             // Assert
             result.Should().BeFalse();

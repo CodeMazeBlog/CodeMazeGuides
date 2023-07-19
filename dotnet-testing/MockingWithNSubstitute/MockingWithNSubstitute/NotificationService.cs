@@ -19,10 +19,17 @@
                 return false;
             }
 
-            var sentSuccessfully = _emailService
+            try
+            {
+                var sentSuccessfully = _emailService
                 .SendEmail(user.Email, "Notification from CodeMaze", message);
 
-            return sentSuccessfully;
+                return sentSuccessfully;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
