@@ -5,11 +5,11 @@ namespace ActionFuncDelegatesUnitTest;
 public class ActionFuncDelegateTest
 {
     private SiteInfo _siteInfo;
+
     [SetUp]
     public void Setup()
     {
         _siteInfo = new SiteInfo();
-
     }
 
     [Test]
@@ -17,7 +17,7 @@ public class ActionFuncDelegateTest
     {
         //We assign the expected Action delegate output and what we get
         var expected = "Howdy, welcome to CodeMaze where learning is simplified.";
-        StringWriter stringWriter = new StringWriter();
+        var stringWriter = new StringWriter();
         Console.SetOut(stringWriter);
 
         //Act on the Action delegate
@@ -28,9 +28,8 @@ public class ActionFuncDelegateTest
 
         //Assert that the result on the console is the same as what our delegate has
         Assert.AreEqual(expected, result);
-
-
     }
+
     [Test]
     public void WhenTotalArticlesIsCalled_ThenReturnTheTotalArticles()
     {
