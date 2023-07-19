@@ -11,7 +11,6 @@ namespace Tests
         [TestMethod]
         public void GivenKey_WhenGettingUserInput_ThenExpectCorrectAction()
         {
-            StringBuilder screenOutput = new();
             List<ConsoleKeyInfo> pressedKeys = new()
             {
                 new ConsoleKeyInfo('1', ConsoleKey.D1, false, false, false),
@@ -20,13 +19,24 @@ namespace Tests
                 new ConsoleKeyInfo('3', ConsoleKey.D3, false, false, false)
             };
 
-            FakeConsole console = new(screenOutput, pressedKeys);
+            FakeConsole console = new(pressedKeys);
             UserMenu userMenu = new(console);
 
             Assert.AreEqual(UserMenu.UserAction.CreateBasicPDF, userMenu.GetSelection());
             Assert.AreEqual(UserMenu.UserAction.Exit, userMenu.GetSelection());
             Assert.AreEqual(UserMenu.UserAction.Unknown, userMenu.GetSelection());
             Assert.AreEqual(UserMenu.UserAction.CreateAdvancedMoreParagraphsPDF, userMenu.GetSelection());
+        }
+
+        [TestMethod]
+        public void CountingLines_WhenDisplayingUserMenu_ThenExpectCorrectNumberOfLines()
+        {
+            FakeConsole console = new(new List<ConsoleKeyInfo>());
+            UserMenu userMenu = new(console);
+
+            userMenu.DisplayOptions();
+            IConsoleLineCounter consoleLineCounter = console;
+            Assert.AreEqual(consoleLineCounter.NumberOfLines, 8);
         }
     }
 }

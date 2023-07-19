@@ -2,32 +2,35 @@
 
 namespace ITextBasics.ConsoleManager
 {
-    public class FakeConsole : IConsole
+    public class FakeConsole : IConsole, IConsoleLineCounter
     {
-        private StringBuilder _screenOutput;
         private List<ConsoleKeyInfo> _pressedKeys;
         private int _currentKeyIndex;
+        private int _numberOfLines;
 
-        public FakeConsole(StringBuilder screenOutput, List<ConsoleKeyInfo> pressedKeys)
+        public int NumberOfLines => _numberOfLines;
+
+        public FakeConsole(List<ConsoleKeyInfo> pressedKeys)
         {
-            _screenOutput = screenOutput;
             _pressedKeys = pressedKeys;
             _currentKeyIndex = 0;
+            _numberOfLines = 0;
         }
 
         public void Clear()
         {
-            _screenOutput.Clear();
+            _numberOfLines = 0;
         }
 
         public void Write(string message)
         {
-            _screenOutput.Append(message);
+            if (_numberOfLines == 0)
+                _numberOfLines++;
         }
 
         public void WriteLine(string message)
         {
-            _screenOutput.AppendLine(message);
+            _numberOfLines++;
         }
 
         public ConsoleKeyInfo ReadKey()
