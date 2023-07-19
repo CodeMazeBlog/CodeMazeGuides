@@ -20,15 +20,15 @@ public class MergingMethodsBenchmark
         // Generate random values for dictionaryA
         for (var i = 0; i < 100; i++)
         {
-            var value = GenerateRandomValue();
-            _dictionaryA.Add(i, value);            
+            var randomValue = GenerateRandomValue();
+            _dictionaryA.Add(i, randomValue);            
         }
 
         // Generate random values for dictionaryB
         for (int i = 100; i < 200; i++)
         {
-            var value = GenerateRandomValue();
-            _dictionaryB.Add(i, value);            
+            var randomValue = GenerateRandomValue();
+            _dictionaryB.Add(i, randomValue);            
         }
     }
 
