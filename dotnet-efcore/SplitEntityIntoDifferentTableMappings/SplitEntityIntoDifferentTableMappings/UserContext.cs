@@ -6,7 +6,7 @@ namespace SplitEntityIntoDifferentTableMappings
     public class UserContext : DbContext
     {
         public UserContext(DbContextOptions<UserContext> contextOptions)
-            :base(contextOptions)
+            : base(contextOptions)
         { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +26,7 @@ namespace SplitEntityIntoDifferentTableMappings
                         });
                 });
         }
+
         public DbSet<User> Users { get; set; }
 
         /* only for debugging purposes -- start */

@@ -6,12 +6,6 @@ namespace SplitEntityUnitTests
 {
     public class SplitEntityUnitTests
     {
-        [SetUp]
-        public void Setup()
-        {
-
-        }
-
         [Test]
         public void WhenCreatingANewEntity_ThenEntityIsSplitIntoTwoTables()
         {
@@ -20,29 +14,28 @@ namespace SplitEntityUnitTests
 
             var contextOptions = new DbContextOptionsBuilder<UserContext>()
                 .UseSqlite(connection)
-                .Options; 
-            
-            using (var context = new UserContext(contextOptions))
+                .Options;
+
+            using var context = new UserContext(contextOptions);
+
+            if (context.Database.EnsureCreated())
             {
-                if (context.Database.EnsureCreated())
-                {
-                    var user = new User(1, "John Doe", "john@doe.com", true, "Classic");
-                    context.Add(user);
-                    context.SaveChanges();
+                var user = new User(1, "John Doe", "john@doe.com", true, "Classic");
+                context.Add(user);
+                context.SaveChanges();
 
-                    user = context.Users.Single();
+                user = context.Users.Single();
 
-                    var name = context.Database.SqlQuery<string>($"select Name from Users")
-                        .ToList();
+                var name = context.Database.SqlQuery<string>($"select Name from Users")
+                    .ToList();
 
-                    var theme = context.Database.SqlQuery<string>($"select Theme from UserSettings")
-                        .ToList();
+                var theme = context.Database.SqlQuery<string>($"select Theme from UserSettings")
+                    .ToList();
 
-                    Assert.That(name.Count(), Is.EqualTo(1));
-                    Assert.That(theme.Count(), Is.EqualTo(1));
-                    Assert.That(name.ElementAt(0), Is.EqualTo("John Doe"));
-                    Assert.That(theme.ElementAt(0), Is.EqualTo("Classic"));
-                }
+                Assert.That(name.Count(), Is.EqualTo(1));
+                Assert.That(theme.Count(), Is.EqualTo(1));
+                Assert.That(name.ElementAt(0), Is.EqualTo("John Doe"));
+                Assert.That(theme.ElementAt(0), Is.EqualTo("Classic"));
             }
         }
 
@@ -56,28 +49,27 @@ namespace SplitEntityUnitTests
                 .UseSqlite(connection)
                 .Options;
 
-            using (var context = new UserContext(contextOptions))
+            using var context = new UserContext(contextOptions);
+
+            if (context.Database.EnsureCreated())
             {
-                if (context.Database.EnsureCreated())
-                {
-                    context.Add(new User(1, "John Doe", "john@doe.com", true, "Classic"));
-                    context.SaveChanges();
+                context.Add(new User(1, "John Doe", "john@doe.com", true, "Classic"));
+                context.SaveChanges();
 
-                    var user = context.Users.Single();
-                    user.Theme = "Flashy";
-                    context.SaveChanges();
+                var user = context.Users.Single();
+                user.Theme = "Flashy";
+                context.SaveChanges();
 
-                    var name = context.Database.SqlQuery<string>($"select Name from Users")
-                        .ToList();
+                var name = context.Database.SqlQuery<string>($"select Name from Users")
+                    .ToList();
 
-                    var theme = context.Database.SqlQuery<string>($"select Theme from UserSettings")
-                        .ToList();
+                var theme = context.Database.SqlQuery<string>($"select Theme from UserSettings")
+                    .ToList();
 
-                    Assert.That(name.Count(), Is.EqualTo(1));
-                    Assert.That(theme.Count(), Is.EqualTo(1));
-                    Assert.That(name.ElementAt(0), Is.EqualTo("John Doe"));
-                    Assert.That(theme.ElementAt(0), Is.EqualTo("Flashy"));
-                }
+                Assert.That(name.Count(), Is.EqualTo(1));
+                Assert.That(theme.Count(), Is.EqualTo(1));
+                Assert.That(name.ElementAt(0), Is.EqualTo("John Doe"));
+                Assert.That(theme.ElementAt(0), Is.EqualTo("Flashy"));
             }
         }
 
@@ -91,26 +83,25 @@ namespace SplitEntityUnitTests
                 .UseSqlite(connection)
                 .Options;
 
-            using (var context = new UserContext(contextOptions))
+            using var context = new UserContext(contextOptions);
+
+            if (context.Database.EnsureCreated())
             {
-                if (context.Database.EnsureCreated())
-                {
-                    context.Add(new User(1, "John Doe", "john@doe.com", true, "Classic"));
-                    context.SaveChanges();
+                context.Add(new User(1, "John Doe", "john@doe.com", true, "Classic"));
+                context.SaveChanges();
 
-                    var user = context.Users.Single();
-                    context.Users.Remove(user);
-                    context.SaveChanges();
+                var user = context.Users.Single();
+                context.Users.Remove(user);
+                context.SaveChanges();
 
-                    var name = context.Database.SqlQuery<string>($"select Name from Users")
-                        .ToList();
+                var name = context.Database.SqlQuery<string>($"select Name from Users")
+                    .ToList();
 
-                    var theme = context.Database.SqlQuery<string>($"select Theme from UserSettings")
-                        .ToList();
+                var theme = context.Database.SqlQuery<string>($"select Theme from UserSettings")
+                    .ToList();
 
-                    Assert.That(name.Count(), Is.EqualTo(0));
-                    Assert.That(theme.Count(), Is.EqualTo(0));
-                }
+                Assert.That(name.Count(), Is.EqualTo(0));
+                Assert.That(theme.Count(), Is.EqualTo(0));
             }
         }
     }
