@@ -36,7 +36,7 @@ public class MergingMethodsTests
     }
 
     [Test]
-    public void ConcatMethod_ShouldMergeDictionaries()
+    public void GivenConcatMethod_WhenDictionaryAB_ThenExpectedDictionary()
     {
         var mergedDictionary = ConcatMethod(_dictionaryA, _dictionaryB);
 
@@ -44,7 +44,7 @@ public class MergingMethodsTests
     }
 
     [Test]
-    public void ForEachMethod_ShouldMergeDictionaries()
+    public void GivenForEachMethod_WhenDictionaryAB_ThenExpectedDictionary()
     {
         var mergedDictionary = ForEachMethod(_dictionaryA, _dictionaryB);
 
@@ -52,7 +52,7 @@ public class MergingMethodsTests
     }
 
     [Test]
-    public void GroupByMethod_ShouldMergeDictionaries()
+    public void GivenGroupByMethod_WhenDictionaryAB_ThenExpectedDictionary()
     {
         var mergedDictionary = GroupByMethod(_dictionaryA, _dictionaryB);
 
@@ -60,7 +60,7 @@ public class MergingMethodsTests
     }
 
     [Test]
-    public void LookupMethod_ShouldMergeDictionaries()
+    public void GivenToLookupMethod_WhenDictionaryAB_ThenExpectedDictionary()
     {
         var mergedDictionary = LookupMethod(_dictionaryA, _dictionaryB);
 
@@ -68,7 +68,7 @@ public class MergingMethodsTests
     }
 
     [Test]
-    public void UnionMethod_ShouldMergeDictionaries()
+    public void GivenUnionMethod_WhenDictionaryAB_ThenExpectedDictionary()
     {
         var mergedDictionary = UnionMethod(_dictionaryA, _dictionaryB);
 
@@ -76,7 +76,7 @@ public class MergingMethodsTests
     }
 
     [Test]
-    public void HashSetMethod_ShouldMergeDictionaries()
+    public void GivenListsMethod_WhenDictionaryAB_ThenExpectedDictionary()
     {
         var mergedDictionary = UsingListsMethod(_dictionaryA, _dictionaryB);
 
@@ -84,13 +84,13 @@ public class MergingMethodsTests
     }
 
     [Test]
-    public void ConcatMethod_WhenDictionariesWithDublicateKeys_ThenException()
+    public void GivenConcatMethod_WhenDictionariesWithDublicateKeys_ThenException()
     {
         Assert.Throws<ArgumentException>(() => ConcatMethod(_dictionaryA, _dictionaryA));
     }
 
     [Test]
-    public void UnionMethod_WhenDictionariesWithDublicateKeys_ThenException()
+    public void GivenUnionMethod_WhenDictionariesWithDublicateKeys_ThenException()
     {
         Assert.Throws<ArgumentException>(() => UnionMethod(_dictionaryA, new Dictionary<int, string>()
             {
@@ -102,7 +102,7 @@ public class MergingMethodsTests
     }
 
     [Test]
-    public void UsingListsMethod_WhenDictionariesWithDublicateKeys_ThenException()
+    public void GivenListsMethod_WhenDictionariesWithDublicateKeys_ThenException()
     {
         Assert.Throws<ArgumentException>(() => UsingListsMethod(_dictionaryA, _dictionaryA));
     }

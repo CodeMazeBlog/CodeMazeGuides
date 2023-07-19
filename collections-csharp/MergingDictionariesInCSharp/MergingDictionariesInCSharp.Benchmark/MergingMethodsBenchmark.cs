@@ -17,34 +17,18 @@ public class MergingMethodsBenchmark
         _dictionaryA = new Dictionary<int, string>();
         _dictionaryB = new Dictionary<int, string>();
 
-        var random = Random.Shared;
-
         // Generate random values for dictionaryA
         for (var i = 0; i < 100; i++)
         {
-            var key = random.Next(100);
             var value = GenerateRandomValue();
-
-            if (!_dictionaryA.ContainsKey(key))
-            {
-                _dictionaryA.Add(key, value);
-            }
-            else
-            {
-                i--; // Retry generating a unique key
-            }
+            _dictionaryA.Add(i, value);            
         }
 
         // Generate random values for dictionaryB
-        for (int i = 0; i < _dictionaryA.Count; i++)
+        for (int i = 100; i < 200; i++)
         {
-            var key = random.Next(100, 200);
             var value = GenerateRandomValue();
-
-            if (!_dictionaryB.ContainsKey(key))
-            {
-                _dictionaryB.Add(key, value);
-            }
+            _dictionaryB.Add(i, value);            
         }
     }
 
