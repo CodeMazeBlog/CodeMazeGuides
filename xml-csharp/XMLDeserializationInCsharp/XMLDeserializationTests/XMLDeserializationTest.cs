@@ -17,11 +17,10 @@ namespace XMLDeserializationInCsharpTests
             var expectedPerson = new Person { Name = "Jane Smith", Age = 25 };
 
             var actualPerson = Program.DeserializeXmlData<Person>(xmlData);
-            if (actualPerson != null)
-            {
-                Assert.AreEqual(expectedPerson.Name, actualPerson.Name);
-                Assert.AreEqual(expectedPerson.Age, actualPerson.Age);
-            }
+
+            Assert.IsNotNull(actualPerson);
+            Assert.AreEqual(expectedPerson.Name, actualPerson.Name);
+            Assert.AreEqual(expectedPerson.Age, actualPerson.Age);
         }
 
         [TestMethod]
@@ -68,11 +67,11 @@ namespace XMLDeserializationInCsharpTests
             var expectedPerson = new PersonRecord { Name = "John Wick", Age = 35 };
 
             var actualPerson = Program.DeserializeXmlData<PersonRecord>(personXML);
-            if (actualPerson != null)
-            {
-                Assert.AreEqual(expectedPerson.Name, actualPerson.Name);
-                Assert.AreEqual(expectedPerson.Age, actualPerson.Age);
-            }
+
+            Assert.IsNotNull(actualPerson);
+            Assert.AreEqual(expectedPerson.Name, actualPerson.Name);
+            Assert.AreEqual(expectedPerson.Age, actualPerson.Age);
+
         }
 
         [TestMethod]
