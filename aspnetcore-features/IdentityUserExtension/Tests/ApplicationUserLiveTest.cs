@@ -48,10 +48,10 @@ public class ApplicationUserLiveTest
             UserName = "user1",
             Email = "email@example.com",
             DisplayName = "User 1",
-            AdditionalEmailAddresses = new()
+            Posts = new()
             {
-                new(){UsedForLogin = true, Value = "email2@example.com"},
-                new(){UsedForLogin = true, Value = "email3@example.com"}
+                new(){Title = "title1", Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."},
+                new(){Title = "title2", Text = "Etiam sed erat ipsum. Donec hendrerit sem accumsan justo efficitur, vel ullamcorper libero tincidunt."}
             }
         };
         await using var transaction = await dbContext.Database.BeginTransactionAsync();
@@ -64,8 +64,9 @@ public class ApplicationUserLiveTest
             var userFromDb = await userManager.FindByNameAsync(user.UserName);
             
             Assert.That(userFromDb, Is.Not.Null);
-            Assert.That(userFromDb!.AdditionalEmailAddresses, Has.Count.EqualTo(user.AdditionalEmailAddresses.Count));
-            Assert.That(userFromDb.AdditionalEmailAddresses.Select(x => x.Value), Is.EquivalentTo(user.AdditionalEmailAddresses.Select(x => x.Value)));
+            Assert.That(userFromDb!.Posts, Has.Count.EqualTo(user.Posts.Count));
+            Assert.That(userFromDb.Posts.Select(x => x.Title), Is.EquivalentTo(user.Posts.Select(x => x.Title)));
+            Assert.That(userFromDb.Posts.Select(x => x.Text), Is.EquivalentTo(user.Posts.Select(x => x.Text)));
         }
         finally
         {

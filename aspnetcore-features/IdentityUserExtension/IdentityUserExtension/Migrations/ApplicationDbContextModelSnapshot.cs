@@ -96,7 +96,7 @@ namespace IdentityUserExtension.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("IdentityUserExtension.Models.EmailAddress", b =>
+            modelBuilder.Entity("IdentityUserExtension.Models.Post", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,10 +105,11 @@ namespace IdentityUserExtension.Migrations
                     b.Property<Guid?>("ApplicationUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("UsedForLogin")
-                        .HasColumnType("bit");
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Value")
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -117,7 +118,7 @@ namespace IdentityUserExtension.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("EmailAddress");
+                    b.ToTable("Post");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>
@@ -255,10 +256,10 @@ namespace IdentityUserExtension.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("IdentityUserExtension.Models.EmailAddress", b =>
+            modelBuilder.Entity("IdentityUserExtension.Models.Post", b =>
                 {
                     b.HasOne("IdentityUserExtension.Models.ApplicationUser", null)
-                        .WithMany("AdditionalEmailAddresses")
+                        .WithMany("Posts")
                         .HasForeignKey("ApplicationUserId");
                 });
 
@@ -315,7 +316,7 @@ namespace IdentityUserExtension.Migrations
 
             modelBuilder.Entity("IdentityUserExtension.Models.ApplicationUser", b =>
                 {
-                    b.Navigation("AdditionalEmailAddresses");
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

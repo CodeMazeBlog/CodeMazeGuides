@@ -159,19 +159,19 @@ namespace IdentityUserExtension.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EmailAddress",
+                name: "Post",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    UsedForLogin = table.Column<bool>(type: "bit", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ApplicationUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmailAddress", x => x.Id);
+                    table.PrimaryKey("PK_Post", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmailAddress_AspNetUsers_ApplicationUserId",
+                        name: "FK_Post_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
@@ -217,8 +217,8 @@ namespace IdentityUserExtension.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmailAddress_ApplicationUserId",
-                table: "EmailAddress",
+                name: "IX_Post_ApplicationUserId",
+                table: "Post",
                 column: "ApplicationUserId");
         }
 
@@ -241,7 +241,7 @@ namespace IdentityUserExtension.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EmailAddress");
+                name: "Post");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

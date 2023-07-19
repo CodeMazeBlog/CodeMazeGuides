@@ -16,17 +16,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<EmailAddress>(b =>
+        builder.Entity<Post>(b =>
         {
             b.HasKey(e => e.Id);
-            b.Property(e => e.Value).IsRequired().HasMaxLength(256);
-            b.Property(e => e.UsedForLogin).IsRequired();
+            b.Property(e => e.Title).IsRequired().HasMaxLength(256);
+            b.Property(e => e.Text).IsRequired();
         });
         
         builder.Entity<ApplicationUser>(b =>
         {
             b.Property(u => u.DisplayName).IsRequired().HasMaxLength(100);
-            b.HasMany(u => u.AdditionalEmailAddresses).WithOne();
+            b.HasMany(u => u.Posts).WithOne();
         });
     }
 }
