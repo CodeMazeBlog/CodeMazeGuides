@@ -3,11 +3,10 @@ using System.Runtime.InteropServices;
 
 namespace SortingGenericList.Library;
 
-public class MySortedList<T> : IList<T> where T : IComparable<T>
+public sealed class MySortedList<T> : IList<T> where T : IComparable<T>
 {
-    private readonly List<T> _list;
-
     private readonly IComparer<T>? _comparer;
+    private readonly List<T> _list;
 
     public int Capacity => _list.Capacity;
 
@@ -18,9 +17,7 @@ public class MySortedList<T> : IList<T> where T : IComparable<T>
     }
 
     public MySortedList(IEnumerable<T> initialValues, IComparer<T>? comparer = null) : this(comparer: comparer)
-    {
-        AddRange(initialValues);
-    }
+        => AddRange(initialValues);
 
     public void AddRange(IEnumerable<T> items)
     {

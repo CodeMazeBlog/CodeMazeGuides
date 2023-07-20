@@ -1,139 +1,154 @@
-﻿using AutoBogus;
-using Bogus;
-using SortingGenericList.Library;
+﻿using SortingGenericList.Library;
 using SortingGenericList.Library.DataModels;
 
-const int productCount = 5;
-var list = new List<Product>(productCount);
+var unsortedProducts = GetProducts();
+var productList = new List<Product?>(unsortedProducts.Length);
 
-var productsList = GenerateProducts(productCount);
-
-Console.WriteLine("----------MySortedList<Product>----------");
-Console.WriteLine("**Products**");
-PrintProductList(productsList);
-Console.WriteLine();
-
-var sortedCollection = new MySortedList<Product>(productsList);
-Console.WriteLine("**Sorted**");
-PrintProductList(sortedCollection);
-Console.WriteLine();
-
-Console.WriteLine("----------List<Product> In Place Sort----------");
+Console.WriteLine("----------List<Product> In Place Sort (Default Order: ProductName)----------");
 Console.WriteLine("Products:");
-PrintProductList(productsList);
+PrintProducts(unsortedProducts);
 Console.WriteLine();
 
-list.Clear();
-list.AddRange(productsList);
+productList.Clear();
+productList.AddRange(unsortedProducts);
 
-ListSortMethods.SortListInPlaceWithSort(list);
+productList.Sort();
 Console.WriteLine("**Sorted**");
-PrintProductList(list);
+PrintProducts(productList);
 Console.WriteLine();
 
-Console.WriteLine("----------List<Product> In Place Sort With Comparison Delegate----------");
+Console.WriteLine("----------List<Product> In Place Sort With IComparer (Order: Price)----------");
 Console.WriteLine("Products:");
-PrintProductList(productsList);
+PrintProducts(unsortedProducts);
 Console.WriteLine();
 
-list.Clear();
-list.AddRange(productsList);
+productList.Clear();
+productList.AddRange(unsortedProducts);
 
-ListSortMethods.SortListInPlaceWithSort(list, (x, y) => y.CompareTo(x));
+productList.Sort(new ProductPriceIComparer());
 Console.WriteLine("**Sorted**");
-PrintProductList(list);
+PrintProducts(productList);
 Console.WriteLine();
 
-Console.WriteLine("----------List<Product> In Place Sort With ICompare----------");
+Console.WriteLine("----------List<Product> In Place Sort With Derived Comparer<T> (Order: Id)----------");
 Console.WriteLine("Products:");
-PrintProductList(productsList);
+PrintProducts(unsortedProducts);
 Console.WriteLine();
 
-list.Clear();
-list.AddRange(productsList);
+productList.Clear();
+productList.AddRange(unsortedProducts);
 
-ListSortMethods.SortListInPlaceWithSort(list, new DescendingProductComparer());
+productList.Sort(new ProductIdComparer());
 Console.WriteLine("**Sorted**");
-PrintProductList(list);
+PrintProducts(productList);
 Console.WriteLine();
 
-Console.WriteLine("----------List<Product> Sorted With Order----------");
+Console.WriteLine("----------List<Product> In Place Sort With Comparison<T> (Lambda: Order - Category)----------");
 Console.WriteLine("Products:");
-PrintProductList(productsList);
+PrintProducts(unsortedProducts);
 Console.WriteLine();
 
-list.Clear();
-list.AddRange(productsList);
+productList.Clear();
+productList.AddRange(unsortedProducts);
 
-var result = ListSortMethods.SortListWithOrder(list);
+productList.Sort((a, b) =>
+{
+    if (ReferenceEquals(a, b)) return 0;
+    if (a is null) return -1;
+    if (b is null) return 1;
+
+    var result = string.Compare(a.Category, b.Category, StringComparison.OrdinalIgnoreCase);
+
+    return result != 0 ? result : a.CompareTo(b);
+});
+
 Console.WriteLine("**Sorted**");
-PrintProductList(result);
+PrintProducts(productList);
 Console.WriteLine();
 
-Console.WriteLine("----------List<Product> Sorted With OrderBy ProductName----------");
+Console.WriteLine(
+    "----------List<Product> In Place Sort With Comparison<T> (Order: ProductName - Descending)----------");
+Console.WriteLine("Products:");
+PrintProducts(unsortedProducts);
+Console.WriteLine();
+
+productList.Clear();
+productList.AddRange(unsortedProducts);
+
+productList.Sort(Product.DescendingCompare);
+Console.WriteLine("**Sorted**");
+PrintProducts(productList);
+Console.WriteLine();
+
+Console.WriteLine("----------LINQ Enumerable Methods----------");
+productList.Clear();
+productList.AddRange(unsortedProducts);
+Console.WriteLine();
+
+Console.WriteLine("----------Enumerable.Order (Order: Default)----------");
+Console.WriteLine("Products:");
+PrintProducts(productList);
+Console.WriteLine();
+
+var result = productList.Order();
+Console.WriteLine("**Sorted**");
+PrintProducts(result);
+Console.WriteLine();
+
+Console.WriteLine("----------Enumerable.OrderBy (Order: Price)----------");
 Console.WriteLine("Products");
-PrintProductList(productsList);
-
-list.Clear();
-list.AddRange(productsList);
-
-result = ListSortMethods.SortListWithOrderBy(list, x => x.ProductName);
-Console.WriteLine("**Sorted**");
-PrintProductList(result);
+PrintProducts(productList);
 Console.WriteLine();
 
-Console.WriteLine("----------List<Product> Sorted With OrderDescending----------");
+result = productList.OrderBy(product => product?.Price);
+Console.WriteLine("**Sorted**");
+PrintProducts(result);
+Console.WriteLine();
+
+Console.WriteLine("----------Enumerable.OrderBy (Order: Category) ThenByDescending (Order: Price) ----------");
+Console.WriteLine("Products");
+PrintProducts(productList);
+
+result = productList.OrderBy(product => product?.Category).ThenByDescending(product => product?.Price);
+Console.WriteLine("**Sorted**");
+PrintProducts(result);
+Console.WriteLine();
+
+Console.WriteLine("----------Enumerable.OrderDescending (Order: Default)----------");
 Console.WriteLine("Products:");
-PrintProductList(productsList);
+PrintProducts(productList);
 Console.WriteLine();
 
-list.Clear();
-list.AddRange(productsList);
-
-result = ListSortMethods.SortListWithOrderDescending(list);
+result = productList.OrderDescending();
 Console.WriteLine("**Sorted**");
-PrintProductList(result);
+PrintProducts(result);
 Console.WriteLine();
 
-Console.WriteLine("----------List<Product> Sorted With OrderByDescending ProductName----------");
+Console.WriteLine("----------Enumerable.OrderByDescending (Order: Price)----------");
 Console.WriteLine("Products:");
-PrintProductList(productsList);
+PrintProducts(productList);
 Console.WriteLine();
 
-list.Clear();
-list.AddRange(productsList);
-
-result = ListSortMethods.SortListWithOrderByDescending(list, x => x.ProductName);
+result = productList.OrderByDescending(product => product?.Price);
 Console.WriteLine("**Sorted**");
-PrintProductList(result);
+PrintProducts(result);
 Console.WriteLine();
 
 // --------------- Local Methods and Classes ---------------
-static void PrintProductList(IEnumerable<Product> list)
+static void PrintProducts(IEnumerable<Product?> products)
 {
-    foreach (var value in list)
-        Console.WriteLine($"{value.ProductName,-30}{value.Category,-20}${value.Price,-10:0.00}{value.Id,40}");
+    foreach (var value in products)
+        Console.WriteLine(
+            $"{value?.ProductName ?? "NULL",-30}{value?.Category ?? "NULL",-20}${value?.Price ?? 0.00m,-10:0.00}{value?.Id ?? Guid.Empty,40}");
 }
 
-static Product[] GenerateProducts(int count)
-{
-    var faker = new AutoFaker<Product>()
-                .Configure(builder =>
-                    builder.WithFakerHub(new Faker {Random = new Randomizer(42)}))
-                .RuleFor(p => p.ProductName, f => $"{f.Commerce.ProductAdjective()} {f.Commerce.Product()}")
-                .RuleFor(p => p.Price, f => decimal.Parse(f.Commerce.Price(1, 200)))
-                .RuleFor(p => p.Category, f => f.Commerce.Categories(1)[0]);
-
-    return faker.Generate(count).ToArray();
-}
-
-internal sealed class DescendingProductComparer : IComparer<Product>
-{
-    public int Compare(Product? x, Product? y)
+static Product?[] GetProducts() =>
+    new Product?[]
     {
-        if (ReferenceEquals(x, y)) return 0;
-        if (y is null) return -1;
-
-        return y.CompareTo(x);
-    }
-}
+        new("Gorgeous Fish", "Games", 103.07m) {Id = Guid.Parse("f0569e86-bfad-6f3a-b74d-2555175dcc6e")},
+        new("Tasty Cheese", "Clothing", 134.74m) {Id = Guid.Parse("4af80b60-3e17-1dfd-8462-c009ca918154")},
+        null,
+        new("Handcrafted Hat", "Books", 38.09m) {Id = Guid.Parse("c7b30b28-db07-f2ae-70dc-9505096e676b")},
+        new("Practical Chicken", "Electronics", 126.06m) {Id = Guid.Parse("d6fee4b9-8767-851a-b386-a8af727663a7")},
+        new("Generic Car", "Games", 75.18m) {Id = Guid.Parse("c65100fd-e49f-f5e0-0e71-052d7eefe9b3")}
+    };

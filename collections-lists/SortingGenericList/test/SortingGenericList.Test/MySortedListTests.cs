@@ -302,4 +302,9 @@ public class MySortedListTests
 
         sortedList.Invoking(list => list.RemoveAt(3)).Should().Throw<ArgumentOutOfRangeException>();
     }
+
+    private sealed class DescendingIntComparison : IComparer<int>
+    {
+        public int Compare(int x, int y) => y.CompareTo(x);
+    }
 }
