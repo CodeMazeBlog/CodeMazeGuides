@@ -11,8 +11,7 @@
 
         public bool NotifyUser(User user, string message)
         {
-            if (user is null ||
-                user.Email is null ||
+            if (user?.Email is null ||
                 !_emailService.IsValidEmail(user.Email) ||
                 string.IsNullOrWhiteSpace(message))
             {

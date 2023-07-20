@@ -21,8 +21,10 @@ namespace MockingWithNSubstitute.Tests
         {
             // Arrange            
             var message = "Mocking behaviors and expectations with NSubstitute";
-            _emailService.IsValidEmail(_user.Email).Returns(true);
-            _emailService.SendEmail(_user.Email, "Notification from CodeMaze", message).Returns(true);
+            _emailService.IsValidEmail(_user.Email)
+                .Returns(true);
+            _emailService.SendEmail(_user.Email, "Notification from CodeMaze", message)
+                .Returns(true);
 
             // Act
             var result = _notificationService.NotifyUser(_user, message);
@@ -36,8 +38,10 @@ namespace MockingWithNSubstitute.Tests
         {
             // Arrange
             var message = "Ignoring or Conditionally Matching Arguments";
-            _emailService.IsValidEmail(default).ReturnsForAnyArgs(false);
-            _emailService.SendEmail(Arg.Any<string>(), Arg.Is<string>(x => x.Length > 5), message).Returns(true);
+            _emailService.IsValidEmail(default)
+                .ReturnsForAnyArgs(false);
+            _emailService.SendEmail(Arg.Any<string>(), Arg.Is<string>(x => x.Length > 5), message)
+                .Returns(true);
 
             // Act
             var result = _notificationService.NotifyUser(_user, message);
@@ -53,7 +57,8 @@ namespace MockingWithNSubstitute.Tests
         {
             // Arrange
             var message = "Throwing Exceptions When Mocking With NSubstitute";
-            _emailService.IsValidEmail(_user.Email).Returns(true);
+            _emailService.IsValidEmail(_user.Email)
+                .Returns(true);
             _emailService.When(x => x.SendEmail(_user.Email, "Notification from CodeMaze", message))
                 .Do(x => { throw new Exception(); });
 
