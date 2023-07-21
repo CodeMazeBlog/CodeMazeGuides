@@ -2,9 +2,8 @@
 {
     public class ActionDelegate
     {
-        public static string updatedName = null;
-        public static int updatedage = 0;
-        private static readonly int ageMargin = 24;
+        public static string? UpdatedName { get; set; }
+        public static int UpdatedAge { get; set; }
 
         public static void LogPerson(string name, int age)
         {
@@ -13,16 +12,17 @@
 
         Action<string, int> actionWithLambda = (name, age) =>
         {
-            updatedName = name.ToLower();
-            updatedage = age + ageMargin;
+            UpdatedName = name.ToLower();
+            UpdatedAge = age + 24;
         };
 
         public void ActionWithLambda(string name, int age) => actionWithLambda(name, age);
 
+
         Action<string, int> actionWithAnon = delegate (string name, int age)
         {
-            updatedName = name.ToLower();
-            updatedage = age + ageMargin;
+            UpdatedName = name.ToLower();
+            UpdatedAge = age + 24;
         };
 
         public void ActionWithAnon(string name, int age) => actionWithAnon(name, age);

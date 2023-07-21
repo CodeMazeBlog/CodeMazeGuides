@@ -5,15 +5,15 @@
     {
         static void Main(string[] args)
         {
-            string userName = "Arya";
-            int userAge = 17;
+            string _userName = "Arya";
+            int _userAge = 17;
 
             Action<string, int> action = ActionDelegate.LogPerson;
 
-            action(userName, userAge);
+            action(_userName, _userAge);
 
             
-            Func<int, int, int> funcDelegate =FuncDelegate.Modulus;
+            Func<int, int, int> funcDelegate = FuncDelegate.Modulus;
 
             int result = funcDelegate(25, 10);
 
