@@ -7,15 +7,15 @@ public class NotifierUnitTest
     [Fact]
     public void WhenSmsIsPassedAsParameter_ThenSmsMustBeSent()
     {
-        var notifier = new Notifier("sms");
-        if (notifier.NotificationHandler != null) Assert.Equal("Sending SMS", notifier.NotificationHandler);
+        var notifier = new Notifier("sms"); 
+        Assert.Equal("Sending SMS", notifier.NotificationResult);
     }
 
     [Fact]
     public void WhenEmailIsPassedAsParameter_ThenEmailMustBeSent()
     {
         var notifier = new Notifier("email");
-        Assert.Equal("Sending Email", notifier.NotificationHandler);
+        Assert.Equal("Sending Email", notifier.NotificationResult);
     }
 
     [Fact]

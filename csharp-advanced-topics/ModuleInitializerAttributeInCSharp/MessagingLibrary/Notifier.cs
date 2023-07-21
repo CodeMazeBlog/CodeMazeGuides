@@ -6,20 +6,20 @@ public class Notifier
 {
     private readonly INotification? _notification;
     private readonly IEnumerable<INotification>? _notificationServiceLocator;
-    public string NotificationHandler { get; }
+    
+    public string NotificationResult { get; }
 
     public Notifier(string notificationType)
     {
-        if (DependenciesRegistration.DependenciesProvider != null)
-            _notificationServiceLocator = DependenciesRegistration.DependenciesProvider.GetServices<INotification>();
+        _notificationServiceLocator = DependenciesRegistration.DependenciesProvider.GetServices<INotification>();
 
-        if (_notificationServiceLocator != null)
+        if (_notificationServiceLocator is not null)
             _notification = notificationType switch
             {
-                "sms" => _notificationServiceLocator.FirstOrDefault(x => x.GetType() == typeof(Sms)),
-                "email" => _notificationServiceLocator.FirstOrDefault(x => x.GetType() == typeof(Email)),
+                "sms" => _notificationServiceLocator.OfType<Sms>().FirstOrDefault(),
+                "email" => _notificationServiceLocator.OfType<Email>().FirstOrDefault(),
                 _ => throw new ArgumentException("Invalid notification type")
             };
-        NotificationHandler = _notification?.SendNotification();
+        NotificationResult = _notification?.SendNotification()!;
     }
 }

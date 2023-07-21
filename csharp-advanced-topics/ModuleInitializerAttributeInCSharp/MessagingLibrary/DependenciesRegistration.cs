@@ -6,7 +6,7 @@ namespace MessagingLibrary;
 
 internal static class DependenciesRegistration
 {
-    internal static ServiceProvider? DependenciesProvider { get; private set; }
+    internal static ServiceProvider DependenciesProvider { get; private set; }
 
     [ModuleInitializer]
     [SuppressMessage("Usage", "CA2255:The \'ModuleInitializer\' attribute should not be used in libraries",
