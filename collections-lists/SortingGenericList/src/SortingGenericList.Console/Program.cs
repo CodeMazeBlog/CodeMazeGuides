@@ -80,58 +80,19 @@ Console.WriteLine("**Sorted**");
 PrintProducts(productList);
 Console.WriteLine();
 
-Console.WriteLine("----------LINQ Enumerable Methods----------");
+Console.WriteLine(
+    "----------List<Product> Sort Range ([0,2] - Sort Price, [3,5] - Default Sort)----------");
+Console.WriteLine("Products:");
+PrintProducts(unsortedProducts);
+Console.WriteLine();
+
 productList.Clear();
 productList.AddRange(unsortedProducts);
-Console.WriteLine();
 
-Console.WriteLine("----------Enumerable.Order (Order: Default)----------");
-Console.WriteLine("Products:");
-PrintProducts(productList);
-Console.WriteLine();
-
-var result = productList.Order();
+productList.Sort(0, 3, new ProductPriceIComparer());
+productList.Sort(3, 3, null);
 Console.WriteLine("**Sorted**");
-PrintProducts(result);
-Console.WriteLine();
-
-Console.WriteLine("----------Enumerable.OrderBy (Order: Price)----------");
-Console.WriteLine("Products");
 PrintProducts(productList);
-Console.WriteLine();
-
-result = productList.OrderBy(product => product?.Price);
-Console.WriteLine("**Sorted**");
-PrintProducts(result);
-Console.WriteLine();
-
-Console.WriteLine("----------Enumerable.OrderBy (Order: Category) ThenByDescending (Order: Price) ----------");
-Console.WriteLine("Products");
-PrintProducts(productList);
-
-result = productList.OrderBy(product => product?.Category).ThenByDescending(product => product?.Price);
-Console.WriteLine("**Sorted**");
-PrintProducts(result);
-Console.WriteLine();
-
-Console.WriteLine("----------Enumerable.OrderDescending (Order: Default)----------");
-Console.WriteLine("Products:");
-PrintProducts(productList);
-Console.WriteLine();
-
-result = productList.OrderDescending();
-Console.WriteLine("**Sorted**");
-PrintProducts(result);
-Console.WriteLine();
-
-Console.WriteLine("----------Enumerable.OrderByDescending (Order: Price)----------");
-Console.WriteLine("Products:");
-PrintProducts(productList);
-Console.WriteLine();
-
-result = productList.OrderByDescending(product => product?.Price);
-Console.WriteLine("**Sorted**");
-PrintProducts(result);
 Console.WriteLine();
 
 // --------------- Local Methods and Classes ---------------
