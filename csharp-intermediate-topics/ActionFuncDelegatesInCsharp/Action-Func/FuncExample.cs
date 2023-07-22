@@ -35,5 +35,16 @@
                 Console.WriteLine(number);
             }
         }
+
+        //For testing 
+        public static List<int> GetFruitNameLengths(List<string> fruitList)
+        {
+            return fruitList.Select(fruit => fruit.Length).ToList();
+        }
+
+        public static List<int> GetFilteredNumbers(List<int> numberList, int filterValue)
+        {
+            return numberList.Where(number => number > filterValue).ToList();
+        }
     }
 }

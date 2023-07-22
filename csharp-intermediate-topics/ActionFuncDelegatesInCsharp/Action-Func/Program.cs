@@ -2,9 +2,6 @@
 {
     internal class Program
     {
-
-
-
         static void Main(string[] args)
         {
             ActionExample.Calculate(20, 10);
