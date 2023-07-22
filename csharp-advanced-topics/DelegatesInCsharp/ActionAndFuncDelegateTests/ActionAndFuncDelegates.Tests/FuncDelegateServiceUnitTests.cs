@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ActionAndFuncDelegates.Tests
 {
-    public class FuncDelegateServiceTests
+    public class FuncDelegateServiceUnitTests
     {
         [Theory]
         [InlineData(5, 10, 15)] // 5 + 10 = 15

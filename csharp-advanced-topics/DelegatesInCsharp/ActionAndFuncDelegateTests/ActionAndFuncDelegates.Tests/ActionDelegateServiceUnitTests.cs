@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ActionAndFuncDelegates.Tests
 {
-    public class ActionDelegateServiceTests
+    public class ActionDelegateServiceUnitTests
     {
         [Fact]
         public void GreetAction_GivenValidName_WhenGreetIsCalled_ThenShouldGreetUser()
