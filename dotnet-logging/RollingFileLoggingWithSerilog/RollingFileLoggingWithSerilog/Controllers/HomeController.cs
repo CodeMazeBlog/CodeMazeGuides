@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RollingFileLoggingWithSerilog.Models;
-using System.Diagnostics;
 
 namespace RollingFileLoggingWithSerilog.Controllers
 {
