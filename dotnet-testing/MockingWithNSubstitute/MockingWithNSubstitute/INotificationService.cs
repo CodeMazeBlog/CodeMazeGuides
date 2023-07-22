@@ -1,7 +1,6 @@
-﻿namespace MockingWithNSubstitute
+﻿namespace MockingWithNSubstitute;
+
+public interface INotificationService
 {
-    public interface INotificationService
-    {
-        bool NotifyUser(User user, string message);
-    }
+    bool NotifyUser(User user, string message);
 }

@@ -1,8 +1,7 @@
-﻿namespace MockingWithNSubstitute
+﻿namespace MockingWithNSubstitute;
+
+public interface IEmailService
 {
-    public interface IEmailService
-    {
-        bool IsValidEmail(string email);
-        bool SendEmail(string recipient, string subject, string message);
-    }
+    bool IsValidEmail(string email);
+    bool SendEmail(string recipient, string subject, string message);
 }

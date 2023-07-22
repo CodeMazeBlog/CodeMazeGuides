@@ -1,34 +1,32 @@
-﻿namespace MockingWithNSubstitute
-{
-    public class NotificationService : INotificationService
-    {
-        private readonly IEmailService _emailService;
+﻿namespace MockingWithNSubstitute;
 
-        public NotificationService(IEmailService emailService)
+public class NotificationService : INotificationService
+{
+    private readonly IEmailService _emailService;
+
+    public NotificationService(IEmailService emailService)
+    {
+        _emailService = emailService;
+    }
+
+    public bool NotifyUser(User user, string message)
+    {
+        if (!_emailService.IsValidEmail(user.Email) ||
+            string.IsNullOrWhiteSpace(message))
         {
-            _emailService = emailService;
+            return false;
         }
 
-        public bool NotifyUser(User user, string message)
+        try
         {
-            if (user?.Email is null ||
-                !_emailService.IsValidEmail(user.Email) ||
-                string.IsNullOrWhiteSpace(message))
-            {
-                return false;
-            }
+            var sentSuccessfully = _emailService
+            .SendEmail(user.Email, "Notification from CodeMaze", message);
 
-            try
-            {
-                var sentSuccessfully = _emailService
-                .SendEmail(user.Email, "Notification from CodeMaze", message);
-
-                return sentSuccessfully;
-            }
-            catch
-            {
-                return false;
-            }
+            return sentSuccessfully;
+        }
+        catch
+        {
+            throw;
         }
     }
 }
