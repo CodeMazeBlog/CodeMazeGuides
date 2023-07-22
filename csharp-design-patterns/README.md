@@ -9,3 +9,4 @@ For additional C# Design Patterns articles, please check this page: https://code
 - [Observer Design Pattern in C#](https://code-maze.com/csharp-observer-design-pattern/)
 - [Visitor Design Pattern in C#](https://code-maze.com/csharp-visitor-design-pattern/)
 - [Saga Pattern With NServiceBus in C#](https://code-maze.com/csharp-saga-pattern-with-nservicebus/)
+- [Aggregate Design in .NET](https://code-maze.com/csharp-design-pattern-aggregate/)
