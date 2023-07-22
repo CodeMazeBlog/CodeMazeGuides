@@ -10,8 +10,8 @@ namespace ActionFuncDelegatesInCsharp
     {
         //---------------------SAMPLES OF ACTION DELEGATES ------------------------------
 
-        //We define an action delegate named LogSum that gets to input parameter of type iny
-        //Action delegates don't return a value, here we assign a lambda expression to our delegate
+        //We define an action delegate named LogOperation that has three input parameters
+        //Action delegates does not return a value, here we assign a lambda expression to our delegate
         Action<int, int, string> LogOperation = (int x, int y, string operation) =>
         {
             switch (operation)
