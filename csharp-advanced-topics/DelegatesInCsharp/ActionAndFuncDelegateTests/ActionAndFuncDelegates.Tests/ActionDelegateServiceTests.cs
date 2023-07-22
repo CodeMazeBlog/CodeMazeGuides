@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ActionAndFuncDelegates.Tests.xUnit.ActionDelegate
+namespace ActionAndFuncDelegates.Tests
 {
     public class ActionDelegateServiceTests
     {
@@ -56,7 +56,5 @@ namespace ActionAndFuncDelegates.Tests.xUnit.ActionDelegate
             Assert.Equal(expectedOutput, actualOutput);
 
         }
-
-
     }
 }

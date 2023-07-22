@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ActionAndFuncDelegates.Services
+﻿namespace ActionAndFuncDelegates.Services
 {
     public class FuncDelegateService
     {
@@ -12,6 +6,8 @@ namespace ActionAndFuncDelegates.Services
         public Func<int, int, int>? SubtractionFunc;
         public Func<int, int, int>? MultiplicationFunc;
         public Func<int, int, double>? DivisionFunc;
+
+        public Func<double, double>? CalculateTitheFunc { get; set; }
 
 
         public int Add(int a, int b)
@@ -34,5 +30,14 @@ namespace ActionAndFuncDelegates.Services
             return DivisionFunc?.Invoke(a, b) ?? throw new InvalidOperationException("DivisionFunc is not defined.");
         }
 
+        public double CalculateTithe(double earnings)
+        {
+            if (CalculateTitheFunc == null)
+            {
+                throw new InvalidOperationException("CalculateTitheFunc is not defined.");
+            }
+
+            return CalculateTitheFunc(earnings);
+        }
     }
 }

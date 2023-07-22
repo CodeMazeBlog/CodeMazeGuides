@@ -55,7 +55,7 @@ Console.Write("\n1. Addition");
 Console.Write("\n2. Subtraction");
 Console.Write("\n3. Multiplication");
 Console.Write("\n4. Division");
-Console.Write("\nEnter your choice (1/2/3/4): ");
+Console.Write("\n\nEnter your choice (1/2/3/4): ");
 
 int choice;
 if (int.TryParse(Console.ReadLine(), out choice))
@@ -63,7 +63,7 @@ if (int.TryParse(Console.ReadLine(), out choice))
     int num1, num2;
     Console.Write("\nEnter the first number: ");
     num1 = int.Parse(Console.ReadLine()!);
-    Console.Write("\nEnter the second number: ");
+    Console.Write("Enter the second number: ");
     num2 = int.Parse(Console.ReadLine()!);
 
     Methods.PerformMathematicalCalculation(funcDelegateService, choice, num1, num2);
@@ -73,6 +73,16 @@ else
 {
     Console.WriteLine("Invalid input. Please enter a numeric choice (1/2/3/4).");
 }
+
+Console.Write("\nLet's calculate your tithe:");
+Console.Write("\nEnter your earnings: ");
+double earnings = double.Parse(Console.ReadLine()!);
+
+// Calculate the tithe using the Func delegate
+var titheAmount = Methods.CalculateTithe(funcDelegateService, earnings);
+
+Console.Write($"\nYour tithe amount is: {titheAmount:C}");
+Console.Read();
 
 #endregion
 
@@ -137,22 +147,18 @@ public static class Methods
             case 1:
                 
                 Console.WriteLine($"Result: {funcDelegateService.Add(num1, num2)}");
-                Console.Read();
                 break;
             case 2:
                 
                 Console.WriteLine($"Result: {funcDelegateService.Subtract(num1, num2)}");
-                Console.Read();
                 break;
             case 3:
                 
                 Console.WriteLine($"Result: {funcDelegateService.Multiply(num1, num2)}");
-                Console.Read();
                 break;
             case 4:
                
                 Console.WriteLine($"Result: {funcDelegateService.Divide(num1, num2)}");
-                Console.Read();
                 break;
             default:
 
@@ -163,6 +169,15 @@ public static class Methods
 
     }
 
+    public static double CalculateTithe(FuncDelegateService funcDelegateService, double earnings)
+    {
+        // Define the tithe calculation logic using Func delegate
+        funcDelegateService.CalculateTitheFunc = (earnings) => earnings * 0.1; // 10% tithe
+
+        double titheAmount = funcDelegateService.CalculateTitheFunc(earnings);
+
+        return titheAmount;
+    }
 
 
     #endregion

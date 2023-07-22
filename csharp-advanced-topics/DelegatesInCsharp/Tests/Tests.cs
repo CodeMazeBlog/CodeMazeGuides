@@ -3,7 +3,7 @@ using System;
 
 namespace Tests
 {
-	delegate string PrintMessage(string text);
+    delegate string PrintMessage(string text);
 	delegate T Print<T>(T param1);
 
 	[TestClass]
