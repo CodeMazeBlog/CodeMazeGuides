@@ -43,7 +43,7 @@ Console.Write("\n");
 
 
 
-#region Fucn Delegate
+#region Func Delegate
 
 #region Mathematical Calculation
 
@@ -55,7 +55,6 @@ Console.Write("\n1. Addition");
 Console.Write("\n2. Subtraction");
 Console.Write("\n3. Multiplication");
 Console.Write("\n4. Division");
-Console.Write("\n");
 Console.Write("\nEnter your choice (1/2/3/4): ");
 
 int choice;
@@ -163,6 +162,8 @@ public static class Methods
         }
 
     }
+
+
 
     #endregion
 

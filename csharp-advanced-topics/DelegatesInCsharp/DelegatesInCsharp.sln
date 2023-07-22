@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionAndFuncDelegates.Services", "ActionAndFuncDelegates\ActionAndFuncDelegates.Services\ActionAndFuncDelegates.Services.csproj", "{888EA24D-ED00-4C4D-A900-8C43C0AB0905}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegates.Tests.xUnit", "Tests\ActionAndFuncDelegates.Tests.xUnit\ActionAndFuncDelegates.Tests.xUnit.csproj", "{7100DBC8-D179-44F8-AEAB-182723191971}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{888EA24D-ED00-4C4D-A900-8C43C0AB0905}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{888EA24D-ED00-4C4D-A900-8C43C0AB0905}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{888EA24D-ED00-4C4D-A900-8C43C0AB0905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7100DBC8-D179-44F8-AEAB-182723191971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7100DBC8-D179-44F8-AEAB-182723191971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7100DBC8-D179-44F8-AEAB-182723191971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7100DBC8-D179-44F8-AEAB-182723191971}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
