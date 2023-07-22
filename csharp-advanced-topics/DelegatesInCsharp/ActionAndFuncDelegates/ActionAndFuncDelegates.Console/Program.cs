@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using ActionAndFuncDelegates.Services;
+using System.Text.RegularExpressions;
 
 // Create an instance of ActionDelegateService
 var actionDelegateService = new ActionDelegateService();
@@ -8,31 +9,35 @@ var actionDelegateService = new ActionDelegateService();
 // Create an instance of FuncDelegateService
 var funcDelegateService = new FuncDelegateService();
 
+Console.ForegroundColor = ConsoleColor.DarkCyan;
 
 #region Action Delegate
 
 #region Greeting
 
 Console.Write("Enter your name: ");
+
 string userName = Console.ReadLine()!;
+
 Methods.Greeting(actionDelegateService, userName);
-Console.Write("\n");
 
 #endregion
 
 #region Event Handling
 
 Console.Write("\nEnter event name(s) (comma separated): ");
+
 string eventNamesInput = Console.ReadLine()!;
 string[] eventNames = eventNamesInput.Split(',');
 
 List<string> registeredEvents = new();
+
 foreach (var eventName in eventNames)
 {
-
     registeredEvents.Add(eventName.Trim());
     
 }
+Console.WriteLine($"'{userName}' has registered for the following events: ");
 
 Methods.EventRegistration(actionDelegateService, registeredEvents, userName);
 Console.Write("\n");
@@ -45,9 +50,85 @@ Console.Write("\n");
 
 #region Func Delegate
 
+#region EventFiltering From Predefined List
+
+Console.Write("\nLet's try filter your events by event name:");
+
+// Prompt the user to select a mathematical method
+Console.Write("\nSelect an event:");
+
+for (int i = 0; i < registeredEvents.Count; i++)
+{
+    // Get the current item's count and name
+    string itemName = registeredEvents[i];
+
+    // Display the count and name in the console
+    Console.Write($"\n{i + 1}. {itemName}");
+}
+
+string choiceString = string.Join("/", Enumerable.Range(1, registeredEvents.Count));
+
+Console.Write($"\n\nEnter your choice: {choiceString}: ");
+
+int chosenValue;
+
+if (int.TryParse(Console.ReadLine(), out chosenValue))
+{
+    var filterString = Methods.GetSelectedItem(registeredEvents, chosenValue);
+    var filteredEvents = Methods.FilterEvents(funcDelegateService, filterString, registeredEvents);
+
+    Console.Write($"\n Filtered events:");
+
+    for (int i = 0; i < filteredEvents.Count; i++)
+    {
+        string itemName = filteredEvents[i];
+
+        Console.Write($"\n{i + 1}. {itemName}\n");
+    }
+}
+else
+{
+    Console.Write("Invalid input. Please enter a numeric choice (1/2/3/4).");
+}
+
+#endregion
+
+#region Event Filtering By Search Text
+
+Console.Write("\nNow, let's type in a value to use a the filter criteria:");
+
+string filerCriteria;
+
+Console.Write("\nEnter your search value: ");
+
+filerCriteria = Console.ReadLine()!;
+
+if(!string.IsNullOrEmpty(filerCriteria))
+{
+    var eventsAfterFiltering = Methods.FilterEventsBySearchText(funcDelegateService, filerCriteria.Trim(), registeredEvents);
+
+    Console.Write($"\n Filtered events:");
+
+    for (int i = 0; i < eventsAfterFiltering.Count; i++)
+    {
+        string itemName = eventsAfterFiltering[i];
+        
+        Console.Write($"\n{i + 1}. {itemName}");
+    }
+
+}
+else
+{
+    Console.Write("Invalid input. Please enter a value");
+}
+
+
+
+#endregion
+
 #region Mathematical Calculation
 
-Console.Write("\nMathematical Operations using Func delegate:");
+Console.Write("\n\nMathematical Operations using Func delegate:");
 
 // Prompt the user to select a mathematical method
 Console.Write("Select a mathematical method:");
@@ -61,8 +142,10 @@ int choice;
 if (int.TryParse(Console.ReadLine(), out choice))
 {
     int num1, num2;
+
     Console.Write("\nEnter the first number: ");
     num1 = int.Parse(Console.ReadLine()!);
+
     Console.Write("Enter the second number: ");
     num2 = int.Parse(Console.ReadLine()!);
 
@@ -81,14 +164,12 @@ double earnings = double.Parse(Console.ReadLine()!);
 // Calculate the tithe using the Func delegate
 var titheAmount = Methods.CalculateTithe(funcDelegateService, earnings);
 
-Console.Write($"\nYour tithe amount is: {titheAmount:C}");
+Console.Write($"\nYour tithe amount is: {titheAmount:C}!");
+Console.Write($"\n\n\nAnd... That's my time! \n\nThank you for taking time to check out the Action and Func delegates examples!! Adios Amigo!\n\n" );
 Console.Read();
 
 #endregion
 
-#region EventFiltering
-
-#endregion
 
 #endregion
 
@@ -114,7 +195,6 @@ public static class Methods
     {
         actionDelegateService.EventRegistrationAction = (eventNames, userName) =>
         {
-            Console.WriteLine($"'{userName}' has registered for the following events: ");
             foreach (var eventName in eventNames)
             {
                 Console.WriteLine($"- {eventName}");
@@ -178,6 +258,53 @@ public static class Methods
 
         return titheAmount;
     }
+
+    public static List<string> FilterEvents(FuncDelegateService funcDelegateService, string filterString, List<string> events)
+    {
+        funcDelegateService.EventFilterFunc = (eventName) => eventName.Contains(filterString);
+        Func<string, bool> filterCriteria = (eventName) => eventName.Contains(filterString);
+        return funcDelegateService.FilterEvents(filterCriteria, events);
+
+    }
+
+    public static List<string> FilterEventsBySearchText(FuncDelegateService funcDelegateService, string filterString, List<string> events)
+    {
+        string searchText = filterString;
+
+        // Create a predicate (lambda expression) for case-insensitive comparison
+        Predicate<string> filterPredicate = eventName => ContainsCaseInsensitive(eventName, searchText);
+
+        funcDelegateService.EventFilterBySearchTextFunc = filterPredicate;
+
+        // Use the same filter predicate for LINQ FindAll method
+        List<string> filteredEvents = events.FindAll(filterPredicate);
+
+        return filteredEvents;
+    }
+
+    // Function to get the name of the selected item
+    public static string GetSelectedItem(List<string> itemList, int userInput)
+    {
+        if (userInput > 0 && userInput <= itemList.Count)
+        {
+            return itemList[userInput - 1];
+        }
+        else
+        {
+            throw new ArgumentOutOfRangeException(nameof(userInput), "Invalid choice");
+        }
+    }
+
+    private static bool RegexFilterEvent(string eventName, string filterString)
+    {
+        return Regex.IsMatch(eventName, Regex.Escape(filterString), RegexOptions.IgnoreCase);
+    }
+
+    private static bool ContainsCaseInsensitive(string source, string filterString)
+    {
+        return source.IndexOf(filterString, StringComparison.OrdinalIgnoreCase) >= 0;
+    }
+
 
 
     #endregion

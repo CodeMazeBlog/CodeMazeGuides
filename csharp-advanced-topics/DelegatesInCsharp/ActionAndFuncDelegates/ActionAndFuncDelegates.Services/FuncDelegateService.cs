@@ -8,6 +8,8 @@
         public Func<int, int, double>? DivisionFunc;
 
         public Func<double, double>? CalculateTitheFunc { get; set; }
+        public Func<string, bool>? EventFilterFunc { get; set; }
+        public Predicate<string>? EventFilterBySearchTextFunc { get; set; }
 
 
         public int Add(int a, int b)
@@ -39,5 +41,26 @@
 
             return CalculateTitheFunc(earnings);
         }
+
+        // Method to filter events based on the provided Func delegate
+        public List<string> FilterEvents(Func<string, bool> filterCriteria, List<string> registeredEvents)
+        {
+            // Perform filtering logic on registeredEvents list using the provided Func delegate
+            return registeredEvents.Where(EventFilterFunc!).ToList();
+        }
+
+        public List<string> FilterEvents(List<string> registeredEvents)
+        {
+            if (EventFilterBySearchTextFunc == null)
+            {
+                throw new InvalidOperationException("EventFilterBySearchTextFunc is not set.");
+            }
+
+            // Perform filtering logic on registeredEvents list using the provided Predicate delegate
+            return registeredEvents.FindAll(EventFilterBySearchTextFunc);
+        }
+
+
+
     }
 }
