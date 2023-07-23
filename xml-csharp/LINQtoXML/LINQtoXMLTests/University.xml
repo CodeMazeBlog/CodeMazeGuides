@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<University>
+  <Students>
+    <Student ID="111">
+      <FirstName>John</FirstName>
+      <LastName>Doe</LastName>
+      <DateOfBirth>2000-10-2</DateOfBirth>
+      <Semester>1</Semester>
+      <Major>Computer Science</Major>
+      <Courses>
+        <Course ID="CS101">
+          <Grade>7.3</Grade>
+        </Course>
+        <Course ID="CS102">
+          <Grade>6.9</Grade>
+        </Course>
+      </Courses>
+    </Student>
+    <Student ID="222">
+      <FirstName>Jane</FirstName>
+      <LastName>Doe</LastName>
+      <DateOfBirth>2001-2-22</DateOfBirth>
+      <Semester>1</Semester>
+      <Major>Electrical Engineering</Major>
+      <Courses>
+        <Course ID="EE101">
+          <Grade>5.6</Grade>
+        </Course>
+        <Course ID="EE102">
+          <Grade>8.8</Grade>
+        </Course>
+      </Courses>
+    </Student>
+    <Student ID="333">
+      <FirstName>Jim</FirstName>
+      <LastName>Doe</LastName>
+      <DateOfBirth>2000-3-12</DateOfBirth>
+      <Semester>2</Semester>
+      <Major>Computer Science</Major>
+      <Courses>
+        <Course ID="CS102">
+          <Grade>7.6</Grade>
+        </Course>
+        <Course ID="CS103">
+          <Grade>8.2</Grade>
+        </Course>
+      </Courses>
+    </Student>
+  </Students>
+  <Courses>
+    <Course ID="CS101">
+      <Title>Intro to programming</Title>
+      <Credits>5</Credits>
+    </Course>
+    <Course ID="CS102">
+      <Title>Discrete Mathematics</Title>
+      <Credits>4</Credits>
+    </Course>
+    <Course ID="CS103">
+      <Title>Data structures</Title>
+      <Credits>6</Credits>
+    </Course>
+    <Course ID="EE101">
+      <Title>Electromagnetism</Title>
+      <Credits>5</Credits>
+    </Course>
+    <Course ID="EE102">
+      <Title>Electronics</Title>
+      <Credits>6</Credits>
+    </Course>
+  </Courses>
+</University>

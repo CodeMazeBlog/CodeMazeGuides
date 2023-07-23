@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OperatorOverloading", "OperatorOverloading\OperatorOverloading.csproj", "{FEA95279-168B-41A2-8243-C3BD6A43597E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B71CD5B9-9921-400F-8C11-BF1BC9516FE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEA95279-168B-41A2-8243-C3BD6A43597E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA95279-168B-41A2-8243-C3BD6A43597E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA95279-168B-41A2-8243-C3BD6A43597E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA95279-168B-41A2-8243-C3BD6A43597E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B71CD5B9-9921-400F-8C11-BF1BC9516FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B71CD5B9-9921-400F-8C11-BF1BC9516FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B71CD5B9-9921-400F-8C11-BF1BC9516FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B71CD5B9-9921-400F-8C11-BF1BC9516FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83C51C97-6192-499D-8D3C-BDDD88604A70}
+	EndGlobalSection
+EndGlobal
