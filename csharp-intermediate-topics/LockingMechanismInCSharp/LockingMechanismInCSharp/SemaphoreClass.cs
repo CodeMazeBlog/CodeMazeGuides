@@ -6,7 +6,7 @@
 
         public static void Execute()
         {
-            for (var cnt = 1; cnt <= 6; cnt++)
+            for (var cnt = 0; cnt < 6; cnt++)
             {
                 Thread thread = new(DoWork)
                 {

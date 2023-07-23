@@ -33,7 +33,8 @@
                 }
 
                 spinLock.Enter(ref lockAcquired);
-                for (int i = 1; i <= 100000; i++)
+
+                for (int cnt = 0; cnt < 100000; cnt++)
                 {
                     _counter++;
                 }
