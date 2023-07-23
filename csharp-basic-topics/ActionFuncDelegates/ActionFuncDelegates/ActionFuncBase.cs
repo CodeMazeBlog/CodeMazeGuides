@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-internal class ActionFuncBase
+public class ActionFuncBase
 {
 
     public static void PrintList(List<int> olist)
