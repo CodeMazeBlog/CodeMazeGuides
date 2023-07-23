@@ -29,8 +29,26 @@ public class StringIsANumberBenchmark
     }
 
     [Benchmark]
+    public void UsingCompiledRegex()
+    {
+        StringIsANumberChecker.UsingCompiledRegex(value);
+    }
+
+    [Benchmark]
     public void UsingCharIsDigit()
     {
         StringIsANumberChecker.UsingCharIsDigit(value);
+    }
+
+    [Benchmark]
+    public void UsingCharIsDigitWithForeach()
+    {
+        StringIsANumberChecker.UsingCharIsDigitWithForeach(value);
+    }
+
+    [Benchmark]
+    public void UsingCharIsBetween09()
+    {
+        StringIsANumberChecker.UsingCharIsBetween09(value);
     }
 }
