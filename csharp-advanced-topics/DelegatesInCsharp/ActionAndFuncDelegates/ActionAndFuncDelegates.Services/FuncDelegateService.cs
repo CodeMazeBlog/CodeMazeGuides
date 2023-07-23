@@ -66,12 +66,6 @@
             return registeredEvents.FindAll(predicate);
         }
 
-        public List<string> FilterEventsBySearchText_(Predicate<string> predicate, List<string> events)
-        {
-            // Perform filtering logic on registeredEvents list using the provided Predicate delegate
-            return events.FindAll(predicate);
-        }
-
 
 
     }
