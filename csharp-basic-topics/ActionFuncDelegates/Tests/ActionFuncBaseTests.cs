@@ -11,13 +11,18 @@ namespace Tests
         {
             List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
             string expectedPrintOut = "1\r\n2\r\n3\r\n4\r\n5\r\n";
-            var consolePrintOut = new System.IO.StringWriter();
-            Console.SetOut(consolePrintOut);
+            
+            using (var consolePrintOut = new StringWriter())
+            {
+                Console.SetOut(consolePrintOut);
+                ActionFuncBase.PrintList(numbers);
+                string actualPrintOut = consolePrintOut.ToString();
 
-            ActionFuncBase.PrintList(numbers);
-            string actualPrintOut = consolePrintOut.ToString();
+                expectedPrintOut = expectedPrintOut.Replace("\r\n", "\n");
+                actualPrintOut = actualPrintOut.Replace("\r\n", "\n");
 
-            Assert.AreEqual(expectedPrintOut, actualPrintOut);
+                Assert.AreEqual(expectedPrintOut, actualPrintOut);
+            }
         }
 
         [TestMethod]
