@@ -23,7 +23,7 @@
 
         private static void IncrementCounter()
         {
-            for (int cnt = 0; cnt < 100000; cnt++)
+            for (var cnt = 0; cnt < 100000; cnt++)
             {
                 Interlocked.Increment(ref _counter);
             }

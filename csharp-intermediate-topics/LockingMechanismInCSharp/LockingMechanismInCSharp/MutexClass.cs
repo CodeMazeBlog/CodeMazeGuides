@@ -28,7 +28,7 @@
             {
                 if (mutex.WaitOne(1000))
                 {
-                    for (int cnt = 0; cnt < 100000; cnt++)
+                    for (var cnt = 0; cnt < 100000; cnt++)
                     {
                         _counter++;
                     }

@@ -26,7 +26,7 @@
         {
             lock (_lockObject)
             {
-                for (int cnt = 0; cnt < 100000; cnt++)
+                for (var cnt = 0; cnt < 100000; cnt++)
                 {
                     _counter++;
                 }
