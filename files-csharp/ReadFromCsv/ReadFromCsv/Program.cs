@@ -1,3 +1,0 @@
-﻿using ReadFromCsv;
-
-ReadMethods.ReadPersons();
