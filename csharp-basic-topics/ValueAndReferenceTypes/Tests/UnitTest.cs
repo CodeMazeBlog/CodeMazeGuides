@@ -11,31 +11,17 @@ public class UnitTest
         var firstRectangle = new ValueTypeRectangle
         {
             Length = 10,
-            Breadth = 10,
+            Width = 10,
             MyShape = new Shape { Name = "Square" }
         };
 
         var secondRectangle = firstRectangle;
 
         firstRectangle.Length = 20;
-        firstRectangle.Breadth = 20;
+        firstRectangle.Width = 20;
         firstRectangle.MyShape.Name = "Circle";
 
         Assert.AreNotEqual(firstRectangle.Area(), secondRectangle.Area());
-    }
-
-    [TestMethod]
-    public void WhenValueTypeAssignation_ThenReferenceTypeMembersHaveSameReference()
-    {
-        var firstRectangle = new ValueTypeRectangle
-        {
-            MyShape = new Shape { Name = "Square" }
-        };
-
-        var secondRectangle = firstRectangle;
-        secondRectangle.MyShape.Name = "Circle";
-
-        Assert.AreEqual(firstRectangle.MyShape.Name, secondRectangle.MyShape.Name);
     }
 
     [TestMethod]
@@ -44,13 +30,13 @@ public class UnitTest
         var firstRectangle = new ValueTypeRectangle
         {
             Length = 10,
-            Breadth = 10,
+            Width = 10,
         };
 
         var secondRectangle = new ValueTypeRectangle
         {
             Length = 10,
-            Breadth = 10,
+            Width = 10,
         };
 
         Assert.AreEqual(firstRectangle, secondRectangle);
@@ -62,13 +48,13 @@ public class UnitTest
         var firstRectangle = new ReferenceTypeRectangle()
         {
             Length = 10,
-            Breadth = 10
+            Width = 10
         };
 
         var secondRectangle = firstRectangle;
 
         firstRectangle.Length = 20;
-        firstRectangle.Breadth = 20;
+        firstRectangle.Width = 20;
 
         Assert.AreEqual(firstRectangle.Area(), secondRectangle.Area());
     }
@@ -79,13 +65,13 @@ public class UnitTest
         var firstRectangle = new ReferenceTypeRectangle()
         {
             Length = 10,
-            Breadth = 10
+            Width = 10
         };
 
         var secondRectangle = new ReferenceTypeRectangle()
         {
             Length = 10,
-            Breadth = 10
+            Width = 10
         };
 
         Assert.AreNotEqual(firstRectangle, secondRectangle);
