@@ -9,6 +9,10 @@ namespace ActionAndFuncDelegates.Tests
 {
     public class FuncDelegateServiceUnitTests
     {
+
+        #region Mathematical Calculations
+
+       
         [Theory]
         [InlineData(5, 10, 15)] // 5 + 10 = 15
         [InlineData(-5, 10, 5)] // -5 + 10 = 5
@@ -141,5 +145,154 @@ namespace ActionAndFuncDelegates.Tests
             // Act and Assert
             Assert.Throws<InvalidOperationException>(() => funcDelegateService.CalculateTithe(earnings));
         }
+
+        #endregion
+
+
+        #region Event Filtering Tests
+
+        [Fact]
+        public void FilterEvents_GivenValidFilterString_WhenFilterEventsIsCalled_ThenShouldReturnFilteredEvents()
+        {
+            // Arrange
+            var funcDelegateService = new FuncDelegateService();
+            var events = new List<string> { "Event1", "Event2", "Other", "Event3" };
+            string filterString = "Event";
+            var expectedFilteredEvents = new List<string> { "Event1", "Event2", "Event3" };
+
+            // Act
+            var actualFilteredEvents = funcDelegateService.FilterEvents((eventName) => eventName.Contains(filterString), events);
+
+            // Assert
+            Assert.Equal(expectedFilteredEvents, actualFilteredEvents);
+        }
+
+        [Fact]
+        public void FilterEvents_GivenEmptyFilterString_WhenFilterEventsIsCalled_ThenShouldReturnAllEvents()
+        {
+            // Arrange
+            var funcDelegateService = new FuncDelegateService();
+            var events = new List<string> { "Event1", "Event2", "OtherEvent", "Event3" };
+            var expectedFilteredEvents = events; // No filtering, all events should be returned
+
+            // Act
+            var actualFilteredEvents = funcDelegateService.FilterEvents((eventName) => true, events);
+
+            // Assert
+            Assert.Equal(expectedFilteredEvents, actualFilteredEvents);
+        }
+
+        [Fact]
+        public void FilterEventsBySearchText_GivenValidSearchText_WhenFilterEventsBySearchTextIsCalled_ThenShouldReturnFilteredEvents()
+        {
+            // Arrange
+            var funcDelegateService = new FuncDelegateService();
+            var events = new List<string> { "Event1", "event2", "OtherEvent", "Event3" };
+            string searchText = "EVENT";
+            var expectedFilteredEvents = new List<string> { "Event1", "event2", "OtherEvent", "Event3" }; 
+
+            // Act
+            var actualFilteredEvents = funcDelegateService.FilterEventsBySearchText((eventName) => ContainsCaseInsensitive(eventName, searchText), events);
+
+            // Assert
+            Assert.Equal(expectedFilteredEvents, actualFilteredEvents);
+        }
+
+
+        [Fact]
+        public void FilterEventsBySearchText_GivenEmptySearchText_WhenFilterEventsBySearchTextIsCalled_ThenShouldThrowArgumentException()
+        {
+            // Arrange
+            var funcDelegateService = new FuncDelegateService();
+            var events = new List<string> { "Event1", "Event2", "OtherEvent", "Event3" };
+
+            // Act and Assert
+            var filteredEvents = funcDelegateService.FilterEventsBySearchText((eventName) => false, events);
+
+            // Assert
+            Assert.Empty(filteredEvents);
+
+
+        }
+
+
+        // Remember to define the ContainsCaseInsensitive method (as used in the FilterEventsBySearchText test).
+        private bool ContainsCaseInsensitive(string source, string filterString)
+        {
+            return source.IndexOf(filterString, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        //Test for null events list
+        [Fact]
+        public void FilterEvents_GivenNullEventsList_WhenFilterEventsIsCalled_ThenShouldThrowArgumentNullException()
+        {
+            // Arrange
+            var funcDelegateService = new FuncDelegateService();
+            List<string> events = null!;
+
+            // Act and Assert
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                funcDelegateService.FilterEvents((eventName) => true, events);
+            });
+        }
+
+        //Test for null predicate
+        [Fact]
+        public void FilterEvents_GivenNullPredicate_WhenFilterEventsIsCalled_ThenShouldThrowArgumentNullException()
+        {
+            // Arrange
+            var funcDelegateService = new FuncDelegateService();
+            var events = new List<string> { "Event1", "Event2", "OtherEvent", "Event3" };
+            Func<string, bool> filterCriteria = null!;
+
+            // Act and Assert
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                funcDelegateService.FilterEvents(filterCriteria!, events);
+            });
+        }
+
+
+        //Test for null FuncDelegateService
+        [Fact]
+        public void FilterEventsBySearchText_GivenNullFuncDelegateService_WhenFilterEventsBySearchTextIsCalled_ThenShouldThrowArgumentNullException()
+        {
+            // Arrange
+            FuncDelegateService funcDelegateService = null!;
+            var events = new List<string> { "Event1", "Event2", "OtherEvent", "Event3" };
+            string searchText = "Event";
+
+            // Act and Assert
+            Assert.Throws<NullReferenceException>(() =>
+            {
+                funcDelegateService!.FilterEventsBySearchText((eventName) => ContainsCaseInsensitive(eventName, searchText), events);
+            });
+        }
+
+        //Test for large number of events
+        [Fact]
+        public void FilterEvents_GivenLargeNumberOfEvents_WhenFilterEventsIsCalled_ThenShouldReturnFilteredEvents()
+        {
+            // Arrange
+            var funcDelegateService = new FuncDelegateService();
+            var events = Enumerable.Range(1, 100000).Select(i => $"Event{i}").ToList();
+            string searchText = "Event100";
+            var expectedFilteredEvents = events.Where(eventName => ContainsCaseInsensitive(eventName, searchText)).ToList();
+
+            // Act
+            var actualFilteredEvents = funcDelegateService.FilterEvents(
+                (eventName) => ContainsCaseInsensitive(eventName, searchText), events);
+
+            // Assert
+            Assert.Equal(expectedFilteredEvents, actualFilteredEvents);
+        }
+
+
+
+        #endregion
+
+
+
     }
 }

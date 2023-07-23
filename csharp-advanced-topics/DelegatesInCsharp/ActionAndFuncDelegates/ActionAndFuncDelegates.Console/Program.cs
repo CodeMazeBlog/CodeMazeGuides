@@ -276,10 +276,8 @@ public static class Methods
 
         funcDelegateService.EventFilterBySearchTextFunc = filterPredicate;
 
-        // Use the same filter predicate for LINQ FindAll method
-        List<string> filteredEvents = events.FindAll(filterPredicate);
-
-        return filteredEvents;
+        //return events.FindAll(filterPredicate);
+        return funcDelegateService.FilterEventsBySearchText(filterPredicate, events);
     }
 
     // Function to get the name of the selected item
@@ -293,11 +291,6 @@ public static class Methods
         {
             throw new ArgumentOutOfRangeException(nameof(userInput), "Invalid choice");
         }
-    }
-
-    private static bool RegexFilterEvent(string eventName, string filterString)
-    {
-        return Regex.IsMatch(eventName, Regex.Escape(filterString), RegexOptions.IgnoreCase);
     }
 
     private static bool ContainsCaseInsensitive(string source, string filterString)

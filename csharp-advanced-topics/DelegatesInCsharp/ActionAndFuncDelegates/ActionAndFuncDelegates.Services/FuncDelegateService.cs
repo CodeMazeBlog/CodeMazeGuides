@@ -45,19 +45,31 @@
         // Method to filter events based on the provided Func delegate
         public List<string> FilterEvents(Func<string, bool> filterCriteria, List<string> registeredEvents)
         {
+            if (filterCriteria == null)
+            {
+                throw new InvalidOperationException("FilterCriteria is not set.");
+            }
+
             // Perform filtering logic on registeredEvents list using the provided Func delegate
-            return registeredEvents.Where(EventFilterFunc!).ToList();
+            return registeredEvents.Where(filterCriteria!).ToList();
         }
 
-        public List<string> FilterEvents(List<string> registeredEvents)
+        public List<string> FilterEventsBySearchText(Predicate<string> predicate, List<string> registeredEvents)
         {
-            if (EventFilterBySearchTextFunc == null)
+            // Check if the predicate is not null
+            if (predicate == null)
             {
-                throw new InvalidOperationException("EventFilterBySearchTextFunc is not set.");
+                throw new ArgumentNullException(nameof(predicate), "Predicate is not set.");
             }
 
             // Perform filtering logic on registeredEvents list using the provided Predicate delegate
-            return registeredEvents.FindAll(EventFilterBySearchTextFunc);
+            return registeredEvents.FindAll(predicate);
+        }
+
+        public List<string> FilterEventsBySearchText_(Predicate<string> predicate, List<string> events)
+        {
+            // Perform filtering logic on registeredEvents list using the provided Predicate delegate
+            return events.FindAll(predicate);
         }
 
 
