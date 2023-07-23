@@ -1,9 +1,9 @@
 ﻿namespace LockingMechanismInCSharp
 {
-    public static class ReaderWriterLockClass
+    public static class ReaderWriterLockSlimClass
     {
         private static int _counter;
-        private static readonly ReaderWriterLock _readerWriterLock = new();
+        private static readonly ReaderWriterLockSlim _readerWriterLockSlim = new();
 
         public static int Execute()
         {
@@ -35,9 +35,9 @@
         {
             while (_counter < 30)
             {
-                _readerWriterLock.AcquireReaderLock(Timeout.Infinite);
+                _readerWriterLockSlim.EnterReadLock();
                 Console.WriteLine($"Reader {id} read counter: {_counter}");
-                _readerWriterLock.ReleaseReaderLock();
+                _readerWriterLockSlim.ExitReadLock();
 
                 Thread.Sleep(100);
             }
@@ -47,10 +47,10 @@
         {
             while (_counter < 30)
             {
-                _readerWriterLock.AcquireWriterLock(Timeout.Infinite);
+                _readerWriterLockSlim.EnterWriteLock();
                 _counter++;
                 Console.WriteLine($"Writer {id} increased counter to value {_counter}");
-                _readerWriterLock.ReleaseWriterLock();
+                _readerWriterLockSlim.ExitWriteLock();
 
                 Thread.Sleep(100);
             }

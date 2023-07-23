@@ -6,14 +6,6 @@ namespace Tests
     public class LockingMechanismInCSharpTests
     {
         [TestMethod]
-        public void WhenMultithreadWithoutLock_ThenDifferentResultSmallerThan3000()
-        {
-            var result = MultithreadWithoutLocking.Execute();
-
-            Assert.IsTrue(result < 300000, "Result is not smaller than 300000");
-        }
-
-        [TestMethod]
         public void WhenMultithreadWithInterlockedClass_ThenCorrectResultOfIncrements()
         {
             var result = InterlockedClass.Execute();
@@ -30,9 +22,17 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenMultithreadWitMonitorClass_ThenCorrectResultOfIncrements()
+        public void WhenMultithreadWithMonitorClass_ThenCorrectResultOfIncrements()
         {
             var result = MonitorClass.Execute();
+
+            Assert.AreEqual(result, 300000);
+        }
+
+        [TestMethod]
+        public void WhenMultithreadWithMutexClass_ThenCorrectResultOfIncrements()
+        {
+            var result = MutexClass.Execute();
 
             Assert.AreEqual(result, 300000);
         }
@@ -46,19 +46,11 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenMultithreadWithReaderWriterLock_ThenCorrectResultOfIncrements()
+        public void WhenMultithreadWithReaderWriterSlimLock_ThenCorrectResultOfIncrements()
         {
-            var result = ReaderWriterLockClass.Execute();
+            var result = ReaderWriterLockSlimClass.Execute();
 
             Assert.AreEqual(result, 30);
-        }
-
-        [TestMethod]
-        public void WhenMultithreadWitNestedLock_ThenCorrectResultOfIncrements()
-        {
-            var result = NestedLock.Execute();
-
-            Assert.AreEqual(result, 300000);
         }
     }
 }

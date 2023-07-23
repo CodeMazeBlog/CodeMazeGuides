@@ -1,9 +1,9 @@
 ﻿namespace LockingMechanismInCSharp
 {
-    public static class NestedLock
+    public class MutexClass
     {
         private static int _counter;
-        private static readonly object _lockObject = new();
+        private static Mutex mutex = new();
 
         public static int Execute()
         {
@@ -24,20 +24,19 @@
 
         private static void IncrementCounter()
         {
-            lock (_lockObject)
+            try
             {
-                for (int i = 1; i <= 50000; i++)
+                if (mutex.WaitOne(1000))
                 {
-                    _counter++;
-                }
-
-                lock (_lockObject)
-                {
-                    for (int i = 1; i <= 50000; i++)
+                    for (int i = 1; i <= 100000; i++)
                     {
                         _counter++;
                     }
                 }
+            }
+            finally
+            {
+                mutex.ReleaseMutex();
             }
         }
     }

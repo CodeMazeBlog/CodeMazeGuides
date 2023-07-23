@@ -2,7 +2,7 @@
 {
     public static class SpinLockClass
     {
-        private static bool lockAquired;
+        private static bool lockAcquired;
         private static int _counter;
         private static SpinLock spinLock = new();
 
@@ -27,12 +27,12 @@
         {
             try
             {
-                if (lockAquired)
+                if (lockAcquired)
                 {
                     Thread.Sleep(100);
                 }
 
-                spinLock.Enter(ref lockAquired);
+                spinLock.Enter(ref lockAcquired);
                 for (int i = 1; i <= 100000; i++)
                 {
                     _counter++;
@@ -40,9 +40,9 @@
             }
             finally
             {
-                if (lockAquired)
+                if (lockAcquired)
                 {
-                    lockAquired = false;
+                    lockAcquired = false;
                     spinLock.Exit();
                 }
             }
