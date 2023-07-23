@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace Test
+namespace Tests
 {
     [TestClass]
     public class ActionFuncBaseTests
@@ -23,14 +23,10 @@ namespace Test
         [TestMethod]
         public void TripleList_ReturnTripledElements()
         {
-            // Arrange
             List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
             List<int> expectedTripledResult = new List<int> { 3, 6, 9, 12, 15 };
 
-            // Act
             List<int> actualTripledResult = ActionFuncBase.TripleList(numbers);
-
-            // Assert
             CollectionAssert.AreEqual(expectedTripledResult, actualTripledResult);
         }
     }
