@@ -5,14 +5,14 @@ namespace ActionAndFuncDelegatesTestes
     public delegate string PerformUpper(string name, int age);
 
     [TestClass]
-    public class Tests
+    public class UnitTests
     {
         void Print(double salary) => Console.WriteLine(salary);
 
         string UppercaseString(string strName, int age) { return (strName + "-" + age).ToUpper(); }
 
         [TestMethod]
-        public void WhenInvokeADelegateWitchReceiveANamedMethod_DelegateContainsOneMethod()
+        public void WhenInvokeADelegateWitchReceiveANamedMethod_ThenCheckIfContainsAMethod()
         {
             var delegateTest = new ShowPersonData(Print);
 
@@ -22,7 +22,7 @@ namespace ActionAndFuncDelegatesTestes
         }
 
         [TestMethod]
-        public void WhenInvokeADelegateWitchReceiveANamedMethodThatReturnsAValue_DelegateMustReturnAValue()
+        public void WhenInvokeADelegateWitchReceiveANamedMethodThatReturnsAValue_ThenReturnAValue()
         {
             var delegateTest = new PerformUpper(UppercaseString);
 
@@ -32,7 +32,7 @@ namespace ActionAndFuncDelegatesTestes
         }
 
         [TestMethod]
-        public void WhenInvokeAnActionWitchReceiveALambdaExpression_ActionHaveToPerformTheLambdaOperation()
+        public void WhenInvokeAnActionWitchReceiveALambdaExpression_ThenPerformTheLambdaOperation()
         {
             string fName = "";
             string lName = "";
@@ -50,7 +50,7 @@ namespace ActionAndFuncDelegatesTestes
         }
 
         [TestMethod]
-        public void WhenInvokeAFuncWitchReceiveALambdaExpression_FuncHaveToReturnAValue()
+        public void WhenInvokeAFuncWitchReceiveALambdaExpression_ThenReturnAValue()
         {
             Func<string, string> mySelector = str => str.ToUpper();
 
@@ -60,7 +60,7 @@ namespace ActionAndFuncDelegatesTestes
         }
 
         [TestMethod]
-        public void WhenInvokeAFuncWitchReceiveAMethodWithTwoInputParams_FuncHaveToReturnAValue()
+        public void WhenInvokeAFuncWitchReceiveAMethodWithTwoInputParams_ThenReturnAValue()
         {
             Func<string, int, string> upperFunc = UppercaseString;
 
