@@ -82,7 +82,7 @@ namespace CompareByteArraysInCsharp
                         return false;
                 }
 
-                for (int i = 0; i < arrayLength; i++)
+                for (int i = arrayLength - (arrayLength % vectorSize); i < arrayLength; i++)
                 {
                     if (pbtr1[i] != pbtr2[i])
                         return false;
@@ -91,7 +91,6 @@ namespace CompareByteArraysInCsharp
 
             return true;
         }
-
         private unsafe bool VectorEquality(byte* firstPointer, byte* secondPointer)
         {
             var firstVector = *(Vector<byte>*)firstPointer;
