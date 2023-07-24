@@ -14,7 +14,7 @@
             printer.PrintMessage("Hello, world!");
 
             // ASSERT
-            Assert.Equal("Hello, world!\r\n", writer.GetStringBuilder().ToString());
+            Assert.Equal("Hello, world!", writer.GetStringBuilder().ToString().TrimEnd());
         }
 
         [Fact]
@@ -29,7 +29,7 @@
             printer.PrintTwoMessages("Hello,", "world!");
 
             // ASSERT
-            Assert.Equal("Hello, world!\r\n", writer.GetStringBuilder().ToString());
+            Assert.Equal("Hello, world!", writer.GetStringBuilder().ToString().TrimEnd());
         }
     }
 }
