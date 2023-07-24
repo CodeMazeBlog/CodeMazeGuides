@@ -21,15 +21,15 @@ public class ProductIdComparerTests
     [Fact]
     public void Compare_AIsNull_ShouldReturnNegative()
     {
-        _comparer.Compare(null, new Product("ProductName", "Category", 100m) {Id = Guid.NewGuid()}).Should()
-                 .BeNegative();
+        var productB = new Product("ProductName", "Category", 100m) {Id = Guid.NewGuid()};
+        _comparer.Compare(null, productB).Should().BeNegative();
     }
 
     [Fact]
     public void Compare_BIsNull_ShouldReturnPositive()
     {
-        _comparer.Compare(new Product("ProductName", "Category", 100m) {Id = Guid.NewGuid()}, null).Should()
-                 .BePositive();
+        var productA = new Product("ProductName", "Category", 100m) {Id = Guid.NewGuid()};
+        _comparer.Compare(productA, null).Should().BePositive();
     }
 
     [Fact]
@@ -40,7 +40,8 @@ public class ProductIdComparerTests
 
         _comparer.Compare(
             new Product("ProductName", "Category", 100m) {Id = idA},
-            new Product("ProductName", "Category", 100m) {Id = idB}).Should().BeNegative();
+            new Product("ProductName", "Category", 100m) {Id = idB})
+                 .Should().BeNegative();
     }
 
     [Fact]
