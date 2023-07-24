@@ -22,7 +22,7 @@ namespace ActionAndFuncDelegatesTestes
         }
 
         [TestMethod]
-        public void WhenInvokeADelegateWitchReceiveANamedMethodThatReturnsAValue_DelegateMustReturnAeValue()
+        public void WhenInvokeADelegateWitchReceiveANamedMethodThatReturnsAValue_DelegateMustReturnAValue()
         {
             var delegateTest = new PerformUpper(UppercaseString);
 
@@ -32,7 +32,7 @@ namespace ActionAndFuncDelegatesTestes
         }
 
         [TestMethod]
-        public void WhenInvokeAActionWitchReceiveALambdaExpression_ActionHaveToPerformTheLambdaOperation()
+        public void WhenInvokeAnActionWitchReceiveALambdaExpression_ActionHaveToPerformTheLambdaOperation()
         {
             string fName = "";
             string lName = "";
