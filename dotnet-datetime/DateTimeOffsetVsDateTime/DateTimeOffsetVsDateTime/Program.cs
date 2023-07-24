@@ -40,7 +40,7 @@ Console.WriteLine($"DateTime Kind: {dateTimeUnspecified.Kind}"); // DateTime Kin
 
 
 
-DateTimeOffset dateTimeOffsetUnspecified = DateTimeOffset.Now; // Represents the current UTC time
+DateTimeOffset dateTimeOffsetUnspecified = DateTimeOffset.Now; // Represents the current time
 Console.WriteLine($"DateTimeOffset Kind: {dateTimeOffsetUnspecified.DateTime.Kind}"); // DateTime Kind: Unspecified
 
 
