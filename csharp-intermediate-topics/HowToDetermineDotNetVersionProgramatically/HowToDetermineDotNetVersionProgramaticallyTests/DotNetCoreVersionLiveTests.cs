@@ -1,6 +1,6 @@
 namespace HowToDetermineDotNetVersionProgramaticallyTests;
 
-public class DotNetCoreVersionUnitTests
+public class DotNetCoreVersionLiveTests
 {
     [Fact]
     public void GivenCurrentProcessGarbageCollectionSettings_WhenCallingGetNetCoreVersion_ThenReturnExpectedVersion()

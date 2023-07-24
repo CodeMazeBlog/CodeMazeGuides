@@ -1,6 +1,6 @@
 namespace HowToDetermineDotNetVersionProgramaticallyTests;
 
-public class DotNetFrameworkDescriptionUnitTests
+public class DotNetFrameworkDescriptionLiveTests
 {
     [Fact]
     public void GivenAssemblyBuiltWithDotNet_WhenCallingGetFrameworkDescription_ThenReturnDescription()

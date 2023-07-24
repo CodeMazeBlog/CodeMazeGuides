@@ -1,6 +1,6 @@
 namespace HowToDetermineDotNetVersionProgramaticallyTests;
 
-public class DotNetClrVersionUnitTests
+public class DotNetClrVersionLiveTests
 {
     [Fact]
     public void GivenAssemblyBuiltWithDotNet_WhenCallingGetEnvironmentVersion_ThenReturnVersion()
@@ -19,7 +19,7 @@ public class DotNetClrVersionUnitTests
     public void GivenPathToDllBuiltWithDotNet_WhenCallingGetAssemblySupportedMinimumClrVersion_ThenReturnExpectedVersion()
     {
         // Given
-        var path = typeof(DotNetClrVersionUnitTests).Assembly.Location;
+        var path = typeof(DotNetClrVersionLiveTests).Assembly.Location;
         var expectedVersion = "v4.0";
         
         // When

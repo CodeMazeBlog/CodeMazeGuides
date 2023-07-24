@@ -1,6 +1,6 @@
 namespace HowToDetermineDotNetVersionProgramaticallyTests;
 
-public class DotNetTargetFrameworkNameUnitTests
+public class DotNetTargetFrameworkNameLiveTests
 {
     /* for use in library build on .NET Framework
     [Fact]
