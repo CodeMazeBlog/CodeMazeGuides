@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HideSwaggerEndpoint", "HideSwaggerEndpoint.csproj", "{831396DC-933B-4548-AE7D-FB7F9957794D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidingSwaggerEndpointTests", "..\HidingEndpointInSwaggerTests\HidingSwaggerEndpointTests.csproj", "{3EEBF511-8472-4403-80C4-1B2250458D6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{831396DC-933B-4548-AE7D-FB7F9957794D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{831396DC-933B-4548-AE7D-FB7F9957794D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{831396DC-933B-4548-AE7D-FB7F9957794D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{831396DC-933B-4548-AE7D-FB7F9957794D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EEBF511-8472-4403-80C4-1B2250458D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EEBF511-8472-4403-80C4-1B2250458D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EEBF511-8472-4403-80C4-1B2250458D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EEBF511-8472-4403-80C4-1B2250458D6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F7DC8D09-B15E-4062-A6AF-8DA178EC7DFB}
+	EndGlobalSection
+EndGlobal
