@@ -1,6 +1,6 @@
 ﻿namespace FuncAndActionInCSharp
 {
-    internal class Program
+    public class Program
     {
         // Define your delegate
         public delegate void MyDelegate(string message);
