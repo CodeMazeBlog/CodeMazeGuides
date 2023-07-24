@@ -1,10 +1,11 @@
 using GenerateStreamFromStringInCSharp;
+using System.Text;
 
 namespace Tests
 {
     public class GenerateStreamFromStringTests
     {
-        private readonly string _testString
+        private const string _testString
         = """
         Sed facilisis justo quam, ornare varius tellus dapibus sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
         Nullam aliquam auctor fringilla. Nam id orci lacus. Sed placerat justo vitae sem auctor, ac molestie lacus sodales. 
@@ -14,21 +15,25 @@ namespace Tests
         """;
 
         [Fact]
-        public void WhenUsingGenerateStreamFromString_ThenReturnsStream()
+        public void WhenUsingGenerateStreamFromStringWithStreamWriterAndMemoryStream_ThenReturnsStream()
         {
-            Stream resultStream = GenerateStreamFromStringMethods.GenerateStreamFromString(_testString);
+            var resultStream = GenerateStreamFromStringMethods.GenerateStreamFromStringWithStreamWriterAndMemoryStream(_testString);
 
-            Assert.NotNull(resultStream);
-            Assert.IsAssignableFrom<Stream>(resultStream);
+            var reader = new StreamReader(resultStream, Encoding.UTF8);
+            var resultString = reader.ReadToEnd();
+
+            Assert.Equal(_testString, resultString);
         }
 
         [Fact]
-        public void WhenUsingConciselyGenerateStreamFromString_ThenReturnsStream()
+        public void WhenUsingGenerateStreamFromStringWithMemoryStreamAndGetBytes_ThenReturnsStream()
         {
-            Stream resultStream = GenerateStreamFromStringMethods.ConciselyGenerateStreamFromString(_testString);
+            var resultStream = GenerateStreamFromStringMethods.GenerateStreamFromStringWithMemoryStreamAndGetBytes(_testString);
 
-            Assert.NotNull(resultStream);
-            Assert.IsAssignableFrom<Stream>(resultStream);
+            var reader = new StreamReader(resultStream, Encoding.UTF8);
+            var resultString = reader.ReadToEnd();
+
+            Assert.Equal(_testString, resultString);
         }
     }
 }

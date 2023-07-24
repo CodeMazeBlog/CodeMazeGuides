@@ -7,7 +7,7 @@ namespace GenerateStreamFromStringInCSharp
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class GenerateStreamFromStringBenchmark
     {
-        private static readonly string BenchmarkString
+        private const string BenchmarkString
         = """
         Sed facilisis justo quam, ornare varius tellus dapibus sit amet. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
         Nullam aliquam auctor fringilla. Nam id orci lacus. Sed placerat justo vitae sem auctor, ac molestie lacus sodales. 
@@ -76,11 +76,11 @@ namespace GenerateStreamFromStringInCSharp
         """;
 
         [Benchmark]
-        public void GenerateStreamFromString()
-            => GenerateStreamFromStringMethods.GenerateStreamFromString(BenchmarkString);
+        public void GenerateStreamFromStringWithStreamWriterAndMemoryStream()
+            => GenerateStreamFromStringMethods.GenerateStreamFromStringWithStreamWriterAndMemoryStream(BenchmarkString);
 
         [Benchmark]
-        public void ConciselyGenerateStreamFromString()
-            => GenerateStreamFromStringMethods.ConciselyGenerateStreamFromString(BenchmarkString);
+        public void GenerateStreamFromStringWithMemoryStreamAndGetBytes()
+            => GenerateStreamFromStringMethods.GenerateStreamFromStringWithMemoryStreamAndGetBytes(BenchmarkString);
     }
 }
