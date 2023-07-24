@@ -13,6 +13,7 @@ public static class DotNetClrVersion
     {
         var assembly = Assembly.LoadFrom(dllPath);
         var imageVersion = assembly.ImageRuntimeVersion;
+        
         return imageVersion;
     }
 }

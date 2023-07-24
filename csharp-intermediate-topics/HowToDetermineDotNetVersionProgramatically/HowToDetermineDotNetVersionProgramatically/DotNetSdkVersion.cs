@@ -11,6 +11,7 @@ public static class DotNetSdkVersion
         process.Start();
         var output = process.StandardOutput.ReadToEnd();
         process.WaitForExit();
+        
         return output;
     }
 
