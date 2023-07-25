@@ -7,9 +7,9 @@ namespace Tests
     public class ActionFuncBaseTests
     {
         [TestMethod]
-        public void PrintList_PrintElementsInList()
+        public void WhenPrintListInvoked_ThenPrintOutAllElementsInList()
         {
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            var numbers = new List<int> { 1, 2, 3, 4, 5 };
             string expectedPrintOut = "1\r\n2\r\n3\r\n4\r\n5\r\n";
             
             using (var consolePrintOut = new StringWriter())
@@ -17,20 +17,17 @@ namespace Tests
                 Console.SetOut(consolePrintOut);
                 ActionFuncBase.PrintList(numbers);
                 string actualPrintOut = consolePrintOut.ToString();
-
                 expectedPrintOut = expectedPrintOut.Replace("\r\n", "\n");
                 actualPrintOut = actualPrintOut.Replace("\r\n", "\n");
-
                 Assert.AreEqual(expectedPrintOut, actualPrintOut);
             }
         }
 
         [TestMethod]
-        public void TripleList_ReturnTripledElements()
+        public void WhenTripleListInvoked_ThenReturnTripledElements()
         {
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
-            List<int> expectedTripledResult = new List<int> { 3, 6, 9, 12, 15 };
-
+            var numbers = new List<int> { 1, 2, 3, 4, 5 };
+            var expectedTripledResult = new List<int> { 3, 6, 9, 12, 15 };
             List<int> actualTripledResult = ActionFuncBase.TripleList(numbers);
             CollectionAssert.AreEqual(expectedTripledResult, actualTripledResult);
         }

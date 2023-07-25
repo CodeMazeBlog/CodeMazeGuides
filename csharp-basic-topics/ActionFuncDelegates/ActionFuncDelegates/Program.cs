@@ -4,7 +4,7 @@ internal class Program : ActionFuncBase
 {
     static void Main(string[] args)
     {
-        List<int> numbers = new List<int> { 10, 20, 30, 40, 50 };
+        var numbers = new List<int> { 10, 20, 30, 40, 50 };
 
         Action<List<int>> printListAction = PrintList;
         Console.WriteLine("Original List:");
@@ -12,7 +12,6 @@ internal class Program : ActionFuncBase
 
         Func<List<int>, List<int>> tripleListFunc = TripleList;
         List<int> tripledResult = tripleListFunc(numbers);
-
         Console.WriteLine("Tripled List:");
         foreach (int element in tripledResult)
         {
