@@ -84,7 +84,7 @@ namespace CompareByteArraysInCsharp
                         return false;
                 }
 
-                for (i = arrayLength - (arrayLength % vectorSize); i < arrayLength; i++)
+                for (; i < arrayLength; i++)
                 {
                     if (pbtr1[i] != pbtr2[i])
                         return false;
