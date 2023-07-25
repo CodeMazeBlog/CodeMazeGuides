@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 namespace CompareByteArraysInCsharp
 {
     [MemoryDiagnoser]
-    [RankColumn]
-    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
+    [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
+
     public class CompareByteArrays
     {
         private readonly Random _rand;
@@ -76,13 +76,15 @@ namespace CompareByteArraysInCsharp
 
             fixed (byte* pbtr1 = firstArray, pbtr2 = secondArray)
             {
-                for (int i = 0; i <= arrayLength - vectorSize; i += vectorSize)
+                var i = 0;
+
+                for (; i <= arrayLength - vectorSize; i += vectorSize)
                 {
                     if (!VectorEquality(pbtr1 + i, pbtr2 + i))
                         return false;
                 }
 
-                for (int i = arrayLength - (arrayLength % vectorSize); i < arrayLength; i++)
+                for (i = arrayLength - (arrayLength % vectorSize); i < arrayLength; i++)
                 {
                     if (pbtr1[i] != pbtr2[i])
                         return false;
