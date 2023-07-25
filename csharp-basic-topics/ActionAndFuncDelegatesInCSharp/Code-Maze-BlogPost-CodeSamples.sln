@@ -3,18 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegatesInCSharp", "DelegatesInCSharp\DelegatesInCSharp.csproj", "{31F43A52-23B1-4E7A-863B-286608DB0A6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegatesInCSharp", "DelegatesInCSharp\DelegatesInCSharp.csproj", "{31F43A52-23B1-4E7A-863B-286608DB0A6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{43C9E926-313B-42C0-B694-D6C3B1B1DCFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{31F43A52-23B1-4E7A-863B-286608DB0A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31F43A52-23B1-4E7A-863B-286608DB0A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31F43A52-23B1-4E7A-863B-286608DB0A6B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{31F43A52-23B1-4E7A-863B-286608DB0A6B}.Debug|x86.Build.0 = Debug|Any CPU
 		{31F43A52-23B1-4E7A-863B-286608DB0A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31F43A52-23B1-4E7A-863B-286608DB0A6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31F43A52-23B1-4E7A-863B-286608DB0A6B}.Release|x86.ActiveCfg = Release|Any CPU
+		{31F43A52-23B1-4E7A-863B-286608DB0A6B}.Release|x86.Build.0 = Release|Any CPU
+		{43C9E926-313B-42C0-B694-D6C3B1B1DCFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43C9E926-313B-42C0-B694-D6C3B1B1DCFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43C9E926-313B-42C0-B694-D6C3B1B1DCFA}.Debug|x86.ActiveCfg = Debug|x86
+		{43C9E926-313B-42C0-B694-D6C3B1B1DCFA}.Debug|x86.Build.0 = Debug|x86
+		{43C9E926-313B-42C0-B694-D6C3B1B1DCFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43C9E926-313B-42C0-B694-D6C3B1B1DCFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43C9E926-313B-42C0-B694-D6C3B1B1DCFA}.Release|x86.ActiveCfg = Release|Any CPU
+		{43C9E926-313B-42C0-B694-D6C3B1B1DCFA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
