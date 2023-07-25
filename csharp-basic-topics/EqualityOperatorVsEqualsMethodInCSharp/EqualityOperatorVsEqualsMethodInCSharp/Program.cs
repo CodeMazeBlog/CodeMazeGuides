@@ -32,13 +32,13 @@ namespace EqualityOperatorVsEqualsMethodInCSharp
 
         public static string ComparisonBetweenObjects()
         {
-            object firstObject = new string(new[] { 'a', 'b', 'c' });
-            object secondObject = new string(new[] { 'a', 'b', 'c' });
+            object firstObject = new[] { 1, 2, 3 };
+            object secondObject = new[] { 1, 2, 3 };
 
             return PrintFormattedResult(
                 ReferenceEquals(firstObject, secondObject), // false
                 firstObject == secondObject, // false
-                firstObject.Equals(secondObject) // true
+                firstObject.Equals(secondObject) // false
             );
         }
 

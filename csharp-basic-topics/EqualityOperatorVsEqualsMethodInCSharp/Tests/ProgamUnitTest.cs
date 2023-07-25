@@ -21,7 +21,7 @@ namespace Tests
             {
                 var result = Program.ComparisonBetweenObjects();
 
-                Assert.AreEqual("Reference: False, Equality: False, Equals: True", result);
+                Assert.AreEqual("Reference: False, Equality: False, Equals: False", result);
             }
 
             [TestMethod]
