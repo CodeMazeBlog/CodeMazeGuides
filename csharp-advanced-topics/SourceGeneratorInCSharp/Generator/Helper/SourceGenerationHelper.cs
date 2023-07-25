@@ -6,13 +6,14 @@ namespace Generator.Helper
 {
     public class SourceGenerationHelper
     {
-        public const string Attribute = @"
-namespace Generator
-{
-    [System.AttributeUsage(System.AttributeTargets.Class)]
-    public class GenerateServiceAttribute : System.Attribute
-    {
-    }
-}";
+        public const string Attribute = """
+            namespace Generator
+            {
+                [System.AttributeUsage(System.AttributeTargets.Class)]
+                public class GenerateServiceAttribute : System.Attribute
+                {
+                }
+            }
+            """;
     }
 }

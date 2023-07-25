@@ -12,17 +12,18 @@ namespace Generator
         {
             var callingEntrypoint = context.Compilation.GetEntryPoint(context.CancellationToken);
 
-            var sourceText =
-    $@"namespace {callingEntrypoint.ContainingNamespace.Name}
-{{
-    public static class HelloWorld
-    {{
-        public static void SayHello()
-        {{
-            Console.WriteLine(""Hello From Generator"");
-        }}
-    }}
-}}";
+            var sourceText = $$"""
+                namespace {{callingEntrypoint.ContainingNamespace.Name}}
+                {
+                    public static class HelloWorld
+                    {
+                        public static void SayHello()
+                        {
+                            Console.WriteLine("Hello From Generator");
+                        }
+                    }
+                }
+                """;
 
             context.AddSource("ExampleGenerator.g", SourceText.From(sourceText, Encoding.UTF8));
         }
