@@ -1,4 +1,4 @@
-namespace StartUpConfiguration.Models
+namespace StartupConfiguration.Models
 {
     public class ErrorViewModel
     {

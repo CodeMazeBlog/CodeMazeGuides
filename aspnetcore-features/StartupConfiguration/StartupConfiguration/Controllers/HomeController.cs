@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StartUpConfiguration.Models;
+using StartupConfiguration.Models;
 using System.Diagnostics;
 
-namespace StartUpConfiguration.Controllers
+namespace StartupConfiguration.Controllers
 {
     public class HomeController : Controller
     {

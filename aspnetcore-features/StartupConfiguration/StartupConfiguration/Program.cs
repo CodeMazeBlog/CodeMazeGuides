@@ -1,12 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-// Accessing IConfiguration and IWebHostEnvironment from the builder
-IConfiguration configuration = builder.Configuration;
-IWebHostEnvironment environment = builder.Environment;
-
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
