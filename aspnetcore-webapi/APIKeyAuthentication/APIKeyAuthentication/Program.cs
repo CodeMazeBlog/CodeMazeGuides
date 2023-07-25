@@ -3,6 +3,7 @@ using APIKeyAuthentication.CustomMiddleware;
 using APIKeyAuthentication.EndpointFilter;
 using APIKeyAuthentication.Interface;
 using APIKeyAuthentication.PolicyBased;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 
 namespace APIKeyAuthentication
@@ -20,10 +21,16 @@ namespace APIKeyAuthentication
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer();
+
             builder.Services.AddAuthorization(options =>
             {
                 options.AddPolicy("ApiKeyPolicy", policy =>
                 {
+                    policy.AddAuthenticationSchemes(new[] { JwtBearerDefaults.AuthenticationScheme });
                     policy.Requirements.Add(new ApiKeyRequirement());
                 });
             });
