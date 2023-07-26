@@ -10,7 +10,7 @@
 
     public static List<int> TripleList(List<int> tlist)
     {
-        List<int> result = new List<int>();
+        var result = new List<int>();
         Triple(tlist, result);
 
         return result;
