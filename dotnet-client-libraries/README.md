@@ -11,6 +11,7 @@ This section contains the topics about the client libraries in .NET.
 - [Google Sheets API with .NET Core](https://code-maze.com/google-sheets-api-with-net-core/)
 - [Introduction to Firebase in .NET](https://code-maze.com/dotnet-firebase/)
 - [Firebase Authentication in .NET](https://code-maze.com/dotnet-firebase-authentication/)
+- [Sending Email With FluentEmail in .NET](https://code-maze.com/dotnet-sending-email-with-fluentemail/)
 - [Create Clean Guard Clauses With GuardClauses in C#](https://code-maze.com/csharp-guard-clauses/)
 - [How to Use HTML Agility Pack in C#](https://code-maze.com/html-agility-pack-csharp/)
 - [Using Refit to Consume APIs in C#](https://code-maze.com/using-refit-to-consume-apis-in-csharp/)
