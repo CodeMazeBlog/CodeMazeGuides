@@ -38,6 +38,18 @@ namespace ActionFuncDelegatesInCsharp
             actionDelegate(message);
         }
 
+        private void DisplayText(string message)
+        {
+            if (string.IsNullOrEmpty(message))
+            {
+                _logger.Log("EmptyMessage");
+            }
+            else
+            {
+                _logger.Log("INF:{0}", message);
+            }
+        }
+
         public void DelegateChainedUsage(int testValue)
         {
             Action<int> myChainAction = (int value) => { };
@@ -57,23 +69,6 @@ namespace ActionFuncDelegatesInCsharp
             };
 
             myChainAction(testValue);
-        }
-
-        private void LogInfo(string message)
-        {
-            _logger.Log("INF:{0}", message);
-        }
-
-        private void DisplayText(string message)
-        {
-            if (string.IsNullOrEmpty(message))
-            {
-                _logger.Log("EmptyMessage");
-            }
-            else
-            {
-                _logger.Log("INF:{0}", message);
-            }
         }
     }
 }
