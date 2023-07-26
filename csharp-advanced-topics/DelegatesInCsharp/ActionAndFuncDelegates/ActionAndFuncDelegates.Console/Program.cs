@@ -1,7 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using ActionAndFuncDelegates.Services;
-using System.Text.RegularExpressions;
 
 // Create an instance of ActionDelegateService
 var actionDelegateService = new ActionDelegateService();
