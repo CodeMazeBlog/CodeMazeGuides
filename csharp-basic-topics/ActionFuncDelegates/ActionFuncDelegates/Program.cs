@@ -1,6 +1,4 @@
-﻿using System;
-
-internal class Program : ActionFuncBase
+﻿internal class Program : ActionFuncBase
 {
     static void Main(string[] args)
     {
