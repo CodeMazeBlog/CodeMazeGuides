@@ -19,7 +19,7 @@ namespace Generator
                 SourceText.From(SourceGenerationHelper.Attribute, Encoding.UTF8)));
 
             context.RegisterForSyntaxNotifications(() =>
-                    new GenerateServiceAttributeSyntaxReceiver());
+                new GenerateServiceAttributeSyntaxReceiver());
         }
 
         public void Execute(GeneratorExecutionContext context)
@@ -43,8 +43,8 @@ namespace Generator
                 if (!className.Contains("Model"))
                 {
                     var error = Diagnostic.Create(DiagnosticsDescriptors.ClassWithWrongNameMessage,
-                                       classSyntax.Identifier.GetLocation(),
-                                       className);
+                        classSyntax.Identifier.GetLocation(),
+                        className);
 
                     context.ReportDiagnostic(error);
 

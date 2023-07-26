@@ -6,7 +6,7 @@
         [TestMethod]
         public void WhenGeneratePersonModelService_ThenReturnCorrectOutput()
         {
-            var input = @"
+            var input = """
                 using Generator.Attributes;
 
                 namespace SourceGeneratorInCSharp.Models
@@ -19,45 +19,46 @@
                         public string? Name { get; set; }
                     }
                 }
-            ";
+                """;
 
-            string expectedResult = 
-@"using SourceGeneratorInCSharp.Models;
+            var expectedResult = """
+                using SourceGeneratorInCSharp.Models;
 
-namespace SourceGeneratorTests.Services 
-{
-    public partial class PersonModelService
-    {
-        private static readonly List<PersonModel> _list = new();
+                namespace SourceGeneratorTests.Services 
+                {
+                    public partial class PersonModelService
+                    {
+                        private static readonly List<PersonModel> _list = new();
 
-        public virtual List<PersonModel> All()
-        {
-            return _list;
-        }
+                        public virtual List<PersonModel> All()
+                        {
+                            return _list;
+                        }
 
-        public virtual void Add(PersonModel item)
-        {
-            _list.Add(item);
-        }
+                        public virtual void Add(PersonModel item)
+                        {
+                            _list.Add(item);
+                        }
 
-        public virtual void Update(PersonModel item)
-        {
-            var existing = _list.Single(x => x.Id == item.Id);
+                        public virtual void Update(PersonModel item)
+                        {
+                            var existing = _list.Single(x => x.Id == item.Id);
 
-            _list.Remove(existing);
-            _list.Add(item);
-        }
+                            _list.Remove(existing);
+                            _list.Add(item);
+                        }
 
-        public virtual void Delete(int id)
-        {
-            var existing = _list.Single(x => x.Id == id);
+                        public virtual void Delete(int id)
+                        {
+                            var existing = _list.Single(x => x.Id == id);
 
-            _list.Remove(existing);
-        }
-    }
-}";
+                            _list.Remove(existing);
+                        }
+                    }
+                }
+                """;
 
-            string output = Helper.GetGeneratedOutput(input);
+            var output = Helper.GetGeneratedOutput(input);
 
             Assert.AreEqual(expectedResult, output);
         }
