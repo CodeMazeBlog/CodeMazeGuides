@@ -27,17 +27,21 @@ namespace ActionFuncDelegatesInCsharp
 
         public double GetTax(double netSalary, double taxRate)
         {
+            double result;
             if (netSalary < 0)
             {
                 _logger.Log("InvalidNetSalary");
-                return -1;
+                result = -1;
             }
             else if (taxRate <= 0)
             {
                 _logger.Log("InvalidTaxRate");
-                return -2;
+                result = -2;
             }
-            return (double)(netSalary * taxRate);
+            else
+                result = (double)(netSalary * taxRate);
+
+            return result;
         }
     }
 }
