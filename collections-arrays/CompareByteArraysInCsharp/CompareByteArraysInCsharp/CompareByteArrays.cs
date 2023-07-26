@@ -76,13 +76,15 @@ namespace CompareByteArraysInCsharp
 
             fixed (byte* pbtr1 = firstArray, pbtr2 = secondArray)
             {
-                for (int i = 0; i <= arrayLength - vectorSize; i += vectorSize)
+                var i = 0;
+
+                for (; i <= arrayLength - vectorSize; i += vectorSize)
                 {
                     if (!VectorEquality(pbtr1 + i, pbtr2 + i))
                         return false;
                 }
 
-                for (int i = 0; i < arrayLength; i++)
+                for (; i < arrayLength; i++)
                 {
                     if (pbtr1[i] != pbtr2[i])
                         return false;
@@ -164,6 +166,22 @@ namespace CompareByteArraysInCsharp
             }
 
             return byteArray;
+        }
+
+        public (byte[] array1, byte[] array2, byte[] array3) GenerateTestArrays()
+        {
+            var rand = new Random(42);
+            var array1 = new byte[Vector<byte>.Count * 2 + 3];
+            rand.NextBytes(array1);
+            var span = array1.AsSpan();
+            var array2 = new byte[array1.Length];
+            span.CopyTo(array2);
+            array2[array2.Length / 2] = (byte)(-array2[array2.Length / 2]);
+            var array3 = new byte[array1.Length];
+            span.CopyTo(array3);
+            array3[^1] = (byte)(-array3[^1]);
+
+            return (array1, array2, array3);
         }
     }
 }
