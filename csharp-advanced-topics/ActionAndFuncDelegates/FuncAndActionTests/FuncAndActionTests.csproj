@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FuncAndAction\FuncAndAction\FuncAndAction.csproj" />
+    <ProjectReference Include="..\FuncAndAction\FuncAndAction.csproj" />
   </ItemGroup>
 
 </Project>
