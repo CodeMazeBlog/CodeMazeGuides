@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DifferentWaysToOverwiteAFile", "DifferentWaysToOverwiteAFile\DifferentWaysToOverwiteAFile.csproj", "{B5E76C8D-9596-41E4-BD52-0BB5AB9E58A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DifferentWaysToOverwiteAFile.Test", "DifferentWaysToOverwiteAFile.Test\DifferentWaysToOverwiteAFile.Test.csproj", "{B649A6CB-34E2-46EB-B909-43B23D384C8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5E76C8D-9596-41E4-BD52-0BB5AB9E58A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E76C8D-9596-41E4-BD52-0BB5AB9E58A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E76C8D-9596-41E4-BD52-0BB5AB9E58A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E76C8D-9596-41E4-BD52-0BB5AB9E58A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B649A6CB-34E2-46EB-B909-43B23D384C8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B649A6CB-34E2-46EB-B909-43B23D384C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B649A6CB-34E2-46EB-B909-43B23D384C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B649A6CB-34E2-46EB-B909-43B23D384C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04022C17-6B56-43E6-A2C6-75C8F10ACB61}
+	EndGlobalSection
+EndGlobal
