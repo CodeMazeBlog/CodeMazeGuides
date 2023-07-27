@@ -15,7 +15,6 @@ namespace APIKeyAuthentication.Controllers
            return Ok();
         }
 
-
         [HttpGet("all")]
         [Authorize(Policy = "ApiKeyPolicy")]
         public IActionResult GetEmployees()

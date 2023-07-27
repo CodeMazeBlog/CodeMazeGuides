@@ -17,7 +17,6 @@ namespace APIKeyAuthentication.PolicyBased
         protected override Task HandleRequirementAsync(
             AuthorizationHandlerContext context, ApiKeyRequirement requirement)
         {
-
             string? apiKey = _httpContextAccessor?.HttpContext?.Request.Headers[Constants.ApiKeyHeaderName].ToString();
 
             if (string.IsNullOrWhiteSpace(apiKey))
@@ -25,7 +24,6 @@ namespace APIKeyAuthentication.PolicyBased
                 context.Fail();
                 return Task.CompletedTask;
             }
-
 
             if (!_apiKeyValidation.IsValidApiKey(apiKey))
             {

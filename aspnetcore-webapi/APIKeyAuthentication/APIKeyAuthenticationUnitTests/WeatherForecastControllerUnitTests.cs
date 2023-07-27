@@ -194,6 +194,5 @@ namespace APIKeyAuthenticationUnitTests
             // Assert
             Assert.IsInstanceOfType(result, typeof(BadRequestResult));
         }
-
     }
 }
