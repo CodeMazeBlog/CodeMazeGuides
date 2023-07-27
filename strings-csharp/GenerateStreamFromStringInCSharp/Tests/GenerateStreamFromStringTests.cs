@@ -15,9 +15,9 @@ namespace Tests
         """;
 
         [Fact]
-        public void WhenUsingGenerateStreamFromStringWithStreamWriterAndMemoryStream_ThenReturnsStream()
+        public void WhenUsingMemoryStreamAndStreamWriter_ThenReturnsStream()
         {
-            var resultStream = GenerateStreamFromStringMethods.GenerateStreamFromStringWithStreamWriterAndMemoryStream(_testString);
+            var resultStream = GenerateStreamFromStringMethods.UseMemoryStreamAndStreamWriter(_testString);
 
             var reader = new StreamReader(resultStream, Encoding.UTF8);
             var resultString = reader.ReadToEnd();
@@ -26,9 +26,9 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenUsingGenerateStreamFromStringWithMemoryStreamAndGetBytes_ThenReturnsStream()
+        public void WhenUsingGetBytesAndMemoryStream_ThenReturnsStream()
         {
-            var resultStream = GenerateStreamFromStringMethods.GenerateStreamFromStringWithMemoryStreamAndGetBytes(_testString);
+            var resultStream = GenerateStreamFromStringMethods.UseGetBytesAndMemoryStream(_testString);
 
             var reader = new StreamReader(resultStream, Encoding.UTF8);
             var resultString = reader.ReadToEnd();

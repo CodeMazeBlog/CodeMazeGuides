@@ -76,11 +76,11 @@ namespace GenerateStreamFromStringInCSharp
         """;
 
         [Benchmark]
-        public void GenerateStreamFromStringWithStreamWriterAndMemoryStream()
-            => GenerateStreamFromStringMethods.GenerateStreamFromStringWithStreamWriterAndMemoryStream(BenchmarkString);
+        public void UseMemoryStreamAndStreamWriter()
+            => GenerateStreamFromStringMethods.UseMemoryStreamAndStreamWriter(BenchmarkString);
 
         [Benchmark]
-        public void GenerateStreamFromStringWithMemoryStreamAndGetBytes()
-            => GenerateStreamFromStringMethods.GenerateStreamFromStringWithMemoryStreamAndGetBytes(BenchmarkString);
+        public void UseGetBytesAndMemoryStream()
+            => GenerateStreamFromStringMethods.UseGetBytesAndMemoryStream(BenchmarkString);
     }
 }
