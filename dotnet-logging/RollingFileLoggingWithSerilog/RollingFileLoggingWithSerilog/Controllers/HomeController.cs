@@ -14,6 +14,7 @@ namespace RollingFileLoggingWithSerilog.Controllers
         public IActionResult Index()
         {
             _logger.LogInformation("TESTING MESSAGE 123..");
+
             return View();
         }
     }
