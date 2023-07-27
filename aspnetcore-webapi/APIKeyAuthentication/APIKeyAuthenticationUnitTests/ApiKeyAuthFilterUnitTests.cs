@@ -18,6 +18,7 @@ namespace APIKeyAuthenticationUnitTests
         {
             // Arrange
             var apiKeyValidation = new Mock<IApiKeyValidation>();
+
             apiKeyValidation.Setup(x => x.IsValidApiKey(TestConstants.ValidApiKey)).Returns(true);
 
             var httpContext = new DefaultHttpContext();
