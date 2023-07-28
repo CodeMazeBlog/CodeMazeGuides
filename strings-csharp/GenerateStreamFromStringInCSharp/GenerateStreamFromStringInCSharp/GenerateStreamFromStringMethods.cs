@@ -10,7 +10,7 @@ namespace GenerateStreamFromStringInCSharp
             encoding ??= Encoding.UTF8;
 
             var stream = new MemoryStream(encoding.GetByteCount(sampleString));
-            var writer = new StreamWriter(stream, encoding);
+            var writer = new StreamWriter(stream, encoding, -1);
             writer.Write(sampleString);
             writer.Flush();
             stream.Position = 0;
