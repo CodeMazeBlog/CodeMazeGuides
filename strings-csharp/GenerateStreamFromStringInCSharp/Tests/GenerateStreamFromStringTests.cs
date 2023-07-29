@@ -17,7 +17,7 @@ namespace Tests
         [Fact]
         public void WhenUsingMemoryStreamAndStreamWriter_ThenReturnsStream()
         {
-            using var resultStream = GenerateStreamFromStringMethods.UseMemoryStreamAndStreamWriter(_testString);
+            using var resultStream = GenerateStreamFromStringMethods.GetStreamWithStreamWriter(_testString);
 
             using var reader = new StreamReader(resultStream, Encoding.UTF8);
             var resultString = reader.ReadToEnd();
@@ -28,7 +28,7 @@ namespace Tests
         [Fact]
         public void WhenUsingGetBytesAndMemoryStream_ThenReturnsStream()
         {
-            using var resultStream = GenerateStreamFromStringMethods.UseGetBytesAndMemoryStream(_testString);
+            using var resultStream = GenerateStreamFromStringMethods.GetStreamWithGetBytes(_testString);
 
             using var reader = new StreamReader(resultStream, Encoding.UTF8);
             var resultString = reader.ReadToEnd();

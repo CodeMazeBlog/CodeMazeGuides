@@ -4,8 +4,7 @@ namespace GenerateStreamFromStringInCSharp
 {
     public static class GenerateStreamFromStringMethods
     {
-        public static Stream
-        UseMemoryStreamAndStreamWriter(string sampleString, Encoding? encoding = null)
+        public static Stream GetStreamWithStreamWriter(string sampleString, Encoding? encoding = null)
         {
             encoding ??= Encoding.UTF8;
 
@@ -18,8 +17,7 @@ namespace GenerateStreamFromStringInCSharp
             return stream;
         }
 
-        public static Stream
-        UseGetBytesAndMemoryStream(string sampleString, Encoding? encoding = null)
+        public static Stream GetStreamWithGetBytes(string sampleString, Encoding? encoding = null)
         {
             encoding ??= Encoding.UTF8;
 
