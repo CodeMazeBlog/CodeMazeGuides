@@ -18,7 +18,7 @@ namespace APIKeyAuthentication.Controllers
         [HttpGet]
         public IActionResult AuthenticateViaQueryParam(string apiKey)
         {
-            if(string.IsNullOrWhiteSpace(apiKey))
+            if (string.IsNullOrWhiteSpace(apiKey))
                 return BadRequest();
 
             bool isValid = _apiKeyValidation.IsValidApiKey(apiKey);

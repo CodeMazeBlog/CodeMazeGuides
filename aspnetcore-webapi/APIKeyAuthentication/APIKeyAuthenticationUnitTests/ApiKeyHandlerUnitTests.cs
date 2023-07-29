@@ -11,7 +11,6 @@ namespace APIKeyAuthenticationUnitTests
     [TestClass]
     public class ApiKeyHandlerUnitTests
     {
-
         [TestMethod]
         public async Task GivenValidApiKey_WhenHandleRequirementAsync_ThenReturnSucceeds()
         {

@@ -23,7 +23,7 @@ namespace APIKeyAuthentication.CustomAttribute
                 return;
             }
 
-            if(!_apiKeyValidation.IsValidApiKey(userApiKey))
+            if (!_apiKeyValidation.IsValidApiKey(userApiKey))
                 context.Result = new UnauthorizedResult();
         }
     }

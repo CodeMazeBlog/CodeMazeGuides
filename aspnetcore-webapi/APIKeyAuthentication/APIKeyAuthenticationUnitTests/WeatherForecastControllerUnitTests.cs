@@ -16,7 +16,6 @@ namespace APIKeyAuthenticationUnitTests
 
         private WeatherForecastController? _controller;
 
-
         [TestInitialize]
         public void Initialize()
         {

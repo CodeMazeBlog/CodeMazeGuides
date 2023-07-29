@@ -8,7 +8,7 @@ namespace APIKeyAuthentication
 
         public ApiKeyValidation(IConfiguration configuration)
         {
-           _configuration = configuration;
+            _configuration = configuration;
         }
 
         public bool IsValidApiKey(string userApiKey)

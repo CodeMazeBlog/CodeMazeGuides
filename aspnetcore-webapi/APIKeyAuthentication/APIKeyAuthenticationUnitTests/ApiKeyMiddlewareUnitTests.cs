@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using APIKeyAuthentication;
 using APIKeyAuthentication.CustomMiddleware;
+using APIKeyAuthentication.Interface;
+using Microsoft.AspNetCore.Http;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Net;
-using APIKeyAuthentication;
-using APIKeyAuthentication.Interface;
 
 namespace APIKeyAuthenticationUnitTests
 {

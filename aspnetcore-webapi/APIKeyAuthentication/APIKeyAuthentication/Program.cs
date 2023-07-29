@@ -1,5 +1,4 @@
 using APIKeyAuthentication.CustomAttribute;
-using APIKeyAuthentication.CustomMiddleware;
 using APIKeyAuthentication.EndpointFilter;
 using APIKeyAuthentication.Interface;
 using APIKeyAuthentication.PolicyBased;
@@ -61,7 +60,6 @@ namespace APIKeyAuthentication
             app.MapGet("api/prodcut", () =>
             {
                 return Results.Ok();
-
             }).AddEndpointFilter<ApiKeyEndpointFilter>();
 
             app.Run();

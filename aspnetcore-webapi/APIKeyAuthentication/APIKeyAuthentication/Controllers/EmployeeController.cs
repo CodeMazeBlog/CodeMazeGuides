@@ -12,7 +12,7 @@ namespace APIKeyAuthentication.Controllers
         [ApiKey]
         public IActionResult Get()
         {
-           return Ok();
+            return Ok();
         }
 
         [HttpGet("all")]

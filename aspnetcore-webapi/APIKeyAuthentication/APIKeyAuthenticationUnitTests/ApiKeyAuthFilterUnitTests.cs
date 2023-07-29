@@ -40,7 +40,6 @@ namespace APIKeyAuthenticationUnitTests
 
             // Assert
             Assert.IsNull(filterContext.Result);
-
         }
 
         [TestMethod]
