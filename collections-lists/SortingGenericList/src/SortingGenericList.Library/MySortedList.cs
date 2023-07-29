@@ -11,6 +11,16 @@ public sealed class MySortedList<T> : IList<T>
 
     public int Capacity => _list.Capacity;
 
+    public int Count => _list.Count;
+
+    public bool IsReadOnly => false;
+
+    public T this[int index]
+    {
+        get => _list[index];
+        set => throw new NotSupportedException();
+    }
+
     public MySortedList(int capacity = 0, IComparer<T>? comparer = null)
     {
         _list = new List<T>(capacity);
@@ -52,12 +62,6 @@ public sealed class MySortedList<T> : IList<T>
         _list.RemoveAt(index);
     }
 
-    public T this[int index]
-    {
-        get => _list[index];
-        set => throw new NotSupportedException();
-    }
-
     public IEnumerator<T> GetEnumerator() => _list.GetEnumerator();
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -92,8 +96,4 @@ public sealed class MySortedList<T> : IList<T>
 
         return true;
     }
-
-    public int Count => _list.Count;
-
-    public bool IsReadOnly => false;
 }
