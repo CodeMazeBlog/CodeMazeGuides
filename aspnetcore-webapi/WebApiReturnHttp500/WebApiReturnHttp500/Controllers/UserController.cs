@@ -4,12 +4,14 @@
 [ApiController]
 public class UserController : ControllerBase
 {
-    private readonly IUser _userService;
+    private readonly IUserService _userService;
 
-    public UserController(IUser user)
+    public UserController(IUserService user)
     {
         _userService = user;
     }
+    private static void SimulateException() =>
+        throw new Exception("Simulated exception");
 
     [HttpGet]
     [Route("GetUsersFirstMethod")]
@@ -17,9 +19,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            // Simulating an exception by explicitly throwing it
-            throw new Exception("Simulated exception");
-
+            SimulateException();
             return Ok(_userService.GetAllUsers());
         }
         catch (Exception ex)
@@ -34,9 +34,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            // Simulating an exception by explicitly throwing it
-            throw new Exception("Simulated exception");
-
+            SimulateException();
             return Ok(_userService.GetAllUsers());
         }
         catch (Exception ex)
@@ -51,9 +49,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            // Simulating an exception by explicitly throwing it
-            throw new Exception("Simulated exception");
-
+            SimulateException();
             return Ok(_userService.GetAllUsers());
         }
         catch (Exception ex)
@@ -73,9 +69,7 @@ public class UserController : ControllerBase
     {
         try
         {
-            // Simulating an exception by explicitly throwing it
-            throw new Exception("Simulated exception");
-
+            SimulateException();
             return Ok(_userService.GetAllUsers());
         }
         catch (Exception ex)

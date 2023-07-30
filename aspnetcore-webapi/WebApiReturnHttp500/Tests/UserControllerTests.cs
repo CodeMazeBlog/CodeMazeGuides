@@ -1,13 +1,15 @@
-﻿namespace Tests;
+﻿using WebApiReturnHttp500.Interfaces;
+
+namespace Tests;
 
 public class UserControllerTests
 {
-    private readonly Mock<IUser> _userServiceMock;
+    private readonly Mock<IUserService> _userServiceMock;
     private readonly UserController _controller;
 
     public UserControllerTests()
     {
-        _userServiceMock = new Mock<IUser>();
+        _userServiceMock = new Mock<IUserService>();
         _controller = new UserController(_userServiceMock.Object);
     }
 

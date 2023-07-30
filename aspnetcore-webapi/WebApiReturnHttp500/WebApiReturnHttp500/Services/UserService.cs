@@ -1,6 +1,6 @@
 ﻿namespace WebApiReturnHttp500.Services;
 
-public class UserService : IUser
+public class UserService : IUserService
 {
     public List<User> GetAllUsers()
     {
