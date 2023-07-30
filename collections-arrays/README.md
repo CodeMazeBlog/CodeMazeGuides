@@ -13,6 +13,7 @@ This section contains the topics about arrays and solving specific problems with
 - [How to Declare an Empty Array in C#](https://code-maze.com/csharp-how-to-declare-an-empty-array/)
 - [How to Delete Elements from an Array in C#](https://code-maze.com/csharp-how-to-delete-elements-from-an-array/)
 - [How to Find the Maximum Value of an Array in C#](https://code-maze.com/csharp-array-maximum-value/)
+- [How to Efficiently Randomize an Array in C#](https://code-maze.com/csharp-efficiently-randomize-an-array/)
 - [How to Merge Arrays in C#](https://code-maze.com/csharp-merge-arrays/)
 - [Different Ways to Initialize Arrays in C#](https://code-maze.com/csharp-initialize-arrays/)
 - [Multidimensional Array vs Jagged Array in C#](https://code-maze.com/charp-multidimensional-jagged-array/)
