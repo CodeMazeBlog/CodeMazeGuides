@@ -49,6 +49,7 @@ namespace APIKeyAuthentication
                 app.UseSwaggerUI();
             }
 
+            // IMPORTANT: When uncommenting line number 53, please ensure that you have added the using directive "using APIKeyAuthentication.CustomMiddleware;"
             //app.UseMiddleware<ApiKeyMiddleware>();
 
             app.UseHttpsRedirection();
