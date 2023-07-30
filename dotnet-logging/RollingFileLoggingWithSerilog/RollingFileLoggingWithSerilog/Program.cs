@@ -1,4 +1,3 @@
-
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
