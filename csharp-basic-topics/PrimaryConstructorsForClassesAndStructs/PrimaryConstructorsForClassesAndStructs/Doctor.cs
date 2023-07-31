@@ -3,7 +3,7 @@
 public class Doctor(string name, List<string> patients)
 {
     public string Name { get; set; } = name;
-    public bool IsOverworked => patients.Count() >= 5;
+    public bool IsOverworked => patients.Count >= 5;
 
     public Doctor(string name)
         : this(name, new List<string>())
