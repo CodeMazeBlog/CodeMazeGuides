@@ -2,7 +2,7 @@ using FileScopedTypesInCSharp;
 
 namespace Tests;
 
-public class FileScopedTypesUnitTest
+public partial class FileScopedTypesUnitTest
 {
     [Fact]
     public void GivenFileSopedTypeHiddenClass_WhenRender_OutputDoesNotMatch()
