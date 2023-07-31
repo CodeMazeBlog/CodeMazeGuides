@@ -39,7 +39,7 @@ foreach (var eventName in eventNames)
     registeredEvents.Add(eventName.Trim());
 
 }
-Console.WriteLine($"'{userName}' has registered for the following events: ");
+Console.WriteLine($"{userName} has registered for the following events: ");
 
 Methods.EventRegistration(actionDelegateService, registeredEvents, userName);
 Console.Write("\n");
@@ -73,31 +73,45 @@ string choiceString = string.Join("/", Enumerable.Range(1, registeredEvents.Coun
 Console.Write($"\n\nEnter your choice: {choiceString}: ");
 
 int chosenValue;
+bool validInput = false;
+var filterString = string.Empty;
 
-if (int.TryParse(Console.ReadLine(), out chosenValue))
+do
 {
-    var filterString = Methods.GetSelectedItem(registeredEvents, chosenValue);
-    var filteredEvents = Methods.FilterEvents(funcDelegateService, filterString, registeredEvents);
-
-    Console.Write($"\n Filtered events:");
-
-    for (int i = 0; i < filteredEvents.Count; i++)
+    string userInput = Console.ReadLine()!;
+    if (!string.IsNullOrEmpty(userInput) && int.TryParse(userInput, out chosenValue))
     {
-        string itemName = filteredEvents[i];
+        if (chosenValue >= 1 && chosenValue <= registeredEvents.Count)
+        {
+            validInput = true;
+            filterString = Methods.GetSelectedItem(registeredEvents, chosenValue);
 
-        Console.Write($"\n{i + 1}. {itemName}\n");
+        }
+        else
+        {
+            Console.WriteLine($"\nInvalid input. Please enter a numeric choice {choiceString}:\n"); 
+        }
+
     }
-}
-else
-{
-    Console.Write("Invalid input. Please enter a numeric choice (1/2/3/4).");
-}
+    else
+    {
+        Console.Write($"\nInvalid input. Please enter a numeric choice {choiceString}:\n");
+
+    }
+
+} while (!validInput);
+
+var filteredEvents = Methods.FilterEvents(funcDelegateService, filterString, registeredEvents);
+
+Methods.PrintFilteredEvents(filteredEvents);
+
+
 
 #endregion
 
 #region Event Filtering By Search Text
 
-Console.Write("\nNow, let's type in a value to use a the filter criteria:");
+Console.Write("\n\nNow, let's type in a value to use a the filter criteria:");
 
 string filerCriteria;
 
@@ -156,7 +170,7 @@ if (int.TryParse(Console.ReadLine(), out choice))
 }
 else
 {
-    Console.WriteLine("Invalid input. Please enter a numeric choice (1/2/3/4).");
+    Console.WriteLine("Invalid input. Please enter a numeric choice (1/2/3/4):");
 }
 
 Console.Write("\nLet's calculate your tithe:");
@@ -177,17 +191,6 @@ Console.Read();
 
 
 
-
-
-Console.WriteLine("Hello, World!");
-
-
-
-
-
-
-
-
 public static class Methods
 {
 
@@ -198,7 +201,7 @@ public static class Methods
         // Assign a lambda expression to the GreetAction delegate
         actionDelegateService.GreetAction = (name) =>
         {
-            Console.WriteLine($"Hello, {name}! Welcome to our the maze.");
+            Console.WriteLine($"Hello, {name}! Welcome to The Maze!");
         };
 
         actionDelegateService.Greet(userName);
@@ -255,7 +258,7 @@ public static class Methods
                 break;
             default:
 
-                Console.WriteLine("Invalid choice. Please select a valid option (1/2/3/4).");
+                Console.WriteLine("\nInvalid choice. Please select a valid option (1/2/3/4).\n");
                 Console.Read();
                 break;
         }
@@ -303,6 +306,17 @@ public static class Methods
         else
         {
             throw new ArgumentOutOfRangeException(nameof(userInput), "Invalid choice");
+        }
+    }
+
+    public static void PrintFilteredEvents(List<string> filteredEvents)
+    {
+        Console.Write("\nFiltered events:");
+
+        for (int i = 0; i < filteredEvents.Count; i++)
+        {
+            string itemName = filteredEvents[i];
+            Console.Write($"\n{i + 1}. {itemName}");
         }
     }
 
