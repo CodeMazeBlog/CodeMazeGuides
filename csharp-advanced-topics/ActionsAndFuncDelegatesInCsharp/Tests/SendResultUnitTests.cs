@@ -9,8 +9,15 @@ namespace Tests
 {
 	public class SendResultUnitTests
 	{
-		const string newLine = "\r\n";
-		[Fact]
+		private readonly string newLine;
+        public SendResultUnitTests()
+        {
+			var stringWriter = new StringWriter();
+			Console.SetOut(stringWriter);
+			Console.WriteLine();
+			newLine = stringWriter.ToString();
+        }
+        [Fact]
 		public void GivenEmail_WhenSendByEmailIsRequested_ThenSendsByEmail()
 		{
 			var email = "an-eamil@address.com";
