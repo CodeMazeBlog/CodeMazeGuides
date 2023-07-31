@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HideSwaggerEndpoint\HideSwaggerEndpoint\HideSwaggerEndpoint.csproj" />
+    <ProjectReference Include="..\HideEndpointInSwagger\HideEndpointInSwagger.csproj" />
   </ItemGroup>
 
 </Project>

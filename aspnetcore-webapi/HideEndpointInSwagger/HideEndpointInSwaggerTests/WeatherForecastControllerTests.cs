@@ -1,8 +1,8 @@
-﻿using HideSwaggerEndpoint.Controllers;
+using HideEndpointInSwagger.Controllers;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
-namespace HidingSwaggerEndpointTests
+namespace HideEndpointInSwaggerTests
 {
     public class WeatherForecastControllerTests
     {

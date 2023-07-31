@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace HideSwaggerEndpoint.Filters
+namespace HideEndpointInSwagger.Filters
 {
     public class SwaggerDocumentFilter : IDocumentFilter
     {

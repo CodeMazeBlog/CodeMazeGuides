@@ -1,4 +1,4 @@
-namespace HideSwaggerEndpoint
+namespace HideEndpointInSwagger
 {
     public class WeatherForecast
     {

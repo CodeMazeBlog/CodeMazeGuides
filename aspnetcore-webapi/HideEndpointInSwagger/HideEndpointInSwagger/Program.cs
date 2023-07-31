@@ -1,7 +1,7 @@
-using HideSwaggerEndpoint.Conventions;
-using HideSwaggerEndpoint.Filters;
+using HideEndpointInSwagger.Conventions;
+using HideEndpointInSwagger.Filters;
 
-namespace HideSwaggerEndpoint
+namespace HideEndpointInSwagger
 {
     public class Program
     {

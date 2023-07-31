@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
-namespace HideSwaggerEndpoint.Conventions
+namespace HideEndpointInSwagger.Conventions
 {
     public class HideControllerConvention : IActionModelConvention
     {
