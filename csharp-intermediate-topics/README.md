@@ -24,6 +24,7 @@ This section contains the topics considered intermediate level in C#.
 - [How to Get The List of Properties in C#](https://code-maze.com/csharp-get-list-of-properties/)
 - [Method Overloading In C#](https://code-maze.com/csharp-method-overloading/)
 - [How to Convert Stream to Byte Array in C#](https://code-maze.com/create-byte-array-from-stream-in-csharp/)
+- [What is Locking and How to Use a Locking Mechanism in C#](https://code-maze.com/csharp-locking-mechanism/)
 - [How to Use MemoryStream in C#](https://code-maze.com/csharp-memorystream/)
 - [IComparable vs IComparer vs Comparison Delegate](https://code-maze.com/csharp-icomparable-icomparer-comparison-delegate/)
 - [Operator Overloading in C#](https://code-maze.com/csharp-operator-overloading/)
