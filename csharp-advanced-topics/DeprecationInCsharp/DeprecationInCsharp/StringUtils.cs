@@ -1,11 +1,9 @@
 ﻿using System.Globalization;
 
-namespace Deprecation
+namespace Deprecation.StringUtils
 {
     public class StringUtils
     {
-        public const string input = "Hello, World!";
-        public const string reverseInput = "!dlroW ,olleH";
 
         [Obsolete("This method is deprecated since version 2.0.0. Use ReverseStringV2 instead.", false)]
         public static string ReverseString(string originalString)
