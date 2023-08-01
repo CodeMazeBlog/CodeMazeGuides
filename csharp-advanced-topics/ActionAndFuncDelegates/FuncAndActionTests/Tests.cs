@@ -1,12 +1,8 @@
 using FuncAndAction;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.IO;
 
 namespace Tests
 {
-
-
     [TestClass]
     public class Tests : IDisposable
     {
@@ -27,42 +23,47 @@ namespace Tests
         }
 
         [TestMethod]
-        public void SimpleDelegate_ExecuteMethod()
+        public void GivenSimpleDelegateInstance_WhenRunIsCalled_ThenOutputIsCorrect()
         {
             new DelegateExample().Run();
             string result = sw.ToString().Replace(Environment.NewLine, "").Trim();
+
             Assert.AreEqual("12345", result);
         }
 
         [TestMethod]
-        public void MulticastDelegate_ExecuteMethod()
+        public void GivenMulticastDelegate_WhenRunIsCalled_ThenOutputIsCorrect()
         {
             new MulticastDelegateExample().Run();
             string result = sw.ToString().Replace(Environment.NewLine, "").Trim();
+
             Assert.AreEqual("11012102310341045105", result);
         }
 
         [TestMethod]
-        public void ActionDelegate_ExecuteMethod()
+        public void GivenActionDelegate_WhenRunIsCalled_ThenOutputIsCorrect()
         {
             new ActionExample().Run();
             string result = sw.ToString().Replace(Environment.NewLine, "").Trim();
+
             Assert.AreEqual("12345", result);
         }
 
         [TestMethod]
-        public void FuncDelegate_ExecuteMethod()
+        public void GivenFuncDelegate_WhenRunIsCalled_ThenOutputIsCorrect()
         {
             new FuncExample().Run();
             string result = sw.ToString().Replace(Environment.NewLine, "").Trim();
+
             Assert.AreEqual("12345Hello World", result);
         }
 
         [TestMethod]
-        public void ListWithAction_ExecuteMethod()
+        public void GivenListWithActionDelegate_WhenRunIsCalled_ThenOutputIsCorrect()
         {
             new ListWithActionExample().Run();
             string result = sw.ToString().Replace(Environment.NewLine, "").Trim();
+
             Assert.AreEqual("12345", result);
         }
     }

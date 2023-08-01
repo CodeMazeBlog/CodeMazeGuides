@@ -10,7 +10,6 @@ partial class Program
         new FuncExample().Run();
         new ListWithActionExample().Run();
     }
-
 }
 
 
