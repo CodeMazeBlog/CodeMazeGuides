@@ -5,7 +5,7 @@ namespace Tests
     public class ActionTests
     {
         [Fact]
-        public void WhenActionIsDisplayBasic_DelegateMethodNameMatchesReferenceMethodName()
+        public void WhenActionIsDisplayBasic_ThenDelegateMethodNameMatchesReferenceMethodName()
         {
             var calculator = new Calculator();
             calculator.Action = Program.DisplayBasic;
@@ -14,7 +14,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenActionIsDisplayVerbose_DelegateMethodNameMatchesReferenceMethodName()
+        public void WhenActionIsDisplayVerbose_ThenDelegateMethodNameMatchesReferenceMethodName()
         {
             var calculator = new Calculator();
             calculator.Action = Program.DisplayVerbose;
@@ -27,7 +27,7 @@ namespace Tests
         [InlineData(2,-10)]
         [InlineData(-5,3)]
         [InlineData(345345,3645456)]
-        public void WhenActionIsDisplayBasicAndFuncIsSet_DelegateExecutesActionWithoutError(int firstNumber, int secondNumber)
+        public void WhenActionIsDisplayBasicAndFuncIsSet_ThenDelegateExecutesActionWithoutError(int firstNumber, int secondNumber)
         {
             var calculator = new Calculator();
             calculator.Function = Program.Sum;
@@ -40,7 +40,7 @@ namespace Tests
         [InlineData(2, -10)]
         [InlineData(-5, 3)]
         [InlineData(345345, 3645456)]
-        public void WhenActionIsDisplayVerboseAndFuncIsSet_DelegateExecutesActionWithoutError(int firstNumber, int secondNumber)
+        public void WhenActionIsDisplayVerboseAndFuncIsSet_ThenDelegateExecutesActionWithoutError(int firstNumber, int secondNumber)
         {
             var calculator = new Calculator();
             calculator.Function = Program.Sum;
@@ -50,7 +50,7 @@ namespace Tests
 
         [Theory]
         [InlineData(2, 3)]
-        public void WhenActiobIsNotSet_ThrowsException(int firstNumber, int secondNumber)
+        public void WhenActiobIsNotSet_ThenThrowsException(int firstNumber, int secondNumber)
         {
             var calculator = new Calculator();
             calculator.Function = Program.Sum;

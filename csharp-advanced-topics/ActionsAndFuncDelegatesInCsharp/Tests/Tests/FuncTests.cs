@@ -5,7 +5,7 @@ namespace Tests
     public class FuncTests
     {
         [Fact]
-        public void WhenFuncIsSum_DelegateMethodNameMatchesReferenceMethodName()
+        public void WhenFuncIsSum_ThenDelegateMethodNameMatchesReferenceMethodName()
         {
             var calculator = new Calculator();
             calculator.Function = Program.Sum;
@@ -14,7 +14,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenFuncIsMultiply_DelegateMethodNameMatchesReferenceMethodName()
+        public void WhenFuncIsMultiply_ThenDelegateMethodNameMatchesReferenceMethodName()
         {
             var calculator = new Calculator();
             calculator.Function = Program.Multiply;
@@ -27,7 +27,7 @@ namespace Tests
         [InlineData(2,-10)]
         [InlineData(-5,3)]
         [InlineData(345345,3645456)]
-        public void WhenFuncIsSum_DelegateSumsTheGivenIntegers(int firstNumber, int secondNumber)
+        public void WhenFuncIsSum_ThenDelegateSumsTheGivenIntegers(int firstNumber, int secondNumber)
         {
             var calculator = new Calculator();
             calculator.Function = Program.Sum;
@@ -41,7 +41,7 @@ namespace Tests
         [InlineData(2, -10)]
         [InlineData(-5, 3)]
         [InlineData(345345, 3645456)]
-        public void WhenFuncIsMultiply_DelegateMultipliesTheGivenIntegers(int firstNumber, int secondNumber)
+        public void WhenFuncIsMultiply_ThenDelegateMultipliesTheGivenIntegers(int firstNumber, int secondNumber)
         {
             var calculator = new Calculator();
             calculator.Function = Program.Multiply;
@@ -52,7 +52,7 @@ namespace Tests
 
         [Theory]
         [InlineData(2, 3)]
-        public void WhenFuncIsNotSet_ThrowsException(int firstNumber, int secondNumber)
+        public void WhenFuncIsNotSet_ThenThrowsException(int firstNumber, int secondNumber)
         {
             var calculator = new Calculator();
             try
