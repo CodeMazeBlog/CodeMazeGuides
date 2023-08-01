@@ -1,3 +1,5 @@
+using Deprecation;
+
 namespace DeprecationTests
 {
     [TestClass]
@@ -6,24 +8,21 @@ namespace DeprecationTests
         [TestMethod]
         public void GivenInputString_WhenReverseString_Deprecated_ThenReturnReversedString()
         {
-            string input = "Hello, World!";
+            var input = StringUtils.input;
 
-            string reversed = StringUtils.ReverseString(input);
+            var reversed = StringUtils.ReverseString(input);
 
-            Assert.AreEqual("!dlroW ,olleH", reversed);
+            Assert.AreEqual(StringUtils.reverseInput, reversed);
         }
 
         [TestMethod]
         public void GivenInputString_WhenReverseStringV2_ThenReturnReversedString()
         {
-            // Given
-            string input = "Hello, World!";
+            var input = StringUtils.input;
 
-            // When
-            string reversedV2 = StringUtils.ReverseStringV2(input);
+            var reversedV2 = StringUtils.ReverseStringV2(input);
 
-            // Then
-            Assert.AreEqual("!dlroW ,olleH", reversedV2);
+            Assert.AreEqual(StringUtils.reverseInput, reversedV2);
         }
 
     }
