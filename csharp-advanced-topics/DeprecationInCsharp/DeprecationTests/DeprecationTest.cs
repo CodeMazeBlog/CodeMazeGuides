@@ -1,4 +1,4 @@
-using Deprecation.StringUtils;
+
 namespace DeprecationTests;
 
 [TestClass]
