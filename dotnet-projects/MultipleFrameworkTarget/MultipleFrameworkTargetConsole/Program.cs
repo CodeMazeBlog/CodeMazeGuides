@@ -1,13 +1,9 @@
-﻿using System;
-
-class Program
+﻿class Program
 {
     static void Main()
     {
 #if NET6_0
         Console.WriteLine(".NET 6 - Hello from the latest .NET framework!");
-#elif NETSTANDARD2_0
-        Console.WriteLine(".NET Standard 2.0 - Hello from a common set of APIs across .NET implementations!");
 #elif NETCOREAPP3_1
         Console.WriteLine(".NET Core 3.1 - Hello from a previous LTS version of .NET Core!");
 #elif NET48
