@@ -1,30 +1,29 @@
 using Deprecation.StringUtils;
-namespace DeprecationTests
+namespace DeprecationTests;
+
+[TestClass]
+public class DeprecationTest
 {
-    [TestClass]
-    public class DeprecationTest
+    private const string originalStr = "Hello, World!";
+    private const string expectedResult = "!dlroW ,olleH";
+    [TestMethod]
+    public void GivenInputString_WhenReverseString_Deprecated_ThenReturnReversedString()
     {
-        private const string originalStr = "Hello, World!";
-        private const string expectedResult = "!dlroW ,olleH";
-        [TestMethod]
-        public void GivenInputString_WhenReverseString_Deprecated_ThenReturnReversedString()
-        {
-            var input = originalStr;
+        var input = originalStr;
 
-            var reversed = StringUtils.ReverseString(input);
+        var reversed = StringUtils.ReverseString(input);
 
-            Assert.AreEqual(expectedResult, reversed);
-        }
-
-        [TestMethod]
-        public void GivenInputString_WhenReverseStringV2_ThenReturnReversedString()
-        {
-            var input = originalStr;
-
-            var reversedV2 = StringUtils.ReverseStringV2(input);
-
-            Assert.AreEqual(expectedResult, reversedV2);
-        }
-
+        Assert.AreEqual(expectedResult, reversed);
     }
+
+    [TestMethod]
+    public void GivenInputString_WhenReverseStringV2_ThenReturnReversedString()
+    {
+        var input = originalStr;
+
+        var reversedV2 = StringUtils.ReverseStringV2(input);
+
+        Assert.AreEqual(expectedResult, reversedV2);
+    }
+
 }
