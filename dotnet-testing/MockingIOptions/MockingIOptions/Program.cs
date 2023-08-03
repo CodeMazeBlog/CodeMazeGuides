@@ -1,4 +1,3 @@
-
 using MockingIOptions.Configuration;
 using MockingIOptions.Services;
 
@@ -11,13 +10,11 @@ namespace MockingIOptions
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.Configure<DatabaseConfiguration>(options => 
+            builder.Services.Configure<DatabaseConfiguration>(options =>
                 builder.Configuration.GetSection("DatabaseConfiguration").Bind(options));
 
             builder.Services.AddScoped<ICustomerService, CustomerService>();
@@ -32,8 +29,6 @@ namespace MockingIOptions
             }
 
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();
