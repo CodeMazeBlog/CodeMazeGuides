@@ -1,13 +1,13 @@
 ﻿namespace RefactoringCouplers.FeatureEnvy.Incorrect;
 public class Customer
 {
+    public string Name { get; init; }
+    public int Points { get; set; }
+
     public Customer(string name)
     {
         Name = name;
     }
-
-    public string Name { get; init; }
-    public int Points { get; set; }
 
     public void SubtractPoints(int points)
     {

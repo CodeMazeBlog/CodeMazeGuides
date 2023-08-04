@@ -14,6 +14,7 @@ public class Order
         catch (InvalidOperationException)
         {
             Console.WriteLine("Order can't be processed due to inactive user.");
+
             return;
         }
 

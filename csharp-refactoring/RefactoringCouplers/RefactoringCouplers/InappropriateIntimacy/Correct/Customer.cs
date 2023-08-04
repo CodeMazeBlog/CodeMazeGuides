@@ -14,10 +14,11 @@ public class Customer
         catch (InvalidOperationException)
         {
             Console.WriteLine("Order can't be processed due to inactive user.");
+
             return false;
         }
-
         FinalizedOperations.Add(orderNumber);
+
         return true;
     }
 

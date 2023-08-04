@@ -1,14 +1,15 @@
 ﻿namespace RefactoringCouplers.FeatureEnvy.Correct;
+
 public class Ticket
 {
+    public bool IsAvailable { get; private set; }
+    public int Price { get; init; }
+
     public Ticket(bool available, int price)
     {
         IsAvailable = available;
         Price = price;
     }
-
-    public bool IsAvailable { get; private set; }
-    private int Price { get; init; }
 
     private bool CanAfford(int points)
     {
@@ -21,8 +22,8 @@ public class Ticket
         {
             return 0;
         }
-
         IsAvailable = false;
+
         return Price;
     }
 }

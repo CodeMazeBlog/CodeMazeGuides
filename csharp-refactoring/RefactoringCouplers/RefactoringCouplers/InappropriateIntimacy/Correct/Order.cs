@@ -1,4 +1,5 @@
 ﻿namespace RefactoringCouplers.InappropriateIntimacy.Correct;
+
 public class Order
 {
     public string OrderNumber { get; set; }
