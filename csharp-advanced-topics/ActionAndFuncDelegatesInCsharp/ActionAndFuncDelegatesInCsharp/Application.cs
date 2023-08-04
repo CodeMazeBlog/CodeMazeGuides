@@ -6,13 +6,10 @@ namespace ActionAndFuncDelegatesInCsharp
 {
 	public class Application
 	{
+		//variable definition.
 		private readonly Calculator _calculator;
-		//public Application()
-		//{
-		//	_calculator = new Calculator();
-		//}
-		private int _num1;
-		private int _num2;
+		private readonly int _num1;
+		private readonly int _num2;
 		public Application(int num1, int num2)
 		{
 			_calculator = new Calculator();
@@ -20,8 +17,14 @@ namespace ActionAndFuncDelegatesInCsharp
 			_num2 = num2;
 		}
 
+		/// <summary>
+		/// Result of calculation of _num1 and _num2.
+		/// </summary>
 		public int Result { get; private set; }
 
+		/// <summary>
+		/// method to switch through the various example methods.
+		/// </summary>
 		public void SwitchView()
 		{
 			Console.WriteLine("Please enter your preference.");
@@ -66,13 +69,20 @@ namespace ActionAndFuncDelegatesInCsharp
 			Console.WriteLine("--------------------------------------");
 			SwitchView();
 		}
-
+		
+		/// <summary>
+		/// Example method one using Action delegate pointing to a method with same signature.
+		/// Method pointed to is _calculator.AddUsingAction method in the Calculator class.
+		/// </summary>
 		public void ActionCalculatorUsingMethod()
 		{
 			Action<int, int> add = _calculator.AddUsingAction;
 			add(_num1, _num2);
 			Result = _calculator.Result;
 		}
+		/// <summary>
+		/// Example method two using Action delegate with an anonymous method.
+		/// </summary>
 		public void ActionCalculatorUsingAnonymousMethod()
 		{
 			Action<int, int> add = (num1, num2) =>
@@ -81,12 +91,19 @@ namespace ActionAndFuncDelegatesInCsharp
 			};
 			add(_num1, _num2);
 		}
-
+		/// <summary>
+		/// Example method three using Func delegate pointing to a method with same signature.
+		/// Method pointed to is _calculator.AddUsingFunc method in the Calculator class.
+		/// </summary>
 		public void FuncCalculatorUsingMethod()
 		{
 			Func<int, int, int> add = _calculator.AddUsingFunc;
 			Result = add(_num1, _num2);
 		}
+		/// <summary>
+		/// Example method four using Func delegate with an anonymous method which returns the result of
+		/// the addition of num1 and num2.
+		/// </summary>
 		public void FuncCalculatorUsingAnonymousMethod()
 		{
 			Func<int, int, int> add = (num1, num2) =>
