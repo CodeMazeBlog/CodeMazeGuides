@@ -25,14 +25,6 @@ namespace Tests
             Console.WriteLine(".NET Core 3.1 - Hello from a previous LTS version of .NET Core!");
             Assert.IsTrue(true);
         }
-
-#elif NET48
-        [TestMethod]
-        public void TestMethodForNet48()
-        {
-            Console.WriteLine(".NET Framework 4.8 - Hello from the traditional .NET Framework!");
-            Assert.IsTrue(true);
-        }
 #endif
     }
 }
