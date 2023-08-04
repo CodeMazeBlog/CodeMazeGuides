@@ -7,12 +7,13 @@ namespace MockingIOptionsTests
 {
     public class CustomerServiceTests
     {
+        private const string _connectionString = "TestConnectionString";
         private DatabaseConfiguration _configData;
 
         [SetUp]
         public void Setup()
         {
-            _configData = new DatabaseConfiguration { ConnectionString = "TestConnectionString" };
+            _configData = new DatabaseConfiguration { ConnectionString = _connectionString };
         }
 
         [Test]
@@ -23,7 +24,7 @@ namespace MockingIOptionsTests
             var sut = new CustomerService(configMock.Object);
             var result = sut.GetConnectionString();
 
-            Assert.That(result, Is.EqualTo("TestConnectionString"));
+            Assert.That(result, Is.EqualTo(_connectionString));
         }
 
         [Test]
@@ -33,7 +34,7 @@ namespace MockingIOptionsTests
             var sut = new CustomerService(configWrapper);
             var result = sut.GetConnectionString();
 
-            Assert.That(result, Is.EqualTo("TestConnectionString"));
+            Assert.That(result, Is.EqualTo(_connectionString));
         }
 
         [Test]
@@ -43,7 +44,7 @@ namespace MockingIOptionsTests
             var sut = new CustomerService(configWrapperUsingHelper);
             var result = sut.GetConnectionString();
 
-            Assert.That(result, Is.EqualTo("TestConnectionString"));
+            Assert.That(result, Is.EqualTo(_connectionString));
         }
     }
 }
