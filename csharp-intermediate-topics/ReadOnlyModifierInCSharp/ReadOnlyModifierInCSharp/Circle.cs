@@ -2,22 +2,21 @@
 {
     public class Circle
     {
-        public readonly double _radius;
+        public readonly double Radius;
+
+        public double Area
+        {
+            get { return Math.PI * Radius * Radius; }
+        }
 
         public Circle(double radius)
         {
-            _radius = radius;
+            Radius = radius;
         }
 
         public double GetCircumference()
         {
-            return 2 * Math.PI * _radius;
-        }
-
-        public double Area
-        {
-            get { return Math.PI * _radius * _radius; }
+            return 2 * Math.PI * Radius;
         }
     }
-
 }

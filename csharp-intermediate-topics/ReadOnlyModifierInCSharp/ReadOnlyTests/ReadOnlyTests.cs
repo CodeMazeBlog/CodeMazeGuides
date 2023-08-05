@@ -1,26 +1,23 @@
-using ReadOnlyModifierInCSharp;
+namespace ReadOnlyTests;
 
-namespace ReadOnlyTests
+public class ReadOnlyTests
 {
-    public class ReadOnlyTests
+    [Fact]
+    public void GivenCircle_WhenRadiusSetInCtor_ThenAreaCalculatedUsingRadius()
     {
-        [Fact]
-        public void GivenCircleWhenRadiusSetInCtorThenAreaCalculatedUsingRadius()
-        {
-            var circle = new Circle(7.5);
-            var expectedArea = 176.71;
+        var circle = new Circle(7.5);
+        const double expectedArea = Math.PI * 7.5 * 7.5;
 
-            Assert.Equal(expectedArea, Math.Round(circle.Area, 2));
-        }
+        Assert.Equal(expectedArea, circle.Area, 2);
+    }
 
-        [Fact]
-        public void GivenPersonWhenCallingChangeNameThenNameChanged()
-        {
-            var person = new Person("John");
-            person.ChangeName("Darren");
-            var expectedName = "Darren";
+    [Fact]
+    public void GivenPerson_WhenCallingChangeName_ThenNameChanged()
+    {
+        var person = new Person("John");
+        person.ChangeName("Darren");
+        const string expectedName = "Darren";
 
-            Assert.Equal(expectedName, person.Name);
-        }
+        Assert.Equal(expectedName, person.Name);
     }
 }
