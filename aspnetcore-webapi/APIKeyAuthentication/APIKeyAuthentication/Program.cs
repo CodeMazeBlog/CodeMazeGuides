@@ -58,7 +58,7 @@ namespace APIKeyAuthentication
 
             app.MapControllers();
 
-            app.MapGet("api/prodcut", () =>
+            app.MapGet("api/product", () =>
             {
                 return Results.Ok();
             }).AddEndpointFilter<ApiKeyEndpointFilter>();
