@@ -1,12 +1,11 @@
-﻿
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace Tests
 {
-    [TestClass]
-    public class FuncActionDelegateTests
-    {
+	[TestClass]
+	public class Tests
+	{
         static int powerActionResult = 0;
         static int powerActionAnonymousResult = 0;
         static int powerActionLambdaResult = 0;
@@ -35,7 +34,7 @@ namespace Tests
         [TestMethod]
         public void WhenFuncIsCalled_ThenExecutesDelegate()
         {
-            var funcValue = Power(2,5);
+            var funcValue = Power(2, 5);
             var result = (int)Math.Pow(2, 5);
             Assert.AreEqual(funcValue, result);
 
@@ -75,11 +74,3 @@ namespace Tests
         }
     }
 }
-
-
-
-
-
-
-
-
