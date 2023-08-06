@@ -35,5 +35,6 @@ This section contains the topics considered basic level in C#.
 - [Type Checking and Type Casting in C#](https://code-maze.com/type-checking-type-casting-csharp/)
 - [Types of Inheritance In C#](https://code-maze.com/csharp-types-of-inheritance/)
 - [How to Validate Email Address in C#](https://code-maze.com/csharp-validate-email-address/)
+- [Value vs Reference Types in C# – In Depth Guide](https://code-maze.com/csharp-value-vs-reference-types/)
 - [How to Use the “Using Static” Feature in C#](https://code-maze.com/using-static-feature-csharp/)
 - [C# 10 New Features](https://code-maze.com/csharp-10-new-features/)
