@@ -12,6 +12,7 @@ This section contains the topics related to all kinds of testing in C#/.NET
 - [How to Use Shouldly to Improve Unit Tests in .NET?](https://code-maze.com/improve-unit-tests-shouldly-dotnet/)
 - [Mock Asynchronous Methods Using Moq in C#](https://code-maze.com/csharp-mock-asynchronous-methods-using-moq/)
 - [How to Mock HttpClient with Unit Tests in C#](https://code-maze.com/csharp-mock-httpclient-with-unit-tests/)
+- [Effective Mocking With NSubstitute in .NET](https://code-maze.com/csharp-effective-mocking-with-nsubstitute/)
 - [How to Test a REST API with .NET and xUnit](https://code-maze.com/dotnet-test-rest-api-xunit/)
 - [Testing Exceptions in MSTest, NUnit, and xUnit](https://code-maze.com/csharp-testing-exceptions-in-mstest-nunit-and-xunit/)
 - [How to Unit Test ILogger in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-unit-test-ilogger/)
