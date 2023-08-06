@@ -1,0 +1,48 @@
+﻿@page "/"
+
+<PageTitle>Burger Configurator</PageTitle>
+
+<h1>Burger Configurator</h1>
+
+<p>Burger without topping: @BaseBurgerCost</p>
+<p>Topping: @SelectedTopping</p>
+<p>Total Cost: @TotalCost</p>
+
+<p>Please choose your topping from the list below:</p>
+
+<select class="select-element" @onchange="@handleChange">
+    @foreach (var topping in _toppings)
+    {
+        <option value="@topping.Id">@topping.Name  +$@topping.Price</option>
+    }
+</select>
+
+@code
+{
+    public record Topping(int Id, string Name, double Price);
+    public string? SelectedTopping;
+    public static double BaseBurgerCost = 5.4;
+    public double TotalCost = BaseBurgerCost;
+
+    public List<Topping> _toppings = new List<Topping>()
+    {
+        new Topping(1, "No Topping", 0),
+        new Topping(2, "Cheese", 2.4),
+        new Topping(3, "Onions", 0.7),
+        new Topping(4, "Pickles", 1.3),
+        new Topping(5, "Avocado", 4.6),
+        new Topping(6, "Lettuce", 1.1)
+    };
+
+    public void handleChange(ChangeEventArgs args)
+    {
+        @foreach (var selectedT in _toppings)
+        {
+            if (selectedT.Id == Int32.Parse(args.Value.ToString()))
+            {
+                SelectedTopping = selectedT.Name;
+                TotalCost = Math.Round(BaseBurgerCost + selectedT.Price, 2);
+            }
+        }
+    }
+}
