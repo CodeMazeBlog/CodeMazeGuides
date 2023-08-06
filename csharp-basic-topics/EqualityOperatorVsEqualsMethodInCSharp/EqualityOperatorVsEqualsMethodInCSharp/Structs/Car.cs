@@ -20,8 +20,8 @@
 
         public override int GetHashCode() => (Model, Weight).GetHashCode();
 
-        public static bool operator ==(Car lhs, Car rhs) => lhs.Equals(rhs);
+        public static bool operator ==(Car carLeft, Car carRight) => carLeft.Equals(carRight);
 
-        public static bool operator !=(Car lhs, Car rhs) => !(lhs == rhs);
+        public static bool operator !=(Car carLeft, Car carRight) => !(carLeft == carRight);
     }
 }
