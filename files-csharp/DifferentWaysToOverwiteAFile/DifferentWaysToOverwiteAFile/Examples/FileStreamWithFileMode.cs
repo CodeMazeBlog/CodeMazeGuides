@@ -1,11 +1,10 @@
-﻿namespace DifferentWaysToOverwiteAFile.Examples
+﻿namespace DifferentWaysToOverwiteAFile.Examples;
+
+public static class FileStreamWithFileMode
 {
-    public class FileStreamWithFileMode
+    public static void OverwiteFile(string filePath, byte[] bytes)
     {
-        public static void OverwiteFile(string filePath, byte[] bytes)
-        {
-            using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
-            fileStream.Write(bytes, 0, bytes.Length);
-        }
+        using var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+        fileStream.Write(bytes, 0, bytes.Length);
     }
 }

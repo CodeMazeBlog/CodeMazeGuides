@@ -1,147 +1,186 @@
-using DifferentWaysToOverwiteAFile.Examples;
-using System.Text;
+namespace DifferentWaysToOverwiteAFile.Test;
 
-namespace DifferentWaysToOverwiteAFile.Test
+public class OverwriteExistingFileTests
 {
-    public class OverwriteExistingFileTests
+    private const string FilePath = "content.txt";
+
+    [Test]
+    public void UseWriteAllText_ShouldOverwriteTheFile()
     {
-
-        [Test]
-        public void UseWriteAllText_ShouldOverwriteTheFile()
+        try
         {
-            var filePath = "content.txt";
-            try
-            {
-                //Arrange
-                var originalContent = "Hello, World!";
-                var newContent = "Hello, Code Maze!";
+            //Arrange
+            const string originalContent = "Hello, World!";
+            const string newContent = "Hello, Code Maze!";
 
-                // Create the test file and write the original content
-                File.WriteAllText(filePath, originalContent);
+            //Assert that the file does not exist
+            Assert.That(File.Exists(FilePath), Is.False);
 
-                //Act
-                WriteAllText.OverwiteFile(filePath, newContent);
-                var actualContent = File.ReadAllText(filePath);
+            //Create the test file and write the original content
+            File.WriteAllText(FilePath, originalContent);
 
-                //Assert
-                Assert.That(actualContent, Is.EqualTo(newContent));
-            }
-            finally
-            {
-                // Clean up - delete the test file
-                File.Delete(filePath);
-            }
+            //Act
+            FileWriter.OverwiteFileWithText(FilePath, newContent);
+            var actualContent = File.ReadAllText(FilePath);
+
+            //Assert
+            Assert.That(actualContent, Is.EqualTo(newContent));
         }
-
-        [Test]
-        public void UseWriteAllBytes_ShouldOverwriteTheFile()
+        finally
         {
-            var filePath = "content.txt";
-            try
-            {
-                //Arrange
-                var originalContent = "Hello, World!";
-                var newContent = "Hello, Code Maze!";
-                var newBytes = Encoding.UTF8.GetBytes(newContent);
-
-                // Create the test file and write the original content
-                File.WriteAllText(filePath, originalContent);
-
-                //Act
-                WriteAllBytes.OverwiteFile(filePath, newBytes);
-                var actualContent = File.ReadAllText(filePath);
-
-                //Assert
-                Assert.That(actualContent, Is.EqualTo(newContent));
-            }
-            finally
-            {
-                // Clean up - delete the test file
-                File.Delete(filePath);
-            }
+            //Clean up - delete the test file
+            File.Delete(FilePath);
         }
+    }
 
-        [Test]
-        public void UseFileStreamWIthFileMode_ShouldOverwriteTheFile()
+    [Test]
+    public void UseWriteAllBytes_ShouldOverwriteTheFile()
+    {
+        const string filePath = "content.txt";
+        try
         {
-            var filePath = "content.txt";
-            try
-            {
-                //Arrange
-                var originalContent = "Hello, World!";
-                var newContent = "Hello, Code Maze!";
-                var newBytes = Encoding.UTF8.GetBytes(newContent);
+            //Arrange
+            const string originalContent = "Hello, World!";
+            byte[] newContent = { 56, 71, 21, 17, 32 };
 
-                // Create the test file and write the original content
-                File.WriteAllText(filePath, originalContent);
+            //Assert that the file does not exist
+            Assert.That(File.Exists(filePath), Is.False);
 
-                //Act
-                FileStreamWithFileMode.OverwiteFile(filePath, newBytes);
-                var actualContent = File.ReadAllText(filePath);
+            //Create the test file and write the original content
+            File.WriteAllText(filePath, originalContent);
 
-                //Assert
-                Assert.That(actualContent, Is.EqualTo(newContent));
-            }
-            finally
-            {
-                // Clean up - delete the test file
-                File.Delete(filePath);
-            }
+            //Act
+            FileWriter.OverwiteFileWithBytes(filePath, newContent);
+            var actualContent = File.ReadAllBytes(filePath);
+
+            //Assert
+            Assert.That(actualContent, Is.EqualTo(newContent));
         }
-
-        [Test]
-        public void UseStreamWriterOverwrite_ShouldOverwriteTheFile()
+        finally
         {
-            var filePath = "content.txt";
-            try
-            {
-                //Arrange
-                var originalContent = "Hello, World!";
-                var newContent = "Hello, Code Maze!";
-
-                // Create the test file and write the original content
-                File.WriteAllText(filePath, originalContent);
-
-                //Act
-                StreamWriterClass.OverwiteFile(filePath, newContent);
-                var actualContent = File.ReadAllText(filePath);
-
-                //Assert
-                Assert.That(actualContent, Is.EqualTo(newContent));
-            }
-            finally
-            {
-                // Clean up - delete the test file
-                File.Delete(filePath);
-            }
+            //Clean up - delete the test file
+            File.Delete(filePath);
         }
+    }
 
-        [Test]
-        public void UseStreamWriterAppend_ShouldAppendTextToFile()
+    [Test]
+    public void UseFileStreamWIthFileMode_ShouldOverwriteTheFile()
+    {
+        const string filePath = "content.txt";
+        try
         {
-            var filePath = "content.txt";
-            try
-            {
-                //Arrange
-                var originalContent = "Hello, World!";
-                var newContent = "Hello, Code Maze!";
-                var expectedContent = "Hello, World!Hello, Code Maze!";
+            //Arrange
+            const string originalContent = "Hello, World!";
+            byte[] newContent = { 56, 71, 21, 17, 32 };
 
-                // Create the test file and write the original content
-                File.WriteAllText(filePath, originalContent);
+            //Assert that the file does not exist
+            Assert.That(File.Exists(filePath), Is.False);
 
-                //Act
-                StreamWriterClass.AppendFile(filePath, newContent);
-                var actualContent = File.ReadAllText(filePath);
+            //Create the test file and write the original content
+            File.WriteAllText(filePath, originalContent);
 
-                //Assert
-                Assert.That(actualContent, Is.EqualTo(expectedContent));
-            }
-            finally
-            {
-                // Clean up - delete the test file
-                File.Delete(filePath);
-            }
+            //Act
+            FileStreamWithFileMode.OverwiteFile(filePath, newContent);
+            var actualContent = File.ReadAllBytes(filePath);
+
+            //Assert
+            Assert.That(actualContent, Is.EqualTo(newContent));
+        }
+        finally
+        {
+            //Clean up - delete the test file
+            File.Delete(filePath);
+        }
+    }
+
+    [Test]
+    public void UseStreamWriterOverwrite_ShouldOverwriteTheFile()
+    {
+        const string filePath = "content.txt";
+        try
+        {
+            //Arrange
+            const string originalContent = "Hello, World!";
+            const string newContent = "Hello, Code Maze!";
+
+            //Assert that the file does not exist
+            Assert.That(File.Exists(filePath), Is.False);
+
+            //Create the test file and write the original content
+            File.WriteAllText(filePath, originalContent);
+
+            //Act
+            StreamWriterClass.OverwiteFile(filePath, newContent);
+            var actualContent = File.ReadAllText(filePath);
+
+            //Assert
+            Assert.That(actualContent, Is.EqualTo(newContent));
+        }
+        finally
+        {
+            //Clean up - delete the test file
+            File.Delete(filePath);
+        }
+    }
+
+    [Test]
+    public void UseFileOpenWithFileMode_ShouldOverwriteTheFile()
+    {
+        const string filePath = "content.txt";
+        try
+        {
+            //Arrange
+            const string originalContent = "Hello, World!";
+            byte[] newContent = { 56, 71, 21, 17, 32 };
+
+            //Assert that the file does not exist
+            Assert.That(File.Exists(filePath), Is.False);
+
+            //Create the test file and write the original content
+            File.WriteAllText(filePath, originalContent);
+
+            //Act
+            FileOpenWithFileMode.OverwriteFile(filePath, newContent);
+            var actualContent = File.ReadAllBytes(filePath);
+
+            //Assert
+            Assert.That(actualContent, Is.EqualTo(newContent));
+        }
+        finally
+        {
+            //Clean up - delete the test file
+            File.Delete(filePath);
+        }
+    }
+
+    [Test]
+    public void UseStreamWriterAppend_ShouldAppendTextToFile()
+    {
+        const string filePath = "content.txt";
+        try
+        {
+            //Arrange
+            const string originalContent = "Hello, World!";
+            const string newContent = "Hello, Code Maze!";
+            const string expectedContent = originalContent + newContent;
+
+            //Assert that the file does not exist
+            Assert.That(File.Exists(filePath), Is.False);
+
+            //Create the test file and write the original content
+            File.WriteAllText(filePath, originalContent);
+
+            //Act
+            StreamWriterClass.AppendFile(filePath, newContent);
+            var actualContent = File.ReadAllText(filePath);
+
+            //Assert
+            Assert.That(actualContent, Is.EqualTo(expectedContent));
+        }
+        finally
+        {
+            //Clean up - delete the test file
+            File.Delete(filePath);
         }
     }
 }
