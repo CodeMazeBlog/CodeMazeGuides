@@ -4,13 +4,13 @@ public static class Program
 {
     private static void Main(string[] args)
     {
-        string fileName = args.FirstOrDefault() ?? "numbers.txt";
+        var fileName = args.FirstOrDefault() ?? "numbers.txt";
         WriteNumbers(fileName);
     }
 
     public static void WriteNumbers(string fileName)
     {
-        using Mutex mutex = new Mutex(initiallyOwned: false, "Global\\numbers_output");
+        using var mutex = new Mutex(initiallyOwned: false, "Global\\numbers_output");
 
         try
         {
@@ -23,10 +23,11 @@ public static class Program
 
         try
         {
-            for (int number = 1; number <= 50; number++)
+            for (var number = 1; number <= 50; number++)
             {
                 File.AppendAllText(fileName, $"{number} ");
-                Thread.Sleep(100);
+                // Sleep only for 1ms to speed up testing; article specifies 100ms.
+                Thread.Sleep(1);
             }
         }
         finally

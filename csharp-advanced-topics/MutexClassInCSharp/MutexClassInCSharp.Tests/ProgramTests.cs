@@ -2,7 +2,7 @@ namespace MutexClassInCSharp.Tests;
 
 public sealed class ProgramTests
 {
-    public readonly string fileName = Path.GetTempFileName();
+    private readonly string _fileName = Path.GetTempFileName();
 
     [Fact]
     public async Task WhenProgramRunTwiceSimultaneously_ThenNumbersWrittenConsistently()
@@ -17,12 +17,12 @@ public sealed class ProgramTests
     }
 
     private async Task RunProgram()
-        => await Task.Run(() => Program.WriteNumbers(fileName));
+        => await Task.Run(() => Program.WriteNumbers(_fileName));
 
     private async Task EnsureFileConsistency()
     {
-        var fileContents = await File.ReadAllTextAsync(fileName);
-        File.Delete(fileName);
+        var fileContents = await File.ReadAllTextAsync(_fileName);
+        File.Delete(_fileName);
 
         var numbers = fileContents
             .TrimEnd()
