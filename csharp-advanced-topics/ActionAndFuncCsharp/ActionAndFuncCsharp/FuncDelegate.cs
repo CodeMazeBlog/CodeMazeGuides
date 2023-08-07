@@ -1,5 +1,4 @@
 ﻿namespace ActionAndFuncCsharp;
-
 public class FuncDelegate
 {
     public int TakePower(int x, int power)
@@ -16,12 +15,10 @@ public class FuncDelegate
         }
         return result;
     }
-
     public string DisplaySum(int a, int b)
     {
         return string.Format($"Sum of {a} and {b} is: {a+b}");
     }
-
     public string StringAppend(string first, string last)
     {
         if(!string.IsNullOrEmpty(first) && !string.IsNullOrEmpty(last))

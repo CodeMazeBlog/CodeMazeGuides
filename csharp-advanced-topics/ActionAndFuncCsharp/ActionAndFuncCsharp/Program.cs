@@ -2,9 +2,9 @@
 
 var actionDelegate = new ActionDelegate();
 
-var displayText = new Action(actionDelegate.DisplayText);
-var displayMsg = new Action<string>(actionDelegate.DisplayMessage);
-var displayNumbers = new Action<int, int>(actionDelegate.DisplayNumbers);
+Action displayText = actionDelegate.DisplayText;
+Action<string> displayMsg = actionDelegate.DisplayMessage;
+Action<int,int> displayNumbers = actionDelegate.DisplaySum;
 
 Console.WriteLine("***Action<T> Delegate Methods ***");
 displayText();    //Parameter: 0 , Returns: nothing
@@ -15,9 +15,10 @@ Console.WriteLine();
 Console.WriteLine("*** Func<> Delegate Methods ***");
 
 var funcDelegate = new FuncDelegate();
-var power = new Func<int, int, int>(funcDelegate.TakePower);
-var sum = new Func<int, int, string>(funcDelegate.DisplaySum);
-var stringConcat = new Func<string, string, string>(funcDelegate.StringAppend);
+
+Func<int,int,int> power = funcDelegate.TakePower;
+Func<int, int, string> sum = funcDelegate.DisplaySum;
+Func<string,string,string> stringConcat = funcDelegate.StringAppend;
 
 var pow = power(2, 5);  //Parameter: 2 , Returns: int
 var addition = sum(2,3);  //Parameter: 2 , Returns: string
