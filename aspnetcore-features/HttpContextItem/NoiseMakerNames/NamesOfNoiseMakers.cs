@@ -2,7 +2,7 @@
 {
     public class NamesOfNoiseMakers
     {
-        private readonly List<NoiseMaker> NoiseMakers = new List<NoiseMaker>()
+        private readonly List<NoiseMaker> _noiseMakers = new List<NoiseMaker>()
         {
            new NoiseMaker()
            {
@@ -26,12 +26,12 @@
 
         public void AddNoiseMaker(NoiseMaker noiseMaker)
         {
-            NoiseMakers.Add(noiseMaker);
+            _noiseMakers.Add(noiseMaker);
         }
 
         public List<NoiseMaker> GetNoiseMakers()
         {
-            return NoiseMakers;
+            return _noiseMakers;
         }
     }
 }
