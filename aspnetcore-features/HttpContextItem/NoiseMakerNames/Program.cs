@@ -24,7 +24,6 @@ namespace NoiseMakerNames
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
 
 

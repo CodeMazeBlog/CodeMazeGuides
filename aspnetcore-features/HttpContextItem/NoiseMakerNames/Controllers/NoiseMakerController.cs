@@ -11,7 +11,7 @@ namespace NoiseMakerNames.Controllers
         {
             NamesOfNoiseMakers list = new NamesOfNoiseMakers();
 
-            HttpContext.Items[list] = list.ViewNoiseMakers();
+            HttpContext.Items[list] = list.GetNoiseMakers();
 
             if (noiseMaker.Name == "Penny")
             {

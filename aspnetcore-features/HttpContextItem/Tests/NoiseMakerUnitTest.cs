@@ -1,9 +1,4 @@
 ﻿using NoiseMakerNames;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -23,13 +18,11 @@ namespace Tests
 
             //act
             namesOfNoiseMakers.AddNoiseMaker(noiseMaker);
-            List<NoiseMaker> noiseMakerList = namesOfNoiseMakers.ViewNoiseMakers();
-
+            List<NoiseMaker> noiseMakerList = namesOfNoiseMakers.GetNoiseMakers();
 
             //assert
             Assert.NotNull(noiseMakerList);
             Assert.Contains(noiseMaker, noiseMakerList);
-
         }
     }
 }
