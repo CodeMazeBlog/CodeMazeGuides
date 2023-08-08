@@ -14,8 +14,6 @@ namespace Tests
         public void WhenActionDelegate_DelegateInvocationToAddTwoNumbers()
         {
             // Arrange
-
-            // Arrange
             int a = 5;
             int b = 3;
             Action addDelegate = () => ActionAndFuncDelegatesInCsharp.Program.Add(a, b);
