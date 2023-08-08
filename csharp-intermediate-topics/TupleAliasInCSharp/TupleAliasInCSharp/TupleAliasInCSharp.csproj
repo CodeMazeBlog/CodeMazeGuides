@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <DisableImplicitUsings>enable</DisableImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>  
+  </PropertyGroup>
+
+</Project>
