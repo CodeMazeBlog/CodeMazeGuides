@@ -28,9 +28,6 @@ namespace Tests
             // Assert
             string expectedOutput = $"Addition Result: {a + b}\r\n";
             Assert.AreEqual(expectedOutput, consoleOutput.ToString());
-
-            // Clean up: Restore Console output
-            Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
         }
 
         [TestMethod]
