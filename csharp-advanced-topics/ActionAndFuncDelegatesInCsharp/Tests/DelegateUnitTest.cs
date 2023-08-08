@@ -7,25 +7,36 @@ using System.Threading.Tasks;
 namespace Tests
 {
     [TestClass]
-    public class Tests
+    public class DelegateUnitTest
     {
 
         [TestMethod]
-        public void whenActionDelegate_DelegateInvocationToAddTwoNumbers()
+        public void WhenActionDelegate_DelegateInvocationToAddTwoNumbers()
         {
             // Arrange
-            Action addDelegate = () => ActionAndFuncDelegatesInCsharp.Program.Add(5, 3);
+
+            // Arrange
+            int a = 5;
+            int b = 3;
+            Action addDelegate = () => ActionAndFuncDelegatesInCsharp.Program.Add(a, b);
+
+            // Redirect Console output to a StringWriter
+            var consoleOutput = new StringWriter();
+            Console.SetOut(consoleOutput);
 
             // Act
             addDelegate(); // Output: Addition Result: 8
 
             // Assert
-            // The result is verified by inspecting the console output.
+            string expectedOutput = $"Addition Result: {a + b}\r\n";
+            Assert.AreEqual(expectedOutput, consoleOutput.ToString());
+
+            // Clean up: Restore Console output
+            Console.SetOut(new StreamWriter(Console.OpenStandardOutput()));
         }
 
-
         [TestMethod]
-        public void whenFuncDelegate_DelegateInvocationToMultiplyNumbers()
+        public void WhenFuncDelegate_DelegateInvocationToMultiplyNumbers()
         {
             int expected = 24;
             // Arrange
@@ -35,8 +46,6 @@ namespace Tests
             int multiplicationResult = multiplyDelegate(4, 6);
 
             // Assert
-            Console.WriteLine($"Multiplication Result: {multiplicationResult}"); // Output: Multiplication Result: 24
-
             Assert.AreEqual(expected, multiplicationResult);
         }
 
