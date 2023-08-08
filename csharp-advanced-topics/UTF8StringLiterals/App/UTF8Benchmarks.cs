@@ -3,17 +3,17 @@ using BenchmarkDotNet.Attributes;
 
 namespace App;
 
-[MemoryDiagnoser()]
+[MemoryDiagnoser]
 public class UTF8Benchmarks
 {
-    [Benchmark()]
+    [Benchmark]
     public byte[] OldSyntax()
     {
         var returnValue = Encoding.UTF8.GetBytes("Hello World!");
         return returnValue;
     }
     
-    [Benchmark()]
+    [Benchmark]
     public ReadOnlySpan<byte> NewSyntax()
     {
         var returnValue = "Hello World!"u8;
