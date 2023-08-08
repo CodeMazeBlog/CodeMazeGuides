@@ -355,3 +355,6 @@ global.json
 
 # MacOS
 **/.DS_Store
+/aspnetcore-features/UsingHttpContext.ItemsToPreserveDataInARequestWithASP.NETCore/5thGradeNoiseMakers/appsettings.Development.json
+/aspnetcore-features/UsingHttpContext.ItemsToPreserveDataInARequestWithASP.NETCore/5thGradeNoiseMakers/appsettings.json
+/aspnetcore-features/UsingHttpContext.ItemsToPreserveDataInARequestWithASP.NETCore/5thGradeNoiseMakers/Properties/launchSettings.json
