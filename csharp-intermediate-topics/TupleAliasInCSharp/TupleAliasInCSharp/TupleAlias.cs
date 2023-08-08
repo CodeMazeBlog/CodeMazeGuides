@@ -8,6 +8,7 @@
             //ACCESS TUPLE WITH GLOBAL USING DIRECTIVE
             tupleAliasGlobalUsing aliasGlobalUsing = (1, "Tuple alias declared with global using directive", 6);
             Console.WriteLine($"num1: {aliasGlobalUsing.num1}, str: {aliasGlobalUsing.str}, num2: {aliasGlobalUsing.num2}");
+            Console.WriteLine();
 
             //ACCESS TUPLE WITH USING DIRECTIVE
             tupleAliasUsing aliasUsing = (10, "Tuple alias declared with using directive", 2.2);
@@ -25,7 +26,10 @@
 
             // TUPLE ASSIGNMENT - the field names need not match, only the types and the arity need to match
             aliasUsing = aliasGlobalUsing;
-            Console.WriteLine($"num1: {aliasUsing.num1}, str: {aliasUsing.str}, num2: {aliasUsing.num2}");  
+            Console.WriteLine($"num1: {aliasUsing.num1}, str: {aliasUsing.str}, num2: {aliasUsing.num2}");            
+
+            //This will generate error as (int, string, double) cannot to converted to (int, string, int).Use explicit conversion
+            //tupleAliasGlobalUsing temp1 = aliasUsing;
         }
     }
 }
