@@ -37,8 +37,11 @@ namespace CompareByteArraysInCsharpTests
         [TestMethod]
         public void GivenByteArrays_WhenComparedUsingBinaryEquality_VerifyAccurateResults()
         {
-            Assert.IsTrue(_compareByteArrays.CompareUsingBinaryEquality(_firstArray, _secondArray, _arrayName));
-            Assert.IsFalse(_compareByteArrays.CompareUsingBinaryEquality(_firstArray, _thirdArray, _arrayName));
+            var (first, second, third) = _compareByteArrays.GenerateTestArrays();
+
+            Assert.IsTrue(_compareByteArrays.CompareUsingBinaryEquality(first, first, _arrayName));
+            Assert.IsFalse(_compareByteArrays.CompareUsingBinaryEquality(first, second, _arrayName));
+            Assert.IsFalse(_compareByteArrays.CompareUsingBinaryEquality(first, third, _arrayName));
         }
 
         [TestMethod]
