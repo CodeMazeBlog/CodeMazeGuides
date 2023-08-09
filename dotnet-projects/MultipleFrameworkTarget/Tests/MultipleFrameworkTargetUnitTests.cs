@@ -10,11 +10,11 @@ namespace Tests
             Assert.IsTrue(true);
         }
 
-#if NET6_0
+#if NET7_0
         [TestMethod]
-        public void TestMethodForNet6()
+        public void TestMethodForNet7()
         {
-            Console.WriteLine(".NET 6 - Hello from the latest .NET framework!");
+            Console.WriteLine(".NET 7 - Hello from the latest .NET framework!");
             Assert.IsTrue(true);
         }
 
