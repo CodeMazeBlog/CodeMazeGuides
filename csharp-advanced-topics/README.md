@@ -15,6 +15,7 @@ This section contains the topics considered advanced level in C#.
 - [Introduction to Regular Expressions in C#](https://code-maze.com/regular-expressions-csharp/)
 - [Lambda Expressions in C#](https://code-maze.com/lambda-expressions-in-csharp/)
 - [Managed vs Unmanaged Code (Garbage Collection) in C#](https://code-maze.com/csharp-managed-vs-unmanaged-code-garbage-collection/)
+- [ModuleInitializer Attribute in C#](https://code-maze.com/csharp-moduleinitializer-attribute/)
 - [Null-Conditional Operators in C#](https://code-maze.com/csharp-null-conditional-operators/)
 - [Easy Web Application Caching With Redis in C#](https://code-maze.com/csharp-web-application-caching-redis/)
 - [Source Generators in C#](https://code-maze.com/csharp-source-generators/)
