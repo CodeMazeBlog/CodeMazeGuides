@@ -1,12 +1,14 @@
 ﻿using TaskCompletedVsTaskFromResultVsReturnInCSharp;
 
-var taskCompletedClass = new TaskCompletedClass();
-await taskCompletedClass.UseTaskCompletedMethodAsync();
+var taskCompletedClass = new TaskCompletedHandler();
+await taskCompletedClass.UseTaskCompletedAsync();
+taskCompletedClass.UseTaskCompletedSync();
 
-var taskFromResultClass = new TaskFromResultClass();
-await taskFromResultClass.UseTaskFromResultMethodAsync();
+var taskFromResultClass = new TaskFromResultHandler();
+await taskFromResultClass.UseTaskFromResultAsync();
+taskFromResultClass.UseTaskFromResultSync();
 
-var returnClass = new ReturnClass();
-await returnClass.UseReturnMethodAsync();
+var returnClass = new ReturnHandler();
+await returnClass.UseReturnAsync();
 
 Console.ReadKey();
