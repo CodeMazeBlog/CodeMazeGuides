@@ -14,7 +14,7 @@ public class ReadOnlyTests
     [Fact]
     public void GivenPerson_WhenCallingChangeName_ThenNameChanged()
     {
-        var person = new Person("John");
+        var person = new Person("John",21);
         person.ChangeName("Darren");
         const string expectedName = "Darren";
 
