@@ -9,12 +9,9 @@ namespace ActionAndFuncDelegatesInCSharp
     public class DelegateService
     {
         public delegate int DelegateMethod(int a, int b);
-
         public int DisplayResult(int a, int b)
         {
             return a + b;
         }
-
     }
-
 }

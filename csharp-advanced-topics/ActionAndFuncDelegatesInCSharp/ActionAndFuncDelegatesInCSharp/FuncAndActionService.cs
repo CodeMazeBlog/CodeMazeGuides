@@ -15,7 +15,7 @@ namespace ActionAndFuncDelegatesInCSharp
 
         public static void PrintValue(int number)
         {
-            Console.WriteLine($"Action method result: {number}");
+            Console.WriteLine($"{number}");
         }
     }
 }

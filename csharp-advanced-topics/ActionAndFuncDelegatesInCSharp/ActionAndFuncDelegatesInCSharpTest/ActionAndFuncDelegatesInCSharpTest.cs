@@ -1,16 +1,18 @@
 using ActionAndFuncDelegatesInCSharp;
+using System.Diagnostics;
+using System.Xml.Linq;
 using static ActionAndFuncDelegatesInCSharp.DelegateService;
 using static ActionAndFuncDelegatesInCSharp.FuncAndActionService;
 namespace ActionAndFuncDelegatesInCSharpTest
 {
     [TestClass]
-    public class UnitTest1
+    public class ActionAndFuncDelegatesInCSharpTest
     {
         [TestMethod]
         public void DelegateTestMethod()
         {
-            DelegateService delegateService = new DelegateService();
-            DelegateMethod d1 = new DelegateMethod(delegateService.DisplayResult);
+            var delegateService = new DelegateService();
+            var d1 = new DelegateMethod(delegateService.DisplayResult);
             Assert.AreEqual(8, d1(3, 5));
         }
 
@@ -26,17 +28,15 @@ namespace ActionAndFuncDelegatesInCSharpTest
         [TestMethod]
         public void ActionTestMethod()
         {
+            var result = 123;
             var action = new Action<int>(PrintValue);
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
 
-            try
-            {
-                action(123);
-                Assert.IsTrue(true);
-            }
-            catch
-            {
-                Assert.IsTrue(false);
-            }
+            action(123);
+
+            var output = stringWriter.ToString();
+            Assert.AreEqual($"{result}\r\n", output);
         }
     }
 }
