@@ -2,21 +2,26 @@
 {
     public class Circle
     {
-        public readonly double Radius;
+        private readonly double _radius;
 
         public double Area
         {
-            get { return Math.PI * Radius * Radius; }
+            get { return Math.PI * _radius * _radius; }
         }
 
         public Circle(double radius)
         {
-            Radius = radius;
+            _radius = radius;
         }
 
         public double GetCircumference()
         {
-            return 2 * Math.PI * Radius;
+            return 2 * Math.PI * _radius;
+        }
+
+        public void ModifyRadius()
+        {
+            //_radius = _radius + 2; //Throws Compiler Error
         }
     }
 }

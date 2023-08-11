@@ -1,7 +1,6 @@
 ﻿using ReadOnlyModifierInCSharp;
 
 var circle = new Circle(5.0);
-//circle.Radius = 10.0; //Throws compiler error
 var circumference = circle.GetCircumference();
 Console.WriteLine($"Circumference: {circumference}");
 
