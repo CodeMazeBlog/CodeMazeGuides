@@ -45,8 +45,8 @@ namespace StringFormattableStringTests
             var formattedFahrenheit = string.Format("Temperature: {0:F}", temperature);
             var formattedKelvins = string.Format("Temperature: {0}", temperature);
 
-            Assert.AreEqual("Temperature: 20 °C", formattedCelsius);
-            Assert.AreEqual("Temperature: 68 °F", formattedFahrenheit);
+            Assert.AreEqual("Temperature: 20 C", formattedCelsius);
+            Assert.AreEqual("Temperature: 68 F", formattedFahrenheit);
             Assert.AreEqual("Temperature: 293.15 K", formattedKelvins);
         }
     }

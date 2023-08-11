@@ -14,9 +14,9 @@
         public string ToString(string format, IFormatProvider formatProvider)
         {
             if (format == "C")
-                return $"{temperatureValue} °C";
+                return $"{temperatureValue} C";
             else if (format == "F")
-                return $"{temperatureValue * 9 / 5 + 32} °F";
+                return $"{temperatureValue * 9 / 5 + 32} F";
             else
                 return $"{temperatureValue + 273.15} K";
         }
