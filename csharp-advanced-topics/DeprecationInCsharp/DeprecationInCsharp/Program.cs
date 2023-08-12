@@ -1,4 +1,7 @@
 ﻿using DeprecationInCsharp;
 
-Console.WriteLine($"Current year from deprecated method: {DateUtils.GetCurrentYearV1()}");
-Console.WriteLine($"Current year from new method: {DateUtils.GetCurrentYearV2()}");
+var deprecatedMethodResult = DateUtils.GetCurrentYearV1();
+Console.WriteLine($"Current year from deprecated method: {deprecatedMethodResult}");
+
+var newMethodResult = DateUtils.GetCurrentYearV2();
+Console.WriteLine($"Current year from new method: {newMethodResult}");
