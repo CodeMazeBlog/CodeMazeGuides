@@ -12,28 +12,18 @@ public class CatService : ICatService
         _catRepository = catRepository;
     }
 
-    public Task<bool> CreateCatAsync(Cat Cat)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<bool> CreateCatAsync(Cat Cat)
+        => await _catRepository.CreateCatAsync(Cat);
 
-    public Task<bool> DeleteDeleteAsync(Guid id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<bool> DeleteDeleteAsync(Guid id)
+        => await _catRepository.DeleteDeleteAsync(id);
 
-    public Task<IEnumerable<Cat>> GetAllCatsAsync()
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<IEnumerable<Cat>> GetAllCatsAsync()
+        => await _catRepository.GetAllCatsAsync();
 
-    public Task<Cat?> GetCatAsync(Guid id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<Cat?> GetCatAsync(Guid id)
+        => await _catRepository.GetCatAsync(id);
 
-    public Task<bool> UpdateCatAsync(Cat cat)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<bool> UpdateCatAsync(Cat cat)
+        => await _catRepository.UpdateCatAsync(cat);
 }

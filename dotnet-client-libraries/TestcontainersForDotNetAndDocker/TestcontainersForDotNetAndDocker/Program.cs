@@ -1,4 +1,5 @@
 
+using TestcontainersForDotNetAndDocker.Database;
 using TestcontainersForDotNetAndDocker.Repositories;
 using TestcontainersForDotNetAndDocker.Services;
 
@@ -10,6 +11,7 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddDbContext<ApplicationDbContext>();
         builder.Services.AddTransient<ICatRepository, CatRepository>();
         builder.Services.AddTransient<ICatService, CatService>();
 

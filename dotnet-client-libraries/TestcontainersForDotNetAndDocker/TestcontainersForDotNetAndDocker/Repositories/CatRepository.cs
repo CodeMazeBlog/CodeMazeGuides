@@ -1,31 +1,65 @@
-﻿using TestcontainersForDotNetAndDocker.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using TestcontainersForDotNetAndDocker.Database;
+using TestcontainersForDotNetAndDocker.Domain;
 
 namespace TestcontainersForDotNetAndDocker.Repositories;
 
 public class CatRepository : ICatRepository
 {
-    public Task<bool> CreateCatAsync(Cat Cat)
+    private readonly ApplicationDbContext _dbContext;
+
+    public CatRepository(ApplicationDbContext dbContext)
     {
-        throw new NotImplementedException();
+        _dbContext = dbContext;
     }
 
-    public Task<bool> DeleteDeleteAsync(Guid id)
+    public async Task<bool> CreateCatAsync(Cat Cat)
     {
-        throw new NotImplementedException();
+        await _dbContext.Cats.AddAsync(Cat);
+        await _dbContext.SaveChangesAsync();
+
+        return true;
     }
 
-    public Task<IEnumerable<Cat>> GetAllCatsAsync()
+    public async Task<bool> DeleteDeleteAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var cat = await GetCatAsync(id);
+
+        if (cat is not null)
+        {
+            _dbContext.Cats.Remove(cat);
+            await _dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        return false;
     }
 
-    public Task<Cat?> GetCatAsync(Guid id)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<IEnumerable<Cat>> GetAllCatsAsync()
+        => await _dbContext.Cats
+            .AsNoTracking()
+            .ToListAsync();
 
-    public Task<bool> UpdateCatAsync(Cat cat)
+    public async Task<Cat?> GetCatAsync(Guid id)
+        => await _dbContext.Cats
+            .FirstOrDefaultAsync(c => c.Id == id);
+
+    public async Task<bool> UpdateCatAsync(Cat cat)
     {
-        throw new NotImplementedException();
+        var catToUpdate = await GetCatAsync(cat.Id);
+
+        if (catToUpdate is not null)
+        {
+            catToUpdate.Name = cat.Name;
+            catToUpdate.Age = cat.Age;
+            catToUpdate.Weight = cat.Weight;
+
+            await _dbContext.SaveChangesAsync();
+
+            return true;
+        }
+
+        return false;
     }
 }
