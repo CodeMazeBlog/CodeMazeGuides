@@ -1,4 +1,4 @@
-
+using Microsoft.EntityFrameworkCore;
 using TestcontainersForDotNetAndDocker.Database;
 using TestcontainersForDotNetAndDocker.Repositories;
 using TestcontainersForDotNetAndDocker.Services;
@@ -10,8 +10,11 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        var config = builder.Configuration;
 
-        builder.Services.AddDbContext<ApplicationDbContext>();
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(config.GetConnectionString("DefaultConnectionString")));
+
         builder.Services.AddTransient<ICatRepository, CatRepository>();
         builder.Services.AddTransient<ICatService, CatService>();
 
