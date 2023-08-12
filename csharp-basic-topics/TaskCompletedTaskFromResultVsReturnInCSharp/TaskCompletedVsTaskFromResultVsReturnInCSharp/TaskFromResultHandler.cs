@@ -4,7 +4,7 @@ public class TaskFromResultHandler
 {
     public async Task<string> UseTaskFromResultAsync()
     {
-        Console.WriteLine($"Not performing any asynchronous work but returning a result.");
+        Console.WriteLine("Not performing any asynchronous work but returning a result.");
 
         var message = "Hello, world!";
 
@@ -12,7 +12,7 @@ public class TaskFromResultHandler
     }
     public string UseTaskFromResultSync()
     {
-        Console.WriteLine($"Performing a synchronous work.");
+        Console.WriteLine("Performing a synchronous work.");
 
         var message = "Hello, world!";
 
