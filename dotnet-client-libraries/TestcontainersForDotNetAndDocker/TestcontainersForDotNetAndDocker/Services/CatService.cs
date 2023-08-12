@@ -15,8 +15,8 @@ public class CatService : ICatService
     public async Task<bool> CreateCatAsync(Cat Cat)
         => await _catRepository.CreateCatAsync(Cat);
 
-    public async Task<bool> DeleteDeleteAsync(Guid id)
-        => await _catRepository.DeleteDeleteAsync(id);
+    public async Task<bool> DeleteCatAsync(Guid id)
+        => await _catRepository.DeleteCatAsync(id);
 
     public async Task<IEnumerable<Cat>> GetAllCatsAsync()
         => await _catRepository.GetAllCatsAsync();

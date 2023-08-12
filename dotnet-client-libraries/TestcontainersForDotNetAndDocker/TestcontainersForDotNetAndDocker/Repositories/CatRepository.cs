@@ -21,7 +21,7 @@ public class CatRepository : ICatRepository
         return true;
     }
 
-    public async Task<bool> DeleteDeleteAsync(Guid id)
+    public async Task<bool> DeleteCatAsync(Guid id)
     {
         var cat = await GetCatAsync(id);
 

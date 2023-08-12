@@ -12,5 +12,5 @@ public interface ICatRepository
 
     Task<bool> UpdateCatAsync(Cat cat);
 
-    Task<bool> DeleteDeleteAsync(Guid id);
+    Task<bool> DeleteCatAsync(Guid id);
 }
