@@ -26,6 +26,7 @@ This section contains the topics considered basic level in C#.
 - [Null-Coalescing ?? And Null-Coalescing Assignment ??= Operators in C#](https://code-maze.com/null-coalescing-operator-null-coalescing-assignment-operator-csharp/)
 - [Params Keyword in C#](https://code-maze.com/csharp-params-keyword/)
 - [Pattern Matching in C#](https://code-maze.com/csharp-pattern-matching/)
+- [Primary Constructors for Classes and Structs](https://code-maze.com/csharp-primary-constructors-for-classes-and-structs/)
 - [Ranges and Indices in C#](https://code-maze.com/csharp-ranges-and-indices/)
 - [Return Multiple Values to a Method Caller In C#](https://code-maze.com/csharp-return-multiple-values-to-a-method-caller/)
 - [Using sizeof() Operator in C#](https://code-maze.com/csharp-sizeof-operator/)
