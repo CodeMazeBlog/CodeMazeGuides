@@ -25,6 +25,8 @@ var repositoryFactory = serviceProvider.GetRequiredService<IRepositoryFactory>()
 var primaryRepository = repositoryFactory.GetRepository<PrimaryRepository>();
 var secondaryRepository = repositoryFactory.GetRepository<SecondaryRepository>();
 
-Console.WriteLine($"PrimaryDbContext's TestConnection result: {await primaryRepository.TestConnection()}");
-Console.WriteLine($"SecondaryDbContext's TestConnection result: {await secondaryRepository.TestConnection()}");
+var primaryResult = await primaryRepository.TestConnection();
+var secondaryResult = await secondaryRepository.TestConnection();
+Console.WriteLine($"Primary connection result: {primaryResult}");
+Console.WriteLine($"Secondary connection result: {secondaryResult}");
 
