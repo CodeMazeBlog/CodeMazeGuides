@@ -1,0 +1,11 @@
+﻿@page
+@model PreventSQLInjectionAttacks.Pages.SearchBooksModel
+
+<h2>Search Books</h2>
+<form method="post">
+    <div class="form-group">
+        <label for="searchTerm" class="form-label">Search Term</label>
+        <input type="text" id="searchTerm" name="searchTerm" class="form-control" required>
+    </div>
+    <button type="submit" class="my-3 btn btn-primary">Search</button>
+</form>
