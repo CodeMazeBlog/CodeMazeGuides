@@ -4,14 +4,14 @@
 
 <h1>Burger Configurator</h1>
 
-<p>Burger without topping: @BaseBurgerCost</p>
-<p>Topping: @SelectedTopping</p>
-<p>Total Cost: @TotalCost</p>
+<p>Burger without topping: @baseBurgerCost</p>
+<p>Topping: @selectedTopping</p>
+<p>Total Cost: @totalCost</p>
 
 <p>Please choose your topping from the list below:</p>
 
 <select class="select-element" @onchange="@handleChange">
-    @foreach (var topping in _toppings)
+    @foreach (var topping in toppings)
     {
         <option value="@topping.Id">@topping.Name  +$@topping.Price</option>
     }
@@ -20,11 +20,11 @@
 @code
 {
     public record Topping(int Id, string Name, double Price);
-    public string? SelectedTopping;
-    public static double BaseBurgerCost = 5.4;
-    public double TotalCost = BaseBurgerCost;
+    public string? selectedTopping;
+    public static double baseBurgerCost = 5.4;
+    public double totalCost = baseBurgerCost;
 
-    public List<Topping> _toppings = new List<Topping>()
+    public List<Topping> toppings = new List<Topping>()
     {
         new Topping(1, "No Topping", 0),
         new Topping(2, "Cheese", 2.4),
@@ -36,12 +36,12 @@
 
     public void handleChange(ChangeEventArgs args)
     {
-        @foreach (var selectedT in _toppings)
+        @foreach (var topping in toppings)
         {
-            if (selectedT.Id == Int32.Parse(args.Value.ToString()))
+            if (topping.Id == Int32.Parse(args.Value.ToString()))
             {
-                SelectedTopping = selectedT.Name;
-                TotalCost = Math.Round(BaseBurgerCost + selectedT.Price, 2);
+                selectedTopping = topping.Name;
+                totalCost = Math.Round(baseBurgerCost + topping.Price, 2);
             }
         }
     }

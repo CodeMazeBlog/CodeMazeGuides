@@ -7,8 +7,8 @@ public class BurgerConfiguratorTests
     public void TestBurgerConfigurator()
     {
         // Arrange
-        using var ctx = new Bunit.TestContext();
-        var component = ctx.RenderComponent<OnChangeEventWithSelectDropdown.Pages.Index>();
+        using var testContext = new Bunit.TestContext();
+        var component = testContext.RenderComponent<OnChangeEventWithSelectDropdown.Pages.Index>();
 
         // Act
         var baseBurgerCostElement = component.Find("p:nth-of-type(1)");
