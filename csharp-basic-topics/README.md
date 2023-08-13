@@ -11,6 +11,7 @@ This section contains the topics considered basic level in C#.
 - [Convert String and Int to Enum in C#](https://code-maze.com/csharp-convert-string-and-int-to-enum/)
 - [Default Interface Method in C# And When to Use It](https://code-maze.com/csharp-default-interface-method/)
 - [Different Types of Comments in C# and Should We Use Them](https://code-maze.com/csharp-different-types-of-comments/)
+- [Differences Between Equality Operator (==) And Equals Method In C#](https://code-maze.com/csharp-equality-operator-and-equals-method/)
 - [Difference Between Is and Equality Operators in C# – “is null” vs “== null”](https://code-maze.com/csharp-difference-between-isnull-and-equality-operators/)
 - [Expression-bodied Members in C#](https://code-maze.com/csharp-expression-bodied-members/)
 - [Extended Property Patterns in C#](https://code-maze.com/csharp-extended-property-patterns/)
