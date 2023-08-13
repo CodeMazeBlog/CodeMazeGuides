@@ -8,7 +8,7 @@ public static class StreamWriterClass
         streamWriter.Write(contentToWrite);
     }
 
-    public static void OverwiteFile(string filePath, string contentToWrite)
+    public static void OverwriteFile(string filePath, string contentToWrite)
     {
         using var streamWriter = new StreamWriter(filePath, false);
         streamWriter.Write(contentToWrite);

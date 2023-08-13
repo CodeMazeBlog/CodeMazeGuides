@@ -20,7 +20,7 @@ public class OverwriteExistingFileTests
             File.WriteAllText(FilePath, originalContent);
 
             //Act
-            FileWriter.OverwiteFileWithText(FilePath, newContent);
+            FileWriter.OverwriteFileWithText(FilePath, newContent);
             var actualContent = File.ReadAllText(FilePath);
 
             //Assert
@@ -50,7 +50,7 @@ public class OverwriteExistingFileTests
             File.WriteAllText(filePath, originalContent);
 
             //Act
-            FileWriter.OverwiteFileWithBytes(filePath, newContent);
+            FileWriter.OverwriteFileWithBytes(filePath, newContent);
             var actualContent = File.ReadAllBytes(filePath);
 
             //Assert
@@ -80,7 +80,7 @@ public class OverwriteExistingFileTests
             File.WriteAllText(filePath, originalContent);
 
             //Act
-            FileStreamWithFileMode.OverwiteFile(filePath, newContent);
+            FileStreamWithFileMode.OverwriteFile(filePath, newContent);
             var actualContent = File.ReadAllBytes(filePath);
 
             //Assert
@@ -110,7 +110,7 @@ public class OverwriteExistingFileTests
             File.WriteAllText(filePath, originalContent);
 
             //Act
-            StreamWriterClass.OverwiteFile(filePath, newContent);
+            StreamWriterClass.OverwriteFile(filePath, newContent);
             var actualContent = File.ReadAllText(filePath);
 
             //Assert
