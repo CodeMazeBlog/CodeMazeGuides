@@ -14,7 +14,7 @@ public class Program
 
         builder.Services.AddDbContextPool<ApplicationDbContext>(options =>
             options.UseSqlServer(config.GetConnectionString("DefaultConnectionString")));
-
+            
         builder.Services.AddScoped<ICatRepository, CatRepository>();
         builder.Services.AddScoped<ICatService, CatService>();
         builder.Services.AddScoped<DatabaseInitializer, DatabaseInitializer>();

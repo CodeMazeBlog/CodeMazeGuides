@@ -75,10 +75,10 @@ public class CatController : ControllerBase
         return Ok(allCatsResponse);
     }
 
-    [HttpGet("GetCat")]
-    public async Task<ActionResult<CatResponse>> GetCatAsync(GetCatRequest request)
+    [HttpGet("GetCat/{id}")]
+    public async Task<ActionResult<CatResponse>> GetCatAsync(Guid id)
     {
-        var cat = await _catService.GetCatAsync(request.Id);
+        var cat = await _catService.GetCatAsync(id);
 
         if (cat is null)
         {
