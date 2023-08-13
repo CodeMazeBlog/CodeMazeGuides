@@ -13,12 +13,12 @@ public class DataSourceProvider : IDataSourceProvider
         _configuration = configuration;
     }
     
-    public string GetConnectionString()
+    public string? GetConnectionString()
     {
         return CurrentDataSource switch
         {
-            DataSource.Primary => _configuration.GetConnectionString("Primary")!,
-            DataSource.Secondary => _configuration.GetConnectionString("Secondary")!,
+            DataSource.Primary => _configuration.GetConnectionString("Primary"),
+            DataSource.Secondary => _configuration.GetConnectionString("Secondary"),
             _ => throw new ArgumentOutOfRangeException()
         };
     }
@@ -27,5 +27,5 @@ public class DataSourceProvider : IDataSourceProvider
 public interface IDataSourceProvider
 {
     DataSource CurrentDataSource { set; }
-    string GetConnectionString();
+    string? GetConnectionString();
 }
