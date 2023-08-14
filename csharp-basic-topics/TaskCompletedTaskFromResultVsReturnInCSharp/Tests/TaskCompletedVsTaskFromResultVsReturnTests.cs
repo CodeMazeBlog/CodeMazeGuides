@@ -17,8 +17,7 @@ public class TaskCompletedVsTaskFromResultVsReturnTests
     {
         var taskFromResultClass = new TaskFromResultHandler();
 
-        var result =  taskFromResultClass.UseTaskFromResultAsync();
-        var message = await result;
+        var message =  await taskFromResultClass.UseTaskFromResultAsync();
 
         Assert.Equal("Hello, world!", message);
     }
