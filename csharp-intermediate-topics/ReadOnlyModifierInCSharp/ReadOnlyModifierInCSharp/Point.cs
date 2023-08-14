@@ -2,13 +2,16 @@
 {
     public readonly struct Point
     {
-        public readonly int X;
-        public readonly int Y;
+        private readonly int _x;
+        private readonly int _y;
+
+        public int X => _x;
+        public int Y => _y;
 
         public Point(int x, int y)
         {
-            X = x;
-            Y = y;
+            _x = x;
+            _y = y;
         }
     }
 }
