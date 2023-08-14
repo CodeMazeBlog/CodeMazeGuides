@@ -26,16 +26,16 @@ while (true)
             pdfCreator.CreatePDFFile("UsageOfShowTextAlignedMethod", BigDocument.UsageOfShowTextAlignedMethod);
             break;
         case UserMenu.UserAction.Classic_XofY_Footer:
-            pdfCreator.CreatePDFFile("Classic_XofY_Footer", BigDocument.Classic_XofY_Footer);
+            pdfCreator.CreatePDFFile("Classic_XofY_Footer", BigDocument.HeaderFooterExample1);
             break;
         case UserMenu.UserAction.PageNumberInHeaderDateInFooter:
-            pdfCreator.CreatePDFFile("PageNumberInHeaderDateInFooter", BigDocument.PageNumberInHeaderDateInFooter);
+            pdfCreator.CreatePDFFile("PageNumberInHeaderDateInFooter", BigDocument.HeaderFooterExample2);
             break;
         case UserMenu.UserAction.DrawLine:
-            pdfCreator.CreatePDFFile("DrawLine", BigDocument.DrawLine);
+            pdfCreator.CreatePDFFile("DrawLine", BigDocument.HeaderFooterExample3);
             break;
         case UserMenu.UserAction.DifferentLeftAndRightPage:
-            pdfCreator.CreatePDFFile("DifferentLeftAndRightPage", BigDocument.DifferentLeftAndRightPage);
+            pdfCreator.CreatePDFFile("DifferentLeftAndRightPage", BigDocument.HeaderFooterExample4);
             break;
         case UserMenu.UserAction.Exit:
             return;

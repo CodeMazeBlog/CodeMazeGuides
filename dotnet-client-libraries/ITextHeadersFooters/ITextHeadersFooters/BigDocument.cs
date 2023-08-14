@@ -65,7 +65,8 @@ namespace ITextHeadersFooters
             using var document = new Document(pdfDocument, PageSize.A4);
 
             var textAlignments = new TextAlignment[] { TextAlignment.LEFT, TextAlignment.CENTER, TextAlignment.RIGHT };
-            var verticalAlignments = new VerticalAlignment[] { VerticalAlignment.BOTTOM, VerticalAlignment.MIDDLE, VerticalAlignment.TOP };
+            var verticalAlignments = new VerticalAlignment[] { VerticalAlignment.BOTTOM, VerticalAlignment.MIDDLE, 
+                VerticalAlignment.TOP };
 
             var page = pdfDocument.AddNewPage();
             var canvas = new PdfCanvas(page);
@@ -95,27 +96,28 @@ namespace ITextHeadersFooters
             }
         }
 
-        public static void Classic_XofY_Footer(string pdfFileName)
+        public static void HeaderFooterExample1(string pdfFileName)
         {
-            CreateBaseDocumentAndAddHeaderFooter(pdfFileName, Classic_XofY_Footer_helper);
+            CreateBaseDocumentAndAddHeaderFooter(pdfFileName, PageXofYFooter);
         }
 
-        public static void PageNumberInHeaderDateInFooter(string pdfFileName)
+        public static void HeaderFooterExample2(string pdfFileName)
         {
-            CreateBaseDocumentAndAddHeaderFooter(pdfFileName, PageNumberInHeaderDateInFooter_helper);
+            CreateBaseDocumentAndAddHeaderFooter(pdfFileName, PageNumberInHeaderDateInFooter);
         }
 
-        public static void DrawLine(string pdfFileName)
+        public static void HeaderFooterExample3(string pdfFileName)
         {
-            CreateBaseDocumentAndAddHeaderFooter(pdfFileName, DrawLine_helper);
+            CreateBaseDocumentAndAddHeaderFooter(pdfFileName, DrawLine);
         }
 
-        public static void DifferentLeftAndRightPage(string pdfFileName)
+        public static void HeaderFooterExample4(string pdfFileName)
         {
-            CreateBaseDocumentAndAddHeaderFooter(pdfFileName, DifferentLeftAndRightPage_helper);
+            CreateBaseDocumentAndAddHeaderFooter(pdfFileName, DifferentLeftAndRightPage);
         }
 
-        private static void CreateBaseDocumentAndAddHeaderFooter(string pdfFileName, Action<PdfDocument, Document> headerFooter)
+        private static void CreateBaseDocumentAndAddHeaderFooter(string pdfFileName, 
+            Action<PdfDocument, Document> headerFooter)
         {
             using var writer = new PdfWriter(pdfFileName);
             using var pdfDocument = new PdfDocument(writer);
@@ -133,7 +135,7 @@ namespace ITextHeadersFooters
             }
         }
 
-        private static void Classic_XofY_Footer_helper(PdfDocument pdfDocument, Document document)
+        private static void PageXofYFooter(PdfDocument pdfDocument, Document document)
         {
             var numPages = pdfDocument.GetNumberOfPages();
             for (int pageId = 1; pageId <= numPages; pageId++)
@@ -142,11 +144,12 @@ namespace ITextHeadersFooters
                 var centerPage = page.GetPageSize().GetWidth() / 2;
 
                 var paragraph = new Paragraph($"Page {pageId} of {numPages}");
-                document.ShowTextAligned(paragraph, centerPage, UnitConverter.mm2uu(10), pageId, TextAlignment.CENTER, VerticalAlignment.MIDDLE, 0);
+                document.ShowTextAligned(paragraph, centerPage, UnitConverter.mm2uu(10), pageId, 
+                    TextAlignment.CENTER, VerticalAlignment.MIDDLE, 0);
             }
         }
 
-        private static void PageNumberInHeaderDateInFooter_helper(PdfDocument pdfDocument, Document document)
+        private static void PageNumberInHeaderDateInFooter(PdfDocument pdfDocument, Document document)
         {
             var numPages = pdfDocument.GetNumberOfPages();
             for (int pageId = 1; pageId <= numPages; pageId++)
@@ -156,16 +159,18 @@ namespace ITextHeadersFooters
                 var headerPosition = page.GetPageSize().GetHeight() - UnitConverter.mm2uu(10);
 
                 var header = new Paragraph($"Page {pageId} of {numPages}");
-                document.ShowTextAligned(header, rightMarginPosition, headerPosition, pageId, TextAlignment.RIGHT, VerticalAlignment.MIDDLE, 0);
+                document.ShowTextAligned(header, rightMarginPosition, headerPosition, pageId, 
+                    TextAlignment.RIGHT, VerticalAlignment.MIDDLE, 0);
 
                 var leftMarginPosition = document.GetLeftMargin();
 
                 var footer = new Paragraph($"Printed on {DateTime.Today.ToLongDateString()}");
-                document.ShowTextAligned(footer, leftMarginPosition, UnitConverter.mm2uu(10), pageId, TextAlignment.LEFT, VerticalAlignment.MIDDLE, 0);
+                document.ShowTextAligned(footer, leftMarginPosition, UnitConverter.mm2uu(10), pageId, 
+                    TextAlignment.LEFT, VerticalAlignment.MIDDLE, 0);
             }
         }
 
-        private static void DrawLine_helper(PdfDocument pdfDocument, Document document)
+        private static void DrawLine(PdfDocument pdfDocument, Document document)
         {
             var numPages = pdfDocument.GetNumberOfPages();
             for (int pageId = 1; pageId <= numPages; pageId++)
@@ -185,16 +190,18 @@ namespace ITextHeadersFooters
                 canvas.Stroke();
 
                 var header = new Paragraph($"Page {pageId} of {numPages}");
-                document.ShowTextAligned(header, rightMarginPosition, topMarginPosition + spaceGap, pageId, TextAlignment.RIGHT, VerticalAlignment.BOTTOM, 0);
+                document.ShowTextAligned(header, rightMarginPosition, topMarginPosition + spaceGap, pageId, 
+                    TextAlignment.RIGHT, VerticalAlignment.BOTTOM, 0);
 
                 var leftMarginPosition = document.GetLeftMargin();
 
                 var footer = new Paragraph($"Printed on {DateTime.Today.ToLongDateString()}");
-                document.ShowTextAligned(footer, leftMarginPosition, document.GetBottomMargin() - spaceGap, pageId, TextAlignment.LEFT, VerticalAlignment.TOP, 0);
+                document.ShowTextAligned(footer, leftMarginPosition, document.GetBottomMargin() - spaceGap, pageId, 
+                    TextAlignment.LEFT, VerticalAlignment.TOP, 0);
             }
         }
 
-        private static void DifferentLeftAndRightPage_helper(PdfDocument pdfDocument, Document document)
+        private static void DifferentLeftAndRightPage(PdfDocument pdfDocument, Document document)
         {
             var numPages = pdfDocument.GetNumberOfPages();
             for (int pageId = 1; pageId <= numPages; pageId++)
@@ -205,11 +212,13 @@ namespace ITextHeadersFooters
                 var header = new Paragraph($"{pageId}");
                 if (pageId % 2 == 0)
                 {
-                    document.ShowTextAligned(header, document.GetLeftMargin(), document.GetBottomMargin(), pageId, TextAlignment.LEFT, VerticalAlignment.MIDDLE, 0);
+                    document.ShowTextAligned(header, document.GetLeftMargin(), document.GetBottomMargin(), pageId, 
+                        TextAlignment.LEFT, VerticalAlignment.MIDDLE, 0);
                 }
                 else
                 {
-                    document.ShowTextAligned(header, rightMarginPosition, document.GetBottomMargin(), pageId, TextAlignment.RIGHT, VerticalAlignment.MIDDLE, 0);
+                    document.ShowTextAligned(header, rightMarginPosition, document.GetBottomMargin(), pageId, 
+                        TextAlignment.RIGHT, VerticalAlignment.MIDDLE, 0);
                 }
             }
         }

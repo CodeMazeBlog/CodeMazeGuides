@@ -37,28 +37,28 @@ namespace Tests
         public void GivenClassic_XofY_FooterCommand_WhenRunning_ThenExpectCreatedFile()
         {
             var runner = new PdfRunnerTest();
-            runner.DoTest(BigDocument.Classic_XofY_Footer);
+            runner.DoTest(BigDocument.HeaderFooterExample1);
         }
 
         [TestMethod]
         public void GivenPageNumberInHeaderDateInFooterCommand_WhenRunning_ThenExpectCreatedFile()
         {
             var runner = new PdfRunnerTest();
-            runner.DoTest(BigDocument.PageNumberInHeaderDateInFooter);
+            runner.DoTest(BigDocument.HeaderFooterExample2);
         }
 
         [TestMethod]
         public void GivenDrawLineCommand_WhenRunning_ThenExpectCreatedFile()
         {
             var runner = new PdfRunnerTest();
-            runner.DoTest(BigDocument.DrawLine);
+            runner.DoTest(BigDocument.HeaderFooterExample3);
         }
 
         [TestMethod]
         public void GivenDifferentLeftAndRightPageCommand_WhenRunning_ThenExpectCreatedFile()
         {
             var runner = new PdfRunnerTest();
-            runner.DoTest(BigDocument.DifferentLeftAndRightPage);
+            runner.DoTest(BigDocument.HeaderFooterExample4);
         }
     }
 }
