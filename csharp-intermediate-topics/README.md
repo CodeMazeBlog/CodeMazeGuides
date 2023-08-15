@@ -10,6 +10,7 @@ This section contains the topics considered intermediate level in C#.
 - [Common C# Programming Mistakes](https://code-maze.com/csharp-programming-mistakes/)
 - [Should We Use Records or Classes or Structs in C#](https://code-maze.com/csharp-should-we-use-records-classes-or-structs/)
 - [Composition vs Inheritance in C#](https://code-maze.com/csharp-composition-vs-inheritance/)
+- [Differences Between Const and Readonly in C#](https://code-maze.com/csharp-differences-between-const-and-readonly/)
 - [Constructors in C#](https://code-maze.com/csharp-constructors/)
 - [Covariance and Contravariance in C#](https://code-maze.com/csharp-covariance-and-contravariance/)
 - [DataTable Class in C#](https://code-maze.com/csharp-datatable-class/)
