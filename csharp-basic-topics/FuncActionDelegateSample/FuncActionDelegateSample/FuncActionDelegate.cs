@@ -15,5 +15,13 @@ namespace FuncActionDelegateSample
         {
             return a - b;
         }
+
+        public void ProcessList(List<int> numbers, Action<int> action)
+        { 
+            foreach (var number in numbers)
+            {
+                action(number);
+            }
+        }
     }
 }

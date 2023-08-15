@@ -16,3 +16,7 @@ Console.WriteLine(Operation(10, 5));
 //assign Action delgate to PrintFullname method
 Print = funcDelegate.PrintFullname;
 Print("Code", "Maze");
+
+
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5 }; 
+// Utilizing Action to print each number ProcessList(numbers, n => Console.WriteLine(n)); // Utilizing Func to compute squares ProcessList(numbers, n => Console.WriteLine(Square(n)));
