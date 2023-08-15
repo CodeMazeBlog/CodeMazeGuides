@@ -1,7 +1,5 @@
-﻿global using tupleAliasGlobalUsing = (int num1, string str, int num2);
-global using System;
+﻿using TupleAliasInCSharp.GlobalAlias;
 using TupleAliasInCSharp;
-using TupleAliasInCSharp.GlobalAlias;
 
 Console.WriteLine("Alias for Tuples in C# \n");
 
@@ -10,4 +8,3 @@ TupleAlias.PrintTupleValues();
 
 Console.WriteLine("Alias for tuple usage in different namespace");
 GlobalAlias.PrintTupleWithGlobalUsing();
-
