@@ -6,30 +6,27 @@ using System.Text;
 namespace Generator
 {
     [Generator]
-    public sealed class ExampleGenerator : ISourceGenerator
+    public sealed class ExampleGenerator : IIncrementalGenerator
     {
-        public void Execute(GeneratorExecutionContext context)
+        public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-            var callingEntrypoint = context.Compilation.GetEntryPoint(context.CancellationToken);
-
-            var sourceText = $$"""
-                namespace {{callingEntrypoint.ContainingNamespace.Name}}
-                {
-                    public static class HelloWorld
+            context.RegisterPostInitializationOutput(ctx =>
+            {
+                var sourceText = $$"""
+                    namespace SourceGeneratorInCSharp
                     {
-                        public static void SayHello()
+                        public static class HelloWorld
                         {
-                            Console.WriteLine("Hello From Generator");
+                            public static void SayHello()
+                            {
+                                Console.WriteLine("Hello From Generator");
+                            }
                         }
                     }
-                }
-                """;
+                    """;
 
-            context.AddSource("ExampleGenerator.g", SourceText.From(sourceText, Encoding.UTF8));
-        }
-
-        public void Initialize(GeneratorInitializationContext context)
-        {
+                ctx.AddSource("ExampleGenerator.g", SourceText.From(sourceText, Encoding.UTF8));
+            });
         }
     }
 }

@@ -6,58 +6,55 @@ using System.Text;
 namespace Generator
 {
     [Generator]
-    public sealed class ExampleGeneratorSyntaxFactory : ISourceGenerator
+    public sealed class ExampleGeneratorSyntaxFactory : IIncrementalGenerator
     {
-        public void Execute(GeneratorExecutionContext context)
+        public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-            var callingEntrypoint = context.Compilation.GetEntryPoint(context.CancellationToken);
-
-            var classBlock = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(callingEntrypoint.ContainingNamespace.Name))
-                .AddMembers(
-                    SyntaxFactory.ClassDeclaration("SyntaxFactoryHelloWorld")
-                    .AddModifiers(
-                        SyntaxFactory.Token(SyntaxKind.PublicKeyword), 
-                        SyntaxFactory.Token(SyntaxKind.StaticKeyword)
-                    )
+            context.RegisterPostInitializationOutput(ctx => 
+            {
+                var classBlock = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName("SourceGeneratorInCSharp"))
                     .AddMembers(
-                        SyntaxFactory.MethodDeclaration(
-                            SyntaxFactory.ParseTypeName("void"), 
-                            "SayHello"
-                        )
+                        SyntaxFactory.ClassDeclaration("SyntaxFactoryHelloWorld")
                         .AddModifiers(
                             SyntaxFactory.Token(SyntaxKind.PublicKeyword),
                             SyntaxFactory.Token(SyntaxKind.StaticKeyword)
                         )
-                        .AddBodyStatements(
-                            SyntaxFactory.ExpressionStatement(
-                                SyntaxFactory.InvocationExpression(
-                                    SyntaxFactory.MemberAccessExpression(
-                                        SyntaxKind.SimpleMemberAccessExpression,
-                                        SyntaxFactory.IdentifierName("Console"),
-                                        SyntaxFactory.IdentifierName("WriteLine")
-                                    ))
-                                    .WithArgumentList(
-                                        SyntaxFactory.ArgumentList()
-                                            .AddArguments(
-                                                SyntaxFactory.Argument(
-                                                    SyntaxFactory.LiteralExpression(
-                                                        SyntaxKind.StringLiteralExpression, 
-                                                        SyntaxFactory.Literal("Hello From Generator")
+                        .AddMembers(
+                            SyntaxFactory.MethodDeclaration(
+                                SyntaxFactory.ParseTypeName("void"),
+                                "SayHello"
+                            )
+                            .AddModifiers(
+                                SyntaxFactory.Token(SyntaxKind.PublicKeyword),
+                                SyntaxFactory.Token(SyntaxKind.StaticKeyword)
+                            )
+                            .AddBodyStatements(
+                                SyntaxFactory.ExpressionStatement(
+                                    SyntaxFactory.InvocationExpression(
+                                        SyntaxFactory.MemberAccessExpression(
+                                            SyntaxKind.SimpleMemberAccessExpression,
+                                            SyntaxFactory.IdentifierName("Console"),
+                                            SyntaxFactory.IdentifierName("WriteLine")
+                                        ))
+                                        .WithArgumentList(
+                                            SyntaxFactory.ArgumentList()
+                                                .AddArguments(
+                                                    SyntaxFactory.Argument(
+                                                        SyntaxFactory.LiteralExpression(
+                                                            SyntaxKind.StringLiteralExpression,
+                                                            SyntaxFactory.Literal("Hello From Generator")
+                                                        )
                                                     )
-                                                )   
-                                            )
-                                    )
+                                                )
+                                        )
+                                )
                             )
                         )
-                    )
-                ).NormalizeWhitespace();
+                    ).NormalizeWhitespace();
 
-            context.AddSource("ExampleGeneratorSyntaxFactory.g", 
-                SourceText.From(classBlock.ToFullString(), Encoding.UTF8));
-        }
-
-        public void Initialize(GeneratorInitializationContext context)
-        {
+                ctx.AddSource("ExampleGeneratorSyntaxFactory.g",
+                    SourceText.From(classBlock.ToFullString(), Encoding.UTF8));
+            });
         }
     }
 }
