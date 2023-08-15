@@ -12,7 +12,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         var config = builder.Configuration;
 
-        builder.Services.AddDbContextPool<ApplicationDbContext>(options =>
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(config.GetConnectionString("DefaultConnectionString")));
             
         builder.Services.AddScoped<ICatRepository, CatRepository>();

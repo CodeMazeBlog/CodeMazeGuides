@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TestcontainersForDotNetAndDocker.Contracts.Requests;
 using TestcontainersForDotNetAndDocker.Contracts.Responses;
 using TestcontainersForDotNetAndDocker.Domain;
@@ -7,7 +6,7 @@ using TestcontainersForDotNetAndDocker.Services;
 
 namespace TestcontainersForDotNetAndDocker.Controllers;
 
-[ApiController, AllowAnonymous]
+[ApiController]
 public class CatController : ControllerBase
 {
     private readonly ICatService _catService;
@@ -35,16 +34,19 @@ public class CatController : ControllerBase
                 cat.Age,
                 cat.Weight);
 
-            return Ok(catResponse);
+            return CreatedAtAction(
+                "GetCat",
+                new { id = catResponse.Id },
+                catResponse);
         }
 
         return BadRequest();
     }
 
-    [HttpDelete("DeleteCat")]
-    public async Task<ActionResult> DeleteCatAsync(DeleteCatRequest request)
+    [HttpDelete("DeleteCat/{id}")]
+    public async Task<ActionResult> DeleteCatAsync(Guid id)
     {
-        var result = await _catService.DeleteCatAsync(request.Id);
+        var result = await _catService.DeleteCatAsync(id);
 
         if (result)
         {
