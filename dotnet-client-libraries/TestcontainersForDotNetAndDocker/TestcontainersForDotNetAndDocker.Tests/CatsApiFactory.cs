@@ -15,6 +15,7 @@ public class CatsApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
     private const string Username = "sa";
     private const string Password = "yourStrong(!)Password";
     private const ushort MsSqlPort = 1433;
+
     private readonly IContainer _mssqlContainer;
 
     public CatsApiFactory()
@@ -32,12 +33,16 @@ public class CatsApiFactory : WebApplicationFactory<Program>, IAsyncLifetime
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        var host = _mssqlContainer.Hostname;
+        var port = _mssqlContainer.GetMappedPublicPort(MsSqlPort);
+
         builder.ConfigureServices(services =>
         {
             services.RemoveAll(typeof(DbContextOptions<ApplicationDbContext>));
 
-            services.AddDbContext<ApplicationDbContext>((_, options) =>
-                options.UseSqlServer($"Server={_mssqlContainer.Hostname},{_mssqlContainer.GetMappedPublicPort(MsSqlPort)};Database={Database};User Id={Username};Password={Password};TrustServerCertificate=True"));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    $"Server={host},{port};Database={Database};User Id={Username};Password={Password};TrustServerCertificate=True"));
         });
     }
 

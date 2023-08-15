@@ -1,16 +1,16 @@
 ﻿namespace TestcontainersForDotNetAndDocker.Tests;
 
-public class GetCatEndpointTests : IClassFixture<CatsApiFactory>
+public class DeleteCatEndpointTests : IClassFixture<CatsApiFactory>
 {
     private readonly HttpClient _httpClient;
 
-    public GetCatEndpointTests(CatsApiFactory catsApiFactory)
+    public DeleteCatEndpointTests(CatsApiFactory catsApiFactory)
     {
         _httpClient = catsApiFactory.CreateClient();
     }
 
     [Fact]
-    public async Task GivenCatExists_WhenGetCatEndpointIsInvoked_ThenOkIsReturned()
+    public async Task GivenCatExists_WhenDeleteCatEndpointIsInvoked_ThenOkIsReturned()
     {
         // Arrange
         var catRequest = new CreateCatRequest(
@@ -19,17 +19,17 @@ public class GetCatEndpointTests : IClassFixture<CatsApiFactory>
         var catResponse = await createCatResponse.Content.ReadFromJsonAsync<CatResponse>();
 
         // Act
-        var response = await _httpClient.GetAsync($"GetCat/{catResponse.Id}");
+        var response = await _httpClient.DeleteAsync($"DeleteCat/{catResponse.Id}");
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
     [Fact]
-    public async Task GivenCatDoesNotExists_WhenGetCatEndpointIsInvoked_ThenNotFoundIsReturned()
+    public async Task GivenCatDoesNotExists_WhenDeleteCatEndpointIsInvoked_ThenNotFoundIsReturned()
     {
         // Act
-        var response = await _httpClient.GetAsync($"GetCat/{Guid.NewGuid()}");
+        var response = await _httpClient.DeleteAsync($"DeleteCat/{Guid.NewGuid()}");
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);

@@ -14,6 +14,8 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Configure any additional entity configurations here
+        modelBuilder.Entity<Cat>()
+            .HasIndex(x => x.Name)
+            .IsUnique(true);
     }
 }

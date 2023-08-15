@@ -53,7 +53,7 @@ public class CatController : ControllerBase
             return Ok();
         }
 
-        return BadRequest();
+        return NotFound();
     }
 
     [HttpGet("GetAllCats")]
@@ -102,7 +102,10 @@ public class CatController : ControllerBase
         var cat = new Cat(
             request.Name,
             request.Age,
-            request.Weight);
+            request.Weight)
+        {
+            Id = request.Id
+        };
 
         var result = await _catService.UpdateCatAsync(cat);
 
@@ -117,6 +120,6 @@ public class CatController : ControllerBase
             return Ok(catResponse);
         }
 
-        return BadRequest();
+        return NotFound();
     }
 }

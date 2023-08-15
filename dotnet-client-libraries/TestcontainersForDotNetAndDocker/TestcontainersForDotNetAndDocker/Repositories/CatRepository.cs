@@ -15,10 +15,17 @@ public class CatRepository : ICatRepository
 
     public async Task<bool> CreateCatAsync(Cat Cat)
     {
-        await _dbContext.Cats.AddAsync(Cat);
-        await _dbContext.SaveChangesAsync();
+        try
+        {
+            await _dbContext.Cats.AddAsync(Cat);
+            await _dbContext.SaveChangesAsync();
 
-        return true;
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     public async Task<bool> DeleteCatAsync(Guid id)
