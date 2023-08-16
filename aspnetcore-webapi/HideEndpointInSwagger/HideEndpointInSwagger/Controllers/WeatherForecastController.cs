@@ -8,7 +8,7 @@ namespace HideEndpointInSwagger.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+          "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
@@ -21,55 +21,36 @@ namespace HideEndpointInSwagger.Controllers
         [HttpGet("GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return GetWeatherForecastData();
         }
 
         [HttpGet("GetMethodOne")]
         [NonAction]
         public IEnumerable<WeatherForecast> GetMethodOne()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return GetWeatherForecastData();
         }
 
         [HttpGet("GetMethodTwo")]
         [ApiExplorerSettings(IgnoreApi = true)]
         public IEnumerable<WeatherForecast> GetMethodTwo()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return GetWeatherForecastData();
         }
 
         [HttpGet("GetMethodThree")]
         public IEnumerable<WeatherForecast> GetMethodThree()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return GetWeatherForecastData();
         }
 
         [HttpGet("GetMethodFour")]
         public IEnumerable<WeatherForecast> GetMethodFour()
+        {
+            return GetWeatherForecastData();
+        }
+
+        private IEnumerable<WeatherForecast> GetWeatherForecastData()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -77,7 +58,7 @@ namespace HideEndpointInSwagger.Controllers
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
-            .ToArray();
+           .ToArray();
         }
     }
 }
