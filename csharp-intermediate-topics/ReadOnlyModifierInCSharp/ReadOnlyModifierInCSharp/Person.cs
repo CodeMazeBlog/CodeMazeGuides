@@ -2,13 +2,15 @@
 {
     public class Person
     {
+        private readonly int _age;
         public string Name { get; private set; }
-        public int Age { get; }
+        
+        public int Age => _age;
 
         public Person(string name, int age)
         {
             Name = name;
-            Age = age;
+            _age = age;
         }
 
         public void ChangeName(string changedName)
