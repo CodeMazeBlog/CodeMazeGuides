@@ -1,7 +1,14 @@
-﻿namespace StringFormattableString
+﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Order;
+
+namespace StringFormattableString
 {
+    [MemoryDiagnoser]
+    [RankColumn]
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class FormattableStringsMethods
     {
+        [Benchmark]
         public string StringExample() 
         {
             var studentName = "John";
@@ -11,6 +18,7 @@
             return message;
         }
 
+        [Benchmark]
         public FormattableString FormattableStringExample() 
         {
             var studentName = "John";
@@ -19,7 +27,5 @@
 
             return message;
         }
-
-
     }
 }

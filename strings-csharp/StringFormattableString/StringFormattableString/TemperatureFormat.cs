@@ -2,23 +2,21 @@
 {
     public class TemperatureFormat : IFormattable
     {
-        private double temperatureValue;
-
-        public TemperatureFormat() { }
+        private double _temperatureValue;
 
         public TemperatureFormat(double temperatureValue)
         {
-            this.temperatureValue = temperatureValue;
+            this._temperatureValue = temperatureValue;
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
             if (format == "C")
-                return $"{temperatureValue} C";
+                return $"{_temperatureValue} C";
             else if (format == "F")
-                return $"{temperatureValue * 9 / 5 + 32} F";
+                return $"{_temperatureValue * 9 / 5 + 32} F";
             else
-                return $"{temperatureValue + 273.15} K";
+                return $"{_temperatureValue + 273.15} K";
         }
     }
 }

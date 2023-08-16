@@ -7,33 +7,33 @@ namespace StringFormattableStringTests
     public class FormattableStringsUnitTests
     {
         private readonly FormattableStringsMethods _formattableStringMethods;
-        private readonly string _sampleString;
-        private readonly FormattableString _sampleFormattableString;
 
         public FormattableStringsUnitTests()
         {
             _formattableStringMethods = new FormattableStringsMethods();
-            _sampleString = _formattableStringMethods.StringExample();
-            _sampleFormattableString = _formattableStringMethods.FormattableStringExample();
         }
 
         [TestMethod]
         public void GivenAStringObject_WhenStringOperationsApplied_VerifyAccurateResults()
         {
             var stringObj = "Jane";
+            var sampleString = _formattableStringMethods.StringExample();
 
             Assert.AreEqual(stringObj.Count(), stringObj.Length);
-            Assert.IsFalse(stringObj.Equals(_sampleString));
-            Assert.AreEqual(_sampleString.CompareTo(stringObj), 1);
-            Assert.IsInstanceOfType(_sampleString, typeof(string));
+            Assert.IsFalse(stringObj.Equals(sampleString));
+            Assert.AreEqual(sampleString.CompareTo(stringObj), 1);
+            Assert.IsInstanceOfType(sampleString, typeof(string));
         }
+
         [TestMethod]
         public void GivenAFormattableStringObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
         {
-            Assert.AreEqual("John", _sampleFormattableString.GetArgument(0));
-            Assert.AreEqual(_sampleFormattableString.ArgumentCount, 2);
-            Assert.IsInstanceOfType(_sampleFormattableString, typeof(FormattableString));
-            Assert.IsInstanceOfType(_sampleFormattableString.ToString(), typeof(string));
+            var sampleFormattableString = _formattableStringMethods.FormattableStringExample();
+
+            Assert.AreEqual("John", sampleFormattableString.GetArgument(0));
+            Assert.AreEqual(sampleFormattableString.ArgumentCount, 2);
+            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
+            Assert.IsInstanceOfType(sampleFormattableString.ToString(), typeof(string));
         }
 
         [TestMethod]
