@@ -1,10 +1,10 @@
 ﻿namespace TestcontainersForDotNetAndDocker.Tests;
 
-public class DeleteCatEndpointTests : IClassFixture<CatsApiFactory>
+public class DeleteCatEndpointLiveTests : IClassFixture<CatsApiFactory>
 {
     private readonly HttpClient _httpClient;
 
-    public DeleteCatEndpointTests(CatsApiFactory catsApiFactory)
+    public DeleteCatEndpointLiveTests(CatsApiFactory catsApiFactory)
     {
         _httpClient = catsApiFactory.CreateClient();
     }
