@@ -16,6 +16,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [How to Get an Enum Member as a String in C#](https://code-maze.com/enum-member-as-string-csharp/)
 - [How to Check if StringBuilder Is Empty](https://code-maze.com/csharp-stringbuilder-check-if-empty/)
 - [Make The First Letter of a String Upper Case in C#](https://code-maze.com/csharp-first-letter-upper-case/)
+- [How to Generate a Stream From a String?](https://code-maze.com/dotnet-generate-stream-from-string/)
 - [How to Identify If a String is a Number in C#](https://code-maze.com/csharp-identify-if-a-string-is-a-number/)
 - [How to Remove All Whitespace Characters From a String in C#?](https://code-maze.com/replace-whitespaces-string-csharp/)
 - [Different Ways to Split a String in C#](https://code-maze.com/csharp-different-ways-to-split-a-string/)
