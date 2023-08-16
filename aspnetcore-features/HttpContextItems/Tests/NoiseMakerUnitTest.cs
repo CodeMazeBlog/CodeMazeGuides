@@ -8,8 +8,9 @@ namespace Tests
         public void WhenAddNoiseMakerIsCalled_ThenNewNoiseMakerIsAddedToTheList()
         {
             //arrange
-            NamesOfNoiseMakers namesOfNoiseMakers = new();
-            NoiseMaker noiseMaker = new()
+            var namesOfNoiseMakers = new NamesOfNoiseMakers();
+
+            var noiseMaker = new NoiseMaker()
             {
                 Name = "Mira",
                 Severity = 2,
@@ -18,7 +19,7 @@ namespace Tests
 
             //act
             namesOfNoiseMakers.AddNoiseMaker(noiseMaker);
-            List<NoiseMaker> noiseMakerList = namesOfNoiseMakers.GetNoiseMakers();
+            var noiseMakerList = namesOfNoiseMakers.GetNoiseMakers();
 
             //assert
             Assert.NotNull(noiseMakerList);
