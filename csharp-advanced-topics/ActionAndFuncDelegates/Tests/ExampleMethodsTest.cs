@@ -9,14 +9,20 @@ namespace Tests
 {
     public class ExampleMethodsTest
     {
+        Mock<IAppConsole> appConsoleMock;
+        ExampleMethods exMethods;
+
+        public ExampleMethodsTest()
+        {
+            appConsoleMock = new Mock<IAppConsole>();
+            exMethods = new ExampleMethods(appConsoleMock.Object);
+        }
+
         [Fact]
         public void GivenAUser_WhenPrintingUsername_ThenSuccessfullFormatted()
         {
             // arrange
             var fakeUser = new User() { Name = "Pablo", Age = 30 };
-
-            var appConsoleMock = new Mock<IAppConsole>();
-            var exMethods = new ExampleMethods(appConsoleMock.Object);
 
             // act
             exMethods.PrintUserName(fakeUser);
@@ -31,9 +37,6 @@ namespace Tests
             // arrange
             var fakeUser = new User() { Name = "Pablo", Age = 30 };
 
-            var appConsoleMock = new Mock<IAppConsole>();
-            var exMethods = new ExampleMethods(appConsoleMock.Object);
-
             // act
             exMethods.PrintAllUserData(fakeUser);
 
@@ -46,9 +49,6 @@ namespace Tests
         {
             // arrange
             var fakeUser = new User() { Name = "Pablo", Age = 30 };
-
-            var appConsoleMock = new Mock<IAppConsole>();
-            var exMethods = new ExampleMethods(appConsoleMock.Object);
 
             // act
             exMethods.PrintUserDaysOfLife(fakeUser);
@@ -76,8 +76,6 @@ namespace Tests
         public void GivenAUser_WhenIsAnAdult_ThenOutputAdultMessage(User fakeUser, string expectedMessage)
         {
             // arrange
-            var appConsoleMock = new Mock<IAppConsole>();
-            var exMethods = new ExampleMethods(appConsoleMock.Object);
 
             // act
             var result = exMethods.PrintIfUserIsAdultOrChild(fakeUser);
