@@ -8,3 +8,5 @@ TupleAlias.PrintTupleValues();
 
 Console.WriteLine("Alias for tuple usage in different namespace");
 GlobalAlias.PrintTupleWithGlobalUsing();
+
+Console.ReadKey();

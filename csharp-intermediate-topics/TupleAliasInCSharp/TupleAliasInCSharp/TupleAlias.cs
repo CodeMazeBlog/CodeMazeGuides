@@ -1,34 +1,39 @@
 ﻿namespace TupleAliasInCSharp;
 
-using TupleAliasUsing = (int num1, string str, double num2);
+using EmployeeFinanaceDetails = (int Id, string FName, string LName, double salary);
+
 public class TupleAlias
 {
     public static void PrintTupleValues()
     {
         //ACCESS TUPLE WITH GLOBAL USING DIRECTIVE
-        TupleAliasGlobalUsing aliasGlobalUsing = (1, "Tuple alias declared with global using directive", 6);
-        Console.WriteLine($"num1: {aliasGlobalUsing.num1}, str: {aliasGlobalUsing.str}, num2: {aliasGlobalUsing.num2}");
+        EmployeeDetails employee = (1, "John","Doe", 116000);
+        Console.WriteLine($"Employee ID: {employee.Id}, First Name: {employee.firstName}, Last Name: {employee.lastName}, Salary: {employee.salary}");
         Console.WriteLine();
 
         //ACCESS TUPLE WITH USING DIRECTIVE
-        TupleAliasUsing aliasUsing = (10, "Tuple alias declared with using directive", 2.2);
-        Console.WriteLine($"num1: {aliasUsing.num1}, str: {aliasUsing.str}, num2: {aliasUsing.num2}");
+        EmployeeFinanaceDetails finanaceDetails = (1, "John", "Doe", 116000.25);
+        Console.WriteLine($"Employee ID: {finanaceDetails.Id}, First Name: {finanaceDetails.FName}, Last Name: {finanaceDetails.LName}, Salary: {finanaceDetails.salary}");
+        Console.WriteLine();
 
         //DECONSTRUCT TUPLE USING ALIAS NAME
         Console.WriteLine("Deconstruct tuple without using 'var' keyword");
-        (int a, string str, int b) = aliasGlobalUsing;
-        Console.WriteLine($"num1: {a}, str: {str}, num2: {b}");    
-        
+        (int id, string fn, string ln, int salary) = employee;
+        Console.WriteLine($"Employee ID: {id}, First Name: {fn}, Last Name: {ln}, Salary: {salary}");
+
         //DECONSTRUCT TUPLE USING 'var' KEYWORD
         Console.WriteLine("Deconstruct tuple using 'var' keyword");
-        var (a1, str1, b1) = aliasGlobalUsing;
-        Console.WriteLine($"num1: {a1}, str: {str1}, num2: {b1}");
+        var (id1, fn1, ln1, salary1) = employee;
+        Console.WriteLine($"Employee ID: {id1}, First Name: {fn1}, Last Name: {ln1}, Salary: {salary1}");
 
         // TUPLE ASSIGNMENT - the field names need not match, only the types and the arity need to match
-        aliasUsing = aliasGlobalUsing;
-        Console.WriteLine($"num1: {aliasUsing.num1}, str: {aliasUsing.str}, num2: {aliasUsing.num2}");            
+        Console.WriteLine("\n Tuple assignment using 'var' keyword. We are assigning values from EmployeeDetails to EmployeeFinanceDetails tuple.");
+        finanaceDetails = employee;
+        Console.WriteLine($"Employee ID: {finanaceDetails.Id}, First Name: {finanaceDetails.FName}, Last Name: {finanaceDetails.LName}, Salary: {finanaceDetails.salary}");
 
-        //This will generate error as (int, string, double) cannot to converted to (int, string, int).Use explicit conversion
-        //tupleAliasGlobalUsing temp1 = aliasUsing;
+        //This will generate error as (int,string, string, double) cannot to converted to (int, string, string, int). Use explicit conversion
+        Console.WriteLine("\nAssigning values from EmployeeFinanceDetails to EmployeeDetails tuple will generate error as (int,string, string, double) cannot to converted to (int, string, string, int).\nUse explicit conversion.");
+        employee = ((int Id, string firstName, string lastName, int salary))finanaceDetails;
+        Console.WriteLine($"Employee ID: {employee.Id}, First Name: {employee.firstName}, Last Name: {employee.lastName}, Salary: {employee.salary}");        
     }
 }
