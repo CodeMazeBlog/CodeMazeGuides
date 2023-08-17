@@ -1,10 +1,10 @@
 ﻿namespace TestcontainersForDotNetAndDocker.Tests;
 
-public class UpdateCatEndpointLiveTests : IClassFixture<CatsApiFactory>
+public class UpdateCatEndpointLiveTests : IClassFixture<CatsApiApplicationFactory>
 {
     private readonly HttpClient _httpClient;
 
-    public UpdateCatEndpointLiveTests(CatsApiFactory catsApiFactory)
+    public UpdateCatEndpointLiveTests(CatsApiApplicationFactory catsApiFactory)
     {
         _httpClient = catsApiFactory.CreateClient();
     }
