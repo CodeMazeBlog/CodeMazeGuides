@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Testcontainers.MsSql;
 using TestcontainersForDotNetAndDocker.Database;
 
 namespace TestcontainersForDotNetAndDocker.Tests;
@@ -15,7 +14,7 @@ public class CatsApiApplicationFactory : WebApplicationFactory<Program>, IAsyncL
     private const string Database = "master";
     private const string Username = "sa";
     private const string Password = "yourStrong(!)Password";
-    private const ushort MsSqlPort = 1433; 
+    private const ushort MsSqlPort = 1433;
 
     private readonly IContainer _mssqlContainer;
 
