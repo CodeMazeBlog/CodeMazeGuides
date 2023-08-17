@@ -22,7 +22,7 @@ namespace StringFormattableStringTests
         {
             var sampleFormattableString = _formattableStringMethods.FormattableStringExample();
 
-            Assert.AreEqual("John", sampleFormattableString.GetArgument(0));
+            Assert.AreEqual("Sean", sampleFormattableString.GetArgument(0));
             Assert.AreEqual(sampleFormattableString.ArgumentCount, 2);
             Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
         }
