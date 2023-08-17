@@ -30,8 +30,6 @@ public class CatsApiApplicationFactory : WebApplicationFactory<Program>, IAsyncL
             .WithEnvironment("MSSQL_SA_PASSWORD", Password)
             .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(MsSqlPort))
             .Build();
-
-        _mssqlContainer = new MsSqlBuilder().Build();
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
