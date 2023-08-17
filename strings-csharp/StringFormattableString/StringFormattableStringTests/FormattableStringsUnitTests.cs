@@ -1,18 +1,10 @@
-using StringFormattableString;
-using System.Runtime.CompilerServices;
-
 namespace StringFormattableStringTests
 {
     [TestClass]
     public class FormattableStringsUnitTests
     {
-        private readonly FormattableStringsMethods _formattableStringMethods;
-
-        public FormattableStringsUnitTests()
-        {
-            _formattableStringMethods = new FormattableStringsMethods();
-        }
-
+        private readonly FormattableStringsMethods _formattableStringMethods = new();
+    
         [TestMethod]
         public void GivenAStringObject_WhenStringOperationsApplied_VerifyAccurateResults()
         {
@@ -33,7 +25,6 @@ namespace StringFormattableStringTests
             Assert.AreEqual("John", sampleFormattableString.GetArgument(0));
             Assert.AreEqual(sampleFormattableString.ArgumentCount, 2);
             Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
-            Assert.IsInstanceOfType(sampleFormattableString.ToString(), typeof(string));
         }
 
         [TestMethod]

@@ -6,7 +6,7 @@
 
         public TemperatureFormat(double temperatureValue)
         {
-            this._temperatureValue = temperatureValue;
+            _temperatureValue = temperatureValue;
         }
 
         public string ToString(string format, IFormatProvider formatProvider)

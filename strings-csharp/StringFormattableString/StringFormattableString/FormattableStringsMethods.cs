@@ -13,19 +13,17 @@ namespace StringFormattableString
         {
             var studentName = "John";
             var studentAge = 30;
-            var message = $"My name is {studentName} and I am {studentAge} years old.";
 
-            return message;
+            return $"My name is {studentName} and I am {studentAge} years old.";
         }
 
         [Benchmark]
         public FormattableString FormattableStringExample() 
         {
-            var studentName = "John";
-            var studentAge = 30;
-            FormattableString message = $"My name is {studentName} and I am {studentAge} years old.";
-
-            return message;
+            var studentName = "Sean";
+            var studentAge = 40;
+            
+            return $"My name is {studentName} and I am {studentAge} years old.";
         }
     }
 }
