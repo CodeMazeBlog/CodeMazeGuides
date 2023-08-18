@@ -28,11 +28,6 @@ namespace StringFormattableString
             return $"My name is {studentName} and I am {studentAge} years old.";
         }
 
-        public FormattableString FormattableSQLStringExample(string userName)
-        {
-            return $"SELECT * FROM Users WHERE Username = {userName}"; 
-        }
-
         public FormattableString FormattableStringDateExample(DateTime currentDate)
         {  
             return $"Today's date: {currentDate:D}";

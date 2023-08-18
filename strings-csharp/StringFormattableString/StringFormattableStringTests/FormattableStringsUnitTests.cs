@@ -33,16 +33,6 @@ namespace StringFormattableStringTests
         }
 
         [TestMethod]
-        public void GivenAFormattableStringSQLObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
-        {
-            const string userName = "John";
-            var sampleFormattableString = _formattableStringMethods.FormattableSQLStringExample(userName);
-
-            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
-            Assert.AreEqual(userName, sampleFormattableString.GetArgument(0));
-        }
-
-        [TestMethod]
         public void GivenAFormattableStringDateObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
         {
             var currentDate = DateTime.Now;
