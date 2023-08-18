@@ -14,9 +14,9 @@ namespace StringFormattableStringTests
             const int studentAge = 30;
             var sampleString = _formattableStringMethods.StringExample(studentName, studentAge);
 
+            Assert.IsInstanceOfType(sampleString, typeof(string)); 
             Assert.IsTrue(sampleString.Contains(studentName));
             Assert.IsTrue(sampleString.Contains(studentAge.ToString()));
-            Assert.IsInstanceOfType(sampleString, typeof(string));
         }
 
         [TestMethod]
