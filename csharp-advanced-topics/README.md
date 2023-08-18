@@ -17,6 +17,7 @@ This section contains the topics considered advanced level in C#.
 - [Managed vs Unmanaged Code (Garbage Collection) in C#](https://code-maze.com/csharp-managed-vs-unmanaged-code-garbage-collection/)
 - [ModuleInitializer Attribute in C#](https://code-maze.com/csharp-moduleinitializer-attribute/)
 - [Null-Conditional Operators in C#](https://code-maze.com/csharp-null-conditional-operators/)
+- [Prevent SQL Injection With EF Core, Dapper, and ADO.NET](https://code-maze.com/prevent-sql-injection-with-ef-core-dapper-and-ado-net/)
 - [Easy Web Application Caching With Redis in C#](https://code-maze.com/csharp-web-application-caching-redis/)
 - [Source Generators in C#](https://code-maze.com/csharp-source-generators/)
 - [How to Use Span in C# to Improve Application Performance](https://code-maze.com/csharp-span-to-improve-application-performance/)
