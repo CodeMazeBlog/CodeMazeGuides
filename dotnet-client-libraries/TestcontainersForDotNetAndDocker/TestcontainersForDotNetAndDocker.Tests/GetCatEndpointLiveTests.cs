@@ -4,9 +4,9 @@ public class GetCatEndpointLiveTests : IClassFixture<CatsApiApplicationFactory>
 {
     private readonly HttpClient _httpClient;
 
-    public GetCatEndpointLiveTests(CatsApiApplicationFactory catsApiFactory)
+    public GetCatEndpointLiveTests(CatsApiApplicationFactory catsApiApplicationFactory)
     {
-        _httpClient = catsApiFactory.CreateClient();
+        _httpClient = catsApiApplicationFactory.CreateClient();
     }
 
     [Fact]
