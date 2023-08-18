@@ -9,14 +9,11 @@
             _temperatureValue = temperatureValue;
         }
 
-        public string ToString(string format, IFormatProvider formatProvider)
+        public string ToString(string format, IFormatProvider _) => format switch
         {
-            if (format == "C")
-                return $"{_temperatureValue} C";
-            else if (format == "F")
-                return $"{_temperatureValue * 9 / 5 + 32} F";
-            else
-                return $"{_temperatureValue + 273.15} K";
-        }
+            "F" => $"{_temperatureValue * 9 / 5 + 32} F",
+            "K" => $"{_temperatureValue + 273.15} K",
+            _ => $"{_temperatureValue} C"
+        };
     }
 }

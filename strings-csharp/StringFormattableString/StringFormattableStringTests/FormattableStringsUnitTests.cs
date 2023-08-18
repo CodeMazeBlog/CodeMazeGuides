@@ -22,24 +22,24 @@ namespace StringFormattableStringTests
         [TestMethod]
         public void GivenAFormattableStringObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
         {
-            var studentName = "Sean";
-            var studentAge = 40;
+            const string studentName = "Sean";
+            const int studentAge = 40;
             var sampleFormattableString = _formattableStringMethods.FormattableStringExample(studentName, studentAge);
 
+            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
             Assert.AreEqual(studentName, sampleFormattableString.GetArgument(0));
             Assert.AreEqual(studentAge, sampleFormattableString.GetArgument(1));
             Assert.AreEqual(sampleFormattableString.ArgumentCount, 2);
-            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
         }
 
         [TestMethod]
         public void GivenAFormattableStringSQLObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
         {
-            var userName = "John";
+            const string userName = "John";
             var sampleFormattableString = _formattableStringMethods.FormattableSQLStringExample(userName);
 
-            Assert.AreEqual(userName, sampleFormattableString.GetArgument(0));
             Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
+            Assert.AreEqual(userName, sampleFormattableString.GetArgument(0));
         }
 
         [TestMethod]
@@ -48,9 +48,9 @@ namespace StringFormattableStringTests
             var currentDate = DateTime.Now;
             var sampleFormattableString = _formattableStringMethods.FormattableStringDateExample(currentDate);
 
-            Assert.IsTrue(sampleFormattableString.ToString().Contains(currentDate.ToString("D")));
-            Assert.IsInstanceOfType(sampleFormattableString.GetArgument(0), typeof(DateTime));
             Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
+            Assert.IsInstanceOfType(sampleFormattableString.GetArgument(0), typeof(DateTime));
+            Assert.IsTrue(sampleFormattableString.ToString().Contains(currentDate.ToString("D")));
         }
 
         [TestMethod]
@@ -60,22 +60,22 @@ namespace StringFormattableStringTests
             var message = "Logging method invoked";
             var sampleFormattableString = _formattableStringMethods.FormattableStringLoggingExample(level, message);
 
+            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
             Assert.IsInstanceOfType(sampleFormattableString.GetArgument(0), typeof(DateTime));
             Assert.IsInstanceOfType(sampleFormattableString.GetArgument(1), typeof(LogLevel));
             Assert.IsInstanceOfType(sampleFormattableString.GetArgument(2), typeof(string));
-            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
         }
 
         [TestMethod]
         public void GivenAFormattableDynamicStringObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
         {
-            var itemName = "Laptop";
-            var itemCount = 3;
+            const string itemName = "Laptop";
+            const int itemCount = 3;
             var sampleFormattableString = _formattableStringMethods.FormattableStringDynamicStringExample(itemName, itemCount);
 
+            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
             Assert.AreEqual(itemCount, sampleFormattableString.GetArgument(0));
             Assert.AreEqual(itemName, sampleFormattableString.GetArgument(1));
-            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
         }
 
         [TestMethod]
@@ -83,9 +83,9 @@ namespace StringFormattableStringTests
         {
             var temperature = new TemperatureFormat(20.0);
             
-            var formattedCelsius = string.Format("Temperature: {0:C}", temperature);
+            var formattedKelvins = string.Format("Temperature: {0:K}", temperature);
             var formattedFahrenheit = string.Format("Temperature: {0:F}", temperature);
-            var formattedKelvins = string.Format("Temperature: {0}", temperature);
+            var formattedCelsius = string.Format("Temperature: {0}", temperature);
 
             Assert.AreEqual("Temperature: 20 C", formattedCelsius);
             Assert.AreEqual("Temperature: 68 F", formattedFahrenheit);
