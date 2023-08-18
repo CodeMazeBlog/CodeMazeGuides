@@ -10,13 +10,12 @@ namespace StringFormattableStringTests
         [TestMethod]
         public void GivenAStringObject_WhenStringOperationsApplied_VerifyAccurateResults()
         {
-            var stringObj = "Jane";
-            var studentName = "John";
-            var studentAge = 30;
+            const string studentName = "John";
+            const int studentAge = 30;
             var sampleString = _formattableStringMethods.StringExample(studentName, studentAge);
 
-            Assert.IsFalse(stringObj.Equals(sampleString));
-            Assert.AreEqual(sampleString.CompareTo(stringObj), 1);
+            Assert.IsTrue(sampleString.Contains(studentName));
+            Assert.IsTrue(sampleString.Contains(studentAge.ToString()));
             Assert.IsInstanceOfType(sampleString, typeof(string));
         }
 
