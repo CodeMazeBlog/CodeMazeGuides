@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Logging;
+
 namespace StringFormattableStringTests
 {
     [TestClass]
@@ -9,9 +11,10 @@ namespace StringFormattableStringTests
         public void GivenAStringObject_WhenStringOperationsApplied_VerifyAccurateResults()
         {
             var stringObj = "Jane";
-            var sampleString = _formattableStringMethods.StringExample();
+            var studentName = "John";
+            var studentAge = 30;
+            var sampleString = _formattableStringMethods.StringExample(studentName, studentAge);
 
-            Assert.AreEqual(stringObj.Count(), stringObj.Length);
             Assert.IsFalse(stringObj.Equals(sampleString));
             Assert.AreEqual(sampleString.CompareTo(stringObj), 1);
             Assert.IsInstanceOfType(sampleString, typeof(string));
@@ -20,10 +23,59 @@ namespace StringFormattableStringTests
         [TestMethod]
         public void GivenAFormattableStringObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
         {
-            var sampleFormattableString = _formattableStringMethods.FormattableStringExample();
+            var studentName = "Sean";
+            var studentAge = 40;
+            var sampleFormattableString = _formattableStringMethods.FormattableStringExample(studentName, studentAge);
 
-            Assert.AreEqual("Sean", sampleFormattableString.GetArgument(0));
+            Assert.AreEqual(studentName, sampleFormattableString.GetArgument(0));
+            Assert.AreEqual(studentAge, sampleFormattableString.GetArgument(1));
             Assert.AreEqual(sampleFormattableString.ArgumentCount, 2);
+            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
+        }
+
+        [TestMethod]
+        public void GivenAFormattableStringSQLObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
+        {
+            var userName = "John";
+            var sampleFormattableString = _formattableStringMethods.FormattableSQLStringExample(userName);
+
+            Assert.AreEqual(userName, sampleFormattableString.GetArgument(0));
+            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
+        }
+
+        [TestMethod]
+        public void GivenAFormattableStringDateObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
+        {
+            var currentDate = DateTime.Now;
+            var sampleFormattableString = _formattableStringMethods.FormattableStringDateExample(currentDate);
+
+            Assert.IsTrue(sampleFormattableString.ToString().Contains(currentDate.ToString("D")));
+            Assert.IsInstanceOfType(sampleFormattableString.GetArgument(0), typeof(DateTime));
+            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
+        }
+
+        [TestMethod]
+        public void GivenAFormattableStringLogObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
+        {
+            var level = LogLevel.Information;
+            var message = "Logging method invoked";
+            var sampleFormattableString = _formattableStringMethods.FormattableStringLoggingExample(level, message);
+
+            Assert.IsInstanceOfType(sampleFormattableString.GetArgument(0), typeof(DateTime));
+            Assert.IsInstanceOfType(sampleFormattableString.GetArgument(1), typeof(LogLevel));
+            Assert.IsInstanceOfType(sampleFormattableString.GetArgument(2), typeof(string));
+            Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
+        }
+
+        [TestMethod]
+        public void GivenAFormattableDynamicStringObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
+        {
+            var itemName = "Laptop";
+            var itemCount = 3;
+            var sampleFormattableString = _formattableStringMethods.FormattableStringDynamicStringExample(itemName, itemCount);
+
+            Assert.AreEqual(itemCount, sampleFormattableString.GetArgument(0));
+            Assert.AreEqual(itemName, sampleFormattableString.GetArgument(1));
             Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
         }
 
