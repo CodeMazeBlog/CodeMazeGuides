@@ -1,38 +1,58 @@
 ﻿using Generator.Diagnostics;
 using Generator.Helper;
-using Generator.SyntaxReceiver;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 using Scriban;
+using System.Collections.Immutable;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Generator
 {
     [Generator]
-    public sealed class ServiceGenerator : ISourceGenerator
+    public sealed class ServiceGenerator : IIncrementalGenerator
     {
-        public void Initialize(GeneratorInitializationContext context)
+        public void Initialize(IncrementalGeneratorInitializationContext context)
         {
-            context.RegisterForPostInitialization(ctx => ctx.AddSource(
+            context.RegisterPostInitializationOutput(ctx => ctx.AddSource(
                 "GenerateServiceAttribute.g.cs",
                 SourceText.From(SourceGenerationHelper.Attribute, Encoding.UTF8)));
 
-            context.RegisterForSyntaxNotifications(() =>
-                new GenerateServiceAttributeSyntaxReceiver());
+            IncrementalValuesProvider<ClassDeclarationSyntax> enumDeclarations = context.SyntaxProvider
+              .CreateSyntaxProvider(
+                  predicate: static (s, _) => IsSyntaxTargetForGeneration(s),
+                  transform: static (ctx, _) => GetTargetForGeneration(ctx));
+
+            IncrementalValueProvider<(Compilation, ImmutableArray<ClassDeclarationSyntax>)> compilationAndEnums
+                 = context.CompilationProvider.Combine(enumDeclarations.Collect());
+
+            context.RegisterSourceOutput(compilationAndEnums,
+                (spc, source) => Execute(source.Item1, source.Item2, spc));
         }
 
-        public void Execute(GeneratorExecutionContext context)
+        public static bool IsSyntaxTargetForGeneration(SyntaxNode syntaxNode)
         {
-            if (context.SyntaxReceiver is not GenerateServiceAttributeSyntaxReceiver syntaxReceiver)
-            {
-                return;
-            }
+            return syntaxNode is ClassDeclarationSyntax classDeclarationSyntax &&
+                classDeclarationSyntax.AttributeLists.Count > 0 &&
+                classDeclarationSyntax.AttributeLists
+                    .Any(al => al.Attributes
+                        .Any(a => a.Name.ToString() == "GenerateService"));
+        }
 
-            foreach (var classSyntax in syntaxReceiver.Classes)
+        public static ClassDeclarationSyntax GetTargetForGeneration(GeneratorSyntaxContext context)
+        {
+            var classDeclarationSyntax = (ClassDeclarationSyntax)context.Node;
+
+            return classDeclarationSyntax;
+        }
+        public void Execute(Compilation compilation, ImmutableArray<ClassDeclarationSyntax> classes, SourceProductionContext context)
+        {
+            foreach (var classSyntax in classes)
             {
-                // Converting the class to semantic model to access much more meaningful data.
-                var model = context.Compilation.GetSemanticModel(classSyntax.SyntaxTree);
+                // Converting the class to a semantic model to access much more meaningful data.
+                var model = compilation.GetSemanticModel(classSyntax.SyntaxTree);
 
                 // Parse to declared symbol, so you can access each part of code separately,
                 // such as interfaces, methods, members, contructor parameters etc.
@@ -60,7 +80,11 @@ namespace Generator
 
                 var template = Template.Parse(text);
 
-                var sourceCode = template.Render(new { ClassName = className, ClassNamespace = classNamespace, ClassAssembly = classAssembly });
+                var sourceCode = template.Render(new { 
+                    ClassName = className, 
+                    ClassNamespace = classNamespace, 
+                    ClassAssembly = classAssembly 
+                });
 
                 context.AddSource(
                     $"{className}{"Service"}.g.cs",
