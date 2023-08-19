@@ -1,4 +1,4 @@
-﻿using System;
+﻿namespace Action_and_Func_Delegates_in_CSharp;
 
 public class Program
 {
@@ -7,13 +7,13 @@ public class Program
         Console.WriteLine("Hello, this is the starting point of our application!");
 
         // Create an instance of the Invoice class
-        Invoice invoice = new Invoice("F12345", 100.50m);
+        Invoice invoice = new("F12345", 100.50m);
 
         // Subscribe the Log method from the LogManager class to the LogMessage delegate
-        invoice.LogMessage += LogManager.Log;
+        invoice.LogMessageSubscribe(LogManager.Log);
 
         // Subscribe the SendEmail method from the EmailSender class to the SendEmail delegate
-        invoice.SendEmail += EmailSender.SendEmail;
+        invoice.SendEmailSubscribe(EmailSender.SendEmail);
 
         // Save the invoice, which will trigger the subscribed delegates
         invoice.SaveInvoice();

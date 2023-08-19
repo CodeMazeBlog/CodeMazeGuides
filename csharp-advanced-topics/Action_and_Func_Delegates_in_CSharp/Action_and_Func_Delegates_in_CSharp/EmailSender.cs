@@ -1,4 +1,4 @@
-﻿using System;
+﻿namespace Action_and_Func_Delegates_in_CSharp;
 
 public class EmailSender
 {

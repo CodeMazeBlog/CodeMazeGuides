@@ -1,10 +1,10 @@
-﻿using System;
+﻿namespace Action_and_Func_Delegates_in_CSharp;
 
 public class Invoice
 {
     // Delegates for logging and email sending
-    public Action<string>? LogMessage { get; set; }
-    public Func<string, string, bool>? SendEmail { get; set; }
+    private Action<string>? LogMessage;
+    private Func<string, string, bool>? SendEmail;
 
     // Invoice data (just an example; in a real application, there would be more properties)
     public string InvoiceNumber { get; set; }
@@ -14,6 +14,26 @@ public class Invoice
     {
         InvoiceNumber = invoiceNumber;
         TotalAmount = totalAmount;
+    }
+
+    public void LogMessageSubscribe(Action<string>? logMessage)
+    {
+        if (logMessage == null)
+        {
+            throw new ArgumentNullException(nameof(logMessage));
+        }
+
+        LogMessage += logMessage;
+    }
+
+    public void SendEmailSubscribe(Func<string, string, bool>? sendEmail)
+    {
+        if (sendEmail == null)
+        {
+            throw new ArgumentNullException(nameof(sendEmail));
+        }
+
+        SendEmail += sendEmail;
     }
 
     public void SaveInvoice()

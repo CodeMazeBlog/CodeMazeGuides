@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Action_and_Func_Delegates_in_CSharp;
+
 namespace Test.Classes
 {
     public class InvoiceTests
@@ -12,17 +14,18 @@ namespace Test.Classes
         public void Invoice_SaveInvoice_LogsAndSendsEmail()
         {
             // Arrange
-            Invoice invoice = new Invoice("F12345", 100.50m);
+            Invoice invoice = new ("F12345", 100.50m);
             string logMessage = "";
             bool emailSent = false;
-
-            // Act
-            invoice.LogMessage += message => logMessage = message;
-            invoice.SendEmail += (subject, body) =>
+            void registerLog(string message) => logMessage = message;
+            bool emailSend(string subject, string body)
             {
                 emailSent = true;
                 return true;
-            };
+            }
+
+            invoice.LogMessageSubscribe(registerLog);
+            invoice.SendEmailSubscribe (emailSend);
             invoice.SaveInvoice();
 
             // Assert
