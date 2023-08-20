@@ -7,10 +7,11 @@ namespace FuncActionDelegateSample
         {
         }
 
-        public void PrintFullname(string firstName, string lastName)
+        public void PrintFullName(string firstName, string lastName)
         {
             Console.Write(firstName + " "+ lastName);
         }
+
         public int Subtract(int a, int b)
         {
             return a - b;
