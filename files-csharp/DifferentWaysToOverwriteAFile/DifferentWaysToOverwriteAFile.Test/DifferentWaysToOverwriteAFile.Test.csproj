@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DifferentWaysToOverwiteAFile\DifferentWaysToOverwiteAFile.csproj" />
+    <ProjectReference Include="..\DifferentWaysToOverwriteAFile\DifferentWaysToOverwriteAFile.csproj" />
   </ItemGroup>
 
 </Project>

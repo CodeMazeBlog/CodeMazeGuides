@@ -1,4 +1,4 @@
-﻿namespace DifferentWaysToOverwiteAFile.Examples;
+﻿namespace DifferentWaysToOverwriteAFile.Examples;
 
 public static class FileOpenWithFileMode
 {

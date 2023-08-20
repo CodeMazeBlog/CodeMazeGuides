@@ -1,11 +1,11 @@
-namespace DifferentWaysToOverwiteAFile.Test;
+namespace DifferentWaysToOverwriteAFile.Test;
 
 public class OverwriteExistingFileTests
 {
     private const string FilePath = "content.txt";
 
     [Test]
-    public void UseWriteAllText_ShouldOverwriteTheFile()
+    public void GivenUseWriteAllText_ThenItShouldOverwriteTheFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
@@ -26,7 +26,7 @@ public class OverwriteExistingFileTests
     }
 
     [Test]
-    public void UseWriteAllBytes_ShouldOverwriteTheFile()
+    public void GivenUseWriteAllBytes_ThenItShouldOverwriteTheFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
@@ -47,7 +47,7 @@ public class OverwriteExistingFileTests
     }
 
     [Test]
-    public void UseFileStreamWIthFileMode_ShouldOverwriteTheFile()
+    public void GivenUseFileStreamWIthFileMode_ThenItShouldOverwriteTheFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
@@ -68,7 +68,7 @@ public class OverwriteExistingFileTests
     }
 
     [Test]
-    public void UseStreamWriterOverwrite_ShouldOverwriteTheFile()
+    public void GivenUseStreamWriterOverwrite_ThenItShouldOverwriteTheFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
@@ -89,7 +89,7 @@ public class OverwriteExistingFileTests
     }
 
     [Test]
-    public void UseFileOpenWithFileMode_ShouldOverwriteTheFile()
+    public void GivenUseFileOpenWithFileMode_ThenItShouldOverwriteTheFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
@@ -110,7 +110,7 @@ public class OverwriteExistingFileTests
     }
 
     [Test]
-    public void UseStreamWriterAppend_ShouldAppendTextToFile()
+    public void GivenUseStreamWriterAppend_ThenItShouldAppendTextToFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
