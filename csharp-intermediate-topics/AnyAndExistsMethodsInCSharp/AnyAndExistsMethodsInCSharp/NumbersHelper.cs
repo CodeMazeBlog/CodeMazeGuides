@@ -2,7 +2,8 @@
 {
     public static class NumbersHelper
     {
-        public static bool CheckIfArrayIsEmpty(int[] numbers) => !numbers.Any();
+        public static bool CheckIfArrayIsEmpty(int[] numbers) 
+            => !numbers.Any();
 
         public static bool CheckIfListContainsPositiveNumbersAny(List<int> numbers) 
             => numbers.Any(x => x > 0);
