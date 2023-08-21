@@ -5,7 +5,7 @@ namespace AnyAndExistsMethodsInCSharp
 {
     public class NumbersHelperBenchmark
     {
-        [Params(10000, 100000, 1000000, 10000000)]
+        [Params(10000, 100000, 1000000)]
         public int ListSize { get; set; }
 
         private List<int> list;
@@ -17,15 +17,15 @@ namespace AnyAndExistsMethodsInCSharp
         }
 
         [Benchmark]
-        public void ComparePositiveNumbersMethods_Any()
+        public void ComparePositiveNumbersMethodsExists()
         {
-            NumbersHelper.CheckIfListContainsPositiveNumbers_Any(list);
+            NumbersHelper.CheckIfListContainsPositiveNumbersExists(list);
         }
 
         [Benchmark]
-        public void ComparePositiveNumbersMethods_Exists()
+        public void ComparePositiveNumbersMethodsAny()
         {
-            NumbersHelper.CheckIfListContainsPositiveNumbers_Exists(list);
+            NumbersHelper.CheckIfListContainsPositiveNumbersAny(list);
         }
     }
 
