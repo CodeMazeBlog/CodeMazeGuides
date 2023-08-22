@@ -15,6 +15,7 @@ public class WeatherForecastClient
         var basicAuthenticationPassword = configuration["BasicAuthenticationPassword"];
         var basicAuthenticationValue = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{basicAuthenticationUsername}:{basicAuthenticationPassword}"));
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", basicAuthenticationValue);
+
     }
     public async Task<string> GetAsync() => await _client.GetStringAsync("weatherforecast");
 }
