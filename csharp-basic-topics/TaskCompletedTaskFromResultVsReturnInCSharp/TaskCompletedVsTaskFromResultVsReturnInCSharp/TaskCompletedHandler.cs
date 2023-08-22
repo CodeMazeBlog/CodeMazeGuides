@@ -8,6 +8,7 @@ public class TaskCompletedHandler
 
         return Task.CompletedTask;
     }
+
     public void UseTaskCompletedSync()
     {
         Console.WriteLine("Performing a synchronous work.");
