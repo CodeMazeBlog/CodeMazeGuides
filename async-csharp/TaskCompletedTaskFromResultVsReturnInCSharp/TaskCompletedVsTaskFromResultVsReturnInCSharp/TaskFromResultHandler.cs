@@ -10,6 +10,7 @@ public class TaskFromResultHandler
 
         return await Task.FromResult(message);
     }
+
     public string UseTaskFromResultSync()
     {
         Console.WriteLine("Performing a synchronous work.");
