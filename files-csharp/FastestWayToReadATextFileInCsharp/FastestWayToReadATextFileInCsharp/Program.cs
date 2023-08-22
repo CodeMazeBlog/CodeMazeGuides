@@ -1,12 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
+using FastestWayToReadATextFileInCsharp;
 
-namespace FastestWayToReadATextFileInCsharp
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            BenchmarkRunner.Run<WaysToReadATextFileInCsharpBenchmark>();
-        }
-    }
-}
+BenchmarkRunner.Run<WaysToReadATextFileInCsharpBenchmark>();

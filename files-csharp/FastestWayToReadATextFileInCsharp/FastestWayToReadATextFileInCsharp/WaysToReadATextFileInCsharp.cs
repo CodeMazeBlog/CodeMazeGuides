@@ -1,86 +1,128 @@
 ﻿using System.Text;
 
-namespace FastestWayToReadATextFileInCsharp
+namespace FastestWayToReadATextFileInCsharp;
+
+public class WaysToReadATextFileInCsharp
 {
-    public class WaysToReadATextFileInCsharp
+    private readonly string _sampleFilePath;
+
+    public WaysToReadATextFileInCsharp(string sampleFilePath)
     {
-        private readonly string _sampleFilePath;
+        _sampleFilePath = sampleFilePath;
+    }
 
-        public WaysToReadATextFileInCsharp(string sampleFilePath)
+    public string UseFileReadAllLines()
+    {
+        var lines = File.ReadAllLines(_sampleFilePath);
+        var stringBuilder = new StringBuilder();
+
+        foreach (var line in lines)
         {
-            _sampleFilePath = sampleFilePath;
+            stringBuilder.AppendLine(line);
+        }
+        stringBuilder.Length -= Environment.NewLine.Length;
+
+        return stringBuilder.ToString();
+    }
+
+    public string UseFileReadAllText() => File.ReadAllText(_sampleFilePath);
+    
+    public string UseFileReadLines()
+    {
+        var lines = File.ReadLines(_sampleFilePath);
+        var stringBuilder = new StringBuilder();
+
+        foreach(var line in lines)
+        {
+            stringBuilder.AppendLine(line);
+        }
+        stringBuilder.Length -= Environment.NewLine.Length;
+
+        return stringBuilder.ToString();
+    }
+
+    public string UseStreamReaderReadLine()
+    {
+        using var streamReader = new StreamReader(_sampleFilePath);
+        var stringBuilder = new StringBuilder();
+
+        while (streamReader.ReadLine() is { } fileLine)
+        {
+            stringBuilder.AppendLine(fileLine);
+        }
+        stringBuilder.Length -= Environment.NewLine.Length;
+
+        return stringBuilder.ToString();
+    }
+
+    public string UseStreamReaderReadToEnd()
+    {
+        using var streamReader = new StreamReader(_sampleFilePath);
+
+        return streamReader.ReadToEnd();
+    }
+
+    public string UseStreamReaderReadBlock()
+    {
+        using var streamReader = new StreamReader(_sampleFilePath);
+        var buffer = new char[4096];
+        int numberRead;
+        var stringBuilder = new StringBuilder();
+
+        while ((numberRead = streamReader.ReadBlock(buffer, 0, buffer.Length)) > 0)
+        {
+            stringBuilder.Append(buffer, 0, numberRead);
         }
 
-        public string UseFileReadAllLines()
-        {
-            var stringArray = File.ReadAllLines(_sampleFilePath);
+        return stringBuilder.ToString();
+    }
 
-            return string.Join(Environment.NewLine, stringArray);
+    public string UseStreamReaderReadBlockWithSpan()
+    {
+        using var streamReader = new StreamReader(_sampleFilePath);
+        var buffer = new char[4096].AsSpan();
+        int numberRead;
+        var stringBuilder = new StringBuilder();
+
+        while ((numberRead = streamReader.ReadBlock(buffer)) > 0)
+        {
+            stringBuilder.Append(buffer[..numberRead]);
         }
 
-        public string UseFileReadAllText() => File.ReadAllText(_sampleFilePath);
-        
-        public string UseFileReadLines()
+        return stringBuilder.ToString();
+    }
+
+    public string UseBufferedStreamObject()
+    {
+        var stringBuilder = new StringBuilder();
+
+        using var fileStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+        using var bufferedStream = new BufferedStream(fileStream);
+        using var streamReader = new StreamReader(bufferedStream);
+
+        while (streamReader.ReadLine() is { } fileLine)
         {
-            var stringArray = File.ReadLines(_sampleFilePath);
-
-            return string.Join(Environment.NewLine, stringArray);
+            stringBuilder.AppendLine(fileLine);
         }
+        stringBuilder.Length -= Environment.NewLine.Length;
 
-        public string UseStreamReaderReadLine()
+        return stringBuilder.ToString();
+    }
+
+    public string UseBufferedStreamObjectWithNoFileStreamBuffer()
+    {
+        var stringBuilder = new StringBuilder();
+
+        using var fileStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, 0);
+        using var bufferedStream = new BufferedStream(fileStream);
+        using var streamReader = new StreamReader(bufferedStream);
+
+        while (streamReader.ReadLine() is { } fileLine)
         {
-            using var streamReader = new StreamReader(_sampleFilePath);
-            var stringBuilder = new StringBuilder();
-            string fileLine;
-
-            while ((fileLine = streamReader.ReadLine()) != null)
-            {
-                stringBuilder.AppendLine(fileLine);
-            }
-
-            return stringBuilder.ToString().TrimEnd();
+            stringBuilder.AppendLine(fileLine);
         }
+        stringBuilder.Length -= Environment.NewLine.Length;
 
-        public string UseStreamReaderReadToEnd()
-        {
-            using var streamReader = new StreamReader(_sampleFilePath);
-
-            return streamReader.ReadToEnd();
-        }
-
-        public string UseStreamReaderReadBlock()
-        {
-            using var streamReader = new StreamReader(_sampleFilePath);
-            var buffer = new char[1024];
-            int numberRead;
-            var stringBuilder = new StringBuilder();
-
-            while ((numberRead = streamReader.ReadBlock(buffer, 0, buffer.Length)) > 0)
-            {
-                stringBuilder.Append(buffer, 0, numberRead);
-            }
-
-            return stringBuilder.ToString();
-        }
-
-        public string UseBufferedStreamObject()
-        {
-            var stringBuilder = new StringBuilder();
-
-            using (var fileStream = new FileStream(_sampleFilePath, FileMode.Open))
-            using (var bufferedStream = new BufferedStream(fileStream))
-            using (var streamReader = new StreamReader(bufferedStream))
-            {
-                string fileLine;
-
-                while ((fileLine = streamReader.ReadLine()) != null)
-                {
-                    stringBuilder.AppendLine(fileLine);
-                }
-            }
-
-            return stringBuilder.ToString().TrimEnd();
-        }
-
+        return stringBuilder.ToString();
     }
 }
