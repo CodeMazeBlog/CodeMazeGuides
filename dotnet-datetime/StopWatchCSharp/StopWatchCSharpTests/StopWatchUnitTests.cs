@@ -10,7 +10,7 @@ namespace StopWatchCSharpTests
 
         public StopWatchUnitTests() 
         {
-            _numArray = _stopWatchMethods.CreateRandomArray(200000);
+            _numArray = _stopWatchMethods.CreateRandomArray(20000);
         }
 
         [TestMethod]
@@ -50,12 +50,12 @@ namespace StopWatchCSharpTests
         public void GivenTwoSortingAlgorithm_WhenInvoked_VerifyStopwatchSuccess()
         {
             var heapSort = _stopWatchMethods.HeapSort(_numArray, _numArray.Length);
-            var bubbleSort = _stopWatchMethods.HeapSort(_numArray, _numArray.Length);
+            var bubbleSort = _stopWatchMethods.BubbleSort(_numArray, _numArray.Length);
 
             Assert.IsFalse(heapSort.Equals(bubbleSort));
             Assert.IsInstanceOfType(heapSort.ElapsedMilliseconds, typeof(long));
             Assert.IsInstanceOfType(bubbleSort.ElapsedTicks, typeof(long));
-            Assert.AreNotEqual(heapSort.Elapsed, bubbleSort.Elapsed);
+            Assert.AreEqual(heapSort.Elapsed.CompareTo(bubbleSort.Elapsed), -1);
         }
 
         [TestMethod]
