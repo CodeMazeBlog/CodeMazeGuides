@@ -1,67 +1,60 @@
 using HideEndpointInSwagger.Controllers;
-using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
-namespace HideEndpointInSwaggerTests
+namespace HideEndpointInSwaggerTests;
+
+public class WeatherForecastControllerTests
 {
-    public class WeatherForecastControllerTests
+
+    private readonly WeatherForecastController _weatherForecastController = new();
+
+    [Fact]
+    public void WhenGet_ThenReturnFiveWeatherForecasts()
     {
+        // Act
+        var result = _weatherForecastController.Get();
 
-        private readonly WeatherForecastController _weatherForecastController;
+        // Assert
+        Assert.Equal(5, result.Count());
+    }
 
-        public WeatherForecastControllerTests()
-        {
-            _weatherForecastController = new WeatherForecastController(new NullLogger<WeatherForecastController>());
-        }
+    [Fact]
+    public void WhenGetMethodOne_ThenReturnFiveWeatherForecasts()
+    {
+        // Act
+        var result = _weatherForecastController.GetMethodOne();
 
-        [Fact]
-        public void WhenGet_ThenReturnFiveWeatherForecasts()
-        {
-            // Act
-            var result = _weatherForecastController.Get();
+        // Assert
+        Assert.Equal(5, result.Count());
+    }
 
-            // Assert
-            Assert.Equal(5, result.Count());
-        }
+    [Fact]
+    public void WhenGetMethodTwo_ThenReturnFiveWeatherForecasts()
+    {
+        // Act
+        var result = _weatherForecastController.GetMethodTwo();
 
-        [Fact]
-        public void WhenGetMethodOne_ThenReturnFiveWeatherForecasts()
-        {
-            // Act
-            var result = _weatherForecastController.GetMethodOne();
+        // Assert
+        Assert.Equal(5, result.Count());
+    }
 
-            // Assert
-            Assert.Equal(5, result.Count());
-        }
+    [Fact]
+    public void WhenGetMethodThree_ThenReturnFiveWeatherForecasts()
+    {
+        // Act
+        var result = _weatherForecastController.GetMethodThree();
 
-        [Fact]
-        public void WhenGetMethodTwo_ThenReturnFiveWeatherForecasts()
-        {
-            // Act
-            var result = _weatherForecastController.GetMethodTwo();
+        // Assert
+        Assert.Equal(5, result.Count());
+    }
 
-            // Assert
-            Assert.Equal(5, result.Count());
-        }
+    [Fact]
+    public void WhenGetMethodFour_ThenReturnFiveWeatherForecasts()
+    {
+        // Act
+        var result = _weatherForecastController.GetMethodFour();
 
-        [Fact]
-        public void WhenGetMethodThree_ThenReturnFiveWeatherForecasts()
-        {
-            // Act
-            var result = _weatherForecastController.GetMethodThree();
-
-            // Assert
-            Assert.Equal(5, result.Count());
-        }
-
-        [Fact]
-        public void WhenGetMethodFour_ThenReturnFiveWeatherForecasts()
-        {
-            // Act
-            var result = _weatherForecastController.GetMethodFour();
-
-            // Assert
-            Assert.Equal(5, result.Count());
-        }
+        // Assert
+        Assert.Equal(5, result.Count());
     }
 }

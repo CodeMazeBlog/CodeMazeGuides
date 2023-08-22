@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
-namespace HideEndpointInSwagger.Conventions
+namespace HideEndpointInSwagger.Conventions;
+
+public class HideControllerConvention : IActionModelConvention
 {
-    public class HideControllerConvention : IActionModelConvention
+    public void Apply(ActionModel action)
     {
-        public void Apply(ActionModel action)
+        if (action.ActionName == "GetMethodThree")
         {
-            if (action.ActionName == "GetMethodThree")
-            {
-                action.ApiExplorer.IsVisible = false;
-            }
+            action.ApiExplorer.IsVisible = false;
         }
     }
 }

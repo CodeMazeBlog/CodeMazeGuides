@@ -1,64 +1,65 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace HideEndpointInSwagger.Controllers
+namespace HideEndpointInSwagger.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class WeatherForecastController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    private static readonly string[] Summaries =
     {
-        private static readonly string[] Summaries = new[]
-        {
-          "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        "Freezing",
+        "Bracing",
+        "Chilly",
+        "Cool",
+        "Mild",
+        "Warm",
+        "Balmy",
+        "Hot",
+        "Sweltering",
+        "Scorching"
+    };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+    [HttpGet("GetWeatherForecast")]
+    public IEnumerable<WeatherForecast> Get()
+    {
+        return GetWeatherForecastData();
+    }
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
-        }
+    [HttpGet("GetMethodOne")]
+    [NonAction]
+    public IEnumerable<WeatherForecast> GetMethodOne()
+    {
+        return GetWeatherForecastData();
+    }
 
-        [HttpGet("GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
-        {
-            return GetWeatherForecastData();
-        }
+    [HttpGet("GetMethodTwo")]
+    [ApiExplorerSettings(IgnoreApi = true)]
+    public IEnumerable<WeatherForecast> GetMethodTwo()
+    {
+        return GetWeatherForecastData();
+    }
 
-        [HttpGet("GetMethodOne")]
-        [NonAction]
-        public IEnumerable<WeatherForecast> GetMethodOne()
-        {
-            return GetWeatherForecastData();
-        }
+    [HttpGet("GetMethodThree")]
+    public IEnumerable<WeatherForecast> GetMethodThree()
+    {
+        return GetWeatherForecastData();
+    }
 
-        [HttpGet("GetMethodTwo")]
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public IEnumerable<WeatherForecast> GetMethodTwo()
-        {
-            return GetWeatherForecastData();
-        }
+    [HttpGet("GetMethodFour")]
+    public IEnumerable<WeatherForecast> GetMethodFour()
+    {
+        return GetWeatherForecastData();
+    }
 
-        [HttpGet("GetMethodThree")]
-        public IEnumerable<WeatherForecast> GetMethodThree()
+    private IEnumerable<WeatherForecast> GetWeatherForecastData()
+    {
+        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
-            return GetWeatherForecastData();
-        }
-
-        [HttpGet("GetMethodFour")]
-        public IEnumerable<WeatherForecast> GetMethodFour()
-        {
-            return GetWeatherForecastData();
-        }
-
-        private IEnumerable<WeatherForecast> GetWeatherForecastData()
-        {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-           .ToArray();
-        }
+            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+        })
+       .ToArray();
     }
 }
