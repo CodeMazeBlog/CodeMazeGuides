@@ -59,6 +59,4 @@ namespace Test
             _courseController = new(_courseService.Object);
         }
     }
-
-
 }
