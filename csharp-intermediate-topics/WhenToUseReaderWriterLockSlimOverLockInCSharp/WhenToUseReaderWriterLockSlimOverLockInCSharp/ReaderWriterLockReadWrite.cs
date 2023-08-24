@@ -1,80 +1,50 @@
-﻿using System.Diagnostics;
-
-namespace WhenToUseReaderWriterLockSlimOverLockInCSharp
+﻿namespace WhenToUseReaderWriterLockSlimOverLockInCSharp
 {
-    public class ReaderWriterLockReadWrite
+    public class ReaderWriterLockReadWrite : BaseReaderWriter
     {
-        private static readonly Stopwatch stopwatch = new();
-        private static readonly ReaderWriterLock readerWriterLock = new();
+        private static readonly ReaderWriterLock _readerWriterLock = new();
 
-        public static readonly List<int> ListOfNumbers = new();
-
-        public static long Execute(Configuration config)
+        public override void AddNumbersToList(object? data)
         {
-            var threads = new List<Thread>();
+            var config = (data as ThreadExecutionConfiguration) ?? new ThreadExecutionConfiguration();
 
-            for (var cnt = 0; cnt < config.readerThreadsCount; cnt++)
+            _readerWriterLock.AcquireWriterLock(Timeout.InfiniteTimeSpan);
+
+            try
             {
-                var readThread = new Thread(ReadListCount);
-                threads.Add(readThread);
-            }
-
-            for (var cnt = 0; cnt < config.writerThreadsCount; cnt++)
-            {
-                var writeThread = new Thread(AddNumbersToList);
-                threads.Add(writeThread);
-            }
-
-            stopwatch.Reset();
-            stopwatch.Start();
-
-            foreach (var thread in threads)
-            {
-                thread.Start(config);
-            }
-
-            foreach (var thread in threads)
-            {
-                thread.Join();
-            }
-
-            stopwatch.Stop();
-
-            return stopwatch.ElapsedMilliseconds;
-        }
-
-        public static void AddNumbersToList(object? data)
-        {
-            var config = (data as Configuration) ?? new Configuration();
-
-            readerWriterLock.AcquireWriterLock(Timeout.InfiniteTimeSpan);
-
-            for (var cnt = 0; cnt < config.writerExecutionsCount; cnt++)
-            {
-                ListOfNumbers.Add(cnt);
-                Thread.SpinWait(config.writerExecutionDelay);
-            }
-
-            readerWriterLock.ReleaseWriterLock();
-        }
-
-        public static void ReadListCount(object? data)
-        {
-            var config = (data as Configuration) ?? new Configuration();
-
-            readerWriterLock.AcquireReaderLock(Timeout.InfiniteTimeSpan);
-
-            for (var cnt = 0; cnt < config.readerExecutionsCount; cnt++)
-            {
-                if (ListOfNumbers.Count > 0)
+                for (var cnt = 0; cnt < config.WriterExecutionsCount; cnt++)
                 {
-                    var random = new Random().Next(0, ListOfNumbers.Count - 1);
-                    _ = ListOfNumbers[random];
+                    _listOfNumbers.Add(cnt);
+                    Thread.SpinWait(config.WriterExecutionDelay);
                 }
-                Thread.SpinWait(config.readerExecutionDelay);
             }
+            finally
+            {
+                _readerWriterLock.ReleaseWriterLock();
+            }
+        }
 
-            readerWriterLock.ReleaseReaderLock();
+        public override void ReadListCount(object? data)
+        {
+            var config = (data as ThreadExecutionConfiguration) ?? new ThreadExecutionConfiguration();
+
+            _readerWriterLock.AcquireReaderLock(Timeout.InfiniteTimeSpan);
+
+            try
+            {
+                for (var cnt = 0; cnt < config.ReaderExecutionsCount; cnt++)
+                {
+                    if (_listOfNumbers.Count > 0)
+                    {
+                        _ = _listOfNumbers[GetNextRandom()];
+                    }
+                    Thread.SpinWait(config.ReaderExecutionDelay);
+                }
+            }
+            finally
+            {
+                _readerWriterLock.ReleaseReaderLock();
+            }
         }
     }
 }
