@@ -1,0 +1,28 @@
+{
+  "sampleOne": {
+    "_id": "5d8f90c0ab00ff",
+    "firstName": "john",
+    "lastName": "doe",
+    "course": {
+      "name": "history",
+      "grade": 94
+    }
+  },
+  "ballSample": {
+    "name": "footbal",
+    "shape": "round",
+    "color": "white"
+  },
+  "ballList": [
+    {
+      "name": "footbal",
+      "shape": "round",
+      "color": "white"
+    },
+    {
+      "name": "basketball",
+      "shape": "round",
+      "color": "red"
+    }
+  ]
+}
