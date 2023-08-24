@@ -16,6 +16,7 @@ public class WeatherForecastController : ControllerBase
     public async Task<IActionResult> Get()
     {
         var response = await _client.GetAsync();
+        
         return Content(response, "application/json");
     }
 }
