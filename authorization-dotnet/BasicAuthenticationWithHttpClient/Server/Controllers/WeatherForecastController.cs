@@ -48,10 +48,10 @@ namespace Server.Controllers
                         var usernamePassword = Encoding.UTF8.GetString(Convert.FromBase64String(basicAuthCredential.Parameter));
                         if (!string.IsNullOrWhiteSpace(usernamePassword))
                         {
-                            var seperatorIndex = usernamePassword.IndexOf(':');
+                            var separatorIndex = usernamePassword.IndexOf(':');
 
-                            var username = usernamePassword[..seperatorIndex];
-                            var password = usernamePassword[(seperatorIndex + 1)..];
+                            var username = usernamePassword[..separatorIndex];
+                            var password = usernamePassword[(separatorIndex + 1)..];
 
                             if (username == "codemaze" &&
                                 password == "isthebest")

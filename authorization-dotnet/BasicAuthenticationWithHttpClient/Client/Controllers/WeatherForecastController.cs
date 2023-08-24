@@ -7,6 +7,7 @@ namespace Client.Controllers;
 public class WeatherForecastController : ControllerBase
 {
     private readonly WeatherForecastClient _client;
+
     public WeatherForecastController(WeatherForecastClient client)
     {
         _client = client;
