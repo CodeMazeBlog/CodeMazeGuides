@@ -8,32 +8,32 @@ namespace StringFormattableStringTests
         private readonly FormattableStringsMethods _formattableStringMethods = new();
     
         [TestMethod]
-        public void GivenAStringObject_WhenStringOperationsApplied_VerifyAccurateResults()
+        public void WhenStringOperationsAppliedOnAStringObject_ThenVerifyAccurateResults()
         {
-            const string studentName = "John";
-            const int studentAge = 30;
-            var sampleString = _formattableStringMethods.StringExample(studentName, studentAge);
+            const string StudentName = "John";
+            const int StudentAge = 30;
+            var sampleString = _formattableStringMethods.StringExample(StudentName, StudentAge);
 
             Assert.IsInstanceOfType(sampleString, typeof(string)); 
-            Assert.IsTrue(sampleString.Contains(studentName));
-            Assert.IsTrue(sampleString.Contains(studentAge.ToString()));
+            Assert.IsTrue(sampleString.Contains(StudentName));
+            Assert.IsTrue(sampleString.Contains(StudentAge.ToString()));
         }
 
         [TestMethod]
-        public void GivenAFormattableStringObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
+        public void WhenFormattableStringOperationsApplied_ThenVerifyAccurateResults()
         {
-            const string studentName = "Sean";
-            const int studentAge = 40;
-            var sampleFormattableString = _formattableStringMethods.FormattableStringExample(studentName, studentAge);
+            const string StudentName = "Sean";
+            const int StudentAge = 40;
+            var sampleFormattableString = _formattableStringMethods.FormattableStringExample(StudentName, StudentAge);
 
             Assert.IsInstanceOfType(sampleFormattableString, typeof(FormattableString));
-            Assert.AreEqual(studentName, sampleFormattableString.GetArgument(0));
-            Assert.AreEqual(studentAge, sampleFormattableString.GetArgument(1));
+            Assert.AreEqual(StudentName, sampleFormattableString.GetArgument(0));
+            Assert.AreEqual(StudentAge, sampleFormattableString.GetArgument(1));
             Assert.AreEqual(sampleFormattableString.ArgumentCount, 2);
         }
 
         [TestMethod]
-        public void GivenAFormattableStringDateObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
+        public void WhenFormattableStringOperationsAppliedOnDateObject_ThenVerifyAccurateResults()
         {
             var currentDate = DateTime.Now;
             var sampleFormattableString = _formattableStringMethods.FormattableStringDateExample(currentDate);
@@ -44,7 +44,7 @@ namespace StringFormattableStringTests
         }
 
         [TestMethod]
-        public void GivenAFormattableStringLogObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
+        public void WhenFormattableStringOperationsAppliedOnLogObjects_ThenVerifyAccurateResults()
         {
             var level = LogLevel.Information;
             var message = "Logging method invoked";
@@ -57,7 +57,7 @@ namespace StringFormattableStringTests
         }
 
         [TestMethod]
-        public void GivenAFormattableDynamicStringObject_WhenFormattableStringOperationsApplied_VerifyAccurateResults()
+        public void WhenFormattableStringOperationsAppliedOnDynamicStringObject_ThenVerifyAccurateResults()
         {
             const string itemName = "Laptop";
             const int itemCount = 3;
@@ -69,7 +69,7 @@ namespace StringFormattableStringTests
         }
 
         [TestMethod]
-        public void GivenAnIFormattableStringObject_WhenIFormattableStringOperationsApplied_VerifyAccurateResults()
+        public void WhenIFormattableStringOperationsApplied_ThenVerifyAccurateResults()
         {
             var temperature = new TemperatureFormat(20.0);
             
