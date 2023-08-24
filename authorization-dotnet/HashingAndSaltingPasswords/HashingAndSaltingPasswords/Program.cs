@@ -1,1 +1,0 @@
-﻿Console.WriteLine("Please, check test project for examples!");
