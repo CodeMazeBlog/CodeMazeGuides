@@ -26,11 +26,11 @@ namespace GettingStartedASPNETMongoDB.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Course course)
         {
-            await _CourseService.Create(course);
+            var createdCourse = await _CourseService.Create(course);
 
             return CreatedAtAction(nameof(GetById),
-                new { id = course.Id },
-                course);
+                new { id = createdCourse.Id },
+                createdCourse);
         }
     }
 }

@@ -77,7 +77,8 @@ namespace Test
 
             var model = Assert.IsAssignableFrom<IEnumerable<Student>>(okResult.Value);
 
-            Assert.Equal(students.Count, model.Count());           
+            Assert.Equal(students.Count, model.Count());
+            Assert.Equal(students, model);
         }
 
         [Fact]
@@ -122,10 +123,8 @@ namespace Test
 
             _studentService.Setup(x => x.Update(id, _student)).Returns(Task.CompletedTask);
 
-
             //Controller
             _studentController = new StudentsController(_studentService.Object, _courseService.Object);
-
         }
     }
 }

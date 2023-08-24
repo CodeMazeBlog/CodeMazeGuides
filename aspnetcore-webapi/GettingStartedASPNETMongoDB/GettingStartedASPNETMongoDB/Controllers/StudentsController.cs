@@ -28,11 +28,11 @@ namespace GettingStartedASPNETMongoDB.Controllers
         {
             var student = await _studentService.GetById(id);
 
-            if (student == null)
+            if (student is null)
             {
                 return NotFound();
             }
-
+                
             if (student.Courses?.Count > 0)
             {
                 var courseList = new List<Course>();
@@ -61,11 +61,11 @@ namespace GettingStartedASPNETMongoDB.Controllers
                 return BadRequest("Invalid request object");
             }
 
-            await _studentService.Create(student);
+            var createdStudent = await _studentService.Create(student);
 
             return CreatedAtAction(nameof(GetById),
-                new { id = student.Id },
-                student);
+                new { id = createdStudent.Id },
+                createdStudent);
         }
 
         [HttpPut("{id:length(24)}")]
@@ -78,7 +78,7 @@ namespace GettingStartedASPNETMongoDB.Controllers
 
             var queriedStudent = await _studentService.GetById(id);
 
-            if (queriedStudent == null)
+            if (queriedStudent is null)
             {
                 return NotFound();
             }
@@ -93,7 +93,7 @@ namespace GettingStartedASPNETMongoDB.Controllers
         {
             var student = await _studentService.GetById(id);
 
-            if (student == null)
+            if (student is null)
             {
                 return NotFound();
             }
