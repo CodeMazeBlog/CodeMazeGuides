@@ -1,8 +1,12 @@
 ﻿
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Order;
 
 namespace AnyAndExistsMethodsInCSharp
 {
+    [MemoryDiagnoser]
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class NumbersHelperBenchmark
     {
         [Params(10000, 100000, 1000000)]
