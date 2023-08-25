@@ -24,5 +24,6 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [How to Convert String to Title Case in C#](https://code-maze.com/csharp-convert-string-title-case/)
 - [How to Reverse a String in C#](https://code-maze.com/csharp-reverse-string/)
 - [ToString Method in C#](https://code-maze.com/tostring-method-csharp/)
+- [Efficiently Converting Strings With UTF-8 String Literals in C#](https://code-maze.com/csharp-efficiently-converting-strings-with-utf-8-string-literals/)
 - [Using Variables Inside Strings in C#](https://code-maze.com/csharp-using-variables-inside-strings/)
 - [C# String Interpolation](https://code-maze.com/csharp-string-interpolation/)
