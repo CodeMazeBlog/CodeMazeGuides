@@ -1,3 +1,5 @@
+using FuncDelegates;
+
 namespace Tests
 {
     public class FuncDelegatesUnitTest
