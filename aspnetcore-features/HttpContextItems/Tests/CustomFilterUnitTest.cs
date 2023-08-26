@@ -31,7 +31,7 @@ namespace Tests
 
             // Assert
             Assert.True(context.HttpContext.Items.ContainsKey(CustomFilter.FilterObjectKey));
-            Assert.Equal("Please wait...\n", context.HttpContext.Items[CustomFilter.FilterObjectKey]);
+            Assert.Equal("Please wait...", context.HttpContext.Items[CustomFilter.FilterObjectKey]);
         }
 
         [Fact]
