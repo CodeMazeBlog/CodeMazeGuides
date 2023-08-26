@@ -2,13 +2,13 @@
 
 public static class FileWriter
 {
-    public static void OverwriteFileWithBytes(string filePath, byte[] contentToWrite)
+    public static void OverwriteFileWithBytes(string filePath, byte[] fileContent)
     {
-        File.WriteAllBytes(filePath, contentToWrite);
+        File.WriteAllBytes(filePath, fileContent);
     }
 
-    public static void OverwriteFileWithText(string filePath, string contentToWrite)
+    public static void OverwriteFileWithText(string filePath, string fileContent)
     {
-        File.WriteAllText(filePath, contentToWrite);
+        File.WriteAllText(filePath, fileContent);
     }
 }

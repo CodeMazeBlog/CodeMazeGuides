@@ -4,15 +4,19 @@ public class OverwriteExistingFileTests
 {
     private const string FilePath = "content.txt";
 
+    [SetUp]
+    public void Setup()
+    {
+        //Assert that the file does not exist
+        Assert.That(File.Exists(FilePath), Is.False);
+    }
+
     [Test]
-    public void GivenUseWriteAllText_ThenItShouldOverwriteTheFile()
+    public void GivenFileWriterOverwriteFileWithText_ThenItShouldOverwriteTheFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
         const string newContent = "Hello, Code Maze!";
-
-        //Assert that the file does not exist
-        Assert.That(File.Exists(FilePath), Is.False);
 
         //Create the test file and write the original content
         File.WriteAllText(FilePath, originalContent);
@@ -26,14 +30,11 @@ public class OverwriteExistingFileTests
     }
 
     [Test]
-    public void GivenUseWriteAllBytes_ThenItShouldOverwriteTheFile()
+    public void GivenFileWriterOverwriteFileWithBytes_ThenItShouldOverwriteTheFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
         byte[] newContent = { 56, 71, 21, 17, 32 };
-
-        //Assert that the file does not exist
-        Assert.That(File.Exists(FilePath), Is.False);
 
         //Create the test file and write the original content
         File.WriteAllText(FilePath, originalContent);
@@ -47,14 +48,11 @@ public class OverwriteExistingFileTests
     }
 
     [Test]
-    public void GivenUseFileStreamWIthFileMode_ThenItShouldOverwriteTheFile()
+    public void GivenFileStreamWithFileModeOverwriteFile_ThenItShouldOverwriteTheFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
         byte[] newContent = { 56, 71, 21, 17, 32 };
-
-        //Assert that the file does not exist
-        Assert.That(File.Exists(FilePath), Is.False);
 
         //Create the test file and write the original content
         File.WriteAllText(FilePath, originalContent);
@@ -68,20 +66,17 @@ public class OverwriteExistingFileTests
     }
 
     [Test]
-    public void GivenUseStreamWriterOverwrite_ThenItShouldOverwriteTheFile()
+    public void GivenStreamWriterOverwriteFile_ThenItShouldOverwriteTheFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
         const string newContent = "Hello, Code Maze!";
 
-        //Assert that the file does not exist
-        Assert.That(File.Exists(FilePath), Is.False);
-
         //Create the test file and write the original content
         File.WriteAllText(FilePath, originalContent);
 
         //Act
-        StreamWriterClass.OverwriteFile(FilePath, newContent);
+        Examples.StreamWriter.OverwriteFile(FilePath, newContent);
         var actualContent = File.ReadAllText(FilePath);
 
         //Assert
@@ -89,14 +84,11 @@ public class OverwriteExistingFileTests
     }
 
     [Test]
-    public void GivenUseFileOpenWithFileMode_ThenItShouldOverwriteTheFile()
+    public void GivenFileOpenWithFileModeOverwriteFile_ThenItShouldOverwriteTheFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
         byte[] newContent = { 56, 71, 21, 17, 32 };
-
-        //Assert that the file does not exist
-        Assert.That(File.Exists(FilePath), Is.False);
 
         //Create the test file and write the original content
         File.WriteAllText(FilePath, originalContent);
@@ -110,21 +102,18 @@ public class OverwriteExistingFileTests
     }
 
     [Test]
-    public void GivenUseStreamWriterAppend_ThenItShouldAppendTextToFile()
+    public void GivenStreamWriterAppendFile_ThenItShouldAppendTextToFile()
     {
         //Arrange
         const string originalContent = "Hello, World!";
         const string newContent = "Hello, Code Maze!";
         const string expectedContent = originalContent + newContent;
 
-        //Assert that the file does not exist
-        Assert.That(File.Exists(FilePath), Is.False);
-
         //Create the test file and write the original content
         File.WriteAllText(FilePath, originalContent);
 
         //Act
-        StreamWriterClass.AppendFile(FilePath, newContent);
+        Examples.StreamWriter.AppendFile(FilePath, newContent);
         var actualContent = File.ReadAllText(FilePath);
 
         //Assert
