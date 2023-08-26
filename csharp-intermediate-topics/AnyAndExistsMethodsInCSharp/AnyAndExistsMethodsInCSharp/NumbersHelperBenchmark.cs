@@ -1,6 +1,4 @@
-﻿
-using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Configs;
+﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 
 namespace AnyAndExistsMethodsInCSharp
