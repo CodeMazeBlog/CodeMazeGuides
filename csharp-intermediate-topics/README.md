@@ -33,6 +33,7 @@ This section contains the topics considered intermediate level in C#.
 - [Partial Classes In C# And How to Use Them](https://code-maze.com/csharp-partial-classes-and-how-to-use-them/)
 - [Path Class in C#](https://code-maze.com/csharp-path-class/)
 - [Polymorphism in C#](https://code-maze.com/csharp-polymorphism/)
+- [Readonly Modifier in C#](https://code-maze.com/csharp-readonly-modifier/)
 - [Records in C#](https://code-maze.com/csharp-records/)
 - [Reflection in C#](https://code-maze.com/csharp-reflection/)
 - [How to Implement Retry Logic in C#](https://code-maze.com/csharp-implement-retry-logic/)
