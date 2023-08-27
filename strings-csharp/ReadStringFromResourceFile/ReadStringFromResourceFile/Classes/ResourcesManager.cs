@@ -10,32 +10,25 @@ public class ResourcesManager
     private ResourceManager _resources;
     private CultureInfo? _culture;
 
-    public ResourcesManager(string resourceFile, Assembly? assembly = null, CultureInfo? cultureInfo = null)
+    public ResourcesManager(string resourceBasePath, Assembly? assembly = null, CultureInfo? cultureInfo = null)
     {
         _assembly = assembly ?? Assembly.GetExecutingAssembly();
 
         _culture = cultureInfo ?? CultureInfo.CurrentCulture;
-        _resources = new ResourceManager(resourceFile, _assembly);
+        _resources = new ResourceManager(resourceBasePath, _assembly);
 
         if (_resources is null)
-            throw new Exception($"Resource file {resourceFile} not found.");
+            throw new Exception($"Resource path {resourceBasePath} not found.");
     }
 
     public string? GetString(string key)
     {
-        try
-        {
-            var resource = GetResource<string>(key);
+        var resource = GetResource<string>(key);
             
-            if (!resource.IsValid)
-                return string.Empty;
+        if (!resource.IsValid)
+            return string.Empty;
 
-            return resource.Item;
-        }
-        catch
-        {
-            return null;
-        }
+        return resource.Item;
     }
 
     public ResourceItem<T> GetResource<T>(string key)
@@ -44,14 +37,14 @@ public class ResourcesManager
         {
             var obj = _resources.GetObject(key, _culture);
 
-            if (obj is T)
-                return new ResourceItem<T>((T)obj);
-            else
-                return new ResourceItem<T>();
+            if (obj is T item)
+                return new ResourceItem<T>(item);
+
+            return new ResourceItem<T>($"Resource {key} doesn´t exist!");
         }
-        catch
+        catch (MissingManifestResourceException ex)
         {
-            return new ResourceItem<T>();
+            return new ResourceItem<T>("Invalid Resource file!");
         }
     }
 }

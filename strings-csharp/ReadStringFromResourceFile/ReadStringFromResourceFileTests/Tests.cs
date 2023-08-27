@@ -6,14 +6,8 @@ namespace Tests
     [TestClass]
     public class Tests 
     {
-        ResourcesManager rmEnglish;
-        ResourcesManager rmPortuguese;
-
-        public Tests()
-        {
-            rmEnglish = new ResourcesManager(@"ReadStringFromResourceFile.Resources.Texts.English");
-            rmPortuguese = new ResourcesManager(@"ReadStringFromResourceFile.Resources.Texts.Portuguese");
-        }
+        ResourcesManager rmEnglish = new ResourcesManager(@"ReadStringFromResourceFile.Resources.Texts.English");
+        ResourcesManager rmPortuguese = new ResourcesManager(@"ReadStringFromResourceFile.Resources.Texts.Portuguese");
 
         [TestMethod]
         public void GivenEnglishResourceFileHandler_WhenRunIsCalled_ThenResourceStringFetchedIsCorrect()
@@ -28,7 +22,7 @@ namespace Tests
         {
             var greetingsText = rmPortuguese.GetString("GREETINGS_TEXT");
 
-            Assert.AreEqual("Ol·, como est·?", greetingsText);
+            Assert.AreEqual("Ol√°, como est√°?", greetingsText);
         }
     }
 }
