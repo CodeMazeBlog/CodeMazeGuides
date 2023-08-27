@@ -9,26 +9,26 @@ namespace Tests
         {
             var account = new Account
             {
-                Balance = 1000
+                Balance = 100000
             };
 
-            var threads = new Thread[10];
+            using var synch = new ManualResetEventSlim(false);
 
-            for (var i = 0; i < threads.Length; i++)
+            var tasks = new Task[1000];
+
+            for (var i = 0; i < tasks.Length; i++)
             {
-                threads[i] = new Thread(() =>
+                tasks[i] = Task.Run(() =>
                 {
+                    synch.Wait();
                     account.Withdraw(100);
                 });
-                threads[i].Start();
             }
 
-            foreach (var thread in threads)
-            {
-                thread.Join();
-            }
+            synch.Set();
+            Task.WaitAll(tasks);
 
-            Assert.NotEqual(1000, account.Balance);
+            Assert.NotEqual(100000, account.Balance);
         }
 
         [Fact]
@@ -36,24 +36,24 @@ namespace Tests
         {
             var account = new Account
             {
-                BalanceVolatile = 1000
+                BalanceVolatile = 100000
             };
 
-            var threads = new Thread[10];
+            using var synch = new ManualResetEventSlim(false);
 
-            for (var i = 0; i < threads.Length; i++)
+            var tasks = new Task[1000];
+
+            for (var i = 0; i < tasks.Length; i++)
             {
-                threads[i] = new Thread(() =>
+                tasks[i] = Task.Run(() =>
                 {
+                    synch.Wait();
                     account.WithdrawVolatile(100);
                 });
-                threads[i].Start();
             }
 
-            foreach (var thread in threads)
-            {
-                thread.Join();
-            }
+            synch.Set();
+            Task.WaitAll(tasks);
 
             Assert.NotEqual(1000, account.BalanceVolatile);
         }
@@ -63,24 +63,24 @@ namespace Tests
         {
             var account = new Account
             {
-                BalanceLock = 1000
+                BalanceLock = 100000
             };
 
-            var threads = new Thread[10];
+            using var synch = new ManualResetEventSlim(false);
 
-            for (var i = 0; i < threads.Length; i++)
+            var tasks = new Task[1000];
+
+            for (var i = 0; i < tasks.Length; i++)
             {
-                threads[i] = new Thread(() =>
+                tasks[i] = Task.Run(() =>
                 {
+                    synch.Wait();
                     account.WithdrawLock(100);
                 });
-                threads[i].Start();
             }
 
-            foreach (var thread in threads)
-            {
-                thread.Join();
-            }
+            synch.Set();
+            Task.WaitAll(tasks);
 
             Assert.Equal(0, account.BalanceLock);
         }
@@ -90,24 +90,24 @@ namespace Tests
         {
             var account = new Account
             {
-                BalanceInterlocked = 1000
+                BalanceInterlocked = 100000
             };
 
-            var threads = new Thread[10];
+            using var synch = new ManualResetEventSlim(false);
 
-            for (var i = 0; i < threads.Length; i++)
+            var tasks = new Task[1000];
+
+            for (var i = 0; i < tasks.Length; i++)
             {
-                threads[i] = new Thread(() =>
+                tasks[i] = Task.Run(() =>
                 {
+                    synch.Wait();
                     account.WithdrawInterlocked(100);
                 });
-                threads[i].Start();
             }
 
-            foreach (var thread in threads)
-            {
-                thread.Join();
-            }
+            synch.Set();
+            Task.WaitAll(tasks);
 
             Assert.Equal(0, account.BalanceInterlocked);
         }
