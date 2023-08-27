@@ -6,18 +6,18 @@ namespace ReadStringFromResourceFile;
 
 public class ResourcesManager
 {
-    private Assembly? assembly;
-    private ResourceManager resources;
-    private CultureInfo? culture;
+    private Assembly? _assembly;
+    private ResourceManager _resources;
+    private CultureInfo? _culture;
 
     public ResourcesManager(string resourceFile, Assembly? assembly = null, CultureInfo? cultureInfo = null)
     {
-        assembly = assembly ?? Assembly.GetExecutingAssembly();
+        _assembly = assembly ?? Assembly.GetExecutingAssembly();
 
-        culture = cultureInfo ?? CultureInfo.CurrentCulture;
-        resources = new ResourceManager(resourceFile, assembly);
+        _culture = cultureInfo ?? CultureInfo.CurrentCulture;
+        _resources = new ResourceManager(resourceFile, _assembly);
 
-        if (resources is null)
+        if (_resources is null)
             throw new Exception($"Resource file {resourceFile} not found.");
     }
 
@@ -42,7 +42,7 @@ public class ResourcesManager
     {
         try
         {
-            var obj = resources.GetObject(key, culture);
+            var obj = _resources.GetObject(key, _culture);
 
             if (obj is T)
                 return new ResourceItem<T>((T)obj);

@@ -1,14 +1,14 @@
 ﻿namespace ReadStringFromResourceFile;
 public class ResourceItem<T>
 {
-    private T? item;
+    private T? _item;
 
     public ResourceItem(T? item = default(T))
     {
-        this.item = item;
+        _item = item;
     }
 
-    public T? Item { get => item; }
+    public T? Item { get => _item; }
     public bool IsValid => Item != null;
 
     public override string ToString()
