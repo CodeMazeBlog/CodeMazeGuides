@@ -8,6 +8,8 @@
 <p>Topping: @selectedTopping</p>
 <p>Total Cost: @totalCost</p>
 
+<p>Grand Total: @grandTotal</p>
+
 <p>Please choose your topping from the list below:</p>
 
 <select class="select-element" @onchange="@handleChange">
@@ -17,15 +19,26 @@
     }
 </select>
 
+<p>Please choose second topping from the list below:</p>
+
+<select class="select-element" @bind="selectedSecondTopping" @bind:after="calculateGrandTotal">
+    @foreach (var topping in toppings)
+    {
+        <option value="@topping.Id">@topping.Name +$@topping.Price</option>
+    }
+</select>
+
 @code
 {
     public record Topping(int Id, string Name, double Price);
     public string? selectedTopping;
+    public string? selectedSecondTopping;
     public static double baseBurgerCost = 5.4;
     public double totalCost = baseBurgerCost;
+    public double grandTotal;
 
     public List<Topping> toppings = new List<Topping>()
-    {
+{
         new Topping(1, "No Topping", 0),
         new Topping(2, "Cheese", 2.4),
         new Topping(3, "Onions", 0.7),
@@ -42,6 +55,19 @@
             {
                 selectedTopping = topping.Name;
                 totalCost = Math.Round(baseBurgerCost + topping.Price, 2);
+            }
+        }
+    }
+
+    public async Task calculateGrandTotal()
+    {
+        await Task.Delay(2000);
+
+        @foreach (var topping in toppings)
+        {
+            if (topping.Id == Int32.Parse(selectedSecondTopping))
+            {
+                grandTotal = Math.Round(totalCost + topping.Price, 2);
             }
         }
     }
