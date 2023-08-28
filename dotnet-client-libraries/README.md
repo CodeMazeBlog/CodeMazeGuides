@@ -19,6 +19,7 @@ This section contains the topics about the client libraries in .NET.
 - [How to Use SFTP For Secure File Upload in .NET](https://code-maze.com/dotnet-sftp-secure-file-upload/)
 - [HttpClient vs RestSharp - Which One to Use in .NET](https://code-maze.com/httpclient-vs-restsharp/)
 - [Introduction to PDF Manipulation With IText (Formerl ITextSharp)](https://code-maze.com/csharp-pdf-manipulation-with-itext/)
+- [Adding Header and Footer to a PDF Using the iText Library](https://code-maze.com/csharp-adding-header-and-footer-to-pdf-using-itext-library/)
 - [Tracking Application Health With OpenTelemetry Metrics in .NET](https://code-maze.com/tracking-dotnet-opentelemetry-metrics/)
 - [Tracing .NET Applications Easily With OpenTelemetry](https://code-maze.com/tracing-dotnet-applications-opentelemetry/)
 - [Extending LINQ to Objects With MoreLINQ Library](https://code-maze.com/morelinq-library-linq/)
