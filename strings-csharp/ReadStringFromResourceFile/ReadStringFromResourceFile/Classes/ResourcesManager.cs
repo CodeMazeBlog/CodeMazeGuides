@@ -6,33 +6,47 @@ namespace ReadStringFromResourceFile;
 
 public class ResourcesManager
 {
-    private Assembly? _assembly;
-    private ResourceManager _resources;
-    private CultureInfo? _culture;
+    private readonly ResourceManager _resources;
+    private readonly CultureInfo? _culture;
+    private readonly bool _isValid;
 
     public ResourcesManager(string resourceBasePath, Assembly? assembly = null, CultureInfo? cultureInfo = null)
     {
-        _assembly = assembly ?? Assembly.GetExecutingAssembly();
-
         _culture = cultureInfo ?? CultureInfo.CurrentCulture;
-        _resources = new ResourceManager(resourceBasePath, _assembly);
 
-        if (_resources is null)
-            throw new Exception($"Resource path {resourceBasePath} not found.");
+        _resources = new ResourceManager(resourceBasePath, assembly ?? Assembly.GetExecutingAssembly());
+
+        try
+        {
+            using (var rs = _resources.GetResourceSet(_culture, true, true))
+            {
+                _isValid = rs != null;
+            }
+
+            _resources.ReleaseAllResources();
+        }
+        catch (MissingManifestResourceException)
+        {
+            _isValid = false;
+            return;
+        }
     }
+
+
+    public bool IsValid => _isValid;
 
     public string? GetString(string key)
     {
         var resource = GetResource<string>(key);
-            
-        if (!resource.IsValid)
-            return string.Empty;
-
-        return resource.Item;
+        
+        return !resource.IsValid ? string.Empty : resource.Item;
     }
 
     public ResourceItem<T> GetResource<T>(string key)
     {
+        if (!IsValid)
+            return new ResourceItem<T>("Invalid Resource file!");
+
         try
         {
             var obj = _resources.GetObject(key, _culture);
@@ -42,7 +56,7 @@ public class ResourcesManager
 
             return new ResourceItem<T>($"Resource {key} doesn´t exist!");
         }
-        catch (MissingManifestResourceException ex)
+        catch (MissingManifestResourceException)
         {
             return new ResourceItem<T>("Invalid Resource file!");
         }

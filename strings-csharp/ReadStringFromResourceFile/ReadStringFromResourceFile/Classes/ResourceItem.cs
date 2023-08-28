@@ -1,10 +1,10 @@
 ﻿namespace ReadStringFromResourceFile;
-public class ResourceItem<T>
+public sealed class ResourceItem<T>
 {
     private readonly string? _errorMessage;
     private readonly T? _item;
 
-    public ResourceItem(T? item = default)
+    public ResourceItem(T item)
     {
         _item = item;
     }

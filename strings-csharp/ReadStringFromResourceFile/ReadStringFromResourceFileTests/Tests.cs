@@ -6,8 +6,8 @@ namespace Tests
     [TestClass]
     public class Tests 
     {
-        ResourcesManager rmEnglish = new ResourcesManager(@"ReadStringFromResourceFile.Resources.Texts.English");
-        ResourcesManager rmPortuguese = new ResourcesManager(@"ReadStringFromResourceFile.Resources.Texts.Portuguese");
+        readonly ResourcesManager rmEnglish = new(@"ReadStringFromResourceFile.Resources.Texts.English");
+        readonly ResourcesManager rmPortuguese = new(@"ReadStringFromResourceFile.Resources.Texts.Portuguese");
 
         [TestMethod]
         public void GivenEnglishResourceFileHandler_WhenRunIsCalled_ThenResourceStringFetchedIsCorrect()
@@ -23,6 +23,22 @@ namespace Tests
             var greetingsText = rmPortuguese.GetString("GREETINGS_TEXT");
 
             Assert.AreEqual("Olá, como está?", greetingsText);
+        }
+
+        [TestMethod]
+        public void GivenPortugueseResourceFileHandler_WhenInstantiatingInvalidResourceBasePath_ThenSetIsValidAsFalse()
+        {
+            ResourcesManager localResourceFile = new(@"ReadStringFromResourceFile.Resources.Texts.Portuguese_Invalid");
+
+            Assert.AreEqual(false, localResourceFile.IsValid);
+        }
+
+        [TestMethod]
+        public void GivenPortugueseResourceFileHandler_WhenRequestingInvalidResource_ThenReturnsInvalidResourceItem()
+        {
+            var greetingsText = rmPortuguese.GetString("GREETINGS_DONT_EXIST");
+
+            Assert.AreEqual(0, greetingsText.Length);
         }
     }
 }
