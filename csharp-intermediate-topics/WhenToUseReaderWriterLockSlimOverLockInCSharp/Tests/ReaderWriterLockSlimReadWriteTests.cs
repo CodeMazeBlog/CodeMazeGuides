@@ -24,7 +24,7 @@ namespace Tests
         {
             var readerWriterLockSlimReadWrite = new ReaderWriterLockSlimReadWrite();
 
-            readerWriterLockSlimReadWrite.AddNumbersToList(_config);
+            readerWriterLockSlimReadWrite.AddNumbersToList(_config.WriterExecutionsCount, _config.WriterExecutionDelay);
 
             Assert.AreEqual(_config.WriterExecutionsCount, readerWriterLockSlimReadWrite.ListOfNumbers.Count);
         }
@@ -34,7 +34,7 @@ namespace Tests
         {
             var readerWriterLockSlimReadWrite = new ReaderWriterLockSlimReadWrite();
 
-            readerWriterLockSlimReadWrite.ReadListCount(_config);
+            readerWriterLockSlimReadWrite.ReadListCount(_config.ReaderExecutionsCount, _config.ReaderExecutionDelay);
 
             Assert.AreEqual(0, readerWriterLockSlimReadWrite.ListOfNumbers.Count);
         }
@@ -44,7 +44,7 @@ namespace Tests
         {
             var readerWriterLockSlimReadWrite = new ReaderWriterLockSlimReadWrite();
 
-            readerWriterLockSlimReadWrite.ReadOrAdd(_config);
+            readerWriterLockSlimReadWrite.ReadOrAdd(_config.WriterExecutionDelay);
 
             Assert.AreEqual(1, readerWriterLockSlimReadWrite.ListOfNumbers.Count);
         }

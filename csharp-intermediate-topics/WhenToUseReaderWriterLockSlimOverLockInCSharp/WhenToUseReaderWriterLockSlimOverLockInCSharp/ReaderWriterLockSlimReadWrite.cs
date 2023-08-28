@@ -4,18 +4,16 @@
     {
         private static readonly ReaderWriterLockSlim _readerWriterLockSlim = new();
 
-        public override void AddNumbersToList(object? data)
+        public override void AddNumbersToList(int writerExecutionsCount, int writerExecutionDelay)
         {
-            var config = (data as ThreadExecutionConfiguration) ?? new ThreadExecutionConfiguration();
-
             _readerWriterLockSlim.EnterWriteLock();
 
             try
             {
-                for (var cnt = 0; cnt < config.WriterExecutionsCount; cnt++)
+                for (var cnt = 0; cnt < writerExecutionsCount; cnt++)
                 {
                     _listOfNumbers.Add(cnt);
-                    Thread.SpinWait(config.WriterExecutionDelay);
+                    Thread.SpinWait(writerExecutionDelay);
                 }
             }
             finally
@@ -24,21 +22,19 @@
             }
         }
 
-        public override void ReadListCount(object? data)
+        public override void ReadListCount(int readerExecutionsCount, int readerExecutionDelay)
         {
-            var config = (data as ThreadExecutionConfiguration) ?? new ThreadExecutionConfiguration();
-
             _readerWriterLockSlim.EnterReadLock();
 
             try
             {
-                for (var cnt = 0; cnt < config.ReaderExecutionsCount; cnt++)
+                for (var cnt = 0; cnt < readerExecutionsCount; cnt++)
                 {
                     if (_listOfNumbers.Count > 0)
                     {
-                        _ = _listOfNumbers[GetNextRandom()];
+                        _ = _listOfNumbers[Random.Shared.Next(0, _listOfNumbers.Count)];
                     }
-                    Thread.SpinWait(config.ReaderExecutionDelay);
+                    Thread.SpinWait(readerExecutionDelay);
                 }
             }
             finally
@@ -47,11 +43,9 @@
             }
         }
 
-        public void ReadOrAdd(object? data)
+        public void ReadOrAdd(int writerExecutionDelay)
         {
-            var config = (data as ThreadExecutionConfiguration) ?? new ThreadExecutionConfiguration();
-
-            var random = GetNextRandom();
+            var random = Random.Shared.Next(0, _listOfNumbers.Count);
 
             _readerWriterLockSlim.EnterUpgradeableReadLock();
 
@@ -64,7 +58,7 @@
                     try
                     {
                         _listOfNumbers.Add(random);
-                        Thread.SpinWait(config.WriterExecutionDelay);
+                        Thread.SpinWait(writerExecutionDelay);
                     }
                     finally
                     {

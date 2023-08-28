@@ -4,7 +4,6 @@ namespace WhenToUseReaderWriterLockSlimOverLockInCSharp
 {
     public abstract class BaseReaderWriter
     {
-        private readonly Stopwatch _stopwatch = new();
         protected readonly List<int> _listOfNumbers = new();
 
         public List<int> ListOfNumbers
@@ -12,47 +11,39 @@ namespace WhenToUseReaderWriterLockSlimOverLockInCSharp
             get { return _listOfNumbers; }
         }
 
-        protected int GetNextRandom()
-        {
-            var maxNumber = _listOfNumbers.Count > 0 ? _listOfNumbers.Count - 1 : 0;
-            return Random.Shared.Next(0, maxNumber);
-        }
-
         public long Execute(ThreadExecutionConfiguration config)
         {
-            var threads = new List<Thread>();
+            var tasks = new List<Task>();
 
             for (var cnt = 0; cnt < config.ReaderThreadsCount; cnt++)
             {
-                var readThread = new Thread(ReadListCount);
-                threads.Add(readThread);
+                var readTask = new Task(() => ReadListCount(config.ReaderExecutionsCount, config.ReaderExecutionDelay));
+                tasks.Add(readTask);
             }
 
             for (var cnt = 0; cnt < config.WriterThreadsCount; cnt++)
             {
-                var writeThread = new Thread(AddNumbersToList);
-                threads.Add(writeThread);
+                var writeTask = new Task(() => AddNumbersToList(config.WriterExecutionsCount, config.WriterExecutionDelay));
+                tasks.Add(writeTask);
             }
 
-            _stopwatch.Reset();
-            _stopwatch.Start();
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-            foreach (var thread in threads)
+            foreach (var task in tasks)
             {
-                thread.Start(config);
+                task.Start();
             }
 
-            foreach (var thread in threads)
-            {
-                thread.Join();
-            }
-            _stopwatch.Stop();
+            Task.WhenAll(tasks).Wait();
 
-            return _stopwatch.ElapsedMilliseconds;
+            stopwatch.Stop();
+
+            return stopwatch.ElapsedMilliseconds;
         }
 
-        public abstract void AddNumbersToList(object? data);
+        public abstract void AddNumbersToList(int writerExecutionsCount, int writerExecutionDelay);
 
-        public abstract void ReadListCount(object? data);
+        public abstract void ReadListCount(int readerExecutionsCount, int readerExecutionDelay);
     }
 }

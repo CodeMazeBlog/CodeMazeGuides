@@ -24,7 +24,7 @@ namespace Tests
         {
             var lockReadWrite = new LockReadWrite();
 
-            lockReadWrite.AddNumbersToList(_config);
+            lockReadWrite.AddNumbersToList(_config.WriterExecutionsCount, _config.WriterExecutionDelay);
 
             Assert.AreEqual(_config.WriterExecutionsCount, lockReadWrite.ListOfNumbers.Count);
         }
@@ -34,7 +34,7 @@ namespace Tests
         {
             var lockReadWrite = new LockReadWrite();
 
-            lockReadWrite.ReadListCount(_config);
+            lockReadWrite.ReadListCount(_config.ReaderExecutionsCount, _config.ReaderExecutionDelay);
 
             Assert.AreEqual(0, lockReadWrite.ListOfNumbers.Count);
         }

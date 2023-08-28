@@ -4,18 +4,16 @@
     {
         private static readonly ReaderWriterLock _readerWriterLock = new();
 
-        public override void AddNumbersToList(object? data)
+        public override void AddNumbersToList(int writerExecutionsCount, int writerExecutionDelay)
         {
-            var config = (data as ThreadExecutionConfiguration) ?? new ThreadExecutionConfiguration();
-
             _readerWriterLock.AcquireWriterLock(Timeout.InfiniteTimeSpan);
 
             try
             {
-                for (var cnt = 0; cnt < config.WriterExecutionsCount; cnt++)
+                for (var cnt = 0; cnt < writerExecutionsCount; cnt++)
                 {
                     _listOfNumbers.Add(cnt);
-                    Thread.SpinWait(config.WriterExecutionDelay);
+                    Thread.SpinWait(writerExecutionDelay);
                 }
             }
             finally
@@ -24,21 +22,19 @@
             }
         }
 
-        public override void ReadListCount(object? data)
+        public override void ReadListCount(int readerExecutionsCount, int readerExecutionDelay)
         {
-            var config = (data as ThreadExecutionConfiguration) ?? new ThreadExecutionConfiguration();
-
             _readerWriterLock.AcquireReaderLock(Timeout.InfiniteTimeSpan);
 
             try
             {
-                for (var cnt = 0; cnt < config.ReaderExecutionsCount; cnt++)
+                for (var cnt = 0; cnt < readerExecutionsCount; cnt++)
                 {
                     if (_listOfNumbers.Count > 0)
                     {
-                        _ = _listOfNumbers[GetNextRandom()];
+                        _ = _listOfNumbers[Random.Shared.Next(0, _listOfNumbers.Count)];
                     }
-                    Thread.SpinWait(config.ReaderExecutionDelay);
+                    Thread.SpinWait(readerExecutionDelay);
                 }
             }
             finally

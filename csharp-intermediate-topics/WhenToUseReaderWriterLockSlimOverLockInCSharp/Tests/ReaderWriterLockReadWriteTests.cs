@@ -24,7 +24,7 @@ namespace Tests
         {
             var readerWriterLockReadWrite = new ReaderWriterLockReadWrite();
 
-            readerWriterLockReadWrite.AddNumbersToList(_config);
+            readerWriterLockReadWrite.AddNumbersToList(_config.WriterExecutionsCount, _config.WriterExecutionDelay);
 
             Assert.AreEqual(_config.WriterExecutionsCount, readerWriterLockReadWrite.ListOfNumbers.Count);
         }
@@ -34,7 +34,7 @@ namespace Tests
         {
             var readerWriterLockReadWrite = new ReaderWriterLockReadWrite();
 
-            readerWriterLockReadWrite.ReadListCount(_config);
+            readerWriterLockReadWrite.ReadListCount(_config.ReaderExecutionsCount, _config.ReaderExecutionDelay);
 
             Assert.AreEqual(0, readerWriterLockReadWrite.ListOfNumbers.Count);
         }

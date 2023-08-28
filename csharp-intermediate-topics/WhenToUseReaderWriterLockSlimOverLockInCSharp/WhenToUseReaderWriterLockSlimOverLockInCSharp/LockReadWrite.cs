@@ -4,33 +4,29 @@
     {
         private static readonly object _lockObject = new();
 
-        public override void AddNumbersToList(object? data)
+        public override void AddNumbersToList(int writerExecutionsCount, int writerExecutionDelay)
         {
-            var config = (data as ThreadExecutionConfiguration) ?? new ThreadExecutionConfiguration();
-
             lock (_lockObject)
             {
-                for (var cnt = 0; cnt < config.WriterExecutionsCount; cnt++)
+                for (var cnt = 0; cnt < writerExecutionsCount; cnt++)
                 {
                     _listOfNumbers.Add(cnt);
-                    Thread.SpinWait(config.WriterExecutionDelay);
+                    Thread.SpinWait(writerExecutionDelay);
                 }
             }
         }
 
-        public override void ReadListCount(object? data)
+        public override void ReadListCount(int readerExecutionsCount, int readerExecutionDelay)
         {
-            var config = (data as ThreadExecutionConfiguration) ?? new ThreadExecutionConfiguration();
-
             lock (_lockObject)
             {
-                for (var cnt = 0; cnt < config.ReaderExecutionsCount; cnt++)
+                for (var cnt = 0; cnt < readerExecutionsCount; cnt++)
                 {
                     if (_listOfNumbers.Count > 0)
                     {
-                        _ = _listOfNumbers[GetNextRandom()];
+                        _ = _listOfNumbers[Random.Shared.Next(0, _listOfNumbers.Count)];
                     }
-                    Thread.SpinWait(config.ReaderExecutionDelay);
+                    Thread.SpinWait(readerExecutionDelay);
                 }
             }
         }
