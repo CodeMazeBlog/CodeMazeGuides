@@ -19,9 +19,7 @@ public class ResourcesManager
         try
         {
             using (var rs = _resources.GetResourceSet(_culture, true, true))
-            {
                 _isValid = rs != null;
-            }
 
             _resources.ReleaseAllResources();
         }
@@ -39,7 +37,7 @@ public class ResourcesManager
     {
         var resource = GetResource<string>(key);
         
-        return !resource.IsValid ? string.Empty : resource.Item;
+        return resource.IsValid ? resource.Item : string.Empty;
     }
 
     public ResourceItem<T> GetResource<T>(string key)
