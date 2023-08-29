@@ -4,14 +4,10 @@ namespace Tests
 {
     public class Tests
     {
-        [Fact]
-        public void GivenBalanceWithoutSync_WhenMultipleWithdrawals_ThenFinalBalanceIsIncorrect()
-        {
-            var account = new Account
-            {
-                Balance = 100000
-            };
+        private readonly int _delay = Random.Shared.Next(50, 300);
 
+        private void WithdrawBalance(Action<int> withdrawalAction)
+        {
             using var synch = new ManualResetEventSlim(false);
 
             var tasks = new Task[1000];
@@ -21,12 +17,24 @@ namespace Tests
                 tasks[i] = Task.Run(() =>
                 {
                     synch.Wait();
-                    account.Withdraw(100);
+                    Thread.Sleep(_delay);
+                    withdrawalAction(100);
                 });
             }
 
             synch.Set();
             Task.WaitAll(tasks);
+        }
+
+        [Fact]
+        public void GivenBalanceWithoutSync_WhenMultipleWithdrawals_ThenFinalBalanceIsIncorrect()
+        {
+            var account = new Account
+            {
+                Balance = 100000
+            };
+
+            WithdrawBalance(account.Withdraw);
 
             Assert.NotEqual(100000, account.Balance);
         }
@@ -39,21 +47,7 @@ namespace Tests
                 BalanceVolatile = 100000
             };
 
-            using var synch = new ManualResetEventSlim(false);
-
-            var tasks = new Task[1000];
-
-            for (var i = 0; i < tasks.Length; i++)
-            {
-                tasks[i] = Task.Run(() =>
-                {
-                    synch.Wait();
-                    account.WithdrawVolatile(100);
-                });
-            }
-
-            synch.Set();
-            Task.WaitAll(tasks);
+            WithdrawBalance(account.WithdrawVolatile);
 
             Assert.NotEqual(1000, account.BalanceVolatile);
         }
@@ -66,21 +60,7 @@ namespace Tests
                 BalanceLock = 100000
             };
 
-            using var synch = new ManualResetEventSlim(false);
-
-            var tasks = new Task[1000];
-
-            for (var i = 0; i < tasks.Length; i++)
-            {
-                tasks[i] = Task.Run(() =>
-                {
-                    synch.Wait();
-                    account.WithdrawLock(100);
-                });
-            }
-
-            synch.Set();
-            Task.WaitAll(tasks);
+            WithdrawBalance(account.WithdrawLock);
 
             Assert.Equal(0, account.BalanceLock);
         }
@@ -93,21 +73,7 @@ namespace Tests
                 BalanceInterlocked = 100000
             };
 
-            using var synch = new ManualResetEventSlim(false);
-
-            var tasks = new Task[1000];
-
-            for (var i = 0; i < tasks.Length; i++)
-            {
-                tasks[i] = Task.Run(() =>
-                {
-                    synch.Wait();
-                    account.WithdrawInterlocked(100);
-                });
-            }
-
-            synch.Set();
-            Task.WaitAll(tasks);
+            WithdrawBalance(account.WithdrawInterlocked);
 
             Assert.Equal(0, account.BalanceInterlocked);
         }
