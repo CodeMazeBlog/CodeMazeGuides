@@ -4,7 +4,7 @@ namespace Tests
 {
     public class Tests
     {
-        private void WithdrawBalance(Action<int> withdrawalAction)
+        private static void WithdrawBalance(Action<int> withdrawalAction)
         {
             using var synch = new ManualResetEventSlim(false);
 
