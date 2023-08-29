@@ -36,8 +36,8 @@ public static class LookupTables
     {
         const string hexValues = "0123456789ABCDEFabcdef";
 
-        var lowBits = GC.AllocateUninitializedArray<byte>('f' + 1);
-        var highBits = GC.AllocateUninitializedArray<byte>('f' + 1);
+        var lowBits = new byte['f' + 1];
+        var highBits = new byte['f' + 1];
         Array.Fill(lowBits, (byte) 255);
         Array.Fill(highBits, (byte) 255);
 

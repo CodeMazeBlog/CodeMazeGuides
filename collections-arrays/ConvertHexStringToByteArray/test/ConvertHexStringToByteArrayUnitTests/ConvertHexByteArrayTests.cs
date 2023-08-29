@@ -1,6 +1,6 @@
 ﻿namespace ConvertHexStringToByteArray.UnitTests;
 
-public class ConvertByteArrayToHexTests
+public class ConvertHexByteArrayTests
 {
     [Theory]
     [InlineData("", new byte[] { })]
@@ -16,7 +16,7 @@ public class ConvertByteArrayToHexTests
             189, 224, 3, 26, 15, 176, 66, 212, 1, 21, 64, 185, 3, 250, 37, 90, 237, 92, 92, 202,
             18, 63, 63, 15, 185, 255, 158, 78, 17
         })]
-    public void UsingModularArithmetic_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source,
+    public void GivenModularArithmeticMethod_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source,
         byte[] expected)
     {
         var result = ConversionHelpers.FromHexWithModularArithmetic(source);
@@ -38,7 +38,7 @@ public class ConvertByteArrayToHexTests
             189, 224, 3, 26, 15, 176, 66, 212, 1, 21, 64, 185, 3, 250, 37, 90, 237, 92, 92, 202,
             18, 63, 63, 15, 185, 255, 158, 78, 17
         })]
-    public void UsingLookup_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source, byte[] expected)
+    public void GivenLookupMethod_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source, byte[] expected)
     {
         var result = ConversionHelpers.FromHexWithLookup(source);
 
@@ -59,7 +59,7 @@ public class ConvertByteArrayToHexTests
             189, 224, 3, 26, 15, 176, 66, 212, 1, 21, 64, 185, 3, 250, 37, 90, 237, 92, 92, 202,
             18, 63, 63, 15, 185, 255, 158, 78, 17
         })]
-    public void UsingConvert_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source, byte[] expected)
+    public void GivenConvertMethod_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source, byte[] expected)
     {
         var result = ConversionHelpers.FromHexWithConvert(source);
 
@@ -80,7 +80,7 @@ public class ConvertByteArrayToHexTests
             189, 224, 3, 26, 15, 176, 66, 212, 1, 21, 64, 185, 3, 250, 37, 90, 237, 92, 92, 202,
             18, 63, 63, 15, 185, 255, 158, 78, 17
         })]
-    public void UsingSwitchComputation_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source,
+    public void GivenSwitchComputationMethod_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source,
         byte[] expected)
     {
         var result = ConversionHelpers.FromHexWithSwitchComputation(source);
@@ -102,7 +102,7 @@ public class ConvertByteArrayToHexTests
             189, 224, 3, 26, 15, 176, 66, 212, 1, 21, 64, 185, 3, 250, 37, 90, 237, 92, 92, 202,
             18, 63, 63, 15, 185, 255, 158, 78, 17
         })]
-    public void UsingBitFiddle_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source, byte[] expected)
+    public void GivenBitFiddleMethod_WhenConvertingStringToByteArray_ThenGetCorrectByteArray(string source, byte[] expected)
     {
         var result = ConversionHelpers.FromHexWithBitFiddle(source);
 
