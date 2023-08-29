@@ -16,6 +16,7 @@
             await _next(context);
         }
     }
+
     public static class CustomMiddlewareExtension
     {
         public static IApplicationBuilder UseCustomMiddleware(this IApplicationBuilder app)

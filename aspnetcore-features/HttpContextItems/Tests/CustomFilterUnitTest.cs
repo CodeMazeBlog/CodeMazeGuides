@@ -11,7 +11,7 @@ namespace Tests
     public class CustomFilterUnitTest
     {
         [Fact]
-        public void CustomFilter_Should_SetFilterObjectKey_OnActionExecuting()
+        public void WhenActionExecuting_ThenSetFilterObjectKey()
         {
             // Arrange
             var loggerMock = new Mock<ILogger<CustomFilter>>();
@@ -35,7 +35,7 @@ namespace Tests
         }
 
         [Fact]
-        public void CustomFilter_Should_SetFilterObjectKey_OnActionExecuted()
+        public void WhenActionExecuted_ThenSetFilterObjectKey()
         {
             // Arrange
             var loggerMock = new Mock<ILogger<CustomFilter>>();

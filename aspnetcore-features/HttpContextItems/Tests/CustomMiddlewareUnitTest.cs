@@ -8,7 +8,7 @@ namespace Tests
     public class CustomMiddlewareUnitTest
     {
         [Fact]
-        public async Task CustomMiddleware_Should_SetMiddlewareObjectKey()
+        public async Task WhenExecuting_ShouldSetMiddlewareObjectKey()
         {
             // Arrange
             var loggerMock = new Mock<ILogger<CustomMiddleware>>();
