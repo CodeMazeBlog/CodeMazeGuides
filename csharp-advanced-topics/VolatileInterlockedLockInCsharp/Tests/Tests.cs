@@ -4,8 +4,6 @@ namespace Tests
 {
     public class Tests
     {
-        private readonly int _delay = Random.Shared.Next(50, 300);
-
         private void WithdrawBalance(Action<int> withdrawalAction)
         {
             using var synch = new ManualResetEventSlim(false);
@@ -17,7 +15,7 @@ namespace Tests
                 tasks[i] = Task.Run(() =>
                 {
                     synch.Wait();
-                    Thread.Sleep(_delay);
+                    Thread.Sleep(Random.Shared.Next(50, 300));
                     withdrawalAction(100);
                 });
             }
