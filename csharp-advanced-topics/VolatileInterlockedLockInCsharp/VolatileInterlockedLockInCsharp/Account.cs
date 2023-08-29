@@ -40,8 +40,8 @@
 
         public int BalanceInterlocked
         {
-            get => _balanceInterlocked;
-            set => _balanceInterlocked = value;
+            get => Interlocked.CompareExchange(ref _balanceInterlocked, 0, 0);
+            set => Interlocked.Exchange(ref _balanceInterlocked, value);
         }
 
         public void Withdraw(int amount)
