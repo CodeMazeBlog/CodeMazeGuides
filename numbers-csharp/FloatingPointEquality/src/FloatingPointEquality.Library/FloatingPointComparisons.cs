@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Runtime.CompilerServices;
 
 namespace FloatingPointEquality.Library;
 
@@ -81,11 +82,16 @@ public static class FloatingPointComparisons
         return int.Abs(a.AsShort() - b.AsShort()) <= maxUnitsInLastPlace;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static unsafe long AsLong(this double value) => *(long*) &value;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static unsafe int AsInt(this float value) => *(int*) &value;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static unsafe short AsShort(this Half value) => *(short*) &value;
 
-    private static bool IsNegative<T>(this T value) where T : IFloatingPointIeee754<T> => T.IsNegative(value);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static bool IsNegative<T>(this T value) where T : IFloatingPointIeee754<T>
+        => T.IsNegative(value);
 }
