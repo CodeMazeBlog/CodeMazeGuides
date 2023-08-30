@@ -8,16 +8,19 @@ public class DateTimeOffsetVsDateTimeTest
     {
         Assert.Equal(DateTimeKind.Utc, DateTime.UtcNow.Kind);
     }
+
     [Fact]
     public void GivenNow_WhenGettingKind_ThenShouldBeLocal()
     {
         Assert.Equal(DateTimeKind.Local, DateTime.Now.Kind);
     }
+
     [Fact]
     public void GivenUnspecifiedKind_WhenGettingKind_ThenShouldBeUnspecified()
     {
         Assert.Equal(DateTimeKind.Unspecified, DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified).Kind);
     }
+
     [Fact]
     public void GivenTimeZoneOffset_WhenGettingTimeZones_ThenShouldReturnCorrectTimeZones()
     {

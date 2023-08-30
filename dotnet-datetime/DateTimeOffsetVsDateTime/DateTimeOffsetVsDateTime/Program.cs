@@ -1,9 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Diagnostics;
 
-DateTime dateTime = DateTime.Now;
+var dateTime = DateTime.Now;
 Console.WriteLine($"DateTime: {dateTime}"); 
-DateTimeOffset dateTimeOffset = DateTimeOffset.Now;
+var dateTimeOffset = DateTimeOffset.Now;
 Console.WriteLine($"DateTimeOffset: {dateTimeOffset}"); 
 //TimeZone vs Offset 
 static List<TimeZoneInfo> GetTimeZoneFromOffset(TimeSpan offset) => TimeZoneInfo.GetSystemTimeZones().Where(tz => tz.BaseUtcOffset == offset).ToList();
@@ -12,11 +12,11 @@ foreach (TimeZoneInfo timeZone in timeZones)
 {
     Console.WriteLine($"Time Zone: {timeZone}");
 }    
-DateTime dateTimeUtc = DateTime.UtcNow; 
+var dateTimeUtc = DateTime.UtcNow; 
 Console.WriteLine($"DateTime Kind: {dateTimeUtc.Kind}"); 
-DateTime dateTimeLocal = DateTime.Now; 
+var dateTimeLocal = DateTime.Now; 
 Console.WriteLine($"DateTime Kind: {dateTimeLocal.Kind}"); 
-DateTime dateTimeUnspecified = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified); 
+var dateTimeUnspecified = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Unspecified); 
 Console.WriteLine($"DateTime Kind: {dateTimeUnspecified.Kind}"); 
-DateTimeOffset dateTimeOffsetUnspecified = DateTimeOffset.Now;
+var dateTimeOffsetUnspecified = DateTimeOffset.Now;
 Console.WriteLine($"DateTimeOffset Kind: {dateTimeOffsetUnspecified.DateTime.Kind}");
