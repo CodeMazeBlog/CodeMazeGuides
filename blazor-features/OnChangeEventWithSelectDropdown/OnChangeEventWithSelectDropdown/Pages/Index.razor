@@ -12,7 +12,7 @@
 
 <p>Please choose your topping from the list below:</p>
 
-<select class="select-element" @onchange="@handleChange">
+<select class="select-element" @onchange="@HandleChange">
     @foreach (var topping in toppings)
     {
         <option value="@topping.Id">@topping.Name  +$@topping.Price</option>
@@ -21,7 +21,7 @@
 
 <p>Please choose second topping from the list below:</p>
 
-<select class="select-element" @bind="selectedSecondTopping" @bind:after="calculateGrandTotal">
+<select class="select-element" @bind="selectedSecondTopping" @bind:after="CalculateGrandTotal">
     @foreach (var topping in toppings)
     {
         <option value="@topping.Id">@topping.Name +$@topping.Price</option>
@@ -47,11 +47,11 @@
         new Topping(6, "Lettuce", 1.1)
     };
 
-    public void handleChange(ChangeEventArgs args)
+    public void HandleChange(ChangeEventArgs args)
     {
         @foreach (var topping in toppings)
         {
-            if (topping.Id == Int32.Parse(args.Value.ToString()))
+            if (topping.Id == int.Parse(args.Value.ToString()))
             {
                 selectedTopping = topping.Name;
                 totalCost = Math.Round(baseBurgerCost + topping.Price, 2);
@@ -59,13 +59,13 @@
         }
     }
 
-    public async Task calculateGrandTotal()
+    public async Task CalculateGrandTotal()
     {
         await Task.Delay(2000);
 
         @foreach (var topping in toppings)
         {
-            if (topping.Id == Int32.Parse(selectedSecondTopping))
+            if (topping.Id == int.Parse(selectedSecondTopping))
             {
                 grandTotal = Math.Round(totalCost + topping.Price, 2);
             }
