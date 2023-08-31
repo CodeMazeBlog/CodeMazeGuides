@@ -3,27 +3,15 @@ namespace Tests;
 public class ActionFuncTests
 {
     [Fact]
-    public void ActionDelegate_PrintsMessage()
+    public void AdditionTest()
     {
         // Arrange
-        var consoleOutput = new System.IO.StringWriter();
-        Console.SetOut(consoleOutput);
+        var calculator = new Calculator();
 
         // Act
-        Program.ExecuteActionDelegate();
+        int result = calculator.Add(5, 3);
 
         // Assert
-        string expectedOutput = "Hello, Action!" + Environment.NewLine;
-        Assert.Equal(expectedOutput, consoleOutput.ToString());
-    }
-
-    [Fact]
-    public void FuncDelegate_AddsNumbers()
-    {
-        // Act
-        int result = Program.ExecuteFuncDelegate();
-
-        // Assert
-        Assert.Equal(12, result);
+        Assert.Equal(8, result);
     }
 }
