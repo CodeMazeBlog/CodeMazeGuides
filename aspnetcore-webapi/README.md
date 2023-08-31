@@ -38,5 +38,6 @@ This section contains articles about ASP.NET Core Web API related topics.
 - [Using OData with ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-using-odata/)
 - [API Versioning in ASP.NET Core](https://code-maze.com/aspnetcore-api-versioning/)
 - [Vertical Slice Architecture in ASP.NET Core](https://code-maze.com/vertical-slice-architecture-aspnet-core/)
+- [How to Return HTTP 500 From ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-return-http-status-code-500/)
 - [How to Return XML From ASP.NET Core Web API](https://code-maze.com/aspnetcore-return-xml-from-web-api/)
 - [Using RestSharp To Consume APIs in C#](https://code-maze.com/aspnetcore-using-restsharp-consume-api/)
