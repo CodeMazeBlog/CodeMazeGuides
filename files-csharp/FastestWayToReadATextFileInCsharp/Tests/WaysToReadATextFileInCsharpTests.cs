@@ -1,6 +1,6 @@
 ﻿namespace Tests;
 
-public class WaysToReadATextFileInCsharpTests
+public class WaysToReadATextFileInCsharpTests:IDisposable
 {
     private readonly WaysToReadATextFileInCsharp _textFileReader;
 
@@ -12,12 +12,12 @@ public class WaysToReadATextFileInCsharpTests
             Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere.
             """;
     
-    private static readonly string _tempFilePath = Path.GetTempFileName();
+    private static readonly string TempFilePath = Path.GetTempFileName();
 
     public WaysToReadATextFileInCsharpTests()
     {
-        File.WriteAllText(_tempFilePath, ExpectedText);
-        _textFileReader = new WaysToReadATextFileInCsharp(_tempFilePath);
+        File.WriteAllText(TempFilePath, ExpectedText);
+        _textFileReader = new WaysToReadATextFileInCsharp(TempFilePath);
     }
 
     [Fact]
@@ -77,6 +77,14 @@ public class WaysToReadATextFileInCsharpTests
     }
 
     [Fact]
+    public void WhenReadingATextFileWithStreamReaderReadBlockWithArrayPool_ThenReturnsExpectedText()
+    {
+        var result = _textFileReader.UseStreamReaderReadBlockWithArrayPool();
+
+        Assert.Equal(ExpectedText, result);
+    }
+
+    [Fact]
     public void WhenReadingATextFileWithBufferedStreamObject_ThenReturnsExpectedText()
     {
         var result = _textFileReader.UseBufferedStreamObject();
@@ -90,5 +98,15 @@ public class WaysToReadATextFileInCsharpTests
         var result = _textFileReader.UseBufferedStreamObjectWithNoFileStreamBuffer();
 
         Assert.Equal(ExpectedText, result);
+    }
+
+    public void Dispose()
+    {
+        if (File.Exists(TempFilePath))
+        {
+            File.Delete(TempFilePath);
+        }
+
+        GC.SuppressFinalize(this);
     }
 }

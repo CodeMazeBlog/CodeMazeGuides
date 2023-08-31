@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Buffers;
+using System.Text;
 
 namespace FastestWayToReadATextFileInCsharp;
 
@@ -13,10 +14,9 @@ public class WaysToReadATextFileInCsharp
 
     public string UseFileReadAllLines()
     {
-        var lines = File.ReadAllLines(_sampleFilePath);
         var stringBuilder = new StringBuilder();
 
-        foreach (var line in lines)
+        foreach (var line in File.ReadAllLines(_sampleFilePath))
         {
             stringBuilder.AppendLine(line);
         }
@@ -29,10 +29,9 @@ public class WaysToReadATextFileInCsharp
     
     public string UseFileReadLines()
     {
-        var lines = File.ReadLines(_sampleFilePath);
         var stringBuilder = new StringBuilder();
 
-        foreach(var line in lines)
+        foreach(var line in File.ReadLines(_sampleFilePath))
         {
             stringBuilder.AppendLine(line);
         }
@@ -71,7 +70,7 @@ public class WaysToReadATextFileInCsharp
 
         while ((numberRead = streamReader.ReadBlock(buffer, 0, buffer.Length)) > 0)
         {
-            stringBuilder.Append(buffer, 0, numberRead);
+            stringBuilder.Append(buffer[..numberRead]);
         }
 
         return stringBuilder.ToString();
@@ -88,6 +87,23 @@ public class WaysToReadATextFileInCsharp
         {
             stringBuilder.Append(buffer[..numberRead]);
         }
+
+        return stringBuilder.ToString();
+    }
+
+    public string UseStreamReaderReadBlockWithArrayPool()
+    {
+        using var streamReader = new StreamReader(_sampleFilePath);
+        var buffer = ArrayPool<char>.Shared.Rent(4096);
+        int numberRead;
+        var stringBuilder = new StringBuilder();
+
+        while ((numberRead = streamReader.ReadBlock(buffer, 0, buffer.Length)) > 0)
+        {
+            stringBuilder.Append(buffer[..numberRead]);
+        }
+
+        ArrayPool<char>.Shared.Return(buffer);
 
         return stringBuilder.ToString();
     }

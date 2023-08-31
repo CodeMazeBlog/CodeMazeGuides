@@ -7,10 +7,10 @@ namespace FastestWayToReadATextFileInCsharp;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class WaysToReadATextFileInCsharpBenchmark
 {
-    private static readonly string _sampleFilePath
+    private static readonly string SampleFilePath
        = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName, "BenchmarkTextFile.txt");
 
-    private readonly WaysToReadATextFileInCsharp _textFileReader = new(_sampleFilePath);
+    private readonly WaysToReadATextFileInCsharp _textFileReader = new(SampleFilePath);
 
     [Benchmark]
     public string UseFileReadAllLines()
@@ -39,6 +39,10 @@ public class WaysToReadATextFileInCsharpBenchmark
     [Benchmark]
     public string UseStreamReaderReadBlockWithSpan()
      => _textFileReader.UseStreamReaderReadBlockWithSpan();
+
+    [Benchmark]
+    public string UseStreamReaderReadBlockWithArrayPool()
+     => _textFileReader.UseStreamReaderReadBlockWithArrayPool();
 
     [Benchmark]
     public string UseBufferedStreamObject()
