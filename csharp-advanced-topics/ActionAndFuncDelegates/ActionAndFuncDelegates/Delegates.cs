@@ -20,17 +20,17 @@
             Console.WriteLine(thirdDelegateReturns);
         }
 
-        private static void MethodWithVoidReturnTypeAndNoParameter()
+        public static void MethodWithVoidReturnTypeAndNoParameter()
         {
             Console.WriteLine($"Simple Called");
         }
 
-        private static string MethodWithStringReturnTypeAndNoParameter()
+        public static string MethodWithStringReturnTypeAndNoParameter()
         {
             return $"Delegate with string return type";
         }
 
-        private static string MethodWithStringReturnTypeAndStringParameter(string name)
+        public static string MethodWithStringReturnTypeAndStringParameter(string name)
         {
             return $"Delegate with string return type and parameter {name}";
         }

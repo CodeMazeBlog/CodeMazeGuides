@@ -11,12 +11,12 @@
             actionWithTwoParameter("code=maze", true);
         }
 
-        private static void MethodWithStringParameter(string name)
+        public static void MethodWithStringParameter(string name)
         {
             Console.WriteLine($"Called from Action<string> delegate with parameter : {name}");
         }
 
-        private static void MethodWithStringAndBoolParameter(string name, bool canPrint)
+        public static void MethodWithStringAndBoolParameter(string name, bool canPrint)
         {
             if(canPrint)
             {
@@ -25,7 +25,7 @@
         }
 
 
-        private static void MethodWithVoidReturnTypeAndNoParameter()
+        public static void MethodWithVoidReturnTypeAndNoParameter()
         {
             Action simpleAction = MethodWithVoidReturnTypeAndNoParameter;
             simpleAction();

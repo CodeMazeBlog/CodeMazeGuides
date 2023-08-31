@@ -17,17 +17,17 @@
             Console.WriteLine(thirdResult);
         }
 
-        private static string MethodWithStringReturnValueAndNoParameter()
+        public static string MethodWithStringReturnValueAndNoParameter()
         {
             return "Hello from code-maze";
         }
 
-        private static int MethodWith2IntsAndReturnAnInt(int first, int second)
+        public static int MethodWith2IntsAndReturnAnInt(int first, int second)
         {
             return first + second;
         }
 
-        private static int MethodWithIntReturnAndBoolAndStringParameter(bool canReturnLength, string name)
+        public static int MethodWithIntReturnAndBoolAndStringParameter(bool canReturnLength, string name)
         {
             if (canReturnLength)
                 return name.Length;
