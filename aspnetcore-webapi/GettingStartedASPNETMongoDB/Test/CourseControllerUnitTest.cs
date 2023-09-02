@@ -4,59 +4,58 @@ using GettingStartedASPNETMongoDB.Controllers;
 using GettingStartedASPNETMongoDB.Interfaces;
 using GettingStartedASPNETMongoDB.Models;
 
-namespace Test
-{
-    public class CourseControllerUnitTest
-    {        
-        private Mock<ICourseService> _courseService;
+namespace Test;
 
-        private CourseController _courseController;
+public class CourseControllerUnitTest
+{        
+    private Mock<ICourseService> _courseService;
 
-        private Course _course;
+    private CourseController _courseController;
 
-        public CourseControllerUnitTest()
-        {
-            Setup();
-        }
+    private Course _course;
 
-        [Fact]
-        public async Task GivenCreate_WhenSentCorrectData_ThenReturnCreatedStatus()
-        {
-            //Act
-            var result = await _courseController.Create(_course);
+    public CourseControllerUnitTest()
+    {
+        Setup();
+    }
 
-            //Assert
-            Assert.IsType<CreatedAtActionResult>(result);
-        }
+    [Fact]
+    public async Task GivenCreate_WhenSentCorrectData_ThenReturnCreatedStatus()
+    {
+        //Act
+        var result = await _courseController.Create(_course);
 
-        [Fact]
-        public async Task GivenGetById_WhenSentCorrectId_ThenReturnStudentWithOkStatus()
-        {
-            //Arrange
-            var id = "1";
+        //Assert
+        Assert.IsType<CreatedAtActionResult>(result);
+    }
 
-            //Act
-            var result = await _courseController.GetById(id);
+    [Fact]
+    public async Task GivenGetById_WhenSentCorrectId_ThenReturnStudentWithOkStatus()
+    {
+        //Arrange
+        var id = "1";
 
-            //Assert
-            var okResult = Assert.IsType<OkObjectResult>(result.Result);
+        //Act
+        var result = await _courseController.GetById(id);
 
-            Assert.IsType<Course>(okResult.Value);
-        }
+        //Assert
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);
 
-        private void Setup()
-        {
-            var id = "1";
+        Assert.IsType<Course>(okResult.Value);
+    }
 
-            _course = new() { Id = id, Code = "BCH 422", Name = "Tissue Biochemistry" };
+    private void Setup()
+    {
+        var id = "1";
 
-            _courseService = new Mock<ICourseService>();
+        _course = new() { Id = id, Code = "BCH 422", Name = "Tissue Biochemistry" };
 
-            _courseService.Setup(x => x.GetById(id)).ReturnsAsync(_course);
+        _courseService = new Mock<ICourseService>();
 
-            _courseService.Setup(x => x.Create(It.IsAny<Course>())).ReturnsAsync(_course);
+        _courseService.Setup(x => x.GetById(id)).ReturnsAsync(_course);
 
-            _courseController = new(_courseService.Object);
-        }
+        _courseService.Setup(x => x.Create(It.IsAny<Course>())).ReturnsAsync(_course);
+
+        _courseController = new(_courseService.Object);
     }
 }
