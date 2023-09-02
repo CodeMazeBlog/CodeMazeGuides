@@ -5,7 +5,6 @@ using GettingStartedASPNETMongoDB.Models;
 
 namespace GettingStartedASPNETMongoDB.Services;
 
-
 public class CourseService : ICourseService
 {
     private readonly IMongoCollection<Course> _courseCollection;

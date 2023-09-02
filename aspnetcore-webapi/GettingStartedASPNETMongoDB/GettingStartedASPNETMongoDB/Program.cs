@@ -3,7 +3,6 @@ using GettingStartedASPNETMongoDB.Interfaces;
 using GettingStartedASPNETMongoDB.Models;
 using GettingStartedASPNETMongoDB.Services;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -31,7 +30,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
 
 app.MapControllers();
 
