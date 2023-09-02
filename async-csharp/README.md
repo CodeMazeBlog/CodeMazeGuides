@@ -12,4 +12,5 @@ This section contains articles about asynchronous programming in C#.
 - [How to Run an Async Method Synchronously in .NET](https://code-maze.com/run-async-method-synchronously-dotnet/)
 - [How to Run an Async Method Synchronously in .NET](https://code-maze.com/run-async-method-synchronously-dotnet/)
 - [Short Circuit Evaluation of IF Statements with Await in C#](https://code-maze.com/csharp-short-circuit-evaluation-if-statements-with-await/)
+- [Using Task.CompletedTask, Task.FromResult and Return in C# Async Methods](https://code-maze.com/csharp-completedtask-fromresult-return-in-async-methods/)
 - [Difference Between Task.Run and Task.Factory.StartNew](https://code-maze.com/csharp-task-run-vs-task-factory-startnew/)
