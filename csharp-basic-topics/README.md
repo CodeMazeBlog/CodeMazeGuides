@@ -10,6 +10,7 @@ This section contains the topics considered basic level in C#.
 - [Constructor Overloading in C#](https://code-maze.com/csharp-constructor-overloading/)
 - [Convert String and Int to Enum in C#](https://code-maze.com/csharp-convert-string-and-int-to-enum/)
 - [Default Interface Method in C# And When to Use It](https://code-maze.com/csharp-default-interface-method/)
+- [How to Mark Methods as Deprecated in C#](https://code-maze.com/csharp-mark-methods-as-depricated/)
 - [Different Types of Comments in C# and Should We Use Them](https://code-maze.com/csharp-different-types-of-comments/)
 - [Differences Between Equality Operator (==) And Equals Method In C#](https://code-maze.com/csharp-equality-operator-and-equals-method/)
 - [Difference Between Is and Equality Operators in C# – “is null” vs “== null”](https://code-maze.com/csharp-difference-between-isnull-and-equality-operators/)
