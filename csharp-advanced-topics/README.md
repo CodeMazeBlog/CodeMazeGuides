@@ -16,6 +16,7 @@ This section contains the topics considered advanced level in C#.
 - [Lambda Expressions in C#](https://code-maze.com/lambda-expressions-in-csharp/)
 - [Managed vs Unmanaged Code (Garbage Collection) in C#](https://code-maze.com/csharp-managed-vs-unmanaged-code-garbage-collection/)
 - [ModuleInitializer Attribute in C#](https://code-maze.com/csharp-moduleinitializer-attribute/)
+- [How to Use Mutex in C#](https://code-maze.com/csharp-how-to-use-mutex-class/)
 - [Null-Conditional Operators in C#](https://code-maze.com/csharp-null-conditional-operators/)
 - [Prevent SQL Injection With EF Core, Dapper, and ADO.NET](https://code-maze.com/prevent-sql-injection-with-ef-core-dapper-and-ado-net/)
 - [Easy Web Application Caching With Redis in C#](https://code-maze.com/csharp-web-application-caching-redis/)
