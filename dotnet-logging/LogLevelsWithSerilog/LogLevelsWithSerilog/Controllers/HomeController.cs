@@ -1,59 +1,52 @@
-﻿using LogLevelsWithSerilog.Manager;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace LogLevelsWithSerilog.Controllers
+namespace LogLevelsWithSerilog.Controllers;
+
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly ILogger<HomeController> _logger;
+    private const string LogTemplate = "{logType} Log : {message}";
+
+    public HomeController(ILogger<HomeController> logger)
     {
-        private readonly IOrderManager _orderManager;
-        private readonly ILogger<HomeController> _logger;
+        _logger = logger;
+    }
 
-        public HomeController(ILogger<HomeController> logger, IOrderManager orderManager)
+    public IActionResult Index()
+    {
+        _logger.LogTrace("Trace Log Message");
+        _logger.LogDebug("Debug Log Message");
+        _logger.LogInformation("Information Log Message");
+        _logger.LogWarning("Warning Log Message");
+        _logger.LogError("Error Log Message");
+        _logger.LogCritical("LogCritical Log Message");
+
+        GenerateLog("Test", (int)Serilog.Events.LogEventLevel.Fatal);
+
+        return View();
+    }
+
+    public IActionResult GenerateLog(string message, int logType)
+    {
+        var logTypeDesc = ((Serilog.Events.LogEventLevel)logType).ToString();
+        switch (logType)
         {
-            _logger = logger;
-            _orderManager = orderManager;
+            case (int)Serilog.Events.LogEventLevel.Verbose:
+                _logger.LogTrace(LogTemplate, logTypeDesc, message); break;
+            case (int)Serilog.Events.LogEventLevel.Debug:
+                _logger.LogDebug(LogTemplate, logTypeDesc, message); break;
+            case (int)Serilog.Events.LogEventLevel.Information:
+                _logger.LogInformation(LogTemplate, message); break;
+            case (int)Serilog.Events.LogEventLevel.Warning:
+                _logger.LogWarning(LogTemplate, logTypeDesc, message); break;
+            case (int)Serilog.Events.LogEventLevel.Error:
+                _logger.LogError(LogTemplate, logTypeDesc, message); break;
+            case (int)Serilog.Events.LogEventLevel.Fatal:
+                _logger.LogCritical(LogTemplate, logTypeDesc, message); break;
+            default:
+                _logger.LogInformation("InvalidLogType : {message}", message); break;
         }
 
-        public IActionResult Index()
-        {
-            _orderManager.CreateOrder(1, 2);
-
-            return View();
-        }
-
-        public IActionResult Logs()
-        {
-            _logger.LogTrace("Trace Log Message");
-            _logger.LogDebug("Debug Log Message");
-            _logger.LogInformation("Information Log Message");
-            _logger.LogWarning("Warning Log Message");
-            _logger.LogError("Error Log Message");
-            _logger.LogCritical("LogCritical Log Message");
-
-            return View("Index");
-        }
-
-        public IActionResult GenerateLog(string message, int logType)
-        {
-            switch (logType)
-            {
-                case (int)Serilog.Events.LogEventLevel.Verbose:
-                    _logger.LogTrace("Trace Log :" + message); break;
-                case (int)Serilog.Events.LogEventLevel.Debug:
-                    _logger.LogDebug("Debug Log :" + message); break;
-                case (int)Serilog.Events.LogEventLevel.Information:
-                    _logger.LogInformation("Information Log :" + message); break;
-                case (int)Serilog.Events.LogEventLevel.Warning:
-                    _logger.LogWarning("Warning Log :" + message); break;
-                case (int)Serilog.Events.LogEventLevel.Error:
-                    _logger.LogError("Error Log :" + message); break;
-                case (int)Serilog.Events.LogEventLevel.Fatal:
-                    _logger.LogCritical("FATAL Log :" + message); break;
-                default:
-                    _logger.LogInformation("InvalidLogType :" + message); break;
-            }
-
-            return View("Index");
-        }
+        return View("Index");
     }
 }
