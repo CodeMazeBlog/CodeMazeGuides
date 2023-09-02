@@ -20,7 +20,7 @@ public class CourseControllerUnitTest
     }
 
     [Fact]
-    public async Task GivenCreate_WhenSentCorrectData_ThenReturnCreatedStatus()
+    public async Task GivenCorrectData_WhenCreatingCourse_ThenReturnCreatedStatus()
     {
         //Act
         var result = await _courseController.Create(_course);
@@ -30,7 +30,7 @@ public class CourseControllerUnitTest
     }
 
     [Fact]
-    public async Task GivenGetById_WhenSentCorrectId_ThenReturnStudentWithOkStatus()
+    public async Task GivenExistingId_WhenGettingACourse_ThenReturnCourseWithOkStatus()
     {
         //Arrange
         var id = "1";

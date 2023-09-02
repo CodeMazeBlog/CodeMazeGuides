@@ -24,7 +24,7 @@ public class StudentControllerUnitTest
     }
 
     [Fact]
-    public async Task GivenCreate_WhenSentCorrectData_ThenReturnCreatedStatus()
+    public async Task GivenCorrectData_WhenCreatingAStudent_ThenReturnCreatedStatus()
     {  
         //Act
         var result = await _studentController.Create(_student);
@@ -34,7 +34,7 @@ public class StudentControllerUnitTest
     }
 
     [Fact]
-    public async Task GivenGetById_WhenSentCorrectId_ThenReturnStudentWithOkStatus()
+    public async Task GivenExisitingId_WhenGettingAStudentById_ThenReturnStudentWithOkStatus()
     {
         //Act
         var result = await _studentController.GetById(id);
@@ -46,7 +46,7 @@ public class StudentControllerUnitTest
     }
 
     [Fact]
-    public async Task GivenGetAll_WhenSentCorrectId_ThenReturnStudentsWithOKStatus()
+    public async Task WhenGettingAllStudents_ThenReturnStudentsWithOKStatus()
     {  
         //Arrange
         var students = new List<Student> 
@@ -82,7 +82,7 @@ public class StudentControllerUnitTest
     }
 
     [Fact]
-    public async Task GivenUpdateStudent_WhenSentWithCorrectId_ThenReturnNoContent()
+    public async Task GivenExisitingId_WhenUpdatingAStudent_ThenReturnNoContent()
     {
         //Act
         var result = await _studentController.Update(id, _student);
@@ -92,7 +92,7 @@ public class StudentControllerUnitTest
     }
 
     [Fact]
-    public async Task GivenDelete_WhenSentCorrectId_ThenReturnNoContent()
+    public async Task GivenExistingId_WhenDeletingAStudent_ThenReturnNoContent()
     {
         //Act
         var result = await _studentController.Delete(id);
