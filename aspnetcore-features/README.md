@@ -18,6 +18,7 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [InProcess and OutOfProcess Hosting Models in ASP.NET Core](https://code-maze.com/aspnetcore-inprocess-outofprocess-hosting-models/)
 - [Localization in ASP.NET Core](https://code-maze.com/aspnetcore-localization/)
 - [How to Read AppSettings Values From a JSON File in .NET Core](https://code-maze.com/aspnetcore-read-appsettings-values-from-a-json-file/)
+- [ASP.NET Core Get JSON Array Using IConfiguration](https://code-maze.com/aspnetcore-get-json-array-using-iconfiguration/)
 - [Output Caching in ASP.NET Core](https://code-maze.com/aspnet-core-output-caching/)
 - [How to Read Values From Query Strings In ASP.NET Core](https://code-maze.com/aspnetcore-read-values-from-query-strings/)
 - [How to Resolve Instances With ASP.NET Core DI](https://code-maze.com/aspnetcore-resolve-instances-with-dependency-injection/)
