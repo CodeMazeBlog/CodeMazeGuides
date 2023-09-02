@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using GettingStartedASPNETMongoDB.Interfaces;
+﻿using GettingStartedASPNETMongoDB.Interfaces;
 using GettingStartedASPNETMongoDB.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GettingStartedASPNETMongoDB.Controllers;
 
@@ -32,22 +32,15 @@ public class StudentsController : ControllerBase
         {
             return NotFound();
         }
-            
-        if (student.Courses?.Count > 0)
+
+        foreach (var course in student.Courses)
         {
-            var courseList = new List<Course>();
+            var studentCourse = await _courseService.GetById(course);
 
-            foreach (var course in student.Courses)
+            if (studentCourse is not null)
             {
-                var studentCourse = await _courseService.GetById(course);
-
-                if (studentCourse != null)
-                {
-                    courseList.Add(studentCourse);
-                }
+                student.CourseList.Add(studentCourse);
             }
-
-            student.CourseList = courseList;
         }
 
         return Ok(student);
