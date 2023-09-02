@@ -21,8 +21,6 @@ public class HomeController : Controller
         _logger.LogError("Error Log Message");
         _logger.LogCritical("LogCritical Log Message");
 
-        GenerateLog("Test", (int)Serilog.Events.LogEventLevel.Fatal);
-
         return View();
     }
 
