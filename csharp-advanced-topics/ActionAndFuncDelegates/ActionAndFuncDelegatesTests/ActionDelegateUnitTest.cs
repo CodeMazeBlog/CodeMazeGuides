@@ -5,19 +5,6 @@ namespace ActionAndFuncDelegates.Tests;
 [TestFixture]
 public class ActionDelegateUnitTest
 {
-    [SetUp]
-    public void RedirectConsoleOutput()
-    {
-        var writer = new StringWriter();
-        Console.SetOut(writer);
-    }
-
-    [TearDown]
-    public void RestoreConsoleOutput()
-    {
-        Console.SetOut(Console.Out);
-    }
-
     [Test]
     public void WhenMethodWithStringParameterCalled_ThenPrintExpectedOutput()
     {

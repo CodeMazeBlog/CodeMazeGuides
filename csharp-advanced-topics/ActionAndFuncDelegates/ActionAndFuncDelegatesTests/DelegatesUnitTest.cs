@@ -1,4 +1,3 @@
-using ActionAndFuncDelegates;
 using Moq;
 
 namespace ActionAndFuncDelegates.Tests;
@@ -6,26 +5,11 @@ namespace ActionAndFuncDelegates.Tests;
 [TestFixture]
 public class DelegatesUnitTest
 {
-    private string consoleOutput = string.Empty;
-
-    [SetUp]
-    public void RedirectConsoleOutput()
-    {
-        var writer = new StringWriter();
-        Console.SetOut(writer);
-    }
-
-    [TearDown]
-    public void RestoreConsoleOutput()
-    {
-        Console.SetOut(Console.Out);
-    }
-
     [Test]
     public void WhenSimpleDelegateCalled_ThenCallMethodWithNoParameterAndReturType()
     {
         var mock = new Mock<SimpleDelegate>();
-        mock.Setup(x=>x()).Verifiable(Times.Once);        
+        mock.Setup(x => x()).Verifiable(Times.Once);
     }
 
     [Test]

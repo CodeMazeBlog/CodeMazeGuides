@@ -4,22 +4,6 @@ namespace ActionAndFuncDelegates.Tests;
 
 public class FuncDelegateUnitTest
 {
-    private string consoleOutput;
-
-    [SetUp]
-    public void RedirectConsoleOutput()
-    {
-        var writer = new StringWriter();
-        Console.SetOut(writer);
-    }
-
-    [TearDown]
-    public void RestoreConsoleOutput()
-    {
-        Console.SetOut(Console.Out);
-        consoleOutput = null;
-    }
-
     [Test]
     public void WhenMethodWithStringReturnValueAndNoParameterCalled_ThenPrintExpectedOutput()
     {

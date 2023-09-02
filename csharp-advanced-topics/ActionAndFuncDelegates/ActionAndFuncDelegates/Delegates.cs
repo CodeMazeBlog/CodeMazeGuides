@@ -1,38 +1,37 @@
-﻿namespace ActionAndFuncDelegates
+﻿namespace ActionAndFuncDelegates;
+
+public delegate void SimpleDelegate();
+public delegate string SimpleDelegateWithStringReturnType();
+public delegate string SimpleDelegateWithStringReturnTypeAndParameter(string name);
+
+public class Delegates
 {
-    public delegate void SimpleDelegate();
-    public delegate string SimpleDelegateWithStringReturnType();
-    public delegate string SimpleDelegateWithStringReturnTypeAndParameter(string name);
-
-    public class Delegates
+    public static void Driver()
     {
-        public static void Driver()
-        {
-            SimpleDelegate firstDelegate = MethodWithVoidReturnTypeAndNoParameter;
-            SimpleDelegateWithStringReturnType secondDelegate = MethodWithStringReturnTypeAndNoParameter;
-            SimpleDelegateWithStringReturnTypeAndParameter thirdDelegate = MethodWithStringReturnTypeAndStringParameter;
+        SimpleDelegate firstDelegate = MethodWithVoidReturnTypeAndNoParameter;
+        SimpleDelegateWithStringReturnType secondDelegate = MethodWithStringReturnTypeAndNoParameter;
+        SimpleDelegateWithStringReturnTypeAndParameter thirdDelegate = MethodWithStringReturnTypeAndStringParameter;
 
-            firstDelegate();
-            var secondDelegateReturns = secondDelegate();
-            var thirdDelegateReturns = thirdDelegate("code-maze");
+        firstDelegate();
+        var secondDelegateReturns = secondDelegate();
+        var thirdDelegateReturns = thirdDelegate("code-maze");
 
-            Console.WriteLine(secondDelegateReturns);
-            Console.WriteLine(thirdDelegateReturns);
-        }
+        Console.WriteLine(secondDelegateReturns);
+        Console.WriteLine(thirdDelegateReturns);
+    }
 
-        public static void MethodWithVoidReturnTypeAndNoParameter()
-        {
-            Console.WriteLine($"Simple Called");
-        }
+    public static void MethodWithVoidReturnTypeAndNoParameter()
+    {
+        Console.WriteLine($"Simple Called");
+    }
 
-        public static string MethodWithStringReturnTypeAndNoParameter()
-        {
-            return $"Delegate with string return type";
-        }
+    public static string MethodWithStringReturnTypeAndNoParameter()
+    {
+        return $"Delegate with string return type";
+    }
 
-        public static string MethodWithStringReturnTypeAndStringParameter(string name)
-        {
-            return $"Delegate with string return type and parameter {name}";
-        }
+    public static string MethodWithStringReturnTypeAndStringParameter(string name)
+    {
+        return $"Delegate with string return type and parameter {name}";
     }
 }
