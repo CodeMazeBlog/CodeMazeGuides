@@ -3,13 +3,11 @@ namespace StopWatchCSharpTests;
 [TestClass]
 public class StopWatchUnitTests
 {
-    private readonly StopWatchMethods _stopWatchMethods = new();
-
     [TestMethod]
     public void GivenAStopwatchInstance_WhenStopwatchMethodsInvoked_ThenVerifyReturnedResults()
     {
         var arraySize = 10;
-        var stopWatch = _stopWatchMethods.CreateRandomArray(arraySize);
+        var stopWatch = StopWatchMethods.CreateRandomArray(arraySize);
 
         Assert.IsInstanceOfType(stopWatch, typeof(Stopwatch));
         Assert.IsInstanceOfType(stopWatch.Elapsed, typeof(TimeSpan));

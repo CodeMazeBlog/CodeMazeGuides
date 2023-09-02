@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 
 namespace StopWatchCSharp;
-public class StopWatchMethods
+public static class StopWatchMethods
 {     
-    public Stopwatch CreateRandomArray(int size)
+    public static Stopwatch CreateRandomArray(int size)
     {
         var stopWatch = new Stopwatch();
         stopWatch.Start();
