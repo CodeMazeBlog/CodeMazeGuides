@@ -33,15 +33,18 @@ public class StudentsController : ControllerBase
             return NotFound();
         }
 
-        foreach (var course in student.Courses)
+        if(student.CourseList is not null)
         {
-            var studentCourse = await _courseService.GetById(course);
-
-            if (studentCourse is not null)
+            foreach (var course in student.CourseList)
             {
-                student.CourseList.Add(studentCourse);
+                var studentCourse = await _courseService.GetById(course.Id);
+
+                if (studentCourse is not null)
+                {
+                    student.CourseList.Add(studentCourse);
+                }
             }
-        }
+        }      
 
         return Ok(student);
     }
