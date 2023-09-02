@@ -19,12 +19,12 @@ public class CourseService : ICourseService
         _courseCollection = database.GetCollection<Course>(schoolDatabaseSettings.Value.CoursesCollectionName);
     }
 
-    public async Task<Course> GetById(string id)
+    public async Task<Course?> GetById(string id)
     {
         return await _courseCollection.Find(c => c.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<Course> Create(Course course)
+    public async Task<Course?> Create(Course course)
     {
         await _courseCollection.InsertOneAsync(course);
 

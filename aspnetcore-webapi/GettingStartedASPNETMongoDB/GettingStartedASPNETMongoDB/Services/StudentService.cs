@@ -23,12 +23,12 @@ public class StudentService : IStudentService
         return await _studentCollection.Find(s => true).ToListAsync();
     }
 
-    public async Task<Student> GetById(string id)
+    public async Task<Student?> GetById(string id)
     {
         return await _studentCollection.Find(s => s.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<Student> Create(Student student)
+    public async Task<Student?> Create(Student student)
     {
         await _studentCollection.InsertOneAsync(student);
 
