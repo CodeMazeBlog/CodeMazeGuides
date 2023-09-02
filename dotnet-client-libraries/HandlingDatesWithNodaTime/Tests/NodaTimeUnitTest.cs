@@ -10,23 +10,23 @@ public class NodaTimeUnitTest
     {
         var instant = SystemClock.Instance.GetCurrentInstant();
 
-        Assert.True(instant != default(Instant));
+        Assert.True(instant != default(Instant));   
     }
 
-    [Fact]
-    public void WhenFromUnixTimeMethodIsCalled_ThenReturnCurrentInstant()
+    [Fact]  
+    public void WhenUtcDateIsSpecified_ThenReturnInstantFromUtcDate()   
     {
         var instant = Instant.FromUtc(2023, 8, 31, 20, 00);
 
         var expected = new LocalDateTime(2023, 8, 31, 20, 00)
             .InZoneStrictly(DateTimeZone.Utc)
-            .ToInstant();
+            .ToInstant();   
 
         Assert.Equal(expected, instant);
     }
 
     [Fact]
-    public void WhenFromUnixTimeTicksMethodIsCalled_ThenReturnCurrentInstant()
+    public void WhenFromUnixTimeTicksMethodIsCalled_ThenReturnInstantFromUnixTicks()
     {
         var epochTime = 1693153840;
 
@@ -66,7 +66,7 @@ public class NodaTimeUnitTest
     }
 
     [Fact]
-    public void WhenLocalTimeIsConvertedToString_ThenReturnString()
+    public void WhenLocalTimeIsConvertedToString_ThenReturnFormattedString()
     {
         var time = new LocalTime(10, 30);
         var pattern = LocalTimePattern.CreateWithInvariantCulture("HH:mm");
