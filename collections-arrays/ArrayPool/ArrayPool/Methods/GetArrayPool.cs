@@ -4,10 +4,5 @@ namespace ArrayPool;
 
 public partial class Methods
 {
-    public static ArrayPool<T> GetDefaultArrayPool<T>()
-    {
-        var arrayPool = ArrayPool<T>.Shared;
-
-        return arrayPool;
-    }
+    public static ArrayPool<T> GetDefaultArrayPool<T>() => ArrayPool<T>.Shared;
 }
