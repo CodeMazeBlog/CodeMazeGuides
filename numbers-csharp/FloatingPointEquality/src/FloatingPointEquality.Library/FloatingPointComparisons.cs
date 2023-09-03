@@ -27,7 +27,6 @@ public static class FloatingPointComparisons
         1e-17 * 0.5
     };
 
-
     public static bool EqualityUsingPrecision(double a, double b, int decimalPlaces)
     {
         if (double.IsNaN(a) || double.IsNaN(b)) return false;
