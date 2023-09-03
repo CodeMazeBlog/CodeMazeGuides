@@ -1,22 +1,16 @@
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
 
-namespace LogLevelsWithSerilog;
+IConfigurationRoot configuration = new ConfigurationBuilder()
+           .SetBasePath(Directory.GetCurrentDirectory())
+           .AddJsonFile("appsettings.json")
+           .AddJsonFile("appsettings.Development.json")
+           .Build();
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        IConfigurationRoot configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .AddJsonFile("appsettings.Development.json")
-            .Build();
+Log.Information("Web Host started");
+var builder = WebApplication.CreateBuilder(args);
 
-        Log.Information("Web Host started");
-        var builder = WebApplication.CreateBuilder(args);
-
-        builder.Services.AddSerilog(options =>
+builder.Services.AddSerilog(options =>
         {
             //we can configure serilog from configuration
             options.ReadFrom.Configuration(configuration);
@@ -37,21 +31,19 @@ public class Program
                    .Enrich.WithProperty("Author", "codemaze");
         });
 
-        builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews();
 
-        var app = builder.Build();
-        app.UseSerilogRequestLogging();
+var app = builder.Build();
+app.UseSerilogRequestLogging();
 
-        app.UseStaticFiles();
+app.UseStaticFiles();
 
-        app.UseRouting();
+app.UseRouting();
 
-        app.UseHttpsRedirection();
+app.UseHttpsRedirection();
 
-        app.MapControllerRoute(
-            name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
-        app.Run();
-    }
-}
+app.Run();
