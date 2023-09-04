@@ -4,24 +4,33 @@
 
 <h1>Burger Configurator</h1>
 
-<p>Burger without topping: @baseBurgerCost</p>
-<p>Topping: @selectedTopping</p>
-<p>Total Cost: @totalCost</p>
+<p>Burger without topping: $@baseBurgerCost</p>
+<p>Free topping: @selectedTopping</p>
 
-<p>Grand Total: @grandTotal</p>
+<p>Total Cost: $@totalCost</p>
 
-<p>Please choose your topping from the list below:</p>
+<p>Grand Total: $@grandTotal</p>
 
+<p>Please choose your toppings from the list below:</p>
+
+<span>Free topping:</span>
+<select class="select-element" @bind="selectedTopping">
+    @foreach (var topping in toppings)
+    {
+        <option value="@topping.Name">@topping.Name</option>
+    }
+</select>
+<br/>
+<span>Second topping:</span>
 <select class="select-element" @onchange="@HandleChange">
     @foreach (var topping in toppings)
     {
         <option value="@topping.Id">@topping.Name  +$@topping.Price</option>
     }
 </select>
-
-<p>Please choose second topping from the list below:</p>
-
-<select class="select-element" @bind="selectedSecondTopping" @bind:after="CalculateGrandTotal">
+<br/>
+<span>Third topping:</span>
+<select class="select-element" @bind="selectedThirdTopping" @bind:after="CalculateGrandTotal">
     @foreach (var topping in toppings)
     {
         <option value="@topping.Id">@topping.Name +$@topping.Price</option>
@@ -33,6 +42,7 @@
     public record Topping(int Id, string Name, double Price);
     public string? selectedTopping;
     public string? selectedSecondTopping;
+    public string? selectedThirdTopping;
     public static double baseBurgerCost = 5.4;
     public double totalCost = baseBurgerCost;
     public double grandTotal;
@@ -50,13 +60,13 @@
     public void HandleChange(ChangeEventArgs args)
     {
         @foreach (var topping in toppings)
-        {
-            if (topping.Id == int.Parse(args.Value.ToString()))
             {
-                selectedTopping = topping.Name;
-                totalCost = Math.Round(baseBurgerCost + topping.Price, 2);
+                if (topping.Id == int.Parse(args.Value.ToString()))
+                {
+                    selectedSecondTopping = topping.Name;
+                    totalCost = Math.Round(baseBurgerCost + topping.Price, 2);
+                }
             }
-        }
     }
 
     public async Task CalculateGrandTotal()
@@ -64,11 +74,11 @@
         await Task.Delay(2000);
 
         @foreach (var topping in toppings)
-        {
-            if (topping.Id == int.Parse(selectedSecondTopping))
             {
-                grandTotal = Math.Round(totalCost + topping.Price, 2);
+                if (topping.Id == int.Parse(selectedThirdTopping))
+                {
+                    grandTotal = Math.Round(totalCost + topping.Price, 2);
+                }
             }
-        }
     }
 }
