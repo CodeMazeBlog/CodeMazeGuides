@@ -2,11 +2,12 @@
 {
     public class User
     {
-        public User(string firstName, string lastName, string email)
+        public User(string firstName, string lastName, string email, int age = 18)
         {
             FirstName = firstName;
             LastName = lastName;
             Email = email;
+            Age = age;
         }
 
         public string FirstName { get; set; }
