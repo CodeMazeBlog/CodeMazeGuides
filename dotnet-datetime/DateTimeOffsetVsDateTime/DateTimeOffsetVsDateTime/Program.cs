@@ -6,7 +6,8 @@ Console.WriteLine($"DateTime: {dateTime}");
 var dateTimeOffset = DateTimeOffset.Now;
 Console.WriteLine($"DateTimeOffset: {dateTimeOffset}"); 
 //TimeZone vs Offset 
-static List<TimeZoneInfo> GetTimeZoneFromOffset(TimeSpan offset) => TimeZoneInfo.GetSystemTimeZones().Where(tz => tz.BaseUtcOffset == offset).ToList();
+static List<TimeZoneInfo> GetTimeZoneFromOffset(TimeSpan offset) =>
+TimeZoneInfo.GetSystemTimeZones().Where(tz => tz.BaseUtcOffset == offset).ToList();
 var timeZones = GetTimeZoneFromOffset(dateTimeOffset.Offset);
 foreach (TimeZoneInfo timeZone in timeZones)
 {
