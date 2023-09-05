@@ -56,7 +56,7 @@ public static class FloatingPointComparisons
 
         if (double.IsInfinity(a) || double.IsInfinity(b) || a.IsNegative() != b.IsNegative()) return a == b;
 
-        return long.Abs(a.AsLong() - b.AsLong()) <= maxUnitsInLastPlace;
+        return long.Abs(BitConverter.DoubleToInt64Bits(a) - BitConverter.DoubleToInt64Bits(b)) <= maxUnitsInLastPlace;
     }
 
     public static bool EqualityUsingMaxUnitsInLastPlace(float a, float b, int maxUnitsInLastPlace)
@@ -67,7 +67,7 @@ public static class FloatingPointComparisons
 
         if (float.IsInfinity(a) || float.IsInfinity(b) || a.IsNegative() != b.IsNegative()) return a == b;
 
-        return int.Abs(a.AsInt() - b.AsInt()) <= maxUnitsInLastPlace;
+        return int.Abs(BitConverter.SingleToInt32Bits(a) - BitConverter.SingleToInt32Bits(b)) <= maxUnitsInLastPlace;
     }
 
     public static bool EqualityUsingMaxUnitsInLastPlace(Half a, Half b, int maxUnitsInLastPlace)
@@ -78,17 +78,8 @@ public static class FloatingPointComparisons
 
         if (Half.IsInfinity(a) || Half.IsInfinity(b) || a.IsNegative() != b.IsNegative()) return a == b;
 
-        return int.Abs(a.AsShort() - b.AsShort()) <= maxUnitsInLastPlace;
+        return int.Abs(BitConverter.HalfToInt16Bits(a) - BitConverter.HalfToInt16Bits(b)) <= maxUnitsInLastPlace;
     }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static unsafe long AsLong(this double value) => *(long*) &value;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static unsafe int AsInt(this float value) => *(int*) &value;
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static unsafe short AsShort(this Half value) => *(short*) &value;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool IsNegative<T>(this T value) where T : IFloatingPointIeee754<T>
