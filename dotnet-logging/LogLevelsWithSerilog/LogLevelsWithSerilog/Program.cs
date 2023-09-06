@@ -21,11 +21,7 @@ builder.Services.AddSerilog(options =>
            .WriteTo.File("logs/myapplogs.txt",
                 rollingInterval: RollingInterval.Day,
                 rollOnFileSizeLimit: true,
-                restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
-           .WriteTo.MSSqlServer(
-                connectionString: "Server=localhost;Database=LogDb;Integrated Security=SSPI;",
-                sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs" },
-                restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Fatal);
+                restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information);
 });
 
 builder.Services.AddControllersWithViews();
