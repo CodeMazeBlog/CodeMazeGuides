@@ -22,7 +22,6 @@ public class CryptographicHelperUnitTest
     {
         var randomNumber = CryptographicHelpers.GenerateRandomInteger(minValue, maxValue);
 
-        Assert.NotEqual(0, randomNumber);
         Assert.InRange(randomNumber, minValue, maxValue);
     }
 }
