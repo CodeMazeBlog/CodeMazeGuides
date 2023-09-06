@@ -11,25 +11,22 @@ Log.Information("Web Host started");
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSerilog(options =>
-        {
-            //we can configure serilog from configuration
-            options.ReadFrom.Configuration(configuration);
+{
+    //we can configure serilog from configuration
+    options.ReadFrom.Configuration(configuration);
 
-            //or we can configure serilog via fluent api
-            options.MinimumLevel.Information()
-                   .WriteTo.Console(Serilog.Events.LogEventLevel.Warning, outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
-                   .WriteTo.File("logs/myapplogs.txt",
-                        rollingInterval: RollingInterval.Day,
-                        rollOnFileSizeLimit: true,
-                        restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
-                   .WriteTo.MSSqlServer(
-                        connectionString: "Server=localhost;Database=LogDb;Integrated Security=SSPI;",
-                        sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs" },
-                        restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Fatal)
-                   .Enrich.WithProperty("AppName", "Serilog Demo")
-                   .Enrich.WithProperty("Environment", "Development")
-                   .Enrich.WithProperty("Author", "codemaze");
-        });
+    //or we can configure serilog via fluent api
+    options.MinimumLevel.Information()
+           .WriteTo.Console(Serilog.Events.LogEventLevel.Warning, outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
+           .WriteTo.File("logs/myapplogs.txt",
+                rollingInterval: RollingInterval.Day,
+                rollOnFileSizeLimit: true,
+                restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information)
+           .WriteTo.MSSqlServer(
+                connectionString: "Server=localhost;Database=LogDb;Integrated Security=SSPI;",
+                sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs" },
+                restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Fatal);
+});
 
 builder.Services.AddControllersWithViews();
 

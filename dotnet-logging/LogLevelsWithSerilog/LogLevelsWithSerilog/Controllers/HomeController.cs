@@ -19,7 +19,7 @@ public class HomeController : Controller
         _logger.LogInformation("Information Log Message");
         _logger.LogWarning("Warning Log Message");
         _logger.LogError("Error Log Message");
-        _logger.LogCritical("LogCritical Log Message");
+        _logger.LogCritical("Critical Log Message");
 
         return View();
     }
@@ -34,7 +34,7 @@ public class HomeController : Controller
             case (int)Serilog.Events.LogEventLevel.Debug:
                 _logger.LogDebug(LogTemplate, logTypeDesc, message); break;
             case (int)Serilog.Events.LogEventLevel.Information:
-                _logger.LogInformation(LogTemplate, message); break;
+                _logger.LogInformation(LogTemplate, logTypeDesc, message); break;
             case (int)Serilog.Events.LogEventLevel.Warning:
                 _logger.LogWarning(LogTemplate, logTypeDesc, message); break;
             case (int)Serilog.Events.LogEventLevel.Error:

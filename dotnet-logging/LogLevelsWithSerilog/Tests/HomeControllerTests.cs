@@ -1,8 +1,3 @@
-using AutoFixture;
-using LogLevelsWithSerilog.Controllers;
-using Microsoft.Extensions.Logging;
-using Moq;
-
 namespace LogLevelsWithSerilogTests;
 
 [TestClass]
@@ -11,6 +6,7 @@ public class LogLevelsWithSerilogTests
     private HomeController? _homeController;
     private Mock<ILogger<HomeController>>? _loggerMock;
     private IFixture? _fixture;
+    private string _message = "Serilog Test Message";
 
     [TestInitialize]
     public void Setup()
@@ -18,95 +14,64 @@ public class LogLevelsWithSerilogTests
         _fixture = new Fixture();
         _loggerMock = new Mock<ILogger<HomeController>>();
         _homeController = new HomeController(_loggerMock.Object);
+        _message = _fixture.Create<string>();
     }
 
     [TestMethod]
     public void WhenLogRouteCalledWithDebug_ThenDebugLogMustBeCalled()
     {
-        var message = _fixture.Create<string>();
-        var logType = (int)LogLevel.Debug;
-
-        _homeController?.GenerateLog(message, logType);
-
-        _loggerMock?.Verify(x => x.Log(LogLevel.Debug,
-            It.IsAny<EventId>(),
-            It.Is<It.IsAnyType>((v, t) => true),
-            It.IsAny<Exception>(),
-            It.Is<Func<It.IsAnyType, Exception?, string>>((v, t) => true)), Times.Once);
+        TestGenerateLog(Serilog.Events.LogEventLevel.Debug);
     }
 
     [TestMethod]
     public void WhenLogRouteCalledWithInformation_ThenInformationLogMustBeCalled()
     {
-        var message = _fixture.Create<string>();
-        var logType = (int)LogLevel.Information;
-
-        _homeController?.GenerateLog(message, logType);
-
-        _loggerMock?.Verify(x => x.Log(LogLevel.Information,
-             It.IsAny<EventId>(),
-             It.Is<It.IsAnyType>((v, t) => true),
-             It.IsAny<Exception>(),
-             It.Is<Func<It.IsAnyType, Exception?, string>>((v, t) => true)), Times.Once);
+        TestGenerateLog(Serilog.Events.LogEventLevel.Information);
     }
 
     [TestMethod]
     public void WhenLogRouteCalledWithWarning_ThenWarningLogMustBeCalled()
     {
-        var message = _fixture.Create<string>();
-        var logType = (int)LogLevel.Warning;
-
-        _homeController?.GenerateLog(message, logType);
-
-        _loggerMock?.Verify(x => x.Log(LogLevel.Warning,
-             It.IsAny<EventId>(),
-             It.Is<It.IsAnyType>((v, t) => true),
-             It.IsAny<Exception>(),
-             It.Is<Func<It.IsAnyType, Exception?, string>>((v, t) => true)), Times.Once);
+        TestGenerateLog(Serilog.Events.LogEventLevel.Warning);
     }
 
     [TestMethod]
     public void WhenLogRouteCalledWithError_ThenErrorLogMustBeCalled()
     {
-        var message = _fixture.Create<string>();
-        var logType = (int)LogLevel.Error;
-
-        _homeController?.GenerateLog(message, logType);
-
-        _loggerMock?.Verify(x => x.Log(LogLevel.Error,
-             It.IsAny<EventId>(),
-             It.Is<It.IsAnyType>((v, t) => true),
-             It.IsAny<Exception>(),
-             It.Is<Func<It.IsAnyType, Exception?, string>>((v, t) => true)), Times.Once);
+        TestGenerateLog(Serilog.Events.LogEventLevel.Error);
     }
 
     [TestMethod]
     public void WhenLogRouteCalledWithFatal_ThenFatalLogMustBeCalled()
     {
-        var message = _fixture.Create<string>();
-        var logType = (int)LogLevel.Critical;
-
-        _homeController?.GenerateLog(message, logType);
-
-        _loggerMock?.Verify(x => x.Log(LogLevel.Critical,
-             It.IsAny<EventId>(),
-             It.Is<It.IsAnyType>((v, t) => true),
-             It.IsAny<Exception>(),
-             It.Is<Func<It.IsAnyType, Exception?, string>>((v, t) => true)), Times.Once);
+        TestGenerateLog(Serilog.Events.LogEventLevel.Fatal);
     }
 
     [TestMethod]
     public void WhenLogRouteCalledWithInvalidLogLevel_ThenInformationLogMustBeCalled()
     {
-        var message = _fixture.Create<string>();
-        var logType = -5;
+        var logTypeInvalid = -5;
 
-        _homeController?.GenerateLog(message, logType);
+        _homeController?.GenerateLog(_message, logTypeInvalid);
 
         _loggerMock?.Verify(x => x.Log(LogLevel.Information,
              It.IsAny<EventId>(),
-             It.Is<It.IsAnyType>((v, t) => true),
+             It.Is<It.IsAnyType>((v, _) => v!.ToString()!.Equals($"InvalidLogType : {_message}", StringComparison.Ordinal)),
              It.IsAny<Exception>(),
              It.Is<Func<It.IsAnyType, Exception?, string>>((v, t) => true)), Times.Once);
+    }
+
+    private void TestGenerateLog(Serilog.Events.LogEventLevel logLevel)
+    {
+        var logType = (int)logLevel;
+        var logTypeName = logLevel.ToString();
+
+        _homeController?.GenerateLog(_message, logType);
+
+        _loggerMock?.Verify(x => x.Log((LogLevel)logLevel,
+              It.IsAny<EventId>(),
+              It.Is<It.IsAnyType>((v, _) => v!.ToString()!.Equals($"{logTypeName} Log : {_message}", StringComparison.Ordinal)),
+              It.IsAny<Exception>(),
+              It.Is<Func<It.IsAnyType, Exception?, string>>((v, t) => true)), Times.Once);
     }
 }
