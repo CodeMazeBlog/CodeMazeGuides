@@ -60,13 +60,13 @@
     public void HandleChange(ChangeEventArgs args)
     {
         @foreach (var topping in toppings)
+        {
+            if (topping.Id == int.Parse(args.Value.ToString()))
             {
-                if (topping.Id == int.Parse(args.Value.ToString()))
-                {
-                    selectedSecondTopping = topping.Name;
-                    totalCost = Math.Round(baseBurgerCost + topping.Price, 2);
-                }
+                selectedSecondTopping = topping.Name;
+                totalCost = Math.Round(baseBurgerCost + topping.Price, 2);
             }
+        }
     }
 
     public async Task CalculateGrandTotal()
@@ -74,11 +74,11 @@
         await Task.Delay(2000);
 
         @foreach (var topping in toppings)
+        {
+            if (topping.Id == int.Parse(selectedThirdTopping))
             {
-                if (topping.Id == int.Parse(selectedThirdTopping))
-                {
-                    grandTotal = Math.Round(totalCost + topping.Price, 2);
-                }
+                grandTotal = Math.Round(totalCost + topping.Price, 2);
             }
+        }
     }
 }
