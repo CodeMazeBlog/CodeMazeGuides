@@ -33,5 +33,6 @@ This section contains the topics about the client libraries in .NET.
 - [How to Send Emails With the SendGrid API in C#](https://code-maze.com/csharp-send-emails-with-sendgrid-api/)
 - [How to Improve Enums With the SmartEnum Library](https://code-maze.com/csharp-improve-enums-with-the-smartenum-library/)
 - [Swashbuckle vs. NSwag in ASP.NET Core](https://code-maze.com/aspnetcore-swashbuckle-vs-nswag/)
+- [Testing Using Testcontainers for .NET and Docker](https://code-maze.com/csharp-testing-using-testcontainers-for-net-and-docker/)
 - [Test Data Generation With AutoFixture in .NET](https://code-maze.com/csharp-test-data-generation-with-autofixture/)
 - [Seamless Integration Testing With WireMock.NET](https://code-maze.com/integration-testing-wiremock-dotnet/)
