@@ -1,7 +1,6 @@
 using Serilog;
-using Serilog.Sinks.MSSqlServer;
 
-IConfigurationRoot configuration = new ConfigurationBuilder()
+var configuration = new ConfigurationBuilder()
            .SetBasePath(Directory.GetCurrentDirectory())
            .AddJsonFile("appsettings.json")
            .AddJsonFile("appsettings.Development.json")

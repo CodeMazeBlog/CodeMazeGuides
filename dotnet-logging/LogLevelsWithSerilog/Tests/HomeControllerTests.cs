@@ -5,16 +5,16 @@ public class LogLevelsWithSerilogTests
 {
     private HomeController? _homeController;
     private Mock<ILogger<HomeController>>? _loggerMock;
-    private IFixture? _fixture;
-    private string _message = "Serilog Test Message";
+    private string _message = string.Empty;
 
     [TestInitialize]
     public void Setup()
     {
-        _fixture = new Fixture();
         _loggerMock = new Mock<ILogger<HomeController>>();
         _homeController = new HomeController(_loggerMock.Object);
-        _message = _fixture.Create<string>();
+
+        var fixture = new Fixture();
+        _message = fixture.Create<string>();
     }
 
     [TestMethod]
