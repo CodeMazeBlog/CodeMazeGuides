@@ -29,7 +29,7 @@ namespace Tests
             var expectedOutput = true;
 
             // Create a TextReader to simulate user input
-            using var consoleInput = new ConsoleInput(input);
+            var consoleInput = new ConsoleInput(input);
             // Act
             var result = DiscardExamples.GetNumber();
 
@@ -45,7 +45,7 @@ namespace Tests
             var expectedOutput = false;
 
             // Create a TextReader to simulate user input
-            using var consoleInput = new ConsoleInput(input);
+            var consoleInput = new ConsoleInput(input);
             // Act
             var result = DiscardExamples.GetNumber();
 
