@@ -11,7 +11,9 @@ for (var i = 0; i < arraySize; i++)
 
 Console.WriteLine("Array elements:");
 
-foreach (var value in array)
-    Console.Write(value + " ");
+for (int i = 0; i < arraySize; i++) 
+    Console.Write(array[i] + " ");
+
+Console.WriteLine($"Array size: {array.Length}");
 
 pool.Return(array);

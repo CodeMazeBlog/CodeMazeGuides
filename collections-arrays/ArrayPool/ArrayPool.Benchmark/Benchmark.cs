@@ -7,22 +7,22 @@ namespace ArrayPool.Benchmark;
 public class Benchmark
 {
     [Params(100, 1000, 10000, 100000)]
-    private int ArraySize { get; set; }
+    public int ArraySize { get; set; }
 
-    private ArrayPool<int>? arrayPool;
+    private ArrayPool<int>? _arrayPool;
 
     [GlobalSetup]
     public void GlobalSetup()
     {
-        arrayPool = ArrayPool<int>.Shared;
+        _arrayPool = ArrayPool<int>.Shared;
     }
 
     [Benchmark]
     public void CreateArrayWithArrayPool()
     {
-        var array = arrayPool.Rent(ArraySize);
+        var array = _arrayPool.Rent(ArraySize);
 
-        arrayPool.Return(array);
+        _arrayPool.Return(array);
     }
 
     [Benchmark]
