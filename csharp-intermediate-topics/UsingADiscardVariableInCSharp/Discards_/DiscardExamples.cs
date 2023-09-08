@@ -2,7 +2,7 @@
 {
     public class DiscardExamples
     {
-        public bool GetNumber()
+        public static bool GetNumber()
         {
             Console.WriteLine("Enter any number on the keyboard");
             var result = int.TryParse(Console.ReadLine(), out _);
@@ -15,7 +15,7 @@
             return result;
         }
 
-        public void GetType(object[] objects)
+        public static void GetType(object[] objects)
         {
             foreach (var item in objects)
             {
@@ -26,6 +26,11 @@
                     _ => "Neither string nor int"
                 });
             }
+        }
+
+        public static (int, int, int) GetSum(int num1, int num2)
+        {
+            return (num1, num2, num1 + num2);
         }
     }
 }
