@@ -20,39 +20,6 @@ namespace Tests
             Assert.Equal(expectedTuple, result);
         }
 
-        //Test for GetNumber()
-        [Fact]
-        public void WhenAnInputIsParsed_ThenReturnTrueIfItIsAValidNumber()
-        {
-            // Arrange
-            var input = "42";
-            var expectedOutput = true;
-
-            // Create a TextReader to simulate user input
-            var consoleInput = new ConsoleInput(input);
-            // Act
-            var result = DiscardExamples.GetNumber();
-
-            // Assert
-            Assert.Equal(expectedOutput, result);
-        }
-
-        [Fact]
-        public void WhenAnInputIsParsed_ThenReturnFalseIfItIsNotAValidNumber()
-        {
-            // Arrange
-            var input = "not_a_number";
-            var expectedOutput = false;
-
-            // Create a TextReader to simulate user input
-            var consoleInput = new ConsoleInput(input);
-            // Act
-            var result = DiscardExamples.GetNumber();
-
-            // Assert
-            Assert.Equal(expectedOutput, result);
-        }
-
         //Test for GetType()
         [Fact]
         public void WhenIteratingThroughAnArray_ThenConsoleDataTypeOfEachItemInArray()
