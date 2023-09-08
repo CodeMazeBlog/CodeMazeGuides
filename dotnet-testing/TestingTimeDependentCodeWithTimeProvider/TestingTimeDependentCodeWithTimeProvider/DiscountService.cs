@@ -2,17 +2,17 @@
 
 public class DiscountService : IDiscountService
 {
-    private readonly IDateTimeProvider _dateTimeProvider;
+    private readonly TimeProvider _timeProvider;
 
-    public DiscountService(IDateTimeProvider dateTimeProvider)
+    public DiscountService(TimeProvider timeProvider)
     {
-        _dateTimeProvider = dateTimeProvider;
+        _timeProvider = timeProvider;
     }
 
     public double CalculateDiscount()
     {
-        var now = _dateTimeProvider.UtcNow;
-
+        var now = _timeProvider.GetUtcNow();
+        
         return now.DayOfWeek switch
         {
             DayOfWeek.Monday => 1,

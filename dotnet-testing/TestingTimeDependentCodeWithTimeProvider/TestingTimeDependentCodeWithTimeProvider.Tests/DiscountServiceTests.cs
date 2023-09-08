@@ -1,21 +1,23 @@
+using Microsoft.Extensions.Time.Testing;
+
 namespace TestingTimeDependentCodeWithTimeProvider.Tests;
 
 public class DiscountServiceTests
 {
+    private readonly FakeTimeProvider _timeProvider;
     private readonly DiscountService _discountService;
-    private readonly IDateTimeProvider _dateTimeProvider;
 
     public DiscountServiceTests()
     {
-        _dateTimeProvider = Substitute.For<IDateTimeProvider>();
-        _discountService = new DiscountService(_dateTimeProvider);
+        _timeProvider = new FakeTimeProvider();
+        _discountService = new DiscountService(_timeProvider);
     }
 
     [Fact]
     public void GivenMonday_WhenCalculateDiscountIsInvoked_ThenValidDiscountIsReturned()
     {
         // Arrange
-        _dateTimeProvider.UtcNow.Returns(new DateTime(2023, 5, 1));
+        _timeProvider.SetUtcNow(new DateTime(2023, 5, 1));
 
         // Act
         var result = _discountService.CalculateDiscount();
@@ -28,7 +30,7 @@ public class DiscountServiceTests
     public void GivenTuesday_WhenCalculateDiscountIsInvoked_ThenValidDiscountIsReturned()
     {
         // Arrange
-        _dateTimeProvider.UtcNow.Returns(new DateTime(2023, 5, 2));
+        _timeProvider.SetUtcNow(new DateTime(2023, 5, 2));
 
         // Act
         var result = _discountService.CalculateDiscount();
@@ -42,7 +44,7 @@ public class DiscountServiceTests
     {
 
         // Arrange
-        _dateTimeProvider.UtcNow.Returns(new DateTime(2023, 5, 3));
+        _timeProvider.SetUtcNow(new DateTime(2023, 5, 3));
 
         // Act
         var result = _discountService.CalculateDiscount();
@@ -55,7 +57,7 @@ public class DiscountServiceTests
     public void GivenThursday_WhenCalculateDiscountIsInvoked_ThenValidDiscountIsReturned()
     {
         // Arrange
-        _dateTimeProvider.UtcNow.Returns(new DateTime(2023, 5, 4));
+        _timeProvider.SetUtcNow(new DateTime(2023, 5, 4));
 
         // Act
         var result = _discountService.CalculateDiscount();
@@ -68,7 +70,7 @@ public class DiscountServiceTests
     public void GivenFriday_WhenCalculateDiscountIsInvoked_ThenValidDiscountIsReturned()
     {
         // Arrange
-        _dateTimeProvider.UtcNow.Returns(new DateTime(2023, 5, 5));
+        _timeProvider.SetUtcNow(new DateTime(2023, 5, 5));
 
         // Act
         var result = _discountService.CalculateDiscount();
@@ -81,7 +83,7 @@ public class DiscountServiceTests
     public void GivenSaturday_WhenCalculateDiscountIsInvoked_ThenValidDiscountIsReturned()
     {
         // Arrange
-        _dateTimeProvider.UtcNow.Returns(new DateTime(2023, 5, 6));
+        _timeProvider.SetUtcNow(new DateTime(2023, 5, 6));
 
         // Act
         var result = _discountService.CalculateDiscount();
@@ -94,7 +96,7 @@ public class DiscountServiceTests
     public void GivenSunday_WhenCalculateDiscountIsInvoked_ThenValidDiscountIsReturned()
     {
         // Arrange
-        _dateTimeProvider.UtcNow.Returns(new DateTime(2023, 5, 7));
+        _timeProvider.SetUtcNow(new DateTime(2023, 5, 7));
 
         // Act
         var result = _discountService.CalculateDiscount();
