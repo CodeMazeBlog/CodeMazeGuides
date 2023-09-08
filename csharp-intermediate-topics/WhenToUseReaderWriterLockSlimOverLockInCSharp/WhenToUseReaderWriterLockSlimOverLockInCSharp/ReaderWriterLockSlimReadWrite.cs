@@ -1,75 +1,74 @@
-﻿namespace WhenToUseReaderWriterLockSlimOverLockInCSharp
+﻿namespace WhenToUseReaderWriterLockSlimOverLockInCSharp;
+
+public class ReaderWriterLockSlimReadWrite : BaseReaderWriter
 {
-    public class ReaderWriterLockSlimReadWrite : BaseReaderWriter
+    private static readonly ReaderWriterLockSlim ReaderWriterLockSlim = new();
+
+    public override void AddNumbersToList(int writerExecutionsCount, int writerExecutionDelay)
     {
-        private static readonly ReaderWriterLockSlim _readerWriterLockSlim = new();
+        ReaderWriterLockSlim.EnterWriteLock();
 
-        public override void AddNumbersToList(int writerExecutionsCount, int writerExecutionDelay)
+        try
         {
-            _readerWriterLockSlim.EnterWriteLock();
-
-            try
+            for (var cnt = 0; cnt < writerExecutionsCount; cnt++)
             {
-                for (var cnt = 0; cnt < writerExecutionsCount; cnt++)
+                NumbersList.Add(cnt);
+                Thread.SpinWait(writerExecutionDelay);
+            }
+        }
+        finally
+        {
+            ReaderWriterLockSlim.ExitWriteLock();
+        }
+    }
+
+    public override void ReadListCount(int readerExecutionsCount, int readerExecutionDelay)
+    {
+        ReaderWriterLockSlim.EnterReadLock();
+
+        try
+        {
+            for (var cnt = 0; cnt < readerExecutionsCount; cnt++)
+            {
+                if (NumbersList.Count > 0)
                 {
-                    _listOfNumbers.Add(cnt);
+                    _ = NumbersList[Random.Shared.Next(0, NumbersList.Count)];
+                }
+                Thread.SpinWait(readerExecutionDelay);
+            }
+        }
+        finally
+        {
+            ReaderWriterLockSlim.ExitReadLock();
+        }
+    }
+
+    public void ReadOrAdd(int writerExecutionDelay)
+    {
+        var random = Random.Shared.Next(0, NumbersList.Count);
+
+        ReaderWriterLockSlim.EnterUpgradeableReadLock();
+
+        try
+        {
+            if (!NumbersList.Contains(random))
+            {
+                ReaderWriterLockSlim.EnterWriteLock();
+
+                try
+                {
+                    NumbersList.Add(random);
                     Thread.SpinWait(writerExecutionDelay);
                 }
-            }
-            finally
-            {
-                _readerWriterLockSlim.ExitWriteLock();
-            }
-        }
-
-        public override void ReadListCount(int readerExecutionsCount, int readerExecutionDelay)
-        {
-            _readerWriterLockSlim.EnterReadLock();
-
-            try
-            {
-                for (var cnt = 0; cnt < readerExecutionsCount; cnt++)
+                finally
                 {
-                    if (_listOfNumbers.Count > 0)
-                    {
-                        _ = _listOfNumbers[Random.Shared.Next(0, _listOfNumbers.Count)];
-                    }
-                    Thread.SpinWait(readerExecutionDelay);
+                    ReaderWriterLockSlim.ExitWriteLock();
                 }
             }
-            finally
-            {
-                _readerWriterLockSlim.ExitReadLock();
-            }
         }
-
-        public void ReadOrAdd(int writerExecutionDelay)
+        finally
         {
-            var random = Random.Shared.Next(0, _listOfNumbers.Count);
-
-            _readerWriterLockSlim.EnterUpgradeableReadLock();
-
-            try
-            {
-                if (!_listOfNumbers.Contains(random))
-                {
-                    _readerWriterLockSlim.EnterWriteLock();
-
-                    try
-                    {
-                        _listOfNumbers.Add(random);
-                        Thread.SpinWait(writerExecutionDelay);
-                    }
-                    finally
-                    {
-                        _readerWriterLockSlim.ExitWriteLock();
-                    }
-                }
-            }
-            finally
-            {
-                _readerWriterLockSlim.ExitUpgradeableReadLock();
-            }
+            ReaderWriterLockSlim.ExitUpgradeableReadLock();
         }
     }
 }

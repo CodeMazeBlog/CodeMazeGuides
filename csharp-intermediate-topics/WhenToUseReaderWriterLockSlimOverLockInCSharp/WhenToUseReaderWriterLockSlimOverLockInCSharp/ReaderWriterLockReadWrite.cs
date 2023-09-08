@@ -1,46 +1,45 @@
-﻿namespace WhenToUseReaderWriterLockSlimOverLockInCSharp
+﻿namespace WhenToUseReaderWriterLockSlimOverLockInCSharp;
+
+public class ReaderWriterLockReadWrite : BaseReaderWriter
 {
-    public class ReaderWriterLockReadWrite : BaseReaderWriter
+    private static readonly ReaderWriterLock ReaderWriterLock = new();
+
+    public override void AddNumbersToList(int writerExecutionsCount, int writerExecutionDelay)
     {
-        private static readonly ReaderWriterLock _readerWriterLock = new();
+        ReaderWriterLock.AcquireWriterLock(Timeout.InfiniteTimeSpan);
 
-        public override void AddNumbersToList(int writerExecutionsCount, int writerExecutionDelay)
+        try
         {
-            _readerWriterLock.AcquireWriterLock(Timeout.InfiniteTimeSpan);
-
-            try
+            for (var cnt = 0; cnt < writerExecutionsCount; cnt++)
             {
-                for (var cnt = 0; cnt < writerExecutionsCount; cnt++)
-                {
-                    _listOfNumbers.Add(cnt);
-                    Thread.SpinWait(writerExecutionDelay);
-                }
-            }
-            finally
-            {
-                _readerWriterLock.ReleaseWriterLock();
+                NumbersList.Add(cnt);
+                Thread.SpinWait(writerExecutionDelay);
             }
         }
-
-        public override void ReadListCount(int readerExecutionsCount, int readerExecutionDelay)
+        finally
         {
-            _readerWriterLock.AcquireReaderLock(Timeout.InfiniteTimeSpan);
+            ReaderWriterLock.ReleaseWriterLock();
+        }
+    }
 
-            try
+    public override void ReadListCount(int readerExecutionsCount, int readerExecutionDelay)
+    {
+        ReaderWriterLock.AcquireReaderLock(Timeout.InfiniteTimeSpan);
+
+        try
+        {
+            for (var cnt = 0; cnt < readerExecutionsCount; cnt++)
             {
-                for (var cnt = 0; cnt < readerExecutionsCount; cnt++)
+                if (NumbersList.Count > 0)
                 {
-                    if (_listOfNumbers.Count > 0)
-                    {
-                        _ = _listOfNumbers[Random.Shared.Next(0, _listOfNumbers.Count)];
-                    }
-                    Thread.SpinWait(readerExecutionDelay);
+                    _ = NumbersList[Random.Shared.Next(0, NumbersList.Count)];
                 }
+                Thread.SpinWait(readerExecutionDelay);
             }
-            finally
-            {
-                _readerWriterLock.ReleaseReaderLock();
-            }
+        }
+        finally
+        {
+            ReaderWriterLock.ReleaseReaderLock();
         }
     }
 }
