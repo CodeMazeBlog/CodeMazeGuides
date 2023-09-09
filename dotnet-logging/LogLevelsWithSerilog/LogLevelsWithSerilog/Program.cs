@@ -1,4 +1,5 @@
 using Serilog;
+using Serilog.Events;
 
 var configuration = new ConfigurationBuilder()
            .SetBasePath(Directory.GetCurrentDirectory())
@@ -16,11 +17,16 @@ builder.Services.AddSerilog(options =>
 
     //or we can configure serilog via fluent api
     options.MinimumLevel.Information()
-           .WriteTo.Console(Serilog.Events.LogEventLevel.Warning, outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
-           .WriteTo.File("logs/myapplogs.txt",
-                rollingInterval: RollingInterval.Day,
+           .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+           .MinimumLevel.Override("System", LogEventLevel.Warning)
+           .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information,
+                outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
+           .WriteTo.File("logs/log-.txt",
                 rollOnFileSizeLimit: true,
-                restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Information);
+                rollingInterval: RollingInterval.Day,
+                fileSizeLimitBytes: 1000000,
+                outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}",
+                restrictedToMinimumLevel: LogEventLevel.Warning);
 });
 
 builder.Services.AddControllersWithViews();
