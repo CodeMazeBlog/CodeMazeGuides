@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncDelegatesInCSharp", "ActionAndFuncDelegatesInCSharp\ActionAndFuncDelegatesInCSharp.csproj", "{64C9914E-AABC-4B94-B20A-1650AB93893F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionAndFuncDelegatesInCSharp", "ActionAndFuncDelegatesInCSharp\ActionAndFuncDelegatesInCSharp.csproj", "{64C9914E-AABC-4B94-B20A-1650AB93893F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{A511B21B-FDEE-446D-9594-75CEB8DEE556}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{A511B21B-FDEE-446D-9594-75CEB8DEE556}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersManager", "UsersManager\UsersManager.csproj", "{03D11AFF-329A-4982-9C1C-0F1511FB2860}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A511B21B-FDEE-446D-9594-75CEB8DEE556}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A511B21B-FDEE-446D-9594-75CEB8DEE556}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A511B21B-FDEE-446D-9594-75CEB8DEE556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D11AFF-329A-4982-9C1C-0F1511FB2860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D11AFF-329A-4982-9C1C-0F1511FB2860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D11AFF-329A-4982-9C1C-0F1511FB2860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D11AFF-329A-4982-9C1C-0F1511FB2860}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

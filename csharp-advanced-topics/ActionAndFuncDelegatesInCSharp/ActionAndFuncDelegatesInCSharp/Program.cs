@@ -2,15 +2,10 @@
 using System.Data;
 using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
+using UsersManagerLib;
 
 namespace ActionAndFuncDelegatesInCSharp
 {
-    public class User
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-
     class Program
     {
         public static void Method1()
@@ -24,6 +19,8 @@ namespace ActionAndFuncDelegatesInCSharp
 
         static void Main(string[] args)
         {
+            UserManagerAddUserExamplea();
+            return;
             var action = new Action(() =>
             {
                 //some actions
@@ -42,24 +39,27 @@ namespace ActionAndFuncDelegatesInCSharp
             action?.Invoke();
             action();
 
-            //example with 1 int param
             void MethodWithInt(int a) { };
+
             var actionWithIntParam = new Action<int>((a) => { });
             actionWithIntParam = MethodWithInt;
             actionWithIntParam = delegate (int a) { };
             actionWithIntParam = (a) => { };
+
             actionWithIntParam?.Invoke(1);
 
-            //example with 2 int params
+
+
             void MethodWithIntInt(int a, int b) { };
+
             var actionWithIntIntParam = new Action<int, int>((a, b) => { });
             actionWithIntIntParam = MethodWithIntInt;
             actionWithIntIntParam = delegate (int a, int b) { };
             actionWithIntIntParam = (a, b) => { };
+
             actionWithIntIntParam?.Invoke(1, 2);
 
 
-            //example with only return type
             int MethodWithRet() { return 1; };
             var funcWithRet = new Func<int>(() => 1);
             funcWithRet = MethodWithRet;
@@ -67,7 +67,6 @@ namespace ActionAndFuncDelegatesInCSharp
             funcWithRet = () => { return 1; };
             funcWithRet?.Invoke();
 
-            //example with return type and 1 param
             int MethodWithIntAndRet(int a) { return 1; };
             var funcWithIntAndRet = new Func<int, int>((a) => 1);
             funcWithIntAndRet = MethodWithIntAndRet;
@@ -84,7 +83,39 @@ namespace ActionAndFuncDelegatesInCSharp
 
             users.Where(new Func<User, bool>((user) => user.Id == 1));
             users.Where(user => user.Id == 1);
-
         }
+
+        public static void UserManagerGetUsers()
+        {
+            var usersMng = new UsersManager()
+            {
+                Users = new List<User>() {
+                            new User(){Id=1,Name="Name1"},
+                            new User(){Id=2,Name="Name2"},
+                            new User(){Id=3,Name="Name3"},
+                        }
+            };
+
+            var filteredUsers = usersMng.GetUsers(new Func<User, bool>((user) => user.Id == 1));
+            foreach (var user in filteredUsers)
+            {
+                Console.WriteLine(user);
+            }
+
+            filteredUsers = usersMng.GetUsers(((user) => user.Id == 1));
+            foreach (var user in filteredUsers)
+            {
+                Console.WriteLine(user);
+            }
+        }
+
+        public static void UserManagerAddUserExamplea()
+        {
+            var userMgr = new UsersManager();
+            userMgr.AddUser(new User() { Id = 1, Name = "Name1" });
+            userMgr.AddUser(new User() { Id = 2, Name = "name2" });
+            Console.Write(userMgr.GetUsers(user => true).Count());
+        }
+
     }
 }

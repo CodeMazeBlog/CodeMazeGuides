@@ -11,4 +11,8 @@
     <PackageReference Include="Moq" Version="4.20.69" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UsersManager\UsersManager.csproj" />
+  </ItemGroup>
+
 </Project>
