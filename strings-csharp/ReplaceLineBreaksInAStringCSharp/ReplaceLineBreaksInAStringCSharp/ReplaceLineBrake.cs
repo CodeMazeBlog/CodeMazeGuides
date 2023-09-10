@@ -7,18 +7,21 @@ public static class ReplaceLineBrake
     public static string ReplaceLineBreaksUsingTheStringReplaceMethod()
     {
         const string text = "This is a line.\nThis is another line.";
-        return text.Replace("\n", " ");
+        var newText = text.Replace("\n", " ");
+        return newText;
     }
-    
+
     public static string ReplaceLineBreaksUsingTheStringReplaceLineEndingsMethod()
     {
         const string text = "This is a line.\rThis is another line.";
-        return text.ReplaceLineEndings("\n");
+        var newText = text.ReplaceLineEndings("\n");
+        return newText;
     }
-    
+
     public static string ReplaceLineBreaksUsingTheRegularExpressionReplaceMethod()
     {
         const string text = "This is a line.\r\nThis is another line.";
-        return Regex.Replace(text, @"(\r\n|\n)", "&lt;br /&gt;");
+        var newText = Regex.Replace(text, @"(\r\n|\n)", "&lt;br /&gt;");
+        return newText;
     }
 }
