@@ -13,6 +13,7 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [Feature Flags in ASP.NET Core](https://code-maze.com/aspnetcore-feature-flags/)
 - [How to Read Connection Strings in .NET](https://code-maze.com/dotnet-read-connection-strings/)
 - [How To Set Up SSL Certificate In Visual Studio and .NET CLI](https://code-maze.com/enable-ssl-certificate-visual-studio-dotnet-cli/)
+- [Using HttpContext.Items to Pass Data With ASP.NET Core](https://code-maze.com/aspnetcore-httpcontext-items-pass-data/)
 - [Extending IdentityUser With Custom Properties in ASP.NET](https://code-maze.com/aspdotnet-extending-identityuser/)
 - [In-Memory Caching in ASP.NET Core](https://code-maze.com/aspnetcore-in-memory-caching/)
 - [InProcess and OutOfProcess Hosting Models in ASP.NET Core](https://code-maze.com/aspnetcore-inprocess-outofprocess-hosting-models/)
