@@ -6,10 +6,10 @@ namespace ArrayPool.Benchmark;
 [MemoryDiagnoser]
 public class Benchmark
 {
-    [Params(100, 1000, 10000, 100000)]
-    public int ArraySize { get; set; }
-
     private ArrayPool<int>? _arrayPool;
+
+    [Params(100, 1000, 10000, 100000)]
+    public int ArraySize { get; set; }    
 
     [GlobalSetup]
     public void GlobalSetup()
