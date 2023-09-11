@@ -1,18 +1,17 @@
-﻿namespace Discards_
+﻿namespace UsingADiscardVariableInCSharp
 {
     public class DiscardExamples
     {
-        public static bool GetNumber()
+        public static (bool result, string errorMessage) GetNumber(string input)
         {
-            Console.WriteLine("Enter any number on the keyboard");
-            var result = int.TryParse(Console.ReadLine(), out _);
+            bool result = int.TryParse(input, out _);
 
             if (!result)
             {
-                Console.WriteLine("Not a valid number");
+                return (false, "Not a valid number");
             }
 
-            return result;
+            return (true, "");
         }
 
         public static void GetType(object[] objects)

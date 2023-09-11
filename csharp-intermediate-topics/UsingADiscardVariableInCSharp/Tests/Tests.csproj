@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Discards_\Discards_.csproj" />
+    <ProjectReference Include="..\UsingADiscardVariableInCSharp\UsingADiscardVariableInCSharp.csproj" />
   </ItemGroup>
 
 </Project>

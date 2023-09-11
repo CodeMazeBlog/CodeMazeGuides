@@ -1,4 +1,6 @@
-﻿using Discards_;
+﻿using Microsoft.VisualStudio.TestPlatform.Utilities;
+using UsingADiscardVariableInCSharp;
+using Xunit.Sdk;
 
 namespace Tests
 {
@@ -18,6 +20,25 @@ namespace Tests
 
             // Assert
             Assert.Equal(expectedTuple, result);
+        }
+
+        [Fact]
+        public void WhenAStringIsParsed_ThenReturnTrueIfParseIsSuccessful()
+        {
+            //Arrange
+            var input1 = "s";
+            var input2 = "3";
+
+            // Act
+            var (result1, errMsg1) = DiscardExamples.GetNumber(input1);
+            var (result2, errMsg2) = DiscardExamples.GetNumber(input2);
+
+            // Assert
+            Assert.False(result1);
+            Assert.Equal("Not a valid number", errMsg1);
+
+            Assert.True(result2);
+            Assert.Equal("", errMsg2);
         }
 
         //Test for GetType()
