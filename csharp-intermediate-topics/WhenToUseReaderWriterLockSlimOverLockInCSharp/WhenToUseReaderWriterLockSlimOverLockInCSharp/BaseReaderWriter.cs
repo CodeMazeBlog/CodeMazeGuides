@@ -20,9 +20,12 @@ public abstract class BaseReaderWriter
 
         for (var cnt = 0; cnt < config.WriterThreadsCount; cnt++)
         {
-            var writeTask = new Task(() => AddNumbersToList(config.WriterExecutionsCount, config.WriterExecutionDelay));
+            var writeTask = new Task(() =>
+                AddNumbersToList(config.WriterExecutionsCount, config.WriterExecutionDelay));
             tasks.Add(writeTask);
         }
+
+        tasks = tasks.OrderBy(x => Random.Shared.Next(0, tasks.Count)).ToList(); // shuffle readers and writers
 
         var stopwatch = new Stopwatch();
         stopwatch.Start();

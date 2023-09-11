@@ -2,8 +2,8 @@
 
 var config = new ThreadExecutionConfiguration
 {
-    ReaderThreadsCount = 5,
-    WriterThreadsCount = 1,
+    ReaderThreadsCount = 20,
+    WriterThreadsCount = 2,
     ReaderExecutionDelay = 100,
     WriterExecutionDelay = 100,
     ReaderExecutionsCount = 100000,
@@ -17,4 +17,5 @@ var readerWriterLockReadWrite = new ReaderWriterLockReadWrite();
 Console.WriteLine($"ReaderWriterLock execution time: {readerWriterLockReadWrite.Execute(config)} milliseconds.");
 
 var readerWriterLockSlimReadWrite = new ReaderWriterLockSlimReadWrite();
-Console.WriteLine($"ReaderWriterLockSlim execution time: {readerWriterLockSlimReadWrite.Execute(config)} milliseconds.");
+Console.WriteLine($"ReaderWriterLockSlim execution time: " +
+    $"{readerWriterLockSlimReadWrite.Execute(config)} milliseconds.");
