@@ -1,5 +1,3 @@
-using App;
-
 namespace Tests;
 
 public class CryptographicHelperUnitTest
@@ -21,6 +19,15 @@ public class CryptographicHelperUnitTest
     public void WhenRandomNumberRangeIsProvided_ThenRandomNumberGeneratedShouldBeInTheRange(int minValue, int maxValue)
     {
         var randomNumber = CryptographicHelpers.GenerateRandomInteger(minValue, maxValue);
+
+        Assert.InRange(randomNumber, minValue, maxValue);
+    }
+    
+    [Theory]
+    [InlineData(1, 100)]
+    public void WhenPseudoRandomNumberRangeIsProvided_ThenRandomNumberGeneratedShouldBeInTheRange(int minValue, int maxValue)
+    {
+        var randomNumber = CryptographicHelpers.GeneratePseudoRandom(minValue, maxValue);
 
         Assert.InRange(randomNumber, minValue, maxValue);
     }
