@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace ReplaceLineBreaksInAStringCSharp;
 
-public static class ReplaceLineBrake
+public static class ReplaceLineBreak
 {
     public static string ReplaceLineBreaksUsingTheStringReplaceMethod()
     {

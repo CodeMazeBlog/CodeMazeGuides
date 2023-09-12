@@ -9,7 +9,7 @@ public class ReplaceLineBreakTests
     {
         const string expected = "This is a line. This is another line.";
 
-        var actual = ReplaceLineBrake.ReplaceLineBreaksUsingTheStringReplaceMethod();
+        var actual = ReplaceLineBreak.ReplaceLineBreaksUsingTheStringReplaceMethod();
 
         Assert.Equal(expected, actual);
     }
@@ -19,7 +19,7 @@ public class ReplaceLineBreakTests
     {
         const string expected = "This is a line.\nThis is another line.";
 
-        var actual = ReplaceLineBrake.ReplaceLineBreaksUsingTheStringReplaceLineEndingsMethod();
+        var actual = ReplaceLineBreak.ReplaceLineBreaksUsingTheStringReplaceLineEndingsMethod();
 
         Assert.Equal(expected, actual);
     }
@@ -29,7 +29,7 @@ public class ReplaceLineBreakTests
     {
         const string expected = "This is a line.&lt;br /&gt;This is another line.";
 
-        var actual = ReplaceLineBrake.ReplaceLineBreaksUsingTheRegularExpressionReplaceMethod();
+        var actual = ReplaceLineBreak.ReplaceLineBreaksUsingTheRegularExpressionReplaceMethod();
 
         Assert.Equal(expected, actual);
     }

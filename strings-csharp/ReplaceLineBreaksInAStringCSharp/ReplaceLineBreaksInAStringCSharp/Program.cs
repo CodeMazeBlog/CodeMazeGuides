@@ -1,10 +1,10 @@
 ﻿using ReplaceLineBreaksInAStringCSharp;
 
-var stringReplaceResult = ReplaceLineBrake.ReplaceLineBreaksUsingTheStringReplaceMethod();
+var stringReplaceResult = ReplaceLineBreak.ReplaceLineBreaksUsingTheStringReplaceMethod();
 Console.WriteLine(stringReplaceResult);
 
-var stringReplaceLineEndingsResult = ReplaceLineBrake.ReplaceLineBreaksUsingTheStringReplaceLineEndingsMethod();
+var stringReplaceLineEndingsResult = ReplaceLineBreak.ReplaceLineBreaksUsingTheStringReplaceLineEndingsMethod();
 Console.WriteLine(stringReplaceLineEndingsResult);
 
-var regularExpressionReplaceResult = ReplaceLineBrake.ReplaceLineBreaksUsingTheRegularExpressionReplaceMethod();
+var regularExpressionReplaceResult = ReplaceLineBreak.ReplaceLineBreaksUsingTheRegularExpressionReplaceMethod();
 Console.WriteLine(regularExpressionReplaceResult);
