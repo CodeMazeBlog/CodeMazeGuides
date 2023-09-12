@@ -14,8 +14,5 @@ public class RandomNumberBenchmarks
     public void UsingPseudoRandomNumberGenerator()
     {
         var randomNumber = CryptographicHelpers.GeneratePseudoRandom(1, 100);
-    }
-    
-    
-    
+    }   
 }
