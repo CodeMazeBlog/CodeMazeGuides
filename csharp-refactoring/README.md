@@ -7,4 +7,3 @@ This section contains C# Refactoring related topics
 - [Refactoring Object-Orientation Abusers in C#](https://code-maze.com/csharp-refactoring-object-orientation-abusers/)
 - [Refactoring Change Preventers in C#](https://code-maze.com/csharp-refactoring-change-preventers/)
 - [Refactoring Couplers in C#](https://code-maze.com/csharp-refactoring-couplers/)
-- [Refactoring Dispensables in C#](https://code-maze.com/csharp-refactoring-dispensables/)
