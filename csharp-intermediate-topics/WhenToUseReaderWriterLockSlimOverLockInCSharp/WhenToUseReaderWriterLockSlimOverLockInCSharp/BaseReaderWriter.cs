@@ -10,7 +10,7 @@ public abstract class BaseReaderWriter
 
     public long Execute(ThreadExecutionConfiguration config)
     {
-        var tasks = new List<Task>();
+        var tasks = new List<Task>(config.ReaderThreadsCount + config.WriterThreadsCount);
 
         for (var cnt = 0; cnt < config.ReaderThreadsCount; cnt++)
         {
@@ -25,7 +25,7 @@ public abstract class BaseReaderWriter
             tasks.Add(writeTask);
         }
 
-        tasks = tasks.OrderBy(x => Random.Shared.Next(0, tasks.Count)).ToList(); // shuffle readers and writers
+        tasks = tasks.OrderBy(x => Random.Shared.Next()).ToList(); // shuffle readers and writers
 
         var stopwatch = new Stopwatch();
         stopwatch.Start();
