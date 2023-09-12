@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatRPipelineBehaviourError", "MediatRPipelineBehaviourError\MediatRPipelineBehaviourError.csproj", "{16CB6ADB-7CA4-4EDA-8429-8A465F21A95B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatRPipelineBehaviourErrorTests", "MediatRPipelineBehaviourErrorTests\MediatRPipelineBehaviourErrorTests.csproj", "{5B9A102D-F1CB-44CF-86EC-96851D487285}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{16CB6ADB-7CA4-4EDA-8429-8A465F21A95B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16CB6ADB-7CA4-4EDA-8429-8A465F21A95B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16CB6ADB-7CA4-4EDA-8429-8A465F21A95B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16CB6ADB-7CA4-4EDA-8429-8A465F21A95B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B9A102D-F1CB-44CF-86EC-96851D487285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B9A102D-F1CB-44CF-86EC-96851D487285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B9A102D-F1CB-44CF-86EC-96851D487285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B9A102D-F1CB-44CF-86EC-96851D487285}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A18FC7E2-5E83-4744-B889-585D37F9D050}
+	EndGlobalSection
+EndGlobal
