@@ -15,8 +15,8 @@ public class LoggingPipelineTests
         var response = new TestResponse();
         var cancellationToken = CancellationToken.None;
 
-        var loggerMock = new Mock<ILogger<LoggingBehaviour<TestRequest, TestResponse>>>();
-        var loggingBehaviour = new LoggingBehaviour<TestRequest, TestResponse>(loggerMock.Object);
+        var loggerMock = new Mock<ILogger<LoggingPipelineBehaviour<TestRequest, TestResponse>>>();
+        var loggingBehaviour = new LoggingPipelineBehaviour<TestRequest, TestResponse>(loggerMock.Object);
 
         Task<TestResponse> next() => Task.FromResult(response);
 
