@@ -6,18 +6,21 @@ namespace Tests
     public class ProductsTests
     {
         [TestMethod]
-        public void WhenGettingMaterialsAsString_ThenCommaSeparatedStringShouldBeReturned()
+        public void WhenGettingToysAsString_ThenCommaSeparatedStringShouldBeReturned()
         {
             // Arrange
-            ICollection<string> materials = new List<string> { "Wool", "Cotton", "Silk" };
-            var scarf = new Scarf(materials);
+            ICollection<string> toys = new List<string> { "Toy 1", "Toy 2", "Toy 3" };
+            var cat = new Cat
+            {
+                Toys = toys
+            };
 
             // Act
-            string materialsAsString = scarf.GetMaterialsAsString();
+            string toysAsString = cat.GetToysAsString();
 
             // Assert
-            string expected = "Wool,Cotton,Silk";
-            Assert.AreEqual(expected, materialsAsString);
+            string expected = "Toy 1,Toy 2,Toy 3";
+            Assert.AreEqual(expected, toysAsString);
         }
     }
 }
