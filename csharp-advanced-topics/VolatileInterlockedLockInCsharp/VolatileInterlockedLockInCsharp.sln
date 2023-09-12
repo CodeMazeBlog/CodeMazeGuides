@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolatileInterlockedLockInCsharp", "VolatileInterlockedLockInCsharp\VolatileInterlockedLockInCsharp.csproj", "{C220A3F7-2959-453A-BE87-5E0BCE2CF954}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{AAB27D11-895B-4E3C-ADD8-696E96039A7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C220A3F7-2959-453A-BE87-5E0BCE2CF954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C220A3F7-2959-453A-BE87-5E0BCE2CF954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C220A3F7-2959-453A-BE87-5E0BCE2CF954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C220A3F7-2959-453A-BE87-5E0BCE2CF954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAB27D11-895B-4E3C-ADD8-696E96039A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAB27D11-895B-4E3C-ADD8-696E96039A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAB27D11-895B-4E3C-ADD8-696E96039A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAB27D11-895B-4E3C-ADD8-696E96039A7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D948A888-8C27-449C-B205-32B5387AD289}
+	EndGlobalSection
+EndGlobal
