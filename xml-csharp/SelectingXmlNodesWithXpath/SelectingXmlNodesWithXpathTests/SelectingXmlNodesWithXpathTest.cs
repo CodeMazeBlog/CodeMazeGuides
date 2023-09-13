@@ -1,120 +1,119 @@
 using System.Xml;
 
-namespace SelectingXmlNodesWithXpathTests
+namespace SelectingXmlNodesWithXpathTests;
+
+public class SelectingXmlNodesWithXpathTest
 {
-    public class SelectingXmlNodesWithXpathTest
+    XmlDocument Document { get; set; }
+    Dictionary<string, string> ExpectedResults { get; set; }
+
+
+    public SelectingXmlNodesWithXpathTest()
     {
-        XmlDocument Document { get; set; }
-        Dictionary<string, string> ExpectedResults { get; set; }
-
-
-        public SelectingXmlNodesWithXpathTest()
+        try
         {
-            try
-            {
-                Document = new XmlDocument();
-                Document.Load("BooksCatalog.xml");
+            Document = new XmlDocument();
+            Document.Load("BooksCatalog.xml");
 
-                ExpectedResults = new Dictionary<string, string>()
+            ExpectedResults = new Dictionary<string, string>()
+            {
                 {
-                    {
-                        "Book1",
-                        "<book id=\"1\">" +
-                            "<author>King, Stephen</author>" +
-                            "<title>IT</title>" +
-                            "<genre>Horror</genre>" +
-                            "<price>40.00</price>" +
-                        "</book>"
-                    },
-                    {
-                        "Book2",
-                        "<book id=\"2\">" +
-                            "<author>Assis, Machado De</author>" +
-                            "<title>Dom Casmurro</title>" +
-                            "<genre>Romance</genre>" +
-                            "<price>50.00</price>" +
-                        "</book>"
-                    },
-                    {
-                        "Book3",
-                        "<book id=\"3\">" +
-                            "<author>Calaprice, Alice; Lipscombe, Trevor</author>" +
-                            "<title>Albert Einstein: A Biography</title>" +
-                            "<genre>Biography</genre>" +
-                            "<price>30.00</price>" +
-                        "</book>"
-                    },
-                    {
-                        "Book4",
-                        "<book id=\"4\" xmlns=\"urn:example-schema\">" +
-                            "<author>Fowler, Martin; Beck, Kent</author>" +
-                            "<title>Refactoring: Improving the design of existing code</title>" +
-                            "<genre>Scientific</genre>" +
-                            "<price>60.00</price>" +
-                        "</book>"
-                    }
-                };
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                    "Book1",
+                    "<book id=\"1\">" +
+                        "<author>King, Stephen</author>" +
+                        "<title>IT</title>" +
+                        "<genre>Horror</genre>" +
+                        "<price>40.00</price>" +
+                    "</book>"
+                },
+                {
+                    "Book2",
+                    "<book id=\"2\">" +
+                        "<author>Assis, Machado De</author>" +
+                        "<title>Dom Casmurro</title>" +
+                        "<genre>Romance</genre>" +
+                        "<price>50.00</price>" +
+                    "</book>"
+                },
+                {
+                    "Book3",
+                    "<book id=\"3\">" +
+                        "<author>Calaprice, Alice; Lipscombe, Trevor</author>" +
+                        "<title>Albert Einstein: A Biography</title>" +
+                        "<genre>Biography</genre>" +
+                        "<price>30.00</price>" +
+                    "</book>"
+                },
+                {
+                    "Book4",
+                    "<book id=\"4\" xmlns=\"urn:example-schema\">" +
+                        "<author>Fowler, Martin; Beck, Kent</author>" +
+                        "<title>Refactoring: Improving the design of existing code</title>" +
+                        "<genre>Scientific</genre>" +
+                        "<price>60.00</price>" +
+                    "</book>"
+                }
+            };
         }
-
-        [Fact]
-        public void GivenAnXmlFile_WhenSelectingASingleNode_ThenReturnsTheSecondPosition()
+        catch (Exception)
         {
-            //Arrange
-
-            //Act
-            var node = Document.SelectSingleNode("//catalog/book[position()=2]");
-
-            //Assert
-            Assert.Equal(node.OuterXml, ExpectedResults["Book2"]);
+            throw;
         }
+    }
 
-        [Fact]
-        public void GivenAnXmlFile_WhenSelectingNodes_ThenReturnBooksWithPriceLowerThan50()
-        {
-            //Arrange
+    [Fact]
+    public void GivenAnXmlFile_WhenSelectingASingleNode_ThenReturnsTheSecondPosition()
+    {
+        //Arrange
 
-            //Act
-            var nodes = Document
-                .SelectNodes("//catalog/book[price<50.00]");
+        //Act
+        var node = Document.SelectSingleNode("//catalog/book[position()=2]");
 
-            var outerXmls = nodes
-                .Cast<XmlNode>()
-                .Select(_ => _.OuterXml);
+        //Assert
+        Assert.Equal(node.OuterXml, ExpectedResults["Book2"]);
+    }
 
-            var expected = ExpectedResults
-                .Where(_ => _.Key == "Book1" || _.Key == "Book3")
-                .Select(b => b.Value);
+    [Fact]
+    public void GivenAnXmlFile_WhenSelectingNodes_ThenReturnBooksWithPriceLowerThan50()
+    {
+        //Arrange
 
-            //Assert
-            Assert.Equal(outerXmls,expected);
-        }
+        //Act
+        var nodes = Document
+            .SelectNodes("//catalog/book[price<50.00]");
 
-        [Fact]
-        public void GivenAnXmlFile_WhenSelectingNodesUsingNamespaces_ThenReturnBookElementWithNamespace()
-        {
-            //Arrange
+        var outerXmls = nodes
+            .Cast<XmlNode>()
+            .Select(_ => _.OuterXml);
 
-            //Act
-            var nsmgr = new XmlNamespaceManager(Document.NameTable);
-            nsmgr.AddNamespace("ex", "urn:example-schema");
+        var expected = ExpectedResults
+            .Where(_ => _.Key == "Book1" || _.Key == "Book3")
+            .Select(b => b.Value);
 
-            var nodes = Document
-                .SelectNodes("descendant::ex:book", nsmgr);
+        //Assert
+        Assert.Equal(outerXmls,expected);
+    }
 
-            var outerXmls = nodes
-                .Cast<XmlNode>()
-                .Select(_ => _.OuterXml);
+    [Fact]
+    public void GivenAnXmlFile_WhenSelectingNodesUsingNamespaces_ThenReturnBookElementWithNamespace()
+    {
+        //Arrange
 
-            //Assert
-            Assert.Equal(outerXmls,
-                ExpectedResults
-                .Where(_ => _.Key == "Book4")
-                .Select(b => b.Value));
-        }
+        //Act
+        var nsmgr = new XmlNamespaceManager(Document.NameTable);
+        nsmgr.AddNamespace("ex", "urn:example-schema");
+
+        var nodes = Document
+            .SelectNodes("descendant::ex:book", nsmgr);
+
+        var outerXmls = nodes
+            .Cast<XmlNode>()
+            .Select(_ => _.OuterXml);
+
+        //Assert
+        Assert.Equal(outerXmls,
+            ExpectedResults
+            .Where(_ => _.Key == "Book4")
+            .Select(b => b.Value));
     }
 }
