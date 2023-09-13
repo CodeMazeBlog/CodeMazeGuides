@@ -25,7 +25,7 @@ public abstract class BaseReaderWriter
             tasks.Add(writeTask);
         }
 
-        tasks = tasks.OrderBy(x => Random.Shared.Next()).ToList(); // shuffle readers and writers
+        tasks = tasks.OrderBy(x => Random.Shared.Next()).ToList();
 
         var stopwatch = new Stopwatch();
         stopwatch.Start();
