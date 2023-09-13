@@ -17,3 +17,4 @@ This section contains the topics related to the DateTime class in .NET.
 - [Remove Time From a DateTime Object in C#](https://code-maze.com/remove-time-from-datetime-csharp/)
 - [TimeSpan in C#](https://code-maze.com/csharp-timespan/)
 - [Timer in C#](https://code-maze.com/timer-csharp/)
+- [How to Use Stopwatch in C#](https://code-maze.com/csharp-stopwatch/)
