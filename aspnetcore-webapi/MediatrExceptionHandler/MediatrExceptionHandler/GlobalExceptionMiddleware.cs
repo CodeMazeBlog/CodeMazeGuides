@@ -1,36 +1,37 @@
-﻿namespace MediatrExceptionHandler
+﻿using MediatR.Pipeline;
+using MediatrExceptionHandler.Common;
+using System.Diagnostics;
+
+namespace MediatrExceptionHandler
 {
-    using System.Diagnostics;
-    using System.Net;
-    using System.Text.Json;
-
-    public class GlobalExceptionMiddleware : IMiddleware
+    public class GlobalExceptionMiddleware<TRequest, TResponse, TException> : IRequestExceptionHandler<TRequest, TResponse, TException>
+          where TRequest : BaseRequest<TResponse>
+          where TResponse : SomeResponse, new()
+          where TException : Exception
     {
-        private readonly ILogger<GlobalExceptionMiddleware> _logger;
+        private readonly ILogger<GlobalExceptionMiddleware<TRequest, TResponse, TException>> _logger;
 
-        public GlobalExceptionMiddleware(ILogger<GlobalExceptionMiddleware> logger)
+        public GlobalExceptionMiddleware(ILogger<GlobalExceptionMiddleware<TRequest, TResponse, TException>> logger)
         {
             _logger = logger;
         }
 
-        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
+        public Task Handle(TRequest request, TException exception, RequestExceptionHandlerState<TResponse> state,
+            CancellationToken cancellationToken)
         {
-            try
+
+            var ex = exception.Demystify();
+
+            _logger.LogError(ex, "Something went wrong while handling request of type {@requestType}", typeof(TRequest));
+
+            var response = new TResponse
             {
-                await next(context);
-            }
-            catch (Exception ex)
-            {
-                var exception = ex.Demystify();
+                Message = "A server error ocurred"
+            };
 
-                _logger.LogError(exception, "An error ocurred: {Message}", exception.Message);
+            state.SetHandled(response);
 
-                context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
-                var result = JsonSerializer.Serialize(new { error = "A server error ocurred" });
-                await context.Response.WriteAsync(result);
-            }
+            return Task.CompletedTask;
         }
     }
 }

@@ -1,5 +1,5 @@
 using MediatR;
-using MediatrExceptionHandler.Requests;
+using MediatrExceptionHandler.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediatrExceptionHandler.Controllers
@@ -18,9 +18,9 @@ namespace MediatrExceptionHandler.Controllers
         }
 
         [HttpGet(Name = "GetWeather")]
-        public async Task<IEnumerable<WeatherForecast>> GetWeather()
+        public async Task<SomeResponse> GetWeather()
         {
-            var result = await _mediator.Send(new GetWeatherRequest());
+            var result = await _mediator.Send(new SomeRequest());
             return result;
         }
     }

@@ -1,37 +1,49 @@
-﻿using MediatrExceptionHandler;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
+﻿using MediatR.Pipeline;
+using MediatrExceptionHandler.Common;
+using MediatrExceptionHandler;
 using Microsoft.Extensions.Logging;
-using System.Net;
+using Moq;
+using Newtonsoft.Json;
 
-namespace Tests
+public class MiddlewareTests
 {
-    public class MiddlewareTests
+    Mock<ILogger<GlobalExceptionMiddleware<BaseRequest<SomeResponse>, SomeResponse, Exception>>> loggerMock;
+    BaseRequest<SomeResponse> request;
+    Exception exception;
+    Mock<RequestExceptionHandlerState<SomeResponse>> stateMock;
+    GlobalExceptionMiddleware<BaseRequest<SomeResponse>, SomeResponse, Exception> middleware;
+
+    public MiddlewareTests()
     {
-        [Fact]
-        public async Task WhenCatchingException_ThenMiddlewareReturnsInternalServerError()
-        {
-            // Arrange
-            var serviceProvider = new ServiceCollection()
-                                    .AddLogging()
-                                    .BuildServiceProvider();
+        // Arrange
+        loggerMock = new();
+        request = new();
+        exception = new ("Test exception");
+        stateMock = new();
+        middleware = new(loggerMock.Object);
+    }
 
-            var factory = serviceProvider.GetService<ILoggerFactory>();
+    [Fact]
+    public async Task WhenThrowingHandlerException_ThenMiddlewareHandlesResponse()
+    {
+        // Act
+        await middleware.Handle(request, exception, stateMock.Object, CancellationToken.None);
 
-            var logger = factory.CreateLogger<GlobalExceptionMiddleware>();
+        // Assert
+        Assert.True(stateMock.Object.Handled);
 
-            var expectedExcepton = new ArgumentNullException();
-            HttpContext ctx = new DefaultHttpContext();
+     }
 
-            RequestDelegate next = (HttpContext hc) => Task.CompletedTask;
+    [Fact]
+    public async Task WhenThrowingHandlerException_ThenMiddlewareResponseWithCorrectString()
+    {
+        // Act
+        await middleware.Handle(request, exception, stateMock.Object, CancellationToken.None);
 
-            var mw = new GlobalExceptionMiddleware(logger);
+        // Assert
+        var expected = JsonConvert.SerializeObject(stateMock.Object.Response.Message);
+        var actual = JsonConvert.SerializeObject("A server error ocurred");
+        Assert.Equal(expected, actual);
 
-            // Act - Part 1: InvokeAsync set-up:
-            await mw.InvokeAsync(ctx, null);
-
-            // Assert
-            Assert.Equal(HttpStatusCode.InternalServerError, (HttpStatusCode)ctx.Response.StatusCode);
-        }
     }
 }

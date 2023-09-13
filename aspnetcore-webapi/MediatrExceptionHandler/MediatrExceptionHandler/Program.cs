@@ -1,3 +1,4 @@
+using MediatR.Pipeline;
 using MediatrExceptionHandler;
 using System.Reflection;
 
@@ -13,7 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 // Middleware
-builder.Services.AddScoped<GlobalExceptionMiddleware>();
+ builder.Services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(GlobalExceptionMiddleware<,,>));
 
 var app = builder.Build();
 
@@ -27,8 +28,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
-app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.MapControllers();
 
