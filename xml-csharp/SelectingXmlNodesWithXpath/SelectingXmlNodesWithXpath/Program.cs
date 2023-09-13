@@ -42,25 +42,17 @@ internal class Program
 
     static void Main(string[] args)
     {
-        try
-        {
-            var doc = new XmlDocument();
-            doc.Load("BooksCatalog.xml");
-            var root = doc.DocumentElement;
+        var doc = new XmlDocument();
+        doc.Load("BooksCatalog.xml");
+        var root = doc.DocumentElement;
 
-            Console.WriteLine("Let's select a single book:");
-            SelectSingleBook(root);
+        Console.WriteLine("Let's select a single book:");
+        SelectSingleBook(root);
 
-            Console.WriteLine("\nLet's select a few books:");
-            SelectBooks(root);
+        Console.WriteLine("\nLet's select a few books:");
+        SelectBooks(root);
 
-            Console.WriteLine("\nLet's select a single book using XML namespaces:");
-            SelectBooksUsingNamespaces(doc);
-        }
-        catch (Exception)
-        {
-
-            throw;
-        }
+        Console.WriteLine("\nLet's select a single book using XML namespaces:");
+        SelectBooksUsingNamespaces(doc);
     }
 }
