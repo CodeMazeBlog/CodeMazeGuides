@@ -1,7 +1,4 @@
-using System.Diagnostics;
 using System.Xml;
-using System.Xml.Linq;
-using Xunit;
 
 namespace SelectingXmlNodesWithXpathTests
 {
