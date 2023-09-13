@@ -1,10 +1,12 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Order;
 
 namespace FastestWayToReadATextFileInCsharp;
 
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
+[HideColumns(Column.Gen0, Column.Gen1, Column.Gen2)]
 public class WaysToReadATextFileInCsharpBenchmark
 {
     private static readonly string SampleFilePath
@@ -13,42 +15,42 @@ public class WaysToReadATextFileInCsharpBenchmark
     private readonly WaysToReadATextFileInCsharp _textFileReader = new(SampleFilePath);
 
     [Benchmark]
-    public string UseFileReadAllLines()
+    public string FileReadAllLines()
      => _textFileReader.UseFileReadAllLines();
 
     [Benchmark]
-    public string UseFileReadAllText()
+    public string FileReadAllText()
      => _textFileReader.UseFileReadAllText();
 
     [Benchmark]
-    public string UseFileReadLines()
+    public string FileReadLines()
      => _textFileReader.UseFileReadLines();
 
     [Benchmark]
-    public string UseStreamReaderReadLine()
+    public string StreamReaderReadLine()
      => _textFileReader.UseStreamReaderReadLine();
 
     [Benchmark]
-    public string UseStreamReaderReadToEnd()
+    public string StreamReaderReadToEnd()
      => _textFileReader.UseStreamReaderReadToEnd();
 
     [Benchmark]
-    public string UseStreamReaderReadBlock()
+    public string StreamReaderReadBlock()
      => _textFileReader.UseStreamReaderReadBlock();
 
     [Benchmark]
-    public string UseStreamReaderReadBlockWithSpan()
+    public string StreamReaderReadBlockWithSpan()
      => _textFileReader.UseStreamReaderReadBlockWithSpan();
 
     [Benchmark]
-    public string UseStreamReaderReadBlockWithArrayPool()
+    public string StreamReaderReadBlockWithArrayPool()
      => _textFileReader.UseStreamReaderReadBlockWithArrayPool();
 
     [Benchmark]
-    public string UseBufferedStreamObject()
+    public string BufferedStreamObject()
      => _textFileReader.UseBufferedStreamObject();
 
     [Benchmark]
-    public string UseBufferedStreamObjectWithNoFileStreamBuffer()
+    public string BufferedStreamWithNoFileStreamBuffer()
      => _textFileReader.UseBufferedStreamObjectWithNoFileStreamBuffer();
 }

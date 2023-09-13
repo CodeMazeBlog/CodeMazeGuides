@@ -26,12 +26,12 @@ public class WaysToReadATextFileInCsharp
     }
 
     public string UseFileReadAllText() => File.ReadAllText(_sampleFilePath);
-    
+
     public string UseFileReadLines()
     {
         var stringBuilder = new StringBuilder();
 
-        foreach(var line in File.ReadLines(_sampleFilePath))
+        foreach (var line in File.ReadLines(_sampleFilePath))
         {
             stringBuilder.AppendLine(line);
         }
@@ -112,7 +112,10 @@ public class WaysToReadATextFileInCsharp
     {
         var stringBuilder = new StringBuilder();
 
-        using var fileStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+        using var fileStream = new FileStream(_sampleFilePath,
+                                    FileMode.Open,
+                                    FileAccess.Read,
+                                    FileShare.Read);
         using var bufferedStream = new BufferedStream(fileStream);
         using var streamReader = new StreamReader(bufferedStream);
 
@@ -129,7 +132,11 @@ public class WaysToReadATextFileInCsharp
     {
         var stringBuilder = new StringBuilder();
 
-        using var fileStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, 0);
+        using var fileStream = new FileStream(_sampleFilePath,
+                                    FileMode.Open,
+                                    FileAccess.Read,
+                                    FileShare.Read,
+                                    0);
         using var bufferedStream = new BufferedStream(fileStream);
         using var streamReader = new StreamReader(bufferedStream);
 
