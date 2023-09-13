@@ -1,4 +1,3 @@
-using DateTimeOffsetVsDateTime;
 namespace DateTimeOffsetVsDateTime.Tests;
 
 public class DateTimeOffsetVsDateTimeTest

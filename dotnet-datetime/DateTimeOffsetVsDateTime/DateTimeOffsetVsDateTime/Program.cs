@@ -1,14 +1,13 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System.Diagnostics;
-
-var dateTime = DateTime.Now;
+﻿var dateTime = DateTime.Now;
 Console.WriteLine($"DateTime: {dateTime}"); 
 var dateTimeOffset = DateTimeOffset.Now;
 Console.WriteLine($"DateTimeOffset: {dateTimeOffset}"); 
 
 //TimeZone vs Offset 
 static List<TimeZoneInfo> GetTimeZoneFromOffset(TimeSpan offset) =>
-TimeZoneInfo.GetSystemTimeZones().Where(tz => tz.BaseUtcOffset == offset).ToList();
+    TimeZoneInfo.GetSystemTimeZones()
+    .Where(tz => tz.BaseUtcOffset == offset)
+    .ToList();
 var timeZones = GetTimeZoneFromOffset(dateTimeOffset.Offset);
 foreach (TimeZoneInfo timeZone in timeZones)
 {
