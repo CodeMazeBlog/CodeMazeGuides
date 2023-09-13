@@ -1,22 +1,15 @@
-﻿using System.Xml;
+﻿using SelectingXmlNodesWithXpath;
+using System.Xml;
 
-namespace SelectingXmlNodesWithXpath;
+var doc = new XmlDocument();
+doc.Load("BooksCatalog.xml");
+var root = doc.DocumentElement;
 
-internal class Program
-{
-    static void Main(string[] args)
-    {
-        var doc = new XmlDocument();
-        doc.Load("BooksCatalog.xml");
-        var root = doc.DocumentElement;
+Console.WriteLine("Let's select a single book:");
+XmlNodesSelector.SelectSingleBook(root);
 
-        Console.WriteLine("Let's select a single book:");
-        XmlNodesSelector.SelectSingleBook(root);
+Console.WriteLine("\nLet's select a few books:");
+XmlNodesSelector.SelectBooks(root);
 
-        Console.WriteLine("\nLet's select a few books:");
-        XmlNodesSelector.SelectBooks(root);
-
-        Console.WriteLine("\nLet's select a single book using XML namespaces:");
-        XmlNodesSelector.SelectBooksUsingNamespaces(doc);
-    }
-}
+Console.WriteLine("\nLet's select a single book using XML namespaces:");
+XmlNodesSelector.SelectBooksUsingNamespaces(doc);
