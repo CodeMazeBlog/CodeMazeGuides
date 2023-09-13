@@ -4,8 +4,8 @@ namespace SelectingXmlNodesWithXpathTests;
 
 public class SelectingXmlNodesWithXpathTest
 {
-    XmlDocument Document { get; set; }
-    Dictionary<string, string> ExpectedResults { get; set; }
+    private XmlDocument Document { get; set; }
+    private Dictionary<string, string> ExpectedResults { get; set; }
 
     public SelectingXmlNodesWithXpathTest()
     {
@@ -69,11 +69,11 @@ public class SelectingXmlNodesWithXpathTest
 
         var outerXmls = nodes
             .Cast<XmlNode>()
-            .Select(_ => _.OuterXml);
+            .Select(node => node.OuterXml);
 
         var expected = ExpectedResults
-            .Where(_ => _.Key == "Book1" || _.Key == "Book3")
-            .Select(b => b.Value);
+            .Where(pair => pair.Key == "Book1" || pair.Key == "Book3")
+            .Select(pair => pair.Value);
 
         Assert.Equal(outerXmls,expected);
     }
@@ -89,11 +89,11 @@ public class SelectingXmlNodesWithXpathTest
 
         var outerXmls = nodes
             .Cast<XmlNode>()
-            .Select(_ => _.OuterXml);
+            .Select(node => node.OuterXml);
 
         Assert.Equal(outerXmls,
             ExpectedResults
-            .Where(_ => _.Key == "Book4")
-            .Select(b => b.Value));
+            .Where(pair => pair.Key == "Book4")
+            .Select(pair => pair.Value));
     }
 }
