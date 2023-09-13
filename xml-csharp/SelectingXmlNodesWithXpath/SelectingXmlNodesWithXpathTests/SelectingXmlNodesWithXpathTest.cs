@@ -58,14 +58,14 @@ public class SelectingXmlNodesWithXpathTest
     {
         var node = Document.SelectSingleNode("//catalog/book[position()=2]");
 
-        Assert.Equal(node.OuterXml, ExpectedResults["Book2"]);
+        Assert.Equal(node?.OuterXml, ExpectedResults["Book2"]);
     }
 
     [Fact]
     public void GivenAnXmlFile_WhenSelectingNodes_ThenReturnBooksWithPriceLowerThan50()
     {
         var nodes = Document
-            .SelectNodes("//catalog/book[price<50.00]");
+            .SelectNodes("//catalog/book[price<50.00]")!;
 
         var outerXmls = nodes
             .Cast<XmlNode>()
@@ -75,7 +75,7 @@ public class SelectingXmlNodesWithXpathTest
             .Where(pair => pair.Key == "Book1" || pair.Key == "Book3")
             .Select(pair => pair.Value);
 
-        Assert.Equal(outerXmls,expected);
+        Assert.Equal(outerXmls, expected);
     }
 
     [Fact]
@@ -85,7 +85,7 @@ public class SelectingXmlNodesWithXpathTest
         nsmgr.AddNamespace("ex", "urn:example-schema");
 
         var nodes = Document
-            .SelectNodes("descendant::ex:book", nsmgr);
+            .SelectNodes("descendant::ex:book", nsmgr)!;
 
         var outerXmls = nodes
             .Cast<XmlNode>()
