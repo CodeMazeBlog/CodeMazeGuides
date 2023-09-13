@@ -97,7 +97,8 @@ namespace Test
         [Test]
         public void List_WhenQueryForUserWithId_ReturnsIEnumerableWithOneItemAndIdEqualToOne()
         {
-            var users = new List<User>() {
+            var users = new List<User>()
+            {
                 new User(){Id=1,Name="Name1"},
                 new User(){Id=2,Name="Name2"},
                 new User(){Id=3,Name="Name3"},
@@ -117,7 +118,8 @@ namespace Test
         {
             var usersMng = new UsersManager()
             {
-                Users = new List<User>() {
+                Users = new List<User>()
+                        {
                             new User(){Id=1,Name="Name1"},
                             new User(){Id=2,Name="Name2"},
                             new User(){Id=3,Name="Name3"},

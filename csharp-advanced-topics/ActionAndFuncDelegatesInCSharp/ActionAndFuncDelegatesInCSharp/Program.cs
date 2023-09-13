@@ -19,8 +19,6 @@ namespace ActionAndFuncDelegatesInCSharp
 
         static void Main(string[] args)
         {
-            UserManagerAddUserExamplea();
-            return;
             var action = new Action(() =>
             {
                 //some actions
@@ -75,7 +73,8 @@ namespace ActionAndFuncDelegatesInCSharp
             funcWithIntAndRet?.Invoke(1);
 
 
-            var users = new List<User>() {
+            var users = new List<User>()
+            {
                 new User(){Id=1,Name="Name1"},
                 new User(){Id=2,Name="Name2"},
                 new User(){Id=3,Name="Name3"},
@@ -87,22 +86,24 @@ namespace ActionAndFuncDelegatesInCSharp
 
         public static void UserManagerGetUsers()
         {
-            var usersMng = new UsersManager()
+            var usersMgr = new UsersManager()
             {
-                Users = new List<User>() {
+                Users = new List<User>()
+                        {
                             new User(){Id=1,Name="Name1"},
                             new User(){Id=2,Name="Name2"},
                             new User(){Id=3,Name="Name3"},
                         }
             };
 
-            var filteredUsers = usersMng.GetUsers(new Func<User, bool>((user) => user.Id == 1));
+            var filteredUsers = usersMgr.GetUsers(new Func<User, bool>((user) => user.Id == 1));
+
             foreach (var user in filteredUsers)
             {
                 Console.WriteLine(user);
             }
 
-            filteredUsers = usersMng.GetUsers(((user) => user.Id == 1));
+            filteredUsers = usersMgr.GetUsers(((user) => user.Id == 1));
             foreach (var user in filteredUsers)
             {
                 Console.WriteLine(user);
