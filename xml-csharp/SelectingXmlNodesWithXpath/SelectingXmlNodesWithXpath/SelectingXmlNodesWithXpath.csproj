@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="BooksCatalog.xml">
+    <Content Include="..\Resources\BooksCatalog.xml" Link="BooksCatalog.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 
 </Project>
