@@ -28,8 +28,8 @@ namespace SampleClassification.ConsoleApp
             var preprocessedTrainData = model.Transform(trainData);
 
             var permutationFeatureImportance =
-         mlContext.MulticlassClassification
-         .PermutationFeatureImportance(
+                mlContext.MulticlassClassification
+                .PermutationFeatureImportance(
                  model,
                  preprocessedTrainData,
                  labelColumnName: labelColumnName);

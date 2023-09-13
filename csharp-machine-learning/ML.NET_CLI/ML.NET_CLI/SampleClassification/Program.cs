@@ -5,7 +5,7 @@ namespace SampleClassification.ConsoleApp
         static void Main(string[] args)
         {
             // Create single instance of sample data from first line of dataset for model input
-            SampleClassification.ModelInput sampleData = new SampleClassification.ModelInput()
+            var sampleData = new SampleClassification.ModelInput()
             {
                 Checking_status = @"<0",
                 Duration = 60F,
