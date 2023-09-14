@@ -11,7 +11,7 @@ for (var i = 0; i < arraySize; i++)
 
 Console.WriteLine("Array elements:");
 
-for (int i = 0; i < arraySize; i++) 
+for (var i = 0; i < arraySize; i++) 
     Console.Write(array[i] + " ");
 
 Console.WriteLine($"Array size: {array.Length}");
