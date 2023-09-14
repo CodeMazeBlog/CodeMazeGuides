@@ -27,7 +27,7 @@ internal static class XmlNodesSelector
 
     public static void SelectBooksUsingNamespaces(XmlDocument doc)
     {
-        XmlNamespaceManager nsmgr = new XmlNamespaceManager(doc.NameTable);
+        var nsmgr = new XmlNamespaceManager(doc.NameTable);
         nsmgr.AddNamespace("ex", "urn:example-schema");
 
         var nodes = doc.SelectNodes("descendant::ex:book", nsmgr);
