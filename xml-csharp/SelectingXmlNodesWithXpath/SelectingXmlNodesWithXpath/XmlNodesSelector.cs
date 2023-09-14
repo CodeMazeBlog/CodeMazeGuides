@@ -1,42 +1,45 @@
 ﻿using System.Xml;
+using System.Xml.Linq;
 
 namespace SelectingXmlNodesWithXpath;
 
-internal static class XmlNodesSelector
+public static class XmlNodesSelector
 {
-    public static void SelectSingleBook(XmlNode root)
+    public static string FormatXml(string unformattedXml)
+    {
+        return XElement.Parse(unformattedXml).ToString();
+    }
+
+    public static string SelectSingleBook(XmlNode root)
     {
         var node = root.SelectSingleNode("//catalog/book[position()=2]");
-        if (node != null)
-        {
-            Console.WriteLine($"Book: {node.OuterXml}");
-        }
+        return FormatXml(node!.OuterXml);
     }
 
-    public static void SelectBooks(XmlNode root)
+    public static List<string> SelectBooks(XmlNode root)
     {
         var nodes = root.SelectNodes("//catalog/book[price<50.00]");
-        if (nodes?.Count > 0)
-        {
-            for (int i = 0; i < nodes.Count; i++)
-            {
-                Console.WriteLine($"Book: {nodes[i]?.OuterXml}");
-            }
-        }
+
+        var outerXmls = nodes!
+            .Cast<XmlNode>()
+            .Select(x => FormatXml(x.OuterXml))
+            .ToList();
+
+        return outerXmls;
     }
 
-    public static void SelectBooksUsingNamespaces(XmlDocument doc)
+    public static List<string> SelectBooksUsingNamespaces(XmlDocument doc)
     {
         var nsmgr = new XmlNamespaceManager(doc.NameTable);
         nsmgr.AddNamespace("ex", "urn:example-schema");
 
         var nodes = doc.SelectNodes("descendant::ex:book", nsmgr);
-        if (nodes?.Count > 0)
-        {
-            for (int i = 0; i < nodes.Count; i++)
-            {
-                Console.WriteLine($"Book: {nodes[i]?.OuterXml}");
-            }
-        }
+
+        var outerXmls = nodes!
+            .Cast<XmlNode>()
+            .Select(x => FormatXml(x.OuterXml))
+            .ToList();
+
+        return outerXmls;
     }
 }

@@ -1,3 +1,4 @@
+using SelectingXmlNodesWithXpath;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -7,11 +8,6 @@ public class XmlNodesSelectorTest
 {
     private XmlDocument Document { get; set; }
     private Dictionary<string, string> ExpectedResults { get; set; }
-
-    private string FormatXml(XmlNode node)
-    {
-        return XElement.Parse(node.OuterXml).ToString();
-    }
 
     public XmlNodesSelectorTest()
     {
@@ -70,44 +66,35 @@ public class XmlNodesSelectorTest
     [Fact]
     public void GivenAnXmlFile_WhenSelectingASingleNode_ThenReturnsTheSecondPosition()
     {
-        var node = Document.SelectSingleNode("//catalog/book[position()=2]");
+        var result = XmlNodesSelector.SelectSingleBook(Document.DocumentElement!);
 
-        Assert.Equal(FormatXml(node!), ExpectedResults["Book2"]);
+        Assert.Equal(result, ExpectedResults["Book2"]);
     }
 
     [Fact]
     public void GivenAnXmlFile_WhenSelectingNodes_ThenReturnBooksWithPriceLowerThan50()
     {
-        var nodes = Document
-            .SelectNodes("//catalog/book[price<50.00]")!;
-
-        var outerXmls = nodes
-            .Cast<XmlNode>()
-            .Select(FormatXml);
-
         var expected = ExpectedResults
             .Where(pair => pair.Key == "Book1" || pair.Key == "Book3")
-            .Select(pair => pair.Value);
+            .Select(pair => pair.Value)
+            .ToList();
 
-        Assert.Equal(outerXmls, expected);
+        var result = XmlNodesSelector.SelectBooks(Document.DocumentElement!);
+
+        Assert.Equal(result, expected);
     }
 
     [Fact]
     public void GivenAnXmlFile_WhenSelectingNodesUsingNamespaces_ThenReturnBookElementWithNamespace()
     {
-        var nsmgr = new XmlNamespaceManager(Document.NameTable);
-        nsmgr.AddNamespace("ex", "urn:example-schema");
-
-        var nodes = Document
-            .SelectNodes("descendant::ex:book", nsmgr)!;
-
-        var outerXmls = nodes
-            .Cast<XmlNode>()
-            .Select(FormatXml);
-
-        Assert.Equal(outerXmls,
+        var expected =
             ExpectedResults
             .Where(pair => pair.Key == "Book4")
-            .Select(pair => pair.Value));
+            .Select(pair => pair.Value)
+            .ToList();
+
+        var result = XmlNodesSelector.SelectBooksUsingNamespaces(Document);
+
+        Assert.Equal(result, expected);
     }
 }

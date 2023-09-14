@@ -28,4 +28,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SelectingXmlNodesWithXpath\SelectingXmlNodesWithXpath.csproj" />
+  </ItemGroup>
+
 </Project>
