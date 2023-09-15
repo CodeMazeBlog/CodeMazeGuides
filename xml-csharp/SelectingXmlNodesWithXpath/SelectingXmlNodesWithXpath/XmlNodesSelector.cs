@@ -20,12 +20,10 @@ public static class XmlNodesSelector
     {
         var nodes = root.SelectNodes("//catalog/book[price<50.00]");
 
-        var outerXmls = nodes!
+        return nodes!
             .Cast<XmlNode>()
             .Select(x => FormatXml(x.OuterXml))
             .ToList();
-
-        return outerXmls;
     }
 
     public static List<string> SelectBooksUsingNamespaces(XmlDocument doc)
@@ -35,11 +33,9 @@ public static class XmlNodesSelector
 
         var nodes = doc.SelectNodes("descendant::ex:book", nsmgr);
 
-        var outerXmls = nodes!
+        return nodes!
             .Cast<XmlNode>()
             .Select(x => FormatXml(x.OuterXml))
             .ToList();
-
-        return outerXmls;
     }
 }
