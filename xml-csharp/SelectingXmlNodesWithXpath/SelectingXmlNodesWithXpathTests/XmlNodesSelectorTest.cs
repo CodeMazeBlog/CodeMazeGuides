@@ -2,8 +2,8 @@ namespace SelectingXmlNodesWithXpathTests;
 
 public class XmlNodesSelectorTest
 {
-    private XmlDocument Document { get; set; }
-    private Dictionary<string, string> ExpectedResults { get; set; }
+    private XmlDocument Document { get; }
+    private Dictionary<string, string> ExpectedResults { get; }
 
     public XmlNodesSelectorTest()
     {
