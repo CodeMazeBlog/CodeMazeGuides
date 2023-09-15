@@ -1,7 +1,3 @@
-using SelectingXmlNodesWithXpath;
-using System.Xml;
-using System.Xml.Linq;
-
 namespace SelectingXmlNodesWithXpathTests;
 
 public class XmlNodesSelectorTest
@@ -75,7 +71,7 @@ public class XmlNodesSelectorTest
     public void GivenAnXmlFile_WhenSelectingNodes_ThenReturnBooksWithPriceLowerThan50()
     {
         var expected = ExpectedResults
-            .Where(pair => pair.Key == "Book1" || pair.Key == "Book3")
+            .Where(pair => pair.Key is "Book1" or "Book3")
             .Select(pair => pair.Value)
             .ToList();
 
@@ -89,7 +85,7 @@ public class XmlNodesSelectorTest
     {
         var expected =
             ExpectedResults
-            .Where(pair => pair.Key == "Book4")
+            .Where(pair => pair.Key is "Book4")
             .Select(pair => pair.Value)
             .ToList();
 
