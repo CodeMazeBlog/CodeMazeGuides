@@ -5,7 +5,7 @@ Console.WriteLine(sum);
 
 DiscardExamples.GetNumber("5");
 
-object[] items = new object[5];
+var items = new object[5];
 items[0] = 42;
 items[1] = "Hello, C#";
 items[2] = 3.14;
