@@ -2,11 +2,16 @@
 {
     public class Employee
     {
-        public int Salary { get; private set; }
+        public double Salary { get; private set; }
 
         public void GiveSalaryRaise()
         {
-            Salary = Salary * 2;
+            Salary = Salary * 1.25;
+        }
+
+        public void DecreaseSalary()
+        {
+            Salary = Salary * 0.75;
         }
     }
 }

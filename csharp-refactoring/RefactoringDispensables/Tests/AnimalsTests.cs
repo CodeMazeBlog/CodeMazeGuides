@@ -3,7 +3,7 @@
 namespace Tests
 {
     [TestClass]
-    public class ProductsTests
+    public class AnimalsTests
     {
         [TestMethod]
         public void WhenGettingToysAsString_ThenCommaSeparatedStringShouldBeReturned()
