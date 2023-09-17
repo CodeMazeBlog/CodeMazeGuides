@@ -1,4 +1,6 @@
-﻿using NodaTime;
+﻿using HandlingDatesWithNodaTime.Extensions;
+using NodaTime;
+using NodaTime.Extensions;
 using NodaTime.Text;
 
 namespace Tests;
@@ -10,17 +12,17 @@ public class NodaTimeUnitTest
     {
         var instant = SystemClock.Instance.GetCurrentInstant();
 
-        Assert.True(instant != default(Instant));   
+        Assert.True(instant != default);
     }
 
-    [Fact]  
-    public void WhenUtcDateIsSpecified_ThenReturnInstantFromUtcDate()   
+    [Fact]
+    public void WhenUtcDateIsSpecified_ThenReturnInstantFromUtcDate()
     {
         var instant = Instant.FromUtc(2023, 8, 31, 20, 00);
 
         var expected = new LocalDateTime(2023, 8, 31, 20, 00)
             .InZoneStrictly(DateTimeZone.Utc)
-            .ToInstant();   
+            .ToInstant();
 
         Assert.Equal(expected, instant);
     }
@@ -117,4 +119,110 @@ public class NodaTimeUnitTest
 
         Assert.True(true);
     }
+
+    [Fact]
+    public void WhenDurationsAreAdded_ThenReturnSumOfDuration()
+    {
+        var durationInDays = Duration.FromDays(1);
+        var durationInHours = Duration.FromHours(3);
+
+        var sumOfDurations = durationInDays + durationInHours;
+
+        Assert.Equal(sumOfDurations, durationInDays + durationInHours);
+    }
+
+    [Fact]
+    public void WhenDurationsAreSubtracted_ThenReturnDifferenceOfDuration()
+    {
+        var firstDuration = Duration.FromHours(3);
+        var secondDuration = Duration.FromHours(2);
+
+        var sumOfDurations = firstDuration - secondDuration;
+
+        Assert.Equal(sumOfDurations, firstDuration - secondDuration);
+    }
+
+    [Fact]
+    public void WhenDateTimeIsConvertedToInstant_ThenReturnInstant()
+    {
+        var dateTime = new DateTime(2023, 9, 15, 9, 30, 50, DateTimeKind.Utc);
+        var expectedInstant = Instant.FromUtc(2023, 9, 15, 9, 30, 50);
+
+        var instant = dateTime.ConvertToInstant();
+
+        Assert.Equal(expectedInstant, instant);
+    }
+
+    [Fact]
+    public void WhenTimeSpanIsConvertedToDuration_TheReturnDuration()
+    {
+        var timeSpan = TimeSpan.FromHours(3);
+        var expectedDuration = Duration.FromHours(3);
+
+        var duration = timeSpan.ConvertToDuration();
+
+        Assert.Equal(expectedDuration, duration);
+    }
+
+    [Fact]
+    public void WhenDaysAreAddedToLocalDate_ThenReturnLocalDate()
+    {
+        var currentDate = new LocalDate(2023, 9, 15);
+        var expectedDate = new LocalDate(2023, 9, 16);
+
+        var futureDate = currentDate.AddDays(1);
+
+        Assert.Equal(expectedDate, futureDate);
+    }
+
+    [Fact]
+    public void WhenTwoDatesArePassed_ThenCalculateTheDifference()
+    {
+        var startDate = new LocalDate(1985, 12, 12);
+
+        var endDate = new DateTime(2023, 9, 15, 9, 30, 50);
+
+        var difference = startDate.CalculateDifference(endDate);
+
+        Assert.Equal(37, difference.Years);
+    }
+
+    [Fact]
+    public void WhenLocalDateTimePatternIsDefined_ThenParseDateTimeValue()
+    {
+        var dateTimeText = "2023-09-17 14:30:00";
+        var localDateTimePattern = LocalDateTimePattern.CreateWithInvariantCulture("yyyy-MM-dd HH:mm:ss");
+
+        var parsedDateTime = localDateTimePattern.Parse(dateTimeText).Value;
+
+        Assert.Equal(2023, parsedDateTime.Year);
+        Assert.Equal(09, parsedDateTime.Month);
+        Assert.Equal(17, parsedDateTime.Day);
+        Assert.Equal(14, parsedDateTime.Hour);
+        Assert.Equal(30, parsedDateTime.Minute);
+        Assert.Equal(00, parsedDateTime.Second);
+    }
+
+    [Fact]
+    public void WhenLocalDatePatternIsSpecified_ThenFormatNodaTimeType()
+    {
+        var dateToFormat = new LocalDate(2023, 9, 17);
+        var localDatePattern = LocalDatePattern.CreateWithInvariantCulture("yyyy-MM-dd");
+
+        var formattedDate = localDatePattern.Format(dateToFormat);
+
+        Assert.Equal("2023-09-17", formattedDate);
+    }
+
+    [Fact]
+    public void WhenTimeZoneIsSpecified_ThenReturnDateTimeZone()
+    {
+        var timeZoneId = "America/New_York";
+
+        var newYorkTimeZone = DateTimeZoneProviders.Tzdb[timeZoneId];
+
+        Assert.NotNull(newYorkTimeZone);
+        Assert.Equal(timeZoneId, newYorkTimeZone.Id);
+    }
 }
+
