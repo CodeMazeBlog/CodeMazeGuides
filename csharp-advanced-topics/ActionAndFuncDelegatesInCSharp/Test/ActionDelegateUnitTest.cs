@@ -2,15 +2,15 @@ using System;
 using Xunit;
 using ActionAndFunc;
 
-namespace TestProject1;
+namespace TestProject1
 {
     public class ActionDelegateUnitTest
-{
+    {
         [Fact]
         public void DoubleNumber_ShouldDoubleNumber()
         {
             // Arrange
-            var actionDelegate = new ActionFuncDelegate();
+            var actionDelegate = new ActionDelegate();
             int number = 3;
             string expectedOutput = "Double of 3 is: 6";
 
