@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceLineBreaksInAStringC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceLineBreaksInAStringCSharpTests", "ReplaceLineBreaksInAStringCSharpTests\ReplaceLineBreaksInAStringCSharpTests.csproj", "{24786E24-6C7C-495D-BC1D-B81C15F904FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceLineBreaksInAStringCSharpBenchmarks", "ReplaceLineBreaksInAStringCSharpBenchmarks\ReplaceLineBreaksInAStringCSharpBenchmarks.csproj", "{68B9DA0A-916F-4D47-BC5D-2790810A823D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{24786E24-6C7C-495D-BC1D-B81C15F904FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24786E24-6C7C-495D-BC1D-B81C15F904FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24786E24-6C7C-495D-BC1D-B81C15F904FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B9DA0A-916F-4D47-BC5D-2790810A823D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B9DA0A-916F-4D47-BC5D-2790810A823D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B9DA0A-916F-4D47-BC5D-2790810A823D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B9DA0A-916F-4D47-BC5D-2790810A823D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
