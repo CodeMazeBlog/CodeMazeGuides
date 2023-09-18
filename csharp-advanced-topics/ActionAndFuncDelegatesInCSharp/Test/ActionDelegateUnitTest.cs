@@ -18,7 +18,7 @@ namespace TestProject1
             using (var consoleOutput = new ConsoleOutput())
             {
                 // Act
-                actionDelegate.DoubleNumber(number);
+                ActionFuncDelegate.DoubleNumber(number);
 
                 // Assert
                 Assert.Equal(expectedOutput, consoleOutput.GetOutput());
