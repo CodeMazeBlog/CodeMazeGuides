@@ -10,14 +10,13 @@ namespace TestProject1
         public void DoubleNumber_ShouldDoubleNumber()
         {
             // Arrange
-            var actionDelegate = new ActionDelegate();
             int number = 3;
             string expectedOutput = "Double of 3 is: 6";
 
             using (var consoleOutput = new ConsoleOutput())
             {
                 // Act
-                actionDelegate.DoubleNumber(number);
+                ActionDelegate.DoubleNumber(number);
 
                 // Assert
                 Assert.Equal(expectedOutput, consoleOutput.GetOuput());
