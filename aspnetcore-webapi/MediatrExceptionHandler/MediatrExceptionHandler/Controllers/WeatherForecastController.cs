@@ -9,18 +9,16 @@ namespace MediatrExceptionHandler.Controllers
     public class WeatherForecastController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IMediator mediator)
+        public WeatherForecastController(IMediator mediator)
         {
             _mediator = mediator;
-            _logger = logger;
         }
 
         [HttpGet(Name = "GetWeather")]
-        public async Task<SomeResponse> GetWeather()
+        public async Task<WeatherResponse> GetWeather()
         {
-            var result = await _mediator.Send(new SomeRequest());
+            var result = await _mediator.Send(new GetWeatherRequest());
             return result;
         }
     }

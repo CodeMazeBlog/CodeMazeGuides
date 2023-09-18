@@ -4,14 +4,16 @@ using System.Diagnostics;
 
 namespace MediatrExceptionHandler
 {
-    public class GlobalExceptionMiddleware<TRequest, TResponse, TException> : IRequestExceptionHandler<TRequest, TResponse, TException>
-          where TRequest : BaseRequest<TResponse>
-          where TResponse : SomeResponse, new()
-          where TException : Exception
-    {
-        private readonly ILogger<GlobalExceptionMiddleware<TRequest, TResponse, TException>> _logger;
+    public class GlobalRequestExceptionHandler<TRequest, TResponse, TException> : IRequestExceptionHandler<TRequest, TResponse, TException>
 
-        public GlobalExceptionMiddleware(ILogger<GlobalExceptionMiddleware<TRequest, TResponse, TException>> logger)
+          where TRequest : BaseRequest<TResponse>
+          where TResponse : WeatherResponse, new()
+          where TException : Exception
+
+    {
+        private readonly ILogger<GlobalRequestExceptionHandler<TRequest, TResponse, TException>> _logger;
+
+        public GlobalRequestExceptionHandler(ILogger<GlobalRequestExceptionHandler<TRequest, TResponse, TException>> logger)
         {
             _logger = logger;
         }
@@ -19,7 +21,6 @@ namespace MediatrExceptionHandler
         public Task Handle(TRequest request, TException exception, RequestExceptionHandlerState<TResponse> state,
             CancellationToken cancellationToken)
         {
-
             var ex = exception.Demystify();
 
             _logger.LogError(ex, "Something went wrong while handling request of type {@requestType}", typeof(TRequest));

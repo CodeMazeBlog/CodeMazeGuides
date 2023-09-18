@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 // Middleware
- builder.Services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(GlobalExceptionMiddleware<,,>));
+ builder.Services.AddTransient(typeof(IRequestExceptionHandler<,,>), typeof(GlobalRequestExceptionHandler<,,>));
 
 var app = builder.Build();
 

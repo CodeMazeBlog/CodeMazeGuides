@@ -7,11 +7,11 @@ using Newtonsoft.Json;
 
 public class MiddlewareTests
 {
-    Mock<ILogger<GlobalExceptionMiddleware<BaseRequest<SomeResponse>, SomeResponse, Exception>>> loggerMock;
-    BaseRequest<SomeResponse> request;
+    Mock<ILogger<GlobalRequestExceptionHandler<BaseRequest<WeatherResponse>, WeatherResponse, Exception>>> loggerMock;
+    BaseRequest<WeatherResponse> request;
     Exception exception;
-    Mock<RequestExceptionHandlerState<SomeResponse>> stateMock;
-    GlobalExceptionMiddleware<BaseRequest<SomeResponse>, SomeResponse, Exception> middleware;
+    Mock<RequestExceptionHandlerState<WeatherResponse>> stateMock;
+    GlobalRequestExceptionHandler<BaseRequest<WeatherResponse>, WeatherResponse, Exception> middleware;
 
     public MiddlewareTests()
     {
