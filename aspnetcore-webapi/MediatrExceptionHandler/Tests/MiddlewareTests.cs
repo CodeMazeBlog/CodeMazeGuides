@@ -7,43 +7,41 @@ using Newtonsoft.Json;
 
 public class MiddlewareTests
 {
-    Mock<ILogger<GlobalRequestExceptionHandler<BaseRequest<WeatherResponse>, WeatherResponse, Exception>>> loggerMock;
-    BaseRequest<WeatherResponse> request;
-    Exception exception;
-    Mock<RequestExceptionHandlerState<WeatherResponse>> stateMock;
-    GlobalRequestExceptionHandler<BaseRequest<WeatherResponse>, WeatherResponse, Exception> middleware;
+    private Mock<ILogger<GlobalRequestExceptionHandler<BaseRequest<WeatherResponse>, WeatherResponse, Exception>>> loggerMock;
+    private BaseRequest<WeatherResponse> _request;
+    private Exception _exception;
+    private Mock<RequestExceptionHandlerState<WeatherResponse>> _stateMock;
+    private GlobalRequestExceptionHandler<BaseRequest<WeatherResponse>, WeatherResponse, Exception> _middleware;
 
     public MiddlewareTests()
     {
         // Arrange
         loggerMock = new();
-        request = new();
-        exception = new ("Test exception");
-        stateMock = new();
-        middleware = new(loggerMock.Object);
+        _request = new();
+        _exception = new ("Test exception");
+        _stateMock = new();
+        _middleware = new(loggerMock.Object);
     }
 
     [Fact]
     public async Task WhenThrowingHandlerException_ThenMiddlewareHandlesResponse()
     {
         // Act
-        await middleware.Handle(request, exception, stateMock.Object, CancellationToken.None);
+        await _middleware.Handle(_request, _exception, _stateMock.Object, CancellationToken.None);
 
         // Assert
-        Assert.True(stateMock.Object.Handled);
-
+        Assert.True(_stateMock.Object.Handled);
      }
 
     [Fact]
     public async Task WhenThrowingHandlerException_ThenMiddlewareResponseWithCorrectString()
     {
         // Act
-        await middleware.Handle(request, exception, stateMock.Object, CancellationToken.None);
+        await _middleware.Handle(_request, _exception, _stateMock.Object, CancellationToken.None);
 
         // Assert
-        var expected = JsonConvert.SerializeObject(stateMock.Object.Response.Message);
+        var expected = JsonConvert.SerializeObject(_stateMock.Object.Response.Message);
         var actual = JsonConvert.SerializeObject("A server error ocurred");
         Assert.Equal(expected, actual);
-
     }
 }
