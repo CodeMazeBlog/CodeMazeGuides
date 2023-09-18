@@ -9,7 +9,8 @@ namespace TestProject1;
         public void IsEven_ShouldReturnCorrectResult(int number, bool expected)
         {
             // Act
-            bool result = FuncDelegate.IsEven(number);
+            var funcDelegate = new ActionFuncDelegate();
+            bool result = funcDelegate.IsEven(number);
 
             // Assert
             Assert.Equal(expected, result);

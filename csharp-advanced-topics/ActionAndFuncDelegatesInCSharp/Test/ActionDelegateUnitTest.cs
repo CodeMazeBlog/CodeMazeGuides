@@ -10,7 +10,7 @@ namespace TestProject1;
         public void DoubleNumber_ShouldDoubleNumber()
         {
             // Arrange
-            var actionDelegate = new ActionDelegate();
+            var actionDelegate = new ActionFuncDelegate();
             int number = 3;
             string expectedOutput = "Double of 3 is: 6";
 
