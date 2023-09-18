@@ -1,4 +1,4 @@
-using ActionAndFunc;
+namespace ActionAndFunc;
 
 public class ActionFuncDelegate
 {
