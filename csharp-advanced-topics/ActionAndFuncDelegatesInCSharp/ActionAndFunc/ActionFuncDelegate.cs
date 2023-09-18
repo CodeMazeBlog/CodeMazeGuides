@@ -1,4 +1,4 @@
-namespace ActionAndFunc;
+namespace ActionAndFunc
 {
     public class ActionFuncDelegate
     { 
@@ -35,5 +35,3 @@ namespace ActionAndFunc;
         }
     }
 }
-
-
