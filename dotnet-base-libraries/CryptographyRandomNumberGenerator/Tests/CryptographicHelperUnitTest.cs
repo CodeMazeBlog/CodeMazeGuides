@@ -6,8 +6,8 @@ public class CryptographicHelperUnitTest
     [InlineData(32)]
     public void WhenRandomNumberGeneratorApiIsInvokedEveryTime_ThenItReturnsAUniqueRandomNumber(int bytesCount)
     {
-        var randomNumberOne = CryptographicHelpers.GenerateRandomKey(bytesCount);
-        var randomNumberTwo = CryptographicHelpers.GenerateRandomKey(bytesCount);
+        var randomNumberOne = CryptographicHelpers.GenerateSecureRandomKey(bytesCount);
+        var randomNumberTwo = CryptographicHelpers.GenerateSecureRandomKey(bytesCount);
 
         Assert.NotEmpty(randomNumberOne);
         Assert.NotEmpty(randomNumberTwo);
@@ -18,7 +18,7 @@ public class CryptographicHelperUnitTest
     [InlineData(1, 100)]
     public void WhenRandomNumberRangeIsProvided_ThenRandomNumberGeneratedShouldBeInTheRange(int minValue, int maxValue)
     {
-        var randomNumber = CryptographicHelpers.GenerateRandomInteger(minValue, maxValue);
+        var randomNumber = CryptographicHelpers.GenerateSecureRandomInteger(minValue, maxValue);
 
         Assert.InRange(randomNumber, minValue, maxValue);
     }
@@ -27,7 +27,7 @@ public class CryptographicHelperUnitTest
     [InlineData(1, 100)]
     public void WhenPseudoRandomNumberRangeIsProvided_ThenRandomNumberGeneratedShouldBeInTheRange(int minValue, int maxValue)
     {
-        var randomNumber = CryptographicHelpers.GeneratePseudoRandom(minValue, maxValue);
+        var randomNumber = CryptographicHelpers.GenerateGeneralRandomInteger(minValue, maxValue);
 
         Assert.InRange(randomNumber, minValue, maxValue);
     }

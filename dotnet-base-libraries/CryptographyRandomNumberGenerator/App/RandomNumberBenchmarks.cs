@@ -7,8 +7,8 @@ namespace App;
 public class RandomNumberBenchmarks
 {
     [Benchmark]
-    public int UsingCryptoSecureRandomNumberGenerator() => CryptographicHelpers.GenerateRandomInteger(1, 100);
+    public int UsingCryptoSecureRandomNumberGenerator() => CryptographicHelpers.GenerateSecureRandomInteger(1, 100);
 
     [Benchmark]
-    public int UsingGeneralPurposeRandomNumberGenerator() => CryptographicHelpers.GeneratePseudoRandom(1, 100);
+    public int UsingGeneralRandomNumberGenerator() => CryptographicHelpers.GenerateGeneralRandomInteger(1, 100);
 }
