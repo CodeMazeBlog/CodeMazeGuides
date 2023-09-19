@@ -104,4 +104,18 @@ public class DiscountServiceTests
         // Assert
         result.Should().Be(7);
     }
+
+    [Fact]
+    public void WhenTimePasses_ThenInvocationCountIncreases()
+    {
+        _discountService.InvocationCount.Should().Be(0);
+
+        _timeProvider.Advance(TimeSpan.FromSeconds(10));
+
+        _discountService.InvocationCount.Should().Be(1);
+
+        _timeProvider.Advance(TimeSpan.FromHours(1));
+
+        _discountService.InvocationCount.Should().Be(13);
+    }
 }
