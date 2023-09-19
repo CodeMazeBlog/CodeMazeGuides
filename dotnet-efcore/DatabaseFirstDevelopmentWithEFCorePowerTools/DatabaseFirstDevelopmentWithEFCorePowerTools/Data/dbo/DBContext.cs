@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using EFCorePowerToolsExample.Models;
+﻿using EFCorePowerToolsExample.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFCorePowerToolsExample.Data;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace EFCorePowerToolsExample.Models;
 
 public partial class BooksCategories
@@ -11,7 +9,7 @@ public partial class BooksCategories
 
     public int? CategoryId { get; set; }
 
-    public virtual Books Book { get; set; }
+    public virtual Books? Book { get; set; }
 
-    public virtual Categories Category { get; set; }
+    public virtual Categories? Category { get; set; }
 }

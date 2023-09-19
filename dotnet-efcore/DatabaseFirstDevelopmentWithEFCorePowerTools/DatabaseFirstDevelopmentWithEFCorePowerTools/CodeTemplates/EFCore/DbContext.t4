@@ -28,8 +28,6 @@
 
     var usings = new List<string>
     {
-        "System",
-        "System.Collections.Generic",
         "Microsoft.EntityFrameworkCore"
     };
 
