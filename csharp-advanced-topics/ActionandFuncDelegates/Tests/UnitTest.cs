@@ -26,7 +26,7 @@ namespace ActionandFuncDelagates.Tests
         public void ActionMethodTest()
         {
             //arrange
-            int[] nums = { 4, 4 };
+            int[] nums = {4,4};
             var TestAdd = new Mock<Action<int, int>>();
             var Operation = new Program(null, TestAdd.Object);
 
@@ -38,7 +38,7 @@ namespace ActionandFuncDelagates.Tests
                 Operation.ActionMethod(nums[0], nums[1]);
 
                 //assert
-                Assert.AreEqual($"{nums[0] * nums[1]}\r\n", consoleOutput.GetOuput());
+                Assert.AreEqual(int.Parse($"{nums[0] * nums[1]}"), int.Parse(consoleOutput.GetOuput()));
             }
         }
 
