@@ -19,7 +19,7 @@
         //note the method return type is void
         public void ActionMethod(int a, int b)
         {
-            Console.WriteLine(a * b);
+            Console.WriteLine(a*b);
         }
 
 
