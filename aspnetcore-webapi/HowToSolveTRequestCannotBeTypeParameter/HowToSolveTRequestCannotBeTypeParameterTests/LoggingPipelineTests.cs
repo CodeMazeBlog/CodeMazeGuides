@@ -32,18 +32,16 @@ public class LoggingPipelineTests
                     It.IsAny<EventId>(),
                     It.Is<It.IsAnyType>((v, _) => v.ToString().Contains("Handling")),
                     It.IsAny<Exception>(),
-                    It.IsAny<Func<It.IsAnyType, Exception, string>>()
-                ), Times.Once
-        );
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()
+                ), Times.Once);
 
         loggerMock.Verify(l =>
                 l.Log(LogLevel.Information,
                     It.IsAny<EventId>(),
                     It.Is<It.IsAnyType>((v, _) => v.ToString().Contains("Handled")),
                     It.IsAny<Exception>(),
-                    It.IsAny<Func<It.IsAnyType, Exception, string>>()
-                ), Times.Once
-        );
+                    It.IsAny<Func<It.IsAnyType, Exception?, string>>()
+                ), Times.Once);
 
         Assert.Equal(response, result);
     }
