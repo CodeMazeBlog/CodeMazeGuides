@@ -21,7 +21,6 @@ namespace Actions_and_Funcs
                 Console.WriteLine($"Express Shipping Cost: {expressCost:C}");
             };
 
-
             decimal weight = 10m; // in kilograms
             decimal distance = 100m; // in kilometers
 
