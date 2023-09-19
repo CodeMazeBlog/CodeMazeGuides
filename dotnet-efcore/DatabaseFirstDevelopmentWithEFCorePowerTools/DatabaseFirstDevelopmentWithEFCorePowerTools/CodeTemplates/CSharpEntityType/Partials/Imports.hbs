@@ -1,8 +1,8 @@
-﻿{{#if use-data-annotations}}
+﻿using EFCorePowerToolsExample.Data;
+{{#if use-data-annotations}}
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-using EFCorePowerToolsExample.Data
 {{/if}}
 {{#each imports}}
 using {{import}};
