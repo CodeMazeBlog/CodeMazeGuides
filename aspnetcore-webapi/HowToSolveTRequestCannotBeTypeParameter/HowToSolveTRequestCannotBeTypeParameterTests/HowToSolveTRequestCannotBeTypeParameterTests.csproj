@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MediatRPipelineBehaviourError\MediatRPipelineBehaviourError.csproj" />
+    <ProjectReference Include="..\HowToSolveTRequestCannotBeTypeParameter\HowToSolveTRequestCannotBeTypeParameter.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-namespace MediatRPipelineBehaviourError;
+namespace HowToSolveTRequestCannotBeTypeParameter;
 
 public class WeatherForecast
 {

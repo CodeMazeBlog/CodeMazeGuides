@@ -1,5 +1,5 @@
+using HowToSolveTRequestCannotBeTypeParameter.PipelineBehaviour;
 using MediatR;
-using MediatRPipelineBehaviourError.MediaRPipelineBehaviour;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +9,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehaviour<,>));
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), 
+    typeof(LoggingPipelineBehaviour<,>));
 
 var app = builder.Build();
 

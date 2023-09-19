@@ -1,12 +1,15 @@
-using MediatRPipelineBehaviourError.MediaRPipelineBehaviour;
+using HowToSolveTRequestCannotBeTypeParameter.PipelineBehaviour;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
-namespace MediatRPipelineBehaviourErrorTests;
+namespace HowToSolveTRequestCannotBeTypeParameterTests;
 
 public class LoggingPipelineTests
 {
+    public class TestRequest { }
+    public class TestResponse { }
+
     [Fact]
     public async Task WhenLoggingPipelineIsInovked_ThenLogsCorrectRequestAndResponse()
     {
@@ -18,10 +21,10 @@ public class LoggingPipelineTests
         var loggerMock = new Mock<ILogger<LoggingPipelineBehaviour<TestRequest, TestResponse>>>();
         var loggingBehaviour = new LoggingPipelineBehaviour<TestRequest, TestResponse>(loggerMock.Object);
 
-        Task<TestResponse> next() => Task.FromResult(response);
+        Task<TestResponse> Next() => Task.FromResult(response);
 
         // Act
-        var result = await loggingBehaviour.Handle(request, next, cancellationToken);
+        var result = await loggingBehaviour.Handle(request, Next, cancellationToken);
 
         // Assert
         loggerMock.Verify(l =>
@@ -44,7 +47,4 @@ public class LoggingPipelineTests
 
         Assert.Equal(response, result);
     }
-
-    public class TestRequest { }
-    public class TestResponse { }
 }
