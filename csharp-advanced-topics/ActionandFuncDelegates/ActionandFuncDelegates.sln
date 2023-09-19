@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionandFuncDelegates", "ActionandFuncDelegates.csproj", "{C6EE6244-5034-493D-A0F2-D909C68ED847}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionandFuncDelegates", "ActionandFuncDelegates\ActionandFuncDelegates.csproj", "{C6EE6244-5034-493D-A0F2-D909C68ED847}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{098BBDC1-52B6-4A1E-B733-499977451C12}"
 EndProject
