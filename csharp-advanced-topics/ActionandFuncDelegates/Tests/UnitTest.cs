@@ -21,6 +21,7 @@ namespace ActionandFuncDelagates.Tests
             Assert.AreEqual(8, result);
         }
 
+
         [TestMethod()]
         public void ActionMethodTest()
         {
