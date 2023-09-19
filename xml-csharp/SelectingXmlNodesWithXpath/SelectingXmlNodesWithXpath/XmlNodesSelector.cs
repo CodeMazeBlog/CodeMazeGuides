@@ -13,6 +13,7 @@ public static class XmlNodesSelector
     public static string SelectSingleBook(XmlNode root)
     {
         var node = root.SelectSingleNode("//catalog/book[position()=2]");
+        
         return FormatXml(node!.OuterXml);
     }
 
