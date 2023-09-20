@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-using GettingStartedASPNETMongoDB.Interfaces;
+﻿using GettingStartedASPNETMongoDB.Interfaces;
 using GettingStartedASPNETMongoDB.Models;
+using Microsoft.Extensions.Options;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace GettingStartedASPNETMongoDB.Services;
 
@@ -9,10 +10,8 @@ public class StudentService : IStudentService
 {
     private readonly IMongoCollection<Student> _studentCollection;
 
-    public StudentService(IOptions<SchoolDatabaseSettings> schoolDatabaseSettings)
+    public StudentService(IOptions<SchoolDatabaseSettings> schoolDatabaseSettings, IMongoClient client)
     {
-        var client = new MongoClient(schoolDatabaseSettings.Value.ConnectionString);
-
         var database = client.GetDatabase(schoolDatabaseSettings.Value.DatabaseName);
 
         _studentCollection = database.GetCollection<Student>(schoolDatabaseSettings.Value.StudentsCollectionName);
@@ -30,6 +29,8 @@ public class StudentService : IStudentService
 
     public async Task<Student?> Create(Student student)
     {
+        student.Id = ObjectId.GenerateNewId().ToString();
+
         await _studentCollection.InsertOneAsync(student);
 
         return student;

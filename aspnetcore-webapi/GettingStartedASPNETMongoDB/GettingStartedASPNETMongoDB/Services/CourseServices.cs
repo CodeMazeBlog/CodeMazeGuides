@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using GettingStartedASPNETMongoDB.Interfaces;
 using GettingStartedASPNETMongoDB.Models;
+using MongoDB.Bson;
 
 namespace GettingStartedASPNETMongoDB.Services;
 
@@ -9,10 +10,8 @@ public class CourseService : ICourseService
 {
     private readonly IMongoCollection<Course> _courseCollection;
 
-    public CourseService(IOptions<SchoolDatabaseSettings> schoolDatabaseSettings)
+    public CourseService(IOptions<SchoolDatabaseSettings> schoolDatabaseSettings, IMongoClient client)
     {
-        var client = new MongoClient(schoolDatabaseSettings.Value.ConnectionString);
-
         var database = client.GetDatabase(schoolDatabaseSettings.Value.DatabaseName);
 
         _courseCollection = database.GetCollection<Course>(schoolDatabaseSettings.Value.CoursesCollectionName);
@@ -25,6 +24,8 @@ public class CourseService : ICourseService
 
     public async Task<Course?> Create(Course course)
     {
+        course.Id = ObjectId.GenerateNewId().ToString();
+
         await _courseCollection.InsertOneAsync(course);
 
         return course;
