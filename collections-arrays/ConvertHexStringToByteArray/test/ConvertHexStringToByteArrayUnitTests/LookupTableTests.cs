@@ -7,7 +7,8 @@ public class LookupTableTests
     {
         var (lowBits, _) = LookupTables.CreateLookups();
 
-        Assert.True(LookupTables.FromHexLowBitsLookup.SequenceEqual(lowBits));
+        Assert.Equal(lowBits.Length, LookupTables.FromHexLowBitsLookup.Length);
+        Assert.Equal(lowBits, LookupTables.FromHexLowBitsLookup.ToArray());
     }
 
     [Fact]
@@ -15,6 +16,7 @@ public class LookupTableTests
     {
         var (_, highBits) = LookupTables.CreateLookups();
 
-        Assert.True(LookupTables.FromHexHighBitsLookup.SequenceEqual(highBits));
+        Assert.Equal(highBits.Length, LookupTables.FromHexHighBitsLookup.Length);
+        Assert.Equal(highBits, LookupTables.FromHexHighBitsLookup.ToArray());
     }
 }

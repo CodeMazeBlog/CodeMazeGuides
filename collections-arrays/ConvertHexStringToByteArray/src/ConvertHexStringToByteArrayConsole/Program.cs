@@ -1,21 +1,21 @@
 ﻿using ConvertHexStringToByteArray.Library;
 
-const string source = "0xDEADBEEFDECAFBAD";
+const string input = "0xDEADBEEFDECAFBAD";
 
-var result = ConversionHelpers.FromHexWithBitFiddle(source);
-PrintResult(nameof(ConversionHelpers.FromHexWithBitFiddle),result);
+var result = ConversionHelpers.FromHexWithModularArithmetic(input);
+PrintResult(nameof(ConversionHelpers.FromHexWithModularArithmetic), result);
 
-result = ConversionHelpers.FromHexWithLookup(source);
-PrintResult(nameof(ConversionHelpers.FromHexWithLookup),result);
+result = ConversionHelpers.FromHexWithSwitchComputation(input);
+PrintResult(nameof(ConversionHelpers.FromHexWithSwitchComputation), result);
 
-result = ConversionHelpers.FromHexWithConvert(source);
-PrintResult(nameof(ConversionHelpers.FromHexWithConvert),result);
+result = ConversionHelpers.FromHexWithBitManipulation(input.ToLowerInvariant());
+PrintResult(nameof(ConversionHelpers.FromHexWithBitManipulation), result);
 
-result = ConversionHelpers.FromHexWithModularArithmetic(source);
-PrintResult(nameof(ConversionHelpers.FromHexWithModularArithmetic),result);
+result = ConversionHelpers.FromHexWithConvert(input);
+PrintResult(nameof(ConversionHelpers.FromHexWithConvert), result);
 
-result = ConversionHelpers.FromHexWithSwitchComputation(source);
-PrintResult(nameof(ConversionHelpers.FromHexWithSwitchComputation),result);
+result = ConversionHelpers.FromHexWithLookup(input);
+PrintResult(nameof(ConversionHelpers.FromHexWithLookup), result);
 
-
-static void PrintResult(string method, byte[] input) => Console.WriteLine($"{method}: \t{{{string.Join(',', input)}}}");
+static void PrintResult(string method, IEnumerable<byte> input) =>
+    Console.WriteLine($"{method}: \t[{string.Join(',', input)}]");

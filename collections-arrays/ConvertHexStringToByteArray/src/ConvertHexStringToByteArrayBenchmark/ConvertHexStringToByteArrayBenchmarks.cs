@@ -9,7 +9,7 @@ namespace ConvertHexStringToByteArray.Benchmarks;
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
 public class ConvertHexStringToByteArrayBenchmarks
 {
-    private static readonly int[] Sizes =
+    private static readonly int[] ByteArrayLengths =
     {
         32,
         128,
@@ -23,7 +23,7 @@ public class ConvertHexStringToByteArrayBenchmarks
     {
         var random = new Random(42);
 
-        foreach (var size in Sizes)
+        foreach (var size in ByteArrayLengths)
         {
             var array = GC.AllocateUninitializedArray<byte>(size);
             random.NextBytes(array);
@@ -39,8 +39,8 @@ public class ConvertHexStringToByteArrayBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingLookup(string source) =>
-        ConversionHelpers.FromHexWithLookup(source);
+    public byte[] ConvertToByteArrayUsingModularArithmetic(string source) =>
+        ConversionHelpers.FromHexWithModularArithmetic(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
@@ -49,16 +49,16 @@ public class ConvertHexStringToByteArrayBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingBitFiddle(string source) =>
-        ConversionHelpers.FromHexWithBitFiddle(source);
-
-    [Benchmark]
-    [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingModularArithmetic(string source) =>
-        ConversionHelpers.FromHexWithModularArithmetic(source);
+    public byte[] ConvertToByteArrayUsingBitManipulation(string source) =>
+        ConversionHelpers.FromHexWithBitManipulation(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
     public byte[] ConvertToByteArrayUsingConvert(string source) =>
         ConversionHelpers.FromHexWithConvert(source);
+
+    [Benchmark]
+    [ArgumentsSource(nameof(ArrayData))]
+    public byte[] ConvertToByteArrayUsingLookup(string source) =>
+        ConversionHelpers.FromHexWithLookup(source);
 }
