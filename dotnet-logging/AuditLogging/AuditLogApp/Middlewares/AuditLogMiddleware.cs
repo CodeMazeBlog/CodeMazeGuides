@@ -27,7 +27,7 @@ public class AuditLogMiddleware
             request.RouteValues.TryGetValue(ControllerKey, out var controllerValue);
             var controllerName = (string)(controllerValue ?? string.Empty);
 
-            string changedValue = await GetChangedValues(request).ConfigureAwait(false);
+            var changedValue = await GetChangedValues(request).ConfigureAwait(false);
 
             var auditLog = new AuditLog
             {
@@ -44,7 +44,7 @@ public class AuditLogMiddleware
 
 private static async Task<string> GetChangedValues(HttpRequest request)
 {
-    string? changedValue = string.Empty; 
+    var changedValue = string.Empty; 
 
     switch (request.Method)
     {

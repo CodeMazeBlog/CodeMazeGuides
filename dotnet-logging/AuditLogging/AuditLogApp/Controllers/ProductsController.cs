@@ -21,7 +21,7 @@ public class ProductsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Product>>> GetProduct()
     {
-        if (_context.Products == null)
+        if (_context.Products is null)
         {
             return NotFound();
         }
@@ -33,13 +33,13 @@ public class ProductsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Product>> GetProduct(int id)
     {
-        if (_context.Products == null)
+        if (_context.Products is null)
         {
             return NotFound();
         }
 
         var product = await _context.Products.FindAsync(id);
-        if (product == null)
+        if (product is null)
         {
             return NotFound();
         }
@@ -89,13 +89,14 @@ public class ProductsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Product>> PostProduct(Product product)
     {
-        if (_context.Products == null)
+        if (_context.Products is null)
         {
             return Problem("Entity set 'ProdcutsDbContext.Product'  is null.");
         }
 
         _context.Products.Add(product);
         await _context.SaveChangesAsync();
+
         return CreatedAtAction("GetProduct", new { id = product.Id }, product);
     }
 
@@ -103,12 +104,12 @@ public class ProductsController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteProduct(int id)
     {
-        if (_context.Products == null)
+        if (_context.Products is null)
         {
             return NotFound();
         }
         var product = await _context.Products.FindAsync(id);
-        if (product == null)
+        if (product is null)
         {
             return NotFound();
         }

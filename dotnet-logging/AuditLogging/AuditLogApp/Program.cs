@@ -10,7 +10,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddDbContext<ProductsDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("ProductsDbContext") ?? throw new InvalidOperationException("Connection string 'ProductsDbContext' not found.")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("ProductsDbContext") ?? 
+            throw new InvalidOperationException("Connection string 'ProductsDbContext' not found.")));
 
         // Add services to the container.
 
