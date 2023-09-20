@@ -4,14 +4,14 @@ namespace {{namespace}}
 {
     public partial class {{class}} : DbContext
     {
-{{{> dbsets}}}
+        {{{> dbsets}}}
 
-{{{> dbconstructor}}}
+        {{{> dbconstructor}}}
 
-{{#unless suppress-on-configuring}}
-{{{> dbonconfiguring}}}
+        {{#unless suppress-on-configuring}}
+        {{{> dbonconfiguring}}}
 
-{{/unless}}
-{{{on-model-creating}}}
+        {{/unless}}
+        {{{on-model-creating}}}
     }
 }

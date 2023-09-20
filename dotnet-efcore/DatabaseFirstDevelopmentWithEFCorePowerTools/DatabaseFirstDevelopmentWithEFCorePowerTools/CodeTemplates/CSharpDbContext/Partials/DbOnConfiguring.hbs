@@ -2,9 +2,9 @@
         {
             if (!optionsBuilder.IsConfigured)
             {
-{{#if connectionstring-warning}}
-{{connectionstring-warning}}
-{{/if}}
+                {{#if connectionstring-warning}}
+                {{connectionstring-warning}}
+                {{/if}}
                 optionsBuilder{{options-builder-provider}};
             }
         }
