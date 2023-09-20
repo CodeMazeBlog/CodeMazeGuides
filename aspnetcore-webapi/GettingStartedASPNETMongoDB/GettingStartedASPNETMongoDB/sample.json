@@ -9,7 +9,7 @@
     }
   },
   "ballSample": {
-    "name": "footbal",
+    "name": "football",
     "shape": "round",
     "color": "white"
   },
@@ -23,6 +23,34 @@
       "name": "basketball",
       "shape": "round",
       "color": "red"
+    }
+  ],
+  "complexFieldDataTypeSample": [
+    {
+      "name": "footbal",
+      "shape": "round",
+      "color": "white",
+      "origin": {
+        "city": "Solar",
+        "town": "Light town"
+      }
+    }
+  ],
+  "complexFieldDataTypeSampleTwo": [
+    {
+      "name": "footbal",
+      "shape": "round",
+      "color": "white",
+      "customers": [
+        {
+          "name": "Johnny Doe",
+          "age": 59
+        },
+        {
+          "name": "Jane Doe",
+          "age": 32
+        }
+      ]
     }
   ]
 }
