@@ -106,16 +106,34 @@ public class DiscountServiceTests
     }
 
     [Fact]
-    public void WhenTimePasses_ThenInvocationCountIncreases()
+    public void WhenTimePasses_ThenSpecialDiscountIsUpdatedAccordingly()
     {
-        _discountService.InvocationCount.Should().Be(0);
+        _discountService.SpecialDiscount.Should().Be(0);
 
+        _timeProvider.SetUtcNow(new DateTime(2023, 5, 1, 0, 0, 0));
         _timeProvider.Advance(TimeSpan.FromSeconds(10));
 
-        _discountService.InvocationCount.Should().Be(1);
+        // 00:00:10
+        _discountService.SpecialDiscount.Should().Be(5);
 
-        _timeProvider.Advance(TimeSpan.FromHours(1));
+        _timeProvider.Advance(TimeSpan.FromHours(6));
 
-        _discountService.InvocationCount.Should().Be(13);
+        // 06:00:10
+        _discountService.SpecialDiscount.Should().Be(4);
+
+        _timeProvider.Advance(TimeSpan.FromHours(6));
+
+        // 12:00:10
+        _discountService.SpecialDiscount.Should().Be(3);
+
+        _timeProvider.Advance(TimeSpan.FromHours(6));
+
+        // 18:00:10
+        _discountService.SpecialDiscount.Should().Be(2);
+
+        _timeProvider.Advance(TimeSpan.FromHours(6));
+
+        // 00:00:10
+        _discountService.SpecialDiscount.Should().Be(5);
     }
 }
