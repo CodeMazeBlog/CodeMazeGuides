@@ -2,15 +2,15 @@ namespace SelectingXmlNodesWithXpathTests;
 
 public class XmlNodesSelectorTest
 {
-    private XmlDocument Document { get; }
-    private Dictionary<string, string> ExpectedResults { get; }
+    private readonly XmlDocument _document;
+    private readonly Dictionary<string, string> _expectedResults;
 
     public XmlNodesSelectorTest()
     {
-        Document = new XmlDocument();
-        Document.Load("BooksCatalog.xml");
+        _document = new XmlDocument();
+        _document.Load("BooksCatalog.xml");
 
-        ExpectedResults = new Dictionary<string, string>()
+        _expectedResults = new Dictionary<string, string>()
         {
             {
                 "Book1",
@@ -62,20 +62,20 @@ public class XmlNodesSelectorTest
     [Fact]
     public void GivenAnXmlFile_WhenSelectingASingleNode_ThenReturnsTheSecondPosition()
     {
-        var result = XmlNodesSelector.SelectSingleBook(Document.DocumentElement!);
+        var result = XmlNodesSelector.SelectSingleBook(_document.DocumentElement!);
 
-        Assert.Equal(result, ExpectedResults["Book2"]);
+        Assert.Equal(result, _expectedResults["Book2"]);
     }
 
     [Fact]
     public void GivenAnXmlFile_WhenSelectingNodes_ThenReturnBooksWithPriceLowerThan50()
     {
-        var expected = ExpectedResults
+        var expected = _expectedResults
             .Where(pair => pair.Key is "Book1" or "Book3")
             .Select(pair => pair.Value)
             .ToList();
 
-        var result = XmlNodesSelector.SelectBooks(Document.DocumentElement!);
+        var result = XmlNodesSelector.SelectBooks(_document.DocumentElement!);
 
         Assert.Equal(result, expected);
     }
@@ -84,12 +84,12 @@ public class XmlNodesSelectorTest
     public void GivenAnXmlFile_WhenSelectingNodesUsingNamespaces_ThenReturnBookElementWithNamespace()
     {
         var expected =
-            ExpectedResults
+            _expectedResults
             .Where(pair => pair.Key is "Book4")
             .Select(pair => pair.Value)
             .ToList();
 
-        var result = XmlNodesSelector.SelectBooksUsingNamespaces(Document);
+        var result = XmlNodesSelector.SelectBooksUsingNamespaces(_document);
 
         Assert.Equal(result, expected);
     }
