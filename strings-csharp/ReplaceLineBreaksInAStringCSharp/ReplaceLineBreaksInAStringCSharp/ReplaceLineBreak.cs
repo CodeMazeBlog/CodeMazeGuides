@@ -6,8 +6,8 @@ public static class ReplaceLineBreak
 {
     public static string ReplaceLineBreaksUsingTheStringReplaceMethod()
     {
-        const string text = "This is a line.\nThis is another line.";
-        var newText = text.Replace("\n", " ");
+        const string text = "This is a line.\rThis is another line.";
+        var newText = text.Replace("\r", "\n");
         
         return newText;
     }
@@ -22,8 +22,8 @@ public static class ReplaceLineBreak
 
     public static string ReplaceLineBreaksUsingTheRegularExpressionReplaceMethod()
     {
-        const string text = "This is a line.\r\nThis is another line.";
-        var newText = Regex.Replace(text, @"(\r\n|\n)", "&lt;br /&gt;");
+        const string text = "This is a line.\rThis is another line.";
+        var newText = Regex.Replace(text, @"(\r)", "\n");
         
         return newText;
     }
