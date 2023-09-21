@@ -1,0 +1,7 @@
+C:\Users\Developer\source\repos\Action and Func Delegates\bin\Debug\Action and Func Delegates.exe.config
+C:\Users\Developer\source\repos\Action and Func Delegates\bin\Debug\Action and Func Delegates.exe
+C:\Users\Developer\source\repos\Action and Func Delegates\bin\Debug\Action and Func Delegates.pdb
+C:\Users\Developer\source\repos\Action and Func Delegates\obj\Debug\Action and Func Delegates.csproj.AssemblyReference.cache
+C:\Users\Developer\source\repos\Action and Func Delegates\obj\Debug\Action and Func Delegates.csproj.CoreCompileInputs.cache
+C:\Users\Developer\source\repos\Action and Func Delegates\obj\Debug\Action and Func Delegates.exe
+C:\Users\Developer\source\repos\Action and Func Delegates\obj\Debug\Action and Func Delegates.pdb
