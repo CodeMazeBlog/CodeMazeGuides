@@ -3,14 +3,15 @@ using ReplaceLineBreaksInAStringCSharp;
 
 namespace ReplaceLineBreaksInAStringCSharpBenchmarks;
 
+[MemoryDiagnoser]
 public  class ReplaceLineBreakBenchmarks
 {
     [Benchmark]
-    public string ReplaceUsingStringReplace() => ReplaceLineBreak.ReplaceLineBreaksUsingTheStringReplaceMethod();
+    public string StringReplace() => ReplaceLineBreak.ReplaceLineBreaksUsingTheStringReplaceMethod();
 
     [Benchmark]
-    public string ReplaceUsingStringReplaceLineEndings() => ReplaceLineBreak.ReplaceLineBreaksUsingTheStringReplaceLineEndingsMethod();
+    public string StringReplaceLineEndings() => ReplaceLineBreak.ReplaceLineBreaksUsingTheStringReplaceLineEndingsMethod();
 
     [Benchmark]
-    public string ReplaceUsingRegularExpressionReplace() => ReplaceLineBreak.ReplaceLineBreaksUsingTheRegularExpressionReplaceMethod();
+    public string RegexReplace() => ReplaceLineBreak.ReplaceLineBreaksUsingTheRegularExpressionReplaceMethod();
 }
