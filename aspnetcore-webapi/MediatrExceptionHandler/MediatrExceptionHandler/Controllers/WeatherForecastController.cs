@@ -16,10 +16,11 @@ namespace MediatrExceptionHandler.Controllers
         }
 
         [HttpGet(Name = "GetWeather")]
-        public async Task<WeatherResponse> GetWeather()
+        public async Task<ActionResult<WeatherResponse>> GetWeather()
         {
             var result = await _mediator.Send(new GetWeatherRequest());
-            return result;
+
+            return result.ErrorCode == 500 ? Problem(result.Message) : Ok(result);
         }
     }
 }

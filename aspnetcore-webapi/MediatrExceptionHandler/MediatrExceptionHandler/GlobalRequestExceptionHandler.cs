@@ -9,14 +9,11 @@ namespace MediatrExceptionHandler
           where TException : Exception
     {
         private readonly ILogger<GlobalRequestExceptionHandler<TRequest, TResponse, TException>> _logger;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public GlobalRequestExceptionHandler(
-           ILogger<GlobalRequestExceptionHandler<TRequest, TResponse, TException>> logger,
-           IHttpContextAccessor httpContextAccessor)
+           ILogger<GlobalRequestExceptionHandler<TRequest, TResponse, TException>> logger)
         {
             _logger = logger;
-            _httpContextAccessor = httpContextAccessor;
         }
 
         public Task Handle(TRequest request, TException exception, RequestExceptionHandlerState<TResponse> state,
@@ -26,11 +23,9 @@ namespace MediatrExceptionHandler
 
             _logger.LogError(ex, "Something went wrong while handling request of type {@requestType}", typeof(TRequest));
 
-            // Set the HTTP status code to 500 (Internal Server Error) in the HttpContext
-            _httpContextAccessor.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
             var response = new TResponse
             {
+                ErrorCode = (int)HttpStatusCode.InternalServerError,
                 Message = "A server error ocurred",
             };
 
