@@ -28,7 +28,10 @@ namespace ActionAndFuncDelegatesInCSharp
             }
 
             // Using Func delegate to fully introduce a person
-            Func<Person, string> fullIntroduction = (person) => person.Name + " is a " + person.Gender + " from " + person.Country;
+            Func<Person, string> fullIntroduction = (person) => 
+            {                
+                person.Name + " is a " + person.Gender + " from " + person.Country;
+            };
 
             foreach (var person in threePersons)
             {
