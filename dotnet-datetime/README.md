@@ -12,6 +12,7 @@ This section contains the topics related to the DateTime class in .NET.
 - [DateTime Calendars in C#](https://code-maze.com/dotnet-datetime-calendars/)
 - [DateOnly Format in C#](https://code-maze.com/csharp-datetime-format/)
 - [Difference Between DateTime.Now and DateTime.UtcNow in C#](https://code-maze.com/csharp-datetime-now-vs-datetime-utcnow/)
+- [DateTimeOffset vs DateTime in C#](https://code-maze.com/csharp-datetimeoffset-vs-datetime/)
 - [How To Parse String to DateTime in C#](https://code-maze.com/csharp-convert-string-to-datetime/)
 - [DateTime Operators in C#](https://code-maze.com/csharp-datetime-operators/)
 - [Remove Time From a DateTime Object in C#](https://code-maze.com/remove-time-from-datetime-csharp/)
