@@ -5,8 +5,9 @@ using System.Net;
 namespace MediatrExceptionHandler
 {
     public class GlobalRequestExceptionHandler<TRequest, TResponse, TException> : IRequestExceptionHandler<TRequest, TResponse, TException>
-          where TResponse : BaseResponse, new()
-          where TException : Exception
+        where TRequest : notnull
+        where TResponse : BaseResponse, new()
+        where TException : Exception
     {
         private readonly ILogger<GlobalRequestExceptionHandler<TRequest, TResponse, TException>> _logger;
 
@@ -25,7 +26,7 @@ namespace MediatrExceptionHandler
 
             var response = new TResponse
             {
-                ErrorCode = (int)HttpStatusCode.InternalServerError,
+                HasError = true,
                 Message = "A server error ocurred",
             };
 

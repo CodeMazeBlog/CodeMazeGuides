@@ -20,7 +20,7 @@ namespace MediatrExceptionHandler.Controllers
         {
             var result = await _mediator.Send(new GetWeatherRequest());
 
-            return result.ErrorCode is not null ? Problem(result.Message) : Ok(result);
+            return result.HasError ? Problem(result.Message) : Ok(result);
         }
     }
 }
