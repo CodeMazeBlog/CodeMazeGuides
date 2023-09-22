@@ -355,3 +355,7 @@ global.json
 
 # MacOS
 **/.DS_Store
+/csharp-intermediate-topics/ActionFuncDelegate/ActionFuncDelegate/ActionDelegate.csproj
+/csharp-intermediate-topics/ActionFuncDelegate/ActionUnitTest/ActionUnitTest.csproj
+/csharp-intermediate-topics/ActionFuncDelegate/FuncDelegate/FuncDelegate.csproj
+/csharp-intermediate-topics/ActionFuncDelegate/FuncUnitTest/FuncUnitTest.csproj
