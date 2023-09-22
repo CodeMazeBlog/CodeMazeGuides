@@ -7,7 +7,7 @@ namespace TestProject1
     public class ActionDelegateUnitTest
     {
         [Fact]
-        public void DoubleNumber_ShouldDoubleNumber()
+        public void WhenNumberIsPassedToDoubleNumber_ThenNumberShouldBeDoubled()
         {
             // Arrange
             var actionDelegate = new ActionFuncDelegate();
@@ -22,31 +22,6 @@ namespace TestProject1
 
                 // Assert
                 Assert.Equal(expectedOutput, consoleOutput.GetOutput());
-            }
-        }
-
-        // Helper class to capture Console output
-        private class ConsoleOutput : IDisposable
-        {
-            private StringWriter _stringWriter;
-            private TextWriter _originalOutput;
-
-            public ConsoleOutput()
-            {
-                _stringWriter = new StringWriter();
-                _originalOutput = Console.Out;
-                Console.SetOut(_stringWriter);
-            }
-
-            public string GetOutput()
-            {
-                return _stringWriter.ToString().Trim();
-            }
-
-            public void Dispose()
-            {
-                _stringWriter.Dispose();
-                Console.SetOut(_originalOutput);
             }
         }
     }

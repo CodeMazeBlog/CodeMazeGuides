@@ -17,7 +17,7 @@ namespace ActionAndFunc
         static void Main(string[] args)
         {
             // This creates a new List<int> object and initializes it
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            var numbers = new List<int> { 1, 2, 3, 4, 5 };
         
             // Using Func delegate to check if a number is even
             Func<int, bool> isEvenDelegate = IsEven;
