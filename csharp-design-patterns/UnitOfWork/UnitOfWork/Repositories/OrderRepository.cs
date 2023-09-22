@@ -17,8 +17,3 @@ public class OrderRepository : IOrderRepository
         _database.AddOrder(order);
     }
 }
-
-public interface IOrderRepository
-{
-    void Add(Order order);
-}

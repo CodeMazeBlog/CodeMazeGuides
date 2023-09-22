@@ -4,7 +4,7 @@ using UnitOfWork.Entities;
 
 namespace UnitOfWork.DataAccess.Dapper;
 
-public sealed class DapperContext : IDatabase
+public class DapperContext : IDatabase
 {
     private readonly SqlConnection _sqlConnection;
 
@@ -16,6 +16,7 @@ public sealed class DapperContext : IDatabase
     public async Task<ITransaction> BeginTransactionAsync()
     {
         var sqlTransaction = await _sqlConnection.BeginTransactionAsync();
+        
         return new DapperTransaction(sqlTransaction);
     }
 

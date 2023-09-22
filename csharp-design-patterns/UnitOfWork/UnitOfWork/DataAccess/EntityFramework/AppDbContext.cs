@@ -3,7 +3,7 @@ using UnitOfWork.Entities;
 
 namespace UnitOfWork.DataAccess.EntityFramework;
 
-public class AppDbContext : DbContext, IDatabase
+public class AppDbContext : DbContext, IDatabase, IUnitOfWork
 {
     public async Task<ITransaction> BeginTransactionAsync()
     {
