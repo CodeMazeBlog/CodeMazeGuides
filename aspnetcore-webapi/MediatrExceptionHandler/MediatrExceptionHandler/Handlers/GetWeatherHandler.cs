@@ -5,7 +5,7 @@ namespace MediatrExceptionHandler.Handlers
 {
     public class GetWeatherHandler : IRequestHandler<GetWeatherRequest, WeatherResponse>
     {
-        public async Task<WeatherResponse> Handle(GetWeatherRequest request, CancellationToken cancellationToken)
+        public Task<WeatherResponse> Handle(GetWeatherRequest request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

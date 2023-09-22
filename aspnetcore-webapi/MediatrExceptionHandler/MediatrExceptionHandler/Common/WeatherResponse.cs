@@ -1,4 +1,6 @@
-﻿namespace MediatrExceptionHandler
+﻿using System.Net;
+
+namespace MediatrExceptionHandler
 {
     public class BaseResponse
     {
