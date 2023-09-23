@@ -1,11 +1,20 @@
-﻿namespace TestingTimeDependentCodeWithTimeProvider;
+﻿using System;
+using System.Threading;
 
-public class DiscountService : IDiscountService
+namespace TestingTimeDependentCodeWithTimeProvider;
+
+public class DiscountService : IDiscountService, IDisposable
 {
     private readonly ITimer _timer;
     private readonly TimeProvider _timeProvider;
+    private double _specialDiscount = 0;
+    private bool _disposed = false;
 
-    public double SpecialDiscount { get; private set; } = 0;
+    public double SpecialDiscount
+    { 
+        get => _specialDiscount;
+        set => _specialDiscount = value;
+    }
 
     public DiscountService(TimeProvider timeProvider)
     {
@@ -35,27 +44,48 @@ public class DiscountService : IDiscountService
         };
     }
 
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if(_disposed) return;
+
+        if(disposing)
+        {
+            if(_timer != null)
+            {
+                _timer.Dispose();
+            }
+        }
+
+        _disposed = true;
+    }
+
     private void UpdateSpecialDiscount()
     {
         var timeOfDay = _timeProvider.GetUtcNow().TimeOfDay;
 
         if (timeOfDay < TimeSpan.FromHours(6))
         {
-            SpecialDiscount = 5;
+            Interlocked.Exchange(ref _specialDiscount, 5);
         }
         else if (timeOfDay >= TimeSpan.FromHours(6) &&
                  timeOfDay < TimeSpan.FromHours(12))
         {
-            SpecialDiscount = 4;
+            Interlocked.Exchange(ref _specialDiscount, 4);
         }
         else if (timeOfDay >= TimeSpan.FromHours(12) &&
                  timeOfDay < TimeSpan.FromHours(18))
         {
-            SpecialDiscount = 3;
+            Interlocked.Exchange(ref _specialDiscount, 3);
         }
         else
         {
-            SpecialDiscount = 2;
+            Interlocked.Exchange(ref _specialDiscount, 2);
         }
     }
 }

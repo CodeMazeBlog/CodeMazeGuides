@@ -1,10 +1,10 @@
-using Microsoft.Extensions.Time.Testing;
-
 namespace TestingTimeDependentCodeWithTimeProvider.Tests;
 
-public class DiscountServiceTests
+public class DiscountServiceTests : IDisposable
 {
+#pragma warning disable EXTEXP0004 //'Microsoft.Extensions.Time.Testing.FakeTimeProvider' is for evaluation purposes only and is subject to change or removal in future updates.
     private readonly FakeTimeProvider _timeProvider;
+#pragma warning restore EXTEXP004
     private readonly DiscountService _discountService;
 
     public DiscountServiceTests()
@@ -42,7 +42,6 @@ public class DiscountServiceTests
     [Fact]
     public void GivenWednesday_WhenCalculateDiscountIsInvoked_ThenValidDiscountIsReturned()
     {
-
         // Arrange
         _timeProvider.SetUtcNow(new DateTime(2023, 5, 3));
 
@@ -105,35 +104,27 @@ public class DiscountServiceTests
         result.Should().Be(7);
     }
 
-    [Fact]
-    public void WhenTimePasses_ThenSpecialDiscountIsUpdatedAccordingly()
+    [Theory]
+    [InlineData(0, 5.0)]
+    [InlineData(6, 4.0)]
+    [InlineData(12, 3.0)]
+    [InlineData(18, 2.0)]
+    [InlineData(24, 5.0)]
+    public void WhenTimePasses_ThenSpecialDiscountIsUpdatedAccordingly(int hoursToAdvance, double expectedDiscount)
     {
+        //Act
         _discountService.SpecialDiscount.Should().Be(0);
-
         _timeProvider.SetUtcNow(new DateTime(2023, 5, 1, 0, 0, 0));
-        _timeProvider.Advance(TimeSpan.FromSeconds(10));
 
-        // 00:00:10
-        _discountService.SpecialDiscount.Should().Be(5);
+        //Arrange
+        _timeProvider.Advance(TimeSpan.FromHours(hoursToAdvance) + TimeSpan.FromSeconds(10));
 
-        _timeProvider.Advance(TimeSpan.FromHours(6));
+        // Assert
+        _discountService.SpecialDiscount.Should().Be(expectedDiscount);
+    }
 
-        // 06:00:10
-        _discountService.SpecialDiscount.Should().Be(4);
-
-        _timeProvider.Advance(TimeSpan.FromHours(6));
-
-        // 12:00:10
-        _discountService.SpecialDiscount.Should().Be(3);
-
-        _timeProvider.Advance(TimeSpan.FromHours(6));
-
-        // 18:00:10
-        _discountService.SpecialDiscount.Should().Be(2);
-
-        _timeProvider.Advance(TimeSpan.FromHours(6));
-
-        // 00:00:10
-        _discountService.SpecialDiscount.Should().Be(5);
+    public void Dispose()
+    {
+        _discountService?.Dispose();
     }
 }
