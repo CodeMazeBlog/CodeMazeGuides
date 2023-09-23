@@ -56,10 +56,7 @@ public class DiscountService : IDiscountService, IDisposable
 
         if(disposing)
         {
-            if(_timer != null)
-            {
-                _timer.Dispose();
-            }
+            _timer?.Dispose();
         }
 
         _disposed = true;
