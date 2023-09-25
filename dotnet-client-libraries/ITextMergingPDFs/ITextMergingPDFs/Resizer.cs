@@ -20,16 +20,9 @@ namespace ITextMergingPDFs
             {
                 var page = inputDocument.GetPage(i);
 
-                if (page.GetPageSize() == PageSize.A5)
-                {
-                    outputDocument.AddPage(page);
-                }
-                else
-                {
-                    var formXObject = page.CopyAsFormXObject(outputDocument);
-                    var pdfCanvas = new PdfCanvas(outputDocument.AddNewPage());
-                    pdfCanvas.AddXObjectFittedIntoRectangle(formXObject, new Rectangle(0, 0, a5PageWidth, a5PageHeight));
-                }
+                var formXObject = page.CopyAsFormXObject(outputDocument);
+                var pdfCanvas = new PdfCanvas(outputDocument.AddNewPage());
+                pdfCanvas.AddXObjectFittedIntoRectangle(formXObject, new Rectangle(0, 0, a5PageWidth, a5PageHeight));
             }
         }
     }
