@@ -39,26 +39,26 @@ public class ConvertHexStringToByteArrayBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingModularArithmetic(string source) =>
+    public byte[] UsingModularArithmetic(string source) =>
         ConversionHelpers.FromHexWithModularArithmetic(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingSwitchComputation(string source) =>
+    public byte[] UsingSwitchComputation(string source) =>
         ConversionHelpers.FromHexWithSwitchComputation(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingBitManipulation(string source) =>
+    public byte[] UsingBitManipulation(string source) =>
         ConversionHelpers.FromHexWithBitManipulation(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingConvert(string source) =>
+    public byte[] UsingConvert(string source) =>
         ConversionHelpers.FromHexWithConvert(source);
 
     [Benchmark]
     [ArgumentsSource(nameof(ArrayData))]
-    public byte[] ConvertToByteArrayUsingLookup(string source) =>
+    public byte[] UsingLookup(string source) =>
         ConversionHelpers.FromHexWithLookup(source);
 }
