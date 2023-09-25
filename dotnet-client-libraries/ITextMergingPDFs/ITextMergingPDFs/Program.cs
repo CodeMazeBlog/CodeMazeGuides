@@ -1,0 +1,163 @@
+﻿using iText.Kernel.Geom;
+using ITextMergingPDFs;
+using ITextMergingPDFs.ConsoleManager;
+using System.Diagnostics;
+
+var console = new RealConsole();
+var userMenu = new UserMenu(console);
+
+while (true)
+{
+    userMenu.DisplayOptions();
+    var userAction = userMenu.GetSelection();
+
+    switch (userAction)
+    {
+        case UserMenu.UserAction.MergePdfDocumentsWithTheSameSize:
+            RunMergeExample(nameof(UserMenu.UserAction.MergePdfDocumentsWithTheSameSize),
+                (documentsManager) => documentsManager.CreateFewDocuments("document{0}.pdf", 3, PageSize.A4));
+            break;
+        case UserMenu.UserAction.MergePdfDocumentsWithTheDifferentSizesSize:
+            RunMergeExample(nameof(UserMenu.UserAction.MergePdfDocumentsWithTheDifferentSizesSize),
+                (documentsManager) => documentsManager.CreateFewDocuments("document{0}.pdf", 3));
+            break;
+        case UserMenu.UserAction.MergePdfDocumentsFirstPageWithTheDifferentSizesSize:
+            RunMergeExample(nameof(UserMenu.UserAction.MergePdfDocumentsFirstPageWithTheDifferentSizesSize),
+                (documentsManager) => documentsManager.CreateFewDocuments("document{0}.pdf", 3),
+                onlyFirstPage: true);
+            break;
+        case UserMenu.UserAction.SplitDocumentOnOddAndEvenPages:
+            RunSplitExample(nameof(UserMenu.UserAction.SplitDocumentOnOddAndEvenPages));
+            break;
+        case UserMenu.UserAction.ResizeDocument:
+            RunScaleExample(nameof(UserMenu.UserAction.ResizeDocument));
+            break;
+        case UserMenu.UserAction.Exit:
+            return;
+        case UserMenu.UserAction.Unknown:
+            break;
+    }
+
+    Console.WriteLine("\n\nPress any key to continue ...");
+    Console.ReadKey();
+}
+
+void DisplayPDFFile(string pdfFileName)
+{
+    using var process = new Process
+    {
+        StartInfo = new ProcessStartInfo(pdfFileName)
+        {
+            CreateNoWindow = true,
+            UseShellExecute = true
+        }
+    };
+
+    process.Start();
+}
+
+void RunMergeExample(string folderName, Func<BigDocument, string[]> createExampleDocumentsFunction, bool onlyFirstPage = false)
+{
+    console.Clear();
+
+    var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
+    string pdfFolder = "";
+
+    try
+    {
+        pdfFolder = folderManager.EnsurePFDDocumentsFolderExists(deleteFolderIfExists: true);
+    }
+    catch (Exception)
+    {
+        Console.WriteLine($"You seem to already have a PDF file open in a folder {pdfFolder}. Please close all PDF files to process with this example.");
+        return;
+    }
+
+    var documentsManager = BigDocument.Create(pdfFolder);
+    var merger = Merger.Create(pdfFolder);
+
+    console.WriteLine("\n\nCreating documents ...\n");
+    var documents = createExampleDocumentsFunction(documentsManager);
+    foreach (var document in documents)
+    {
+        console.WriteLine($" * Document {document} created.");
+        DisplayPDFFile(document);
+    }
+
+    console.WriteLine("\n\nMerging documents ...\n");
+    var merged = (onlyFirstPage)
+        ? merger.MergePDFsFirstPage(documents, "merged.pdf")
+        : merger.MergePDFs(documents, "merged.pdf");
+
+    console.WriteLine($"\nDocuments merged into {merged}");
+    DisplayPDFFile(merged);
+}
+
+
+void RunSplitExample(string folderName)
+{
+    console.Clear();
+
+    var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
+    string pdfFolder = "";
+
+    try
+    {
+        pdfFolder = folderManager.EnsurePFDDocumentsFolderExists(deleteFolderIfExists: true);
+    }
+    catch (Exception)
+    {
+        Console.WriteLine($"You seem to already have a PDF file open in a folder {pdfFolder}. Please close all PDF files to process with this example.");
+        return;
+    }
+
+    var documentsManager = BigDocument.Create(pdfFolder);
+    var merger = Merger.Create(pdfFolder);
+
+    console.WriteLine("\n\nCreating documents ...\n");
+    var document = documentsManager.CreateDocument("document.pdf", PageSize.A5);
+    console.WriteLine($" * Document {document} created.");
+    DisplayPDFFile(document);
+
+    console.WriteLine("\n\nSplitting document ...\n");
+    var splitDoc = merger.SplitDocument(document);
+
+    console.WriteLine($"\nDocument split into ... ");
+    console.WriteLine($" * Odd  pages: {splitDoc[0]} ");
+    console.WriteLine($" * Even pages: {splitDoc[1]} ");
+    DisplayPDFFile(splitDoc[0]);
+    DisplayPDFFile(splitDoc[1]);
+}
+
+void RunScaleExample(string folderName)
+{
+    console.Clear();
+
+    var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
+    string pdfFolder = "";
+
+    try
+    {
+        pdfFolder = folderManager.EnsurePFDDocumentsFolderExists(deleteFolderIfExists: true);
+    }
+    catch (Exception)
+    {
+        Console.WriteLine($"You seem to already have a PDF file open in a folder {pdfFolder}. Please close all PDF files to process with this example.");
+        return;
+    }
+
+    var documentsManager = BigDocument.Create(pdfFolder);
+    var resizer = Resizer.Create(pdfFolder);
+
+    console.WriteLine("\n\nCreating documents ...\n");
+    var document = documentsManager.CreateDocument("document.pdf", PageSize.A4);
+    console.WriteLine($" * Document {document} created.");
+    DisplayPDFFile(document);
+
+    console.WriteLine("\n\nResizing document ...\n");
+    var splitDoc = resizer.ResizeFromA4ToA5(document, "small.pdf");
+
+    console.WriteLine($"\nDocument resized ... ");
+    console.WriteLine($" * Resized document: {splitDoc} ");
+    DisplayPDFFile(splitDoc);
+}
