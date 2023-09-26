@@ -65,11 +65,11 @@ public static class ConversionHelpers
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int PerformBitManipulation(int value)
+    private static int PerformBitManipulation(int charValue)
     {
-        value -= 'A';
+        charValue -= 'A';
 
-        return value + 10 + ((value >> 31) & 7);
+        return charValue + 10 + ((charValue >> 31) & 7);
     }
 
     public static unsafe byte[] FromHexWithBitManipulation(ReadOnlySpan<char> input)
@@ -133,8 +133,7 @@ public static class ConversionHelpers
                 byte lowValue;
 
                 if (*s > 102 || (*d = hiRef[*s++]) == 255 ||
-                    *s > 102 || (lowValue = lowRef[*s++]) == 255
-                )
+                    *s > 102 || (lowValue = lowRef[*s++]) == 255 )
                     throw new ArgumentException($"Invalid character found in string: '{*s}'", nameof(input));
 
                 *d++ += lowValue;

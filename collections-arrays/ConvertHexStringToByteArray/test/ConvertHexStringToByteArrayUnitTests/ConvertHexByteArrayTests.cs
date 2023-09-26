@@ -5,7 +5,7 @@ public class ConvertHexByteArrayTests
     public static TheoryData<string, byte[]> StandardValidTestData =>
         new()
         {
-            {"", new byte[] { }},
+            {"", Array.Empty<byte>()},
             {"B98E244C", new byte[] {185, 142, 36, 76}},
             {"0xB98E244C", new byte[] {185, 142, 36, 76}},
             {"b98e244c", new byte[] {185, 142, 36, 76}},
