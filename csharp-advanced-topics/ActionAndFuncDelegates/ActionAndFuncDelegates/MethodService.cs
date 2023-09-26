@@ -2,7 +2,7 @@
 {
     public class MethodService
     {
-        //****************Action Delegate will either have input parameters but returns no output*****************
+        #region Action Delegates Methods
         public static void GetConsoleText()
         {
             Console.WriteLine("Console text printed");
@@ -21,8 +21,9 @@
             }
             Console.WriteLine();
         }
+        #endregion
 
-        //****************Func Delegate will takes parameters and returns a output***************
+        #region Func Delegates Methods
         public static string GetNamesReturn(string FirstName, string SecondName, string ThirdName)
         {
             return string.Format("{0}-{1}-{2}", 
@@ -35,5 +36,6 @@
             Random r = new();
             return r.Next(1, 100);
         }
+        #endregion
     }
 }
