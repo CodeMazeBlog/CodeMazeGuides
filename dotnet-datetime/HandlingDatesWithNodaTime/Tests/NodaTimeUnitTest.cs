@@ -1,5 +1,4 @@
-﻿using HandlingDatesWithNodaTime.Extensions;
-using NodaTime;
+﻿using NodaTime;
 using NodaTime.Extensions;
 using NodaTime.Text;
 
@@ -104,8 +103,8 @@ public class NodaTimeUnitTest
         var eventTwoResult = eventTwoTime.CompareTo(eventOneTime);
         var eventThreeResult = eventTwoTime.CompareTo(eventThreeTime);
 
-        Assert.True(eventOneResult < 0);
-        Assert.True(eventTwoResult > 0);
+        Assert.Equal(-1, eventOneResult);
+        Assert.Equal(1, eventTwoResult);
         Assert.Equal(0, eventThreeResult);
     }
 
@@ -117,7 +116,7 @@ public class NodaTimeUnitTest
 
         var zoneDateTime = localDateTime.InZoneLeniently(timezone);
 
-        Assert.True(true);
+        Assert.Equal("Africa/Cairo", zoneDateTime.Zone.Id);
     }
 
     [Fact]
@@ -148,7 +147,7 @@ public class NodaTimeUnitTest
         var dateTime = new DateTime(2023, 9, 15, 9, 30, 50, DateTimeKind.Utc);
         var expectedInstant = Instant.FromUtc(2023, 9, 15, 9, 30, 50);
 
-        var instant = dateTime.ConvertToInstant();
+        var instant = dateTime.ToInstant();
 
         Assert.Equal(expectedInstant, instant);
     }
@@ -159,7 +158,7 @@ public class NodaTimeUnitTest
         var timeSpan = TimeSpan.FromHours(3);
         var expectedDuration = Duration.FromHours(3);
 
-        var duration = timeSpan.ConvertToDuration();
+        var duration = timeSpan.ToDuration();
 
         Assert.Equal(expectedDuration, duration);
     }
@@ -170,7 +169,7 @@ public class NodaTimeUnitTest
         var currentDate = new LocalDate(2023, 9, 15);
         var expectedDate = new LocalDate(2023, 9, 16);
 
-        var futureDate = currentDate.AddDays(1);
+        var futureDate = currentDate.PlusDays(1);
 
         Assert.Equal(expectedDate, futureDate);
     }
@@ -182,7 +181,8 @@ public class NodaTimeUnitTest
 
         var endDate = new DateTime(2023, 9, 15, 9, 30, 50);
 
-        var difference = startDate.CalculateDifference(endDate);
+        var finalDate = LocalDate.FromDateTime(endDate);
+        var difference = Period.Between(startDate, finalDate, PeriodUnits.Years);
 
         Assert.Equal(37, difference.Years);
     }
