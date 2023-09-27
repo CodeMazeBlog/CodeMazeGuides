@@ -136,7 +136,9 @@ public class NodaTimeUnitTest
         var firstDuration = Duration.FromHours(3);
         var secondDuration = Duration.FromHours(2);
 
-        Assert.Equal(Duration.FromHours(1), firstDuration - secondDuration);
+        var difference = firstDuration - secondDuration;
+
+        Assert.Equal(Duration.FromHours(1), difference);
     }
 
     [Fact]
