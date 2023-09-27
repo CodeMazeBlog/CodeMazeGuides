@@ -355,3 +355,5 @@ global.json
 
 # MacOS
 **/.DS_Store
+/csharp-advanced-topics/ActionandFuncDelegates/.gitignore
+/.gitignore
