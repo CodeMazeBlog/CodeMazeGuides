@@ -71,6 +71,7 @@ private static async Task<string> ReadRequestBody(HttpRequest request, Encoding?
     var reader = new StreamReader(request.Body, encoding ?? Encoding.UTF8);
     var requestBody = await reader.ReadToEndAsync().ConfigureAwait(false);
     request.Body.Position = 0;
+
     return requestBody;
 }
 }
