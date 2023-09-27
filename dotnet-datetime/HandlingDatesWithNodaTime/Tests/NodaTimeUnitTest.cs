@@ -127,7 +127,7 @@ public class NodaTimeUnitTest
 
         var sumOfDurations = durationInDays + durationInHours;
 
-        Assert.Equal(sumOfDurations, durationInDays + durationInHours);
+        Assert.Equal( 1.125, sumOfDurations.TotalDays);
     }
 
     [Fact]
@@ -136,9 +136,7 @@ public class NodaTimeUnitTest
         var firstDuration = Duration.FromHours(3);
         var secondDuration = Duration.FromHours(2);
 
-        var sumOfDurations = firstDuration - secondDuration;
-
-        Assert.Equal(sumOfDurations, firstDuration - secondDuration);
+        Assert.Equal(Duration.FromHours(1), firstDuration - secondDuration);
     }
 
     [Fact]
