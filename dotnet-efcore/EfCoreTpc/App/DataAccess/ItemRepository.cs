@@ -8,18 +8,21 @@ public class ItemRepository
     public async Task<List<Item>> GetAllItems()
     {
         await using var context = new WebShopDbContext();
+        
         return await context.Items.ToListAsync();
     }
 
     public async Task<List<ElectronicItem>> GetAllElectronicItems()
     {
         await using var context = new WebShopDbContext();
+        
         return await context.Items.OfType<ElectronicItem>().ToListAsync();
     }
 
     public async Task<List<ClothingItem>> GetAllClothingItems()
     {
         await using var context = new WebShopDbContext();
+        
         return await context.Items.OfType<ClothingItem>().ToListAsync();
     }
 
@@ -27,6 +30,7 @@ public class ItemRepository
     {
         await using var context = new WebShopDbContext();
         await context.Items.AddAsync(item);
+        
         return await context.SaveChangesAsync() > 0;
     }
 
@@ -34,6 +38,7 @@ public class ItemRepository
     {
         await using var context = new WebShopDbContext();
         await context.Items.AddAsync(item);
+        
         return await context.SaveChangesAsync() > 0;
     }
 }
