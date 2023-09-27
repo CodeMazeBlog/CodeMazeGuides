@@ -1,39 +1,36 @@
 using Moq;
 
-
 namespace ActionandFuncDelagates.Tests
 {
     [TestClass()]
-    public class UnitTest
+    public class Tests
     {
         [TestMethod()]
-        public void AddTest()
+        public void FuncDelegate_TestMethod()
         {
             //arrange
-            int[] nums = { 4, 4 } ;
-            var TestAdd = new Mock<Func<int,int,int>>();
+            int[] nums = { 4, 4 };
+            var TestAdd = new Mock<Func<int, int, int>>();
             TestAdd.Setup(func => func(It.IsAny<int>(), It.IsAny<int>()));
             var AddOperation = new Program(TestAdd.Object, null);
             //act
-            var result = AddOperation.Add(nums[0], nums[1]);
+            var result = AddOperation.FuncMethod(nums[0], nums[1]);
 
             //assert
             Assert.AreEqual(8, result);
         }
 
-
         [TestMethod()]
-        public void ActionMethodTest()
+        public void ActionDelegate_TestMethod()
         {
             //arrange
-            int[] nums = {4,4};
+            int[] nums = { 4, 4 };
             var TestAdd = new Mock<Action<int, int>>();
             var Operation = new Program(null, TestAdd.Object);
 
             // Capture the console output for assertions
             using (var consoleOutput = new ConsoleOutput())
             {
-
                 //act
                 Operation.ActionMethod(nums[0], nums[1]);
 
