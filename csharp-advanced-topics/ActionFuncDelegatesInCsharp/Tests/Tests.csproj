@@ -23,7 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ActionFuncDelegatesInCsharp\ActionFuncDelegatesInCsharp.csproj" />
+    <ProjectReference Include="..\ActionDelegateInCsharp\ActionDelegateInCsharp.csproj" />
+    <ProjectReference Include="..\FuncDelegateInCsharp\FuncDelegateInCsharp.csproj" />
   </ItemGroup>
 
 </Project>

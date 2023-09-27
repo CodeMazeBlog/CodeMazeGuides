@@ -1,4 +1,4 @@
-﻿namespace ActionFuncDelegatesInCsharp
+﻿namespace FuncDelegateInCsharp
 {
     // Define a class that has an event that uses a Func delegate as a callback.
     public class Calculator
@@ -18,10 +18,9 @@
         }
     }
 
-    public class ExecuteCalculator
+    internal class Program
     {
-
-        public void Execute()
+        static void Main(string[] args)
         {
             // Create a new Calculator object.
             Calculator calculator = new Calculator();
@@ -40,7 +39,5 @@
 
             // Output: The sum of 10 and 20 is 30.
         }
-
-
     }
 }

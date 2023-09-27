@@ -1,6 +1,5 @@
-﻿namespace ActionFuncDelegatesInCsharp
+﻿namespace ActionDelegateInCsharp
 {
-    // Define a class that has a method that takes an Action delegate as a callback.
     public class Logger
     {
         // Invoke the logMessageDelegate delegate.
@@ -9,10 +8,9 @@
             logMessageDelegate.Invoke(message);
         }
     }
-
-    public class ExecuteLogger
+    internal class Program
     {
-        public void Execute()
+        static void Main(string[] args)
         {
             // Create a new Logger object.
             Logger logger = new Logger();
@@ -24,6 +22,5 @@
             // Log a message.
             logger.LogMessage("Action Delegates!", logMessageDelegate);
         }
-
     }
 }
