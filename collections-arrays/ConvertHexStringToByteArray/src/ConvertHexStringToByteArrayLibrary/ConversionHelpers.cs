@@ -9,19 +9,19 @@ public static class ConversionHelpers
 
     public static byte[] FromHexWithModularArithmetic(ReadOnlySpan<char> input)
     {
+        if (input.Length % 2 != 0)
+            throw new ArgumentException("Input has invalid length", nameof(input));
+
         if (input.StartsWith("0x"))
             input = input[2..];
 
         if (input.IsEmpty)
             return Array.Empty<byte>();
 
-        if (input.Length % 2 != 0)
-            throw new ArgumentException("Input has invalid length", nameof(input));
-
         var dest = new byte[input.Length >> 1];
-        for (int i = 0, j = 0; j < dest.Length; i += 2, j++)
-            dest[j] = (byte) ((PerformModularArithmeticCalculation(input[i]) << 4) +
-                PerformModularArithmeticCalculation(input[i + 1]));
+        for (int i = 0, j = 0; j < dest.Length; j++)
+            dest[j] = (byte)((PerformModularArithmeticCalculation(input[i++]) << 4) +
+                PerformModularArithmeticCalculation(input[i++]));
 
         return dest;
     }
@@ -38,14 +38,14 @@ public static class ConversionHelpers
 
     public static unsafe byte[] FromHexWithSwitchComputation(ReadOnlySpan<char> input)
     {
+        if (input.Length % 2 != 0)
+            throw new ArgumentException("Input has invalid length", nameof(input));
+
         if (input.StartsWith("0x"))
             input = input[2..];
 
         if (input.IsEmpty)
             return Array.Empty<byte>();
-
-        if (input.Length % 2 != 0)
-            throw new ArgumentException("Input has invalid length", nameof(input));
 
         var dest = new byte[input.Length >> 1];
         fixed (char* s = input)
@@ -74,14 +74,14 @@ public static class ConversionHelpers
 
     public static unsafe byte[] FromHexWithBitManipulation(ReadOnlySpan<char> input)
     {
+        if (input.Length % 2 != 0)
+            throw new ArgumentException("Input has invalid length", nameof(input));
+
         if (input.StartsWith("0x"))
             input = input[2..];
 
         if (input.IsEmpty)
             return Array.Empty<byte>();
-
-        if (input.Length % 2 != 0)
-            throw new ArgumentException("Input has invalid length", nameof(input));
 
         var dest = new byte[input.Length >> 1];
         fixed (char* srcPtr = input)
@@ -110,14 +110,14 @@ public static class ConversionHelpers
 
     public static unsafe byte[] FromHexWithLookup(ReadOnlySpan<char> input)
     {
+        if (input.Length % 2 != 0)
+            throw new ArgumentException("Input has invalid length", nameof(input));
+
         if (input.StartsWith("0x"))
             input = input[2..];
 
         if (input.IsEmpty)
             return Array.Empty<byte>();
-
-        if (input.Length % 2 == 1)
-            throw new ArgumentException("Input has invalid length", nameof(input));
 
         var dest = new byte[input.Length >> 1];
         fixed (char* inputRef = input)
