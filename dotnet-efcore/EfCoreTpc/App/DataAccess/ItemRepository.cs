@@ -1,6 +1,7 @@
+using App.DomainModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace App;
+namespace App.DataAccess;
 
 public class ItemRepository
 {

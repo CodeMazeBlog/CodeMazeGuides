@@ -1,8 +1,9 @@
+using App.DomainModels;
+using App.EntitiesConfiguration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace App;
+namespace App.DataAccess;
 
 public class WebShopDbContext : DbContext
 {

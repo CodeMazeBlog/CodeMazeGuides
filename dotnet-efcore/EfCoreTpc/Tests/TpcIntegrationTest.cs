@@ -1,7 +1,6 @@
-using App;
-
+using App.DataAccess;
+using App.DomainModels;
 namespace Tests;
-
 public class TpcIntegrationTest
 {
     private readonly ItemRepository _itemRepository = new();
