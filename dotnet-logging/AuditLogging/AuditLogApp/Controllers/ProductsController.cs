@@ -91,7 +91,7 @@ public class ProductsController : ControllerBase
     {
         if (_context.Products is null)
         {
-            return Problem("Entity set 'ProdcutsDbContext.Product'  is null.");
+            return Problem("Entity set 'ProductsDbContext.Product'  is null.");
         }
 
         _context.Products.Add(product);

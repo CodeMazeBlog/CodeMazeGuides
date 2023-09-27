@@ -6,7 +6,7 @@
     },
     "mssql2": {
       "type": "mssql.local",
-      "connectionId": "ConnectionStrings:ProdcutsDbContext"
+      "connectionId": "ConnectionStrings:ProductsDbContext"
     }
   }
 }
