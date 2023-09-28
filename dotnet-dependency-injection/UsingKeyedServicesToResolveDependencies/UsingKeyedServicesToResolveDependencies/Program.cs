@@ -12,8 +12,8 @@ public class Program
         builder.Services.AddKeyedScoped<IEventService, OnlineEventService>("online");
         builder.Services.AddKeyedScoped<IEventService, InPersonEventService>("in-person");
 
-        builder.Services.AddScoped<OnlineEventOrchestrator>();
-        builder.Services.AddScoped<InPersonEventOrchestrator>();
+        builder.Services.AddScoped<OnlineEventProducer>();
+        builder.Services.AddScoped<InPersonEventProducer>();
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
@@ -27,8 +27,17 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        app.UseAuthorization();
+        app.MapGet("/attendOnlineEvent", (OnlineEventProducer eventProducer) =>
+        {
+            return eventProducer.ProduceEvent();
+        });
 
+        app.MapGet("/attendInPersonEvent", (InPersonEventProducer eventProducer) =>
+        {
+            return eventProducer.ProduceEvent();
+        });
+
+        app.UseAuthorization();
 
         app.MapControllers();
 
