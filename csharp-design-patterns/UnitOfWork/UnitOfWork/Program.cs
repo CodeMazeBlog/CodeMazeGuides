@@ -1,4 +1,3 @@
-
 using Microsoft.Extensions.DependencyInjection;
 using UnitOfWork.DataAccess;
 using UnitOfWork.DataAccess.Dapper;
@@ -13,7 +12,8 @@ services.AddScoped<IOrderRepository, OrderRepository>();
 
 services.AddScoped<AppDbContext>();
 services.AddScoped<IDatabase, AppDbContext>(sp => sp.GetRequiredService<AppDbContext>());
-services.AddScoped<UnitOfWork.DataAccess.EntityFramework.IUnitOfWork, AppDbContext>(sp => sp.GetRequiredService<AppDbContext>());
+services.AddScoped<UnitOfWork.DataAccess.EntityFramework.IUnitOfWork, AppDbContext>(sp => 
+    sp.GetRequiredService<AppDbContext>());
 //OR
 services.AddScoped<IDatabase, DapperContext>();
 
