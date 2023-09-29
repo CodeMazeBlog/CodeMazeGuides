@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{A6C7F8EE-D0A3-4E6E-AABC-DD5AC15EFA6C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsingADiscardVariableInCSharp", "UsingADiscardVariableInCSharp\UsingADiscardVariableInCSharp.csproj", "{F0496339-9AA7-4B64-A6F8-8DF2353BDB51}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6C7F8EE-D0A3-4E6E-AABC-DD5AC15EFA6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C7F8EE-D0A3-4E6E-AABC-DD5AC15EFA6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C7F8EE-D0A3-4E6E-AABC-DD5AC15EFA6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C7F8EE-D0A3-4E6E-AABC-DD5AC15EFA6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0496339-9AA7-4B64-A6F8-8DF2353BDB51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0496339-9AA7-4B64-A6F8-8DF2353BDB51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0496339-9AA7-4B64-A6F8-8DF2353BDB51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0496339-9AA7-4B64-A6F8-8DF2353BDB51}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46B8878D-2FF5-42AF-849F-3E70B5C5236E}
+	EndGlobalSection
+EndGlobal
