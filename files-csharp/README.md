@@ -6,6 +6,7 @@ This section contains the topics related to files in C#.
 - [Convert Byte Array to File in C#](https://code-maze.com/convert-byte-array-to-file-csharp/)
 - [Copy the Entire Contents of a Directory in C#](https://code-maze.com/copy-entire-directory-charp/)
 - [Different Ways to Overwrite a File in C#](https://code-maze.com/different-ways-to-overwrite-file-in-csharp/)
+- [Fastest Way to Read a Text File in C#](https://code-maze.com/csharp-fastest-way-to-read-text-file/)
 - [FileSystemWatcher in C#](https://code-maze.com/csharp-filesystemwatcher/)
 - [Convert a File to a Byte Array in C#](https://code-maze.com/csharp-convert-file-to-byte-array/)
 - [How to Read Data From a CSV File in C#](https://code-maze.com/csharp-read-data-from-csv-file/)
