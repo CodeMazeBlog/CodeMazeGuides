@@ -5,6 +5,7 @@ This section contains the topics considered intermediate level in C#.
 ### Relevant articles:
 
 - [Anonymous Types in C#](https://code-maze.com/anonymous-types-csharp/)
+- [Differences Between Any and Exists Methods in C#](https://code-maze.com/csharp-differences-between-any-and-exists-methods/)
 - [Boxing and Unboxing in C#](https://code-maze.com/csharp-boxing-and-unboxing/)
 - [How to Find the Caller Method in C#](https://code-maze.com/csharp-how-to-find-caller-method/)
 - [Common C# Programming Mistakes](https://code-maze.com/csharp-programming-mistakes/)
@@ -19,6 +20,7 @@ This section contains the topics considered intermediate level in C#.
 - [Discriminated Unions in C# With OneOf](https://code-maze.com/csharp-discriminated-unions-with-oneof/)
 - [What is the Difference Between a DTO and a POCO?](https://code-maze.com/difference-dto-poco/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/enumerate-enum-csharp/)
+- [File-Scoped Types in C# 11](https://code-maze.com/csharp-file-scoped-types/)
 - [How to Convert DataTable to JSON in C#](https://code-maze.com/convert-datatable-json-csharp/)
 - [Flags Attribute For Enum in C#](https://code-maze.com/csharp-flags-attribute-for-enum/)
 - [How to Call Generic Method Using Reflection in C#](https://code-maze.com/csharp-call-generic-method-using-reflection/)
@@ -44,5 +46,7 @@ This section contains the topics considered intermediate level in C#.
 - [Unsafe Code in C# (unsafe keyword)](https://code-maze.com/unsafe-code-csharp/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/how-to-enumerate-an-enum-in-c/)
 - [Upcasting and Downcasting in C#](https://code-maze.com/csharp-upcasting-downcasting/)
+- [Using a Discard Variable in C#](https://code-maze.com/csharp-how-to-use-discard-variable/)
 - [Virtual Methods in C#](https://code-maze.com/virtual-methods-csharp/)
+- [When to Use ReaderWriterLockSlim Over lock in C#](https://code-maze.com/csharp-when-to-use-readerwriterlockslim-over-lock/)
 - [Working With Zip Files in C#/.NET](https://code-maze.com/csharp-zip-files/)

@@ -20,6 +20,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [How to Identify If a String is a Number in C#](https://code-maze.com/csharp-identify-if-a-string-is-a-number/)
 - [How to Remove All Whitespace Characters From a String in C#?](https://code-maze.com/replace-whitespaces-string-csharp/)
 - [Different Ways to Split a String in C#](https://code-maze.com/csharp-different-ways-to-split-a-string/)
+- [Difference Between String, FormattableString, IFormattable in C#](https://code-maze.com/csharp-difference-between-string-formattablestring-iformattable/)
 - [StringBuilder in C#](https://code-maze.com/stringbuilder-csharp/)
 - [How to Convert String to Title Case in C#](https://code-maze.com/csharp-convert-string-title-case/)
 - [How to Reverse a String in C#](https://code-maze.com/csharp-reverse-string/)
