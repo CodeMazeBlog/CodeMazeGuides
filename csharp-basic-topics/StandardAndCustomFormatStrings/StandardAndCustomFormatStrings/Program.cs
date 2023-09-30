@@ -1,11 +1,9 @@
 ﻿using StandardAndCustomFormatStrings;
 
-
 Console.WriteLine($"Currency: {StandardFormatStrings.CurrencyFormat(1652.5899)}");
 Console.WriteLine($"Euro Currency: {StandardFormatStrings.EuroCurrency(1652.5899)}");
 Console.WriteLine($"Decimal: {StandardFormatStrings.DecimalFormat(6546)}");
 Console.WriteLine($"Fixed Point: {StandardFormatStrings.FixedPointFormat(1652.5899)}");
-
 
 Console.WriteLine($"Decimal Precision: {StandardFormatStrings.DecimalPrecision(6546)}");
 Console.WriteLine($"Floating Point Precision: {StandardFormatStrings.FloatingPointPrecision(1652.5899)}");

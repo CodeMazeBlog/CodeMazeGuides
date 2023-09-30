@@ -24,7 +24,6 @@ public class CustomFormatStringsTests
         Assert.Equal(expected, result);
     }
 
-
     [Theory]
     [InlineData(0.12345, "12.35%")]
     public void GIvenANumber_WhenPercentage_ReturnsPercentage(double input, string expected)
