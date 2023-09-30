@@ -46,5 +46,7 @@ This section contains the topics considered intermediate level in C#.
 - [Unsafe Code in C# (unsafe keyword)](https://code-maze.com/unsafe-code-csharp/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/how-to-enumerate-an-enum-in-c/)
 - [Upcasting and Downcasting in C#](https://code-maze.com/csharp-upcasting-downcasting/)
+- [Using a Discard Variable in C#](https://code-maze.com/csharp-how-to-use-discard-variable/)
 - [Virtual Methods in C#](https://code-maze.com/virtual-methods-csharp/)
+- [When to Use ReaderWriterLockSlim Over lock in C#](https://code-maze.com/csharp-when-to-use-readerwriterlockslim-over-lock/)
 - [Working With Zip Files in C#/.NET](https://code-maze.com/csharp-zip-files/)
