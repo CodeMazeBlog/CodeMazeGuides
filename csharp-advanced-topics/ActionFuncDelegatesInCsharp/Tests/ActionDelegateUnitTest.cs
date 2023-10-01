@@ -3,12 +3,13 @@
     public class LoggerTests
     {
         [Fact]
-        public void LogMessage_InvokesLogMessageDelegate()
+        public void Given_MessageAndLogDelegate_When_LogMessageCalled_Then_DelegateIsInvoked()
         {
             // Arrange
             var logger = new Logger();
-            string loggedMessage = null;
-            string consoleOutput = null;
+
+            string? loggedMessage = null;
+            string? consoleOutput = null;
 
             // Redirect console output to a StringWriter
             using (var sw = new StringWriter())

@@ -4,13 +4,13 @@ namespace Tests
     {
 
         [Fact]
-        public void AddIntegers_NoSubscribers_ReturnsSum()
+        public void Given_NoSubscribers_When_AddIntegersCalled_Then_ReturnsSum()
         {
             // Arrange
             var calculator = new Calculator();
 
             // Act
-            int result = calculator.AddIntegers(10, 20);
+            var result = calculator.AddIntegers(10, 20);
 
             // Assert
             Assert.Equal(30, result);
@@ -18,7 +18,7 @@ namespace Tests
 
 
         [Fact]
-        public void AddIntegers_WithSubscriber_CallsSubscriberAndReturnsSubscriberResult()
+        public void Given_Subscriber_When_AddIntegersCalled_Then_CallsSubscriberAndReturnsResult()
         {
             // Arrange
             var calculator = new Calculator();
@@ -37,7 +37,7 @@ namespace Tests
                 };
 
                 // Act
-                int result = calculator.AddIntegers(10, 20);
+                var result = calculator.AddIntegers(10, 20);
 
                 // Get the console output before disposing of the StringWriter
                 consoleOutput = sw.ToString();
