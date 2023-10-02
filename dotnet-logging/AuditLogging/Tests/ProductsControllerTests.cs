@@ -124,6 +124,7 @@ public class ProductsControllerTests
 
         // Assert 
         Assert.Equal(3, products.Count);
+        Assert.Equal(201, productResult.StatusCode);
     }
 
     [Fact]
@@ -169,7 +170,8 @@ public class ProductsControllerTests
         var productResult = controller.DeleteProduct(1).Result as NoContentResult;
 
         // Assert 
-        Assert.Equal(1, products.Count);
+        Assert.Single(products);
+        Assert.Equal(204, productResult.StatusCode);
     }
 
     private static List<Product> GetProducts()
