@@ -1,2 +1,2 @@
 global using System;
-global using EmployeeDetails = (int Id, string firstName, string lastName, int salary);
+global using employeeDetails = (int id, string firstName, string lastName, float salary);

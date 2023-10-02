@@ -1,12 +1,12 @@
-﻿using TupleAliasInCSharp.GlobalAlias;
+﻿using TupleAliasInCSharp.GlobalAliasUsing;
 using TupleAliasInCSharp;
 
-Console.WriteLine("Alias for Tuples in C# \n");
+Console.Title = "Alias for Tuples in C#";
 
 Console.WriteLine("Alias for tuple usage in same namespace");
 TupleAlias.PrintTupleValues();
 
-Console.WriteLine("Alias for tuple usage in different namespace");
-GlobalAlias.PrintTupleWithGlobalUsing();
+Console.WriteLine("\nAlias for tuple usage in different namespace");
+GlobalAliasUsing.PrintTupleWithGlobalUsing();
 
 Console.ReadKey();
