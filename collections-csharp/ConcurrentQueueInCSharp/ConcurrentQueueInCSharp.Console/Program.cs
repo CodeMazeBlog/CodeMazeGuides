@@ -4,15 +4,15 @@
     {
         static void Main(string[] args)
         {
-            OrderMessageBus messageBus = new OrderMessageBus();
+            var messageBus = new OrderMessageBus();
 
-            Producer producer1 = new Producer(messageBus, 10);
-            Producer producer2 = new Producer(messageBus, 10);
-            Producer producer3 = new Producer(messageBus, 10);
+            var producer1 = new Producer(messageBus, 10);
+            var producer2 = new Producer(messageBus, 10);
+            var producer3 = new Producer(messageBus, 10);
 
-            Consumer consumer1 = new Consumer(messageBus);
-            Consumer consumer2 = new Consumer(messageBus);
-            Consumer consumer3 = new Consumer(messageBus);
+            var consumer1 = new Consumer(messageBus);
+            var consumer2 = new Consumer(messageBus);
+            var consumer3 = new Consumer(messageBus);
             
             Task.WaitAll(
                 producer1.Produce(), producer2.Produce(), producer3.Produce(), 

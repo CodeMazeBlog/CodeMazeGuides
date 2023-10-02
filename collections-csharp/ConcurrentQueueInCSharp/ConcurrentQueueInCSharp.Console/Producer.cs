@@ -15,7 +15,7 @@ namespace ConcurrentQueueInCSharp
 
         public Task Produce()
         {
-            return Task.Factory.StartNew(() =>
+            return Task.Run(() =>
             {
                 for (int i = 0; i < _numberOfMessages; i++)
                 {

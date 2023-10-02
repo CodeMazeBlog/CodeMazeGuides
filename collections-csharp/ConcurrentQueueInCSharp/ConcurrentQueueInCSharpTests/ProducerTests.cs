@@ -16,7 +16,7 @@ namespace ConcurrentQueueInCSharpTests
         [Test]
         public void WhenAddingNewOrder_ThenOrderIsStoredInQueue()
         {
-            Order order = new Order
+            var order = new Order
             {
                 Id = "9425f6b8-e57d-494c-a4c3-9e70849135a9"
             };
@@ -35,16 +35,14 @@ namespace ConcurrentQueueInCSharpTests
         [Test]
         public void WhenFetchingOrder_ThenOrderIsReturned()
         {
-            Order order = new Order
+            var order = new Order
             {
                 Id = "9425f6b8-e57d-494c-a4c3-9e70849135a9"
             };
 
             _messageBus.Add(order);
 
-            Order returnedOrder;
-
-            var result = _messageBus.Fetch(out returnedOrder);
+            var result = _messageBus.Fetch(out var returnedOrder);
 
             Assert.That(result, Is.True);
             Assert.That(returnedOrder, Is.Not.Null);

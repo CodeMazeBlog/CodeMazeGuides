@@ -5,26 +5,17 @@ namespace ConcurrentQueueInCSharp
 {
     public class OrderMessageBus
     {
-        private readonly ConcurrentQueue<Order> _queue = new ConcurrentQueue<Order>();
+        private readonly ConcurrentQueue<Order> _queue = new();
 
-        public int Count
-        {
-            get
-            {
-                return _queue.Count;
-            }
-        }
+        public int Count => _queue.Count;
 
-        public void Add(Order order)
+        public void Add(Order? order)
         {
-            if (order == null) throw new ArgumentNullException(nameof(order));
+            ArgumentNullException.ThrowIfNull(order);
 
             _queue.Enqueue(order);
         }
 
-        public bool Fetch(out Order order)
-        {
-            return _queue.TryDequeue(out order);
-        }
+        public bool Fetch(out Order? order) => _queue.TryDequeue(out order);
     }
 }

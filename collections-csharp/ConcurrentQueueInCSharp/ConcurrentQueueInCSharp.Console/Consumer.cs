@@ -13,14 +13,12 @@ namespace ConcurrentQueueInCSharp
 
         public Task Process()
         {
-            return Task.Factory.StartNew(() =>
+            return Task.Run(() =>
             {
-                Order order;
-                string processId = Guid.NewGuid().ToString();
-
-                while (_messageBus.Fetch(out order))
+                while (_messageBus.Fetch(out var order))
                 {
-                    Console.WriteLine($"ProcessId {processId} | Processing order {order.Id}");
+                    Console.WriteLine($"ProcessId {Guid.NewGuid()} | Processing order {order.Id}");
+                    Thread.Sleep(200);
                 }
             });
         }
