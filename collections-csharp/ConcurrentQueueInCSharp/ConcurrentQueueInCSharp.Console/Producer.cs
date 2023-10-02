@@ -1,27 +1,24 @@
 ﻿using ConcurrentQueueInCSharp.Models;
 
-namespace ConcurrentQueueInCSharp
+public class Producer
 {
-    public class Producer
+    private readonly OrderMessageBus _messageBus;
+    private readonly int _numberOfMessages;
+
+    public Producer(OrderMessageBus messageBus, int numberOfMessages)
     {
-        private readonly OrderMessageBus _messageBus;
-        private readonly int _numberOfMessages;
+        _messageBus = messageBus;
+        _numberOfMessages = numberOfMessages;
+    }
 
-        public Producer(OrderMessageBus messageBus, int numberOfMessages)
+    public Task Produce()
+    {
+        return Task.Run(() =>
         {
-            _messageBus = messageBus;
-            _numberOfMessages = numberOfMessages;
-        }
-
-        public Task Produce()
-        {
-            return Task.Run(() =>
+            for (int i = 0; i < _numberOfMessages; i++)
             {
-                for (int i = 0; i < _numberOfMessages; i++)
-                {
-                    _messageBus.Add(new Order { Id = Guid.NewGuid().ToString() });
-                }
-            });
-        }
+                _messageBus.Add(new Order { Id = Guid.NewGuid().ToString() });
+            }
+        });
     }
 }

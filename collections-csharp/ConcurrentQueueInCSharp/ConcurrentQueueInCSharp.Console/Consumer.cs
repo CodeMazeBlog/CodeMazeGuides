@@ -1,26 +1,21 @@
-﻿using ConcurrentQueueInCSharp.Models;
-
-namespace ConcurrentQueueInCSharp
+﻿public class Consumer
 {
-    public class Consumer
+    private readonly OrderMessageBus _messageBus;
+
+    public Consumer(OrderMessageBus messageBus)
     {
-        private readonly OrderMessageBus _messageBus;
+        _messageBus = messageBus;
+    }
 
-        public Consumer(OrderMessageBus messageBus)
+    public Task Process()
+    {
+        return Task.Run(() =>
         {
-            _messageBus = messageBus;
-        }
-
-        public Task Process()
-        {
-            return Task.Run(() =>
+            while (_messageBus.Fetch(out var order))
             {
-                while (_messageBus.Fetch(out var order))
-                {
-                    Console.WriteLine($"ProcessId {Guid.NewGuid()} | Processing order {order.Id}");
-                    Thread.Sleep(200);
-                }
-            });
-        }
+                Console.WriteLine($"ProcessId {Guid.NewGuid()} | Processing order {order.Id}");
+                Thread.Sleep(200);
+            }
+        });
     }
 }
