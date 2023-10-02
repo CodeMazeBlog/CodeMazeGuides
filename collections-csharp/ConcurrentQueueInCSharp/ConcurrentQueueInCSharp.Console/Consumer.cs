@@ -13,7 +13,7 @@
         {
             while (_messageBus.Fetch(out var order))
             {
-                Console.WriteLine($"ProcessId {Guid.NewGuid()} | Processing order {order.Id}");
+                Console.WriteLine($"ProcessId {Task.CurrentId} | Processing order {order.Id}");
                 Thread.Sleep(200);
             }
         });
