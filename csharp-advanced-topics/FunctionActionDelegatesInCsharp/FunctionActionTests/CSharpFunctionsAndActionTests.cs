@@ -6,7 +6,7 @@ namespace FunctionActionTests
     public class CSharpFunctionsAndActionTests
     {
         [TestMethod]
-        public void WhenAddingTwoNumbers_ThenResultIsCorrect()
+        public void Should_Add_Two_Numbers_Correctly()
         {
             //arrange
             Func<int, int, int> add = (int first, int second) => first + second;
@@ -19,7 +19,7 @@ namespace FunctionActionTests
         }
 
         [TestMethod]
-        public void WhenSubstractMethodIsCalled_ThenItShouldReturnCorrectResult()
+        public void Should_Subtract_Two_Numbers_Correctly()
         {
             //arrange
             Func<int, int, int> sub = FunctionAction.Subtract;
@@ -32,7 +32,7 @@ namespace FunctionActionTests
         }
 
         [TestMethod]
-        public void WhenMultLambdaIsCalled_ThenMultResultShouldNotBeNull()
+        public void Should_Multiply_Two_Numbers_Correctly()
         {
             //arrange
             var random = new Random();
@@ -45,7 +45,7 @@ namespace FunctionActionTests
         }
 
         [TestMethod]
-        public void WhenActionValueIsUpdated_ThenAssertValueShouldBeUpdated()
+        public void Should_Update_Action_Value_Correctly()
         {
             //arrange
             int value = 1;
