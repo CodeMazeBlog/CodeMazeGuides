@@ -1,7 +1,9 @@
 using App.DataAccess;
 using App.DomainModels;
+
 namespace Tests;
-public class TpcIntegrationTest
+
+public class TpcLiveTest
 {
     private readonly ItemRepository _itemRepository = new();
 
