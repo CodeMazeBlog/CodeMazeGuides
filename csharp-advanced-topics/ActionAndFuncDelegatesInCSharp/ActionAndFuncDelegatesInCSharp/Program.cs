@@ -1,17 +1,51 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using ActionAndFuncDelegatesInCSharp;
+
+var operations = new ArithmeticOperations();
+var loggers = new Loggers();
+
+// assigning a function to a Func delegate object
+Func<double, double, double> func;
+
+func = operations.Sum;
+Console.WriteLine(func(5, 10));
+
+func = operations.Multiply;
+Console.WriteLine(func(5, 10));
+
+
+// assigning a function to an Action delegate object
+Action<string> log;
+
+log = loggers.LogMessage;
+log("Operation completed.");
+
+log = loggers.LogMessageWithTimeStamp;
+log("Operation completed.");
 
 
 
-Console.WriteLine(ExecArithmeticOperation(Sum, 2, 3));
+// using Func with lambda expressions
+func = (a, b) => Math.Pow(a, b);
+Console.WriteLine(func(3, 2));
 
+// using Func as parameter of a function
+double result = operations.ExecArithmeticOperation(operations.Multiply, 2, 3);
+Console.WriteLine(result);
 
-
-int ExecArithmeticOperation(Func<int, int, int> operation, int operand1, int operand2)
+// using Func in collections
+List<Func<double, double, double>> functions = new()
 {
-    return operation(operand1, operand2);
-}
+    operations.Sum,
+    operations.Multiply,
+    (a, b) => Math.Pow(a, b),
+};
 
-int Sum(int a, int b)
+double a = 3;
+double b = 2;
+double res = 0;
+foreach (Func<double, double, double> f in functions)
 {
-    return a + b;
+    res += f(a, b);
 }
+Console.WriteLine(res);
+

@@ -15,5 +15,9 @@ namespace ActionAndFuncDelegatesInCSharp
         public double Subtract(double operand1, double operand2) => operand1 - operand2;
         public double Multiply(double operand1, double operand2) => operand1 * operand2;
         public double Divide(double operand1, double operand2) => operand1 / operand2;
+        public double ExecArithmeticOperation(Func<double, double, double> operation, double operand1, double operand2)
+        {
+            return operation(operand1, operand2);
+        }
     }
 }
