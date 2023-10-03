@@ -2,19 +2,16 @@
 using DynamicFormInASPNetCore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
 namespace DynamicFormInASPNetCore.Pages;
 
 public class IndexModel : PageModel
 {
     private readonly DataContext _dataContext;
-    private readonly string _connectionString;
 
-    public IndexModel(DataContext dataContext, IConfiguration configuration)
+    public IndexModel(DataContext dataContext)
     {
         _dataContext = dataContext;
-        _connectionString = configuration.GetConnectionString("DefaultConnectionString");
     }
 
     [BindProperty]
