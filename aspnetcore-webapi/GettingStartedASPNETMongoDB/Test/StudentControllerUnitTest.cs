@@ -20,7 +20,6 @@ public class StudentControllerUnitTest
 
     public StudentControllerUnitTest()
     {
-
         _student = new()
         {
             Id = id,
@@ -43,7 +42,6 @@ public class StudentControllerUnitTest
 
         //Controller
         _studentController = new StudentsController(_studentService.Object, _courseService.Object);
-
     }
 
     [Fact]
@@ -57,7 +55,7 @@ public class StudentControllerUnitTest
     }
 
     [Fact]
-    public async Task GivenExisitingId_WhenGettingAStudentById_ThenReturnStudentWithOkStatus()
+    public async Task GivenExistingId_WhenGettingAStudentById_ThenReturnStudentWithOkStatus()
     {
         //Act
         var result = await _studentController.GetById(id);
@@ -105,7 +103,7 @@ public class StudentControllerUnitTest
     }
 
     [Fact]
-    public async Task GivenExisitingId_WhenUpdatingAStudent_ThenReturnNoContent()
+    public async Task GivenExistingId_WhenUpdatingAStudent_ThenReturnNoContent()
     {
         //Act
         var result = await _studentController.Update(id, _student);

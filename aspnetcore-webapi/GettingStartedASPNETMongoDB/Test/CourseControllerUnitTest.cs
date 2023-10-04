@@ -27,7 +27,6 @@ public class CourseControllerUnitTest
         _courseService.Setup(x => x.Create(It.IsAny<Course>())).ReturnsAsync(_course);
 
         _courseController = new(_courseService.Object);
-
     }
 
     [Fact]
