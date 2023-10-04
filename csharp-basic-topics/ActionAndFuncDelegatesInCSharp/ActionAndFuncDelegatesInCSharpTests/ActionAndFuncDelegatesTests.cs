@@ -1,4 +1,3 @@
-using ActionAndFuncDelegatesInCSharp;
 using Bogus;
 using Xunit;
 
@@ -9,6 +8,7 @@ public class ActionAndFuncDelegatesTests : IDisposable
     private readonly StringWriter _stringWriter;
     private readonly TextWriter _originalOutput;
     private readonly Faker _faker;
+    private readonly List<string> _list = new List<string> { "Keyboard", "Webcam", "Mouse", "Microphone" };
 
     public ActionAndFuncDelegatesTests()
     {
@@ -28,7 +28,7 @@ public class ActionAndFuncDelegatesTests : IDisposable
     public void WhenActionExample_ThenPrintValidString()
     {
         // Arrange
-        var hardware = _faker.PickRandom("Keyboard", "Webcam", "Mouse", "Microphone");
+        var hardware = _faker.PickRandom(_list);
         var expected = $"Action. Preparing Hardware: {hardware}";
 
         // Act
@@ -57,5 +57,33 @@ public class ActionAndFuncDelegatesTests : IDisposable
         // Assert
         Assert.Contains(expectedKeyboard, _stringWriter.ToString().Trim());
         Assert.Contains(expectedWebcam, _stringWriter.ToString().Trim());
+    }
+    
+    [Fact]
+    public void WhenFuncExample_ThenReturnValidString()
+    {
+        // Arrange
+        var expected = "Func. Preparing Hardware: Webcam";
+
+        // Act
+        var response = Program.FuncExample();
+
+        // Assert
+        Assert.Equal(expected, response);
+    }
+    
+    [Fact]
+    public void WhenFuncExampleWithOptions_ThenPrintProvidedOptions()
+    {
+        // Arrange
+        var hardware1 = _faker.PickRandom(_list);
+        var hardware2 = _faker.PickRandom(_list.Except<string>(new List<string> { hardware1 }));
+        var expected = $"Func. Preparing Hardware: {hardware1} and {hardware2}";
+
+        // Act
+        var response = Program.FuncExampleWithParams(hardware1, hardware2);
+
+        // Assert
+        Assert.Contains(expected, response);
     }
 }
