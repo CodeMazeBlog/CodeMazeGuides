@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Tests;
 
-public class ProductTest
+public class ProductTest : IDisposable
 {
     private readonly DataContext _context;
 
