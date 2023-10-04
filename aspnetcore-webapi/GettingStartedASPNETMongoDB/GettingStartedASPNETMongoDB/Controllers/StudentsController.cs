@@ -52,11 +52,6 @@ public class StudentsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(Student student)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest("Invalid request object");
-        }
-
         var createdStudent = await _studentService.Create(student);
 
         return CreatedAtAction(nameof(GetById),
