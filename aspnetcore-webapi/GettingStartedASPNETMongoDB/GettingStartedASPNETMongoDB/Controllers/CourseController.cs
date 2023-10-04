@@ -29,7 +29,7 @@ public class CourseController : ControllerBase
         var createdCourse = await _courseService.Create(course);
 
         return CreatedAtAction(nameof(GetById),
-            new { id = createdCourse.Id },
+            new { id = createdCourse!.Id },
             createdCourse);
     }
 }
