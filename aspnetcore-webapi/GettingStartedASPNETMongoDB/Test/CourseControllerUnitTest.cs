@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Moq;
-using GettingStartedASPNETMongoDB.Controllers;
+﻿using GettingStartedASPNETMongoDB.Controllers;
 using GettingStartedASPNETMongoDB.Interfaces;
 using GettingStartedASPNETMongoDB.Models;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
 
 namespace Test;
 
 public class CourseControllerUnitTest
-{        
+{
     private Mock<ICourseService> _courseService;
 
     private CourseController _courseController;
@@ -16,7 +16,18 @@ public class CourseControllerUnitTest
 
     public CourseControllerUnitTest()
     {
-        Setup();
+        var id = "1";
+
+        _course = new() { Id = id, Code = "BCH 422", Name = "Tissue Biochemistry" };
+
+        _courseService = new Mock<ICourseService>();
+
+        _courseService.Setup(x => x.GetById(id)).ReturnsAsync(_course);
+
+        _courseService.Setup(x => x.Create(It.IsAny<Course>())).ReturnsAsync(_course);
+
+        _courseController = new(_courseService.Object);
+
     }
 
     [Fact]
@@ -42,20 +53,5 @@ public class CourseControllerUnitTest
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
 
         Assert.IsType<Course>(okResult.Value);
-    }
-
-    private void Setup()
-    {
-        var id = "1";
-
-        _course = new() { Id = id, Code = "BCH 422", Name = "Tissue Biochemistry" };
-
-        _courseService = new Mock<ICourseService>();
-
-        _courseService.Setup(x => x.GetById(id)).ReturnsAsync(_course);
-
-        _courseService.Setup(x => x.Create(It.IsAny<Course>())).ReturnsAsync(_course);
-
-        _courseController = new(_courseService.Object);
     }
 }

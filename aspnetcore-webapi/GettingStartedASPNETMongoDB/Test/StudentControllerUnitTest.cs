@@ -19,8 +19,31 @@ public class StudentControllerUnitTest
     private Student _student;
 
     public StudentControllerUnitTest()
-    {            
-        SetUp();
+    {
+
+        _student = new()
+        {
+            Id = id,
+            FirstName = "Mary",
+            LastName = "Que"
+        };
+
+        //Services
+        _studentService = new Mock<IStudentService>();
+
+        _courseService = new Mock<ICourseService>();
+
+        _studentService.Setup(x => x.Create(_student)).ReturnsAsync(_student);
+
+        _studentService.Setup(x => x.GetById(id)).ReturnsAsync(_student);
+
+        _studentService.Setup(x => x.Delete(id)).Returns(Task.CompletedTask);
+
+        _studentService.Setup(x => x.Update(id, _student)).Returns(Task.CompletedTask);
+
+        //Controller
+        _studentController = new StudentsController(_studentService.Object, _courseService.Object);
+
     }
 
     [Fact]
@@ -99,31 +122,5 @@ public class StudentControllerUnitTest
 
         //Assert
         Assert.IsType<NoContentResult>(result);
-    }
-
-    private void SetUp()
-    {    
-        _student = new()
-        {
-            Id = id,
-            FirstName = "Mary",
-            LastName = "Que"
-        };
-
-        //Services
-        _studentService = new Mock<IStudentService>();
-
-        _courseService = new Mock<ICourseService>();
-
-        _studentService.Setup(x => x.Create(_student)).ReturnsAsync(_student);
-
-        _studentService.Setup(x => x.GetById(id)).ReturnsAsync(_student);
-
-        _studentService.Setup(x => x.Delete(id)).Returns(Task.CompletedTask);
-
-        _studentService.Setup(x => x.Update(id, _student)).Returns(Task.CompletedTask);
-
-        //Controller
-        _studentController = new StudentsController(_studentService.Object, _courseService.Object);
-    }
+    }   
 }
