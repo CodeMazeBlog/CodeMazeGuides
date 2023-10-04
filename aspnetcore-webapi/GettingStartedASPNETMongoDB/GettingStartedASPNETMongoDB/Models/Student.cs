@@ -11,16 +11,16 @@ public class Student
     public string? Id { get; set; }
 
     [Required(ErrorMessage = "First name is required")]
-    public string FirstName { get; set; }
+    public string FirstName { get; set; } = null!;
 
     [Required(ErrorMessage = "Last name is required")]
-    public string LastName { get; set; }
+    public string LastName { get; set; } = null!;
 
-    public string Major { get; set; }
+    public string Major { get; set; } = null!;
 
     [BsonRepresentation(BsonType.ObjectId)]
-    public List<string> Courses { get; set; }
+    public List<string>? Courses { get; set; }
 
     [BsonIgnore]
-    public List<Course> CourseList { get; set; }
+    public List<Course>? CourseList { get; set; }
 }

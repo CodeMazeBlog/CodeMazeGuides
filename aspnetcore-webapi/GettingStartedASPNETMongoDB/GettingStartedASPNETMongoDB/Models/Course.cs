@@ -11,8 +11,8 @@ public class Course
     public string? Id { get; set; }
 
     [Required(ErrorMessage = "Course name is required")]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 
     [Required(ErrorMessage = "Course code is required")]
-    public string Code { get; set; }
+    public string Code { get; set; } = null!;
 }
