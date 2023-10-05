@@ -45,4 +45,4 @@ Console.WriteLine("\nOfType<Square>");
 shapeList.OfType<Square>().PrintList();
 
 Console.WriteLine("\nFilter Is Not Null");
-shapeList.FilterIsNotNull().PrintList();
+shapeList.FilterNotNull().PrintList();

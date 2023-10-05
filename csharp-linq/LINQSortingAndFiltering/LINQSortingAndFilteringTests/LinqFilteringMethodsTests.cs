@@ -43,7 +43,7 @@ public class LinqFilteringMethodsTests
     [Fact]
     public void GivenShapeList_WhenFilterNullExtensionCalled_ThenNullShapesAreRemoved()
     {
-        var result = _shapes.FilterIsNotNull().ToArray();
+        var result = _shapes.FilterNotNull().ToArray();
 
         result.Should().HaveSameCount(_shapes.Where(x => x is not null));
         result.Should().NotContainNulls();
