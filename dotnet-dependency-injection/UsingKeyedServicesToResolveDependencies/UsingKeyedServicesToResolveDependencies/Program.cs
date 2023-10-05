@@ -21,15 +21,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/attendOnlineEvent", (OnlineEventProducer eventProducer) =>
-{
-    return eventProducer.ProduceEvent();
-});
+app.MapGet("/attendOnlineEvent", (OnlineEventProducer eventProducer) => 
+    eventProducer.ProduceEvent());
 
 app.MapGet("/attendInPersonEvent", (InPersonEventProducer eventProducer) =>
-{
-    return eventProducer.ProduceEvent();
-});
+    eventProducer.ProduceEvent());
 
 app.UseAuthorization();
 
