@@ -19,6 +19,7 @@ internal class Program
         addTask("Call John");  // Added task: Call John
 
         // Func Delegate
+        // Using custom defined delegate
         FuncTaskManager getCount = taskManager.GetTaskCount;
         Console.WriteLine($"Task Count: {getCount()}"); // Task Count: 2
 
