@@ -7,7 +7,7 @@ internal class Program
     {
         List<string> tasks = new List<string>();
 
-        var taskManager = new TaskManager(tasks);
+        TaskManager taskManager = new TaskManager(tasks);
 
         // Action Delegate
         // Using custom defined delegate
