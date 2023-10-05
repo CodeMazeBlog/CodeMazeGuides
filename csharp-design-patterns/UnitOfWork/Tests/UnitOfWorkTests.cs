@@ -13,9 +13,9 @@ public class UnitOfWorkTests
         var transactionMock = new Mock<ITransaction>();
         transactionMock.Setup(x => x.CommitAsync()).Returns(Task.CompletedTask);
         transactionMock.Setup(x => x.RollbackAsync()).Returns(Task.CompletedTask);
-        var databaseMock = new Mock<IDatabase>();
+        var databaseMock = new Mock<IStore>();
         databaseMock.Setup(x => x.BeginTransactionAsync()).ReturnsAsync(transactionMock.Object);
-        databaseMock.SetupGet(x => x.Orders).Returns(new List<Order>().AsQueryable());
+        databaseMock.Setup(x => x.GetEntitySet<Order>()).Returns(new List<Order>().AsQueryable());
         var unitOfWork = new UnitOfWork.DataAccess.UnitOfWork(databaseMock.Object);
         var orderRepository = new OrderRepository(databaseMock.Object);
         

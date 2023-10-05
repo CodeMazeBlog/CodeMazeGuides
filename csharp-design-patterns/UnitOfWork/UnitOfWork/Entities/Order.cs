@@ -1,6 +1,5 @@
 namespace UnitOfWork.Entities;
 
-public class Order
+public class Order : Entity
 {
-    public Guid Id { get; set; }
 }

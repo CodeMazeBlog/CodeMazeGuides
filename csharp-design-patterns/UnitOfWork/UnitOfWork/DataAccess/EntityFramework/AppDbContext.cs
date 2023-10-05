@@ -3,11 +3,11 @@ using UnitOfWork.Entities;
 
 namespace UnitOfWork.DataAccess.EntityFramework;
 
-public class AppDbContext : DbContext, IDatabase, IUnitOfWork
+public class AppDbContext : DbContext, IStore, IUnitOfWork
 {
     public DbSet<Order> Orders { get; set; }
 
-    IQueryable<Order> IDatabase.Orders => Orders;
+    public IQueryable<TEntity> GetEntitySet<TEntity>() where TEntity : Entity => Set<TEntity>();
     
     public async Task<ITransaction> BeginTransactionAsync()
     {
@@ -16,8 +16,8 @@ public class AppDbContext : DbContext, IDatabase, IUnitOfWork
         return new EfTransaction(transaction);
     }
     
-    public void AddOrder(Order order)
+    public void Add<TEntity>(TEntity entity) where TEntity : Entity
     {
-        Orders.Add(order);
+        Set<TEntity>().Add(entity);
     }
 }

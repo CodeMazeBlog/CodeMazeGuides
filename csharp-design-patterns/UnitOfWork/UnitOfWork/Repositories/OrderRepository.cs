@@ -5,15 +5,15 @@ namespace UnitOfWork.Repositories;
 
 public class OrderRepository : IOrderRepository
 {
-    private readonly IDatabase _database;
+    private readonly IStore _database;
 
-    public OrderRepository(IDatabase database)
+    public OrderRepository(IStore database)
     {
         _database = database;
     }
 
     public void Add(Order order)
     {
-        _database.AddOrder(order);
+        _database.Add(order);
     }
 }
