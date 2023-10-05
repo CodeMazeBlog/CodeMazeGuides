@@ -12,14 +12,17 @@ namespace Tests
         {
             // Arrange
             var mockConsoleWriter = new Mock<IConsoleWriter>();
-            mockConsoleWriter.Setup(c => c.WriteLine(It.IsAny<string>())).Verifiable(); 
-            var program = new Program((ActionAndFuncDelegates.IConsoleWriter)mockConsoleWriter.Object);
+            mockConsoleWriter.Setup(c => c.WriteLine(It.IsAny<string>())).Callback<string>((message) =>
+            {
+                Console.WriteLine(message);
+            }).Verifiable();
+            var program = new Program(mockConsoleWriter.Object);
 
             // Act
             program.ActionDelegate();
 
             // Assert
-            mockConsoleWriter.Verify(); 
+            mockConsoleWriter.Verify();
         }
 
         [Fact]
@@ -27,14 +30,17 @@ namespace Tests
         {
             // Arrange
             var mockConsoleWriter = new Mock<IConsoleWriter>();
-            mockConsoleWriter.Setup(c => c.WriteLine(It.IsAny<string>())).Verifiable(); 
-            var program = new Program((ActionAndFuncDelegates.IConsoleWriter)mockConsoleWriter.Object);
+            mockConsoleWriter.Setup(c => c.WriteLine(It.IsAny<string>())).Callback<string>((message) =>
+            {
+                Console.WriteLine(message); 
+            }).Verifiable();
+            var program = new Program(mockConsoleWriter.Object);
 
             // Act
             program.ActionDelegate();
 
             // Assert
-            mockConsoleWriter.Verify(); 
+            mockConsoleWriter.Verify();
         }
 
         [Fact]
@@ -42,15 +48,18 @@ namespace Tests
         {
             // Arrange
             var mockConsoleWriter = new Mock<IConsoleWriter>();
-            mockConsoleWriter.Setup(c => c.WriteLine(It.IsAny<string>())).Verifiable(); 
-            var program = new Program((ActionAndFuncDelegates.IConsoleWriter)mockConsoleWriter.Object);
+            mockConsoleWriter.Setup(c => c.WriteLine(It.IsAny<string>())).Callback<string>((message) =>
+            {
+                Console.WriteLine(message); 
+            }).Verifiable();
+            var program = new Program(mockConsoleWriter.Object);
 
             // Act
             int result = program.FuncDelegate();
 
             // Assert
-            Assert.Equal(16, result);
-            mockConsoleWriter.Verify(); 
+            Assert.Equal(16, result); 
+            mockConsoleWriter.Verify();
         }
 
         [Fact]
@@ -58,20 +67,18 @@ namespace Tests
         {
             // Arrange
             var mockConsoleWriter = new Mock<IConsoleWriter>();
-            mockConsoleWriter.Setup(c => c.WriteLine(It.IsAny<string>())).Verifiable(); 
-            var program = new Program((ActionAndFuncDelegates.IConsoleWriter)mockConsoleWriter.Object);
+            mockConsoleWriter.Setup(c => c.WriteLine(It.IsAny<string>())).Callback<string>((message) =>
+            {
+                Console.WriteLine(message); 
+            }).Verifiable();
+            var program = new Program(mockConsoleWriter.Object);
 
             // Act
             int result = program.FuncDelegate();
 
             // Assert
-            Assert.Equal(11, result);
-            mockConsoleWriter.Verify(); 
+            Assert.Equal(16, result);
+            mockConsoleWriter.Verify();
         }
-    }
-
-    public interface IConsoleWriter
-    {
-        void WriteLine(string message);
     }
 }

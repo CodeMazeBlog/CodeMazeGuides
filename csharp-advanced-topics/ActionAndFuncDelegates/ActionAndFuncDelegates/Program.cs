@@ -44,8 +44,9 @@ namespace ActionAndFuncDelegates
             int length = stringLength("Hello World");
             consoleWriter.WriteLine($"Sum: {sum}");
             consoleWriter.WriteLine($"String Length: {length}");
-            return sum;
+            return sum; 
         }
+
     }
 
     public interface IConsoleWriter
