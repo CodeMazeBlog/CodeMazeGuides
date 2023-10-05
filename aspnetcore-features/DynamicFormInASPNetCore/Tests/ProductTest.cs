@@ -34,7 +34,7 @@ public class ProductTest
     }
 
     [Fact]
-    public void WhenPageLoad_OnGet_ReturnsAllProducts()
+    public void WhenPageLoadWithOnGet_ThenReturnsAllProducts()
     {
         var productsModel = new IndexModel(_context);
         productsModel.OnGet();
@@ -45,7 +45,7 @@ public class ProductTest
     }
 
     [Fact]
-    public void WhenAddingProduct_OnPostAddRow_ValidModel_AddsProduct()
+    public void WhenAddingProductWithOnPostAddRow_ThenAddsProduct()
     {
         var productsModel = new IndexModel(_context)
         {
@@ -60,7 +60,7 @@ public class ProductTest
     }
 
     [Fact]
-    public void WhenRemovingProduct_OnPostRemoveRow_RemovesProduct()
+    public void WhenRemovingProductWithOnPostRemoveRow_ThenRemovesProduct()
     {
         var productsModel = new IndexModel(_context);
 
