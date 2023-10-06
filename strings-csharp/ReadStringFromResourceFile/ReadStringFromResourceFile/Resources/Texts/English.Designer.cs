@@ -39,7 +39,9 @@ namespace ReadStringFromResourceFile.Resources.Texts {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ReadStringFromResourceFile.Resources.Texts.English", typeof(English).Assembly);
+                    global::System.Resources.ResourceManager temp 
+                        = new global::System.Resources.ResourceManager("ReadStringFromResourceFile.Resources.Texts.English", 
+                        typeof(English).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
