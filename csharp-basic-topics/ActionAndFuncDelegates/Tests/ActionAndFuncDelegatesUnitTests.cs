@@ -25,7 +25,7 @@ namespace Tests
         [TestCase(12, 40)]
         public void WhenGivenSlices_ThenCalculateMyShare(int slices, int share)
         {
-            var expMyShare = 4.8;
+            var expMyShare = Math.Round(slices * (share * 0.01), 2);
 
             Func<int, int, double> TestMyShare = Program.Cake.CalculateShare;
             
@@ -36,9 +36,10 @@ namespace Tests
         [TestCase(12, 40, 4)]
         public void WhenGivenSlicesAndShareAndGuests_ThenCalculateGuestCakeAllocation(int slices, int share, int guests)
         {
-            var expGuestShare = 1.2;         
+            var expMyShare = Math.Round(slices * (share * 0.01), 2);
+            var expGuestShare = Math.Round((slices - expMyShare) / guests, 2);         
 
-            Assert.That(expGuestShare, Is.EqualTo(Program.GuestShare(Program.MyShare(slices, share),guests)));
+            Assert.That(expGuestShare, Is.EqualTo(Program.GuestShare(slices - Program.MyShare(slices, share),guests)));
         }
     }
 }
