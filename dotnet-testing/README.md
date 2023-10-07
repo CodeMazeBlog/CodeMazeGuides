@@ -19,4 +19,6 @@ This section contains the topics related to all kinds of testing in C#/.NET
 - [How to Unit Test ILogger in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-unit-test-ilogger/)
 - [Introduction to Unit Testing With NUnit in C#](https://code-maze.com/csharp-nunit-unit-testing/)
 - [Testing Repository Pattern Using Entity Framework](https://code-maze.com/testing-repository-pattern-entity-framework/)
+- [Testing Time-Dependent Code With TimeProvider in .NET](https://code-maze.com/csharp-testing-time-dependent-code-with-timeprovider/)
 - [Unit Testing With UserManager and RoleManager in ASP.NET Core Identity](https://code-maze.com/aspnetcore-identity-testing-usermanager-rolemanager/)
+- [How to Use Moq to Return a Value That Was Passed Into a Method?](https://code-maze.com/dotnet-use-moq-return-value-that-was-passed-into-a-method/)
