@@ -63,7 +63,7 @@ public class AutoMapperManagerTests
         var source = _fixture.Create<StudentItemDto>();
         source.Department = null;
 
-        Assert.ThrowsException<Exception>(() => AutoMapperManager.UpdateStudent(source));
+        Assert.ThrowsException<ArgumentNullException>(() => AutoMapperManager.UpdateStudent(source));
     }
 
     [TestMethod]

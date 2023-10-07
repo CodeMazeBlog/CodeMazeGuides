@@ -1,41 +1,37 @@
 ﻿using AutoMapper;
+using Newtonsoft.Json;
 
 namespace AutoMapperIgnoreNullValues;
 
 public class AutoMapperManager
 {
-    private const string DepartmentIsNullMessage = "Department is null";
-
     public static StudentEntity UpdateStudent(StudentItemDto source)
     {
-        var config = new MapperConfiguration(cfg =>
-        {
-            cfg.AddProfile<DefaultMappingProfile>();
-        });
-
-        IMapper mapper = config.CreateMapper();
-        var destination = GetSampleEntity();
-        destination = mapper.Map(source, destination);
-
-        if (destination.Department == null)
-            throw new Exception(DepartmentIsNullMessage);
-
-        return destination;
+        return MapToStudentEntity<DefaultMappingProfile>(source);
     }
 
     public static StudentEntity UpdateStudentIgnoreNullValues(StudentItemDto source)
     {
+        return MapToStudentEntity<IgnoreNullMappingProfile>(source);
+    }
+
+    private static StudentEntity MapToStudentEntity<TProfile>(StudentItemDto source)
+           where TProfile : Profile, new()
+    {
         var config = new MapperConfiguration(cfg =>
         {
-            cfg.AddProfile<IgnoreNullMappingProfile>();
+            cfg.AddProfile<TProfile>();
         });
 
         IMapper mapper = config.CreateMapper();
         var destination = GetSampleEntity();
         destination = mapper.Map(source, destination);
 
+        Console.WriteLine("Destination : {0}",
+            JsonConvert.SerializeObject(destination, Formatting.Indented));
+
         if (destination.Department == null)
-            throw new Exception(DepartmentIsNullMessage);
+            throw new ArgumentNullException("Department", "Department is null");
 
         return destination;
     }
