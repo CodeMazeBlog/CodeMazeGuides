@@ -8,31 +8,31 @@ namespace BuildQueryString
         {
             var serviceProvider = new ServiceCollection()
             .AddTransient<IHttpClientWrapper, HttpClientWrapper>()
-            .AddTransient<QueryStringService>()
+            .AddTransient<BooksApiService>()
             .BuildServiceProvider();
 
-            var booksService = serviceProvider.GetRequiredService<QueryStringService>();
+            var booksService = serviceProvider.GetRequiredService<BooksApiService>();
 
             Console.WriteLine("\n***************** Build the Query String Using StringConcatenation ***************\n");
-            await booksService.BuildQueryStringUsingStringConcat("rowling", "english");
+            Console.WriteLine(await booksService.GetWithQueryParamsUsingStringConcatenation("rowling", "english"));
 
             Console.WriteLine("\n***************** Build the Query String Using StringConcatenation With Encoding ***************\n");
-            await booksService.BuildQueryStringByEncoding("George Orwell", "english");
+            Console.WriteLine(await booksService.GetWithQueryParamsUsingStringConcatenationByEncoding("George Orwell", "english"));
 
             Console.WriteLine("\n***************** Build the Query String Using UriBuilder Class ***************\n");
-            await booksService.BuildQueryStringUsingUriBuilder("Jane Austen", "english");
+            Console.WriteLine(await booksService.GetWithQueryParamsUsingUriBuilder("Jane Austen", "english"));
 
             Console.WriteLine("\n***************** Build the Query String Using ParseQueryString Method ***************\n");
-            await booksService.BuildQueryStringUsingParseQueryStringMethod("Agatha Christie", "english");
+            Console.WriteLine(await booksService.GetWithQueryParamsUsingParseQueryStringMethod("Agatha Christie", "english"));
 
             Console.WriteLine("\n***************** Build the Query String Using AddQueryString Method ***************\n");
-            await booksService.BuildQueryStringUsingAddQueryStringMethod("Haruki Murakami", "japanese");
+            Console.WriteLine(await booksService.GetWithQueryParamsUsingAddQueryStringMethod("Haruki Murakami", "japanese"));
 
             Console.WriteLine("\n***************** Build the Query String Using QueryBuilder Class ***************\n");
-            await booksService.BuildQueryStringUsingQueryBuilderClass("Gabriel Garcia", "spanish");
+            Console.WriteLine(await booksService.GetWithQueryParamsUsingQueryBuilderClass("Gabriel Garcia", "spanish"));
 
             Console.WriteLine("\n***************** Build the Query String Using QueryString Create Method ***************\n");
-            await booksService.BuildQueryStringUsingCreateMethod("Leo Tolstoy", "russian");
+            Console.WriteLine(await booksService.GetWithQueryParamsUsingCreateMethod("Leo Tolstoy", "russian"));
         }
     }
 }

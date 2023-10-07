@@ -4,10 +4,9 @@
     {
         public async Task<HttpResponseMessage> GetAsync(string requestUri)
         {
-            using (HttpClient _httpClient = new HttpClient())
-            {
-                return await _httpClient.GetAsync(requestUri);
-            }
+            using HttpClient _httpClient = new();
+
+            return await _httpClient.GetAsync(requestUri);
         }
     }
 }
