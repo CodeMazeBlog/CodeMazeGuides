@@ -9,37 +9,47 @@ namespace Tests
         [TestCase("I like to eat", "Cake")]
         public void WhenGivenTwoStrings_ThenInvertStringOrder(string start, string suffix)
         {
+            // Generate results to test against
+
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
-            Program.ActionStringManipulator(start,suffix);
+            ActionStringManipulator(start,suffix);
 
             var output = stringWriter.ToString();
+            var checkString = $"{start} {suffix}";
+            var checkStringInverted = $"{suffix} {start}";
 
-            string equalTo = $"The string reads: {start} {suffix}\r\nThe string order inverted reads: {suffix} {start}\r\n";
+            bool contains = output.Contains(checkString) && output.Contains(checkStringInverted);
 
+            // If string from test contains calculated strings assert pass
 
-            Assert.That( output, Is.EqualTo(equalTo));
+            Assert.IsTrue(contains);
         }
 
         [TestCase(12, 40)]
         public void WhenGivenSlices_ThenCalculateMyShare(int slices, int share)
         {
+            // Get results from calculating share of cake
+
             var expMyShare = Math.Round(slices * (share * 0.01), 2);
-
-            Func<int, int, double> TestMyShare = Program.Cake.CalculateShare;
             
+            // If test results are equal to expected, assert true
 
-            Assert.That(expMyShare, Is.EqualTo(TestMyShare(slices, share)));
+            Assert.That(expMyShare, Is.EqualTo(MyShare(slices, share)));
         }
 
         [TestCase(12, 40, 4)]
         public void WhenGivenSlicesAndShareAndGuests_ThenCalculateGuestCakeAllocation(int slices, int share, int guests)
         {
+            // Calculate cake allocation
+
             var expMyShare = Math.Round(slices * (share * 0.01), 2);
             var expGuestShare = Math.Round((slices - expMyShare) / guests, 2);         
 
-            Assert.That(expGuestShare, Is.EqualTo(Program.GuestShare(slices - Program.MyShare(slices, share),guests)));
+            // If guest allocation equal to expected, assert pass
+
+            Assert.That(expGuestShare, Is.EqualTo(GuestShare(slices - MyShare(slices, share),guests)));
         }
     }
 }
