@@ -3,8 +3,17 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace CodeMazeGuides.Delegates
 {
-    class Program
+    public class Program
     {
+        public static Action<string, string> ActionStringManipulator = (start, suffix) =>
+        {
+            Console.WriteLine($"The string reads: {start} {suffix}");
+            Console.WriteLine($"The string order inverted reads: {suffix} {start}");
+        };
+
+        public static Func<int, int, double> MyShare = Cake.CalculateShare;
+        public static Func<double, int, double> GuestShare = Cake.CalculateRemainingShare;
+
         // class used for Func delegate example
         public class Cake
         {
@@ -24,20 +33,10 @@ namespace CodeMazeGuides.Delegates
 
         public static void Main()
         {
-            // Action delegate - Manipulate string provided
-            Action<string, string> ActionStringManipulator = (start, suffix) =>
-            {
-                Console.WriteLine($"The string reads: {start} {suffix}");
-                Console.WriteLine($"The string order inverted reads: {suffix} {start}");
-            };
-
+            // Demonstrate Action delegate - Manipulate string provided
             ActionStringManipulator("I like to eat", "Cake");
-
-
-            // Func delegate - share cake between guests
-            Func<int, int, double> MyShare = Cake.CalculateShare;
-            Func<double, int, double> GuestShare = Cake.CalculateRemainingShare;
-
+                                 
+            // Demonstrate Func Delegates - calculate cake allocation
             Console.WriteLine("My share of cake is 40% of 12 slices.");
             Console.WriteLine($"I get { MyShare(12, 40) } slices...");
             Console.WriteLine($"Everyone else gets {GuestShare(MyShare(12, 40), 4)} slices each...");
