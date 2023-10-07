@@ -4,25 +4,24 @@ using Microsoft.AspNetCore.Mvc;
 namespace HowtoGetaDatabaseRowasJSONUsingDapper.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class VehicleController : ControllerBase
+    [Route("api/entities")]
+    public class Controller : ControllerBase
     {
+        private readonly ILogger<Controller> _logger;
+        private readonly IService _service;
 
-        private readonly ILogger<VehicleController> _logger;
-        private readonly IVehicleService _vehicleService;
-
-        public VehicleController(ILogger<VehicleController> logger, IVehicleService vehicleService)
+        public Controller(ILogger<Controller> logger, IService service)
         {
             _logger = logger;
-            _vehicleService = vehicleService;
+            _service = service;
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetVehicle(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                var vehicle = await _vehicleService.GetVehicle(id);
+                var vehicle = await _service.GetById(id);
                 if (vehicle == null)
                     return NotFound();
 
