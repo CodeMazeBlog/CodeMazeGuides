@@ -53,6 +53,7 @@ namespace Tests
         public void WhenFuncDelegateIsAssignedLambda_ThenLambdaIsExecuted()
         {
             Func<double, double, double> op = (a, b) => Math.Pow(a, b);
+
             Assert.AreEqual(9, op(3, 2));
         }
 
@@ -62,6 +63,7 @@ namespace Tests
             string message = "";
             Action<string> op = (input) => message = input;
             op("test");
+
             Assert.AreEqual("test", message);
         }
 
@@ -93,6 +95,7 @@ namespace Tests
             {
                 res += f(a, b);
             }
+
             Assert.AreEqual(20, res);
         }
     }
