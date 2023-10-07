@@ -4,6 +4,7 @@ This section contains the topics about arrays and solving specific problems with
 
 ### Relevant articles:
 - [Different Ways to Add Values to a C# Array](https://code-maze.com/add-values-to-csharp-array/)
+- [Memory Optimization With ArrayPool in C#](https://code-maze.com/csharp-arraypool-memory-optimization/)
 - [Check If a String Array Contains a Value and Get Index](https://code-maze.com/csharp-find-index-of-value-in-string-array/)
 - [Compare Arrays in C#](https://code-maze.com/csharp-compare-arrays/)
 - [Compare Byte Arrays in .NET](https://code-maze.com/dotnet-compare-byte-arrays/)
