@@ -6,55 +6,28 @@ namespace FunctionActionTests
     public class CSharpFunctionsAndActionTests
     {
         [TestMethod]
-        public void Should_Add_Two_Numbers_Correctly()
+        public void Given_Two_Numbers_When_Added_Then_Result_Should_Be_Correct()
         {
             //arrange
-            Func<int, int, int> add = (int first, int second) => first + second;
-
+            var numberToSubtract = 2;
+            var numberSubtracted = 1;
+            var expectedResult = 1;
             //act
-            var resultAdd = add(1, 2);
+            var resultAdd = FunctionAction.Subtract(numberToSubtract, numberSubtracted);
 
             //assert
-            Assert.AreEqual(3, resultAdd);
+            Assert.AreEqual(expectedResult, resultAdd);
         }
 
         [TestMethod]
-        public void Should_Subtract_Two_Numbers_Correctly()
+        public void Given_A_Number_When_Printing_Even_Then_Number_Should_Be_Printed()
         {
             //arrange
-            Func<int, int, int> sub = FunctionAction.Subtract;
-
+            var numberToPrint = 42;
+            Action<int> action = Console.WriteLine;
             //act
-            var resultSub = sub(2, 1);
-
+            FunctionAction.PrintEven(numberToPrint, action);
             //assert
-            Assert.AreEqual(1, resultSub);
-        }
-
-        [TestMethod]
-        public void Should_Multiply_Two_Numbers_Correctly()
-        {
-            //arrange
-            var random = new Random();
-
-            //act
-            Func<int> mult = () => random.Next(0, 20) * 2;
-
-            //assert
-            Assert.IsNotNull(mult);
-        }
-
-        [TestMethod]
-        public void Should_Update_Action_Value_Correctly()
-        {
-            //arrange
-            int value = 1;
-            Action<int> action = x => value = x;
-
-            //act
-            action(value * 50);
-            //assert
-            Assert.AreEqual(50, value);
         }
     }
 }

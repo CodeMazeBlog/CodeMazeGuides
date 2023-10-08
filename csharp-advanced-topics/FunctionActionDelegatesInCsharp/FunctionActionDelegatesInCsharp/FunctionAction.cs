@@ -1,6 +1,4 @@
-﻿using System.Threading.Channels;
-
-namespace FunctionActionDelegatesInCsharp
+﻿namespace FunctionActionDelegatesInCsharp
 {
     public class FunctionAction
     {
