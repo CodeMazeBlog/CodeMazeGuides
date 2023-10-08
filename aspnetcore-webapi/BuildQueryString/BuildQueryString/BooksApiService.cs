@@ -14,7 +14,7 @@
         {
             try
             {
-                HttpResponseMessage response = await _httpClientWrapper.GetAsync(apiUrl);
+                var response = await _httpClientWrapper.GetAsync(apiUrl);
                 response.EnsureSuccessStatusCode();
 
                 return await response.Content.ReadAsStringAsync();

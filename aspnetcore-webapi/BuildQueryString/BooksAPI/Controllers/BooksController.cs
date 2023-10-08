@@ -10,9 +10,7 @@ namespace BooksAPI.Controllers
         [HttpGet]
         public ActionResult Get(string author, string language)
         {
-            string bookDetails = $"Author: {author}, Language:{language}";
-
-            return Ok(bookDetails);
+            return Ok($"Author: {author}, Language:{language}");
         }
     }
 }
