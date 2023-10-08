@@ -10,9 +10,11 @@ ActionExampleWithOptions(opt =>
 });
 
 var response = FuncExample();
+
 Console.WriteLine(response);
 
 var responseWithParams = FuncExampleWithParams("Keyboard", "Microphone");
+
 Console.WriteLine(responseWithParams);
 
 public partial class Program
@@ -36,9 +38,13 @@ public partial class Program
         {
             var hardware = new Hardware();
             options(hardware);
+
             Console.WriteLine($"Action. Preparing Keyboard(s): {hardware.Keyboard}");
+
             Console.WriteLine($"Action. Preparing Webcam(s): {hardware.Webcam}");
+            
             Console.WriteLine($"Action. Preparing Mouse(s): {hardware.Mouse}");
+            
             Console.WriteLine($"Action. Preparing Microphone(s): {hardware.Microphone}");
         }
     }
