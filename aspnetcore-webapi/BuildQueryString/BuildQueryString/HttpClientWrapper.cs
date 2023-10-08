@@ -2,10 +2,10 @@
 {
     public class HttpClientWrapper : IHttpClientWrapper
     {
+        private static HttpClient _httpClient = new HttpClient();
+
         public async Task<HttpResponseMessage> GetAsync(string requestUri)
         {
-            using HttpClient _httpClient = new();
-
             return await _httpClient.GetAsync(requestUri);
         }
     }
