@@ -1,5 +1,4 @@
 ﻿using ActionAndFuncDelegatesInCSharp;
-using System;
 
 ActionExample("Mouse");
 ActionExampleWithOptions(opt =>
