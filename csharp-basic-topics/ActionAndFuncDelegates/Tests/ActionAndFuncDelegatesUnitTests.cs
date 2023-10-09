@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using CodeMazeGuides.Delegates;
 using static CodeMazeGuides.Delegates.Program;
 
 namespace Tests

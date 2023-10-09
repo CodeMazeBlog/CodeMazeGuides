@@ -1,7 +1,4 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
-
-namespace CodeMazeGuides.Delegates
+﻿namespace CodeMazeGuides.Delegates
 {
     public class Program
     {
@@ -28,7 +25,6 @@ namespace CodeMazeGuides.Delegates
                 double remCake = slices / guests;
                 return Math.Round(remCake, 2);
             }
-
         }
 
         public static void Main()
@@ -39,11 +35,7 @@ namespace CodeMazeGuides.Delegates
             // Demonstrate Func Delegates - calculate cake allocation
             Console.WriteLine("My share of cake is 40% of 12 slices.");
             Console.WriteLine($"I get { MyShare(12, 40) } slices...");
-            Console.WriteLine($"Everyone else gets {GuestShare(12 - MyShare(12, 40), 4)} slices each...");
-           
-
-        }
-        
-    }
-    
+            Console.WriteLine($"Everyone else gets {GuestShare(12 - MyShare(12, 40), 4)} slices each...");           
+        }        
+    }    
 }
