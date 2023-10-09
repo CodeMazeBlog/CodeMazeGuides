@@ -4,11 +4,11 @@ namespace ActionAndFuncDelegates
 {
     public class Program
     {
-        private readonly IConsoleWriter consoleWriter;
+        private readonly IConsoleWriter _consoleWriter;
 
         public Program(IConsoleWriter consoleWriter)
         {
-            this.consoleWriter = consoleWriter;
+            _consoleWriter = consoleWriter;
         }
 
         static void Main()
@@ -18,32 +18,34 @@ namespace ActionAndFuncDelegates
             program.FuncDelegate();
         }
 
-        //Demonstrate Action delegate
         public void ActionDelegate()
         {
             Action<int, int> add = (x, y) =>
             {
-                int result = x + y;
-                consoleWriter.WriteLine(result.ToString());
+                var result = x + y;
+                _consoleWriter.WriteLine(result.ToString());
             };
+
             Action<string> greet = (name) =>
             {
-                consoleWriter.WriteLine($"Hello {name}");
+                _consoleWriter.WriteLine($"Hello {name}");
             };
 
             add(9, 7);
             greet("Phil");
         }
 
-        //Demonstrate Func delegate
         public int FuncDelegate()
         {
             Func<int, int, int> add = (x, y) => x + y;
             Func<string, int> stringLength = (s) => s.Length;
-            int sum = add(9, 7);
-            int length = stringLength("Hello World");
-            consoleWriter.WriteLine($"Sum: {sum}");
-            consoleWriter.WriteLine($"String Length: {length}");
+
+            var sum = add(9, 7);
+            var length = stringLength("Hello World");
+
+            _consoleWriter.WriteLine($"Sum: {sum}");
+            _consoleWriter.WriteLine($"String Length: {length}");
+
             return sum; 
         }
 
