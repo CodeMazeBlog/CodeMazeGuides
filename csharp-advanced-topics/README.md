@@ -5,7 +5,6 @@ This section contains the topics considered advanced level in C#.
 ### Relevant articles:
 
 - [C# Delegates](https://code-maze.com/delegates-charp/)
-- [Action and Func Delegates](https://code-maze.com/action-and-func-delegates/)
 - [Differences Between ExpandoObject, DynamicObject and dynamic](https://code-maze.com/csharp-differences-between-expandoobject-dynamicobject-and-dynamic/)
 - [How to Build Dynamic Queries With Expression Trees in C#](https://code-maze.com/dynamic-queries-expression-trees-csharp/)
 - [How to Create a Class Dynamically in C#?](https://code-maze.com/create-class-dynamically-csharp/)
