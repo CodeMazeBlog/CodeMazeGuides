@@ -1,11 +1,5 @@
 ﻿using ActionAndFuncDelegatesInCSharp;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Tests
 {
@@ -60,7 +54,7 @@ namespace Tests
         [TestMethod]
         public void WhenActionDelegateIsAssignedLambda_ThenLambdaIsExecuted()
         {
-            string message = "";
+            var message = "";
             Action<string> op = (input) => message = input;
             op("test");
 
