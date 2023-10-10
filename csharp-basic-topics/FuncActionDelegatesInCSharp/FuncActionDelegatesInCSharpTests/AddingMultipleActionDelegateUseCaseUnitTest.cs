@@ -5,10 +5,10 @@ using Xunit;
 
 namespace FuncActionDelegatesInCSharpTests;
 
-public class AddingMultipleActionDelegateUseCaseTests
+public class AddingMultipleActionDelegateUseCaseUnitTest
 {
     [Fact]
-    public void Run_Should_InvokeAllActions()
+    public void GivenRunMethod_WhenIsCalled_ThenInvokeAllActions()
     {
         // Arrange
         var loggerMock = new Mock<ILogger<AddingMultiplyActionDelegateUseCase>>();

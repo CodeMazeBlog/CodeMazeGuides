@@ -5,11 +5,11 @@ using Xunit;
 
 namespace FuncActionDelegatesInCSharpTests;
 
-public class FuncDelegateUseCaseTests
+public class FuncDelegateUseCaseUnitTest
 {
     [Theory]
     [InlineData(10, 20, 30, 200)]
-    public void Run_Should_AddAndMultiplyTwoNumbers_when_GivenTwoNumbers(
+    public void GivenRunMethod_WhenIsCalledWithTwoNumbers_ThenAddAndMultiplyTwoNumbers(
         int firstNumber, int secondNumber, int expectedAddResult, int expectedMultiplyResult)
     {
         // Arrange

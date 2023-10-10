@@ -5,13 +5,13 @@ using Xunit;
 
 namespace FuncActionDelegatesInCSharpTests;
 
-public class CalculatorTests
+public class CalculatorUnitTest
 {
     [Theory]
     [InlineData(20, 10, Operand.Add, 30)]
     [InlineData(20, 10, Operand.Subtract, 10)]
     [InlineData(20, 10, Operand.Multiply, 200)]
-    public void Run_Should_OperandTwoNumbers_When_UserEntersTwoNumbers_And_SelectOperand(
+    public void GivenRunMethod_WhenUserEntersTwoNumbersAndSelectOperand_ThenOperandsTwoNumbers(
         int firstUserInput, int secondUserInput, int operand, int expectedResult)
     {
         // Arrange

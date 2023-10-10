@@ -5,10 +5,10 @@ using Xunit;
 
 namespace FuncActionDelegatesInCSharpTests;
 
-public class ActionDelegateUseCaseTests
+public class ActionDelegateUseCaseUnitTest
 {
     [Fact]
-    public void Run_Should_LogInformation()
+    public void GivenRunMethod_WhenIsCalled_ThenLogsExpectedMessage()
     {
         // Arrange
         var loggerMock = new Mock<ILogger<ActionDelegateUseCase>>();

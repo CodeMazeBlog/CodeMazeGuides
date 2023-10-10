@@ -13,20 +13,9 @@ public class Calculator
         _logger = logger;
     }
     
-    private int Add(int a, int b)
-    {
-        return a + b;
-    }
-
-    private int Subtract(int a, int b)
-    {
-        return a - b;
-    }
-
-    private int Multiply(int a, int b)
-    {
-        return a * b;
-    }
+    private static int Add(int a, int b) => a + b;
+    private static int Subtract(int a, int b) => a - b;
+    private static int Multiply(int a, int b) => a * b;
 
     public void Run()
     {
