@@ -5,21 +5,6 @@
         public List<Product> Products { get; set; }
         public bool Checkout()
         {
-            bool IsItemInStock(Product product)
-            {
-                return product.StockQuantity > 0;
-            }
-
-            bool IsQuantityValid(Product product, int quantity) 
-            {
-                return quantity > 0 && quantity <= product.StockQuantity;
-            }
-
-            void LogValidationFailure(string message)
-            {
-                Console.WriteLine($"Validation Error:- {message}");
-            }
-
             foreach (var product in Products)
             {
                 if (!IsItemInStock(product))
@@ -35,7 +20,24 @@
                 }
             }
 
+            bool IsItemInStock(Product product)
+            {
+                return product.StockQuantity > 0;
+            }
+
+            bool IsQuantityValid(Product product, int quantity)
+            {
+                return quantity > 0 && quantity <= product.StockQuantity;
+            }
+
+            void LogValidationFailure(string message)
+            {
+                Console.WriteLine($"Validation Error:- {message}");
+            }
+
             return true;
         }
     }
 }
+
+
