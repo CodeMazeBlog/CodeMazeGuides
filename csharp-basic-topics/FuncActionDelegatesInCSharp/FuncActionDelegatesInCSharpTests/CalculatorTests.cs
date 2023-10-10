@@ -1,4 +1,4 @@
-﻿using FuncActionDelegatesInCSharp.UseCases.Calculator;
+﻿using FuncActionDelegatesInCSharp.UseCases.CalculatorUseCase;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;

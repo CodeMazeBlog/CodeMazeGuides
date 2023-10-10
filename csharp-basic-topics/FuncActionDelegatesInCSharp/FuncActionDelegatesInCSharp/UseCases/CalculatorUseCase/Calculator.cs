@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace FuncActionDelegatesInCSharp.UseCases.Calculator;
+namespace FuncActionDelegatesInCSharp.UseCases.CalculatorUseCase;
 
 public class Calculator
 {

@@ -1,4 +1,4 @@
-﻿namespace FuncActionDelegatesInCSharp.UseCases.Calculator;
+﻿namespace FuncActionDelegatesInCSharp.UseCases.CalculatorUseCase;
 
 public interface IIoHandler
 {

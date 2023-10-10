@@ -1,5 +1,5 @@
 ﻿using FuncActionDelegatesInCSharp.UseCases;
-using FuncActionDelegatesInCSharp.UseCases.Calculator;
+using FuncActionDelegatesInCSharp.UseCases.CalculatorUseCase;
 using Microsoft.Extensions.Logging;
 
 namespace FuncActionDelegatesInCSharp;
