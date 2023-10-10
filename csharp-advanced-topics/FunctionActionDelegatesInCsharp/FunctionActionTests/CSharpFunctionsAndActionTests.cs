@@ -6,7 +6,7 @@ namespace FunctionActionTests
     public class CSharpFunctionsAndActionTests
     {
         [TestMethod]
-        public void Given_Two_Numbers_When_Added_Then_Result_Should_Be_Correct()
+        public void GivenTwoNumbers_WhenAddedThen_ResultShouldBeCorrect()
         {
             //arrange
             var numberToSubtract = 2;
@@ -20,7 +20,7 @@ namespace FunctionActionTests
         }
 
         [TestMethod]
-        public void Given_A_Number_When_Printing_Even_Then_Number_Should_Be_Printed()
+        public void GivenANumber_WhenPrintingEven_ThenNumberShouldBePrinted()
         {
             //arrange
             var numberToPrint = 42;
