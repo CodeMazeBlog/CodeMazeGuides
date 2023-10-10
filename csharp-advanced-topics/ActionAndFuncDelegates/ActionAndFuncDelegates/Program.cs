@@ -1,82 +1,42 @@
-﻿using System.Xml.Linq;
-using System.Linq;
-
-namespace ActionAndFuncDelegates
+﻿namespace ActionAndFuncDelegates
 {
     internal class Program
     {
         private static readonly List<string> _names = new() {
-            "Paul",
-            "Aaron",
-            "Amy",
-            "World"
+            "Dave",
+            "Mike",
+            "Anna",
+            "Arnold"
         };
         
-        delegate void Print2(string name);
-
         static void Main(string[] args)
         {
-            Action<string> actionMsg = GoodbyeMessage;
-            Func<bool, string, string> funcMsg = IsThisGoodBye;
+            Action<string> actionMsg = DelegateFunctionality.GoodbyeMessage;
+            Func<bool, string, string> funcMsg = DelegateFunctionality.IsThisGoodBye;
             
-            Func<bool> anonymousFunc = delegate() { return true; };
-            Func<bool> lambdaFunc = () => { return true; };
-
-            Console.WriteLine($"{CountOfNamesContaining("A", true)} names start with A");
-            Console.WriteLine($"{CountOfNamesContaining("d", false)} names end with D");
+            Console.WriteLine($"{DelegateFunctionality.CountOfListItemsContaining(_names, "A", true)} names start with A");
+            Console.WriteLine($"{DelegateFunctionality.CountOfListItemsContaining(_names, "d", false)} names end with D");
 
             actionMsg("Paul");
 
             // Display the contents of the list using the Print method.
-            _names.ForEach(Print);
+            _names.ForEach(DelegateFunctionality.Print);
 
-            AnonymousPrint();
+            DelegateFunctionality.AnonymousPrint(_names);
             Console.WriteLine(funcMsg(true, "Paul"));
             Console.WriteLine(funcMsg(false, "Aaron"));
-        }
 
-        static void Print(string s)
-        {
-            Console.WriteLine($"Hello {s}");
-        }
+            string result = DelegateFunctionality.AnonymousLessThanTen(5) ? "anonymous less than 10" : "anonymous greater than 10";
+            Console.WriteLine(result);
 
-        static void AnonymousPrint()
-        {
-            // Anonymous method to display the contents of the list.
-            _names.ForEach(delegate (string name)
-            {
-                Console.WriteLine(name);
-            });
-        }
-        public static void GoodbyeMessage(string name) => Console.WriteLine($"Goodbye {name}");
+            result = DelegateFunctionality.AnonymousLessThanTen(15) ? "anonymous less than 10" : "anonymous greater than 10";
+            Console.WriteLine(result);
 
-        public static string IsThisGoodBye(bool goodbye, string name)
-        {
-            if (goodbye)
-                return $"Goodbye, {name}";
-            else
-                return $"Hello, {name}";
-        }
+            result = DelegateFunctionality.LambdaLessThanTen(5) ? "lambda less than 10" : "lambda greater than 10";
+            Console.WriteLine(result);
 
-        public static int CountOfNamesContaining(string searchString, bool searchFromBeginning)
-        {
-            Func<string, string, bool> compare;
-
-            if (searchFromBeginning)
-                compare = NameStartsWith;
-            else
-                compare = NameEndsWith;
-
-            return _names.Count(n => compare(n, searchString));
-        }
-
-        private static bool NameStartsWith(string name, string beginsWith)
-        {
-            return (name.StartsWith(beginsWith));
-        }
-        private static bool NameEndsWith(string name, string endsWith)
-        {
-            return (name.EndsWith(endsWith));
+            result = DelegateFunctionality.LambdaLessThanTen(15) ? "lambda less than 10" : "lambda greater than 10";
+            Console.WriteLine(result);
         }
     }
 }
