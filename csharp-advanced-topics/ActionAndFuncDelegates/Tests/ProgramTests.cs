@@ -8,7 +8,7 @@ namespace Tests
     public class ProgramTests
     {
         [Fact]
-        public void Given_ActionDelegate_When_Execute_Should_PrintSum()
+        public void GivenActionDelegate_WhenExecuting_ThenShouldPrintSum() 
         {
             // Arrange
             var mockConsoleWriter = new Mock<IConsoleWriter>();
@@ -26,7 +26,7 @@ namespace Tests
         }
 
         [Fact]
-        public void Given_ActionDelegate_When_Execute_Should_PrintGreeting()
+        public void GivenActionDelegate_WhenExecuting_ThenShouldPrintGreeting()
         {
             // Arrange
             var mockConsoleWriter = new Mock<IConsoleWriter>();
@@ -44,7 +44,7 @@ namespace Tests
         }
 
         [Fact]
-        public void Given_FuncDelegate_When_Execute_Should_ReturnSum()
+        public void GivenFuncDelegate_WhenExecuting_ThenShouldReturnSum()
         {
             // Arrange
             var mockConsoleWriter = new Mock<IConsoleWriter>();
@@ -63,7 +63,7 @@ namespace Tests
         }
 
         [Fact]
-        public void Given_FuncDelegate_When_Execute_Should_ReturnStringLength()
+        public void GivenFuncDelegate_WhenExecuting_ThenShouldReturnStringLength()
         {
             // Arrange
             var mockConsoleWriter = new Mock<IConsoleWriter>();
