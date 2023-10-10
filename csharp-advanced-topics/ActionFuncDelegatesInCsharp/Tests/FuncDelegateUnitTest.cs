@@ -4,7 +4,7 @@ namespace Tests
     {
 
         [Fact]
-        public void Given_NoSubscribers_When_AddIntegersCalled_Then_ReturnsSum()
+        public void GivenNoSubscribers_WhenAddIntegersCalled_ThenReturnsSum()
         {
             // Arrange
             var calculator = new Calculator();
@@ -18,7 +18,7 @@ namespace Tests
 
 
         [Fact]
-        public void Given_Subscriber_When_AddIntegersCalled_Then_CallsSubscriberAndReturnsResult()
+        public void GivenSubscriber_WhenAddIntegersCalled_ThenCallsSubscriberAndReturnsResult()
         {
             // Arrange
             var calculator = new Calculator();

@@ -3,7 +3,7 @@
     public class LoggerTests
     {
         [Fact]
-        public void Given_MessageAndLogDelegate_When_LogMessageCalled_Then_DelegateIsInvoked()
+        public void GivenMessageAndLogDelegate_WhenLogMessageCalled_ThenDelegateIsInvoked()
         {
             // Arrange
             var logger = new Logger();
