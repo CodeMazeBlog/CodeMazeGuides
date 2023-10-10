@@ -1,3 +1,27 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using FuncActionDelegatesInCSharp.UseCases;
+using FuncActionDelegatesInCSharp.UseCases.Calculator;
+using Microsoft.Extensions.Logging;
 
-Console.WriteLine("Hello, World!");
+namespace FuncActionDelegatesInCSharp;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // Initializing
+        var loggerFactory = new LoggerFactory();
+        var actionDelegateUseCase = new ActionDelegateUseCase(loggerFactory.CreateLogger<ActionDelegateUseCase>());
+        var funcDelegateUseCase = new FuncDelegateUseCase(loggerFactory.CreateLogger<FuncDelegateUseCase>());
+        var addingMultiplyActionDelegateUseCase = 
+            new AddingMultiplyActionDelegateUseCase(loggerFactory.CreateLogger<AddingMultiplyActionDelegateUseCase>());
+        var calculator = new Calculator(new IoHandler(), loggerFactory.CreateLogger<Calculator>());
+        
+        // Running all use-cases
+        actionDelegateUseCase.Run();
+        funcDelegateUseCase.Run(5, 10);
+        addingMultiplyActionDelegateUseCase.Run();
+        calculator.Run();
+        
+        Console.ReadLine();
+    }
+}
