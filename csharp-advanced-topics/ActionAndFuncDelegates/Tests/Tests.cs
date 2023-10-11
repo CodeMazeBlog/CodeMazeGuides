@@ -45,30 +45,30 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenAnInt_When5IsSent_AnonymousLessThanTenReturnsTrue()
+        public void GivenAnInt_When35IsSent_AnonymousIsPersonOfLegalAgeReturnsTrue()
         {
-            bool result = DelegateFunctionality.AnonymousLessThanTen(5);
+            bool result = DelegateFunctionality.AnonymousIsPersonOfLegalAge(35);
             Assert.AreEqual(true, result);
         }
 
         [TestMethod]
-        public void GivenAnInt_When15IsSent_AnonymousLessThanTenReturnsFalse()
+        public void GivenAnInt_When15IsSent_AnonymousIsPersonOfLegalAgeReturnsFalse()
         {
-            bool result = DelegateFunctionality.AnonymousLessThanTen(15);
+            bool result = DelegateFunctionality.AnonymousIsPersonOfLegalAge(15);
             Assert.AreEqual(false, result);
         }
 
         [TestMethod]
-        public void GivenAnInt_When5IsSent_LambdaLessThan10ReturnsTrue()
+        public void GivenAnInt_When35IsSent_LambdaIsPersonOfLegalAgeReturnsTrue()
         {
-            bool result = DelegateFunctionality.LambdaLessThanTen(5);
+            bool result = DelegateFunctionality.LambdaIsPersonOfLegalAge(35);
             Assert.AreEqual(true, result);
         }
 
         [TestMethod]
-        public void GivenAnInt_When15IsSent_LambdaLessThan10ReturnsFalse()
+        public void GivenAnInt_When15IsSent_LambdaIsPersonOfLegalAgeReturnsFalse()
         {
-            bool result = DelegateFunctionality.LambdaLessThanTen(15);
+            bool result = DelegateFunctionality.LambdaIsPersonOfLegalAge(15);
             Assert.AreEqual(false, result);
         }
     }

@@ -26,17 +26,25 @@
             Console.WriteLine(funcMsg(true, "Paul"));
             Console.WriteLine(funcMsg(false, "Aaron"));
 
-            string result = DelegateFunctionality.AnonymousLessThanTen(5) ? "anonymous less than 10" : "anonymous greater than 10";
-            Console.WriteLine(result);
+            bool ofAge = DelegateFunctionality.IsPersonOfLegalAge(22);
+            PrintIsOfAge(ofAge);
 
-            result = DelegateFunctionality.AnonymousLessThanTen(15) ? "anonymous less than 10" : "anonymous greater than 10";
-            Console.WriteLine(result);
+            ofAge = DelegateFunctionality.AnonymousIsPersonOfLegalAge(10);
+            PrintIsOfAge(ofAge);
 
-            result = DelegateFunctionality.LambdaLessThanTen(5) ? "lambda less than 10" : "lambda greater than 10";
-            Console.WriteLine(result);
+            ofAge = DelegateFunctionality.AnonymousIsPersonOfLegalAge(35);
+            PrintIsOfAge(ofAge);
 
-            result = DelegateFunctionality.LambdaLessThanTen(15) ? "lambda less than 10" : "lambda greater than 10";
-            Console.WriteLine(result);
+            ofAge = DelegateFunctionality.LambdaIsPersonOfLegalAge(10);
+            PrintIsOfAge(ofAge);
+
+            ofAge = DelegateFunctionality.LambdaIsPersonOfLegalAge(21);
+            PrintIsOfAge(ofAge);
+        }
+
+        private static void PrintIsOfAge(bool isOfAge) 
+        {
+            Console.WriteLine(isOfAge ? "person is of age" : "not old enough");
         }
     }
 }

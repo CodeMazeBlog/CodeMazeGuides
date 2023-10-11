@@ -49,8 +49,13 @@
             Console.WriteLine($"Hello {s}");
         }
 
-        public static bool AnonymousLessThanTen(int i) { return (i < 10); }
+        public static bool IsPersonOfLegalAge(int age)
+        {
+            return (age >= 21);
+        }
 
-        public static readonly Func<int, bool> LambdaLessThanTen = (i) => { return i < 10; };
+        public static readonly Func<int, bool> LambdaIsPersonOfLegalAge = (age) => { return (age >= 21); };
+
+        public static bool AnonymousIsPersonOfLegalAge(int age) { return (age >= 21); }
     }
 }
