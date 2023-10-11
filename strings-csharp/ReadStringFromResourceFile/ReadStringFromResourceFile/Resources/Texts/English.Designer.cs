@@ -23,7 +23,8 @@ namespace ReadStringFromResourceFile.Resources.Texts {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class English {
-        
+        private const string BASE_PATH = "ReadStringFromResourceFile.Resources.Texts.English";
+
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
@@ -40,8 +41,7 @@ namespace ReadStringFromResourceFile.Resources.Texts {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp 
-                        = new global::System.Resources.ResourceManager("ReadStringFromResourceFile.Resources.Texts.English", 
-                        typeof(English).Assembly);
+                        = new global::System.Resources.ResourceManager(BASE_PATH, typeof(English).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
