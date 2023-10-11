@@ -9,4 +9,8 @@
 		<Features>InterceptorsPreview</Features>
 	</PropertyGroup>
 
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+	  <Exec Command="pwsh pre-build-event.ps1" />
+	</Target>
+
 </Project>
