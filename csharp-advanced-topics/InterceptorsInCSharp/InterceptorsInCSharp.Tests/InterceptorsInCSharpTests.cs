@@ -6,7 +6,7 @@ namespace InterceptorsInCSharp.Tests
         public void GivenICallTheRunMethod__ThenItShouldReturnTheValueFromTheInterceptingMethod()
         {
             //Arrange
-            const string expectedText = "Hello, Code Maze!\r\nGreetings, Code Maze!\r\n";
+            const string expectedText = "Hello, Code Maze!\nGreetings, Code Maze!\n";
             using var consoleTester = new ConsoleOutputTester();
 
             //Act

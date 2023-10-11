@@ -6,27 +6,24 @@ using System.Threading.Tasks;
 
 namespace InterceptorsInCSharp.Tests
 {
-    public class ConsoleOutputTester : IDisposable
+    public sealed class ConsoleOutputTester : IDisposable
     {
-        private StringWriter consoleOutput;
-        private TextWriter originalOutput;
+        private readonly StringWriter _consoleOutput = new();
+        private readonly TextWriter _originalOutput;
 
         public ConsoleOutputTester()
         {
-            consoleOutput = new StringWriter();
-            originalOutput = Console.Out;
-            Console.SetOut(consoleOutput);
+            _consoleOutput.NewLine = "\n";
+            _originalOutput = Console.Out;
+            Console.SetOut(_consoleOutput);
         }
 
         public void Dispose()
         {
-            Console.SetOut(originalOutput);
-            consoleOutput.Dispose();
+            Console.SetOut(_originalOutput);
+            _consoleOutput.Dispose();
         }
 
-        public string GetOutput()
-        {
-            return consoleOutput.ToString();
-        }
+        public string GetOutput() => _consoleOutput.ToString();
     }
 }
