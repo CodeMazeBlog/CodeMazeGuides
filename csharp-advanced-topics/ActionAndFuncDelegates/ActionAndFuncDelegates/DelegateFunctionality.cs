@@ -49,7 +49,7 @@
             Console.WriteLine($"Hello {s}");
         }
 
-        public static bool AnonymousLessThanTen(int number) { return (number < 10); }
+        public static bool AnonymousLessThanTen(int i) { return (i < 10); }
 
         public static readonly Func<int, bool> LambdaLessThanTen = (i) => { return i < 10; };
     }
