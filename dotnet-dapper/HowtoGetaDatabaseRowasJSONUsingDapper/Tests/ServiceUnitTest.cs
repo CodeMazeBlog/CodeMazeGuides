@@ -13,7 +13,7 @@ namespace Tests
             var mockRepository = new Mock<IRepository>();
             var vehicleService = new Service(mockRepository.Object);
             var companyId = 1;
-            var expectedVehicle = new { Id = companyId, Name = "Mazda", Make = "Tokyo", Model = "MD-233H",Color = "Japan", Year = 2025 };
+            var expectedVehicle = new { Id = companyId, Make = "Mazda", Model = "MD-233H",Color = "Japan", Year = 2025 };
             mockRepository.Setup(repository => repository.GetById(companyId)).ReturnsAsync(expectedVehicle);
 
             //Act
