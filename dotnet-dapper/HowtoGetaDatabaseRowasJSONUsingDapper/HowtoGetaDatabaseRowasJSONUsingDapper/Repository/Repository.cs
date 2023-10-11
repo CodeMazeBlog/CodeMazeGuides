@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using HowtoGetaDatabaseRowasJSONUsingDapper.Contracts;
 using HowtoGetaDatabaseRowasJSONUsingDapper.DbContext;
-using HowtoGetaDatabaseRowasJSONUsingDapper.Helper;
+using Newtonsoft.Json;
 
 namespace HowtoGetaDatabaseRowasJSONUsingDapper.Repository
 {
@@ -25,7 +25,7 @@ namespace HowtoGetaDatabaseRowasJSONUsingDapper.Repository
                 var entity = await connection.QuerySingleOrDefaultAsync(query, new { id });
                 if (entity != null)
                 {
-                    var json = JsonHelper.ConvertToJson(entity);
+                    var json = JsonConvert.SerializeObject(entity, Formatting.Indented);
                     _logger.LogInformation($"{json}");
                 }
                 else
