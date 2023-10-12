@@ -19,27 +19,23 @@ else
 }
 
 List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-List<int> evenNumbersUsingLocalFunction = FilterEvenNumbers(numbers);
+List<int> evenNumbersUsingLocalFunction = FilterEvenNumbersUsingLocalFunction(numbers);
 Console.WriteLine(string.Join(", ", evenNumbersUsingLocalFunction));
 
-static List<int> FilterEvenNumbers(List<int> numbers)
+static List<int> FilterEvenNumbersUsingLocalFunction(List<int> numbers)
 {
-    List<int> result = new List<int>();
-    foreach (int num in numbers)
-    {
-        if (IsEven(num))
-        {
-            result.Add(num);
-        }
-    }
+    return numbers.Where(IsEven).ToList();
 
     bool IsEven(int num)
     {
         return num % 2 == 0;
     }
-
-    return result;
 }
 
-List<int> evenNumbersUsingLambdaFunction = numbers.Where(num => num % 2 == 0).ToList();
+List<int> evenNumbersUsingLambdaFunction = FilterEvenNumbersUsingLambda(numbers);
 Console.WriteLine(string.Join(", ", evenNumbersUsingLambdaFunction));
+
+static List<int> FilterEvenNumbersUsingLambda(List<int> numbers)
+{
+    return numbers.Where(n => n % 2 == 0).ToList();
+}
