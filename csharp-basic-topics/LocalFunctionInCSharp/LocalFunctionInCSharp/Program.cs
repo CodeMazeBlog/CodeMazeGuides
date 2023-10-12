@@ -32,6 +32,7 @@ static List<int> FilterEvenNumbersUsingLocalFunction(List<int> numbers)
     }
 }
 
+
 List<int> evenNumbersUsingLambdaFunction = FilterEvenNumbersUsingLambda(numbers);
 Console.WriteLine(string.Join(", ", evenNumbersUsingLambdaFunction));
 
