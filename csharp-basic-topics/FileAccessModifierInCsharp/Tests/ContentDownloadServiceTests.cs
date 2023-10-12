@@ -1,4 +1,4 @@
-using Content;
+using FileAccessModifierInCsharp;
 
 namespace Tests
 {
@@ -8,12 +8,12 @@ namespace Tests
         public void WhenDownloadCalled_ThenWritesExpectedDownloadMessage()
         {
             // Arrange
-            DateTime testDateTime = DateTime.Now;
-            int testFileId = 1;
-            string expectedMessage = $"{testDateTime} - Download - File ID: {testFileId}";
+            var testDateTime = DateTime.Now;
+            var testFileId = 1;
+            var expectedMessage = $"{testDateTime} - Download - File ID: {testFileId}";
 
             // Act
-            string resultMessage = ContentDownloadService.GetMessage(testDateTime, testFileId);
+            var resultMessage = ContentDownloadService.GetMessage(testDateTime, testFileId);
 
             // Assert
             Assert.Equal(expectedMessage, resultMessage);

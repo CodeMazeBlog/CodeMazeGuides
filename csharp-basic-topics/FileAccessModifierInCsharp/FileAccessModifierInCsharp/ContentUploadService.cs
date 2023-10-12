@@ -1,6 +1,6 @@
-﻿namespace Content;
+﻿namespace FileAccessModifierInCsharp;
 
-static file class Logger
+file static class Logger
 {
     public static string GetMessage(DateTime datetime, int fileId)
     {

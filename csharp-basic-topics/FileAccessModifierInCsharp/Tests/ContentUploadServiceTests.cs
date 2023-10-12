@@ -1,4 +1,4 @@
-using Content;
+using FileAccessModifierInCsharp;
 
 namespace Tests
 {
@@ -8,12 +8,12 @@ namespace Tests
         public void WhenUploadCalled_ThenWritesExpectedUploadMessage()
         {
             // Arrange
-            DateTime testDateTime = DateTime.Now;
-            int testFileId = 1;
-            string expectedMessage = $"{testDateTime} - Upload - File ID: {testFileId}"; // \r\n for Windows line ending
+            var testDateTime = DateTime.Now;
+            var testFileId = 1;
+            var expectedMessage = $"{testDateTime} - Upload - File ID: {testFileId}"; // \r\n for Windows line ending
 
             // Act
-            string resultMessage = ContentUploadService.GetMessage(testDateTime, testFileId);
+            var resultMessage = ContentUploadService.GetMessage(testDateTime, testFileId);
 
             // Assert
             Assert.Equal(expectedMessage, resultMessage);
