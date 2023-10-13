@@ -4,7 +4,15 @@ namespace DecimalPrecision;
 
 public class StringFormat
 {
-    private readonly NumberFormatInfo _setPrecision = new NumberFormatInfo(){NumberDecimalDigits = 2};
+    private static NumberFormatInfo CreateNumberFormatWithPrecision(int decimalPlaces)
+    {
+        NumberFormatInfo numberFormat = new NumberFormatInfo
+        {
+            NumberDecimalDigits = decimalPlaces
+        };
+        
+        return numberFormat;
+    }
 
     public string SetPrecisionUsingStringFormat(decimal myDecimal)
     {
@@ -13,9 +21,10 @@ public class StringFormat
         return formatted;
     }
     
-    public string SetPrecisionUsingStringFormatAndGlobalScope(decimal myDecimal)
+    public string SetPrecisionUsingStringFormatAndGlobalScope(decimal myDecimal, int decimalPlaces)
     {
-        string formatted = myDecimal.ToString("N",_setPrecision); // "123.46"
+        NumberFormatInfo numberFormat = CreateNumberFormatWithPrecision(decimalPlaces);
+        string formatted = myDecimal.ToString("N", numberFormat);
         
         return formatted;
     }

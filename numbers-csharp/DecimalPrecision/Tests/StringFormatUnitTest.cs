@@ -30,7 +30,7 @@ public class StringFormatUnitTest
     public void SetPrecisionUsingStringFormatAndGlobalScope_ShouldFormatCorrectly(decimal input, string expected)
     {
         // Act
-        string result = _stringFormat.SetPrecisionUsingStringFormatAndGlobalScope(input);
+        string result = _stringFormat.SetPrecisionUsingStringFormatAndGlobalScope(input, 2);
 
         // Assert
         Assert.Equal(expected, result);

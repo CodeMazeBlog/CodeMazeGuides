@@ -8,7 +8,7 @@ var roundingFunction = new RoundingFunction();
 var stringFormatResult = stringFormat.SetPrecisionUsingStringFormat(myDecimal);
 Console.WriteLine(stringFormatResult);
 
-var stringFormatResultWithGlobalScope = stringFormat.SetPrecisionUsingStringFormatAndGlobalScope(myDecimal);
+var stringFormatResultWithGlobalScope = stringFormat.SetPrecisionUsingStringFormatAndGlobalScope(myDecimal, 2);
 Console.WriteLine(stringFormatResultWithGlobalScope);
 
 var roundedValueFromMathRound = roundingFunction.GetDecimalRoundValueUsingMathRound(myDecimal);
