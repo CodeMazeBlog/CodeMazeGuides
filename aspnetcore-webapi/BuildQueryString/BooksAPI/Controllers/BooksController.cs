@@ -6,7 +6,6 @@ namespace BooksAPI.Controllers
     [Route("api/[controller]")]
     public class BooksController : ControllerBase
     {
-
         [HttpGet]
         public ActionResult Get(string author, string language)
         {

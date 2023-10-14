@@ -1,7 +1,5 @@
 using BuildQueryString;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using System.Net;
 
 namespace BuildQueryStringTests
 {
@@ -14,7 +12,7 @@ namespace BuildQueryStringTests
         public void GivenBasePathAndQueryParams_WhenBuildUrlWithQueryStringUsingStringConcat_ThenCorrectApiUrlIsBuilt()
         {
             // Arrange
-            var author = "rowling";
+            var author = "George Orwell";
             var language = "english";
             var dict = new Dictionary<string, string>
             {
@@ -25,26 +23,6 @@ namespace BuildQueryStringTests
 
             // Act
             string result = QueryStringHelper.BuildUrlWithQueryStringUsingStringConcat(basePath, dict);
-
-            //Assert
-            Assert.AreEqual(expectedApiUrl, result);
-        }
-
-        [TestMethod]
-        public void GivenBasePathAndQueryParams_WhenBuildUrlWithQueryStringUsingStringConcatByEncoding_ThenCorrectApiUrlIsBuilt()
-        {
-            // Arrange
-            var author = "George Orwell";
-            var language = "english";
-            var dict = new Dictionary<string, string>
-            {
-                { "author", author },
-                { "language", language }
-            };
-            string expectedApiUrl = $"https://localhost:7220/api/Books?author={author}&language={language}";
-
-            // Act
-            string result = QueryStringHelper.BuildUrlWithQueryStringUsingStringConcatByEncoding(basePath, dict);
 
             //Assert
             Assert.AreEqual(expectedApiUrl, result);
@@ -144,7 +122,7 @@ namespace BuildQueryStringTests
             string expectedApiUrl = $"https://localhost:7220/api/Books?author=Leo%20Tolstoy&language={language}";
 
             // Act
-            string result = QueryStringHelper.BuildurlWithQueryStringUsingCreateMethod(basePath, dict);
+            string result = QueryStringHelper.BuildUrlWithQueryStringUsingCreateMethod(basePath, dict);
 
             //Assert
             Assert.AreEqual(expectedApiUrl, result);

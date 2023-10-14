@@ -14,10 +14,7 @@ namespace BuildQueryString
             var booksService = serviceProvider.GetRequiredService<BooksApiService>();
 
             Console.WriteLine("\n***************** Build the Query String Using StringConcatenation ***************\n");
-            Console.WriteLine(await booksService.GetWithQueryParamsUsingStringConcatenation("rowling", "english"));
-
-            Console.WriteLine("\n***************** Build the Query String Using StringConcatenation With Encoding ***************\n");
-            Console.WriteLine(await booksService.GetWithQueryParamsUsingStringConcatenationByEncoding("George Orwell", "english"));
+            Console.WriteLine(await booksService.GetWithQueryParamsUsingStringConcatenation("George Orwell", "english"));
 
             Console.WriteLine("\n***************** Build the Query String Using UriBuilder Class ***************\n");
             Console.WriteLine(await booksService.GetWithQueryParamsUsingUriBuilder("Jane Austen", "english"));

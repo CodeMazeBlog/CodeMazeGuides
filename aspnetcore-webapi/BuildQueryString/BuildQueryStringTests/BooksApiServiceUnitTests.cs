@@ -71,37 +71,6 @@ namespace BuildQueryStringUnitTests
         }
 
         [TestMethod]
-        public async Task GivenAuthorAndLanguage_WhenGetWithQueryParamsUsingStringConcatByEncoding_ThenReturnBookDetails()
-        { 
-            // Arrange
-            var author = "George Orwell";
-            var language = "english";
-            var basepath = $"https://localhost:7220/api/Books?author={author}&language={language}";
-            var expectedBooksDetails = $"Author: {author}, Language:{language}";
-
-            var httpClientWrapperMock = new Mock<IHttpClientWrapper>();
-
-            var httpResponseMessage = new HttpResponseMessage
-            {
-                StatusCode = HttpStatusCode.OK,
-                Content = new StringContent(expectedBooksDetails)
-            };
-
-            httpClientWrapperMock
-                .Setup(client => client.GetAsync(basepath))
-                .ReturnsAsync(httpResponseMessage);
-
-            var booksService = new BooksApiService(httpClientWrapperMock.Object);
-
-            // Act
-            string result = await booksService.GetWithQueryParamsUsingStringConcatenationByEncoding(author, language);
-
-            //Assert
-            Assert.AreEqual(expectedBooksDetails, result);
-            httpClientWrapperMock.Verify(client => client.GetAsync(basepath), Times.Once);
-        }
-
-        [TestMethod]
         public async Task GivenAuthorAndLanguage_WhenGetWithQueryParamsUsingUriBuilder_ThenReturnBookDetails()
         {
             // Arrange
