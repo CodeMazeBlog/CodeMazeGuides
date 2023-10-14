@@ -3,6 +3,7 @@
     public class ShoppingCart
     {
         public List<Product> Products { get; set; }
+
         public bool Checkout()
         {
             foreach (var product in Products)
