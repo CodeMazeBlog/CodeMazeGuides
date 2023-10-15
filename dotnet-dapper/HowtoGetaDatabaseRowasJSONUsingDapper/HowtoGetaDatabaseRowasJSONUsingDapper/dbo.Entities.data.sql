@@ -8,7 +8,7 @@ CREATE TABLE [dbo].[Entities] (
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Make] [nvarchar](50) NOT NULL,
 	[Model] [nvarchar](60) NOT NULL,
-	[Year] [nvarchar](50) NOT NULL,
+	[Year] [int] NOT NULL,
 	[Color] [nvarchar](50) NOT NULL
 );
 
