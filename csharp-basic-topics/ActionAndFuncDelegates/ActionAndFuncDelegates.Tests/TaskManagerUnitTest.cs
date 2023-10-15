@@ -5,8 +5,8 @@ public class TaskManagerUnitTest
     [Fact]
     public void GivenAddTaskToList_WhenTaskExist_ThenTaskManagerFunctionalityPass()
     {
-        List<string> tasks = new List<string>();
-        TaskManager taskManager = new TaskManager(tasks);
+        List<string> tasks = new();
+        TaskManager taskManager = new(tasks);
         string task = "Task A";
 
         taskManager.AddTask(task);

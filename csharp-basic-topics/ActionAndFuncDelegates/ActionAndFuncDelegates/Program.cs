@@ -5,9 +5,9 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        List<string> tasks = new List<string>();
+        List<string> tasks = new();
 
-        TaskManager taskManager = new TaskManager(tasks);
+        TaskManager taskManager = new(tasks);
 
         // Action Delegate
         // Using custom defined delegate

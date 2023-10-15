@@ -2,7 +2,7 @@ namespace ActionAndFuncDelegate;
 
 public class TaskManager
 {
-    private List<string> _tasks = new List<string>();
+    private List<string> _tasks = new();
 
     public TaskManager(List<string> tasks) => _tasks = tasks;
 
