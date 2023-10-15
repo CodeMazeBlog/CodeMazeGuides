@@ -32,6 +32,7 @@ namespace HowtoGetaDatabaseRowasJSONUsingDapper.Repository
                 {
                     _logger.LogInformation("Entity not found!");
                 }
+
                 return entity;
             }
         }
