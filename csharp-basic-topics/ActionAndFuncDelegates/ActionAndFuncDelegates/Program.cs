@@ -24,6 +24,6 @@ internal class Program
         Console.WriteLine($"Task Count: {getCount()}"); // Task Count: 2
 
         Func<string, bool> taskExist = taskManager.TaskExists;
-        Console.WriteLine($"Task Count: {taskExist("Create template")}"); // Task Count: True
+        Console.WriteLine($"Task Exist: {taskExist("Create template")}"); // Task Count: True
     }
 }
