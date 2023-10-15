@@ -1,19 +1,19 @@
 ﻿using BenchmarkDotNet.Attributes;
 
-namespace ComparingTheForEachMethodAndForeachStatement;
+namespace TheForEachMethodAndForeachStatement;
 
 [MemoryDiagnoser(true)]
 public class IterationBenchmark
 {
     private const int MinPrice = 10;
     private const int MaxPrice = 100;
-    private List<int> _prices = new();
-    private List<Product> _products = new();
+    private readonly List<int> _prices = new();
+    private readonly List<Product> _products = new();
 
     [GlobalSetup]
     public void Setup()
     {
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < 10_000; i++)
         {
             var price = Random.Shared.Next(MinPrice, MaxPrice);
 
@@ -23,48 +23,26 @@ public class IterationBenchmark
     }
 
     [Benchmark]
-    public int GetTotalOfIntListWithForEachMethod()
+    public void GetTotalOfIntListWithForEachMethod()
     {
-        int total = 0;
-
-        _prices.ForEach(x => total += x);
-
-        return total;
+        Iterators.GetTotalOfIntListWithForEachMethod(_prices);
     }
 
     [Benchmark]
-    public int GetTotalOfIntListWithForeachStatement()
+    public void GetTotalOfIntListWithForeachStatement()
     {
-        int total = 0;
-
-        foreach (var price in _prices)
-        {
-            total += price;
-        }
-
-        return total;
+        Iterators.GetTotalOfIntListWithForeachStatement(_prices);
     }
 
     [Benchmark]
-    public int GetTotalOfProductsListWithForEachMethod()
+    public void GetTotalOfProductsListWithForEachMethod()
     {
-        int total = 0;
-
-        _products.ForEach(x => total += x.Price);
-
-        return total;
+        Iterators.GetTotalOfProductsListWithForEachMethod(_products);
     }
 
     [Benchmark]
-    public int GetTotalOfProductsListWithForeachStatement()
+    public void GetTotalOfProductsListWithForeachStatement()
     {
-        int total = 0;
-
-        foreach (var product in _products)
-        {
-            total += product.Price;
-        }
-
-        return total;
+        Iterators.GetTotalOfProductsListWithForeachStatement(_products);
     }
 }

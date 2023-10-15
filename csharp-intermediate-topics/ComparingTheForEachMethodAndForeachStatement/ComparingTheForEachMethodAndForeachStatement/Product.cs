@@ -1,4 +1,4 @@
-﻿namespace ComparingTheForEachMethodAndForeachStatement;
+﻿namespace TheForEachMethodAndForeachStatement;
 
 public class Product
 {

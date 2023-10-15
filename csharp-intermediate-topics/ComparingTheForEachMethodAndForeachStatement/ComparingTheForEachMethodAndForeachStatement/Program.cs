@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
-using ComparingTheForEachMethodAndForeachStatement;
+using TheForEachMethodAndForeachStatement;
 
 BenchmarkRunner.Run<IterationBenchmark>();
