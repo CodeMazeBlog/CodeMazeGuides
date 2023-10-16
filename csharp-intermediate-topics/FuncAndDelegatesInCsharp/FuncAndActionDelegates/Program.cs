@@ -1,9 +1,6 @@
 ﻿using ActionAndFuncDelegatesInCSharp;
 
-
-
 Action<string> greet = ActionDelegate.greet;
-
 // Use the Action delegate to greet two different people
 greet("John");
 greet("Alice");
