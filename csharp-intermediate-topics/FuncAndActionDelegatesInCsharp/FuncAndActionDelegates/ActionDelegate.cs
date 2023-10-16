@@ -1,0 +1,9 @@
+﻿namespace ActionAndFuncDelegatesInCSharp
+{
+    public class ActionDelegate
+    {
+        // Define a method to greet a person
+        public static Action<string> greet = (name) => Console.WriteLine($"Hello, {name}!");
+ 
+    }
+}
