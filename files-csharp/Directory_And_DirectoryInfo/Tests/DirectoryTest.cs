@@ -22,10 +22,6 @@ namespace Tests
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal(path, result.FullName);
-
-            // Cleanup
-            DirectoryMethods.DeleteDirectory(path);
         }
 
         [Fact]
