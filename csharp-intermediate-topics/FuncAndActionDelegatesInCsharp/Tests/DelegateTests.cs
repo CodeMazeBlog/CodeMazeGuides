@@ -6,10 +6,10 @@ namespace Tests
     public class DelegateTests
     {
         [TestMethod]
-        public void Given_ActionDelegate_When_GreetIsCalled_Then_DisplayGreetingMessage()
+        public void GivenActionDelegate_WhenGreetIsCalled_ThenDisplayGreetingMessage()
         {
             // Arrange
-            string expectedOutput = "Hello, TestUser!"; // Replace with the expected output
+            var expectedOutput = "Hello, TestUser!"; // Replace with the expected output
             var consoleOutput = new System.IO.StringWriter();
             System.Console.SetOut(consoleOutput);
 
@@ -21,13 +21,13 @@ namespace Tests
         }
 
         [TestMethod]
-        public void Given_FuncDelegate_When_AddIsCalled_Then_ReturnSum()
+        public void GivenFuncDelegate_WhenAddIsCalled_ThenReturnSum()
         {
             // Arrange
-            int expected = 8; // Replace with the expected result
+            var expected = 8; // Replace with the expected result
 
             // Act
-            int actual = FuncDelegate.add(5, 3); // Call the method
+            var actual = FuncDelegate.add(5, 3); // Call the method
 
             // Assert
             Assert.AreEqual(expected, actual);
