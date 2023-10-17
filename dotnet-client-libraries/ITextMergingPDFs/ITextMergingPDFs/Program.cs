@@ -58,23 +58,12 @@ void DisplayPDFFile(string pdfFileName)
 
 void RunMergeExample(string folderName, Func<BigDocument, string[]> createExampleDocumentsFunction, bool onlyFirstPage = false)
 {
-    console.Clear();
-
-    var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
-    var pdfFolder = folderManager.PdfFolderName;
-
-    try
-    {
-        folderManager.RecreatePFDDocumentsFolder();
-    }
-    catch (Exception)
-    {
-        Console.WriteLine($"You seem to already have a PDF file open in a folder {pdfFolder}. Please close all PDF files to process with this example.");
+    var folderManager = PrepareExample(folderName);
+    if (folderManager is null)
         return;
-    }
 
-    var documentsManager = new BigDocument(pdfFolder);
-    var merger = new Merger(pdfFolder);
+    var documentsManager = new BigDocument(folderManager.PdfFolderName);
+    var merger = new Merger(folderManager.PdfFolderName);
 
     console.WriteLine("\n\nCreating documents ...\n");
     var documents = createExampleDocumentsFunction(documentsManager);
@@ -96,23 +85,12 @@ void RunMergeExample(string folderName, Func<BigDocument, string[]> createExampl
 
 void RunSplitExample(string folderName)
 {
-    console.Clear();
-
-    var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
-    var pdfFolder = folderManager.PdfFolderName;
-
-    try
-    {
-        folderManager.RecreatePFDDocumentsFolder();
-    }
-    catch (Exception)
-    {
-        Console.WriteLine($"You seem to already have a PDF file open in a folder {pdfFolder}. Please close all PDF files to process with this example.");
+    var folderManager = PrepareExample(folderName);
+    if (folderManager is null)
         return;
-    }
 
-    var documentsManager = new BigDocument(pdfFolder);
-    var merger = new Merger(pdfFolder);
+    var documentsManager = new BigDocument(folderManager.PdfFolderName);
+    var merger = new Merger(folderManager.PdfFolderName);
 
     console.WriteLine("\n\nCreating documents ...\n");
     var document = documentsManager.CreateDocument("document.pdf", PageSize.A5);
@@ -131,23 +109,12 @@ void RunSplitExample(string folderName)
 
 void RunScaleExample(string folderName)
 {
-    console.Clear();
-
-    var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
-    var pdfFolder = folderManager.PdfFolderName;
-
-    try
-    {
-        folderManager.RecreatePFDDocumentsFolder();
-    }
-    catch (Exception)
-    {
-        Console.WriteLine($"You seem to already have a PDF file open in a folder {pdfFolder}. Please close all PDF files to process with this example.");
+    var folderManager = PrepareExample(folderName);
+    if (folderManager is null)
         return;
-    }
 
-    var documentsManager = new BigDocument(pdfFolder);
-    var resizer = new Resizer(pdfFolder);
+    var documentsManager = new BigDocument(folderManager.PdfFolderName);
+    var resizer = new Resizer(folderManager.PdfFolderName);
 
     console.WriteLine("\n\nCreating documents ...\n");
     var document = documentsManager.CreateDocument("document.pdf", PageSize.A4);
@@ -160,4 +127,23 @@ void RunScaleExample(string folderName)
     console.WriteLine($"\nDocument resized ... ");
     console.WriteLine($" * Resized document: {resizeDoc} ");
     DisplayPDFFile(resizeDoc);
+}
+
+FolderManager? PrepareExample(string folderName)
+{
+    console!.Clear();
+
+    var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
+
+    try
+    {
+        folderManager.RecreatePFDDocumentsFolder();
+    }
+    catch (Exception)
+    {
+        Console.WriteLine($"You seem to already have a PDF file open in a folder {folderManager.PdfFolderName}. Please close all PDF files to process with this example.");
+        return null;
+    }
+
+    return folderManager;
 }
