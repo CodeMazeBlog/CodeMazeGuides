@@ -19,14 +19,14 @@ namespace ITextMergingPDFs
 
         public string MergePDFs(string[] pdfFiles, string mergedPdfFileName)
         {
-            string fullFileName = GetFullFileName(mergedPdfFileName);
+            var fullFileName = GetFullFileName(mergedPdfFileName);
             MergingMethodWithChecks(pdfFiles, fullFileName);
             return fullFileName;
         }
 
         public string MergePDFsFirstPage(string[] pdfFiles, string mergedPdfFileName)
         {
-            string fullFileName = GetFullFileName(mergedPdfFileName);
+            var fullFileName = GetFullFileName(mergedPdfFileName);
             MergeOnlyFirstPagesWithChecks(pdfFiles, fullFileName);
             return fullFileName;
         }
@@ -54,7 +54,7 @@ namespace ITextMergingPDFs
             using var mergedPdfDocument = new PdfDocument(writer);
 
             var pdfMerger = new PdfMerger(mergedPdfDocument);
-            foreach (string file in pdfFiles)
+            foreach (var file in pdfFiles)
             {
                 using var reader = new PdfReader(file);
                 using var srcPdfDocument = new PdfDocument(reader);
@@ -70,7 +70,7 @@ namespace ITextMergingPDFs
             using var mergedPdfDocument = new PdfDocument(writer);
 
             var pdfMerger = new PdfMerger(mergedPdfDocument);
-            foreach (string file in pdfFiles)
+            foreach (var file in pdfFiles)
             {
                 using var reader = new PdfReader(file);
                 using var srcPdfDocument = new PdfDocument(reader);
@@ -86,7 +86,7 @@ namespace ITextMergingPDFs
             using var mergedPdfDocument = new PdfDocument(writer);
 
             var pdfMerger = new PdfMerger(mergedPdfDocument);
-            foreach (string file in pdfFiles)
+            foreach (var file in pdfFiles)
             {
                 using var reader = new PdfReader(file);
                 using var srcPdfDocument = new PdfDocument(reader);

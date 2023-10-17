@@ -20,7 +20,7 @@ namespace ITextMergingPDFs
 
         public string ResizeFromA4ToA5(string inputPdfDocument, string outputPdfDocument)
         {
-            string fullFileName = GetFullFileName(outputPdfDocument);
+            var fullFileName = GetFullFileName(outputPdfDocument);
             using var writer = new PdfWriter(fullFileName);
             using var outputDocument = new PdfDocument(writer);
             outputDocument.SetDefaultPageSize(PageSize.A5);
@@ -28,9 +28,9 @@ namespace ITextMergingPDFs
             using var reader = new PdfReader(inputPdfDocument);
             using var inputDocument = new PdfDocument(reader);
 
-            for (int i = 1; i <= inputDocument.GetNumberOfPages(); i++)
+            for (var i = 1; i <= inputDocument.GetNumberOfPages(); i++)
             {
-                PdfPage page = inputDocument.GetPage(i);
+                var page = inputDocument.GetPage(i);
 
                 var formXObject = page.CopyAsFormXObject(outputDocument);
                 var pdfCanvas = new PdfCanvas(outputDocument.AddNewPage());

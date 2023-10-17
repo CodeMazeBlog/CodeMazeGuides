@@ -13,7 +13,7 @@ namespace ITextMergingPDFs.Text
             StringBuilder sb = new(numberOfWords * 10);
             while (numberOfWords > 0)
             {
-                int wordsToTake = Math.Min(numberOfWords, loremIpsumWords.Length);
+                var wordsToTake = Math.Min(numberOfWords, loremIpsumWords.Length);
 
                 if (sb.Length > 0) sb.Append(' ');
                 sb.AppendJoin(' ', loremIpsumWords.Take(wordsToTake));

@@ -47,7 +47,7 @@ namespace Tests
             Assert.IsNotNull(documents);
             Assert.AreEqual(numberOfDocuments, (uint)documents.Length);
 
-            for (int i = 0; i < numberOfDocuments; i++)
+            for (var i = 0; i < numberOfDocuments; i++)
             {
                 var currentDocument = documents[i];
                 Assert.IsNotNull(currentDocument);

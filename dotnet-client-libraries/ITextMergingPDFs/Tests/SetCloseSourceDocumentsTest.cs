@@ -31,7 +31,7 @@ namespace Tests
         public void GivenFalseParameter_WhenCallingSetCloseSourceDocuments_ThenExpectDocumentToStayOpen()
         {
             var sourcePdf = _bigDocument.CreateDocument("TestDocument.pdf", PageSize.A4);
-            string mergedPdf = System.IO.Path.Combine(_folder, "result.pdf");
+            var mergedPdf = System.IO.Path.Combine(_folder, "result.pdf");
 
             using var writer = new PdfWriter(mergedPdf);
             using var mergedPdfDocument = new PdfDocument(writer);
@@ -52,7 +52,7 @@ namespace Tests
         public void GivenTrueParameter_WhenCallingSetCloseSourceDocuments_ThenExpectAutomaticCloseOfDocument()
         {
             var sourcePdf = _bigDocument.CreateDocument("TestDocument.pdf", PageSize.A4);
-            string mergedPdf = System.IO.Path.Combine(_folder, "result.pdf");
+            var mergedPdf = System.IO.Path.Combine(_folder, "result.pdf");
 
             using var writer = new PdfWriter(mergedPdf);
             using var mergedPdfDocument = new PdfDocument(writer);
@@ -73,7 +73,7 @@ namespace Tests
         public void GivenNoParameter_WhenCallingSetCloseSourceDocuments_ThenExpectAutomaticCloseOfDocument()
         {
             var sourcePdf = _bigDocument.CreateDocument("TestDocument.pdf", PageSize.A4);
-            string mergedPdf = System.IO.Path.Combine(_folder, "result.pdf");
+            var mergedPdf = System.IO.Path.Combine(_folder, "result.pdf");
 
             using var writer = new PdfWriter(mergedPdf);
             using var mergedPdfDocument = new PdfDocument(writer);

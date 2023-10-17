@@ -5,74 +5,69 @@ namespace Tests
     [TestClass]
     public class IConsoleTest
     {
+        private FakeConsole _console = default!;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _console = new FakeConsole();
+        }
+
         [TestMethod]
         public void GivenEmptyConsole_WhenUsingConsole_ThenExpectZeroLines()
         {
-            var console = new FakeConsole();
-
-            Assert.AreEqual(0, console.NumberOfLines);
+            Assert.AreEqual(0, _console.NumberOfLines);
         }
 
         [TestMethod]
         public void GivenConsole_WhenUsingClear_ThenExpectZeroLines()
         {
-            var console = new FakeConsole();
+            _console.Write("message");
+            _console.Clear();
 
-            console.Write("message");
-            console.Clear();
-
-            Assert.AreEqual(0, console.NumberOfLines);
+            Assert.AreEqual(0, _console.NumberOfLines);
         }
 
         [TestMethod]
         public void GivenMessage_WhenUsingWrite_ThenExpectOneLine()
         {
-            var console = new FakeConsole();
+            _console.Write("message");
 
-            console.Write("message");
-
-            Assert.AreEqual(1, console.NumberOfLines);
+            Assert.AreEqual(1, _console.NumberOfLines);
         }
 
         [TestMethod]
         public void GivenFewMessages_WhenUsingWrite_ThenExpectOneLine()
         {
-            var console = new FakeConsole();
+            for (var i = 0; i < 10; i++)
+                _console.Write("message");
 
-            for (int i = 0; i < 10; i++)
-                console.Write("message");
-
-            Assert.AreEqual(1, console.NumberOfLines);
+            Assert.AreEqual(1, _console.NumberOfLines);
         }
 
         [TestMethod]
         public void GivenMessage_WhenUsingWriteLine_ThenExpectOneLine()
         {
-            var console = new FakeConsole();
+            _console.WriteLine("message");
 
-            console.WriteLine("message");
-
-            Assert.AreEqual(1, console.NumberOfLines);
+            Assert.AreEqual(1, _console.NumberOfLines);
         }
 
         [TestMethod]
         public void GivenFewMessages_WhenUsingWriteLine_ThenExpectFewLine()
         {
-            var console = new FakeConsole();
-            int numberOfLines = 10;
+            var numberOfLines = 10;
 
-            for (int i = 0; i < numberOfLines; i++)
-                console.WriteLine("message");
+            for (var i = 0; i < numberOfLines; i++)
+                _console.WriteLine("message");
 
-            Assert.AreEqual(numberOfLines, console.NumberOfLines);
+            Assert.AreEqual(numberOfLines, _console.NumberOfLines);
         }
 
         [TestMethod]
         public void GivenConsoleWithoutKeys_WhenUsingGetKey_ThenExpectException()
         {
-            var console = new FakeConsole();
-
-            Assert.ThrowsException<InvalidOperationException>(() => console.ReadKey());
+            Assert.ThrowsException<InvalidOperationException>(() => _console.ReadKey());
         }
 
         [TestMethod]
@@ -85,9 +80,10 @@ namespace Tests
                 new ConsoleKeyInfo('k', ConsoleKey.K, false, false, false),
                 new ConsoleKeyInfo('7', ConsoleKey.D3, false, false, false)
             };
+
             var console = new FakeConsole(pressedKeys);
 
-            for (int i = 0; i < pressedKeys.Count; i++)
+            for (var i = 0; i < pressedKeys.Count; i++)
             {
                 var key = console.ReadKey();
 

@@ -50,7 +50,7 @@ namespace ITextMergingPDFs
                 throw new ArgumentException("Number of documents must be between 1 and 20", nameof(numberOfDocuments));
 
             var documents = new string[numberOfDocuments];
-            for (int i = 0; i < numberOfDocuments; i++)
+            for (var i = 0; i < numberOfDocuments; i++)
             {
                 var fileNameWithNumber = string.Format(pdfFileNameMask, i);
                 documents[i] = CreateDocument(fileNameWithNumber, pageSize ?? GetRandomPageSize());
@@ -64,7 +64,7 @@ namespace ITextMergingPDFs
             document.Add(CreateHeader1($"This is document with the name {caption}"));
             document.Add(CreateHeader1(""));
             document.Add(CreateHeader1(""));
-            for (int i = 0; i < numberOfRepetitions; i++)
+            for (var i = 0; i < numberOfRepetitions; i++)
             {
                 document.Add(CreateHeader1(LoremIpsumGenerator.GenerateWords(3)));
                 document.Add(CreateHeader2(LoremIpsumGenerator.GenerateWords(7)));
@@ -106,7 +106,7 @@ namespace ITextMergingPDFs
         private static void PageXofYFooter(PdfDocument pdfDocument, Document document, string fileName)
         {
             var numPages = pdfDocument.GetNumberOfPages();
-            for (int pageId = 1; pageId <= numPages; pageId++)
+            for (var pageId = 1; pageId <= numPages; pageId++)
             {
                 var page = pdfDocument.GetPage(pageId);
                 var centerPage = page.GetPageSize().GetWidth() / 2;

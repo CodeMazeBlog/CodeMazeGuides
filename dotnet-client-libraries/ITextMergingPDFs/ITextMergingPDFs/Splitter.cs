@@ -25,7 +25,7 @@ namespace ITextMergingPDFs
             using var writer = new PdfWriter(resultPdfDocument);
             using var writerDocument = new PdfDocument(writer);
 
-            int[] oddPagesArray = Enumerable
+            var oddPagesArray = Enumerable
                 .Range(1, srcPdfDocument.GetNumberOfPages())
                 .Where(pageSelection)
                 .ToArray();

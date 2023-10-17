@@ -61,7 +61,7 @@ void RunMergeExample(string folderName, Func<BigDocument, string[]> createExampl
     console.Clear();
 
     var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
-    string pdfFolder = "";
+    var pdfFolder = "";
 
     try
     {
@@ -99,7 +99,7 @@ void RunSplitExample(string folderName)
     console.Clear();
 
     var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
-    string pdfFolder = "";
+    var pdfFolder = "";
 
     try
     {
@@ -120,7 +120,7 @@ void RunSplitExample(string folderName)
     DisplayPDFFile(document);
 
     console.WriteLine("\n\nSplitting document ...\n");
-    var (oddPages, evenPages) = Splitter.Split(document);
+    (var oddPages, var evenPages) = Splitter.Split(document);
 
     console.WriteLine($"\nDocument split into ... ");
     console.WriteLine($" * Odd  pages: {oddPages} ");
@@ -134,7 +134,7 @@ void RunScaleExample(string folderName)
     console.Clear();
 
     var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
-    string pdfFolder = "";
+    var pdfFolder = "";
 
     try
     {
