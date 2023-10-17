@@ -14,8 +14,8 @@ namespace Tests
         public void Initialize()
         {
             _folderManager = FolderManager.CreateFolderManagerInTemporaryFolder("Test");
-            _bigDocument = new BigDocument(_folderManager.EnsurePFDDocumentsFolderExists());
-            _pdfMerger = new Merger(_folderManager.EnsurePFDDocumentsFolderExists());
+            _bigDocument = new BigDocument(_folderManager.PdfFolderName);
+            _pdfMerger = new Merger(_folderManager.PdfFolderName);
         }
 
         [TestCleanup]
@@ -30,7 +30,7 @@ namespace Tests
             var pdfFileNameMask = "TestDocument_{0}.pdf";
             var numberOfDocuments = Random.Shared.Next(1, 20);
             var pageSize = PageSize.A4;
-            var folder = _folderManager.EnsurePFDDocumentsFolderExists();
+            var folder = _folderManager.PdfFolderName;
 
             var documents = _bigDocument.CreateFewDocuments(pdfFileNameMask, (uint)numberOfDocuments, pageSize);
 
@@ -47,7 +47,7 @@ namespace Tests
         [TestMethod]
         public void GivenValidDocument_WhenUsingSplitter_ThenExpectTwoDocuments()
         {
-            var folder = _folderManager.EnsurePFDDocumentsFolderExists();
+            var folder = _folderManager.PdfFolderName;
 
             var document = _bigDocument.CreateDocument("TestDocument", PageSize.A6);
 

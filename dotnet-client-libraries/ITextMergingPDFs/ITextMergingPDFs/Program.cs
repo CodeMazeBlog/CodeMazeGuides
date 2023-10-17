@@ -61,11 +61,11 @@ void RunMergeExample(string folderName, Func<BigDocument, string[]> createExampl
     console.Clear();
 
     var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
-    var pdfFolder = "";
+    var pdfFolder = folderManager.PdfFolderName;
 
     try
     {
-        pdfFolder = folderManager.EnsurePFDDocumentsFolderExists(deleteFolderIfExists: true);
+        folderManager.RecreatePFDDocumentsFolder();
     }
     catch (Exception)
     {
@@ -99,11 +99,11 @@ void RunSplitExample(string folderName)
     console.Clear();
 
     var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
-    var pdfFolder = "";
+    var pdfFolder = folderManager.PdfFolderName;
 
     try
     {
-        pdfFolder = folderManager.EnsurePFDDocumentsFolderExists(deleteFolderIfExists: true);
+        folderManager.RecreatePFDDocumentsFolder();
     }
     catch (Exception)
     {
@@ -134,11 +134,11 @@ void RunScaleExample(string folderName)
     console.Clear();
 
     var folderManager = FolderManager.CreateFolderManagerAsProgramSubfolder(folderName);
-    var pdfFolder = "";
+    var pdfFolder = folderManager.PdfFolderName;
 
     try
     {
-        pdfFolder = folderManager.EnsurePFDDocumentsFolderExists(deleteFolderIfExists: true);
+        folderManager.RecreatePFDDocumentsFolder();
     }
     catch (Exception)
     {

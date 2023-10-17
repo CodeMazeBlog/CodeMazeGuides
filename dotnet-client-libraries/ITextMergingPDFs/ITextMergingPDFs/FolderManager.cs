@@ -2,11 +2,12 @@
 {
     public class FolderManager
     {
-        private readonly string _pdfFolderName;
+        public string PdfFolderName { get; }
 
         private FolderManager(string folder, string subfolder)
         {
-            _pdfFolderName = Path.Combine(folder, subfolder);
+            PdfFolderName = Path.Combine(folder, subfolder);
+            EnsurePFDDocumentsFolderExists();
         }
 
         public static FolderManager CreateFolderManagerInTemporaryFolder(string subFolderName)
@@ -19,21 +20,25 @@
             return new FolderManager(Path.GetDirectoryName(Environment.ProcessPath)!, subFolderName);
         }
 
-        public string EnsurePFDDocumentsFolderExists(bool deleteFolderIfExists = false)
+        public void EnsurePFDDocumentsFolderExists(bool deleteFolderIfExists = false)
         {
-            if (deleteFolderIfExists && Directory.Exists(_pdfFolderName))
+            if (!Directory.Exists(PdfFolderName))
+                Directory.CreateDirectory(PdfFolderName);
+        }
+
+        public void RecreatePFDDocumentsFolder()
+        {
+            if (Directory.Exists(PdfFolderName))
+            {
                 DeletePDFDocumentsFolder();
-
-            if (!Directory.Exists(_pdfFolderName))
-                Directory.CreateDirectory(_pdfFolderName);
-
-            return _pdfFolderName;
+                Directory.CreateDirectory(PdfFolderName);
+            }
         }
 
         public void DeletePDFDocumentsFolder()
         {
-            if (Directory.Exists(_pdfFolderName))
-                Directory.Delete(_pdfFolderName, true);
+            if (Directory.Exists(PdfFolderName))
+                Directory.Delete(PdfFolderName, true);
         }
     }
 }

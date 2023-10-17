@@ -12,7 +12,7 @@ namespace Tests
             var folderManager = FolderManager.CreateFolderManagerInTemporaryFolder(subFolderName);
             var expectedFolder = Path.Combine(Path.GetTempPath(), subFolderName);
 
-            var result = folderManager.EnsurePFDDocumentsFolderExists();
+            var result = folderManager.PdfFolderName;
 
             Assert.IsTrue(Directory.Exists(result));
             Assert.AreEqual(expectedFolder, result);

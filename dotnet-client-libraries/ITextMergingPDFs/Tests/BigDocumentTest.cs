@@ -13,7 +13,7 @@ namespace Tests
         public void Initialize()
         {
             _folderManager = FolderManager.CreateFolderManagerInTemporaryFolder("Test");
-            _bigDocument = new BigDocument(_folderManager.EnsurePFDDocumentsFolderExists());
+            _bigDocument = new BigDocument(_folderManager.PdfFolderName);
         }
 
         [TestCleanup]
