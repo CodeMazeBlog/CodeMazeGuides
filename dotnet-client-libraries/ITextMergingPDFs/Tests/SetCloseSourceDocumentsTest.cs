@@ -12,7 +12,6 @@ namespace Tests
         private BigDocument _bigDocument = default!;
         private FolderManager _folderManager = default!;
         private string _folder = default!;
-        private readonly Random _random = new();
 
         [TestInitialize]
         public void Initialize()

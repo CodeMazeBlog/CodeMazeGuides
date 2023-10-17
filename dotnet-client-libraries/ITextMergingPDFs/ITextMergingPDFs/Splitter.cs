@@ -1,6 +1,5 @@
 ﻿using iText.Kernel.Pdf;
 using iText.Kernel.Utils;
-using System.Linq;
 
 namespace ITextMergingPDFs
 {

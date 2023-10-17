@@ -1,18 +1,11 @@
 ﻿using iText.Kernel.Pdf;
 using iText.Kernel.Utils;
-using iText.Layout;
 
 namespace ITextMergingPDFs
 {
     public class Merger
     {
         private readonly string _path;
-
-        private enum CopyPages
-        {
-            AllPages,
-            FirstPage,
-        }
 
         public static Merger Create(string path)
         {
@@ -24,11 +17,19 @@ namespace ITextMergingPDFs
             _path = path;
         }
 
-        public string MergePDFs(string[] pdfFiles, string mergedPdfFileName) =>
-            DoMerging(pdfFiles, mergedPdfFileName, CopyPages.AllPages);
+        public string MergePDFs(string[] pdfFiles, string mergedPdfFileName)
+        {
+            string fullFileName = GetFullFileName(mergedPdfFileName);
+            MergingMethodWithChecks(pdfFiles, fullFileName);
+            return fullFileName;
+        }
 
-        public string MergePDFsFirstPage(string[] pdfFiles, string mergedPdfFileName) =>
-            DoMerging(pdfFiles, mergedPdfFileName, CopyPages.FirstPage);
+        public string MergePDFsFirstPage(string[] pdfFiles, string mergedPdfFileName)
+        {
+            string fullFileName = GetFullFileName(mergedPdfFileName);
+            MergeOnlyFirstPagesWithChecks(pdfFiles, fullFileName);
+            return fullFileName;
+        }
 
         private string GetFullFileName(string mergedPdfFileName)
         {
@@ -47,37 +48,24 @@ namespace ITextMergingPDFs
                 throw new ArgumentOutOfRangeException(nameof(pdfFiles));
         }
 
-        private string DoMerging(string[] pdfFiles, string mergedPdfFileName, CopyPages copyPages)
+        private static void SimpleMergingMethod(string[] pdfFiles, string mergedPdfFileName)
+        {
+            using var writer = new PdfWriter(mergedPdfFileName);
+            using var mergedPdfDocument = new PdfDocument(writer);
+
+            var pdfMerger = new PdfMerger(mergedPdfDocument);
+            foreach (string file in pdfFiles)
+            {
+                using var reader = new PdfReader(file);
+                using var srcPdfDocument = new PdfDocument(reader);
+                pdfMerger.Merge(srcPdfDocument, 1, srcPdfDocument.GetNumberOfPages());
+            }
+        }
+
+        private static void MergingMethodWithChecks(string[] pdfFiles, string mergedPdfFileName)
         {
             CheckParameters(pdfFiles, mergedPdfFileName);
-            string fullFileName = GetFullFileName(mergedPdfFileName);
 
-            using var writer = new PdfWriter(fullFileName);
-            using var mergedPdfDocument = new PdfDocument(writer);
-
-            var pdfMerger = new PdfMerger(mergedPdfDocument);
-            foreach (string file in pdfFiles)
-            {
-                using var reader = new PdfReader(file);
-                using var srcPdfDocument = new PdfDocument(reader);
-                switch (copyPages)
-                {
-                    case CopyPages.AllPages:
-                        pdfMerger.Merge(srcPdfDocument, 1, srcPdfDocument.GetNumberOfPages());
-                        break;
-                    case CopyPages.FirstPage:
-                        pdfMerger.Merge(srcPdfDocument, 1, 1);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            return fullFileName;
-        }
-
-        private void SimpleMergingMethod(string[] pdfFiles, string mergedPdfFileName)
-        {
             using var writer = new PdfWriter(mergedPdfFileName);
             using var mergedPdfDocument = new PdfDocument(writer);
 
@@ -90,24 +78,19 @@ namespace ITextMergingPDFs
             }
         }
 
-        private void MergingMethodWithChecks(string[] pdfFiles, string mergedPdfFileName)
+        private static void MergeOnlyFirstPagesWithChecks(string[] pdfFiles, string mergedPdfFileName)
         {
-            if (string.IsNullOrWhiteSpace(mergedPdfFileName))
-                throw new ArgumentOutOfRangeException(nameof(mergedPdfFileName));
-
-            var existingFiles = pdfFiles.Where(File.Exists).ToArray();
-            if (existingFiles.Length == 0)
-                throw new ArgumentOutOfRangeException(nameof(pdfFiles));
+            CheckParameters(pdfFiles, mergedPdfFileName);
 
             using var writer = new PdfWriter(mergedPdfFileName);
             using var mergedPdfDocument = new PdfDocument(writer);
 
             var pdfMerger = new PdfMerger(mergedPdfDocument);
-            foreach (string file in existingFiles)
+            foreach (string file in pdfFiles)
             {
                 using var reader = new PdfReader(file);
                 using var srcPdfDocument = new PdfDocument(reader);
-                pdfMerger.Merge(srcPdfDocument, 1, srcPdfDocument.GetNumberOfPages());
+                pdfMerger.Merge(srcPdfDocument, 1, 1);
             }
         }
     }

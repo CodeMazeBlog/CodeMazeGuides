@@ -120,13 +120,13 @@ void RunSplitExample(string folderName)
     DisplayPDFFile(document);
 
     console.WriteLine("\n\nSplitting document ...\n");
-    var splitDoc = Splitter.Split(document);
+    var (oddPages, evenPages) = Splitter.Split(document);
 
     console.WriteLine($"\nDocument split into ... ");
-    console.WriteLine($" * Odd  pages: {splitDoc.oddPages} ");
-    console.WriteLine($" * Even pages: {splitDoc.evenPages} ");
-    DisplayPDFFile(splitDoc.oddPages);
-    DisplayPDFFile(splitDoc.evenPages);
+    console.WriteLine($" * Odd  pages: {oddPages} ");
+    console.WriteLine($" * Even pages: {evenPages} ");
+    DisplayPDFFile(oddPages);
+    DisplayPDFFile(evenPages);
 }
 
 void RunScaleExample(string folderName)
