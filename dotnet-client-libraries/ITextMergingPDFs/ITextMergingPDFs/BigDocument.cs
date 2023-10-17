@@ -62,17 +62,17 @@ namespace ITextMergingPDFs
             {
                 document.Add(CreateHeader1(LoremIpsumGenerator.GenerateWords(3)));
                 document.Add(CreateHeader2(LoremIpsumGenerator.GenerateWords(7)));
-                document.Add(CreateNormalParagraph(LoremIpsumGenerator.GenerateWords()));
+                document.Add(CreateNormalParagraph(LoremIpsumGenerator.GenerateRandomNumberOfWords()));
 
                 document.Add(CreateHeader2(LoremIpsumGenerator.GenerateWords(7)));
-                document.Add(CreateNormalParagraph(LoremIpsumGenerator.GenerateWords()));
-                document.Add(CreateNormalParagraph(LoremIpsumGenerator.GenerateWords()));
+                document.Add(CreateNormalParagraph(LoremIpsumGenerator.GenerateRandomNumberOfWords()));
+                document.Add(CreateNormalParagraph(LoremIpsumGenerator.GenerateRandomNumberOfWords()));
 
                 document.Add(CreateHeader1(LoremIpsumGenerator.GenerateWords(6)));
                 document.Add(CreateHeader2(LoremIpsumGenerator.GenerateWords(3)));
-                document.Add(CreateNormalParagraph(LoremIpsumGenerator.GenerateWords()));
+                document.Add(CreateNormalParagraph(LoremIpsumGenerator.GenerateRandomNumberOfWords()));
                 document.Add(CreateHeader2(LoremIpsumGenerator.GenerateWords(3)));
-                document.Add(CreateNormalParagraph(LoremIpsumGenerator.GenerateWords()));
+                document.Add(CreateNormalParagraph(LoremIpsumGenerator.GenerateRandomNumberOfWords()));
             }
         }
 

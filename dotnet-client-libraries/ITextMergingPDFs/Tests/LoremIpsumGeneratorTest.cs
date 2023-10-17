@@ -12,7 +12,7 @@ namespace Tests
 
             for (var i = 0; i < 10; i++)
             {
-                var numberOfWords = rnd.Next(5, 100);
+                var numberOfWords = rnd.Next(5, 500);
                 var result = LoremIpsumGenerator.GenerateWords(numberOfWords);
                 var numberOfWordsInResult = result.Split(' ').Length;
 
