@@ -73,8 +73,8 @@ void RunMergeExample(string folderName, Func<BigDocument, string[]> createExampl
         return;
     }
 
-    var documentsManager = BigDocument.Create(pdfFolder);
-    var merger = Merger.Create(pdfFolder);
+    var documentsManager = new BigDocument(pdfFolder);
+    var merger = new Merger(pdfFolder);
 
     console.WriteLine("\n\nCreating documents ...\n");
     var documents = createExampleDocumentsFunction(documentsManager);
@@ -111,8 +111,8 @@ void RunSplitExample(string folderName)
         return;
     }
 
-    var documentsManager = BigDocument.Create(pdfFolder);
-    var merger = Merger.Create(pdfFolder);
+    var documentsManager = new BigDocument(pdfFolder);
+    var merger = new Merger(pdfFolder);
 
     console.WriteLine("\n\nCreating documents ...\n");
     var document = documentsManager.CreateDocument("document.pdf", PageSize.A5);
@@ -146,8 +146,8 @@ void RunScaleExample(string folderName)
         return;
     }
 
-    var documentsManager = BigDocument.Create(pdfFolder);
-    var resizer = Resizer.Create(pdfFolder);
+    var documentsManager = new BigDocument(pdfFolder);
+    var resizer = new Resizer(pdfFolder);
 
     console.WriteLine("\n\nCreating documents ...\n");
     var document = documentsManager.CreateDocument("document.pdf", PageSize.A4);

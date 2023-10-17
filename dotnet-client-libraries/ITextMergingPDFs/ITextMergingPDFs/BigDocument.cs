@@ -14,14 +14,9 @@ namespace ITextMergingPDFs
 
         private readonly string _path;
 
-        public static BigDocument Create(string? path = null)
+        public BigDocument(string? path)
         {
-            return new BigDocument(path ?? System.IO.Path.GetTempPath());
-        }
-
-        private BigDocument(string path)
-        {
-            _path = path;
+            _path = path ?? System.IO.Path.GetTempPath();
         }
 
         public string CreateDocument(string pdfFileName, PageSize pageSize)

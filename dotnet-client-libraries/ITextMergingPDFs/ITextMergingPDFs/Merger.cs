@@ -7,12 +7,7 @@ namespace ITextMergingPDFs
     {
         private readonly string _path;
 
-        public static Merger Create(string path)
-        {
-            return new Merger(path);
-        }
-
-        private Merger(string path)
+        public Merger(string path)
         {
             _path = path;
         }

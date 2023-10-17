@@ -8,12 +8,7 @@ namespace ITextMergingPDFs
     {
         private readonly string _path;
 
-        public static Resizer Create(string path)
-        {
-            return new Resizer(path);
-        }
-
-        private Resizer(string path)
+        public Resizer(string path)
         {
             _path = path;
         }
