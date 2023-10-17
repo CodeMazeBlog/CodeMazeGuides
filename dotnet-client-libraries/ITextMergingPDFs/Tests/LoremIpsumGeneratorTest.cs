@@ -10,7 +10,7 @@ namespace Tests
         {
             var rnd = new Random();
 
-            for (var i = 0; i < 10; i++)
+                        for (var i = 0; i < 10; i++)
             {
                 var numberOfWords = rnd.Next(5, 500);
                 var result = LoremIpsumGenerator.GenerateWords(numberOfWords);

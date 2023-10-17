@@ -4,7 +4,7 @@ namespace ITextMergingPDFs
 {
     public class UserMenu
     {
-        private readonly IConsole _console;
+        private readonly IConsoleWrapper _console;
 
         public enum UserAction
         {
@@ -17,7 +17,7 @@ namespace ITextMergingPDFs
             Unknown
         }
 
-        public UserMenu(IConsole console)
+        public UserMenu(IConsoleWrapper console)
         {
             _console = console;
         }

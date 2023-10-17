@@ -3,7 +3,7 @@ using ITextMergingPDFs.ConsoleManager;
 namespace Tests
 {
     [TestClass]
-    public class IConsoleTest
+    public class IConsoleWrapperTest
     {
         private FakeConsole _console = default!;
 

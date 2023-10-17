@@ -1,6 +1,6 @@
 ﻿namespace ITextMergingPDFs.ConsoleManager
 {
-    public class FakeConsole : IConsole, IConsoleLineCounter
+    public class FakeConsole : IConsoleWrapper, IConsoleLineCounter
     {
         private readonly List<ConsoleKeyInfo> _pressedKeys;
         private int _currentKeyIndex;

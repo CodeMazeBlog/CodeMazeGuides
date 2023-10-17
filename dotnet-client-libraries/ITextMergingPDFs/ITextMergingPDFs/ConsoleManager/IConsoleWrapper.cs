@@ -1,6 +1,6 @@
 ﻿namespace ITextMergingPDFs.ConsoleManager
 {
-    public interface IConsole
+    public interface IConsoleWrapper
     {
         void Clear();
 
