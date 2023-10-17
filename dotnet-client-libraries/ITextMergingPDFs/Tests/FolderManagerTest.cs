@@ -28,7 +28,6 @@ namespace Tests
             var folderManager = FolderManager.CreateFolderManagerInTemporaryFolder(subFolderName);
             var newFolder = Path.Combine(Path.GetTempPath(), subFolderName);
 
-            folderManager.EnsurePFDDocumentsFolderExists();
             Assert.IsTrue(Directory.Exists(newFolder));
 
             folderManager.DeletePDFDocumentsFolder();

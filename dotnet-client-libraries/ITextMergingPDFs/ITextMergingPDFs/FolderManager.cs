@@ -7,7 +7,9 @@
         private FolderManager(string folder, string subfolder)
         {
             PdfFolderName = Path.Combine(folder, subfolder);
-            EnsurePFDDocumentsFolderExists();
+
+            if (!Directory.Exists(PdfFolderName))
+                Directory.CreateDirectory(PdfFolderName);
         }
 
         public static FolderManager CreateFolderManagerInTemporaryFolder(string subFolderName)
@@ -18,12 +20,6 @@
         public static FolderManager CreateFolderManagerAsProgramSubfolder(string subFolderName)
         {
             return new FolderManager(Path.GetDirectoryName(Environment.ProcessPath)!, subFolderName);
-        }
-
-        public void EnsurePFDDocumentsFolderExists(bool deleteFolderIfExists = false)
-        {
-            if (!Directory.Exists(PdfFolderName))
-                Directory.CreateDirectory(PdfFolderName);
         }
 
         public void RecreatePFDDocumentsFolder()
