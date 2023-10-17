@@ -60,7 +60,7 @@ namespace Tests
         public void WhenParkingABusInParkingLot_ThenTheBusIsParked()
         {
             //Arrange                        
-            const string isParkedMessage = "The Bus is parked.";            
+            const string isParkedMessage = "The Bus is parked.";
             var mockedBus = new Mock<IVehicle>();
 
             mockedBus.Setup(x => x.Park()).Returns(isParkedMessage);

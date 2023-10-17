@@ -7,5 +7,5 @@ var progressManager = new ProgressManager();
 var parkingLot = new ParkingLot();
 var vehicles = new List<IVehicle>() { new Ambulance(), new Car(), new Truck(), new Motorcycle(), new Bus() };
 
-parkingManager.ParkAllVehicles(parkingLot, vehicles, 
+parkingManager.ParkAllVehicles(parkingLot, vehicles,
     progressManager.GetProgressBarDrawing, progressManager.UpdateProgress);
