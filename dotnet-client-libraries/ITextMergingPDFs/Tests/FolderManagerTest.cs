@@ -20,5 +20,19 @@ namespace Tests
             Directory.Delete(expectedFolder, true);
             Assert.IsFalse(Directory.Exists(result));
         }
+
+        [TestMethod]
+        public void GivenFolderManager_WhenDeletingPdfFolder_ThenExpectFolderToNotExistAnymore()
+        {
+            var subFolderName = "Test";
+            var folderManager = FolderManager.CreateFolderManagerInTemporaryFolder(subFolderName);
+            var newFolder = Path.Combine(Path.GetTempPath(), subFolderName);
+
+            folderManager.EnsurePFDDocumentsFolderExists();
+            Assert.IsTrue(Directory.Exists(newFolder));
+
+            folderManager.DeletePDFDocumentsFolder();
+            Assert.IsFalse(Directory.Exists(newFolder));
+        }
     }
 }

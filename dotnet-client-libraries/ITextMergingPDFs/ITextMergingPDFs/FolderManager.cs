@@ -22,7 +22,7 @@
         public string EnsurePFDDocumentsFolderExists(bool deleteFolderIfExists = false)
         {
             if (deleteFolderIfExists && Directory.Exists(_pdfFolderName))
-                DeletePFDDocumentsFolder();
+                DeletePDFDocumentsFolder();
 
             if (!Directory.Exists(_pdfFolderName))
                 Directory.CreateDirectory(_pdfFolderName);
@@ -30,7 +30,7 @@
             return _pdfFolderName;
         }
 
-        public void DeletePFDDocumentsFolder()
+        public void DeletePDFDocumentsFolder()
         {
             if (Directory.Exists(_pdfFolderName))
                 Directory.Delete(_pdfFolderName, true);

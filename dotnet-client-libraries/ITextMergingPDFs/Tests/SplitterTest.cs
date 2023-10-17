@@ -22,7 +22,7 @@ namespace Tests
         [TestCleanup]
         public void Cleanup()
         {
-            _folderManager.DeletePFDDocumentsFolder();
+            _folderManager.DeletePDFDocumentsFolder();
         }
 
         [TestMethod]
