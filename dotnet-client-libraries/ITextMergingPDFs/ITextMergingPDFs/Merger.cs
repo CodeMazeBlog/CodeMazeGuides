@@ -12,8 +12,6 @@ namespace ITextMergingPDFs
         {
             AllPages,
             FirstPage,
-            OddPages,
-            EvenPages
         }
 
         public static Merger Create(string path)
@@ -31,14 +29,6 @@ namespace ITextMergingPDFs
 
         public string MergePDFsFirstPage(string[] pdfFiles, string mergedPdfFileName) =>
             DoMerging(pdfFiles, mergedPdfFileName, CopyPages.FirstPage);
-
-        public string[] SplitDocument(string pdfFile)
-        {
-            var oddPages = DoMerging(new string[] { pdfFile }, GetFullFileName("odd.pdf"), CopyPages.OddPages);
-            var evenPages = DoMerging(new string[] { pdfFile }, GetFullFileName("even.pdf"), CopyPages.EvenPages);
-
-            return new string[] { oddPages, evenPages };
-        }
 
         private string GetFullFileName(string mergedPdfFileName)
         {
@@ -78,20 +68,47 @@ namespace ITextMergingPDFs
                     case CopyPages.FirstPage:
                         pdfMerger.Merge(srcPdfDocument, 1, 1);
                         break;
-                    case CopyPages.OddPages:
-                        int[] oddArray = Enumerable.Range(1, srcPdfDocument.GetNumberOfPages()).Where(x => x % 2 != 0).ToArray();
-                        pdfMerger.Merge(srcPdfDocument, oddArray);
-                        break;
-                    case CopyPages.EvenPages:
-                        int[] evenArray = Enumerable.Range(1, srcPdfDocument.GetNumberOfPages()).Where(x => x % 2 == 0).ToArray();
-                        pdfMerger.Merge(srcPdfDocument, evenArray);
-                        break;
                     default:
                         break;
                 }
             }
 
             return fullFileName;
+        }
+
+        private void SimpleMergingMethod(string[] pdfFiles, string mergedPdfFileName)
+        {
+            using var writer = new PdfWriter(mergedPdfFileName);
+            using var mergedPdfDocument = new PdfDocument(writer);
+
+            var pdfMerger = new PdfMerger(mergedPdfDocument);
+            foreach (string file in pdfFiles)
+            {
+                using var reader = new PdfReader(file);
+                using var srcPdfDocument = new PdfDocument(reader);
+                pdfMerger.Merge(srcPdfDocument, 1, srcPdfDocument.GetNumberOfPages());
+            }
+        }
+
+        private void MergingMethodWithChecks(string[] pdfFiles, string mergedPdfFileName)
+        {
+            if (string.IsNullOrWhiteSpace(mergedPdfFileName))
+                throw new ArgumentOutOfRangeException(nameof(mergedPdfFileName));
+
+            var existingFiles = pdfFiles.Where(File.Exists).ToArray();
+            if (existingFiles.Length == 0)
+                throw new ArgumentOutOfRangeException(nameof(pdfFiles));
+
+            using var writer = new PdfWriter(mergedPdfFileName);
+            using var mergedPdfDocument = new PdfDocument(writer);
+
+            var pdfMerger = new PdfMerger(mergedPdfDocument);
+            foreach (string file in existingFiles)
+            {
+                using var reader = new PdfReader(file);
+                using var srcPdfDocument = new PdfDocument(reader);
+                pdfMerger.Merge(srcPdfDocument, 1, srcPdfDocument.GetNumberOfPages());
+            }
         }
     }
 }
