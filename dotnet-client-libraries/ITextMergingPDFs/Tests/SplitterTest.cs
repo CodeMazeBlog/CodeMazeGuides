@@ -9,7 +9,6 @@ namespace Tests
         private BigDocument _bigDocument = default!;
         private FolderManager _folderManager = default!;
         private Merger _pdfMerger = default!;
-        private readonly Random _random = new();
 
         [TestInitialize]
         public void Initialize()
@@ -29,7 +28,7 @@ namespace Tests
         public void GivenValidParameters_WhenCreateMerger_ThenExpectOneMoreFile()
         {
             var pdfFileNameMask = "TestDocument_{0}.pdf";
-            var numberOfDocuments = _random.Next(1, 20);
+            var numberOfDocuments = Random.Shared.Next(1, 20);
             var pageSize = PageSize.A4;
             var folder = _folderManager.EnsurePFDDocumentsFolderExists();
 

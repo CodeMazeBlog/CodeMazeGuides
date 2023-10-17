@@ -10,7 +10,6 @@ namespace ITextMergingPDFs
     public class BigDocument
     {
         private static readonly PageSize[] _pageSizes = new PageSize[] { PageSize.A1, PageSize.A2, PageSize.A3, PageSize.A4, PageSize.A5, PageSize.A6 };
-        private static readonly Random _random = new();
 
         private readonly string _path;
 
@@ -114,7 +113,7 @@ namespace ITextMergingPDFs
 
         private static PageSize GetRandomPageSize()
         {
-            var index = _random.Next(0, _pageSizes.Length);
+            var index = Random.Shared.Next(0, _pageSizes.Length);
             return _pageSizes[index];
         }
     }
