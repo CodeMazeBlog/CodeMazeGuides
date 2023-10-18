@@ -4,9 +4,9 @@ public class Program
 {
     private static void Main(string[] args)
     {
-        var maker = new DelegateSoundMaker();
+        var maker = new ActionDelegateSoundMaker();
         var sound = new Sounds();
-        DelegateSoundMaker.SoundMaker soundMaker  = sound.Cow;
+        Action soundMaker  = sound.Cow;
         soundMaker += sound.Goat;
         soundMaker += sound.Dog;
 
