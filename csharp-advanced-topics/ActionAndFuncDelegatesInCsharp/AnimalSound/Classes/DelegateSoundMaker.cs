@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace AnimalSound.Classes
 {
-    public class SoundMaker
+    public class DelegateSoundMaker
     {
-        public void Make()
+        public delegate void SoundMaker();
+        public void Make(SoundMaker soundMaker)
         {
             var sound = new Sounds();
-            sound.Cow();
-            sound.Goat();
-            sound.Dog();
-       }
+            soundMaker();
+            
+        }
     }
 }
