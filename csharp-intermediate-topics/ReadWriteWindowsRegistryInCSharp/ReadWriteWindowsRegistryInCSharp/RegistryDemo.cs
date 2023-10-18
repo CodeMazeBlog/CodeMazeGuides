@@ -19,7 +19,7 @@ public class RegistryDemo
     {
         if (!OperatingSystem.IsWindows())
         {
-            return "Not supported platform";
+            return "Unsupported platform";
         }
 
         return Registry.CurrentUser.Name;
@@ -42,7 +42,7 @@ public class RegistryDemo
             return string.Empty;
         }
 
-        var subKeyToWrite = Registry.CurrentUser + "\\" + CodeMazeRegistryDemoSubKey;
+        var subKeyToWrite = Path.Combine(Registry.CurrentUser.Name, CodeMazeRegistryDemoSubKey);
 
         Registry.SetValue(subKeyToWrite, CodeMazeRegistryDemoName, CodeMazeRegistryDemoValue);
         var writtenValue = Registry.GetValue(subKeyToWrite, CodeMazeRegistryDemoName, string.Empty);
@@ -64,10 +64,12 @@ public class RegistryDemo
         var subKey = baseKey.OpenSubKey(CodeMazeRegistryDemoSubKey, true);
         subKey ??= baseKey.CreateSubKey(CodeMazeRegistryDemoSubKey);
 
-        subKey.SetValue(CodeMazeRegistryDemoName, CodeMazeRegistryDemoValue);
-        var writtenValue = subKey.GetValue(CodeMazeRegistryDemoName);
-        subKey.DeleteValue(CodeMazeRegistryDemoName);
-        subKey.Close();
+        subKey?.SetValue(CodeMazeRegistryDemoName, CodeMazeRegistryDemoValue);
+        var writtenValue = subKey?.GetValue(CodeMazeRegistryDemoName);
+        subKey?.DeleteValue(CodeMazeRegistryDemoName);
+
+        subKey?.Close();
+        subKey?.Dispose();
 
         baseKey.DeleteSubKey(CodeMazeRegistryDemoSubKey);
 
@@ -82,14 +84,16 @@ public class RegistryDemo
         }
 
         var subKey = Registry.CurrentUser.CreateSubKey(CodeMazeRegistryDemoSubKey);
-        subKey.CreateSubKey("SubKey1");
-        subKey.CreateSubKey("SubKey2");
+        subKey?.CreateSubKey("SubKey1");
+        subKey?.CreateSubKey("SubKey2");
 
-        var subKeyNames = subKey.GetSubKeyNames();
+        var subKeyNames = subKey?.GetSubKeyNames();
+
+        subKey?.Dispose();
 
         Registry.CurrentUser.DeleteSubKeyTree(CodeMazeRegistryDemoSubKey);
 
-        return subKeyNames;
+        return subKeyNames ?? Array.Empty<string>();
     }
 
     public static string[] GetValueNames()
@@ -100,15 +104,18 @@ public class RegistryDemo
         }
 
         var subKey = Registry.CurrentUser.CreateSubKey(CodeMazeRegistryDemoSubKey);
-        var subKey1 = subKey.CreateSubKey("SubKey1");
-        subKey1.SetValue("Name1", "Value1");
-        subKey1.SetValue("Name2", "Value2");
+        var subKey1 = subKey?.CreateSubKey("SubKey1");
+        subKey1?.SetValue("Name1", "Value1");
+        subKey1?.SetValue("Name2", "Value2");
 
-        var subKeyNames = subKey1.GetValueNames();
+        var subKeyNames = subKey1?.GetValueNames();
+
+        subKey1?.Dispose();
+        subKey?.Dispose();
 
         Registry.CurrentUser.DeleteSubKeyTree(CodeMazeRegistryDemoSubKey);
 
-        return subKeyNames;
+        return subKeyNames ?? Array.Empty<string>();
     }
 
     public static string GetValueKind()
@@ -119,14 +126,17 @@ public class RegistryDemo
         }
 
         var subKey = Registry.CurrentUser.CreateSubKey(CodeMazeRegistryDemoSubKey);
-        var subKey1 = subKey.CreateSubKey("SubKey1");
-        subKey1.SetValue("Name1", "Value1");
+        var subKey1 = subKey?.CreateSubKey("SubKey1");
+        subKey1?.SetValue("Name1", "Value1");
 
-        var valueKind = subKey1.GetValueKind("Name1");
+        var valueKind = subKey1?.GetValueKind("Name1");
+
+        subKey1?.Dispose();
+        subKey?.Dispose();
 
         Registry.CurrentUser.DeleteSubKeyTree(CodeMazeRegistryDemoSubKey);
 
-        return valueKind.ToString();
+        return valueKind.ToString() ?? string.Empty;
     }
 
     public static bool SetRegistryKeyAccessPermissions()
@@ -136,7 +146,7 @@ public class RegistryDemo
             return false;
         }
 
-        var user = Environment.UserDomainName + "\\" + Environment.UserName;
+        var user = Path.Combine(Environment.UserDomainName, Environment.UserName);
         var registrySecurity = new RegistrySecurity();
 
         var accessRule = new RegistryAccessRule(user,
@@ -149,9 +159,15 @@ public class RegistryDemo
 
         var subKey = Registry.CurrentUser.CreateSubKey(CodeMazeRegistryDemoSubKey, RegistryKeyPermissionCheck.Default, registrySecurity);
 
+        if (subKey == null)
+        {
+            return false;
+        }
+
         var isAdded = false;
         var accessControl = subKey.GetAccessControl();
         var accessRules = accessControl.GetAccessRules(true, true, typeof(NTAccount));
+
         foreach (RegistryAccessRule rule in accessRules)
         {
             if (rule.IdentityReference.Value == user)
@@ -160,6 +176,8 @@ public class RegistryDemo
                 break;
             }
         }
+
+        subKey.Dispose();
 
         Registry.CurrentUser.DeleteSubKeyTree(CodeMazeRegistryDemoSubKey);
 
