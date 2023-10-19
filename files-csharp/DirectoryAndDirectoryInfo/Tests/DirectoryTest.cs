@@ -1,4 +1,4 @@
-﻿using Directory_And_DirectoryInfo;
+﻿using DirectoryAndDirectoryInfo;
 
 namespace Tests
 {

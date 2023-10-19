@@ -1,14 +1,14 @@
-using Directory_And_DirectoryInfo;
+using DirectoryAndDirectoryInfo;
 
 namespace Tests
 {
     public class DirectoryInfoMethodsTests : IDisposable
     {
-        private readonly string testDirectoryPath = @"C:\Public\CM-Demos\Test";
+        private readonly string _testDirectoryPath = @"C:\Public\CM-Demos\Test";
 
         public DirectoryInfoMethodsTests()
         {
-            Directory.CreateDirectory(testDirectoryPath);
+            Directory.CreateDirectory(_testDirectoryPath);
         }
 
         [Fact]
@@ -16,9 +16,9 @@ namespace Tests
         {
             // Arrange
             var directoryInfoMethods = new DirectoryInfoMethods();
-            var directoryInfo = new DirectoryInfo(testDirectoryPath);
+            var directoryInfo = new DirectoryInfo(_testDirectoryPath);
             var subDirectory = "SubFolder";
-            var subDirectoryPath = Path.Combine(testDirectoryPath, subDirectory);
+            var subDirectoryPath = Path.Combine(_testDirectoryPath, subDirectory);
 
             // Act
             directoryInfoMethods.CreateSubDirectories(directoryInfo, subDirectory);
@@ -32,9 +32,9 @@ namespace Tests
         {
             // Arrange
             var directoryInfoMethods = new DirectoryInfoMethods();
-            var sourceDirectoryPath = Path.Combine(testDirectoryPath, "Directory");
+            var sourceDirectoryPath = Path.Combine(_testDirectoryPath, "Directory");
             var sourceDirectoryInfo = Directory.CreateDirectory(sourceDirectoryPath);
-            var destDirectoryPath = Path.Combine(testDirectoryPath, "NewDirectory");
+            var destDirectoryPath = Path.Combine(_testDirectoryPath, "NewDirectory");
 
 
             // Act
@@ -50,7 +50,7 @@ namespace Tests
         {
             // Arrange
             var directoryMethods = new DirectoryInfoMethods();
-            var directoryInfo = new DirectoryInfo(testDirectoryPath);
+            var directoryInfo = new DirectoryInfo(_testDirectoryPath);
             var output = new StringWriter();
             Console.SetOut(output);
 
@@ -65,9 +65,9 @@ namespace Tests
         public void Dispose()
         {
             // Clean up the test directory after tests
-            if (Directory.Exists(testDirectoryPath))
+            if (Directory.Exists(_testDirectoryPath))
             {
-                Directory.Delete(testDirectoryPath, true);
+                Directory.Delete(_testDirectoryPath, true);
             }
         }
     }

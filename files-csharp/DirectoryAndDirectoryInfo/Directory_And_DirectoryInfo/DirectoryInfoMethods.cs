@@ -1,4 +1,4 @@
-﻿namespace Directory_And_DirectoryInfo
+﻿namespace DirectoryAndDirectoryInfo
 {
     public class DirectoryInfoMethods
     {

@@ -1,6 +1,6 @@
 ﻿using System.Security.AccessControl;
 
-namespace Directory_And_DirectoryInfo
+namespace DirectoryAndDirectoryInfo
 {
     public class DirectorySecurityAndPermissions
     {

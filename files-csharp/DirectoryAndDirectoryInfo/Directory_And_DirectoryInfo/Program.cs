@@ -1,5 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using Directory_And_DirectoryInfo;
+using DirectoryAndDirectoryInfo;
 
 var path = @"C:\Public\CM-Demos";
 
