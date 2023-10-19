@@ -4,18 +4,18 @@ namespace Tests
 {
     public class DirectoryMethodsTests
     {
-        private readonly string testDirectoryPath = @"C:\Public\CM-Demos\Test";
+        private readonly string _testDirectoryPath = @"C:\Public\CM-Demos\Test";
 
         public DirectoryMethodsTests()
         {
-            Directory.CreateDirectory(testDirectoryPath);
+            Directory.CreateDirectory(_testDirectoryPath);
         }
 
         [Fact]
         public void WhenCreateADirectoryIsCallled_ShouldReturnDirectoryInfo()
         {
             // Arrange
-            var path = Path.Combine(testDirectoryPath, "test_directory");
+            var path = Path.Combine(_testDirectoryPath, "test_directory");
 
             // Act
             DirectoryInfo? result = DirectoryMethods.CreateADirectory(path);
@@ -28,18 +28,18 @@ namespace Tests
         public void WhenDeleteDirectoryIsCalled_ShouldDeletesDirectory()
         {
             // Act
-            DirectoryMethods.DeleteDirectory(testDirectoryPath);
+            DirectoryMethods.DeleteDirectory(_testDirectoryPath);
 
             // Assert
-            Assert.False(Directory.Exists(testDirectoryPath));
+            Assert.False(Directory.Exists(_testDirectoryPath));
         }
 
         public void Dispose()
         {
             // Clean up the test directory after tests
-            if (Directory.Exists(testDirectoryPath))
+            if (Directory.Exists(_testDirectoryPath))
             {
-                Directory.Delete(testDirectoryPath, true);
+                Directory.Delete(_testDirectoryPath, true);
             }
         }
 
