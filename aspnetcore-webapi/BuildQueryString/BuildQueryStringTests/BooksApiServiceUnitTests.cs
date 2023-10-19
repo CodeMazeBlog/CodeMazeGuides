@@ -76,7 +76,7 @@ namespace BuildQueryStringUnitTests
             // Arrange
             var author = "Jane Austen";
             var language = "english";
-            var basepath = $"https://localhost:7220/api/Books?author={author}&language={language}";
+            var basepath = $"https://localhost:7220/api/Books?author=Jane%20Austen&language={language}";
             var expectedBooksDetails = $"Author: {author}, Language:{language}";
 
             var httpClientWrapperMock = new Mock<IHttpClientWrapper>();

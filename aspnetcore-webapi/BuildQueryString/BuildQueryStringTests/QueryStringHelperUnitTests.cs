@@ -19,7 +19,7 @@ namespace BuildQueryStringTests
                 { "author", author },
                 { "language", language }
             };
-            var expectedApiUrl = $"https://localhost:7220/api/Books?author={author}&language={language}";
+            var expectedApiUrl = $"https://localhost:7220/api/Books?author=George+Orwell&language={language}";
 
             // Act
             string result = QueryStringHelper.BuildUrlWithQueryStringUsingStringConcat(basePath, dict);
@@ -39,7 +39,7 @@ namespace BuildQueryStringTests
                 { "author", author },
                 { "language", language }
             };
-            string expectedApiUrl = $"https://localhost:7220/api/Books?author={author}&language={language}";
+            string expectedApiUrl = $"https://localhost:7220/api/Books?author=Jane%20Austen&language={language}";
 
             // Act
             string result = QueryStringHelper.BuildUrlWithQueryStringUsingUriBuilder(basePath, dict);

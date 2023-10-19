@@ -11,7 +11,7 @@ namespace BuildQueryString
         public static string BuildUrlWithQueryStringUsingStringConcat(
             string basePath, Dictionary<string, string> queryParams)
         {
-            var queryString = string.Join("&", queryParams.Select(kvp => $"{HttpUtility.UrlEncode(kvp.Key)}={kvp.Value}"));
+            var queryString = string.Join("&", queryParams.Select(kvp => $"{HttpUtility.UrlEncode(kvp.Key)}={HttpUtility.UrlEncode(kvp.Value)}"));
 
             var fullApiUrl = $"{basePath}?{queryString}";
             Console.WriteLine(fullApiUrl);
@@ -21,15 +21,15 @@ namespace BuildQueryString
 
         public static string BuildUrlWithQueryStringUsingUriBuilder(string basePath, Dictionary<string, string> queryParams)
         {
-            UriBuilder uriBuilder = new(basePath)
+            var uriBuilder = new UriBuilder(basePath)
             {
                 Query = string.Join("&", queryParams.Select(kvp => $"{kvp.Key}={kvp.Value}"))
             };
 
-            Uri fullApiUrl = uriBuilder.Uri;
+            var fullApiUrl = uriBuilder.Uri.AbsoluteUri;
             Console.WriteLine($"Full API Url: {fullApiUrl}");
 
-            return fullApiUrl.ToString();
+            return fullApiUrl;
         }
 
         public static string BuildUrlWithQueryStringUsingParseQueryStringMethod(
@@ -42,14 +42,14 @@ namespace BuildQueryString
                 query[dict.Key] = dict.Value;
             }
 
-            var fullApiUrl = string.Join("?", basePath, query);
+            var fullApiUrl = string.Join("?", basePath, query.ToString());
             Console.WriteLine($"Full API Url: {fullApiUrl}");
 
             return fullApiUrl;
         }
 
         public static string BuildUrlWithQueryStringUsingAddQueryStringMethod(
-            string basePath, Dictionary<string, string> queryParams)
+            string basePath, Dictionary<string, string?> queryParams)
         {
             string fullApiUrl = QueryHelpers.AddQueryString(basePath, queryParams);
             Console.WriteLine($"Full API Url: {fullApiUrl}");
@@ -60,7 +60,7 @@ namespace BuildQueryString
         public static string BuildUrlWithQueryStringUsingQueryBuilderClass(
             string basePath, Dictionary<string, string> queryParams)
         {
-            QueryBuilder queryBuilder = new QueryBuilder(queryParams);
+            var queryBuilder = new QueryBuilder(queryParams);
 
             var fullApiUrl = basePath + queryBuilder;
             Console.WriteLine($"Full API Url: {fullApiUrl}");
@@ -69,7 +69,7 @@ namespace BuildQueryString
         }
 
         public static string BuildUrlWithQueryStringUsingCreateMethod(
-            string basePath, Dictionary<string, string> queryParams)
+            string basePath, Dictionary<string, string?> queryParams)
         {
             QueryString queryString = QueryString.Create(queryParams);
 
