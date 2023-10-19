@@ -2,7 +2,7 @@
 {
     public class HttpClientWrapper : IHttpClientWrapper
     {
-        private static readonly HttpClient _httpClient = new ();
+        private static readonly HttpClient _httpClient = new();
 
         public async Task<HttpResponseMessage> GetAsync(string requestUri)
         {
