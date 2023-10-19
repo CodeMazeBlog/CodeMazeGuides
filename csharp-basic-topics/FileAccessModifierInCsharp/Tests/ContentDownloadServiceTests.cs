@@ -1,5 +1,3 @@
-using FileAccessModifierInCsharp;
-
 namespace Tests
 {
     public class ContentDownloadServiceTests
