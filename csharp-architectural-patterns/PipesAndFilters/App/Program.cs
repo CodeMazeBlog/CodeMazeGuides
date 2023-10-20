@@ -1,3 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("Hello, World!");
+using App.Application;
+
+Console.WriteLine(new SentimentAnalyzerPipe().Analyze("I am happy"));
+Console.WriteLine(new SentimentAnalyzerPipe().Analyze("I am sad"));
