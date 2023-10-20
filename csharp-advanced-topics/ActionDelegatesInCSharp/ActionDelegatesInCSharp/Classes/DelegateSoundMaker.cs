@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnimalSound.Classes
+namespace ActionDelegatesInCSharp.Classes
 {
-    public class ActionDelegateSoundMaker
+    public class DelegateSoundMaker
     {
-       
-        public void Make(Action soundMaker)
+        public delegate void SoundMaker();
+        public void Make(SoundMaker soundMaker)
         {
             var sound = new Sounds();
             soundMaker();
-
+            
         }
     }
 }

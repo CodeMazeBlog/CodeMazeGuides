@@ -1,4 +1,4 @@
-﻿using AnimalSound.Classes;
+﻿using ActionDelegatesInCSharp.Classes;
 
 public class Program
 {
@@ -6,7 +6,7 @@ public class Program
     {
         var maker = new ActionDelegateSoundMaker();
         var sound = new Sounds();
-        Action soundMaker  = sound.Cow;
+        Action soundMaker = sound.Cow;
         soundMaker += sound.Goat;
         soundMaker += sound.Dog;
 

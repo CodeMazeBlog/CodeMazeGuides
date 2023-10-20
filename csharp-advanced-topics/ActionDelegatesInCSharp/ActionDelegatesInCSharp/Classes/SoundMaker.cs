@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AnimalSound.Classes
+namespace ActionDelegatesInCSharp.Classes
 {
     public class SoundMaker
     {
