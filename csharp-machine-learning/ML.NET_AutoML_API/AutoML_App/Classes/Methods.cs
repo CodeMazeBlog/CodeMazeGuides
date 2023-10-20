@@ -1,12 +1,10 @@
 ﻿using Microsoft.ML;
 using Microsoft.ML.AutoML;
-using Microsoft.ML.AutoML.CodeGen;
 using Microsoft.ML.Data;
 using Microsoft.ML.SearchSpace;
 using Microsoft.ML.SearchSpace.Option;
-using Microsoft.ML.Tokenizers;
-using Microsoft.ML.Trainers;
 using Microsoft.ML.Trainers.LightGbm;
+using System.Linq;
 
 public static class Methods
 {
@@ -133,11 +131,16 @@ public static class Methods
 
         var checkpointPath = Path.Join(Directory.GetCurrentDirectory(), "checkpoints");
         experiment.SetCheckpoint(checkpointPath);
-
+        
         var completedTrials = monitor.GetCompletedTrials();
 
         var bestModel = experimentResults.Model;
         Console.WriteLine($"Accuracy: {experimentResults.Metric}.");
+
+        var pfi = CalculateFeatureImportance(mlContext, bestModel, splitData.TestSet, 
+            columnInfo.ColumnInformation.LabelColumnName);
+        foreach (var item in pfi)
+            Console.WriteLine($"{item.Item1}: {item.Item2}");
 
         mlContext.Model.Save(bestModel, data.Schema, "model.zip");
 
@@ -169,5 +172,18 @@ public static class Methods
         Console.WriteLine("Saved model - Heart Disease Risk exists: {0}", prediction.PredictedLabel);
 
         return bestModel;
+    }
+
+    public static List<Tuple<string, BinaryClassificationMetricsStatistics>> CalculateFeatureImportance(MLContext mlContext, 
+        ITransformer model, IDataView dataset, string labelColumnName)
+    {
+        var linearPredictor = model as TransformerChain<ITransformer>;
+        var pfiResults = mlContext.BinaryClassification
+            .PermutationFeatureImportanceNonCalibrated(linearPredictor, dataset, labelColumnName);
+
+        var featureImportance = pfiResults.Select(x => Tuple.Create(x.Key, x.Value))
+        .OrderByDescending(x => x.Item2).ToList();
+
+        return featureImportance;
     }
 }
