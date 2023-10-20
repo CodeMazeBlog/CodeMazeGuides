@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.WebUtilities;
-using System.Collections.Specialized;
 using System.Web;
 
 namespace BuildQueryString
@@ -35,7 +34,7 @@ namespace BuildQueryString
         public static string BuildUrlWithQueryStringUsingParseQueryStringMethod(
             string basePath, Dictionary<string, string> queryParams)
         {
-            NameValueCollection query = HttpUtility.ParseQueryString(string.Empty);
+            var query = HttpUtility.ParseQueryString(string.Empty);
 
             foreach (var dict in queryParams)
             {
@@ -51,7 +50,7 @@ namespace BuildQueryString
         public static string BuildUrlWithQueryStringUsingAddQueryStringMethod(
             string basePath, Dictionary<string, string?> queryParams)
         {
-            string fullApiUrl = QueryHelpers.AddQueryString(basePath, queryParams);
+            var fullApiUrl = QueryHelpers.AddQueryString(basePath, queryParams);
             Console.WriteLine($"Full API Url: {fullApiUrl}");
 
             return fullApiUrl;
@@ -71,7 +70,7 @@ namespace BuildQueryString
         public static string BuildUrlWithQueryStringUsingCreateMethod(
             string basePath, Dictionary<string, string?> queryParams)
         {
-            QueryString queryString = QueryString.Create(queryParams);
+            var queryString = QueryString.Create(queryParams);
 
             var fullApiUrl = basePath + queryString;
             Console.WriteLine($"Full API Url: {fullApiUrl}");

@@ -32,7 +32,7 @@ namespace BuildQueryStringUnitTests
             var booksService = new BooksApiService(httpClientWrapperMock.Object);
 
             // Act
-            string result = await booksService.HttpGetAsync(basepath);
+            var result = await booksService.HttpGetAsync(basepath);
 
             //Assert
             Assert.AreEqual(expectedBooksDetails, result);
@@ -63,7 +63,7 @@ namespace BuildQueryStringUnitTests
             var booksService = new BooksApiService(httpClientWrapperMock.Object);
 
             // Act
-            string result = await booksService.GetWithQueryParamsUsingStringConcatenation(author, language);
+            var result = await booksService.GetWithQueryParamsUsingStringConcatenation(author, language);
 
             //Assert
             Assert.AreEqual(expectedBooksDetails, result);
@@ -94,7 +94,7 @@ namespace BuildQueryStringUnitTests
             var booksService = new BooksApiService(httpClientWrapperMock.Object);
 
             // Act
-            string result = await booksService.GetWithQueryParamsUsingUriBuilder(author, language);
+            var result = await booksService.GetWithQueryParamsUsingUriBuilder(author, language);
 
             //Assert
             Assert.AreEqual(expectedBooksDetails, result);
@@ -125,7 +125,7 @@ namespace BuildQueryStringUnitTests
             var booksService = new BooksApiService(httpClientWrapperMock.Object);
 
             // Act
-            string result = await booksService.GetWithQueryParamsUsingParseQueryStringMethod(author, language);
+            var result = await booksService.GetWithQueryParamsUsingParseQueryStringMethod(author, language);
 
             //Assert
             Assert.AreEqual(expectedBooksDetails, result);
@@ -156,7 +156,7 @@ namespace BuildQueryStringUnitTests
             var booksService = new BooksApiService(httpClientWrapperMock.Object);
 
             // Act
-            string result = await booksService.GetWithQueryParamsUsingAddQueryStringMethod(author, language);
+            var result = await booksService.GetWithQueryParamsUsingAddQueryStringMethod(author, language);
 
             //Assert
             Assert.AreEqual(expectedBooksDetails, result);
@@ -187,7 +187,7 @@ namespace BuildQueryStringUnitTests
             var booksService = new BooksApiService(httpClientWrapperMock.Object);
 
             // Act
-            string result = await booksService.GetWithQueryParamsUsingQueryBuilderClass(author, language);
+            var result = await booksService.GetWithQueryParamsUsingQueryBuilderClass(author, language);
 
             //Assert
             Assert.AreEqual(expectedBooksDetails, result);
@@ -218,7 +218,7 @@ namespace BuildQueryStringUnitTests
             var booksService = new BooksApiService(httpClientWrapperMock.Object);
 
             // Act
-            string result = await booksService.GetWithQueryParamsUsingCreateMethod(author, language);
+            var result = await booksService.GetWithQueryParamsUsingCreateMethod(author, language);
 
             //Assert
             Assert.AreEqual(expectedBooksDetails, result);
