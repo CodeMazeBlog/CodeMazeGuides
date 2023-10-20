@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToConvertIAsyncEnumerableToList", "HowToConvertIAsyncEnumerableToList\HowToConvertIAsyncEnumerableToList.csproj", "{D17985D3-034A-4794-BD53-CE63DDF07807}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToConvertIAsyncEnumerableToListTests", "HowToConvertIAsyncEnumerableToListTests\HowToConvertIAsyncEnumerableToListTests.csproj", "{05F4A482-4D68-4FA9-B4D2-4133B1EA6807}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D17985D3-034A-4794-BD53-CE63DDF07807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D17985D3-034A-4794-BD53-CE63DDF07807}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D17985D3-034A-4794-BD53-CE63DDF07807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D17985D3-034A-4794-BD53-CE63DDF07807}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F4A482-4D68-4FA9-B4D2-4133B1EA6807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F4A482-4D68-4FA9-B4D2-4133B1EA6807}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F4A482-4D68-4FA9-B4D2-4133B1EA6807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F4A482-4D68-4FA9-B4D2-4133B1EA6807}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EC0209F8-7005-4233-8AF8-519A738F4205}
+	EndGlobalSection
+EndGlobal
