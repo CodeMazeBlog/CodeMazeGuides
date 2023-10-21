@@ -1,5 +1,4 @@
 ﻿using ActionDelegatesInCSharp.Classes;
-
 public class Program
 {
     private static void Main(string[] args)
@@ -9,8 +8,6 @@ public class Program
         Action soundMaker = sound.Cow;
         soundMaker += sound.Goat;
         soundMaker += sound.Dog;
-
-
         maker.Make(soundMaker);
     }
 }
