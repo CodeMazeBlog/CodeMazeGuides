@@ -70,7 +70,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenNoParameter_WhenCallingSetCloseSourceDocuments_ThenExpectAutomaticCloseOfDocument()
+        public void GivenNoParameter_WhenCallingSetCloseSourceDocuments_ThenExpectDocumentToStayOpen()
         {
             var sourcePdf = _bigDocument.CreateDocument("TestDocument.pdf", PageSize.A4);
             var mergedPdf = System.IO.Path.Combine(_folder, "result.pdf");
@@ -82,12 +82,11 @@ namespace Tests
             using var sourcePdfDocument = new PdfDocument(reader);
 
             var pdfMerger = new PdfMerger(mergedPdfDocument);
-            pdfMerger.SetCloseSourceDocuments(true);
 
             pdfMerger.Merge(sourcePdfDocument, 1, sourcePdfDocument.GetNumberOfPages());
 
-            // document is not open, we can't use it
-            Assert.ThrowsException<PdfException>(() => { var numberOfPages = sourcePdfDocument.GetNumberOfPages(); });
+            // document is open, so we can use it
+            var numberOfPages = sourcePdfDocument.GetNumberOfPages();
         }
     }
 }
