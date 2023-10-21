@@ -1,30 +1,28 @@
 ﻿using System.Xml.Serialization;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace XMLDeserializationInCsharp
 {
-    public class Program
-    {
-        static void Main(string[] args)
-        {
-            #region Deserialization_Of_Class
-            #region Simple Deserialization
-            var xmlData = """
+	public class Program
+	{
+		static void Main(string[] args)
+		{
+			var xmlData2 = """<PersonRecord> <Name>John Doe</Name> <Age>30</Age> </PersonRecord>"""; var person2 = DeserializeXmlData<PersonRecord>(xmlData2); Console.WriteLine($"Name: {person2.Name}, Age: {person2.Age}");
+
+			var xmlData = """
                             <Person>
                                 <Name>John Doe</Name>
                                 <Age>30</Age>
                             </Person>
                             """;
 
+			var person = DeserializeXmlData<Person>(xmlData);
+			if (person != null)
+			{
+				Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
+			}
 
-            var person = DeserializeXmlData<Person>(xmlData);
-            if (person != null)
-            {
-                Console.WriteLine($"Name: {person.Name}, Age: {person.Age}");
-            }
-            #endregion
-
-            #region Complex Deserialization
-            var complexXML = """
+			var complexXML = """
                                 <Library>
                                      <Books>
                                     <Book>
@@ -39,36 +37,30 @@ namespace XMLDeserializationInCsharp
                                 </Library>
                                 """;
 
+			var library = DeserializeXmlData<Library>(complexXML);
+			if (library != null)
+			{
+				foreach (Book book in library.Books)
+				{
+					Console.WriteLine($"Title: {book.Title}, Author: {book.Author}");
+				}
+			}
 
-            var library = DeserializeXmlData<Library>(complexXML);
-            if (library != null)
-            {
-                foreach (Book book in library.Books)
-                {
-                    Console.WriteLine($"Title: {book.Title}, Author: {book.Author}");
-                }
-            }
-            #endregion
-            #endregion
-
-
-            #region Deserialization_Of_Records
-
-            //Simple Deserialization
-            var personXML = """
+			//Simple Deserialization
+			var personXML = """
                             <PersonRecord>
                                 <Name>John Wick</Name>
                                 <Age>35</Age>
                             </PersonRecord>
                             """;
-            var personRecord = DeserializeXmlData<PersonRecord>(personXML);
-            if (personRecord != null)
-            {
-                Console.WriteLine($"Name: {personRecord.Name}, Age: {personRecord.Age}");
-            }
+			var personRecord = DeserializeXmlData<PersonRecord>(personXML);
+			if (personRecord != null)
+			{
+				Console.WriteLine($"Name: {personRecord.Name}, Age: {personRecord.Age}");
+			}
 
-            //Complex Deserialization
-            var libraryXML = """
+			//Complex Deserialization
+			var libraryXML = """
                             <LibraryRecord>
                                 <Books>
                                 <BookRecord>
@@ -82,24 +74,23 @@ namespace XMLDeserializationInCsharp
                                 </Books>
                             </LibraryRecord>
                           """;
-            var libraryRecord = DeserializeXmlData<LibraryRecord>(libraryXML);
-            if (libraryRecord != null)
-            {
-                foreach (BookRecord book in libraryRecord.Books)
-                {
-                    Console.WriteLine($"Title: {book.Title}, Author: {book.Author}");
-                }
-            }
-            #endregion
-        }
 
-        #region Deserialization Method
-        public static T? DeserializeXmlData<T>(string xmlData)
-        {
-            var serializer = new XmlSerializer(typeof(T));
-            using var reader = new StringReader(xmlData);
-            return (T?)serializer.Deserialize(reader);
-        }
-        #endregion
-    }
+			var libraryRecord = DeserializeXmlData<LibraryRecord>(libraryXML);
+			if (libraryRecord != null)
+			{
+				foreach (BookRecord book in libraryRecord.Books)
+				{
+					Console.WriteLine($"Title: {book.Title}, Author: {book.Author}");
+				}
+			}
+		}
+
+		public static T? DeserializeXmlData<T>(string xmlData)
+		{
+			var serializer = new XmlSerializer(typeof(T));
+			using var reader = new StringReader(xmlData);
+
+			return (T?)serializer.Deserialize(reader);
+		}
+	}
 }
