@@ -19,17 +19,13 @@ namespace ACFuncDelegatesInCSharp
 
 
         //The Func delegate would hold the reference to the callback method
-        public void MyUpdateData(Func<bool, string> notifyPresentationReturnString)
+        public string MyUpdateData(Func<bool, string> notifyPresentationReturnString)
         {
-
-
             var returnValue = notifyPresentationReturnString(true);
-            Console.WriteLine();
 
             Console.WriteLine("My new Customer Facade " + returnValue);
 
-
-
+            return returnValue;
         }
     }
 }
