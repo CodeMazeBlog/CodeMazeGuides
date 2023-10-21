@@ -6,7 +6,7 @@ using OpenQA.Selenium.Edge;
 
 namespace SelectDropdownOptionUsingSeleniumWebDriverTests;
 
-public class DropdownSeleniumTest
+public class LiveTest
 {
     [Fact]
     public void SelectElementObjectByTextChromeTest()
