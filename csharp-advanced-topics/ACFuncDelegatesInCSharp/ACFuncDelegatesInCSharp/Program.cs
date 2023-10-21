@@ -4,7 +4,15 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            static void Main(string[] args)
+            {
+                Console.WriteLine("********************************");
+                Console.WriteLine(" Action and Func Delegates in C# ");
+                Console.WriteLine("*********************************");
+
+                MyCustomerPresentation mycustomerPresentation = new MyCustomerPresentation();
+                mycustomerPresentation.CheckUpdate();
+            }
         }
     }
 }
