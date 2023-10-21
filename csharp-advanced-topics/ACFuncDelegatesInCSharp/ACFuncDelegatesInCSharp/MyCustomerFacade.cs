@@ -6,7 +6,30 @@ using System.Threading.Tasks;
 
 namespace ACFuncDelegatesInCSharp
 {
-    internal class MyCustomerFacade
+    public class MyCustomerFacade
     {
+
+        //The Action delegate would hold the reference to the call back method
+        public void MyUpdateData(Action<string> notifypresentation)
+        {
+
+            notifypresentation("New Message from facade");
+
+        }
+
+
+        //The Func delegate would hold the reference to the callback method
+        public void MyUpdateData(Func<bool, string> notifyPresentationReturnString)
+        {
+
+
+            var returnValue = notifyPresentationReturnString(true);
+            Console.WriteLine();
+
+            Console.WriteLine("My new Customer Facade " + returnValue);
+
+
+
+        }
     }
 }
