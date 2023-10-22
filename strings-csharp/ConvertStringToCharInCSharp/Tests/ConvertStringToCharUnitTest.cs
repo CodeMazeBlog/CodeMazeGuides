@@ -86,11 +86,10 @@ namespace TestProject
             // Act
             unsafe
             {
-                char[] charArray3;
+                var charArray3 = new char[str.Length];
 
                 fixed (char* p = str)
                 {
-                    charArray3 = new char[str.Length];
                     for (int i = 0; i < str.Length; i++)
                     {
                         charArray3[i] = p[i];
