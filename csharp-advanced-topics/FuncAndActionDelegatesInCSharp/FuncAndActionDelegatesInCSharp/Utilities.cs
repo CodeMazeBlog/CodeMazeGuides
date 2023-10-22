@@ -12,22 +12,22 @@ namespace FuncAndActionDelegatesInCSharp
                 .ToString();
         }
 
-        static void Bark()
+        public static void Bark()
         {
             Console.WriteLine("woof woof");
         }
 
-        static void Greet(string name)
+        public static void Greet(string name)
         {
             Console.WriteLine($"Hey, {name}!");
         }
 
-        static string DescribePerson(string name, string adjective, bool hasFeature)
+        public static string DescribePerson(string name, string adjective, bool hasFeature)
         {
             return $"{name} is {(hasFeature ? "rather " : "not very ")}{adjective}.";
         }
 
-        static string DescribeBook(string author, string adjective, bool isGood)
+        public static string DescribeBook(string author, string adjective, bool isGood)
         {
             return $"{author}'s latest book is quite {adjective} {(isGood ? "and pretty good" : "but not to my taste")}.";
         }
@@ -82,7 +82,7 @@ namespace FuncAndActionDelegatesInCSharp
         }
 
         // Delegates as arguments
-        static void GenerateGreeting(Action<string> action, string name)
+        public static void GenerateGreeting(Action<string> action, string name)
         {
             action(name);
         }
@@ -92,7 +92,7 @@ namespace FuncAndActionDelegatesInCSharp
             GenerateGreeting(Greet, "Michael");
         }
 
-        static void GenerateDescription(
+        public static void GenerateDescription(
             Func<string, string, bool, string> func,
             string name, 
             string adjective, 

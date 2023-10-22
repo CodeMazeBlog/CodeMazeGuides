@@ -6,8 +6,8 @@
     {
         public static void UseRegularDelegateToRepeatWord()
         {
-            GenerateText generate = Utilities.RepeatWord;
-            Console.WriteLine(generate("delegate", 4));
+            GenerateText Generate = Utilities.RepeatWord;
+            Console.WriteLine(Generate("delegate", 4));
         }
     }
 }
