@@ -1,167 +1,100 @@
 using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ConvertString2CharArray;
 
 namespace TestProject
 {
-    [TestClass]
     public class ConvertString2CharArrayUnitTests
     {
-        [TestMethod]
-        public void GivenString_WhenConvertedByToCharArray_ThenReturnsExpectedCharArray()
+        [Fact]
+        public void ConvertToCharArray_Test()
         {
-            // Arrange
-            var str = "Code Maze";
+            string str = "Code Maze";
+            char[] expected = str.ToCharArray();
+            char[] result = Program.ConvertToCharArray(str);
 
-            // Act
-            var charArray = str.ToCharArray();
-
-            // Assert
-            Assert.AreEqual('C', charArray[0]);
-            Assert.AreEqual('o', charArray[1]);
-            Assert.AreEqual('d', charArray[2]);
-            Assert.AreEqual('e', charArray[3]);
-            Assert.AreEqual(' ', charArray[4]);
-            Assert.AreEqual('M', charArray[5]);
-            Assert.AreEqual('a', charArray[6]);
-            Assert.AreEqual('z', charArray[7]);
-            Assert.AreEqual('e', charArray[8]);
+            Assert.Equal(expected, result);
         }
-        
-        [TestMethod]
-        public void GivenString_WhenConvertedByForLoop_ThenReturnsExpectedCharArray()
+
+        [Fact]
+        public void ConvertUsingForLoop_Test()
         {
-            // Arrange
-            var str = "Code Maze";
-            var expectedCharArray = new char[] { 'C', 'o', 'd', 'e', ' ', 'M', 'a', 'z', 'e' };
+            string str = "Code Maze";
+            char[] expected = str.ToCharArray();
+            char[] result = Program.ConvertUsingForLoop(str);
 
-            // Act
-            var charArray = new char[str.Length];
-            for (int i = 0; i < str.Length; i++)
-            {
-                charArray[i] = str[i];
-            }
-
-            // Assert
-            Assert.AreEqual(expectedCharArray, charArray);
+            Assert.Equal(expected, result);
         }
-        
-        [TestMethod]
-        public void GivenString_WhenConvertedByLinqMethod_ThenReturnsExpectedCharArray()
+
+        [Fact]
+        public void ConvertUsingReadOnlySpan_Test()
         {
-            // Arrange
-            var str = "Code Maze";
-            var expectedCharArray = new char[] { 'C', 'o', 'd', 'e', ' ', 'M', 'a', 'z', 'e' };
+            string str = "Code Maze";
+            char[] expected = str.ToCharArray();
+            char[] result = Program.ConvertUsingReadOnlySpan(str);
 
-            // Act
-            var charArrays = str.Select(c => new char[] { c }).ToArray();
-            var charArray = charArrays[0];
-
-            // Assert
-            Assert.AreEqual(expectedCharArray, charArray);
+            Assert.Equal(expected, result);
         }
-        
-        [TestMethod]
-        public void GivenString_WhenConvertedByReadOnlySpan_ThenReturnsExpectedString()
+
+        [Fact]
+        public void ConvertUsingUnsafeCode_Test()
         {
-            // Arrange
-            var str = "Code Maze";
-            var expectedString = "Code Maze";
+            string str = "Code Maze";
+            char[] expected = str.ToCharArray();
+            char[] result = Program.ConvertUsingUnsafeCode(str);
 
-            // Act
-            ReadOnlySpan<char> charSpan = str;
-            var convertedString = charSpan.ToString();
-
-            // Assert
-            Assert.AreEqual(expectedString, convertedString);
+            Assert.Equal(expected, result);
         }
-        
-        [TestMethod]
-        public void GivenString_WhenConvertedByUnsafeCode_ThenReturnsExpectedCharArray()
+
+        [Fact]
+        public void ConvertUsingLinq_Test()
         {
-            // Arrange
-            var str = "Code Maze";
-            var expectedCharArray = new char[] { 'C', 'o', 'd', 'e', ' ', 'M', 'a', 'z', 'e' };
+            string str = "Code Maze";
+            char[] expected = str.ToCharArray();
+            char[] result = Program.ConvertUsingLinq(str);
 
-            // Act
-            unsafe
-            {
-                var charArray3 = new char[str.Length];
-
-                fixed (char* p = str)
-                {
-                    for (int i = 0; i < str.Length; i++)
-                    {
-                        charArray3[i] = p[i];
-                    }
-                }
-
-                // Assert
-                Assert.AreEqual(expectedCharArray, charArray3);
-            }
+            Assert.Equal(expected, result);
         }
-        
-        [TestMethod]
-        public void GivenCharArray_WhenReversed_ThenReturnsExpectedString()
+
+        [Fact]
+        public void ReverseString_Test()
         {
-            // Arrange
-            var charArray = new char[] { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'C', '#' };
-            var expectedString = "#C ,olloH";
+            string input = "Hello, C#";
+            char[] expected = "C# ,olleH".ToCharArray();
+            char[] result = Program.ReverseString(input);
 
-            // Act
-            Array.Reverse(charArray);
-            var reversedString = new string(charArray);
-
-            // Assert
-            Assert.AreEqual(expectedString, reversedString);
+            Assert.Equal(expected, result);
         }
-        
-        [TestMethod]
-        public void GivenCharArray_WhenSorted_ThenReturnsExpectedString()
+
+        [Fact]
+        public void SortString_Test()
         {
-            // Arrange
-            var charArray = new char[] { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'C', '#' };
-            var expectedString = "#, C, H, e, l, l, o, X";
+            string input = "Hello, C#";
+            char[] expected = " #,CHello".ToCharArray();
+            char[] result = Program.SortString(input);
 
-            // Act
-            Array.Sort(charArray);
-            var sortedString = new string(charArray);
-
-            // Assert
-            Assert.AreEqual(expectedString, sortedString);
+            Assert.Equal(expected, result);
         }
-        
-        [TestMethod]
-        public void GivenCharArray_WhenUppercased_ThenReturnsExpectedString()
+
+        [Fact]
+        public void UppercaseString_Test()
         {
-            // Arrange
-            var charArray = new char[] { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'C', '#' };
-            var expectedString = "HELLO, C#";
+            string input = "Hello, C#";
+            char[] expected = "HELLO, C#".ToCharArray();
+            char[] result = Program.UppercaseString(input);
 
-            // Act
-            for (int i = 0; i < charArray.Length; i++)
-            {
-                charArray[i] = char.ToUpper(charArray[i]);
-            }
-            var uppercasedString = new string(charArray);
-
-            // Assert
-            Assert.AreEqual(expectedString, uppercasedString);
+            Assert.Equal(expected, result);
         }
-        
-        [TestMethod]
-        public void GivenCharArray_WhenReplaced_ThenReturnsExpectedString()
+
+        [Fact]
+        public void ReplaceString_Test()
         {
-            // Arrange
-            var charArray = new char[] { 'H', 'e', 'l', 'l', 'o', ',', ' ', 'C', '#' };
-            var expectedString = "HELLO, C++";
+            string input = "Hello, C#";
+            string expected = "Hello, C++";
+            string result = Program.ReplaceString(input, "C#", "C++");
 
-            // Act
-            var modifiedString = new string(charArray);
-            modifiedString = modifiedString.Replace("C#", "C++");
-
-            // Assert
-            Assert.AreEqual(expectedString, modifiedString);
+            Assert.Equal(expected, result);
         }
     }
 }

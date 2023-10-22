@@ -7,93 +7,120 @@ namespace ConvertString2CharArray
     {
         public static void Main(string[] args)
         {
-            #region Methods for Converting Strings to Characters
+            // Example 1: Using ToCharArray()
             var str = "Code Maze";
+            char[] charArray = ConvertToCharArray(str);
+            Console.WriteLine(new string(charArray));
 
-            // Using ToCharArray()
-            char[] charArray = str.ToCharArray();
-            Console.WriteLine(charArray);
+            // Example 2: Using For-loop
+            charArray = ConvertUsingForLoop(str);
+            Console.WriteLine(new string(charArray));
 
-            // Using For-loop
-            var charArray2 = new char[str.Length];
+            // Example 3: Conversion from String to ReadOnlySpan<char>
+            charArray = ConvertUsingReadOnlySpan(str);
+            Console.WriteLine(new string(charArray));
+
+            // Example 4: Using Unsafe Code
+            charArray = ConvertUsingUnsafeCode(str);
+            Console.WriteLine(new string(charArray));
+
+            // Example 5: Using LINQ Method to Convert String to Char
+            charArray = ConvertUsingLinq(str);
+            Console.WriteLine(new string(charArray));
+
+            // Working with Character Arrays
+
+            // Example 6: Reverse the string
+            string originalString = "Hello, C#";
+            charArray = ReverseString(originalString);
+            Console.WriteLine("Reversed String: " + new string(charArray));
+
+            // Example 7: Sort the characters in the string
+            charArray = SortString(originalString);
+            Console.WriteLine("Sorted String: " + new string(charArray));
+
+            // Example 8: Uppercase the string
+            charArray = UppercaseString(originalString);
+            Console.WriteLine("Uppercase String: " + new string(charArray));
+
+            // Example 9: Replace 'C#' with 'C++'
+            string modifiedString = ReplaceString(originalString, "C#", "C++");
+            Console.WriteLine("Modified String: " + modifiedString);
+        }
+
+        public static char[] ConvertToCharArray(string str)
+        {
+            return str.ToCharArray();
+        }
+
+        public static char[] ConvertUsingForLoop(string str)
+        {
+            var charArray = new char[str.Length];
             for (int i = 0; i < str.Length; i++)
             {
-                charArray2[i] = str[i];
+                charArray[i] = str[i];
             }
-            Console.WriteLine(charArray2);
+            return charArray;
+        }
 
-            // Conversion from String to ReadOnlySpan<char>
-            ReadOnlySpan<char> charSpan = str;
-            string charString = charSpan.ToString();
-            Console.WriteLine(charString);
+        public static char[] ConvertUsingReadOnlySpan(string str)
+        {
+            ReadOnlySpan<char> charSpan = str.AsSpan();
+            return charSpan.ToArray();
+        }
 
-            /* Using Unsafe Code
-              ```
-               you must enable unsafe code in your project settings to compile and run this code.
-               1. Right - click on your project in Solution Explorer.
-               2. Select "Properties."
-               3. Under the "Build" tab, check the "Allow unsafe code" option. 
-               ```
-            */
+        public static char[] ConvertUsingUnsafeCode(string str)
+        {
             unsafe
             {
-                char[] charArray3;
+                char[] charArray;
 
                 fixed (char* p = str)
                 {
-                    charArray3 = new char[str.Length];
+                    charArray = new char[str.Length];
                     for (int i = 0; i < str.Length; i++)
                     {
-                        charArray3[i] = p[i];
+                        charArray[i] = p[i];
                     }
                 }
 
-                for (int i = 0; i < str.Length; i++)
-                {
-                    Console.Write(charArray3[i]);
-                }
+                return charArray;
             }
-            Console.WriteLine(); // Add new line
+        }
 
-            // Using the LINQ Method to Convert String to Char
-            char[][] charArrays = str.Select(c => new char[] { c }).ToArray();
-            foreach (char[] charArray4 in charArrays)
+        public static char[] ConvertUsingLinq(string str)
+        {
+            char[] charArray = str.Select(c => c).ToArray();
+            return charArray;
+        }
+
+        public static char[] ReverseString(string input)
+        {
+            char[] charArray = input.ToCharArray();
+            Array.Reverse(charArray);
+            return charArray;
+        }
+
+        public static char[] SortString(string input)
+        {
+            char[] charArray = input.ToCharArray();
+            Array.Sort(charArray);
+            return charArray;
+        }
+
+        public static char[] UppercaseString(string input)
+        {
+            char[] charArray = input.ToCharArray();
+            for (int i = 0; i < charArray.Length; i++)
             {
-                Console.Write(charArray4); // Print individual charArray4
+                charArray[i] = char.ToUpper(charArray[i]);
             }
-            Console.WriteLine(); // Add new line
+            return charArray;
+        }
 
-            #endregion
-
-            #region Working with Character Arrays
-
-            // Original string
-            var text = "Hello, C#";
-
-            // Convert the string to a character array using ToCharArray() method
-            char[] charArray5 = text.ToCharArray();
-
-            // Example 1: Reverse the string
-            Array.Reverse(charArray5);
-            Console.WriteLine("Reversed String: " + new string(charArray5));
-
-            // Example 2: Sort the characters in the string
-            Array.Sort(charArray5);
-            Console.WriteLine("Sorted String: " + new string(charArray5));
-
-            // Example 3: Uppercase the string
-            for (int i = 0; i < charArray5.Length; i++)
-            {
-                charArray5[i] = char.ToUpper(charArray5[i]);
-            }
-            Console.WriteLine("Uppercase String: " + new string(charArray5));
-
-            // Example 4: Replace 'C#' with 'C++'
-            string modifiedString = new string(charArray5);
-            modifiedString = modifiedString.Replace("C#", "C++");
-            Console.WriteLine("Modified String: " + modifiedString);
-
-            #endregion
+        public static string ReplaceString(string input, string oldStr, string newStr)
+        {
+            return input.Replace(oldStr, newStr);
         }
     }
 }
