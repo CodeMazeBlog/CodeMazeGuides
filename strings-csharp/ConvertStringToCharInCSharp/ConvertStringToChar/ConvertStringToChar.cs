@@ -32,16 +32,17 @@ namespace ConvertString2CharArray
 
             // Example 6: Reverse the string
             string originalString = "Hello, C#";
-            charArray = ReverseString(originalString);
-            Console.WriteLine("Reversed String: " + new string(charArray));
+            char[] charArray2 = ConvertToCharArray(originalString);
+            charArray2 = ReverseString(originalString);
+            Console.WriteLine("Reversed String: " + new string(charArray2));
 
             // Example 7: Sort the characters in the string
-            charArray = SortString(originalString);
-            Console.WriteLine("Sorted String: " + new string(charArray));
+            charArray2 = SortString(originalString);
+            Console.WriteLine("Sorted String: " + new string(charArray2));
 
             // Example 8: Uppercase the string
-            charArray = UppercaseString(originalString);
-            Console.WriteLine("Uppercase String: " + new string(charArray));
+            charArray2 = UppercaseString(originalString);
+            Console.WriteLine("Uppercase String: " + new string(charArray2));
 
             // Example 9: Replace 'C#' with 'C++'
             string modifiedString = ReplaceString(originalString, "C#", "C++");

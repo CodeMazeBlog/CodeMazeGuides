@@ -58,7 +58,7 @@ public class ConvertString2CharArrayUnitTests
     public void ReverseString_Test()
     {
         string input = "Hello, C#";
-        char[] expected = "C# ,olleH".ToCharArray();
+        char[] expected = "#C ,olleH".ToCharArray();
         char[] result = Program.ReverseString(input);
 
         Assert.Equal(expected, result);
