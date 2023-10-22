@@ -16,20 +16,20 @@ namespace CustomNamingPolicy
             var jsonString = JsonSerializer.Serialize(person);
             Console.WriteLine(jsonString);
 
-            var jsonopts = new JsonSerializerOptions()
+            var flatCaseOptions = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = new FlatCasePolicy()
             };
 
-            jsonString = JsonSerializer.Serialize(person, jsonopts);
+            jsonString = JsonSerializer.Serialize(person, flatCaseOptions);
             Console.WriteLine(jsonString);
 
-            jsonopts = new JsonSerializerOptions()
+            var camelCaseOptions = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = new CamelCasePolicy()
             };
 
-            jsonString = JsonSerializer.Serialize(person, jsonopts);
+            jsonString = JsonSerializer.Serialize(person, camelCaseOptions);
             Console.WriteLine(jsonString);
         }
     }
