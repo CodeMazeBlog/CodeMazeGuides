@@ -114,9 +114,8 @@ namespace TestProject
 
             // Assert
             Assert.AreEqual(expectedString, reversedString);
-        }
-
-    [TestMethod]
+        }        
+        [TestMethod]
         public void GivenCharArray_WhenSorted_ThenReturnsExpectedString()
         {
             // Arrange
