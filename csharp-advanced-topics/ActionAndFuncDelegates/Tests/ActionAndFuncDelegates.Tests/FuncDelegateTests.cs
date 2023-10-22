@@ -1,4 +1,3 @@
-
 namespace ActionAndFuncDelegates.Tests;
 
 [TestClass]

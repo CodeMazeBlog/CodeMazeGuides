@@ -1,6 +1,4 @@
-﻿
-using ActionAndFuncDelegates;
-
+﻿using ActionAndFuncDelegates;
 
 //--------------------------Action delegate section --------------------- 
 var recipients = new List<string> { "Alice", "Bob", "Matt" };
@@ -12,13 +10,9 @@ foreach (var recipient in recipients)
 }
 
 
-
-
 //--------------------------Func delegate section --------------------- 
-// Testing the the Func
 var numbers = new List<int> { 1, 2, 3, 4, 5 };
 List<int> squares = numbers.Select(new SquareCalculator().SquareCalculatorFunc).ToList();
+
 Console.WriteLine("Original numbers: " + string.Join(", ", numbers));
 Console.WriteLine("Squared numbers: " + string.Join(", ", squares));
-
-
