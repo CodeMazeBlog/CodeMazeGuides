@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ConvertString2CharArray
 {
-    class Program
+    public class Program
     {
         public static void Main(string[] args)
         {
