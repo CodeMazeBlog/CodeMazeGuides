@@ -9,7 +9,7 @@ public class Test
     [Fact]
     public async Task GivenLightSwitchEvent_WhenControlLightsAsyncSucceeds_ThenLightStateChanged()
     {
-        var lightEvent = new LightSwitchEvent { State = LightState.On };
+        var lightEvent = new LightSwitchEvent(Guid.NewGuid(), LightState.On);
         var success = await LightSwitchEventSubscriber.ControlLightsAsync(lightEvent);
 
         Assert.True(success);
@@ -18,7 +18,7 @@ public class Test
     [Fact]
     public async Task GivenThermostatTempChangeEvent_WhenAdjustThermostatAsyncSucceeds_ThenTemperatureChanged()
     {
-        var thermostatEvent = new ThermostatTempChangeEvent { NewTemperature = 33.5m };
+        var thermostatEvent = new ThermostatTempChangeEvent(Guid.NewGuid(), 33.5m);
         var success = await ThermostatEventSubscriber.AdjustThermostatAsync(thermostatEvent);
 
         Assert.True(success);
