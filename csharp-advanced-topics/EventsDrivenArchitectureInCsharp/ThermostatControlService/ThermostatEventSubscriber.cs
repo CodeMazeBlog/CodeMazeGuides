@@ -9,23 +9,23 @@ public class ThermostatEventSubscriber : IConsumer<ThermostatTempChangeEvent>
     {
         var thermostatEvent = context.Message;
 
-        bool success = await AdjustThermostatAsync(thermostatEvent);
+        var isSuccessful = await AdjustThermostatAsync(thermostatEvent);
 
-        if (success)
-            Console.WriteLine($"Thermostat Control: Temperature changed to {thermostatEvent.NewTemperature}°C successfully.");
+        if (isSuccessful)
+            Console.WriteLine($"Temperature changed to {thermostatEvent.Temperature}°C successfully.");
         else
-            Console.WriteLine($"Failed to adjust thermostat to {thermostatEvent.NewTemperature}°C");
+            Console.WriteLine($"Failed to adjust thermostat to {thermostatEvent.Temperature}°C");
 
     }
 
-    public static async Task<bool> AdjustThermostatAsync(ThermostatTempChangeEvent thermoStatEvent)
+    public static async Task<bool> AdjustThermostatAsync(ThermostatTempChangeEvent thermostatEvent)
     {
         try
         {
             // Simulating a delay to represent the time taken to adjust the thermostat.
             await Task.Delay(TimeSpan.FromSeconds(2));
 
-            Console.WriteLine($"Adjusting thermostat to {thermoStatEvent.NewTemperature}°C...");
+            Console.WriteLine($"Adjusting thermostat to {thermostatEvent.Temperature}°C...");
 
             return true;
         }

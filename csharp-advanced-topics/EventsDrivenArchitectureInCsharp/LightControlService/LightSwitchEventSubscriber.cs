@@ -8,10 +8,11 @@ public class LightSwitchEventSubscriber : IConsumer<LightSwitchEvent>
     public async Task Consume(ConsumeContext<LightSwitchEvent> context)
     {
         var lightEvent = context.Message;
-        bool success = await ControlLightsAsync(lightEvent);
 
-        if (success)
-            Console.WriteLine($"Lights Control: Switched {lightEvent.State} successfully.");
+        var isSuccessful = await ControlLightsAsync(lightEvent);
+
+        if (isSuccessful)
+            Console.WriteLine($"Lights switched {lightEvent.State} successfully.");
         else
             Console.WriteLine($"Failed to control lights: {lightEvent.State}");
 
