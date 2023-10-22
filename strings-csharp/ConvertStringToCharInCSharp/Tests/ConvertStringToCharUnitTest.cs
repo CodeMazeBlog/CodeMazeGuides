@@ -27,7 +27,7 @@ namespace TestProject
             Assert.AreEqual('z', charArray[7]);
             Assert.AreEqual('e', charArray[8]);
         }
-
+        
         [TestMethod]
         public void GivenString_WhenConvertedByForLoop_ThenReturnsExpectedCharArray()
         {
@@ -45,7 +45,7 @@ namespace TestProject
             // Assert
             Assert.AreEqual(expectedCharArray, charArray);
         }
-
+        
         [TestMethod]
         public void GivenString_WhenConvertedByLinqMethod_ThenReturnsExpectedCharArray()
         {
@@ -60,7 +60,7 @@ namespace TestProject
             // Assert
             Assert.AreEqual(expectedCharArray, charArray);
         }
-
+        
         [TestMethod]
         public void GivenString_WhenConvertedByReadOnlySpan_ThenReturnsExpectedString()
         {
@@ -75,7 +75,7 @@ namespace TestProject
             // Assert
             Assert.AreEqual(expectedString, convertedString);
         }
-
+        
         [TestMethod]
         public void GivenString_WhenConvertedByUnsafeCode_ThenReturnsExpectedCharArray()
         {
@@ -100,7 +100,7 @@ namespace TestProject
                 Assert.AreEqual(expectedCharArray, charArray3);
             }
         }
-
+        
         [TestMethod]
         public void GivenCharArray_WhenReversed_ThenReturnsExpectedString()
         {
@@ -114,7 +114,8 @@ namespace TestProject
 
             // Assert
             Assert.AreEqual(expectedString, reversedString);
-        }        
+        }
+        
         [TestMethod]
         public void GivenCharArray_WhenSorted_ThenReturnsExpectedString()
         {
@@ -129,7 +130,7 @@ namespace TestProject
             // Assert
             Assert.AreEqual(expectedString, sortedString);
         }
-
+        
         [TestMethod]
         public void GivenCharArray_WhenUppercased_ThenReturnsExpectedString()
         {
@@ -147,7 +148,7 @@ namespace TestProject
             // Assert
             Assert.AreEqual(expectedString, uppercasedString);
         }
-
+        
         [TestMethod]
         public void GivenCharArray_WhenReplaced_ThenReturnsExpectedString()
         {
