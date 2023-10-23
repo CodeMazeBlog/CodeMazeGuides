@@ -55,7 +55,7 @@ namespace FuncAndActionDelegatesInCSharp
         // Instantiation
         public static void UseLongNewKeywordInstantiation()
         {
-            Action<string> BePolite = new Action<string>(Greet);
+            var BePolite = new Action<string>(Greet);
             BePolite("Jennifer");
         }
 
@@ -115,7 +115,7 @@ namespace FuncAndActionDelegatesInCSharp
 
             Console.WriteLine(question);
 
-            string topic = Console.ReadLine().ToLower();
+            var topic = Console.ReadLine().ToLower();
 
             Func<string, string, bool, string> GenerateDescription = topic == "d"
                 ? DescribePerson : DescribeBook;

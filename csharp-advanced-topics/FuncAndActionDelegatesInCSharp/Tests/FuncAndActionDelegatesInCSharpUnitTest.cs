@@ -1,7 +1,4 @@
-using System.Text;
-using Xunit;
 using FuncAndActionDelegatesInCSharp;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Tests
 {
