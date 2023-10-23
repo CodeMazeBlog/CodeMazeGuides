@@ -29,7 +29,8 @@ namespace FuncAndActionDelegatesInCSharp
 
         public static string DescribeBook(string author, string adjective, bool isGood)
         {
-            return $"{author}'s latest book is quite {adjective} {(isGood ? "and pretty good" : "but not to my taste")}.";
+            return $"{author}'s latest book is quite {adjective} {(isGood ? "and pretty good" 
+                : "but not to my taste")}.";
         }
 
         // Func delegate
@@ -109,8 +110,8 @@ namespace FuncAndActionDelegatesInCSharp
 
         public static void UseDynamicMethodAssignment()
         {
-            string author = "Danny";
-            string question = "Hey, if you need information about the author, enter D."
+            var author = "Danny";
+            var question = "Hey, if you need information about the author, enter D."
                 + "\nIf you need information about his latest book enter anything else: ";
 
             Console.WriteLine(question);
