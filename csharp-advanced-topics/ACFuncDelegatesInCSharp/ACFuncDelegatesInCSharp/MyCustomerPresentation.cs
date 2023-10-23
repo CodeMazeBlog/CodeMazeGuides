@@ -4,7 +4,7 @@
     {
         public void CheckUpdate()
         {
-            MyCustomerFacade fc = new MyCustomerFacade();
+            var fc = new MyCustomerFacade();
             fc.MyUpdateData(MyNotificationCallBack);
             Console.WriteLine();
             fc.MyUpdateData(NewnotificationCallBack);
