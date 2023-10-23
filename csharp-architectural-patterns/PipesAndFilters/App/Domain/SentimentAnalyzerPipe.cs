@@ -1,6 +1,4 @@
-using App.Domain;
-
-namespace App.Application;
+namespace App.Domain;
 
 public class SentimentAnalyzerPipe
 {
