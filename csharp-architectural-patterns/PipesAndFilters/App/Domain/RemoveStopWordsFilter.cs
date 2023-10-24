@@ -11,6 +11,7 @@ public class RemoveStopWordsFilter : IFilter
     {
         var words = input.Split(new[] { " ", "\t", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
         var filterWords = words.Where(x => !StopWords.Contains(x));
+        
         return string.Join(" ", filterWords);
     }
 }

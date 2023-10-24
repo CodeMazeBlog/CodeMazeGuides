@@ -19,6 +19,7 @@ public class SentimentFilter : IFilter
         var negativeCount = words.Count(x => negativeWords.Contains(x));
 
         if (positiveCount > negativeCount) return "Positive";
+        
         return negativeCount > positiveCount ? "Negative" : "Neutral";
     }
 }
