@@ -1,20 +1,19 @@
-namespace InterceptorsInCSharp.Tests
+namespace InterceptorsInCSharp.Tests;
+
+public class Tests
 {
-    public class Tests
+    [Test]
+    public void GivenICallTheRunMethod__ThenItShouldReturnTheValueFromTheInterceptingMethod()
     {
-        [Test]
-        public void GivenICallTheRunMethod__ThenItShouldReturnTheValueFromTheInterceptingMethod()
-        {
-            //Arrange
-            const string expectedText = "Hello, Code Maze!\nGreetings, Code Maze!\n";
-            using var consoleTester = new ConsoleOutputTester();
+        //Arrange
+        string expectedText = $"Hello, Code Maze!{Environment.NewLine}Greetings, Code Maze!\n";
+        using var consoleTester = new ConsoleOutputTester();
 
-            //Act
-            Program.Main([]);
-            var response = consoleTester.GetOutput();
+        //Act
+        Program.Main([]);
+        var response = consoleTester.GetOutput();
 
-            //Assert
-            Assert.That(response, Is.EqualTo(expectedText));
-        }
+        //Assert
+        Assert.That(response, Is.EqualTo(expectedText));
     }
 }
