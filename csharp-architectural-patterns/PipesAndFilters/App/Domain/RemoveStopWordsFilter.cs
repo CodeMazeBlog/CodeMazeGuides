@@ -7,7 +7,7 @@ public class RemoveStopWordsFilter : IFilter
         "a", "an", "and", "are", "as", "at", "be", "but", "by", "my", "not", "of", "on", "or", "the", "to"
     };
 
-    public string ProcessAsync(string input)
+    public string Process(string input)
     {
         var words = input.Split(new[] { " ", "\t", "\n", "\r" }, StringSplitOptions.RemoveEmptyEntries);
         var filterWords = words.Where(x => !StopWords.Contains(x));

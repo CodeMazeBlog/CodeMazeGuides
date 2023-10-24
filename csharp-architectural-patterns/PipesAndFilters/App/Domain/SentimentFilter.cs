@@ -2,7 +2,7 @@ namespace App.Domain;
 
 public class SentimentFilter : IFilter
 {
-    public string ProcessAsync(string input)
+    public string Process(string input)
     {
         var positiveWords = new HashSet<string>
         {

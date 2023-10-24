@@ -2,5 +2,5 @@ namespace App.Domain;
 
 public interface IFilter
 {
-    public string ProcessAsync(string input);
+    public string Process(string input);
 }

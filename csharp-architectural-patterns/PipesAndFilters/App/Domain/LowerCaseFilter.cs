@@ -2,7 +2,7 @@ namespace App.Domain;
 
 public class LowerCaseFilter : IFilter
 {
-    public string ProcessAsync(string input)
+    public string Process(string input)
     {
         return input.ToLower();
     }
