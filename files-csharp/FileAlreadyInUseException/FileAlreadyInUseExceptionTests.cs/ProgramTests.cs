@@ -17,7 +17,7 @@ public class ProgramTests
 
         // Assert
         Assert.False(result);
-        File.Delete(filePath); 
+        File.Delete(filePath);
     }
 
     [Fact]
@@ -48,7 +48,7 @@ public class ProgramTests
 
         // Assert
         Assert.False(result);
-        File.Delete(filePath); 
+        File.Delete(filePath);
     }
 
     [Fact]
