@@ -34,7 +34,7 @@ namespace Tests
 
             userMenu.DisplayOptions();
             IConsoleLineCounter consoleLineCounter = console;
-            Assert.AreEqual(consoleLineCounter.NumberOfLines, 8);
+            Assert.AreEqual(consoleLineCounter.NumberOfLines, 7);
         }
     }
 }

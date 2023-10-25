@@ -46,9 +46,8 @@ namespace ITextMergingPDFs
 
             _console.WriteLine("1. Merge 3 PDF Documents with the Same Size");
             _console.WriteLine("2. Merge 3 PDF Documents with the Different Sizes");
-            _console.WriteLine("3. Merge 3 PDF Documents First Page with the Different Sizes");
-            _console.WriteLine("4. Split Document on Odd and Even Pages");
-            _console.WriteLine("5. Resize Document");
+            _console.WriteLine("3. Split Document on Odd and Even Pages");
+            _console.WriteLine("4. Resize Document");
             _console.WriteLine("X. Exit");
         }
     }
