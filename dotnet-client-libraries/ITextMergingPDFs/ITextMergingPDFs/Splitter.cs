@@ -3,7 +3,7 @@ using iText.Kernel.Utils;
 
 namespace ITextMergingPDFs
 {
-    public class Splitter
+    public static class Splitter
     {
         public static (string oddPages, string evenPages) Split(string sourcePdfFile)
         {
