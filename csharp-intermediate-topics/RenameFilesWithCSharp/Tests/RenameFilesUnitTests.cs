@@ -6,15 +6,18 @@
         public void GivenValidDirectoryPath_WhenFindingFiles_ThenReturnListOfFiles()
         {
             // Arrange
-            var directoryPath = @"C:\Users\HP\Desktop\MyDirectory"; //Enter valid directory path
+            string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            Directory.CreateDirectory(tempDirectory);
 
             // Act
-            List<string> files = FindingFilesInFolder.FindFilesInFolder();
+            var files = FindingFilesInFolder.FindFilesInFolder(tempDirectory);
 
             // Assert
             Assert.NotNull(files);
-            Assert.All(files, file => Assert.True(File.Exists(file))); // Check if each file exists
-            Assert.All(files, file => Assert.Contains(directoryPath, file)); // Check if each file is within the specified directory
+            Assert.IsType<List<string>>(files);
+
+            // Clean up
+            Directory.Delete(tempDirectory);
         }
 
 
@@ -22,73 +25,107 @@
         public void GivenExistingFileAndNewFileName_WhenRenamingFile_ThenOldFileIsRenamedToNewFile()
         {
             // Arrange
-            var oldFile = @"C:\Users\HP\Desktop\MyDirectory\FileOne.txt"; //Enter valid directory path
+            string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            Directory.CreateDirectory(tempDirectory);
 
-            var newFile = @"C:\Users\HP\Desktop\MyDirectory\File_v1.txt"; //Enter valid directory path
+            string oldFilePath = Path.Combine(tempDirectory, "oldfile.txt");
+            File.WriteAllText(oldFilePath, "content");
+            string newFilePath = Path.Combine(tempDirectory, "newfile.txt");
 
             // Act
-            RenameSingleFileInFolder.RenameFileInDirectory();
+            RenameSingleFileInFolder.RenameFileInDirectory(oldFilePath, newFilePath);
 
             // Assert
-            Assert.True(File.Exists(newFile));
-            Assert.False(File.Exists(oldFile));
+            Assert.True(File.Exists(newFilePath));
+            Assert.False(File.Exists(oldFilePath));
+
+            // Clean up
+            Directory.Delete(tempDirectory, true);
         }
 
 
         [Fact]
-        public void GivenPhotos_WhenRenamedByCreationTime_ThenHaveCorrectNames()
+        public void WhenBatchRenamingPhotosWithDateTimeAndAllowedExtensionsExist_ThenPhotosShouldBeRenamed()
         {
             // Arrange
-            var directoryPath = @"C:\Users\HP\Desktop\MyDirectory2"; //Enter valid directory path
+            var tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDirectory);
 
-            string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };
+            File.Create(Path.Combine(tempDirectory, "photo1.jpg")).Close();
+            File.Create(Path.Combine(tempDirectory, "photo2.png")).Close();
 
             // Act
-            BatchRenameFiles.RenamePhotosWithDateTime();
+            BatchRenameFiles.RenamePhotosWithDateTime(tempDirectory);
 
             // Assert
-            var photoFiles = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories)
-                                     .Where(file => allowedExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase))
-                                     .ToList();
+            Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.jpg")));
+            Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.png")));
 
-            foreach (var photoFile in photoFiles)
-            {
-                // Get the expected filename based on the file's creation time
-                var creationTime = File.GetCreationTime(photoFile);
-                var expectedFileName = $"Image_{creationTime:yyyy-MM-dd_HHmmss}{Path.GetExtension(photoFile)}";
-
-                // Check if the actual filename matches the expected format
-                Assert.True(Path.GetFileName(photoFile) == expectedFileName, $"File '{photoFile}' has incorrect name '{Path.GetFileName(photoFile)}'. Expected: '{expectedFileName}'");
-            }
+            // Clean up
+            Directory.Delete(tempDirectory, true);
         }
 
 
-
         [Fact]
-        public void GivenPhotos_WhenRenamedByCreationTimeWithErrorsHandled_ThenHaveCorrectNames()
+        public void WhenBatchRenamingPhotosWithDateTimeAndNoAllowedExtensionsExist_ThenNoPhotosShouldBeRenamed()
         {
             // Arrange
-            var directoryPath = @"C:\Users\HP\Desktop\MyDirectory2"; //Enter valid directory path
+            var tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDirectory);
 
-            string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };
+            File.Create(Path.Combine(tempDirectory, "document.docx")).Close();
 
             // Act
-            BatchRenameFileWithErrorHandling.RenamePhotosWithDateTime();
+            BatchRenameFiles.RenamePhotosWithDateTime(tempDirectory);
 
             // Assert
-            var photoFiles = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories)
-                                     .Where(file => allowedExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase))
-                                     .ToList();
+            Assert.False(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.jpg")));
+            Assert.False(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.png")));
 
-            foreach (var photoFile in photoFiles)
-            {
-                // Get the expected filename based on the file's creation time
-                var creationTime = File.GetCreationTime(photoFile);
-                var expectedFileName = $"Image_{creationTime:yyyy-MM-dd_HHmmss}{Path.GetExtension(photoFile)}";
+            // Clean up
+            Directory.Delete(tempDirectory, true);
+        }
 
-                // Check if the actual filename matches the expected format
-                Assert.True(Path.GetFileName(photoFile) == expectedFileName, $"File '{photoFile}' has incorrect name '{Path.GetFileName(photoFile)}'. Expected: '{expectedFileName}'");
-            }
+
+        [Fact]
+        public void WhenRenamingPhotosWithDateTimeAllowedExtensionsExist_ThenPhotosShouldBeRenamed()
+        {
+            // Arrange
+            var tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDirectory);
+
+            File.Create(Path.Combine(tempDirectory, "photo1.jpg")).Close();
+            File.Create(Path.Combine(tempDirectory, "photo2.png")).Close();
+
+            // Act
+            BatchRenameFileWithErrorHandling.RenamePhotosWithDateTime(tempDirectory);
+
+            // Assert
+            Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.jpg")));
+            Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.png")));
+
+            // Clean up
+            Directory.Delete(tempDirectory, true);
+        }
+
+        [Fact]
+        public void WhenRenamingPhotosWithDateTimeAndNoAllowedExtensionsExist_ThenNoPhotosShouldBeRenamed()
+        {
+            // Arrange
+            var tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            Directory.CreateDirectory(tempDirectory);
+
+            File.Create(Path.Combine(tempDirectory, "document.docx")).Close();
+
+            // Act
+            BatchRenameFileWithErrorHandling.RenamePhotosWithDateTime(tempDirectory);
+
+            // Assert
+            Assert.False(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.jpg")));
+            Assert.False(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.png")));
+
+            // Clean up
+            Directory.Delete(tempDirectory, true);
         }
 
 

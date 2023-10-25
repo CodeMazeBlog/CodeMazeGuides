@@ -2,10 +2,8 @@
 {
     public class BatchRenameFiles
     {
-        public static void RenamePhotosWithDateTime()
+        public static void RenamePhotosWithDateTime(string directoryPath)
         {
-            // The path to the directory containing the photos to be renamed.
-            var directoryPath = @"C:\Users\HP\Desktop\MyDirectory2";
 
             // An array of allowed file extensions.
             string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };

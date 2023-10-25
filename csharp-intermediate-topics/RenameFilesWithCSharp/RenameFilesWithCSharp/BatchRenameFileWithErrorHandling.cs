@@ -2,11 +2,10 @@
 {
     public class BatchRenameFileWithErrorHandling
     {
-        public static void RenamePhotosWithDateTime()
+        public static void RenamePhotosWithDateTime(string directoryPath)
         {
             try
             {
-                var directoryPath = @"C:\Users\HP\Desktop\MyDirectory2";
 
                 string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };
 

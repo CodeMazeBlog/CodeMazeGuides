@@ -2,9 +2,8 @@
 {
     public class FindingFilesInFolder
     {
-        public static List<string> FindFilesInFolder()
+        public static List<string> FindFilesInFolder(string directoryPath)
         {
-            var directoryPath = @"C:\Users\HP\Desktop\MyDirectory";
 
             var files = Directory.GetFiles(directoryPath, "*", SearchOption.AllDirectories);
 
