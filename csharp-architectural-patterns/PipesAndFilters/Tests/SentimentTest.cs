@@ -1,7 +1,4 @@
-
-
 namespace Tests;
-
 public class SentimentTest
 {
     [Fact]
