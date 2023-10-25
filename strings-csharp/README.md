@@ -19,6 +19,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [How to Generate a Stream From a String?](https://code-maze.com/dotnet-generate-stream-from-string/)
 - [How to Identify If a String is a Number in C#](https://code-maze.com/csharp-identify-if-a-string-is-a-number/)
 - [How to Remove All Whitespace Characters From a String in C#?](https://code-maze.com/replace-whitespaces-string-csharp/)
+- [Replace Line Breaks in a String in C#](https://code-maze.com/csharp-replace-line-breaks-in-a-string/)
 - [Different Ways to Split a String in C#](https://code-maze.com/csharp-different-ways-to-split-a-string/)
 - [Difference Between String, FormattableString, IFormattable in C#](https://code-maze.com/csharp-difference-between-string-formattablestring-iformattable/)
 - [StringBuilder in C#](https://code-maze.com/stringbuilder-csharp/)
