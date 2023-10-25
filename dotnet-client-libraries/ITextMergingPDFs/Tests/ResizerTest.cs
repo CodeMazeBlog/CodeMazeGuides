@@ -36,7 +36,7 @@ namespace Tests
             var numberOfFilesInFolder = Directory.GetFiles(folder).Length;
             Assert.AreEqual(numberOfFilesInFolder, 1);
 
-            _resizer.ResizeFromA4ToA5(document, "resized.pdf");
+            _resizer.ResizeFromToA5(document, "resized.pdf");
             numberOfFilesInFolder = Directory.GetFiles(folder).Length;
             Assert.AreEqual(numberOfFilesInFolder, 2);
         }

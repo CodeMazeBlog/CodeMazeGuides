@@ -122,7 +122,7 @@ void RunScaleExample(string folderName)
     DisplayPDFFile(document);
 
     console.WriteLine("\n\nResizing document ...\n");
-    var resizeDoc = resizer.ResizeFromA4ToA5(document, "small.pdf");
+    var resizeDoc = resizer.ResizeFromToA5(document, "small.pdf");
 
     console.WriteLine($"\nDocument resized ... ");
     console.WriteLine($" * Resized document: {resizeDoc} ");

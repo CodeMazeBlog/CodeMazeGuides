@@ -13,7 +13,7 @@ namespace ITextMergingPDFs
             _path = path;
         }
 
-        public string ResizeFromA4ToA5(string inputPdfDocument, string outputPdfDocument)
+        public string ResizeFromToA5(string inputPdfDocument, string outputPdfDocument)
         {
             var fullFileName = GetFullFileName(outputPdfDocument);
             using var writer = new PdfWriter(fullFileName);
