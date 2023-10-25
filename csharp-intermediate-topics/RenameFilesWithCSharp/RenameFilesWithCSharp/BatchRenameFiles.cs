@@ -5,7 +5,7 @@
         public static void RenamePhotosWithDateTime()
         {
             // The path to the directory containing the photos to be renamed.
-            var directoryPath = @"C:\PathToDirectory";
+            var directoryPath = @"C:\Users\HP\Desktop\MyDirectory2";
 
             // An array of allowed file extensions.
             string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };

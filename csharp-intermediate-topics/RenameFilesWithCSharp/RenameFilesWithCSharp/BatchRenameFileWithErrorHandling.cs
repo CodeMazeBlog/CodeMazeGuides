@@ -6,7 +6,7 @@
         {
             try
             {
-                var directoryPath = @"C:\PathToDirectory";
+                var directoryPath = @"C:\Users\HP\Desktop\MyDirectory2";
 
                 string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };
 

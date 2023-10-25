@@ -6,7 +6,7 @@
         public void GivenValidDirectoryPath_WhenFindingFiles_ThenReturnListOfFiles()
         {
             // Arrange
-            var directoryPath = @"C:\PathToDirectory"; //Enter valid directory path
+            var directoryPath = @"C:\Users\HP\Desktop\MyDirectory"; //Enter valid directory path
 
             // Act
             List<string> files = FindingFilesInFolder.FindFilesInFolder();
@@ -22,9 +22,9 @@
         public void GivenExistingFileAndNewFileName_WhenRenamingFile_ThenOldFileIsRenamedToNewFile()
         {
             // Arrange
-            var oldFile = @"C:\PathToDirectory\FileOne.txt"; //Enter valid directory path
+            var oldFile = @"C:\Users\HP\Desktop\MyDirectory\FileOne.txt"; //Enter valid directory path
 
-            var newFile = @"C:\PathToDirectory\File_v1.txt"; //Enter valid directory path
+            var newFile = @"C:\Users\HP\Desktop\MyDirectory\File_v1.txt"; //Enter valid directory path
 
             // Act
             RenameSingleFileInFolder.RenameFileInDirectory();
@@ -39,7 +39,7 @@
         public void GivenPhotos_WhenRenamedByCreationTime_ThenHaveCorrectNames()
         {
             // Arrange
-            var directoryPath = @"C:\PathToDirectory"; //Enter valid directory path
+            var directoryPath = @"C:\Users\HP\Desktop\MyDirectory2"; //Enter valid directory path
 
             string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };
 
@@ -68,7 +68,7 @@
         public void GivenPhotos_WhenRenamedByCreationTimeWithErrorsHandled_ThenHaveCorrectNames()
         {
             // Arrange
-            var directoryPath = @"C:\PathToDirectory"; //Enter valid directory path
+            var directoryPath = @"C:\Users\HP\Desktop\MyDirectory2"; //Enter valid directory path
 
             string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };
 
