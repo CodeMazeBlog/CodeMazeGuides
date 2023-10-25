@@ -19,13 +19,6 @@ namespace ITextMergingPDFs
             return fullFileName;
         }
 
-        public string MergePDFsFirstPage(string[] pdfFiles, string mergedPdfFileName)
-        {
-            var fullFileName = GetFullFileName(mergedPdfFileName);
-            MergeOnlyFirstPagesWithChecks(pdfFiles, fullFileName);
-            return fullFileName;
-        }
-
         private string GetFullFileName(string mergedPdfFileName)
         {
             return System.IO.Path.Combine(_path, mergedPdfFileName);
@@ -70,22 +63,6 @@ namespace ITextMergingPDFs
                 using var reader = new PdfReader(file);
                 using var srcPdfDocument = new PdfDocument(reader);
                 pdfMerger.Merge(srcPdfDocument, 1, srcPdfDocument.GetNumberOfPages());
-            }
-        }
-
-        private static void MergeOnlyFirstPagesWithChecks(string[] pdfFiles, string mergedPdfFileName)
-        {
-            CheckParameters(pdfFiles, mergedPdfFileName);
-
-            using var writer = new PdfWriter(mergedPdfFileName);
-            using var mergedPdfDocument = new PdfDocument(writer);
-
-            var pdfMerger = new PdfMerger(mergedPdfDocument);
-            foreach (var file in pdfFiles)
-            {
-                using var reader = new PdfReader(file);
-                using var srcPdfDocument = new PdfDocument(reader);
-                pdfMerger.Merge(srcPdfDocument, 1, 1);
             }
         }
     }

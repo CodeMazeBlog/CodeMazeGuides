@@ -21,11 +21,6 @@ while (true)
             RunMergeExample(nameof(UserMenu.UserAction.MergePdfDocumentsWithTheDifferentSizesSize),
                 (documentsManager) => documentsManager.CreateFewDocuments("document{0}.pdf", 3));
             break;
-        case UserMenu.UserAction.MergePdfDocumentsFirstPageWithTheDifferentSizesSize:
-            RunMergeExample(nameof(UserMenu.UserAction.MergePdfDocumentsFirstPageWithTheDifferentSizesSize),
-                (documentsManager) => documentsManager.CreateFewDocuments("document{0}.pdf", 3),
-                onlyFirstPage: true);
-            break;
         case UserMenu.UserAction.SplitDocumentOnOddAndEvenPages:
             RunSplitExample(nameof(UserMenu.UserAction.SplitDocumentOnOddAndEvenPages));
             break;
@@ -56,7 +51,7 @@ void DisplayPDFFile(string pdfFileName)
     process.Start();
 }
 
-void RunMergeExample(string folderName, Func<BigDocument, string[]> createExampleDocumentsFunction, bool onlyFirstPage = false)
+void RunMergeExample(string folderName, Func<BigDocument, string[]> createExampleDocumentsFunction)
 {
     var folderManager = PrepareExample(folderName);
     if (folderManager is null)
@@ -74,9 +69,7 @@ void RunMergeExample(string folderName, Func<BigDocument, string[]> createExampl
     }
 
     console.WriteLine("\n\nMerging documents ...\n");
-    var merged = (onlyFirstPage)
-        ? merger.MergePDFsFirstPage(documents, "merged.pdf")
-        : merger.MergePDFs(documents, "merged.pdf");
+    var merged = merger.MergePDFs(documents, "merged.pdf");
 
     console.WriteLine($"\nDocuments merged into {merged}");
     DisplayPDFFile(merged);

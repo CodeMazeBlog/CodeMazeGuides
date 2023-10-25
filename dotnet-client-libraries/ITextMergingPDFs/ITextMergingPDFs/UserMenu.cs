@@ -10,7 +10,6 @@ namespace ITextMergingPDFs
         {
             MergePdfDocumentsWithTheSameSize,
             MergePdfDocumentsWithTheDifferentSizesSize,
-            MergePdfDocumentsFirstPageWithTheDifferentSizesSize,
             SplitDocumentOnOddAndEvenPages,
             ResizeDocument,
             Exit,
@@ -31,9 +30,8 @@ namespace ITextMergingPDFs
             {
                 '1' => UserAction.MergePdfDocumentsWithTheSameSize,
                 '2' => UserAction.MergePdfDocumentsWithTheDifferentSizesSize,
-                '3' => UserAction.MergePdfDocumentsFirstPageWithTheDifferentSizesSize,
-                '4' => UserAction.SplitDocumentOnOddAndEvenPages,
-                '5' => UserAction.ResizeDocument,
+                '3' => UserAction.SplitDocumentOnOddAndEvenPages,
+                '4' => UserAction.ResizeDocument,
                 'X' => UserAction.Exit,
                 'x' => UserAction.Exit,
                 _ => UserAction.Unknown

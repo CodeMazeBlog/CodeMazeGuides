@@ -23,7 +23,7 @@ namespace Tests
             Assert.AreEqual(UserMenu.UserAction.MergePdfDocumentsWithTheSameSize, userMenu.GetSelection());
             Assert.AreEqual(UserMenu.UserAction.Exit, userMenu.GetSelection());
             Assert.AreEqual(UserMenu.UserAction.Unknown, userMenu.GetSelection());
-            Assert.AreEqual(UserMenu.UserAction.MergePdfDocumentsFirstPageWithTheDifferentSizesSize, userMenu.GetSelection());
+            Assert.AreEqual(UserMenu.UserAction.SplitDocumentOnOddAndEvenPages, userMenu.GetSelection());
         }
 
         [TestMethod]
