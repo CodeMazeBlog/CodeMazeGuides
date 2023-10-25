@@ -1,8 +1,8 @@
 ﻿namespace AdministratorApp
 {
-    public class PrivilegeStatusPrinter
+    public static class PrivilegeStatusPrinter
     {
-        public void PrintPrivilegeStatus(bool isAdmin)
+        public static void PrintPrivilegeStatus(bool isAdmin)
         {
             if (isAdmin)
             {

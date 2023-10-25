@@ -68,14 +68,12 @@ namespace Tests
             var mockChecker = new Mock<IAdministratorChecker>();
             mockChecker.Setup(c => c.IsCurrentUserAdmin()).Returns(true);
 
-            var printer = new PrivilegeStatusPrinter();
-
             var consoleOutput = new StringWriter();
             Console.SetOut(consoleOutput);
 
             // Act
             var isAdmin = mockChecker.Object.IsCurrentUserAdmin();
-            printer.PrintPrivilegeStatus(isAdmin);
+            PrivilegeStatusPrinter.PrintPrivilegeStatus(isAdmin);
 
             // Assert
             string expectedOutput = "The application is running with administrator privileges." + Environment.NewLine;
@@ -89,14 +87,12 @@ namespace Tests
             var mockChecker = new Mock<IAdministratorChecker>();
             mockChecker.Setup(c => c.IsCurrentUserAdmin()).Returns(false);
 
-            var printer = new PrivilegeStatusPrinter();
-
             var consoleOutput = new StringWriter();
             Console.SetOut(consoleOutput);
 
             // Act
             var isAdmin = mockChecker.Object.IsCurrentUserAdmin();
-            printer.PrintPrivilegeStatus(isAdmin);
+            PrivilegeStatusPrinter.PrintPrivilegeStatus(isAdmin);
 
             // Assert
             string expectedOutput = "The application is not running with administrator privileges." + Environment.NewLine;
