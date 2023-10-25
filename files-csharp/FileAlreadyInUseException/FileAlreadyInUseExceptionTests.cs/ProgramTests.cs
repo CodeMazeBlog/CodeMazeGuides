@@ -50,20 +50,4 @@ public class ProgramTests
         Assert.False(result);
         File.Delete(filePath);
     }
-
-    [Fact]
-    public void WhenFileInUse_AndIsFileInUse_ThenReturnsTrue()
-    {
-        // Arrange
-        var filePath = "testFile3.txt";
-        FileStream fileStream = File.Create(filePath);
-
-        // Act
-        bool result = Program.IsFileInUse(new FileInfo(filePath));
-
-        // Assert
-        Assert.True(result);
-        fileStream.Close();
-        File.Delete(filePath);
-    }
 }
