@@ -1,59 +1,58 @@
-﻿namespace RenameFilesWithCSharp
+﻿namespace RenameFilesWithCSharp;
+
+public class BatchRenameFileWithErrorHandling
 {
-    public class BatchRenameFileWithErrorHandling
+    public static void RenamePhotosWithDateTime(string directoryPath)
     {
-        public static void RenamePhotosWithDateTime(string directoryPath)
+        try
         {
-            try
+
+            string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };
+
+            var photoFiles = Directory.GetFiles(directoryPath)
+                                    .Where(file => allowedExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase))
+                                    .ToList();
+
+            foreach (var photoFile in photoFiles)
             {
+                DateTime creationTime = File.GetCreationTime(photoFile);
 
-                string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };
+                var fileExtension = Path.GetExtension(photoFile);
 
-                var photoFiles = Directory.GetFiles(directoryPath)
-                                        .Where(file => allowedExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase))
-                                        .ToList();
+                var newFileName = $"Image_{creationTime:yyyy-MM-dd_HHmmss}{fileExtension}";
 
-                foreach (var photoFile in photoFiles)
-                {
-                    DateTime creationTime = File.GetCreationTime(photoFile);
+                var newFilePath = Path.Combine(directoryPath, newFileName);
 
-                    var fileExtension = Path.GetExtension(photoFile);
-
-                    var newFileName = $"Image_{creationTime:yyyy-MM-dd_HHmmss}{fileExtension}";
-
-                    var newFilePath = Path.Combine(directoryPath, newFileName);
-
-                    File.Move(photoFile, newFilePath);
-                }
+                File.Move(photoFile, newFilePath);
             }
-
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
-
         }
 
-        private static void HandleException(Exception ex)
+        catch (Exception ex)
         {
-            switch (ex)
-            {
-                case UnauthorizedAccessException uaEx:
-                    Console.WriteLine($"Unauthorized access: {uaEx.Message}");
-                    break;
-                case DirectoryNotFoundException dnEx:
-                    Console.WriteLine($"Directory not found: {dnEx.Message}");
-                    break;
-                case FileNotFoundException fnEx:
-                    Console.WriteLine($"File not found: {fnEx.Message}");
-                    break;
-                case IOException ioEx:
-                    Console.WriteLine($"There was an error renaming file: {ioEx.Message}");
-                    break;
-                default:
-                    Console.WriteLine($"An unexpected error occurred: {ex.Message}");
-                    break;
-            }
+            HandleException(ex);
+        }
+
+    }
+
+    private static void HandleException(Exception ex)
+    {
+        switch (ex)
+        {
+            case UnauthorizedAccessException uaEx:
+                Console.WriteLine($"Unauthorized access: {uaEx.Message}");
+                break;
+            case DirectoryNotFoundException dnEx:
+                Console.WriteLine($"Directory not found: {dnEx.Message}");
+                break;
+            case FileNotFoundException fnEx:
+                Console.WriteLine($"File not found: {fnEx.Message}");
+                break;
+            case IOException ioEx:
+                Console.WriteLine($"There was an error renaming file: {ioEx.Message}");
+                break;
+            default:
+                Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+                break;
         }
     }
 }
