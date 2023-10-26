@@ -18,6 +18,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [Make The First Letter of a String Upper Case in C#](https://code-maze.com/csharp-first-letter-upper-case/)
 - [How to Generate a Stream From a String?](https://code-maze.com/dotnet-generate-stream-from-string/)
 - [How to Identify If a String is a Number in C#](https://code-maze.com/csharp-identify-if-a-string-is-a-number/)
+- [How to Read a String From a .resx (Resource) File in C#](https://code-maze.com/csharp-string-resource-file/)
 - [How to Remove All Whitespace Characters From a String in C#?](https://code-maze.com/replace-whitespaces-string-csharp/)
 - [Replace Line Breaks in a String in C#](https://code-maze.com/csharp-replace-line-breaks-in-a-string/)
 - [Different Ways to Split a String in C#](https://code-maze.com/csharp-different-ways-to-split-a-string/)
