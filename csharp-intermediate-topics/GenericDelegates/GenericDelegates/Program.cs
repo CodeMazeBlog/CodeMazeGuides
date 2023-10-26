@@ -28,7 +28,7 @@ namespace GenericDelegates
 
         public static void PrintEmployeeDetailById(List<Employee> employees, int Id)
         {
-            Employee employee = employees.Where(e => e.Id == Id).FirstOrDefault();
+            var employee = employees.Where(e => e.Id == Id).FirstOrDefault();
             if (employee != null)
             {
                 Console.WriteLine($"Employee with EmployeeId {Id}");
@@ -40,11 +40,11 @@ namespace GenericDelegates
     {
         static void Main(string[] args)
         {
-            List<Employee> employees = GetEmployeeList();
+            var employees = GetEmployeeList();
 
             Func<List<Employee>, string, List<Employee>> funcGetEmployeeByCity = Employee.GetEmployeeByCity;
 
-            string city = "NYC";
+            var city = "NYC";
 
             var listEmployee = funcGetEmployeeByCity(employees, city);
 
@@ -56,7 +56,7 @@ namespace GenericDelegates
 
             Action<List<Employee>, int> actionPrintEmployeeDetailById = Employee.PrintEmployeeDetailById;
 
-            int empId = 1;
+            var empId = 1;
 
             actionPrintEmployeeDetailById(employees, empId);
         }

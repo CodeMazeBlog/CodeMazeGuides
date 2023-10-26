@@ -10,11 +10,11 @@ namespace TestGenericDelegates
     public class EmployeeTest
     {
         [Fact]
-        public void GetEmployeeByCity_ValidCity_ReturnsCorrectEmployees()
+        public void GivenCityNameAndEmployees_WhenPassingEmployeesAndCity_ThenGettingEmployeeByCity()
         {
             // Arrange
             var employees = GetTestEmployeeList();
-            string testCity = "NYC";
+            var testCity = "NYC";
 
             // Act
             var result = Employee.GetEmployeeByCity(employees, testCity);
@@ -25,7 +25,7 @@ namespace TestGenericDelegates
         }
 
         [Fact]
-        public void GetEmployeeByCity_InvalidCity_ReturnsEmptyList()
+        public void GivenCityNameAndEmployees_WhenPassingInvalidCity_ThenGettingEmptyResult()
         {
             // Arrange
             var employees = GetTestEmployeeList();
@@ -39,7 +39,7 @@ namespace TestGenericDelegates
         }
 
         [Fact]
-        public void PrintEmployeeDetailById_ValidId_PrintsCorrectDetails()
+        public void GivenEmployeesAndEmpId_WhenPassingValidEmpId_ThenPrintingValidEmpDetails()
         {
             // Arrange
             var employees = GetTestEmployeeList();
@@ -60,7 +60,7 @@ namespace TestGenericDelegates
         }
 
         [Fact]
-        public void PrintEmployeeDetailById_InvalidId_PrintsNothing()
+        public void GivenEmployeesAndEmpId_WhenPassingInvalidEmpId_ThenEmptyStringAsResult()
         {
             // Arrange
             var employees = GetTestEmployeeList();
