@@ -4,6 +4,7 @@ This section contains the topics about the client libraries in .NET.
 
 ### Relevant articles:
 
+- [Ignore Null Values With AutoMapper](https://code-maze.com/automapper-how-to-ignore-null-values/)
 - [AutoMapper vs Mapster in .NET](https://code-maze.com/automapper-vs-mapster-dotnet/)
 - [Memory Allocation Optimization With BenchmarkDotNet](https://code-maze.com/csharp-memory-allocation-optimization-with-benchmarkdotnet/)
 - [How to Integrate BenchmarkDotNet With Unit Tests](https://code-maze.com/how-to-integrate-benchmarkdotnet-with-unit-tests/)
