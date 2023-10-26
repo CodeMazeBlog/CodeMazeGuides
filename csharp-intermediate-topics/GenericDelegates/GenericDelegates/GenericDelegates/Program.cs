@@ -29,9 +29,11 @@ namespace GenericDelegates
         public static void PrintEmployeeDetailById(List<Employee> employees, int Id)
         {
             Employee employee = employees.Where(e => e.Id == Id).FirstOrDefault();
-
-            Console.WriteLine($"Employee with EmployeeId {Id}");
-            Console.WriteLine($"Name: {employee.Name}, Role: {employee.Designation}, City: {employee.City}");
+            if (employee != null)
+            {
+                Console.WriteLine($"Employee with EmployeeId {Id}");
+                Console.WriteLine($"Name: {employee.Name}, Role: {employee.Designation}, City: {employee.City}");
+            }
         }
     }
     class Program
