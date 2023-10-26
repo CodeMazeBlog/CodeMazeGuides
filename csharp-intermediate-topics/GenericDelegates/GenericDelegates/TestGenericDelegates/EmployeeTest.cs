@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace TestGenericDelegates
 {
-    public class UnitTest1
+    public class EmployeeTest
     {
         [Fact]
         public void GetEmployeeByCity_ValidCity_ReturnsCorrectEmployees()
