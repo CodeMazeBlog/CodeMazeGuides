@@ -20,7 +20,6 @@ public class RenameFilesUnitTests
         Directory.Delete(tempDirectory);
     }
 
-
     [Fact]
     public void GivenExistingFileAndNewFileName_WhenRenamingFile_ThenOldFileIsRenamedToNewFile()
     {
@@ -43,7 +42,6 @@ public class RenameFilesUnitTests
         Directory.Delete(tempDirectory, true);
     }
 
-
     [Fact]
     public void WhenBatchRenamingPhotosWithDateTimeAndAllowedExtensionsExist_ThenPhotosShouldBeRenamed()
     {
@@ -58,13 +56,19 @@ public class RenameFilesUnitTests
         BatchRenameFiles.RenamePhotosWithDateTime(tempDirectory);
 
         // Assert
-        Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.jpg")));
-        Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.png")));
+        var photoFiles = Directory.EnumerateFiles(tempDirectory);
+
+        foreach (var photoFile in photoFiles)
+        {
+            var creationTime = File.GetCreationTime(photoFile);
+
+            Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{creationTime:yyyy-MM-dd_HHmmss}.jpg")));
+            Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{creationTime:yyyy-MM-dd_HHmmss}.png")));
+        }
 
         // Clean up
         Directory.Delete(tempDirectory, true);
     }
-
 
     [Fact]
     public void WhenBatchRenamingPhotosWithDateTimeAndNoAllowedExtensionsExist_ThenNoPhotosShouldBeRenamed()
@@ -73,22 +77,24 @@ public class RenameFilesUnitTests
         var tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
         Directory.CreateDirectory(tempDirectory);
 
-        File.Create(Path.Combine(tempDirectory, "document.docx")).Close();
+        var allowedExtensions = new[] { ".jpg", ".png", ".jpeg", ".gif" };
+        var existingFiles = Directory.EnumerateFiles(tempDirectory);
+        Assert.True(existingFiles.All(file => !allowedExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase)));
 
         // Act
         BatchRenameFiles.RenamePhotosWithDateTime(tempDirectory);
 
+        var updatedFiles = Directory.EnumerateFiles(tempDirectory);
+
         // Assert
-        Assert.False(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.jpg")));
-        Assert.False(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.png")));
+        Assert.Equal(existingFiles, updatedFiles);
 
         // Clean up
         Directory.Delete(tempDirectory, true);
     }
 
-
     [Fact]
-    public void WhenRenamingPhotosWithDateTimeAllowedExtensionsExist_ThenPhotosShouldBeRenamed()
+    public void WhenBatchRenamingPhotosWithDateTimeAndAllowedExtensionsExistWithErrorHandling_ThenPhotosShouldBeRenamed()
     {
         // Arrange
         var tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -101,32 +107,40 @@ public class RenameFilesUnitTests
         BatchRenameFileWithErrorHandling.RenamePhotosWithDateTime(tempDirectory);
 
         // Assert
-        Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.jpg")));
-        Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.png")));
+        var photoFiles = Directory.EnumerateFiles(tempDirectory);
+
+        foreach (var photoFile in photoFiles)
+        {
+            var creationTime = File.GetCreationTime(photoFile);
+
+            Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{creationTime:yyyy-MM-dd_HHmmss}.jpg")));
+            Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{creationTime:yyyy-MM-dd_HHmmss}.png")));
+        }
 
         // Clean up
         Directory.Delete(tempDirectory, true);
     }
 
     [Fact]
-    public void WhenRenamingPhotosWithDateTimeAndNoAllowedExtensionsExist_ThenNoPhotosShouldBeRenamed()
+    public void WhenBatchRenamingPhotosWithDateTimeAndNoAllowedExtensionsExistWithErrorHandling_ThenNoPhotosShouldBeRenamed()
     {
         // Arrange
         var tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
         Directory.CreateDirectory(tempDirectory);
 
-        File.Create(Path.Combine(tempDirectory, "document.docx")).Close();
+        var allowedExtensions = new[] { ".jpg", ".png", ".jpeg", ".gif" };
+        var existingFiles = Directory.EnumerateFiles(tempDirectory);
+        Assert.True(existingFiles.All(file => !allowedExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase)));
 
         // Act
         BatchRenameFileWithErrorHandling.RenamePhotosWithDateTime(tempDirectory);
 
+        var updatedFiles = Directory.EnumerateFiles(tempDirectory);
+
         // Assert
-        Assert.False(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.jpg")));
-        Assert.False(File.Exists(Path.Combine(tempDirectory, $"Image_{DateTime.Now:yyyy-MM-dd_HHmmss}.png")));
+        Assert.Equal(existingFiles, updatedFiles);
 
         // Clean up
         Directory.Delete(tempDirectory, true);
     }
-
-
 }

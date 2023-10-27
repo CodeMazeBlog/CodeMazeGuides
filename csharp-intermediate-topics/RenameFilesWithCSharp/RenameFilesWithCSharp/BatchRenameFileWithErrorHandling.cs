@@ -6,12 +6,10 @@ public class BatchRenameFileWithErrorHandling
     {
         try
         {
-
             string[] allowedExtensions = { ".jpg", ".png", ".jpeg", ".gif" };
 
-            var photoFiles = Directory.GetFiles(directoryPath)
-                                    .Where(file => allowedExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase))
-                                    .ToList();
+            var photoFiles = Directory.EnumerateFiles(directoryPath)
+                                    .Where(file => allowedExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase));
 
             foreach (var photoFile in photoFiles)
             {
@@ -26,7 +24,6 @@ public class BatchRenameFileWithErrorHandling
                 File.Move(photoFile, newFilePath);
             }
         }
-
         catch (Exception ex)
         {
             HandleException(ex);
