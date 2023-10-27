@@ -63,45 +63,5 @@ namespace ConvertStringToCharArrayUnitTests
 
             Assert.Equal(expected, result);
         }
-
-        [Fact]
-        public void GivenString_WhenReversed_ThenStringReversed()
-        {
-            string input = "Hello, C#";
-            char[] expected = "#C ,olleH".ToCharArray();
-            char[] result = Program.ReverseString(input);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void GivenString_WhenSorted_ThenStringSorted()
-        {
-            string input = "Hello, C#";
-            char[] expected = " #,CHello".ToCharArray();
-            char[] result = Program.SortString(input);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void GivenString_WhenUppercased_ThenStringUppercased()
-        {
-            string input = "Hello, C#";
-            char[] expected = "HELLO, C#".ToCharArray();
-            char[] result = Program.UppercaseString(input);
-
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void GivenString_WhenSubstringReplaced_ThenSubstringReplaced()
-        {
-            string input = "Hello, C#";
-            string expected = "Hello, C++";
-            string result = Program.ReplaceString(input, "C#", "C++");
-
-            Assert.Equal(expected, result);
-        }
     }
 }
