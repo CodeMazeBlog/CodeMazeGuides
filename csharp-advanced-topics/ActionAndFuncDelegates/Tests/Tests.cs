@@ -18,7 +18,7 @@ namespace Tests
         {
             Action<string> printAction = printRepository.DisplayInput;
 
-            var input = "Michael";
+            var input = "Michael\r";
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -39,7 +39,7 @@ namespace Tests
                 Console.WriteLine(input);
             };
 
-            var input = "Michael";
+            var input = "Michael\r";
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -60,7 +60,7 @@ namespace Tests
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
-            var input = "Hello, world!";
+            var input = "Hello, world!\r";
 
             printActionByLambda(input);
 
