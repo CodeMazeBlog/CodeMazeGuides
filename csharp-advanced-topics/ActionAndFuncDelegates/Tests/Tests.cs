@@ -28,7 +28,7 @@ namespace Tests
             //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{input}", output);
+            Assert.Equal($"{input}\n", output);
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace Tests
             //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{input}", output);
+            Assert.Equal($"{input}\n", output);
         }
 
         [Fact]
@@ -67,7 +67,7 @@ namespace Tests
             //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{input}", output);
+            Assert.Equal($"{input}\n", output);
         }
 
         [Fact]
