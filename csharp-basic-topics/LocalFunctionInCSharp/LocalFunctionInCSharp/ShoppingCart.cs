@@ -1,9 +1,11 @@
-﻿namespace LocalFunctionInCSharp
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LocalFunctionInCSharp
 {
     public class ShoppingCart
     {
-        public List<Product> Products { get; set; }
-
+        [Required]
+        public List<Product> Products { get; init; }
         public bool Checkout()
         {
             foreach (var product in Products)
@@ -21,6 +23,8 @@
                 }
             }
 
+            return true;
+
             bool IsItemInStock(Product product)
             {
                 return product.StockQuantity > 0;
@@ -35,8 +39,6 @@
             {
                 Console.WriteLine($"Validation Error:- {message}");
             }
-
-            return true;
         }
     }
 }

@@ -1,5 +1,3 @@
-using LocalFunctionInCSharp;
-
 namespace LocalFunctionInCSharpTests
 {
     public class ShoppingCartTests
@@ -10,13 +8,13 @@ namespace LocalFunctionInCSharpTests
             var cart = new ShoppingCart
             {
                 Products = new List<Product>
-            {
-                new Product { Name = "Product A", StockQuantity = 10, SelectedQuantity = 2 },
-                new Product { Name = "Product B", StockQuantity = 5, SelectedQuantity = 3 }
-            }
+                {
+                    new() { Name = "Product A", StockQuantity = 10, SelectedQuantity = 2 },
+                    new() { Name = "Product B", StockQuantity = 5, SelectedQuantity = 3 }
+                }
             };
 
-            bool result = cart.Checkout();
+            var result = cart.Checkout();
 
             Assert.True(result);
         }
@@ -27,13 +25,13 @@ namespace LocalFunctionInCSharpTests
             var cart = new ShoppingCart
             {
                 Products = new List<Product>
-            {
-                new Product { Name = "Product A", StockQuantity = 0, SelectedQuantity = 2 },
-                new Product { Name = "Product B", StockQuantity = 5, SelectedQuantity = 3 }
-            }
+                {
+                    new() { Name = "Product A", StockQuantity = 0, SelectedQuantity = 2 },
+                    new() { Name = "Product B", StockQuantity = 5, SelectedQuantity = 3 }
+                }
             };
 
-            bool result = cart.Checkout();
+            var result = cart.Checkout();
 
             Assert.False(result);
         }
@@ -44,16 +42,15 @@ namespace LocalFunctionInCSharpTests
             var cart = new ShoppingCart
             {
                 Products = new List<Product>
-            {
-                new Product { Name = "Product A", StockQuantity = 10, SelectedQuantity = 20 },
-                new Product { Name = "Product B", StockQuantity = 5, SelectedQuantity = -1 }
-            }
+                {
+                    new() { Name = "Product A", StockQuantity = 10, SelectedQuantity = 20 },
+                    new() { Name = "Product B", StockQuantity = 5, SelectedQuantity = -1 }
+                }
             };
 
-            bool result = cart.Checkout();
+            var result = cart.Checkout();
 
             Assert.False(result);
         }
-
     }
 }

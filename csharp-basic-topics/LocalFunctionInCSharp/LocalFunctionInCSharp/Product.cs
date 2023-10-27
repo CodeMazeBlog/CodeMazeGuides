@@ -1,9 +1,12 @@
-﻿namespace LocalFunctionInCSharp
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LocalFunctionInCSharp
 {
     public class Product
     {
-        public string Name { get; set; }
-        public int StockQuantity { get; set; }
-        public int SelectedQuantity { get; set; }
+        [Required]
+        public string Name { get; init; }
+        public int StockQuantity { get; init; }
+        public int SelectedQuantity { get; init; }
     }
 }
