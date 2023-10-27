@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             var taxType = TaxType.Income;
-            decimal taxableAmount = 130000.00M;
+            var taxableAmount = 130000.00M;
             Func<decimal, decimal> calculateTax;
 
             switch (taxType)
@@ -27,9 +27,11 @@
                     break;
             }
 
-            decimal taxLiability = calculateTax(taxableAmount);
+            var taxLiability = calculateTax(taxableAmount);
 
-            Console.WriteLine(String.Format("Your {0} tax liability is {1:C2}.", taxType.ToString(), taxLiability));
+            Console.WriteLine(String.Format("Your {0} tax liability is {1:C2}.", 
+                taxType.ToString(), 
+                taxLiability));
         }
 
         public static decimal CalculateIncomeTax(decimal taxableIncome)
@@ -54,16 +56,13 @@
 
         public static decimal CalculateSalesTax(decimal totalSales)
         {
-            decimal salesTaxRate = 0.0925M;
+            var salesTaxRate = 0.0925M;
             return totalSales * salesTaxRate;
         }
 
         public static decimal CalculatePropertyTax(decimal propertyValue)
         {
-            // homeowners get a $7,000 reduction in their base amount
-            int exemptionAmount = 7000;
-
-            // divide by 2 because property tax is paid in 2 installments
+            var exemptionAmount = 7000;
             return (propertyValue - exemptionAmount) * 0.0125M / 2;
         }
 

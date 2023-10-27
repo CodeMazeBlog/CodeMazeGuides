@@ -1,16 +1,16 @@
 using ActionAndFuncDelegates;
 
-namespace UnitTests
+namespace Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class TestTaxCalculations
     {
         [TestMethod]
         public void WhenTaxableIncome_ThenCalculateCorrectIncomeTax()
         {
-            decimal taxableIncome = 130000M;
-            decimal expectedTaxLiability = 39000.00M;
-            decimal taxLiability = Program.CalculateIncomeTax(taxableIncome);
+            var taxableIncome = 130000M;
+            var expectedTaxLiability = 39000.00M;
+            var taxLiability = Program.CalculateIncomeTax(taxableIncome);
 
             Assert.AreEqual(expectedTaxLiability, taxLiability);
         }
@@ -18,9 +18,9 @@ namespace UnitTests
         [TestMethod]
         public void WhenTotalSales_ThenCalculateCorrectSalesTax()
         {
-            decimal totalSales = 100000M;
-            decimal expectedTaxLiability = 9250.00M;
-            decimal taxLiability = Program.CalculateSalesTax(totalSales);
+            var totalSales = 100000M;
+            var expectedTaxLiability = 9250.00M;
+            var taxLiability = Program.CalculateSalesTax(totalSales);
 
             Assert.AreEqual(expectedTaxLiability, taxLiability);
         }
@@ -28,9 +28,9 @@ namespace UnitTests
         [TestMethod]
         public void WhenPropertyValue_ThenCalculateCorrectPropertyTax()
         {
-            decimal propertyValue = 100000M;
-            decimal expectedTaxLiability = 581.25M;
-            decimal taxLiability = Program.CalculatePropertyTax(propertyValue);
+            var propertyValue = 100000M;
+            var expectedTaxLiability = 581.25M;
+            var taxLiability = Program.CalculatePropertyTax(propertyValue);
 
             Assert.AreEqual(expectedTaxLiability, taxLiability);
         }
