@@ -1,12 +1,8 @@
-using Microsoft.Win32;
-using ReadWriteWindowsRegistryInCSharp;
-
 namespace Tests
 {
     [TestClass]
     public class RegistryDemoTests
     {
-
         [TestMethod]
         public void WhenGetCurrentUserRootKeyName_ResultIsRootKeyCurrentUserName()
         {
