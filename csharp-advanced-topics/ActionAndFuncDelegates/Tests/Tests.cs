@@ -4,19 +4,19 @@ namespace Tests
 {
     public class Tests
     {
-        private readonly PrintRepository printRepository;
-        private readonly FuncRepository funcRepository;
+        private readonly PrintRepository _printRepository;
+        private readonly FuncRepository _funcRepository;
 
         public Tests()
         {
-            printRepository = new PrintRepository();
-            funcRepository = new FuncRepository();
+            _printRepository = new PrintRepository();
+            _funcRepository = new FuncRepository();
         }
 
         [Fact]
         public void GivenStringInput_WhenActionIsCalled_ThenPrintsTheInput()
         {
-            Action<string> printAction = printRepository.DisplayInput;
+            Action<string> printAction = _printRepository.DisplayInput;
 
             var input = "Michael";
 
@@ -73,7 +73,7 @@ namespace Tests
         [Fact]
         public void GivenEvenNumber_WhenFuncIsCalled_ThenFuncReturnsTrue()
         {
-            Func<int, bool> isEvenFunc = funcRepository.IsNumberEven;
+            Func<int, bool> isEvenFunc = _funcRepository.IsNumberEven;
 
             var result = isEvenFunc(10);
 
@@ -105,7 +105,7 @@ namespace Tests
         [Fact]
         public void GivenOddNumber_WhenFuncIsCalled_ThenFuncReturnsFalse()
         {
-            Func<int, bool> isEvenFunc = funcRepository.IsNumberEven;
+            Func<int, bool> isEvenFunc = _funcRepository.IsNumberEven;
 
             var result = isEvenFunc(11);
 
