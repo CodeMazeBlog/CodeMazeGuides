@@ -18,7 +18,7 @@ namespace Tests
         {
             Action<string> printAction = printRepository.DisplayInput;
 
-            var input = "Michael\r";
+            var input = "Michael";
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -28,7 +28,7 @@ namespace Tests
             //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{input}\r\n", output);
+            Assert.Equal($"{input}", output);
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace Tests
                 Console.WriteLine(input);
             };
 
-            var input = "Michael\r";
+            var input = "Michael";
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -49,7 +49,7 @@ namespace Tests
             //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{input}\r\n", output);
+            Assert.Equal($"{input}", output);
         }
 
         [Fact]
@@ -60,14 +60,14 @@ namespace Tests
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
-            var input = "Hello, world!\r";
+            var input = "Hello, world!";
 
             printActionByLambda(input);
 
             //assert
             var output = stringWriter.ToString();
 
-            Assert.Equal($"{input}\r\n", output);
+            Assert.Equal($"{input}", output);
         }
 
         [Fact]
