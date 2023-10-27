@@ -71,7 +71,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenPassedEvenNumber_FuncReturnsTheCorrectResultOfTheRefferencedMethod()
+        public void GivenEvenNumber_WhenFuncIsCalled_ThenFuncReturnsTrue()
         {
             Func<int, bool> isEvenFunc = funcRepository.IsNumberEven;
 
@@ -81,7 +81,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenPassedEvenNumber_FuncReturnsTheCorrectResultOfTheAnonymousMethod()
+        public void GivenEvenNumber_WhenFuncIsCalled_ThenFuncReturnsTrueThroughAnonymousMethod()
         {
             Func<int, bool> isEvenFuncByAnonymous = delegate (int x)
             {
@@ -94,7 +94,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenPassedEvenNumber_FuncReturnsTheCorrectResultOfTheLambdaMethod()
+        public void GivenEvenNumber_WhenFuncIsCalled_ThenFuncReturnsTrueThroughLambdaExpression()
         {
             Func<int, bool> isEvenFuncByLambda = x => x % 2 == 0;
 
@@ -103,7 +103,7 @@ namespace Tests
             Assert.True(result);
         }
         [Fact]
-        public void WhenPassedNonEvenNumber_FuncReturnsTheCorrectResultOfTheRefferencedMethod()
+        public void GivenOddNumber_WhenFuncIsCalled_ThenFuncReturnsFalse()
         {
             Func<int, bool> isEvenFunc = funcRepository.IsNumberEven;
 
@@ -113,7 +113,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenPassedNonEvenNumber_FuncReturnsTheCorrectResultOfTheAnonymousMethod()
+        public void GivenOddNumber_WhenFuncIsCalled_ThenFuncReturnsFalseThroughAnonymousMethod()
         {
             Func<int, bool> isEvenFuncByAnonymous = delegate (int x)
             {
@@ -126,7 +126,7 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenPassedNonEvenNumber_FuncReturnsTheCorrectResultOfTheLambdaMethod()
+        public void GivenOddNumber_WhenFuncIsCalled_ThenFuncReturnsFalseThroughLambdaExpression()
         {
             Func<int, bool> isEvenFuncByLambda = x => x % 2 == 0;
 
