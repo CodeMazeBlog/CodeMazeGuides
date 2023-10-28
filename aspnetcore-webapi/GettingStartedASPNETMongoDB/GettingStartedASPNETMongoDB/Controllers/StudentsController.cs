@@ -62,11 +62,6 @@ public class StudentsController : ControllerBase
     [HttpPut("{id:length(24)}")]
     public async Task<IActionResult> Update(string id, Student updatedStudent)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest("Invalid request object");
-        }
-
         var queriedStudent = await _studentService.GetById(id);
 
         if (queriedStudent is null)

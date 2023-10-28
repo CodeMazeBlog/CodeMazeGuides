@@ -3,7 +3,6 @@ using GettingStartedASPNETMongoDB.Interfaces;
 using GettingStartedASPNETMongoDB.Models;
 using GettingStartedASPNETMongoDB.Services;
 using MongoDB.Driver;
-using MongoDB.Driver.Core.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
