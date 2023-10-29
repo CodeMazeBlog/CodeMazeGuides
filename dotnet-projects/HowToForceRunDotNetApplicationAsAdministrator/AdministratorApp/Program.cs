@@ -2,5 +2,4 @@
 
 var administratorChecker = new AdministratorChecker();
 bool isAdmin = administratorChecker.IsCurrentUserAdmin();
-PrivilegeStatusPrinter.PrintPrivilegeStatus(isAdmin);
-
+PrivilegeStatusPrinter.Print(isAdmin);
