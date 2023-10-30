@@ -9,16 +9,12 @@ namespace Tests
     [TestClass]
     public class SetCloseSourceDocumentsTest
     {
-        private BigDocument _bigDocument = default!;
         private FolderManager _folderManager = default!;
-        private string _folder = default!;
 
         [TestInitialize]
         public void Initialize()
         {
             _folderManager = FolderManager.CreateFolderManagerInTemporaryFolder("Test");
-            _bigDocument = new BigDocument(_folderManager.PdfFolderName);
-            _folder = _folderManager.PdfFolderName;
         }
 
         [TestCleanup]
@@ -30,8 +26,9 @@ namespace Tests
         [TestMethod]
         public void GivenFalseParameter_WhenCallingSetCloseSourceDocuments_ThenExpectDocumentToStayOpen()
         {
-            var sourcePdf = _bigDocument.CreateDocument("TestDocument.pdf", PageSize.A4);
-            var mergedPdf = System.IO.Path.Combine(_folder, "result.pdf");
+            var pdfFileName = _folderManager.GetFullName("TestDocument.pdf");
+            var sourcePdf = BigDocument.CreateDocument(pdfFileName, PageSize.A4);
+            var mergedPdf = _folderManager.GetFullName("result.pdf");
 
             using var writer = new PdfWriter(mergedPdf);
             using var mergedPdfDocument = new PdfDocument(writer);
@@ -45,14 +42,15 @@ namespace Tests
             pdfMerger.Merge(sourcePdfDocument, 1, sourcePdfDocument.GetNumberOfPages());
 
             // document is open, so we can use it
-            var numberOfPages = sourcePdfDocument.GetNumberOfPages();
+            Assert.IsTrue(sourcePdfDocument.GetNumberOfPages() > 0);
         }
 
         [TestMethod]
         public void GivenTrueParameter_WhenCallingSetCloseSourceDocuments_ThenExpectAutomaticCloseOfDocument()
         {
-            var sourcePdf = _bigDocument.CreateDocument("TestDocument.pdf", PageSize.A4);
-            var mergedPdf = System.IO.Path.Combine(_folder, "result.pdf");
+            var pdfFileName = _folderManager.GetFullName("TestDocument.pdf");
+            var sourcePdf = BigDocument.CreateDocument(pdfFileName, PageSize.A4);
+            var mergedPdf = _folderManager.GetFullName("result.pdf");
 
             using var writer = new PdfWriter(mergedPdf);
             using var mergedPdfDocument = new PdfDocument(writer);
@@ -66,14 +64,15 @@ namespace Tests
             pdfMerger.Merge(sourcePdfDocument, 1, sourcePdfDocument.GetNumberOfPages());
 
             // document is not open, we can't use it
-            Assert.ThrowsException<PdfException>(() => { var numberOfPages = sourcePdfDocument.GetNumberOfPages(); });
+            Assert.ThrowsException<PdfException>(() => { sourcePdfDocument.GetNumberOfPages(); });
         }
 
         [TestMethod]
         public void GivenNoParameter_WhenCallingSetCloseSourceDocuments_ThenExpectDocumentToStayOpen()
         {
-            var sourcePdf = _bigDocument.CreateDocument("TestDocument.pdf", PageSize.A4);
-            var mergedPdf = System.IO.Path.Combine(_folder, "result.pdf");
+            var pdfFileName = _folderManager.GetFullName("TestDocument.pdf");
+            var sourcePdf = BigDocument.CreateDocument(pdfFileName, PageSize.A4);
+            var mergedPdf = _folderManager.GetFullName("result.pdf");
 
             using var writer = new PdfWriter(mergedPdf);
             using var mergedPdfDocument = new PdfDocument(writer);
@@ -86,7 +85,7 @@ namespace Tests
             pdfMerger.Merge(sourcePdfDocument, 1, sourcePdfDocument.GetNumberOfPages());
 
             // document is open, so we can use it
-            var numberOfPages = sourcePdfDocument.GetNumberOfPages();
+            Assert.IsTrue(sourcePdfDocument.GetNumberOfPages() > 0);
         }
     }
 }

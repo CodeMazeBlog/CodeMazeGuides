@@ -4,30 +4,27 @@ using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using ITextMergingPDFs.Text;
+using Path = System.IO.Path;
 
 namespace ITextMergingPDFs
 {
-    public class BigDocument
+    public static class BigDocument
     {
-        private static readonly PageSize[] _pageSizes = new PageSize[] { PageSize.A1, PageSize.A2, PageSize.A3, PageSize.A4, PageSize.A5, PageSize.A6 };
+        private static readonly PageSize[] _pageSizes = new PageSize[] { 
+            PageSize.A1, PageSize.A2, PageSize.A3, PageSize.A4, PageSize.A5, PageSize.A6 
+        };
 
-        private readonly string _path;
-
-        public BigDocument(string? path)
+        public static string CreateDocument(string pdfFileName, PageSize pageSize)
         {
-            _path = path ?? System.IO.Path.GetTempPath();
-        }
-
-        public string CreateDocument(string pdfFileName, PageSize pageSize)
-        {
-            var fullFilename = System.IO.Path.Combine(_path, pdfFileName);
-            using var writer = new PdfWriter(fullFilename);
+            using var writer = new PdfWriter(pdfFileName);
             using var pdfDocument = new PdfDocument(writer);
             using var document = new Document(pdfDocument, pageSize, immediateFlush: false);
 
             try
             {
-                AddContent(document, pdfFileName);
+                var onlyNameOfTheFile = Path.GetFileName(pdfFileName);
+
+                AddContent(document, onlyNameOfTheFile);
                 PageXofYFooter(pdfDocument, document, pdfFileName);
             }
             finally
@@ -35,22 +32,18 @@ namespace ITextMergingPDFs
                 document.Close();
             }
 
-            return fullFilename;
+            return pdfFileName;
         }
 
-        public string[] CreateFewDocuments(string pdfFileNameMask, uint numberOfDocuments, PageSize? pageSize = null)
+        public static IEnumerable<string> CreateFewDocuments(string folder, string documentPrefix, 
+            uint numberOfDocuments, PageSize? pageSize = null)
         {
-            if ((numberOfDocuments < 1) || (numberOfDocuments > 20))
-                throw new ArgumentException("Number of documents must be between 1 and 20", nameof(numberOfDocuments));
-
-            var documents = new string[numberOfDocuments];
-            for (var i = 0; i < numberOfDocuments; i++)
+            var counter = 0;
+            while(counter++ < numberOfDocuments)
             {
-                var fileNameWithNumber = string.Format(pdfFileNameMask, i);
-                documents[i] = CreateDocument(fileNameWithNumber, pageSize ?? GetRandomPageSize());
+                var fileName = Path.Combine(folder, $"{documentPrefix}_{counter}.pdf");
+                yield return CreateDocument(fileName, pageSize ?? GetRandomPageSize());
             }
-
-            return documents;
         }
 
         private static void AddContent(Document document, string caption, int numberOfRepetitions = 3)
@@ -105,7 +98,8 @@ namespace ITextMergingPDFs
                 var page = pdfDocument.GetPage(pageId);
                 var centerPage = page.GetPageSize().GetWidth() / 2;
 
-                var paragraph = new Paragraph($"File {fileName} / Page {pageId} of {numPages}");
+                var onlyNameOfTheFile = Path.GetFileName(fileName);
+                var paragraph = new Paragraph($"File {onlyNameOfTheFile} / Page {pageId} of {numPages}");
                 document.ShowTextAligned(paragraph, centerPage, UnitConverter.mm2uu(10), pageId,
                     TextAlignment.CENTER, VerticalAlignment.MIDDLE, 0);
             }

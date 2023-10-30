@@ -1,6 +1,6 @@
-﻿namespace ITextMergingPDFs
+﻿namespace Tests
 {
-    public class FolderManager
+    internal class FolderManager
     {
         public string PdfFolderName { get; }
 
@@ -17,9 +17,9 @@
             return new FolderManager(Path.GetTempPath(), subFolderName);
         }
 
-        public static FolderManager CreateFolderManagerAsProgramSubfolder(string subFolderName)
+        public string GetFullName(string fileName)
         {
-            return new FolderManager(Path.GetDirectoryName(Environment.ProcessPath)!, subFolderName);
+            return Path.Combine(PdfFolderName, fileName);
         }
 
         public void RecreatePFDDocumentsFolder()

@@ -6,16 +6,12 @@ namespace Tests
     [TestClass]
     public class SplitterTest
     {
-        private BigDocument _bigDocument = default!;
         private FolderManager _folderManager = default!;
-        private Merger _pdfMerger = default!;
 
         [TestInitialize]
         public void Initialize()
         {
             _folderManager = FolderManager.CreateFolderManagerInTemporaryFolder("Test");
-            _bigDocument = new BigDocument(_folderManager.PdfFolderName);
-            _pdfMerger = new Merger(_folderManager.PdfFolderName);
         }
 
         [TestCleanup]
@@ -25,47 +21,18 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenValidParameters_WhenCreateMerger_ThenExpectOneMoreFile()
-        {
-            var pdfFileNameMask = "TestDocument_{0}.pdf";
-            var numberOfDocuments = Random.Shared.Next(1, 20);
-            var pageSize = PageSize.A4;
-            var folder = _folderManager.PdfFolderName;
-
-            var documents = _bigDocument.CreateFewDocuments(pdfFileNameMask, (uint)numberOfDocuments, pageSize);
-
-            Assert.IsNotNull(documents);
-            var numberOfFilesInFolder = Directory.GetFiles(folder).Length;
-            Assert.AreEqual(numberOfDocuments, documents.Length);
-            Assert.AreEqual(numberOfFilesInFolder, documents.Length);
-
-            _pdfMerger.MergePDFs(documents, "merged.pdf");
-            numberOfFilesInFolder = Directory.GetFiles(folder).Length;
-            Assert.AreEqual(numberOfFilesInFolder, documents.Length + 1);
-        }
-
-        [TestMethod]
         public void GivenValidDocument_WhenUsingSplitter_ThenExpectTwoDocuments()
         {
-            var folder = _folderManager.PdfFolderName;
-
-            var document = _bigDocument.CreateDocument("TestDocument", PageSize.A6);
+            var pdfFileName = _folderManager.GetFullName("TestDocument.pdf");
+            var document = BigDocument.CreateDocument(pdfFileName, PageSize.A6);
 
             Assert.IsNotNull(document);
-            var numberOfFilesInFolder = Directory.GetFiles(folder).Length;
-            Assert.AreEqual(numberOfFilesInFolder, 1);
+            var numberOfFilesInFolder = Directory.GetFiles(_folderManager.PdfFolderName).Length;
+            Assert.AreEqual(1, numberOfFilesInFolder);
 
             Splitter.Split(document);
-            numberOfFilesInFolder = Directory.GetFiles(folder).Length;
-            Assert.AreEqual(numberOfFilesInFolder, 3);
-        }
-
-        [TestMethod]
-        public void GivenInValidParameters_WhenCreateMerger_ThenExpectException()
-        {
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => _pdfMerger.MergePDFs(Array.Empty<string>(), "merged"));
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => _pdfMerger.MergePDFs(new string[] { "test" }, "merged"));
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => _pdfMerger.MergePDFs(new string[] { "test", "test2" }, ""));
+            numberOfFilesInFolder = Directory.GetFiles(_folderManager.PdfFolderName).Length;
+            Assert.AreEqual(3, numberOfFilesInFolder);
         }
     }
 }

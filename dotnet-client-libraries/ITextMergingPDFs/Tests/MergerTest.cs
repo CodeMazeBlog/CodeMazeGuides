@@ -6,14 +6,12 @@ namespace Tests
     [TestClass]
     public class MergerTest
     {
-        private BigDocument _bigDocument = default!;
         private FolderManager _folderManager = default!;
 
         [TestInitialize]
         public void Initialize()
         {
             _folderManager = FolderManager.CreateFolderManagerInTemporaryFolder("Test");
-            _bigDocument = new BigDocument(_folderManager.PdfFolderName);
         }
 
         [TestCleanup]
@@ -23,19 +21,30 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenValidDocument_WhenUsingSplitter_ThenExpectTwoDocuments()
+        public void GivenValidParameters_WhenCreateMerger_ThenExpectOneMoreFile()
         {
-            var folder = _folderManager.PdfFolderName;
+            var numberOfDocuments = Random.Shared.Next(1, 20);
+            var pageSize = PageSize.A4;
 
-            var document = _bigDocument.CreateDocument("TestDocument", PageSize.A6);
+            var documents = BigDocument.CreateFewDocuments(_folderManager.PdfFolderName,
+                "test", (uint)numberOfDocuments, pageSize).ToArray();
 
-            Assert.IsNotNull(document);
-            var numberOfFilesInFolder = Directory.GetFiles(folder).Length;
-            Assert.AreEqual(numberOfFilesInFolder, 1);
+            Assert.IsNotNull(documents);
+            var numberOfFilesInFolder = Directory.GetFiles(_folderManager.PdfFolderName).Length;
+            Assert.AreEqual(numberOfDocuments, documents.Length);
+            Assert.AreEqual(numberOfFilesInFolder, documents.Length);
 
-            Splitter.Split(document);
-            numberOfFilesInFolder = Directory.GetFiles(folder).Length;
-            Assert.AreEqual(numberOfFilesInFolder, 3);
+            Merger.Merge(documents, _folderManager.GetFullName("merged.pdf"));
+            numberOfFilesInFolder = Directory.GetFiles(_folderManager.PdfFolderName).Length;
+            Assert.AreEqual(numberOfFilesInFolder, documents.Length + 1);
+        }
+
+        [TestMethod]
+        public void GivenInValidParameters_WhenCreateMerger_ThenExpectException()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Merger.Merge(Array.Empty<string>(), "merged"));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Merger.Merge(new string[] { "test" }, "merged"));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Merger.Merge(new string[] { "test", "test2" }, ""));
         }
     }
 }

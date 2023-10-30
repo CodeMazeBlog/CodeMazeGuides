@@ -8,6 +8,11 @@ namespace ITextMergingPDFs.Text
 
         private static readonly string[] _loremIpsumWords = _loremIpsumText.Split(' ');
 
+        protected LoremIpsumGenerator()
+        { 
+            // to prevent creating instances of this class (it's static)
+        }
+
         private static IEnumerable<string> GetWords(int count)
         {
             for (int i = 0; i < count; i++)

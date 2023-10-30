@@ -4,19 +4,11 @@ using iText.Kernel.Pdf.Canvas;
 
 namespace ITextMergingPDFs
 {
-    public class Resizer
+    public static class Resizer
     {
-        private readonly string _path;
-
-        public Resizer(string path)
+        public static void ResizeToA5(string inputPdfDocument, string outputPdfDocument)
         {
-            _path = path;
-        }
-
-        public string ResizeFromToA5(string inputPdfDocument, string outputPdfDocument)
-        {
-            var fullFileName = GetFullFileName(outputPdfDocument);
-            using var writer = new PdfWriter(fullFileName);
+            using var writer = new PdfWriter(outputPdfDocument);
             using var outputDocument = new PdfDocument(writer);
             outputDocument.SetDefaultPageSize(PageSize.A5);
 
@@ -39,13 +31,6 @@ namespace ITextMergingPDFs
                     pdfCanvas.AddXObjectFittedIntoRectangle(formXObject, new Rectangle(0, 0, a5PageWidth, a5PageHeight));
                 }
             }
-
-            return fullFileName;
-        }
-
-        private string GetFullFileName(string mergedPdfFileName)
-        {
-            return System.IO.Path.Combine(_path, mergedPdfFileName);
         }
     }
 }

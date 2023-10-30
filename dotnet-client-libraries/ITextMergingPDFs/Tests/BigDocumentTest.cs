@@ -6,14 +6,12 @@ namespace Tests
     [TestClass]
     public class BigDocumentTest
     {
-        private BigDocument _bigDocument = default!;
         private FolderManager _folderManager = default!;
 
         [TestInitialize]
         public void Initialize()
         {
             _folderManager = FolderManager.CreateFolderManagerInTemporaryFolder("Test");
-            _bigDocument = new BigDocument(_folderManager.PdfFolderName);
         }
 
         [TestCleanup]
@@ -25,10 +23,10 @@ namespace Tests
         [TestMethod]
         public void GivenValidParameters_WhenCreateDocumentInvoked_ThenExpectOneFile()
         {
-            var pdfFileName = "TestDocument.pdf";
+            var pdfFileName = _folderManager.GetFullName("TestDocument.pdf");
             var pageSize = PageSize.A4;
 
-            var fullFilePath = _bigDocument.CreateDocument(pdfFileName, pageSize);
+            var fullFilePath = BigDocument.CreateDocument(pdfFileName, pageSize);
 
             Assert.IsNotNull(fullFilePath);
             Assert.IsTrue(File.Exists(fullFilePath));
@@ -38,11 +36,11 @@ namespace Tests
         [TestMethod]
         public void GivenValidParameters_WhenCreateFewDocumentsInvoked_ThenExpectFewDocumentsCreated()
         {
-            var pdfFileNameMask = "TestDocument_{0}.pdf";
             var numberOfDocuments = 5u;
             var pageSize = PageSize.A4;
 
-            var documents = _bigDocument.CreateFewDocuments(pdfFileNameMask, numberOfDocuments, pageSize);
+            var documents = BigDocument.CreateFewDocuments(_folderManager.PdfFolderName, 
+                "test", numberOfDocuments, pageSize).ToArray();
 
             Assert.IsNotNull(documents);
             Assert.AreEqual(numberOfDocuments, (uint)documents.Length);
@@ -56,16 +54,15 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenInValidParameters_WhenCreateFewDocumentsInvoked_ThenExpectException()
+        public void GivenInValidParameters_WhenCreateFewDocumentsInvoked_ThenExpectnoDocuments()
         {
-            var pdfFileNameMask = "TestDocument_{0}.pdf";
             var pageSize = PageSize.A4;
 
             var numberOfDocuments = 0u;
-            Assert.ThrowsException<ArgumentException>(() => _bigDocument.CreateFewDocuments(pdfFileNameMask, numberOfDocuments, pageSize));
+            var documents = BigDocument.CreateFewDocuments(_folderManager.PdfFolderName, 
+                "test", numberOfDocuments, pageSize).ToArray();
 
-            numberOfDocuments = 21u;
-            Assert.ThrowsException<ArgumentException>(() => _bigDocument.CreateFewDocuments(pdfFileNameMask, numberOfDocuments, pageSize));
+            Assert.AreEqual(0, documents.Length);
         }
     }
 }

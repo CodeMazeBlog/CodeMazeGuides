@@ -3,27 +3,8 @@ using iText.Kernel.Utils;
 
 namespace ITextMergingPDFs
 {
-    public class Merger
+    public static class Merger
     {
-        private readonly string _path;
-
-        public Merger(string path)
-        {
-            _path = path;
-        }
-
-        public string MergePDFs(string[] pdfFiles, string mergedPdfFileName)
-        {
-            var fullFileName = GetFullFileName(mergedPdfFileName);
-            MergingMethodWithChecks(pdfFiles, fullFileName);
-            return fullFileName;
-        }
-
-        private string GetFullFileName(string mergedPdfFileName)
-        {
-            return System.IO.Path.Combine(_path, mergedPdfFileName);
-        }
-
         private static void CheckParameters(string[] pdfFiles, string mergedPdfFileName)
         {
             if (string.IsNullOrWhiteSpace(mergedPdfFileName))
@@ -36,29 +17,15 @@ namespace ITextMergingPDFs
                 throw new ArgumentOutOfRangeException(nameof(pdfFiles));
         }
 
-        private static void SimpleMergingMethod(string[] pdfFiles, string mergedPdfFileName)
+        public static void Merge(string[] documents, string mergedDocument)
         {
-            using var writer = new PdfWriter(mergedPdfFileName);
+            CheckParameters(documents, mergedDocument);
+
+            using var writer = new PdfWriter(mergedDocument);
             using var mergedPdfDocument = new PdfDocument(writer);
 
             var pdfMerger = new PdfMerger(mergedPdfDocument);
-            foreach (var file in pdfFiles)
-            {
-                using var reader = new PdfReader(file);
-                using var srcPdfDocument = new PdfDocument(reader);
-                pdfMerger.Merge(srcPdfDocument, 1, srcPdfDocument.GetNumberOfPages());
-            }
-        }
-
-        private static void MergingMethodWithChecks(string[] pdfFiles, string mergedPdfFileName)
-        {
-            CheckParameters(pdfFiles, mergedPdfFileName);
-
-            using var writer = new PdfWriter(mergedPdfFileName);
-            using var mergedPdfDocument = new PdfDocument(writer);
-
-            var pdfMerger = new PdfMerger(mergedPdfDocument);
-            foreach (var file in pdfFiles)
+            foreach (var file in documents)
             {
                 using var reader = new PdfReader(file);
                 using var srcPdfDocument = new PdfDocument(reader);
