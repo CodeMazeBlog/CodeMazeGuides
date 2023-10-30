@@ -4,7 +4,6 @@ namespace LocalFunctionInCSharp
 {
     public class ShoppingCart
     {
-        [Required]
         public List<Product> Products { get; init; }
         public bool Checkout()
         {
