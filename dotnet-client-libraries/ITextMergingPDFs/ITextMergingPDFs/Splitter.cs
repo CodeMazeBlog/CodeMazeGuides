@@ -11,6 +11,7 @@ namespace ITextMergingPDFs
             using var srcPdfDocument = new PdfDocument(reader);
 
             var sourceFilePath = Path.GetDirectoryName(sourcePdfFile)!;
+
             var oddPagesFileName = Path.Combine(sourceFilePath, "odd.pdf");
             ExtractPagesThatMatchCriteria(srcPdfDocument, oddPagesFileName,
                 pageNum => pageNum % 2 != 0);
