@@ -32,5 +32,19 @@ namespace ITextMergingPDFs
                 pdfMerger.Merge(srcPdfDocument, 1, srcPdfDocument.GetNumberOfPages());
             }
         }
+
+        public static void SimpleMerge(string[] pdfFiles, string mergedPdfFileName)
+        {
+            using var writer = new PdfWriter(mergedPdfFileName);
+            using var mergedPdfDocument = new PdfDocument(writer);
+
+            var pdfMerger = new PdfMerger(mergedPdfDocument);
+            foreach (var file in pdfFiles)
+            {
+                using var reader = new PdfReader(file);
+                using var srcPdfDocument = new PdfDocument(reader);
+                pdfMerger.Merge(srcPdfDocument, 1, srcPdfDocument.GetNumberOfPages());
+            }
+        }
     }
 }
