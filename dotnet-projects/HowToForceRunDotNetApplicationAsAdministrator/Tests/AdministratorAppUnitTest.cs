@@ -73,7 +73,7 @@ namespace Tests
 
             // Act
             var isAdmin = mockChecker.Object.IsCurrentUserAdmin();
-            PrivilegeStatusPrinter.PrintPrivilegeStatus(isAdmin);
+            PrivilegeStatusPrinter.Print(isAdmin);
 
             // Assert
             string expectedOutput = "The application is running with administrator privileges." + Environment.NewLine;
@@ -92,7 +92,7 @@ namespace Tests
 
             // Act
             var isAdmin = mockChecker.Object.IsCurrentUserAdmin();
-            PrivilegeStatusPrinter.PrintPrivilegeStatus(isAdmin);
+            PrivilegeStatusPrinter.Print(isAdmin);
 
             // Assert
             string expectedOutput = "The application is not running with administrator privileges." + Environment.NewLine;
