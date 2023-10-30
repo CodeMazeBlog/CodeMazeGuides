@@ -10,7 +10,7 @@ public class Program
 
     public static void UseDrawingTool()
     {
-        DrawingTool tool = new DrawingTool();
+        DrawingTool tool = new();
 
         // Simulate multiple users performing and undoing actions concurrently
         Parallel.Invoke(
@@ -18,19 +18,29 @@ public class Program
             {
                 tool.PerformAction("Draw Circle");
                 Task.Delay(50).Wait();  // Simulating some work
-                tool.UndoLastAction();
+                var actionUndone = tool.UndoLastAction();
+                Console.WriteLine(actionUndone);
             },
             () =>
             {
-                tool.PerfromMultipleActions("Draw Square", "Draw Triangle", "Draw Parallel Lines", "Draw Hexagon");
+                var actionsPerformedCount = tool.PerfromMultipleActions(
+                    "Draw Square", 
+                    "Draw Triangle", 
+                    "Draw Parallel Lines", 
+                    "Draw Hexagon");
                 Task.Delay(30).Wait();  // Simulating some work
-                tool.UndoLastNActions(4); // Undo last 4 actions
+                var actionsUndone = tool.UndoLastNActions(4); // Undo last 4 actions
+                foreach(var action in actionsUndone)
+                {
+                    Console.WriteLine(action);
+                }
             },
             () =>
             {
                 tool.PerformAction("Color Circle Red");
                 Task.Delay(70).Wait();  // Simulating some work
-                tool.UndoLastAction();
+                var actionUndone = tool.UndoLastAction();
+                Console.WriteLine(actionUndone);
             }
         );
     }

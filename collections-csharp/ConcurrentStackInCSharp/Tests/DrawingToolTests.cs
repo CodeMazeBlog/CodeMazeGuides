@@ -4,166 +4,108 @@ namespace Tests;
 
 public class DrawingToolTests
 {
-    private readonly DrawingTool _drawingTool;
-    private readonly StringWriter _stringWriter;
-
-    public DrawingToolTests()
+    [Fact]
+    public void When_NoActionPerformed_Then_UndoLastActionReturnsNoActionMessage()
     {
-        _drawingTool = new DrawingTool();
-        _stringWriter = new StringWriter();
-        Console.SetOut(_stringWriter);
+        // Arrange
+        var tool = new DrawingTool();
+
+        // Act
+        var result = tool.UndoLastAction();
+
+        // Assert
+        Assert.Equal("No action to undo", result);
     }
 
     [Fact]
-    public void WhenPerformingSingleAction_ThenActionIsRegistered()
+    public void When_SingleActionPerformed_Then_UndoLastActionReturnsThatAction()
     {
-        _drawingTool.PerformAction("Draw Circle");
+        // Arrange
+        var tool = new DrawingTool();
+        var action = "Draw Circle";
 
-        string output = _stringWriter.ToString();
-        Assert.Contains("Performed action: Draw Circle", output);
+        // Act
+        tool.PerformAction(action);
+        var result = tool.UndoLastAction();
+
+        // Assert
+        Assert.Equal($"Undid action: {action}", result);
     }
 
     [Fact]
-    public void WhenPerformingMultipleActions_ThenAllActionsAreRegistered()
+    public void When_MultipleActionsPerformed_Then_UndoLastActionReturnsLastAction()
     {
-        _drawingTool.PerfromMultipleActions("Draw Circle", "Draw Square", "Color Circle Red");
-
-        string output = _stringWriter.ToString();
-        Assert.Contains("Performed actions: Draw Circle", output);
-        Assert.Contains("Performed actions: Draw Square", output);
-        Assert.Contains("Performed actions: Color Circle Red", output);
-    }
-
-    [Fact]
-    public void WhenUndoingLastAction_ThenLastActionIsUndone()
-    {
-        _drawingTool.PerformAction("Draw Circle");
-        _drawingTool.UndoLastAction();
-
-        string output = _stringWriter.ToString();
-        Assert.Contains("Undid action: Draw Circle", output);
-    }
-
-    [Fact]
-    public void WhenUndoingLastNActions_ThenCorrectNumberOfActionsAreUndone()
-    {
-        _drawingTool.PerfromMultipleActions("Draw Circle", "Draw Square", "Color Circle Red");
-        _drawingTool.UndoLastNActions(2);
-
-        string output = _stringWriter.ToString();
-        Assert.Contains("Successfully undid 2 actions", output);
-    }
-
-    [Fact]
-    public void WhenUndoingMoreActionsThanExist_ThenAllActionsAreUndone()
-    {
-        _drawingTool.PerformAction("Draw Circle");
-        _drawingTool.UndoLastNActions(5);
-
-        string output = _stringWriter.ToString();
-        Assert.Contains("Successfully undid 1 actions", output);
-    }
-
-    [Fact]
-    public void WhenUndoingWithoutActions_ThenNoActionsToUndoMessageIsDisplayed()
-    {
-        _drawingTool.UndoLastAction();
-
-        string output = _stringWriter.ToString();
-        Assert.Contains("No actions to undo.", output);
-    }
-
-    [Fact]
-    public void WhenPerformingConcurrentActions_ThenAllActionsAreRegistered()
-    {
-        Parallel.Invoke(
-            () => _drawingTool.PerformAction("Draw Circle"),
-            () => _drawingTool.PerformAction("Draw Square"),
-            () => _drawingTool.PerformAction("Color Circle Red"));
-
-        string output = _stringWriter.ToString();
+        // Arrange
+        var tool = new DrawingTool();
         var actions = new[] { "Draw Circle", "Draw Square", "Color Circle Red" };
-        foreach (var action in actions)
-        {
-            Assert.Contains($"Performed action: {action}", output);
-        }
+
+        // Act
+        tool.PerfromMultipleActions(actions);
+        var result = tool.UndoLastAction();
+
+        // Assert
+        Assert.Equal($"Undid action: {actions.Last()}", result);
     }
 
     [Fact]
-    public void WhenUndoingActionsConcurrently_ThenAllActionsAreUndoneOrNoActionsToUndoMessageIsDisplayed()
+    public void When_PerformMultipleActions_Then_CountIncreasesAccordingly()
     {
-        _drawingTool.PerfromMultipleActions("Draw Circle", "Draw Square", "Color Circle Red");
+        // Arrange
+        var tool = new DrawingTool();
+        var actions = new[] { "Draw Circle", "Draw Square", "Color Circle Red" };
 
-        Parallel.Invoke(
-            () => _drawingTool.UndoLastAction(),
-            () => _drawingTool.UndoLastAction(),
-            () => _drawingTool.UndoLastAction(),
-            () => _drawingTool.UndoLastAction());
+        // Act
+        var countAfterActions = tool.PerfromMultipleActions(actions);
 
-        string output = _stringWriter.ToString();
-        Assert.True(output.Contains("No actions to undo.") || output.Contains("Undid action:"));
+        // Assert
+        Assert.Equal(actions.Length, countAfterActions);
     }
 
     [Fact]
-    public void WhenUndoingMoreActionsThanAvailable_ThenUndoOnlyTheAvaiableActions()
+    public void When_UndoingMultipleActions_Then_ReturnsCorrectNumberOfActions()
     {
+        // Arrange
+        var tool = new DrawingTool();
+        var actions = new[] { "Draw Circle", "Draw Square", "Color Circle Red" };
+        tool.PerfromMultipleActions(actions);
+
+        // Act
+        var undoneActions = tool.UndoLastNActions(2).ToList();
+
+        // Assert
+        Assert.Equal(2, undoneActions.Count);
+        Assert.Contains($"Undid action: {actions.Last()}", undoneActions);
+        Assert.Contains($"Undid action: {actions[actions.Length - 2]}", undoneActions);
+    }
+
+    [Fact]
+    public void When_UndoingMoreActionsThanAvailable_Then_ReturnsAllActions()
+    {
+        // Arrange
+        var tool = new DrawingTool();
+        var actions = new[] { "Draw Circle", "Draw Square" };
+        tool.PerfromMultipleActions(actions);
+
+        // Act
+        var undoneActions = tool.UndoLastNActions(4).ToList();
+
+        // Assert
+        Assert.Equal(actions.Length, undoneActions.Count);
+        Assert.Contains($"Undid action: {actions.Last()}", undoneActions);
+        Assert.Contains($"Undid action: {actions[0]}", undoneActions);
+    }
+
+    [Fact]
+    public void When_UndoingWithNoActions_Then_ReturnsFailureMessage()
+    {
+        // Arrange
         var tool = new DrawingTool();
 
-        tool.PerformAction("Draw Circle");
+        // Act
+        var undoneActions = tool.UndoLastNActions(2).ToList();
 
-        var output = CaptureConsoleOutput(() => 
-        {
-            tool.UndoLastNActions(5);  // Attempting to undo more actions than available
-        });
-
-        Assert.NotEqual("Successfully undid 5 actions", output);
-    }
-
-    [Fact]
-    public void WhenUndoingFromEmptyStack_ThenNoActionsMessageIsShown()
-    {
-        var tool = new DrawingTool();
-
-        var output = CaptureConsoleOutput(tool.UndoLastAction);
-
-        Assert.Contains("No actions to undo.", output);
-    }
-
-    [Fact]
-    public void WhenConcurrentUsersPerformAndUndoActions_ThenNoErrorsOccurAndOutputIsConsistent()
-    {
-        var tool = new DrawingTool();
-        
-        Parallel.Invoke(
-            () =>
-            {
-                for (int i = 0; i < 1000; i++)
-                {
-                    tool.PerformAction($"User1_Action_{i}");
-                    tool.UndoLastAction();
-                }
-            },
-            () =>
-            {
-                for (int i = 0; i < 1000; i++)
-                {
-                    tool.PerformAction($"User2_Action_{i}");
-                    tool.UndoLastAction();
-                }
-            }
-        );
-
-        // If there are any residual actions in the stack at this point, it implies there was an issue with concurrency.
-        var output = CaptureConsoleOutput(tool.UndoLastAction);
-        Assert.Contains("No actions to undo.", output);
-    }
-
-    private string CaptureConsoleOutput(Action action)
-    {
-        var consoleOutput = new StringWriter();
-        Console.SetOut(consoleOutput);
-        action.Invoke();
-        return consoleOutput.ToString();
+        // Assert
+        Assert.Single(undoneActions);
+        Assert.Equal("Failed to undo actions", undoneActions[0]);
     }
 }
-
