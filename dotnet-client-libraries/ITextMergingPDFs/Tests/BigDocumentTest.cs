@@ -39,7 +39,7 @@ namespace Tests
             var numberOfDocuments = 5u;
             var pageSize = PageSize.A4;
 
-            var documents = BigDocument.CreateFewDocuments(_folderManager.PdfFolderName, 
+            var documents = BigDocument.CreateFewDocuments(_folderManager.PdfFolderName,
                 "test", numberOfDocuments, pageSize).ToArray();
 
             Assert.IsNotNull(documents);
@@ -59,7 +59,7 @@ namespace Tests
             var pageSize = PageSize.A4;
 
             var numberOfDocuments = 0u;
-            var documents = BigDocument.CreateFewDocuments(_folderManager.PdfFolderName, 
+            var documents = BigDocument.CreateFewDocuments(_folderManager.PdfFolderName,
                 "test", numberOfDocuments, pageSize).ToArray();
 
             Assert.AreEqual(0, documents.Length);

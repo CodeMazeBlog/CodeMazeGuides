@@ -10,8 +10,8 @@ namespace ITextMergingPDFs
 {
     public static class BigDocument
     {
-        private static readonly PageSize[] _pageSizes = new PageSize[] { 
-            PageSize.A1, PageSize.A2, PageSize.A3, PageSize.A4, PageSize.A5, PageSize.A6 
+        private static readonly PageSize[] _pageSizes = new PageSize[] {
+            PageSize.A1, PageSize.A2, PageSize.A3, PageSize.A4, PageSize.A5, PageSize.A6
         };
 
         public static string CreateDocument(string pdfFileName, PageSize pageSize)
@@ -35,11 +35,11 @@ namespace ITextMergingPDFs
             return pdfFileName;
         }
 
-        public static IEnumerable<string> CreateFewDocuments(string folder, string documentPrefix, 
+        public static IEnumerable<string> CreateFewDocuments(string folder, string documentPrefix,
             uint numberOfDocuments, PageSize? pageSize = null)
         {
             var counter = 0;
-            while(counter++ < numberOfDocuments)
+            while (counter++ < numberOfDocuments)
             {
                 var fileName = Path.Combine(folder, $"{documentPrefix}_{counter}.pdf");
                 yield return CreateDocument(fileName, pageSize ?? GetRandomPageSize());

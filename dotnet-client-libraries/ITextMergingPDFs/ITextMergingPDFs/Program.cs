@@ -1,6 +1,5 @@
 ﻿using iText.Kernel.Geom;
 using ITextMergingPDFs;
-using System;
 using System.Diagnostics;
 using Path = System.IO.Path;
 
@@ -43,7 +42,7 @@ void DisplayPDFFile(string pdfFileName)
 
 static string CreateDocumentsFolder()
 {
-    var thisExePath = Process.GetCurrentProcess().MainModule!.FileName;
+    var thisExePath = Environment.ProcessPath;
     var documentsFolder = Path.Combine(Path.GetDirectoryName(thisExePath)!, Guid.NewGuid().ToString());
     Directory.CreateDirectory(documentsFolder);
     return documentsFolder;

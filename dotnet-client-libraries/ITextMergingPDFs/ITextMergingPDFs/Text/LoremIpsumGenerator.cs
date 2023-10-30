@@ -9,7 +9,7 @@ namespace ITextMergingPDFs.Text
         private static readonly string[] _loremIpsumWords = _loremIpsumText.Split(' ');
 
         protected LoremIpsumGenerator()
-        { 
+        {
             // to prevent creating instances of this class (it's static)
         }
 

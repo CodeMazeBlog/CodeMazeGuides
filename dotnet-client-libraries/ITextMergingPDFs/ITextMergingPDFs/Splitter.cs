@@ -12,17 +12,17 @@ namespace ITextMergingPDFs
 
             var sourceFilePath = Path.GetDirectoryName(sourcePdfFile)!;
             var oddPagesFileName = Path.Combine(sourceFilePath, "odd.pdf");
-            ExtractPagesThatMatchCriteria(srcPdfDocument, oddPagesFileName, 
+            ExtractPagesThatMatchCriteria(srcPdfDocument, oddPagesFileName,
                 pageNum => pageNum % 2 != 0);
 
             var evenPagesFileName = Path.Combine(sourceFilePath, "even.pdf");
-            ExtractPagesThatMatchCriteria(srcPdfDocument, evenPagesFileName, 
+            ExtractPagesThatMatchCriteria(srcPdfDocument, evenPagesFileName,
                 pageNum => pageNum % 2 == 0);
 
             return (oddPagesFileName, evenPagesFileName);
         }
 
-        private static void ExtractPagesThatMatchCriteria(PdfDocument srcPdfDocument, 
+        private static void ExtractPagesThatMatchCriteria(PdfDocument srcPdfDocument,
             string resultPdfDocument, Func<int, bool> pageSelectionCriteria)
         {
             using var writer = new PdfWriter(resultPdfDocument);
