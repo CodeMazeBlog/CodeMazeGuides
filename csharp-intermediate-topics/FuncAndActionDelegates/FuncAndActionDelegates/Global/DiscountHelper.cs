@@ -1,10 +1,8 @@
 ﻿using FuncAndActionDelegates.DTO;
-
 namespace FuncAndActionDelegates.Global
 {
-   public static class DiscountHelper
+    public static class DiscountHelper
     {
-
         public static double CalculateDiscount(Order order)
         {
             if (order.Customer.LoyaltyPoints >= 100)

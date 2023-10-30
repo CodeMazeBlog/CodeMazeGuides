@@ -1,12 +1,11 @@
 ﻿using FuncAndActionDelegates.DTO;
 using FuncAndActionDelegates.Global;
-
 class Program
 {
     static void Main(string[] args)
     {
         Console.Write("Enter customer name: ");
-        string customerName = Console.ReadLine();
+        var customerName = Console.ReadLine();
 
         int loyaltyPoints;
         do
@@ -18,8 +17,8 @@ class Program
         double totalAmount;
         while (!double.TryParse(Console.ReadLine(), out totalAmount)) ;
 
-        Customer customer = new Customer { Name = customerName, LoyaltyPoints = loyaltyPoints };
-        Order order = new Order { Customer = customer, TotalAmount = totalAmount };
+        var customer = new Customer { Name = customerName, LoyaltyPoints = loyaltyPoints };
+        var order = new Order { Customer = customer, TotalAmount = totalAmount };
         CheckOrderForDiscount(order);
     }
 
@@ -29,12 +28,12 @@ class Program
         double discount = calculateDiscountFunc(order);
         if (discount > 0)
         {
-            Console.WriteLine($"Congrats!  {order.Customer.Name} on your discount you new billing amount is ${discount}");
+        Console.WriteLine($"Congrats! {order.Customer.Name} on your Discount\n" +
+                          $"Your new billing amount is ${discount}");
         }
         // Using Action delegate to print the thank you message
         Action<Order> printThankYouAction = DiscountHelper.PrintThankYouMessage; 
         printThankYouAction(order);
-
     } 
 
 }

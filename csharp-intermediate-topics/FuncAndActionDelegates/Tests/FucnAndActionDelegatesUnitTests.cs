@@ -1,17 +1,11 @@
 using FuncAndActionDelegates.DTO;
-using NUnit.Framework;
-using System;
 using FuncAndActionDelegates.Global;
-
 namespace Tests
-
 {
     public class Tests
     {
-
-
         [Test]
-        public void Given_CustomerWithLowLoyaltyPoints_When_CalculatingDiscount_Then_ReturnZeroDiscount()
+        public void GivenCustomerWithLowLoyaltyPoints_WhenCalculatingDiscount_ThenReturnZeroDiscount()
         {
             // Arrange (Given)
             Order order = new Order { Customer = new Customer { Name = "Customer2", LoyaltyPoints = 50 }, TotalAmount = 1000 };
@@ -24,7 +18,7 @@ namespace Tests
         }
 
         [Test]
-        public void Given_CustomerWithHighLoyaltyPoints_When_CalculatingDiscount_Then_ReturnDiscount()
+        public void GivenCustomerWithHighLoyaltyPoints_WhenCalculatingDiscount_ThenReturnDiscount()
         {
             // Arrange (Given)
             Order order = new Order { Customer = new Customer { Name = "Customer1", LoyaltyPoints = 150 }, TotalAmount = 1000 };
@@ -35,8 +29,5 @@ namespace Tests
             // Assert (Then)
             Assert.AreEqual(200, discount); // Expected discount for this scenario
         }
-
-
-
     }
 }
