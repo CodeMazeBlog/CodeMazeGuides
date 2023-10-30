@@ -4,45 +4,46 @@ namespace ConcurrentStackInCSharp;
 
 public class DrawingTool
 {
-    private readonly ConcurrentStack<string> _actionHistory = new ConcurrentStack<string>();
+    private readonly ConcurrentStack<string> _actionHistory = new();
 
     public void PerformAction(string action)
     {
         _actionHistory.Push(action);
-        Console.WriteLine($"Performed action: {action}");
     }
 
-    public void UndoLastAction()
+    public string UndoLastAction()
     {
-        if (_actionHistory.TryPop(out var lastAction))
+        if(_actionHistory.Count==0)
+            return "No action to undo";
+
+        if (!_actionHistory.TryPop(out var lastAction))
         {
-            Console.WriteLine($"Undid action: {lastAction}");
-            return;
+            throw new Exception("Failed to Pop last action");
         }
 
-        Console.WriteLine("No actions to undo.");
+        return $"Undid action: {lastAction}";
     }
 
-    public void PerfromMultipleActions(params string[] actions)
+
+    public int PerfromMultipleActions(params string[] actions)
     {
         _actionHistory.PushRange(actions);
-        foreach (var action in actions)
-        {
-            Console.WriteLine($"Performed actions: {action}");
-        }
+        return _actionHistory.Count;
     }
 
-    public void UndoLastNActions(int numberOfActionsToUndo)
+    public IEnumerable<string> UndoLastNActions(int numberOfActionsToUndo)
     {
         var lastActions = new string[numberOfActionsToUndo];
-        var numberOfActionsUndone = _actionHistory.TryPopRange(lastActions);
+        var actionsUndoneCount = _actionHistory.TryPopRange(lastActions);
 
-        if (numberOfActionsUndone > 0)
+        if (actionsUndoneCount == 0)
         {
-            Console.WriteLine($"Successfully undid {numberOfActionsUndone} actions");
-            return;
+            yield return "Failed to undo actions";
         }
 
-        Console.WriteLine("No actions to undo.");
+        for (int i = 0; i < actionsUndoneCount; i++)
+        {
+            yield return $"Undid action: {lastActions[i]}";
+        }
     }
 }
