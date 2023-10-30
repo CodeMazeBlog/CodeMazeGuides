@@ -1,6 +1,6 @@
 ﻿namespace TheForEachMethodAndForeachStatement;
 
-public class Iterators
+public static class Iterators
 {
     public static int GetTotalOfIntListWithForEachMethod(List<int> prices)
     {

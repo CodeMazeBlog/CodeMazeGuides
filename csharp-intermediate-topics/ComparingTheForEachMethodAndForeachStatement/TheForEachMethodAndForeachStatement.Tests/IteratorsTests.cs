@@ -1,6 +1,3 @@
-using FluentAssertions;
-using TheForEachMethodAndForeachStatement.Tests.Data;
-
 namespace TheForEachMethodAndForeachStatement.Tests
 {
     public class IteratorsTests
