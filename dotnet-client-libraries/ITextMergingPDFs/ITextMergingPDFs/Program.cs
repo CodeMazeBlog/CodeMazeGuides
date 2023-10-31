@@ -8,7 +8,7 @@ string documentsFolder = CreateDocumentsFolder();
 MergeDocumentsOfTheSameSize(documentsFolder);
 Wait();
 
-MergeDocumentsOfDifferentSizes(documentsFolder);
+MergeDocumentsOfDifferentPageSizes(documentsFolder);
 Wait();
 
 SplitDocument(documentsFolder);
@@ -66,9 +66,9 @@ void MergeDocumentsOfTheSameSize(string documentsFolder)
     DisplayPDFFile(mergedDocument);
 }
 
-void MergeDocumentsOfDifferentSizes(string documentsFolder)
+void MergeDocumentsOfDifferentPageSizes(string documentsFolder)
 {
-    Console.WriteLine("Merge 3 PDF Documents with Different Sizes\n\n");
+    Console.WriteLine("Merge 3 PDF Documents with Different Page Sizes\n\n");
     var documents = BigDocument.CreateFewDocuments(documentsFolder, "test", 3).ToArray();
     foreach (var document in documents)
     {
