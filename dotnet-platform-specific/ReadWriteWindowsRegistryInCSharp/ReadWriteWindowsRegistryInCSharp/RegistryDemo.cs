@@ -67,7 +67,6 @@ public static class RegistryDemo
         subKey?.SetValue(CodeMazeRegistryDemoName, CodeMazeRegistryDemoValue);
         var writtenValue = subKey?.GetValue(CodeMazeRegistryDemoName);
         subKey?.DeleteValue(CodeMazeRegistryDemoName);
-        subKey?.Close();
 
         baseKey.DeleteSubKey(CodeMazeRegistryDemoSubKey);
 
