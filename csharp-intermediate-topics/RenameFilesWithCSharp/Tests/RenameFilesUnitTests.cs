@@ -6,11 +6,11 @@ public class RenameFilesUnitTests
     public void GivenValidDirectoryPath_WhenFindingFiles_ThenReturnListOfFiles()
     {
         // Arrange
-        string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        var tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
         Directory.CreateDirectory(tempDirectory);
 
         // Act
-        var files = FindingFilesInFolder.FindFilesInFolder(tempDirectory);
+        var files = FileFinderService.FindFilesInFolder(tempDirectory);
 
         // Assert
         Assert.NotNull(files);
@@ -21,18 +21,73 @@ public class RenameFilesUnitTests
     }
 
     [Fact]
+    public void GivenValidDirectoryPath_WhenExecutingFindFilesInFolder_ThenPrintFileNamesToConsole()
+    {
+        // Arrange
+        var tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        Directory.CreateDirectory(tempDirectory);
+
+        for (var i = 1; i < 5; i++)
+        {
+            var filePath = Path.Combine(tempDirectory, $"File{i}.txt");
+            File.Create(filePath).Close();
+        }
+
+        // Redirect Console.Out to capture the output
+        using (StringWriter sw = new StringWriter())
+        {
+            Console.SetOut(sw);
+
+            // Act
+            FileFinderService.ExecuteFindFilesInFolder();
+            var output = sw.ToString().Trim();
+
+            // Assert
+            Assert.Contains("File1.txt", output);
+            Assert.Contains("File2.txt", output);
+            Assert.Contains("File3.txt", output);
+            Assert.Contains("File4.txt", output);
+        }
+
+        // Clean up
+        Directory.Delete(tempDirectory, true);
+    }
+
+    [Fact]
     public void GivenExistingFileAndNewFileName_WhenRenamingFile_ThenOldFileIsRenamedToNewFile()
     {
         // Arrange
-        string tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        var tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
         Directory.CreateDirectory(tempDirectory);
 
-        string oldFilePath = Path.Combine(tempDirectory, "oldfile.txt");
+        var oldFilePath = Path.Combine(tempDirectory, "oldfile.txt");
         File.WriteAllText(oldFilePath, "content");
-        string newFilePath = Path.Combine(tempDirectory, "newfile.txt");
+        var newFilePath = Path.Combine(tempDirectory, "newfile.txt");
 
         // Act
-        RenameSingleFileInFolder.RenameFileInDirectory(oldFilePath, newFilePath);
+        FileRenameService.RenameFileWithFileClass(oldFilePath, newFilePath);
+
+        // Assert
+        Assert.True(File.Exists(newFilePath));
+        Assert.False(File.Exists(oldFilePath));
+
+        // Clean up
+        Directory.Delete(tempDirectory, true);
+    }
+
+    [Fact]
+    public void GivenExistingFileAndNewFileName_WhenRenamingFileWithFileInfoClass_ThenOldFileIsRenamedToNewFile()
+    {
+        // Arrange
+        var tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        Directory.CreateDirectory(tempDirectory);
+
+        var oldFilePath = Path.Combine(tempDirectory, "oldfile.txt");
+        File.WriteAllText(oldFilePath, "content");
+        var newFilePath = Path.Combine(tempDirectory, "newfile.txt");
+
+        // Act
+        FileInfoRenameService.RenameFileWithFileInfoClass(oldFilePath, newFilePath);
 
         // Assert
         Assert.True(File.Exists(newFilePath));
@@ -53,7 +108,7 @@ public class RenameFilesUnitTests
         File.Create(Path.Combine(tempDirectory, "photo2.png")).Close();
 
         // Act
-        BatchRenameFiles.RenamePhotosWithDateTime(tempDirectory);
+        PhotoRenameService.RenamePhotosWithDateTime(tempDirectory);
 
         // Assert
         var photoFiles = Directory.EnumerateFiles(tempDirectory);
@@ -82,58 +137,7 @@ public class RenameFilesUnitTests
         Assert.True(existingFiles.All(file => !allowedExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase)));
 
         // Act
-        BatchRenameFiles.RenamePhotosWithDateTime(tempDirectory);
-
-        var updatedFiles = Directory.EnumerateFiles(tempDirectory);
-
-        // Assert
-        Assert.Equal(existingFiles, updatedFiles);
-
-        // Clean up
-        Directory.Delete(tempDirectory, true);
-    }
-
-    [Fact]
-    public void WhenBatchRenamingPhotosWithDateTimeAndAllowedExtensionsExistWithErrorHandling_ThenPhotosShouldBeRenamed()
-    {
-        // Arrange
-        var tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-        Directory.CreateDirectory(tempDirectory);
-
-        File.Create(Path.Combine(tempDirectory, "photo1.jpg")).Close();
-        File.Create(Path.Combine(tempDirectory, "photo2.png")).Close();
-
-        // Act
-        BatchRenameFileWithErrorHandling.RenamePhotosWithDateTime(tempDirectory);
-
-        // Assert
-        var photoFiles = Directory.EnumerateFiles(tempDirectory);
-
-        foreach (var photoFile in photoFiles)
-        {
-            var creationTime = File.GetCreationTime(photoFile);
-
-            Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{creationTime:yyyy-MM-dd_HHmmss}.jpg")));
-            Assert.True(File.Exists(Path.Combine(tempDirectory, $"Image_{creationTime:yyyy-MM-dd_HHmmss}.png")));
-        }
-
-        // Clean up
-        Directory.Delete(tempDirectory, true);
-    }
-
-    [Fact]
-    public void WhenBatchRenamingPhotosWithDateTimeAndNoAllowedExtensionsExistWithErrorHandling_ThenNoPhotosShouldBeRenamed()
-    {
-        // Arrange
-        var tempDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-        Directory.CreateDirectory(tempDirectory);
-
-        var allowedExtensions = new[] { ".jpg", ".png", ".jpeg", ".gif" };
-        var existingFiles = Directory.EnumerateFiles(tempDirectory);
-        Assert.True(existingFiles.All(file => !allowedExtensions.Contains(Path.GetExtension(file), StringComparer.OrdinalIgnoreCase)));
-
-        // Act
-        BatchRenameFileWithErrorHandling.RenamePhotosWithDateTime(tempDirectory);
+        PhotoRenameService.RenamePhotosWithDateTime(tempDirectory);
 
         var updatedFiles = Directory.EnumerateFiles(tempDirectory);
 

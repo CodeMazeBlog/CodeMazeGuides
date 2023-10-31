@@ -1,6 +1,6 @@
 ﻿namespace RenameFilesWithCSharp;
 
-public class FindingFilesInFolder
+public static class FileFinderService
 {
     public static List<string> FindFilesInFolder(string directoryPath)
     {
@@ -11,6 +11,18 @@ public class FindingFilesInFolder
     public static void ExecuteFindFilesInFolder()
     {
         var directoryPath = @"C:\MyDirectory";
+
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
+        for (var i = 1; i < 5; i++)
+        {
+            var filePath = $@"{directoryPath}\File{i}.txt";
+
+            File.Create(filePath).Close();
+        }
 
         var filesInFolder = FindFilesInFolder(directoryPath);
 
