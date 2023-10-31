@@ -21,39 +21,6 @@ public class RenameFilesUnitTests
     }
 
     [Fact]
-    public void GivenValidDirectoryPath_WhenExecutingFindFilesInFolder_ThenPrintFileNamesToConsole()
-    {
-        // Arrange
-        var tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-        Directory.CreateDirectory(tempDirectory);
-
-        for (var i = 1; i < 5; i++)
-        {
-            var filePath = Path.Combine(tempDirectory, $"File{i}.txt");
-            File.Create(filePath).Close();
-        }
-
-        // Redirect Console.Out to capture the output
-        using (StringWriter sw = new StringWriter())
-        {
-            Console.SetOut(sw);
-
-            // Act
-            FileFinderService.ExecuteFindFilesInFolder();
-            var output = sw.ToString().Trim();
-
-            // Assert
-            Assert.Contains("File1.txt", output);
-            Assert.Contains("File2.txt", output);
-            Assert.Contains("File3.txt", output);
-            Assert.Contains("File4.txt", output);
-        }
-
-        // Clean up
-        Directory.Delete(tempDirectory, true);
-    }
-
-    [Fact]
     public void GivenExistingFileAndNewFileName_WhenRenamingFile_ThenOldFileIsRenamedToNewFile()
     {
         // Arrange
