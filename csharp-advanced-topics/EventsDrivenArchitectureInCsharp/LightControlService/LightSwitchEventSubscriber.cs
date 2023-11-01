@@ -22,7 +22,6 @@ public class LightSwitchEventSubscriber : IConsumer<LightSwitchEvent>
     {
         try
         {
-            // Simulating a delay to represent network latency.
             await Task.Delay(TimeSpan.FromSeconds(2));
 
             if (lightEvent.State == LightState.On)

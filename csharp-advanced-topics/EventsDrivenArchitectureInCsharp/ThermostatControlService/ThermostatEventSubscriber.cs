@@ -22,7 +22,6 @@ public class ThermostatEventSubscriber : IConsumer<ThermostatTempChangeEvent>
     {
         try
         {
-            // Simulating a delay to represent the time taken to adjust the thermostat.
             await Task.Delay(TimeSpan.FromSeconds(2));
 
             Console.WriteLine($"Adjusting thermostat to {thermostatEvent.Temperature}°C...");
