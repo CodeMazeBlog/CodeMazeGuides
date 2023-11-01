@@ -10,7 +10,7 @@ Console.WriteLine($"Floating Point Precision: {StandardFormatStrings.FloatingPoi
 
 Console.WriteLine($"Percentage: {StandardFormatStrings.Percentage(0.54)}");
 
-Console.WriteLine("\n\n");
+Console.WriteLine();
 Console.WriteLine("======================== Custom Format Strings ========================");
 Console.WriteLine($"Decimal: {CustomFormatStrings.Decimal(6546)}");
 Console.WriteLine($"Floating Point: {CustomFormatStrings.FloatingPoint(1652.5899)}");
