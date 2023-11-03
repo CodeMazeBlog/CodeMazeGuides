@@ -6,17 +6,7 @@ class Program
     {
         var mealGenerator = new MealGenerator(CookDelicousMeal, ServeDeliciousMeal);
 
-        List<string> selectedIngredients = new List<string>
-        {
-            "Chicken breast",
-            "Broccoli",
-            "Rice",
-            "Soy sauce",
-            "Garlic",
-            "Ginger",
-            "Olive oil"
-        };
-
+        List<string> selectedIngredients = new List<string> { "Chicken breast", "Rice", "Olive oil" };
         mealGenerator.GenerateAndDisplayMeal(selectedIngredients);
 
     }

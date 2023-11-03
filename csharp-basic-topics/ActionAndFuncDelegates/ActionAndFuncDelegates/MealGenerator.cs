@@ -9,9 +9,10 @@ public class MealGenerator
         generateMeal = mealGenerator;
         displayMeal = mealDisplay;
     }
-    public void GenerateAndDisplayMeal(List<string> ingredients)
+    public string GenerateAndDisplayMeal(List<string> ingredients)
     {
         var meal = generateMeal(ingredients);
         displayMeal(meal);
+        return "order completed succesfully";
     }
 }
