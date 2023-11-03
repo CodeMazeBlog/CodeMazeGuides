@@ -2,10 +2,9 @@
 
 public static class FileFinderService
 {
-    public static List<string> FindFilesInFolder(string directoryPath)
+    public static IEnumerable<string> FindFilesInFolder(string directoryPath)
     {
-        return Directory.EnumerateFiles(directoryPath, "*", SearchOption.AllDirectories)
-            .ToList();
+        return Directory.EnumerateFiles(directoryPath, "*", SearchOption.AllDirectories);
     }
 
     public static void ExecuteFindFilesInFolder()

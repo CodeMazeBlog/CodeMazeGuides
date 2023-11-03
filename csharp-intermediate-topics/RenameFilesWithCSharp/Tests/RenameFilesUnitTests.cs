@@ -14,7 +14,7 @@ public class RenameFilesUnitTests
 
         // Assert
         Assert.NotNull(files);
-        Assert.IsType<List<string>>(files);
+        Assert.IsAssignableFrom<IEnumerable<string>>(files);
 
         // Clean up
         Directory.Delete(tempDirectory);

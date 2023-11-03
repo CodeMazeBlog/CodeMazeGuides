@@ -11,7 +11,6 @@ public static class FileInfoRenameService
     public static void ExecuteRenameFileWithFileInfoClass()
     {
         var oldFile = @"C:\MyDirectory\File2.txt";
-
         var newFile = @"C:\MyDirectory\File_v2.txt";
 
         RenameFileWithFileInfoClass(oldFile, newFile);

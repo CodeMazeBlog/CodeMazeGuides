@@ -6,7 +6,6 @@ public static class PhotoRenameService
     {
         var allowedExtensions = new[] { ".jpg", ".png", ".jpeg", ".gif" };
 
-        // Gets a list of all the photo files in the specified directory and its subdirectories, filtering out files with other extensions.
         var photoFiles = Directory.EnumerateFiles(directoryPath)
             .Where(file => allowedExtensions.Contains(Path.GetExtension(file),
                                 StringComparer.OrdinalIgnoreCase));
