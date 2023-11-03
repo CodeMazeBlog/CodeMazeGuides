@@ -18,7 +18,17 @@ else
 }
 
 @code {
-    private List<int>? PrimeNumbers { get; set; }
+    private List<int>? primeNumbers;
+
+    public List<int>? PrimeNumbers
+    { 
+        get
+        {
+            return primeNumbers;
+        }
+    }
+
+
     private double TimeToRun { get; set; }
 
     protected override async Task<List<int>> OnInitializedAsync()
@@ -26,11 +36,11 @@ else
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        PrimeNumbers = await PrimeNumberService.GetPrimeNumbersAsync();
+        primeNumbers = await PrimeNumberService.GetPrimeNumbersAsync();
 
         stopwatch.Stop();
         TimeToRun = stopwatch.Elapsed.TotalMilliseconds;
 
-        return PrimeNumbers;
+        return primeNumbers;
     }
 }
