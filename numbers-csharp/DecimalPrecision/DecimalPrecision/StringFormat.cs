@@ -2,30 +2,25 @@
 
 namespace DecimalPrecision;
 
-public class StringFormat
+public static class StringFormat
 {
     private static NumberFormatInfo CreateNumberFormatWithPrecision(int decimalPlaces)
     {
-        NumberFormatInfo numberFormat = new NumberFormatInfo
+        return new NumberFormatInfo
         {
             NumberDecimalDigits = decimalPlaces
         };
-        
-        return numberFormat;
     }
 
-    public string SetPrecisionUsingStringFormat(decimal myDecimal)
+    public static string SetPrecisionUsingStringFormat(decimal myDecimal)
     {
-        string formatted = myDecimal.ToString("0.00"); // "123.46"
-        
-        return formatted;
+        return myDecimal.ToString("0.00"); // "123.46"
     }
     
-    public string SetPrecisionUsingStringFormatAndGlobalScope(decimal myDecimal, int decimalPlaces)
+    public static string SetPrecisionUsingStringFormat(decimal myDecimal, int decimalPlaces)
     {
         NumberFormatInfo numberFormat = CreateNumberFormatWithPrecision(decimalPlaces);
-        string formatted = myDecimal.ToString("N", numberFormat);
         
-        return formatted;
+        return myDecimal.ToString("N", numberFormat);
     }
 }

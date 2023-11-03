@@ -1,11 +1,7 @@
-﻿using DecimalPrecision;
-
-namespace TestProject1;
+﻿namespace TestProject1;
 
 public class StringFormatUnitTest
 {
-    private readonly StringFormat _stringFormat = new StringFormat();
-
     [Theory]
     [InlineData(123.456, "123.46")]
     [InlineData(8.6789, "8.68")]
@@ -15,7 +11,7 @@ public class StringFormatUnitTest
     public void SetPrecisionUsingStringFormat_ShouldFormatCorrectly(decimal input, string expected)
     {
         // Act
-        string result = _stringFormat.SetPrecisionUsingStringFormat(input);
+        var result = StringFormat.SetPrecisionUsingStringFormat(input);
 
         // Assert
         Assert.Equal(expected, result);
@@ -30,7 +26,7 @@ public class StringFormatUnitTest
     public void SetPrecisionUsingStringFormatAndGlobalScope_ShouldFormatCorrectly(decimal input, string expected)
     {
         // Act
-        string result = _stringFormat.SetPrecisionUsingStringFormatAndGlobalScope(input, 2);
+        var result = StringFormat.SetPrecisionUsingStringFormat(input, 2);
 
         // Assert
         Assert.Equal(expected, result);

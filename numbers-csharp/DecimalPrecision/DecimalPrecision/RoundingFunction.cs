@@ -1,25 +1,19 @@
 ﻿namespace DecimalPrecision;
 
-public class RoundingFunction
+public static class RoundingFunction
 {
-    public decimal GetDecimalRoundValueUsingMathRound(decimal value)
+    public static decimal GetDecimalRoundValueUsingMathRound(decimal value)
     {
-        decimal roundedValue = Math.Round(value, 2);
-
-        return roundedValue;
+        return Math.Round(value, 2);
     }
     
-    public decimal GetDecimalRoundValueUsingDecimalRound(decimal value)
+    public static decimal GetDecimalRoundValueUsingDecimalRound(decimal value)
     {
-        decimal roundedValue = decimal.Round(value, 2, MidpointRounding.AwayFromZero);
-
-        return roundedValue;
+        return decimal.Round(value, 2, MidpointRounding.AwayFromZero);
     }
     
-    public decimal GetDecimalRoundValueUsingDecimalTruncate(decimal value)
+    public static decimal GetDecimalRoundValueUsingDecimalTruncate(decimal value)
     {
-        decimal truncatedValue = decimal.Truncate(value);
-
-        return truncatedValue;
+        return decimal.Truncate(value);
     }
 }

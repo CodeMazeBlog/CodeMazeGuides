@@ -1,11 +1,7 @@
-﻿using DecimalPrecision;
-
-namespace TestProject1;
+﻿namespace TestProject1;
 
 public class RoundingFunctionUnitTest
 {
-    private readonly RoundingFunction _roundingFunction = new RoundingFunction();
-
     [Theory]
     [InlineData(12.3456, 12.35)]
     [InlineData(8.6789, 8.68)]
@@ -15,7 +11,7 @@ public class RoundingFunctionUnitTest
     public void GetDecimalRoundValueUsingMathRound_ShouldRoundCorrectly(decimal input, decimal expected)
     {
         // Act
-        decimal result = _roundingFunction.GetDecimalRoundValueUsingMathRound(input);
+        var result = RoundingFunction.GetDecimalRoundValueUsingMathRound(input);
 
         // Assert
         Assert.Equal(expected, result, 2);
@@ -30,7 +26,7 @@ public class RoundingFunctionUnitTest
     public void GetDecimalRoundValueUsingDecimalRound_ShouldRoundCorrectly(decimal input, decimal expected)
     {
         // Act
-        decimal result = _roundingFunction.GetDecimalRoundValueUsingDecimalRound(input);
+        var result = RoundingFunction.GetDecimalRoundValueUsingDecimalRound(input);
 
         // Assert
         Assert.Equal(expected, result, 2);
@@ -47,7 +43,7 @@ public class RoundingFunctionUnitTest
     public void GetDecimalRoundValueUsingDecimalTruncate_ShouldTruncateCorrectly(decimal input, decimal expected)
     {
         // Act
-        decimal result = _roundingFunction.GetDecimalRoundValueUsingDecimalTruncate(input);
+        var result = RoundingFunction.GetDecimalRoundValueUsingDecimalTruncate(input);
 
         // Assert
         Assert.Equal(expected, result, 2);

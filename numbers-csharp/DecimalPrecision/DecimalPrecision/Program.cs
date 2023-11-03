@@ -2,20 +2,17 @@
 
 decimal myDecimal = 123.456789M;
 
-var stringFormat = new StringFormat();
-var roundingFunction = new RoundingFunction();
-
-var stringFormatResult = stringFormat.SetPrecisionUsingStringFormat(myDecimal);
+var stringFormatResult = StringFormat.SetPrecisionUsingStringFormat(myDecimal);
 Console.WriteLine(stringFormatResult);
 
-var stringFormatResultWithGlobalScope = stringFormat.SetPrecisionUsingStringFormatAndGlobalScope(myDecimal, 2);
+var stringFormatResultWithGlobalScope = StringFormat.SetPrecisionUsingStringFormat(myDecimal, 2);
 Console.WriteLine(stringFormatResultWithGlobalScope);
 
-var roundedValueFromMathRound = roundingFunction.GetDecimalRoundValueUsingMathRound(myDecimal);
+var roundedValueFromMathRound = RoundingFunction.GetDecimalRoundValueUsingMathRound(myDecimal);
 Console.WriteLine(roundedValueFromMathRound);
 
-var roundedValueFromDecimalRound = roundingFunction.GetDecimalRoundValueUsingDecimalRound(myDecimal);
+var roundedValueFromDecimalRound = RoundingFunction.GetDecimalRoundValueUsingDecimalRound(myDecimal);
 Console.WriteLine(roundedValueFromDecimalRound);
 
-var truncatedValue = roundingFunction.GetDecimalRoundValueUsingDecimalTruncate(myDecimal);
+var truncatedValue = RoundingFunction.GetDecimalRoundValueUsingDecimalTruncate(myDecimal);
 Console.WriteLine(truncatedValue);
