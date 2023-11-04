@@ -20,6 +20,6 @@ public class UnitTest
         var result = await service.GetById(entityId);
 
         //Assert
-        Assert.Equal(expectedEntity.Id, result);
+        Assert.Equal(expectedEntity, result);
     }
 }
