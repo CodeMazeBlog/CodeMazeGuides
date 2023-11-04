@@ -19,7 +19,6 @@ public class Controller : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
-        //return vehicle != null ? Ok(vehicle) : (IActionResult)NotFound();
         try
         {
             var vehicle = await _service.GetById(id);
