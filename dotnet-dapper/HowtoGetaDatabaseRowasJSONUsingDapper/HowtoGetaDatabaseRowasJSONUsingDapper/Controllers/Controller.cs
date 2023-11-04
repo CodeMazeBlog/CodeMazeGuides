@@ -21,9 +21,9 @@ public class Controller : ControllerBase
     {
         try
         {
-            var vehicle = await _service.GetById(id);
+            var entity = await _service.GetById(id);
 
-            return vehicle == null ? NotFound() : Ok(vehicle);
+            return entity == null ? NotFound() : Ok(entity);
         }
         catch (Exception ex)
         {
