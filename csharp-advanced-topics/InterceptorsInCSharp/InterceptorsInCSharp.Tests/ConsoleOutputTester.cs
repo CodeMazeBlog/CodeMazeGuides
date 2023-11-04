@@ -7,7 +7,6 @@ public sealed class ConsoleOutputTester : IDisposable
 
     public ConsoleOutputTester()
     {
-        _consoleOutput.NewLine = Environment.NewLine;
         _originalOutput = Console.Out;
         Console.SetOut(_consoleOutput);
     }
