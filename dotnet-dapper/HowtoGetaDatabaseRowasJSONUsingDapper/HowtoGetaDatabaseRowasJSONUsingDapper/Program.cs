@@ -1,7 +1,7 @@
-using HowtoGetaDatabaseRowasJSONUsingDapper.Contracts;
-using HowtoGetaDatabaseRowasJSONUsingDapper.DbContext;
-using HowtoGetaDatabaseRowasJSONUsingDapper.Repository;
-using HowtoGetaDatabaseRowasJSONUsingDapper.Services;
+using RetrievingDbRowAsJsonWithDapper.Contracts;
+using RetrievingDbRowAsJsonWithDapper.DbContext;
+using RetrievingDbRowAsJsonWithDapper.Repository;
+using RetrievingDbRowAsJsonWithDapper.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +11,6 @@ builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IService, Service>();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

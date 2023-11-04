@@ -1,20 +1,22 @@
 ﻿using Microsoft.Data.SqlClient;
+using RetrievingDbRowAsJsonWithDapper.Wrapper;
 using System.Data;
 
-namespace HowtoGetaDatabaseRowasJSONUsingDapper.DbContext
+namespace RetrievingDbRowAsJsonWithDapper.DbContext;
+
+public class DapperContext
 {
-    public class DapperContext
+    private readonly IConfigurationWrapper _configuration;
+    private readonly string? _connectionString;
+
+    public DapperContext(IConfigurationWrapper configuration)
     {
-        private readonly IConfiguration _configuration;
-        private readonly string _connectionString;
+        _configuration = configuration;
+        _connectionString = _configuration.GetConnectionString("SqlConnection") ?? "";
+    }
 
-        public DapperContext(IConfiguration configuration)
-        {
-            _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("SqlConnection");
-        }
-
-        public IDbConnection CreateConnection()
-            => new SqlConnection(_connectionString);
+    public IDbConnection CreateConnection()
+    {
+        return new SqlConnection(_connectionString);
     }
 }

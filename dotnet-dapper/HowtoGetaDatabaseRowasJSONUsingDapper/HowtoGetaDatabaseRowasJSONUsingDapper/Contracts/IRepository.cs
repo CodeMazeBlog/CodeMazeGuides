@@ -1,7 +1,6 @@
-﻿namespace HowtoGetaDatabaseRowasJSONUsingDapper.Contracts
+﻿namespace RetrievingDbRowAsJsonWithDapper.Contracts;
+
+public interface IRepository
 {
-    public interface IRepository
-    {
-        public Task<dynamic> GetById(int id);
-    }
+    public Task<dynamic?> GetById(int id);
 }

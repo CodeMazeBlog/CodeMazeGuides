@@ -1,36 +1,34 @@
-using HowtoGetaDatabaseRowasJSONUsingDapper.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using RetrievingDbRowAsJsonWithDapper.Contracts;
 
-namespace HowtoGetaDatabaseRowasJSONUsingDapper.Controllers
+namespace RetrievingDbRowAsJsonWithDapper.Controllers;
+
+[ApiController]
+[Route("api/entities")]
+public class Controller : ControllerBase
 {
-    [ApiController]
-    [Route("api/entities")]
-    public class Controller : ControllerBase
+    private readonly ILogger<Controller> _logger;
+    private readonly IService _service;
+
+    public Controller(ILogger<Controller> logger, IService service)
     {
-        private readonly ILogger<Controller> _logger;
-        private readonly IService _service;
+        _logger = logger;
+        _service = service;
+    }
 
-        public Controller(ILogger<Controller> logger, IService service)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        //return vehicle != null ? Ok(vehicle) : (IActionResult)NotFound();
+        try
         {
-            _logger = logger;
-            _service = service;
+            var vehicle = await _service.GetById(id);
+
+            return vehicle == null ? NotFound() : Ok(vehicle);
         }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        catch (Exception ex)
         {
-            try
-            {
-                var vehicle = await _service.GetById(id);
-                if (vehicle == null)
-                    return NotFound();
-
-                return Ok(vehicle);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            return StatusCode(500, ex.Message);
         }
     }
 }
