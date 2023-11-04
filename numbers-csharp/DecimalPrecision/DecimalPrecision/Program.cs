@@ -1,6 +1,6 @@
 ﻿using DecimalPrecision;
 
-decimal myDecimal = 123.456789M;
+var myDecimal = 123.456789M;
 
 var stringFormatResult = StringFormat.SetPrecisionUsingStringFormat(myDecimal);
 Console.WriteLine(stringFormatResult);
