@@ -2,5 +2,5 @@
 
 public interface IConfigurationWrapper
 {
-    string GetConnectionString(string name);
+    string? GetConnectionString(string name);
 }

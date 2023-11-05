@@ -2,6 +2,7 @@ using RetrievingDbRowAsJsonWithDapper.Contracts;
 using RetrievingDbRowAsJsonWithDapper.DbContext;
 using RetrievingDbRowAsJsonWithDapper.Repository;
 using RetrievingDbRowAsJsonWithDapper.Services;
+using RetrievingDbRowAsJsonWithDapper.Wrapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IService, Service>();
-
+builder.Services.AddSingleton<IConfigurationWrapper, ConfigurationWrapper>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

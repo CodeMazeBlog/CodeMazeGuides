@@ -9,7 +9,7 @@ public class ConfigurationWrapper : IConfigurationWrapper
         _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
     }
 
-    public string GetConnectionString(string name)
+    public string? GetConnectionString(string name)
     {
         return _configuration.GetConnectionString(name);
     }
