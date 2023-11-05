@@ -11,6 +11,7 @@ This section contains articles about Entity Framework Core.
 - [How to Use Bulk Updates in Entity Framework Core](https://code-maze.com/efcore-bulk-updates/)
 - [Fast Inserts With Entity Framework (EF Core)](https://code-maze.com/dotnet-fast-inserts-entity-framework-ef-core/)
 - [How to Store JSON in an Entity Field With EF Core](https://code-maze.com/efcore-store-json-in-an-entity-field/)
+- [How and When to Use TPC Inheritance Mapping in EF Core](https://code-maze.com/efcore-how-and-when-to-use-tpc-inheritance-mapping/)
 - [EntityFramework Core vs Dapper](https://code-maze.com/entityframeworkcore-vs-dapper/)
 - [Filtering Results Using Filtered Include Method in EF Core](https://code-maze.com/ef-core-filtered-include/)
 - [Optimistic Concurrency in ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-optimistic-concurrency/)
