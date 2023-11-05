@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Moq;
-using RetrievingDbRowAsJsonWithDapper.DbContext;
-using RetrievingDbRowAsJsonWithDapper.Repository;
-using RetrievingDbRowAsJsonWithDapper.Wrapper;
-
-namespace Tests;
+﻿namespace Tests;
 public class LiveTests
 {
     [Fact]

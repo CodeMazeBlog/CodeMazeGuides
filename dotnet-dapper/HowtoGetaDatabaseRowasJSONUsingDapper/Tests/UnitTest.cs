@@ -1,7 +1,3 @@
-using Moq;
-using RetrievingDbRowAsJsonWithDapper.Contracts;
-using RetrievingDbRowAsJsonWithDapper.Services;
-
 namespace Tests;
 
 public class UnitTest
