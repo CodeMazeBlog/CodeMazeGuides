@@ -13,13 +13,8 @@ public class DrawingTool
 
     public string UndoLastAction()
     {
-        if(_actionHistory.Count==0)
-            return "No action to undo";
-
         if (!_actionHistory.TryPop(out var lastAction))
-        {
-            throw new Exception("Failed to Pop last action");
-        }
+            return "No action to undo";
 
         return $"Undid action: {lastAction}";
     }

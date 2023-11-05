@@ -1,10 +1,12 @@
-﻿using ConcurrentStackInCSharp;
+﻿using System.Collections.Concurrent;
+
+namespace ConcurrentStackInCSharp;
 
 public class Program
 {
     public static void Main()
     {
-        Console.WriteLine("Simulate usage of Drawing tool..");
+        Console.WriteLine("Simulating usage of Drawing tool...");
         UseDrawingTool();
     }
 
@@ -14,34 +16,41 @@ public class Program
 
         // Simulate multiple users performing and undoing actions concurrently
         Parallel.Invoke(
-            () =>
+            async () =>
             {
                 tool.PerformAction("Draw Circle");
                 Task.Delay(50).Wait();  // Simulating some work
+
                 var actionUndone = tool.UndoLastAction();
-                Console.WriteLine(actionUndone);
+                await ConsoleWriteLineAsync(actionUndone);
             },
-            () =>
+            async () =>
             {
-                var actionsPerformedCount = tool.PerfromMultipleActions(
-                    "Draw Square", 
-                    "Draw Triangle", 
-                    "Draw Parallel Lines", 
+                tool.PerfromMultipleActions(
+                    "Draw Square",
+                    "Draw Triangle",
+                    "Draw Parallel Lines",
                     "Draw Hexagon");
                 Task.Delay(30).Wait();  // Simulating some work
-                var actionsUndone = tool.UndoLastNActions(4); // Undo last 4 actions
-                foreach(var action in actionsUndone)
+
+                foreach (var action in tool.UndoLastNActions(4))
                 {
-                    Console.WriteLine(action);
+                    await ConsoleWriteLineAsync(action);
                 }
             },
-            () =>
+            async () =>
             {
                 tool.PerformAction("Color Circle Red");
                 Task.Delay(70).Wait();  // Simulating some work
+
                 var actionUndone = tool.UndoLastAction();
-                Console.WriteLine(actionUndone);
+                await ConsoleWriteLineAsync(actionUndone);
             }
         );
+    }
+
+    static Task ConsoleWriteLineAsync(string message)
+    {
+        return Task.Run(() => Console.WriteLine(message));
     }
 }
