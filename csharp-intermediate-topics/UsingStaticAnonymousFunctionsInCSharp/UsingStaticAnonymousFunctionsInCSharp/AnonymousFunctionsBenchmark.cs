@@ -5,42 +5,24 @@ namespace UsingStaticAnonymousFunctionsInCSharp
     [MemoryDiagnoser]
     public class AnonymousFunctionsBenchmark
     {
-        private double numNonConst = 4;
-        private const double numConst = 4;
+        private int numNonConst = 10;
+        private const int numConst = 10;
 
-        void Calculate(Func<double, double> func)
+        public int Calculate(Func<int, int> func)
         {
-            Console.WriteLine(func(6));
+            return func(6);
+        }        
+
+        [Benchmark]
+        public int MultiplyNonStatic()
+        {
+            return Calculate(num => numNonConst * num);
         }
 
         [Benchmark]
-        public void DisplayNonStaticOnce()
+        public int MultiplyStatic()
         {
-            Calculate(num => Math.Pow(numNonConst, num));
-        }
-
-        [Benchmark]
-        public void DisplayStaticOnce()
-        {
-            Calculate(static num => Math.Pow(numConst, num));
-        }
-
-        [Benchmark]
-        public void DisplayNonStaticLoop()
-        {
-            for (int i = 0; i < 1000; i++)
-            {
-                Calculate(num => Math.Pow(numNonConst, num));
-            }
-        }
-
-        [Benchmark]
-        public void DisplayStaticLoop()
-        {
-            for (int i = 0; i < 1000; i++)
-            {
-                Calculate(static num => Math.Pow(numConst, num));
-            }
+            return Calculate(static num => numConst * num);
         }
     }
 }

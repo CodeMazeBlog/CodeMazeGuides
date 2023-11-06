@@ -71,5 +71,37 @@ namespace Tests
             var expected = "121";
             Assert.Equal(expected, output);
         }
+
+        #region Benchmarked methods        
+
+        [Fact]
+        public void WhenMultiplyNonStaticMethodIsCalled_ThenResultIsCalculatedCorrectly()
+        {
+            // Arrange
+            var anonymousFunctionsBenchmark = new AnonymousFunctionsBenchmark();
+            
+            // Act
+            var result = anonymousFunctionsBenchmark.MultiplyNonStatic();
+            
+            // Assert
+            var expected = "60";            
+            Assert.Equal(expected, result.ToString());
+        }
+
+        [Fact]
+        public void WhenMultiplyStaticMethodIsCalled_ThenResultIsCalculatedCorrectly()
+        {
+            // Arrange
+            var anonymousFunctionsBenchmark = new AnonymousFunctionsBenchmark();
+
+            // Act
+            var result = anonymousFunctionsBenchmark.MultiplyStatic();
+
+            // Assert
+            var expected = "60";
+            Assert.Equal(expected, result.ToString());
+        }
+
+        #endregion
     }
 }
