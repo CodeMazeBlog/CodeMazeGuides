@@ -96,8 +96,6 @@ public class DemoStaticWithNameOf
 // static anonymous function with non-static local method
 public class DemoStaticWithNonStaticLocalMethod
 {
-    private double numberInThis = 4;
-
     void Calculate(Func<double, double> func)
     {
         Console.WriteLine(func(6));
@@ -105,8 +103,6 @@ public class DemoStaticWithNonStaticLocalMethod
 
     public void Display()
     {
-        double numberInLocal = 2;
-
         Calculate(static num =>
         {
             double numberInStatic = 5;
