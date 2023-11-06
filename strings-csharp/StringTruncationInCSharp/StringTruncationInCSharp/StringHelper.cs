@@ -5,38 +5,64 @@ namespace StringTruncationInCSharp
 {
     public class StringHelper
     {
-        public string TruncateStringUsingSubstring(string originalString, int maxLength)
-        {
-            var truncatedString = originalString.Substring(0, maxLength);
+public string TruncateStringUsingSubstring(string originalString, int maxLength)
+{
+    if (maxLength <= 0)
+    {
+        return string.Empty;
+    }
+    else if (maxLength >= originalString.Length)
+    {
+        return originalString;
+    }
 
-            return truncatedString;
-        }
+    var truncatedString = originalString.Substring(0, maxLength);
+
+    return truncatedString;
+}
         
-        public string TruncateStringUsingRemove(string originalString, int maxLength)
-        {
-            var truncatedString = originalString;
+public string TruncateStringUsingRemove(string originalString, int maxLength)
+{
+    if (maxLength <= 0)
+    {
+        return string.Empty;
+    }
+    else if (maxLength >= originalString.Length)
+    {
+        return originalString;
+    }
 
-            if (originalString.Length > maxLength)
-            {
-                truncatedString = originalString.Remove(maxLength);
-            }
+    if (originalString.Length > maxLength)
+    {
+        return originalString.Remove(maxLength);
+    }
 
-            return truncatedString;
-        }
+    return originalString;
+}
         
-        public string TruncateStringUsingStringBuilder(string originalString, int maxLength)
-        {
-            var truncatedStringBuilder = new StringBuilder(maxLength);
+public string TruncateStringUsingForLoopWithStringBuilder(string originalString, int maxLength)
+{
+    if (maxLength <= 0)
+    {
+        return string.Empty;
+    }
+    else if (maxLength >= originalString.Length)
+    {
+        return originalString;
+    }
 
-            for (int i = 0; i < Math.Min(maxLength, originalString.Length); i++)
-            {
-                truncatedStringBuilder.Append(originalString[i]);
-            }
+    var length = Math.Min(maxLength, originalString.Length);
+    var truncatedStringBuilder = new StringBuilder(length);
 
-            var truncatedString = truncatedStringBuilder.ToString();
+    for (int i = 0; i < length; i++)
+    {
+        truncatedStringBuilder.Append(originalString[i]);
+    }
 
-            return truncatedString;
-        }
+    var truncatedString = truncatedStringBuilder.ToString();
+
+    return truncatedString;
+}
         
         public string TruncateStringUsingLINQ(string originalString, int maxLength)
         {
@@ -45,24 +71,33 @@ namespace StringTruncationInCSharp
             return truncatedString;
         }
         
-        public string TruncateStringUsingForLoop(string originalString, int maxLength)
-        {
-            var truncatedString = string.Empty;
-            int length = Math.Min(maxLength, originalString.Length);
+public string TruncateStringUsingForLoop(string originalString, int maxLength)
+{
+    var truncatedString = string.Empty;
+    int length = Math.Min(maxLength, originalString.Length);
 
-            for (int i = 0; i < length; i++)
-            {
-                truncatedString += originalString[i];
-            }
+    for (int i = 0; i < length; i++)
+    {
+        truncatedString += originalString[i];
+    }
 
-            return truncatedString;
-        }
+    return truncatedString;
+}
         
-        public string TruncateStringUsingRegularExpressions(string originalString, int maxLength)
-        {
-            var truncatedString = Regex.Replace(originalString, $"^(.{{0,{maxLength}}}).*$", "$1");
+public string TruncateStringUsingRegularExpressions(string originalString, int maxLength)
+{
+    if (maxLength <= 0)
+    {
+        return string.Empty;
+    }
+    else if (maxLength >= originalString.Length)
+    {
+        return originalString;
+    }
 
-            return truncatedString;
-        }
+    var truncatedString = Regex.Replace(originalString, $"^(.{{0,{maxLength}}}).*$", "$1");
+
+    return truncatedString;
+}
     }
 }
