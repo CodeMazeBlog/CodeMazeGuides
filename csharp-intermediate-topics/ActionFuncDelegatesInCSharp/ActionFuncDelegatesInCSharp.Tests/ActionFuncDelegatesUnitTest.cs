@@ -1,6 +1,6 @@
 namespace ActionFuncDelegatesInCSharp.Tests
 {
-    public class ActionFuncDelegatesTest
+    public class ActionFuncDelegatesUnitTest
     {
         [Fact]
         public void GivenMainFunctionInProgram_WhenCreatingAllDelegates_ThenReturnExpectedOutcome()
