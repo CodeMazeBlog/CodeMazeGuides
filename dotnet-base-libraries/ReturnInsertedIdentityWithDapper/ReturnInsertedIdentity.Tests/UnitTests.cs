@@ -19,7 +19,7 @@ public class Tests
     }
 
     [Test]
-    public void GivenOutputInsertedMethod_WhenNewRecord_ThenReturnedIDGreaterThenZero()
+    public void GivenOutputInsertedMethod_WhenNewRecord_ThenReturnedIDGreaterThenZeroLiveTest()
     {
         var newStudent = new Student { Firstname = "Mary", Surname = "Williams" };
 
@@ -29,7 +29,7 @@ public class Tests
     }
 
     [Test]
-    public void GivenScopeIdentityMethod_WhenNewRecord_ThenReturnedIDGreaterThenZero()
+    public void GivenScopeIdentityMethod_WhenNewRecord_ThenReturnedIDGreaterThenZeroLiveTest()
     {
         var newStudent = new Student { Firstname = "Bob", Surname = "Brown" };
 
@@ -39,7 +39,7 @@ public class Tests
     }
 
     [Test]
-    public void GivenDapperExtensionMethod_WhenNewRecord_ThenReturnedIDGreaterThenZero()
+    public void GivenDapperExtensionMethod_WhenNewRecord_ThenReturnedIDGreaterThenZeroLiveTest()
     {
         var newStudent = new Student { Firstname = "John", Surname = "Doe" };
 
