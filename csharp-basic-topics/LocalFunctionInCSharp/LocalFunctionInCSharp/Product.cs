@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace LocalFunctionInCSharp
+﻿namespace LocalFunctionInCSharp
 {
     public class Product
     {
