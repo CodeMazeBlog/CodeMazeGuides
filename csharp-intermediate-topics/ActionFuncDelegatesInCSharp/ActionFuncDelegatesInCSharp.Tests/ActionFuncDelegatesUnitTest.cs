@@ -11,10 +11,10 @@ namespace ActionFuncDelegatesInCSharp.Tests
             var expectedOutcome = "Hello World!\r\n\r\nMilk\r\nBread\r\nCheese\r\nButter\r\n\r\nOutput 1\r\nOutput 2\r\nOutput 3\r\nOutput 4";
 
             // Act
-            Program.Main(null);
+            Program.Main(new string[] { });
 
             // Assert
-            string consoleOutput = sw.ToString().Trim();
+            string consoleOutput = sw.ToString();
             Assert.Equal(expectedOutcome, consoleOutput);
         }
     }

@@ -4,7 +4,7 @@
     {
         static void WriteProductToConsole(string product)
         {
-            Console.WriteLine(product);
+            Console.Write(product + Environment.NewLine);
         }
 
         public static void CreateActionDelegates()
@@ -20,12 +20,12 @@
             // With anonymous delegate
             Action<string> writeCheeseToConsole = delegate (string product)
             {
-                Console.WriteLine(product);
+                Console.Write(product + Environment.NewLine);
             };
             writeCheeseToConsole("Cheese");
 
             // With lambda expression
-            Action<string> writeButterToConsole = product => Console.WriteLine(product);
+            Action<string> writeButterToConsole = product => Console.Write(product + Environment.NewLine);
             writeButterToConsole("Butter");
         }
     }

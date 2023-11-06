@@ -5,10 +5,10 @@ public class Program
     public static void Main(string[] args)
     {
         Delegates.CreateDelegates();
-        Console.WriteLine("");
+        Console.Write(Environment.NewLine);
 
         ActionDelegates.CreateActionDelegates();
-        Console.WriteLine("");
+        Console.Write(Environment.NewLine);
 
         FuncDelegates.CreateFuncDelegates();
     }
