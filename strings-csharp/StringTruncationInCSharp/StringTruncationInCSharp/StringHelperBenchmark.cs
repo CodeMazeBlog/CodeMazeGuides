@@ -2,6 +2,7 @@
 
 namespace StringTruncationInCSharp
 {
+    [MemoryDiagnoser]
     public class StringHelperBenchmark
     {
         private readonly int _maxLength = 10;
@@ -21,9 +22,9 @@ namespace StringTruncationInCSharp
         }
 
         [Benchmark]
-        public void TruncateStringUsingStringBuilder()
+        public void TruncateStringUsingForLoopWithStringBuilder()
         {
-            _stringHelper.TruncateStringUsingStringBuilder(_originalString, _maxLength);
+            _stringHelper.TruncateStringUsingForLoopWithStringBuilder(_originalString, _maxLength);
         }
 
         [Benchmark]
