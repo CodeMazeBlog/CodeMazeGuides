@@ -1,6 +1,6 @@
 ﻿namespace StringTruncationInCSharp
 {
-    public static class StringHelperExtensions
+    public static class StringExtensions
     {
         public static string TruncateString(this string originalString, int maxLength)
         {

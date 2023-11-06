@@ -12,7 +12,7 @@ Console.WriteLine("Using Substring method: " + truncatedString_substring);
 var truncatedString_forLoop = stringHelper.TruncateStringUsingForLoop(originalString, maxLength);
 Console.WriteLine("Using For Loop: " + truncatedString_forLoop);
 
-var truncatedString_stringBuilder = stringHelper.TruncateStringUsingStringBuilder(originalString, maxLength);
+var truncatedString_stringBuilder = stringHelper.TruncateStringUsingForLoopWithStringBuilder(originalString, maxLength);
 Console.WriteLine("Using StringBuilder: " + truncatedString_stringBuilder);
 
 var truncatedString_regularExpressions = stringHelper.TruncateStringUsingRegularExpressions(originalString, maxLength);
