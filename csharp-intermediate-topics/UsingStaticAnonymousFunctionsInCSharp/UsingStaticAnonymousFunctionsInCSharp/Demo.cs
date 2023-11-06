@@ -3,7 +3,7 @@
 // non-static anonymous function
 public class DemoNonStatic
 {
-    private double num1 = 4;
+    private double numberInEnclosingScope = 4;
 
     void Calculate(Func<double, double> func)
     {
@@ -12,14 +12,14 @@ public class DemoNonStatic
 
     public void Display()
     {
-        Calculate(num => Math.Pow(num1, num));
+        Calculate(num => Math.Pow(numberInEnclosingScope, num));
     }
 }
 
 // static anonymous function with const variable
 public class DemoStaticWithConstVariable
 {
-    private const double num1 = 4;
+    private const double numberInEnclosingScope = 4;
 
     void Calculate(Func<double, double> func)
     {
@@ -28,14 +28,14 @@ public class DemoStaticWithConstVariable
 
     public void Display()
     {
-        Calculate(static num => Math.Pow(num1, num));
+        Calculate(static num => Math.Pow(numberInEnclosingScope, num));
     }
 }
 
 // static anonymous function with static variable
 public class DemoStaticWithStaticVariable
 {
-    private static double num1 = 4;
+    private static double numberInEnclosingScope = 4;
 
     void Calculate(Func<double, double> func)
     {
@@ -44,7 +44,7 @@ public class DemoStaticWithStaticVariable
 
     public void Display()
     {
-        Calculate(static num => Math.Pow(num1, num));
+        Calculate(static num => Math.Pow(numberInEnclosingScope, num));
     }
 }
 
