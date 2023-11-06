@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateBetterLookingConsoleApplicationsWithSpectreConsole", "CreateBetterLookingConsoleApplicationsWithSpectreConsole\CreateBetterLookingConsoleApplicationsWithSpectreConsole.csproj", "{61743AFA-C897-4990-964C-46CD29D8AD05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{A3699257-295F-4CF8-AC0C-42CD7041D838}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61743AFA-C897-4990-964C-46CD29D8AD05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61743AFA-C897-4990-964C-46CD29D8AD05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61743AFA-C897-4990-964C-46CD29D8AD05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61743AFA-C897-4990-964C-46CD29D8AD05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3699257-295F-4CF8-AC0C-42CD7041D838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3699257-295F-4CF8-AC0C-42CD7041D838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3699257-295F-4CF8-AC0C-42CD7041D838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3699257-295F-4CF8-AC0C-42CD7041D838}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {603D2676-9B94-41C4-8FAB-C52539E1FE01}
+	EndGlobalSection
+EndGlobal
