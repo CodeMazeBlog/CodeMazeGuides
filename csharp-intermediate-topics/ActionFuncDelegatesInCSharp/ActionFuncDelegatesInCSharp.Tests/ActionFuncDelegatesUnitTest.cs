@@ -1,20 +1,24 @@
+using Microsoft.VisualStudio.TestPlatform.Utilities;
+
 namespace ActionFuncDelegatesInCSharp.Tests
 {
     public class ActionFuncDelegatesUnitTest
     {
+
         [Fact]
         public void GivenMainFunctionInProgram_WhenCreatingAllDelegates_ThenReturnExpectedOutcome()
         {
             // Arrange
             StringWriter sw = new StringWriter();
             Console.SetOut(sw);
-            var expectedOutcome = "Hello World!\r\n\r\nMilk\r\nBread\r\nCheese\r\nButter\r\n\r\nOutput 1\r\nOutput 2\r\nOutput 3\r\nOutput 4";
+
+            var expectedOutcome = new string[] { "Hello World!", "", "Milk", "Bread", "Cheese", "Butter", "", "Output 1", "Output 2", "Output 3", "Output 4" };
 
             // Act
             Program.Main(new string[] { });
 
             // Assert
-            string consoleOutput = sw.ToString();
+            var consoleOutput = sw.ToString().Split(Environment.NewLine);
             Assert.Equal(expectedOutcome, consoleOutput);
         }
     }
