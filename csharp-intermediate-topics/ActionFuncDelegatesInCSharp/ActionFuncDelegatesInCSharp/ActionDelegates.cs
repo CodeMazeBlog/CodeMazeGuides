@@ -25,7 +25,8 @@
             writeCheeseToConsole("Cheese");
 
             // With lambda expression
-            Action<string> writeButterToConsole = product => Console.Write(product + Environment.NewLine);
+            Action<string> writeButterToConsole 
+                = product => Console.Write(product + Environment.NewLine);
             writeButterToConsole("Butter");
         }
     }
