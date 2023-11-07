@@ -1,36 +1,58 @@
 ﻿namespace TupleAliasInCSharp;
 
-using employeeFinanceDetails = (int id, string name, string familyName, double salary);
+using EmployeeFinanceDetails = (int id, string name, string familyName, double salary);
 
-public class TupleAlias
+public static class TupleAlias
 {
     public static void PrintTupleValues()
     {
         Console.WriteLine("\nAccess tuple with 'global using' directive:");
-        employeeDetails employee = (1, "John", "Doe", 116000.25f);
+        EmployeeDetails employee = (1, "John", "Doe", 116000.25f);
         Console.WriteLine($"Employee ID: {employee.id}, First Name: {employee.firstName}, Last Name: {employee.lastName}, Salary: {employee.salary}");
 
         Console.WriteLine("\nAccess tuple with 'using' directive:");
-        employeeFinanceDetails financeDetails = (1, "John", "Doe", 116000.25);
+        EmployeeFinanceDetails financeDetails = (1, "John", "Doe", 116000.25);
         Console.WriteLine($"Employee ID: {financeDetails.id}, First Name: {financeDetails.name}, Last Name: {financeDetails.familyName}, Salary: {financeDetails.salary}");
 
         Console.WriteLine("\nDeconstruct tuple without using 'var' keyword");
-        (int id, string fn, string ln, float salary) = employee;
-        Console.WriteLine($"Employee ID: {id}, First Name: {fn}, Last Name: {ln}, Salary: {salary}");
+        (int id, string first_name, string last_name, float salary) = employee;
+        Console.WriteLine($"Employee ID: {id}, First Name: {first_name}, Last Name: {last_name}, Salary: {salary}");
 
         Console.WriteLine("\nDeconstruct tuple using 'var' keyword");
-        var (id1, fn1, ln1, salary1) = employee;
-        Console.WriteLine($"Employee ID: {id1}, First Name: {fn1}, Last Name: {ln1}, Salary: {salary1}");
+        var (id1, first_name1, last_name1, salary1) = employee;
+        Console.WriteLine($"Employee ID: {id1}, First Name: {first_name1}, Last Name: {last_name1}, Salary: {salary1}");
 
         Console.WriteLine("\nTuple assignment using 'var' keyword. We are assigning values from EmployeeDetails to EmployeeFinanceDetails tuple.");
         financeDetails = employee;
         Console.WriteLine($"Employee ID: {financeDetails.id}, First Name: {financeDetails.name}, Last Name: {financeDetails.familyName}, Salary: {financeDetails.salary}");
 
         Console.WriteLine("\nAssigning values from EmployeeFinanceDetails to EmployeeDetails tuple will generate error as (int,string,string,double) cannot to converted to (int,string,string,int). Use explicit conversion.");
-        employee = ((int id, string firstName, string lastName, float salary))financeDetails;        
+        employee = ((int id, string firstName, string lastName, float salary))financeDetails;
         Console.WriteLine($"Employee ID: {employee.id}, First Name: {employee.firstName}, Last Name: {employee.lastName}, Salary: {employee.salary}");
 
-        string employeeFullName = employee.firstName + " " + employee.lastName;
-        Console.WriteLine($"Employee Full Name: {employeeFullName}");  
-    }        
+        var employeeFullName = $"Employee Full Name: {employee.firstName} {employee.lastName}";
+        Console.WriteLine(employeeFullName);
+    }
 }
+
+/*
+* BELOW CODE IS ADDED TO VERIFY THE SCENARIO WHERE A CONCRETE TYPE HAS THE SAME NAME AS THE TUPLE ALIAS (BOTH LOCAL AND GLOBAL).
+* UNCOMMENTING THIS WILL CAUSE AN ERROR DUE TO THE NAME CONFLICT 
+
+public static class EmployeeFinanceDetails
+{
+    public static void Print()
+    {
+        Console.WriteLine("Concrete class with name similar to Local tuple alias");
+    }
+}
+
+
+public static class EmployeeDetails
+{
+    public static void Print()
+    {
+        Console.WriteLine("Concrete class with name similar to global tuple alias");
+    }
+}
+*/
