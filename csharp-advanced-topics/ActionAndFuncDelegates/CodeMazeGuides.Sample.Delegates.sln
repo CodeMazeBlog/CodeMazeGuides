@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33927.249
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMazeGuides.Sample.Delegates", "CodeMazeGuides.Sample.Delegates\CodeMazeGuides.Sample.Delegates.csproj", "{44E86833-8E5F-4ADA-A9F2-713AD2794D91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeMazeGuides.Sample.Delegates", "CodeMazeGuides.Sample.Delegates\CodeMazeGuides.Sample.Delegates.csproj", "{44E86833-8E5F-4ADA-A9F2-713AD2794D91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeMazeGuides.Sample.DelegatesTests", "CodeMazeGuides.Sample.DelegatesTests\CodeMazeGuides.Sample.DelegatesTests.csproj", "{1A661193-4F16-498A-90B8-8C4FAEF0A453}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{44E86833-8E5F-4ADA-A9F2-713AD2794D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44E86833-8E5F-4ADA-A9F2-713AD2794D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44E86833-8E5F-4ADA-A9F2-713AD2794D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A661193-4F16-498A-90B8-8C4FAEF0A453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A661193-4F16-498A-90B8-8C4FAEF0A453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A661193-4F16-498A-90B8-8C4FAEF0A453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A661193-4F16-498A-90B8-8C4FAEF0A453}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
