@@ -9,6 +9,7 @@ This section contains the topics considered intermediate level in C#.
 - [Boxing and Unboxing in C#](https://code-maze.com/csharp-boxing-and-unboxing/)
 - [How to Find the Caller Method in C#](https://code-maze.com/csharp-how-to-find-caller-method/)
 - [Common C# Programming Mistakes](https://code-maze.com/csharp-programming-mistakes/)
+- [Comparing ForEach Method and Foreach Statement in C#](https://code-maze.com/csharp-comparing-the-foreach-method-and-foreach-statement/)
 - [Should We Use Records or Classes or Structs in C#](https://code-maze.com/csharp-should-we-use-records-classes-or-structs/)
 - [Composition vs Inheritance in C#](https://code-maze.com/csharp-composition-vs-inheritance/)
 - [Differences Between Const and Readonly in C#](https://code-maze.com/csharp-differences-between-const-and-readonly/)
