@@ -15,7 +15,6 @@ This section contains the topics considered basic level in C#.
 - [Difference Between Is and Equality Operators in C# – “is null” vs “== null”](https://code-maze.com/csharp-difference-between-isnull-and-equality-operators/)
 - [Expression-bodied Members in C#](https://code-maze.com/csharp-expression-bodied-members/)
 - [Extended Property Patterns in C#](https://code-maze.com/csharp-extended-property-patterns/)
-- [How to Get Class Name as String in C#](https://code-maze.com/csharp-get-class-name-as-string/)
 - [Global Using Directives in C#](https://code-maze.com/csharp-global-using-directives/)
 - [Working With Guid in C#](https://code-maze.com/csharp-guid-class/)
 - [How to Manage IDisposable Objects in C#](https://code-maze.com/csharp-manage-idisposable-objects/)
