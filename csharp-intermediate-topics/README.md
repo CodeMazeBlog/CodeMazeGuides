@@ -26,7 +26,6 @@ This section contains the topics considered intermediate level in C#.
 - [What is Locking and How to Use a Locking Mechanism in C#](https://code-maze.com/csharp-locking-mechanism/)
 - [How to Use MemoryStream in C#](https://code-maze.com/csharp-memorystream/)
 - [IComparable vs IComparer vs Comparison Delegate](https://code-maze.com/csharp-icomparable-icomparer-comparison-delegate/)
-- [Operator Overloading in C#](https://code-maze.com/csharp-operator-overloading/)
 - [Polymorphism in C#](https://code-maze.com/csharp-polymorphism/)
 - [Readonly Modifier in C#](https://code-maze.com/csharp-readonly-modifier/)
 - [Reflection in C#](https://code-maze.com/csharp-reflection/)

@@ -4,7 +4,6 @@ This section contains the topics considered basic level in C#.
 
 ### Relevant articles:
 
-- [As and Is Operators in C#](https://code-maze.com/csharp-as-is-operators/)
 - [Base64 Encode and Decode in C#](https://code-maze.com/base64-encode-decode-csharp/)
 - [Break and Continue Statements in C#](https://code-maze.com/csharp-break-continue-statements/)
 - [Constructor Overloading in C#](https://code-maze.com/csharp-constructor-overloading/)
@@ -25,15 +24,12 @@ This section contains the topics considered basic level in C#.
 - [Init Only Setters in C#](https://code-maze.com/csharp-init-only-setter-properties/)
 - [Method Overriding in C#](https://code-maze.com/csharp-method-overriding/)
 - [Named Arguments and Optional Parameters in C#](https://code-maze.com/csharp-named-arguments-optional-parameters/)
-- [Null-Coalescing ?? And Null-Coalescing Assignment ??= Operators in C#](https://code-maze.com/null-coalescing-operator-null-coalescing-assignment-operator-csharp/)
 - [Params Keyword in C#](https://code-maze.com/csharp-params-keyword/)
 - [Pattern Matching in C#](https://code-maze.com/csharp-pattern-matching/)
 - [Primary Constructors for Classes and Structs](https://code-maze.com/csharp-primary-constructors-for-classes-and-structs/)
 - [Ranges and Indices in C#](https://code-maze.com/csharp-ranges-and-indices/)
 - [Return Multiple Values to a Method Caller In C#](https://code-maze.com/csharp-return-multiple-values-to-a-method-caller/)
-- [Using sizeof() Operator in C#](https://code-maze.com/csharp-sizeof-operator/)
 - [Switch Expression with Multiple Cases That Return the Same Result in C#](https://code-maze.com/csharp-switch-multiple-cases-return-same-result/)
-- [Ternary Operator ? : in C#](https://code-maze.com/csharp-ternary-operator/)
 - [Top-Level Statements in C#](https://code-maze.com/csharp-top-level-statements/)
 - [Type Checking and Type Casting in C#](https://code-maze.com/type-checking-type-casting-csharp/)
 - [Types of Inheritance In C#](https://code-maze.com/csharp-types-of-inheritance/)
