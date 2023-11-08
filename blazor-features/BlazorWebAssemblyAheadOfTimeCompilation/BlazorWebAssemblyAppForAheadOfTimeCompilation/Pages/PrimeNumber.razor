@@ -18,14 +18,8 @@ else
 }
 
 @code {
-    private List<int>? primeNumbers;
-    public List<int>? PrimeNumbers
-    { 
-        get
-        {
-            return primeNumbers;
-        }
-    }
+    private List<int>? _primeNumbers;
+    public List<int>? PrimeNumbers => _primeNumbers;
 
     private double TimeToRun { get; set; }
 
@@ -34,11 +28,11 @@ else
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        primeNumbers = await PrimeNumberService.GetPrimeNumbersAsync();
+        _primeNumbers = await PrimeNumberService.GetPrimeNumbersAsync();
 
         stopwatch.Stop();
         TimeToRun = stopwatch.Elapsed.TotalMilliseconds;
 
-        return primeNumbers;
+        return _primeNumbers;
     }
 }
