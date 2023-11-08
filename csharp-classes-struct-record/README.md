@@ -11,4 +11,5 @@ This section contains the topics considered intermediate level in C#.
 - [Path Class in C#](https://code-maze.com/csharp-path-class/)
 - [Records in C#](https://code-maze.com/csharp-records/)
 - [Static Classes in C#](https://code-maze.com/static-classes-csharp/)
+- [Working With Guid in C#](https://code-maze.com/csharp-guid-class/)
 
