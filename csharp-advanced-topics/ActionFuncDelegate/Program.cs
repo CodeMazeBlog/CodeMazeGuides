@@ -1,4 +1,6 @@
 
+using ActionFuncDelegate.Extension;
+
 namespace ActionFuncDelegate
 {
     public class Program
@@ -13,6 +15,8 @@ namespace ActionFuncDelegate
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDepencies(builder.Configuration);
 
             var app = builder.Build();
 
