@@ -1,4 +1,5 @@
 using UsingStaticAnonymousFunctionsInCSharp;
+using UsingStaticAnonymousFunctionsInCSharp.Demo;
 
 namespace Tests;
 
@@ -85,6 +86,20 @@ public class UsingStaticAnonymousFunctionsInCSharpTest
         
         // Assert
         var expected = "60";            
+        Assert.Equal(expected, result.ToString());
+    }
+
+    [Fact]
+    public void WhenMultiplyNonStaticWithConstMethodIsCalled_ThenResultIsCalculatedCorrectly()
+    {
+        // Arrange
+        var anonymousFunctionsBenchmark = new AnonymousFunctionsBenchmark();
+
+        // Act
+        var result = anonymousFunctionsBenchmark.MultiplyNonStaticWithConst();
+
+        // Assert
+        var expected = "60";
         Assert.Equal(expected, result.ToString());
     }
 

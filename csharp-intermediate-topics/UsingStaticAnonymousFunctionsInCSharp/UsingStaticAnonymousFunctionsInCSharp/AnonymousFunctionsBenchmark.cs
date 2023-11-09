@@ -20,6 +20,12 @@ public class AnonymousFunctionsBenchmark
     }
 
     [Benchmark]
+    public int MultiplyNonStaticWithConst()
+    {
+        return Calculate(num => numConst * num);
+    }
+
+    [Benchmark]
     public int MultiplyStatic()
     {
         return Calculate(static num => numConst * num);

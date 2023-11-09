@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Running;
 using UsingStaticAnonymousFunctionsInCSharp;
+using UsingStaticAnonymousFunctionsInCSharp.Demo;
 
 // non-static anonymous function
 Console.WriteLine("non-static anonymous function");
