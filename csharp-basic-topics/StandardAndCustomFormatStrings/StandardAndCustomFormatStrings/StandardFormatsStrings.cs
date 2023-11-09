@@ -2,7 +2,7 @@ using System.Globalization;
 
 namespace StandardAndCustomFormatStrings;
 
-public class StandardFormatStrings
+public static class StandardFormatStrings
 {
   public static string CurrencyFormat(double value) => value.ToString("C");
   public static string EuroCurrency(double value) => value.ToString("C", new CultureInfo("fr-FR"));

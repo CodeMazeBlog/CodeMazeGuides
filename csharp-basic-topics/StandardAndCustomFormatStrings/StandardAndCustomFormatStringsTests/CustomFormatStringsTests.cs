@@ -1,5 +1,3 @@
-using StandardAndCustomFormatStrings;
-
 namespace StandardAndCustomNumericFormatStringsTests;
 
 public class CustomFormatStringsTests
