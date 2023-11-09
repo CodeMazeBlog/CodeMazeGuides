@@ -1,44 +1,34 @@
+using ActionAndFuncDelegates;
+
 namespace Tests
 {
-    public class DelegateExample
-    {
-        public int AddNumbers(int a, int b)
-        {
-            return a + b;
-        }
-
-        public void GreetPerson(string name)
-        {
-            Console.Write($"Hello, {name}!");
-        }
-    }
 
     [TestClass]
     public class DelegateExampleTests
     {
         [TestMethod]
-        public void FuncDelegate_AddNumbers_ReturnsSum()
+        public void GivenAddNumbersMethod_WhenInvokeFuncDelegate_ThenReturnsSum()
         {
             // Arrange
             var example = new DelegateExample();
             Func<int, int, int> addMethod = example.AddNumbers;
 
             // Act
-            int result = addMethod(3, 5);
+            var result = addMethod(3, 5);
 
             // Assert
             Assert.AreEqual(8, result);
         }
 
         [TestMethod]
-        public void ActionDelegate_GreetPerson_ConsoleOutputContainsGreeting()
+        public void GivenGreetPersonMethod_WhenInvokeActionDelegate_ThenConsoleOutputContainsGreeting()
         {
             // Arrange
             var example = new DelegateExample();
             Action<string> greetMethod = example.GreetPerson;
 
             // Redirect console output for testing
-            using (StringWriter sw = new StringWriter())
+            using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
 
@@ -46,7 +36,7 @@ namespace Tests
                 greetMethod("John");
 
                 // Assert
-                string expectedOutput = "Hello, John!";
+                var expectedOutput = "Hello, John!" + Environment.NewLine;
                 Assert.AreEqual(expectedOutput, sw.ToString());
             }
         }
