@@ -1,4 +1,3 @@
-﻿//var defaultBestModel = await Methods.DefaultExperiment();
+﻿//await Methods.DefaultExperiment();
 
-var customBestModel = await Methods.CustomExperiment();
-
+await Methods.CustomExperiment();

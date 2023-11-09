@@ -8,7 +8,7 @@ using System.Linq;
 
 public static class Methods
 {
-    public async static Task<ITransformer> DefaultExperiment()
+    public static async Task<ITransformer> DefaultExperiment()
     {
         var mlContext = new MLContext();
 
@@ -30,39 +30,14 @@ public static class Methods
 
         var cts = new CancellationTokenSource();
         var experimentResults = await experiment.RunAsync(cts.Token);
+        cts.Dispose();
 
         var bestModel = experimentResults.Model;
         Console.WriteLine($"Accuracy: {experimentResults.Metric}");
 
         mlContext.Model.Save(bestModel, data.Schema, "model.zip");
 
-        var input = new ModelInput()
-        {
-            Male = 0F,
-            Age = 18F,
-            Education = 2F,
-            CurrentSmoker = 0F,
-            CigsPerDay = 0F,
-            BPMeds = 0F,
-            PrevalentStroke = 0F,
-            PrevalentHyp = 1F,
-            Diabetes = 1F,
-            TotChol = 250F,
-            SysBP = 221F,
-            DiaBP = 91F,
-            BMI = 3873F,
-            HeartRate = 95F,
-            Glucose = 86F
-        };
-
-        var directPrediction = bestModel.Transform(mlContext.Data.LoadFromEnumerable(new List<ModelInput>() { input }));
-        Console.WriteLine("Direct prediction - Heart Disease Risk exists: {0}", directPrediction.GetColumn<bool>("PredictedLabel").FirstOrDefault());
-
-        var ctx = new MLContext();
-        ITransformer predictionPipeline = ctx.Model.Load("model.zip", out _);
-        var predictionEngine = ctx.Model.CreatePredictionEngine<ModelInput, ModelOutput>(predictionPipeline);
-        var prediction = predictionEngine.Predict(input);
-        Console.WriteLine("Saved model - Heart Disease Risk exists: {0}", prediction.PredictedLabel);
+        TestModel(mlContext, bestModel);
 
         return bestModel;
     }
@@ -128,22 +103,30 @@ public static class Methods
 
         var cts = new CancellationTokenSource();
         var experimentResults = await experiment.RunAsync(cts.Token);
+        cts.Dispose();
 
         var checkpointPath = Path.Join(Directory.GetCurrentDirectory(), "checkpoints");
         experiment.SetCheckpoint(checkpointPath);
-        
+
         var completedTrials = monitor.GetCompletedTrials();
 
         var bestModel = experimentResults.Model;
         Console.WriteLine($"Accuracy: {experimentResults.Metric}.");
 
-        var pfi = CalculateFeatureImportance(mlContext, bestModel, splitData.TestSet, 
+        var pfi = CalculateFeatureImportance(mlContext, bestModel, splitData.TestSet,
             columnInfo.ColumnInformation.LabelColumnName);
         foreach (var item in pfi)
             Console.WriteLine($"{item.Item1}: {item.Item2}");
 
         mlContext.Model.Save(bestModel, data.Schema, "model.zip");
 
+        TestModel(mlContext, bestModel);
+       
+        return bestModel;
+    }
+
+    private static void TestModel(MLContext mlContext, ITransformer bestModel)
+    {
         var input = new ModelInput()
         {
             Male = 0F,
@@ -157,7 +140,7 @@ public static class Methods
             Diabetes = 1F,
             SysBP = 221F,
             DiaBP = 91F,
-            BMI = 3873F,
+            BMI = 387F,
             HeartRate = 95F,
             Glucose = 86F
         };
@@ -171,10 +154,9 @@ public static class Methods
         var prediction = predictionEngine.Predict(input);
         Console.WriteLine("Saved model - Heart Disease Risk exists: {0}", prediction.PredictedLabel);
 
-        return bestModel;
     }
 
-    public static List<Tuple<string, BinaryClassificationMetricsStatistics>> CalculateFeatureImportance(MLContext mlContext, 
+    public static List<Tuple<string, BinaryClassificationMetricsStatistics>> CalculateFeatureImportance(MLContext mlContext,
         ITransformer model, IDataView dataset, string labelColumnName)
     {
         var linearPredictor = model as TransformerChain<ITransformer>;
