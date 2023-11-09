@@ -9,7 +9,7 @@ namespace Tests
 
         public void GreetPerson(string name)
         {
-            Console.WriteLine($"Hello, {name}!");
+            Console.Write($"Hello, {name}!");
         }
     }
 
@@ -46,7 +46,7 @@ namespace Tests
                 greetMethod("John");
 
                 // Assert
-                string expectedOutput = "Hello, John!\r\n";
+                string expectedOutput = "Hello, John!";
                 Assert.AreEqual(expectedOutput, sw.ToString());
             }
         }
