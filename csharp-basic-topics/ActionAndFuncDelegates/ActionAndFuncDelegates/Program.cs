@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Action_and_Func_Delegates
+﻿namespace Action_and_Func_Delegates
 {
     class Program
     {
@@ -16,7 +10,7 @@ namespace Action_and_Func_Delegates
             greet("Peter Parker");
 
             //Func Delegates
-            Func<int, int, int> add = (a, b) => a + b; 
+            Func<int, int, int> add = (a, b) => a + b;
             int result = add(5, 3); // result is now 8
 
             Console.WriteLine("Result of 5 + 3 = " + result);
