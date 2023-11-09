@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BucketSort", "BucketSort\BucketSort.csproj", "{F4854529-5918-4DB6-B2B8-0EF2D9027A1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BucketSortTests", "BucketSortTests\BucketSortTests.csproj", "{E20AB95E-A14C-4BCA-97E4-71B1DD41C670}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4854529-5918-4DB6-B2B8-0EF2D9027A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4854529-5918-4DB6-B2B8-0EF2D9027A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4854529-5918-4DB6-B2B8-0EF2D9027A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4854529-5918-4DB6-B2B8-0EF2D9027A1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E20AB95E-A14C-4BCA-97E4-71B1DD41C670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E20AB95E-A14C-4BCA-97E4-71B1DD41C670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E20AB95E-A14C-4BCA-97E4-71B1DD41C670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E20AB95E-A14C-4BCA-97E4-71B1DD41C670}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DAED5269-C604-4F99-B196-81275A4C5A1F}
+	EndGlobalSection
+EndGlobal

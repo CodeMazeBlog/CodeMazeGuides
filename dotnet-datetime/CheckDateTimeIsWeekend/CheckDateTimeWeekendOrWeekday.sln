@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckDateTime", "CheckDateTime\CheckDateTime.csproj", "{61DA8CDC-72C8-498A-AA5C-7B004A83BD71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckDateTime.Tests", "CheckDateTime.Tests\CheckDateTime.Tests.csproj", "{2840C388-8347-4EB2-BF31-D9956F26C0FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61DA8CDC-72C8-498A-AA5C-7B004A83BD71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61DA8CDC-72C8-498A-AA5C-7B004A83BD71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61DA8CDC-72C8-498A-AA5C-7B004A83BD71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61DA8CDC-72C8-498A-AA5C-7B004A83BD71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2840C388-8347-4EB2-BF31-D9956F26C0FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2840C388-8347-4EB2-BF31-D9956F26C0FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2840C388-8347-4EB2-BF31-D9956F26C0FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2840C388-8347-4EB2-BF31-D9956F26C0FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F45D2F19-4645-45FE-AA83-500B00CB385F}
+	EndGlobalSection
+EndGlobal

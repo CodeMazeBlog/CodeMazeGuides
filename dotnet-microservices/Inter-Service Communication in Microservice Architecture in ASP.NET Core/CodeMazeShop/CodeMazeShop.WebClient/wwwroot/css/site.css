@@ -1,0 +1,117 @@
+﻿@font-face {
+    font-family: 'opensans-regular';
+    src: url('../fonts/opensans-regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'opensans-bold';
+    src: url('../fonts/opensans-bold.ttf') format('truetype');
+}
+
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+    border-radius: 30px;
+    background-color: #51b5b1;
+    padding: 10px 25px 10px 25px;
+    font-size: 0.9em;
+    font-family: opensans-bold;
+}
+
+.filterButton {
+    border-radius: 30px;
+    background-color: #edf7f7;
+    border: 2px solid #51b5b1;
+    width: 100px;
+    height: 40px;
+    color: #51b5b1;
+    font-size: 0,8em;
+}
+
+.big {
+    font-size: 1.5em;
+}
+
+a {
+    color: #51b5b1;
+}
+
+
+select {
+    height: 40px;
+    font-family: opensans-bold;
+    padding-left: 14px;
+    padding-right: 4px;
+    margin-right: 20px;
+}
+
+body {
+    font-family: opensans-regular;
+}
+
+html {
+    font-size: 14px;
+}
+
+.shoppingCartIcon {
+    filter: invert(100%) sepia(13%) saturate(7493%) hue-rotate(291deg) brightness(119%) contrast(111%);
+    float: right;
+}
+
+.cancelIcon {
+    filter: invert(77%) sepia(40%) saturate(4%) hue-rotate(348deg) brightness(105%) contrast(91%);
+    width: 12px;
+}
+
+.backIcon {
+    filter: invert(67%) sepia(54%) saturate(385%) hue-rotate(129deg) brightness(87%) contrast(84%);
+    transform:rotate(90deg);
+}
+
+.productCount {
+    font-size:2em;
+}
+
+.bold {
+    font-family: opensans-bold;
+}
+
+.products {
+    font-size: 0.5em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.columnHeader {
+    font-size: 0.9em;
+    color: grey;
+}
+
+.columnHeader th {
+    border-top: none;
+}
+
+.productPic {
+    width: 130px;
+}
+
+.lineIcon {
+    height:15px;
+}
+
+.detailImage {
+    width: 350px;
+}
+
+header {
+    background-color: #000000;
+    color: #fff;
+}
+
+.table tr td {
+    vertical-align: middle;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

@@ -1,0 +1,17 @@
+﻿{{> dbimports}}
+
+namespace {{namespace}}
+{
+    public partial class {{class}} : DbContext
+    {
+        {{{> dbsets}}}
+
+        {{{> dbconstructor}}}
+
+        {{#unless suppress-on-configuring}}
+        {{{> dbonconfiguring}}}
+
+        {{/unless}}
+        {{{on-model-creating}}}
+    }
+}
