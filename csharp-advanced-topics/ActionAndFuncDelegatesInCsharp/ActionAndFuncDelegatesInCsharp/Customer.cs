@@ -7,11 +7,10 @@ public class Customer
     public int Age { get; set; }
     public string ShirtSize { get; set; }
 
-    public Customer(string Name, int Age, string ShirtSize)
+    public Customer(string name, int age, string shirtSize)
     {
-        this.Name = Name;
-        this.Age = Age;
-        this.ShirtSize = "L";
+        Name = Name;
+        Age = Age;
+        ShirtSize = shirtSize;
     }
-
 }

@@ -7,7 +7,7 @@ public class Shirt
 
     public Shirt(string size, string brand)
     {       
-        this.Size = size;
-        this.Brand = brand;
+        Size = size;
+        Brand = brand;
     }
 }
