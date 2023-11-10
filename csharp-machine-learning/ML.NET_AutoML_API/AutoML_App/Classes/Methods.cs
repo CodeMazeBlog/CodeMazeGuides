@@ -5,6 +5,7 @@ using Microsoft.ML.SearchSpace;
 using Microsoft.ML.SearchSpace.Option;
 using Microsoft.ML.Trainers.LightGbm;
 using System.Linq;
+using static TorchSharp.torch.utils;
 
 public static class Methods
 {
@@ -15,7 +16,7 @@ public static class Methods
         var dataPath = "DataSets/framingham.csv";
         var columnInfo = mlContext.Auto().InferColumns(dataPath, labelColumnName: "TenYearCHD", groupColumns: false);
 
-        IDataView data = mlContext.Data.LoadFromTextFile(dataPath, columnInfo.TextLoaderOptions);
+        var data = mlContext.Data.LoadFromTextFile(dataPath, columnInfo.TextLoaderOptions);
         var splitData = mlContext.Data.TrainTestSplit(data, testFraction: 0.1);
 
         var pipeline = mlContext.Auto().Featurizer(data, columnInformation: columnInfo.ColumnInformation)
@@ -55,7 +56,7 @@ public static class Methods
 
         columnInfo.ColumnInformation.IgnoredColumnNames.Add("totChol");
 
-        IDataView data = mlContext.Data.LoadFromTextFile(dataPath, columnInfo.TextLoaderOptions);
+        var data = mlContext.Data.LoadFromTextFile(dataPath, columnInfo.TextLoaderOptions);
         var splitData = mlContext.Data.TrainTestSplit(data, testFraction: 0.1);
 
         var lgbmSearchSpace = new SearchSpace<LgbmOptionExtended>();
@@ -113,10 +114,8 @@ public static class Methods
         var bestModel = experimentResults.Model;
         Console.WriteLine($"Accuracy: {experimentResults.Metric}.");
 
-        var pfi = CalculateFeatureImportance(mlContext, bestModel, splitData.TestSet,
+        CalculateFeatureImportance(mlContext, bestModel, splitData.TrainSet, 
             columnInfo.ColumnInformation.LabelColumnName);
-        foreach (var item in pfi)
-            Console.WriteLine($"{item.Item1}: {item.Item2}");
 
         mlContext.Model.Save(bestModel, data.Schema, "model.zip");
 
@@ -146,26 +145,36 @@ public static class Methods
         };
 
         var directPrediction = bestModel.Transform(mlContext.Data.LoadFromEnumerable(new List<ModelInput>() { input }));
-        Console.WriteLine("Direct prediction - Heart Disease Risk exists: {0}", directPrediction.GetColumn<bool>("PredictedLabel").FirstOrDefault());
+        Console.WriteLine("\nDirect prediction - Heart Disease Risk exists: {0}", directPrediction.GetColumn<bool>("PredictedLabel").FirstOrDefault());
 
         var ctx = new MLContext();
         ITransformer predictionPipeline = ctx.Model.Load("model.zip", out _);
         var predictionEngine = ctx.Model.CreatePredictionEngine<ModelInput, ModelOutput>(predictionPipeline);
         var prediction = predictionEngine.Predict(input);
-        Console.WriteLine("Saved model - Heart Disease Risk exists: {0}", prediction.PredictedLabel);
+        Console.WriteLine("\nSaved model - Heart Disease Risk exists: {0}", prediction.PredictedLabel);
 
     }
 
-    public static List<Tuple<string, BinaryClassificationMetricsStatistics>> CalculateFeatureImportance(MLContext mlContext,
+    public static void CalculateFeatureImportance(MLContext mlContext,
         ITransformer model, IDataView dataset, string labelColumnName)
     {
-        var linearPredictor = model as TransformerChain<ITransformer>;
+        var transformedData = model.Transform(dataset);
+        var linearPredictor = (model as TransformerChain<ITransformer>)?.LastTransformer;
+
         var pfiResults = mlContext.BinaryClassification
-            .PermutationFeatureImportanceNonCalibrated(linearPredictor, dataset, labelColumnName);
+            .PermutationFeatureImportanceNonCalibrated(linearPredictor, transformedData, labelColumnName);
 
-        var featureImportance = pfiResults.Select(x => Tuple.Create(x.Key, x.Value))
-        .OrderByDescending(x => x.Item2).ToList();
+        var featureAUCs = pfiResults
+                .Select(m => new { m.Key, m.Value.AreaUnderRocCurve })
+                .OrderByDescending(m => Math.Abs(m.AreaUnderRocCurve.Mean))
+                .Select(m => new
+                {
+                    Feature = m.Key,
+                    AUC = m.AreaUnderRocCurve
+                });
 
-        return featureImportance;
+        Console.WriteLine("\nFeature Importance Calculations");
+        foreach (var item in featureAUCs)
+            Console.WriteLine($"{item.Feature, -20}{item.AUC.Mean}");
     }
 }

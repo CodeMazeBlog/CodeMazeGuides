@@ -1,3 +1,3 @@
-﻿//await Methods.DefaultExperiment();
+﻿await Methods.DefaultExperiment();
 
 await Methods.CustomExperiment();
