@@ -1,6 +1,4 @@
-﻿using ActionAndFuncDelegates;
-
-namespace ActionAndFuncDelegates
+﻿namespace ActionAndFuncDelegates
 {
     class Program
     {
@@ -18,7 +16,7 @@ namespace ActionAndFuncDelegates
             //Func Delegates
             Func<int, int, int> add = delegatesFunctions.AddNumbers;
             
-            int result = add(5, 3);
+            var result = add(5, 3);
             Console.WriteLine("Result of 5 + 3 = " + result);
             Console.WriteLine("Result of 6 + 11 = " + add(6, 11));
 
