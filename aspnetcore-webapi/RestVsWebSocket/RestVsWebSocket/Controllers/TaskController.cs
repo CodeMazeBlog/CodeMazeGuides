@@ -3,64 +3,63 @@ using System.Net.WebSockets;
 using System.Net;
 using System.Text;
 
-namespace RestVsWebSocket.Controllers
+namespace RestVsWebSocket.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class TaskController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class TaskController : ControllerBase
+    public IList<string> tasks;
+
+    public TaskController()
     {
-        public IList<string> _tasks;
+        tasks = new List<string>();
+    }
 
-        public TaskController()
+    //REST
+    [HttpPost]
+    public IActionResult AddTask([FromBody] string task)
+    {
+        if (string.IsNullOrEmpty(task))
         {
-            _tasks = new List<string>();
+            return BadRequest("Enter valid data");
         }
 
-        //REST
-        [HttpPost]
-        public IActionResult AddTask([FromBody] string task)
+        tasks.Add(task);
+        return Ok("Task added successfully.");
+    }
+
+    //WebSocket
+    [Route("/ws")]
+    [HttpGet]
+    public async Task Get()
+    {
+        if (HttpContext.WebSockets.IsWebSocketRequest)
         {
-            if (string.IsNullOrEmpty(task))
+            using var ws = await HttpContext.WebSockets.AcceptWebSocketAsync();
+
+            while (true)
             {
-                return BadRequest("Enter valid data");
-            }
-
-            _tasks.Add(task);
-            return Ok("Task added successfully.");
-        }
-
-        //WebSocket
-        [Route("/ws")]
-        [HttpGet]
-        public async Task Get()
-        {
-            if (HttpContext.WebSockets.IsWebSocketRequest)
-            {
-                using var ws = await HttpContext.WebSockets.AcceptWebSocketAsync();
-
-                while (true)
+                var message = "The time is: " + DateTime.Now.ToString("HH:mm:ss");
+                var bytes = Encoding.UTF8.GetBytes(message);
+                var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
+                if (ws.State == WebSocketState.Open)
                 {
-                    var message = "The time is: " + DateTime.Now.ToString("HH:mm:ss");
-                    var bytes = Encoding.UTF8.GetBytes(message);
-                    var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
-                    if (ws.State == WebSocketState.Open)
-                    {
-                        await ws.SendAsync(arraySegment,
-                        WebSocketMessageType.Text,
-                        true,
-                        CancellationToken.None);
-                    }
-                    else if (ws.State == WebSocketState.Closed || ws.State == WebSocketState.Aborted)
-                    {
-                        break;
-                    }
-                    Thread.Sleep(1000);
+                    await ws.SendAsync(arraySegment,
+                    WebSocketMessageType.Text,
+                    true,
+                    CancellationToken.None);
                 }
+                else if (ws.State == WebSocketState.Closed || ws.State == WebSocketState.Aborted)
+                {
+                    break;
+                }
+                Thread.Sleep(1000);
             }
-            else
-            {
-                HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            }
+        }
+        else
+        {
+            HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
         }
     }
 }
