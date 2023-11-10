@@ -4,8 +4,6 @@ using Microsoft.ML.Data;
 using Microsoft.ML.SearchSpace;
 using Microsoft.ML.SearchSpace.Option;
 using Microsoft.ML.Trainers.LightGbm;
-using System.Linq;
-using static TorchSharp.torch.utils;
 
 public static class Methods
 {

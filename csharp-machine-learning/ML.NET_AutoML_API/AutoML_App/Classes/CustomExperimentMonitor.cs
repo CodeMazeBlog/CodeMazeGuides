@@ -28,9 +28,8 @@ public class CustomExperimentMonitor : IMonitor
     public void ReportFailTrial(TrialSettings settings, Exception exception = null)
     {
         if (exception.Message.Contains("Operation was canceled."))
-        {
             Console.WriteLine($"\t- cancelled. Time budget exceeded.");
-        }
+        
         Console.WriteLine($"\t- failed with exception {exception.Message}");
     }
 
