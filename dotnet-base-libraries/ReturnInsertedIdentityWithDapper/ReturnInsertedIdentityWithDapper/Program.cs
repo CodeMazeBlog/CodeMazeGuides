@@ -17,6 +17,3 @@ Console.WriteLine($"Inserted Identity: {insertedIdentity}");
 
 insertedIdentity = Methods.UseOfOutputInserted(connectionString, newStudent);
 Console.WriteLine($"Inserted Identity: {insertedIdentity}");
-
-insertedIdentity = Methods.UseOfDapperExtension(connectionString, newStudent);
-Console.WriteLine($"Inserted Identity: {insertedIdentity}");

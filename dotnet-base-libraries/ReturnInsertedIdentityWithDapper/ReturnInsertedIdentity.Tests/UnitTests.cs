@@ -4,7 +4,7 @@ using static ReturnInsertedIdentityWithDapper.Methods;
 
 namespace ReturnInsertedIdentity.Tests;
 
-public class Tests
+public class UnitTests
 {
     private string _connectionString;
 
@@ -19,7 +19,7 @@ public class Tests
     }
 
     [Test]
-    public void GivenOutputInsertedMethod_WhenNewRecord_ThenReturnedIDGreaterThenZeroLiveTest()
+    public void GivenOutputInsertedMethod_WhenNewRecord_ThenReturnedIDGreaterThanZeroLiveTest()
     {
         var newStudent = new Student { Firstname = "Mary", Surname = "Williams" };
 
@@ -29,21 +29,11 @@ public class Tests
     }
 
     [Test]
-    public void GivenScopeIdentityMethod_WhenNewRecord_ThenReturnedIDGreaterThenZeroLiveTest()
+    public void GivenScopeIdentityMethod_WhenNewRecord_ThenReturnedIDGreaterThanZeroLiveTest()
     {
         var newStudent = new Student { Firstname = "Bob", Surname = "Brown" };
 
         var lastInsertedId = UseOfScopeIdentity(_connectionString, newStudent);
-
-        Assert.That(lastInsertedId, Is.GreaterThan(0));
-    }
-
-    [Test]
-    public void GivenDapperExtensionMethod_WhenNewRecord_ThenReturnedIDGreaterThenZeroLiveTest()
-    {
-        var newStudent = new Student { Firstname = "John", Surname = "Doe" };
-
-        var lastInsertedId = UseOfDapperExtension(_connectionString, newStudent);
 
         Assert.That(lastInsertedId, Is.GreaterThan(0));
     }
