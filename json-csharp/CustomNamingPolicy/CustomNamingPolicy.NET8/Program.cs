@@ -6,13 +6,13 @@ namespace CustomNamingPolicy.NET8
     {
         static void Main(string[] args)
         {
-            ConverToSnakeCaseLower();
-            ConverToSnakeCaseUpper();
-            ConverToKebabCaseLower();
-            ConverToKebabCaseUpper();
+            ConvertToSnakeCaseLower();
+            ConvertToSnakeCaseUpper();
+            ConvertToKebabCaseLower();
+            ConvertToKebabCaseUpper();
         }
 
-        private static void ConverToSnakeCaseLower()
+        private static void ConvertToSnakeCaseLower()
         {
             var snakeCaseLowerPolicy = new JsonSerializerOptions
             {
@@ -23,7 +23,7 @@ namespace CustomNamingPolicy.NET8
             Console.WriteLine(jsonObj);
         }
 
-        private static void ConverToSnakeCaseUpper()
+        private static void ConvertToSnakeCaseUpper()
         {
             var snakeCaseUpperPolicy = new JsonSerializerOptions
             {
@@ -34,7 +34,7 @@ namespace CustomNamingPolicy.NET8
             Console.WriteLine(jsonObj);
         }
 
-        private static void ConverToKebabCaseLower()
+        private static void ConvertToKebabCaseLower()
         {
             var kebabCaseLowerPolicy = new JsonSerializerOptions
             {
@@ -45,7 +45,7 @@ namespace CustomNamingPolicy.NET8
             Console.WriteLine(jsonObj);
         }
 
-        private static void ConverToKebabCaseUpper()
+        private static void ConvertToKebabCaseUpper()
         {
             var kebabCaseUpperPolicy = new JsonSerializerOptions
             {
