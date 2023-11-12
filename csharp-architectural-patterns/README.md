@@ -4,3 +4,4 @@ This section contains source code for the articles about different architectural
 
 ### Relevant articles:
 - [Strangler Fig Architectural Pattern in C#](https://code-maze.com/csharp-strangler-fig-architectural-pattern/)
+- [Pipes and Filters Architectural Pattern in C#](https://code-maze.com/csharp-pipes-and-filters-architectural-pattern/)
