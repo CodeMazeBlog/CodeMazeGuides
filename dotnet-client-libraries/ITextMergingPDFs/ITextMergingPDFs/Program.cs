@@ -51,7 +51,7 @@ static string CreateDocumentsFolder()
 void MergeDocumentsOfTheSameSize(string documentsFolder)
 {
     Console.WriteLine("Merge 3 PDF Documents with the Same Size\n\n");
-    var documents = BigDocument.CreateFewDocuments(documentsFolder, "example", 3, PageSize.A4).ToArray();
+    var documents = BigDocument.CreateFewDocuments(documentsFolder, "example", 3, PageSize.LETTER).ToArray();
     foreach (var document in documents)
     {
         Console.WriteLine($" * Document {Path.GetFileName(document)} created.");
