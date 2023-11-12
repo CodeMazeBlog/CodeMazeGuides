@@ -1,4 +1,4 @@
-﻿internal static class Log
+﻿public static class ActionDelegate
 {
     public static void Error(string message)
           => Console.WriteLine(message);

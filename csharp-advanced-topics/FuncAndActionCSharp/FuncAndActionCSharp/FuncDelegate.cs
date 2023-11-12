@@ -1,4 +1,4 @@
-﻿internal class Filter
+﻿public class FuncDelegate
 {
     public void PerformFiltration(IEnumerable<int> numbers)
     {

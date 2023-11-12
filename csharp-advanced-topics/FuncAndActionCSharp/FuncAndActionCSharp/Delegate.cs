@@ -1,4 +1,4 @@
-﻿internal class DelegateIntro
+﻿public class Delegate
 {
     string logMessage = "The operation finished in 1.1 sec";
 
