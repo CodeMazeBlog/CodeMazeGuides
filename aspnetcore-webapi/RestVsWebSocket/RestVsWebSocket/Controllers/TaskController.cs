@@ -22,7 +22,7 @@ public class TaskController : ControllerBase
     {
         if (string.IsNullOrEmpty(task))
         {
-            return BadRequest("Enter valid data");
+            return BadRequest("Enter valid data.");
         }
 
         tasks.Add(task);
