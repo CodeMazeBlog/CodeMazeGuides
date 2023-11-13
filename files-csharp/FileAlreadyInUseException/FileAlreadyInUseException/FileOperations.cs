@@ -2,7 +2,6 @@
 
 public static class FileOperations
 {
-
     public static void ReadFile(string fileName)
     {
         File.Create(fileName);

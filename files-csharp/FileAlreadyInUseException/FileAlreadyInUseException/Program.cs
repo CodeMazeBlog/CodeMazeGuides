@@ -1,5 +1,5 @@
 ﻿using static FileAlreadyInUseException.FileOperations;
 
-const string fileName = "sample2.txt";
+const string fileName = "codeMaze.txt";
 
 ReadFile(fileName);
