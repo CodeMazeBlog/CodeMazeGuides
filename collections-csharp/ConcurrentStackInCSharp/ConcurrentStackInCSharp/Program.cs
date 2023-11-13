@@ -23,7 +23,11 @@ public class Program
 
         var task2 = Task.Run(async () =>
         {
-            var performedActions = tool.PerfromMultipleActions("Draw Square", "Draw Triangle", "Draw Parallel Lines", "Draw Hexagon");
+            var performedActions = tool.PerfromMultipleActions(
+                "Draw Square",
+                "Draw Triangle",
+                "Draw Parallel Lines",
+                "Draw Hexagon");
             await ConsoleWriteLineAsync(performedActions);
 
             foreach (var action in tool.UndoLastNActions(4))
