@@ -44,7 +44,7 @@ public class DrawingToolTests
         var result = tool.UndoLastAction();
 
         // Assert
-        Assert.Equal($"Undid action: {actions.Last()}", result);
+        Assert.Equal($"Undid action: {actions[actions.Length-1]}", result);
     }
 
     [Fact]
