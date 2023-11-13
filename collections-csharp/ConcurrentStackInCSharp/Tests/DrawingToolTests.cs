@@ -55,10 +55,10 @@ public class DrawingToolTests
         var actions = new[] { "Draw Circle", "Draw Square", "Color Circle Red" };
 
         // Act
-        var countAfterActions = tool.PerfromMultipleActions(actions);
+        var output = tool.PerfromMultipleActions(actions);
 
         // Assert
-        Assert.Equal(actions.Length, countAfterActions);
+        Assert.Equal($"Performed actions: {string.Join('\n',actions.ToArray())}", output);
     }
 
     [Fact]
