@@ -58,7 +58,7 @@ public class DrawingToolTests
         var output = tool.PerfromMultipleActions(actions);
 
         // Assert
-        Assert.Equal($"Performed actions: {string.Join('\n',actions.ToArray())}", output);
+        Assert.Equal($"Performed actions: {string.Join(", ", actions.ToArray())}", output);
     }
 
     [Fact]
@@ -74,7 +74,7 @@ public class DrawingToolTests
 
         // Assert
         Assert.Equal(2, undoneActions.Count);
-        Assert.Contains($"Undid action: {actions.Last()}", undoneActions);
+        Assert.Contains($"Undid action: {actions[actions.Length - 1]}", undoneActions);
         Assert.Contains($"Undid action: {actions[actions.Length - 2]}", undoneActions);
     }
 
@@ -91,7 +91,7 @@ public class DrawingToolTests
 
         // Assert
         Assert.Equal(actions.Length, undoneActions.Count);
-        Assert.Contains($"Undid action: {actions.Last()}", undoneActions);
+        Assert.Contains($"Undid action: {actions[actions.Length - 1]}", undoneActions);
         Assert.Contains($"Undid action: {actions[0]}", undoneActions);
     }
 

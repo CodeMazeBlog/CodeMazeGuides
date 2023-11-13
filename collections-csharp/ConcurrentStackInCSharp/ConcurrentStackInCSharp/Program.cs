@@ -1,57 +1,51 @@
-﻿using System.Collections.Concurrent;
-
-namespace ConcurrentStackInCSharp;
+﻿namespace ConcurrentStackInCSharp;
 
 public class Program
 {
-    public static void Main()
+    public static async Task Main()
     {
-        Console.WriteLine("Simulating usage of Drawing tool...");
-        UseDrawingTool();
+        await ConsoleWriteLineAsync("Simulating usage of Drawing tool...");
+        await UseDrawingTool();
     }
 
-    public static void UseDrawingTool()
+    public static async Task UseDrawingTool()
     {
         DrawingTool tool = new();
 
-        // Simulate multiple users performing and undoing actions concurrently
-        Parallel.Invoke(
-            () =>
+        var task1 = Task.Run(async () =>
+        {
+            var performedAction = tool.PerformAction("Draw Circle");
+            await ConsoleWriteLineAsync(performedAction);
+
+            var actionUndone = tool.UndoLastAction();
+            await ConsoleWriteLineAsync(actionUndone);
+        });
+
+        var task2 = Task.Run(async () =>
+        {
+            var performedActions = tool.PerfromMultipleActions("Draw Square", "Draw Triangle", "Draw Parallel Lines", "Draw Hexagon");
+            await ConsoleWriteLineAsync(performedActions);
+
+            foreach (var action in tool.UndoLastNActions(4))
             {
-                var actionPerformed = tool.PerformAction("Draw Circle");
-                Console.WriteLine(actionPerformed);
-                
-                Task.Delay(30).Wait();  // Simulating some work
-
-                var actionUndone = tool.UndoLastAction();
-                Console.WriteLine(actionUndone);
-            },
-            () =>
-            {
-                var actionsPerformed = tool.PerfromMultipleActions(
-                    "Draw Square",
-                    "Draw Triangle",
-                    "Draw Parallel Lines",
-                    "Draw Hexagon");
-                Console.WriteLine(actionsPerformed);
-
-                Task.Delay(50).Wait();  // Simulating some work
-
-                foreach (var action in tool.UndoLastNActions(4))
-                {
-                    Console.WriteLine(action);
-                }
-            },
-            () =>
-            {
-                var actionPerformed = tool.PerformAction("Color Circle Red");
-                Console.WriteLine(actionPerformed);
-
-                Task.Delay(70).Wait();  // Simulating some work
-
-                var actionUndone = tool.UndoLastAction();
-                Console.WriteLine(actionUndone);
+                await ConsoleWriteLineAsync(action);
             }
-        );
+        });
+
+        var task3 = Task.Run(async () =>
+        {
+            var performedAction = tool.PerformAction("Color Circle Red");
+            await ConsoleWriteLineAsync(performedAction);
+
+            var actionUndone = tool.UndoLastAction();
+            await ConsoleWriteLineAsync(actionUndone);
+        });
+
+        await Task.WhenAll(task1, task2, task3);
+    }
+
+    private static async Task ConsoleWriteLineAsync(string message)
+    {
+        await Task.Run(() => Console.WriteLine(message));
     }
 }
