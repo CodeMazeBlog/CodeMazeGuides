@@ -3,21 +3,21 @@ using Xunit;
 
 namespace FileAlreadyInUseExceptionTests;
 
-public class ProgramTests
+public class FileOperationsTests
 {
     [Fact]
     public void WhenFileNotInUse_AndIsFileInUseGeneric_ThenReturnsFalse()
     {
         // Arrange
         var filePath = "testFile0.txt";
-        using (File.Create(filePath)) ;
+        using (File.Create(filePath));
 
         // Act
-        bool result = Program.IsFileInUseGeneric(new FileInfo(filePath));
+        var result = FileOperations.IsFileInUseGeneric(new FileInfo(filePath));
 
         // Assert
-        Assert.False(result);
         File.Delete(filePath);
+        Assert.False(result);
     }
 
     [Fact]
@@ -25,15 +25,15 @@ public class ProgramTests
     {
         // Arrange
         var filePath = "testFile1.txt";
-        FileStream fileStream = File.Create(filePath);
+        var fileStream = File.Create(filePath);
 
         // Act
-        bool result = Program.IsFileInUseGeneric(new FileInfo(filePath));
+        var result = FileOperations.IsFileInUseGeneric(new FileInfo(filePath));
 
         // Assert
-        Assert.True(result);
         fileStream.Close();
         File.Delete(filePath);
+        Assert.True(result);
     }
 
     [Fact]
@@ -41,13 +41,13 @@ public class ProgramTests
     {
         // Arrange
         var filePath = "testFile2.txt";
-        using (File.Create(filePath)) ;
+        using (File.Create(filePath));
 
         // Act
-        bool result = Program.IsFileInUse(new FileInfo(filePath));
+        var result = FileOperations.IsFileInUse(new FileInfo(filePath));
 
         // Assert
-        Assert.False(result);
         File.Delete(filePath);
+        Assert.False(result);
     }
 }
