@@ -72,9 +72,7 @@ public class UsingStaticAnonymousFunctionsInCSharpTest
         var expected = "121";
         Assert.Equal(expected, output);
     }
-
-    #region Benchmarked methods        
-
+       
     [Fact]
     public void WhenMultiplyNonStaticMethodIsCalled_ThenResultIsCalculatedCorrectly()
     {
@@ -115,7 +113,5 @@ public class UsingStaticAnonymousFunctionsInCSharpTest
         // Assert
         var expected = "60";
         Assert.Equal(expected, result.ToString());
-    }
-
-    #endregion
+    }    
 }

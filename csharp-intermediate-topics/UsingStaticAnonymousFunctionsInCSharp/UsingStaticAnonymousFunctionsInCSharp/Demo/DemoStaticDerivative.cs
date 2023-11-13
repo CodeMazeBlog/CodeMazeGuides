@@ -3,7 +3,7 @@
 // static anonymous function with this, base, locals and parameters
 public class DemoStaticDerivative : DemoStaticBase
 {
-    private double numberInThis = 4;
+    private double _numberInThis = 4;
 
     void Calculate(Func<double, double> func)
     {
@@ -17,7 +17,7 @@ public class DemoStaticDerivative : DemoStaticBase
         // this, base, locals and parameters - can't be referenced
 
         // Error CS8821: A static anonymous function cannot contain a reference to 'this' or 'base'.
-        //Calculate(static num => Math.Pow(this.numberInThis, num));
+        //Calculate(static num => Math.Pow(this._numberInThis, num));
 
         // Error CS8821: A static anonymous function cannot contain a reference to 'this' or 'base'.
         //Calculate(static num => Math.Pow(base.numberInBase, num));
