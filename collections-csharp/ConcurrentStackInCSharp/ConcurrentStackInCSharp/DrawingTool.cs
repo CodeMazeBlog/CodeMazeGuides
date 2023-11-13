@@ -6,9 +6,11 @@ public class DrawingTool
 {
     private readonly ConcurrentStack<string> _actionHistory = new();
 
-    public void PerformAction(string action)
+    public string PerformAction(string action)
     {
         _actionHistory.Push(action);
+
+        return $"Performed action: {action}";
     }
 
     public string UndoLastAction()
@@ -20,10 +22,10 @@ public class DrawingTool
     }
 
 
-    public int PerfromMultipleActions(params string[] actions)
+    public string PerfromMultipleActions(params string[] actions)
     {
         _actionHistory.PushRange(actions);
-        return _actionHistory.Count;
+        return $"Performed actions: {string.Join("\n",actions.ToArray())}";
     }
 
     public IEnumerable<string> UndoLastNActions(int numberOfActionsToUndo)

@@ -16,41 +16,42 @@ public class Program
 
         // Simulate multiple users performing and undoing actions concurrently
         Parallel.Invoke(
-            async () =>
+            () =>
             {
-                tool.PerformAction("Draw Circle");
-                Task.Delay(50).Wait();  // Simulating some work
+                var actionPerformed = tool.PerformAction("Draw Circle");
+                Console.WriteLine(actionPerformed);
+                
+                Task.Delay(30).Wait();  // Simulating some work
 
                 var actionUndone = tool.UndoLastAction();
-                await ConsoleWriteLineAsync(actionUndone);
+                Console.WriteLine(actionUndone);
             },
-            async () =>
+            () =>
             {
-                tool.PerfromMultipleActions(
+                var actionsPerformed = tool.PerfromMultipleActions(
                     "Draw Square",
                     "Draw Triangle",
                     "Draw Parallel Lines",
                     "Draw Hexagon");
-                Task.Delay(30).Wait();  // Simulating some work
+                Console.WriteLine(actionsPerformed);
+
+                Task.Delay(50).Wait();  // Simulating some work
 
                 foreach (var action in tool.UndoLastNActions(4))
                 {
-                    await ConsoleWriteLineAsync(action);
+                    Console.WriteLine(action);
                 }
             },
-            async () =>
+            () =>
             {
-                tool.PerformAction("Color Circle Red");
+                var actionPerformed = tool.PerformAction("Color Circle Red");
+                Console.WriteLine(actionPerformed);
+
                 Task.Delay(70).Wait();  // Simulating some work
 
                 var actionUndone = tool.UndoLastAction();
-                await ConsoleWriteLineAsync(actionUndone);
+                Console.WriteLine(actionUndone);
             }
         );
-    }
-
-    static Task ConsoleWriteLineAsync(string message)
-    {
-        return Task.Run(() => Console.WriteLine(message));
     }
 }
