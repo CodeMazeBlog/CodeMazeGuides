@@ -3,7 +3,7 @@
 // non-static anonymous function
 public class DemoNonStatic
 {
-    private double numberInEnclosingScope = 4;
+    private double _numberInEnclosingScope = 4;
 
     void Calculate(Func<double, double> func)
     {
@@ -12,6 +12,6 @@ public class DemoNonStatic
 
     public void Display()
     {
-        Calculate(num => Math.Pow(numberInEnclosingScope, num));
+        Calculate(num => Math.Pow(_numberInEnclosingScope, num));
     }
 }
