@@ -1,5 +1,8 @@
 ﻿using Spectre.Console;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CreateBetterLookingConsoleAppsWithSpectreConsole;
 
@@ -110,15 +113,16 @@ public class SpectreConsoleOtherUsages
 
     public static void DisplayProgress()
     {
+        var incrementValue = 100 / _students.Count;
+
         AnsiConsole.Progress()
             .Start(ctx =>
             {
-                var exam = ctx.AddTask("Exam Progress");
+                var streamingTask = ctx.AddTask("Student Streaming");
 
-                while (!ctx.IsFinished)
+                foreach (var student in StudentsGenerator.StreamStudentsFromDatabase())
                 {
-                    exam.Increment(0.5);
-                    Thread.Sleep(100);
+                    streamingTask.Increment(incrementValue);
                 }
             });
     }

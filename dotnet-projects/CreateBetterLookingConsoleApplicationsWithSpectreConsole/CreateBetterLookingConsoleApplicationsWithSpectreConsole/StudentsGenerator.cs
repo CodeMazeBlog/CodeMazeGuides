@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading;
 
 namespace CreateBetterLookingConsoleAppsWithSpectreConsole;
 
@@ -25,5 +27,16 @@ public static class StudentsGenerator
         {
             WriteIndented = true
         });
+    }
+
+    public static IEnumerable<Student> StreamStudentsFromDatabase()
+    {
+        var students = GenerateStudents();
+
+        for (int i = 0; i < students.Count; i++)
+        {
+            yield return students[i];
+            Thread.Sleep(1000);
+        }
     }
 }
