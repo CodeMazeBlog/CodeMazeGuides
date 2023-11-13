@@ -25,7 +25,7 @@ public class DrawingTool
     public string PerfromMultipleActions(params string[] actions)
     {
         _actionHistory.PushRange(actions);
-        return $"Performed actions: {string.Join("\n",actions.ToArray())}";
+        return $"Performed actions: {string.Join(", ",actions.ToArray())}";
     }
 
     public IEnumerable<string> UndoLastNActions(int numberOfActionsToUndo)
