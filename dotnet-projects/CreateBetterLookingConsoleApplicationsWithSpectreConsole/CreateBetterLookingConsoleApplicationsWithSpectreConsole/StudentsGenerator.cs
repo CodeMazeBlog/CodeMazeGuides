@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Threading;
 
-namespace CreateBetterLookingConsoleAppsWithSpectreConsole;
+namespace UsingSpectreConsole;
 
 public static class StudentsGenerator
 {

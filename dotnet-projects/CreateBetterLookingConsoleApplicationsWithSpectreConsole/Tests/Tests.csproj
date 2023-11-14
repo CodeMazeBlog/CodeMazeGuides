@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CreateBetterLookingConsoleApplicationsWithSpectreConsole\CreateBetterLookingConsoleApplicationsWithSpectreConsole.csproj" />
+    <ProjectReference Include="..\CreateBetterLookingConsoleApplicationsWithSpectreConsole\UsingSpectreConsole.csproj" />
   </ItemGroup>
 
 </Project>

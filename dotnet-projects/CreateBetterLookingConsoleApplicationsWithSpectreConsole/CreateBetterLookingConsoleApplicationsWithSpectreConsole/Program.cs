@@ -1,3 +1,3 @@
-﻿using CreateBetterLookingConsoleAppsWithSpectreConsole;
+﻿using UsingSpectreConsole;
 
 SpectreConsoleOtherUsages.DisplayProgress();

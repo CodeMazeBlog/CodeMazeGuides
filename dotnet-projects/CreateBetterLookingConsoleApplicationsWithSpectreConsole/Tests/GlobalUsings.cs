@@ -1,4 +1,4 @@
 global using Shouldly;
 global using Spectre.Console;
-global using CreateBetterLookingConsoleAppsWithSpectreConsole;
+global using UsingSpectreConsole;
 global using Spectre.Console.Testing;

@@ -1,10 +1,8 @@
 ﻿using Spectre.Console;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace CreateBetterLookingConsoleAppsWithSpectreConsole;
+namespace UsingSpectreConsole;
 
 public class SpectreConsoleOtherUsages
 {

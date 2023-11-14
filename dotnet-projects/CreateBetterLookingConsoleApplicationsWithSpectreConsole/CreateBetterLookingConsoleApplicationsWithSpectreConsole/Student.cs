@@ -1,4 +1,4 @@
-﻿namespace CreateBetterLookingConsoleAppsWithSpectreConsole;
+﻿namespace UsingSpectreConsole;
 
 public class Student
 {

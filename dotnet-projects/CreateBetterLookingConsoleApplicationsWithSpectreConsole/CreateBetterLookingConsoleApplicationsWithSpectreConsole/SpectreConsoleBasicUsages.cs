@@ -1,7 +1,7 @@
 ﻿using Spectre.Console;
 using Spectre.Console.Json;
 
-namespace CreateBetterLookingConsoleAppsWithSpectreConsole;
+namespace UsingSpectreConsole;
 
 public class SpectreConsoleBasicUsages
 {
