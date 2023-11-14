@@ -19,7 +19,7 @@ public class AggregationPipelineTests
                 Role = new RoleModel
                 {
                     Id = "65535aa28ae1579f7ea4c46f",
-                    Name = "Admin"
+                    Name = "Admin",
                 }
             },
             new()

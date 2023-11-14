@@ -27,7 +27,6 @@ public class UserModel
         return Id == model.Id
                && Name == model.Name
                && Email == model.Email
-               && Role.Id == model.Role.Id
-               && Role.Name == model.Role.Name;
+               && Role.Equals(model.Role);
     }
 }

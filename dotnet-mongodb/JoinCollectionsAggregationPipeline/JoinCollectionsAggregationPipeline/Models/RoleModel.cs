@@ -17,4 +17,12 @@ public class RoleModel
 
     [BsonElement("normalizedName")]
     public string NormalizedName => Name.ToUpper();
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is not RoleModel model) return false;
+        return Id == model.Id
+               && Name == model.Name
+               && NormalizedName == model.NormalizedName;
+    }
 }
