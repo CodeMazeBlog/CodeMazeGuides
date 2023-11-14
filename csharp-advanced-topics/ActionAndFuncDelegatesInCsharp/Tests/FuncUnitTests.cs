@@ -1,34 +1,28 @@
+using FuncDelegate;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests
 {
 
     [TestClass]
     public class FuncUnitTests
-    {
-        public static int Add(int x, int y)
-        {
-            return x + y;
-        }
-
-        public static int Multiply(int x, int y)
-        {
-            return x * y;
-        }
+    {   
         
         [TestMethod]
-        public void WhenRecieveTwoIntegers_Add()
+        public void Given_FuncSampleWithAddMethod_When_ReceiveTwoIntegers_Then_Add()
         {
-            Func<int, int, int> funcDelegate = Add;
-            int result = funcDelegate(5, 8);
+            Func<int, int, int> funcDelegate = FuncSample.Add;
+            var result = funcDelegate(5, 8);
+            
             Assert.AreEqual(13, result);
 
         }
 
         [TestMethod]
-        public void WhenRecieveTwoIntegers_Multiply()
+        public void Given_FuncSampleWithMultiplyMethod_When_ReceiveTwoIntegers_Then_Multiply()
         {
-            Func<int, int, int> funcDelegate = Multiply;
-            int result = funcDelegate(5, 8);
+            Func<int, int, int> funcDelegate = FuncSample.Multiply;
+            var result = funcDelegate(5, 8);
+            
             Assert.AreEqual(40, result);
         }
     }

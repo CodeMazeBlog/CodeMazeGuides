@@ -1,6 +1,6 @@
 ﻿namespace ActionDelegate;
 
-public class Program
+public class ActionSample
 {
     public static void Hello(string name)
     {
@@ -15,11 +15,9 @@ public class Program
     public static void Main()
     {
         Action<string> sayGreetings = Hello;
-
         sayGreetings("Pedro");
 
         sayGreetings = Bonjure;
-
         sayGreetings("Pedro");
     }
 }
