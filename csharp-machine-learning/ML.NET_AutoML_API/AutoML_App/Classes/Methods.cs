@@ -12,13 +12,17 @@ public static class Methods
         var mlContext = new MLContext();
 
         var dataPath = "DataSets/framingham.csv";
-        var columnInfo = mlContext.Auto().InferColumns(dataPath, labelColumnName: "TenYearCHD", groupColumns: false);
+        var columnInfo = mlContext.Auto().InferColumns(dataPath, 
+            labelColumnName: "TenYearCHD", groupColumns: false);
 
         var data = mlContext.Data.LoadFromTextFile(dataPath, columnInfo.TextLoaderOptions);
         var splitData = mlContext.Data.TrainTestSplit(data, testFraction: 0.1);
 
-        var pipeline = mlContext.Auto().Featurizer(data, columnInformation: columnInfo.ColumnInformation)
-                .Append(mlContext.Auto().BinaryClassification(labelColumnName: columnInfo.ColumnInformation.LabelColumnName));
+        var pipeline = mlContext.Auto().Featurizer(data, 
+            columnInformation: columnInfo.ColumnInformation)
+                .Append(mlContext.Auto()
+                .BinaryClassification(
+                    labelColumnName: columnInfo.ColumnInformation.LabelColumnName));
 
         var experiment = mlContext.Auto().CreateExperiment();
         experiment
@@ -46,7 +50,8 @@ public static class Methods
         var mlContext = new MLContext();
 
         var dataPath = "DataSets/framingham.csv";
-        var columnInfo = mlContext.Auto().InferColumns(dataPath, labelColumnName: "TenYearCHD", groupColumns: false);
+        var columnInfo = mlContext.Auto().InferColumns(dataPath, 
+            labelColumnName: "TenYearCHD", groupColumns: false);
 
         //The following two lines show how to change a column type if required.
         //columnInfo.ColumnInformation.NumericColumnNames.Remove("education");
@@ -142,15 +147,20 @@ public static class Methods
             Glucose = 86F
         };
 
-        var directPrediction = bestModel.Transform(mlContext.Data.LoadFromEnumerable(new List<ModelInput>() { input }));
-        Console.WriteLine("\nDirect prediction - Heart Disease Risk exists: {0}", directPrediction.GetColumn<bool>("PredictedLabel").FirstOrDefault());
+        var directPrediction = bestModel.Transform(
+            mlContext.Data.LoadFromEnumerable(new List<ModelInput>() { input }));
+
+        Console.WriteLine("\nDirect prediction - Heart Disease Risk exists: {0}", 
+            directPrediction.GetColumn<bool>("PredictedLabel").FirstOrDefault());
 
         var ctx = new MLContext();
         ITransformer predictionPipeline = ctx.Model.Load("model.zip", out _);
-        var predictionEngine = ctx.Model.CreatePredictionEngine<ModelInput, ModelOutput>(predictionPipeline);
+        var predictionEngine = ctx.Model
+            .CreatePredictionEngine<ModelInput, ModelOutput>(predictionPipeline);
         var prediction = predictionEngine.Predict(input);
-        Console.WriteLine("\nSaved model - Heart Disease Risk exists: {0}", prediction.PredictedLabel);
 
+        Console.WriteLine("\nSaved model - Heart Disease Risk exists: {0}", 
+            prediction.PredictedLabel);
     }
 
     public static void CalculateFeatureImportance(MLContext mlContext,
