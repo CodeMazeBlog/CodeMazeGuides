@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "65535ad6f8bae505193fdf6f",
+    "email": "admin@example.com",
+    "name": "Admin User",
+    "roleId": "65535aa28ae1579f7ea4c46f"
+  },
+  {
+    "_id": "65535ade30d1ddb6043e7502",
+    "email": "author@example.com",
+    "name": "Author User",
+    "roleId": "65535ab1290a29bb6205f716"
+  },
+  {
+    "_id": "65535ae5aaa6a08b7c3c8e9d",
+    "email": "editor@example.com",
+    "name": "Editor User",
+    "roleId": "65535abb9d62d7565949d8ac"
+  }
+]
