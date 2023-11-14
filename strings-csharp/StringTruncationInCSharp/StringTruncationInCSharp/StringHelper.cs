@@ -5,99 +5,111 @@ namespace StringTruncationInCSharp
 {
     public class StringHelper
     {
-public string TruncateStringUsingSubstring(string originalString, int maxLength)
-{
-    if (maxLength <= 0)
-    {
-        return string.Empty;
-    }
-    else if (maxLength >= originalString.Length)
-    {
-        return originalString;
-    }
+        public string TruncateStringUsingSubstring(string originalString, int maxLength)
+        {
+            if (maxLength <= 0)
+            {
+                return string.Empty;
+            }
+            else if (maxLength >= originalString.Length)
+            {
+                return originalString;
+            }
 
-    var truncatedString = originalString.Substring(0, maxLength);
+            var truncatedString = originalString.Substring(0, maxLength);
 
-    return truncatedString;
-}
-        
-public string TruncateStringUsingRemove(string originalString, int maxLength)
-{
-    if (maxLength <= 0)
-    {
-        return string.Empty;
-    }
-    else if (maxLength >= originalString.Length)
-    {
-        return originalString;
-    }
+            return truncatedString;
+        }
 
-    if (originalString.Length > maxLength)
-    {
-        return originalString.Remove(maxLength);
-    }
+        public string TruncateStringUsingRemove(string originalString, int maxLength)
+        {
+            if (maxLength <= 0)
+            {
+                return string.Empty;
+            }
+            else if (originalString.Length > maxLength)
+            {
+                return originalString.Remove(maxLength);
+            }
 
-    return originalString;
-}
-        
-public string TruncateStringUsingForLoopWithStringBuilder(string originalString, int maxLength)
-{
-    if (maxLength <= 0)
-    {
-        return string.Empty;
-    }
-    else if (maxLength >= originalString.Length)
-    {
-        return originalString;
-    }
+            return originalString;
+        }
 
-    var length = Math.Min(maxLength, originalString.Length);
-    var truncatedStringBuilder = new StringBuilder(length);
+        public string TruncateStringUsingForLoopWithStringBuilder(string originalString, int maxLength)
+        {
+            if (maxLength <= 0)
+            {
+                return string.Empty;
+            }
+            else if (maxLength >= originalString.Length)
+            {
+                return originalString;
+            }
 
-    for (int i = 0; i < length; i++)
-    {
-        truncatedStringBuilder.Append(originalString[i]);
-    }
+            var length = Math.Min(maxLength, originalString.Length);
+            var truncatedStringBuilder = new StringBuilder(length);
 
-    var truncatedString = truncatedStringBuilder.ToString();
+            for (int i = 0; i < length; i++)
+            {
+                truncatedStringBuilder.Append(originalString[i]);
+            }
 
-    return truncatedString;
-}
-        
+            var truncatedString = truncatedStringBuilder.ToString();
+
+            return truncatedString;
+        }
+
         public string TruncateStringUsingLINQ(string originalString, int maxLength)
         {
             var truncatedString = new string(originalString.Take(maxLength).ToArray());
 
             return truncatedString;
         }
-        
-public string TruncateStringUsingForLoop(string originalString, int maxLength)
-{
-    var truncatedString = string.Empty;
-    int length = Math.Min(maxLength, originalString.Length);
 
-    for (int i = 0; i < length; i++)
-    {
-        truncatedString += originalString[i];
-    }
+        public string TruncateStringUsingForLoop(string originalString, int maxLength)
+        {
+            var truncatedString = string.Empty;
+            int length = Math.Min(maxLength, originalString.Length);
 
-    return truncatedString;
-}
-        
-public string TruncateStringUsingRegularExpressions(string originalString, int maxLength)
-{
-    if (maxLength <= 0)
-    {
-        return string.Empty;
-    }
-    else if (maxLength >= originalString.Length)
-    {
-        return originalString;
-    }
+            for (int i = 0; i < length; i++)
+            {
+                truncatedString += originalString[i];
+            }
 
-    var truncatedString = Regex.Replace(originalString, $"^(.{{0,{maxLength}}}).*$", "$1");
+            return truncatedString;
+        }
 
-    return truncatedString;
-}
+        public string TruncateStringUsingRegularExpressions(string originalString, int maxLength)
+        {
+            if (maxLength <= 0)
+            {
+                return string.Empty;
+            }
+            else if (maxLength >= originalString.Length)
+            {
+                return originalString;
+            }
+
+            var truncatedString = Regex.Replace(originalString, $"^(.{{0,{maxLength}}}).*$", "$1");
+
+            return truncatedString;
+        }
+
+        public string TruncateStringUsingSpan(string originalString, int maxLength)
+        {
+            if (string.IsNullOrEmpty(originalString) || maxLength <= 0)
+            {
+                return string.Empty;
+            }
+
+            ReadOnlySpan<char> originalStringAsSpan = originalString.AsSpan();
+            if (maxLength >= originalStringAsSpan.Length)
+            {
+                return new string(originalStringAsSpan);
+            }
+
+            return new string(originalStringAsSpan.Slice(0, maxLength));
+        }
+
     }
 }
