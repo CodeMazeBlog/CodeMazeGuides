@@ -9,7 +9,7 @@ await ws.ConnectAsync(new Uri("ws://localhost:5289/ws"),
 
 Console.WriteLine("Connected!");
 
-var recieveTask = Task.Run(async () =>
+var receiveTask = Task.Run(async () =>
 {
     var buffer = new byte[1024];
     while (true)
@@ -23,8 +23,8 @@ var recieveTask = Task.Run(async () =>
         }
 
         var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-        Console.WriteLine("Recieved: " + message);
+        Console.WriteLine("Received: " + message);
     }
 });
 
-await recieveTask;
+await receiveTask;
