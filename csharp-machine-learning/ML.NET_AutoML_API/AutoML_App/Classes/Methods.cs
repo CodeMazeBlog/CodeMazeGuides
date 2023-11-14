@@ -28,7 +28,8 @@ public static class Methods
         experiment
             .SetPipeline(pipeline)
             .SetTrainingTimeInSeconds(10)
-            .SetBinaryClassificationMetric(BinaryClassificationMetric.Accuracy, columnInfo.ColumnInformation.LabelColumnName)
+            .SetBinaryClassificationMetric(BinaryClassificationMetric.Accuracy, 
+            columnInfo.ColumnInformation.LabelColumnName)
             .SetDataset(splitData);
 
         var cts = new CancellationTokenSource();
