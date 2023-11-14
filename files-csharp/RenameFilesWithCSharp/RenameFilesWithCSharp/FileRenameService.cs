@@ -9,8 +9,10 @@ public static class FileRenameService
 
     public static void ExecuteRenameFileWithFileClass()
     {
-        var oldFile = @"C:\MyDirectory\File1.txt";
-        var newFile = @"C:\MyDirectory\File_v1.txt";
+        var directoryPath = Path.Combine(Path.GetTempPath(), "MyDirectory");
+
+        var oldFile = Path.Combine(directoryPath, "File1.txt");
+        var newFile = Path.Combine(directoryPath, "File_v1.txt");
 
         RenameFileWithFileClass(oldFile, newFile);
     }

@@ -10,8 +10,10 @@ public static class FileInfoRenameService
 
     public static void ExecuteRenameFileWithFileInfoClass()
     {
-        var oldFile = @"C:\MyDirectory\File2.txt";
-        var newFile = @"C:\MyDirectory\File_v2.txt";
+        var directoryPath = Path.Combine(Path.GetTempPath(), "MyDirectory");
+
+        var oldFile = Path.Combine(directoryPath, "File2.txt");
+        var newFile = Path.Combine(directoryPath, "File_v2.txt");
 
         RenameFileWithFileInfoClass(oldFile, newFile);
     }

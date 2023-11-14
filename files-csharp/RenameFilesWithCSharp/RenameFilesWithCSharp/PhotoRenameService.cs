@@ -6,21 +6,21 @@ public static class PhotoRenameService
     {
         var allowedExtensions = new[] { ".jpg", ".png", ".jpeg", ".gif" };
 
-        var photoFiles = Directory.EnumerateFiles(directoryPath)
+        var imageFiles = Directory.EnumerateFiles(directoryPath)
             .Where(file => allowedExtensions.Contains(Path.GetExtension(file),
                                 StringComparer.OrdinalIgnoreCase));
 
-        foreach (var photoFile in photoFiles)
+        foreach (var imageFile in imageFiles)
         {
-            var creationTime = File.GetCreationTime(photoFile);
+            var creationTime = File.GetCreationTime(imageFile);
 
-            var fileExtension = Path.GetExtension(photoFile);
+            var fileExtension = Path.GetExtension(imageFile);
 
             var newFileName = $"Image_{creationTime:yyyy-MM-dd_HHmmss}{fileExtension}";
 
             var newFilePath = Path.Combine(directoryPath, newFileName);
 
-            File.Move(photoFile, newFilePath);
+            File.Move(imageFile, newFilePath);
         }
     }
 }
