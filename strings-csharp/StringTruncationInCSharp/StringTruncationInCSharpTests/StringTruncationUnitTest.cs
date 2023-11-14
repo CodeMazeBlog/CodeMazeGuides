@@ -258,5 +258,47 @@ namespace StringTruncationInCSharpTests
 
             Assert.Equal(string.Empty, truncatedString);
         }
+
+
+
+        [Fact]
+        public void WhenTruncatingAString_ThenUseSpanToTruncateTheString()
+        {
+            var truncatedString = _stringHelper.TruncateStringUsingSpan(_originalString, _maxLength);
+
+            Assert.Equal("This is a ", truncatedString);
+        }
+
+        [Fact]
+        public void GivenALengthEqualToTheStringLength_WhenTruncatingAString_ThenUseSpanMethodWithoutTruncatingTheString()
+        {
+            var truncatedString = _stringHelper.TruncateStringUsingSpan(_originalString, _maxLengthEqualToGivenStringLength);
+
+            Assert.Equal("This is a long string.", truncatedString);
+        }
+
+        [Fact]
+        public void GivenALengthGreaterThanTheStringLength_WhenTruncatingAString_ThenUseSpanMethodWithoutTruncatingTheString()
+        {
+            var truncatedString = _stringHelper.TruncateStringUsingSpan(_originalString, _maxLengthGreaterThanGivenStringLength);
+
+            Assert.Equal("This is a long string.", truncatedString);
+        }
+
+        [Fact]
+        public void GivenAZeroLength_WhenTruncatingAString_ThenUseSpanMethodAndReturnAnEmptyString()
+        {
+            var truncatedString = _stringHelper.TruncateStringUsingSpan(_originalString, _maxLengthEqualToZero);
+
+            Assert.Equal(string.Empty, truncatedString);
+        }
+
+        [Fact]
+        public void GivenANonPositiveLength_WhenTruncatingAString_ThenUseSpanMethodAndReturnAnEmptyString()
+        {
+            var truncatedString = _stringHelper.TruncateStringUsingSpan(_originalString, _maxLengthLessThanZero);
+
+            Assert.Equal(string.Empty, truncatedString);
+        }
     }
 }
