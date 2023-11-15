@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System.Net.WebSockets;
+﻿using System.Net.WebSockets;
 using System.Text;
 
 var ws = new ClientWebSocket();

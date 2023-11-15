@@ -6,11 +6,11 @@ namespace Tests;
 public class AddTaskTest
 {
     [Fact]
-    public void WhenTaskIsAdded_AddToListReturnOk()
+    public void WhenTaskIsAdded_AddToListReturnsOk()
     {
         // Arrange
         var taskController = new TaskController(); 
-        var task = "Sample Task"; // Valid task data
+        var task = "Sample Task";
 
         // Act
         var result = taskController.AddTask(task) as ObjectResult;
