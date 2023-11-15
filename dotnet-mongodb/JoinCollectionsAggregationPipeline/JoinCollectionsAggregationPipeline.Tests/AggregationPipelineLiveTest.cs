@@ -2,7 +2,7 @@
 
 namespace JoinCollectionsAggregationPipeline.Tests;
 
-public class AggregationPipelineTests
+public class AggregationPipelineLiveTest
 {
     [Test]
     public async Task
