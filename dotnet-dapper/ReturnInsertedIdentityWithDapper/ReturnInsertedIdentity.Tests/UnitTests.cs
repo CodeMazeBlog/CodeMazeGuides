@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Configuration;
-using ReturnInsertedIdentityWithDapper;
 using static ReturnInsertedIdentityWithDapper.Methods;
 
 namespace ReturnInsertedIdentity.Tests;
