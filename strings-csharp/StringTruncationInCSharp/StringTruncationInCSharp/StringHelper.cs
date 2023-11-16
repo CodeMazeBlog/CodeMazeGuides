@@ -105,11 +105,10 @@ namespace StringTruncationInCSharp
             ReadOnlySpan<char> originalStringAsSpan = originalString.AsSpan();
             if (maxLength >= originalStringAsSpan.Length)
             {
-                return new string(originalStringAsSpan);
+                return originalString;
             }
 
-            return new string(originalStringAsSpan.Slice(0, maxLength));
+            return originalStringAsSpan[..maxLength].ToString();
         }
-
     }
 }
