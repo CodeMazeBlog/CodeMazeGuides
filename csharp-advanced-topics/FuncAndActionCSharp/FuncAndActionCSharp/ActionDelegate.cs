@@ -1,12 +1,12 @@
-﻿public static class ActionDelegate
+﻿public class ActionDelegate
 {
-    public static void Error(string message)
+    public void Error(string message)
           => Console.WriteLine(message);
 
-    public static void Information(Action<string> logger, string message)
+    public void Information(Action<string> logger, string message)
           => logger(message);
 
-    public static void Warning(Action logger)
+    public void Warning(Action logger)
           => logger();
 }
 

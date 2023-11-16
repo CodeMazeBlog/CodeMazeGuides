@@ -6,7 +6,7 @@
     public delegate void ConsoleLoggingProvider(string logMessage);
 
     //Logger
-    static void InformationLevelConsoleLogger(string information)
+    public void InformationLevelConsoleLogger(string information)
         => Console.WriteLine($"Additional information: {information}");
 
     public void InvokeSimpleDelegate()
