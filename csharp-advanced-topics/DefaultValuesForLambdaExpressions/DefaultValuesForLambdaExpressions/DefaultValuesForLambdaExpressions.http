@@ -1,6 +1,0 @@
-@DefaultValuesForLambdaExpressions_HostAddress = http://localhost:5098
-
-GET {{DefaultValuesForLambdaExpressions_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -1,63 +1,16 @@
-using DefaultValuesForLambdaExpressions.Models;
-using DefaultValuesForLambdaExpressions.Persistence;
-using Microsoft.EntityFrameworkCore;
+﻿using DefaultValuesForLambdaExpressions;
 
-var builder = WebApplication.CreateBuilder(args);
+Console.WriteLine("Greeting the user with default value:");
+Console.WriteLine(ExampleCases.GreetUserWithDefaultValue());
+Console.WriteLine("\n");
 
-builder.Services.AddDbContext<ApiDbContext>(options => options.UseInMemoryDatabase("items"));
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+Console.WriteLine("Greeting the user with name:");
+Console.WriteLine(ExampleCases.GreetUserWithName());
+Console.WriteLine("\n");
 
-var app = builder.Build();
+Console.WriteLine("Greeting a 3 members' team:");
+Console.WriteLine(ExampleCases.GreetTeamWith3Members());
+Console.WriteLine("\n");
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.MapPost("/item", async (ApiDbContext db, string title, string description = "Lorem Ipsum") =>
-{
-    try
-    {
-        var item = new TodoItem
-        {
-            Title = title,
-            Description = description
-        };
-
-        await db.AddAsync(item);
-        await db.SaveChangesAsync();
-
-        return Results.Ok(item);
-    }
-    catch (Exception e)
-    {
-        return Results.Problem($"Error: {e.Message}");
-    }
-});
-
-app.MapPut("/updateTags", async (ApiDbContext db, int id, params string[] tags) =>
-{
-    try
-    {
-        var item = await db.TodoItems.FindAsync(id);
-        if (item is null)
-        {
-            return Results.NotFound();
-        }
-
-        item.Tags = string.Join(";", tags);
-        await db.SaveChangesAsync();
-
-        return Results.Ok(item);
-    }
-    catch (Exception e)
-    {
-        return Results.Problem($"Error: {e.Message}");
-    }
-});
-
-app.Run();
-
-public partial class Program { }
+Console.WriteLine("Greeting a 5 members' team:");
+Console.WriteLine(ExampleCases.GreetTeamWith5Members());
