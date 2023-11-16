@@ -1,11 +1,8 @@
 ﻿using HowToRegisterMultipleInstancesOfInterface.Interfaces;
 
-namespace HowToRegisterMultipleInstancesOfInterface.Implementations;
+namespace HowToRegisterMultipleInstancesOfInterface.Processors;
 
-public class SmartcardFulfillmentProcessor : IFulfillTickets
+public class SmartcardFulfillmentProcessor : ISmartcardFulfillmentProcessor
 {
-    public string Fulfill(string requestId)
-    {
-        return $"{requestId} | Fulfilling tickets using smartcard delivery method";
-    }
+    public string Fulfill(string requestId) => $"{requestId} | Fulfilling tickets using smartcard delivery method";
 }

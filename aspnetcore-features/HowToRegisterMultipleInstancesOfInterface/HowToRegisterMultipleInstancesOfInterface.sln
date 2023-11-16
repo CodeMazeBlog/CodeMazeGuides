@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToRegisterMultipleInstancesOfInterface", "HowToRegisterMultipleInstancesOfInterface\HowToRegisterMultipleInstancesOfInterface.csproj", "{7B9ADAD1-7B5E-47C8-BAAF-BDA421626E0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToRegisterMultipleInstancesOfInterface.Api", "HowToRegisterMultipleInstancesOfInterface.Api\HowToRegisterMultipleInstancesOfInterface.Api.csproj", "{7E8D7B20-2105-466D-B9FA-9301712B712F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{7B9ADAD1-7B5E-47C8-BAAF-BDA421626E0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B9ADAD1-7B5E-47C8-BAAF-BDA421626E0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B9ADAD1-7B5E-47C8-BAAF-BDA421626E0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E8D7B20-2105-466D-B9FA-9301712B712F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E8D7B20-2105-466D-B9FA-9301712B712F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E8D7B20-2105-466D-B9FA-9301712B712F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E8D7B20-2105-466D-B9FA-9301712B712F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

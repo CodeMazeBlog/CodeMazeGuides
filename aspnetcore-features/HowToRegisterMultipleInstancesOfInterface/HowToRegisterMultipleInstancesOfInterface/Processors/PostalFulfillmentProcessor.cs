@@ -1,11 +1,8 @@
 ﻿using HowToRegisterMultipleInstancesOfInterface.Interfaces;
 
-namespace HowToRegisterMultipleInstancesOfInterface.Implementations;
+namespace HowToRegisterMultipleInstancesOfInterface.Processors;
 
-public class PostalFulfillmentProcessor : IFulfillTickets
+public class PostalFulfillmentProcessor : IPostalFulfillmentProcessor
 {
-    public string Fulfill(string requestId)
-    {
-        return $"{requestId} | Fulfilling tickets using postal delivery method";
-    }
+    public string Fulfill(string requestId) => $"{requestId} | Fulfilling tickets using postal delivery method";
 }

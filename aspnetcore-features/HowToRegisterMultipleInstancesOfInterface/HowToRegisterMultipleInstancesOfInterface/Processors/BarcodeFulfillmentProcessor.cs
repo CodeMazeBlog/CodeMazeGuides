@@ -1,11 +1,8 @@
 ﻿using HowToRegisterMultipleInstancesOfInterface.Interfaces;
 
-namespace HowToRegisterMultipleInstancesOfInterface.Implementations;
+namespace HowToRegisterMultipleInstancesOfInterface.Processors;
 
-public class BarcodeFulfillmentProcessor : IFulfillTickets
+public class BarcodeFulfillmentProcessor : IBarcodeFulfillmentProcessor
 {
-    public string Fulfill(string requestId)
-    {
-        return $"{requestId} | Fulfilling tickets using barcode delivery method";
-    }
+    public string Fulfill(string requestId) =>  $"{requestId} | Fulfilling tickets using barcode delivery method";
 }
