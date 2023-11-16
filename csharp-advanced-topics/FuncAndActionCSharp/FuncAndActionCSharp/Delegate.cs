@@ -7,7 +7,7 @@
 
     //Logger
     public void InformationLevelConsoleLogger(string information)
-        => Console.WriteLine($"Additional information: {information}");
+        => Console.Write($"Additional information: {information}\r\n");
 
     public void InvokeSimpleDelegate()
     {
