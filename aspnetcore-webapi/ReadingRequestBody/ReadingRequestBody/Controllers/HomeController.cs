@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ReadingRequestBody.Models;
+using ReadingRequestBody.SwaggerUtils;
 using ReadingRequestBody.Utils;
 
 namespace ReadingRequestBody.Controllers;
@@ -14,39 +15,34 @@ public class HomeController : ControllerBase
         return Ok("Web API is ready.");
     }
 
+    [SwaggerEnableRawText]
     [HttpPost("read-as-string")]
-    public IActionResult ReadAsString()
+    public async Task<IActionResult> ReadAsString()
     {
-        using StreamReader reader = new(Request.Body);
-        string requestBody = reader.ReadToEnd();
+        string requestBody = await Request.Body.ReadAsStringAsync();
 
         return Ok($"Request Body As String: {requestBody}");
     }
 
+    [SwaggerEnableRawText]
     [HttpPost("read-as-string-multiple")]
-    public IActionResult ReadAsStringMultiple()
+    public async Task<IActionResult> ReadAsStringMultiple()
     {
-        using StreamReader reader = new(Request.Body);
-        string requestBody = reader.ReadToEnd();
-
-        using StreamReader readerSecond = new(Request.Body);
-        string requestBodySecond = reader.ReadToEnd();
+        string requestBody = await Request.Body.ReadAsStringAsync();
+        string requestBodySecond = await Request.Body.ReadAsStringAsync();
 
         return Ok($"First: {requestBody}, Second:{requestBodySecond}");
     }
 
+    [SwaggerEnableRawText]
     [HttpPost("read-multiple-enable-buffering")]
-    public IActionResult ReadMultipleEnableBuffering()
+    public async Task<IActionResult> ReadMultipleEnableBuffering()
     {
         Request.EnableBuffering();
-
-        using StreamReader reader = new(Request.Body);
-        string requestBody = reader.ReadToEnd();
+        string requestBody = await Request.Body.ReadAsStringAsync(true);
 
         Request.Body.Position = 0;
-
-        using StreamReader readerSecond = new(Request.Body);
-        string requestBodySecond = reader.ReadToEnd();
+        string requestBodySecond = await Request.Body.ReadAsStringAsync();
 
         return Ok($"First: {requestBody}, Second:{requestBodySecond}");
     }
@@ -59,6 +55,7 @@ public class HomeController : ControllerBase
         return Ok(message);
     }
 
+    [SwaggerEnableRawText]
     [HttpPost("read-from-attribute")]
     [ReadRequestBody]
     public IActionResult ReadFromAttribute()
@@ -69,6 +66,7 @@ public class HomeController : ControllerBase
         return Ok(message);
     }
 
+    [SwaggerEnableRawText]
     [HttpPost("read-from-action-filter")]
     public IActionResult ReadFromActionFilter()
     {
@@ -78,6 +76,7 @@ public class HomeController : ControllerBase
         return Ok(message);
     }
 
+    [SwaggerEnableRawText]
     [HttpPost("read-from-middleware")]
     public IActionResult ReadFromMiddleware()
     {

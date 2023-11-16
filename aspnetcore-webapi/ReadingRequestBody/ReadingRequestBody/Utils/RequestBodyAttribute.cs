@@ -7,11 +7,8 @@ public class ReadRequestBodyAttribute : Attribute, IAsyncActionFilter
 {
     public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
-        using (StreamReader reader = new(context.HttpContext.Request.Body))
-        {
-            string requestBody = await reader.ReadToEndAsync();
-            context.HttpContext.Request.Headers.Add("ReadRequestBodyAttribute", requestBody);
-        }
+        string requestBody = await context.HttpContext.Request.Body.ReadAsStringAsync();
+        context.HttpContext.Request.Headers.Add("ReadRequestBodyAttribute", requestBody);
 
         await next();
     }

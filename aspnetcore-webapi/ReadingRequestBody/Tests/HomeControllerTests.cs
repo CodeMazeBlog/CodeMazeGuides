@@ -1,6 +1,4 @@
 using AutoFixture;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
@@ -8,13 +6,10 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Moq;
 using ReadingRequestBody.Controllers;
 using ReadingRequestBody.Utils;
-using System.IO;
-using System.Net;
 using System.Text;
 
 namespace Tests
@@ -23,11 +18,13 @@ namespace Tests
     public class HomeControllerTests
     {
         private IFixture _fixture;
+        private Mock<ILogger> _loggerMock;
 
         [TestInitialize]
         public void Setup()
         {
             _fixture = new Fixture();
+            _loggerMock = new Mock<ILogger>();
         }
 
         [TestMethod]
@@ -41,21 +38,21 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenReadAsStringActionCalled_ThenResponseMustBeReturn()
+        public async Task WhenReadAsStringActionCalled_ThenResponseMustBeReturn()
         {
             var bodyString = _fixture.Create<string>();
             var controller = GetControllerInstance(bodyString);
-            var result = controller.ReadAsString();
+            var result = await controller.ReadAsString();
 
             TestRequest(result, "Request Body As String:", bodyString);
         }
 
         [TestMethod]
-        public void WhenReadAsStringActionCalled_WithEmptyBody_ThenResponseMustBeReturn()
+        public async Task WhenReadAsStringActionCalled_WithEmptyBody_ThenResponseMustBeReturn()
         {
             var bodyString = string.Empty;
             var controller = GetControllerInstance(bodyString);
-            var result = controller.ReadAsString();
+            var result = await controller.ReadAsString();
 
             TestRequest(result, "Request Body As String:", bodyString);
         }
@@ -92,7 +89,7 @@ namespace Tests
             var middleware = new RequestBodyMiddleware(next: (innerHttpContext) =>
             {
                 return Task.CompletedTask;
-            });
+            }, _loggerMock.Object);
 
             var context = new DefaultHttpContext();
             context.Request.Body = new MemoryStream(Encoding.UTF8.GetBytes(bodyString));
@@ -115,7 +112,7 @@ namespace Tests
             var middleware = new RequestBodyMiddleware(next: (innerHttpContext) =>
             {
                 return Task.CompletedTask;
-            });
+            }, _loggerMock.Object);
 
             var context = new DefaultHttpContext();
             context.Request.Body = new MemoryStream(Encoding.UTF8.GetBytes(bodyString));
@@ -131,7 +128,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenReadFromActionFilterActionCalled_ThenResponseMustBeReturn()
+        public async Task WhenReadFromActionFilterActionCalled_ThenResponseMustBeReturn()
         {
             var bodyString = _fixture.Create<string>();
             var controller = GetControllerInstance(bodyString);
@@ -143,8 +140,14 @@ namespace Tests
                 new ModelStateDictionary());
             var actionExecutingContext = new ActionExecutingContext(actionContext, new List<IFilterMetadata>(), new Dictionary<string, object>(), controller: controller);
 
+            Task<ActionExecutedContext> next()
+            {
+                var ctx = new ActionExecutedContext(actionContext, new List<IFilterMetadata>(), controller);
+                return Task.FromResult(ctx);
+            }
+
             var actionFilter = new ReadRequestBodyActionFilter();
-            actionFilter.OnActionExecuting(actionExecutingContext);
+            await actionFilter.OnActionExecutionAsync(actionExecutingContext, next);
 
             var result = controller.ReadFromActionFilter();
 

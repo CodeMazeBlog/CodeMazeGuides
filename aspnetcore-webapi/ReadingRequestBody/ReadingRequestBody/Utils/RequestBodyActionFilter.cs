@@ -2,21 +2,18 @@
 
 namespace ReadingRequestBody.Utils;
 
-public class ReadRequestBodyActionFilter : IActionFilter
+public class ReadRequestBodyActionFilter : IAsyncActionFilter
 {
-    public void OnActionExecuting(ActionExecutingContext context)
+    public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
     {
         var requestPath = context.HttpContext.Request.Path.Value;
+
         if (requestPath.IndexOf("read-from-action-filter") > -1)
         {
-            using StreamReader reader = new(context.HttpContext.Request.Body);
-            string requestBody = reader.ReadToEnd();
+            string requestBody = await context.HttpContext.Request.Body.ReadAsStringAsync();
             context.HttpContext.Request.Headers.Add("ReadRequestBodyActionFilter", requestBody);
         }
-    }
 
-    public void OnActionExecuted(ActionExecutedContext context)
-    {
-        // Executed after the action method
+        await next();
     }
 }
