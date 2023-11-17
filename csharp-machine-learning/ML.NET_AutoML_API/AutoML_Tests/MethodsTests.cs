@@ -2,17 +2,17 @@ namespace AutoML_Tests;
 public class MethodsTests
 {
     [Test]
-    public async Task DefaultExperiment()
+    public void DefaultExperiment()
     {
-        var experimentResult = await Methods.DefaultExperiment();
+        var experimentResult = Methods.DefaultExperiment();
 
         Assert.IsNotNull(experimentResult);
     }
 
     [Test]
-    public async Task CustomExperiment()
+    public void CustomExperiment()
     {
-        var experimentResult = await Methods.CustomExperiment();
+        var experimentResult = Methods.CustomExperiment();
 
         Assert.IsNotNull(experimentResult);
     }
