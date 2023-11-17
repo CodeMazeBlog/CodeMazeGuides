@@ -5,6 +5,7 @@ public class MethodsTests
     public async Task DefaultExperiment()
     {
         var experimentResult = await Methods.DefaultExperiment();
+
         Assert.IsNotNull(experimentResult);
     }
 
@@ -12,6 +13,7 @@ public class MethodsTests
     public async Task CustomExperiment()
     {
         var experimentResult = await Methods.CustomExperiment();
+
         Assert.IsNotNull(experimentResult);
     }
 }
