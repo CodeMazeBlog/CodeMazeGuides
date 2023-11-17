@@ -9,11 +9,11 @@ namespace RestVsWebSocket.Controllers;
 [Route("[controller]")]
 public class TaskController : ControllerBase
 {
-    public IList<string> tasks;
+    public IList<string> Tasks { get; set; }
 
     public TaskController()
     {
-        tasks = new List<string>();
+        Tasks = new List<string>();
     }
 
     //REST
@@ -25,7 +25,8 @@ public class TaskController : ControllerBase
             return BadRequest("Enter valid data.");
         }
 
-        tasks.Add(task);
+        Tasks.Add(task);
+
         return Ok("Task added successfully.");
     }
 

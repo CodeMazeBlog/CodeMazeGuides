@@ -19,6 +19,6 @@ public class AddTaskTest
         Assert.NotNull(result); 
         Assert.Equal(200, result.StatusCode); 
         Assert.Equal("Task added successfully.", result.Value);
-        Assert.Contains(task, taskController.tasks);
+        Assert.Contains(task, taskController.Tasks);
     }
 }
