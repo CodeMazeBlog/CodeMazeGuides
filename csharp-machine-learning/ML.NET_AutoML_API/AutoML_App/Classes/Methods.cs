@@ -35,8 +35,8 @@ public static class Methods
         var cts = new CancellationTokenSource();
         var experimentResults = await experiment.RunAsync(cts.Token);
         cts.Dispose();
-
         var bestModel = experimentResults.Model;
+
         Console.WriteLine($"Accuracy: {experimentResults.Metric}");
 
         mlContext.Model.Save(bestModel, data.Schema, "model.zip");
@@ -183,6 +183,7 @@ public static class Methods
                 });
 
         Console.WriteLine("\nFeature Importance Calculations");
+
         foreach (var item in featureAUCs)
             Console.WriteLine($"{item.Feature, -20}{item.AUC.Mean}");
     }

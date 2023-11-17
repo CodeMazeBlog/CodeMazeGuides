@@ -22,6 +22,7 @@ public class CustomExperimentMonitor : IMonitor
         var timeToTrain = result.DurationInMilliseconds;
         var pipeline = _pipeline.ToString(result.TrialSettings.Parameter);
         _completedTrials.Add(result);
+
         Console.WriteLine($"\t- finished training in {timeToTrain}ms with pipeline {pipeline}");
     }
 
