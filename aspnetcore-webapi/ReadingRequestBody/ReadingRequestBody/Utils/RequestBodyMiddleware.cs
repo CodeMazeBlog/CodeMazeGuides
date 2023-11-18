@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using ReadingRequestBody.Models;
-
-namespace ReadingRequestBody.Utils;
+﻿namespace ReadingRequestBody.Utils;
 
 public class RequestBodyMiddleware
 {
@@ -19,23 +16,11 @@ public class RequestBodyMiddleware
     {
         var requestPath = context.Request.Path.Value;
 
-        if (requestPath.IndexOf("read-from-middleware") > -1
-            || requestPath.IndexOf("read-from-body") > -1)
+        if (requestPath.IndexOf("read-from-middleware") > -1)
         {
             context.Request.EnableBuffering();
-
             string requestBody = await context.Request.Body.ReadAsStringAsync(true);
 
-            //log request body
-            _logger.LogInformation("Request Body:{@requestBody}", requestBody);
-
-            //set request body to request header
-            context.Request.Headers.Add("RequestBodyMiddleware", requestBody);
-
-            //set request body to context items
-            context.Items.Add("RequestBody", requestBody);
-
-            //check content length
             if (requestBody.Length > MaxContentLength)
             {
                 context.Response.StatusCode = 413;
@@ -43,20 +28,9 @@ public class RequestBodyMiddleware
                 return;
             }
 
-            //Deserialize request body into a model object
-            try
-            {
-                if (requestPath.IndexOf("read-from-body") > -1)
-                {
-                    var personData = JsonConvert.DeserializeObject<PersonItemDto>(requestBody);
-                    context.Items.Add("PersonData", requestBody);
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Deserialize Error");
-            }
-
+            _logger.LogInformation("Request Body:{@requestBody}", requestBody);
+            context.Request.Headers.Add("RequestBodyMiddleware", requestBody);
+            context.Items.Add("RequestBody", requestBody);
             context.Request.Body.Position = 0;
         }
 
