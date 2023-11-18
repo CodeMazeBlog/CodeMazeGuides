@@ -1,17 +1,17 @@
 [
   {
-    "_id": "65535aa28ae1579f7ea4c46f",
-    "name": "Admin",
-    "normalizedName": "ADMIN"
+    "Id": "65535aa28ae1579f7ea4c46f",
+    "Name": "Admin",
+    "NormalizedName": "ADMIN"
   },
   {
-    "_id": "65535ab1290a29bb6205f716",
-    "name": "Author",
-    "normalizedName": "AUTHOR"
+    "Id": "65535ab1290a29bb6205f716",
+    "Name": "Author",
+    "NormalizedName": "AUTHOR"
   },
   {
-    "_id": "65535abb9d62d7565949d8ac",
-    "name": "Editor",
-    "normalizedName": "EDITOR"
+    "Id": "65535abb9d62d7565949d8ac",
+    "Name": "Editor",
+    "NormalizedName": "EDITOR"
   }
 ]
