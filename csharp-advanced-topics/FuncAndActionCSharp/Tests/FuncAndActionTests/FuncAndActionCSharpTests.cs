@@ -1,12 +1,11 @@
-using NSubstitute.Core.Arguments;
-using System.ComponentModel;
-
 namespace FuncAndActionCSharpTests
 {
     public class FuncAndActionCSharpTests
     {
+        private const string _logMessage = "The operation finished in 1.1 sec";
+
         [Fact]
-        public void Func_PerformFiltration_ShouldFilterEvenNumbers()
+        public void GivenFuncDelegate_WhenPerformsFiltration_ThenFilterEvenNumbers()
         {
             // Arrange
             var func = new FuncDelegate();
@@ -21,7 +20,7 @@ namespace FuncAndActionCSharpTests
         }
 
         [Fact]
-        public void Action_LogsMessageUsingLogger_InformationType()
+        public void GivenActionDelegate_WhenLogsMessageUsingLogger_ThenInformationType()
         {
             // Arrange
             var actionDelegate = new ActionDelegate();
@@ -36,7 +35,7 @@ namespace FuncAndActionCSharpTests
         }
 
         [Fact]
-        public void Action_LogsMessageUsingLogger_WarningType()
+        public void GivenActionDelegate_WhenLogsMessageUsingLogger_ThenWarningType()
         {
             // Arrange
             var actionDelegate = new ActionDelegate();
@@ -50,7 +49,7 @@ namespace FuncAndActionCSharpTests
         }
 
         [Fact]
-        public void Action_LogsMessageUsingLogger_ErrorType()
+        public void GivenActionDelegate_WhenLogsMessageUsingLogger_ThenErrorType()
         {
             // Arrange
             var actionDelegate = new ActionDelegate();
@@ -69,12 +68,11 @@ namespace FuncAndActionCSharpTests
         }
 
         [Fact]
-        public void InformationLevelConsoleLogger_PrintsMessageToConsole()
+        public void GivenDelegate_WhenInformationLevelConsoleLoggerInstantiated_ThenPrintsMessageToConsole()
         {
             // Arrange
-            var logMessage = "The operation finished in 1.1 sec";
             var delegateIntroduction = new Delegate();
-           
+
             var consoleLogger = Substitute.ForPartsOf<Delegate>();
             consoleLogger.When(
                 x => x.InformationLevelConsoleLogger(
@@ -82,20 +80,19 @@ namespace FuncAndActionCSharpTests
                 .CallBase();
 
             // Act
-            consoleLogger.InformationLevelConsoleLogger(logMessage);
+            consoleLogger.InformationLevelConsoleLogger(_logMessage);
 
             // Assert
             consoleLogger.Received()
-                .InformationLevelConsoleLogger(logMessage);
+                .InformationLevelConsoleLogger(_logMessage);
         }
 
         [Fact]
-        public void InvokeSimpleDelegate_InvokesLogger()
+        public void GIvenDelegate_WhenInvokeSimpleDelegate_ThenInvokesLogger()
         {
             // Arrange
-            var logMessage = "The operation finished in 1.1 sec";
             var delegateIntroduction = new Delegate();
-           
+
             var consoleLogger = Substitute.ForPartsOf<Delegate>();
             consoleLogger.When(
                 x => x.InformationLevelConsoleLogger(
@@ -108,7 +105,7 @@ namespace FuncAndActionCSharpTests
             Console.SetOut(output);
 
             consoleLogger.InvokeSimpleDelegate();
-            var expectedOutput = $"Additional information: {logMessage}\r\nAdditional information: {logMessage}\r\n";
+            var expectedOutput = $"Additional information: {_logMessage}\r\nAdditional information: {_logMessage}\r\n";
 
             // Assert
             Assert.Equal(expectedOutput, output.ToString());

@@ -21,7 +21,6 @@ else if (input == "Func")
 }
 else if (input == "Action")
 {
-    //Assign method reference to an Action<string> delegate.Log information level messages.
     Action<string> infoLogger = (message)
         => Console.WriteLine($"Additional information: {message}");
 
@@ -30,11 +29,9 @@ else if (input == "Action")
         infoLogger,
         "The request was intercepted by filtering middleware.");
      
-    //Direct reference to a method. Log error level messages.
     Action<string> errorLogger = actionDelegate.Error;
     errorLogger("Invalid request error");
 
-    // Pass an anonymous delegate of type Action using a lambda expression.Log warning level messages.
     actionDelegate.Warning(()
         => Console.WriteLine("The operation succeeded with a warning: The request was intercepted by filtering middleware"));
 }
