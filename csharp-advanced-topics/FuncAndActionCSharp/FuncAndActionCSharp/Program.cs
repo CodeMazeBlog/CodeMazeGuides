@@ -15,7 +15,7 @@ else if (input == "Func")
     };
 
     var filtered = func.PerformFiltration(numbers);
-    
+
     Console.WriteLine("Even number: ");
     Console.WriteLine(string.Join(", ", filtered));
 }
@@ -28,12 +28,13 @@ else if (input == "Action")
     actionDelegate.Information(
         infoLogger,
         "The request was intercepted by filtering middleware.");
-     
+
     Action<string> errorLogger = actionDelegate.Error;
     errorLogger("Invalid request error");
 
     actionDelegate.Warning(()
-        => Console.WriteLine("The operation succeeded with a warning: The request was intercepted by filtering middleware"));
+        => Console.WriteLine("The operation succeeded with a warning: " +
+              "The request was intercepted by filtering middleware"));
 }
 else
 {
