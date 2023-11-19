@@ -12,9 +12,11 @@ public static class Methods
         dbConnection.Open();
 
         var lastInsertedId = dbConnection.QuerySingle<int>(
-            @$"INSERT INTO Students (Firstname, Surname) 
-               OUTPUT INSERTED.Id 
-               VALUES (@Firstname, @Surname);",
+            """
+            INSERT INTO Students (Firstname, Surname) 
+            OUTPUT INSERTED.Id 
+            VALUES (@Firstname, @Surname);
+            """,
             newStudent
         );
 
@@ -30,9 +32,11 @@ public static class Methods
         dbConnection.Open();
 
         var lastInsertedId = dbConnection.QuerySingle<int>(
-            @$"INSERT INTO Students (Firstname, Surname) 
-               VALUES (@Firstname, @Surname) 
-               SELECT CAST(SCOPE_IDENTITY() AS INT);",
+            """
+            INSERT INTO Students (Firstname, Surname) 
+            VALUES (@Firstname, @Surname) 
+            SELECT CAST(SCOPE_IDENTITY() AS INT);
+            """,
             newStudent
         );
 

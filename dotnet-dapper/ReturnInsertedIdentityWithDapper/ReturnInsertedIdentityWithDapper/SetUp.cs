@@ -11,9 +11,11 @@ public static class SetUp
 
         connection.Open();
 
-        var createTableSql = @$"CREATE TABLE Students (Id INT IDENTITY(1,1) PRIMARY KEY, 
+        var createTableSql = """
+            CREATE TABLE Students (Id INT IDENTITY(1,1) PRIMARY KEY, 
             Surname VARCHAR(255), 
-            Firstname VARCHAR(255))";
+            Firstname VARCHAR(255))
+            """;
 
         connection.Execute(createTableSql);
 
