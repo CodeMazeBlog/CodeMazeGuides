@@ -1,25 +1,35 @@
+using HowToUseRequestTimeoutsMiddleware.Services;
+using Microsoft.AspNetCore.Http.Timeouts;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddRequestTimeouts(options =>
+{
+    options.AddPolicy("OneSecondTimeout", TimeSpan.FromMilliseconds(1000));
+});
+
+builder.Services.AddTransient<IStarWarsService, StarWarsService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+app.UseRequestTimeouts();
+
+app.MapGet("/GetCharacter",
+    async (HttpContext context, IStarWarsService starWarsService) =>
+{
+    return await starWarsService.GetCharacterAsync(context.RequestAborted);
+})
+.DisableRequestTimeout();
 
 app.Run();

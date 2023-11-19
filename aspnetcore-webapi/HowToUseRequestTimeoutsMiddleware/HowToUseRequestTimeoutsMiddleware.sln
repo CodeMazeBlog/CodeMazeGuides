@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.7.33920.267
+VisualStudioVersion = 17.7.34302.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToUseRequestTimeoutsMiddleware", "HowToUseRequestTimeoutsMiddleware\HowToUseRequestTimeoutsMiddleware.csproj", "{F051AA57-4503-41FB-8E6B-9DF1119F405A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToUseRequestTimeoutsMiddleware", "HowToUseRequestTimeoutsMiddleware\HowToUseRequestTimeoutsMiddleware.csproj", "{65508672-120F-440F-9DC1-90A22615BD38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F051AA57-4503-41FB-8E6B-9DF1119F405A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F051AA57-4503-41FB-8E6B-9DF1119F405A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F051AA57-4503-41FB-8E6B-9DF1119F405A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F051AA57-4503-41FB-8E6B-9DF1119F405A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65508672-120F-440F-9DC1-90A22615BD38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65508672-120F-440F-9DC1-90A22615BD38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65508672-120F-440F-9DC1-90A22615BD38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65508672-120F-440F-9DC1-90A22615BD38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {586037D9-B44D-4362-B637-380D938083A8}
+		SolutionGuid = {29BCACCD-D089-4D18-856E-5DF41991CEDE}
 	EndGlobalSection
 EndGlobal
