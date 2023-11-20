@@ -1,8 +1,14 @@
 namespace FuncAndActionCSharpTests
 {
-    public class FuncAndActionCSharpTests
+    public class FuncAndActionCSharpTests : IClassFixture<StringWriterFixture>
     {
         private const string _logMessage = "The operation finished in 1.1 sec";
+        StringWriterFixture _fixture;
+
+        public FuncAndActionCSharpTests(StringWriterFixture fixture)
+        {
+            _fixture = fixture;
+        }
 
         [Fact]
         public void GivenFuncDelegate_WhenPerformsFiltration_ThenFilterEvenNumbers()
@@ -56,9 +62,8 @@ namespace FuncAndActionCSharpTests
             var loggerSubs = Substitute.For<Action<string>>();
             var message = "Invalid request error";
 
-            using var output = new StringWriter();
 
-            Console.SetOut(output);
+            Console.SetOut(_fixture.Writer);
 
             // Act
             actionDelegate.Error(message);
@@ -88,7 +93,7 @@ namespace FuncAndActionCSharpTests
         }
 
         [Fact]
-        public void GIvenDelegate_WhenInvokeSimpleDelegate_ThenInvokesLogger()
+        public void GivenDelegate_WhenInvokeSimpleDelegate_ThenInvokesLogger()
         {
             // Arrange
             var delegateIntroduction = new Delegate();
@@ -100,15 +105,13 @@ namespace FuncAndActionCSharpTests
                 .CallBase();
 
             // Act
-            using var output = new StringWriter();
-
-            Console.SetOut(output);
+            Console.SetOut(_fixture.Writer);
 
             consoleLogger.InvokeSimpleDelegate();
             var expectedOutput = $"Additional information: {_logMessage}\r\nAdditional information: {_logMessage}\r\n";
-
+          
             // Assert
-            Assert.Equal(expectedOutput, output.ToString());
+            Assert.Equal(expectedOutput, _fixture.Writer.ToString());
         }
     }
 }

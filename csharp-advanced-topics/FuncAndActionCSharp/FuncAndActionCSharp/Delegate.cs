@@ -1,11 +1,9 @@
 ﻿public class Delegate
 {
-    string logMessage = "The operation finished in 1.1 sec";
+    private const string _logMessage = "The operation finished in 1.1 sec";
 
-    //Declaration of a delegate.
     public delegate void ConsoleLoggingProvider(string logMessage);
 
-    //Logger
     public void InformationLevelConsoleLogger(string information)
         => Console.Write($"Additional information: {information}\r\n");
 
@@ -13,9 +11,7 @@
     {
         ConsoleLoggingProvider logger = InformationLevelConsoleLogger;
 
-        //Two ways of invocation
-        logger.Invoke(logMessage);
-        logger(logMessage);
-
+        logger.Invoke(_logMessage);
+        logger(_logMessage);
     }
 }
