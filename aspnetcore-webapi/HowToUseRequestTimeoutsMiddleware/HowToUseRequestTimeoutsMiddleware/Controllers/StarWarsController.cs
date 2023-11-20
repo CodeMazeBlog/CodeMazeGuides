@@ -1,3 +1,4 @@
+using HowToUseRequestTimeoutsMiddleware.Data;
 using HowToUseRequestTimeoutsMiddleware.Services;
 using Microsoft.AspNetCore.Http.Timeouts;
 using Microsoft.AspNetCore.Mvc;

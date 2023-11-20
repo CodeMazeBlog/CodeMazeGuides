@@ -1,4 +1,6 @@
-﻿namespace HowToUseRequestTimeoutsMiddleware.Services;
+﻿using HowToUseRequestTimeoutsMiddleware.Data;
+
+namespace HowToUseRequestTimeoutsMiddleware.Services;
 
 public interface IStarWarsService
 {

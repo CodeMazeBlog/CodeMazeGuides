@@ -1,4 +1,6 @@
-﻿namespace HowToUseRequestTimeoutsMiddleware.Services;
+﻿using HowToUseRequestTimeoutsMiddleware.Data;
+
+namespace HowToUseRequestTimeoutsMiddleware.Services;
 
 public class StarWarsService : IStarWarsService
 {
@@ -12,6 +14,6 @@ public class StarWarsService : IStarWarsService
             Height = 172,
             BirthYear = "19BBY",
             Gender = "Male"
-        }; ;
+        };
     }
 }
