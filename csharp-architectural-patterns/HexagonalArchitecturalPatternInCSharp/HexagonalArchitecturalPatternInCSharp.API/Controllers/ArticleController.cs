@@ -33,9 +33,8 @@ public class ArticleController : ControllerBase
         return Ok(articles);
     }
 
-
     [HttpPost]
-    public async Task<ActionResult> Add(Article article)
+    public async Task<ActionResult> Add([FromBody] Article article)
     {
         await _articleService.AddAsync(article);
         _logger.LogInformation("Article {articleTitle} added", article.Title);

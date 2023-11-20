@@ -1,5 +1,6 @@
-using HexagonalArchitecturalPatternInChSharp.Controllers;
 using HexagonalArchitecturalPatternInCSharp;
+using HexagonalArchitecturalPatternInCSharp.Controllers;
+using HexagonalArchitecturalPatternInCSharp.Persistence;
 using HexagonalArchitecturalPatternInCSharp.Persistence.Database;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +18,7 @@ var app = builder.Build();
 
 using var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetRequiredService<WritingDbContext>();
-dbContext.SeedData();
+dbContext.AddSeedData();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

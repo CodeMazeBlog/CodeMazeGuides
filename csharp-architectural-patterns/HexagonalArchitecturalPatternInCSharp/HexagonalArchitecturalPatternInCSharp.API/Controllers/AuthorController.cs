@@ -33,9 +33,8 @@ public class AuthorController : ControllerBase
         return Ok(authors);
     }
 
-
     [HttpPost]
-    public async Task<ActionResult> Add(Author author)
+    public async Task<ActionResult> Add([FromBody] Author author)
     {
         await _authorService.AddAsync(author);
         _logger.LogInformation("Author {authorName} added", author.Name);

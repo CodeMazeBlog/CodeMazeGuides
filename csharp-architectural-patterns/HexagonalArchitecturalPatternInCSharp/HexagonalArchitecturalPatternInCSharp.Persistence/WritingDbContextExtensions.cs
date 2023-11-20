@@ -1,19 +1,11 @@
 ﻿using HexagonalArchitecturalPatternInCSharp.Core.Entities;
-using Microsoft.EntityFrameworkCore;
+using HexagonalArchitecturalPatternInCSharp.Persistence.Database;
 
-namespace HexagonalArchitecturalPatternInCSharp.Persistence.Database;
+namespace HexagonalArchitecturalPatternInCSharp.Persistence;
 
-public class WritingDbContext : DbContext
+public static class WritingDbContextExtensions
 {
-    public DbSet<Author> Authors { get; set; }
-
-    public DbSet<Article> Articles { get; set; }
-
-    public WritingDbContext(DbContextOptions options) : base(options)
-    {
-    }
-
-    public void SeedData()
+    public static void AddSeedData(this WritingDbContext dbContext)
     {
         var author1 = new Author
         {
@@ -29,10 +21,10 @@ public class WritingDbContext : DbContext
             Balance = 0,
         };
 
-        Authors.Add(author1);
-        Authors.Add(author2);
+        dbContext.Authors.Add(author1);
+        dbContext.Authors.Add(author2);
 
-        SaveChanges();
+        dbContext.SaveChanges();
 
         var article1 = new Article
         {
@@ -59,15 +51,10 @@ public class WritingDbContext : DbContext
             Difficulty = Difficulty.Expert,
         };
 
-        Articles.Add(article1);
-        Articles.Add(article2);
-        Articles.Add(article3);
+        dbContext.Articles.Add(article1);
+        dbContext.Articles.Add(article2);
+        dbContext.Articles.Add(article3);
 
-        SaveChanges();
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseInMemoryDatabase("WritingDb");
+        dbContext.SaveChanges();
     }
 }

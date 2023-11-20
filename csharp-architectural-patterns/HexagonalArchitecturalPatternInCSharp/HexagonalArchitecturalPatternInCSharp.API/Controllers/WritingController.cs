@@ -3,7 +3,7 @@ using HexagonalArchitecturalPatternInCSharp.Core.Ports.Driving;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace HexagonalArchitecturalPatternInChSharp.Controllers;
+namespace HexagonalArchitecturalPatternInCSharp.Controllers;
 
 [ApiController]
 [Route("[controller]")]
