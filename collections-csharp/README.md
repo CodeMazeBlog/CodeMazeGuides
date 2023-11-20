@@ -10,6 +10,7 @@ This section contains articles about C#/.NET collections.
 - [ConcurrentBag in C#](https://code-maze.com/csharp-concurrentbag/)
 - [ConcurrentDictionary in C# – Detailed Guide](https://code-maze.com/concurrentdictionary-csharp/)
 - [ConcurrentQueue in C#](https://code-maze.com/csharp-concurrentqueue/)
+- [ConcurrentStack in C#](https://code-maze.com/csharp-concurrentstack/)
 - [List Collection in C#](https://code-maze.com/csharp-list-collection/)
 - [Dictionary in C#](https://code-maze.com/dictionary-csharp/)
 - [HashSet vs SortedSet in C#](https://code-maze.com/csharp-hashset-vs-sortedset/)
