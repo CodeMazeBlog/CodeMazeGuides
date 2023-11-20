@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AppWithPlugin": {
+      "commandName": "Project",
+      "commandLineArgs": "temperature"
+    }
+  }
+}
