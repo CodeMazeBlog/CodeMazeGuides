@@ -15,10 +15,10 @@ public class FuncSample
     public static void Main()
     {
         Func<int, int, int> operation = Add;
-        int additionResult = operation(5, 8);
+        var additionResult = operation(5, 8);
         
         operation = Multiply;
-        int multiplicationResult = operation(5, 8);
+        var multiplicationResult = operation(5, 8);
 
         Console.WriteLine($"The result of the addition is: {additionResult} and " +
                           $"multiplication is: {multiplicationResult}");

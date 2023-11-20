@@ -8,7 +8,7 @@ namespace Tests
     {   
         
         [TestMethod]
-        public void Given_FuncSampleWithAddMethod_When_ReceiveTwoIntegers_Then_Add()
+        public void GivenFuncSampleWithAddMethod_WhenReceiveTwoIntegers_ThenAdd()
         {
             Func<int, int, int> funcDelegate = FuncSample.Add;
             var result = funcDelegate(5, 8);
@@ -18,7 +18,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void Given_FuncSampleWithMultiplyMethod_When_ReceiveTwoIntegers_Then_Multiply()
+        public void GivenFuncSampleWithMultiplyMethod_WhenReceiveTwoIntegers_ThenMultiply()
         {
             Func<int, int, int> funcDelegate = FuncSample.Multiply;
             var result = funcDelegate(5, 8);

@@ -7,7 +7,7 @@ namespace Tests
     {
 
         [TestMethod]
-        public void Given_ActionSampleWithHelloMethod_When_ReceiveNameString_Then_SayHello()
+        public void GivenActionSampleWithHelloMethod_WhenReceiveNameString_ThenSayHello()
         {
             Action<string> sayGreetings = ActionSample.Hello;
             var invocationList = sayGreetings.GetInvocationList();
@@ -16,7 +16,7 @@ namespace Tests
         }
         
         [TestMethod]
-        public void Given_ActionSampleWithBonjureMethod_When_ReceiveNameString_Then_SayBonjure()
+        public void GivenActionSampleWithBonjureMethod_WhenReceiveNameString_ThenSayBonjure()
         {
             Action<string> sayGreetings = ActionSample.Bonjure;
             var invocationList = sayGreetings.GetInvocationList();
