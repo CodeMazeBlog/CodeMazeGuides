@@ -26,7 +26,7 @@ public class StringFormatUnitTest
     public void SetPrecisionUsingStringFormatAndGlobalScope_ShouldFormatCorrectly(decimal input, string expected)
     {
         // Act
-        var result = StringFormat.SetPrecisionUsingStringFormat(input, 2);
+        var result = StringFormat.SetPrecisionUsingStringFormatInfo(input, 2);
 
         // Assert
         Assert.Equal(expected, result);

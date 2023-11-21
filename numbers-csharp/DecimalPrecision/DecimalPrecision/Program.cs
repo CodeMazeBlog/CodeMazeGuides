@@ -5,7 +5,7 @@ var myDecimal = 123.456789M;
 var stringFormatResult = StringFormat.SetPrecisionUsingStringFormat(myDecimal);
 Console.WriteLine(stringFormatResult);
 
-var stringFormatResultWithGlobalScope = StringFormat.SetPrecisionUsingStringFormat(myDecimal, 2);
+var stringFormatResultWithGlobalScope = StringFormat.SetPrecisionUsingStringFormatInfo(myDecimal, 2);
 Console.WriteLine(stringFormatResultWithGlobalScope);
 
 var roundedValueFromMathRound = RoundingFunction.GetDecimalRoundValueUsingMathRound(myDecimal);
