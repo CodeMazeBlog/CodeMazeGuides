@@ -22,7 +22,7 @@ namespace Tests
             {
                 actualMessage = message;
             };
-
+            testPrintMessage("Hello, invoking the delegate!");
             // Invoke the method being tested
             Program.ActionDelegateSample();
 
@@ -43,7 +43,7 @@ namespace Tests
             {
                 return 3.12 * r * r;
             };
-
+            actualArea = testCalArea(20);
             // Invoke the method being tested
             Program.FuncDelegateSample();
 
