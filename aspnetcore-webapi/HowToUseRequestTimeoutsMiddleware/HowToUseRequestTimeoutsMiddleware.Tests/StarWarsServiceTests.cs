@@ -6,7 +6,7 @@ public class StarWarsServiceTests
     public async Task WhenGetCharacterAsyncIsInvoked_ThenExpectedCharacterIsReturned()
     {
         // Act
-        var sut = new StarWarsService();
+        var sut = new StarWarsCharacterService();
         var result = await sut.GetCharacterAsync(default);
 
         // Assert

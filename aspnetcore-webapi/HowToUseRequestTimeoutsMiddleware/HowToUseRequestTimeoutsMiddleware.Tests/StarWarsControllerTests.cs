@@ -2,12 +2,12 @@
 
 public class StarWarsControllerTests
 {
-    private readonly IStarWarsService _starWarsService;
+    private readonly ICharacterService _starWarsService;
     private readonly StarWarsController _starWarsController;
 
     public StarWarsControllerTests()
     {
-        _starWarsService = Substitute.For<IStarWarsService>();
+        _starWarsService = Substitute.For<ICharacterService>();
 
         _starWarsController = new StarWarsController(_starWarsService);
     }

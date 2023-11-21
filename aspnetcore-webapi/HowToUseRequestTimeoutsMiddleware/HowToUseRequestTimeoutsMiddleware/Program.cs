@@ -17,7 +17,7 @@ builder.Services.AddRequestTimeouts(options =>
     options.AddPolicy("OneSecondTimeout", TimeSpan.FromMilliseconds(1000));
 });
 
-builder.Services.AddTransient<IStarWarsService, StarWarsService>();
+builder.Services.AddTransient<ICharacterService, StarWarsCharacterService>();
 
 var app = builder.Build();
 
@@ -32,10 +32,10 @@ app.MapControllers();
 app.UseRequestTimeouts();
 
 app.MapGet("/GetCharacter",
-    async (HttpContext context, IStarWarsService starWarsService) =>
+    async (HttpContext context, ICharacterService characterService) =>
 {
-    return await starWarsService.GetCharacterAsync(context.RequestAborted);
+    return await characterService.GetCharacterAsync(context.RequestAborted);
 })
-.DisableRequestTimeout();
+.WithRequestTimeout("OneSecondTimeout");
 
 app.Run();

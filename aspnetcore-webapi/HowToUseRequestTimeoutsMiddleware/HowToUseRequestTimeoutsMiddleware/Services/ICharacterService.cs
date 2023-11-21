@@ -2,7 +2,7 @@
 
 namespace HowToUseRequestTimeoutsMiddleware.Services;
 
-public interface IStarWarsService
+public interface ICharacterService
 {
     Task<Character> GetCharacterAsync(CancellationToken cancellationToken);
 }

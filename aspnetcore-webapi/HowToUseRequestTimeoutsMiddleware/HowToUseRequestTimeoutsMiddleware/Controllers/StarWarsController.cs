@@ -9,15 +9,15 @@ namespace HowToUseRequestTimeoutsMiddleware.Controllers;
 [Route("[controller]")]
 public class StarWarsController : ControllerBase
 {
-    private readonly IStarWarsService _starWarsService;
+    private readonly ICharacterService _characterService;
 
-    public StarWarsController(IStarWarsService starWarsService)
+    public StarWarsController(ICharacterService characterService)
     {
-        _starWarsService = starWarsService;
+        _characterService = characterService;
     }
 
     [HttpGet("GetCharacter")]
     [DisableRequestTimeout]
     public async Task<Character> GetCharacterAsync()
-        => await _starWarsService.GetCharacterAsync(HttpContext.RequestAborted);
+        => await _characterService.GetCharacterAsync(HttpContext.RequestAborted);
 }
