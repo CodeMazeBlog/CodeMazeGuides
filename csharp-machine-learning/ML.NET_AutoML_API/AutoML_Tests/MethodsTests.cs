@@ -2,7 +2,7 @@ namespace AutoML_Tests;
 public class MethodsTests
 {
     [Test]
-    public void DefaultExperiment()
+    public void WhenDefaultExperiment_ThenExperimentResult()
     {
         var experimentResult = Methods.DefaultExperiment();
 
@@ -10,7 +10,7 @@ public class MethodsTests
     }
 
     [Test]
-    public void CustomExperiment()
+    public void WhenCustomExperiment_ThenExperimentResult()
     {
         var experimentResult = Methods.CustomExperiment();
 
