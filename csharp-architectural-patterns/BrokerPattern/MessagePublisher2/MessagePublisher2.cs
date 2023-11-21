@@ -12,7 +12,7 @@ public class MessagePublisher2
         _messageService = messageService;
     }
 
-    public async Task SendMessages()
+    public async Task SendMessagesAsync()
     {
         await SendMessageAsync();
         await Task.Delay(5000);

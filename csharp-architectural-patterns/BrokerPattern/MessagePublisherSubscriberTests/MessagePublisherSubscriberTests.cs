@@ -20,7 +20,7 @@ namespace MessagePublisherSubscriberTests
 
             //Act                        
             MessagePublisher1 messagePublisher1 = new(mockMessageService.Object);
-            await messagePublisher1.SendMessages();
+            await messagePublisher1.SendMessagesAsync();
 
             //Assert            
             mockMessageService.Verify(m =>
@@ -37,7 +37,7 @@ namespace MessagePublisherSubscriberTests
 
             //Act            
             MessagePublisher2 messagePublisher2 = new(mockMessageService.Object);
-            await messagePublisher2.SendMessages();
+            await messagePublisher2.SendMessagesAsync();
 
             //Assert
             mockMessageService.Verify(m =>
