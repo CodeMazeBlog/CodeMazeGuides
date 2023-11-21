@@ -1,19 +1,18 @@
 ﻿using EventBroker.Interfaces;
 
-namespace EventBroker
+namespace EventBroker;
+
+public class Publisher
 {
-    public class Publisher
+    private readonly IBroker _broker;
+
+    public Publisher(IBroker broker)
     {
-        private readonly IBroker _broker;
+        _broker = broker;
+    }
 
-        public Publisher(IBroker broker)
-        {
-            _broker = broker;
-        }
-
-        public void Publish(Message message)
-        {
-            _broker.Publish(message);
-        }
+    public void Publish(Message message)
+    {
+        _broker.Publish(message);
     }
 }

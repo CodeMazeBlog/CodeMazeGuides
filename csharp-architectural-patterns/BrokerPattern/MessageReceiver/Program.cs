@@ -2,20 +2,19 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace MessageReceiverApp
+namespace MessageReceiverApp;
+
+public static class Program
 {
-    public static class Program
+    public static async Task Main(string[] args)
     {
-        public static async Task Main(string[] args)
-        {
-            HostApplicationBuilder builder = Host.CreateApplicationBuilder();
-            builder.Services.AddSingleton<IMessageService, MessageService.MessageService>();
-            builder.Services.AddSingleton<MessageReceiver>();
+        HostApplicationBuilder builder = Host.CreateApplicationBuilder();
+        builder.Services.AddSingleton<IMessageService, MessageService.MessageService>();
+        builder.Services.AddSingleton<MessageReceiver>();
 
-            var serviceProvider = builder.Services.BuildServiceProvider();
+        var serviceProvider = builder.Services.BuildServiceProvider();
 
-            var myService = serviceProvider.GetService<MessageReceiver>();
-            await myService.ReceiveMessagesAsync();
-        }
+        var myService = serviceProvider.GetService<MessageReceiver>();
+        await myService.ReceiveMessagesAsync();
     }
 }

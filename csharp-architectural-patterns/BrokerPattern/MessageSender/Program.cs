@@ -2,20 +2,19 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace MessageSenderApp
+namespace MessageSenderApp;
+
+public class Program
 {
-    public class Program
+    public static async Task Main()
     {
-        public static async Task Main()
-        {
-            HostApplicationBuilder builder = Host.CreateApplicationBuilder();
-            builder.Services.AddSingleton<IMessageService, MessageService.MessageService>();
-            builder.Services.AddSingleton<MessageSender>();
+        HostApplicationBuilder builder = Host.CreateApplicationBuilder();
+        builder.Services.AddSingleton<IMessageService, MessageService.MessageService>();
+        builder.Services.AddSingleton<MessageSender>();
 
-            var serviceProvider = builder.Services.BuildServiceProvider();
+        var serviceProvider = builder.Services.BuildServiceProvider();
 
-            var myService = serviceProvider.GetService<MessageSender>();
-            await myService.SendMessagesAsync();
-        }
+        var myService = serviceProvider.GetService<MessageSender>();
+        await myService.SendMessagesAsync();
     }
 }

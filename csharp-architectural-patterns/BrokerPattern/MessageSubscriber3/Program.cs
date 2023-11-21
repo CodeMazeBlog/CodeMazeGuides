@@ -2,21 +2,20 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace MessageSubscriberApp3
+namespace MessageSubscriberApp3;
+
+public static class Program
 {
-    public static class Program
+
+    public static async Task Main(string[] args)
     {
+        HostApplicationBuilder builder = Host.CreateApplicationBuilder();
+        builder.Services.AddSingleton<IMessageService, MessageService.MessageService>();
+        builder.Services.AddSingleton<MessageSubscriber3>();
 
-        public static async Task Main(string[] args)
-        {
-            HostApplicationBuilder builder = Host.CreateApplicationBuilder();
-            builder.Services.AddSingleton<IMessageService, MessageService.MessageService>();
-            builder.Services.AddSingleton<MessageSubscriber3>();
+        var serviceProvider = builder.Services.BuildServiceProvider();
 
-            var serviceProvider = builder.Services.BuildServiceProvider();
-
-            var myService = serviceProvider.GetService<MessageSubscriber3>();
-            await myService.ReceiveMessagesAsync();
-        }
+        var myService = serviceProvider.GetService<MessageSubscriber3>();
+        await myService.ReceiveMessagesAsync();
     }
 }

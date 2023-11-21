@@ -2,22 +2,21 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace MessagePublisherApp2
+namespace MessagePublisherApp2;
+
+public static class Program
 {
-    public static class Program
+
+    public static async Task Main(string[] args)
     {
 
-        public static async Task Main(string[] args)
-        {
+        HostApplicationBuilder builder = Host.CreateApplicationBuilder();
+        builder.Services.AddSingleton<IMessageService, MessageService.MessageService>();
+        builder.Services.AddSingleton<MessagePublisher2>();
 
-            HostApplicationBuilder builder = Host.CreateApplicationBuilder();
-            builder.Services.AddSingleton<IMessageService, MessageService.MessageService>();
-            builder.Services.AddSingleton<MessagePublisher2>();
+        var serviceProvider = builder.Services.BuildServiceProvider();
 
-            var serviceProvider = builder.Services.BuildServiceProvider();
-
-            var myService = serviceProvider.GetService<MessagePublisher2>();
-            await myService.SendMessages();
-        }
+        var myService = serviceProvider.GetService<MessagePublisher2>();
+        await myService.SendMessages();
     }
 }
