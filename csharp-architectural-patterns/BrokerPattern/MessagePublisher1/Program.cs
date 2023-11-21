@@ -15,6 +15,6 @@ public static class Program
         var serviceProvider = builder.Services.BuildServiceProvider();
 
         var myService = serviceProvider.GetService<MessagePublisher1>();
-        await myService.SendMessages();
+        await myService.SendMessagesAsync();
     }
 }
