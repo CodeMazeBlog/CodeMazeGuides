@@ -1,11 +1,11 @@
 ﻿using MongoDB.Bson;
 using JoinCollectionsAggregationPipeline;
 
-var userModels = await DataPersistenceService.GetUserModels();
-
-foreach (var userModel in userModels)
+var dataAccess = new UsersDataAccess();
+var users = await dataAccess.GetAllUsers();
+foreach (var user in users)
 {
-    Console.WriteLine(userModel.ToJson());
+    Console.WriteLine(user.ToJson());
 }
 
 

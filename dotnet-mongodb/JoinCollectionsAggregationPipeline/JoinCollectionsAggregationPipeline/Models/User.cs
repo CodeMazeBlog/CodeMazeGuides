@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JoinCollectionsAggregationPipeline.Models;
 
-public class UserModel
+public class User
 {
     [BsonElement("_id")]
     [BsonRepresentation(BsonType.ObjectId)]
@@ -14,18 +14,18 @@ public class UserModel
     [BsonElement("name")]
     public string Name { get; set; } = string.Empty;
 
+    [Required]
     [EmailAddress]
     [BsonElement("email")]
     public string Email { get; set; } = string.Empty;
 
     [BsonElement("role")] 
-    public RoleModel Role { get; set; } = new();
+    public Role Role { get; set; } = new();
 
     public override bool Equals(object? obj)
     {
-        if (obj is not UserModel model) return false;
-        return Id == model.Id
-               && Name == model.Name
+        if (obj is not User model) return false;
+        return Name == model.Name
                && Email == model.Email
                && Role.Equals(model.Role);
     }

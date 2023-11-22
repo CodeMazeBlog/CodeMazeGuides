@@ -11,13 +11,4 @@
     <PackageReference Include="MongoDB.Driver" Version="2.22.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Assets\roles.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Assets\users.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
