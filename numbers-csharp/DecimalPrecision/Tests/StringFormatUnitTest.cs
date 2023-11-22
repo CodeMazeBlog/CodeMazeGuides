@@ -11,7 +11,7 @@ public class StringFormatUnitTest
     [InlineData(0, "0.00", "0.00")]
     public void FormatDecimalWithPrecision_ReturnsExpected(decimal input, string format, string expectedResult)
     {
-        // Arrange & Act
+        // Act
         var result = StringFormat.FormatDecimalWithPrecision(input, format);
 
         // Assert
