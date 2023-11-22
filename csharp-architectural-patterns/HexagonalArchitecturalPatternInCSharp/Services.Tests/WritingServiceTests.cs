@@ -9,8 +9,8 @@
             var authorRepositoryMock = new Mock<IAuthorRepository>();
             var articleRepositoryMock = new Mock<IArticleRepository>();
 
-            authorRepositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<Guid>()).Result).Returns(new Author());
-            articleRepositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<Guid>()).Result).Returns(new Article());
+            authorRepositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<Guid>()).Result).Returns(new Author { Name = "Name" });
+            articleRepositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<Guid>()).Result).Returns(new Article { Title = "Title" });
 
             var writingService = new WritingService(authorRepositoryMock.Object, articleRepositoryMock.Object);
 
@@ -27,7 +27,7 @@
             var authorRepositoryMock = new Mock<IAuthorRepository>();
             var articleRepositoryMock = new Mock<IArticleRepository>();
 
-            articleRepositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<Guid>()).Result).Returns(new Article());
+            articleRepositoryMock.Setup(x => x.GetByIdAsync(It.IsAny<Guid>()).Result).Returns(new Article { Title = "Title" });
 
             var writingService = new WritingService(authorRepositoryMock.Object, articleRepositoryMock.Object);
 
