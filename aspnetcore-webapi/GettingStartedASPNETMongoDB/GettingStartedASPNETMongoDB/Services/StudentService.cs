@@ -36,13 +36,13 @@ public class StudentService : IStudentService
         return student;
     }
 
-    public async Task Update(string id, Student student)
+    public async Task<ReplaceOneResult> Update(string id, Student student)
     {
-        await _studentCollection.ReplaceOneAsync(s => s.Id == id, student);
+        return await _studentCollection.ReplaceOneAsync(s => s.Id == id, student);
     }
 
-    public async Task Delete(string id)
+    public async Task<DeleteResult> Delete(string id)
     {
-        await _studentCollection.DeleteOneAsync(s => s.Id == id);
+        return await _studentCollection.DeleteOneAsync(s => s.Id == id);
     }
 }

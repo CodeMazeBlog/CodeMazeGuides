@@ -19,8 +19,8 @@ public class Student
     public string Major { get; set; } = null!;
 
     [BsonRepresentation(BsonType.ObjectId)]
-    public List<string>? Courses { get; set; }
+    public List<string>? Courses { get; set; } = null!;
 
     [BsonIgnore]
-    public List<Course>? CourseList { get; set; }
+    public List<Course>? CourseList { get; set; } = null!;
 }
