@@ -23,6 +23,7 @@ public class ArticleController : ControllerBase
     public async Task<ActionResult> GetById(Guid articleId)
     {
         var article = await _articleService.GetByIdAsync(articleId);
+
         return Ok(article);
     }
 
@@ -30,6 +31,7 @@ public class ArticleController : ControllerBase
     public async Task<ActionResult> GetAll()
     {
         var articles = await _articleService.GetAllAsync();
+
         return Ok(articles);
     }
 
@@ -38,6 +40,7 @@ public class ArticleController : ControllerBase
     {
         await _articleService.AddAsync(article);
         _logger.LogInformation("Article {articleTitle} added", article.Title);
+
         return Ok(article);
     }
 
@@ -46,6 +49,7 @@ public class ArticleController : ControllerBase
     {
         await _articleService.DeleteAsync(articleId);
         _logger.LogInformation("Article {articleId} was deleted", articleId);
+
         return Ok();
     }
 }

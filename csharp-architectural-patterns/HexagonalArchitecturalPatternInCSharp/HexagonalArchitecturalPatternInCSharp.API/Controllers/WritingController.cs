@@ -23,6 +23,7 @@ public class WritingController : ControllerBase
     {
         await _writingService.StartWritingAsync(authorId, articleId);
         _logger.LogInformation("Author {authorId} started to write article {articleId}", authorId, articleId);
+
         return Ok();
     }
 
@@ -31,6 +32,7 @@ public class WritingController : ControllerBase
     {
         await _writingService.ChangeArticleStatusAsync(articleId, writingStatus);
         _logger.LogInformation("Status of the article {articleId} change to {writingStatus}", articleId, writingStatus);
+
         return Ok();
     }
 }

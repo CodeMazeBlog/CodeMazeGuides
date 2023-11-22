@@ -1,8 +1,3 @@
-using HexagonalArchitecturalPatternInCSharp.Core.Entities;
-using HexagonalArchitecturalPatternInCSharp.Core.Ports.Driven;
-using HexagonalArchitecturalPatternInCSharp.Core.Services;
-using Moq;
-
 namespace Services.Tests
 {
     [TestClass]
@@ -12,7 +7,7 @@ namespace Services.Tests
         public async Task WhenAddArticle_RepositoryAddAsyncIsCalled()
         {
             var articleRepositoryMock = new Mock<IArticleRepository>();
-            
+
             var articleService = new ArticleService(articleRepositoryMock.Object);
 
             var article = new Article

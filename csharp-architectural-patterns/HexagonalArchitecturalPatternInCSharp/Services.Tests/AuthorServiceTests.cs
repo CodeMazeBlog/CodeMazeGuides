@@ -1,9 +1,4 @@
-﻿using HexagonalArchitecturalPatternInCSharp.Core.Entities;
-using HexagonalArchitecturalPatternInCSharp.Core.Ports.Driven;
-using HexagonalArchitecturalPatternInCSharp.Core.Services;
-using Moq;
-
-namespace Services.Tests
+﻿namespace Services.Tests
 {
     [TestClass]
     public class AuthorServiceTests
@@ -55,7 +50,6 @@ namespace Services.Tests
             var authorRepositoryMock = new Mock<IAuthorRepository>();
 
             var authorService = new AuthorService(authorRepositoryMock.Object);
-
 
             await authorService.GetAllAsync();
 

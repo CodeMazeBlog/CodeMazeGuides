@@ -1,9 +1,4 @@
-﻿using HexagonalArchitecturalPatternInCSharp.Core.Entities;
-using HexagonalArchitecturalPatternInCSharp.Core.Ports.Driven;
-using HexagonalArchitecturalPatternInCSharp.Core.Services;
-using Moq;
-
-namespace Services.Tests
+﻿namespace Services.Tests
 {
     [TestClass]
     public class WritingServiceTests

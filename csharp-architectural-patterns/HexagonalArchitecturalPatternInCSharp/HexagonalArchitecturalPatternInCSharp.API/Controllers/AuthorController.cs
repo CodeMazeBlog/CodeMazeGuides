@@ -23,6 +23,7 @@ public class AuthorController : ControllerBase
     public async Task<ActionResult> GetById(Guid authorId)
     {
         var author = await _authorService.GetByIdAsync(authorId);
+
         return Ok(author);
     }
 
@@ -30,6 +31,7 @@ public class AuthorController : ControllerBase
     public async Task<ActionResult> GetAll()
     {
         var authors = await _authorService.GetAllAsync();
+
         return Ok(authors);
     }
 
@@ -38,6 +40,7 @@ public class AuthorController : ControllerBase
     {
         await _authorService.AddAsync(author);
         _logger.LogInformation("Author {authorName} added", author.Name);
+
         return Ok(author);
     }
 
@@ -46,6 +49,7 @@ public class AuthorController : ControllerBase
     {
         await _authorService.DeleteAsync(authorId);
         _logger.LogInformation("Author {authorId} was deleted", authorId);
+
         return Ok();
     }
 }
