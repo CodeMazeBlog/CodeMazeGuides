@@ -1,3 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using App;
 
-Console.WriteLine("Hello, World!");
+var accessToken = await JwtUtils.GetAccessTokenFromDuendeIdentityServerAsync();
+Console.WriteLine(accessToken);
+var jwt = JwtUtils.ConvertJwtStringToJwtSecurityToken(accessToken);
+Console.WriteLine(jwt);
+JwtUtils.DecodeJwt(jwt);
