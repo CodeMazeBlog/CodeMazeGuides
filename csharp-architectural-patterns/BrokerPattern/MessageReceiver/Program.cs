@@ -8,7 +8,7 @@ public static class Program
 {
     public static async Task Main(string[] args)
     {
-        HostApplicationBuilder builder = Host.CreateApplicationBuilder();
+        var builder = Host.CreateApplicationBuilder();
         builder.Services.AddSingleton<IMessageService, MessageService.MessageService>();
         builder.Services.AddSingleton<MessageReceiver>();
 
