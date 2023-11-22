@@ -2,7 +2,7 @@
 
 var myDecimal = 123.456789M;
 
-var stringFormatResult = StringFormat.SetPrecisionUsingStringFormat(myDecimal);
+var stringFormatResult = StringFormat.FormatDecimalWithPrecision(myDecimal, "0.00");
 Console.WriteLine(stringFormatResult);
 
 var stringFormatResultWithGlobalScope = StringFormat.SetPrecisionUsingStringFormatInfo(myDecimal, 2);

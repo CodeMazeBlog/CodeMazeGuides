@@ -4,9 +4,9 @@ namespace DecimalPrecision;
 
 public static class StringFormat
 {
-    public static string SetPrecisionUsingStringFormat(decimal myDecimal)
+    public static string FormatDecimalWithPrecision(decimal myDecimal, string format)
     {
-        return myDecimal.ToString("0.00"); 
+        return myDecimal.ToString(format);
     }
 
     public static string SetPrecisionUsingStringFormatInfo(decimal myDecimal, int decimalPlaces)
