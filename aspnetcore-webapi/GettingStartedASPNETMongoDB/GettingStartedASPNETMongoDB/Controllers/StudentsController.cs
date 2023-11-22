@@ -33,18 +33,19 @@ public class StudentsController : ControllerBase
             return NotFound();
         }
 
-        if(student.CourseList is not null)
+        if (student.Courses is null || !student.Courses.Any())
         {
-            foreach (var course in student.CourseList)
-            {
-                var studentCourse = await _courseService.GetById(course.Id);
+            return Ok(student);
+        }
 
-                if (studentCourse is not null)
-                {
-                    student.CourseList.Add(studentCourse);
-                }
-            }
-        }      
+        student.CourseList ??= new();
+
+        foreach (var courseId in student.Courses)
+        {
+            var course = await _courseService.GetById(courseId) ?? throw new Exception("Invalid Course Id");
+
+            student.CourseList.Add(course);
+        }
 
         return Ok(student);
     }
@@ -54,9 +55,10 @@ public class StudentsController : ControllerBase
     {
         var createdStudent = await _studentService.Create(student);
 
-        return CreatedAtAction(nameof(GetById),
-            new { id = createdStudent.Id },
-            createdStudent);
+        return createdStudent is null
+            ? throw new Exception("Student creation failed")
+            : CreatedAtAction(nameof(GetById),
+            new { id = createdStudent.Id }, createdStudent);
     }
 
     [HttpPut("{id:length(24)}")]

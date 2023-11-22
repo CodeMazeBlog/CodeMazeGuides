@@ -28,8 +28,9 @@ public class CourseController : ControllerBase
     {
         var createdCourse = await _courseService.Create(course);
 
-        return CreatedAtAction(nameof(GetById),
-            new { id = createdCourse!.Id },
-            createdCourse);
+        return createdCourse is null
+            ? throw new Exception("Course creation failed")
+            : CreatedAtAction(nameof(GetById),
+            new { id = createdCourse.Id }, createdCourse);
     }
 }
