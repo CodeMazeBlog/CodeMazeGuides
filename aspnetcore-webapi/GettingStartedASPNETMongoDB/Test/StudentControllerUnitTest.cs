@@ -1,9 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using Moq;
-using GettingStartedASPNETMongoDB.Controllers;
-using GettingStartedASPNETMongoDB.Interfaces;
-using GettingStartedASPNETMongoDB.Models;
-
 namespace Test;
 
 public class StudentControllerUnitTest
@@ -26,6 +20,7 @@ public class StudentControllerUnitTest
             FirstName = "Mary",
             LastName = "Que"
         };
+        
 
         //Services
         _studentService = new Mock<IStudentService>();
@@ -36,9 +31,9 @@ public class StudentControllerUnitTest
 
         _studentService.Setup(x => x.GetById(id)).ReturnsAsync(_student);
 
-        _studentService.Setup(x => x.Delete(id)).Returns(Task.CompletedTask);
+        _studentService.Setup(x => x.Delete(id)).Verifiable();
 
-        _studentService.Setup(x => x.Update(id, _student)).Returns(Task.CompletedTask);
+        _studentService.Setup(x => x.Update(id, _student)).Verifiable();
 
         //Controller
         _studentController = new StudentsController(_studentService.Object, _courseService.Object);

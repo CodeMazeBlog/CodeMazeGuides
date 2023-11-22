@@ -1,10 +1,4 @@
-﻿using GettingStartedASPNETMongoDB.Controllers;
-using GettingStartedASPNETMongoDB.Interfaces;
-using GettingStartedASPNETMongoDB.Models;
-using Microsoft.AspNetCore.Mvc;
-using Moq;
-
-namespace Test;
+﻿namespace Test;
 
 public class CourseControllerUnitTest
 {
