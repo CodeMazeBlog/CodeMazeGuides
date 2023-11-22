@@ -16,7 +16,7 @@ public class Role
 
     public override bool Equals(object? obj)
     {
-        if (obj is not Role model) return false;
-        return Name == model.Name;
+        if (obj is not Role role) return false;
+        return Name == role.Name;
     }
 }

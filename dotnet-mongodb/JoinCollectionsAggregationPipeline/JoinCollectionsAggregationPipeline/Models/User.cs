@@ -24,9 +24,9 @@ public class User
 
     public override bool Equals(object? obj)
     {
-        if (obj is not User model) return false;
-        return Name == model.Name
-               && Email == model.Email
-               && Role.Equals(model.Role);
+        if (obj is not User user) return false;
+        return Name == user.Name
+               && Email == user.Email
+               && Role.Equals(user.Role);
     }
 }
