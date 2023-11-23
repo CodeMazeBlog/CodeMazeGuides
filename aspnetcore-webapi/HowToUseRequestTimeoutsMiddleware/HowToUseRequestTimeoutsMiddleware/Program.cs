@@ -32,10 +32,9 @@ app.MapControllers();
 app.UseRequestTimeouts();
 
 app.MapGet("/GetCharacter",
-    async (HttpContext context, ICharacterService characterService) =>
+    [RequestTimeout("OneSecondTimeout")] async (HttpContext context, ICharacterService characterService) =>
 {
     return await characterService.GetCharacterAsync(context.RequestAborted);
-})
-.WithRequestTimeout("OneSecondTimeout");
+});
 
 app.Run();

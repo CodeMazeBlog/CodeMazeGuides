@@ -17,7 +17,11 @@ public class StarWarsController : ControllerBase
     }
 
     [HttpGet("GetCharacter")]
-    [DisableRequestTimeout]
+    [RequestTimeout("OneSecondTimeout")]
     public async Task<Character> GetCharacterAsync()
+        => await _characterService.GetCharacterAsync(HttpContext.RequestAborted);
+
+    [HttpGet("GetCharacterWithDefaultTimeout")]
+    public async Task<Character> GetCharacterWithDefaultTimeoutAsync()
         => await _characterService.GetCharacterAsync(HttpContext.RequestAborted);
 }
