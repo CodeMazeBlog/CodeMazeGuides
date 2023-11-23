@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToRegisterMultipleInstan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToRegisterMultipleInstancesOfInterface.Api", "HowToRegisterMultipleInstancesOfInterface.Api\HowToRegisterMultipleInstancesOfInterface.Api.csproj", "{7E8D7B20-2105-466D-B9FA-9301712B712F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToRegisterMultipleInstancesOfInterface.ApiTests", "HowToRegisterMultipleInstancesOfInterface.ApiTests\HowToRegisterMultipleInstancesOfInterface.ApiTests.csproj", "{A6D6A52E-F31F-441D-8F5E-747DE0D43D76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{7E8D7B20-2105-466D-B9FA-9301712B712F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E8D7B20-2105-466D-B9FA-9301712B712F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E8D7B20-2105-466D-B9FA-9301712B712F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D6A52E-F31F-441D-8F5E-747DE0D43D76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D6A52E-F31F-441D-8F5E-747DE0D43D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D6A52E-F31F-441D-8F5E-747DE0D43D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D6A52E-F31F-441D-8F5E-747DE0D43D76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
