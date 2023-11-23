@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ConversionsInCSharp\ConversionsInCSharp.csproj" />
+  </ItemGroup>
+
 </Project>
