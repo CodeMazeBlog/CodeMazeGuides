@@ -33,10 +33,14 @@ public static class JwtUtils
         return token;
     }
 
-    public static (string Issuer, List<string> Audience, List<(string Type, string Value)> Claims, DateTime Expiration,
+    public static (string KeyId, string Issuer, List<string> Audience, List<(string Type, string Value)> Claims,
+        DateTime Expiration,
         string SigningAlgorithm, string RawData, string Subject, DateTime ValidFrom, string Header, string Payload)
         DecodeJwt(JwtSecurityToken token)
     {
+        // Get the KeyId
+        var keyId = token.Header.Kid;
+
         // Get the issuer
         var issuer = token.Issuer;
 
@@ -67,6 +71,7 @@ public static class JwtUtils
         // Get the payload 
         var payload = token.EncodedPayload;
 
-        return (issuer, audience, claims, expiration, signingAlgorithm, rawData, subject, validFrom, header, payload);
+        return (keyId, issuer, audience, claims, expiration, signingAlgorithm, rawData, subject, validFrom, header,
+            payload);
     }
 }
