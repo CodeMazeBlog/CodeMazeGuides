@@ -19,7 +19,7 @@ public class HomeController : ControllerBase
     [HttpPost("read-as-string")]
     public async Task<IActionResult> ReadAsString()
     {
-        string requestBody = await Request.Body.ReadAsStringAsync();
+        var requestBody = await Request.Body.ReadAsStringAsync();
 
         return Ok($"Request Body As String: {requestBody}");
     }
@@ -28,8 +28,8 @@ public class HomeController : ControllerBase
     [HttpPost("read-as-string-multiple")]
     public async Task<IActionResult> ReadAsStringMultiple()
     {
-        string requestBody = await Request.Body.ReadAsStringAsync();
-        string requestBodySecond = await Request.Body.ReadAsStringAsync();
+        var requestBody = await Request.Body.ReadAsStringAsync();
+        var requestBodySecond = await Request.Body.ReadAsStringAsync();
 
         return Ok($"First: {requestBody}, Second:{requestBodySecond}");
     }
@@ -39,10 +39,10 @@ public class HomeController : ControllerBase
     public async Task<IActionResult> ReadMultipleEnableBuffering()
     {
         Request.EnableBuffering();
-        string requestBody = await Request.Body.ReadAsStringAsync(true);
+        var requestBody = await Request.Body.ReadAsStringAsync(true);
 
         Request.Body.Position = 0;
-        string requestBodySecond = await Request.Body.ReadAsStringAsync();
+        var requestBodySecond = await Request.Body.ReadAsStringAsync();
 
         return Ok($"First: {requestBody}, Second:{requestBodySecond}");
     }
@@ -60,7 +60,7 @@ public class HomeController : ControllerBase
     [ReadRequestBody]
     public IActionResult ReadFromAttribute()
     {
-        string requestBody = Request.Headers["ReadRequestBodyAttribute"];
+        var requestBody = Request.Headers["ReadRequestBodyAttribute"];
         var message = $"Request Body From Attribute : {requestBody}";
 
         return Ok(message);
@@ -70,7 +70,7 @@ public class HomeController : ControllerBase
     [HttpPost("read-from-action-filter")]
     public IActionResult ReadFromActionFilter()
     {
-        string requestBody = Request.Headers["ReadRequestBodyActionFilter"];
+        var requestBody = Request.Headers["ReadRequestBodyActionFilter"];
         var message = $"Request Body From Action Filter : {requestBody}";
 
         return Ok(message);
@@ -80,7 +80,7 @@ public class HomeController : ControllerBase
     [HttpPost("read-from-middleware")]
     public IActionResult ReadFromMiddleware()
     {
-        string requestBody = Request.Headers["RequestBodyMiddleware"];
+        var requestBody = Request.Headers["RequestBodyMiddleware"];
         var message = $"Request Body From Middleware : {requestBody}";
 
         return Ok(message);

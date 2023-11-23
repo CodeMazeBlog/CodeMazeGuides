@@ -10,7 +10,7 @@ public class ReadRequestBodyActionFilter : IAsyncActionFilter
 
         if (requestPath.IndexOf("read-from-action-filter") > -1)
         {
-            string requestBody = await context.HttpContext.Request.Body.ReadAsStringAsync();
+            var requestBody = await context.HttpContext.Request.Body.ReadAsStringAsync();
             context.HttpContext.Request.Headers.Add("ReadRequestBodyActionFilter", requestBody);
         }
 

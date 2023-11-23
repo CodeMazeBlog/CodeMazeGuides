@@ -19,7 +19,7 @@ public class RequestBodyMiddleware
         if (requestPath.IndexOf("read-from-middleware") > -1)
         {
             context.Request.EnableBuffering();
-            string requestBody = await context.Request.Body.ReadAsStringAsync(true);
+            var requestBody = await context.Request.Body.ReadAsStringAsync(true);
 
             if (requestBody.Length > MaxContentLength)
             {
