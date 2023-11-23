@@ -1,62 +1,73 @@
-using CodeMazeGuides.CSBasic;
-using NUnit.Framework;
-
-namespace Tests
+public class Tests
 {
-    public class Tests
+    // known invalid paths
+    static readonly List<string> TestCaseSearch = new List<string> 
     {
-        // known invalid paths
-        static List<string> TestCaseSearch = new List<string> 
+        "C://User/Test/Stuff/Invalid>>>>\r<<<<--Chars",
+        "D://User/iLi\0keToIncludeINVALIDChars/*/     z"
+    };
+    static readonly List<string> TestCaseFilenames = new List<string>
+    {
+        "A://ValidPath/SomeFolder/Invalid??File??Broken.nah",
+        "I://ProgramFiles/SomeApplication/:Invalid:Filename.txt"
+    };
+    HashSet<char> invalidPathChars = new HashSet<char>(Path.GetInvalidPathChars());
+    HashSet<char> invalidFilenameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
+
+    [Test]
+    public void WhenGivenListOfStrings_ThenFindStringsWithInvalidChars()
+    {
+        var result = StringMethods.CheckForInvalid(TestCaseSearch, invalidPathChars);
+        Assert.That(TestCaseSearch, Is.EqualTo(result));
+    }
+        
+    [Test]
+    public void WhenGivenlListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQ()
+    {
+        var result = StringMethods.CheckForInvalidLINQ(TestCaseSearch, invalidPathChars);
+        Assert.That(TestCaseSearch, Is.EqualTo(result));
+    }
+        
+    [Test]
+    public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQHeaderFormat()
+    {
+        var result = StringMethods.CheckForInvalidLINQHeader(TestCaseSearch, invalidPathChars);
+        Assert.That(TestCaseSearch, Is.EqualTo(result));
+    }
+
+    [Test]
+    public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingRegEx()
+    {
+        var result = StringMethods.CheckForInvalidRegEx(TestCaseSearch, invalidPathChars);
+        Assert.That(TestCaseSearch, Is.EqualTo(result));
+    }
+
+    [Test]
+    public void WhenGivenListOfPaths_ThenGetFilenames()
+    {
+        var result = StringMethods.GetFileNames(TestCaseFilenames);
+        List<string> expected = new List<string>() 
+        {
+            "Invalid??File??Broken.nah",
+            ":Invalid:Filename.txt"
+        };
+
+        Assert.That(expected, Is.EqualTo(result));
+    }
+        
+    [Test]
+    public void WhenGivenInvalidFilenameList_ThenRemoveInvalidChars()
+    {
+        foreach (string path in TestCaseFilenames)
+        {
+            var result = StringMethods.RemoveInvalidChars(path, invalidFilenameChars);
+
+            if (result.Any(invalidFilenameChars.Contains))
             {
-                "C://User/Test/Stuff/Invalid>>>><<<<--Chars",
-                "D://User/iLikeToIncludeINVALIDChars/*/     z"
-            };
-
-        [Test]
-        public void WhenGivenListOfStrings_ThenFindStringsWithInvalidChars()
-        {
-            var result = Program.GetInvalidPaths(TestCaseSearch);
-            Assert.That(TestCaseSearch, Is.EqualTo(result));
-        }
-
-        [Test]
-        public void WhenGivenlListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQ()
-        {
-            var result = Program.GetInvalidPathsLINQ(TestCaseSearch);
-            Assert.That(TestCaseSearch, Is.EqualTo(result));
-        }
-
-        [Test]
-        public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQHeaderFormat()
-        {
-            var result = Program.GetInvalidPathsLINQHeaderFormat(TestCaseSearch);
-            Assert.That(TestCaseSearch, Is.EqualTo(result));
-        }
-
-        [Test]
-        public void WhenGivenListOfStrings_thenFindStringsWithInvalidCharsUsingRegEx()
-        {
-            var result = Program.GetInvalidPathsRegEx(TestCaseSearch);
-            Assert.That(TestCaseSearch,Is.EqualTo(result));
-        }
-
-        [TestCase("")]
-        [TestCase("_")]
-        public void WhenGivenInvalidPathList_ThenReplaceOrRemoveInvalidChars(string repChar)
-        {
-            var invalidChars = Path.GetInvalidPathChars().Concat(Path.GetInvalidFileNameChars()).ToArray();
-
-            foreach (string path in TestCaseSearch)
-            {
-                var result = Program.ReplaceInvalidChars(path, repChar);
-
-                if (result.Any(x => invalidChars.Contains(x)))
-                {
-                    Assert.Fail();                    
-                }
+                Assert.Fail();                    
             }
-
-            Assert.Pass();
         }
+
+        Assert.Pass();
     }
 }
