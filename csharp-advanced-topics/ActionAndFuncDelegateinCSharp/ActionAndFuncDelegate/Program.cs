@@ -7,8 +7,6 @@
         Console.WriteLine($"\n");
 
         ActionDelegateSample();
-
-
     }
 
     public static void ActionDelegateSample()
@@ -18,9 +16,11 @@
         {
             Console.WriteLine(message);
         };
+
         //Delegate Invocation: 
         PrintMessage("Hello, invoking the delegate!");
     }
+
     public static void FuncDelegateSample()
     {
         //Declaration 

@@ -1,9 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -11,7 +6,7 @@ namespace Tests
     public class ProgramTests
     {
         [TestMethod]
-        public void ActionDelegateSample_Test()
+        public void Given_ActionDelegateSample_When_InvokeMethod_Then_EnsureMessagePrinted()
         {
             // Arrange
             string expectedMessage = "Hello, invoking the delegate!";
@@ -22,7 +17,9 @@ namespace Tests
             {
                 actualMessage = message;
             };
+
             testPrintMessage("Hello, invoking the delegate!");
+
             // Invoke the method being tested
             Program.ActionDelegateSample();
 
@@ -31,7 +28,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void FuncDelegateSample_Test()
+        public void Given_FuncDelegateSample_When_InvokeMethod_Then_EnsureCorrectAreaCalculated()
         {
             // Arrange
             double radius = 20;
@@ -43,7 +40,9 @@ namespace Tests
             {
                 return 3.12 * r * r;
             };
+
             actualArea = testCalArea(20);
+
             // Invoke the method being tested
             Program.FuncDelegateSample();
 
