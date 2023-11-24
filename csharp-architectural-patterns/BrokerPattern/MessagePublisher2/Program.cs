@@ -6,7 +6,6 @@ namespace MessagePublisherApp2;
 
 public static class Program
 {
-
     public static async Task Main(string[] args)
     {
 
