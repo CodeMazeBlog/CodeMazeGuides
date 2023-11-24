@@ -13,8 +13,7 @@ public static class JwtUtils
             var discoveryDocument = await client.GetDiscoveryDocumentAsync("https://demo.duendesoftware.com");
             if (discoveryDocument.IsError)
             {
-                Console.WriteLine(discoveryDocument.Error);
-                return string.Empty;
+                throw new Exception(discoveryDocument.Error);
             }
 
             tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
@@ -29,10 +28,9 @@ public static class JwtUtils
     {
         var handler = new JwtSecurityTokenHandler();
         var token = handler.ReadJwtToken(jwt);
+        
         return token;
     }
-
-    
 
     public static DecodedToken DecodeJwt(JwtSecurityToken token)
     {
