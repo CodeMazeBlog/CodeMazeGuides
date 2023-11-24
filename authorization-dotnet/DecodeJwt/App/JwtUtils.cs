@@ -20,8 +20,12 @@ public static class JwtUtils
                 { Address = discoveryDocument.TokenEndpoint, ClientId = "m2m", ClientSecret = "secret", Scope = "api" });
         }
 
-        if (!tokenResponse.IsError) return tokenResponse.AccessToken;
-        throw new Exception(tokenResponse.Error);
+        if (tokenResponse.IsError) 
+        {
+            throw new Exception(tokenResponse.Error);
+        }
+        
+        return tokenResponse.AccessToken;
     }
 
     public static JwtSecurityToken ConvertJwtStringToJwtSecurityToken(string? jwt)
@@ -81,5 +85,4 @@ public static class JwtUtils
             payload
         );
     }
-
 }
