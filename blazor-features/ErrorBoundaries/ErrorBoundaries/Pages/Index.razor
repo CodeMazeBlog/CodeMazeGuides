@@ -1,0 +1,29 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<ErrorBoundary @ref="errorBoundary">
+	<ChildContent>
+		<Counter />
+	</ChildContent>
+	<ErrorContent>
+		<p class="error-message">Uh oh! Something went wrong</p>
+		<button class="btn btn-warning" @onclick="ResetError">Reset</button>
+	</ErrorContent>
+</ErrorBoundary>
+
+	
+
+@code {
+	private ErrorBoundary? errorBoundary;
+
+	protected override void OnParametersSet()
+	{
+		errorBoundary?.Recover();
+	}
+
+	private void ResetError()
+	{
+		errorBoundary?.Recover();
+	}
+}

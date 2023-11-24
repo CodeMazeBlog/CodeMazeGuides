@@ -1,0 +1,12 @@
+﻿@model SelectViewModel
+@{
+    ViewData["Title"] = "Employee Dropdown";
+}
+
+<p class="mt-2">Employees Dropdown - Using a List of Complex Models</p>
+
+<select class="form-select-sm" asp-for="SelectedEmployeeId"
+        asp-items="new SelectList(@Model.Employees, nameof(EmployeeViewModel.Id),
+                   nameof(EmployeeViewModel.EmployeeName))">
+    <option>Please Select</option>
+</select>

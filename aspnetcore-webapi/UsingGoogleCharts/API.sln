@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "UsingGoogleCharts\API.csproj", "{74605EC2-54C1-4F96-A05D-5A6206D9BF20}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74605EC2-54C1-4F96-A05D-5A6206D9BF20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74605EC2-54C1-4F96-A05D-5A6206D9BF20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74605EC2-54C1-4F96-A05D-5A6206D9BF20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74605EC2-54C1-4F96-A05D-5A6206D9BF20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EB7C3C6F-8978-4C32-BD65-E41381DA82C3}
+	EndGlobalSection
+EndGlobal

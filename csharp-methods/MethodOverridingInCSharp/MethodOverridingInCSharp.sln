@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MethodOverridingInCSharp", "MethodOverridingInCSharp\MethodOverridingInCSharp.csproj", "{7A2AC6F5-05B3-4117-A85F-5AD505591E7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{0C199F33-163B-47E2-8216-515F21ABE490}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A2AC6F5-05B3-4117-A85F-5AD505591E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A2AC6F5-05B3-4117-A85F-5AD505591E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A2AC6F5-05B3-4117-A85F-5AD505591E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A2AC6F5-05B3-4117-A85F-5AD505591E7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C199F33-163B-47E2-8216-515F21ABE490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C199F33-163B-47E2-8216-515F21ABE490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C199F33-163B-47E2-8216-515F21ABE490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C199F33-163B-47E2-8216-515F21ABE490}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB0467C3-6AC9-42FB-A66A-A9EBDB80972A}
+	EndGlobalSection
+EndGlobal

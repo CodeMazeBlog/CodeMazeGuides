@@ -1,0 +1,34 @@
+{
+    id: '{{objectId()}}',
+    name: '{{firstName()}}',
+    cofounders: [
+      '{{repeat(1, 1000)}}',
+        {
+          id: '{{objectId()}}',
+          name: '{{firstName()}} {{surname()}}'
+        }      
+      ],
+    employees:
+    [
+      '{{repeat(1, 50000)}}',
+      {
+        id: '{{objectId()}}',
+        fullName: '{{firstName()}} {{surname()}}',
+        anualSalary: '{{floating(1000, 40000, 2, "0")}}',
+        position: 
+        {
+          id: '{{objectId()}}',
+          description: 'Software Engineer'
+        },
+        benefits:
+        [
+          '{{repeat(1, 10)}}',
+          {
+            id: '{{objectId()}}',
+            additional: '{{floating(100, 8000, 2, "0")}}',
+            description: 'Description'
+          }
+        ]
+      }
+    ]
+}

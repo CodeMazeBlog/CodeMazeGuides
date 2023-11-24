@@ -1,0 +1,15 @@
+﻿@model CodeMazeShop.Web.Entities.Product
+<tr>
+    <td>
+        <img class="productPic" src="@Model.ImageUrl" alt="Product pic" />
+    </td>   
+    <td>
+        @Model.Name
+    </td>  
+    <td class="bold big">
+        $@Model.Price
+    </td>
+    <td>
+        <a class="btn-primary" type="button" asp-action="Detail" asp-route-productId="@Model.ProductId">DETAILS</a>
+    </td>
+</tr>
