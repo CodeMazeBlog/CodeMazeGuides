@@ -10,20 +10,19 @@ public static class JwtUtils
         TokenResponse tokenResponse;
         using (var client = new HttpClient())
         {
-            var disco = await client.GetDiscoveryDocumentAsync("https://demo.duendesoftware.com");
-            if (disco.IsError)
+            var discoveryDocument = await client.GetDiscoveryDocumentAsync("https://demo.duendesoftware.com");
+            if (discoveryDocument.IsError)
             {
-                Console.WriteLine(disco.Error);
+                Console.WriteLine(discoveryDocument.Error);
                 return string.Empty;
             }
 
             tokenResponse = await client.RequestClientCredentialsTokenAsync(new ClientCredentialsTokenRequest
-                { Address = disco.TokenEndpoint, ClientId = "m2m", ClientSecret = "secret", Scope = "api" });
+                { Address = discoveryDocument.TokenEndpoint, ClientId = "m2m", ClientSecret = "secret", Scope = "api" });
         }
 
         if (!tokenResponse.IsError) return tokenResponse.AccessToken;
-        Console.WriteLine(tokenResponse.Error);
-        return string.Empty;
+        throw new Exception(tokenResponse.Error);
     }
 
     public static JwtSecurityToken ConvertJwtStringToJwtSecurityToken(string? jwt)
@@ -33,10 +32,9 @@ public static class JwtUtils
         return token;
     }
 
-    public static (string KeyId, string Issuer, List<string> Audience, List<(string Type, string Value)> Claims,
-        DateTime Expiration,
-        string SigningAlgorithm, string RawData, string Subject, DateTime ValidFrom, string Header, string Payload)
-        DecodeJwt(JwtSecurityToken token)
+    
+
+    public static DecodedToken DecodeJwt(JwtSecurityToken token)
     {
         // Get the KeyId
         var keyId = token.Header.Kid;
@@ -71,7 +69,19 @@ public static class JwtUtils
         // Get the payload 
         var payload = token.EncodedPayload;
 
-        return (keyId, issuer, audience, claims, expiration, signingAlgorithm, rawData, subject, validFrom, header,
-            payload);
+        return new DecodedToken(
+            keyId,
+            issuer,
+            audience,
+            claims,
+            expiration,
+            signingAlgorithm,
+            rawData,
+            subject,
+            validFrom,
+            header,
+            payload
+        );
     }
+
 }

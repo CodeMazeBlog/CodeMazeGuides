@@ -3,7 +3,7 @@ namespace Tests;
 public class DecodeJwtTest
 {
     [Fact]
-    public async Task WhenJwtIsRetrievedFromServer_ThenItShouldNotNull()
+    public async Task WhenJwtIsRetrievedFromServer_ThenItShouldNotBeNull()
     {
         var jwt = await JwtUtils.GetAccessTokenFromDuendeIdentityServerAsync();
 
