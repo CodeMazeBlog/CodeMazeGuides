@@ -4,7 +4,7 @@ using ReturnInsertedIdentityWithDapper;
 var connectionString = new ConfigurationBuilder()
             .SetBasePath(AppContext.BaseDirectory)
             .AddJsonFile("appsettings.json")
-            .Build().GetConnectionString("DefaultConnection");
+            .Build().GetConnectionString("Connection");
 
 SetUp.CreateTable(connectionString);
 
