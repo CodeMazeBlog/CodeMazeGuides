@@ -2,14 +2,14 @@
 
 namespace Tests
 {
-    public class PrimeNumberComponentTest:TestContext
+    public class PrimeNumberComponentTest : TestContext
     {
         [Fact]
         public void GivenPrimeNumberComponentWhenInitializedReturnsListOfPrimeNumbers()
         {
             var mockPrimeNumberService = new Mock<IPrimeNumberService>();
             mockPrimeNumberService.Setup(service => service.GetPrimeNumbersAsync())
-                .ReturnsAsync(new List<int> { 2, 3, 5, 7, 11 });
+                .ReturnsAsync([2, 3, 5, 7, 11]);
             Services.AddSingleton(mockPrimeNumberService.Object);
 
             var cut = RenderComponent<PrimeNumber>();
@@ -17,7 +17,7 @@ namespace Tests
             cut.WaitForAssertion(() => Assert.NotNull(cut.Instance.PrimeNumbers), timeout);
 
             Assert.IsType<List<int>>(cut.Instance.PrimeNumbers);
-            Assert.Equal(new List<int> { 2, 3, 5, 7, 11 }, cut.Instance.PrimeNumbers);
+            Assert.Equal([2, 3, 5, 7, 11], cut.Instance.PrimeNumbers);
         }
     }
 }

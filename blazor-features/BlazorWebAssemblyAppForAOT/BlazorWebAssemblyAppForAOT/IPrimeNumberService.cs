@@ -1,4 +1,4 @@
-﻿namespace BlazorWebAssemblyAppForAheadOfTimeCompilation
+﻿namespace BlazorWebAssemblyAppForAOT
 {
     public interface IPrimeNumberService
     {
