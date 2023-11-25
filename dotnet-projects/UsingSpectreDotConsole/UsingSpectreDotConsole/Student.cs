@@ -1,4 +1,4 @@
-﻿namespace UsingSpectreConsole;
+﻿namespace UsingSpectreDotConsole;
 
 public class Student
 {

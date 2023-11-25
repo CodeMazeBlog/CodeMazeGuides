@@ -1,3 +1,3 @@
-﻿using UsingSpectreConsole;
+﻿using UsingSpectreDotConsole;
 
 SpectreConsoleOtherUsages.DisplayProgress();

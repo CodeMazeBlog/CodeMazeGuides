@@ -1,10 +1,8 @@
 ﻿using Spectre.Console;
-using System.Collections.Generic;
-using System.IO;
 
-namespace UsingSpectreConsole;
+namespace UsingSpectreDotConsole;
 
-public class SpectreConsoleOtherUsages
+public static class SpectreConsoleOtherUsages
 {
     private static readonly List<Student> _students = StudentsGenerator.GenerateStudents();
 
@@ -31,8 +29,7 @@ public class SpectreConsoleOtherUsages
     {
         try
         {
-            string filePath = "nofile.txt";
-            File.OpenRead(filePath);
+            File.OpenRead("nofile.txt");
         }
         catch (FileNotFoundException ex)
         {
@@ -118,7 +115,7 @@ public class SpectreConsoleOtherUsages
             {
                 var streamingTask = ctx.AddTask("Student Streaming");
 
-                foreach (var student in StudentsGenerator.StreamStudentsFromDatabase())
+                foreach (var _ in StudentsGenerator.StreamStudentsFromDatabase())
                 {
                     streamingTask.Increment(incrementValue);
                 }

@@ -1,15 +1,15 @@
 ﻿using Spectre.Console;
 using Spectre.Console.Json;
 
-namespace UsingSpectreConsole;
+namespace UsingSpectreDotConsole;
 
-public class SpectreConsoleBasicUsages
+public static class SpectreConsoleBasicUsages
 {
     private static readonly List<Student> _students = StudentsGenerator.GenerateStudents();
 
     public static void SetTextColor()
     {
-        AnsiConsole.Markup($"[bold blue]Hello[/] [italic green]{_students[1].FirstName}[/]!"); 
+        AnsiConsole.Markup($"[bold blue]Hello[/] [italic green]{_students[1].FirstName}[/]!");
         AnsiConsole.Write(new Markup($"[underline #800080]{_students[2].FirstName}[/]"));
         AnsiConsole.MarkupLine($"[rgb(128,0,0)]{_students[3].FirstName}[/]");
     }
@@ -38,7 +38,7 @@ public class SpectreConsoleBasicUsages
 
         AnsiConsole.Write(panel);
 
-        return panel;      
+        return panel;
     }
 
     public static Calendar PrettyPrintCalendar()

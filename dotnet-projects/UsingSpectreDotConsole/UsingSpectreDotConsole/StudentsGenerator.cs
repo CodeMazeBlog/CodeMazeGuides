@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Text.Json;
-using System.Threading;
+﻿using System.Text.Json;
 
-namespace UsingSpectreConsole;
+namespace UsingSpectreDotConsole;
 
 public static class StudentsGenerator
 {
     public static string[] Hostels { get; }
-        = new string[] { "Lincoln", "Louisa", "Laurent", "George", "Kennedy" };
+        = ["Lincoln", "Louisa", "Laurent", "George", "Kennedy"];
 
-    public static List<Student> GenerateStudents()
+    private static readonly JsonSerializerOptions _writeOptions = new()
     {
-        return new List<Student>()
+        WriteIndented = true
+    };
+
+    public static List<Student> GenerateStudents() => new()
         {
             new Student{Id=1, FirstName="Julie", LastName="Matthew", Age=19, Hostel=Hostels[0]},
             new Student{Id=2, FirstName="Michael", LastName="Taylor", Age=23, Hostel=Hostels[3]},
@@ -19,14 +20,10 @@ public static class StudentsGenerator
             new Student{Id=4, FirstName="Sabrina", LastName="Azulon", Age=18, Hostel=Hostels[3]},
             new Student{Id=5, FirstName="Hunter", LastName="Cyril", Age=19, Hostel=Hostels[4]},
         };
-    }
 
     public static string ConvertStudentsToJson(List<Student> students)
     {
-        return JsonSerializer.Serialize(students, new JsonSerializerOptions
-        {
-            WriteIndented = true
-        });
+        return JsonSerializer.Serialize(students, _writeOptions);
     }
 
     public static IEnumerable<Student> StreamStudentsFromDatabase()

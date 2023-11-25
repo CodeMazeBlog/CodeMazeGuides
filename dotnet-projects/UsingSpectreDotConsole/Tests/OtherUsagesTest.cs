@@ -9,7 +9,7 @@ public class OtherUsagesTest
         var console = new TestConsole();
         console.Write(SpectreConsoleOtherUsages.CreateStudentTable());
 
-        return Verifier.Verify(console.Output);
+        return Verify(console.Output);
     }
 
     [Fact]

@@ -12,10 +12,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Shouldly" Version="4.2.1" />
-    <PackageReference Include="Spectre.Console.Testing" Version="0.47.0" />
-    <PackageReference Include="Verify.Xunit" Version="22.1.4" />
-    <PackageReference Include="xunit" Version="2.6.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3">
+    <PackageReference Include="Spectre.Console.Testing" Version="0.48.0" />
+    <PackageReference Include="Verify.Xunit" Version="22.5.0" />
+    <PackageReference Include="xunit" Version="2.6.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.4">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CreateBetterLookingConsoleApplicationsWithSpectreConsole\UsingSpectreConsole.csproj" />
+    <ProjectReference Include="..\UsingSpectreDotConsole\UsingSpectreDotConsole.csproj" />
   </ItemGroup>
 
 </Project>
