@@ -9,67 +9,68 @@ namespace SelectDropdownOptionUsingSeleniumWebDriverTests;
 public class LiveTest
 {
     [Fact]
-    public void SelectElementObjectByTextChromeTest()
+    public void GivenTestInChrome_WhenDropdownElementIsSelectedByText_OptionValueIsReturned()
     {
         IWebDriver driver = new ChromeDriver();
 
         driver.Navigate().GoToUrl("https://localhost:7006/");
 
-        IWebElement dropdown = driver.FindElement(By.Id("programming-language"));
+        var dropdown = driver.FindElement(By.Id("programming-language"));
 
-        SelectElement select = new SelectElement(dropdown);
+        var selectElement = new SelectElement(dropdown);
 
-        select.SelectByText("JavaScript");
+        selectElement.SelectByText("JavaScript");
 
-        Assert.Equal("javascript", select.SelectedOption.GetAttribute("value"));
+        Assert.Equal("javascript", selectElement.SelectedOption.GetAttribute("value"));
 
         driver.Quit();
     }
 
     [Fact]
-    public void SelectElementObjectByIndexChromeTest()
+    public void GivenTestInChrome_WhenDropdownElementIsSelectedByIndex_OptionValueIsReturned()
     {
         IWebDriver driver = new ChromeDriver();
 
         driver.Navigate().GoToUrl("https://localhost:7006/");
 
-        IWebElement dropdown = driver.FindElement(By.Id("programming-language"));
+        var dropdown = driver.FindElement(By.Id("programming-language"));
 
-        SelectElement select = new SelectElement(dropdown);
+        var selectElement = new SelectElement(dropdown);
 
-        select.SelectByIndex(0);
+        selectElement.SelectByIndex(0);
 
-        Assert.Equal("csharp", select.SelectedOption.GetAttribute("value"));
+        Assert.Equal("csharp", selectElement.SelectedOption.GetAttribute("value"));
 
         driver.Quit();
     }
 
     [Fact]
-    public void SelectElementObjectByValueChromeTest()
+    public void GivenTestInChrome_WhenDropdownElementIsSelectedByValue_OptionValueIsReturned()
     {
         IWebDriver driver = new ChromeDriver();
 
         driver.Navigate().GoToUrl("https://localhost:7006/");
 
-        IWebElement dropdown = driver.FindElement(By.Id("programming-language"));
+        var dropdown = driver.FindElement(By.Id("programming-language"));
 
-        SelectElement select = new SelectElement(dropdown);
+        var selectElement = new SelectElement(dropdown);
 
-        select.SelectByValue("php");
+        selectElement.SelectByValue("php");
 
-        Assert.Equal("php", select.SelectedOption.GetAttribute("value"));
+        Assert.Equal("php", selectElement.SelectedOption.GetAttribute("value"));
 
         driver.Quit();
     }
 
     [Fact]
-    public void SelectElementByXpathChromeTest()
+    public void GivenTestInChrome_WhenDropdownElementIsSelectedByXPath_OptionValueIsReturned()
     {
         IWebDriver driver = new ChromeDriver();
 
         driver.Navigate().GoToUrl("https://localhost:7006/");
 
-        IWebElement option = driver.FindElement(By.XPath("//select[@id='programming-language']/option[@value='typescript']"));
+        var option = driver.FindElement(
+            By.XPath("//select[@id='programming-language']/option[@value='typescript']"));
 
         string selectedOptionValue = option.GetAttribute("value");
 
@@ -79,7 +80,7 @@ public class LiveTest
     }
 
     [Fact]
-    public void SelectElementObjectByTextFirefoxTest()
+    public void GivenTestInFirefox_WhenDropdownElementIsSelectedByText_OptionValueIsReturned()
     {
         FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
 
@@ -87,19 +88,19 @@ public class LiveTest
 
         driver.Navigate().GoToUrl("https://localhost:7006/");
 
-        IWebElement dropdown = driver.FindElement(By.Id("programming-language"));
+        var dropdown = driver.FindElement(By.Id("programming-language"));
 
-        SelectElement select = new SelectElement(dropdown);
+        var selectElement = new SelectElement(dropdown);
 
-        select.SelectByText("Java");
+        selectElement.SelectByText("Java");
 
-        Assert.Equal("java", select.SelectedOption.GetAttribute("value"));
+        Assert.Equal("java", selectElement.SelectedOption.GetAttribute("value"));
 
         driver.Quit();
     }
 
     [Fact]
-    public void SelectElementObjectByTextMSEdgeTest()
+    public void GivenTestInEdge_WhenDropdownElementIsSelectedByText_OptionValueIsReturned()
     {
         EdgeDriverService service = EdgeDriverService.CreateDefaultService();
 
@@ -107,13 +108,13 @@ public class LiveTest
 
         driver.Navigate().GoToUrl("https://localhost:7006/");
 
-        IWebElement dropdown = driver.FindElement(By.Id("programming-language"));
+        var dropdown = driver.FindElement(By.Id("programming-language"));
 
-        SelectElement select = new SelectElement(dropdown);
+        var selectElement = new SelectElement(dropdown);
 
-        select.SelectByText("Rust");
+        selectElement.SelectByText("Rust");
 
-        Assert.Equal("rust", select.SelectedOption.GetAttribute("value"));
+        Assert.Equal("rust", selectElement.SelectedOption.GetAttribute("value"));
 
         driver.Quit();
     }
