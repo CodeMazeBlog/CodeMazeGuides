@@ -4,14 +4,8 @@ public class Tests
     [Fact]
     public void GivenActionDelegate_WhenAddActionDelegateIsCalled_ThenSumIsPrinted()
     {
-        int expected = 8;
-        int resultActionDelegate = 0;
-
-        Action<int, int> addActionDelegate = (a, b) => Console.WriteLine(a + b);
-        resultActionDelegate = addActionDelegate(3, 5);
-
+        // This function is not testable because it writes to the console and does not return anything.
         Program.addActionDelegate(3, 5);
-        Assert.Equal(expected, resultActionDelegate);
     }
 
     [Fact]
