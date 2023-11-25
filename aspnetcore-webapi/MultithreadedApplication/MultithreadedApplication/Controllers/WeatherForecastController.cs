@@ -8,7 +8,7 @@ namespace MultithreadedApplication.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Freezing", "Bracing", "Chilly", "Cool"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
@@ -19,7 +19,7 @@ namespace MultithreadedApplication.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public async Task<IEnumerable<WeatherForecast>> Get()
+        public async Task<IEnumerable<WeatherForecast>> GetWeather()
         {
             IEnumerable<WeatherForecast> returnedData = new List<WeatherForecast>();
 
@@ -54,12 +54,12 @@ namespace MultithreadedApplication.Controllers
            .ToArray();
         }
 
-        public static void LogWeatherData(IEnumerable<WeatherForecast> wheaterList)
+        private void LogWeatherData(IEnumerable<WeatherForecast> wheaterList)
         {
             foreach (var item in wheaterList)
             {
                 Thread.Sleep(100);
-                Console.WriteLine(item.TemperatureC);
+                _logger.LogInformation(item.TemperatureC.ToString());
             }
         }
     }
