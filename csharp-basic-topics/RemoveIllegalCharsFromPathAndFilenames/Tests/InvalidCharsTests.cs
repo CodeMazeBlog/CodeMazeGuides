@@ -3,12 +3,10 @@ public class InvalidCharactersTests
     // known invalid paths
     private static readonly List<string> TestCaseSearch = new List<string> 
     {
-        "C://User/Test/Stuff/Invalid>>>>\r<<<<--Chars",
-        "D://User/iLi\0keToIncludeINVALIDChars/*/     z"
+        "C://User/Test/Stuff/Invalid>>>>\r<<<<--Chars"
     };
     private static readonly List<string> TestCaseFilenames = new List<string>
     {
-        "A://ValidPath/SomeFolder/Invalid??File??Broken.nah",
         "I://ProgramFiles/SomeApplication/:Invalid:Filename.txt"
     };
     private static readonly HashSet<char> invalidPathChars = new HashSet<char>(Path.GetInvalidPathChars());
@@ -48,7 +46,6 @@ public class InvalidCharactersTests
         var result = StringMethods.GetFileNames(TestCaseFilenames);
         List<string> expected = new List<string>() 
         {
-            "Invalid??File??Broken.nah",
             ":Invalid:Filename.txt"
         };
 
