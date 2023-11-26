@@ -58,7 +58,9 @@ public class InvalidCharactersTests
     [TestCaseSource(nameof(TestCaseFilenames))]
     public void WhenGivenInvalidFilenameList_ThenRemoveInvalidChars(string path)
     {
-        var result = StringMethods.RemoveInvalidChars(path, invalidFilenameChars);
+        foreach (string path in TestCaseFilenames)
+        {
+            var result = StringMethods.RemoveInvalidChars(path, invalidFilenameChars);
 
         if (result.Any(invalidFilenameChars.Contains)) { Assert.Fail(); }
         else { Assert.Pass(); }
