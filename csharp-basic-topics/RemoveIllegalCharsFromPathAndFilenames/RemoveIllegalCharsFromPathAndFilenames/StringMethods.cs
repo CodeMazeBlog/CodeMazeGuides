@@ -42,6 +42,8 @@
 
     public static IEnumerable<string> GetFileNames(IEnumerable<string> paths)
     {
+        List<string> result = new List<string>();
+
         return paths.Select(path => Path.GetFileName(path)).Where(path => !string.IsNullOrEmpty(path));
     }
 

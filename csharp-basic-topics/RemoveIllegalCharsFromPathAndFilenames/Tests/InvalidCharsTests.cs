@@ -54,7 +54,7 @@ public class InvalidCharactersTests
 
         Assert.That(expected, Is.EqualTo(result));
     }
-        
+
     [TestCaseSource(nameof(TestCaseFilenames))]
     public void WhenGivenInvalidFilenameList_ThenRemoveInvalidChars(string path)
     {
