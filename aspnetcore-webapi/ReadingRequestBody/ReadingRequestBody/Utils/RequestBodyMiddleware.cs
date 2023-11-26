@@ -29,7 +29,7 @@ public class RequestBodyMiddleware
             }
 
             _logger.LogInformation("Request Body:{@requestBody}", requestBody);
-            context.Request.Headers.Add("RequestBodyMiddleware", requestBody);
+            context.Request.Headers.Append("RequestBodyMiddleware", requestBody);
             context.Items.Add("RequestBody", requestBody);
             context.Request.Body.Position = 0;
         }
