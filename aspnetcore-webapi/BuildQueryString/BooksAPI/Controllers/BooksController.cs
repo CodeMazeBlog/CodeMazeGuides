@@ -1,4 +1,3 @@
-using BuildQueryString;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BooksAPI.Controllers
@@ -11,20 +10,6 @@ namespace BooksAPI.Controllers
         public ActionResult Get(string author, string language)
         {
             return Ok($"Author: {author}, Language:{language}");
-        }
-
-        [HttpGet("product")]
-        public ActionResult GetProduct([FromQuery] Product product)
-        {
-            
-            return Ok(product);
-        }
-
-        [HttpGet("person")]
-        public ActionResult GetPerson([FromQuery] Person person)
-        {
-           
-            return Ok(person);
         }
     }
 }

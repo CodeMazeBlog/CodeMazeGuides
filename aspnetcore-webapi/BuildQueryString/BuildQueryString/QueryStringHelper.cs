@@ -1,30 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.WebUtilities;
-using System;
 using System.Web;
 
 namespace BuildQueryString
 {
-    public class Product
-    {
-        public string Name { get; set; } = "Laptop";
-        public string Category { get; set; } = "Electronics";
-        public Manufacturer Manufacturer { get; set; } = new Manufacturer();
-    }
-
-    public class Manufacturer
-    {
-        public string Location { get; set; } = "Silicon Valley";
-    }
-
-    public class Person
-    {
-        public string FirstName { get; set; } = "Smith";
-        public int Age { get; set; } = 25;
-        public string[] Hobbies { get; set; } = { "Reading", "Traveling", "Gaming" };
-    }
-
     public static class QueryStringHelper
     {
         public static string BuildUrlWithQueryStringUsingStringConcat(
@@ -96,63 +76,6 @@ namespace BuildQueryString
             Console.WriteLine($"Full API Url: {fullApiUrl}");
 
             return fullApiUrl;
-        }
-
-        public static string SerializeNestedObjectToQueryString(string basePath)
-        {
-            Product product = new Product();
-
-            var finalQueryString = string.Join('&',
-                                    typeof(Product).GetProperties().SelectMany(property =>
-                                    {
-                                        string propertyName = property.Name;
-                                        object propertyValue = property.GetValue(product)!;
-
-                                        if (property.PropertyType.IsClass && property.PropertyType != typeof(string))
-                                        {
-                                            return property.PropertyType.GetProperties().Select(nestedProperty =>
-                                            {
-                                                string nestedPropertyName = nestedProperty.Name;
-                                                string nestedPropertyValue = nestedProperty.GetValue(propertyValue)!.ToString()!;
-                                                return $"{HttpUtility.UrlEncode(propertyName)}.{HttpUtility.UrlEncode(nestedPropertyName)}={HttpUtility.UrlEncode(nestedPropertyValue)}";
-                                            });
-                                        }
-                                        else
-                                        {
-                                            return new[] { $"{propertyName}={propertyValue}" };
-                                        }
-                                    })
-                                );
-
-            var full =  $"{basePath}?{finalQueryString}";
-
-            return full;
-        }
-
-        public static string SerializeObjectContainingArraysToQueryString(string basePath)
-        {
-            Person person = new Person();
-
-            var queryString = typeof(Person).GetProperties()
-            .SelectMany(property =>
-            {
-                string propertyName = property.Name;
-                object propertyValue = property.GetValue(person)!;
-
-                if (propertyValue is Array arrayValue)
-                {
-                    return Enumerable.Range(0, arrayValue.Length)
-                        .Select(i => $"{propertyName}[{i}]={arrayValue.GetValue(i)}");
-                }
-                else
-                {
-                    return new[] { $"{propertyName}={propertyValue}" };
-                }
-            });
-
-            string finalQueryString = string.Join("&", queryString);
-
-            return $"{basePath}?{finalQueryString}";
         }
     }
 }

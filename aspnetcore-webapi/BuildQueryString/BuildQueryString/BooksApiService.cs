@@ -2,7 +2,7 @@
 {
     public class BooksApiService
     {
-        private const string BaseApiUrl = "https://localhost:7220/api/Books/person";
+        private const string BaseApiUrl = "https://localhost:7220/api/Books";
         private readonly IHttpClientWrapper _httpClientWrapper;
 
         public BooksApiService(IHttpClientWrapper httpClientWrapper)
@@ -90,18 +90,6 @@
             };
 
             return await HttpGetAsync(QueryStringHelper.BuildUrlWithQueryStringUsingCreateMethod(BaseApiUrl, query));
-        }
-
-        public async Task<string> Test()
-        {
-
-            return await HttpGetAsync(QueryStringHelper.SerializeNestedObjectToQueryString(BaseApiUrl));
-        }
-
-        public async Task<string> Test1()
-        {
-
-            return await HttpGetAsync(QueryStringHelper.SerializeObjectContainingArraysToQueryString(BaseApiUrl));
         }
     }
 }
