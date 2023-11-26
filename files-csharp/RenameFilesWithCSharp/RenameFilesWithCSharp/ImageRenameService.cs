@@ -1,8 +1,8 @@
 ﻿namespace RenameFilesWithCSharp;
 
-public static class PhotoRenameService
+public static class ImageRenameService
 {
-    public static void RenamePhotosWithDateTime(string directoryPath)
+    public static void RenameImagesWithDateTime(string directoryPath)
     {
         var allowedExtensions = new[] { ".jpg", ".png", ".jpeg", ".gif" };
 
