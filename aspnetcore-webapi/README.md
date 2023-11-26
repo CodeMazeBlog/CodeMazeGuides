@@ -33,6 +33,7 @@ This section contains articles about ASP.NET Core Web API-related topics.
 - [How to Register Services for Different Environments in .NET](https://code-maze.com/aspnetcore-register-services-for-different-environments/)
 - [Return File in ASP.NET Core Web API](https://code-maze.com/aspnetcore-register-services-for-different-environments/)
 - [How to Get the Remote Host IP Address in ASP.NET Core Web API](https://code-maze.com/aspnetcore-how-to-get-the-remote-host-ip-address/)
+- [REST vs WebSockets in C#](https://code-maze.com/csharp-rest-vs-websockets/)
 - [How to Return HTML From ASP.NET Core Web API](https://code-maze.com/aspnetcore-web-api-return-file/)
 - [Web API Return Types in ASP.NET Core](https://code-maze.com/aspnetcore-web-api-return-types/)
 - [Serialization and Deserialization in C#](https://code-maze.com/serialization-deserialization-csharp/)

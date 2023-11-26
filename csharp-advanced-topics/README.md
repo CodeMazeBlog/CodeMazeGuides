@@ -11,6 +11,7 @@ This section contains the topics considered advanced level in C#.
 - [Events in C#](https://code-maze.com/csharp-events/)
 - [Expression Trees in C#](https://code-maze.com/csharp-expression-trees/)
 - [Generic Attributes in C#](https://code-maze.com/csharp-generic-attributes/)
+- [How to Use Interceptors in C# 12](https://code-maze.com/how-to-use-interceptors-in-c-12/)
 - [Using Generics in C#](https://code-maze.com/using-generics-in-csharp/)
 - [Introduction to Regular Expressions in C#](https://code-maze.com/regular-expressions-csharp/)
 - [Lambda Expressions in C#](https://code-maze.com/lambda-expressions-in-csharp/)

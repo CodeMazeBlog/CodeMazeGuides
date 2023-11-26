@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HowtoGetaDatabaseRowasJSONUsingDapper\HowtoGetaDatabaseRowasJSONUsingDapper.csproj" />
+    <ProjectReference Include="..\HowtoGetaDatabaseRowasJSONUsingDapper\RetrievingDbRowAsJsonWithDapper.csproj" />
   </ItemGroup>
 
 </Project>
