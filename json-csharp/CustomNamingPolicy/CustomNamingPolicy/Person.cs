@@ -1,8 +1,7 @@
-﻿namespace CustomNamingPolicy
+﻿namespace CustomNamingPolicy;
+
+public class Person
 {
-    public class Person
-    {
-        public string Name { get; set; }
-        public string SurName { get; set; }
-    }
+    public string? GivenName { get; set; }
+    public string? surName { get; set; }
 }

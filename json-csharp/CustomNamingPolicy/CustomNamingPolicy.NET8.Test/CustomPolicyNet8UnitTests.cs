@@ -1,4 +1,3 @@
-using System;
 using System.Text.Json;
 
 namespace CustomNamingPolicy.NET8.Test;
