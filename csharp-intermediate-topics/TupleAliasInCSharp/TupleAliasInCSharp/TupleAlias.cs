@@ -15,12 +15,12 @@ public static class TupleAlias
         Console.WriteLine($"Employee ID: {financeDetails.id}, First Name: {financeDetails.name}, Last Name: {financeDetails.familyName}, Salary: {financeDetails.salary}");
 
         Console.WriteLine("\nDeconstruct tuple without using 'var' keyword");
-        (int id, string first_name, string last_name, float salary) = employee;
-        Console.WriteLine($"Employee ID: {id}, First Name: {first_name}, Last Name: {last_name}, Salary: {salary}");
+        (int id, var fName, string lName, float sal) = employee;
+        Console.WriteLine($"Employee ID: {id}, First Name: {fName}, Last Name: {lName}, Salary: {sal}");
 
         Console.WriteLine("\nDeconstruct tuple using 'var' keyword");
-        var (id1, first_name1, last_name1, salary1) = employee;
-        Console.WriteLine($"Employee ID: {id1}, First Name: {first_name1}, Last Name: {last_name1}, Salary: {salary1}");
+        var (id1, fName1, lName1, sal1) = employee;
+        Console.WriteLine($"Employee ID: {id1}, First Name: {fName1}, Last Name: {lName1}, Salary: {sal1}");
 
         Console.WriteLine("\nTuple assignment using 'var' keyword. We are assigning values from EmployeeDetails to EmployeeFinanceDetails tuple.");
         financeDetails = employee;
