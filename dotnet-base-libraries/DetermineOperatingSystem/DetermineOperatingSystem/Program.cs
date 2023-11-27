@@ -1,13 +1,16 @@
 ﻿using System.Runtime.InteropServices;
 using DetermineOperatingSystem;
 
-// For versions of .NET Framework and .NET Core prior to .NET 5:
-OSPlatform myOwnOperatingSystem = OSPlatform.Create("MyOwnOperatingSystem");
+var myOwnOperatingSystem = OSPlatform.Create("MyOwnOperatingSystem");
 
 var basePathResolver = new BasePathResolver(new OsPlatformResolver());
-string basePath = basePathResolver.GetBasePath(myOwnOperatingSystem);
+var basePath = basePathResolver.GetBasePath(myOwnOperatingSystem);
+Console.WriteLine($"Base Path: {basePath}");
 
 // From .NET 5 and later:
-bool isWindows = OperatingSystem.IsWindows();
-bool isMacOs = OperatingSystem.IsMacOS();
-bool isLinux = OperatingSystem.IsLinux();
+var isWindows = OperatingSystem.IsWindows();
+var isMacOs = OperatingSystem.IsMacOS();
+var isLinux = OperatingSystem.IsLinux();
+Console.WriteLine($"OS is Windows: {isWindows}");
+Console.WriteLine($"OS is MacOS: {isMacOs}");
+Console.WriteLine($"OS is Linux: {isLinux}");

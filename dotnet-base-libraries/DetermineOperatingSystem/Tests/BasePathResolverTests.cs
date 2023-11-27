@@ -12,7 +12,7 @@ public class BasePathResolverTests
         var basePathResolver = new BasePathResolver(_platformResolverMock.Object);
 
         // Act
-        string basePath = basePathResolver.GetBasePath();
+        var basePath = basePathResolver.GetBasePath();
 
         // Assert
         Assert.Equal("C:\\MyApp\\", basePath);
@@ -26,7 +26,7 @@ public class BasePathResolverTests
         var basePathResolver = new BasePathResolver(_platformResolverMock.Object);
 
         // Act
-        string basePath = basePathResolver.GetBasePath();
+        var basePath = basePathResolver.GetBasePath();
 
         // Assert
         Assert.Equal("/MyApp/", basePath);
@@ -40,7 +40,7 @@ public class BasePathResolverTests
         var basePathResolver = new BasePathResolver(_platformResolverMock.Object);
 
         // Act
-        string basePath = basePathResolver.GetBasePath();
+        var basePath = basePathResolver.GetBasePath();
 
         // Assert
         Assert.Equal("/MyApp/", basePath);
