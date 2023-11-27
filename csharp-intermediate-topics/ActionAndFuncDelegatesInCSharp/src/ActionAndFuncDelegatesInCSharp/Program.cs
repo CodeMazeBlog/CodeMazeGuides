@@ -26,6 +26,8 @@ Func<int, int, int> addFunc = AddNumbers;
 Func<int, int, int> subtractFunc = SubtractNumbers;
 int addResult = CalculateFunc(addFunc, 7, 5);
 int subtractResult = CalculateFunc(subtractFunc, 7, 5);
+Console.WriteLine($"Add result: {addResult}");
+Console.WriteLine($"Subtract result: {subtractResult}");
 
 static TResult CalculateFunc<T1, T2, TResult>(Func<T1, T2, TResult> func, T1 arg1, T2 arg2)
 {
