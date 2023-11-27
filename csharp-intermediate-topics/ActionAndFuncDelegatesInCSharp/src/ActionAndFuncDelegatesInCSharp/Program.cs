@@ -1,8 +1,8 @@
 ﻿// Action delegate
 Action<string> helloAction = SayHello;
 Action<string> goodbyeAction = SayGoodbye;
-InteractAction(helloAction, "John");
-InteractAction(goodbyeAction, "John");
+InteractAction(helloAction, "John");    // Message: Hello John
+InteractAction(goodbyeAction, "John");  // Message: Goodbye John
 
 static void InteractAction(Action<string> action, string message)
 {
@@ -24,8 +24,8 @@ static void SayGoodbye(string name)
 // Func delegate
 Func<int, int, int> addFunc = AddNumbers;
 Func<int, int, int> subtractFunc = SubtractNumbers;
-int addResult = CalculateFunc(addFunc, 7, 5);
-int subtractResult = CalculateFunc(subtractFunc, 7, 5);
+int addResult = CalculateFunc(addFunc, 7, 5);           // Result: 12
+int subtractResult = CalculateFunc(subtractFunc, 7, 5); // Result: 2
 Console.WriteLine($"Add result: {addResult}");
 Console.WriteLine($"Subtract result: {subtractResult}");
 
