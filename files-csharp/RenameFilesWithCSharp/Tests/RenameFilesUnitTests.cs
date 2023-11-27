@@ -16,10 +16,8 @@ public class RenameFilesUnitTests : IDisposable
         {
             Directory.Delete(_tempDirectory, true);
         }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
+        catch
+        { }
     }
 
     [Fact]
