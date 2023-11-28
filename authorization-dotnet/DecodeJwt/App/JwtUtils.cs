@@ -38,51 +38,22 @@ public static class JwtUtils
 
     public static DecodedToken DecodeJwt(JwtSecurityToken token)
     {
-        // Get the KeyId
         var keyId = token.Header.Kid;
-
-        // Get the issuer
-        var issuer = token.Issuer;
-
-        // Get the audience
         var audience = token.Audiences.ToList();
-
-        // Get the claims
         var claims = token.Claims.Select(claim => (claim.Type, claim.Value)).ToList();
-
-        // Get the expiration
-        var expiration = token.ValidTo;
-
-        // Get the signing algorithm
-        var signingAlgorithm = token.SignatureAlgorithm;
-
-        // Get the raw data
-        var rawData = token.RawData;
-
-        // Get the subject (it will be empty as the grant_type is client_credentials - Machine to Machine)
-        var subject = token.Subject;
-
-        // Get the valid from
-        var validFrom = token.ValidFrom;
-
-        // Get the header 
-        var header = token.EncodedHeader;
-
-        // Get the payload 
-        var payload = token.EncodedPayload;
 
         return new DecodedToken(
             keyId,
-            issuer,
+            token.Issuer,
             audience,
             claims,
-            expiration,
-            signingAlgorithm,
-            rawData,
-            subject,
-            validFrom,
-            header,
-            payload
+            token.ValidTo,
+            token.SignatureAlgorithm,
+            token.RawData,
+            token.Subject,
+            token.ValidFrom,
+            token.EncodedHeader,
+            token.EncodedPayload
         );
     }
 }
