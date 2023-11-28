@@ -32,35 +32,35 @@ public class InvalidCharactersTests
     [Test]
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidChars()
     {
-        var result = StringMethods.CheckForInvalid(TestCaseSearch, invalidPathChars);
+        IEnumerable<string> result = StringMethods.CheckForInvalid(TestCaseSearch, invalidPathChars);
         CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
         
     [Test]
     public void WhenGivenlListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQ()
     {
-        var result = StringMethods.CheckForInvalidLINQ(TestCaseSearch, invalidPathChars);
+        IEnumerable<string> result = StringMethods.CheckForInvalidLINQ(TestCaseSearch, invalidPathChars);
         CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
         
     [Test]
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQHeaderFormat()
     {
-        var result = StringMethods.CheckForInvalidLINQHeader(TestCaseSearch, invalidPathChars);
+        IEnumerable<string> result = StringMethods.CheckForInvalidLINQHeader(TestCaseSearch, invalidPathChars);
         CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
 
     [Test]
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingRegEx()
     {
-        var result = StringMethods.CheckForInvalidRegEx(TestCaseSearch, invalidPathChars);
+        IEnumerable<string> result = StringMethods.CheckForInvalidRegEx(TestCaseSearch, invalidPathChars);
         CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
 
     [Test]
     public void WhenGivenListOfPaths_ThenGetFilenames()
     {
-        var result = StringMethods.GetFileNames(TestCaseFilenames);
+        IEnumerable<string> result = StringMethods.GetFileNames(TestCaseFilenames);
         List<string> expected = new List<string>() 
         {
             "Invalid??File??Broken.nah",
