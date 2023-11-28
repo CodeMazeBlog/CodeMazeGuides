@@ -1,12 +1,14 @@
 public class InvalidCharactersTests
 {
     // known invalid paths
-    private static readonly List<string> TestCaseSearch = new List<string> 
+    private static readonly IEnumerable<string> TestCaseSearch = new List<string> 
     {
-        "C://User/Test/Stuff/Invalid>>>>\r<<<<--Chars"
+        "C://User/Test/Stuff/Invalid>>>>\r<<<<--Chars",
+        "D://User/iLi\0keToIncludeINVALIDChars/*/     z"
     };
-    private static readonly List<string> TestCaseFilenames = new List<string>
+    private static readonly IEnumerable<string> TestCaseFilenames = new List<string>
     {
+        "A://ValidPath/SomeFolder/Invalid??File??Broken.nah",
         "I://ProgramFiles/SomeApplication/:Invalid:Filename.txt"
     };
     private static readonly HashSet<char> invalidPathChars = new HashSet<char>(Path.GetInvalidPathChars());
@@ -16,28 +18,28 @@ public class InvalidCharactersTests
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidChars()
     {
         var result = StringMethods.CheckForInvalid(TestCaseSearch, invalidPathChars);
-        Assert.That(TestCaseSearch, Is.EqualTo(result));
+        CollectionAssert.AreEquivalent(TestCaseSearch, result.ToList());
     }
         
     [Test]
     public void WhenGivenlListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQ()
     {
         var result = StringMethods.CheckForInvalidLINQ(TestCaseSearch, invalidPathChars);
-        Assert.That(TestCaseSearch, Is.EqualTo(result));
+        CollectionAssert.AreEquivalent(TestCaseSearch, result.ToList());
     }
         
     [Test]
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQHeaderFormat()
     {
         var result = StringMethods.CheckForInvalidLINQHeader(TestCaseSearch, invalidPathChars);
-        Assert.That(TestCaseSearch, Is.EqualTo(result));
+        CollectionAssert.AreEquivalent(TestCaseSearch, result.ToList());
     }
 
     [Test]
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingRegEx()
     {
         var result = StringMethods.CheckForInvalidRegEx(TestCaseSearch, invalidPathChars);
-        Assert.That(TestCaseSearch, Is.EqualTo(result));
+        CollectionAssert.AreEquivalent(TestCaseSearch, result.ToList());
     }
 
     [Test]
@@ -46,10 +48,11 @@ public class InvalidCharactersTests
         var result = StringMethods.GetFileNames(TestCaseFilenames);
         List<string> expected = new List<string>() 
         {
+            "Invalid??File??Broken.nah",
             ":Invalid:Filename.txt"
         };
 
-        Assert.That(expected, Is.EqualTo(result));
+        CollectionAssert.AreEquivalent(expected, result);
     }
 
     [TestCaseSource(nameof(TestCaseFilenames))]
