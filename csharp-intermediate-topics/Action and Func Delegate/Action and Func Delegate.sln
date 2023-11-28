@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Action and Func Delegate", "Action and Func Delegate\Action and Func Delegate.csproj", "{9737FB0B-F510-4AEE-A33C-0D0BF3FE49BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Action and Func Delegate", "Action and Func Delegate\Action and Func Delegate.csproj", "{9737FB0B-F510-4AEE-A33C-0D0BF3FE49BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{E1F64B1E-8259-49BE-A287-4103A9FE9A81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{9737FB0B-F510-4AEE-A33C-0D0BF3FE49BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9737FB0B-F510-4AEE-A33C-0D0BF3FE49BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9737FB0B-F510-4AEE-A33C-0D0BF3FE49BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1F64B1E-8259-49BE-A287-4103A9FE9A81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1F64B1E-8259-49BE-A287-4103A9FE9A81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1F64B1E-8259-49BE-A287-4103A9FE9A81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1F64B1E-8259-49BE-A287-4103A9FE9A81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
