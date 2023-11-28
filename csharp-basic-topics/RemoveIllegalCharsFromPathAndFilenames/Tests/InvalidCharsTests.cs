@@ -3,8 +3,8 @@ public class InvalidCharactersTests
     // known invalid paths
     private static readonly IEnumerable<string> TestCaseSearch = new List<string> 
     {
-        "C://User/Test/Stuff/Invalid>>>>\r<<<<--Chars",
-        "D://User/iLi\0keToIncludeINVALIDChars/*/     z"
+        "C://User/Test/Stuff/Invalid>>>>?||?<<<<--Chars",
+        "D://User/iLi?||?keToIncludeINVALIDChars/*/     z"
     };
     private static readonly IEnumerable<string> TestCaseFilenames = new List<string>
     {
@@ -18,28 +18,28 @@ public class InvalidCharactersTests
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidChars()
     {
         var result = StringMethods.CheckForInvalid(TestCaseSearch, invalidPathChars);
-        CollectionAssert.AreEquivalent(TestCaseSearch, result.ToList());
+        CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
         
     [Test]
     public void WhenGivenlListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQ()
     {
         var result = StringMethods.CheckForInvalidLINQ(TestCaseSearch, invalidPathChars);
-        CollectionAssert.AreEquivalent(TestCaseSearch, result.ToList());
+        CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
         
     [Test]
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQHeaderFormat()
     {
         var result = StringMethods.CheckForInvalidLINQHeader(TestCaseSearch, invalidPathChars);
-        CollectionAssert.AreEquivalent(TestCaseSearch, result.ToList());
+        CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
 
     [Test]
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingRegEx()
     {
         var result = StringMethods.CheckForInvalidRegEx(TestCaseSearch, invalidPathChars);
-        CollectionAssert.AreEquivalent(TestCaseSearch, result.ToList());
+        CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
 
     [Test]
