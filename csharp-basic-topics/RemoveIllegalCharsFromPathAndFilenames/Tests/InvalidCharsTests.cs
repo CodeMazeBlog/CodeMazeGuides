@@ -4,8 +4,8 @@ public class InvalidCharactersTests
     // known invalid paths
     private static readonly IEnumerable<string> TestCaseSearch = new List<string> 
     {
-        "C://User/Test/Stuff/Invalid>>>>?||?<<<<-\u0015-Chars",
-        "D://User/iLi?||?keToIncludeINVALIDChars/*/ \u0015    z"
+        "C://U\aser/Test/Stuff/Invali\bd>>>>?||?<<<<-\u0015-Chars",
+        "D://User/i\aLi?||?keToIn\bcludeINVALIDChars/*/ \u0015    z"
     };
     private static readonly IEnumerable<string> TestCaseFilenames = new List<string>
     {
