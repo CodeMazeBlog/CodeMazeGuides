@@ -33,7 +33,7 @@ namespace Test
             printNumbers(numbers);
 
             string output = writer.GetStringBuilder().ToString().Trim();
-            Assert.AreEqual("2\r\n4\r\n6\r\n8\r\n10", output);
+            Assert.AreEqual("2\n4\n6\n8\n10", output);
         }
     }
 }
