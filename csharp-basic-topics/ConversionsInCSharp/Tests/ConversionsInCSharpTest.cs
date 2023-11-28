@@ -1,4 +1,5 @@
 using ConversionsInCSharp;
+using System.Globalization;
 
 namespace Tests;
 
@@ -577,6 +578,359 @@ public class ConversionsInCSharpTest
 
         // Assert 
         var expected = "Wrong base (must be 2, 8, 10 or 16)";
+
+        Assert.Equal(expected, output);
+    }
+
+    // CONVERSIONS TO BOOLEANS
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromIntToBool_ThenNonZeroIsConvertedToTrue()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToBoolean, -36);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "-36 (System.Int32) -> True (System.Boolean)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromIntToBool_ThenZeroIsConvertedToFalse()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToBoolean, 0);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "0 (System.Int32) -> False (System.Boolean)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromDoubleToBool_ThenNonZeroIsConvertedToTrue()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToBoolean, 7.32);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "7.32 (System.Double) -> True (System.Boolean)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromFloatToBool_ThenNonZeroIsConvertedToTrue()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToBoolean, -5.6f);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "-5.6 (System.Single) -> True (System.Boolean)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromDecimalToBool_ThenNonZeroIsConvertedToTrue()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToBoolean, 880.32m);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "880.32 (System.Decimal) -> True (System.Boolean)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromTrueStringToBool_ThenStringIsConvertedToTrue()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToBoolean, "True");
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "True (System.String) -> True (System.Boolean)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromFalseStringToBool_ThenStringIsConvertedToFalse()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToBoolean, "false");
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "false (System.String) -> False (System.Boolean)";
+
+        Assert.Equal(expected, output);
+    }
+
+    // CONVERSIONS BETWEEN NUMERIC AND NON-NUMERIC TYPES
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromBoolToInt_ThenTrueIsConvertedToOne()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToInt32, true);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "True (System.Boolean) -> 1 (System.Int32)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromBoolToInt_ThenFalseIsConvertedToZero()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToInt32, false);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "False (System.Boolean) -> 0 (System.Int32)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromStringToInt_ThenConversionIsSuccessful()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToInt32, "58");
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "58 (System.String) -> 58 (System.Int32)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromStringToDouble_ThenConversionIsSuccessful()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToDouble, "2.18");
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "2.18 (System.String) -> 2.18 (System.Double)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromIntToChar_ThenConversionIsSuccessful()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToChar, 89);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "89 (System.Int32) -> Y (System.Char)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromCharToInt_ThenConversionIsSuccessful()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToInt32, 'b');
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "b (System.Char) -> 98 (System.Int32)";
+
+        Assert.Equal(expected, output);
+    }
+
+    // CONVERSIONS WITH DATETIME
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromDateTimeToString_ThenConversionIsSuccessful()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToString, new DateTime(2021, 10, 13, 4, 18, 5));
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "10/13/2021 4:18:05 AM (System.DateTime) -> 10/13/2021 4:18:05 AM (System.String)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenMakeConversionMethod_WhenConvertingFromStringToDateTime_ThenConversionIsSuccessful()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Utilities.MakeConversion(Convert.ToDateTime, "5/1/1787 2:11:00 AM");
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "5/1/1787 2:11:00 AM (System.String) -> 5/1/1787 2:11:00 AM (System.DateTime)";
+
+        Assert.Equal(expected, output);
+    }
+
+    // CONVERSIONS WITH IFORMATPROVIDER
+
+    [Fact]
+    public void GivenIFormatProvider_WhenConvertingToDateTimeWithSwedishCulture_ThenConversionIsSuccessful()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Console.WriteLine(Convert.ToDateTime("12/11/2014", new CultureInfo("sv-SE")));
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "12/11/2014 12:00:00 AM";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenIFormatProvider_WhenConvertingToDecimalWithFrenchCulture_ThenConversionIsSuccessful()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Console.WriteLine(Convert.ToDecimal("12,54", new CultureInfo("fr-FR")));
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "12.54";
+
+        Assert.Equal(expected, output);
+    }
+
+    // CONVERSIONS FROM CUSTOM OBJECTS
+
+    [Fact]
+    public void GivenCustomNoteType_WhenConvertingToneEToBool_ThenTrueIsReturned()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Note note = new('E');
+        Utilities.MakeConversion(Convert.ToBoolean, note);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "ConversionsInCSharp.Note (ConversionsInCSharp.Note) -> True (System.Boolean)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenCustomNoteType_WhenConvertingToneBToInt64_ThenLongNumber2IsReturned()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Note note = new('B');
+        Utilities.MakeConversion(Convert.ToInt64, note);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "ConversionsInCSharp.Note (ConversionsInCSharp.Note) -> 2 (System.Int64)";
+
+        Assert.Equal(expected, output);
+    }
+
+    [Fact]
+    public void GivenCustomNoteType_WhenConvertingToneFToChar_ThenCharFIsReturned()
+    {
+        // Arrange
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+
+        // Act
+        Note note = new('F');
+        Utilities.MakeConversion(Convert.ToChar, note);
+        var output = stringWriter.ToString().Trim();
+
+        // Assert 
+        var expected = "ConversionsInCSharp.Note (ConversionsInCSharp.Note) -> F (System.Char)";
 
         Assert.Equal(expected, output);
     }
