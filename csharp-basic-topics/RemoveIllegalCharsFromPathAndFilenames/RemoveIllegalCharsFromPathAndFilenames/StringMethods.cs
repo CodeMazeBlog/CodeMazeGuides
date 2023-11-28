@@ -6,8 +6,10 @@
 
         foreach (var str in strings) 
         { 
+            Console.Write(str);
             foreach (var ch in criteria) 
             { 
+                Console.WriteLine(ch);
                 if (str.Contains(ch)) 
                 { 
                     result.Add(str); 
@@ -15,7 +17,7 @@
                 } 
             } 
         }
-
+        Console.WriteLine(result);
         return result;
     }
 
