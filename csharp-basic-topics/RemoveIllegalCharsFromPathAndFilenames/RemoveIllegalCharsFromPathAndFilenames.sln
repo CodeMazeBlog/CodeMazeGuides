@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoveIllegalCharsFromPathAndFilenames", "RemoveIllegalCharsFromPathAndFilenames\RemoveIllegalCharsFromPathAndFilenames.csproj", "{282E49B1-CDCF-40AA-8C6E-557C19C9609A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoveIllegalCharsFromPathAndFilenames", "RemoveIllegalCharsFromPathAndFilenames\RemoveIllegalCharsFromPathAndFilenames.csproj", "{282E49B1-CDCF-40AA-8C6E-557C19C9609A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{AF1F7308-964A-4B36-A2F0-2BB07E9C7E6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{AF1F7308-964A-4B36-A2F0-2BB07E9C7E6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
