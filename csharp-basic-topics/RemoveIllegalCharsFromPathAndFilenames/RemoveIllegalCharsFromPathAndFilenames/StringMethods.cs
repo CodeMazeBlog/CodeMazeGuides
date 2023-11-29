@@ -3,18 +3,18 @@ public static class StringMethods
 {
     public static IEnumerable<string> CheckForInvalid(IEnumerable<string> strings, HashSet<char> criteria)
     {
-        List<string> result = new List<string>(); 
+        List<string> result = new List<string>();
 
-        foreach (var str in strings) 
-        { 
-            foreach (var ch in criteria) 
-            { 
-                if (str.Contains(ch)) 
-                { 
-                    result.Add(str); 
-                    break; 
-                } 
-            } 
+        foreach (var str in strings)
+        {
+            foreach (var ch in criteria)
+            {
+                if (str.Contains(ch))
+                {
+                    result.Add(str);
+                    break;
+                }
+            }
         }
 
         return result;
@@ -34,7 +34,7 @@ public static class StringMethods
         return result;
     }
 
-    public static IEnumerable<string> CheckForInvalidRegEx(IEnumerable<string> strings, HashSet<char> criteria) 
+    public static IEnumerable<string> CheckForInvalidRegEx(IEnumerable<string> strings, HashSet<char> criteria)
     {
         Regex invalidChars = new Regex("[" + Regex.Escape(string.Join("", criteria)) + "]");
 
@@ -43,6 +43,8 @@ public static class StringMethods
 
     public static IEnumerable<string> GetFileNames(IEnumerable<string> paths)
     {
+        IEnumerable<string> result = new List<string>();
+
         return paths.Select(path => Path.GetFileName(path)).Where(path => !string.IsNullOrEmpty(path));
     }
 

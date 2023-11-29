@@ -35,14 +35,14 @@ public class InvalidCharactersTests
         var result = StringMethods.CheckForInvalid(TestCaseSearch, invalidPathChars);
         CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
-        
+
     [Test]
     public void WhenGivenlListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQ()
     {
         var result = StringMethods.CheckForInvalidLINQ(TestCaseSearch, invalidPathChars);
         CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
-        
+
     [Test]
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQHeaderFormat()
     {
@@ -61,15 +61,15 @@ public class InvalidCharactersTests
     public void WhenGivenListOfPaths_ThenGetFilenames()
     {
         var result = StringMethods.GetFileNames(TestCaseFilenames);
-        List<string> expected = new List<string>() 
-        {
-            "Invalid??File??Broken.nah",
-            ":Invalid:Filename.txt"
-        };
+        List<string> expected = new List<string>()
+    {
+        "Invalid??File??Broken.nah",
+        ":Invalid:Filename.txt"
+    };
 
         CollectionAssert.AreEquivalent(expected, result);
     }
-        
+
     [TestCaseSource(nameof(TestCaseFilenames))]
     public void WhenGivenInvalidFilenameList_ThenRemoveInvalidChars(string path)
     {
