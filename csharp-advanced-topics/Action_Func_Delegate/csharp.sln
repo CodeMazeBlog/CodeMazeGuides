@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeMaze_Action_Func_Evaluation", "CodeMaze_Action_Func_Evaluation", "{4D14DA29-4320-4B43-94A1-9C9F30D47EEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Action_Func_Method", "CodeMaze_Action_Func_Evaluation\Action_Func_Method\Action_Func_Method.csproj", "{E5C69AAA-7B3B-4F1F-81B0-58985B6B7690}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "CodeMaze_Action_Func_Evaluation\Tests\Tests.csproj", "{9DA3FA0E-973A-430A-A678-2300BA1891E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5C69AAA-7B3B-4F1F-81B0-58985B6B7690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5C69AAA-7B3B-4F1F-81B0-58985B6B7690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5C69AAA-7B3B-4F1F-81B0-58985B6B7690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5C69AAA-7B3B-4F1F-81B0-58985B6B7690}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DA3FA0E-973A-430A-A678-2300BA1891E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DA3FA0E-973A-430A-A678-2300BA1891E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DA3FA0E-973A-430A-A678-2300BA1891E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DA3FA0E-973A-430A-A678-2300BA1891E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E5C69AAA-7B3B-4F1F-81B0-58985B6B7690} = {4D14DA29-4320-4B43-94A1-9C9F30D47EEB}
+		{9DA3FA0E-973A-430A-A678-2300BA1891E0} = {4D14DA29-4320-4B43-94A1-9C9F30D47EEB}
+	EndGlobalSection
+EndGlobal
