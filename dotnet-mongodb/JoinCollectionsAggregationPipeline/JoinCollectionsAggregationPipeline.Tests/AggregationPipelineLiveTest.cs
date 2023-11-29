@@ -4,11 +4,11 @@ namespace JoinCollectionsAggregationPipeline.Tests;
 
 public class AggregationPipelineLiveTest
 {
-    private readonly UsersDataAccess _sut;
+    private readonly StudentRepository _sut;
 
     public AggregationPipelineLiveTest()
     {
-        _sut = new UsersDataAccess();
+        _sut = new StudentRepository();
     }
 
     [Test]
@@ -16,33 +16,17 @@ public class AggregationPipelineLiveTest
     GivenIHaveUsersAndRolesCollectionsInMongoDB_WhenICallTheGetUserModelsMethod_ThenItMergesTheTwoCollectionsIntoOneResult()
     {
         //Arrange
-        var expectedResult = new List<User>
+        var expectedResult = new List<Student>
         {
             new()
             {
-                Name = "Admin User",
-                Email = "admin@example.com",
-                Role = new Role
+                FirstName = "John",
+                LastName = "Doe",
+                Major = "Electrical Engineering",
+                StudentCourses = new List<Course>
                 {
-                    Name = "Admin",
-                }
-            },
-            new()
-            {
-                Name = "Author User",
-                Email = "author@example.com",
-                Role = new Role
-                {
-                    Name = "Author"
-                }
-            },
-            new()
-            {
-                Name = "Editor User",
-                Email = "editor@example.com",
-                Role = new Role
-                {
-                    Name = "Editor"
+                   new() {Name="Networks", Code = "ECEN 474"},
+                   new() {Name="Power Systems", Code = "ECEN 485"}
                 }
             }
         };
@@ -53,11 +37,6 @@ public class AggregationPipelineLiveTest
         //Assert
         Assert.That(actualResult, Is.Not.Null);
         Assert.That(actualResult, Has.Count.EqualTo(expectedResult.Count));
-        Assert.Multiple(() =>
-        {
-            Assert.That(actualResult[0], Is.EqualTo(expectedResult[0]));
-            Assert.That(actualResult[1], Is.EqualTo(expectedResult[1]));
-            Assert.That(actualResult[2], Is.EqualTo(expectedResult[2]));
-        });
+        Assert.That(actualResult[0].Equals(expectedResult[0]));
     }
 }
