@@ -2,12 +2,12 @@ namespace Tests;
 public class InvalidCharactersTests
 {
     // known invalid paths
-    private static readonly List<string> TestCaseSearch = new List<string> 
+    private static readonly IEnumerable<string> TestCaseSearch = new List<string> 
     {
-        "C://U\aser/Test/Stuff/Invali\bd>>>>?||?<<<<-\u0015-Chars",
-        "D://User/i\aLi?||?keToIn\bcludeINVALIDChars/*/ \u0015    z"
+        "C://User/Test/Stuff/Invalid>>>>?||?<<<<-\u0015-Chars",
+        "D://User/iLi?||?keToIncludeINVALIDChars/*/ \u0015    z"
     };
-    private static readonly List<string> TestCaseFilenames = new List<string>
+    private static readonly IEnumerable<string> TestCaseFilenames = new List<string>
     {
         "A://ValidPath/SomeFolder/Invalid??File??Broken.nah",
         "I://ProgramFiles/SomeApplication/:Invalid:Filename.txt"
@@ -35,14 +35,14 @@ public class InvalidCharactersTests
         var result = StringMethods.CheckForInvalid(TestCaseSearch, invalidPathChars);
         CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
-        
+
     [Test]
     public void WhenGivenlListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQ()
     {
         var result = StringMethods.CheckForInvalidLINQ(TestCaseSearch, invalidPathChars);
         CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
-        
+
     [Test]
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQHeaderFormat()
     {
@@ -61,15 +61,15 @@ public class InvalidCharactersTests
     public void WhenGivenListOfPaths_ThenGetFilenames()
     {
         var result = StringMethods.GetFileNames(TestCaseFilenames);
-        List<string> expected = new List<string>() 
-        {
-            "Invalid??File??Broken.nah",
-            ":Invalid:Filename.txt"
-        };
+        List<string> expected = new List<string>()
+    {
+        "Invalid??File??Broken.nah",
+        ":Invalid:Filename.txt"
+    };
 
         CollectionAssert.AreEquivalent(expected, result);
     }
-        
+
     [TestCaseSource(nameof(TestCaseFilenames))]
     public void WhenGivenInvalidFilenameList_ThenRemoveInvalidChars(string path)
     {
