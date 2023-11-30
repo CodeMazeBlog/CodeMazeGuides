@@ -1,5 +1,4 @@
-﻿namespace RemoveIllegalCharsFromPathAndFilenames;
-public static class StringMethods
+﻿public static class StringMethods
 {
     public static IEnumerable<string> CheckForInvalid(IEnumerable<string> strings, HashSet<char> criteria)
     {

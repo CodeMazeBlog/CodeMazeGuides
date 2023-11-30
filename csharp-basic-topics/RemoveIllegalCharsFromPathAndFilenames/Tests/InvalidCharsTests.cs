@@ -1,4 +1,3 @@
-namespace Tests;
 public class InvalidCharactersTests
 {
     // known invalid paths
@@ -12,22 +11,8 @@ public class InvalidCharactersTests
         "A://ValidPath/SomeFolder/Invalid??File??Broken.nah",
         "I://ProgramFiles/SomeApplication/:Invalid:Filename.txt"
     };
-    // OS Agnostic known invalid char hashsets
-    private static readonly HashSet<char> invalidPathChars = new HashSet<char>
-    {
-        '|', '\0', '\u0001', '\u0002', '\u0003', '\u0004', '\u0005', '\u0006', '\a',
-        '\b', '\t', '\n', '\v', '\f', '\r', '\u000e', '\u000f', '\u0010', '\u0011',
-        '\u0012', '\u0013', '\u0014', '\u0015', '\u0016', '\u0017', '\u0018',
-        '\u0019', '\u001a', '\u001b', '\u001c', '\u001d', '\u001e', '\u001f'
-    };
-    private static readonly HashSet<char> invalidFilenameChars = new HashSet<char>
-    {
-        '"', '<', '>', '|', '\0', '\u0001', '\u0002', '\u0003', '\u0004', '\u0005',
-        '\u0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\u000e', '\u000f',
-        '\u0010', '\u0011', '\u0012', '\u0013', '\u0014', '\u0015', '\u0016',
-        '\u0017', '\u0018', '\u0019', '\u001a', '\u001b', '\u001c', '\u001d',
-        '\u001e', '\u001f', ':', '*', '?', '\\', '/'
-    };
+    private static readonly HashSet<char> invalidPathChars = new HashSet<char>(Path.GetInvalidPathChars());
+    private static readonly HashSet<char> invalidFilenameChars = new HashSet<char>(Path.GetInvalidFileNameChars());
 
     [Test]
     public void WhenGivenListOfStrings_ThenFindStringsWithInvalidChars()
