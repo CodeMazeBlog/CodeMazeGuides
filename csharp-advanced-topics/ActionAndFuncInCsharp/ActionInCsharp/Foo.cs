@@ -12,7 +12,5 @@ public class Foo
 
             onStatusChanged(status);
         }
-
-        this.Status = status;
     }
 }
