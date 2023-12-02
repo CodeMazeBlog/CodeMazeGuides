@@ -1,7 +1,8 @@
+﻿using FuncInCsharp;
 
-namespace FuncInCsharp.Tests;
+namespace Tests;
 
-public class Tests
+public class FuncUnitTest
 {
     [Fact]
     public void WhenRecalculatedWithAddFiveFunc_ThenArrayElementsMustBeIncreasedByFive()
@@ -10,7 +11,7 @@ public class Tests
 
         Foo.Recalculate(values, (value) => value + 5);
 
-        Assert.Equal(new[] {5, 15, 25}, values);
+        Assert.Equal(new[] { 5, 15, 25 }, values);
     }
 
     [Fact]

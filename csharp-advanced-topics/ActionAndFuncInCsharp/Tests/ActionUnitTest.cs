@@ -1,9 +1,11 @@
-namespace ActionInCsharp.Tests;
+using ActionInCsharp;
 
-public class Tests
+namespace Tests;
+
+public class ActionUnitTest
 {
     [Fact]
-    public void WhenStatusIsChanged_ThenStatusChangedActionMustBeInvoked()
+    public void WhenStatusIsChanged_ThenCounterMustBeIncremented()
     {
         var counter = 0;
         var foo = new Foo();
@@ -14,11 +16,11 @@ public class Tests
     }
 
     [Fact]
-    public void WhenStatusIsNotChanged_ThenStatusChangedActionMustNotBeInvoked()
+    public void WhenStatusIsNotChanged_ThenCounterMustNotBeIncremented()
     {
         var counter = 0;
         var foo = new Foo();
-;
+
         foo.SetStatus(Status.Unknown, (status) => counter++);
 
         Assert.Equal(0, counter);
