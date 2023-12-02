@@ -62,10 +62,10 @@ public class InvalidCharactersTests
     {
         var result = StringMethods.GetFileNames(TestCaseFilenames);
         List<string> expected = new List<string>()
-    {
-        "Invalid??File??Broken.nah",
-        ":Invalid:Filename.txt"
-    };
+        {
+            "Invalid??File??Broken.nah",
+            ":Invalid:Filename.txt"
+        };
 
         CollectionAssert.AreEquivalent(expected, result);
     }
@@ -75,7 +75,6 @@ public class InvalidCharactersTests
     {
         var result = StringMethods.RemoveInvalidChars(path, invalidFilenameChars);
 
-        if (result.Any(invalidFilenameChars.Contains)) { Assert.Fail(); }
-        else { Assert.Pass(); }
+        Assert.IsFalse(result.Any(invalidFilenameChars.Contains));
     }
 }

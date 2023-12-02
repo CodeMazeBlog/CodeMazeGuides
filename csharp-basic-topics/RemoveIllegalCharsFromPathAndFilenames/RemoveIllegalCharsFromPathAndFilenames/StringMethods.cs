@@ -43,13 +43,11 @@ public static class StringMethods
 
     public static IEnumerable<string> GetFileNames(IEnumerable<string> paths)
     {
-        IEnumerable<string> result = new List<string>();
-
         return paths.Select(path => Path.GetFileName(path)).Where(path => !string.IsNullOrEmpty(path));
     }
 
     public static string RemoveInvalidChars(string path, HashSet<char> criteria)
     {
-        return criteria.Aggregate(path, (a, b) => a.Replace(b.ToString(), String.Empty));
+        return criteria.Aggregate(path, (a, b) => a.Replace(b.ToString(), string.Empty));
     }
 }
