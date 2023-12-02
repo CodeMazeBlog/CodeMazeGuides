@@ -15,7 +15,7 @@ namespace SerializeObjectToQueryStringUnitTests
             var expectedApiUrl = $"{BaseApiUrl}?Author=George+Orwell&Language=English";
 
             //Act
-            var result = QueryStringSerializer.SerializeObjectToQueryStringUsingReflection();
+            var result = QueryStringSerializer.CreateURLWithBookAsQueryParamsUsingReflection(BaseApiUrl, new Book());
 
             //Assert
             Assert.AreEqual(expectedApiUrl, result);
@@ -28,7 +28,7 @@ namespace SerializeObjectToQueryStringUnitTests
             var expectedApiUrl = $"{BaseApiUrl}?Author=George+Orwell&Language=English";
 
             //Act
-            var result = QueryStringSerializer.SerializeObjectToQueryStringUsingNewtonsoftJson();
+            var result = QueryStringSerializer.CreateURLWithBookAsQueryParamsUsingNewtonsoftJson(BaseApiUrl, new Book());
 
             //Assert
             Assert.AreEqual(expectedApiUrl, result);
@@ -41,7 +41,7 @@ namespace SerializeObjectToQueryStringUnitTests
             var expectedApiUrl = $"{BaseApiUrl}?Name=Laptop&Category=Electronics&Manufacturer.Location=Silicon+Valley";
 
             //Act
-            var result = QueryStringSerializer.SerializeNestedObjectToQueryString();
+            var result = QueryStringSerializer.CreateURLWithProductAsQueryParams(BaseApiUrl, new Product());
 
             //Assert
             Assert.AreEqual(expectedApiUrl, result);
@@ -54,7 +54,7 @@ namespace SerializeObjectToQueryStringUnitTests
             var expectedApiUrl = $"{BaseApiUrl}?FirstName=Smith&Age=25&Hobbies[0]=Reading&Hobbies[1]=Traveling&Hobbies[2]=Gaming";
 
             //Act
-            var result = QueryStringSerializer.SerializeObjectContainingArraysToQueryString();
+            var result = QueryStringSerializer.CreateURLWithPersonAsQueryParams(BaseApiUrl, new Person());
 
             //Assert
             Assert.AreEqual(expectedApiUrl, result);
