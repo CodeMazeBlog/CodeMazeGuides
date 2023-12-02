@@ -6,44 +6,34 @@ namespace SerializeObjectToQueryString
 {
     public static class QueryStringSerializer
     {
-        private const string BaseApiUrl = "https://test.com";
-        public static string SerializeObjectToQueryStringUsingReflection()
+        private static string SerializeObjectToQueryStringUsingReflection(Book book)
         {
-            var books = new Books();
+            var properties = from p in book
+                                 .GetType()
+                                 .GetProperties()
+                             where p.GetValue(book, null) != null
+                             select HttpUtility.UrlEncode(p.Name) + "=" 
+                             + HttpUtility.UrlEncode(p.GetValue(book)?.ToString());
 
-            var properties = from p in books
-                             .GetType()
-                             .GetProperties()
-                             where p.GetValue(books, null) != null
-                             select p.Name + "=" + HttpUtility.UrlEncode(p.GetValue(books)?.ToString());
-
-            var queryString = string.Join("&", properties.ToArray());
-
-            return $"{BaseApiUrl}?{queryString}";
+            return string.Join("&", properties.ToArray());
         }
 
-        public static string SerializeObjectToQueryStringUsingNewtonsoftJson()
+        private static string SerializeObjectToQueryStringUsingNewtonsoftJson(Book book)
         {
-            var books = new Books();
-
-            string jsonString = JsonConvert.SerializeObject(books);
+            string jsonString = JsonConvert.SerializeObject(book);
 
             var jsonObject = JObject.Parse(jsonString);
 
             var properties = jsonObject
                                 .Properties()
-                                .Where(p => p.Value != null)
-                                .Select(p => $"{HttpUtility.UrlEncode(p.Name)}={HttpUtility.UrlEncode(p.Value.ToString())}");
+                             .Where(p => p.Value != null)
+                             .Select(p => $"{HttpUtility.UrlEncode(p.Name)}={HttpUtility.UrlEncode(p.Value.ToString())}");
 
-            var queryString = string.Join("&", properties.ToArray());
-
-            return $"{BaseApiUrl}?{queryString}";
+            return string.Join("&", properties.ToArray());
         }
 
-        public static string SerializeNestedObjectToQueryString()
+        private static string SerializeNestedObjectToQueryString(Product product)
         {
-            var product = new Product();
-
             var finalQueryString = string.Join('&',
                   typeof(Product).GetProperties().SelectMany(property =>
                   {
@@ -67,13 +57,11 @@ namespace SerializeObjectToQueryString
                   })
               );
 
-            return $"{BaseApiUrl}?{finalQueryString}";
+            return finalQueryString;
         }
 
-        public static string SerializeObjectContainingArraysToQueryString()
+        private static string SerializeObjectContainingArraysToQueryString(Person person)
         {
-            var person = new Person();
-
             var queryString = typeof(Person).GetProperties()
             .SelectMany(property =>
             {
@@ -93,9 +81,35 @@ namespace SerializeObjectToQueryString
                 }
             });
 
-            string finalQueryString = string.Join("&", queryString);
+            return string.Join("&", queryString);
+        }
 
-            return $"{BaseApiUrl}?{finalQueryString}";
+        public static string CreateURLWithBookAsQueryParamsUsingReflection(string url, Book book)
+        {
+            var queryParams = SerializeObjectToQueryStringUsingReflection(book);
+
+            return $"{url}?{queryParams}";
+        }
+
+        public static string CreateURLWithBookAsQueryParamsUsingNewtonsoftJson(string url, Book book)
+        {
+            var queryParams = SerializeObjectToQueryStringUsingNewtonsoftJson(book);
+
+            return $"{url}?{queryParams}";
+        }
+
+        public static string CreateURLWithProductAsQueryParams(string url, Product product)
+        {
+            var queryParams = SerializeNestedObjectToQueryString(product);
+
+            return $"{url}?{queryParams}";
+        }
+
+        public static string CreateURLWithPersonAsQueryParams(string url, Person person)
+        {
+            var queryParams = SerializeObjectContainingArraysToQueryString(person);
+
+            return $"{url}?{queryParams}";
         }
     }
 }
