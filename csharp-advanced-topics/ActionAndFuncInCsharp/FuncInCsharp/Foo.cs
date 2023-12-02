@@ -1,21 +1,12 @@
 ﻿namespace FuncInCsharp;
 
-public class Foo
+public static class Foo
 {
-    public Foo(params int[] values)
+    public static void Recalculate(int[] values, Func<int, int> operation)
     {
-        this.values = values;
-    }
-
-    private readonly int[] values;
-
-    public IReadOnlyCollection<int> Values => this.values;
-
-    public void Recalculate(Func<int, int> operation)
-    {
-        for (var i = 0; i < this.values.Length; i++)
+        for (var i = 0; i < values.Length; i++)
         {
-            this.values[i] = operation(this.values[i]);
+            values[i] = operation(values[i]);
         }
     }
 }

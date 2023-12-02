@@ -6,11 +6,20 @@ public class Tests
     [Fact]
     public void WhenRecalculatedWithAddFiveFunc_ThenArrayElementsMustBeIncreasedByFive()
     {
-        var foo = new Foo(0, 10, 20);
-        foo.Recalculate(AddFive);
+        var values = new[] { 0, 10, 20 };
 
-        Assert.Equal(new[] {5, 15, 25}, foo.Values);
+        Foo.Recalculate(values, (value) => value + 5);
+
+        Assert.Equal(new[] {5, 15, 25}, values);
     }
 
-    private static int AddFive(int value) => value + 5;
+    [Fact]
+    public void WhenRecalculatedWithDoubleFunc_ThenArrayElementsMustBeDoubled()
+    {
+        var values = new[] { 0, 10, 20 };
+
+        Foo.Recalculate(values, (value) => value * 2);
+
+        Assert.Equal(new[] { 0, 20, 40 }, values);
+    }
 }

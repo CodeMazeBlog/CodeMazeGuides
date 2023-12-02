@@ -1,13 +1,8 @@
-﻿var values = new[] { 0, 10, 20 };
-Recalculate(values, Square);
+﻿using FuncInCsharp;
+
+var values = new[] { 0, 10, 20 };
+Foo.Recalculate(values, AddFive);
 
 Console.WriteLine(string.Join(' ', values));
-static void Recalculate(int[] values, Func<int, int> func)
-{
-    for (var i = 0; i < values.Length; i++)
-    {
-        values[i] = func(values[i]);
-    }
-}
 
-static int Square(int value) => value * value;
+static int AddFive(int value) => value + 5;
