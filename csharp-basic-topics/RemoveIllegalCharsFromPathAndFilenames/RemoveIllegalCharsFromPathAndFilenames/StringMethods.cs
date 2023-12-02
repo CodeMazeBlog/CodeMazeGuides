@@ -25,7 +25,7 @@ public static class StringMethods
         return strings.Where(str => str.Any(criteria.Contains));
     }
 
-    public static IEnumerable<string> CheckForInvalidLINQHeader(IEnumerable<string> strings, HashSet<char> criteria)
+    public static IEnumerable<string> CheckForInvalidLINQQuerySyntax(IEnumerable<string> strings, HashSet<char> criteria)
     {
         var result = from str in strings
                      where str.Any(criteria.Contains)

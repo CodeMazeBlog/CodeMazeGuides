@@ -41,7 +41,7 @@ public class Program
 
         Console.WriteLine();
         Console.WriteLine("LINQ - Header Format Result:");
-        foreach (var str in StringMethods.CheckForInvalidLINQHeader(pathList, invalidPathChars)) { Console.WriteLine(str); }
+        foreach (var str in StringMethods.CheckForInvalidLINQQuerySyntax(pathList, invalidPathChars)) { Console.WriteLine(str); }
 
         Console.WriteLine();
         Console.WriteLine("RegEx Result:");

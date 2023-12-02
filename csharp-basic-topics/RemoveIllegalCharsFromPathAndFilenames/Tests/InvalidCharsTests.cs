@@ -44,9 +44,9 @@ public class InvalidCharactersTests
     }
 
     [Test]
-    public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQHeaderFormat()
+    public void WhenGivenListOfStrings_ThenFindStringsWithInvalidCharsUsingLINQQuerySyntax()
     {
-        var result = StringMethods.CheckForInvalidLINQHeader(TestCaseSearch, invalidPathChars);
+        var result = StringMethods.CheckForInvalidLINQQuerySyntax(TestCaseSearch, invalidPathChars);
         CollectionAssert.AreEquivalent(TestCaseSearch, result);
     }
 
