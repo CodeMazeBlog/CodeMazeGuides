@@ -48,8 +48,8 @@ public class JavaScriptTests : IClassFixture<WebFactory>, IDisposable
 
         var button = _driver.FindElement(By.Id("testButton"));
 
-        var js = (IJavaScriptExecutor)_driver;
-        js.ExecuteScript("arguments[0].click();", button);
+        var jsExecutor = (IJavaScriptExecutor)_driver;
+        jsExecutor.ExecuteScript("arguments[0].click();", button);
     }
 
     [Fact]
@@ -57,9 +57,9 @@ public class JavaScriptTests : IClassFixture<WebFactory>, IDisposable
     {
         _driver.Navigate().GoToUrl(_webUrl + "/Home/Sync");
 
-        var js = (IJavaScriptExecutor)_driver;
+        var jsExecutor = (IJavaScriptExecutor)_driver;
         var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-        wait.Until(d => (bool)js.ExecuteScript("return document.readyState === 'complete';"));
+        wait.Until(d => (bool)jsExecutor.ExecuteScript("return document.readyState === 'complete';"));
 
         // Wait for the dynamic content to be loaded
         wait.Until(ExpectedConditions.TextToBePresentInElementLocated(By.Id("dynamicContent"), "Content Loaded"));
