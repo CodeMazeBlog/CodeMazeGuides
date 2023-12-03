@@ -6,18 +6,13 @@ namespace MultithreadedApplication.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool"
-        };
-
         private readonly ILogger<WeatherForecastController> _logger;
-
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
         }
 
+        // Get weather method
         [HttpGet(Name = "GetWeatherForecast")]
         public async Task<IEnumerable<WeatherForecast>> GetWeather()
         {
@@ -36,15 +31,21 @@ namespace MultithreadedApplication.Controllers
             {
                 Name = "Log Thread Two"
             };
+
             thread1.Start();
             thread2.Start();
 
             return returnedData;
         }
 
+
+        // Generate random data
         private IEnumerable<WeatherForecast> GenerateRandomWeather()
         {
+            string[] Summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool" };
+
             Thread.Sleep(3000);
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -59,7 +60,7 @@ namespace MultithreadedApplication.Controllers
             foreach (var item in wheaterList)
             {
                 Thread.Sleep(100);
-                _logger.LogInformation(item.TemperatureC.ToString());
+                _logger.LogInformation("Temperature: " + item.TemperatureC.ToString());
             }
         }
     }
