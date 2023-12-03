@@ -1,6 +1,4 @@
-﻿using JoinCollectionsAggregationPipeline.Models;
-
-namespace JoinCollectionsAggregationPipeline.Tests;
+﻿namespace JoinCollectionsAggregationPipeline.Tests;
 
 public class AggregationPipelineLiveTest
 {

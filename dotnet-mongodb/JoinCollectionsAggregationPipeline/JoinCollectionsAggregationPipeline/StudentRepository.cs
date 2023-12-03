@@ -21,15 +21,16 @@ public class StudentRepository
         var studentAggregationPipeline = _studentCollection.Aggregate();
 
         //Lookup
-        var studentsJoinedWithCoursesPipeline = studentAggregationPipeline.Lookup("Courses", "Courses", "_id", "StudentCourses");
+        var studentsJoinedWithCoursesPipeline = studentAggregationPipeline
+            .Lookup<Student, Student>("Courses", "Courses", "_id", "StudentCourses");
 
         //Project
-        var projection = Builders<BsonDocument>.Projection
+        var projection = Builders<Student>.Projection
             .Exclude("Courses");
 
-        var studentsWithoutCourseIdsPipeline = studentsJoinedWithCoursesPipeline.Project(projection);
+        var studentsWithoutCourseIdsPipeline = studentsJoinedWithCoursesPipeline.Project<Student>(projection);
 
-        var students = await studentsWithoutCourseIdsPipeline.As<Student>().ToListAsync();
+        var students = await studentsWithoutCourseIdsPipeline.ToListAsync();
 
         return students;
     }
