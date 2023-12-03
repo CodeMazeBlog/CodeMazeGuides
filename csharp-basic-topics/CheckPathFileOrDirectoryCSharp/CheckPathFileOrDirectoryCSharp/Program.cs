@@ -24,7 +24,7 @@ static void UseFileAndDirectory()
     Console.WriteLine($"{testFile}: isFile = {isFile}, isDirectory = {isDirectory}\n");
 
     // directory
-    var testDirectory = Path.Combine(Path.GetTempPath(), "test_directory1.abc");
+    var testDirectory = Path.Combine(Path.GetTempPath(), "test_directory1");
     Directory.CreateDirectory(testDirectory);
 
     isFile = File.Exists(testDirectory);
@@ -64,7 +64,7 @@ static void UseFileInfoAndDirectoryInfo()
     Console.WriteLine($"{testFile}: isFile = {isFile}, isDirectory = {isDirectory}\n");
 
     // directory
-    var testDirectory = Path.Combine(Path.GetTempPath(), "test_directory2.abc");
+    var testDirectory = Path.Combine(Path.GetTempPath(), "test_directory2");
     Directory.CreateDirectory(testDirectory);
 
     fileInfo = new FileInfo(testDirectory);
@@ -131,7 +131,7 @@ static void UseFileAttributes()
     Console.WriteLine($"{testFile}: isFile = {isFile}, isDirectory = {isDirectory}\n");
 
     // directory
-    var testDirectory = Path.Combine(Path.GetTempPath(), "test_directory4.abc");
+    var testDirectory = Path.Combine(Path.GetTempPath(), "test_directory4");
     Directory.CreateDirectory(testDirectory);
 
     attributes = File.GetAttributes(testDirectory);

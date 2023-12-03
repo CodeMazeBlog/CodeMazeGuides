@@ -6,7 +6,7 @@
         [TestMethod]
         public void WhenPathIsDirectory_ThenHasDirectoryAttribute()
         {
-            string path = Path.Combine(Path.GetTempPath(), "test_directory_2.abc");
+            string path = Path.Combine(Path.GetTempPath(), "test_directory_2");
             Directory.CreateDirectory(path);
 
             var attributes = File.GetAttributes(path);

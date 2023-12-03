@@ -6,7 +6,7 @@
         [TestMethod]
         public void WhenPathIsDirectory_ThenDirectoryExistsIsTrue()
         {
-            string path = Path.Combine(Path.GetTempPath(), "test_directory_3.abc");
+            string path = Path.Combine(Path.GetTempPath(), "test_directory_3");
             Directory.CreateDirectory(path);
 
             var fileInfo = new FileInfo(path);
