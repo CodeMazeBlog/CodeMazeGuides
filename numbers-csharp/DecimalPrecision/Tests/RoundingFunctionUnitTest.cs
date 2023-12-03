@@ -33,45 +33,6 @@ public class RoundingFunctionUnitTest
     }
     
     [Theory]
-    [InlineData(123.456789, 123.46)] 
-    [InlineData(123.455, 123.46)]
-    [InlineData(123.454, 123.45)]
-    public void GetDecimalRoundValue_WhenMidPointRoundingToEven(decimal input, decimal expected)
-    {
-        // Act
-        var result = RoundingFunction.GetDecimalRoundValuesUsingMidPointRoundingModelToEven(input);
-
-        // Assert
-        Assert.Equal(expected, result);
-    }
-
-    [Theory]
-    [InlineData(123.456789, 123.46)]
-    [InlineData(123.455, 123.46)] 
-    [InlineData(123.454, 123.45)] 
-    public void GetDecimalRoundValue_WhenMidPointRoundingAwayFromZero(decimal input, decimal expected)
-    {
-        // Act
-        var result = RoundingFunction.GetDecimalRoundValuesUsingMidPointRoundingModelAwayFromZero(input);
-
-        // Assert
-        Assert.Equal(expected, result);
-    }
-    
-    [Theory]
-    [InlineData(123.456789, 123.45)]
-    [InlineData(123.455, 123.45)]  
-    [InlineData(123.454, 123.45)] 
-    public void GetDecimalRoundValue_WhenMidPointRoundingToZero(decimal input, decimal expected)
-    {
-        // Act
-        var result = RoundingFunction.GetDecimalRoundValuesUsingMidPointRoundingModelToZero(input);
-
-        // Assert
-        Assert.Equal(expected, result);
-    }
-    
-    [Theory]
     [InlineData(12.3456, 12)]
     [InlineData(8.6789, 8)]
     [InlineData(7.0, 7)]
