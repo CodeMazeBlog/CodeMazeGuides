@@ -1,19 +1,17 @@
 ﻿namespace JoinCollectionsAggregationPipeline.Tests;
 
-public class AggregationPipelineLiveTest
+public class AggregationPipelineLiveTest : IAsyncLifetime
 {
-    private readonly StudentRepository _sut;
+    private StudentRepository _sut;
+    private readonly MongoDbContainer _mongoDbContainer =
+        new MongoDbBuilder().Build();
 
-    public AggregationPipelineLiveTest()
-    {
-        _sut = new StudentRepository();
-    }
-
-    [Test]
-    public async Task
-    GivenIHaveUsersAndRolesCollectionsInMongoDB_WhenICallTheGetUserModelsMethod_ThenItMergesTheTwoCollectionsIntoOneResult()
+    [Fact]
+    public async Task GivenIHaveUsersAndRolesCollectionsInMongoDB_WhenICallTheGetUserModelsMethod_ThenItMergesTheTwoCollectionsIntoOneResult()
     {
         //Arrange
+        var mongoClient = new MongoClient(_mongoDbContainer.GetConnectionString());
+        _sut = new StudentRepository(mongoClient);
         var expectedResult = new List<Student>
         {
             new()
@@ -29,12 +27,51 @@ public class AggregationPipelineLiveTest
             }
         };
 
+        var database = mongoClient.GetDatabase(DatabaseConfiguration.DatabaseName);
+        var courseCollection = database.GetCollection<BsonDocument>("Courses");
+        var studentCollection = database.GetCollection<BsonDocument>("Students");
+        courseCollection.InsertMany(new List<BsonDocument>
+        {
+            new()
+            {
+                { "_id", new ObjectId("655e134180c300fcdd067d24") } ,
+                { "Name", "Networks" },
+                { "Code", "ECEN 474" }
+            },
+            new()
+            {
+                { "_id", new ObjectId("655e134180c300fcdd067d25") } ,
+                { "Name", "Power Systems" },
+                { "Code", "ECEN 485" }
+            }
+        });
+
+        studentCollection.InsertMany(new List<BsonDocument>
+        {
+            new()
+            {
+                { "FirstName", "John" },
+                { "LastName", "Doe" },
+                { "Major", "Electrical Engineering" },
+                { "Courses", new BsonArray {  
+                    new ObjectId("655e134180c300fcdd067d24"), 
+                    new ObjectId("655e134180c300fcdd067d25") 
+                } }
+            }
+        });
+        
+
         //Act
         var actualResult = await _sut.GetAllUsers();
 
         //Assert
-        Assert.That(actualResult, Is.Not.Null);
-        Assert.That(actualResult, Has.Count.EqualTo(expectedResult.Count));
-        Assert.That(actualResult[0].Equals(expectedResult[0]));
+        Assert.NotNull(actualResult);
+        Assert.Equal(expectedResult.Count, actualResult.Count);
+        Assert.True(actualResult[0].Equals(expectedResult[0]));
     }
+
+    public Task InitializeAsync()
+        => _mongoDbContainer.StartAsync();
+    public Task DisposeAsync()
+        => _mongoDbContainer.DisposeAsync().AsTask();
 }
