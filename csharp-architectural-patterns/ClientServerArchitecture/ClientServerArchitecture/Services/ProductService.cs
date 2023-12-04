@@ -1,25 +1,38 @@
 ﻿using ClientServerArchitecture.Data_Access;
 using ClientServerArchitecture.Models;
 
-namespace ClientServerArchitecture.Services
+namespace ClientServerArchitecture.Services;
+
+public class ProductService : IProductService
 {
-    public class ProductService : IProductService
+    private readonly ProductRepository _productRepository;
+
+    public ProductService(ProductRepository productRepository)
     {
-        private readonly ProductRepository _productRepository;
+        _productRepository = productRepository;
+    }
 
-        public ProductService(ProductRepository productRepository)
+    public List<Product> GetProducts()
+    {
+        return _productRepository.GetProducts();
+    }
+
+    public void AddProduct(Product product)
+    {
+        _productRepository.AddProduct(product);
+    }
+
+    public void ApplyDiscount(decimal discountPercentage)
+    {
+        var products = _productRepository.GetProducts();
+
+        foreach (var product in products)
         {
-            _productRepository = productRepository;
+            var discountedPrice = product.Price - (product.Price * discountPercentage / 100);
+
+            product.Price = discountedPrice;
         }
 
-        public List<Product> GetProducts()
-        {
-            return _productRepository.GetProducts();
-        }
-
-        public void AddProduct(Product product)
-        {
-            _productRepository.AddProduct(product);
-        }
+        _productRepository.SaveChanges();
     }
 }

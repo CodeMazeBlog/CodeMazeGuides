@@ -2,49 +2,47 @@ using ClientServerArchitecture.Models;
 using ClientServerArchitecture.Pages;
 using ClientServerArchitecture.Services;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
 
-namespace Tests
+namespace Tests;
+
+public class ProductTests
 {
-    public class ProductTests
+    [Fact]
+    public void GivenProducts_WhenOnGet_ThenReturnAllProducts()
     {
-        [Fact]
-        public void GivenProducts_WhenOnGet_ThenReturnAllProducts()
+        var productServiceMock = new Mock<IProductService>();
+        var products = new List<Product>
         {
-            var productServiceMock = new Mock<IProductService>();
-            var products = new List<Product>
-            {
-                new Product { Id = 1, Name = "Headphones", Price = 79.99m, Quantity = 50 },
-                new Product { Id = 1, Name = "Fitness Tracker", Price = 59.99m, Quantity = 40 }
-            };
+            new Product { Id = 1, Name = "Headphones", Price = 79.99m, Quantity = 50 },
+            new Product { Id = 1, Name = "Fitness Tracker", Price = 59.99m, Quantity = 40 }
+        };
 
-            productServiceMock.Setup(x => x.GetProducts()).Returns(products);
+        productServiceMock.Setup(x => x.GetProducts()).Returns(products);
 
-            var indexModel = new IndexModel(productServiceMock.Object);
+        var indexModel = new IndexModel(productServiceMock.Object);
 
-            indexModel.OnGet();
+        indexModel.OnGet();
 
-            Assert.NotNull(indexModel.Products);
+        Assert.NotNull(indexModel.Products);
 
-            Assert.Equal(products, indexModel.Products);
-        }
+        Assert.Equal(products, indexModel.Products);
+    }
 
-        [Fact]
-        public void GivenValidProduct_WhenOnPost_ThenAddProductAndRedirectToIndex()
-        {
-            var productServiceMock = new Mock<IProductService>();
-            var createModel = new CreateModel(productServiceMock.Object);
-            createModel.Product = new Product { Id = 1, Name = "Headphones", Price = 79.99m, Quantity = 50 };
+    [Fact]
+    public void GivenValidProduct_WhenOnPost_ThenAddProductAndRedirectToIndex()
+    {
+        var productServiceMock = new Mock<IProductService>();
+        var createModel = new CreateModel(productServiceMock.Object);
+        createModel.Product = new Product { Id = 1, Name = "Headphones", Price = 79.99m, Quantity = 50 };
 
-            var result = createModel.OnPost();
+        var result = createModel.OnPost();
 
-            Assert.IsType<RedirectToPageResult>(result);
+        Assert.IsType<RedirectToPageResult>(result);
 
-            productServiceMock.Verify(service => service.AddProduct(It.IsAny<Product>()), Times.Once);
+        productServiceMock.Verify(service => service.AddProduct(It.IsAny<Product>()), Times.Once);
 
-            var redirectResult = Assert.IsType<RedirectToPageResult>(result);
+        var redirectResult = Assert.IsType<RedirectToPageResult>(result);
 
-            Assert.Equal("/Index", redirectResult.PageName);
-        }
+        Assert.Equal("/Index", redirectResult.PageName);
     }
 }
