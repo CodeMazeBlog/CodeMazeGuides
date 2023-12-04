@@ -3,32 +3,31 @@ using ClientServerArchitecture.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ClientServerArchitecture.Pages
+namespace ClientServerArchitecture.Pages;
+
+public class CreateModel : PageModel
 {
-    public class CreateModel : PageModel
+    private readonly IProductService _productService;
+
+    [BindProperty]
+    public Product Product { get; set; }
+
+    public CreateModel(IProductService productService)
     {
-        private readonly IProductService _productService;
+        _productService = productService;
+    }
 
-        [BindProperty]
-        public Product Product { get; set; }
+    public void OnGet() { }
 
-        public CreateModel(IProductService productService)
+    public IActionResult OnPost()
+    {
+        if (!ModelState.IsValid)
         {
-            _productService = productService;
+            return Page();
         }
 
-        public void OnGet() { }
+        _productService.AddProduct(Product);
 
-        public IActionResult OnPost()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
-            _productService.AddProduct(Product);
-
-            return RedirectToPage("/Index");
-        }
+        return RedirectToPage("/Index");
     }
 }

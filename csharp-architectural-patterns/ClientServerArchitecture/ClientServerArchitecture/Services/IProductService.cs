@@ -1,10 +1,10 @@
 ﻿using ClientServerArchitecture.Models;
 
-namespace ClientServerArchitecture.Services
+namespace ClientServerArchitecture.Services;
+
+public interface IProductService
 {
-    public interface IProductService
-    {
-        List<Product> GetProducts();
-        void AddProduct(Product product);
-    }
+    List<Product> GetProducts();
+    void AddProduct(Product product);
+    void ApplyDiscount(decimal discountPercentage);
 }
