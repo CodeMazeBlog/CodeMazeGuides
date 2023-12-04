@@ -15,7 +15,7 @@ namespace ActionAndFuncInCSharpUnitTests
         }
 
         [Test]
-        public void PrintAMessage_ShouldPrintHello()
+        public void WhenCallPrintAMessage_ThenPrintsHello()
         {
             _actionMethods.PrintAMessage();
 
@@ -23,7 +23,7 @@ namespace ActionAndFuncInCSharpUnitTests
         }
 
         [Test]
-        public void PrintAMessage_ShouldPrintCustomGreeting()
+        public void WhenCallPrintAHelloMessage_ThenPrintsCustomGreeting()
         {
             _actionMethods.PrintAHelloMessage();
 
@@ -31,7 +31,7 @@ namespace ActionAndFuncInCSharpUnitTests
         }
 
         [Test]
-        public void PrintAMessage_ShouldPrintMoreGreetings()
+        public void WhenCallPrintMoreHelloMessages_ThenPrintsMoreGreetings()
         {
             _actionMethods.PrintMoreHelloMessages();
 

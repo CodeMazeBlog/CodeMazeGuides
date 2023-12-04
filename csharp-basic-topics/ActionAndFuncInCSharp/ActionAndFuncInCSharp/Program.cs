@@ -26,6 +26,7 @@
             Console.Write("> ");
             actionMethods.PrintMoreHelloMessages();
             Console.WriteLine();
+            Console.WriteLine();
 
             Console.WriteLine("Now let's see some Func delegates.");
             Console.WriteLine();

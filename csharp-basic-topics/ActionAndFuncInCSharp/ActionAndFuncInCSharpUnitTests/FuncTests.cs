@@ -15,7 +15,7 @@ namespace ActionAndFuncInCSharpUnitTests
         }
 
         [Test]
-        public void PrintANumber_ShouldPrint42()
+        public void WhenCallPrintANumber_ThenPrints42()
         {
             _funcMethods.PrintANumber();
 
@@ -23,7 +23,7 @@ namespace ActionAndFuncInCSharpUnitTests
         }
 
         [Test]
-        public void SquareANumber_ShouldPrint4()
+        public void WhenCallSquareANumber_ThenPrints4()
         {
             _funcMethods.SquareANumber();
 
@@ -31,7 +31,7 @@ namespace ActionAndFuncInCSharpUnitTests
         }
 
         [Test]
-        public void SquareAnotherNumber_ShouldPrint100()
+        public void WhenCallSquareAnotherNumber_ThenPrints100()
         {
             _funcMethods.SquareAnotherNumber();
 
@@ -39,7 +39,7 @@ namespace ActionAndFuncInCSharpUnitTests
         }
 
         [Test]
-        public void CheckANumber_ShouldPrintFalse()
+        public void WhenCallCheckANumber_ThenPrintsFalse()
         {
             _funcMethods.CheckANumber();
 

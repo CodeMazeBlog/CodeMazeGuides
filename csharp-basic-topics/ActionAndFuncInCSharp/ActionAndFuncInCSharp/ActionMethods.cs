@@ -13,19 +13,19 @@
         {
             Action<string> print = x => _console.WriteLine(x);
 
-            print("Hello"); // prints "Hello" to the console
+            print("Hello");
         }
 
         public void PrintAHelloMessage()
         {
             Action<string> myHelloAction = SayHello;
 
-            myHelloAction("Code Maze"); // prints "Hello, Code Maze!" to the console
+            myHelloAction("Code Maze");
         }
 
         public void PrintMoreHelloMessages()
         {
-            SayHelloToEveryone(SayHello, new string[3] { "Bob", "Joe", "Mary" }); // prints "Hello, Bob! Hello, Joe! Hello, Mary!"
+            SayHelloToEveryone(SayHello, new string[3] { "Bob", "Joe", "Mary" });
         }
 
         private void SayHello(string name)
