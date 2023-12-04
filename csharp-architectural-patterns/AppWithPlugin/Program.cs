@@ -1,12 +1,5 @@
 ﻿using PlugInBase;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Reflection;
-
-// IDEA: weather reporting app. plug in can read out a different
-// metric. like rain chance, wind speed, temperature, pressure etc...
 
 namespace AppWithPlugin
 {

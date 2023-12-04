@@ -4,7 +4,7 @@ namespace TemperatureCommand;
 
 public class TemperatureCommand : ICommand
 {
-    public TemperatureCommand();
+    public TemperatureCommand() { }
 
     public string Name { get => "temperature"; }
     public string Description { get => "Displays high and low temperatures for the users location."; }
