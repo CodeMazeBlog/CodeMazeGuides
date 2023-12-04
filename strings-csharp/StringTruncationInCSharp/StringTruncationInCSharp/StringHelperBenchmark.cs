@@ -7,76 +7,52 @@ namespace StringTruncationInCSharp
     [RankColumn]
     public class StringHelperBenchmark
     {
-        private string _originalString = "This is a long string.";
+        private string _originalString = new string('a',1_000);
         private static readonly StringHelper _stringHelper = new StringHelper();
 
-        [Params(0.01, 0.10, 0.50, 0.95)]
-        public double MaxLengthPercentage;
-    
-        [GlobalSetup]
-        public void Setup()
-        {
-            _originalString = GetDummyStringToTestBenchmark();
-        }
-
-
+        [Params(10,500,950)] //The test is done for 1%, 50% and 95% of the string length. The string length being 1000.
+        public int maxLength;
+        
         [Benchmark]
-        public void TruncateStringUsingSubstring()
+        public void TruncateWithSubstring()
         {
-            int maxLength = (int)(_originalString.Length * MaxLengthPercentage);
-
-            _stringHelper.TruncateStringUsingSubstring(_originalString, maxLength);
+            _stringHelper.TruncateWithSubstring(_originalString, maxLength);
         }
 
         [Benchmark]
-        public void TruncateStringUsingForLoop()
+        public void TruncateWithForLoop()
         {
-            int maxLength = (int)(_originalString.Length * MaxLengthPercentage);
-
-            _stringHelper.TruncateStringUsingForLoop(_originalString, maxLength);
+            _stringHelper.TruncateWithForLoop(_originalString, maxLength);
         }
 
         [Benchmark]
-        public void TruncateStringUsingForLoopWithStringBuilder()
+        public void TruncateWithForLoopStringBuilder()
         {
-            int maxLength = (int)(_originalString.Length * MaxLengthPercentage);
-            _stringHelper.TruncateStringUsingForLoopWithStringBuilder(_originalString, maxLength);
+            _stringHelper.TruncateWithForLoopStringBuilder(_originalString, maxLength);
         }
 
         [Benchmark]
-        public void TruncateStringUsingRegularExpressions()
+        public void TruncateWithRegularExpressions()
         {
-            int maxLength = (int)(_originalString.Length * MaxLengthPercentage);
-            _stringHelper.TruncateStringUsingRegularExpressions(_originalString, maxLength);
+            _stringHelper.TruncateWithRegularExpressions(_originalString, maxLength);
         }
 
         [Benchmark]
-        public void TruncateStringUsingRemove()
+        public void TruncateWithRemove()
         {
-            int maxLength = (int)(_originalString.Length * MaxLengthPercentage);
-
-            _stringHelper.TruncateStringUsingRemove(_originalString, maxLength);
+            _stringHelper.TruncateWithRemove(_originalString, maxLength);
         }
 
         [Benchmark]
-        public void TruncateStringUsingLINQ()
+        public void TruncateWithLINQ()
         {
-            int maxLength = (int)(_originalString.Length * MaxLengthPercentage);
-
-            _stringHelper.TruncateStringUsingLINQ(_originalString, maxLength);
+            _stringHelper.TruncateWithLINQ(_originalString, maxLength);
         }
 
         [Benchmark]
-        public void TruncateStringUsingSpan()
+        public void TruncateWithSpan()
         {
-            int maxLength = (int)(_originalString.Length * MaxLengthPercentage);
-
-            _stringHelper.TruncateStringUsingSpan(_originalString, maxLength);
-        }
-
-        private string GetDummyStringToTestBenchmark()
-        {
-            return "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N";
+            _stringHelper.TruncateWithSpan(_originalString, maxLength);
         }
     }
 }
