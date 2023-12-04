@@ -6,10 +6,10 @@ using OpenQA.Selenium.Edge;
 
 namespace SelectDropdownOptionUsingSeleniumWebDriverTests;
 
-public class LiveTest
+public class SelectDropdownElementLiveTest
 {
     [Fact]
-    public void GivenTestInChrome_WhenDropdownElementIsSelectedByText_OptionValueIsReturned()
+    public void GivenTestInChrome_WhenDropdownElementIsSelectedByText_ThenOptionValueIsReturned()
     {
         IWebDriver driver = new ChromeDriver();
 
@@ -27,7 +27,7 @@ public class LiveTest
     }
 
     [Fact]
-    public void GivenTestInChrome_WhenDropdownElementIsSelectedByIndex_OptionValueIsReturned()
+    public void GivenTestInChrome_WhenDropdownElementIsSelectedByIndex_ThenOptionValueIsReturned()
     {
         IWebDriver driver = new ChromeDriver();
 
@@ -45,7 +45,7 @@ public class LiveTest
     }
 
     [Fact]
-    public void GivenTestInChrome_WhenDropdownElementIsSelectedByValue_OptionValueIsReturned()
+    public void GivenTestInChrome_WhenDropdownElementIsSelectedByValue_ThenOptionValueIsReturned()
     {
         IWebDriver driver = new ChromeDriver();
 
@@ -63,7 +63,7 @@ public class LiveTest
     }
 
     [Fact]
-    public void GivenTestInChrome_WhenDropdownElementIsSelectedByXPath_OptionValueIsReturned()
+    public void GivenTestInChrome_WhenDropdownElementIsSelectedByXPath_ThenOptionValueIsReturned()
     {
         IWebDriver driver = new ChromeDriver();
 
@@ -80,7 +80,7 @@ public class LiveTest
     }
 
     [Fact]
-    public void GivenTestInFirefox_WhenDropdownElementIsSelectedByText_OptionValueIsReturned()
+    public void GivenTestInFirefox_WhenDropdownElementIsSelectedByText_ThenOptionValueIsReturned()
     {
         FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
 
@@ -100,7 +100,7 @@ public class LiveTest
     }
 
     [Fact]
-    public void GivenTestInEdge_WhenDropdownElementIsSelectedByText_OptionValueIsReturned()
+    public void GivenTestInEdge_WhenDropdownElementIsSelectedByText_ThenOptionValueIsReturned()
     {
         EdgeDriverService service = EdgeDriverService.CreateDefaultService();
 
