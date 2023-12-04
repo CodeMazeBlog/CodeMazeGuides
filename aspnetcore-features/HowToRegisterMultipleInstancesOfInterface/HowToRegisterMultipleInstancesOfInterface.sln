@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToRegisterMultipleInstancesOfInterface.Api", "HowToRegisterMultipleInstancesOfInterface.Api\HowToRegisterMultipleInstancesOfInterface.Api.csproj", "{7E8D7B20-2105-466D-B9FA-9301712B712F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver", "HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver\HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver.csproj", "{7E8D7B20-2105-466D-B9FA-9301712B712F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToRegisterMultipleInstancesOfInterface.ApiTests", "HowToRegisterMultipleInstancesOfInterface.ApiTests\HowToRegisterMultipleInstancesOfInterface.ApiTests.csproj", "{A6D6A52E-F31F-441D-8F5E-747DE0D43D76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToRegisterMultipleInstancesOfInterface.Api.Redesign", "HowToRegisterMultipleInstancesOfInterface.Api.Redesign\HowToRegisterMultipleInstancesOfInterface.Api.Redesign.csproj", "{3597C1DF-90C3-4421-9855-9BD88A69BEFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,9 +14,9 @@ Global
 		{7E8D7B20-2105-466D-B9FA-9301712B712F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E8D7B20-2105-466D-B9FA-9301712B712F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E8D7B20-2105-466D-B9FA-9301712B712F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A6D6A52E-F31F-441D-8F5E-747DE0D43D76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A6D6A52E-F31F-441D-8F5E-747DE0D43D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A6D6A52E-F31F-441D-8F5E-747DE0D43D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A6D6A52E-F31F-441D-8F5E-747DE0D43D76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3597C1DF-90C3-4421-9855-9BD88A69BEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3597C1DF-90C3-4421-9855-9BD88A69BEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3597C1DF-90C3-4421-9855-9BD88A69BEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3597C1DF-90C3-4421-9855-9BD88A69BEFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

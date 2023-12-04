@@ -1,15 +1,15 @@
-using HowToRegisterMultipleInstancesOfInterface.Api.Interfaces;
+using HowToRegisterMultipleInstancesOfInterface.Api.Redesign.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HowToRegisterMultipleInstancesOfInterface.Api.Controllers;
+namespace HowToRegisterMultipleInstancesOfInterface.Api.Redesign.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class PostalController : ControllerBase
+public class BarcodeController : ControllerBase
 {
     private readonly IFulfillTickets _processor;
-
-    public PostalController(IFulfillTickets processor)
+    
+    public BarcodeController(IFulfillBarcodeTickets processor)
     {
         _processor = processor;
     }

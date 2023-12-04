@@ -5,12 +5,13 @@ namespace HowToRegisterMultipleInstancesOfInterface.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class BarcodeController : ControllerBase
+public class SmartcardController : ControllerBase
 {
     private readonly IFulfillTickets _processor;
-    public BarcodeController(IFulfillTickets processor)
+
+    public SmartcardController(FulfillmentProcessorResolver serviceResolver)
     {
-        _processor = processor;
+        _processor = serviceResolver("smartcard");
     }
 
     [HttpPost()]

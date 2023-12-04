@@ -1,5 +1,5 @@
-using HowToRegisterMultipleInstancesOfInterface.Api.Interfaces;
-using HowToRegisterMultipleInstancesOfInterface.Api.Processors;
+using HowToRegisterMultipleInstancesOfInterface.Api.Redesign.Interfaces;
+using HowToRegisterMultipleInstancesOfInterface.Api.Redesign.Processors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,12 +10,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IFulfillTickets, PostalFulfillmentProcessor>();
-builder.Services.AddTransient<IFulfillTickets, BarcodeFulfillmentProcessor>();
-builder.Services.AddTransient<IFulfillTickets, SmartcardFulfillmentProcessor>();
+builder.Services.AddTransient<IFulfillPostlaTickets, PostalFulfillmentProcessor>();
+builder.Services.AddTransient<IFulfillBarcodeTickets, BarcodeFulfillmentProcessor>();
+builder.Services.AddTransient<IFulfillSmartcardTickets, SmartcardFulfillmentProcessor>();
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

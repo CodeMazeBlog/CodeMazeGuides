@@ -1,0 +1,3 @@
+﻿using HowToRegisterMultipleInstancesOfInterface.Api.Interfaces;
+
+public delegate IFulfillTickets FulfillmentProcessorResolver(string key);
