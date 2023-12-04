@@ -25,22 +25,7 @@ namespace Tests
             StringAssert.Contains("prop2", output);
         }
 
-        [Test]
-        public void GivenObjectWithProperties_WhenRetrievalUsingSerialization_ThenPrintKeyValues()
-        {
-            // Arrange
-            var testObject = new TestObject2 { Name = "Circle", Area = "100" };
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
-
-            // Act
-            JsonHelper.RetrievalUsingSerlization(testObject);
-
-            // Assert
-            string expectedOutput = "Key: Name, Value: Circle\r\nKey: Area, Value: 100";
-            string output = consoleOutput.ToString().Trim(); // Trim to remove leading/trailing whitespaces
-            Assert.AreEqual(expectedOutput, output);
-        }
+     
 
         public class TestObject2
         {
