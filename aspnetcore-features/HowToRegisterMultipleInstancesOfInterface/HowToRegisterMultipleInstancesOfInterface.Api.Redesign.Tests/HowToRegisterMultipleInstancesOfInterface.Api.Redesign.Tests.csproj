@@ -11,10 +11,16 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0"/>
+        <PackageReference Include="NSubstitute" Version="5.1.0" />
         <PackageReference Include="NUnit" Version="3.13.3"/>
         <PackageReference Include="NUnit3TestAdapter" Version="4.4.2"/>
         <PackageReference Include="NUnit.Analyzers" Version="3.6.1"/>
         <PackageReference Include="coverlet.collector" Version="3.2.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\HowToRegisterMultipleInstancesOfInterface.Api.Redesign\HowToRegisterMultipleInstancesOfInterface.Api.Redesign.csproj" />
+      <ProjectReference Include="..\HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver\HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver.csproj" />
     </ItemGroup>
 
 </Project>

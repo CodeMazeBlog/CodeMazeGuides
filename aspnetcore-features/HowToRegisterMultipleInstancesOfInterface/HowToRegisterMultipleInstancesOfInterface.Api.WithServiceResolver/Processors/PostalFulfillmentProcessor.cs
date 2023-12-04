@@ -1,6 +1,6 @@
-﻿using HowToRegisterMultipleInstancesOfInterface.Api.Interfaces;
+﻿using HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver.Interfaces;
 
-namespace HowToRegisterMultipleInstancesOfInterface.Api.Processors;
+namespace HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver.Processors;
 
 public class PostalFulfillmentProcessor : IFulfillTickets
 {

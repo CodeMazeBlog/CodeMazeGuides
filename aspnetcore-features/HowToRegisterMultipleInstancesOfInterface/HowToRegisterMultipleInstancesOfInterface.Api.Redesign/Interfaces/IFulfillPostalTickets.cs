@@ -1,4 +1,4 @@
 ﻿namespace HowToRegisterMultipleInstancesOfInterface.Api.Redesign.Interfaces;
 
-public interface IFulfillPostlaTickets : IFulfillTickets
+public interface IFulfillPostalTickets : IFulfillTickets
 {}

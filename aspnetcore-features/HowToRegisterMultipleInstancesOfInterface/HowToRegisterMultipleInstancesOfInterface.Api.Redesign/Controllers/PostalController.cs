@@ -9,13 +9,13 @@ public class PostalController : ControllerBase
 {
     private readonly IFulfillTickets _processor;
 
-    public PostalController(IFulfillPostlaTickets processor)
+    public PostalController(IFulfillPostalTickets processor)
     {
         _processor = processor;
     }
 
     [HttpPost()]
-    public ActionResult Post([FromBody] string requestId)
+    public ActionResult<string> Post([FromBody] string requestId)
     {
         return Ok(_processor.Fulfill(requestId));
     }

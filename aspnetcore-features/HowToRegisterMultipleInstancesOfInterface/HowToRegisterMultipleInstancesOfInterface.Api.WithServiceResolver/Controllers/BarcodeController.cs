@@ -1,7 +1,7 @@
-using HowToRegisterMultipleInstancesOfInterface.Api.Interfaces;
+using HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HowToRegisterMultipleInstancesOfInterface.Api.Controllers;
+namespace HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver.Controllers;
 
 [ApiController]
 [Route("[controller]")]
@@ -14,7 +14,7 @@ public class BarcodeController : ControllerBase
     }
 
     [HttpPost()]
-    public ActionResult Post([FromBody] string requestId)
+    public ActionResult<string> Post([FromBody] string requestId)
     {
         return Ok(_processor.Fulfill(requestId));
     }

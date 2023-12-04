@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IFulfillPostlaTickets, PostalFulfillmentProcessor>();
+builder.Services.AddTransient<IFulfillPostalTickets, PostalFulfillmentProcessor>();
 builder.Services.AddTransient<IFulfillBarcodeTickets, BarcodeFulfillmentProcessor>();
 builder.Services.AddTransient<IFulfillSmartcardTickets, SmartcardFulfillmentProcessor>();
 

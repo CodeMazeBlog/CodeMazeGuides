@@ -1,5 +1,4 @@
-using HowToRegisterMultipleInstancesOfInterface.Api.Interfaces;
-using HowToRegisterMultipleInstancesOfInterface.Api.Processors;
+using HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver.Processors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +9,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IFulfillTickets, PostalFulfillmentProcessor>();
-builder.Services.AddTransient<IFulfillTickets, BarcodeFulfillmentProcessor>();
-builder.Services.AddTransient<IFulfillTickets, SmartcardFulfillmentProcessor>();
+builder.Services.AddTransient<PostalFulfillmentProcessor>();
+builder.Services.AddTransient<BarcodeFulfillmentProcessor>();
+builder.Services.AddTransient<SmartcardFulfillmentProcessor>();
 
 builder.Services.AddTransient<FulfillmentProcessorResolver>(serviceProvider => key =>
 {
