@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.22.0" />
+    <PackageReference Include="Testcontainers.MongoDb" Version="3.6.0" />
   </ItemGroup>
 
 </Project>
