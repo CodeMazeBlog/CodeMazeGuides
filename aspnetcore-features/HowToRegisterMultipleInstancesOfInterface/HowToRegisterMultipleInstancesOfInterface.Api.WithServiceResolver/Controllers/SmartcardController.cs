@@ -15,8 +15,8 @@ public class SmartcardController : ControllerBase
     }
 
     [HttpPost()]
-    public ActionResult<string> Post([FromBody] string requestId)
+    public string Post([FromBody] string requestId)
     {
-        return Ok(_processor.Fulfill(requestId));
+        return _processor.Fulfill(requestId);
     }
 }

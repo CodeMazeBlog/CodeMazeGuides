@@ -20,6 +20,6 @@ public class BarcodeControllerTests
     {
         var response = _sut.Post(RequestId);
         
-        Assert.That(response.Value, Is.EqualTo(Message));
+        Assert.That(response, Is.EqualTo(Message));
     }
 }

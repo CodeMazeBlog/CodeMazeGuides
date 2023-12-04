@@ -13,8 +13,9 @@ public class PostalControllerTests
     [SetUp]
     public void Setup()
     {
-        _fulfillTicketsMock = Substitute.For<PostalFulfillmentProcessor>();
-        
+        _fulfillTicketsMock = Substitute.For<IFulfillTickets>();
+        _fulfillTicketsMock.Fulfill(RequestId).Returns(Message);
+
         _fulfillmentProcessorResolverMock = Substitute.For<FulfillmentProcessorResolver>();
         _fulfillmentProcessorResolverMock(DeliveryMethodName).ReturnsForAnyArgs(_fulfillTicketsMock);
         
@@ -26,6 +27,6 @@ public class PostalControllerTests
     {
         var response = _sut.Post(RequestId);
         
-        Assert.That(response.Value, Is.EqualTo(Message));
+        Assert.That(response, Is.EqualTo(Message));
     }
 }
