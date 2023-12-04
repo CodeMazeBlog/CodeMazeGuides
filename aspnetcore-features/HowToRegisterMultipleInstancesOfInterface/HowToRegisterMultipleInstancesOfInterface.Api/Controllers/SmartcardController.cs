@@ -1,5 +1,4 @@
-using HowToRegisterMultipleInstancesOfInterface.Interfaces;
-using HowToRegisterMultipleInstancesOfInterface.Requests;
+using HowToRegisterMultipleInstancesOfInterface.Api.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HowToRegisterMultipleInstancesOfInterface.Api.Controllers;
@@ -9,17 +8,15 @@ namespace HowToRegisterMultipleInstancesOfInterface.Api.Controllers;
 public class SmartcardController : ControllerBase
 {
     private readonly IFulfillTickets _processor;
-    private readonly ILogger<SmartcardController> _logger;
 
-    public SmartcardController(IFulfillTickets processor, ILogger<SmartcardController> logger)
+    public SmartcardController(IFulfillTickets processor)
     {
         _processor = processor;
-        _logger = logger;
     }
 
     [HttpPost()]
-    public ActionResult Post([FromBody] FulfilmentRequest request)
+    public ActionResult Post([FromBody] string requestId)
     {
-        return Ok(_processor.Fulfill(request.RequestId));
+        return Ok(_processor.Fulfill(requestId));
     }
 }

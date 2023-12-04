@@ -1,6 +1,6 @@
-﻿using HowToRegisterMultipleInstancesOfInterface.Interfaces;
+﻿using HowToRegisterMultipleInstancesOfInterface.Api.Interfaces;
 
-namespace HowToRegisterMultipleInstancesOfInterface.Processors;
+namespace HowToRegisterMultipleInstancesOfInterface.Api.Processors;
 
 public class SmartcardFulfillmentProcessor : IFulfillTickets
 {

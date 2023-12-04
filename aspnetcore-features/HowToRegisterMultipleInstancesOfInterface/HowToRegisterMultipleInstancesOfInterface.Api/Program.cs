@@ -1,5 +1,5 @@
-using HowToRegisterMultipleInstancesOfInterface.Interfaces;
-using HowToRegisterMultipleInstancesOfInterface.Processors;
+using HowToRegisterMultipleInstancesOfInterface.Api.Interfaces;
+using HowToRegisterMultipleInstancesOfInterface.Api.Processors;
 
 var builder = WebApplication.CreateBuilder(args);
 

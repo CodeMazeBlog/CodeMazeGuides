@@ -1,4 +1,4 @@
-﻿namespace HowToRegisterMultipleInstancesOfInterface.Interfaces;
+﻿namespace HowToRegisterMultipleInstancesOfInterface.Api.Interfaces;
 
 public interface IFulfillTickets
 {
