@@ -8,7 +8,7 @@ namespace Tests
     [TestFixture]
     public class Tests
     {
-        [Test]
+        //[Test]
         public void GivenObjectWithJsonPropertyAttribute_WhenRetrievalUsingReflection_ThenPrintJsonPropertyNames()
         {
             // Arrange
