@@ -14,6 +14,24 @@ namespace Test
         }
 
         [Fact]
+        public void WhenComparingObjectIds_ThenCreateValidObjectId()
+        {
+            var firstId = ObjectId.GenerateNewId();
+
+            var secondId = ObjectId.GenerateNewId();
+
+            var expectedComparisonResult = -1;
+
+            int comparisonResult = firstId.CompareTo(secondId);
+
+            bool areEqual = firstId.Equals(secondId);
+
+            Assert.Equal(expectedComparisonResult, comparisonResult);
+
+            Assert.False(areEqual);
+        }
+
+        [Fact]
         public void WhenUsingByteArray_ThenCreateValidObjectId()
         {
             //Arrange
@@ -23,7 +41,7 @@ namespace Test
             var objectId = new ObjectId(byteArray);
 
             //Assert
-            Assert.IsAssignableFrom<ObjectId>(objectId);
+            Assert.IsAssignableFrom<ObjectId>(objectId);           
         }
 
         [Fact]
@@ -44,30 +62,14 @@ namespace Test
         {
             //Arrange
 
-            DateTime dateTime = DateTime.Parse("2020-10-10");
-            DateTime dateTime2 = DateTime.Parse("2020-11-10");
-            DateTime dateTime3 = DateTime.Parse("2020-12-10");
-            DateTime dateTime4 = DateTime.Parse("2020-10-12");
-            DateTime dateTime5 = DateTime.Parse("2020-10-14");
+            DateTime dateTime = new (2023, 10, 10);            
 
-            int intTimeStamp = 20;
-
+            var intTimeStamp = 20;
 
             //Act
             var objectId = ObjectId.GenerateNewId();
 
             var objectIdTwo = ObjectId.GenerateNewId(dateTime);
-            var objectId3 = ObjectId.GenerateNewId(dateTime2);
-            var objectId4 = ObjectId.GenerateNewId(dateTime3);
-            var objectId5 = ObjectId.GenerateNewId(dateTime4);
-            var objectId6 = ObjectId.GenerateNewId(dateTime5);
-
-            output.WriteLine(objectId.ToString());
-            output.WriteLine(objectIdTwo.ToString());
-            output.WriteLine(objectId3.ToString());
-            output.WriteLine(objectId4.ToString());
-            output.WriteLine(objectId5.ToString());
-            output.WriteLine(objectId6.ToString());
 
             var objectIdThree = ObjectId.GenerateNewId(intTimeStamp);
 
