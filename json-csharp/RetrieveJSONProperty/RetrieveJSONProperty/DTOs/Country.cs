@@ -1,12 +1,9 @@
 ﻿using System.Text.Json.Serialization;
-
-namespace RetrieveJSONProperty.DTOs
+namespace RetrieveJSONProperty.DTOs;
+public class Country
 {
-    public class Country
-    {
-            [JsonPropertyName("Nm")]
-            public string Name { get; set; }
-            [JsonPropertyName("Cd")]
-            public string Code { get; set; }
-        }
-    }
+        [JsonPropertyName("Nm")]
+        public string Name { get; set; }
+        [JsonPropertyName("Cd")]
+        public string Code { get; set; }
+    }    

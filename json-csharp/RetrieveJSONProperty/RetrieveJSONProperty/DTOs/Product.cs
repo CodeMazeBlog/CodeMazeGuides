@@ -1,14 +1,12 @@
 ﻿using Newtonsoft.Json;
+namespace RetrieveJSONProperty.DTOs;
 
-namespace RetrieveJSONProperty.DTOs
+public class Product
 {
-    public class Product
-    {
-    [JsonProperty("productId")]
-    public string ProductId { get; set; }
+[JsonProperty("productId")]
+public string ProductId { get; set; }
 
-    [JsonProperty("productName")]
-    public string ProductName { get; set; }
+[JsonProperty("productName")]
+public string ProductName { get; set; }
 
-}
 }

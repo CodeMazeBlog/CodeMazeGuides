@@ -1,99 +1,101 @@
-using RetrieveJSONProperty.Helper;
-using Newtonsoft.Json;
-using System.Text.Json.Serialization;
-using RetrieveJSONProperty.DTOs;
+namespace Tests;
 
-namespace Tests
+[TestFixture]
+public class Tests
 {
-    [TestFixture]
-    public class Tests
+    [Test]
+    public void GivenObjectWithJsonPropertyAttribute_WhenRetrievalUsingReflection_ThenPrintJsonPropertyNames()
     {
-        //[Test]
-        public void GivenObjectWithJsonPropertyAttribute_WhenRetrievalUsingReflection_ThenPrintJsonPropertyNames()
+        // Arrange
+        var sales = new Sales
         {
-            // Arrange
-            var testObject = new TestObject { Property1 = "Value1", Property2 = "Value2" };
-            var consoleOutput = new StringWriter();
-            Console.SetOut(consoleOutput);
+            YearlySales = "1000",
+            DailySales = "50"
+        };
 
-            // Act
-            JsonHelper.RetrievalUsingReflection(testObject);
+        // Act
+        var result = JsonHelper.RetrievalUsingReflection(sales);
 
-            // Assert
-            string output = consoleOutput.ToString().Trim();
-            StringAssert.Contains("prop1", output);
-            StringAssert.Contains("prop2", output);
-        }
+        // Assert
+        CollectionAssert.AreEquivalent(new[] { "Yearly", "Daily" }, result);
+    }
 
-     
-
-        public class TestObject2
+    [Test]
+    public void GivenSalesObject_WhenRetrievingKeyValuesUsingSerialization_ThenReturnsCorrectKeyValuePairs()
+    {
+        // Arrange
+        var sales = new Sales
         {
-            public string Name { get; set; }
+            YearlySales = "1000",
+            DailySales = "50"
+        };
 
-            public string Area { get; set; }
-        }
+        // Act
+        var result = JsonHelper.RetrievalUsingSerialization(sales);
 
-        public class TestObject
+        // Assert
+        CollectionAssert.AreEquivalent(new[] { "Key: Yearly, Value: 1000", "Key: Daily, Value: 50" }, result);
+    }
+
+    [Test]
+    public void Given_ObjectWithJsonPropertyAttributes_WhenGetJsonPropertyNames_ThenReturnPropertyNames()
+    {
+        // Arrange
+        var testObject = new TestObjectWithAttributes();
+
+        // Act
+        string[] result = JsonTextImplementation.GetJsonPropertyNames(testObject);
+
+        // Assert
+        string[] expected = { "FirstName", "LastName", "Age" };
+        Assert.AreEqual(expected, result);
+    }
+
+    [Test]
+    public void GivenProductObject_WhenSerializeUsingPascalCaseContractResolver_ThenJsonShouldBeInPascalCase()
+    {
+        // Arrange
+        var resolver = new PascalCaseContractResolver();
+        var settings = new JsonSerializerSettings
         {
-            [JsonProperty("prop1")]
-            public string Property1 { get; set; }
+            ContractResolver = resolver,
+            Formatting = Formatting.Indented
+        };
 
-            [JsonProperty("prop2")]
-            public string Property2 { get; set; }
-        }
-
-        [Test]
-        public void Given_ObjectWithJsonPropertyAttributes_WhenGetJsonPropertyNames_ThenReturnPropertyNames()
+        var product = new Product
         {
-            // Arrange
-            var testObject = new TestObjectWithAttributes();
+            ProductId = "123",
+            ProductName = "Widget"
+        };
 
-            // Act
-            string[] result = JsonTextImplementation.GetJsonPropertyNames(testObject);
+        // Act
+        var json = JsonConvert.SerializeObject(product, settings);
 
-            // Assert
-            string[] expected = { "FirstName", "LastName", "Age" };
-            Assert.AreEqual(expected, result);
-        }
-
-        public class TestObjectWithAttributes
-        {
-            [JsonPropertyName("FirstName")]
-            public string Name { get; set; }
-
-            [JsonPropertyName("LastName")]
-            public string Surname { get; set; }
-
-            public int Age { get; set; }
-        }
-
-        [Test]
-        public void Given_ProductObject_When_SerializeUsingPascalCaseContractResolver_Then_JsonShouldBeInPascalCase()
-        {
-            // Arrange
-            var resolver = new PascalCaseContractResolver();
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = resolver,
-                Formatting = Formatting.Indented
-            };
-
-            var product = new Product
-            {
-                ProductId = "123",
-                ProductName = "Widget"
-            };
-
-            // Act
-            var json = JsonConvert.SerializeObject(product, settings);
-
-            // Assert
-            string expectedJson = @"{
+        // Assert
+        string expectedJson = @"{
   ""ProductId"": ""123"",
   ""ProductName"": ""Widget""
 }";
-            Assert.AreEqual(expectedJson, json);
-        }
+        Assert.AreEqual(expectedJson, json);
+    }
+
+    private class TestObjectWithAttributes
+    {
+        [JsonPropertyName("FirstName")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("LastName")]
+        public string Surname { get; set; }
+
+        public int Age { get; set; }
+    }
+
+    private class Sales
+    {
+        [JsonProperty("Yearly")]
+        public string YearlySales { get; set; }
+
+        [JsonProperty("Daily")]
+        public string DailySales { get; set; }
     }
 }
