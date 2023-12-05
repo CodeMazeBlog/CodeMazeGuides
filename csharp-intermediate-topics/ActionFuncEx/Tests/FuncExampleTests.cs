@@ -8,7 +8,6 @@ public class FuncExampleTests
     {
         var initialAge = 5;
         var expectedAgeInTenYears = 15;
-
         var result = FuncExample.CalculateAgeInTenYears(initialAge);
 
         Assert.Equal(expectedAgeInTenYears, result);

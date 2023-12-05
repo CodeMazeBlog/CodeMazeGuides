@@ -15,6 +15,7 @@ public class ActionExampleTests
             Console.SetOut(stringWriter);
             ActionExample.PrintToConsole(number, text, value);
             var consoleResult = stringWriter.ToString().Trim();
+
             Assert.Contains(expectedOutput, consoleResult);
         }
     }
