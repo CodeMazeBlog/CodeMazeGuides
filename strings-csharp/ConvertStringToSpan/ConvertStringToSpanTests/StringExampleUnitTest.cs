@@ -9,13 +9,13 @@ namespace ConvertStringToSpanTests
         private StringExample _stringExample = new();
 
         [TestMethod]
-        public void GivenString_WhenConvertStringToSpanUsingMemoryMarshal_ThenReturnSpan()
+        public void GivenString_WhenConvertStringToCharArray_ThenReturnSpan()
         {
             // Arrange
             var myString = "Hello, World!";
 
             // Act
-            var span = _stringExample.ConvertStringToSpanUsingMemoryMarshal();
+            var span = _stringExample.ConvertStringToSpanUsingToCharArray();
 
             // Assert
             Assert.AreEqual(myString.Length, span.Length);
