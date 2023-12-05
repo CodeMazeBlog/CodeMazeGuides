@@ -9,7 +9,7 @@ public class FuncUnitTest
     {
         var values = new[] { 0, 10, 20 };
 
-        ArrayExtensions.Recalculate(values, (value) => value + 5);
+        ArrayHelper.Recalculate(values, (value) => value + 5);
 
         Assert.Equal(new[] { 5, 15, 25 }, values);
     }
@@ -19,7 +19,7 @@ public class FuncUnitTest
     {
         var values = new[] { 0, 10, 20 };
 
-        ArrayExtensions.Recalculate(values, (value) => value * 2);
+        ArrayHelper.Recalculate(values, (value) => value * 2);
 
         Assert.Equal(new[] { 0, 20, 40 }, values);
     }
