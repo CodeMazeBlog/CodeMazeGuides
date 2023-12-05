@@ -16,16 +16,19 @@ namespace Test
         [Fact]
         public void WhenComparingObjectIds_ThenCreateValidObjectId()
         {
+            //Arrange
             var firstId = ObjectId.GenerateNewId();
 
             var secondId = ObjectId.GenerateNewId();
 
             var expectedComparisonResult = -1;
 
+            //Act
             int comparisonResult = firstId.CompareTo(secondId);
 
             bool areEqual = firstId.Equals(secondId);
 
+            //Assert
             Assert.Equal(expectedComparisonResult, comparisonResult);
 
             Assert.False(areEqual);
@@ -62,7 +65,7 @@ namespace Test
         {
             //Arrange
 
-            DateTime dateTime = new (2023, 10, 10);            
+            var dateTime = new DateTime(2023, 10, 10);            
 
             var intTimeStamp = 20;
 
