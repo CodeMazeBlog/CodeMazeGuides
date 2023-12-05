@@ -6,9 +6,9 @@ public class Order
 
     public void SetStatus(OrderStatus status, Action<OrderStatus> onStatusChanged)
     {
-        if (this.Status != status)
+        if (Status != status)
         {
-            this.Status = status;
+            Status = status;
 
             onStatusChanged(status);
         }
