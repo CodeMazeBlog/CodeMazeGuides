@@ -1,6 +1,6 @@
 ﻿namespace FuncInCsharp;
 
-public static class Foo
+public static class ArrayExtensions
 {
     public static void Recalculate(int[] values, Func<int, int> operation)
     {

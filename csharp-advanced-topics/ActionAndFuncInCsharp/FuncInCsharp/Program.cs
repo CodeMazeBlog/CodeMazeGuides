@@ -1,7 +1,7 @@
 ﻿using FuncInCsharp;
 
 var values = new[] { 0, 10, 20 };
-Foo.Recalculate(values, AddFive);
+ArrayExtensions.Recalculate(values, AddFive);
 
 Console.WriteLine(string.Join(' ', values));
 

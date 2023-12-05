@@ -1,6 +1,6 @@
 ﻿namespace ActionInCsharp;
 
-public enum Status
+public enum OrderStatus
 {
     Unknown,
     InProgress

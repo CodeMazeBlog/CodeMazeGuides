@@ -1,9 +1,9 @@
 ﻿using ActionInCsharp;
 
-var foo = new Foo();
-foo.SetStatus(Status.InProgress, LogChangeStatus);
+var order = new Order();
+order.SetStatus(OrderStatus.InProgress, LogChangeStatus);
 
-void LogChangeStatus(Status status)
+void LogChangeStatus(OrderStatus status)
 {
-    Console.WriteLine($"Current status: {status}");
+    Console.WriteLine($"Current order status: {status}");
 }
