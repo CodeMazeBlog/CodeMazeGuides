@@ -2,6 +2,7 @@
 using JoinCollectionsAggregationPipeline;
 using MongoDB.Driver;
 using Testcontainers.MongoDb;
+using JoinCollectionsAggregationPipeline.Models;
 
 var mongoDbContainer =
         new MongoDbBuilder().Build();
@@ -12,37 +13,7 @@ var repository = new StudentRepository(mongoClient);
 
 //Seed Data
 var database = mongoClient.GetDatabase(DatabaseConfiguration.DatabaseName);
-var courseCollection = database.GetCollection<BsonDocument>("Courses");
-var studentCollection = database.GetCollection<BsonDocument>("Students");
-courseCollection.InsertMany(new List<BsonDocument>
-{
-    new()
-    {
-        { "_id", new ObjectId("655e134180c300fcdd067d24") } ,
-        { "Name", "Networks" },
-        { "Code", "ECEN 474" }
-    },
-    new()
-    {
-        { "_id", new ObjectId("655e134180c300fcdd067d25") } ,
-        { "Name", "Power Systems" },
-        { "Code", "ECEN 485" }
-    }
-});
-
-studentCollection.InsertMany(new List<BsonDocument>
-{
-    new()
-    {
-        { "FirstName", "John" },
-        { "LastName", "Doe" },
-        { "Major", "Electrical Engineering" },
-        { "Courses", new BsonArray {
-            new ObjectId("655e134180c300fcdd067d24"),
-            new ObjectId("655e134180c300fcdd067d25")
-        } }
-    }
-});
+await MongoHelper.AddSeedData(database);
 
 
 var users = await repository.GetAllUsers();
