@@ -50,3 +50,5 @@ foreach (var user in users)
 {
     Console.WriteLine(user.ToJson());
 }
+
+await mongoDbContainer.StopAsync();
