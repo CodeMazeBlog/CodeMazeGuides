@@ -1,6 +1,4 @@
 namespace Tests;
-
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using NUnit.Framework;
 using System;
 using CodeMaze_Func_Action_Evaluation;
@@ -23,8 +21,7 @@ public class ProgramTests
             var actualOutput = sw.ToString().Trim();
 
             // Then
-            Assert.That(actualOutput, Is.EqualTo(expectedOutput));
-            
+            Assert.That(actualOutput, Is.EqualTo(expectedOutput)); 
         }
     }
 
@@ -37,16 +34,13 @@ public class ProgramTests
         var expectedOutput = "AdditionLambda = 12";
 
         // When
-        using (StringWriter sw = new StringWriter())
-        {
-            Console.SetOut(sw);
-            Func_Action_Delegate_Demo.AddNumberDelegateLambda(param1, param2);
-            var actualOutput = sw.ToString().Trim();
+        StringWriter sw = new StringWriter();
+        Console.SetOut(sw);
+        Func_Action_Delegate_Demo.AddNumberDelegateLambda(param1, param2);
+        var actualOutput = sw.ToString().Trim();
 
-            // Then
-            Assert.That(actualOutput, Is.EqualTo(expectedOutput));
-            
-        }
+        // Then
+        Assert.That(actualOutput, Is.EqualTo(expectedOutput));
     }
 
     [Test]
@@ -58,7 +52,7 @@ public class ProgramTests
         var expectedResult = 150;
          
         // When
-        int actualResult = Func_Action_Delegate_Demo.MultiplyDelegate(param1, param2);
+        var actualResult = Func_Action_Delegate_Demo.MultiplyDelegate(param1, param2);
 
         // Then
         Assert.That(actualResult, Is.EqualTo(expectedResult));
@@ -73,7 +67,7 @@ public class ProgramTests
         var expectedResult = 150;
          
         // When
-        int actualResult = Func_Action_Delegate_Demo.MultiplyDelegateLambda(param1, param2);
+        var actualResult = Func_Action_Delegate_Demo.MultiplyDelegateLambda(param1, param2);
 
         // Then
         Assert.That(actualResult, Is.EqualTo(expectedResult));
