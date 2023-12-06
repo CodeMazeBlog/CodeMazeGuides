@@ -1,5 +1,6 @@
 ﻿using ConversionsInCSharp;
 using System.Globalization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 // basic examples
 Console.WriteLine("Some basic examples");
