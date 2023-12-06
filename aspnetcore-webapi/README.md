@@ -1,19 +1,23 @@
 ## ASP.NET Core Web API
 
-This section contains articles about ASP.NET Core Web API related topics.
+This section contains articles about ASP.NET Core Web API-related topics.
 
 ### Relevant articles:
 
 - [Web API Analyzers in ASP.NET Core](https://code-maze.com/web-api-analyzers-aspnetcore/)
+- [Implement API Key Authentication in ASP.NET Core](https://code-maze.com/aspnetcore-api-key-authentication/)
 - [How to Use RabbitMQ in ASP.NET Core](https://code-maze.com/aspnetcore-rabbitmq/)
 - [The AddEndpointsApiExplorer Method in ASP.NET Core](https://code-maze.com/apsnetcore-webapi-addendpointsapiexplorer-method/)
 - [ApiController Attribute in ASP.NET Core Web API](https://code-maze.com/apicontroller-attribute-in-asp-net-core-web-api/)
 - [Implementing API Gateway with Ocelot in ASP.NET Core](https://code-maze.com/aspnetcore-api-gateway-with-ocelot/)
+- [How to Build a Query String for a URL in C#?](https://code-maze.com/how-to-create-a-url-query-string/)
 - [Creating Multiple Resources with a Single Request in ASP.NET Core](https://code-maze.com/aspnetcore-creating-multiple-resources-with-single-request/)
 - [How to Add Custom Headers in ASP.NET Core Web API](https://code-maze.com/aspnetcore-add-custom-headers/)
 - [How to Add a Global Route Prefix in ASP.NET Core](https://code-maze.com/aspnetcore-add-global-route-prefix/)
 - [How to Extract Custom Header in ASP.NET Core Web API](https://code-maze.com/how-to-extract-custom-header-in-asp-net-core-web-api/)
+- [How to Use Request Timeouts Middleware in ASP.NET Core](https://code-maze.com/aspnetcore-request-timeouts-middleware/)
 - [Health Checks in ASP.NET Core](https://code-maze.com/health-checks-aspnetcore/)
+- [How to Hide an Endpoint in Swagger](https://code-maze.com/aspnetcore-how-to-hide-endpoint-in-swagger/)
 - [How to Block IP Addresses in ASP.NET Core Web API](https://code-maze.com/block-ip-addresses-aspnetcore-webapi/)
 - [Long-Running Tasks in a Microservices Architecture](https://code-maze.com/long-running-tasks-microservices/)
 - [Required Query String Parameters in ASP.NET Core](https://code-maze.com/aspnetcore-required-query-string-parameters/)
@@ -30,6 +34,7 @@ This section contains articles about ASP.NET Core Web API related topics.
 - [How to Register Services for Different Environments in .NET](https://code-maze.com/aspnetcore-register-services-for-different-environments/)
 - [Return File in ASP.NET Core Web API](https://code-maze.com/aspnetcore-register-services-for-different-environments/)
 - [How to Get the Remote Host IP Address in ASP.NET Core Web API](https://code-maze.com/aspnetcore-how-to-get-the-remote-host-ip-address/)
+- [REST vs WebSockets in C#](https://code-maze.com/csharp-rest-vs-websockets/)
 - [How to Return HTML From ASP.NET Core Web API](https://code-maze.com/aspnetcore-web-api-return-file/)
 - [Web API Return Types in ASP.NET Core](https://code-maze.com/aspnetcore-web-api-return-types/)
 - [Serialization and Deserialization in C#](https://code-maze.com/serialization-deserialization-csharp/)
@@ -37,5 +42,6 @@ This section contains articles about ASP.NET Core Web API related topics.
 - [Using OData with ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-using-odata/)
 - [API Versioning in ASP.NET Core](https://code-maze.com/aspnetcore-api-versioning/)
 - [Vertical Slice Architecture in ASP.NET Core](https://code-maze.com/vertical-slice-architecture-aspnet-core/)
+- [How to Return HTTP 500 From ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-return-http-status-code-500/)
 - [How to Return XML From ASP.NET Core Web API](https://code-maze.com/aspnetcore-return-xml-from-web-api/)
 - [Using RestSharp To Consume APIs in C#](https://code-maze.com/aspnetcore-using-restsharp-consume-api/)

@@ -4,6 +4,7 @@ This section contains the topics about the client libraries in .NET.
 
 ### Relevant articles:
 
+- [Ignore Null Values With AutoMapper](https://code-maze.com/automapper-how-to-ignore-null-values/)
 - [AutoMapper vs Mapster in .NET](https://code-maze.com/automapper-vs-mapster-dotnet/)
 - [Memory Allocation Optimization With BenchmarkDotNet](https://code-maze.com/csharp-memory-allocation-optimization-with-benchmarkdotnet/)
 - [How to Integrate BenchmarkDotNet With Unit Tests](https://code-maze.com/how-to-integrate-benchmarkdotnet-with-unit-tests/)
@@ -19,6 +20,8 @@ This section contains the topics about the client libraries in .NET.
 - [How to Use SFTP For Secure File Upload in .NET](https://code-maze.com/dotnet-sftp-secure-file-upload/)
 - [HttpClient vs RestSharp - Which One to Use in .NET](https://code-maze.com/httpclient-vs-restsharp/)
 - [Introduction to PDF Manipulation With IText (Formerl ITextSharp)](https://code-maze.com/csharp-pdf-manipulation-with-itext/)
+- [Adding Header and Footer to a PDF Using the iText Library](https://code-maze.com/csharp-adding-header-and-footer-to-pdf-using-itext-library/)
+- [Merging Multiple PDFs Using the iText Library](https://code-maze.com/csharp-merging-multiple-pdfs-using-the-itext-library/)
 - [Tracking Application Health With OpenTelemetry Metrics in .NET](https://code-maze.com/tracking-dotnet-opentelemetry-metrics/)
 - [Tracing .NET Applications Easily With OpenTelemetry](https://code-maze.com/tracing-dotnet-applications-opentelemetry/)
 - [Extending LINQ to Objects With MoreLINQ Library](https://code-maze.com/morelinq-library-linq/)
@@ -32,5 +35,6 @@ This section contains the topics about the client libraries in .NET.
 - [How to Send Emails With the SendGrid API in C#](https://code-maze.com/csharp-send-emails-with-sendgrid-api/)
 - [How to Improve Enums With the SmartEnum Library](https://code-maze.com/csharp-improve-enums-with-the-smartenum-library/)
 - [Swashbuckle vs. NSwag in ASP.NET Core](https://code-maze.com/aspnetcore-swashbuckle-vs-nswag/)
+- [Testing Using Testcontainers for .NET and Docker](https://code-maze.com/csharp-testing-using-testcontainers-for-net-and-docker/)
 - [Test Data Generation With AutoFixture in .NET](https://code-maze.com/csharp-test-data-generation-with-autofixture/)
 - [Seamless Integration Testing With WireMock.NET](https://code-maze.com/integration-testing-wiremock-dotnet/)
