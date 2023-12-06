@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Reflection;
 using System.Web;
 
 namespace SerializeObjectToQueryString
@@ -34,30 +35,34 @@ namespace SerializeObjectToQueryString
 
         private static string SerializeNestedObjectToQueryString(Product product)
         {
-            var finalQueryString = string.Join('&',
-                  typeof(Product).GetProperties().SelectMany(property =>
-                  {
-                      string propertyName = property.Name;
-                      object propertyValue = property.GetValue(product)!;
+            var propValues = typeof(Product)
+                .GetProperties()
+                .SelectMany(property => GetPropertyValues(property, product));
 
-                      if (property.PropertyType.IsClass && property.PropertyType != typeof(string))
-                      {
-                          return property.PropertyType.GetProperties().Select(nestedProperty =>
-                          {
-                              string nestedPropertyName = nestedProperty.Name;
-                              string nestedPropertyValue = nestedProperty.GetValue(propertyValue)!.ToString()!;
-                              return $"{HttpUtility.UrlEncode(propertyName)}" +
-                              $".{HttpUtility.UrlEncode(nestedPropertyName)}={HttpUtility.UrlEncode(nestedPropertyValue)}";
-                          });
-                      }
-                      else
-                      {
-                          return new[] { $"{propertyName}={propertyValue}" };
-                      }
-                  })
-              );
+            var finalQueryString = string.Join('&', propValues);
 
             return finalQueryString;
+        }
+
+        private static IEnumerable<string> GetPropertyValues(PropertyInfo property, object parentObject)
+        {
+            string propertyName = property.Name;
+            object propertyValue = property.GetValue(parentObject)!;
+
+            if (property.PropertyType.IsClass && property.PropertyType != typeof(string))
+            {
+                return property.PropertyType.GetProperties().Select(nestedProperty =>
+                {
+                    string nestedPropertyName = nestedProperty.Name;
+                    string nestedPropertyValue = nestedProperty.GetValue(propertyValue)!.ToString()!;
+                    return $"{HttpUtility.UrlEncode(propertyName)}" +
+                    $".{HttpUtility.UrlEncode(nestedPropertyName)}={HttpUtility.UrlEncode(nestedPropertyValue)}";
+                });
+            }
+            else
+            {
+                return new[] { $"{HttpUtility.UrlEncode(propertyName)}={HttpUtility.UrlEncode(propertyValue.ToString())}" };
+            }
         }
 
         private static string SerializeObjectContainingArraysToQueryString(Person person)
