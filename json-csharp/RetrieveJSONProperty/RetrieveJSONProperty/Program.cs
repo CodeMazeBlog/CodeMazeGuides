@@ -21,7 +21,7 @@ while (continueExecution)
             break;
 
         case "2":
-            ListPropertywithValue();
+            ListPropertyUsingSerialization();
             break;
 
         case "3":
@@ -64,7 +64,7 @@ static void ListExactPropertyNames()
     }
 }
 
-static void ListPropertywithValue()
+static void ListPropertyUsingSerialization()
 {
     Console.WriteLine("Enter YearlySales:");
     string yearlySalesInput = Console.ReadLine();
@@ -78,12 +78,12 @@ static void ListPropertywithValue()
         DailySales = dailySalesInput
     };
 
-    Console.WriteLine("\nRetrieval using Serlization:");
-    var propertyValues = JsonHelper.RetrievalUsingSerialization(sales);
+    Console.WriteLine("\nRetrieval using Serialization:");
+    var propertyNames = JsonHelper.RetrievalUsingSerialization(sales);
 
-    foreach (var propertyValue in propertyValues)
+    foreach (var propertyName in propertyNames)
     {
-        Console.WriteLine(propertyValue);
+        Console.WriteLine(propertyName);
     }
 }
 

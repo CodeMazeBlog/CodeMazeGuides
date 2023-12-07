@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Reflection;
+
 namespace RetrieveJSONProperty.Helper;
 public static class JsonHelper
 {
@@ -24,8 +25,7 @@ public static class JsonHelper
 
         foreach (var key in values.Keys)
         {
-            yield return $"Key: {key}, Value: {values[key]}";
+            yield return key;  
         }
     }
-
 }

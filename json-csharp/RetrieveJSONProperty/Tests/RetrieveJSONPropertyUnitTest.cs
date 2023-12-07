@@ -24,17 +24,17 @@ public class Tests
     public void GivenSalesObject_WhenRetrievingKeyValuesUsingSerialization_ThenReturnsCorrectKeyValuePairs()
     {
         // Arrange
-        var sales = new Sales
+        var product = new Product
         {
-            YearlySales = "1000",
-            DailySales = "50"
+            ProductId = "123",
+            ProductName = "SampleProduct"
         };
 
         // Act
-        var result = JsonHelper.RetrievalUsingSerialization(sales);
+        var result = JsonHelper.RetrievalUsingSerialization(product);
 
         // Assert
-        CollectionAssert.AreEquivalent(new[] { "Key: Yearly, Value: 1000", "Key: Daily, Value: 50" }, result);
+        CollectionAssert.AreEqual(new[] { "productId", "productName" }, result);
     }
 
     [Test]

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 using System.Reflection;
+
 namespace RetrieveJSONProperty.Helper;
 public class PascalCaseContractResolver : DefaultContractResolver
 {
