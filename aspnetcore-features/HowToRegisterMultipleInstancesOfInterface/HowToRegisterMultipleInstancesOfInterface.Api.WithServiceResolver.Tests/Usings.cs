@@ -1,5 +1,0 @@
-global using NUnit.Framework;
-global using NSubstitute;
-global using HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver.Controllers;
-global using HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver.Interfaces;
-global using HowToRegisterMultipleInstancesOfInterface.Api.WithServiceResolver.Processors;
