@@ -32,6 +32,7 @@ namespace MultithreadedApplication.Controllers
                 Name = "Log Thread Two"
             };
 
+
             thread1.Start();
             thread2.Start();
 
@@ -44,7 +45,7 @@ namespace MultithreadedApplication.Controllers
         {
             string[] Summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool" };
 
-            Thread.Sleep(3000);
+            Thread.Sleep(5);
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
@@ -59,7 +60,7 @@ namespace MultithreadedApplication.Controllers
         {
             foreach (var item in wheaterList)
             {
-                Thread.Sleep(100);
+                Thread.Sleep(5);
                 _logger.LogInformation("Temperature: " + item.TemperatureC.ToString());
             }
         }
