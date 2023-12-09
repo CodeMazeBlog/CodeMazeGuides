@@ -8,6 +8,7 @@ namespace Tests
     {
         private readonly WeatherForecastController _forecastController;
         private readonly Mock<ILogger<WeatherForecastController>> _mockLogger;
+
         public MultiThreadedWeatherTests()
         {
             // Arrange
@@ -30,7 +31,7 @@ namespace Tests
         {
             //Act
             var response = await _forecastController.GetWeather();
-            Thread.Sleep(5000);
+            Thread.Sleep(6);
 
             //Assert
             Assert.NotEmpty(response);
