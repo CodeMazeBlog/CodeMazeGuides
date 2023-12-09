@@ -23,7 +23,7 @@ namespace Tests
         [TestMethod]
         [DataRow("PictureDocument.pdf")]
         [DataRow("TextDocument.pdf")]
-        public void GivenValidName_WhenCallingCopyWithText_ThenOneMorFileShouldExist(string documentName)
+        public void GivenValidName_WhenCallingCopyWithText_ThenOneMoreFileShouldExist(string documentName)
         {
             var NumberOfFilesAtStart = 0;
             Assert.AreEqual(NumberOfFilesAtStart, _folderManager.CountFiles());
@@ -43,7 +43,7 @@ namespace Tests
         [TestMethod]
         [DataRow("PictureDocument.pdf")]
         [DataRow("TextDocument.pdf")]
-        public void GivenValidName_WhenCallingCopyWithCenterText_ThenOneMorFileShouldExist(string documentName)
+        public void GivenValidName_WhenCallingCopyWithCenterText_ThenOneMoreFileShouldExist(string documentName)
         {
             var NumberOfFilesAtStart = 0;
             Assert.AreEqual(NumberOfFilesAtStart, _folderManager.CountFiles());
@@ -64,7 +64,7 @@ namespace Tests
         [TestMethod]
         [DataRow("PictureDocument.pdf")]
         [DataRow("TextDocument.pdf")]
-        public void GivenValidName_WhenCallingCopyWithWaterMark_ThenOneMorFileShouldExist(string documentName)
+        public void GivenValidName_WhenCallingCopyWithWatermark_ThenOneMoreFileShouldExist(string documentName)
         {
             var NumberOfFilesAtStart = 0;
             Assert.AreEqual(NumberOfFilesAtStart, _folderManager.CountFiles());
@@ -76,7 +76,7 @@ namespace Tests
 
             var nameOfCopiedFile = "NewDocument1";
             var copier = new TextAdder(existingDocumentNewName, _folderManager.GetFullName(nameOfCopiedFile));
-            copier.AddWaterMark("This is new text", 30, 50, ColorConstants.RED);
+            copier.AddWatermark("This is new text", 30, 50, ColorConstants.RED);
 
             ++NumberOfFilesAtStart;
             Assert.AreEqual(NumberOfFilesAtStart, _folderManager.CountFiles());
@@ -85,7 +85,7 @@ namespace Tests
         [TestMethod]
         [DataRow("PictureDocument.pdf")]
         [DataRow("TextDocument.pdf")]
-        public void GivenValidName_WhenCallingCopy_ThenOneMorFileShouldExist(string documentName)
+        public void GivenValidName_WhenCallingCopy_ThenOneMoreFileShouldExist(string documentName)
         {
             var NumberOfFilesAtStart = 0;
             Assert.AreEqual(NumberOfFilesAtStart, _folderManager.CountFiles());

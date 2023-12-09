@@ -61,7 +61,7 @@ namespace ITextAddTextToPDFs
             }
         }
 
-        public void AddWaterMark(string textToAdd, int fontSize, float angle, Color color)
+        public void AddWatermark(string textToAdd, int fontSize, float angle, Color color)
         {
             using var outputDocument = new PdfDocument(new PdfReader(InputFile), new PdfWriter(OutputFile));
             using var workingDocument = new Document(outputDocument);

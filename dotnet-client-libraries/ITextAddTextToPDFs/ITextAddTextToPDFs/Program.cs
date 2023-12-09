@@ -95,7 +95,7 @@ void CopyPDFAndAddTextAsWatermark(string type)
     var newFile = SampleDocument.CreateFile(newFileName);
 
     var copier = new TextAdder(GetExistingFileByType(type), newFile);
-    copier.AddWaterMark("This is a watermark copy", 80,
+    copier.AddWatermark("This is a watermarked copy", 80,
         UnitConverter.degree2radian(55), ColorConstants.GREEN);
 
     DisplayPDFFile(newFile);

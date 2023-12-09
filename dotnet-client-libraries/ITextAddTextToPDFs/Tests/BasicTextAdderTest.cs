@@ -22,7 +22,7 @@ namespace Tests
         [TestMethod]
         [DataRow("PictureDocument.pdf")]
         [DataRow("TextDocument.pdf")]
-        public void GivenValidName_WhenCallingCopy_ThenOneMorFileShouldExist(string documentName)
+        public void GivenValidName_WhenCallingCopy_ThenOneMoreFileShouldExist(string documentName)
         {
             var NumberOfFilesAtStart = 0;
             Assert.AreEqual(NumberOfFilesAtStart, _folderManager.CountFiles());
