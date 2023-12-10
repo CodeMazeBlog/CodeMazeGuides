@@ -3,14 +3,14 @@ using SerializeObjectToQueryString;
 
 namespace SerializeObjectToQueryStringBenchmarks
 {
-    public class SerializeObjectToQueryStringBenchmarks
+    public class ObjectToQueryStringBenchmarks
     {
         [Benchmark]
-        public void SerializeObjectToQueryStringUsingReflection() => 
+        public void SerializeObjectToQueryStringUsingReflection() =>
             QueryStringSerializer.CreateURLWithBookAsQueryParamsUsingReflection("https://test.com", new Book());
 
         [Benchmark]
-        public void SerializeObjectToQueryStringUsingNewtonsoftJson() => 
+        public void SerializeObjectToQueryStringUsingNewtonsoftJson() =>
             QueryStringSerializer.CreateURLWithBookAsQueryParamsUsingNewtonsoftJson("https://test.com", new Book());
 
     }

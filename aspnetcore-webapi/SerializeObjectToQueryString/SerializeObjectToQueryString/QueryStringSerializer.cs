@@ -7,19 +7,19 @@ namespace SerializeObjectToQueryString
 {
     public static class QueryStringSerializer
     {
-        private static string SerializeObjectToQueryStringUsingReflection(Book book)
+        private static string ToQueryStringUsingReflection<T>(T obj)
         {
-            var properties = from p in book
+            var properties = from p in obj?
                                  .GetType()
                                  .GetProperties()
-                             where p.GetValue(book, null) != null
-                             select HttpUtility.UrlEncode(p.Name) + "=" 
-                             + HttpUtility.UrlEncode(p.GetValue(book)?.ToString());
+                             where p.GetValue(obj, null) != null
+                             select $"{HttpUtility.UrlEncode(p.Name)}" +
+                             $"={HttpUtility.UrlEncode(p.GetValue(obj)?.ToString())}";
 
-            return string.Join("&", properties.ToArray());
+            return string.Join("&", properties);
         }
 
-        private static string SerializeObjectToQueryStringUsingNewtonsoftJson(Book book)
+        private static string ToQueryStringUsingNewtonsoftJson(Book book)
         {
             string jsonString = JsonConvert.SerializeObject(book);
 
@@ -27,21 +27,49 @@ namespace SerializeObjectToQueryString
 
             var properties = jsonObject
                                 .Properties()
-                             .Where(p => p.Value != null)
+                             .Where(p => p.Value.Type != JTokenType.Null)
                              .Select(p => $"{HttpUtility.UrlEncode(p.Name)}={HttpUtility.UrlEncode(p.Value.ToString())}");
 
-            return string.Join("&", properties.ToArray());
+            return string.Join("&", properties);
         }
 
-        private static string SerializeNestedObjectToQueryString(Product product)
+        public static string NestedObjectToQueryString(Product product)
         {
-            var propValues = typeof(Product)
-                .GetProperties()
-                .SelectMany(property => GetPropertyValues(property, product));
+            if(product == null)
+            {
+                return string.Empty;
+            }
+
+            var propValues = GetNestedPropertyValues(product);
 
             var finalQueryString = string.Join('&', propValues);
 
             return finalQueryString;
+        }
+
+        private static string ObjectWithArrayAndNestesObjectToQueryString(Person person)
+        {
+            var propValues = GetNestedPropertyValues(person);
+
+            var finalQueryString = string.Join('&', propValues);
+
+            return finalQueryString;
+        }
+
+        private static IEnumerable<string> GetNestedPropertyValues(object obj)
+        {
+            return obj.GetType().GetProperties()
+                .SelectMany(nestedProperty => GetPropertyValues(nestedProperty, obj));
+        }
+
+        private static IEnumerable<string> GetArrayValues(string propertyName, Array array)
+        {
+            return Enumerable.Range(0, array.Length)
+                .Select(i =>
+                {
+                    string arrayElementValue = HttpUtility.UrlEncode(array.GetValue(i)?.ToString()) ?? string.Empty;
+                    return $"{HttpUtility.UrlEncode(propertyName)}[{i}]={arrayElementValue}";
+                });
         }
 
         private static IEnumerable<string> GetPropertyValues(PropertyInfo property, object parentObject)
@@ -51,13 +79,16 @@ namespace SerializeObjectToQueryString
 
             if (property.PropertyType.IsClass && property.PropertyType != typeof(string))
             {
-                return property.PropertyType.GetProperties().Select(nestedProperty =>
+                if (property.PropertyType.IsArray)
                 {
-                    string nestedPropertyName = nestedProperty.Name;
-                    string nestedPropertyValue = nestedProperty.GetValue(propertyValue)!.ToString()!;
-                    return $"{HttpUtility.UrlEncode(propertyName)}" +
-                    $".{HttpUtility.UrlEncode(nestedPropertyName)}={HttpUtility.UrlEncode(nestedPropertyValue)}";
-                });
+                    return GetArrayValues(propertyName, (Array)propertyValue);
+                }
+                else
+                {
+                    return GetNestedPropertyValues(propertyValue)
+                        .Select(nestedValue =>
+                            $"{HttpUtility.UrlEncode(propertyName)}.{nestedValue}");
+                }
             }
             else
             {
@@ -65,54 +96,30 @@ namespace SerializeObjectToQueryString
             }
         }
 
-        private static string SerializeObjectContainingArraysToQueryString(Person person)
-        {
-            var queryString = typeof(Person).GetProperties()
-            .SelectMany(property =>
-            {
-                string propertyName = property.Name;
-                object propertyValue = property.GetValue(person)!;
-
-                if (propertyValue is Array arrayValue)
-                {
-                    return Enumerable.Range(0, arrayValue.Length)
-                        .Select(i => 
-                        $"{HttpUtility.UrlEncode(propertyName)}[{i}]=" +
-                        $"{HttpUtility.UrlEncode(arrayValue.GetValue(i)?.ToString())}");
-                }
-                else
-                {
-                    return new[] { $"{propertyName}={propertyValue}" };
-                }
-            });
-
-            return string.Join("&", queryString);
-        }
-
         public static string CreateURLWithBookAsQueryParamsUsingReflection(string url, Book book)
         {
-            var queryParams = SerializeObjectToQueryStringUsingReflection(book);
+            var queryParams = ToQueryStringUsingReflection(book);
 
             return $"{url}?{queryParams}";
         }
 
         public static string CreateURLWithBookAsQueryParamsUsingNewtonsoftJson(string url, Book book)
         {
-            var queryParams = SerializeObjectToQueryStringUsingNewtonsoftJson(book);
+            var queryParams = ToQueryStringUsingNewtonsoftJson(book);
 
             return $"{url}?{queryParams}";
         }
 
         public static string CreateURLWithProductAsQueryParams(string url, Product product)
         {
-            var queryParams = SerializeNestedObjectToQueryString(product);
+            var queryParams = NestedObjectToQueryString(product);
 
             return $"{url}?{queryParams}";
         }
 
         public static string CreateURLWithPersonAsQueryParams(string url, Person person)
         {
-            var queryParams = SerializeObjectContainingArraysToQueryString(person);
+            var queryParams = ObjectWithArrayAndNestesObjectToQueryString(person);
 
             return $"{url}?{queryParams}";
         }

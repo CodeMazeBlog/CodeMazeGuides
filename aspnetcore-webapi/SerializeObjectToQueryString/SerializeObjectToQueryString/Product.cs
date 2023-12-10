@@ -10,5 +10,11 @@
     public class Manufacturer
     {
         public string Location { get; set; } = "Silicon Valley";
+        public Distributor Distributor { get; set; } = new Distributor();
+    }
+
+    public class Distributor
+    {
+        public string Name { get; set; } = "TechDistributors";
     }
 }

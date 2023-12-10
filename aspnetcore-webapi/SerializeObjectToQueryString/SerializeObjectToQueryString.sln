@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerializeObjectToQueryStrin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerializeObjectToQueryStringUnitTests", "SerializeObjectToQueryStringUnitTests\SerializeObjectToQueryStringUnitTests.csproj", "{528D6F09-8D86-4BDC-ADD3-98FF0772486D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SerializeObjectToQueryStringBenchmarks", "SerializeObjectToQueryStringBenchmarks\SerializeObjectToQueryStringBenchmarks.csproj", "{F7127917-E980-4CB2-91B5-E918C7ECB7CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializeObjectToQueryStringBenchmarks", "SerializeObjectToQueryStringBenchmarks\SerializeObjectToQueryStringBenchmarks.csproj", "{A20C15D7-893E-4487-A20E-15CA9D068621}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{528D6F09-8D86-4BDC-ADD3-98FF0772486D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{528D6F09-8D86-4BDC-ADD3-98FF0772486D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{528D6F09-8D86-4BDC-ADD3-98FF0772486D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7127917-E980-4CB2-91B5-E918C7ECB7CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7127917-E980-4CB2-91B5-E918C7ECB7CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7127917-E980-4CB2-91B5-E918C7ECB7CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7127917-E980-4CB2-91B5-E918C7ECB7CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A20C15D7-893E-4487-A20E-15CA9D068621}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A20C15D7-893E-4487-A20E-15CA9D068621}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A20C15D7-893E-4487-A20E-15CA9D068621}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A20C15D7-893E-4487-A20E-15CA9D068621}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
