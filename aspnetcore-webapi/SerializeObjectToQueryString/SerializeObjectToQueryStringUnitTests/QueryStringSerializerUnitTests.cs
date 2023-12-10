@@ -38,7 +38,7 @@ namespace SerializeObjectToQueryStringUnitTests
         public void WhenSerializingNestedObjectToQueryString_ThenCorrectApiUrlIsBuilt()
         {
             //Arrange
-            var expectedApiUrl = $"{BaseApiUrl}?Name=Laptop&Category=Electronics&Manufacturer.Location=Silicon+Valley";
+            var expectedApiUrl = $"{BaseApiUrl}?Name=Laptop&Category=Electronics&Manufacturer.Location=Silicon+Valley&Manufacturer.Distributor.Name=TechDistributors";
 
             //Act
             var result = QueryStringSerializer.CreateURLWithProductAsQueryParams(BaseApiUrl, new Product());
@@ -51,7 +51,7 @@ namespace SerializeObjectToQueryStringUnitTests
         public void WhenSerializingObjectContainsArrayToQueryString_ThenCorrectApiUrlIsBuilt()
         {
             //Arrange
-            var expectedApiUrl = $"{BaseApiUrl}?FirstName=Smith&Age=25&Hobbies[0]=Reading&Hobbies[1]=Traveling&Hobbies[2]=Gaming";
+            var expectedApiUrl = $"{BaseApiUrl}?FirstName=Smith&Age=25&Hobbies[0]=Reading&Hobbies[1]=Traveling&Hobbies[2]=Gaming&Address.Country=Australia";
 
             //Act
             var result = QueryStringSerializer.CreateURLWithPersonAsQueryParams(BaseApiUrl, new Person());
