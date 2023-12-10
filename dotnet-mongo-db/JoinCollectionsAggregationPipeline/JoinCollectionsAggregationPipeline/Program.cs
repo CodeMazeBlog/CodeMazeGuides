@@ -15,7 +15,6 @@ var repository = new StudentRepository(mongoClient);
 var database = mongoClient.GetDatabase(DatabaseConfiguration.DatabaseName);
 await MongoHelper.AddSeedData(database);
 
-
 var users = await repository.GetAllUsers();
 foreach (var user in users)
 {
