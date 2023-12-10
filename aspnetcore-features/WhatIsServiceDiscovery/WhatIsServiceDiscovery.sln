@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatIsServiceDiscovery.Shipping", "WhatIsServiceDiscovery.Shipping\WhatIsServiceDiscovery.Shipping.csproj", "{6A99E305-626E-4A54-B3DD-A3072E1EF1EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhatIsServiceDiscovery.MainAPI", "WhatIsServiceDiscovery.MainAPI\WhatIsServiceDiscovery.MainAPI.csproj", "{9D2A963E-F5BC-4A31-837F-AE48A7C14A88}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A99E305-626E-4A54-B3DD-A3072E1EF1EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A99E305-626E-4A54-B3DD-A3072E1EF1EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A99E305-626E-4A54-B3DD-A3072E1EF1EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A99E305-626E-4A54-B3DD-A3072E1EF1EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D2A963E-F5BC-4A31-837F-AE48A7C14A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D2A963E-F5BC-4A31-837F-AE48A7C14A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D2A963E-F5BC-4A31-837F-AE48A7C14A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D2A963E-F5BC-4A31-837F-AE48A7C14A88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
