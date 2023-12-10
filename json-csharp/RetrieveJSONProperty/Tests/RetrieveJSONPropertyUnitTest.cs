@@ -52,31 +52,18 @@ public class Tests
     }
 
     [Test]
-    public void GivenProductObject_WhenSerializeUsingPascalCaseContractResolver_ThenJsonShouldBeInPascalCase()
+    public void GivenValidProductObject_WhenGettingJsonPropertyForProductName_ThenReturnCorrectProperty()
     {
         // Arrange
-        var resolver = new PascalCaseContractResolver();
-        var settings = new JsonSerializerSettings
-        {
-            ContractResolver = resolver,
-            Formatting = Formatting.Indented
-        };
-
-        var product = new Product
-        {
-            ProductId = "123",
-            ProductName = "Widget"
-        };
+        var product = new Product { ProductId = "P123", ProductName = "TestProduct" };
 
         // Act
-        var json = JsonConvert.SerializeObject(product, settings);
+        var property = JsonExtensions.GetJsonProperty(product, "ProductName");
 
         // Assert
-        string expectedJson = @"{
-  ""ProductId"": ""123"",
-  ""ProductName"": ""Widget""
-}";
-        Assert.AreEqual(expectedJson, json);
+        Assert.IsNotNull(property);
+        Assert.AreEqual("productName", property.PropertyName);
+        Assert.AreEqual(typeof(string), property.PropertyType);
     }
 
     private class TestObjectWithAttributes

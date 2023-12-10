@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using RetrieveJSONProperty.DTOs;
 using RetrieveJSONProperty.Helper;
+
 
 bool continueExecution = true;
 
@@ -9,7 +11,7 @@ while (continueExecution)
     Console.WriteLine("Choose an option:");
     Console.WriteLine("1. ListExactPropertyNames");
     Console.WriteLine("2. ListPropertywithValue");
-    Console.WriteLine("3. PascalcaseConversion");
+    Console.WriteLine("3. ResolverImplementation");
     Console.WriteLine("4. AlternateImplementation();");
 
     string option = Console.ReadLine();
@@ -25,7 +27,7 @@ while (continueExecution)
             break;
 
         case "3":
-            PascalcaseConversion();
+            ResolverImplementation();
             break;
 
         case "4":
@@ -87,32 +89,26 @@ static void ListPropertyUsingSerialization()
     }
 }
 
-static void PascalcaseConversion()
+static void ResolverImplementation()
 {
-    var resolver = new PascalCaseContractResolver();
-
-    var settings = new JsonSerializerSettings
-    {
-        ContractResolver = resolver,
-        Formatting = Formatting.Indented
-    };
-
     Console.WriteLine("Enter ProductId:");
-    string ProductId = Console.ReadLine();
+    string productId = Console.ReadLine();
 
     Console.WriteLine("Enter ProductName:");
-    string ProductName = Console.ReadLine();
+    string productName = Console.ReadLine();
 
     var product = new Product
     {
-        ProductId = ProductId,
-        ProductName = "Widget"
+        ProductId = productId,
+        ProductName = productName
     };
+    JsonProperty productIdProperty = JsonExtensions.GetJsonProperty(product, "ProductId");
+    JsonProperty productNameProperty = JsonExtensions.GetJsonProperty(product, "productName");
 
-    var json = JsonConvert.SerializeObject(product, settings);
-
-    Console.WriteLine(json);
+    Console.WriteLine($"{productIdProperty.PropertyName}");
+    Console.WriteLine($"{productNameProperty.PropertyName}");
 }
+
 
 static void AlternateImplementation()
 {
