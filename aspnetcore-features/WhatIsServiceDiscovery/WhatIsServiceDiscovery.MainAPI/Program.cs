@@ -1,7 +1,32 @@
+using Microsoft.Extensions.ServiceDiscovery.Abstractions;
+using System.Net;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddServiceDiscovery();
+
+builder.Services.Configure<ConfigurationServiceEndPointResolverOptions>(static options =>
+{
+    options.SectionName = "ServiceEndpoints";
+    options.ApplyHostNameMetadata = endpoint =>
+    {
+        return endpoint.EndPoint is DnsEndPoint dns
+            && !dns.Host.Contains("localhost");
+    };
+});
+
+builder.Services.AddHttpClient("shipping", static client =>
+{
+    client.BaseAddress = new("http://shipping");
+})
+.UseServiceDiscovery();
+
+builder.Services.ConfigureHttpClientDefaults(static client =>
+{
+    client.UseServiceDiscovery(PickFirstServiceEndPointSelectorProvider.Instance);
+});
 
 var app = builder.Build();
 
@@ -11,10 +36,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/callshippingapi", async (HttpClient client) =>
 {
-    return string.Empty;
-})
-.WithOpenApi();
+    var response = await client.GetStringAsync("http://shipping/shiporder");
+
+    return $"Shipping API returned: {response}";
+});
 
 app.Run();

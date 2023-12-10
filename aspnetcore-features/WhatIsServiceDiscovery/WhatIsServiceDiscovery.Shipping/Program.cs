@@ -16,7 +16,6 @@ app.UseHttpsRedirection();
 app.MapGet("/shiporder", () =>
 {
     return $"Your order has been shipped at {DateTimeOffset.UtcNow}";
-})
-.WithOpenApi();
+});
 
 app.Run();
