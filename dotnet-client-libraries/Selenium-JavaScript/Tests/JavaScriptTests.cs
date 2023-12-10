@@ -26,18 +26,14 @@ public class JavaScriptTests : IClassFixture<WebFactory>, IDisposable
 
         var jsExecutor = (IJavaScriptExecutor)_driver;
 
-        // Find the hidden element and ensure it's initially not displayed
         var hiddenElement = _driver.FindElement(By.Id("hidden-element"));
         hiddenElement.GetCssValue("display").Should().Be("none");
 
-        // Execute JavaScript to make the hidden element visible
         jsExecutor.ExecuteScript("document.getElementById('hidden-element').style.display='block';");
 
-        // Wait for the JavaScript execution to take effect (optional, depends on context)
         var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
         wait.Until(ExpectedConditions.ElementIsVisible(By.Id("hidden-element")));
 
-        // Re-check the display property of the hidden element
         hiddenElement.GetCssValue("display").Should().Be("block");
     }
 
@@ -61,10 +57,8 @@ public class JavaScriptTests : IClassFixture<WebFactory>, IDisposable
         var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
         wait.Until(d => (bool)jsExecutor.ExecuteScript("return document.readyState === 'complete';"));
 
-        // Wait for the dynamic content to be loaded
         wait.Until(ExpectedConditions.TextToBePresentInElementLocated(By.Id("dynamicContent"), "Content Loaded"));
 
-        // Now check if the dynamic content is loaded
         var dynamicContent = _driver.FindElement(By.Id("dynamicContent"));
         dynamicContent.Text.Should().Be("Content Loaded");
     }
