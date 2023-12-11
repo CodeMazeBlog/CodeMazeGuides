@@ -1,0 +1,28 @@
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\bin\Debug\net7.0\Action and Func Delegates in C#.exe
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\bin\Debug\net7.0\Action and Func Delegates in C#.deps.json
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\bin\Debug\net7.0\Action and Func Delegates in C#.runtimeconfig.json
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\bin\Debug\net7.0\Action and Func Delegates in C#.dll
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\bin\Debug\net7.0\Action and Func Delegates in C#.pdb
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.AssemblyInfoInputs.cache
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.AssemblyInfo.cs
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.csproj.CoreCompileInputs.cache
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.dll
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\obj\Debug\net7.0\refint\Action and Func Delegates in C#.dll
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.pdb
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.genruntimeconfig.cache
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates in C#\obj\Debug\net7.0\ref\Action and Func Delegates in C#.dll
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\bin\Debug\net7.0\Action and Func Delegates in C#.exe
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\bin\Debug\net7.0\Action and Func Delegates in C#.deps.json
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\bin\Debug\net7.0\Action and Func Delegates in C#.runtimeconfig.json
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\bin\Debug\net7.0\Action and Func Delegates in C#.dll
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\bin\Debug\net7.0\Action and Func Delegates in C#.pdb
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.AssemblyInfoInputs.cache
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.AssemblyInfo.cs
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.csproj.CoreCompileInputs.cache
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.dll
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\obj\Debug\net7.0\refint\Action and Func Delegates in C#.dll
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.pdb
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\obj\Debug\net7.0\Action and Func Delegates in C#.genruntimeconfig.cache
+C:\Users\DECAGON\Desktop\C# Projects\Action and Func Delegates Code and Test\Action and Func Delegates in C#\obj\Debug\net7.0\ref\Action and Func Delegates in C#.dll

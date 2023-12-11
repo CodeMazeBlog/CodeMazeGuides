@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Action and Func Delegates in C#/1.0.0": {
+        "runtime": {
+          "Action and Func Delegates in C#.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Action and Func Delegates in C#/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
