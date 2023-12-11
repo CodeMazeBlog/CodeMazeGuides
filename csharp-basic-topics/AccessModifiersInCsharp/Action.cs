@@ -9,9 +9,9 @@ public class Class1
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Action delegate called!");
-            // Store message in a variable instead of printing it directly
+           
             string message = sb.ToString();
-            // Use the message later as needed...
+          
         };
 
         // Invoke the Action delegate
@@ -21,7 +21,7 @@ public class Class1
         button.Click += () =>
         {
             string message = "Button clicked!";
-            // Store event information for later use...
+            
         };
 
         // Utility method example
@@ -29,13 +29,13 @@ public class Class1
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(message);
-            // Store log message instead of printing it directly
+            
             string logMessage = sb.ToString();
-            // Use the log message later for logging purposes...
+            
         }
 
         Action logAction = () => LogMessage("Log message from Action delegate");
-        logAction.Invoke(); // Invoking the delegate to store the log message
+        logAction.Invoke(); 
 
 
     }

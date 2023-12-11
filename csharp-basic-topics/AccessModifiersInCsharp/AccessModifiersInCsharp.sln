@@ -12,7 +12,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{BB9E54D5-082E-4B11-BEA2-D1DAE13CFC50}"
 	ProjectSection(SolutionItems) = preProject
 		Action.cs = Action.cs
+		ActionTest.cs = ActionTest.cs
 		Func.cs = Func.cs
+		Functest.cs = Functest.cs
 	EndProjectSection
 EndProject
 Global

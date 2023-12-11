@@ -9,12 +9,10 @@ public class Class1
         {
             StringBuilder sb = new StringBuilder();
             sb.Append($"The double is: {x * 2}");
-            return sb.ToString(); // Return the formatted string instead of printing it
+            return sb.ToString(); 
         };
 
-        // Invoke the Func delegate and store the result
         string result = doubleToString(5);
-        // Use the result later as needed...
 
         // Data transformation example
         List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
@@ -23,7 +21,7 @@ public class Class1
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(x * 2);
-            return sb.ToString(); // Return the formatted string for each element
+            return sb.ToString(); 
         }).ToList();
 
         // Function composition example
@@ -32,11 +30,10 @@ public class Class1
         {
             StringBuilder sb = new StringBuilder();
             sb.Append($"The square is: {x}");
-            return sb.ToString(); // Return the formatted string with the square value
+            return sb.ToString(); 
         });
 
         string formattedSquare = squareAndFormat(5);
-        // Use the formatted square value later as needed...
 
 
 
