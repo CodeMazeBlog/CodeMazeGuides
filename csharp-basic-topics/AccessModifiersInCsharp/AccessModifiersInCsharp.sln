@@ -9,6 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnotherAssembly", "AnotherA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessModifiersInCsharp", "AccessModifiersInCsharp\AccessModifiersInCsharp.csproj", "{2D88EC7C-B3F7-4905-BC38-03614F95FAF7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Delegates", "Delegates", "{BB9E54D5-082E-4B11-BEA2-D1DAE13CFC50}"
+	ProjectSection(SolutionItems) = preProject
+		Action.cs = Action.cs
+		Func.cs = Func.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
