@@ -14,23 +14,30 @@ namespace Test
         }
 
         [Fact]
-        public void WhenComparingObjectIds_ThenCreateValidObjectId()
+        public void WhenComparingObjectIds_ThenReturnValidResult()
         {
             //Arrange
             var firstId = ObjectId.GenerateNewId();
-
-            var secondId = ObjectId.GenerateNewId();
-
-            var expectedComparisonResult = -1;
+            var secondId = ObjectId.GenerateNewId();            
 
             //Act
-            int comparisonResult = firstId.CompareTo(secondId);
-
-            bool areEqual = firstId.Equals(secondId);
+            var comparisonResult = firstId.CompareTo(secondId);            
 
             //Assert
-            Assert.Equal(expectedComparisonResult, comparisonResult);
+            Assert.Equal(-1, comparisonResult);            
+        }
 
+        [Fact]
+        public void WhenCheckingForEqualty_ThenReturnValidResult()
+        {
+            //Arrange
+            var firstId = ObjectId.GenerateNewId();
+            var secondId = ObjectId.GenerateNewId();
+
+            //Act           
+            var areEqual = firstId.Equals(secondId);
+
+            //Assert            
             Assert.False(areEqual);
         }
 
@@ -64,23 +71,17 @@ namespace Test
         public void WhenGenerateNewId_ThenCreateValidObjectId()
         {
             //Arrange
-
-            var dateTime = new DateTime(2023, 10, 10);            
-
+            var dateTime = new DateTime(2023, 10, 10); 
             var intTimeStamp = 20;
 
             //Act
             var objectId = ObjectId.GenerateNewId();
-
             var objectIdTwo = ObjectId.GenerateNewId(dateTime);
-
             var objectIdThree = ObjectId.GenerateNewId(intTimeStamp);
 
             //Assert
             Assert.IsAssignableFrom<ObjectId>(objectId);
-
             Assert.IsAssignableFrom<ObjectId>(objectIdTwo);
-
             Assert.IsAssignableFrom<ObjectId>(objectIdThree);
         }
 
@@ -92,14 +93,11 @@ namespace Test
 
             //Act
             var objectIdFromParsedString = ObjectId.Parse(hexString);
-
-            bool canParse = ObjectId.TryParse(hexString, out ObjectId objectIdFromTryParse);
+            var canParse = ObjectId.TryParse(hexString, out ObjectId objectIdFromTryParse);
 
             //Assert
             Assert.IsAssignableFrom<ObjectId>(objectIdFromTryParse);
-
             Assert.IsAssignableFrom<ObjectId>(objectIdFromParsedString);
-
             Assert.True(canParse);
         }
     }
