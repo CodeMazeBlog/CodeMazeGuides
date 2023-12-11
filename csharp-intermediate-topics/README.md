@@ -31,6 +31,7 @@ This section contains the topics considered intermediate level in C#.
 - [Reflection in C#](https://code-maze.com/csharp-reflection/)
 - [How to Implement Retry Logic in C#](https://code-maze.com/csharp-implement-retry-logic/)
 - [Tuple in C#](https://code-maze.com/csharp-tuple/)
+- [Tuple Aliases in C#](https://code-maze.com/csharp-tuple-aliases/)
 - [Unsafe Code in C# (unsafe keyword)](https://code-maze.com/unsafe-code-csharp/)
 - [How to Enumerate an Enum in C#](https://code-maze.com/how-to-enumerate-an-enum-in-c/)
 - [Upcasting and Downcasting in C#](https://code-maze.com/csharp-upcasting-downcasting/)
