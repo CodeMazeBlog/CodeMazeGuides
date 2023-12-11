@@ -19,9 +19,9 @@ builder.Services.Configure<ConfigurationServiceEndPointResolverOptions>(static o
 
 builder.Services.AddHttpClient("shipping", static client =>
 {
-    client.BaseAddress = new("http://shipping");
+    client.BaseAddress = new("https://shipping");
 })
-.UseServiceDiscovery();
+.UseServiceDiscovery(PickFirstServiceEndPointSelectorProvider.Instance);
 
 builder.Services.ConfigureHttpClientDefaults(static client =>
 {
@@ -36,9 +36,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
 app.MapGet("/callshippingapi", async (HttpClient client) =>
 {
-    var response = await client.GetStringAsync("http://shipping/shiporder");
+    var response = await client.GetStringAsync("https://shipping/shiporder");
 
     return $"Shipping API returned: {response}";
 });
