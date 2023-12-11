@@ -26,7 +26,7 @@ public class AutoFacUnitTest
     }
 
     [Fact]
-    public void GetAllEmployees_ReturnsEmployeeList()
+    public void WhenGetAllEmployeesMethodIsCalled_ThenReturnEmployeeList()
     {
         var employee1 = new Employee { Id = 1, Name = "John Doe" };
         var employee2 = new Employee { Id = 2, Name = "Jane Doe" };
@@ -50,9 +50,6 @@ public class AutoFacUnitTest
 
         Assert.NotNull(employees);
         Assert.Equal(expectedEmployees.Count, employees.Count);
-        foreach (var employee in employees)
-        {
-            Assert.Contains(employee, expectedEmployees);
-        }
+        Assert.Equal(expectedEmployees, employees);
     }
 }
