@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProbabilisticProgrammingInCsharpWithInferNET;
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace ProbabilisticProgrammingInCsharpWithInferNETTests
 {
@@ -31,6 +33,21 @@ namespace ProbabilisticProgrammingInCsharpWithInferNETTests
             Console.WriteLine($"P - Both Coins Are Heads: {coinTossEngine.BothCoinsPercentage}%");
 
             Assert.IsTrue(Math.Round(coinTossEngine.FirstCoinPercentage, 0) == 33.0);
+        }
+
+        [TestMethod]
+        public void WhenCoinTossCountHeadsAndCalculateAverage_ThanSuccess()
+        {
+            var experimentsCounts = new int[] { 1, 10, 50, 100 };
+            foreach(var count in experimentsCounts)
+            {
+                var headCounts = coinTossEngine.IsCoinFairExperiments(500);
+                var average = headCounts.Average();
+
+                Console.WriteLine($"Experiment count: {count}, head count average: {average}");
+
+                Assert.IsFalse(average == 500000);
+            }
         }
     }
 }
