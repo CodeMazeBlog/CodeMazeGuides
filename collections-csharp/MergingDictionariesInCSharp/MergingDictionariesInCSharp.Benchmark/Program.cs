@@ -1,1 +1,0 @@
-﻿BenchmarkDotNet.Running.BenchmarkRunner.Run<MergingMethodsBenchmark>();
