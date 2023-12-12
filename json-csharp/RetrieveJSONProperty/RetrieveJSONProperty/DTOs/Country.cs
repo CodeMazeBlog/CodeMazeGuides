@@ -4,9 +4,9 @@ namespace RetrieveJSONProperty.DTOs;
 public class Country
 {
     [JsonPropertyName("Nm")]
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     [JsonPropertyName("Cd")]
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
 }

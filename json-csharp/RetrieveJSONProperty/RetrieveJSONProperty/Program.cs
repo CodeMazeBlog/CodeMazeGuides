@@ -3,7 +3,6 @@ using Newtonsoft.Json.Serialization;
 using RetrieveJSONProperty.DTOs;
 using RetrieveJSONProperty.Helper;
 
-
 bool continueExecution = true;
 
 while (continueExecution)
@@ -14,7 +13,7 @@ while (continueExecution)
     Console.WriteLine("3. ResolverImplementation");
     Console.WriteLine("4. AlternateImplementation();");
 
-    string option = Console.ReadLine();
+    string? option = Console.ReadLine();
 
     switch (option)
     {
@@ -47,10 +46,10 @@ while (continueExecution)
 static void ListExactPropertyNames()
 {
     Console.WriteLine("Enter YearlySales:");
-    string yearlySalesInput = Console.ReadLine();
+    string? yearlySalesInput = Console.ReadLine();
 
     Console.WriteLine("Enter DailySales:");
-    string dailySalesInput = Console.ReadLine();
+    string? dailySalesInput = Console.ReadLine();
 
     var sales = new Sales
     {
@@ -69,10 +68,10 @@ static void ListExactPropertyNames()
 static void ListPropertyUsingSerialization()
 {
     Console.WriteLine("Enter YearlySales:");
-    string yearlySalesInput = Console.ReadLine();
+    string? yearlySalesInput = Console.ReadLine();
 
     Console.WriteLine("Enter DailySales:");
-    string dailySalesInput = Console.ReadLine();
+    string? dailySalesInput = Console.ReadLine();
 
     var sales = new Sales
     {
@@ -92,18 +91,18 @@ static void ListPropertyUsingSerialization()
 static void ResolverImplementation()
 {
     Console.WriteLine("Enter ProductId:");
-    string productId = Console.ReadLine();
+    string? productId = Console.ReadLine();
 
     Console.WriteLine("Enter ProductName:");
-    string productName = Console.ReadLine();
+    string? productName = Console.ReadLine();
 
     var product = new Product
     {
         ProductId = productId,
         ProductName = productName
     };
-    JsonProperty productIdProperty = JsonExtensions.GetJsonProperty(product, "ProductId");
-    JsonProperty productNameProperty = JsonExtensions.GetJsonProperty(product, "productName");
+    JsonProperty productIdProperty = ResolverHelper.GetJsonProperty(product, "ProductId");
+    JsonProperty productNameProperty = ResolverHelper.GetJsonProperty(product, "productName");
 
     Console.WriteLine($"{productIdProperty.PropertyName}");
     Console.WriteLine($"{productNameProperty.PropertyName}");
@@ -113,10 +112,10 @@ static void ResolverImplementation()
 static void AlternateImplementation()
 {
     Console.WriteLine("Enter Name:");
-    string Name = Console.ReadLine();
+    string? Name = Console.ReadLine();
 
     Console.WriteLine("Enter Code:");
-    string Code = Console.ReadLine();
+    string? Code = Console.ReadLine();
 
     var country = new Country
     {

@@ -48,7 +48,7 @@ public class Tests
 
         // Assert
         string[] expected = { "FirstName", "LastName", "Age" };
-        Assert.AreEqual(expected, result);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
     [Test]
@@ -58,21 +58,22 @@ public class Tests
         var product = new Product { ProductId = "P123", ProductName = "TestProduct" };
 
         // Act
-        var property = JsonExtensions.GetJsonProperty(product, "ProductName");
+        var property = ResolverHelper.GetJsonProperty(product, "ProductName");
 
         // Assert
         Assert.IsNotNull(property);
-        Assert.AreEqual("productName", property.PropertyName);
-        Assert.AreEqual(typeof(string), property.PropertyType);
+        Assert.That(property.PropertyName, Is.EqualTo("productName"));
+        Assert.That(property.PropertyType, Is.EqualTo(typeof(string)));
+
     }
 
     private class TestObjectWithAttributes
     {
         [JsonPropertyName("FirstName")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [JsonPropertyName("LastName")]
-        public string Surname { get; set; }
+        public string? Surname { get; set; }
 
         public int Age { get; set; }
     }
@@ -80,9 +81,9 @@ public class Tests
     private class Sales
     {
         [JsonProperty("Yearly")]
-        public string YearlySales { get; set; }
+        public string? YearlySales { get; set; }
 
         [JsonProperty("Daily")]
-        public string DailySales { get; set; }
+        public string? DailySales { get; set; }
     }
 }

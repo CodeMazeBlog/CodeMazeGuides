@@ -12,7 +12,10 @@ public static class JsonHelper
             if (jsonProperty != null)
             {
                 var propertyName = jsonProperty.PropertyName;
-                yield return propertyName;
+                if (propertyName != null)
+                {
+                    yield return propertyName;
+                }
             }
         }
     }
@@ -23,9 +26,12 @@ public static class JsonHelper
 
         var values = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-        foreach (var key in values.Keys)
+        if (values != null)
         {
-            yield return key;  
+            foreach (var key in values.Keys)
+            {
+                yield return key;
+            }
         }
     }
 }
