@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using AuthorizationPolicyProviders.Authentication;
 using AuthorizationPolicyProviders.Authorization.Handlers;
 using AuthorizationPolicyProviders.Authorization.Requirements;
 using AuthorizationPolicyProviders.Models;
@@ -14,7 +15,7 @@ public class BaselineMembershipTierRequirementHandlerTests
     public async Task WhenTierAboveBaseline_ThenPolicyIsSucceeded()
     {
         var requirement = new BaselineMembershipTierRequirement(baselineMembershipTier: MembershipTier.Silver);
-        var user = new ClaimsPrincipal([new ClaimsIdentity([new Claim("MembershipTier", MembershipTier.Gold.ToString())])]);
+        var user = new ClaimsPrincipal([new ClaimsIdentity([new Claim(ClaimTypeConstants.MembershipTier, MembershipTier.Gold.ToString())])]);
 
         var context = new AuthorizationHandlerContext([requirement], user, resource: null);
 
@@ -27,7 +28,7 @@ public class BaselineMembershipTierRequirementHandlerTests
     public async Task WhenTierEqualToBaseline_ThenPolicyIsSucceeded()
     {
         var requirement = new BaselineMembershipTierRequirement(baselineMembershipTier: MembershipTier.Silver);
-        var user = new ClaimsPrincipal([new ClaimsIdentity([new Claim("MembershipTier", MembershipTier.Silver.ToString())])]);
+        var user = new ClaimsPrincipal([new ClaimsIdentity([new Claim(ClaimTypeConstants.MembershipTier, MembershipTier.Silver.ToString())])]);
 
         var context = new AuthorizationHandlerContext([requirement], user, resource: null);
 
@@ -40,7 +41,7 @@ public class BaselineMembershipTierRequirementHandlerTests
     public async Task WhenTierBelowBaseline_ThenPolicyIsNotSucceeded()
     {
         var requirement = new BaselineMembershipTierRequirement(baselineMembershipTier: MembershipTier.Silver);
-        var user = new ClaimsPrincipal([new ClaimsIdentity([new Claim("MembershipTier", MembershipTier.Standard.ToString())])]);
+        var user = new ClaimsPrincipal([new ClaimsIdentity([new Claim(ClaimTypeConstants.MembershipTier, MembershipTier.Standard.ToString())])]);
 
         var context = new AuthorizationHandlerContext([requirement], user, resource: null);
 

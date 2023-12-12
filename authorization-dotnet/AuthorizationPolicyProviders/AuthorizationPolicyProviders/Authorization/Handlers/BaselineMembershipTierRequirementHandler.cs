@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using AuthorizationPolicyProviders.Authentication;
 using AuthorizationPolicyProviders.Authorization.Requirements;
 using AuthorizationPolicyProviders.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ public class BaselineMembershipTierRequirementHandler : AuthorizationHandler<Bas
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, BaselineMembershipTierRequirement requirement)
     {
-        MembershipTier? membershipTier = context.User.FindFirstValue("MembershipTier") switch
+        MembershipTier? membershipTier = context.User.FindFirstValue(ClaimTypeConstants.MembershipTier) switch
         {
             var membershipTierName when membershipTierName is not null =>
                 Enum.Parse<MembershipTier>(membershipTierName),

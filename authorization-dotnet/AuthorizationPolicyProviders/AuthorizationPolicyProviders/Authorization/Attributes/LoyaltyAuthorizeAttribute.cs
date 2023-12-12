@@ -4,8 +4,6 @@ namespace AuthorizationPolicyProviders.Authorization.Attributes;
 
 public class LoyaltyAuthorizeAttribute : AuthorizeAttribute
 {
-    private const string POLICY_PREFIX = "Loyalty:";
-    
     public LoyaltyAuthorizeAttribute(string actionName)
-        : base(string.Concat(POLICY_PREFIX, actionName)) { }
+        : base(string.Concat(AuthorizationConstants.LoyaltyPolicyPrefix, actionName)) { }
 }

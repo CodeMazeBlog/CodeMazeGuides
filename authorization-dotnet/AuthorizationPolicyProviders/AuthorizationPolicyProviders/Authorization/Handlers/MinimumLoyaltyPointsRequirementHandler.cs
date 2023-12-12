@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using AuthorizationPolicyProviders.Authentication;
 using AuthorizationPolicyProviders.Authorization.Requirements;
 using Microsoft.AspNetCore.Authorization;
 
@@ -8,7 +9,7 @@ public class MinimumLoyaltyPointsRequirementHandler : AuthorizationHandler<Minim
 {
     protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, MinimumLoyaltyPointsRequirement requirement)
     {   
-        _ = int.TryParse(context.User.FindFirstValue("LoyaltyPoints"), out var loyaltyPoints);
+        _ = int.TryParse(context.User.FindFirstValue(ClaimTypeConstants.LoyaltyPoints), out var loyaltyPoints);
 
         if (loyaltyPoints >= requirement.MinimumLoyaltyPoints)
             context.Succeed(requirement);

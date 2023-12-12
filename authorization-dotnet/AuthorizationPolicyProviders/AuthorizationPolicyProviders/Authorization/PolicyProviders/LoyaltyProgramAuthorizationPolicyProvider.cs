@@ -8,8 +8,6 @@ namespace AuthorizationPolicyProviders.Authorization.PolicyProviders;
 
 public class LoyaltyProgramAuthorizationPolicyProvider : IAuthorizationPolicyProvider
 {
-    private const string POLICY_PREFIX = "Loyalty:";
-
     private readonly ILoyaltyRequirementsRepository _loyaltyRequirementsRepository;
     private readonly IAuthorizationPolicyProvider _backupAuthorizationPolicyProvider;
 
@@ -24,10 +22,10 @@ public class LoyaltyProgramAuthorizationPolicyProvider : IAuthorizationPolicyPro
 
     public async Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
     {
-        if (!policyName.StartsWith(POLICY_PREFIX))
+        if (!policyName.StartsWith(AuthorizationConstants.LoyaltyPolicyPrefix))
             return await _backupAuthorizationPolicyProvider.GetPolicyAsync(policyName);
 
-        var actionName = policyName[POLICY_PREFIX.Length..];
+        var actionName = policyName[AuthorizationConstants.LoyaltyPolicyPrefix.Length..];
 
         var requirements = await _loyaltyRequirementsRepository.GetByActionNameAsync(actionName);
 

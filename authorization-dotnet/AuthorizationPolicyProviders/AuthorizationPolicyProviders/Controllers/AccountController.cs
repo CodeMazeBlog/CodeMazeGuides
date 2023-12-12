@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using AuthorizationPolicyProviders.Authentication;
 using AuthorizationPolicyProviders.HttpModels;
 using AuthorizationPolicyProviders.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -22,8 +23,8 @@ public class AccountController : Controller
 
         var claims = new List<Claim>()
         {
-            new("LoyaltyPoints", request.LoyaltyPoints.ToString()),
-            new("MembershipTier", membershipTier.ToString())
+            new(ClaimTypeConstants.LoyaltyPoints, request.LoyaltyPoints.ToString()),
+            new(ClaimTypeConstants.MembershipTier, membershipTier.ToString())
         };
 
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
