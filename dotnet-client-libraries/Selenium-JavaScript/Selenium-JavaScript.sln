@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34310.174
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Selenium-JavaScript", "Selenium-JavaScript\Selenium-JavaScript.csproj", "{501E9348-F138-422D-BD80-2660AB42AEA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{DBD70FE7-7E1C-4E6D-8822-33F8F66F90AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{501E9348-F138-422D-BD80-2660AB42AEA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{501E9348-F138-422D-BD80-2660AB42AEA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{501E9348-F138-422D-BD80-2660AB42AEA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{501E9348-F138-422D-BD80-2660AB42AEA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBD70FE7-7E1C-4E6D-8822-33F8F66F90AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBD70FE7-7E1C-4E6D-8822-33F8F66F90AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBD70FE7-7E1C-4E6D-8822-33F8F66F90AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBD70FE7-7E1C-4E6D-8822-33F8F66F90AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A21357E-A9E2-4D51-A8F6-2029DF6D98FD}
+	EndGlobalSection
+EndGlobal
