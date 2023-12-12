@@ -8,11 +8,11 @@
 		<BaseOutputPath>C:\Users\Alvaro\source\repos\CodeMazeGuides\csharp-architectural-patterns\AppWithPlugin\bin</BaseOutputPath>
 	</PropertyGroup>
 
-<ItemGroup>
-	<ProjectReference Include="..\PlugInBase\PlugInBase.csproj">
-		<Private>false</Private>
-		<ExcludeAssets>runtime</ExcludeAssets>
-	</ProjectReference>
-</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\PlugInBase\PlugInBase.csproj">
+			<Private>false</Private>
+			<ExcludeAssets>runtime</ExcludeAssets>
+		</ProjectReference>
+	</ItemGroup>
 
 </Project>

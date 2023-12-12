@@ -12,6 +12,7 @@ public class TemperatureCommand : ICommand
     public int Invoke()
     {
         Console.WriteLine("In your area, there will be high of 84F and a low of 69F.");
+
         return 0;
     }
 }
