@@ -1,66 +1,58 @@
-﻿using System.Globalization;
+﻿using HowToAddSeparatorsInThousandsPlaceForANumber;
+using System.Globalization;
 
 // String.Format() Method
 
-var balance = 2154002.535;
+var englishCultureInfo = new CultureInfo("en-US");
+var spanishCultureInfo = new CultureInfo("es-ES");
 
-var balanceMessage = String.Format("Your account balance is: {0}", balance);
-
+var balanceMessage = NumbersFormatting.GetBalanceUsingTheStringFormatMethod();
 Console.WriteLine(balanceMessage);
 
-var englishCultureInfo = new CultureInfo("en-US");
-
-var balanceMessageWithCultureInfo = String.Format("Your account balance is: {0}", balance, englishCultureInfo);
-
+var balanceMessageWithCultureInfo =
+    NumbersFormatting.GetBalanceUsingTheStringFormatMethodAndACultureInfo(englishCultureInfo);
 Console.WriteLine(balanceMessageWithCultureInfo);
 
-var balanceMessageWithSeparators = String.Format("Your account balance is: {0:n}", balance, englishCultureInfo);
-
+var balanceMessageWithSeparators =
+    NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(null, englishCultureInfo);
 Console.WriteLine(balanceMessageWithSeparators);
 
-var balanceMessageWithFourDigits = String.Format("Your account balance is: {0:n4}", balance, englishCultureInfo);
-
+var balanceMessageWithFourDigits =
+    NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(4, englishCultureInfo);
 Console.WriteLine(balanceMessageWithFourDigits);
 
-var balanceMessageWithoutDecimals = String.Format("Your account balance is: {0:n0}", balance, englishCultureInfo);
-
+var balanceMessageWithoutDecimals =
+    NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(0, englishCultureInfo);
 Console.WriteLine(balanceMessageWithoutDecimals);
 
 // The ToString() method
 
-var formatedBalance = balance.ToString("n");
+var balanceMessageUsingToString = NumbersFormatting.GetBalanceUsingTheToStringMethod("n", null);
+Console.WriteLine(balanceMessageUsingToString);
 
-Console.WriteLine("Your account balance is: " + formatedBalance);
+var balanceMessageUsingToStringeWithFourDigits = NumbersFormatting.GetBalanceUsingTheToStringMethod("n4", null);
+Console.WriteLine(balanceMessageUsingToStringeWithFourDigits);
 
-var formatedBalanceWithFourDigits = balance.ToString("n4");
+var balanceMessageUsingToStringWithoutDigits = NumbersFormatting.GetBalanceUsingTheToStringMethod("n0", null);
+Console.WriteLine(balanceMessageUsingToStringWithoutDigits);
 
-Console.WriteLine("Your account balance is: " + formatedBalanceWithFourDigits);
 
-var formatedBalanceWithoutDigits = balance.ToString("n0");
-
-Console.WriteLine("Your account balance is: " + formatedBalanceWithoutDigits);
-
-var spanishCultureInfo = new CultureInfo("es-ES");
-
-var spanishFormatedBalance = balance.ToString("n4", spanishCultureInfo);
-
-Console.WriteLine("Your account balance is: " + spanishFormatedBalance);
+var spanishCultureInfoBalanceMessage = NumbersFormatting.GetBalanceUsingTheToStringMethod("n4", spanishCultureInfo);
+Console.WriteLine(spanishCultureInfoBalanceMessage);
 
 
 // Interpolation
 
-var message = $"Your account balance is: {balance}";
-
+var message = NumbersFormatting.GetBalanceUsingStringInterpolation(null);
 Console.WriteLine(message);
 
-var numericInterpolatedMessage = $"Your account balance is: {balance:n4}";
-
+var numericInterpolatedMessage = NumbersFormatting.GetBalanceUsingStringInterpolation(4);
 Console.WriteLine(numericInterpolatedMessage);
 
-var numericInterpolatedMessageWithEnglishCulture = $"Your account balance is: {balance.ToString("n", englishCultureInfo)}";
-
+var numericInterpolatedMessageWithEnglishCulture =
+   NumbersFormatting.GetBalanceUsingStringInterpolationWithCultureInfo("n4", englishCultureInfo);
 Console.WriteLine(numericInterpolatedMessageWithEnglishCulture);
 
-var numericInterpolatedMessageWithSpanishCulture = $"Your account balance is: {balance.ToString("n", spanishCultureInfo)}";
-
+var numericInterpolatedMessageWithSpanishCulture =
+    NumbersFormatting.GetBalanceUsingStringInterpolationWithCultureInfo("n4", spanishCultureInfo);
 Console.WriteLine(numericInterpolatedMessageWithSpanishCulture);
