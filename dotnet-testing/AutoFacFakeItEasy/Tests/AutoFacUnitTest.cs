@@ -48,8 +48,6 @@ public class AutoFacUnitTest
 
         var employees = employeeService.GetAllEmployees();
 
-        Assert.NotNull(employees);
-        Assert.Equal(expectedEmployees.Count, employees.Count);
         Assert.Equal(expectedEmployees, employees);
     }
 }
