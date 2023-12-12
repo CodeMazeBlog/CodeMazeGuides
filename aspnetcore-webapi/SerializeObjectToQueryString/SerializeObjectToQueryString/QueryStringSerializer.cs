@@ -19,35 +19,28 @@ namespace SerializeObjectToQueryString
             return string.Join("&", properties);
         }
 
-        private static string ToQueryStringUsingNewtonsoftJson(Book book)
+        private static string ToQueryStringUsingNewtonsoftJson<T>(T obj)
         {
-            string jsonString = JsonConvert.SerializeObject(book);
+            string jsonString = JsonConvert.SerializeObject(obj);
 
             var jsonObject = JObject.Parse(jsonString);
 
             var properties = jsonObject
-                                .Properties()
-                             .Where(p => p.Value.Type != JTokenType.Null)
-                             .Select(p => $"{HttpUtility.UrlEncode(p.Name)}={HttpUtility.UrlEncode(p.Value.ToString())}");
+                    .Properties()
+                .Where(p => p.Value.Type != JTokenType.Null)
+                .Select(p => $"{HttpUtility.UrlEncode(p.Name)}={HttpUtility.UrlEncode(p.Value.ToString())}");
 
             return string.Join("&", properties);
         }
 
         public static string NestedObjectToQueryString(Product product)
         {
-            if(product == null)
-            {
-                return string.Empty;
-            }
-
             var propValues = GetNestedPropertyValues(product);
 
-            var finalQueryString = string.Join('&', propValues);
-
-            return finalQueryString;
+            return string.Join('&', propValues);
         }
 
-        private static string ObjectWithArrayAndNestesObjectToQueryString(Person person)
+        private static string ObjectWithArrayAndNestedObjectToQueryString(Person person)
         {
             var propValues = GetNestedPropertyValues(person);
 
@@ -67,7 +60,7 @@ namespace SerializeObjectToQueryString
             return Enumerable.Range(0, array.Length)
                 .Select(i =>
                 {
-                    string arrayElementValue = HttpUtility.UrlEncode(array.GetValue(i)?.ToString()) ?? string.Empty;
+                    string arrayElementValue = HttpUtility.UrlEncode(array.GetValue(i)?.ToString()) ?? string.Empty;         
                     return $"{HttpUtility.UrlEncode(propertyName)}[{i}]={arrayElementValue}";
                 });
         }
@@ -87,7 +80,7 @@ namespace SerializeObjectToQueryString
                 {
                     return GetNestedPropertyValues(propertyValue)
                         .Select(nestedValue =>
-                            $"{HttpUtility.UrlEncode(propertyName)}.{nestedValue}");
+                            $"{HttpUtility.UrlEncode(propertyName)}.{HttpUtility.UrlEncode(nestedValue)}");
                 }
             }
             else
@@ -119,7 +112,7 @@ namespace SerializeObjectToQueryString
 
         public static string CreateURLWithPersonAsQueryParams(string url, Person person)
         {
-            var queryParams = ObjectWithArrayAndNestesObjectToQueryString(person);
+            var queryParams = ObjectWithArrayAndNestedObjectToQueryString(person);
 
             return $"{url}?{queryParams}";
         }
