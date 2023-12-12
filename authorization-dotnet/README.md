@@ -9,6 +9,7 @@ This section contains articles about authorization related topics in .NET.
 - [How to Use Basic Authentication With HttpClient?](https://code-maze.com/aspnetcore-basic-authentication-with-httpclient/)
 - [Cookie Authentication With ASP.NET Core and Angular](https://code-maze.com/cookie-authentication-aspnetcore-angular/)
 - [Cryptography Implementations in .NET](https://code-maze.com/dotnet-cryptography-implementations/)
+- [How to Decode JWT Tokens in .NET](https://code-maze.com/how-to-decode-jwt-tokens-in-net/)
 - [Encrypting and Decrypting a String in C#](https://code-maze.com/csharp-string-encryption-decryption/)
 - [Get Current User With Claims in ASP.NET Core](https://code-maze.com/aspnetcore-get-current-user-claims/)
 - [Hashing and Salting Passwords in C# – Best Practices](https://code-maze.com/csharp-hashing-salting-passwords-best-practices/)
