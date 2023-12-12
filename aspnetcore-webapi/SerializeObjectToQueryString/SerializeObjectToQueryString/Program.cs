@@ -15,7 +15,7 @@
             Console.WriteLine("\n***************** Serialize the nested object to query string ***************\n");
             Console.WriteLine(QueryStringSerializer.CreateURLWithProductAsQueryParams(baseApiUrl, new Product()));
 
-            Console.WriteLine("\n***************** Serialize the object that contains array property to query string ***************\n");
+            Console.WriteLine("\n***************** Serialize the object that contains array and nested objects property to query string ***************\n");
             Console.WriteLine(QueryStringSerializer.CreateURLWithPersonAsQueryParams(baseApiUrl, new Person()));
 
         }
