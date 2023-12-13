@@ -1,21 +1,29 @@
-var builder = WebApplication.CreateBuilder(args);
+﻿namespace WhatIsServiceDiscovery.Shipping;
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        var app = builder.Build();
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.MapGet("/shiporder", () =>
+        {
+            return $"Your order has been shipped at {DateTimeOffset.UtcNow}";
+        });
+
+        app.Run();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.MapGet("/shiporder", () =>
-{
-    return $"Your order has been shipped at {DateTimeOffset.UtcNow}";
-});
-
-app.Run();
