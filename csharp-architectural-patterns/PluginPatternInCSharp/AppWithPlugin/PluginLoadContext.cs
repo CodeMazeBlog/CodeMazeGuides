@@ -2,7 +2,8 @@
 using System.Runtime.Loader;
 
 namespace AppWithPlugin;
-class PluginLoadContext : AssemblyLoadContext
+
+public class PluginLoadContext : AssemblyLoadContext
 {
     private AssemblyDependencyResolver _resolver;
 
