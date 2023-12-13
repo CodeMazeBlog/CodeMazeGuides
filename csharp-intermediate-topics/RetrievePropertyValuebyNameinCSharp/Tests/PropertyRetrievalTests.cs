@@ -6,7 +6,7 @@ public class PropertyRetrievalTests
 {
 
     [Fact]
-    public void WhenGetPropertyValue_ReturnsCorrectValue()
+    public void WhenGetPropertyValue_ThenReturnPropertyValue()
     {
         // Arrange
         var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
@@ -21,7 +21,7 @@ public class PropertyRetrievalTests
     }
 
     [Fact]
-    public void WhenGetPropertyValue_PropertyNotFound_ReturnsNull()
+    public void WhenGetUnkownPropertyValue_ThenReturnNull()
     {
         // Arrange
         var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
@@ -34,7 +34,7 @@ public class PropertyRetrievalTests
     }
 
     [Fact]
-    public void WhenGetPropertyValue_TypeMismatch_ReturnsNull()
+    public void WhenGetWrongTypePropertyValue_ThenReturnNull()
     {
         // Arrange
         var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
