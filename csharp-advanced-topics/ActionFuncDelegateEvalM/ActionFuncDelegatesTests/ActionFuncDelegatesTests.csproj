@@ -17,7 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ActionFuncDelegates\ActionFuncDelegates.csproj" />
+    <Reference Include="ActionFuncDelegates">
+      <HintPath>..\ActionFuncDelegates\bin\Debug\net8.0\ActionFuncDelegates.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
