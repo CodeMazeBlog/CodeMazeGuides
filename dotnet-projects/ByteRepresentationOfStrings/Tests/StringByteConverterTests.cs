@@ -1,4 +1,4 @@
-using ByteRepresentationOfStrings;
+ï»¿using ByteRepresentationOfStrings;
 
 namespace Tests
 {
@@ -41,8 +41,8 @@ namespace Tests
         [TestMethod]
         public void GivenNonAsciiString_WhenCafeWithNonAsciiChars_ThenObtainCorrectBytes()
         {
-            string inputString = "Caféöäü€";
-            byte[] expectedBytes = { 67, 0, 97, 0, 102, 0, 233, 0, 246, 0, 228, 0, 252, 0, 172, 32 };
+            string inputString = "CafÃ©Ã¶Ã¤Ã¼â‚¬ÃŸâ—„";
+            byte[] expectedBytes = { 67, 0, 97, 0, 102, 0, 233, 0, 246, 0, 228, 0, 252, 0, 172, 32, 223, 0, 196, 37 };
 
             byte[] resultBytes = StringByteConverter.GetBytes(inputString);
 
@@ -52,7 +52,7 @@ namespace Tests
         [TestMethod]
         public void GivenNonAsciiString_WhenToBytesAndBackConversion_ThenObtainOriginalString()
         {
-            string expectedString = "Caféöäü€";
+            string expectedString = "CafÃ©Ã¶Ã¤Ã¼â‚¬ÃŸâ—„";
 
             byte[] resultBytes = StringByteConverter.GetBytes(expectedString);
             string resultString = StringByteConverter.GetString(resultBytes);
