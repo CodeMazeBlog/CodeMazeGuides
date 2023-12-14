@@ -2,7 +2,7 @@ namespace AuthorizationPolicyProviders.Tests;
 
 public class BaselineMembershipTierRequirementHandlerTests
 {
-    private static BaselineMembershipTierRequirementHandler _testHandler = new();
+    private static readonly BaselineMembershipTierRequirementHandler _testHandler = new();
 
     [Fact]
     public async Task WhenTierAboveBaseline_ThenPolicyIsSucceeded()

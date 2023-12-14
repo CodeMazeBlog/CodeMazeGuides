@@ -6,7 +6,7 @@ public class LoyaltyProgramAuthorizationPolicyProviderTests
 {
     private class TestAuthorizationRequirement : IAuthorizationRequirement { }
 
-    private static AuthorizationPolicy _testAuthorizationPolicy =
+    private static readonly AuthorizationPolicy _testAuthorizationPolicy =
         new(
             new List<IAuthorizationRequirement>() { new TestAuthorizationRequirement() },
             new List<string>() { string.Empty }

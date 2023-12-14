@@ -2,7 +2,7 @@ namespace AuthorizationPolicyProviders.Tests;
 
 public class MinimumLoyaltyPointsRequirementHandlerTests
 {
-    private static MinimumLoyaltyPointsRequirementHandler _testHandler = new();
+    private static readonly MinimumLoyaltyPointsRequirementHandler _testHandler = new();
 
     [Fact]
     public async Task WhenPointsMoreThanMinimum_ThenPolicyIsSucceeded()
