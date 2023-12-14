@@ -27,8 +27,8 @@ namespace Tests
             var json = await _httpClient.GetStringAsync("/api/StringList?api-version=2.0");
             var strings = JArray.Parse(json);
             Assert.Equal(2, strings.Count);
-            Assert.StartsWith("S", (string)strings[0]);
-            Assert.StartsWith("S", (string)strings[1]);
+            Assert.StartsWith("S", (string?)strings[0]);
+            Assert.StartsWith("S", (string?)strings[1]);
         }
 
 
@@ -39,8 +39,8 @@ namespace Tests
             var json = await _httpClient.GetStringAsync("/api/StringList");
             var strings = JArray.Parse(json);
             Assert.Equal(2, strings.Count);
-            Assert.StartsWith("S", (string)strings[0]);
-            Assert.StartsWith("S", (string)strings[1]);
+            Assert.StartsWith("S", (string?)strings[0]);
+            Assert.StartsWith("S", (string?)strings[1]);
         }
 
         [Fact]
@@ -50,8 +50,8 @@ namespace Tests
             var json = await _httpClient.GetStringAsync("/api/StringList");
             var strings = JArray.Parse(json);
             Assert.Equal(2, strings.Count);
-            Assert.StartsWith("S", (string)strings[0]);
-            Assert.StartsWith("S", (string)strings[1]);
+            Assert.StartsWith("S", (string?)strings[0]);
+            Assert.StartsWith("S", (string?)strings[1]);
         }
     }
 }

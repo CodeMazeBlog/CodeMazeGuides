@@ -25,8 +25,8 @@ namespace Tests
             var json = await _httpClient.GetStringAsync("/api/v3/StringList");
             var strings = JArray.Parse(json);
             Assert.Equal(2, strings.Count);
-            Assert.StartsWith("C", (string)strings[0]);
-            Assert.StartsWith("C", (string)strings[1]);
+            Assert.StartsWith("C", (string?)strings[0]);
+            Assert.StartsWith("C", (string?)strings[1]);
         }
     }
 }
