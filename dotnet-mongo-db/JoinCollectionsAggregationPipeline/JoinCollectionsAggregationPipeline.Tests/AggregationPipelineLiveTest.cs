@@ -21,8 +21,8 @@ public class AggregationPipelineLiveTest : IAsyncLifetime
                 Major = "Electrical Engineering",
                 StudentCourses = new List<Course>
                 {
-                   new() {Name="Networks", Code = "ECEN 474"},
-                   new() {Name="Power Systems", Code = "ECEN 485"}
+                   new() { Name="Networks", Code = "ECEN 474" },
+                   new() { Name="Power Systems", Code = "ECEN 485" }
                 }
             }
         };
@@ -30,7 +30,6 @@ public class AggregationPipelineLiveTest : IAsyncLifetime
         var database = mongoClient.GetDatabase(DatabaseConfiguration.DatabaseName);
         await MongoHelper.AddSeedData(database);
         
-
         //Act
         var actualResult = await _sut.GetAllUsers();
 
