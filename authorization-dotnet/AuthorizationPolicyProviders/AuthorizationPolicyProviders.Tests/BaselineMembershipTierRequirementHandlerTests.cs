@@ -1,10 +1,3 @@
-using System.Security.Claims;
-using AuthorizationPolicyProviders.Authentication;
-using AuthorizationPolicyProviders.Authorization.Handlers;
-using AuthorizationPolicyProviders.Authorization.Requirements;
-using AuthorizationPolicyProviders.Models;
-using Microsoft.AspNetCore.Authorization;
-
 namespace AuthorizationPolicyProviders.Tests;
 
 public class BaselineMembershipTierRequirementHandlerTests

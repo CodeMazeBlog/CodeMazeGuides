@@ -1,8 +1,3 @@
-using AuthorizationPolicyProviders.Authorization.PolicyProviders;
-using AuthorizationPolicyProviders.Authorization.Requirements;
-using AuthorizationPolicyProviders.Data.Repositories;
-using AuthorizationPolicyProviders.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 
 namespace AuthorizationPolicyProviders.Tests;

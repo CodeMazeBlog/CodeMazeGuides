@@ -1,9 +1,3 @@
-using System.Security.Claims;
-using AuthorizationPolicyProviders.Authentication;
-using AuthorizationPolicyProviders.Authorization.Handlers;
-using AuthorizationPolicyProviders.Authorization.Requirements;
-using Microsoft.AspNetCore.Authorization;
-
 namespace AuthorizationPolicyProviders.Tests;
 
 public class MinimumLoyaltyPointsRequirementHandlerTests
