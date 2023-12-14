@@ -1,42 +1,36 @@
-﻿using DifferencesBetweenNUnitXUnitandMStest;
+﻿namespace XUnitTests;
 
-namespace XUnitTests
+public class XUnitUserServiceTest : IDisposable
 {
-    public class XUnitUserServiceTest : IDisposable
+    private const string USER_NAME = "Admin";
+    private const string PASSWORD = "pass123";
+    private const string OTHER_PASSWORD = "Pass124";
+
+    private UserService? userService;
+    public XUnitUserServiceTest()
     {
-        private UserService? userService;
-        public XUnitUserServiceTest()
-        {
-            userService = new UserService();
-            userService.AddUser(new User("Admin", "pass123"));
-        }
+        userService = new UserService();
+        userService.AddUser(new User(USER_NAME, PASSWORD));
+    }
 
-        public void Dispose()
-        {
-            userService?.RemoveUser("Admin");
-            userService = null;
-        }
+    public void Dispose()
+    {
+        userService?.RemoveUser(USER_NAME);
+    }
 
-        [Fact]
-        public void GivenValidCredentials_WhenAuthenticate_ThenSouldReturnTrue()
-        {
-            var username = "Admin";
-            var password = "pass123";
+    [Fact]
+    public void GivenValidCredentials_WhenAuthenticate_ThenShouldReturnTrue()
+    {
+        var isAuthenticated = userService?.Authenticate(USER_NAME, PASSWORD);
 
-            var isAuthenticated = userService?.Authenticate(username, password);
+        Assert.True(isAuthenticated);
+    }
 
-            Assert.True(isAuthenticated);
-        }
+    [Fact]
+    public void GivenInvalidCredentials_WhenAuthenticate_ThenShouldReturnFalse()
+    {
+        var isAuthenticated = userService?.Authenticate(USER_NAME, OTHER_PASSWORD);
 
-        [Fact]
-        public void GivenInvalidCredentials_WhenAuthenticate_ThenSouldReturnFalse()
-        {
-            var username = "Admin";
-            var password = "Pass124";
-
-            var isAuthenticated = userService?.Authenticate(username, password);
-
-            Assert.False(isAuthenticated);
-        }
+        Assert.False(isAuthenticated);
     }
 }

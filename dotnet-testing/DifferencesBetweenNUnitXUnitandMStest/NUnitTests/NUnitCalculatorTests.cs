@@ -1,5 +1,3 @@
-using DifferencesBetweenNUnitXUnitandMStest;
-
 namespace NUnitTests;
 
 [TestFixture]

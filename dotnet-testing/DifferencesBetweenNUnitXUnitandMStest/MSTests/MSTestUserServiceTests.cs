@@ -1,46 +1,40 @@
-﻿using DifferencesBetweenNUnitXUnitandMStest;
+﻿namespace MSTests;
 
-namespace MSTests
+[TestClass]
+public class MSTestUserServiceTests
 {
-    [TestClass]
-    public class MSTestUserServiceTests
+    private const string USER_NAME = "Admin";
+    private const string PASSWORD = "pass123";
+    private const string OTHER_PASSWORD = "Pass124";
+
+    private UserService? userService;
+
+    [TestInitialize]
+    public void TestInitialize()
     {
-        private UserService? userService;
+        userService = new UserService();
+        userService.AddUser(new User(USER_NAME, PASSWORD));
+    }
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            userService = new UserService();
-            userService.AddUser(new User("Admin", "pass123"));
-        }
+    [TestCleanup]
+    public void TestCleanup()
+    {
+        userService?.RemoveUser(USER_NAME);
+    }
 
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            userService?.RemoveUser("Admin");
-            userService = null;
-        }
+    [TestMethod]
+    public void GivenValidCredentials_WhenAuthenticate_ThenShouldReturnTrue()
+    {
+        var isAuthenticated = userService?.Authenticate(USER_NAME, PASSWORD);
 
-        [TestMethod]
-        public void GivenValidCredentials_WhenAuthenticate_ThenSouldReturnTrue()
-        {
-            var username = "Admin";
-            var password = "pass123";
+        Assert.IsTrue(isAuthenticated);
+    }
 
-            var isAuthenticated = userService?.Authenticate(username, password);
+    [TestMethod]
+    public void GivenInvalidCredentials_WhenAuthenticate_ThenShouldReturnFalse()
+    {
+        var isAuthenticated = userService?.Authenticate(USER_NAME, OTHER_PASSWORD);
 
-            Assert.IsTrue(isAuthenticated);
-        }
-
-        [TestMethod]
-        public void GivenInvalidCredentials_WhenAuthenticate_ThenSouldReturnFalse()
-        {
-            var username = "Admin";
-            var password = "Pass124";
-
-            var isAuthenticated = userService?.Authenticate(username, password);
-
-            Assert.IsFalse(isAuthenticated);
-        }
+        Assert.IsFalse(isAuthenticated);
     }
 }

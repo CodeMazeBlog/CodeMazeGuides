@@ -1,44 +1,39 @@
-﻿using DifferencesBetweenNUnitXUnitandMStest;
-
-namespace NUnitTests;
+﻿namespace NUnitTests;
 
 [TestFixture]
 public class NUnitUserServiceTests
 {
+    private const string USER_NAME = "Admin";
+    private const string PASSWORD = "pass123";
+    private const string OTHER_PASSWORD = "Pass124";
+
     private UserService? userService;
 
     [SetUp]
     public void Setup()
     {
         userService = new UserService();
-        userService.AddUser(new User("Admin", "pass123"));
+        userService.AddUser(new User(USER_NAME, PASSWORD));
     }
 
     [TearDown]
     public void TearDown()
     {
-        userService?.RemoveUser("Admin");
-        userService = null;
+        userService?.RemoveUser(USER_NAME);
     }
 
     [Test]
-    public void GivenValidCredentials_WhenAuthenticate_ThenSouldReturnTrue()
+    public void GivenValidCredentials_WhenAuthenticate_ThenShouldReturnTrue()
     {
-        var username = "Admin";
-        var password = "pass123";
-
-        var isAuthenticated = userService?.Authenticate(username, password);
+        var isAuthenticated = userService?.Authenticate(USER_NAME, PASSWORD);
 
         Assert.That(isAuthenticated, Is.True);
     }
 
     [Test]
-    public void GivenInvalidCredentials_WhenAuthenticate_ThenSouldReturnFalse()
+    public void GivenInvalidCredentials_WhenAuthenticate_ThenShouldReturnFalse()
     {
-        var username = "Admin";
-        var password = "Pass124";
-
-        var isAuthenticated = userService?.Authenticate(username, password);
+        var isAuthenticated = userService?.Authenticate(USER_NAME, OTHER_PASSWORD);
 
         Assert.That(isAuthenticated, Is.False);
     }
