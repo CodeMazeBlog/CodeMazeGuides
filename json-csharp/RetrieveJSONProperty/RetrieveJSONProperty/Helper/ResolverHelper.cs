@@ -2,12 +2,13 @@
 using Newtonsoft.Json;
 
 namespace RetrieveJSONProperty.Helper;
-public static class ResolverHelper
-    {
-        static readonly IContractResolver defaultResolver = JsonSerializer.CreateDefault().ContractResolver;
 
-        public static JsonProperty GetJsonProperty<T>(T obj, string jsonName, bool exact = false, IContractResolver? resolver = null)
-        {
+public static class ResolverHelper
+{
+    private static readonly IContractResolver defaultResolver = JsonSerializer.CreateDefault().ContractResolver;
+
+    public static JsonProperty GetJsonProperty<T>(T obj, string jsonName, bool exact = false, IContractResolver? resolver = null)
+    {
         ArgumentNullException.ThrowIfNull(obj, nameof(obj));
 
         resolver = resolver ?? defaultResolver;
@@ -25,5 +26,3 @@ public static class ResolverHelper
         return property;
     }
 }
-
-

@@ -8,5 +8,4 @@ public class Country
 
     [JsonPropertyName("Cd")]
     public string? Code { get; set; }
-
 }

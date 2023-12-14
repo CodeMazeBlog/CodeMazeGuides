@@ -2,6 +2,7 @@
 using System.Reflection;
 
 namespace RetrieveJSONProperty.Helper;
+
 public static class JsonHelper
 {
     public static IEnumerable<string> RetrievalUsingReflection(object obj)

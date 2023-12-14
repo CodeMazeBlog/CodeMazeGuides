@@ -2,6 +2,7 @@
 using System.Text.Json.Serialization;
 
 namespace RetrieveJSONProperty.Helper;
+
 public static class JsonTextImplementation
 {
     public static string[] GetJsonPropertyNames(object obj)

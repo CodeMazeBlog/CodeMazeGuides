@@ -101,6 +101,7 @@ static void ResolverImplementation()
         ProductId = productId,
         ProductName = productName
     };
+    
     JsonProperty productIdProperty = ResolverHelper.GetJsonProperty(product, "ProductId");
     JsonProperty productNameProperty = ResolverHelper.GetJsonProperty(product, "productName");
 
