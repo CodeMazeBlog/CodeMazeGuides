@@ -4,6 +4,7 @@ This section contains the topics about the client libraries in .NET.
 
 ### Relevant articles:
 
+- [Ignore Null Values With AutoMapper](https://code-maze.com/automapper-how-to-ignore-null-values/)
 - [AutoMapper vs Mapster in .NET](https://code-maze.com/automapper-vs-mapster-dotnet/)
 - [Memory Allocation Optimization With BenchmarkDotNet](https://code-maze.com/csharp-memory-allocation-optimization-with-benchmarkdotnet/)
 - [How to Integrate BenchmarkDotNet With Unit Tests](https://code-maze.com/how-to-integrate-benchmarkdotnet-with-unit-tests/)
@@ -20,6 +21,7 @@ This section contains the topics about the client libraries in .NET.
 - [HttpClient vs RestSharp - Which One to Use in .NET](https://code-maze.com/httpclient-vs-restsharp/)
 - [Introduction to PDF Manipulation With IText (Formerl ITextSharp)](https://code-maze.com/csharp-pdf-manipulation-with-itext/)
 - [Adding Header and Footer to a PDF Using the iText Library](https://code-maze.com/csharp-adding-header-and-footer-to-pdf-using-itext-library/)
+- [Merging Multiple PDFs Using the iText Library](https://code-maze.com/csharp-merging-multiple-pdfs-using-the-itext-library/)
 - [Tracking Application Health With OpenTelemetry Metrics in .NET](https://code-maze.com/tracking-dotnet-opentelemetry-metrics/)
 - [Tracing .NET Applications Easily With OpenTelemetry](https://code-maze.com/tracing-dotnet-applications-opentelemetry/)
 - [Extending LINQ to Objects With MoreLINQ Library](https://code-maze.com/morelinq-library-linq/)
