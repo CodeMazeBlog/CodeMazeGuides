@@ -29,6 +29,7 @@ public static class MongoHelper
         {
             new()
             {
+                { "_id", new ObjectId("656623db682962fa62ad75ba") } ,
                 { "FirstName", "John" },
                 { "LastName", "Doe" },
                 { "Major", "Electrical Engineering" },
