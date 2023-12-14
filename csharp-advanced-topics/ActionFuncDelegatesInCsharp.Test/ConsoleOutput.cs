@@ -8,10 +8,12 @@
         originalOutput = Console.Out;
         Console.SetOut(stringWriter);
     }
+
     public string GetOutput()
     {
         return stringWriter.ToString();
     }
+
     public void Dispose()
     {
         stringWriter.Dispose();
