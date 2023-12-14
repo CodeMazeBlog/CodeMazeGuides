@@ -1,5 +1,3 @@
-using ITextAddTextToPDFs;
-
 namespace Tests
 {
     [TestClass]

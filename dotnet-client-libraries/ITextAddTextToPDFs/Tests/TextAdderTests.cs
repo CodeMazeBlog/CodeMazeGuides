@@ -1,6 +1,3 @@
-using iText.Kernel.Colors;
-using ITextAddTextToPDFs;
-
 namespace Tests
 {
     [TestClass]
