@@ -16,6 +16,7 @@ public class CallShippingApiEndpointTests(MainAPIApplicationFactory factory) : I
         // Assert
         response.EnsureSuccessStatusCode();
         response.StatusCode.Should().Be(HttpStatusCode.OK);
+        
         var content = await response.Content.ReadAsStringAsync();
         content.Should().Contain("Shipping API returned");
     }
