@@ -17,7 +17,7 @@ This section contains articles about authorization related topics in .NET.
 - [How to Secure Passwords with BCrypt.NET](https://code-maze.com/dotnet-secure-passwords-bcrypt/)
 - [How to Use Multiple Authentication Schemes in .NET](https://code-maze.com/dotnet-multiple-authentication-schemes/)
 - [Implementing Passwordless Authentication in ASP.NET Core](https://code-maze.com/aspnetcore-passwordless-authentication/)
-- [https://code-maze.com/aspnetcore-resource-based-authorization/](Resource-Based Authorization in ASP.NET Core)
+- [Resource-Based Authorization in ASP.NET Core](https://code-maze.com/aspnetcore-resource-based-authorization/)
 - [Two Factor Authentication with Angular using Google Authenticator](https://code-maze.com/dotnet-angular-two-factor-authentication-with-using-google-authenticator/)
 - [Two-Factor Authentication With SMS in ASP.NET Core](https://code-maze.com/aspnetcore-two-factor-authentication-sms/)
 - [Using Authorization with Swagger in ASP.NET Core](https://code-maze.com/swagger-authorization-aspnet-core/)
