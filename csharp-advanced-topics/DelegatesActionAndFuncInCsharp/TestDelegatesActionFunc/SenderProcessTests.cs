@@ -1,9 +1,7 @@
 ﻿using Moq;
-using System.Text;
 
-namespace TestsDelegateFuncAppSample;
-
-public class ProcessingTests
+namespace TestDelegatesActionFunc;
+public class SenderProcessTests
 {
     [Fact]
     public void ProcessListMessages_WhenCalled_CallsCorrectNotificationService()
@@ -70,7 +68,7 @@ public class ProcessingTests
         // Arrange
         var mockNotificationService = new Mock<SendNotifications>();
         var mockSenderProcess = new Mock<SenderProcess>();
-        var processed = mockSenderProcess.Object.Processed; 
+        var processed = mockSenderProcess.Object.Processed;
 
         var records = new List<Messages>
         {
@@ -95,7 +93,7 @@ public class ProcessingTests
         var mockNotificationService = new Mock<SendNotifications>();
         var mockSenderProcess = new Mock<SenderProcess>();
         var processed = mockSenderProcess.Object.Processed;
-        
+
         const string pContenFile =
                 """
                 XType,XRecipient,XMessage,XEmail,XPhoneNumber
@@ -303,8 +301,4 @@ public class ProcessingTests
         // Act & Assert
         Assert.Throws<Exception>(() => emailSender.Send(message));
     }
-
 }
-
-
-
