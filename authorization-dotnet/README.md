@@ -4,6 +4,7 @@ This section contains articles about authorization related topics in .NET.
 
 ### Relevant articles:
 
+- [How to Get an Access Token from HttpContext in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-get-an-access-token-from-httpcontext/)
 - [How to Add a BearerToken to an HttpClient Request](https://code-maze.com/add-bearertoken-httpclient-request/)
 - [Adding a User Login to a .NET App With Auth0](https://code-maze.com/dotnet-adding-a-user-login-with-auth0/)
 - [How to Use Basic Authentication With HttpClient?](https://code-maze.com/aspnetcore-basic-authentication-with-httpclient/)
