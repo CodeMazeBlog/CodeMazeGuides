@@ -5,9 +5,7 @@ VisualStudioVersion = 17.9.34321.82
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionFuncDelegates", "ActionFuncDelegates\ActionFuncDelegates.csproj", "{D6C44705-8FE9-469A-9E54-3E2312120826}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionFuncDelegatesTests", "..\..\ActionFuncDelegatesTests\ActionFuncDelegatesTests.csproj", "{58997372-6036-4EE1-ACCB-D406FC8EEC21}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{67724ADB-1806-433C-99FD-480B988D674D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{67724ADB-1806-433C-99FD-480B988D674D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{D6C44705-8FE9-469A-9E54-3E2312120826}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6C44705-8FE9-469A-9E54-3E2312120826}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6C44705-8FE9-469A-9E54-3E2312120826}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58997372-6036-4EE1-ACCB-D406FC8EEC21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58997372-6036-4EE1-ACCB-D406FC8EEC21}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58997372-6036-4EE1-ACCB-D406FC8EEC21}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58997372-6036-4EE1-ACCB-D406FC8EEC21}.Release|Any CPU.Build.0 = Release|Any CPU
 		{67724ADB-1806-433C-99FD-480B988D674D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67724ADB-1806-433C-99FD-480B988D674D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67724ADB-1806-433C-99FD-480B988D674D}.Release|Any CPU.ActiveCfg = Release|Any CPU
