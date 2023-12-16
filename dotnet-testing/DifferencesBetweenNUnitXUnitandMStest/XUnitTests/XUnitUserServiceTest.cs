@@ -7,6 +7,7 @@ public class XUnitUserServiceTest : IDisposable
     private const string OTHER_PASSWORD = "Pass124";
 
     private UserService? userService;
+    
     public XUnitUserServiceTest()
     {
         userService = new UserService();
