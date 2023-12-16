@@ -1,8 +1,3 @@
-using ClientServerArchitecture.Models;
-using ClientServerArchitecture.Pages;
-using ClientServerArchitecture.Services;
-using Microsoft.AspNetCore.Mvc;
-
 namespace Tests;
 
 public class ProductTests
