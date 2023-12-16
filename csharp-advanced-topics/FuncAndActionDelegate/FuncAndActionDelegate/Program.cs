@@ -4,3 +4,5 @@ using FuncAndActionDelegate;
 
 Console.WriteLine("Hello, World!");
 FuncClass.RunAddNumbers();
+DelegateClass.PerformGreeting();
+ActionClass.RunMyAction();

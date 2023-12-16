@@ -6,6 +6,7 @@ namespace Tests;
 public class FuncTest
 {
 	private StringWriter _testWriter;
+	
 	private TextWriter _originalConsoleOut;
 
 	public FuncTest()
@@ -16,10 +17,10 @@ public class FuncTest
 	}
 
 	[Fact]
-	public void RunAddNumbers_GivenTwoNumbers_WhenAdding_ThenReturnCorrectSum()
+	public void GivenTwoNumbers_WhenRunningFuncClassMethod_ThenReturnCorrectSum()
 	{
 		// Arrange
-		string expectedOutput = "Sum of Numbers: 12";
+		var expectedOutput = "Sum of Numbers: 12";
 
 		// Act
 		FuncClass.RunAddNumbers();
@@ -30,21 +31,22 @@ public class FuncTest
 	}
 
 	[Fact]
-	public void AddNumbersMethod_GivenTwoNumbers_WhenAdding_ThenReturnCorrectSum()
+	public void GivenTwoNumbers_WhenAddingUsingAddNumbersMethod_ThenReturnCorrectSum()
 	{
 		// Act
-		int result = FuncClass.AddNumbersMethod(5, 7);
+		int result = FuncClass.AddNumbers(5, 7);
 
 		// Assert
 		Assert.Equal(12, result);
 	}
 
+
 	[Fact]
 	public void GreetingDelegate_HelloMethod_ShouldWriteCorrectMessageToConsole()
 	{
 		// Arrange
-		string message = "Hello from Delegate";
-		string expectedOutput = "Hello says: " + message;
+		var message = "Hello from Delegate";
+		var expectedOutput = $"Hello says: {message}";
 
 		// Act
 		var greetingDelegate = new DelegateClass.GreetingDelegate(DelegateClass.Hello);
@@ -56,12 +58,11 @@ public class FuncTest
 	}
 
 	[Fact]
-	public void RunMyActionMethod_GivenActionDelegate_WhenInvoked_ThenOutputReceivedParametersToConsole()
+	public void GivenActionDelegate_WhenInvoked_ThenOutputReceivedParametersToConsole()
 	{
-
 		// Act
-		Action<int, string> actionDelegate = ActionClass.MyActionMethod;
-		ActionClass.RunMyActionMethod();
+		Action<int, string> actionDelegate = ActionClass.MyAction;
+		ActionClass.RunMyAction();
 	
 		// Assert
 		var output = _testWriter.ToString().Trim();
