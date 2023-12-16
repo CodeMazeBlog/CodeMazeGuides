@@ -26,9 +26,11 @@ namespace SerializeObjectToQueryString
             var jsonObject = JObject.Parse(jsonString);
 
             var properties = jsonObject
-                    .Properties()
+                .Properties()
                 .Where(p => p.Value.Type != JTokenType.Null)
-                .Select(p => $"{HttpUtility.UrlEncode(p.Name)}={HttpUtility.UrlEncode(p.Value.ToString())}");
+                .Select(p =>
+                    $"{HttpUtility.UrlEncode(p.Name)}={HttpUtility.UrlEncode(p.Value.ToString())}");
+
 
             return string.Join("&", properties);
         }
