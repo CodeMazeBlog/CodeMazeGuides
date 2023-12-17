@@ -1,6 +1,3 @@
-using HowToAddSeparatorsInThousandsPlaceForANumber;
-using System.Globalization;
-
 namespace Tests
 {
     public class Tests
@@ -8,7 +5,6 @@ namespace Tests
         private readonly CultureInfo _englishCultureInfo = new("en-US");
         private readonly CultureInfo _spanishCultureInfo = new("es-ES");
 
-        // String.Format method
         [Fact]
         public void GivenNumericValue_WhenStringFormatIsUsed_ShouldReturnExpectedStringValue()
         {
@@ -81,7 +77,6 @@ namespace Tests
             Assert.Equal("Your account balance is: 2.154.002,5350", formattedBallance);
         }
 
-        // Interpolation
         [Fact]
         public void GivenNumericValue_WhenStringInterpolationIsUsed_ShouldReturnExpectedStringValue()
         {
