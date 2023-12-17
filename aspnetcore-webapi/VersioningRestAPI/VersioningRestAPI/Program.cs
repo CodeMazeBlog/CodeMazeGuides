@@ -33,10 +33,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// v1
-var versionSetV1 = app.NewApiVersionSet()
+var apiVersionSet = app.NewApiVersionSet()
     .HasDeprecatedApiVersion(new ApiVersion(0, 9))
     .HasApiVersion(new ApiVersion(1, 0))
+    .HasApiVersion(new ApiVersion(2, 0))
     .ReportApiVersions()
     .Build();
 
@@ -45,21 +45,19 @@ app.MapGet("api/minimal/StringList", () =>
     var strings = Data.Summaries.Where(x => x.StartsWith("B"));
 
     return TypedResults.Ok(strings);
-
-}).WithApiVersionSet(versionSetV1);
-
-// v2
-var versionSetV2 = app.NewApiVersionSet()
-    .HasApiVersion(new ApiVersion(2, 0))
-    .ReportApiVersions()
-    .Build();
+})
+    .WithApiVersionSet(apiVersionSet)
+    .MapToApiVersion(new ApiVersion(0, 9))
+    .MapToApiVersion(new ApiVersion(1, 0));
 
 app.MapGet("api/minimal/StringList", () =>
 {
     var strings = Data.Summaries.Where(x => x.StartsWith("S"));
 
     return TypedResults.Ok(strings);
-}).WithApiVersionSet(versionSetV2);
+})
+    .WithApiVersionSet(apiVersionSet)
+    .MapToApiVersion(new ApiVersion(2, 0));
 
 app.Run();
 
