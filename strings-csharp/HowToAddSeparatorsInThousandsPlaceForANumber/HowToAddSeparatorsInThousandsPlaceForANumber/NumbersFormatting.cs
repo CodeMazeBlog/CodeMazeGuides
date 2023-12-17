@@ -8,20 +8,20 @@ namespace HowToAddSeparatorsInThousandsPlaceForANumber
 
         public static string GetBalanceUsingTheStringFormatMethod()
         {
-            return String.Format("Your account balance is: {0}", _balance);
+            return string.Format("Your account balance is: {0}", _balance);
         }
 
         public static string GetBalanceUsingTheStringFormatMethodAndACultureInfo(CultureInfo cultureInfo)
         {
-            return String.Format("Your account balance is: {0}", _balance, cultureInfo);
+            return string.Format("Your account balance is: {0}", _balance, cultureInfo);
         }
         public static string GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(int? decimalsCount, CultureInfo cultureInfo)
         {
             return decimalsCount switch
             {
-                0 => String.Format("Your account balance is: {0:n0}", _balance, cultureInfo),
-                4 => String.Format("Your account balance is: {0:n4}", _balance, cultureInfo),
-                _ => String.Format("Your account balance is: {0:n}", _balance, cultureInfo),
+                0 => string.Format("Your account balance is: {0:n0}", _balance, cultureInfo),
+                4 => string.Format("Your account balance is: {0:n4}", _balance, cultureInfo),
+                _ => string.Format("Your account balance is: {0:n}", _balance, cultureInfo),
             };
         }
 
