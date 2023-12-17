@@ -1,3 +1,6 @@
+using HowToAddSeparatorsInThousandsPlaceForANumber;
+using System.Globalization;
+
 namespace Tests
 {
     public class Tests
