@@ -13,8 +13,6 @@ using (var sw = new StreamWriter(path))
     }
 }
 
-Console.WriteLine("List saved to file.");
-
 //Asynchronous version
 await using (var sw = new StreamWriter(path))
 {
@@ -34,8 +32,6 @@ using (var sw = new StreamWriter(path, true))
         sw.WriteLine(animal);
     }
 }
-
-Console.WriteLine("Appended new animal to an existing file.");
 
 //Using the File class in C#
 File.WriteAllLines(path, animals);
