@@ -1,7 +1,4 @@
 ﻿using HowToAddSeparatorsInThousandsPlaceForANumber;
-using System.Globalization;
-
-// String.Format() Method
 
 var englishCultureInfo = new CultureInfo("en-US");
 var spanishCultureInfo = new CultureInfo("es-ES");
@@ -25,8 +22,6 @@ var balanceMessageWithoutDecimals =
     NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(0, englishCultureInfo);
 Console.WriteLine(balanceMessageWithoutDecimals);
 
-// The ToString() method
-
 var balanceMessageUsingToString = NumbersFormatting.GetBalanceUsingTheToStringMethod("n", null);
 Console.WriteLine(balanceMessageUsingToString);
 
@@ -39,9 +34,6 @@ Console.WriteLine(balanceMessageUsingToStringWithoutDigits);
 
 var spanishCultureInfoBalanceMessage = NumbersFormatting.GetBalanceUsingTheToStringMethod("n4", spanishCultureInfo);
 Console.WriteLine(spanishCultureInfoBalanceMessage);
-
-
-// Interpolation
 
 var message = NumbersFormatting.GetBalanceUsingStringInterpolation(null);
 Console.WriteLine(message);
