@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unveiling Action and Func Delegates", "Unveiling Action and Func Delegates\Unveiling Action and Func Delegates.csproj", "{5CE014C4-6E3B-4306-829C-B61A498B2A9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unveiling Action and Func Delegates test", "Unveiling Action and Func Delegates test\Unveiling Action and Func Delegates test.csproj", "{1D0B44C4-252D-4F00-95FA-270CF198F1C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CE014C4-6E3B-4306-829C-B61A498B2A9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CE014C4-6E3B-4306-829C-B61A498B2A9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CE014C4-6E3B-4306-829C-B61A498B2A9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CE014C4-6E3B-4306-829C-B61A498B2A9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D0B44C4-252D-4F00-95FA-270CF198F1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D0B44C4-252D-4F00-95FA-270CF198F1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D0B44C4-252D-4F00-95FA-270CF198F1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D0B44C4-252D-4F00-95FA-270CF198F1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0851FEAE-83CE-4B25-9793-C3CC22828866}
+	EndGlobalSection
+EndGlobal
