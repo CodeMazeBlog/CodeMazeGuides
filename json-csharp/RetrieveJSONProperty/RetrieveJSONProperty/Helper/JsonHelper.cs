@@ -10,14 +10,11 @@ public static class JsonHelper
         foreach (var property in obj.GetType().GetProperties())
         {
             var jsonProperty = property.GetCustomAttribute<JsonPropertyAttribute>();
-            if (jsonProperty != null)
-            {
-                var propertyName = jsonProperty.PropertyName;
-                if (propertyName != null)
-                {
-                    yield return propertyName;
-                }
-            }
+            var jsonPropertyName = jsonProperty?.PropertyName;
+
+            yield return jsonPropertyName != null 
+                ? jsonPropertyName 
+                : property.Name;
         }
     }
 
@@ -27,12 +24,8 @@ public static class JsonHelper
 
         var values = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-        if (values != null)
-        {
-            foreach (var key in values.Keys)
-            {
-                yield return key;
-            }
-        }
+        return values != null 
+            ? values.Keys 
+            : Enumerable.Empty<string>();
     }
 }

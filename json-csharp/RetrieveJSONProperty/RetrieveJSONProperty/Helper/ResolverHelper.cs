@@ -5,17 +5,16 @@ namespace RetrieveJSONProperty.Helper;
 
 public static class ResolverHelper
 {
-    private static readonly IContractResolver defaultResolver = JsonSerializer.CreateDefault().ContractResolver;
+    private static readonly IContractResolver _defaultResolver = JsonSerializer.CreateDefault().ContractResolver;
 
     public static JsonProperty GetJsonProperty<T>(T obj, string jsonName, bool exact = false, IContractResolver? resolver = null)
     {
-        ArgumentNullException.ThrowIfNull(obj, nameof(obj));
+        ArgumentNullException.ThrowIfNull(obj);
 
-        resolver = resolver ?? defaultResolver;
-        var objType = obj.GetType();
-        var contract = resolver.ResolveContract(objType) as JsonObjectContract;
-
-        if (contract == null)
+        resolver ??= _defaultResolver;
+        var objType = typeof(T);
+        
+        if (resolver.ResolveContract(objType) is not JsonObjectContract contract)
             throw new ArgumentException($"{objType} is not serialized as a JSON object");
 
         var property = contract.Properties.GetProperty(jsonName, exact ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase);

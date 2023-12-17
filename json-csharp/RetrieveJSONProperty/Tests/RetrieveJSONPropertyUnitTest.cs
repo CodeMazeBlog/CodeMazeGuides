@@ -17,24 +17,24 @@ public class Tests
         var result = JsonHelper.RetrievalUsingReflection(sales);
 
         // Assert
-        CollectionAssert.AreEquivalent(new[] { "Yearly", "Daily" }, result);
+        CollectionAssert.AreEquivalent(new[] { "Slx_PER_Year", "Slx_PER_DAY" }, result);
     }
 
     [Test]
     public void GivenSalesObject_WhenRetrievingKeyValuesUsingSerialization_ThenReturnsCorrectKeyValuePairs()
     {
         // Arrange
-        var product = new Product
+        var sales = new Sales
         {
-            ProductId = "123",
-            ProductName = "SampleProduct"
+            YearlySales = "1000",
+            DailySales = "50"
         };
 
         // Act
-        var result = JsonHelper.RetrievalUsingSerialization(product);
+        var result = JsonHelper.RetrievalUsingSerialization(sales);
 
         // Assert
-        CollectionAssert.AreEqual(new[] { "productId", "productName" }, result);
+        CollectionAssert.AreEqual(new[] { "Slx_PER_Year", "Slx_PER_DAY" }, result);
     }
 
     [Test]
@@ -55,14 +55,18 @@ public class Tests
     public void GivenValidProductObject_WhenGettingJsonPropertyForProductName_ThenReturnCorrectProperty()
     {
         // Arrange
-        var product = new Product { ProductId = "P123", ProductName = "TestProduct" };
+        var sales = new Sales
+        {
+            YearlySales = "1000",
+            DailySales = "50"
+        };
 
         // Act
-        var property = ResolverHelper.GetJsonProperty(product, "ProductName");
+        var property = ResolverHelper.GetJsonProperty(sales, "Slx_per_day");
 
         // Assert
         Assert.IsNotNull(property);
-        Assert.That(property.PropertyName, Is.EqualTo("productName"));
+        Assert.That(property.PropertyName, Is.EqualTo("Slx_PER_DAY"));
         Assert.That(property.PropertyType, Is.EqualTo(typeof(string)));
 
     }
@@ -76,14 +80,5 @@ public class Tests
         public string? Surname { get; set; }
 
         public int Age { get; set; }
-    }
-
-    private class Sales
-    {
-        [JsonProperty("Yearly")]
-        public string? YearlySales { get; set; }
-
-        [JsonProperty("Daily")]
-        public string? DailySales { get; set; }
     }
 }

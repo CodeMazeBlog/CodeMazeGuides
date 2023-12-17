@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json.Serialization;
 using RetrieveJSONProperty.DTOs;
 using RetrieveJSONProperty.Helper;
 
@@ -45,17 +44,7 @@ while (continueExecution)
 
 static void ListExactPropertyNames()
 {
-    Console.WriteLine("Enter YearlySales:");
-    string? yearlySalesInput = Console.ReadLine();
-
-    Console.WriteLine("Enter DailySales:");
-    string? dailySalesInput = Console.ReadLine();
-
-    var sales = new Sales
-    {
-        YearlySales = yearlySalesInput,
-        DailySales = dailySalesInput
-    };
+    var sales = CreateSalesObject();
 
     Console.WriteLine("\nRetrieval using Reflection:");
     var propertyNames = JsonHelper.RetrievalUsingReflection(sales);
@@ -67,17 +56,7 @@ static void ListExactPropertyNames()
 
 static void ListPropertyUsingSerialization()
 {
-    Console.WriteLine("Enter YearlySales:");
-    string? yearlySalesInput = Console.ReadLine();
-
-    Console.WriteLine("Enter DailySales:");
-    string? dailySalesInput = Console.ReadLine();
-
-    var sales = new Sales
-    {
-        YearlySales = yearlySalesInput,
-        DailySales = dailySalesInput
-    };
+    var sales = CreateSalesObject();
 
     Console.WriteLine("\nRetrieval using Serialization:");
     var propertyNames = JsonHelper.RetrievalUsingSerialization(sales);
@@ -90,45 +69,42 @@ static void ListPropertyUsingSerialization()
 
 static void ResolverImplementation()
 {
-    Console.WriteLine("Enter ProductId:");
-    string? productId = Console.ReadLine();
-
-    Console.WriteLine("Enter ProductName:");
-    string? productName = Console.ReadLine();
-
-    var product = new Product
-    {
-        ProductId = productId,
-        ProductName = productName
-    };
+    var sales = CreateSalesObject();
     
-    JsonProperty productIdProperty = ResolverHelper.GetJsonProperty(product, "ProductId");
-    JsonProperty productNameProperty = ResolverHelper.GetJsonProperty(product, "productName");
+    JsonProperty salesPerYearProperty = ResolverHelper.GetJsonProperty(sales, "Slx_per_Year");
+    JsonProperty salesPerDayProperty = ResolverHelper.GetJsonProperty(sales, "Slx_per_DAY");
 
-    Console.WriteLine($"{productIdProperty.PropertyName}");
-    Console.WriteLine($"{productNameProperty.PropertyName}");
+    Console.WriteLine($"{salesPerYearProperty.PropertyName}");
+    Console.WriteLine($"{salesPerDayProperty.PropertyName}");
 }
 
 
 static void AlternateImplementation()
 {
-    Console.WriteLine("Enter Name:");
-    string? Name = Console.ReadLine();
+    var sales = CreateSalesObject();
 
-    Console.WriteLine("Enter Code:");
-    string? Code = Console.ReadLine();
-
-    var country = new Country
-    {
-        Name = Name,
-        Code = Code
-    };
-
-    var propertyNames = JsonTextImplementation.GetJsonPropertyNames(country);
+    var propertyNames = JsonTextImplementation.GetJsonPropertyNames(sales);
 
     Console.WriteLine("JSON property names:");
     foreach (var propertyName in propertyNames)
     {
         Console.WriteLine(propertyName);
     }
+}
+
+static Sales CreateSalesObject()
+{
+    Console.WriteLine("Enter YearlySales:");
+    string? yearlySalesInput = Console.ReadLine();
+
+    Console.WriteLine("Enter DailySales:");
+    string? dailySalesInput = Console.ReadLine();
+
+    var sales = new Sales
+    {
+        YearlySales = yearlySalesInput,
+        DailySales = dailySalesInput
+    };
+
+    return sales;
 }
