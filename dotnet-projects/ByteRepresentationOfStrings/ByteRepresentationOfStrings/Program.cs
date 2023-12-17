@@ -1,10 +1,25 @@
 ﻿using ByteRepresentationOfStrings;
+using System.Runtime.InteropServices;
 
-string sampleString = "CodeMaze";
+//Enable Unicode characters for the console
+Console.OutputEncoding = System.Text.Encoding.Unicode;
+
+string sampleString = "𝓒𝓸𝓭𝓮𝓜𝓪𝔃𝓮";
 byte[] byteArray = StringByteConverter.GetBytes(sampleString);
 string reconstructedString = StringByteConverter.GetString(byteArray);
 
-Console.WriteLine(reconstructedString);
+Console.WriteLine($"Original String: {sampleString}");
+Console.WriteLine($"Converted String: {reconstructedString}");
+
+
+// Convert string to bytes using Span
+ReadOnlySpan<char> charSpan = sampleString.AsSpan();
+byte[] bytes = StringByteConverter.GetBytesWithSpan(charSpan);
+
+// Convert bytes back to string using Span
+string convertedString = StringByteConverter.GetString(bytes);
+
+Console.WriteLine($"Converted String using span: {convertedString}");
 
 
 //Example using System.Text.Encoding
