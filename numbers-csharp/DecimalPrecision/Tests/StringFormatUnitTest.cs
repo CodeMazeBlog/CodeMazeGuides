@@ -1,4 +1,6 @@
-﻿namespace TestProject1;
+﻿using FluentAssertions;
+
+namespace TestProject1;
 
 public class StringFormatUnitTest
 {
@@ -11,25 +13,18 @@ public class StringFormatUnitTest
     [InlineData(0, "0.00", "0.00")]
     public void FormatDecimalWithPrecision_ReturnsExpected(decimal input, string format, string expectedResult)
     {
-        // Act
-        var result = StringFormat.FormatDecimalWithPrecision(input, format);
-
-        // Assert
-        Assert.Equal(expectedResult, result);
+        input.ToString(format).Should().Be(expectedResult);
     }
 
     [Theory]
-    [InlineData(123.456, "123.46")]
-    [InlineData(8.6789, "8.68")]
-    [InlineData(7.0, "7.00")]
-    [InlineData(0.1234, "0.12")]
-    [InlineData(-15.6789, "-15.68")]
-    public void SetPrecisionUsingStringFormatAndGlobalScope_ShouldFormatCorrectly(decimal input, string expected)
+    [InlineData(123.456, 2, "123.46")]
+    [InlineData(8.6789, 2,"8.68")]
+    [InlineData(7.0, 2, "7.00")]
+    [InlineData(0.1234, 3,"0.123")]
+    [InlineData(-15.4789, 3, "-15.479")]
+    [InlineData(-15.4789, 0, "-15")]
+    public void SetPrecisionUsingStringFormatAndGlobalScope_ShouldFormatCorrectly(decimal input, int decimalPlaces, string expected)
     {
-        // Act
-        var result = StringFormat.SetPrecisionUsingStringFormatInfo(input, 2);
-
-        // Assert
-        Assert.Equal(expected, result);
+        input.ToStringXDecimalPlaces(decimalPlaces).Should().Be(expected);
     }
 }

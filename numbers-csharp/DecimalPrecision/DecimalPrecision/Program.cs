@@ -1,18 +1,18 @@
 ﻿using DecimalPrecision;
 
-var myDecimal = 123.456789M;
+const decimal myDecimal = 123.456789M;
 
-var stringFormatResult = StringFormat.FormatDecimalWithPrecision(myDecimal, "0.00");
-Console.WriteLine(stringFormatResult);
+Console.WriteLine("----Decimal formatting----");
+Console.WriteLine($"Value (\"0.00\"): {myDecimal.ToString("0.00")}");
+Console.WriteLine($"Value (default format): {myDecimal}");
+Console.WriteLine($"Value (\"0.0000\"): {myDecimal.ToString("0.0000")}");
+Console.WriteLine($"Value (NumberFormatInfo 3 digits): {myDecimal.ToStringXDecimalPlaces(3)}");
+Console.WriteLine();
 
-var stringFormatResultWithGlobalScope = StringFormat.SetPrecisionUsingStringFormatInfo(myDecimal, 2);
-Console.WriteLine(stringFormatResultWithGlobalScope);
+Console.WriteLine("----Decimal rounding----");
 
-var roundedValueFromMathRound = RoundingFunction.GetDecimalRoundValueUsingMathRound(myDecimal);
-Console.WriteLine(roundedValueFromMathRound);
-
-var roundedValueFromDecimalRound = RoundingFunction.GetDecimalRoundValueUsingDecimalRound(myDecimal);
-Console.WriteLine(roundedValueFromDecimalRound);
-
-var truncatedValue = RoundingFunction.GetDecimalRoundValueUsingDecimalTruncate(myDecimal);
-Console.WriteLine(truncatedValue);
+Console.WriteLine($"Value (default format): {myDecimal}");
+Console.WriteLine($"Value (round 2 places): {myDecimal.Round(2)}");
+Console.WriteLine($"Value (truncate): {myDecimal.Truncate()}");
+Console.WriteLine($"Value (ceiling): {myDecimal.Ceiling()}");
+Console.WriteLine($"Value (floor): {myDecimal.Floor()}");

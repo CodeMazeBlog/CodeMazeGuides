@@ -2,18 +2,11 @@
 
 public static class RoundingFunction
 {
-    public static decimal GetDecimalRoundValueUsingMathRound(decimal value)
-    {
-        return Math.Round(value, 2);
-    }
-    
-    public static decimal GetDecimalRoundValueUsingDecimalRound(decimal value)
-    {
-        return decimal.Round(value, 2);
-    }
-    
-    public static decimal GetDecimalRoundValueUsingDecimalTruncate(decimal value)
-    {
-        return decimal.Truncate(value);
-    }
+public static decimal Round(this decimal value, int decimalPlaces) => decimal.Round(value, decimalPlaces);
+
+public static decimal Truncate(this decimal value) => decimal.Truncate(value);
+
+public static decimal Ceiling(this decimal value) => decimal.Ceiling(value);
+
+public static decimal Floor(this decimal value) => decimal.Floor(value);
 }
