@@ -15,12 +15,10 @@ public class Student {
     public string FirstName { get; set; } = string.Empty; 
 
     [Required]
-    [EmailAddress]
     [BsonElement("LastName")] 
     public string LastName { get; set; } = string.Empty;
 
     [Required]
-    [EmailAddress]
     [BsonElement("Major")]
     public string Major { get; set; } = string.Empty;
 
@@ -34,5 +32,10 @@ public class Student {
             LastName == student.LastName 
             && StudentCourses.All(course => course
             .Equals(student.StudentCourses.ElementAt(StudentCourses.IndexOf(course)))); 
-    } 
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id, FirstName, LastName, Major, StudentCourses);
+    }
 }

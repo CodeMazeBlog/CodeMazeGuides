@@ -24,4 +24,9 @@ public class Course
         return Name == course.Name
                 && Code == course.Code;
     }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Id, Name, Code);
+    }
 }
