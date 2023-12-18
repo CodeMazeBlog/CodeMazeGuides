@@ -1,17 +1,17 @@
 ﻿using BenchmarkDotNet.Attributes;
 using SerializeObjectToQueryString;
 
-namespace SerializeObjectToQueryStringBenchmarks
+namespace SerializeObjectToQueryStringBenchmarks;
+
+public class ObjectToQueryStringBenchmarks
 {
-    public class ObjectToQueryStringBenchmarks
-    {
-        [Benchmark]
-        public void SerializeObjectToQueryStringUsingReflection() =>
-            QueryStringSerializer.CreateURLWithBookAsQueryParamsUsingReflection("https://test.com", new Book());
+    private static readonly Book _book = new();
 
-        [Benchmark]
-        public void SerializeObjectToQueryStringUsingNewtonsoftJson() =>
-            QueryStringSerializer.CreateURLWithBookAsQueryParamsUsingNewtonsoftJson("https://test.com", new Book());
+    [Benchmark]
+    public void SerializeObjectToQueryStringUsingReflection() =>
+        QueryStringSerializer.CreateURLWithBookAsQueryParamsUsingReflection("https://test.com", _book);
 
-    }
+    [Benchmark]
+    public void SerializeObjectToQueryStringUsingNewtonsoftJson() =>
+        QueryStringSerializer.CreateURLWithBookAsQueryParamsUsingNewtonsoftJson("https://test.com", _book);
 }

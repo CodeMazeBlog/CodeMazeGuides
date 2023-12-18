@@ -57,20 +57,21 @@ namespace SerializeObjectToQueryString
                 .SelectMany(nestedProperty => GetPropertyValues(nestedProperty, obj));
         }
 
-        private static IEnumerable<string> GetArrayValues(string propertyName, Array array)
+private static IEnumerable<string> GetArrayValues(string propertyName, Array array)
+{
+    return Enumerable.Range(0, array.Length)
+        .Select(i =>
         {
-            return Enumerable.Range(0, array.Length)
-                .Select(i =>
-                {
-                    string arrayElementValue = HttpUtility.UrlEncode(array.GetValue(i)?.ToString()) ?? string.Empty;         
-                    return $"{HttpUtility.UrlEncode(propertyName)}[{i}]={arrayElementValue}";
-                });
-        }
+            var arrayElementValue = HttpUtility.UrlEncode(array.GetValue(i)?.ToString()) ?? string.Empty;
+            var arrayPropName = propertyName + $"[{i}]";
+            return $"{HttpUtility.UrlEncode(arrayPropName)}={arrayElementValue}";
+        });
+}
 
         private static IEnumerable<string> GetPropertyValues(PropertyInfo property, object parentObject)
         {
-            string propertyName = property.Name;
-            object propertyValue = property.GetValue(parentObject)!;
+            var propertyName = property.Name;
+            var propertyValue = property.GetValue(parentObject)!;
 
             if (property.PropertyType.IsClass && property.PropertyType != typeof(string))
             {
@@ -82,7 +83,7 @@ namespace SerializeObjectToQueryString
                 {
                     return GetNestedPropertyValues(propertyValue)
                         .Select(nestedValue =>
-                            $"{HttpUtility.UrlEncode(propertyName)}.{HttpUtility.UrlEncode(nestedValue)}");
+                            $"{HttpUtility.UrlEncode(propertyName)}.{nestedValue}");
                 }
             }
             else
