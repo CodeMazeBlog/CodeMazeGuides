@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Tests;
 
-public class HowToInitializeParametersTest
+public class HowToInitializeParametersUnitTest
 {
     [Fact]
     public void WhenInitializingPerson_ThenPropertiesSet()
