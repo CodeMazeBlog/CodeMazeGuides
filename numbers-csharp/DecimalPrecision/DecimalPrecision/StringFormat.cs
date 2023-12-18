@@ -4,14 +4,13 @@ namespace DecimalPrecision;
 
 public static class StringFormat
 {
-public static string ToStringXDecimalPlaces(this decimal val, int decimalPlaces)
-{
-    var format = new NumberFormatInfo
+    public static string ToStringXDecimalPlaces(this decimal val, int decimalPlaces)
     {
-        NumberDecimalDigits = decimalPlaces
-    };
+        var format = new NumberFormatInfo
+        {
+            NumberDecimalDigits = decimalPlaces
+        };
 
-    return val.ToString("F", format);
-}
-
+        return val.ToString("F", format);
+    }
 }

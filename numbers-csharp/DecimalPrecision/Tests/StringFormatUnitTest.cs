@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-
-namespace TestProject1;
+﻿namespace TestProject1;
 
 public class StringFormatUnitTest
 {
@@ -18,12 +16,13 @@ public class StringFormatUnitTest
 
     [Theory]
     [InlineData(123.456, 2, "123.46")]
-    [InlineData(8.6789, 2,"8.68")]
+    [InlineData(8.6789, 2, "8.68")]
     [InlineData(7.0, 2, "7.00")]
-    [InlineData(0.1234, 3,"0.123")]
+    [InlineData(0.1234, 3, "0.123")]
     [InlineData(-15.4789, 3, "-15.479")]
     [InlineData(-15.4789, 0, "-15")]
-    public void SetPrecisionUsingStringFormatAndGlobalScope_ShouldFormatCorrectly(decimal input, int decimalPlaces, string expected)
+    public void SetPrecisionUsingStringFormatAndGlobalScope_ShouldFormatCorrectly(decimal input, int decimalPlaces,
+        string expected)
     {
         input.ToStringXDecimalPlaces(decimalPlaces).Should().Be(expected);
     }

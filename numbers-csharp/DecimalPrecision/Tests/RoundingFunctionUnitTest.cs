@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-
-namespace TestProject1;
+﻿namespace TestProject1;
 
 public class RoundingFunctionUnitTest
 {
@@ -14,7 +12,7 @@ public class RoundingFunctionUnitTest
     {
         input.Round(2).Should().BeApproximately(expected, 0.001M);
     }
-    
+
     [Theory]
     [InlineData(12.3456, 12)]
     [InlineData(8.6789, 8)]
