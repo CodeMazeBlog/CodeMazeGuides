@@ -1,24 +1,16 @@
-using ConversionsInCSharp;
-using System.Globalization;
-
 namespace Tests;
 
 public class ConversionsInCSharpTest
-{   
+{
     // convenience method
     [Fact]
     public void GivenMakeConversionMethod_WhenConversionIsPossible_ThenCorrectMessageIsPrinted()
     {
-        // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
-
         // Act
-        Utilities.MakeConversion(Convert.ToInt64, 20);
-        var output = stringWriter.ToString().Trim();
+        var output = Utilities.MakeConversion(Convert.ToInt64, 20);
 
         // Assert 
-        var expected = "20 (System.Int32) -> 20 (System.Int64)";
+        var expected = "20 (System.Int32) -> 20 (System.Int64)";               
 
         Assert.Equal(expected, output);
     }
@@ -26,26 +18,21 @@ public class ConversionsInCSharpTest
     [Fact]
     public void GivenMakeConversionMethod_WhenConversionIsImpossible_ThenErrorMessageIsPrinted()
     {
-        // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
-
         // Act
-        Utilities.MakeConversion(Convert.ToByte, 1500);
-        var output = stringWriter.ToString().Trim();
+        var output = Utilities.MakeConversion(Convert.ToByte, 1500);
 
         // Assert 
         var expected = "Value was either too large or too small for an unsigned byte.";
 
         Assert.Equal(expected, output);
     }
-       
+
     [Fact]
     public void GivenMakeConversionMethod_WhenConvertingFromLargeLongToInt_ThenOverflowExceptionIsThrown()
     {
         // Act
         Utilities.MakeConversion(Convert.ToInt32, 10_000_000_000L);
-        
+
         // Assert         
         Assert.ThrowsAsync<OverflowException>(() => { throw new OverflowException(); });
     }
@@ -85,13 +72,8 @@ public class ConversionsInCSharpTest
     [Fact]
     public void GivenMakeConversionMethod_WhenConvertingFromIntToByte_ThenConversionSucceeds()
     {
-        // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
-
         // Act
-        Utilities.MakeConversion(Convert.ToByte, 125);
-        var output = stringWriter.ToString().Trim();
+        var output = Utilities.MakeConversion(Convert.ToByte, 125);
 
         // Assert 
         var expected = "125 (System.Int32) -> 125 (System.Byte)";
@@ -104,13 +86,8 @@ public class ConversionsInCSharpTest
     [Fact]
     public void GivenMakeConversionMethod_WhenConvertingFromBoolToString_ThenConversionSucceeds()
     {
-        // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
-
         // Act
-        Utilities.MakeConversion(Convert.ToString, true);
-        var output = stringWriter.ToString().Trim();
+        var output = Utilities.MakeConversion(Convert.ToString, true);
 
         // Assert 
         var expected = "True (System.Boolean) -> True (System.String)";
@@ -124,13 +101,10 @@ public class ConversionsInCSharpTest
     public void GivenMakeConversionMethod_WhenConvertingToBase64String_ThenConversionSucceeds()
     {
         // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
+        byte[] bytes = [5, 10, 15, 20, 25, 30];
 
         // Act
-        byte[] bytes = [5, 10, 15, 20, 25, 30];
-        Utilities.MakeConversion(Convert.ToBase64String, bytes);
-        var output = stringWriter.ToString().Trim();
+        var output = Utilities.MakeConversion(Convert.ToBase64String, bytes);
 
         // Assert 
         var expected = "System.Byte[] (System.Byte[]) -> BQoPFBke (System.String)";
@@ -143,13 +117,8 @@ public class ConversionsInCSharpTest
     [Fact]
     public void GivenConvertToStringWithBaseMethod_WhenUsingBase2_ThenConversionSucceeds()
     {
-        // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
-
         // Act
-        Utilities.ConvertToStringWithBase(17, 2);
-        var output = stringWriter.ToString().Trim();
+        var output = Utilities.ConvertToStringWithBase(17, 2);
 
         // Assert 
         var expected = "17 (in base 10) -> 10001 (in base 2)";
@@ -162,13 +131,8 @@ public class ConversionsInCSharpTest
     [Fact]
     public void GivenMakeConversionMethod_WhenConvertingFromIntToBool_ThenNonZeroIsConvertedToTrue()
     {
-        // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
-
         // Act
-        Utilities.MakeConversion(Convert.ToBoolean, -36);
-        var output = stringWriter.ToString().Trim();
+        var output = Utilities.MakeConversion(Convert.ToBoolean, -36);
 
         // Assert 
         var expected = "-36 (System.Int32) -> True (System.Boolean)";
@@ -181,13 +145,8 @@ public class ConversionsInCSharpTest
     [Fact]
     public void GivenMakeConversionMethod_WhenConvertingFromIntToChar_ThenConversionIsSuccessful()
     {
-        // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
-
         // Act
-        Utilities.MakeConversion(Convert.ToChar, 89);
-        var output = stringWriter.ToString().Trim();
+        var output = Utilities.MakeConversion(Convert.ToChar, 89);
 
         // Assert 
         var expected = "89 (System.Int32) -> Y (System.Char)";
@@ -200,32 +159,29 @@ public class ConversionsInCSharpTest
     [Fact]
     public void GivenMakeConversionMethod_WhenConvertingFromDateTimeToString_ThenConversionIsSuccessful()
     {
-        // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
-
         // Act
-        Utilities.MakeConversion(Convert.ToString, new DateTime(2021, 10, 13, 4, 18, 5));
-        var output = stringWriter.ToString().Trim();
+        var output = Utilities.MakeConversion(Convert.ToString, new DateTime(2021, 10, 13, 4, 18, 5));
 
         // Assert 
         var expected1 = "(System.DateTime)";
         var expected2 = "(System.String)";
 
-        Assert.Contains(expected1, output); 
+        Assert.Contains(expected1, output);
         Assert.Contains(expected2, output);
     }
+
+    // CONVERSIONS WITH IFORMATPROVIDER
 
     [Fact]
     public void GivenIFormatProvider_WhenConvertingToDecimalWithFrenchCulture_ThenConversionIsSuccessful()
     {
         // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
+        var culture = new CultureInfo("en-US");
+        CultureInfo.DefaultThreadCurrentCulture = culture;
+        CultureInfo.DefaultThreadCurrentUICulture = culture;
 
         // Act
-        Console.WriteLine(Convert.ToDecimal("12,54", new CultureInfo("fr-FR")));
-        var output = stringWriter.ToString().Trim();
+        var output = (Convert.ToDecimal("12,54", new CultureInfo("fr-FR"))).ToString();
 
         // Assert 
         var expected = "12.54";
@@ -239,13 +195,10 @@ public class ConversionsInCSharpTest
     public void GivenCustomNoteType_WhenConvertingToneBToInt64_ThenLongNumber2IsReturned()
     {
         // Arrange
-        var stringWriter = new StringWriter();
-        Console.SetOut(stringWriter);
+        Note note = new('B');
 
         // Act
-        Note note = new('B');
-        Utilities.MakeConversion(Convert.ToInt64, note);
-        var output = stringWriter.ToString().Trim();
+        var output = Utilities.MakeConversion(Convert.ToInt64, note);
 
         // Assert 
         var expected = "ConversionsInCSharp.Note (ConversionsInCSharp.Note) -> 2 (System.Int64)";
