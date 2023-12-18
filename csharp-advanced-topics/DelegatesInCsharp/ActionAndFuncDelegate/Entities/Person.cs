@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ActionAndFuncDelegates.Entities
+namespace ActionAndFuncDelegate.Entities
 {
     public class Person
     {

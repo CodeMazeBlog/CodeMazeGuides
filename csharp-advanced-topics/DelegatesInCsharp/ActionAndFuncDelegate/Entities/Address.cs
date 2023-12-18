@@ -1,4 +1,4 @@
-﻿namespace ActionAndFuncDelegates.Entities
+﻿namespace ActionAndFuncDelegate.Entities
 {
     public class Address
     {

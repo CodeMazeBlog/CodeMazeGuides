@@ -48,16 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionWithNoParameter.cs" />
-    <Compile Include="FuncWithoutLambdaExpression.cs" />
-    <Compile Include="FuncWithParametersAndReturnValue.cs" />
-    <Compile Include="Entities\Address.cs" />
-    <Compile Include="Entities\Person.cs" />
-    <Compile Include="ActionWithParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
