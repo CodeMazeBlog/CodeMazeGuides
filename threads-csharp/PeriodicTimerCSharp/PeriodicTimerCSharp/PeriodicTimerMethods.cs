@@ -2,6 +2,17 @@
 
 public class PeriodicTimerMethods
 {
+    private readonly PeriodicTimer _periodicTimer;
+    private readonly CancellationTokenSource _cancellationToken = new();
+    private Task? _task;
+    private int _size;
+
+    public PeriodicTimerMethods(TimeSpan timeSpan, int size) 
+    {
+        _periodicTimer = new PeriodicTimer(timeSpan);
+        _size = size;
+    }
+
     public static int[] CreateRandomArray(int size)
     {
         var array = new int[size];
@@ -14,37 +25,46 @@ public class PeriodicTimerMethods
         return array;
     }
 
-    public static async Task<PeriodicTimer> RandomArrayTimerAsync() 
+    public void Start() 
     {
-        using var timer = new PeriodicTimer(TimeSpan.FromSeconds(1));
-        using var token = new CancellationTokenSource();
-        var stopWatch = System.Diagnostics.Stopwatch.StartNew();
-        var taskDuration = 6;
-        var numberOfElements = 5;
-        var numberOfArrays = 1;
+        _task = RandomArrayTimerAsync();
+    }
 
-        while (await timer.WaitForNextTickAsync(token.Token))
+    private async Task RandomArrayTimerAsync() 
+    {
+        try 
         {
-            if (!token.IsCancellationRequested)
-            {
-                var array = CreateRandomArray(numberOfElements);
+            var stopWatch = System.Diagnostics.Stopwatch.StartNew();
+            var numberOfArrays = 1;
 
-                foreach (var item in array) 
+            while (await _periodicTimer.WaitForNextTickAsync(_cancellationToken.Token)) 
+            {
+                var array = CreateRandomArray(_size);
+
+                foreach (var item in array)
                 {
                     Console.WriteLine(item);
                 }
 
                 Console.WriteLine($"Elapsed time: {stopWatch.Elapsed.Seconds}s and {numberOfArrays++} arrays created");
-
-                await Task.Delay(1000);
-
-                if (stopWatch.Elapsed.TotalSeconds > taskDuration)
-                {
-                    return timer;
-                }
+                Console.WriteLine(DateTime.Now.ToString("O"));
             }
         }
-        
-        return timer;
+        catch(OperationCanceledException) 
+        {
+        }
+    }
+
+    public async Task StopTaskAsync() 
+    {
+        if (_task is null) 
+        {
+            return;
+        }
+
+        _cancellationToken.Cancel();
+        await _task;
+        _cancellationToken.Dispose();
+        Console.WriteLine("The array task was canceled");
     }
 }

@@ -1,7 +1,7 @@
 namespace PeriodicTimerCSharpTests;
 
 [TestClass]
-public class UnitTest1
+public class PeriodicTimerUnitTests
 {
     [TestMethod]
     public void GivenAnArrayWithSpecificElements_ThenValidateItsCreation()
@@ -14,12 +14,15 @@ public class UnitTest1
     }
 
     [TestMethod]
-    public void GivenATimerInstance_ThenValidateItsProperties()
+    public async Task GivenATimerTask_ThenValidateItHasNoExceptions()
     {
-        var timer = PeriodicTimerMethods.RandomArrayTimerAsync();
+        var timeSpan = TimeSpan.FromSeconds(1);
+        var size = 10;
 
-        Assert.IsNotNull(timer);
-        Assert.IsInstanceOfType(timer, typeof(Task<PeriodicTimer>));
-        Assert.IsFalse(timer.IsCanceled);
+        var periodicTimerMethods = new PeriodicTimerMethods(timeSpan, size);
+
+        periodicTimerMethods.Start();
+        await Task.Delay(5000);
+        await periodicTimerMethods.StopTaskAsync();
     }
 }
