@@ -2,64 +2,65 @@
 
 public static class Utilities
 {
-    // basic examples
-    public static void ConvertIntToOtherTypes(int value)
+    public static string ConvertIntToOtherTypes(int value)
     {
-        double intToDouble = Convert.ToDouble(value);
-        bool intToBool = Convert.ToBoolean(value);
-        string intToString = Convert.ToString(value);
+        var intToDouble = Convert.ToDouble(value);
+        var intToBool = Convert.ToBoolean(value);
+        var intToString = Convert.ToString(value);
 
-        string intToDoubleText = $"{value} ({value.GetType()}) -> {intToDouble} ({intToDouble.GetType()})";
-        string intToBoolText = $"{value} ({value.GetType()}) -> {intToBool} ({intToBool.GetType()})";
-        string intToStringText = $"{value} ({value.GetType()}) -> {intToString} ({intToString.GetType()})";
+        var intToDoubleText = $"{value} ({value.GetType()}) -> {intToDouble} ({intToDouble.GetType()})";
+        var intToBoolText = $"{value} ({value.GetType()}) -> {intToBool} ({intToBool.GetType()})";
+        var intToStringText = $"{value} ({value.GetType()}) -> {intToString} ({intToString.GetType()})";
 
-        string output = $"{intToDoubleText}\n{intToBoolText}\n{intToStringText}";
+        var output = $"{intToDoubleText}\n{intToBoolText}\n{intToStringText}";
 
-        Console.WriteLine(output);        
+        return output;
     }
-
-    // convenience method to test conversions
-    public static void MakeConversion<T1, T2>(Func<T1, T2> convert, T1 value)
+       
+    public static string MakeConversion<T1, T2>(Func<T1, T2> convert, T1 value)
     {
         try
         {
             T2 result = convert(value);
-            Console.WriteLine($"{value} ({value?.GetType()}) -> {result} ({result?.GetType()})");
 
-            if (value?.GetType() == result?.GetType() )
+            var output = $"{value} ({value?.GetType()}) -> {result} ({result?.GetType()})";
+
+            if (value?.GetType() == result?.GetType())
             {
-                Console.WriteLine("No conversion, same types");
+                output += "\nNo conversion, same types";
             }
-        }
-        catch (Exception ex) 
-        {
-            Console.WriteLine(ex.Message);
-        }        
-    }  
 
-    public static void ConvertToStringWithBase(int number, int baseValue)
-    {
-        try
-        {
-            string numberRepresentation = Convert.ToString(number, baseValue);
-            Console.WriteLine($"{number} (in base 10) -> {numberRepresentation} (in base {baseValue})");
+            return output;
         }
-        catch 
+        catch (Exception ex)
         {
-            Console.WriteLine("Wrong base (must be 2, 8, 10 or 16)");
+            return ex.Message;
         }
     }
 
-    public static void ConvertFromStringWithBase(string numberRepresentation, int baseValue)
+    public static string ConvertToStringWithBase(int number, int baseValue)
     {
         try
         {
-            int number = Convert.ToInt32(numberRepresentation, baseValue);
-            Console.WriteLine($"{numberRepresentation} (in base {baseValue}) -> {number} (in base 10)");
+            var numberRepresentation = Convert.ToString(number, baseValue);
+            return $"{number} (in base 10) -> {numberRepresentation} (in base {baseValue})";
         }
         catch
         {
-            Console.WriteLine("Wrong base (must be 2, 8, 10 or 16)");
+            return "Wrong base (must be 2, 8, 10 or 16)";
+        }
+    }
+
+    public static string ConvertFromStringWithBase(string numberRepresentation, int baseValue)
+    {
+        try
+        {
+            var number = Convert.ToInt32(numberRepresentation, baseValue);
+            return $"{numberRepresentation} (in base {baseValue}) -> {number} (in base 10)";
+        }
+        catch
+        {
+            return "Wrong base (must be 2, 8, 10 or 16)";
         }
     }
 }
