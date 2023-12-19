@@ -37,6 +37,7 @@ var apiVersionSet = app.NewApiVersionSet()
     .HasDeprecatedApiVersion(new ApiVersion(0, 9))
     .HasApiVersion(new ApiVersion(1, 0))
     .HasApiVersion(new ApiVersion(2, 0))
+    .HasApiVersion(new ApiVersion(3, 0))
     .ReportApiVersions()
     .Build();
 
@@ -58,6 +59,15 @@ app.MapGet("api/minimal/StringList", () =>
 })
     .WithApiVersionSet(apiVersionSet)
     .MapToApiVersion(new ApiVersion(2, 0));
+
+app.MapGet("api/minimal/v{version:apiVersion}/StringList", () =>
+{
+    var strings = Data.Summaries.Where(x => x.StartsWith("C"));
+
+    return TypedResults.Ok(strings);
+})
+    .WithApiVersionSet(apiVersionSet)
+    .MapToApiVersion(new ApiVersion(3, 0));
 
 app.Run();
 
