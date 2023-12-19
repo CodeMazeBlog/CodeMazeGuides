@@ -1,5 +1,4 @@
-﻿
-@inherits LayoutComponentBase
+﻿@inherits LayoutComponentBase
 <div class="d-flex flex-column min-vh-100 overflow-hidden">
     <div class="page flex-grow-1" style="height: 85vh; overflow: auto;">
         <div class="sidebar">
@@ -21,7 +20,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <p class="m-0 text-white"><SectionOutlet SectionName="CustomFooter" /></p>
+                    <p class="m-0 text-white">
+                        <SectionOutlet SectionName="CustomFooterSection"/>
+                    </p>
                 </div>
             </div>
         </div>
