@@ -2,7 +2,6 @@
 
 public class AggregationPipelineLiveTest : IAsyncLifetime
 {
-    private StudentRepository _sut;
     private readonly MongoDbContainer _mongoDbContainer =
         new MongoDbBuilder().Build();
 
@@ -11,7 +10,7 @@ public class AggregationPipelineLiveTest : IAsyncLifetime
     {
         //Arrange
         var mongoClient = new MongoClient(_mongoDbContainer.GetConnectionString());
-        _sut = new StudentRepository(mongoClient);
+        var sut = new StudentRepository(mongoClient);
         var expectedResult = new List<Student>
         {
             new()
@@ -31,7 +30,7 @@ public class AggregationPipelineLiveTest : IAsyncLifetime
         await MongoHelper.AddSeedData(database);
         
         //Act
-        var actualResult = await _sut.GetAllUsers();
+        var actualResult = await sut.GetAllUsers();
 
         //Assert
         Assert.NotNull(actualResult);
