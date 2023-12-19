@@ -2,15 +2,8 @@
 
 namespace MessageSenderApp;
 
-public class MessageSender
+public class MessageSender(IMessageService messageService)
 {
-    private readonly IMessageService _messageService;
-
-    public MessageSender(IMessageService messageService)
-    {
-        _messageService = messageService;
-    }
-
     public async Task SendMessagesAsync()
     {
         await SendMessageAsync();
@@ -24,7 +17,7 @@ public class MessageSender
     {
         var currentDateTime = DateTime.Now;
         var message = $"Message from sender at {currentDateTime}!";
-        await _messageService.SendMessageAsync("queue1", message);
+        await messageService.SendMessageAsync("queue1", message);
         Console.WriteLine($"Message sent to the queue at {currentDateTime}!");
     }
 }

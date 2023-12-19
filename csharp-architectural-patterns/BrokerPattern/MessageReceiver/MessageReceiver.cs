@@ -1,24 +1,16 @@
 ﻿using MessageService;
 
-namespace MessageReceiverApp
+namespace MessageReceiverApp;
+
+public class MessageReceiver(IMessageService messageService)
 {
-    public class MessageReceiver
+    public async Task ReceiveMessagesAsync()
     {
-        private readonly IMessageService _messageService;
+        await messageService.ReceiveMessagesFromQueueAsync("queue1", MessageHandler, 30000);
+    }
 
-        public MessageReceiver(IMessageService messageService)
-        {
-            _messageService = messageService;
-        }
-
-        public async Task ReceiveMessagesAsync()
-        {
-            await _messageService.ReceiveMessagesFromQueueAsync("queue1", MessageHandler, 30000);
-        }
-
-        public static void MessageHandler(string message)
-        {
-            Console.WriteLine($"Received Message: {message}");
-        }
+    public static void MessageHandler(string message)
+    {
+        Console.WriteLine($"Received Message: {message}");
     }
 }

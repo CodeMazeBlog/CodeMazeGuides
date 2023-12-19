@@ -6,7 +6,7 @@ namespace MessageSubscriberApp1;
 
 public static class Program
 {
-    public static async Task Main(string[] args)
+    public static async Task Main()
     {
         var builder = Host.CreateApplicationBuilder();
         builder.Services.AddSingleton<IMessageService, MessageService.MessageService>();

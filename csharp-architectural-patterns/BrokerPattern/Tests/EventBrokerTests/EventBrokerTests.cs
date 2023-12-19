@@ -12,7 +12,7 @@ public class EventBrokerTests
         Console.SetOut(writer);
 
         //Act
-        Program.Main(Array.Empty<string>());
+        Program.Main();
 
         //Assert
         var consoleOutput = writer.ToString().Trim();

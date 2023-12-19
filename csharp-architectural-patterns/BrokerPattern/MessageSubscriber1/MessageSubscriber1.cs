@@ -2,20 +2,14 @@
 
 namespace MessageSubscriberApp1;
 
-public class MessageSubscriber1
+public class MessageSubscriber1(IMessageService messageService)
 {
-    private readonly IMessageService _messageService;
     private static readonly string topicName = "topic1";
     private static readonly string subscriptionName = "s1";
 
-    public MessageSubscriber1(IMessageService messageService)
-    {
-        _messageService = messageService;
-    }
-
     public async Task ReceiveMessagesAsync()
     {
-        await _messageService.ReceiveMessagesWithSubscriptionAsync(
+        await messageService.ReceiveMessagesWithSubscriptionAsync(
             topicName, subscriptionName, MessageHandler, 30000);
     }
 

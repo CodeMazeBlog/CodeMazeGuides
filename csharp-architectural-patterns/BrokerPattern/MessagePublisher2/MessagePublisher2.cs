@@ -2,15 +2,9 @@
 
 namespace MessagePublisherApp2;
 
-public class MessagePublisher2
+public class MessagePublisher2(IMessageService messageService)
 {
-    private readonly IMessageService _messageService;
     private static readonly string topicName = "topic2";
-
-    public MessagePublisher2(IMessageService messageService)
-    {
-        _messageService = messageService;
-    }
 
     public async Task SendMessagesAsync()
     {
@@ -25,7 +19,7 @@ public class MessagePublisher2
     {
         var currentDateTime = DateTime.Now;
         var message = $"Message from sender for topic:{topicName} at {currentDateTime}!";
-        await _messageService.SendMessageAsync(topicName, message);
-        Console.WriteLine($"Message sent to the queue at {currentDateTime}!");
+        await messageService.SendMessageAsync(topicName, message);
+        Console.WriteLine($"Message sent for topic:{topicName} at {currentDateTime}!");
     }
 }

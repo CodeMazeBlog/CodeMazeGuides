@@ -2,17 +2,10 @@
 
 namespace EventBroker;
 
-public class Publisher
+public class Publisher(IBroker broker)
 {
-    private readonly IBroker _broker;
-
-    public Publisher(IBroker broker)
-    {
-        _broker = broker;
-    }
-
     public void Publish(Message message)
     {
-        _broker.Publish(message);
+        broker.Publish(message);
     }
 }
