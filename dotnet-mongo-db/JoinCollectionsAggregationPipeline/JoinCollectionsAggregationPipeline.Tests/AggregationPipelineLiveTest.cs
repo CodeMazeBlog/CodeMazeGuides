@@ -38,8 +38,8 @@ public class AggregationPipelineLiveTest : IAsyncLifetime
         Assert.True(actualResult[0].Equals(expectedResult[0]));
     }
 
-    public Task InitializeAsync()
-        => _mongoDbContainer.StartAsync();
-    public Task DisposeAsync()
-        => _mongoDbContainer.DisposeAsync().AsTask();
+    public async Task InitializeAsync()
+        => await _mongoDbContainer.StartAsync();
+    public async Task DisposeAsync()
+        => await _mongoDbContainer.DisposeAsync();
 }

@@ -4,8 +4,7 @@ using MongoDB.Driver;
 using Testcontainers.MongoDb;
 using JoinCollectionsAggregationPipeline.Models;
 
-var mongoDbContainer =
-        new MongoDbBuilder().Build();
+await using var mongoDbContainer = new MongoDbBuilder().Build();
 
 await mongoDbContainer.StartAsync();
 var mongoClient = new MongoClient(mongoDbContainer.GetConnectionString());
