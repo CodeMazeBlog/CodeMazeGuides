@@ -12,7 +12,9 @@ public class SwaggerIgnoreFilter : ISchemaFilter
     public void Apply(OpenApiSchema schema, SchemaFilterContext schemaFilterContext)
     {
         if (schema.Properties.Count == 0)
+        {
             return;
+        }
 
         var properties = schemaFilterContext.Type.GetProperties();
 
@@ -23,7 +25,9 @@ public class SwaggerIgnoreFilter : ISchemaFilter
         foreach (var excludedName in excludedList)
         {
             if (schema.Properties.ContainsKey(excludedName))
+            {
                 schema.Properties.Remove(excludedName);
+            }
         }
     }
 }

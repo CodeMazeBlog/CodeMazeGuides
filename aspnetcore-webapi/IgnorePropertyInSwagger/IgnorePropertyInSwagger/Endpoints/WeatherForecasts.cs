@@ -21,6 +21,7 @@ public static class WeatherForecasts
                             Summaries[Random.Shared.Next(Summaries.Length)]
                         ))
                     .ToArray();
+                
                 return forecast;
             })
             .WithName("GetWeatherForecast")
