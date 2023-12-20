@@ -1,4 +1,5 @@
 ﻿namespace Tests;
+
 [TestClass]
 public class StringByteConverterTests
 {

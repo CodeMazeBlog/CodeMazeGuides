@@ -2,6 +2,7 @@
 using System;
 
 namespace ByteRepresentationOfStrings;
+
 public class StringByteConverter
 {
     public static byte[] GetBytes(string str)

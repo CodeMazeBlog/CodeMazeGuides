@@ -21,12 +21,12 @@ Console.WriteLine($"Converted String using span: {convertedString}");
 
 //Example using System.Text.Encoding
 string cafe = "Café";
-byte[] ascii = Encoding.ASCII.GetBytes(cafe);
-byte[] unicode = Encoding.Unicode.GetBytes(cafe);
+byte[] asciiBytes = Encoding.ASCII.GetBytes(cafe);
+byte[] unicodeBytes = Encoding.Unicode.GetBytes(cafe);
 
 //Different byte length
-Console.WriteLine(ascii.Length);
-Console.WriteLine(unicode.Length);
+Console.WriteLine(asciiBytes.Length);
+Console.WriteLine(unicodeBytes.Length);
 
-Console.WriteLine("ASCII Output: " + Encoding.ASCII.GetString(ascii));
-Console.WriteLine("Unicode Output: " + Encoding.Unicode.GetString(unicode));
+Console.WriteLine("ASCII Output: " + Encoding.ASCII.GetString(asciiBytes));
+Console.WriteLine("Unicode Output: " + Encoding.Unicode.GetString(unicodeBytes));
