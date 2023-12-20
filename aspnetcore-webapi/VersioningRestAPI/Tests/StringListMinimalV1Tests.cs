@@ -9,14 +9,12 @@ namespace Tests;
 
 public class StringListMinimalV1Tests : IClassFixture<WebApplicationFactory<Program>>
 {
-    private HttpClient _httpClient;
-    private WebApplicationFactory<Program> _factory;
+    private readonly HttpClient _httpClient;
 
     public StringListMinimalV1Tests(WebApplicationFactory<Program> factory)
     {
-        _factory = factory;
         var serviceUrl = "https://localhost:7114/";
-        _httpClient = _factory.CreateClient();
+        _httpClient = factory.CreateClient();
         _httpClient.BaseAddress = new Uri(serviceUrl);
     }
 
