@@ -9,6 +9,7 @@ public static class MongoHelper
     {
         var courseCollection = database.GetCollection<BsonDocument>("Courses");
         var studentCollection = database.GetCollection<BsonDocument>("Students");
+        
         await courseCollection.InsertManyAsync(new List<BsonDocument>
         {
             new()

@@ -9,7 +9,7 @@ public class StudentRepository
     private readonly IMongoCollection<Student> _studentCollection;
 
     public StudentRepository(MongoClient client)
-    {;
+    {
         var database = client.GetDatabase(DatabaseConfiguration.DatabaseName);
         _studentCollection = database.GetCollection<Student>("Students");
     }
