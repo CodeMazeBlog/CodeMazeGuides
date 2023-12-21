@@ -8,14 +8,12 @@ namespace Tests;
 
 public class StringListControllerV3Tests : IClassFixture<WebApplicationFactory<Program>>
 {
-    private HttpClient _httpClient;
-    private WebApplicationFactory<Program> _factory;
+    private readonly HttpClient _httpClient;
 
     public StringListControllerV3Tests(WebApplicationFactory<Program> factory)
     {
-            _factory = factory;
-            var serviceUrl = "https://localhost:7114/";
-            _httpClient = _factory.CreateClient();
+        var serviceUrl = "https://localhost:7114/";
+            _httpClient = factory.CreateClient();
             _httpClient.BaseAddress = new Uri(serviceUrl);
         }
 
