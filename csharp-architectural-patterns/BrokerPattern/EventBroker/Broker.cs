@@ -4,11 +4,11 @@ namespace EventBroker;
 
 public class Broker : IBroker
 {
-    private readonly Dictionary<string, List<Action<Message>>> _subsrciptions = new();
+    private readonly Dictionary<string, List<Action<Message>>> _subscriptions = [];
 
     public void Publish(Message message)
     {
-        if (_subsrciptions.TryGetValue(message.Topic, out List<Action<Message>>? callbacks))
+        if (_subscriptions.TryGetValue(message.Topic, out List<Action<Message>>? callbacks))
         {
             foreach (var callback in callbacks)
             {
@@ -19,10 +19,10 @@ public class Broker : IBroker
 
     public void Subscribe(string topic, Action<Message> callback)
     {
-        if (!_subsrciptions.TryGetValue(topic, out List<Action<Message>>? value))
+        if (!_subscriptions.TryGetValue(topic, out List<Action<Message>>? value))
         {
             value = [];
-            _subsrciptions.Add(topic, value);
+            _subscriptions.Add(topic, value);
         }
 
         value.Add(callback);
