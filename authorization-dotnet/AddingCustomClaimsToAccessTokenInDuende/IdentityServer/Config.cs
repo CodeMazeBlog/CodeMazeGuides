@@ -15,7 +15,7 @@ public static class Config
     public static IEnumerable<ApiScope> ApiScopes =>
         new ApiScope[]
         {
-            new("payments", "Allow payments", new[] { "payments.discount" })
+            new(name: "payments", displayName: "Allow payments", userClaims: new[] { "payments.discount" })
         };
 
     public static IEnumerable<Client> Clients =>

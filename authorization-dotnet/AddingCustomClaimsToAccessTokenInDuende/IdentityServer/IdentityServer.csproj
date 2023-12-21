@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Duende.IdentityServer" Version="6.3.2" />
-        <PackageReference Include="Serilog.AspNetCore" Version="6.0.0" />
+        <PackageReference Include="Duende.IdentityServer" Version="6.3.7" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
     </ItemGroup>
 </Project>
