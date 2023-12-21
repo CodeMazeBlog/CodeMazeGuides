@@ -3,53 +3,56 @@
 namespace RetrievePropertyValuebyNameinCSharp;
 public class PropertyRetrieval
 {
-    public static object GetPropertyValue(object obj, string propertyName)
+
+    public static bool TryGetPrivateFieldValue<T>(object obj, string fieldName, out T value)
     {
+        FieldInfo fieldInfo = obj.GetType().GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance)!;
+
+        if (fieldInfo != null && fieldInfo.FieldType == typeof(T))
+        {
+            value = (T)fieldInfo.GetValue(obj)!;
+            return true;
+        }
+        else
+        {
+            value = default!;
+            Console.WriteLine($"Property not found.");
+            return false;
+        }
+    }
+
+    public static bool TryGetPropertyValue<T>(object obj, string propertyName, out T? value)
+    {
+        value = default;
+
+        if (obj is null)
+        {
+            Console.WriteLine("Object is null.");
+            return false;
+        }
+
         PropertyInfo? propertyInfo = obj.GetType().GetProperty(propertyName);
 
         if (propertyInfo == null)
         {
-            Console.WriteLine($"Property {propertyName} not found.");
-            return null!;
+            Console.WriteLine($"Property '{propertyName}' not found.");
+            return false;
         }
 
-        return propertyInfo.GetValue(obj)!;
-    }
+        object? propertyValue = propertyInfo.GetValue(obj);
 
-    public static object GetPropertyValue(object obj, string propertyName, Type expectedType)
-    {
-        PropertyInfo? propertyInfo = obj.GetType().GetProperty(propertyName);
-
-        if (propertyInfo == null)
+        if (propertyValue is null && Nullable.GetUnderlyingType(typeof(T)) != null)
         {
-            Console.WriteLine($"Property {propertyName} not found.");
-            return null!;
-        }
-
-        object propertyValue = propertyInfo.GetValue(obj)!;
-
-        if (propertyValue == null || propertyValue.GetType() != expectedType)
-        {
-            Console.WriteLine($"Property {propertyName} has an unexpected type.");
-            return null!;
-        }
-
-        return propertyValue;
-    }
-
-    public static bool TryGetPropertyValue(object obj, string propertyName, out object? propertyValue)
-    {
-        PropertyInfo? propertyInfo = obj.GetType().GetProperty(propertyName);
-
-        if (propertyInfo != null)
-        {
-            propertyValue = propertyInfo.GetValue(obj);
             return true;
         }
 
-        Console.WriteLine($"Property {propertyName} not found.");
-        propertyValue = null;
+        if (propertyValue is not T typedValue)
+        {
+            Console.WriteLine($"Property '{propertyName}' is of type {propertyInfo.PropertyType}, expected {typeof(T)}.");
+            return false;
+        }
 
-        return false;
+        value = typedValue;
+        return true;
     }
 }

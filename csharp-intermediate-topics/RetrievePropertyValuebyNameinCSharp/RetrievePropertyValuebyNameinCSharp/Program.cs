@@ -9,5 +9,9 @@ Person person = new()
     IsDeleted = false,
 };
 
-var result = PropertyRetrieval.GetPropertyValue(person, "Age");
-Console.WriteLine($"Value is {result}.");
+
+PropertyRetrieval.TryGetPropertyValue<int>(person, "Age", out var value);
+Console.WriteLine($"Retrieved value: {value}.");
+
+var result = PropertyRetrieval.TryGetPrivateFieldValue<Guid>(person, "_id", out var data);
+Console.WriteLine($"Retrieved value: {result}.");

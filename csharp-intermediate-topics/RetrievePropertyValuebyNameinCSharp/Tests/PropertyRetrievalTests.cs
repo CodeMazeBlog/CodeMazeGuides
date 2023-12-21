@@ -6,43 +6,82 @@ public class PropertyRetrievalTests
 {
 
     [Fact]
-    public void WhenGetPropertyValue_ThenReturnPropertyValue()
+    public void WhenObjectIsNull_ThenReturnsFalse()
     {
         // Arrange
-        var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
+        Person person = null;
 
-        // Act
-        var firstName = PropertyRetrieval.GetPropertyValue(person, "FirstName");
-        var age = PropertyRetrieval.GetPropertyValue(person, "Age");
+        //Act
+        bool result = PropertyRetrieval.TryGetPropertyValue<string>(person, "Name", out _);
 
         // Assert
-        Assert.Equal("John", firstName);
-        Assert.Equal(30, age);
+        Assert.False(result);
     }
 
     [Fact]
-    public void WhenGetUnkownPropertyValue_ThenReturnNull()
+    public void WhenPropertyDoesNotExist_ThenReturnsFalse()
     {
         // Arrange
         var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
 
         // Act
-        var city = PropertyRetrieval.GetPropertyValue(person, "City");
+        bool result = PropertyRetrieval.TryGetPropertyValue<string>(person, "NonExistentProperty", out _);
 
         // Assert
-        Assert.Null(city);
+        Assert.False(result);
     }
 
     [Fact]
-    public void WhenGetWrongTypePropertyValue_ThenReturnNull()
+    public void WhenPropertyExistsWrongType_ThenReturnsFalse()
     {
         // Arrange
         var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
 
         // Act
-        var ageAsText = PropertyRetrieval.GetPropertyValue(person, "Age", typeof(string));
+        bool result = PropertyRetrieval.TryGetPropertyValue<int>(person, "Name", out _);
 
         // Assert
-        Assert.Null(ageAsText);
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void WhenPropertyExistsWithCorrectType_ThenReturnsTrue()
+    {
+        // Arrange
+        var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
+
+        // Act
+        bool result = PropertyRetrieval.TryGetPropertyValue<string>(person, "FirstName", out string value);
+
+        // Assert
+        Assert.True(result);
+        Assert.Equal("John", value);
+    }
+
+    [Fact]
+    public void WhenPropertyExistsNullableType_ThenReturnsTrue()
+    {
+        // Arrange
+        var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
+
+        // Act
+        bool result = PropertyRetrieval.TryGetPropertyValue<int?>(person, "Age", out int? value);
+
+        // Assert
+        Assert.True(result);
+        Assert.Equal(30, value);
+    }
+
+    [Fact]
+    public void WhenRetrievingPrivatePropertyValue_ThenReturnsTrue()
+    {
+        // Arrange
+        var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
+
+        // Act
+        bool result = PropertyRetrieval.TryGetPrivateFieldValue<Guid>(person, "_id", out _);
+
+        // Assert
+        Assert.True(result);
     }
 }
