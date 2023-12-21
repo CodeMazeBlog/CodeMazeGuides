@@ -49,7 +49,7 @@ public class PropertyRetrieval
 
         if (propertyValue is not T typedValue)
         {
-            Console.WriteLine($"Property '{propertyName}' is of type {propertyInfo.PropertyType}, expected {typeof(T)}.");
+            Console.WriteLine($"Property '{propertyName}' is of type {propertyInfo.PropertyType}, got {typeof(T)}.");
             return false;
         }
 
