@@ -13,5 +13,5 @@ Person person = new()
 PropertyRetrieval.TryGetPropertyValue<int>(person, "Age", out var value);
 Console.WriteLine($"Retrieved value: {value}.");
 
-var result = PropertyRetrieval.TryGetPrivateFieldValue<Guid>(person, "_id", out var data);
-Console.WriteLine($"Retrieved value: {result}.");
+PropertyRetrieval.TryGetPrivateFieldValue<Guid>(person, "_id", out var data);
+Console.WriteLine($"Retrieved value: {data}.");

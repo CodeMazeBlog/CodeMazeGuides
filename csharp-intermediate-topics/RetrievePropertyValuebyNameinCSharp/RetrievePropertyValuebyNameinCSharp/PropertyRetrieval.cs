@@ -17,6 +17,7 @@ public class PropertyRetrieval
         {
             value = default!;
             Console.WriteLine($"Property not found.");
+
             return false;
         }
     }
@@ -53,6 +54,7 @@ public class PropertyRetrieval
         }
 
         value = typedValue;
+
         return true;
     }
 }
