@@ -1,3 +1,6 @@
+using ActionAndFuncDelegates;
+using System.Text;
+
 namespace Tests
 {
     public class Tests
@@ -8,8 +11,7 @@ namespace Tests
             StringWriter sw = new();
             Console.SetOut(sw);
 
-            Action<string> greet = (name) => Console.WriteLine($"Hello, {name}!");
-            greet("Fred");
+            Program.greet("Fred");
 
             string expectedOutput = "Hello, Fred!";
             string actualOutput = sw.ToString().Trim();
@@ -19,11 +21,10 @@ namespace Tests
         [Fact]
         public void Func_Returns_A_Value()
         {
-            Func<int, int, int> multiply = (a, b) => a * b;
-            int product = multiply(8, 5);
+            int product = Program.multiply(8, 5);
 
             Func<string, int> stringLength = (str) => str.Length;
-            int length = stringLength("Love Func!");
+            int length = Program.stringLength("Love Func!");
 
             int expectedProduct = 8 * 5;
             int expectLength = 10;
@@ -37,17 +38,12 @@ namespace Tests
             StringWriter sw = new();
             Console.SetOut(sw);
 
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
-            Action<int> processNumber = (number) => Console.Write($"Processing:{number}");
-            numbers.ForEach(processNumber);
-
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+            numbers.ForEach(Program.processNumber);
 
             string actualOutput = sw.ToString().Trim();
-            string expectedOutput = "";
-            foreach (var number in numbers)
-            {
-                expectedOutput += $"Processing:{number}";
-            }
+
+            string expectedOutput = "Processing:1\r\nProcessing:2\r\nProcessing:3\r\nProcessing:4\r\nProcessing:5\r\nProcessing:6";
 
             Assert.Equal(expectedOutput, actualOutput);
         }
@@ -55,23 +51,17 @@ namespace Tests
         [Fact]
         public void Func_Handles_Division_Gracefully()
         {
-            Func<int, int, int> safeDivision = (a, b) => b != 0 ? a / b : 0;
-            int divisionResult = safeDivision(20, 5);
-            
+            int divisionResult = Program.safeDivision(20, 5);
+
             Assert.Equal(4, divisionResult);
         }
 
         [Fact]
         public void Func_Returns_Zero_When_Its_Divided_By_Zero()
         {
-            Func<int, int, int> safeDivision = (a, b) => b != 0 ? a / b : 0;
-            int divisionResult = safeDivision(20, 0);
+            int divisionResult = Program.safeDivision(20, 0);
 
             Assert.Equal(0, divisionResult);
         }
-
-        
-
-
     }
 }

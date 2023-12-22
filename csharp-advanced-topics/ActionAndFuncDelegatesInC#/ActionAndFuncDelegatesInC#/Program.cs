@@ -1,70 +1,70 @@
-﻿namespace ActionAndFuncDelegates
+﻿namespace ActionAndFuncDelegates;
+
+public static class Program
 {
-    public class Program
+    public static Action<string> greet = (name) => Console.WriteLine($"Hello, {name}!");
+
+    public static Action<int, int> add = (a, b) => Console.WriteLine($"Sum: {a + b}");
+
+    public static Func<int, int, int> multiply = (a, b) => a * b;
+
+    public static Func<string, int> stringLength = (str) => str.Length;
+
+    public static Action<int> processNumber = (number) => Console.WriteLine($"Processing: {number}");
+
+    public static Func<int, int, int> safeDivision = (a, b) => b != 0 ? a / b : 0;
+
+    public static void Main()
     {
-        private static void Main()
-        {
-            // Greeting with an Action delegate
-            Action<string> greet = (name) => Console.WriteLine($"Hello, {name}!");
-            greet("Fred");
+        greet("Fred");
 
-            // Executing an action with multiple parameters
-            Action<int, int> add = (a, b) => Console.WriteLine($"Sum: {a + b}");
-            add(2, 9);
+        add(2, 9);
 
-            // Multiplying with Func delegate
-            Func<int, int, int> multiply = (a, b) => a * b;
-            int product = multiply(2, 9);
-            Console.WriteLine($"Multiplied Result: {product}");
+        int product = multiply(2, 9);
 
-            // Determining string length with Func delegate
-            Func<string, int> stringLength = (str) => str.Length;
-            int length = stringLength("Love Func!");
-            Console.WriteLine($"Length of the string: {length}");
+        Console.WriteLine($"Multiplied Result: {product}");
 
-            // Using Action to process elements in a collection
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
-            Action<int> processNumber = (number) => Console.WriteLine($"Processing: {number}");
-            numbers.ForEach(processNumber);
+        int length = stringLength("Love Func!");
+        Console.WriteLine($"Length of the string: {length}");
 
-            // Applying Func to handle exceptions gracefully
-            Func<int, int, int> safeDivision = (a, b) => b != 0 ? a / b : 0;
-            int divisionResult = safeDivision(20, 5);
-            Console.WriteLine($"Safe Division Result: {divisionResult}");
+        List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+        numbers.ForEach(processNumber);
 
-            ExecuteActionCallback(AddAction, 5, 6);
+        int divisionResult = safeDivision(20, 5);
+        Console.WriteLine($"Safe Division Result: {divisionResult}");
 
-            int result = ExecuteFuncCallback(AddFunc, 5, 6);
-            Console.WriteLine("Result from ExecuteFuncCallback: {result}");
-        }
+        ExecuteActionCallback(AddAction, 5, 6);
 
-        // Using Action as a callback
-        public static void ExecuteActionCallback(Action<int, int> callback, int a, int b)
-        {
-            Console.WriteLine("Executing callback...");
-            callback(a, b);
-        }
+        int result = ExecuteFuncCallback(AddFunc, 5, 6);
 
-        // Using Func as a callback with a return value
-        public static int ExecuteFuncCallback(Func<int, int, int> callback, int a, int b)
-        {
-            Console.WriteLine("Executing callback with result...");
-            return callback(a, b);
-        }
+        Console.WriteLine("Result from ExecuteFuncCallback: {result}");
+    }
 
-        // Add method to act as a callback
-        public static int AddFunc(int a, int b)
-        {
-            int result = a + b;
-            Console.WriteLine($"Result of operation: {result}");
-            return result;
-        }
+    public static void ExecuteActionCallback(Action<int, int> callback, int a, int b)
+    {
+        Console.WriteLine("Executing callback...");
+        callback(a, b);
+    }
 
-        // Add method to act as a callback
-        public static void AddAction(int a, int b)
-        {
-            int result = a + b;
-            Console.WriteLine($"Result of operation: {result}");
-        }
+    public static int ExecuteFuncCallback(Func<int, int, int> callback, int a, int b)
+    {
+        Console.WriteLine("Executing callback with result...");
+
+        return callback(a, b);
+    }
+
+    public static int AddFunc(int a, int b)
+    {
+        int result = a + b;
+        Console.WriteLine($"Result of operation: {result}");
+
+        return result;
+    }
+
+    public static void AddAction(int a, int b)
+    {
+        int result = a + b;
+
+        Console.WriteLine($"Result of operation: {result}");
     }
 }
