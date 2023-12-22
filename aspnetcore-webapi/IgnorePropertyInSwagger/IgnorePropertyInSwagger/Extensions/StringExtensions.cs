@@ -10,7 +10,7 @@ public static class StringExtensions
         }
 
         var chars = input.ToCharArray();
-        chars[0] = char.ToLower(input[0]);
+        chars[0] = char.ToLowerInvariant(input[0]);
         
         return new(chars);
     }

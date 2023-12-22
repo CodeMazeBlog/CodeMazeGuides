@@ -13,7 +13,7 @@ public static class WeatherForecasts
     {
         app.MapGet("/weatherforecast", () =>
             {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
+                return Enumerable.Range(1, 5).Select(index =>
                         new WeatherForecast
                         (
                             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -21,8 +21,6 @@ public static class WeatherForecasts
                             Summaries[Random.Shared.Next(Summaries.Length)]
                         ))
                     .ToArray();
-                
-                return forecast;
             })
             .WithName("GetWeatherForecast")
             .WithOpenApi();

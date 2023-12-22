@@ -24,10 +24,7 @@ public class SwaggerIgnoreFilter : ISchemaFilter
 
         foreach (var excludedName in excludedList)
         {
-            if (schema.Properties.ContainsKey(excludedName))
-            {
-                schema.Properties.Remove(excludedName);
-            }
+            schema.Properties.Remove(excludedName);
         }
     }
 }
