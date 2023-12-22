@@ -4,7 +4,7 @@ using System.Text;
 //Enable Unicode characters for the console
 Console.OutputEncoding = Encoding.Unicode;
 
-string sampleString = "𝓒𝓸𝓭𝓮𝓜𝓪𝔃𝓮";
+const string sampleString = "𝓒𝓸𝓭𝓮𝓜𝓪𝔃𝓮";
 byte[] byteArray = StringByteConverter.GetBytes(sampleString);
 string reconstructedString = StringByteConverter.GetString(byteArray);
 
@@ -20,7 +20,7 @@ string convertedString = StringByteConverter.GetString(bytes);
 Console.WriteLine($"Converted String using span: {convertedString}");
 
 //Example using System.Text.Encoding
-string cafe = "Café";
+const string cafe = "Café";
 byte[] asciiBytes = Encoding.ASCII.GetBytes(cafe);
 byte[] unicodeBytes = Encoding.Unicode.GetBytes(cafe);
 
