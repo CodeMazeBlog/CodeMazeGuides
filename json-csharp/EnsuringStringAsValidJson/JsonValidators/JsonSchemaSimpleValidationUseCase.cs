@@ -13,6 +13,7 @@ public class JsonSchemaSimpleValidationUseCase : IJsonValidator
         {
             var jsonSchema = JsonSchema.FromText(jsonString);
             var evaluationResults = jsonSchema.Evaluate(jsonSchema.ToJsonDocument());
+            
             return evaluationResults.IsValid;
         }
         catch (JsonException)

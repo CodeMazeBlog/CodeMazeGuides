@@ -10,6 +10,7 @@ public class SystemTextJsonUseCase : IJsonValidator
         try
         {
             JsonDocument.Parse(jsonString);
+            
             return true;
         }
         catch (JsonException)

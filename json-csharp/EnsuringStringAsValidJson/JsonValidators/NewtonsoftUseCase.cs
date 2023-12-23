@@ -11,6 +11,7 @@ public class NewtonsoftUseCase : IJsonValidator
         try
         {
             JObject.Parse(jsonString);
+            
             return true;
         }
         catch (JsonReaderException)

@@ -5,9 +5,9 @@ namespace JsonValidators;
 
 public class RegularExpressionsUseCase : IJsonValidator
 {
+    private const string JsonPattern = "(?<json>{(?:[^{}]|(?<Nested>{)|(?<-Nested>}))*(?(Nested)(?!))})";
     public bool IsValid(string jsonString)
     {
-        var jsonPattern = "(?<json>{(?:[^{}]|(?<Nested>{)|(?<-Nested>}))*(?(Nested)(?!))})";
-        return Regex.IsMatch(jsonString, jsonPattern);
+        return Regex.IsMatch(jsonString, JsonPattern);
     }
 }

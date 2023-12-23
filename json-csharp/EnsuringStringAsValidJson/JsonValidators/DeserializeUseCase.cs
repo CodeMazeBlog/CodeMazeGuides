@@ -10,11 +10,13 @@ public class DeserializeUseCase : IJsonValidator
     {
         try
         {
-            var reader = new JsonTextReader(new StringReader(jsonString));
-            var validatingReader = new JSchemaValidatingReader(reader);
+            using var stringReader = new StringReader(jsonString);
+            using var jsonTextReader = new JsonTextReader(stringReader);
+            using var validatingReader = new JSchemaValidatingReader(jsonTextReader);
             validatingReader.Schema = JSchema.Parse(jsonString);
             var serializer = new JsonSerializer();
             serializer.Deserialize<object>(validatingReader);
+            
             return true;
         }
         catch (Exception e)

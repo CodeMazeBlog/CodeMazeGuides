@@ -1,7 +1,3 @@
-using FluentAssertions;
-using JsonValidators;
-using JsonValidators.Abstracts;
-
 namespace JsonValidatorsTest;
 
 public class NewtonsoftJsonTest

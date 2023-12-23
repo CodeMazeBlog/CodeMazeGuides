@@ -1,8 +1,4 @@
-﻿using FluentAssertions;
-using JsonValidators;
-using JsonValidators.Abstracts;
-
-namespace JsonValidatorsTest;
+﻿namespace JsonValidatorsTest;
 
 public class JsonSchemaTests
 {

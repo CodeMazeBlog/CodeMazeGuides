@@ -28,6 +28,7 @@ public class JsonSchemaAgainstDesiredStructureUseCase : IJsonValidator
         {
             var schema = JsonSchema.Parse(_desiredJsonSchema);
             var jObject = JObject.Parse(jsonString);
+            
             return jObject.IsValid(schema);
         }
         catch (JsonReaderException)
