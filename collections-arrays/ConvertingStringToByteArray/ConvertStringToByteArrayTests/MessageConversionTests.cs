@@ -1,74 +1,48 @@
-using ConvertingStringToByteArray;
-using System.Text;
-
 namespace ConvertStringToByteArrayTests;
 
 public class MessageConversionTests
 {
-    private string _message = "Welcome to CodeMaze!";
+    private const string _message = "Welcome to CodeMaze!";
+    private static readonly byte[] _expectedByteArray
+        = new byte[] { 87, 101, 108, 99, 111, 109, 101, 32, 116, 111, 32, 67, 111, 100, 101, 77, 97, 122, 101, 33 };
 
     [Fact]
-    public void GivenString_WhenConvertingToUTF8Bytes_ThenReturnByteArray()
+    public void WhenConvertingToUTF8Bytes_ThenReturnByteArray()
     {
-        // Arrange
-        var expectedByteArray = Encoding.UTF8.GetBytes(_message);
-
         // Act
         var result = MessageConversion.ConvertStringToUTF8Bytes(_message);
 
         // Assert
-        Assert.Equal(expectedByteArray, result);
+        Assert.Equal(_expectedByteArray, result);
     }
 
     [Fact]
-    public void GivenString_WhenConvertingToByteArrayUsingCasting_ThenReturnByteArray()
+    public void WhenConvertingToByteArrayUsingCasting_ThenReturnByteArray()
     {
-        // Arrange
-        var expectedByteArray = new byte[_message.Length];
-
-        for (int i = 0; i < _message.Length; i++)
-        {
-            expectedByteArray[i] = (byte)_message[i];
-        }
-
         // Act
         var result = MessageConversion.ConvertStringToByteArrayUsingCasting(_message);
 
         // Assert
-        Assert.Equal(expectedByteArray, result);
+        Assert.Equal(_expectedByteArray, result);
     }
 
     [Fact]
-    public void GivenString_WhenConvertingToByteArrayUsingConvertToByte_ThenReturnByteArray()
+    public void WhenConvertingToByteArrayUsingConvertToByte_ThenReturnByteArray()
     {
-        // Arrange
-        var expectedByteArray = new byte[_message.Length];
-
-        for (int i = 0; i < _message.Length; i++)
-        {
-            expectedByteArray[i] = Convert.ToByte(_message[i]);
-        }
-
         // Act
         var result = MessageConversion.ConvertStringToByteArrayUsingConvertToByte(_message);
 
         // Assert
-        Assert.Equal(expectedByteArray, result);
+        Assert.Equal(_expectedByteArray, result);
     }
 
     [Fact]
-    public void GivenStringAndEncodingISO88591_WhenConvertingToByteArrayUsingEncoding_ThenReturnByteArray()
+    public void WhenConvertingToByteArrayUsingEncoding_ThenReturnByteArray()
     {
-        // Arrange
-        var encoding = Encoding.GetEncoding("ISO-8859-1");
-
-        var expectedByteArray = new byte[encoding.GetByteCount(_message)];
-        encoding.GetBytes(_message, expectedByteArray);
-
         // Act
         var result = MessageConversion.ConvertStringToByteArrayUsingEncoding(_message);
 
         // Assert
-        Assert.Equal(expectedByteArray, result);
+        Assert.Equal(_expectedByteArray, result);
     }
 }

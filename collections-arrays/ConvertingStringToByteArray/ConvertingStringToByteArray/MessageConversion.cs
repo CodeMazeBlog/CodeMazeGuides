@@ -2,13 +2,11 @@
 
 namespace ConvertingStringToByteArray;
 
-public class MessageConversion
+public static class MessageConversion
 {
     public static byte[] ConvertStringToUTF8Bytes(string message)
     {
-        var bytes = Encoding.UTF8.GetBytes(message);
-
-        return bytes;
+        return Encoding.UTF8.GetBytes(message);
     }
 
     public static byte[] ConvertStringToByteArrayUsingCasting(string message)
@@ -38,9 +36,7 @@ public class MessageConversion
     public static byte[] ConvertStringToByteArrayUsingEncoding(string message)
     {
         var encoding = Encoding.GetEncoding("ISO-8859-1");
-
         var byteCount = encoding.GetByteCount(message);
-
         var byteArray = new byte[byteCount];
 
         encoding.GetBytes(message, byteArray);
