@@ -28,7 +28,7 @@ namespace ActionAndFuncInCsharp
 
         internal static void PrintMessage()
         {
-            Console.WriteLine("Hello is printed");
+            Console.WriteLine("Enjoy your day!");
         }
     }
 }
