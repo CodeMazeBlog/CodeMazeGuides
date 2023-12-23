@@ -7,30 +7,29 @@ namespace AppendValuesToQueryString
 {
     public static class QueryStringHelper
     {
-        private static NameValueCollection ModifyQueryStringUsingParseQueryString(
+        private static (NameValueCollection query, string fragment) ModifyQueryStringUsingParseQueryString(
             string url, Dictionary<string, string> queryParams)
         {
-
             var uriBuilder = new UriBuilder(url);
 
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
 
-            foreach ( var kvp in queryParams )
+            foreach (var kvp in queryParams)
             {
-                query.Set(kvp.Key, kvp.Value);
+                query.Set(HttpUtility.UrlEncode(kvp.Key), kvp.Value);
             }
 
-            return query;
+            return (query, uriBuilder.Fragment);
         }
 
         public static string CreateURLUsingParseQueryString(string url, Dictionary<string, string> queryParams)
         {
-            var queryString = ModifyQueryStringUsingParseQueryString(url, queryParams);
+            var result = ModifyQueryStringUsingParseQueryString(url, queryParams);
 
-            return $"{url.Split('?')[0]}?{queryString}";
+            return $"{url.Split('?')[0]}?{result.query}{result.fragment}";
         }
 
-        private static Dictionary<string, StringValues> ModifyQueryStringUsingParseQuery(
+        private static (Dictionary<string, StringValues> query, string fragment) ModifyQueryStringUsingParseQuery(
             string url, Dictionary<string, string> queryParams)
         {
             var uriBuilder = new UriBuilder(url);
@@ -42,14 +41,14 @@ namespace AppendValuesToQueryString
                 query[kvp.Key] = kvp.Value;
             }
 
-            return query;
+            return (query, uriBuilder.Fragment);
         }
 
         public static string CreateURLUsingParseQuery(string url, Dictionary<string, string> queryParams)
         {
-            var queryString = ModifyQueryStringUsingParseQuery(url, queryParams);
+            var result = ModifyQueryStringUsingParseQuery(url, queryParams);
 
-            return QueryHelpers.AddQueryString(url.Split('?')[0], queryString);
+            return QueryHelpers.AddQueryString(url.Split('?')[0], result.query) + result.fragment;
         }
 
         private static string AppendQueryStringUsingAddQueryString(string url, Dictionary<string, string?> queryParams)
