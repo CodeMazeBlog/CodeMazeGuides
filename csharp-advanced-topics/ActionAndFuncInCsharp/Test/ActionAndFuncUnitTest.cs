@@ -24,14 +24,10 @@ namespace Test
         [Test]
         public void TestActionWithParameter_WhenCustomInputGiven_ThenPrintSentence()
         {
-            Program.printEmployeeNameAndNo("John", 124);
-
             using (StringWriter sw = new StringWriter())
             {
                 Console.SetOut(sw);
-
                 Program.printEmployeeNameAndNo("John", 124);
-
                 string expected = "Employee Name: John,and No: 124";
                 Assert.That(true, expected, sw.ToString());
 
@@ -54,6 +50,5 @@ namespace Test
             var v = Program.add(10, 20);
             Assert.AreEqual(30, v);
         }
-
     }
 }
