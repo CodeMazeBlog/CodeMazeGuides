@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionAndFuncInCsharp", "ActionAndFuncInCsharp\ActionAndFuncInCsharp.csproj", "{39848CA8-E23F-430C-9BBE-0265A553F3F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionAndFuncInCsharp", "ActionAndFuncInCsharp\ActionAndFuncInCsharp.csproj", "{39848CA8-E23F-430C-9BBE-0265A553F3F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{19841202-6FEB-490B-A790-2DD398EBC8F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{19841202-6FEB-490B-A790-2DD398EBC8F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
