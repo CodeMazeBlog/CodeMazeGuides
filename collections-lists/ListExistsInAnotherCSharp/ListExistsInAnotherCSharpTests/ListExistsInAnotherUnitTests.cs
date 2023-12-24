@@ -14,6 +14,7 @@ public class ListExistsInAnotherUnitTests
         _secondList = new List<int> { 5, 6, 7, 8, 9 };
         _thirdList = new List<int> { 0, 1, 2, 3, 5 };
     }
+
     [TestMethod]
     public void GivenTwoLists_WhenComparedUsingIntersect_ValidateCorrectResults()
     {
@@ -22,10 +23,10 @@ public class ListExistsInAnotherUnitTests
     }
 
     [TestMethod]
-    public void GivenTwoLists_WhenComparedUsingExcept_ValidateCorrectResults()
+    public void GivenTwoLists_WhenComparedUsingIteration_ValidateCorrectResults()
     {
-        Assert.IsTrue(_compareListsMethods.CompareListUsingExcept(_firstList, _thirdList));
-        Assert.IsFalse(_compareListsMethods.CompareListUsingExcept(_firstList, _secondList));
+        Assert.IsTrue(_compareListsMethods.CompareListUsingIteration(_firstList, _thirdList));
+        Assert.IsFalse(_compareListsMethods.CompareListUsingIteration(_firstList, _secondList));
     }
 
     [TestMethod]
