@@ -10,7 +10,7 @@ public static class Program
 
     public static Func<string, int> stringLength = (str) => str.Length;
 
-    public static Action<int> processNumber = (number) => Console.WriteLine($"Processing: {number}");
+    public static Action<int> processNumber = (number) => Console.WriteLine($"Processing:{number}");
 
     public static Func<int, int, int> safeDivision = (a, b) => b != 0 ? a / b : 0;
 

@@ -43,7 +43,7 @@ namespace Tests
 
             string actualOutput = sw.ToString().Trim();
 
-            string expectedOutput = "Processing: 1\r\nProcessing: 2\r\nProcessing: 3\r\nProcessing: 4\r\nProcessing: 5\r\nProcessing: 6";
+            const string expectedOutput = "Processing:1\r\nProcessing:2\r\nProcessing:3\r\nProcessing:4\r\nProcessing:5\r\nProcessing:6";
 
             Assert.Equal(expectedOutput, actualOutput);
         }
