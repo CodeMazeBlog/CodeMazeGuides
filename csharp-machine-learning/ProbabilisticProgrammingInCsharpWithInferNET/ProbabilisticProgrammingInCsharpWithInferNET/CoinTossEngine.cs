@@ -19,6 +19,7 @@ public class CoinTossEngine
 
     public void TossTheCoins(int numberOfRuns = 1000000, Func<CoinTossEngine, bool> condition = null)
     {
+        RunCount = 0;
         for (int i = 0; i < numberOfRuns; i++)
         {
             FirstHead = IsHead;
