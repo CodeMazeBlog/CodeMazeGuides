@@ -28,6 +28,6 @@ catch (Exception ex)
 }
 finally
 {
-    Log.Information("Shut down complete");
+    Log.Information("Shut down completed");
     Log.CloseAndFlush();
 }

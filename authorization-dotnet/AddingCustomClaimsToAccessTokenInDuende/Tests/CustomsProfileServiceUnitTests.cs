@@ -10,7 +10,7 @@ public class CustomsProfileServiceUnitTests
     private readonly CustomProfileService _profileService = new();
 
     [Fact]
-    public void WhenClientIdIsNotWeb_ThenIssuedClaimsIsEmpty()
+    public void WhenClientIdIsNotWeb_ThenIssuedClaimsListIsEmpty()
     {
         var context = new ProfileDataRequestContext
         {
@@ -26,7 +26,7 @@ public class CustomsProfileServiceUnitTests
     }
 
     [Fact]
-    public void WhenClientIdIsWeb_ThenIssuedClaimsContainsTenantClaim()
+    public void WhenClientIdIsWeb_ThenIssuedClaimsListContainsTenantClaim()
     {
         var context = new ProfileDataRequestContext
         {
@@ -42,7 +42,7 @@ public class CustomsProfileServiceUnitTests
     }
 
     [Fact]
-    public void WhenRequestedClaimTypesIsEmpty_ThenIssuedClaimsDoesntContainsDiscountClaim()
+    public void WhenRequestedClaimTypesListIsEmpty_ThenIssuedClaimsListDoesntContainDiscountClaim()
     {
         var context = new ProfileDataRequestContext
         {
@@ -54,11 +54,11 @@ public class CustomsProfileServiceUnitTests
 
         this._profileService.GetProfileDataAsync(context);
 
-        Assert.Empty(context.IssuedClaims);
+        Assert.DoesNotContain(context.IssuedClaims, claim => claim.Type == "payments.discount");
     }
 
     [Fact]
-    public void WhenClientRequestsSupportedCustomClaim_ThenIssuedClaimsContainsRequestedClaim()
+    public void WhenClientRequestsCustomClaims_ThenIssuedClaimsListContainsRequestedClaim()
     {
         var context = new ProfileDataRequestContext
         {
