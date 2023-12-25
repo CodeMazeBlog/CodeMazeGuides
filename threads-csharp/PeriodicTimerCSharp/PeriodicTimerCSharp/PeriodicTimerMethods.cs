@@ -46,7 +46,8 @@ public class PeriodicTimerMethods
                     Console.WriteLine(item);
                 }
 
-                Console.WriteLine($"Elapsed time: {stopWatch.Elapsed.Seconds}s and {numberOfArrays++} arrays created");
+                Console.WriteLine($"Elapsed time: {stopWatch.Elapsed.Seconds}s" +
+                    $" and {numberOfArrays++} arrays created");
                 Console.WriteLine(DateTime.Now.ToString("O"));
             }
         }
