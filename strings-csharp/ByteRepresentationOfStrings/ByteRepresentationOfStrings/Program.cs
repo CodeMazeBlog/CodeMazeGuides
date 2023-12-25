@@ -22,11 +22,11 @@ Console.WriteLine($"Converted String using span: {convertedString}");
 //Example using System.Text.Encoding
 const string cafe = "Café";
 byte[] asciiBytes = Encoding.ASCII.GetBytes(cafe);
-byte[] unicodeBytes = Encoding.Unicode.GetBytes(cafe);
+byte[] utf8Bytes = Encoding.UTF8.GetBytes(cafe);
 
 //Different byte length
 Console.WriteLine(asciiBytes.Length);
-Console.WriteLine(unicodeBytes.Length);
+Console.WriteLine(utf8Bytes.Length);
 
 Console.WriteLine("ASCII Output: " + Encoding.ASCII.GetString(asciiBytes));
-Console.WriteLine("Unicode Output: " + Encoding.Unicode.GetString(unicodeBytes));
+Console.WriteLine("UTF-8 Output: " + Encoding.UTF8.GetString(utf8Bytes));
