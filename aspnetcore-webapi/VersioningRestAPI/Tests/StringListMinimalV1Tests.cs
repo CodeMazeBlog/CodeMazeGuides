@@ -19,13 +19,14 @@ public class StringListMinimalV1Tests : IClassFixture<WebApplicationFactory<Prog
     }
 
     [Fact]
-    public async Task GivenDefaultCall_WhenNoVersion_ThenReturnStringStartingWithB()
+    public async Task GivenDefaultCall_WhenNoVersion_ThenReturnStringStartingWithS()
     {
         var json = await _httpClient.GetStringAsync("/api/minimal/StringList");
         var strings = JArray.Parse(json);
+
         Assert.Equal(2, strings.Count);
-        Assert.StartsWith("B", (string?)strings[0]);
-        Assert.StartsWith("B", (string?)strings[1]);
+        Assert.StartsWith("S", (string?)strings[0]);
+        Assert.StartsWith("S", (string?)strings[1]);
     }
 
     [Fact]
@@ -33,6 +34,7 @@ public class StringListMinimalV1Tests : IClassFixture<WebApplicationFactory<Prog
     {
         var json = await _httpClient.GetStringAsync("/api/minimal/StringList?api-version=1.0");
         var strings = JArray.Parse(json);
+
         Assert.Equal(2, strings.Count);
         Assert.StartsWith("B", (string?)strings[0]);
         Assert.StartsWith("B", (string?)strings[1]);

@@ -12,7 +12,7 @@ public class StringListMinimalV3Tests : IClassFixture<WebApplicationFactory<Prog
 
     public StringListMinimalV3Tests(WebApplicationFactory<Program> factory)
     {
-        var serviceUrl = "https://localhost:7114/";
+        const string serviceUrl = "https://localhost:7114/";
         _httpClient = factory.CreateClient();
         _httpClient.BaseAddress = new Uri(serviceUrl);
     }
@@ -22,6 +22,7 @@ public class StringListMinimalV3Tests : IClassFixture<WebApplicationFactory<Prog
     {
         var json = await _httpClient.GetStringAsync("/api/minimal/v3/StringList");
         var strings = JArray.Parse(json);
+
         Assert.Equal(2, strings.Count);
         Assert.StartsWith("C", (string?)strings[0]);
         Assert.StartsWith("C", (string?)strings[1]);

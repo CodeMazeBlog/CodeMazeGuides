@@ -13,7 +13,7 @@ public class StringListControllerV1Tests : IClassFixture<WebApplicationFactory<P
 
     public StringListControllerV1Tests(WebApplicationFactory<Program> factory)
     {
-        var serviceUrl = "https://localhost:7114/";
+        const string serviceUrl = "https://localhost:7114/";
         _httpClient = factory.CreateClient();
         _httpClient.BaseAddress = new Uri(serviceUrl);
     }
@@ -23,9 +23,10 @@ public class StringListControllerV1Tests : IClassFixture<WebApplicationFactory<P
     {
         var json = await _httpClient.GetStringAsync("/api/StringList");
         var strings = JArray.Parse(json);
+
         Assert.Equal(2, strings.Count);
-        Assert.StartsWith("B", (string?)strings[0]);
-        Assert.StartsWith("B", (string?)strings[1]);
+        Assert.StartsWith("S", (string?)strings[0]);
+        Assert.StartsWith("S", (string?)strings[1]);
     }
 
     [Fact]
@@ -33,6 +34,7 @@ public class StringListControllerV1Tests : IClassFixture<WebApplicationFactory<P
     {
         var json = await _httpClient.GetStringAsync("/api/StringList?api-version=1.0");
         var strings = JArray.Parse(json);
+
         Assert.Equal(2, strings.Count);
         Assert.StartsWith("B", (string?)strings[0]);
         Assert.StartsWith("B", (string?)strings[1]);

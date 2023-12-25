@@ -13,7 +13,7 @@ public class StringListMinimalV2Tests : IClassFixture<WebApplicationFactory<Prog
 
     public StringListMinimalV2Tests(WebApplicationFactory<Program> factory)
     {
-        var serviceUrl = "https://localhost:7114/";
+        const string serviceUrl = "https://localhost:7114/";
         _httpClient = factory.CreateClient();
         _httpClient.BaseAddress = new Uri(serviceUrl);
     }
@@ -24,6 +24,7 @@ public class StringListMinimalV2Tests : IClassFixture<WebApplicationFactory<Prog
     {
         var json = await _httpClient.GetStringAsync("/api/minimal/StringList?api-version=2.0");
         var strings = JArray.Parse(json);
+
         Assert.Equal(2, strings.Count);
         Assert.StartsWith("S", (string?)strings[0]);
         Assert.StartsWith("S", (string?)strings[1]);
@@ -36,6 +37,7 @@ public class StringListMinimalV2Tests : IClassFixture<WebApplicationFactory<Prog
         _httpClient.DefaultRequestHeaders.Add("X-Version", "2.0");
         var json = await _httpClient.GetStringAsync("/api/minimal/StringList");
         var strings = JArray.Parse(json);
+
         Assert.Equal(2, strings.Count);
         Assert.StartsWith("S", (string?)strings[0]);
         Assert.StartsWith("S", (string?)strings[1]);
@@ -47,6 +49,7 @@ public class StringListMinimalV2Tests : IClassFixture<WebApplicationFactory<Prog
         _httpClient.DefaultRequestHeaders.Add("Accept", "application/json; ver=2.0 ");
         var json = await _httpClient.GetStringAsync("/api/minimal/StringList");
         var strings = JArray.Parse(json);
+
         Assert.Equal(2, strings.Count);
         Assert.StartsWith("S", (string?)strings[0]);
         Assert.StartsWith("S", (string?)strings[1]);
