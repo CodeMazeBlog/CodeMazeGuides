@@ -5,8 +5,7 @@ namespace VersioningRestAPI.V1.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[ApiVersion("0.9", Deprecated = true)]
-[ApiVersion("1.0")]
+[ApiVersion("1.0", Deprecated = true)]
 public class StringListController : ControllerBase
 {
     [HttpGet()]        

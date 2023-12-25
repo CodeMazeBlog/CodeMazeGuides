@@ -9,13 +9,12 @@ builder.Services.AddEndpointsApiExplorer();
 var apiVersioningBuilder = builder.Services.AddApiVersioning(o =>
 {
     o.AssumeDefaultVersionWhenUnspecified = true;
-    o.DefaultApiVersion = new ApiVersion(1, 0);
+    o.DefaultApiVersion = new ApiVersion(2, 0);
     o.ReportApiVersions = true;
     o.ApiVersionReader = ApiVersionReader.Combine(
         new QueryStringApiVersionReader("api-version"),
         new HeaderApiVersionReader("X-Version"),
         new MediaTypeApiVersionReader("ver"));
-
 });
 
 apiVersioningBuilder.AddApiExplorer(
@@ -34,8 +33,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 var apiVersionSet = app.NewApiVersionSet()
-    .HasDeprecatedApiVersion(new ApiVersion(0, 9))
-    .HasApiVersion(new ApiVersion(1, 0))
+    .HasDeprecatedApiVersion(new ApiVersion(1, 0))
     .HasApiVersion(new ApiVersion(2, 0))
     .HasApiVersion(new ApiVersion(3, 0))
     .ReportApiVersions()
@@ -48,7 +46,6 @@ app.MapGet("api/minimal/StringList", () =>
     return TypedResults.Ok(strings);
 })
     .WithApiVersionSet(apiVersionSet)
-    .MapToApiVersion(new ApiVersion(0, 9))
     .MapToApiVersion(new ApiVersion(1, 0));
 
 app.MapGet("api/minimal/StringList", () =>
