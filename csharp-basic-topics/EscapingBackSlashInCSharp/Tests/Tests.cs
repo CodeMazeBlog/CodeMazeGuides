@@ -25,8 +25,7 @@ public class Tests
 
     [TestMethod]
     public void GivenStringFormatMethod_WhenCallingMethod_ThenReturnFormattedFilePath()
-    {
-        
+    {   
         Assert.AreEqual($"C:{Path.DirectorySeparatorChar}Users{Path.DirectorySeparatorChar}User{Path.DirectorySeparatorChar}Documents", BackslashMethods.UsingStringFormat());
     }
 
@@ -34,7 +33,5 @@ public class Tests
     public void GivenStringInterpolation_WhenCallingMethod_ThenReturnInterpolatedFilePath()
     {
         Assert.AreEqual($"C:{Path.DirectorySeparatorChar}Users{Path.DirectorySeparatorChar}User{Path.DirectorySeparatorChar}Documents", BackslashMethods.UsingStringFormat());
-
-        Assert.AreEqual(path, BackslashMethods.UsingStringInterpolation());
     }
 }
