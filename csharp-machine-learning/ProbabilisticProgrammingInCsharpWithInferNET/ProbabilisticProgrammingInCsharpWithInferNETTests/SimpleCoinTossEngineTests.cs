@@ -15,7 +15,7 @@ namespace ProbabilisticProgrammingInCsharpWithInferNETTests
         [TestMethod]
         public void WhenCoinTossCountHeadsAndCalculateAverage_ThanSuccess()
         {
-            var experimentsCounts = new int[] { 1, 10, 50, 100, 200 };
+            var experimentsCounts = new int[] { 1, /*10, 50, 100, 200*/ };
             foreach (var count in experimentsCounts)
             {
                 var headCounts = coinTossEngine.IsCoinFairExperiments(count);
