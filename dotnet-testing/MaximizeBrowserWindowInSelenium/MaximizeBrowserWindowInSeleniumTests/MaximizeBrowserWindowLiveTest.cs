@@ -8,17 +8,17 @@ namespace MaximizeBrowserWindowInSeleniumTests;
 
 public class MaximizeBrowserWindowLiveTest
 {
-    //[Fact]
-    //public void GivenTestInChrome_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
-    //{
-    //    IWebDriver driver = new ChromeDriver();
+    [Fact]
+    public void GivenTestInChrome_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
+    {
+        IWebDriver driver = new ChromeDriver();
 
-    //    driver.Navigate().GoToUrl("https://localhost:7016/");
+        driver.Navigate().GoToUrl("https://localhost:7016/");
 
-    //    driver.Manage().Window.Maximize();
+        driver.Manage().Window.Maximize();
 
-    //    driver.Quit();
-    //}
+        driver.Quit();
+    }
 
     [Fact]
     public void GivenTestInChromeWOptions_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
