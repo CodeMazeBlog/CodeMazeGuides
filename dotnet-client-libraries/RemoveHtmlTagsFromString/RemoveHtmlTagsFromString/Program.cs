@@ -1,24 +1,17 @@
 ﻿using RemoveHtmlTagsFromString;
 
-var htmlString = "<p>This is <b>bold</b> text with <a href='#'>HTML</a> tags. 5&nbsp;&lt;&nbsp;7</p>";
-Console.WriteLine("Input: " + htmlString);
+const string HTML_TEXT = "<p>This is <b>bold</b> text with <a href='#'>HTML</a> tags. 5&nbsp;&lt;&nbsp;7</p>";
 
-var output = HtmlTagRemover.UseRegularExpression(htmlString);
-Console.WriteLine("Output Using Reqular Expressions: " + output);
+Console.WriteLine("RegularExpression: {0}", HtmlTagRemover.UseRegularExpression(HTML_TEXT));
 
-output = HtmlTagRemover.UseHtmlDecode(htmlString);
-Console.WriteLine("Output Using HtmlDecode: " + output);
+Console.WriteLine("HtmlDecode: {0}", HtmlTagRemover.UseHtmlDecode(HTML_TEXT));
 
-output = HtmlTagRemover.UseHtmlAgilityPack(htmlString);
-Console.WriteLine("Output Using HtmlAgilityPack: " + output);
+Console.WriteLine("HtmlAgilityPack: {0}", HtmlTagRemover.UseHtmlAgilityPack(HTML_TEXT));
 
-output = HtmlTagRemover.UseAngleSharp(htmlString);
-Console.WriteLine("Output Using AngleSharp: " + output);
+Console.WriteLine("AngleSharp: {0}", HtmlTagRemover.UseAngleSharp(HTML_TEXT));
 
-output = HtmlTagRemover.UseXmlXElement(htmlString);
-Console.WriteLine("Output Using XmlXElement: " + output);
+Console.WriteLine("XmlXElement: {0}", HtmlTagRemover.UseXmlXElement(HTML_TEXT));
 
-output = HtmlTagRemover.ReadHtmlFromFile();
-Console.WriteLine("Output ReadHtmlFromFile: " + output);
+Console.WriteLine("ReadHtmlFromFile: {0}", HtmlTagRemover.ReadHtmlFromFile());
 
 Console.ReadLine();
