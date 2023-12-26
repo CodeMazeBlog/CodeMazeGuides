@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Xunit;
 namespace Tests;
 
-public class StringListControllerV3Tests : IClassFixture<WebApplicationFactory<Program>>
+public class StringListMinimalV3Tests : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly HttpClient _httpClient;
 
-    public StringListControllerV3Tests(WebApplicationFactory<Program> factory)
+    public StringListMinimalV3Tests(WebApplicationFactory<Program> factory)
     {
         const string serviceUrl = "https://localhost:7114/";
         _httpClient = factory.CreateClient();
@@ -20,7 +20,7 @@ public class StringListControllerV3Tests : IClassFixture<WebApplicationFactory<P
     [Fact]
     public async Task GivenURLChange_WhenCalledV3_ThenReturnStringStartingWithC()
     {
-        var json = await _httpClient.GetStringAsync("/api/v3/StringList");
+        var json = await _httpClient.GetStringAsync("/api/minimal/v3/StringList");
         var strings = JArray.Parse(json);
 
         Assert.Equal(2, strings.Count);
