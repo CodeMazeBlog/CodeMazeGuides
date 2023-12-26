@@ -51,11 +51,4 @@ public class HtmlTagRemover
 
         return xElement.Value;
     }
-
-    public static string ReadHtmlFromFile()
-    {
-        var html = File.ReadAllText("./long.html");
-
-        return UseAngleSharp(html);
-    }
 }

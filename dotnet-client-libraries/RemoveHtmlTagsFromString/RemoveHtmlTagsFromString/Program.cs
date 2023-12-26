@@ -12,6 +12,4 @@ Console.WriteLine("AngleSharp: {0}", HtmlTagRemover.UseAngleSharp(HTML_TEXT));
 
 Console.WriteLine("XmlXElement: {0}", HtmlTagRemover.UseXmlXElement(HTML_TEXT));
 
-Console.WriteLine("ReadHtmlFromFile: {0}", HtmlTagRemover.ReadHtmlFromFile());
-
 Console.ReadLine();

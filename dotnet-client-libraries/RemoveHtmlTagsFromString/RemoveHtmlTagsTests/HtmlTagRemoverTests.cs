@@ -107,7 +107,7 @@ public class HtmlTagRemoverTests
         return new Tuple<string, string, string>(saltText.Trim(), htmlText.Trim(), saltTextEncoded.Trim());
     }
 
-    private string ToUtf8(string value)
+    private static string ToUtf8(string value)
     {
         if (!string.IsNullOrEmpty(value))
         {
