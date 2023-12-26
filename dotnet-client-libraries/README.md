@@ -22,6 +22,7 @@ This section contains the topics about the client libraries in .NET.
 - [Introduction to PDF Manipulation With IText (Formerl ITextSharp)](https://code-maze.com/csharp-pdf-manipulation-with-itext/)
 - [Adding Header and Footer to a PDF Using the iText Library](https://code-maze.com/csharp-adding-header-and-footer-to-pdf-using-itext-library/)
 - [Merging Multiple PDFs Using the iText Library](https://code-maze.com/csharp-merging-multiple-pdfs-using-the-itext-library/)
+- [How to Insert Text into an Existing PDF Using the iText Library](https://code-maze.com/csharp-inserting-text-into-an-existing-pdf-using-itext/)
 - [Tracking Application Health With OpenTelemetry Metrics in .NET](https://code-maze.com/tracking-dotnet-opentelemetry-metrics/)
 - [Tracing .NET Applications Easily With OpenTelemetry](https://code-maze.com/tracing-dotnet-applications-opentelemetry/)
 - [Extending LINQ to Objects With MoreLINQ Library](https://code-maze.com/morelinq-library-linq/)
