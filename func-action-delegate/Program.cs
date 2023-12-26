@@ -11,7 +11,7 @@ namespace func_action_delegate
                 return a + b;
             };
             int result = add(5, 3);
-            Console.WriteLine($"The result is: {result}");
+            Console.WriteLine($"The addition result is: {result}");
 
             Action<string> greet = (name) =>
             {
