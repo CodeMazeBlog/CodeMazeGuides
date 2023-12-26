@@ -7,11 +7,11 @@ using Xunit;
 
 namespace Tests;
 
-public class StringListControllerV2Tests : IClassFixture<WebApplicationFactory<Program>>
+public class StringListMinimalV2Tests : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly HttpClient _httpClient;
 
-    public StringListControllerV2Tests(WebApplicationFactory<Program> factory)
+    public StringListMinimalV2Tests(WebApplicationFactory<Program> factory)
     {
         const string serviceUrl = "https://localhost:7114/";
         _httpClient = factory.CreateClient();
@@ -22,7 +22,7 @@ public class StringListControllerV2Tests : IClassFixture<WebApplicationFactory<P
     [Fact]
     public async Task GivenQueryString_WhenCalledV2_ThenReturnStringStartingWithS()
     {
-        var json = await _httpClient.GetStringAsync("/api/StringList?api-version=2.0");
+        var json = await _httpClient.GetStringAsync("/api/minimal/StringList?api-version=2.0");
         var strings = JArray.Parse(json);
 
         Assert.Equal(2, strings.Count);
@@ -35,7 +35,7 @@ public class StringListControllerV2Tests : IClassFixture<WebApplicationFactory<P
     public async Task GivenHeader_WhenCalledV2_ThenReturnStringStartingWithS()
     {
         _httpClient.DefaultRequestHeaders.Add("X-Version", "2.0");
-        var json = await _httpClient.GetStringAsync("/api/StringList");
+        var json = await _httpClient.GetStringAsync("/api/minimal/StringList");
         var strings = JArray.Parse(json);
 
         Assert.Equal(2, strings.Count);
@@ -47,7 +47,7 @@ public class StringListControllerV2Tests : IClassFixture<WebApplicationFactory<P
     public async Task GivenMediaType_WhenCalledV2_ThenReturnStringStartingWithS()
     {
         _httpClient.DefaultRequestHeaders.Add("Accept", "application/json; ver=2.0 ");
-        var json = await _httpClient.GetStringAsync("/api/StringList");
+        var json = await _httpClient.GetStringAsync("/api/minimal/StringList");
         var strings = JArray.Parse(json);
 
         Assert.Equal(2, strings.Count);
