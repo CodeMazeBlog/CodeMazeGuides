@@ -1,19 +1,29 @@
 using ActionAndFuncDelegates;
 using ActionAndFuncDelegates.Entities;
+using Moq;
 
 namespace Tests
 {
     [TestClass]
 	public class RectangleShapeTests
     {
+        private RectangleShape _shape;
+        private Mock<RectangleShape> _funcMock;
 
-		[TestMethod]
+        [TestInitialize]
+        public void Setup()
+        {
+            _funcMock = new Mock<RectangleShape>();
+            _shape = _funcMock.Object;
+        }
+        [TestMethod]
 		public void GivenSides_WhenAreaOfRectangleCalled_ThenAreaShouldBeReturned()
 		{
-			// Arrange
+            // Arrange
 
-			var rectangleShape = new RectangleShape();
-			Func<Rectangle, int> func = rectangleShape.Area;
+            _funcMock.Setup(x => x.Area(It.IsAny<Rectangle>())).Returns(12);
+
+            Func<Rectangle, int> func = _shape.Area;
 
 			// Act
 			var result = func.Invoke(new Rectangle 
@@ -24,7 +34,8 @@ namespace Tests
 
 			// Assert
 
-			Assert.AreEqual(50, result);
-		}
+			Assert.AreEqual(12, result);
+            _funcMock.Verify(x => x.Area(It.IsAny<Rectangle>()), Times.Once);
+        }
 	}
 }

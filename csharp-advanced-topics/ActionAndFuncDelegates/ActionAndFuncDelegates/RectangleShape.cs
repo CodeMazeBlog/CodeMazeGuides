@@ -4,7 +4,7 @@ namespace ActionAndFuncDelegates
 {
     public class RectangleShape
     {
-        public int Area(Rectangle shape)
+        public virtual int Area(Rectangle shape)
         {
             return shape.Length * shape.Breadth;
         }
