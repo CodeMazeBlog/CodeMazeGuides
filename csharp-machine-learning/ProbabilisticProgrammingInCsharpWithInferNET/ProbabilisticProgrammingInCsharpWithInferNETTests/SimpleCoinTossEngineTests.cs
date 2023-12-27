@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProbabilisticProgrammingInCsharpWithInferNET;
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace ProbabilisticProgrammingInCsharpWithInferNETTests
