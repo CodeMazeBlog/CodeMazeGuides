@@ -9,39 +9,35 @@ namespace Test
         [Test]
         public void TestParameterlessAction_WhenNoInput_ThenPrintHello()
         {
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                Program.display();
-                string expected = $"Hello is printed {Environment.NewLine}";
-                Assert.That(true,expected, sw.ToString());
+            string expected = $"Enjoy your day!{Environment.NewLine}";
+            using StringWriter sw = new();
+            Console.SetOut(sw);
 
-                StringWriter newOut = new StringWriter();
-                Console.SetOut(newOut);
-            }
+            Program.display();
+
+            Assert.AreEqual(expected, sw.ToString());
         }
 
         [Test]
         public void TestActionWithParameter_WhenCustomInputGiven_ThenPrintSentence()
         {
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                Program.printEmployeeNameAndNo("John", 124);
-                string expected = "Employee Name: John,and No: 124";
-                Assert.That(true, expected, sw.ToString());
+            string expected = $"Employee Name: John,and No: 124{Environment.NewLine}";
+            using StringWriter sw = new();
+            Console.SetOut(sw);
 
-                StringWriter newOut = new StringWriter();
-                Console.SetOut(newOut);
-            }
+            Program.printEmployeeNameAndNo("John", 124);
+
+            Assert.AreEqual(expected, sw.ToString());
         }
 
         [Test]
         public void TestFuncWithoutParameter_WhenNoInputGiven_ThenPrintHello()
         {
-            var outputString = Program.sayHello();
             string expected = "Hello";
-            Assert.That(true, expected, outputString);
+
+            var outputString = Program.sayHello();
+            
+            Assert.AreEqual(expected, outputString);
         }
 
         [Test]
