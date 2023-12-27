@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ProbabilisticProgrammingInCsharpWithInferNET;
+﻿namespace ProbabilisticProgrammingInCsharpWithInferNET;
 public class CoinTossEngine
 {
     private bool IsHead { get { return new Random().NextDouble() > 0.5; } }

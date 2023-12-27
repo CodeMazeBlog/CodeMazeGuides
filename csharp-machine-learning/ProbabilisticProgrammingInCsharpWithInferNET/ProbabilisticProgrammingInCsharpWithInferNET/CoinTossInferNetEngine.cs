@@ -4,7 +4,7 @@ using Microsoft.ML.Probabilistic.Models;
 namespace ProbabilisticProgrammingInCsharpWithInferNET;
 public class CoinTossInferNetEngine
 {
-    private Variable<bool> IsHead { get { return Variable.Bernoulli(0.5); } }
+    private Variable<bool> IsHead => Variable.Bernoulli(0.5);
     public Variable<bool> FirstHead { get; private set; }
     public Variable<bool> SecondHead { get; private set; }
     public Variable<bool> BothHeads { get; private set; }
