@@ -1,11 +1,11 @@
 ﻿using PlugInBase;
 using System.Reflection;
 
-namespace AppWithPlugin;
+namespace PluginPatternInCSharp;
 
 public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         try
         {
@@ -43,7 +43,15 @@ public class Program
 
                 var commandName = Console.ReadLine();
 
-                var theCommand = commands.First(c => c.Name == commandName);
+                var theCommand = commands.FirstOrDefault(c => c.Name == commandName);
+
+                if (theCommand == null)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("No such command is known.");
+
+                    return;
+                }
 
                 theCommand.Invoke();
 
@@ -59,6 +67,7 @@ public class Program
                     var command = commands.FirstOrDefault(c => c.Name == commandName);
                     if (command == null)
                     {
+                        Console.WriteLine();
                         Console.WriteLine("No such command is known.");
 
                         return;
