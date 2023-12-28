@@ -1,8 +1,13 @@
 using IExceptionHandlerInterface.Middleware;
+using IExceptionHandlerInterface.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton<ILibraryService, LibraryService>();
+
 builder.Services.AddExceptionHandler<ExceptionHandlingMiddleware>();
+
 builder.Services.AddProblemDetails();
 
 var app = builder.Build();
@@ -11,28 +16,34 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
+app.UseExceptionHandler();
 
-var summaries = new[]
+app.MapGet("/books", async context =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var libraryService = context.RequestServices.GetRequiredService<ILibraryService>();
+    var allBooks = libraryService.GetAllBooks();
+    await context.Response.WriteAsJsonAsync(allBooks);
+});
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/books/get-by-author", () =>
 {
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    throw new NotImplementedException();
+});
+
+app.MapGet("/books/{id}", async context =>
+{
+    var id = int.Parse(context.Request.RouteValues["id"].ToString());
+    var libraryService = context.RequestServices.GetRequiredService<ILibraryService>();
+    var book = libraryService.GetById(id);
+
+    if (book != null)
+    {
+        await context.Response.WriteAsJsonAsync(book);
+    }
+    else
+    {
+        throw new BadHttpRequestException($"Book with Id {id} not found.", StatusCodes.Status400BadRequest);
+    }
 });
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
