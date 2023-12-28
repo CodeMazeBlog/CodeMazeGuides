@@ -38,6 +38,16 @@ public class Program
                 {
                     Console.WriteLine($"{command.Name}\t - {command.Description}");
                 }
+
+                Console.WriteLine(); // print empty line
+
+                var commandName = Console.ReadLine();
+
+                var theCommand = commands.First(c => c.Name == commandName);
+
+                theCommand.Invoke();
+
+                Console.WriteLine("Application Closing");
             }
             else
             {
@@ -56,7 +66,7 @@ public class Program
 
                     command.Invoke();
 
-                    Console.WriteLine();
+                    Console.WriteLine("Application Closing");
                 }
             }
         }

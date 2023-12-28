@@ -5,7 +5,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<EnableDynamicLoading>true</EnableDynamicLoading>
-		<BaseOutputPath>C:\Users\Alvaro\source\repos\CodeMazeGuides\csharp-architectural-patterns\AppWithPlugin\bin</BaseOutputPath>
+		<BaseOutputPath>..\PluginPatternInCSharp\bin</BaseOutputPath>
 	</PropertyGroup>
 
 	<ItemGroup>
