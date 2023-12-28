@@ -1,19 +1,14 @@
 ﻿namespace JsonValidatorsTest;
 
-public class JsonSchemaAgainstDesiredStructureTests
+public class JsonSchemaAgainstDesiredStructureTests()
 {
-    private readonly IJsonValidator _sut;
-
-    public JsonSchemaAgainstDesiredStructureTests()
-    {
-        _sut = new JsonSchemaAgainstDesiredStructureUseCase();
-    }
+    private readonly IJsonValidator _sut = new JsonSchemaAgainstDesiredStructureUseCase();
 
     [Fact]
-    public void IsActive_ShouldReturnsTrue_WhenGivenValidJson()
+    public void WhenGivenValidJson_ThenIsValidReturnsTrue()
     {
         // Assign
-        var jsonString = @"{'username': 'Sample Username', 'addresses': ['Street 1', 'Street 2']}";
+        const string jsonString = "{'username': 'Sample Username', 'addresses': ['Street 1', 'Street 2']}";
         
         // Act
         var result = _sut.IsValid(jsonString);

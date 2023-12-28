@@ -1,24 +1,16 @@
 ﻿namespace JsonValidatorsTest;
 
-public class RegularExpressionsTests
+public class RegularExpressionsTests() : JsonValidatorsTestBase(new RegularExpressionsUseCase())
 {
-    private readonly IJsonValidator _sut;
-
-    public RegularExpressionsTests()
+    public override void WhenGivenInvalidJson_ThenIsValidReturnsFalse()
     {
-        _sut = new RegularExpressionsUseCase();
-    }
+        // Arrange
+        const string invalidJson = """{ "name": "Sample Name", "age": 18 """;
 
-    [Fact]
-    public void IsActive_ShouldReturnsTrue_WhenGivenValidJson()
-    {
-        // Assign
-        string jsonString = "{ \"name\": \"Sample Name\", \"age\": 18 }";
-        
         // Act
-        var result = _sut.IsValid(jsonString);
+        var result = _sut.IsValid(invalidJson);
 
         // Assert
-        result.Should().BeTrue();
+        result.Should().BeFalse();
     }
 }
