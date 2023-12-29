@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace ActionAndFuncDelegatesTest
+namespace ActionAndFuncDelegates
 {
-    public class Program
+    public class ActionAndFuncDelegates
     {
         static void Main()
         {

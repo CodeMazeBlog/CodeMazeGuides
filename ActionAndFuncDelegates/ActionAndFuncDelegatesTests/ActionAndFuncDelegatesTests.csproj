@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ActionAndFuncDelegates\ActionAndFuncDelegatesTests.csproj" />
+    <ProjectReference Include="..\ActionAndFuncDelegates\ActionAndFuncDelegates.csproj" />
   </ItemGroup>
 
 </Project>
