@@ -1,5 +1,3 @@
-using TemperatureCommand; 
-
 namespace PluginPatternInCSharpTests
 {
     [TestClass]

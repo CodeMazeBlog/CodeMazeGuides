@@ -5,14 +5,14 @@ namespace PluginPatternInCSharp;
 
 public class PluginLoadContext : AssemblyLoadContext
 {
-    private AssemblyDependencyResolver _resolver;
+    private readonly AssemblyDependencyResolver _resolver;
 
     public PluginLoadContext(string pluginPath)
     {
         _resolver = new AssemblyDependencyResolver(pluginPath);
     }
 
-    protected override Assembly Load(AssemblyName assemblyName)
+    protected override Assembly? Load(AssemblyName assemblyName)
     {
         var assemblyPath = _resolver.ResolveAssemblyToPath(assemblyName);
         if (assemblyPath != null)

@@ -33,16 +33,16 @@ public class Program
             if (args.Length == 0)
             {
                 Console.WriteLine("Welcome to the Weather App. Please select a command...\n\nCommands: ");
+                
                 // Output the loaded commands.
                 foreach (var command in commands)
                 {
                     Console.WriteLine($"{command.Name}\t - {command.Description}");
                 }
 
-                Console.WriteLine(); // print empty line
+                Console.WriteLine();
 
                 var commandName = Console.ReadLine();
-
                 var theCommand = commands.FirstOrDefault(c => c.Name == commandName);
 
                 if (theCommand == null)
