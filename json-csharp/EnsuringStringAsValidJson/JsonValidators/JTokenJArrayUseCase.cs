@@ -1,4 +1,5 @@
 ﻿using JsonValidators.Abstracts;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace JsonValidators;
@@ -24,7 +25,7 @@ public class JTokenJArrayUseCase : IJsonValidator
 
             return true;
         }
-        catch
+        catch (JsonReaderException e)
         {
             return false;
         }

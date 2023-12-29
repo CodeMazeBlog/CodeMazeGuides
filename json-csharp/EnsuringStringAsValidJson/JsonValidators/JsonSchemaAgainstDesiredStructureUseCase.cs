@@ -1,5 +1,4 @@
-﻿using Json.More;
-using JsonValidators.Abstracts;
+﻿using JsonValidators.Abstracts;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Schema;
