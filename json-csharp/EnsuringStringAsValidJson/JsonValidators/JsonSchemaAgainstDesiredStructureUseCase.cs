@@ -12,13 +12,13 @@ public class JsonSchemaAgainstDesiredStructureUseCase : IJsonValidator
     public JsonSchemaAgainstDesiredStructureUseCase()
     {
         _desiredJsonSchema = @"{
-                    'type': 'object',
-                    'properties': {
-                        'username': {'type':'string'},
-                        'addresses': {'type': 'array'}
-                    },
-                    'additionalProperties': false
-                }";
+            'type': 'object',
+            'properties': {
+                'username': {'type':'string'},
+                'addresses': {'type': 'array'}
+            },
+            'additionalProperties': false
+        }";
     }
 
     public bool IsValid(string jsonString)

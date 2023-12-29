@@ -11,13 +11,13 @@ public class DeserializeUseCase : IJsonValidator
     public DeserializeUseCase()
     {
         _desiredJsonSchema = @"{
-                    'type': 'object',
-                    'properties': {
-                        'name': {'type':'string'},
-                        'age': {'type': 'integer'}
-                    },
-                    'additionalProperties': false
-                }";
+            'type': 'object',
+            'properties': {
+                'name': {'type':'string'},
+                'age': {'type': 'integer'}
+            },
+            'additionalProperties': false
+        }";
     }
     
     public bool IsValid(string jsonString)
