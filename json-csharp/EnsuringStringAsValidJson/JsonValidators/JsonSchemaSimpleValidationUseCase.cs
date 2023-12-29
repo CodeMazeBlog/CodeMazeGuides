@@ -29,8 +29,8 @@ public class JsonSchemaSimpleValidationUseCase : IJsonValidator
     {
         try
         {
-            var parsedObject = JsonNode.Parse(jsonString);
-            var evaluationResults = _desiredJsonSchema.Evaluate(parsedObject);
+            var jsonNode = JsonNode.Parse(jsonString);
+            var evaluationResults = _desiredJsonSchema.Evaluate(jsonNode);
             
             return evaluationResults.IsValid;
         }

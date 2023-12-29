@@ -34,7 +34,7 @@ public class DeserializeUseCase : IJsonValidator
             
             return true;
         }
-        catch (JsonReaderException e)
+        catch (JsonReaderException)
         {
             return false;
         }
