@@ -8,7 +8,7 @@ namespace PluginPatternInCSharpTests
         {
             var sut = new TemperatureCommand.TemperatureCommand();
 
-            sut.Invoke();
+            Assert.AreEqual(0, sut.Invoke());
         }
     }
 }
