@@ -20,7 +20,7 @@ public class CustomsProfileServiceUnitTests
             }
         };
 
-        this._profileService.GetProfileDataAsync(context);
+        _profileService.GetProfileDataAsync(context);
 
         Assert.Empty(context.IssuedClaims);
     }
@@ -36,7 +36,7 @@ public class CustomsProfileServiceUnitTests
             }
         };
 
-        this._profileService.GetProfileDataAsync(context);
+        _profileService.GetProfileDataAsync(context);
 
         Assert.Contains(context.IssuedClaims, claim => claim is { Type: "tenant", Value: "main" });
     }
@@ -52,7 +52,7 @@ public class CustomsProfileServiceUnitTests
             }
         };
 
-        this._profileService.GetProfileDataAsync(context);
+        _profileService.GetProfileDataAsync(context);
 
         Assert.DoesNotContain(context.IssuedClaims, claim => claim.Type == "payments.discount");
     }
@@ -69,7 +69,7 @@ public class CustomsProfileServiceUnitTests
             RequestedClaimTypes = new [] {"payments.discount"}
         };
 
-        this._profileService.GetProfileDataAsync(context);
+        _profileService.GetProfileDataAsync(context);
 
         Assert.Contains(context.IssuedClaims, claim => claim is { Type: "payments.discount", Value: "20" });
     }
@@ -84,7 +84,7 @@ public class CustomsProfileServiceUnitTests
             new Client { ClientId = "test" },
             caller: "AuthorizeEndpoint");
 
-        this._profileService.IsActiveAsync(context);
+        _profileService.IsActiveAsync(context);
 
         Assert.False(context.IsActive);
     }
@@ -99,7 +99,7 @@ public class CustomsProfileServiceUnitTests
             new Client { ClientId = "test" },
             caller: "AuthorizeEndpoint");
 
-        this._profileService.IsActiveAsync(context);
+        _profileService.IsActiveAsync(context);
 
         Assert.True(context.IsActive);
     }
