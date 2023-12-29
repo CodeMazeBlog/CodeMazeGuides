@@ -1,7 +1,7 @@
 ﻿namespace ProbabilisticProgrammingInCsharpWithInferNET;
 public class CoinTossEngine
 {
-    private bool IsHead { get { return new Random().NextDouble() > 0.5; } }
+    private bool IsHead { get { return Random.Shared.NextDouble() > 0.5; } }
     public bool FirstHead { get; private set; }
     public bool SecondHead { get; private set; }
     public bool BothHeads { get; private set; }
