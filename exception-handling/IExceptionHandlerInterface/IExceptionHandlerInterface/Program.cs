@@ -1,6 +1,5 @@
 using IExceptionHandlerInterface.Middleware;
 using IExceptionHandlerInterface.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,3 +46,5 @@ app.MapGet("/books/{id}", async context =>
 });
 
 app.Run();
+
+public partial class Program { }
