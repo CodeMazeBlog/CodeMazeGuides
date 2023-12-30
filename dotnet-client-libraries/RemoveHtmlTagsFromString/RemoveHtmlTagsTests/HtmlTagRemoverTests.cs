@@ -84,7 +84,7 @@ public class HtmlTagRemoverTests
         var tag = tagList[new Random().Next(0, tagList.Count)];
         var encodedKey = encodedList.GetItemByIndex(new Random().Next(0, encodedList.Count));
 
-        saltText += content + WebUtility.HtmlDecode(encodedKey);
+        saltText += content + encodedKey;
         saltTextEncoded += content + encodedKey;
         htmlText += string.Format("<{0}>{1}{2}</{0}>", tag, content, encodedKey);
 
@@ -92,7 +92,7 @@ public class HtmlTagRemoverTests
         tag = tagList[new Random().Next(0, tagList.Count)];
         encodedKey = encodedList.GetItemByIndex(new Random().Next(0, encodedList.Count));
 
-        saltText += content + WebUtility.HtmlDecode(encodedKey);
+        saltText += content + encodedKey;
         saltTextEncoded += content + encodedKey;
         htmlText += string.Format("<{0}>{1}{2}</{0}>", tag, content, encodedKey);
 
@@ -100,18 +100,19 @@ public class HtmlTagRemoverTests
         tag = tagList[new Random().Next(0, tagList.Count)];
         encodedKey = encodedList.GetItemByIndex(new Random().Next(0, encodedList.Count));
 
-        saltText += content + WebUtility.HtmlDecode(encodedKey);
+        saltText += content + encodedKey;
         saltTextEncoded += content + encodedKey;
         htmlText += string.Format("<{0}>{1}{2}</{0}>", tag, content, encodedKey);
+        saltText = WebUtility.HtmlDecode(saltText).Trim().Replace(" ", " ");
 
-        return new Tuple<string, string, string>(saltText.Trim(), htmlText.Trim(), saltTextEncoded.Trim());
+        return new Tuple<string, string, string>(saltText, htmlText.Trim(), saltTextEncoded.Trim());
     }
 
     private static string ToUtf8(string value)
     {
         if (!string.IsNullOrEmpty(value))
         {
-            return Encoding.UTF8.GetString(Encoding.Default.GetBytes(value.Trim()));
+            return Encoding.UTF8.GetString(Encoding.Default.GetBytes(value.Trim())).Replace(" ", " ");
         }
 
         return value;
