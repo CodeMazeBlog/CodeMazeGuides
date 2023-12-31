@@ -25,7 +25,7 @@ public class JsonSchemaAgainstDesiredStructureUseCase : IJsonValidator
     {
         try
         {
-            var schema = JsonSchema.Parse(_desiredJsonSchema);
+            var schema = JSchema.Parse(_desiredJsonSchema);
             var jObject = JObject.Parse(jsonString);
             
             return jObject.IsValid(schema);

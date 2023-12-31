@@ -16,4 +16,17 @@ public class JsonSchemaAgainstDesiredStructureTests()
         // Assert
         result.Should().BeTrue();
     }
+    
+    [Fact]
+    public void WhenGivenInValidJson_ThenIsValidReturnsFalse()
+    {
+        // Assign
+        const string jsonString = "{'username': 'Sample Username', 'password': 'Sample Password'}";
+        
+        // Act
+        var result = _sut.IsValid(jsonString);
+
+        // Assert
+        result.Should().BeFalse();
+    }
 }

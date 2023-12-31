@@ -2,7 +2,7 @@
 
 public abstract class JsonValidatorsTestBase(IJsonValidator sut)
 {
-    protected const string SimpleValidJson = """{ "name": "Sample Name", "age": 18 }""";
+    private const string SimpleValidJson = """{ "name": "Sample Name", "age": 18 }""";
 
     private const string SimpleInvalidJson = """{ "name": "Sample Name" "age": 18 }""";
 
