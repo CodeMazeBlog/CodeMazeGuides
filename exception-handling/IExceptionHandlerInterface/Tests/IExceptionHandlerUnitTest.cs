@@ -30,12 +30,22 @@ public class IExceptionHandlerUnitTest
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 
-    [Fact]
-    public async Task WhenGetAllBooksEndpointIsCalled_ThenReturnAllBooks()
+    [Theory]
+    [InlineData("/books")]
+    public async Task WhenGetAllBooksEndpointIsCalled_ThenReturnAllBooks(string url)
     {
-        var response = await _client.GetAsync("/books");
+        var response = await _client.GetAsync(url);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    [Theory]
+    [InlineData("/books/get-by-author")]
+    public async Task WhenGetBookByAuthorEndpointIsCalled_ThenThrowNotImplementedException(string url)
+    {
+        var response = await _client.GetAsync(url);
+
+        Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
     }
 
 }

@@ -1,22 +1,14 @@
 ﻿using IExceptionHandlerInterface.Models;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace IExceptionHandlerInterface.Middleware;
 
-public class BadRequestExceptionHandler : IExceptionHandler
+public class BadRequestExceptionHandler(ILogger<BadRequestExceptionHandler> logger) : IExceptionHandler
 {
-    private readonly ILogger<ExceptionHandlingMiddleware> _logger;
-
-    public BadRequestExceptionHandler(ILogger<ExceptionHandlingMiddleware> logger)
-    {
-        _logger = logger;
-    }
-
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
-        _logger.LogError($"Bad request exception: {exception.Message}");
+        logger.LogError($"Bad request exception: {exception.Message}");
 
         if (exception is not BadHttpRequestException badRequestException)
         {
