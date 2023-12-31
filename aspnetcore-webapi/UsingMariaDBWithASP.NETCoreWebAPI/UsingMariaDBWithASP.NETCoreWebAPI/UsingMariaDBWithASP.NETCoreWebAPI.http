@@ -1,0 +1,6 @@
+@UsingMariaDBWithASP.NETCoreWebAPI_HostAddress = http://localhost:5227
+
+GET {{UsingMariaDBWithASP.NETCoreWebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
