@@ -33,5 +33,19 @@ namespace ThreadSleepVsTaskDelay.Test
             // Assert
             Assert.True(stopwatch.ElapsedMilliseconds >= 2000);
         }
+
+        [Fact]
+        public void WhenCallUseThreadSleep_ThenThreadIdRemainsTheSame()
+        {
+            // Arrange
+            var threadIdBefore = Environment.CurrentManagedThreadId;
+
+            // Act
+            Program.UseThreadSleep();
+            var threadIdAfter = Environment.CurrentManagedThreadId;
+
+            // Assert
+            threadIdBefore.Equals(threadIdAfter);
+        }
     }
 }
