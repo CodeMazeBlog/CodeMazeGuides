@@ -22,12 +22,12 @@ public class Methods
         return customersWithOrders;
     }
 
-    public static List<Customer> WhereAnyMethod(IEnumerable<Customer> customerList, IEnumerable<Order> orderList)
+    public static List<Customer> WhereAnyMethod(List<Customer> customerList, List<Order> orderList)
     {
         return customerList.Where(y => orderList.Any(z => z.CustomerId == y.Id)).ToList();
     }
 
-    public static List<Customer> JoinMethod(IEnumerable<Customer> customerList, IEnumerable<Order> orderList)
+    public static List<Customer> JoinMethod(List<Customer> customerList, List<Order> orderList)
     {
         var customersWithOrders = (from customer in customerList
                                    where orderList.Any(order => customer.Id == order.CustomerId)
@@ -37,14 +37,14 @@ public class Methods
         return customersWithOrders;
     }
 
-    public static List<Customer> HashSetMethod(IEnumerable<Customer> customerList, IEnumerable<Order> orderList)
+    public static List<Customer> HashSetMethod(List<Customer> customerList, List<Order> orderList)
     {
         var customerIds = orderList.Select(i => i.CustomerId).Distinct().ToHashSet();
 
         return customerList.Where(i => customerIds.Contains(i.Id)).ToList();
     }
 
-    public static List<Customer> JoinListMethod(IEnumerable<Customer> customerList, IEnumerable<Order> orderList)
+    public static List<Customer> JoinListMethod(List<Customer> customerList, List<Order> orderList)
     {
         return customerList.Join(
                 orderList,
