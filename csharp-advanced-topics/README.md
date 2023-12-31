@@ -4,6 +4,7 @@ This section contains the topics considered advanced level in C#.
 
 ### Relevant articles:
 
+- [Default Values for Lambda Expressions in C#](https://code-maze.com/csharp-default-values-for-lambda-expressions/)
 - [C# Delegates](https://code-maze.com/delegates-charp/)
 - [Differences Between ExpandoObject, DynamicObject and dynamic](https://code-maze.com/csharp-differences-between-expandoobject-dynamicobject-and-dynamic/)
 - [How to Build Dynamic Queries With Expression Trees in C#](https://code-maze.com/dynamic-queries-expression-trees-csharp/)

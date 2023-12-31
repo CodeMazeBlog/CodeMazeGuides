@@ -1,0 +1,39 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<h2 class="mb-5">@ViewData["Title"]</h2>
+
+<form method="post">
+    <div class="form-group mb-3 row">
+        <label asp-for="Product.Name" class="col-sm-2 col-form-label">Name:</label>
+        <div class="col-sm-6">
+            <input asp-for="Product.Name" class="form-control" />
+            <span asp-validation-for="Product.Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group mb-3 row">
+        <label asp-for="Product.Price" class="col-sm-2 col-form-label">Price:</label>
+        <div class="col-sm-6">
+            <input asp-for="Product.Price" class="form-control" />
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group mb-3 row">
+        <label asp-for="Product.Quantity" class="col-sm-2 col-form-label">Quantity:</label>
+        <div class="col-sm-6">
+            <input asp-for="Product.Quantity" class="form-control" />
+            <span asp-validation-for="Product.Quantity" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </div>
+    </div>
+</form>

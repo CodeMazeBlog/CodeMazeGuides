@@ -24,3 +24,4 @@ This section contains the topics related to JSON manipulation in C#.
 - [How to Convert JSON to XML or XML to JSON in C#](https://code-maze.com/csharp-convert-json-to-xml-or-xml-to-json/)
 - [Property Ordering in C# JSON Serialization](https://code-maze.com/csharp-property-ordering-json-serialization/)
 - [How to Read and Parse a JSON File in C#](https://code-maze.com/csharp-read-and-process-json-file/)
+- [How to Retrieve JSON Property Names in C#](https://code-maze.com/csharp-retrieve-json-property-names/)
