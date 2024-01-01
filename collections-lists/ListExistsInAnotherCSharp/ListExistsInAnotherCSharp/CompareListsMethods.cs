@@ -1,9 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
-using System.Collections;
-using System.Numerics;
-using System.Runtime.InteropServices;
 
 namespace ListExistsInAnotherCSharp;
 
@@ -13,13 +10,6 @@ namespace ListExistsInAnotherCSharp;
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
 public class CompareListsMethods
 {
-    private readonly Random _rand;
-
-    public CompareListsMethods()
-    {
-        _rand = new Random();
-    }
-
     public IEnumerable<object[]> SampleLists()
     {
         yield return new object[] 
@@ -62,52 +52,37 @@ public class CompareListsMethods
     [Benchmark]
     public bool CompareListUsingIteration(List<int> firstList, List<int> secondList, string listName) 
     {
-        var elementExists = false;
-
         foreach (var item in firstList)
         {
             if (secondList.Contains(item))
             {
-                elementExists = true;
-                break;
+                return true;
             }
         }
 
-        return elementExists;
+        return false;
     }
 
     [ArgumentsSource(nameof(SampleLists))]
     [Benchmark]
     public bool CompareListUsingExcept(List<int> firstList, List<int> secondList, string listName)
     {
-        var elementExists = false;
-
-        var difference = secondList.Except(firstList).ToList();
-
-        if (difference.Count == secondList.Count)
-        {
-            return elementExists;
-        }
-        else
-        {
-            elementExists = true;
-            return elementExists;
-        }
+        return secondList.Except(firstList).Count() != secondList.Count;       
     }
 
-    private List<int> GenerateIntegerList(bool commonElements, bool allElements, bool randomElements, int size)
+    private List<int> GenerateIntegerList(bool useCommonElements, bool useAllElements, bool useRandomElements, int size)
     {
-        var integerList = new List<int>();
+        var integerList = new List<int>(size);
 
-        if (randomElements == true) 
+        if (useRandomElements) 
         {
             for(int i = 0; i < size; i++) 
             {
-                integerList.Add(_rand.Next());
+                integerList.Add(Random.Shared.Next());
             }
         }
 
-        if (allElements == true) 
+        if (useAllElements) 
         {
             for (int i = 0; i < size; i++)
             {
@@ -115,7 +90,7 @@ public class CompareListsMethods
             }
         }
 
-        if (commonElements == true) 
+        if (useCommonElements) 
         {
             for (int i = 0; i < size/2; i++)
             {
@@ -124,7 +99,7 @@ public class CompareListsMethods
 
             for (int i = size/2; i < size; i++)
             {
-                integerList.Add(_rand.Next());
+                integerList.Add(Random.Shared.Next());
             }
         }
 
