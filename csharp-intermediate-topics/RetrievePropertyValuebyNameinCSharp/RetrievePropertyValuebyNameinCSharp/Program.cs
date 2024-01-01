@@ -3,8 +3,8 @@ using RetrievePropertyValuebyNameinCSharp;
 
 Person person = new()
 {
-    FirstName = "First Name",
-    LastName = "Last Name",
+    FirstName = "Kevin",
+    LastName = "Otim",
     Age = 18,
     IsDeleted = false,
 };
