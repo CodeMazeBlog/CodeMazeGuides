@@ -3,6 +3,9 @@
 using App;
 
 var names = CollectionExpressions.Names;
+var hashSet = CollectionExpressions.CreateHashSetUsingNewExpressionSyntax();
+
+foreach (var item in hashSet) Console.WriteLine(item);
 
 foreach (var name in names) Console.WriteLine(name);
 
@@ -20,13 +23,23 @@ foreach (var item in arrayCreationWithSpreadOperatorWithAdditionalItems) Console
 var jaggedArray = CollectionExpressions.CreateJaggedArray();
 
 foreach (var item in jaggedArray)
-foreach (var item2 in item)
-    Console.WriteLine(item2);
+{
+    foreach (var item2 in item)
+    {
+        Console.WriteLine(item2);
+    }
+}
 
 var list = CollectionExpressions.CreateListUsingNewExpressionSyntax();
 
-foreach (var item in list) Console.WriteLine(item);
+foreach (var item in list)
+{
+    Console.WriteLine(item);
+}
 
 var span = CollectionExpressions.CreateSpanUsingNewExpressionSyntax();
 
-foreach (var item in span) Console.WriteLine(item);
+foreach (var item in span)
+{
+    Console.WriteLine(item);
+}

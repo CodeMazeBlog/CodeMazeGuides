@@ -6,16 +6,23 @@ public static class CollectionExpressions
 
     public static int[] CreateNewArrayUsingSpreadOperator(int[] array1, int[] array2, int[] array3)
     {
-        int[] largeArray = [.. array1, .. array2, .. array3];
+        int[] combinedArray = [.. array1, .. array2, .. array3];
 
-        return largeArray;
+        return combinedArray;
+    }
+
+    public static HashSet<string> CreateHashSetUsingNewExpressionSyntax()
+    {
+        HashSet<string> myHashSet = ["John", "Paul", "George", "Ringo"];
+
+        return myHashSet;
     }
 
     public static int[] CreateNewArrayUsingSpreadOperatorWithAdditionalItems(int[] array1, int[] array2, int[] array3)
     {
-        int[] largeArray = [.. array1, 50, .. array2, .. array3];
+        int[] combinedArray = [.. array1, 50, .. array2, .. array3];
 
-        return largeArray;
+        return combinedArray;
     }
 
     public static int[][] CreateJaggedArray()
@@ -28,15 +35,12 @@ public static class CollectionExpressions
         return vector;
     }
 
-    // Using C#12 Array Expression Syntax on Lists
     public static List<string> CreateListUsingNewExpressionSyntax()
     {
         List<string> myList = ["John", "Paul", "George", "Ringo"];
 
         return myList;
     }
-
-    // Using new syntax with Span<T> and ReadOnlySpan<T>
 
     public static Span<int> CreateSpanUsingNewExpressionSyntax()
     {

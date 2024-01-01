@@ -24,7 +24,8 @@ public class CollectionExpressionsTests
     }
 
     [Fact]
-    public void GivenThreeArraysAndAdditionalItems_WhenCreateNewArrayUsingSpreadOperator_ThenReturnCombinedArrayWithAdditionalItems()
+    public void
+        GivenThreeArraysAndAdditionalItems_WhenCreateNewArrayUsingSpreadOperator_ThenReturnCombinedArrayWithAdditionalItems()
     {
         int[] array1 = [1, 2, 3];
         int[] array2 = [4, 5, 6];
