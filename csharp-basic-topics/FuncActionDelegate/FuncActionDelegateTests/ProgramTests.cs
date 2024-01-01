@@ -6,14 +6,14 @@ namespace Tests
     public class ProgramTests
     {
         [TestMethod()]
-        public void TestFuncAddNumbers()
+        public void When_FuncAddingNumbers_Then_ReturnsCorrectSum() 
         {
             // Arrange
             Func<int, int, int> add = (x, y) => x + y;
-            int expected = 8; // 5 + 3 = 8
+            var expected = 8; // 5 + 3 = 8
 
             // Act
-            int result = Program.AddNumbers(5, 3, add);
+            var result = Program.AddNumbers(5, 3, add);
 
             // Assert
             Assert.AreEqual(expected, result);
@@ -21,10 +21,10 @@ namespace Tests
 
 
         [TestMethod()]
-        public void TestPerformAction()
+        public void When_PerformingAction_Then_ActionDelegateIsExecuted()
         {
             // Arrange
-            bool actionCalled = false;
+            var actionCalled = false;
 
             // Act
             Program.PerformAction(() => { actionCalled = true; });
