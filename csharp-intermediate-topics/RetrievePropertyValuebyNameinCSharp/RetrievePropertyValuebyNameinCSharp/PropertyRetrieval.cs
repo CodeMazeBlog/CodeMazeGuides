@@ -4,24 +4,6 @@ namespace RetrievePropertyValuebyNameinCSharp;
 public class PropertyRetrieval
 {
 
-    public static bool TryGetPrivateFieldValue<T>(object obj, string fieldName, out T value)
-    {
-        FieldInfo fieldInfo = obj.GetType().GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance)!;
-
-        if (fieldInfo != null && fieldInfo.FieldType == typeof(T))
-        {
-            value = (T)fieldInfo.GetValue(obj)!;
-            return true;
-        }
-        else
-        {
-            value = default!;
-            Console.WriteLine($"Property not found.");
-
-            return false;
-        }
-    }
-
     public static bool TryGetPropertyValue<T>(object obj, string propertyName, out T? value)
     {
         value = default;
