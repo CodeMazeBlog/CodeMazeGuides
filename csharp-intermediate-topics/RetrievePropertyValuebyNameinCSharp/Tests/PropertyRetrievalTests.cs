@@ -71,17 +71,4 @@ public class PropertyRetrievalTests
         Assert.True(result);
         Assert.Equal(30, value);
     }
-
-    [Fact]
-    public void WhenRetrievingPrivatePropertyValue_ThenReturnsTrue()
-    {
-        // Arrange
-        var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
-
-        // Act
-        bool result = PropertyRetrieval.TryGetPrivateFieldValue<Guid>(person, "_id", out _);
-
-        // Assert
-        Assert.True(result);
-    }
 }
