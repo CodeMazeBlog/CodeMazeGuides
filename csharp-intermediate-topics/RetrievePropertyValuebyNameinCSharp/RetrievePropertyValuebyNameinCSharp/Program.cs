@@ -3,8 +3,8 @@ using RetrievePropertyValuebyNameinCSharp;
 
 Person person = new()
 {
-    FirstName = "First Test",
-    LastName = "Last Test",
+    FirstName = "First Name",
+    LastName = "Last Name",
     Age = 18,
     IsDeleted = false,
 };
@@ -12,6 +12,3 @@ Person person = new()
 
 PropertyRetrieval.TryGetPropertyValue<int>(person, "Age", out var value);
 Console.WriteLine($"Retrieved value: {value}.");
-
-PropertyRetrieval.TryGetPrivateFieldValue<Guid>(person, "_id", out var data);
-Console.WriteLine($"Retrieved value: {data}.");
