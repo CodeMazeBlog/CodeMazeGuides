@@ -2,6 +2,6 @@
 using BenchmarkDotNet.Running;
 using ConvertStringToByteArrayBenchmark;
 
-BenchmarkRunner.Run<ShortMessageConversionBenchmarks>();
-BenchmarkRunner.Run<LongMessageConversionBenchmarks>();
+BenchmarkRunner.Run<ShortMessageConversionBenchmark>();
+BenchmarkRunner.Run<LongMessageConversionBenchmark>();
 
