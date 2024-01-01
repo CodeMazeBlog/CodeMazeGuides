@@ -10,22 +10,23 @@ public static class Methods
          _faker
         .RuleFor(m => m.FirstName, faker => faker.Person.FirstName)
         .RuleFor(m => m.LastName, faker => faker.Person.LastName)
-        .RuleFor(m => m.BirthYear, faker => faker.Person.DateOfBirth.Year)
+        .RuleFor(m => m.DateOfBirth, faker => DateOnly.FromDateTime(faker.Person.DateOfBirth))
+        .RuleFor(m => m.Class, faker => faker.PickRandom(Enumerable.Range(1,10)))
         .Generate(count);
 
     public static List<Student> GetYoungestStudentInClassLinqGroupBy1
         (this List<Student> students) =>
-        students.GroupBy(m => m.Class, (key, g) => g.OrderBy(e => e.BirthYear).First())
+        students.GroupBy(m => m.Class, (key, g) => g.OrderBy(e => e.DateOfBirth).First())
         .ToList();
 
     public static List<Student> GetYoungestStudentInClassLinqGroupBy2
         (this List<Student> students) =>
-        students.GroupBy(m => m.Class).Select(g => g.OrderBy(e => e.BirthYear).First())
+        students.GroupBy(m => m.Class).Select(g => g.OrderBy(e => e.DateOfBirth).First())
         .ToList();
 
     public static List<Student> GetYoungestStudentInClassLinqLookup
        (this List<Student> students) =>
-       students.ToLookup(m => m.Class).Select(g => g.OrderBy(e => e.BirthYear).First())
+       students.ToLookup(m => m.Class).Select(g => g.OrderBy(e => e.DateOfBirth).First())
        .ToList();
 
     public static List<Student> GetYoungestStudentInClassLinqDictionary
@@ -34,20 +35,20 @@ public static class Methods
         .ToDictionary(m => m, 
           m => students
           .Where(s => s.Class.Equals(m))
-          .OrderBy(s => s.BirthYear).First())
+          .OrderBy(s => s.DateOfBirth).First())
         .Values
         .ToList();
 
     public static List<Student> GetYoungestStudentInClassIterativeDictionary
         (this List<Student> students)
     {
-        var grouppedStudents = new Dictionary<string, Student>();
+        var grouppedStudents = new Dictionary<int, Student>();
         foreach (var student in students)
         {
             if (!grouppedStudents.ContainsKey(student.Class))
                 grouppedStudents.Add(student.Class, student);
-            else if (student.BirthYear < 
-                grouppedStudents[student.Class].BirthYear)
+            else if (student.DateOfBirth < 
+                grouppedStudents[student.Class].DateOfBirth)
                 grouppedStudents[student.Class] = student;
         }
 

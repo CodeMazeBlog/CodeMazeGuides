@@ -4,8 +4,8 @@ public class Student
 {
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
-    public int BirthYear { get; set; }
-    public string Class { get; set; } = string.Empty;
+    public DateOnly DateOfBirth { get; set; }
+    public int Class { get; set; }
 
     public override bool Equals(object? obj)
     {
@@ -15,6 +15,6 @@ public class Student
 
         return student.FirstName.Equals(FirstName) &&
             student.LastName.Equals(LastName) &&
-            student.BirthYear.Equals(BirthYear);
+            student.DateOfBirth.Equals(DateOfBirth);
     }
 }

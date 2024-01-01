@@ -1,4 +1,5 @@
 using GetFirstRecordInEachGroup;
+using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -7,8 +8,8 @@ namespace Tests
     public class Tests
     {
         private readonly List<Student> students;
-        private readonly Dictionary<string, Student> grouppedStudents = 
-            new Dictionary<string, Student>();
+        private readonly Dictionary<int, Student> grouppedStudents = 
+            new Dictionary<int, Student>();
 
         public Tests()
         {
@@ -17,8 +18,8 @@ namespace Tests
             {
                 if (!grouppedStudents.ContainsKey(student.Class))
                     grouppedStudents.Add(student.Class, student);
-                else if (student.BirthYear < 
-                    grouppedStudents[student.Class].BirthYear)
+                else if (student.DateOfBirth < 
+                    grouppedStudents[student.Class].DateOfBirth)
                     grouppedStudents[student.Class] = student;
             }
         }
