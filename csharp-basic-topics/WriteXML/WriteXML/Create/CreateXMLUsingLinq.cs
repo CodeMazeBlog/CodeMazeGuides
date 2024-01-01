@@ -2,9 +2,9 @@
 
 namespace WriteXML.Create
 {
-    public class CreateXMLUsingLinq : ICreateXML
+    public class CreateXmlUsingLinq : ICreateXml
     {
-        public string CreateSimpleXML(Person person)
+        public string CreateSimpleXml(Person person)
         {
             var xmlPerson = new XDocument(
                 new XElement("person",
@@ -18,7 +18,7 @@ namespace WriteXML.Create
             return xmlPerson.ToString();
         }
 
-        public string CreateSimpleXMLWithAttributes(Person person)
+        public string CreateSimpleXmlWithAttributes(Person person)
         {
             var xmlPerson = new XDocument(
                 new XElement("person",
@@ -32,7 +32,7 @@ namespace WriteXML.Create
             return xmlPerson.ToString();
         }
 
-        public string CreateXMLWithNamespace(Person person)
+        public string CreateXmlWithNamespace(Person person)
         {
             var xmlPerson = new XDocument(
                 new XElement("person",
@@ -48,7 +48,7 @@ namespace WriteXML.Create
         }
 
 
-        public string CreateXMLWithNamespace2(Person person)
+        public string CreateXmlWithNamespace2(Person person)
         {
             var namespace_p = XNamespace.Get("https://www.code-maze.com/sample-person");
             var namespace_n = XNamespace.Get("https://www.code-maze.com/sample-name");
@@ -85,7 +85,7 @@ namespace WriteXML.Create
             return xmlPeople.ToString();
         }
 
-        public static string CreateSimpleXML_Comments(Person person)
+        public static string CreateSimpleXml_Comments(Person person)
         {
             var xmlPerson = new XDocument(  // Create the XML document
                 new XElement("person", // Start of the root element
@@ -101,7 +101,7 @@ namespace WriteXML.Create
             return xmlPerson.ToString();
         }
 
-        public static string CreateSimpleXMLWithXmlDeclaration(Person person)
+        public static string CreateSimpleXmlWithXmlDeclaration(Person person)
         {
             var xmlPerson = new XDocument(
                 new XElement("person",

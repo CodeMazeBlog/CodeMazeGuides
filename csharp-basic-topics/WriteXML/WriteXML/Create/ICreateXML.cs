@@ -1,11 +1,11 @@
 ﻿namespace WriteXML.Create
 {
-    public interface ICreateXML
+    public interface ICreateXml
     {
-        string CreateSimpleXML(Person person);
-        string CreateSimpleXMLWithAttributes(Person person);
-        string CreateXMLWithNamespace(Person person);
-        string CreateXMLWithNamespace2(Person person);
+        string CreateSimpleXml(Person person);
+        string CreateSimpleXmlWithAttributes(Person person);
+        string CreateXmlWithNamespace(Person person);
+        string CreateXmlWithNamespace2(Person person);
 
         string CreateAnArrayOfPeople(Person[] people);
     }

@@ -4,9 +4,9 @@ using System.Xml.Linq;
 
 namespace WriteXML.Create
 {
-    public class CreateXMLUsingXmlWriter : ICreateXML
+    public class CreateXmlUsingXmlWriter : ICreateXml
     {
-        public string CreateSimpleXML(Person person)
+        public string CreateSimpleXml(Person person)
         {
             var sb = new StringBuilder();
 
@@ -28,7 +28,7 @@ namespace WriteXML.Create
             return sb.ToString();
         }
 
-        public string CreateSimpleXMLWithAttributes(Person person)
+        public string CreateSimpleXmlWithAttributes(Person person)
         {
             var sb = new StringBuilder();
 
@@ -50,7 +50,7 @@ namespace WriteXML.Create
             return sb.ToString();
         }
 
-        public string CreateXMLWithNamespace(Person person)
+        public string CreateXmlWithNamespace(Person person)
         {
             var sb = new StringBuilder();
 
@@ -74,7 +74,7 @@ namespace WriteXML.Create
             return sb.ToString();
         }
 
-        public string CreateXMLWithNamespace2(Person person)
+        public string CreateXmlWithNamespace2(Person person)
         {
             var sb = new StringBuilder();
 
@@ -133,7 +133,7 @@ namespace WriteXML.Create
             return sb.ToString();
         }
 
-        public static string CreateWrongXML(Person person)
+        public static string CreateWrongXml(Person person)
         {
             var sb = new StringBuilder();
 

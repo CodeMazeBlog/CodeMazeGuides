@@ -1,16 +1,16 @@
 ﻿namespace Tests
 {
     [TestClass]
-    public class ConvertCvs2XmlTests
+    public class ConvertCsv2XmlTests
     {
         [TestMethod]
         [DataRow(true)]
         [DataRow(false)]
         public void ExecutingGetCaptions_WhenStringIsEmpty_ShouldReturnArrayWithOneElement(bool hasCaptions)
         {
-            var convertCvs2Xml = new ConvertCvs2Xml([], hasCaptions);
+            var convertCsv2Xml = new ConvertCsv2Xml([], hasCaptions);
 
-            var captions = convertCvs2Xml.GetCaptions("");
+            var captions = convertCsv2Xml.GetCaptions("");
 
             Assert.AreEqual(1, captions.Length);
         }
@@ -20,9 +20,9 @@
         [DataRow(false)]
         public void ExecutingGetCaptions_WhenStringDoesNotContainsCommas_ShouldReturnArrayWithOneElement(bool hasCaptions)
         {
-            var convertCvs2Xml = new ConvertCvs2Xml([], hasCaptions);
+            var convertCsv2Xml = new ConvertCsv2Xml([], hasCaptions);
 
-            var captions = convertCvs2Xml.GetCaptions("this is a value");
+            var captions = convertCsv2Xml.GetCaptions("this is a value");
 
             Assert.AreEqual(1, captions.Length);
         }
@@ -37,9 +37,9 @@
         public void ExecutingGetCaptions_WhenStringDoesContainsCommas_ShouldReturnArrayWithNumberOfElementsEqualToNumberOfCommas(
             string firstLine, int expectedNumberOfElements)
         {
-            var convertCvs2Xml = new ConvertCvs2Xml([], true);
+            var convertCsv2Xml = new ConvertCsv2Xml([], true);
 
-            var captions = convertCvs2Xml.GetCaptions(firstLine);
+            var captions = convertCsv2Xml.GetCaptions(firstLine);
 
             Assert.AreEqual(expectedNumberOfElements, captions.Length);
         }
@@ -49,9 +49,9 @@
         public void ExecutingGetCaptions_WhenElementsHasSpaces_ShouldReturnArrayWithElementsWithoutSpaces(
             string firstLine)
         {
-            var convertCvs2Xml = new ConvertCvs2Xml([], true);
+            var convertCsv2Xml = new ConvertCsv2Xml([], true);
 
-            var captions = convertCvs2Xml.GetCaptions(firstLine);
+            var captions = convertCsv2Xml.GetCaptions(firstLine);
             var captionsWithoutSpaces = captions.Where(c => c.Contains(' '));
 
             Assert.AreEqual(0, captionsWithoutSpaces.Count());
@@ -62,51 +62,51 @@
         public void ExecutingGetCaptions_WhenThereIsNoCaptions_ShouldReturnArrayWithAllElementsBeginningWithFieldKeyword(
             string firstLine)
         {
-            var convertCvs2Xml = new ConvertCvs2Xml([], false);
+            var convertCsv2Xml = new ConvertCsv2Xml([], false);
 
-            var captions = convertCvs2Xml.GetCaptions(firstLine);
+            var captions = convertCsv2Xml.GetCaptions(firstLine);
             var captionsNotBeginningWithField = captions.Where(c => !c.StartsWith("Field"));
 
             Assert.AreEqual(0, captionsNotBeginningWithField.Count());
         }
 
         [TestMethod]
-        public void GivenTestCsv_WhenExecutingConvertWithoutCaptions_ShouldReturnXMLDocumentWithFourRows()
+        public void GivenTestCsv_WhenExecutingConvertWithoutCaptions_ShouldReturnXmlDocumentWithFourRows()
         {
-            var convertCvs2Xml = new ConvertCvs2Xml(GetTestCsvLines(), false);
+            var convertCsv2Xml = new ConvertCsv2Xml(GetTestCsvLines(), false);
 
-            var resultXml = convertCvs2Xml.Convert();
+            var resultXml = convertCsv2Xml.Convert();
 
             Assert.AreEqual(4, resultXml.Descendants("row").Count());
         }
 
         [TestMethod]
-        public void GivenTestCsv_WhenExecutingConvertWithCaptions_ShouldReturnXMLDocumentWithThreeRows()
+        public void GivenTestCsv_WhenExecutingConvertWithCaptions_ShouldReturnXmlDocumentWithThreeRows()
         {
-            var convertCvs2Xml = new ConvertCvs2Xml(GetTestCsvLines(), true);
+            var convertCsv2Xml = new ConvertCsv2Xml(GetTestCsvLines(), true);
 
-            var resultXml = convertCvs2Xml.Convert();
+            var resultXml = convertCsv2Xml.Convert();
 
             Assert.AreEqual(3, resultXml.Descendants("row").Count());
         }
 
 
         [TestMethod]
-        public void GivenTestCsv_WhenExecutingConvertWithoutCaptions_ShouldReturnXMLDocumentWithFourFields1()
+        public void GivenTestCsv_WhenExecutingConvertWithoutCaptions_ShouldReturnXmlDocumentWithFourFields1()
         {
-            var convertCvs2Xml = new ConvertCvs2Xml(GetTestCsvLines(), false);
+            var convertCsv2Xml = new ConvertCsv2Xml(GetTestCsvLines(), false);
 
-            var resultXml = convertCvs2Xml.Convert();
+            var resultXml = convertCsv2Xml.Convert();
 
             Assert.AreEqual(4, resultXml.Descendants("Field1").Count());
         }
 
         [TestMethod]
-        public void GivenTestCsv_WhenExecutingConvertWithCaptions_ShouldReturnXMLDocumentWithThreeNames()
+        public void GivenTestCsv_WhenExecutingConvertWithCaptions_ShouldReturnXmlDocumentWithThreeNames()
         {
-            var convertCvs2Xml = new ConvertCvs2Xml(GetTestCsvLines(), true);
+            var convertCsv2Xml = new ConvertCsv2Xml(GetTestCsvLines(), true);
 
-            var resultXml = convertCvs2Xml.Convert();
+            var resultXml = convertCsv2Xml.Convert();
 
             Assert.AreEqual(3, resultXml.Descendants("Name").Count());
         }

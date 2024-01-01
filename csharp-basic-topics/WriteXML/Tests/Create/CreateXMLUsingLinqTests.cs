@@ -1,50 +1,50 @@
 ﻿namespace Tests.Create
 {
     [TestClass]
-    public class CreateXMLUsingLinqTests
+    public class CreateXmlUsingLinqTests
     {
         [TestMethod]
-        public void CreateSimpleXML_WhenCalled_ShouldReturnStringWithFirstNameAsElement()
+        public void CreateSimpleXml_WhenCalled_ShouldReturnStringWithFirstNameAsElement()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
-            var createXml = new CreateXMLUsingLinq();
+            var createXml = new CreateXmlUsingLinq();
 
-            var result = createXml.CreateSimpleXML(person);
+            var result = createXml.CreateSimpleXml(person);
 
             StringAssert.Contains(result, "<person>");
             StringAssert.Contains(result, "<firstName>John</firstName>");
         }
 
         [TestMethod]
-        public void CreateSimpleXMLWithAttributes_WhenCalled_ShouldReturnStringWithFirstNameAsAttribute()
+        public void CreateSimpleXmlWithAttributes_WhenCalled_ShouldReturnStringWithFirstNameAsAttribute()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
-            var createXml = new CreateXMLUsingLinq();
+            var createXml = new CreateXmlUsingLinq();
 
-            var result = createXml.CreateSimpleXMLWithAttributes(person);
+            var result = createXml.CreateSimpleXmlWithAttributes(person);
 
             StringAssert.Contains(result, "<person>");
             StringAssert.Contains(result, "firstName=\"John\"");
         }
 
         [TestMethod]
-        public void CreateXMLWithNamespace_WhenCalled_ShouldReturnStringWithNamespace()
+        public void CreateXmlWithNamespace_WhenCalled_ShouldReturnStringWithNamespace()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
-            var createXml = new CreateXMLUsingLinq();
+            var createXml = new CreateXmlUsingLinq();
 
-            var result = createXml.CreateXMLWithNamespace(person);
+            var result = createXml.CreateXmlWithNamespace(person);
 
             StringAssert.Contains(result, "<person xmlns:xsi=\"https://www.code-maze.com/sample-schema\"");
         }
 
         [TestMethod]
-        public void CreateXMLWithNamespace2_WhenCalled_ShouldReturnStringWithNamespaces()
+        public void CreateXmlWithNamespace2_WhenCalled_ShouldReturnStringWithNamespaces()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
-            var createXml = new CreateXMLUsingLinq();
+            var createXml = new CreateXmlUsingLinq();
 
-            var result = createXml.CreateXMLWithNamespace2(person);
+            var result = createXml.CreateXmlWithNamespace2(person);
 
             StringAssert.Contains(result, "xmlns:p=\"https://www.code-maze.com/sample-person\"");
             StringAssert.Contains(result, "xmlns:o=\"https://www.code-maze.com/sample-other\"");
@@ -61,7 +61,7 @@
         public void NumberOfElements_WhenCreateAnArrayOfPeopleIsCalled_ShouldMatchNumerOfPeopleInArray(int numberOfPersons)
         {
             var people = People.Get(numberOfPersons);
-            var createXml = new CreateXMLUsingLinq();
+            var createXml = new CreateXmlUsingLinq();
 
             var result = createXml.CreateAnArrayOfPeople(people);
 
@@ -71,22 +71,22 @@
         }
 
         [TestMethod]
-        public void CreateSimpleXML_Comments_WhenCalled_ShouldReturnStringWithFirstNameAsElement()
+        public void CreateSimpleXml_Comments_WhenCalled_ShouldReturnStringWithFirstNameAsElement()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
 
-            var result = CreateXMLUsingLinq.CreateSimpleXML_Comments(person);
+            var result = CreateXmlUsingLinq.CreateSimpleXml_Comments(person);
 
             StringAssert.Contains(result, "<person>");
             StringAssert.Contains(result, "<firstName>John</firstName>");
         }
 
         [TestMethod]
-        public void CreateSimpleXMLWithXmlDeclaration_WhenCalled_ShouldReturnStringWithXMLDeclaration()
+        public void CreateSimpleXmlWithXmlDeclaration_WhenCalled_ShouldReturnStringWithXmlDeclaration()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
 
-            var result = CreateXMLUsingLinq.CreateSimpleXMLWithXmlDeclaration(person);
+            var result = CreateXmlUsingLinq.CreateSimpleXmlWithXmlDeclaration(person);
 
             StringAssert.Contains(result, "<person>");
             StringAssert.Contains(result, "<?xml version=\"1.0\" encoding=\"utf-16\"?>");

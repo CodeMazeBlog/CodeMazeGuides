@@ -2,7 +2,7 @@
 
 namespace WriteXML
 {
-    public class ConvertCvs2Xml(
+    public class ConvertCsv2Xml(
         IEnumerable<string> csvLines,
         bool hasCaptionLine,
         string mainTag = "rows",
