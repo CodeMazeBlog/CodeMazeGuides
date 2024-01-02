@@ -34,7 +34,7 @@ public class Tests
     [Test]
     public void GivenForeachMethod_WhenThreeCustomersWithThreeOrders_ThenReturnThreeCustomers()
     {
-        var result = Methods.ForEachMethod(_threeCustomers, _threeOrders);
+        var result = ListCompareMethods.ForEachMethod(_threeCustomers, _threeOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(3));
@@ -47,7 +47,7 @@ public class Tests
     [Test]
     public void GivenForeachMethod_WhenThreeCustomersWithTwoOrders_ThenReturnTwoCustomers()
     {
-        var result = Methods.ForEachMethod(_threeCustomers, _twoOrders);
+        var result = ListCompareMethods.ForEachMethod(_threeCustomers, _twoOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(2));
@@ -60,7 +60,7 @@ public class Tests
     [Test]
     public void GivenForeachMethod_WhenNoOrders_ThenReturnEmptyList()
     {
-        var result = Methods.ForEachMethod(_threeCustomers, []);
+        var result = ListCompareMethods.ForEachMethod(_threeCustomers, []);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));
@@ -69,7 +69,7 @@ public class Tests
     [Test]
     public void GivenForeachMethod_WhenNoCustomers_ThenReturnEmptyList()
     {
-        var result = Methods.ForEachMethod([], _threeOrders);
+        var result = ListCompareMethods.ForEachMethod([], _threeOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));
@@ -78,7 +78,7 @@ public class Tests
     [Test]
     public void GivenWhereAnyMethod_WhenThreeCustomersWithThreeOrders_ThenReturnThreeCustomers()
     {
-        var result = Methods.WhereAnyMethod(_threeCustomers, _threeOrders);
+        var result = ListCompareMethods.WhereAnyMethod(_threeCustomers, _threeOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(3));
@@ -91,7 +91,7 @@ public class Tests
     [Test]
     public void GivenWhereAnyMethod_WhenThreeCustomersWithTwoOrders_ThenReturnTwoCustomers()
     {
-        var result = Methods.WhereAnyMethod(_threeCustomers, _twoOrders);
+        var result = ListCompareMethods.WhereAnyMethod(_threeCustomers, _twoOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(2));
@@ -104,7 +104,7 @@ public class Tests
     [Test]
     public void GivenWhereAnyMethod_WhenNoOrders_ThenReturnEmptyList()
     {
-        var result = Methods.WhereAnyMethod(_threeCustomers, []);
+        var result = ListCompareMethods.WhereAnyMethod(_threeCustomers, []);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));
@@ -113,7 +113,7 @@ public class Tests
     [Test]
     public void GivenWhereAnyMethod_WhenNoCustomers_ThenReturnEmptyList()
     {
-        var result = Methods.WhereAnyMethod([], _threeOrders);
+        var result = ListCompareMethods.WhereAnyMethod([], _threeOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));
@@ -122,7 +122,7 @@ public class Tests
     [Test]
     public void GivenJoinMethod_WhenThreeCustomersWithThreeOrders_ThenReturnThreeCustomers()
     {
-        var result = Methods.JoinMethod(_threeCustomers, _threeOrders);
+        var result = ListCompareMethods.JoinMethod(_threeCustomers, _threeOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(3));
@@ -135,7 +135,7 @@ public class Tests
     [Test]
     public void GivenJoinMethod_WhenThreeCustomersWithTwoOrders_ThenReturnTwoCustomers()
     {
-        var result = Methods.JoinMethod(_threeCustomers, _twoOrders);
+        var result = ListCompareMethods.JoinMethod(_threeCustomers, _twoOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(2));
@@ -148,7 +148,7 @@ public class Tests
     [Test]
     public void GivenJoinMethod_WhenNoOrders_ThenReturnEmptyList()
     {
-        var result = Methods.JoinMethod(_threeCustomers, []);
+        var result = ListCompareMethods.JoinMethod(_threeCustomers, []);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));
@@ -157,7 +157,7 @@ public class Tests
     [Test]
     public void GivenJoinMethod_WhenNoCustomers_ThenReturnEmptyList()
     {
-        var result = Methods.JoinMethod([], _threeOrders);
+        var result = ListCompareMethods.JoinMethod([], _threeOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));
@@ -166,7 +166,7 @@ public class Tests
     [Test]
     public void GivenHashSetMethod_WhenThreeCustomersWithThreeOrders_ThenReturnThreeCustomers()
     {
-        var result = Methods.HashSetMethod(_threeCustomers, _threeOrders);
+        var result = ListCompareMethods.HashSetMethod(_threeCustomers, _threeOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(3));
@@ -179,7 +179,7 @@ public class Tests
     [Test]
     public void GivenHashSetMethod_WhenThreeCustomersWithTwoOrders_ThenReturnTwoCustomers()
     {
-        var result = Methods.HashSetMethod(_threeCustomers, _twoOrders);
+        var result = ListCompareMethods.HashSetMethod(_threeCustomers, _twoOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(2));
@@ -192,7 +192,7 @@ public class Tests
     [Test]
     public void GivenHashSetMethod_WhenNoOrders_ThenReturnEmptyList()
     {
-        var result = Methods.HashSetMethod(_threeCustomers, []);
+        var result = ListCompareMethods.HashSetMethod(_threeCustomers, []);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));
@@ -201,7 +201,7 @@ public class Tests
     [Test]
     public void GivenHashSetMethod_WhenNoCustomers_ThenReturnEmptyList()
     {
-        var result = Methods.HashSetMethod([], _threeOrders);
+        var result = ListCompareMethods.HashSetMethod([], _threeOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));
@@ -210,7 +210,7 @@ public class Tests
     [Test]
     public void GivenJoinListMethod_WhenThreeCustomersWithThreeOrders_ThenReturnThreeCustomers()
     {
-        var result = Methods.JoinListMethod(_threeCustomers, _threeOrders);
+        var result = ListCompareMethods.JoinListMethod(_threeCustomers, _threeOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(3));
@@ -223,7 +223,7 @@ public class Tests
     [Test]
     public void GivenJoinListMethod_WhenThreeCustomersWithTwoOrders_ThenReturnTwoCustomers()
     {
-        var result = Methods.JoinListMethod(_threeCustomers, _twoOrders);
+        var result = ListCompareMethods.JoinListMethod(_threeCustomers, _twoOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(2));
@@ -236,7 +236,7 @@ public class Tests
     [Test]
     public void GivenJoinListMethod_WhenNoOrders_ThenReturnEmptyList()
     {
-        var result = Methods.JoinListMethod(_threeCustomers, []);
+        var result = ListCompareMethods.JoinListMethod(_threeCustomers, []);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));
@@ -245,7 +245,7 @@ public class Tests
     [Test]
     public void GivenJoinListMethod_WhenNoCustomers_ThenReturnEmptyList()
     {
-        var result = Methods.JoinListMethod([], _threeOrders);
+        var result = ListCompareMethods.JoinListMethod([], _threeOrders);
 
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));

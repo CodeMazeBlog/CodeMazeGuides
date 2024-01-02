@@ -6,6 +6,7 @@ namespace Benchmark;
 
 [MemoryDiagnoser]
 [RankColumn]
+[Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
 public class BenchmarkMethods
 {
     private List<Customer>? _customers;
@@ -24,31 +25,31 @@ public class BenchmarkMethods
     [Benchmark]
     public List<Customer> ForEachMethodBenchmark()
     {
-        return Methods.ForEachMethod(_customers, _orders);
+        return ListCompareMethods.ForEachMethod(_customers, _orders);
     }
 
     [Benchmark]
     public List<Customer> WhereAnyMethodBenchmark()
     {
-        return Methods.WhereAnyMethod(_customers, _orders);
+        return ListCompareMethods.WhereAnyMethod(_customers, _orders);
     }
 
     [Benchmark]
     public List<Customer> JoinMethodBenchmark()
     {
-        return Methods.JoinMethod(_customers, _orders);
+        return ListCompareMethods.JoinMethod(_customers, _orders);
     }
 
     [Benchmark]
     public List<Customer> HashSetMethodBenchmark()
     {
-        return Methods.HashSetMethod(_customers, _orders);
+        return ListCompareMethods.HashSetMethod(_customers, _orders);
     }
 
     [Benchmark]
     public List<Customer> JoinListMethodBenchmark()
     {
-        return Methods.JoinListMethod(_customers, _orders);
+        return ListCompareMethods.JoinListMethod(_customers, _orders);
     }
 
     private static IEnumerable<Customer> GenerateRandomCustomers(int count)

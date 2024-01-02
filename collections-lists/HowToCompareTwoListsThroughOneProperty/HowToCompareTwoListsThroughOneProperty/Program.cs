@@ -15,17 +15,17 @@ var orders = new List<Order>()
     new () {CustomerId = 2, OrderId = 103}
 };
 
-var customerWithOrders = Methods.ForEachMethod(customers, orders);
+var customerWithOrders = ListCompareMethods.ForEachMethod(customers, orders);
 Console.WriteLine(string.Join(',',customerWithOrders.Select(i=>i.Firstname)));
 
-var customerWithOrdersB = Methods.WhereAnyMethod(customers, orders);
+var customerWithOrdersB = ListCompareMethods.WhereAnyMethod(customers, orders);
 Console.WriteLine(string.Join(',', customerWithOrdersB.Select(i => i.Firstname)));
 
-var customerWithOrdersC = Methods.JoinMethod(customers, orders);
+var customerWithOrdersC = ListCompareMethods.JoinMethod(customers, orders);
 Console.WriteLine(string.Join(',', customerWithOrdersC.Select(i => i.Firstname)));
 
-var customerWithOrdersD = Methods.HashSetMethod(customers, orders);
+var customerWithOrdersD = ListCompareMethods.HashSetMethod(customers, orders);
 Console.WriteLine(string.Join(',', customerWithOrdersD.Select(i => i.Firstname)));
 
-var customerWithOrdersE = Methods.JoinListMethod(customers, orders);
+var customerWithOrdersE = ListCompareMethods.JoinListMethod(customers, orders);
 Console.WriteLine(string.Join(',', customerWithOrdersE.Select(i => i.Firstname)));

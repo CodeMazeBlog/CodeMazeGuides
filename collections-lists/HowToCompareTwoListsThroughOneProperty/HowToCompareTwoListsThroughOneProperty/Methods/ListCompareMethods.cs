@@ -2,7 +2,7 @@
 
 namespace HowToCompareTwoListsThroughOneProperty.Methods;
 
-public class Methods
+public static class ListCompareMethods
 {
     public static List<Customer> ForEachMethod(List<Customer> customerList, List<Order> orderList) 
     { 
@@ -39,7 +39,7 @@ public class Methods
 
     public static List<Customer> HashSetMethod(List<Customer> customerList, List<Order> orderList)
     {
-        var customerIds = orderList.Select(i => i.CustomerId).Distinct().ToHashSet();
+        var customerIds = orderList.Select(i => i.CustomerId).ToHashSet();
 
         return customerList.Where(i => customerIds.Contains(i.Id)).ToList();
     }
