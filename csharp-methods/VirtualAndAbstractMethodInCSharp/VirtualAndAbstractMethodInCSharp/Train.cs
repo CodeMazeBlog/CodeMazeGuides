@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VirtualAndAbstractMethodInCSharp
+﻿namespace VirtualAndAbstractMethodInCSharp
 {
     // Class representing a train
     internal class Train : TransportMode
