@@ -25,5 +25,8 @@
         return $"C:{Path.DirectorySeparatorChar}Users{Path.DirectorySeparatorChar}User{Path.DirectorySeparatorChar}Documents";
     }
 
-
+    public static string UsingRawStringLiterals()
+    {
+        return """C:\Users\User\Documents""";
+    }
 }
