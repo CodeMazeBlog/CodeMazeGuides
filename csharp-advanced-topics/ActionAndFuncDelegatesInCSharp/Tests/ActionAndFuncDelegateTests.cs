@@ -7,7 +7,7 @@ public class ActionAndFuncDelegateTests
 {
 
     [Fact]
-    public void GivenLogStringAction_WhenCalled_ShouldLogAsExpected()
+    public void GivenLogStringAction_WhenCalled_ThenItShouldLogAsExpected()
     {
         StringWriter sw = new();
         Console.SetOut(sw);
@@ -20,7 +20,7 @@ public class ActionAndFuncDelegateTests
     }
 
     [Fact]
-    public void GivenUppercaseStringAction_WhenCalled_ShouldReturnOriginalAndModifiedWord()
+    public void GivenUppercaseStringAction_WhenCalled_ThenItShouldReturnOriginalAndModifiedWord()
     {
         StringWriter sw = new();
         Console.SetOut(sw);
@@ -33,7 +33,7 @@ public class ActionAndFuncDelegateTests
     }
 
     [Fact]
-    public void GivenPrintSquareAction_WhenCalled_ShouldLogSquareOfNumber()
+    public void GivenPrintSquareAction_WhenCalled_ThenItShouldLogSquareOfNumber()
     {
         StringWriter sw = new();
         Console.SetOut(sw);
@@ -46,7 +46,7 @@ public class ActionAndFuncDelegateTests
     }
 
     [Fact]
-    public async Task GivenPowerFunc_WhenCalled_ShouldLogPowerOfNumbers()
+    public async Task GivenPowerFunc_WhenCalled_ThenItShouldLogPowerOfNumbers()
     {
         StringWriter sw = new();
         Console.SetOut(sw);
@@ -60,7 +60,7 @@ public class ActionAndFuncDelegateTests
     }
 
     [Fact]
-    public async Task GivenPersonYearsFunc_WhenCalled_ShouldLogPowerOfNumbers()
+    public async Task GivenPersonYearsFunc_WhenCalled_ThenItShouldLogPowerOfNumbers()
     {
         StringWriter sw = new();
         Console.SetOut(sw);
@@ -80,7 +80,7 @@ public class ActionAndFuncDelegateTests
     }
 
     [Fact]
-    public async Task GivenGreeterFunc_WhenCalled_ShouldGreetPerson()
+    public async Task GivenGreeterFunc_WhenCalled_ThenItShouldGreetPerson()
     {
         StringWriter sw = new();
         Console.SetOut(sw);
