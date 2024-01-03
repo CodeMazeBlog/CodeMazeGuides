@@ -39,7 +39,7 @@ public class PrinterControllerTest
     [TestMethod]
     public async Task GivenValidMediaTypeFromForm_WhenActionCalled_ShouldReturnOkResult()
     {
-        var testMsg = "Valid Media Type";
+        var testMsg = "<xml><data>Valid Media Type</data></xml>"; 
 
         var result = await SendPrintFromFormRequest(testMsg);
         Assert.IsNotNull(result);
