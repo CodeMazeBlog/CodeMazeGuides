@@ -6,7 +6,7 @@ public class ActionDelegates
         public string Text { get; set; } = string.Empty;
     }
 
-    Action<SimulatedUI, string> updateUIText = (uiElement, msg) =>
+    public Action<SimulatedUI, string> UpdateUIText = (uiElement, msg) =>
     {
         uiElement.Text = $"Message: {msg}";
     };
@@ -14,7 +14,7 @@ public class ActionDelegates
     public void UpdateUIWithMessage(string message)
     {
         var uiElement = new SimulatedUI();
-        updateUIText(uiElement, message);
+        UpdateUIText(uiElement, message);
     }
 }
 

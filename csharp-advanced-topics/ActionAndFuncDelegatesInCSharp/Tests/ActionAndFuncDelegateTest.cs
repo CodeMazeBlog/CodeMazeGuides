@@ -6,11 +6,16 @@ public class ActionAndFuncDelegateTest
     public void GivenMessage_WhenUpdateUIWithMessageCalled_ThenUpdatesTextProperty()
     {
         var actionDelegate = new ActionDelegates();
+
+        var simulatedUI = new ActionDelegates.SimulatedUI();
+    
         var input = "Hello, World!";
+        var expectedText = $"Message: {input}";
 
-        actionDelegate.UpdateUIWithMessage(input);
+        actionDelegate.UpdateUIText(simulatedUI, input);
+
+        Assert.Equal(expectedText, simulatedUI.Text);
     }
-
 
     [Fact]
     public void GivenTwoNumbers_WhenMultiplyCalled_ThenReturnsCorrectProduct()
@@ -19,7 +24,7 @@ public class ActionAndFuncDelegateTest
         var y = 4;
         var expected = 20;
 
-        var result = FuncDelegates.multiply(x, y);
+        var result = FuncDelegates.Multiply(x, y);
 
         Assert.Equal(expected, result);
     }
@@ -31,7 +36,7 @@ public class ActionAndFuncDelegateTest
         var y = 4;
         var expected = -20;
 
-        var result = FuncDelegates.multiply(x, y);
+        var result = FuncDelegates.Multiply(x, y);
 
         Assert.Equal(expected, result);
     }
@@ -43,7 +48,7 @@ public class ActionAndFuncDelegateTest
         var y = 5;
         var expected = 0;
 
-        var result = FuncDelegates.multiply(x, y);
+        var result = FuncDelegates.Multiply(x, y);
 
         Assert.Equal(expected, result);
     }

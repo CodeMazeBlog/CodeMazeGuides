@@ -1,5 +1,5 @@
 namespace ActionAndFuncDelegatesInCSharp;
 public class FuncDelegates
 {
-    public static Func<int, int, int> multiply = (a, b) => a * b;
+    public static Func<int, int, int> Multiply = (a, b) => a * b;
 }
