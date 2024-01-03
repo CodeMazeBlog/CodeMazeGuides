@@ -14,9 +14,13 @@ public class ExceptionHandlingMiddleware : IExceptionHandler
         _logger = logger;
     }
 
-    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
+    public async ValueTask<bool> TryHandleAsync(
+        HttpContext httpContext,
+        Exception exception,
+        CancellationToken cancellationToken)
     {
-        _logger.LogError($"An error occurred while processing your request: {exception.Message}");
+        _logger.LogError(
+            $"An error occurred while processing your request: {exception.Message}");
 
         var errorResponse = new ErrorResponse
         {
@@ -38,7 +42,9 @@ public class ExceptionHandlingMiddleware : IExceptionHandler
 
         httpContext.Response.StatusCode = errorResponse.StatusCode;
 
-        await httpContext.Response.WriteAsJsonAsync(errorResponse, cancellationToken);
+        await httpContext
+            .Response
+            .WriteAsJsonAsync(errorResponse, cancellationToken);
 
         return true;
     }
