@@ -1,37 +1,38 @@
-using System.Diagnostics;
 
 namespace ThreadSleepVsTaskDelay.Test
 {
     public class ProgramTest
     {
+        private const int DelayMilliseconds = 50;
+
         [Fact]
-        public async Task WhenCallUseTaskDelay_ThenDelayIsTwoThousendOrMoreMilliseconds()
+        public async Task WhenCallUseTaskDelay_ThenDelayIsTwoThousandOrMoreMilliseconds()
         {
             // Arrange
             var stopwatch = new Stopwatch();
 
             // Act
             stopwatch.Start();
-            await Program.UseTaskDelay();
+            await Program.UseTaskDelay(DelayMilliseconds).ConfigureAwait(false);
             stopwatch.Stop();
 
             // Assert
-            Assert.True(stopwatch.ElapsedMilliseconds >= 2000);
+            Assert.True(stopwatch.ElapsedMilliseconds >= DelayMilliseconds);
         }
 
         [Fact]
-        public void WhenCallUseThreadSleep_ThenDelayIsTwoThousendOrMoreMilliseconds()
+        public void WhenCallUseThreadSleep_ThenDelayIsTwoThousandOrMoreMilliseconds()
         {
             // Arrange
             var stopwatch = new Stopwatch();
 
             // Act
             stopwatch.Start();
-            Program.UseThreadSleep();
+            Program.UseThreadSleep(DelayMilliseconds);
             stopwatch.Stop();
 
             // Assert
-            Assert.True(stopwatch.ElapsedMilliseconds >= 2000);
+            Assert.True(stopwatch.ElapsedMilliseconds >= DelayMilliseconds);
         }
 
         [Fact]
@@ -41,11 +42,11 @@ namespace ThreadSleepVsTaskDelay.Test
             var threadIdBefore = Environment.CurrentManagedThreadId;
 
             // Act
-            Program.UseThreadSleep();
+            Program.UseThreadSleep(DelayMilliseconds);
             var threadIdAfter = Environment.CurrentManagedThreadId;
 
             // Assert
-            threadIdBefore.Equals(threadIdAfter);
+            Assert.Equal(threadIdBefore, threadIdAfter);
         }
     }
 }
