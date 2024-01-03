@@ -4,6 +4,7 @@ This section contains the topics related to files in C#.
 ### Relevant articles:
 
 - [Convert Byte Array to File in C#](https://code-maze.com/convert-byte-array-to-file-csharp/)
+- [Is a Path a File or a Directory in C#](https://code-maze.com/csharp-path-file-or-directory/)
 - [Copy the Entire Contents of a Directory in C#](https://code-maze.com/copy-entire-directory-charp/)
 - [Different Ways to Overwrite a File in C#](https://code-maze.com/different-ways-to-overwrite-file-in-csharp/)
 - [Managing Directories With Directory and DirectoryInfo in C#](https://code-maze.com/c-sharp-managing-directories-with-directory-and-directoryinfo/)

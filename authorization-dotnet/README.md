@@ -4,8 +4,10 @@ This section contains articles about authorization related topics in .NET.
 
 ### Relevant articles:
 
+- [How to Get an Access Token from HttpContext in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-get-an-access-token-from-httpcontext/)
 - [How to Add a BearerToken to an HttpClient Request](https://code-maze.com/add-bearertoken-httpclient-request/)
 - [Adding a User Login to a .NET App With Auth0](https://code-maze.com/dotnet-adding-a-user-login-with-auth0/)
+- [Implement Custom Authorization Policy Provider in ASP.NET Core](https://code-maze.com/aspnetcore-implement-custom-authorization-policy-provider-in-asp-net-core/)
 - [How to Use Basic Authentication With HttpClient?](https://code-maze.com/aspnetcore-basic-authentication-with-httpclient/)
 - [Cookie Authentication With ASP.NET Core and Angular](https://code-maze.com/cookie-authentication-aspnetcore-angular/)
 - [Cryptography Implementations in .NET](https://code-maze.com/dotnet-cryptography-implementations/)
@@ -16,7 +18,7 @@ This section contains articles about authorization related topics in .NET.
 - [How to Secure Passwords with BCrypt.NET](https://code-maze.com/dotnet-secure-passwords-bcrypt/)
 - [How to Use Multiple Authentication Schemes in .NET](https://code-maze.com/dotnet-multiple-authentication-schemes/)
 - [Implementing Passwordless Authentication in ASP.NET Core](https://code-maze.com/aspnetcore-passwordless-authentication/)
-- [https://code-maze.com/aspnetcore-resource-based-authorization/](Resource-Based Authorization in ASP.NET Core)
+- [Resource-Based Authorization in ASP.NET Core](https://code-maze.com/aspnetcore-resource-based-authorization/)
 - [Two Factor Authentication with Angular using Google Authenticator](https://code-maze.com/dotnet-angular-two-factor-authentication-with-using-google-authenticator/)
 - [Two-Factor Authentication With SMS in ASP.NET Core](https://code-maze.com/aspnetcore-two-factor-authentication-sms/)
 - [Using Authorization with Swagger in ASP.NET Core](https://code-maze.com/swagger-authorization-aspnet-core/)

@@ -1,0 +1,30 @@
+﻿@inherits LayoutComponentBase
+<div class="d-flex flex-column min-vh-100 overflow-hidden">
+    <div class="page flex-grow-1" style="height: 85vh; overflow: auto;">
+        <div class="sidebar">
+            <NavMenu/>
+        </div>
+
+        <main>
+            <div class="top-row px-4">
+                <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+            </div>
+
+            <article class="content px-4">
+                @Body
+            </article>
+        </main>
+    </div>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="m-0 text-white">
+                        <SectionOutlet SectionName="CustomFooterSection"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

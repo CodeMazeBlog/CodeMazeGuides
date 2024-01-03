@@ -2,6 +2,7 @@
 This section contains articles about various blazor features.
 
 ### Relevant articles:
+- [Publishing Blazor WebAssembly App to IIS](https://code-maze.com/how-to-publish-a-blazor-webassembly-application-on-iis/)
 - [Custom Event Arguments in Blazor WebAssembly](https://code-maze.com/blazor-webassembly-custom-event-arguments/)
 - [Blazor WebAssembly Ahead of Time Compilation](https://code-maze.com/blazor-webassembly-ahead-of-time-compilation/)
 - [Copy To Clipboard in Blazor WebAssembly](https://code-maze.com/copy-to-clipboard-in-blazor-webassembly/)

@@ -4,6 +4,7 @@ This section contains the topics related to all kinds of testing in C#/.NET
 ### Relevant articles:
 
 - [Performance Testing of ASP.NET Core APIs With k6](https://code-maze.com/aspnetcore-performance-testing-with-k6/)
+- [Introduction to Autofac FakeItEasy Package](https://code-maze.com/autofac-fakeiteasy-package-basics/)
 - [Introduction to Behavior Driven Development (BDD) in C#](https://code-maze.com/behavior-driven-development-bdd-csharp/)
 - [Using Moq to Determine If a Method is Called](https://code-maze.com/using-moq-to-determine-if-method-is-called/)
 - [How to Mock EF Core DbContext](https://code-maze.com/ef-core-mock-dbcontext/)
