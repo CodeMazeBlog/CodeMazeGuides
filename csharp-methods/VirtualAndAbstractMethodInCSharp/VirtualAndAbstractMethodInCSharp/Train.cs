@@ -1,14 +1,9 @@
 ﻿namespace VirtualAndAbstractMethodInCSharp
 {
     // Class representing a train
-    internal class Train : TransportMode
+    internal class Train(double fixedJourneyTime) : TransportMode
     {
-        private double fixedJourneyTime;
-
-        public Train(double fixedJourneyTime)
-        {
-            this.fixedJourneyTime = fixedJourneyTime;
-        }
+        private double fixedJourneyTime = fixedJourneyTime;
 
         public override double GetTravelTime(double distance)
         {

@@ -43,7 +43,7 @@
 
                     Console.Write("\nDo you want to choose another transport mode? (y/n): ");
                     string continueChoice = Console.ReadLine() ?? string.Empty;
-                    if (continueChoice.ToLower() != "y")
+                    if (!continueChoice.Equals("y", StringComparison.CurrentCultureIgnoreCase))
                     {
                         break; // Exit the loop if user doesn't want to continue
                     }
