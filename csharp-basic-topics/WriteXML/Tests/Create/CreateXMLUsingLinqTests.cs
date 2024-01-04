@@ -4,7 +4,7 @@
     public class CreateXmlUsingLinqTests
     {
         [TestMethod]
-        public void CreateSimpleXml_WhenCalled_ShouldReturnStringWithFirstNameAsElement()
+        public void GivenPerson_WhenCreatingXML_ThenXmlMustHaveFirstNameAsElement()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
             var createXml = new CreateXmlUsingLinq();
@@ -16,7 +16,7 @@
         }
 
         [TestMethod]
-        public void CreateSimpleXmlWithAttributes_WhenCalled_ShouldReturnStringWithFirstNameAsAttribute()
+        public void GivenPerson_WhenCreatingXMLWithAttributes_ThenXmlMustHaveFirstNameAsAttribute()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
             var createXml = new CreateXmlUsingLinq();
@@ -28,7 +28,7 @@
         }
 
         [TestMethod]
-        public void CreateXmlWithNamespace_WhenCalled_ShouldReturnStringWithNamespace()
+        public void GivenPerson_WhenCreatingXMLWithNamespace_ThenXmlMustHaveNamespace()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
             var createXml = new CreateXmlUsingLinq();
@@ -39,12 +39,12 @@
         }
 
         [TestMethod]
-        public void CreateXmlWithNamespace2_WhenCalled_ShouldReturnStringWithNamespaces()
+        public void GivenPerson_WhenCreatingXMLWithNamespaces_ThenXmlMustHaveNamespaces()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
             var createXml = new CreateXmlUsingLinq();
 
-            var result = createXml.CreateXmlWithNamespace2(person);
+            var result = createXml.CreateXmlWithThreeNamespaces(person);
 
             StringAssert.Contains(result, "xmlns:p=\"https://www.code-maze.com/sample-person\"");
             StringAssert.Contains(result, "xmlns:o=\"https://www.code-maze.com/sample-other\"");
@@ -58,7 +58,7 @@
         [DataRow(5)]
         [DataRow(20)]
         [DataRow(50)]
-        public void NumberOfElements_WhenCreateAnArrayOfPeopleIsCalled_ShouldMatchNumerOfPeopleInArray(int numberOfPersons)
+        public void GivenArrayOfPeople_WhenCreatingXML_ThenXmlMustHaveEqualNumberOfElements(int numberOfPersons)
         {
             var people = People.Get(numberOfPersons);
             var createXml = new CreateXmlUsingLinq();
@@ -71,18 +71,7 @@
         }
 
         [TestMethod]
-        public void CreateSimpleXml_Comments_WhenCalled_ShouldReturnStringWithFirstNameAsElement()
-        {
-            var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
-
-            var result = CreateXmlUsingLinq.CreateSimpleXml_Comments(person);
-
-            StringAssert.Contains(result, "<person>");
-            StringAssert.Contains(result, "<firstName>John</firstName>");
-        }
-
-        [TestMethod]
-        public void CreateSimpleXmlWithXmlDeclaration_WhenCalled_ShouldReturnStringWithXmlDeclaration()
+        public void GivenPerson_WhenCreatingXMLWithDeclaration_ThenXmlMustHaveDeclaration()
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
 

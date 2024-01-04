@@ -74,29 +74,29 @@ namespace WriteXML.Create
             return sb.ToString();
         }
 
-        public string CreateXmlWithNamespace2(Person person)
+        public string CreateXmlWithThreeNamespaces(Person person)
         {
             var sb = new StringBuilder();
 
-            var namespace_p = XNamespace.Get("https://www.code-maze.com/sample-person");
-            var namespace_n = XNamespace.Get("https://www.code-maze.com/sample-name");
-            var namespace_o = XNamespace.Get("https://www.code-maze.com/sample-other");
+            var namespaceP = XNamespace.Get("https://www.code-maze.com/sample-person");
+            var namespaceN = XNamespace.Get("https://www.code-maze.com/sample-name");
+            var namespaceO = XNamespace.Get("https://www.code-maze.com/sample-other");
 
             using var xmlWriter = XmlWriter.Create(sb,
                 new XmlWriterSettings { Indent = true });
 
-            xmlWriter.WriteStartElement("p", "person", namespace_p.ToString());
-            xmlWriter.WriteAttributeString("xmlns", "p", null, namespace_p.ToString());
-            xmlWriter.WriteAttributeString("xmlns", "n", null, namespace_n.ToString());
-            xmlWriter.WriteAttributeString("xmlns", "o", null, namespace_o.ToString());
+            xmlWriter.WriteStartElement("p", "person", namespaceP.ToString());
+            xmlWriter.WriteAttributeString("xmlns", "p", null, namespaceP.ToString());
+            xmlWriter.WriteAttributeString("xmlns", "n", null, namespaceN.ToString());
+            xmlWriter.WriteAttributeString("xmlns", "o", null, namespaceO.ToString());
 
-            xmlWriter.WriteStartElement("n", "name", namespace_n.ToString());
-            xmlWriter.WriteElementString("n", "firstName", namespace_n.ToString(), person.FirstName);
-            xmlWriter.WriteElementString("n", "lastName", namespace_n.ToString(), person.LastName);
+            xmlWriter.WriteStartElement("n", "name", namespaceN.ToString());
+            xmlWriter.WriteElementString("n", "firstName", namespaceN.ToString(), person.FirstName);
+            xmlWriter.WriteElementString("n", "lastName", namespaceN.ToString(), person.LastName);
             xmlWriter.WriteEndElement();
 
-            xmlWriter.WriteElementString("email", namespace_o.ToString(), person.Email);
-            xmlWriter.WriteElementString("age", namespace_o.ToString(), person.Age.ToString());
+            xmlWriter.WriteElementString("email", namespaceO.ToString(), person.Email);
+            xmlWriter.WriteElementString("age", namespaceO.ToString(), person.Age.ToString());
             xmlWriter.WriteEndElement();
 
             xmlWriter.Flush();

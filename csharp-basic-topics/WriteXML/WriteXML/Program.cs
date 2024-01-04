@@ -31,7 +31,7 @@ Console.Clear();
 Console.WriteLine("Linq To XML: Create XML using this person data.\n");
 Console.WriteLine(Person2String(people[0]));
 Console.WriteLine("\n---\n");
-Console.WriteLine(usingLinq.CreateXmlWithNamespace2(people[0]));
+Console.WriteLine(usingLinq.CreateXmlWithThreeNamespaces(people[0]));
 Console.ReadKey();
 
 Console.Clear();
@@ -78,7 +78,7 @@ Console.Clear();
 Console.WriteLine("XmlWriter: Create XML using this person data.\n");
 Console.WriteLine(Person2String(people[0]));
 Console.WriteLine("\n---\n");
-Console.WriteLine(usingXmlWriter.CreateXmlWithNamespace2(people[0]));
+Console.WriteLine(usingXmlWriter.CreateXmlWithThreeNamespaces(people[0]));
 Console.ReadKey();
 
 Console.Clear();

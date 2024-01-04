@@ -6,7 +6,7 @@
         [TestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        public void ExecutingGetCaptions_WhenStringIsEmpty_ShouldReturnArrayWithOneElement(bool hasCaptions)
+        public void GivenCaptions_WhenStringIsEmpty_ThenArrayMustHaveOneElement(bool hasCaptions)
         {
             var convertCsv2Xml = new ConvertCsv2Xml([], hasCaptions);
 
@@ -18,7 +18,7 @@
         [TestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        public void ExecutingGetCaptions_WhenStringDoesNotContainsCommas_ShouldReturnArrayWithOneElement(bool hasCaptions)
+        public void GivenCaptions_WhenStringDoesNotContainsCommas_ThenArrayMustHaveOneElement(bool hasCaptions)
         {
             var convertCsv2Xml = new ConvertCsv2Xml([], hasCaptions);
 
@@ -34,7 +34,7 @@
         [DataRow("Orange, Grape, Pineapple", 3)]
         [DataRow("Kiwi, Mango, Strawberry, Blueberry", 4)]
         [DataRow("Lemon, Lime, Plum, Peach, Apricot", 5)]
-        public void ExecutingGetCaptions_WhenStringDoesContainsCommas_ShouldReturnArrayWithNumberOfElementsEqualToNumberOfCommas(
+        public void GivenCaptions_WhenStringDoesContainsCommas_ThenArrayMustHaveEqualNumerOfElementsAsThereAreCommas(
             string firstLine, int expectedNumberOfElements)
         {
             var convertCsv2Xml = new ConvertCsv2Xml([], true);
@@ -46,7 +46,7 @@
 
         [TestMethod]
         [DataRow("Green Grape, Strawberry, Blueberry, Passion Fruit, Watermelon, Sweet Cherry, Honeydew Melon")]
-        public void ExecutingGetCaptions_WhenElementsHasSpaces_ShouldReturnArrayWithElementsWithoutSpaces(
+        public void GivenCaptions_WhenElementsHasSpaces_ThenTheArrayMustHaveUnderscores(
             string firstLine)
         {
             var convertCsv2Xml = new ConvertCsv2Xml([], true);
@@ -59,19 +59,20 @@
 
         [TestMethod]
         [DataRow("Green Grape, Strawberry, Blueberry, Passion Fruit, Watermelon, Sweet Cherry, Honeydew Melon")]
-        public void ExecutingGetCaptions_WhenThereIsNoCaptions_ShouldReturnArrayWithAllElementsBeginningWithFieldKeyword(
+        public void GivenCaptions_WhenThereIsNoLineWithCaptions_ThenAllElementsInArrayMustBeginWithConstant(
             string firstLine)
         {
+            var constantName = "Field";
             var convertCsv2Xml = new ConvertCsv2Xml([], false);
 
             var captions = convertCsv2Xml.GetCaptions(firstLine);
-            var captionsNotBeginningWithField = captions.Where(c => !c.StartsWith("Field"));
+            var captionsNotBeginningWithField = captions.Where(c => !c.StartsWith(constantName));
 
             Assert.AreEqual(0, captionsNotBeginningWithField.Count());
         }
 
         [TestMethod]
-        public void GivenTestCsv_WhenExecutingConvertWithoutCaptions_ShouldReturnXmlDocumentWithFourRows()
+        public void GivenTestCSV_WhenExecutingConvertWithoutCaptions_ThenXmlDocumentMustHaveFourRows()
         {
             var convertCsv2Xml = new ConvertCsv2Xml(GetTestCsvLines(), false);
 
@@ -81,7 +82,7 @@
         }
 
         [TestMethod]
-        public void GivenTestCsv_WhenExecutingConvertWithCaptions_ShouldReturnXmlDocumentWithThreeRows()
+        public void GivenTestCSV_WhenExecutingConvertWithCaptions_ThenXmlDocumentMustHaveThreeRows()
         {
             var convertCsv2Xml = new ConvertCsv2Xml(GetTestCsvLines(), true);
 
