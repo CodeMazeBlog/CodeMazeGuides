@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MessageTemplateForLoggingCA2254;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -8,16 +9,17 @@ IConfiguration configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
     .Build();
 
-var host = Host.CreateDefaultBuilder(args)
+var host = Host.CreateDefaultBuilder()
     .ConfigureAppConfiguration(config =>
     {
         config.AddConfiguration(configuration);
     })
+    .ConfigureServices((context, services) =>
+    {
+        services.AddSingleton<Application>();
+    })
     .Build();
 
-var logger = host.Services.GetRequiredService<ILogger<Program>>();
+var app = host.Services.GetRequiredService<Application>();
 
-const string userName = "John Doe";
-var loginTime = DateTime.Now;
-
-logger.LogInformation($"User {userName} logged in at {loginTime}");
+app.Run();
