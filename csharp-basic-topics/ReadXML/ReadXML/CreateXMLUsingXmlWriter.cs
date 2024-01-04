@@ -2,11 +2,11 @@
 using System.Xml;
 using System.Xml.Linq;
 
-namespace ReadXML.Read
+namespace ReadXml.Read
 {
-    public class CreateXMLUsingXmlWriter
+    public class CreateXmlUsingXmlWriter
     {
-        public static string CreateSimpleXML(Person person)
+        public static string CreateSimpleXml(Person person)
         {
             var sb = new StringBuilder();
 
@@ -57,7 +57,7 @@ namespace ReadXML.Read
             return sb.ToString();
         }
         
-        public static string CreateWrongXML(Person person)
+        public static string CreateWrongXml(Person person)
         {
             var sb = new StringBuilder();
 

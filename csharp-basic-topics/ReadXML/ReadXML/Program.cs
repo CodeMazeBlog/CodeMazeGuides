@@ -1,5 +1,5 @@
-﻿using ReadXML;
-using ReadXML.Read;
+﻿using ReadXml;
+using ReadXml.Read;
 using System.Reflection;
 
 var people = People.Get(5);
@@ -32,7 +32,7 @@ xmlString = ReadXmlUsingXDocument.TestReadUsingXPath();
 Console.WriteLine(xmlString);
 Console.ReadKey();
 
-var sampleXML = CreateXMLUsingXmlWriter.CreateSimpleXML(people[0]);
+var sampleXML = CreateXmlUsingXmlWriter.CreateSimpleXml(people[0]);
 
 Console.Clear();
 Console.WriteLine("XmlReader: Read all elements:\n");
@@ -54,7 +54,7 @@ Console.Clear();
 Console.WriteLine("XmlReader: Read names and ages from XML document with people data:\n");
 Console.WriteLine("\n---\n");
 ReadXmlUsingXmlReader.ReadNamesAndAges(
-    CreateXMLUsingXmlWriter.CreateAnArrayOfPeople(people)
+    CreateXmlUsingXmlWriter.CreateAnArrayOfPeople(people)
     )
     .ToList()
     .ForEach(Console.WriteLine);

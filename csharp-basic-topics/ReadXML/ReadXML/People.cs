@@ -1,4 +1,4 @@
-﻿namespace ReadXML
+﻿namespace ReadXml
 {
     public static class People
     {

@@ -1,6 +1,6 @@
 ﻿using System.Xml;
 
-namespace ReadXML.Read
+namespace ReadXml.Read
 {
     public static class ReadXmlUsingXmlReader
     {

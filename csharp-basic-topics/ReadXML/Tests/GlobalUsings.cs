@@ -1,5 +1,5 @@
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
-global using ReadXML;
-global using ReadXML.Read;
+global using ReadXml;
+global using ReadXml.Read;
 global using System.Xml;
 

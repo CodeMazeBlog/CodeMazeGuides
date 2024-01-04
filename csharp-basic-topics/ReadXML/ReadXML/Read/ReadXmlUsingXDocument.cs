@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using System.Xml.XPath;
 
-namespace ReadXML.Read
+namespace ReadXml.Read
 {
     public static class ReadXmlUsingXDocument
     {
@@ -22,19 +22,19 @@ namespace ReadXML.Read
 
         public static string TestValidXml()
         {
-            var xmlDoc = ReadXmlAndCatchErrors(CreateXMLUsingXmlWriter.CreateSimpleXML(People.GetOne()));
+            var xmlDoc = ReadXmlAndCatchErrors(CreateXmlUsingXmlWriter.CreateSimpleXml(People.GetOne()));
             return xmlDoc.ToString();
         }
 
         public static string TestInvalidXml()
         {
-            var xmlDoc = ReadXmlAndCatchErrors(CreateXMLUsingXmlWriter.CreateWrongXML(People.GetOne()));
+            var xmlDoc = ReadXmlAndCatchErrors(CreateXmlUsingXmlWriter.CreateWrongXml(People.GetOne()));
             return xmlDoc.ToString();
         }
 
         public static string TestReadWithElementCollection()
         {
-            var xmlDoc = ReadXmlAndCatchErrors(CreateXMLUsingXmlWriter.CreateSimpleXML(People.GetOne()));
+            var xmlDoc = ReadXmlAndCatchErrors(CreateXmlUsingXmlWriter.CreateSimpleXml(People.GetOne()));
             var name = xmlDoc.Root!.Element("name")!.Element("firstName")!.Value;
             var age = xmlDoc.Root!.Element("age")!.Value;
             return $"Name: {name}, Age: {age}";
@@ -42,7 +42,7 @@ namespace ReadXML.Read
 
         public static string TestReadUsingXPath()
         {
-            var xmlDoc = ReadXmlAndCatchErrors(CreateXMLUsingXmlWriter.CreateSimpleXML(People.GetOne()));
+            var xmlDoc = ReadXmlAndCatchErrors(CreateXmlUsingXmlWriter.CreateSimpleXml(People.GetOne()));
 
             var name = xmlDoc.XPathSelectElement("/person/name/firstName")!.Value;
             var age = xmlDoc.XPathSelectElement("/person/age")!.Value;
