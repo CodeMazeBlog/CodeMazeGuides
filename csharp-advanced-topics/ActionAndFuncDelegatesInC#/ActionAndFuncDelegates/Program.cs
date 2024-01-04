@@ -20,24 +20,24 @@ public static class Program
 
         add(2, 9);
 
-        int product = multiply(2, 9);
+        var product = multiply(2, 9);
 
         Console.WriteLine($"Multiplied Result: {product}");
 
-        int length = stringLength("Love Func!");
+        var length = stringLength("Love Func!");
         Console.WriteLine($"Length of the string: {length}");
 
-        List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+        var numbers = new List<int> { 1, 2, 3, 4, 5 };
         numbers.ForEach(processNumber);
 
-        int divisionResult = safeDivision(20, 5);
+        var divisionResult = safeDivision(20, 5);
         Console.WriteLine($"Safe Division Result: {divisionResult}");
 
         ExecuteActionCallback(AddAction, 5, 6);
 
-        int result = ExecuteFuncCallback(AddFunc, 5, 6);
+        var result = ExecuteFuncCallback(AddFunc, 5, 6);
 
-        Console.WriteLine("Result from ExecuteFuncCallback: {result}");
+        Console.WriteLine($"Result from ExecuteFuncCallback: {result}");
     }
 
     public static void ExecuteActionCallback(Action<int, int> callback, int a, int b)
@@ -55,7 +55,7 @@ public static class Program
 
     public static int AddFunc(int a, int b)
     {
-        int result = a + b;
+        var result = a + b;
         Console.WriteLine($"Result of operation: {result}");
 
         return result;
@@ -63,7 +63,7 @@ public static class Program
 
     public static void AddAction(int a, int b)
     {
-        int result = a + b;
+        var result = a + b;
 
         Console.WriteLine($"Result of operation: {result}");
     }
