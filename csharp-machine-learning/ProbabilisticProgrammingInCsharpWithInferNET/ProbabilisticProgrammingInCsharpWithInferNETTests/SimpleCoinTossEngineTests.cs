@@ -31,8 +31,8 @@ public class SimpleCoinTossEngineTests
     {
         coinTossEngine.TossTheCoins();
 
-        Console.WriteLine($"Probability First Coin Is Head: {coinTossEngine.FirstCoinPercentage}%");
-        Console.WriteLine($"Probability Second Coin Is Head: {coinTossEngine.SecondCoinPercentage}%");
+        Console.WriteLine($"Probability First Coin Is Heads: {coinTossEngine.FirstCoinPercentage}%");
+        Console.WriteLine($"Probability Second Coin Is Heads: {coinTossEngine.SecondCoinPercentage}%");
         Console.WriteLine($"Probability Both Coins Are Heads: {coinTossEngine.BothCoinsPercentage}%");
 
         Assert.IsTrue(Math.Round(coinTossEngine.BothCoinsPercentage, 0) == 25.0);
@@ -43,8 +43,8 @@ public class SimpleCoinTossEngineTests
     {
         coinTossEngine.TossTheCoins(condition: m => !m.BothHeads);
 
-        Console.WriteLine($"Probability First Coin Is Head: {coinTossEngine.FirstCoinPercentage}%");
-        Console.WriteLine($"Probability Second Coin Is Head: {coinTossEngine.SecondCoinPercentage}%");
+        Console.WriteLine($"Probability First Coin Is Heads: {coinTossEngine.FirstCoinPercentage}%");
+        Console.WriteLine($"Probability Second Coin Is Heads: {coinTossEngine.SecondCoinPercentage}%");
         Console.WriteLine($"Probability Both Coins Are Heads: {coinTossEngine.BothCoinsPercentage}%");
 
         Assert.IsTrue(Math.Round(coinTossEngine.FirstCoinPercentage, 0) == 33.0);

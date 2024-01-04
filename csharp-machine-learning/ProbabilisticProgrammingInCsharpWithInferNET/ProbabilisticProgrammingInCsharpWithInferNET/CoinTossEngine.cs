@@ -1,7 +1,7 @@
 ﻿namespace ProbabilisticProgrammingInCsharpWithInferNET;
 public class CoinTossEngine
 {
-    private bool IsHead { get { return Random.Shared.NextDouble() > 0.5; } }
+    private bool IsHeads { get { return Random.Shared.NextDouble() > 0.5; } }
     public bool FirstHead { get; private set; }
     public bool SecondHead { get; private set; }
     public bool BothHeads { get; private set; }
@@ -20,8 +20,8 @@ public class CoinTossEngine
         RunCount = 0;
         for (int i = 0; i < numberOfRuns; i++)
         {
-            FirstHead = IsHead;
-            SecondHead = IsHead;
+            FirstHead = IsHeads;
+            SecondHead = IsHeads;
             BothHeads = FirstHead && SecondHead;
 
             if (condition == null || condition(this))
@@ -41,7 +41,7 @@ public class CoinTossEngine
     {
         var headsCount = 0;
         for (int i = 0; i < numberOfRuns; i++)
-            if (IsHead)
+            if (IsHeads)
                 headsCount++;
 
         return headsCount;
