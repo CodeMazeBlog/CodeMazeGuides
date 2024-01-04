@@ -9,52 +9,52 @@ public class ActionAndFuncDelegateTests
     [Fact]
     public void GivenLogStringAction_WhenCalled_ThenItShouldLogAsExpected()
     {
-        StringWriter sw = new();
+        var sw = new StringWriter();
         Console.SetOut(sw);
 
         ActionExamples.MethodReferenceExample("Sample value");
 
         var result = sw.ToString().Trim();
-        var expectedResult = "Logging string: \"Sample value\"";
+        const string expectedResult = "Logging string: \"Sample value\"";
         Assert.Equal(expectedResult, result);
     }
 
     [Fact]
     public void GivenUppercaseStringAction_WhenCalled_ThenItShouldReturnOriginalAndModifiedWord()
     {
-        StringWriter sw = new();
+        var sw = new StringWriter();
         Console.SetOut(sw);
 
         ActionExamples.AnonymousMethodExample("Sample Word");
 
         var result = sw.ToString().Trim();
-        var expectedResult = "Original word: Sample Word. Modified word: SAMPLE WORD.";
+        const string expectedResult = "Original word: Sample Word. Modified word: SAMPLE WORD.";
         Assert.Equal(expectedResult, result);
     }
 
     [Fact]
     public void GivenPrintSquareAction_WhenCalled_ThenItShouldLogSquareOfNumber()
     {
-        StringWriter sw = new();
+        var sw = new StringWriter();
         Console.SetOut(sw);
 
         ActionExamples.LambdaExpressionExample(9);
 
         var result = sw.ToString().Trim();
-        var expectedResult = "Square of 9 is 81.";
+        const string expectedResult = "Square of 9 is 81.";
         Assert.Equal(expectedResult, result);
     }
 
     [Fact]
     public async Task GivenPowerFunc_WhenCalled_ThenItShouldLogPowerOfNumbers()
     {
-        StringWriter sw = new();
+        var sw = new StringWriter();
         Console.SetOut(sw);
 
         FunctionExamples.MethodReferenceExample(3.3, 3);
 
-        string expectedOutput = $"Result of the operation is: {Math.Pow(3.3, 3):0.00}";
-        string actualOutput = sw.ToString().Trim();
+        var expectedOutput = $"Result of the operation is: {Math.Pow(3.3, 3):0.00}";
+        var actualOutput = sw.ToString().Trim();
 
         Assert.Equal(expectedOutput, actualOutput);
     }
@@ -62,7 +62,7 @@ public class ActionAndFuncDelegateTests
     [Fact]
     public async Task GivenPersonYearsFunc_WhenCalled_ThenItShouldLogPowerOfNumbers()
     {
-        StringWriter sw = new();
+        var sw = new StringWriter();
         Console.SetOut(sw);
         
         var timerProviderMock = new Mock<TimeProvider>();
@@ -73,7 +73,7 @@ public class ActionAndFuncDelegateTests
 
         FunctionExamples.AnonymousMethodExample();
 
-        var expectedOutput = "Danny is 21 years old.";
+        const string expectedOutput = "Danny is 21 years old.";
         var actualOutput = sw.ToString().Trim();
 
         Assert.Equal(expectedOutput, actualOutput);
@@ -82,7 +82,7 @@ public class ActionAndFuncDelegateTests
     [Fact]
     public async Task GivenGreeterFunc_WhenCalled_ThenItShouldGreetPerson()
     {
-        StringWriter sw = new();
+        var sw = new StringWriter();
         Console.SetOut(sw);
 
         var timerProviderMock = new Mock<TimeProvider>();
@@ -94,7 +94,7 @@ public class ActionAndFuncDelegateTests
 
         FunctionExamples.LambdaExpressionExample(timerProviderMock.Object);
 
-        var expectedOutput = "Good morning, Jack!";
+        const string expectedOutput = "Good morning, Jack!";
         var actualOutput = sw.ToString().Trim();
 
         Assert.Equal(expectedOutput, actualOutput);

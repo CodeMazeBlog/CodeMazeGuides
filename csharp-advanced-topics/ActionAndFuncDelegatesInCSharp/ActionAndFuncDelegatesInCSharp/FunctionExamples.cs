@@ -9,7 +9,7 @@ public class FunctionExamples
     public static void MethodReferenceExample(double number,
         int power)
     {
-        Func<double, int, double> func = new Func<double, int, double>(Power);
+        var func = new Func<double, int, double>(Power);
         var result = func(number, power);
         Console.WriteLine($"Result of the operation is: {result:0.00}"); // 35.94 } 
     }
@@ -18,7 +18,7 @@ public class FunctionExamples
     {
         var currentYear = (timeProvider ?? TimeProvider.System).GetUtcNow().Year;
 
-        Func<string, int, string> getPersonYearsMessage = delegate(string name,
+        var getPersonYearsMessage = delegate(string name,
             int birthYear)
         {
             if (birthYear > currentYear)
@@ -30,7 +30,8 @@ public class FunctionExamples
             var message = $"{nameCapitalized} is {yearsOld} years old.";
             return message;
         };
-        string message = getPersonYearsMessage("danny", 2003); // Danny is 20 years old.
+        
+        var message = getPersonYearsMessage("danny", 2003); // Danny is 20 years old.
         Console.WriteLine(message);
     }
 

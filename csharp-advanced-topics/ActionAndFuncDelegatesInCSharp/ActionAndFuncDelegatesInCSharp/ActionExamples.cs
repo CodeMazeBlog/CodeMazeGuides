@@ -9,13 +9,13 @@ public class ActionExamples
 
     public static void MethodReferenceExample(string value)
     {
-        Action<string> action = new Action<string>(LogString);
+        var action = new Action<string>(LogString);
         action(value); // Logging string: "Sample value" 
     }
 
     public static Action<string> uppercaseString = delegate(string word)
     {
-        string modifiedWord = word.ToUpper();
+        var modifiedWord = word.ToUpper();
         Console.WriteLine($"Original word: {word}. Modified word: {modifiedWord}.");
     };
 
@@ -26,7 +26,7 @@ public class ActionExamples
 
     public static Action<int> printSquare = (int number) =>
     {
-        int square = number * number;
+        var square = number * number;
         Console.WriteLine($"Square of {number} is {square}.");
     };
 
