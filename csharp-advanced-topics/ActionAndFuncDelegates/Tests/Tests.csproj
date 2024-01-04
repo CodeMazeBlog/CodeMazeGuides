@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Delegates\Delegates.csproj" />
+  </ItemGroup>
+
 </Project>

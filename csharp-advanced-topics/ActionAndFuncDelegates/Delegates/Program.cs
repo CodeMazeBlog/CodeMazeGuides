@@ -1,11 +1,13 @@
 ﻿using Microsoft.VisualBasic;
 using System.Reflection;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Delegates
 {
+    public delegate T ModifyData<T>(T str);
+
     public class Program
     {
-        delegate T ModifyData<T>(T str);
         static string upperStr = string.Empty;
 
         static string Reverse(string myString)
@@ -30,34 +32,76 @@ namespace Delegates
             return str.Equals(str.ToUpperInvariant());
         }
 
+        public static string ReverseUsingDelegate(ModifyData<string> modifyData, string str)
+        {            
+            Console.WriteLine(nameof(ReverseUsingDelegate));
+            
+            return modifyData(str);
+        }
+
+        public static string UseMulticastDelegate(ModifyData<string> modifyString, string str)
+        {
+            Console.WriteLine(nameof(UseMulticastDelegate));
+            return modifyString(str);
+        }
+
+        public static string GetInvocationListFromMulticastDelegate(ModifyData<string> modifyString)
+        {
+            var delegates = modifyString.GetInvocationList();
+            Console.WriteLine($"Number of methods referenced by the multicast delegate: {delegates.Length}");
+            var stringReturn = string.Empty;
+
+            foreach (var del in delegates)
+            {
+                stringReturn += del.Method.Name + " ";
+            }
+
+            return stringReturn.TrimEnd();
+        }
+
+        public static string UseMulticastFunc(Func<string, string> f, string str)
+        {
+            Console.WriteLine(nameof(UseMulticastFunc));
+            return f(str);
+        }
+
+        public static string UseAction(Action<string> modifyAction, string str)
+        {
+            Console.WriteLine(nameof(UseAction));
+            modifyAction(str);
+
+            return upperStr;
+        }
+
+        public static bool UsePredicate(Predicate<string> check, string str)
+        {
+            Console.WriteLine(nameof(UsePredicate));
+            return check(str);
+        }
+
         static void Main(string[] args)
         {
+            var str = "Welcome to Code Maze!";
 
+            // String reverse
+            Console.WriteLine(ReverseUsingDelegate(Reverse, str));
+
+            // String reverse and string lower case
             ModifyData<string> modifyString = Reverse;
-            Console.WriteLine("Welcome to Code Maze!");
-            Console.WriteLine(modifyString("Welcome to Code Maze!"));
-
-            Func<string, string> stringFunction = Reverse;
-            Console.WriteLine("Hello world!");
-            Console.WriteLine(stringFunction("Hello world!"));
-
-            Action<string> modifyCase = UpperString;
-            Console.WriteLine("Hello world using delegates!");
-            modifyCase("Hello world using delegates!");
-            Console.WriteLine(upperStr);
-
-            Predicate<string> checkString = isUpperString;
-            Console.WriteLine("THIS IS A CAPITALIZED STRING.");
-            var result = checkString("THIS IS A CAPITALIZED STRING.");
-            Console.WriteLine(result);
-
             modifyString += LowerString;
-            var delegates = modifyString.GetInvocationList();
-            Console.WriteLine(modifyString("A TEST WITH A MULTICAST DELEGATE."));
-            foreach(var del in delegates)
-            {
-                Console.WriteLine(del.Method.Name);
-            }
+            Console.WriteLine(UseMulticastDelegate(modifyString, str));
+
+            // List of methods referenced by the multicast delegate 
+            Console.WriteLine(GetInvocationListFromMulticastDelegate(modifyString));
+
+            // string lower case and reverse string using Func
+            Console.WriteLine(UseMulticastFunc((Func<string, string>)LowerString + (Func<string, string>)Reverse, str));
+
+            // string upper case using Action
+            Console.WriteLine(UseAction(UpperString, str));
+
+            // check if string is upper case
+            Console.WriteLine(UsePredicate(isUpperString, str.ToUpper()));
         }
     }
 }

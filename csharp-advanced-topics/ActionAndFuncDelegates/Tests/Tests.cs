@@ -1,10 +1,10 @@
+using Delegates;
+
 namespace Tests
 {
-    delegate T ModifyData<T>(T str);
-
     public class Tests
     {
-        static string upperStr = string.Empty;
+        static string testStr = string.Empty;
 
         static string Reverse(string myString)
         {
@@ -20,42 +20,98 @@ namespace Tests
 
         static void UpperString(string myString)
         {
-            upperStr = myString.ToUpperInvariant();
+            testStr = myString.ToUpperInvariant();
+        }
+
+        static bool IsUpperString(string str)
+        {
+            return str.Equals(str.ToUpperInvariant());
         }
 
         [Fact]
-        public void WhenStringProvided_DelegateReturnsTheReversedString()
+        public void GivenDelegate_WhenStringProvided_ThenReturnsReversedString()
         {
-            ModifyData<string> modifyString = Reverse;
-            var result = modifyString("Welcome to Code Maze!");
-            Assert.Equal(Reverse("Welcome to Code Maze!"), result);
+            // Arrange
+            var str = "Hello World!";
+            ModifyData<string> modifyData = Reverse;
+
+            // Act
+            var result = Program.ReverseUsingDelegate(modifyData, str);
+
+            // Assert
+            Assert.Equal(Reverse("Hello World!"), result);
         }
 
         [Fact]
-        public void givenMulticastDelegate_whenTwoReferencedMethods_GetInvocationListContainsTwoMethods()
+        public void GivenMulticastDelegate_WhenStringProvided_ThenReturnsModifiedStringByLastReferencedMethod()
         {
-            ModifyData<string> modifyString = Reverse;
-            modifyString += LowerString;
-            var delegates = modifyString.GetInvocationList();
-            Assert.Equal(2, delegates.Length);
-            Assert.Equal("Reverse", delegates[0].Method.Name);
-            Assert.Equal("LowerString", delegates[1].Method.Name);
+            // Arrange
+            var str = "Hello World!";
+            ModifyData<string> modifyData = Reverse;
+            modifyData += LowerString;
+
+            // Act
+            var result = Program.UseMulticastDelegate(modifyData, str);
+
+            // Assert
+            Assert.Equal(LowerString("Hello World!"), result);
         }
 
         [Fact]
-        public void WhenStringProvided_FuncReturnsTheReversedString()
+        public void GivenMulticastDelegate_WhenTwoMethodsReferenced_ThenReturnsTwoMethodNames()
         {
-            Func<string, string> stringFunction = Reverse;
-            var result = stringFunction("Welcome to the generic delegates world!");
-            Assert.Equal(Reverse("Welcome to the generic delegates world!"), result);
+            // Arrange
+            ModifyData<string> modifyString = LowerString;
+            modifyString += Reverse;
+
+            // Act
+            var result = Program.GetInvocationListFromMulticastDelegate(modifyString);
+
+            // Assert
+            Assert.Equal("LowerString Reverse", result);
         }
 
         [Fact]
-        public void WhenStringProvided_ActionReturnsUpperString()
+        public void GivenMulticastFunc_WhenStringProvided_ThenReturnsModifiedStringByLastReferencedMethod()
         {
-            Action<string> modifyCase = UpperString;
-            modifyCase("Welcome to the generic delegates world!");
-            Assert.Equal("WELCOME TO THE GENERIC DELEGATES WORLD!", upperStr);
+            // Arrange
+            var str = "Hello World!";
+            Func<string, string> modifyFunc = Reverse;
+            modifyFunc += LowerString;
+
+            // Act
+            var result = Program.UseMulticastFunc(modifyFunc, str);
+
+            // Assert
+            Assert.Equal(LowerString("Hello World!"), result);
+        }
+
+        [Fact]
+        public void GivenAction_WhenStringProvided_ThenGetsModifiedStringByReferencedMethod()
+        {
+            // Arrange
+            var str = "Hello World!";
+            Action<string> modifyAction = UpperString;
+
+            // Act
+            Program.UseAction(modifyAction, str);
+
+            // Assert
+            Assert.Equal(str.ToUpperInvariant(), testStr);
+        }
+
+        [Fact]
+        public void GivenPredicate_WhenNotCapitalizedStringProvided_ThenReturnsFalse()
+        {
+            // Arrange
+            var str = "Hello World!";
+            Predicate<string> checkString = IsUpperString;
+
+            // Act
+            var result = Program.UsePredicate(checkString, str);
+
+            // Assert
+            Assert.False(result);
         }
     }
 }
