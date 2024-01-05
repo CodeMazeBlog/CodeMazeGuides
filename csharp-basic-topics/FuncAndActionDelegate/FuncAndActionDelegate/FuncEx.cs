@@ -8,24 +8,29 @@ public class FuncEx
         int additionResult = Calculate(5, 3, AddNumbers); // Invokes AddNumbers method indirectly
         Console.WriteLine(additionResult); // Output: 8
 
-        int Calculate(int x, int y, Func<int, int, int> operation)
-        {
-            return operation(x, y);
-        }
+        
 
         Func<int, int, int> subtractNumbers = (x, y) => x - y;
         int subtractionResult = Calculate(5, 3, subtractNumbers); // Invokes subtract method indirectly
         Console.WriteLine(subtractionResult); // Output: 2
     }
-    public void FuncRealExample()
+    public int Calculate(int x, int y, Func<int, int, int> operation)
     {
-        List<string> data = new() { "Test1", "Test2", "Test3" };
+        return operation(x, y);
+    }
+    public IEnumerable<string> FuncRealExample(List<string>? data)
+    {
+        if (data == null)
+            return null!;
 
-        var filteredData = data.Where(c => c.EndsWith("1"));
+        var filteredData = data!.Where(c => c.EndsWith("1"));
 
         foreach (var item in filteredData)
         {
             Console.WriteLine(item); //Test1 
         }
+
+        return filteredData;
     }
+
 }
