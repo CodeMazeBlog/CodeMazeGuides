@@ -8,26 +8,26 @@ namespace Delegates
 
     public class Program
     {
-        static string upperStr = string.Empty;
+        public static string upperStr = string.Empty;
 
-        static string Reverse(string myString)
+        public static string Reverse(string myString)
         {
             var characters = myString.ToCharArray();
             Array.Reverse(characters);
             return new string(characters);
         }
 
-        static string LowerString(string myString)
+        public static string LowerString(string myString)
         {
             return myString.ToLowerInvariant();
         }
 
-        static void UpperString(string myString)
+        public static void UpperString(string myString)
         {
             upperStr = myString.ToUpperInvariant();
         }
 
-        static bool isUpperString(string str)
+        public static bool IsUpperString(string str)
         {
             return str.Equals(str.ToUpperInvariant());
         }
@@ -101,7 +101,7 @@ namespace Delegates
             Console.WriteLine(UseAction(UpperString, str));
 
             // check if string is upper case
-            Console.WriteLine(UsePredicate(isUpperString, str.ToUpper()));
+            Console.WriteLine(UsePredicate(IsUpperString, str.ToUpper()));
         }
     }
 }
