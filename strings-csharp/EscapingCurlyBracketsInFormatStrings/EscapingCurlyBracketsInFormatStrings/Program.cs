@@ -1,19 +1,13 @@
-﻿//Example of Format Strings
-var name = "John";
-var formattedString = string.Format("Hello, {0}!", name);
-Console.WriteLine(formattedString);
+﻿using EscapingCurlyBracketsInFormatStrings;
 
-//Curly Brackets Escaping
-var value = "World";
-formattedString = string.Format("{{Hello, {0}!}}", value);
-Console.WriteLine(formattedString);
+var formatExampleResult = FormatStringsEscaping.FormatStringExample();
+Console.WriteLine($"Result: {formatExampleResult}\n");
 
-//Dobble Quotes Escaping
-var message = "Important message";
-formattedString = string.Format("\"{0}\" is the message.", message);
-Console.WriteLine(formattedString);
+var curlyBracketsResult = FormatStringsEscaping.CurlyBracketsEscaping();
+Console.WriteLine($"Result: {curlyBracketsResult}\n");
 
-//Backslash Escaping
-var path = @"C:\Program Files\";
-formattedString = string.Format("The installation path is: {0}", path);
-Console.WriteLine(formattedString);
+var doubleQuotesResult = FormatStringsEscaping.DoubleQuotesEscaping();
+Console.WriteLine($"Result: {doubleQuotesResult}\n");
+
+var backslashResult = FormatStringsEscaping.BackslashEscaping();
+Console.WriteLine($"Result: {backslashResult}\n");
