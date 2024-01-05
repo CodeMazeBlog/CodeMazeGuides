@@ -5,11 +5,11 @@ using System.Net;
 
 namespace IExceptionHandlerInterface.Middleware;
 
-public class ExceptionHandlingMiddleware : IExceptionHandler
+public class GlobalExceptionHandler : IExceptionHandler
 {
-    private readonly ILogger<ExceptionHandlingMiddleware> _logger;
+    private readonly ILogger<GlobalExceptionHandler> _logger;
 
-    public ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> logger)
+    public GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger)
     {
         _logger = logger;
     }

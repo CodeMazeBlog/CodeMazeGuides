@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<ILibraryService, LibraryService>();
 
-builder.Services.AddExceptionHandler<ExceptionHandlingMiddleware>();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddProblemDetails();
 
@@ -35,14 +35,12 @@ app.MapGet("/books/{id}", async context =>
     var libraryService = context.RequestServices.GetRequiredService<ILibraryService>();
     var book = libraryService.GetById(id);
 
-    if (book != null)
-    {
-        await context.Response.WriteAsJsonAsync(book);
-    }
-    else
+    if (book is null)
     {
         throw new BadHttpRequestException($"Book with Id {id} not found.", StatusCodes.Status400BadRequest);
     }
+
+    await context.Response.WriteAsJsonAsync(book);
 });
 
 app.Run();
