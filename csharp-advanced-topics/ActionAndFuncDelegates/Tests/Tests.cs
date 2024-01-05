@@ -4,42 +4,18 @@ namespace Tests
 {
     public class Tests
     {
-        static string testStr = string.Empty;
-
-        static string Reverse(string myString)
-        {
-            var characters = myString.ToCharArray();
-            Array.Reverse(characters);
-            return new string(characters);
-        }
-
-        static string LowerString(string myString)
-        {
-            return myString.ToLowerInvariant();
-        }
-
-        static void UpperString(string myString)
-        {
-            testStr = myString.ToUpperInvariant();
-        }
-
-        static bool IsUpperString(string str)
-        {
-            return str.Equals(str.ToUpperInvariant());
-        }
-
         [Fact]
         public void GivenDelegate_WhenStringProvided_ThenReturnsReversedString()
         {
             // Arrange
             var str = "Hello World!";
-            ModifyData<string> modifyData = Reverse;
+            ModifyData<string> modifyData = Program.Reverse;
 
             // Act
             var result = Program.ReverseUsingDelegate(modifyData, str);
 
             // Assert
-            Assert.Equal(Reverse("Hello World!"), result);
+            Assert.Equal(Program.Reverse("Hello World!"), result);
         }
 
         [Fact]
@@ -47,22 +23,22 @@ namespace Tests
         {
             // Arrange
             var str = "Hello World!";
-            ModifyData<string> modifyData = Reverse;
-            modifyData += LowerString;
+            ModifyData<string> modifyData = Program.Reverse;
+            modifyData += Program.LowerString;
 
             // Act
             var result = Program.UseMulticastDelegate(modifyData, str);
 
             // Assert
-            Assert.Equal(LowerString("Hello World!"), result);
+            Assert.Equal(Program.LowerString("Hello World!"), result);
         }
 
         [Fact]
         public void GivenMulticastDelegate_WhenTwoMethodsReferenced_ThenReturnsTwoMethodNames()
         {
             // Arrange
-            ModifyData<string> modifyString = LowerString;
-            modifyString += Reverse;
+            ModifyData<string> modifyString = Program.LowerString;
+            modifyString += Program.Reverse;
 
             // Act
             var result = Program.GetInvocationListFromMulticastDelegate(modifyString);
@@ -76,14 +52,14 @@ namespace Tests
         {
             // Arrange
             var str = "Hello World!";
-            Func<string, string> modifyFunc = Reverse;
-            modifyFunc += LowerString;
+            Func<string, string> modifyFunc = Program.Reverse;
+            modifyFunc += Program.LowerString;
 
             // Act
             var result = Program.UseMulticastFunc(modifyFunc, str);
 
             // Assert
-            Assert.Equal(LowerString("Hello World!"), result);
+            Assert.Equal(Program.LowerString("Hello World!"), result);
         }
 
         [Fact]
@@ -91,13 +67,13 @@ namespace Tests
         {
             // Arrange
             var str = "Hello World!";
-            Action<string> modifyAction = UpperString;
+            Action<string> modifyAction = Program.UpperString;
 
             // Act
-            Program.UseAction(modifyAction, str);
+            var result = Program.UseAction(modifyAction, str);
 
             // Assert
-            Assert.Equal(str.ToUpperInvariant(), testStr);
+            Assert.Equal(str.ToUpperInvariant(), result);
         }
 
         [Fact]
@@ -105,7 +81,7 @@ namespace Tests
         {
             // Arrange
             var str = "Hello World!";
-            Predicate<string> checkString = IsUpperString;
+            Predicate<string> checkString = Program.IsUpperString;
 
             // Act
             var result = Program.UsePredicate(checkString, str);
