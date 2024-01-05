@@ -6,6 +6,7 @@ namespace Tests;
 public class IExceptionHandlerUnitTest
 {
     private readonly HttpClient _client;
+
     public IExceptionHandlerUnitTest()
     {
         var application = new WebApplicationFactory<Program>();
