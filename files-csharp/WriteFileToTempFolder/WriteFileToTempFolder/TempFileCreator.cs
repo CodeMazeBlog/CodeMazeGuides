@@ -1,14 +1,11 @@
-﻿
-namespace WriteFileToTempFolder
+﻿namespace WriteFileToTempFolder;
+
+public static class TempFileCreator
 {
-    public static class TempFileCreator
+    public static void CreateTempFile(string filePath)
     {
-        public static void CreateTempFile(string filePath)
-        {
-            using (StreamWriter sw = new StreamWriter(filePath))
-            {
-                sw.Write("Your message");
-            }
-        }
+        using var sw = new StreamWriter(filePath);
+
+        sw.Write("Hello from CodeMaze!");
     }
 }

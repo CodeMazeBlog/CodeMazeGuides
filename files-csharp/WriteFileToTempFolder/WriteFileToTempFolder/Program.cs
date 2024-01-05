@@ -1,26 +1,33 @@
-﻿namespace WriteFileToTempFolder
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            var tempFile = System.IO.Path.GetTempFileName();
-            TempFileCreator.CreateTempFile(tempFile);
+﻿using WriteFileToTempFolder;
 
-            var tempFileContent = File.ReadAllText(tempFile);
-            Console.WriteLine(tempFileContent);
+var tempFile = Path.Combine(Path.GetTempPath(),"text.txt");
+Console.WriteLine($"Creating temp file: '{tempFile}'");
+TempFileCreator.CreateTempFile(tempFile);
 
-            tempFile = System.IO.Path.GetTempPath() + "text.txt";
-            TempFileCreator.CreateTempFile(tempFile);
+Console.WriteLine($"Reading temp file contents: '{tempFile}'");
+var tempFileContent = File.ReadAllText(tempFile);
+Console.WriteLine(tempFileContent);
+File.Delete(tempFile);
 
-            tempFileContent = File.ReadAllText(tempFile);
-            Console.WriteLine(tempFileContent);
+Console.WriteLine();
 
-            tempFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\text.txt";
-            TempFileCreator.CreateTempFile(tempFile);
+tempFile = Path.GetTempFileName();
+Console.WriteLine($"Temp file '{tempFile}' exists? {File.Exists(tempFile)}");
+TempFileCreator.CreateTempFile(tempFile);
 
-            tempFileContent = File.ReadAllText(tempFile);
-            Console.WriteLine(tempFileContent);
-        }
-    }
-}
+Console.WriteLine($"Reading temp file contents: '{tempFile}'");
+tempFileContent = File.ReadAllText(tempFile);
+Console.WriteLine(tempFileContent);
+File.Delete(tempFile);
+
+Console.WriteLine();
+
+var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+tempFile = Path.Combine(appDataPath, "text.txt");
+Console.WriteLine($"Creating temp file: '{tempFile}'");
+TempFileCreator.CreateTempFile(tempFile);
+
+Console.WriteLine($"Reading temp file contents: '{tempFile}'");
+tempFileContent = File.ReadAllText(tempFile);
+Console.WriteLine(tempFileContent);
+File.Delete(tempFile);
