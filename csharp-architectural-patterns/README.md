@@ -3,6 +3,7 @@
 This section contains source code for the articles about different architectural patterns in C#.
 
 ### Relevant articles:
+- [Broker Architectural Pattern in C#](https://code-maze.com/csharp-broker-architectural-pattern/)
 - [Event-Driven Architecture in C#](https://code-maze.com/csharp-event-driven-architecture/)
 - [Client-Server Architectural Pattern in C#](https://code-maze.com/csharp-client-server-architecture/)
 - [Hexagonal Architectural Pattern in C#](https://code-maze.com/csharp-hexagonal-architectural-pattern/)
