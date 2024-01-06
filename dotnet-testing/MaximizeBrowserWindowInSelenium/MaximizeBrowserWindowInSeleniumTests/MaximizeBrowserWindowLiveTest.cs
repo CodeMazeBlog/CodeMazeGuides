@@ -6,18 +6,26 @@ using OpenQA.Selenium.Safari;
 
 namespace MaximizeBrowserWindowInSeleniumTests;
 
-public class MaximizeBrowserWindowLiveTest
+public class MaximizeBrowserWindowLiveTest : IDisposable
 {
+    private IWebDriver ?driver;
+
+    public void Dispose()
+    {
+        driver?.Quit();
+        driver?.Dispose();
+    }
+
     [Fact]
     public void GivenTestInChrome_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
     {
-        IWebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
 
         driver.Navigate().GoToUrl("https://localhost:7016/");
 
         driver.Manage().Window.Maximize();
 
-        driver.Quit();
+        Dispose();
     }
 
     [Fact]
@@ -27,13 +35,11 @@ public class MaximizeBrowserWindowLiveTest
 
         options.AddArguments("--start-maximized");
 
-        IWebDriver driver = new ChromeDriver();
-
         driver = new ChromeDriver(options);
 
         driver.Navigate().GoToUrl("https://localhost:7016/");
 
-        driver.Quit();
+        Dispose();
     }
 
     [Fact]
@@ -41,13 +47,13 @@ public class MaximizeBrowserWindowLiveTest
     {
         FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
 
-        IWebDriver driver = new FirefoxDriver(service);
+        driver = new FirefoxDriver(service);
 
         driver.Navigate().GoToUrl("https://localhost:7016/");
 
         driver.Manage().Window.Maximize();
 
-        driver.Quit();
+        Dispose();
     }
 
     [Fact]
@@ -55,13 +61,13 @@ public class MaximizeBrowserWindowLiveTest
     {
         EdgeDriverService service = EdgeDriverService.CreateDefaultService();
 
-        IWebDriver driver = new EdgeDriver(service);
+        driver = new EdgeDriver(service);
 
         driver.Navigate().GoToUrl("https://localhost:7016/");
 
         driver.Manage().Window.Maximize();
 
-        driver.Quit();
+        Dispose();
     }
 
     [Fact]
@@ -69,12 +75,12 @@ public class MaximizeBrowserWindowLiveTest
     {
         SafariDriverService service = SafariDriverService.CreateDefaultService();
 
-        IWebDriver driver = new SafariDriver(service);
+        driver = new SafariDriver(service);
 
         driver.Navigate().GoToUrl("https://localhost:7016/");
 
         driver.Manage().Window.Maximize();
 
-        driver.Quit();
+        Dispose();
     }
 }
