@@ -14,7 +14,9 @@ namespace WriteXML
             if (!csvLines.Any())
                 return new XDocument();
 
-            var captions = GetCaptions(csvLines.First());
+            var captions = hasCaptionLine
+                ? GetCaptions(csvLines.First())
+                : GetCaptionReplacements(csvLines.First());
 
             return new XDocument(
                 new XElement(mainTag,
@@ -28,14 +30,19 @@ namespace WriteXML
             );
         }
 
+        public string[] GetCaptionReplacements(string firstLine)
+        {
+            return firstLine
+                .Split(separator)
+                .Select((_, index) => $"Field{index}")
+                .ToArray();
+        }
+
         public string[] GetCaptions(string firstLine)
         {
             return firstLine
                 .Split(separator)
-                .Select((value, index) =>
-                    (hasCaptionLine)
-                        ? value.Trim().Replace(" ", "_")
-                        : $"Field{index}")
+                .Select(value => value.Trim().Replace(" ", "_"))
                 .ToArray();
         }
     }

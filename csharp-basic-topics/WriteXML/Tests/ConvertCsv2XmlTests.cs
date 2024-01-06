@@ -65,7 +65,7 @@
             var constantName = "Field";
             var convertCsv2Xml = new ConvertCsv2Xml([], false);
 
-            var captions = convertCsv2Xml.GetCaptions(firstLine);
+            var captions = convertCsv2Xml.GetCaptionReplacements(firstLine);
             var captionsNotBeginningWithField = captions.Where(c => !c.StartsWith(constantName));
 
             Assert.AreEqual(0, captionsNotBeginningWithField.Count());
