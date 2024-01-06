@@ -1,128 +1,120 @@
-using SaveListToFileInCSharp;
+namespace Tests;
 
-namespace Tests
+[TestClass]
+public class ListToFileWriterTests
 {
-    [TestClass]
-    public class ListToFileWriterTests
+    private const string _testFilePath = "CodeMazeAnimals.txt";
+
+    [TestMethod]
+    public void WhenWriteToFileWithStreamWriter_ThenFileShouldContainAllStrings()
     {
-        [TestMethod]
-        public void WhenWriteToFileWithStreamWriter_ThenFileShouldContainAllStrings()
-        {
-            // Arrange
-            string path = "test.txt";
-            List<string> animals = new List<string> { "cat", "dog", "bird" };
-            ListToFileWriter writer = new ListToFileWriter();
+        // Arrange
+        var animals = new List<string> { "cat", "dog", "bird" };
+        var writer = new ListToFileWriter();
 
-            // Act
-            writer.WriteToFileWithStreamWriter(path, animals);
+        // Act
+        writer.WriteToFileWithStreamWriter(_testFilePath, animals);
 
-            // Assert
-            string[] lines = File.ReadAllLines(path);
-            CollectionAssert.AreEqual(animals, lines);
-        }
+        // Assert
+        var lines = File.ReadAllLines(_testFilePath);
+        CollectionAssert.AreEqual(animals, lines);
+    }
 
-        [TestMethod]
-        public async Task WhenWriteToFileWithStreamWriterAsync_ThenFileShouldContainAllStrings()
-        {
-            // Arrange
-            string path = "test.txt";
-            List<string> animals = new List<string> { "cat", "dog", "bird" };
-            ListToFileWriter writer = new ListToFileWriter();
+    [TestMethod]
+    public async Task WhenWriteToFileWithStreamWriterAsync_ThenFileShouldContainAllStrings()
+    {
+        // Arrange
+        var animals = new List<string> { "cat", "dog", "bird" };
+        var writer = new ListToFileWriter();
 
-            // Act
-            await writer.WriteToFileWithStreamWriterAsync(path, animals);
+        // Act
+        await writer.WriteToFileWithStreamWriterAsync(_testFilePath, animals);
 
-            // Assert
-            string[] lines = File.ReadAllLines(path);
-            CollectionAssert.AreEqual(animals, lines);
-        }
+        // Assert
+        var lines = File.ReadAllLines(_testFilePath);
+        CollectionAssert.AreEqual(animals, lines);
+    }
 
-        [TestMethod]
-        public void WhenAppendToFileWithStreamWriter_ThenFileShouldContainAppendedStrings()
-        {
-            // Arrange
-            string path = "test.txt";
-            List<string> animals = new List<string> { "cat", "dog", "bird" };
-            List<string> newAnimals = new List<string> { "elephant", "lion", "koala" };
-            ListToFileWriter writer = new ListToFileWriter();
+    [TestMethod]
+    public void WhenAppendToFileWithStreamWriter_ThenFileShouldContainAppendedStrings()
+    {
+        // Arrange
+        var animals = new List<string> { "cat", "dog", "bird" };
+        var newAnimals = new List<string> { "elephant", "lion", "koala" };
+        var writer = new ListToFileWriter();
 
-            // Act
-            writer.WriteToFileWithStreamWriter(path, animals);
-            writer.AppendToFileWithStreamWriter(path, newAnimals);
+        // Act
+        writer.WriteToFileWithStreamWriter(_testFilePath, animals);
+        writer.AppendToFileWithStreamWriter(_testFilePath, newAnimals);
 
-            // Assert
-            string[] lines = File.ReadAllLines(path);
-            CollectionAssert.AreEqual(animals.Concat(newAnimals).ToList(), lines);
-        }
+        // Assert
+        string[] lines = File.ReadAllLines(_testFilePath);
+        CollectionAssert.AreEqual(animals.Concat(newAnimals).ToList(), lines);
+    }
 
-        [TestMethod]
-        public void WhenWriteToFileWithFileClass_ThenFileShouldContainAllLines()
-        {
-            // Arrange
-            var writer = new ListToFileWriter();
-            var path = "test.txt";
-            var animals = new List<string> { "cat", "dog", "bird" };
+    [TestMethod]
+    public void WhenWriteToFileWithFileClass_ThenFileShouldContainAllLines()
+    {
+        // Arrange
+        var writer = new ListToFileWriter();
+        var animals = new List<string> { "cat", "dog", "bird" };
 
-            // Act
-            writer.WriteToFileWithFileClass(path, animals);
+        // Act
+        writer.WriteToFileWithFileClass(_testFilePath, animals);
 
-            // Assert
-            var fileContent = File.ReadAllLines(path);
-            CollectionAssert.AreEqual(animals, fileContent);
-        }
+        // Assert
+        var fileContent = File.ReadAllLines(_testFilePath);
+        CollectionAssert.AreEqual(animals, fileContent);
+    }
 
-        [TestMethod]
-        public async Task WhenWriteToFileWithFileClassAsync_ThenFileShouldContainAllLines()
-        {
-            // Arrange
-            var writer = new ListToFileWriter();
-            var path = "test.txt";
-            var animals = new List<string> { "cat", "dog", "bird" };
+    [TestMethod]
+    public async Task WhenWriteToFileWithFileClassAsync_ThenFileShouldContainAllLines()
+    {
+        // Arrange
+        var writer = new ListToFileWriter();
+        var animals = new List<string> { "cat", "dog", "bird" };
 
-            // Act
-            await writer.WriteToFileWithFileClassAsync(path, animals);
+        // Act
+        await writer.WriteToFileWithFileClassAsync(_testFilePath, animals);
 
-            // Assert
-            var fileContent = await File.ReadAllLinesAsync(path);
-            CollectionAssert.AreEqual(animals, fileContent);
-        }
+        // Assert
+        var fileContent = await File.ReadAllLinesAsync(_testFilePath);
+        CollectionAssert.AreEqual(animals, fileContent);
+    }
 
-        [TestMethod]
-        public void WhenAppendToFileWithFileClass_ThenFileShouldContainAppendedLines()
-        {
-            // Arrange
-            var writer = new ListToFileWriter();
-            var path = "test.txt";
-            var existingAnimals = new List<string> { "cat", "dog" };
-            var newAnimals = new List<string> { "bird", "fish" };
-            var expectedAnimals = existingAnimals.Concat(newAnimals).ToList();
-            File.WriteAllLines(path, existingAnimals);
+    [TestMethod]
+    public void WhenAppendToFileWithFileClass_ThenFileShouldContainAppendedLines()
+    {
+        // Arrange
+        var writer = new ListToFileWriter();
+        var existingAnimals = new List<string> { "cat", "dog" };
+        var newAnimals = new List<string> { "bird", "fish" };
+        var expectedAnimals = existingAnimals.Concat(newAnimals).ToList();
+        File.WriteAllLines(_testFilePath, existingAnimals);
 
-            // Act
-            writer.AppendToFileWithFileClass(path, newAnimals);
+        // Act
+        writer.AppendToFileWithFileClass(_testFilePath, newAnimals);
 
-            // Assert
-            var fileContent = File.ReadAllLines(path);
-            CollectionAssert.AreEqual(expectedAnimals, fileContent);
-        }
+        // Assert
+        var fileContent = File.ReadAllLines(_testFilePath);
+        CollectionAssert.AreEqual(expectedAnimals, fileContent);
+    }
 
-        [TestMethod]
-        public async Task WhenAppendToFileWithFileClassAsync_ThenFileShouldContainAppendedLines()
-        {
-            // Arrange
-            var writer = new ListToFileWriter();
-            var path = "test.txt";
-            var existingAnimals = new List<string> { "cat", "dog" };
-            var newAnimals = new List<string> { "bird", "fish" };
-            var expectedAnimals = existingAnimals.Concat(newAnimals).ToList();
-            await File.WriteAllLinesAsync(path, existingAnimals);
+    [TestMethod]
+    public async Task WhenAppendToFileWithFileClassAsync_ThenFileShouldContainAppendedLines()
+    {
+        // Arrange
+        var writer = new ListToFileWriter();
+        var existingAnimals = new List<string> { "cat", "dog" };
+        var newAnimals = new List<string> { "bird", "fish" };
+        var expectedAnimals = existingAnimals.Concat(newAnimals).ToList();
+        await File.WriteAllLinesAsync(_testFilePath, existingAnimals);
 
-            // Act
-            await writer.AppendToFileWithFileClassAsync(path, newAnimals);
+        // Act
+        await writer.AppendToFileWithFileClassAsync(_testFilePath, newAnimals);
 
-            // Assert
-            var fileContent = await File.ReadAllLinesAsync(path);
-            CollectionAssert.AreEqual(expectedAnimals, fileContent);
-        }
+        // Assert
+        var fileContent = await File.ReadAllLinesAsync(_testFilePath);
+        CollectionAssert.AreEqual(expectedAnimals, fileContent);
     }
 }
