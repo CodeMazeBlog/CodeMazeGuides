@@ -9,7 +9,7 @@ namespace ActionFuncDelegates
         // Simple Function Delegate
         public static Func<float, float, float> divide = (a, b) => a / b;
 
-        // Another Function Delegate Example
+        // Another Function Delegate
         public static Func<string, string> convertMethod = Titlecase;
         static void Main(string[] args)
         {
