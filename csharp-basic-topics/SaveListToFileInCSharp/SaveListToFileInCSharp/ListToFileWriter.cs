@@ -28,4 +28,24 @@ public class ListToFileWriter
             sw.WriteLine(animal);
         }
     }
+
+    public void WriteToFileWithFileClass(string path, List<string> animals)
+    {
+        File.WriteAllLines(path, animals);
+    }
+
+    public async Task WriteToFileWithFileClassAsync(string path, List<string> animals)
+    {
+        await File.WriteAllLinesAsync(path, animals);
+    }
+
+    public void AppendToFileWithFileClass(string path, List<string> newAnimals)
+    {
+        File.AppendAllLines(path, newAnimals);
+    }
+
+    public async Task AppendToFileWithFileClassAsync(string path, List<string> newAnimals)
+    {
+        await File.AppendAllLinesAsync(path, newAnimals);
+    }
 }
