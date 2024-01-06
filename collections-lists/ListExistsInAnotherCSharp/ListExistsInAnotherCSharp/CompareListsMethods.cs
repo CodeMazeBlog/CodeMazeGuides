@@ -70,11 +70,18 @@ public class CompareListsMethods
         return secondList.Except(firstList).Count() != secondList.Count;       
     }
 
-    private List<int> GenerateIntegerList(bool useCommonElements, bool useAllElements, bool useRandomElements, int size)
+    [ArgumentsSource(nameof(SampleLists))]
+    [Benchmark]
+    public bool CompareListUsingWhereAny(List<int> firstList, List<int> secondList, string listName)
+    {
+        return secondList.Where(firstList.Contains).Any();
+    }
+
+    private List<int> GenerateIntegerList(bool useCommon, bool useAll, bool useRandom, int size)
     {
         var integerList = new List<int>(size);
 
-        if (useRandomElements) 
+        if (useRandom) 
         {
             for(int i = 0; i < size; i++) 
             {
@@ -82,7 +89,7 @@ public class CompareListsMethods
             }
         }
 
-        if (useAllElements) 
+        if (useAll) 
         {
             for (int i = 0; i < size; i++)
             {
@@ -90,7 +97,7 @@ public class CompareListsMethods
             }
         }
 
-        if (useCommonElements) 
+        if (useCommon) 
         {
             for (int i = 0; i < size/2; i++)
             {

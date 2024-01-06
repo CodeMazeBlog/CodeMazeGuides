@@ -44,4 +44,11 @@ public class ListExistsInAnotherUnitTests
         Assert.IsTrue(_compareListsMethods.CompareListUsingExcept(_firstList, _thirdList, _listName));
         Assert.IsFalse(_compareListsMethods.CompareListUsingExcept(_firstList, _secondList, _listName));
     }
+
+    [TestMethod]
+    public void GivenTwoLists_WhenComparedUsingWhereAny_ValidateCorrectResults()
+    {
+        Assert.IsTrue(_compareListsMethods.CompareListUsingWhereAny(_firstList, _thirdList, _listName));
+        Assert.IsFalse(_compareListsMethods.CompareListUsingWhereAny(_firstList, _secondList, _listName));
+    }
 }
