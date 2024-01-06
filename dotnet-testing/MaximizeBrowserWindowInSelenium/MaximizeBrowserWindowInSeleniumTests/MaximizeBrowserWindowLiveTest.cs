@@ -18,7 +18,6 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
         driver.Navigate().GoToUrl("https://localhost:7016/");
 
         driver.Manage().Window.Maximize();
-
     }
 
     [Fact]
@@ -31,7 +30,6 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
         driver = new ChromeDriver(options);
 
         driver.Navigate().GoToUrl("https://localhost:7016/");
-
     }
 
     [Fact]
@@ -44,7 +42,6 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
         driver.Navigate().GoToUrl("https://localhost:7016/");
 
         driver.Manage().Window.Maximize();
-
     }
 
     [Fact]
@@ -57,7 +54,6 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
         driver.Navigate().GoToUrl("https://localhost:7016/");
 
         driver.Manage().Window.Maximize();
-
     }
 
     [Fact]
@@ -70,12 +66,10 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
         driver.Navigate().GoToUrl("https://localhost:7016/");
 
         driver.Manage().Window.Maximize();
-
     }
 
     public void Dispose()
     {
-        Console.WriteLine("Disposed");
         driver?.Quit();
         driver?.Dispose();
     }
