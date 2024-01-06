@@ -7,7 +7,8 @@ This section contains the topics considered basic level in C#.
 - [Base64 Encode and Decode in C#](https://code-maze.com/base64-encode-decode-csharp/)
 - [Break and Continue Statements in C#](https://code-maze.com/csharp-break-continue-statements/)
 - [Constructor Overloading in C#](https://code-maze.com/csharp-constructor-overloading/)
-- [Convert String and Int to Enum in C#](https://code-maze.com/csharp-convert-string-and-int-to-enum/)
+- [Convert String and Int to Enum in C#](https://code-maze.com/csharp-convert-string-and-int-to-enum/)\
+- [Deep Dive into Conversions in C# With the Convert Class](https://code-maze.com/csharp-conversions-convert-class/)
 - [Default Interface Method in C# And When to Use It](https://code-maze.com/csharp-default-interface-method/)
 - [How to Mark Methods as Deprecated in C#](https://code-maze.com/csharp-mark-methods-as-depricated/)
 - [Different Types of Comments in C# and Should We Use Them](https://code-maze.com/csharp-different-types-of-comments/)
