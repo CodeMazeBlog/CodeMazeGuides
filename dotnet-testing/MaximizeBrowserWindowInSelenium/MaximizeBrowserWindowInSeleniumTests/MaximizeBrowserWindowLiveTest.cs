@@ -10,12 +10,6 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
 {
     private IWebDriver ?driver;
 
-    public void Dispose()
-    {
-        driver?.Quit();
-        driver?.Dispose();
-    }
-
     [Fact]
     public void GivenTestInChrome_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
     {
@@ -25,7 +19,6 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
 
         driver.Manage().Window.Maximize();
 
-        Dispose();
     }
 
     [Fact]
@@ -39,7 +32,6 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
 
         driver.Navigate().GoToUrl("https://localhost:7016/");
 
-        Dispose();
     }
 
     [Fact]
@@ -53,7 +45,6 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
 
         driver.Manage().Window.Maximize();
 
-        Dispose();
     }
 
     [Fact]
@@ -67,7 +58,6 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
 
         driver.Manage().Window.Maximize();
 
-        Dispose();
     }
 
     [Fact]
@@ -81,6 +71,12 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
 
         driver.Manage().Window.Maximize();
 
-        Dispose();
+    }
+
+    public void Dispose()
+    {
+        Console.WriteLine("Disposed");
+        driver?.Quit();
+        driver?.Dispose();
     }
 }
