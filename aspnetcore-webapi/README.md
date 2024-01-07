@@ -16,6 +16,7 @@ This section contains articles about ASP.NET Core Web API-related topics.
 - [How to Add a Global Route Prefix in ASP.NET Core](https://code-maze.com/aspnetcore-add-global-route-prefix/)
 - [How to Extract Custom Header in ASP.NET Core Web API](https://code-maze.com/how-to-extract-custom-header-in-asp-net-core-web-api/)
 - [How to Use Request Timeouts Middleware in ASP.NET Core](https://code-maze.com/aspnetcore-request-timeouts-middleware/)
+- [How to Ignore Model Properties With Swagger in .NET](https://code-maze.com/aspnetcore-swagger-ignore-properties/)
 - [Health Checks in ASP.NET Core](https://code-maze.com/health-checks-aspnetcore/)
 - [How to Hide an Endpoint in Swagger](https://code-maze.com/aspnetcore-how-to-hide-endpoint-in-swagger/)
 - [How to Block IP Addresses in ASP.NET Core Web API](https://code-maze.com/block-ip-addresses-aspnetcore-webapi/)
