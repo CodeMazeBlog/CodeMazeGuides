@@ -15,8 +15,10 @@ public class Application
     {
         const string userName = "John Doe";
         var loggedinTime = DateTime.Now;
-        SimpleLog(userName, loggedinTime);
+        SimpleLogWithCA2254(userName, loggedinTime);
         LogJson(userName, loggedinTime);
+        LogMessageTemplateInCSharp(userName);
+        LogMessageTemplateInCSharp2(userName);
     }
 
     public void LogJson(string userName, DateTime loggedinTime)
@@ -32,8 +34,23 @@ public class Application
         _logger.Log(LogLevel.Information, message);
     }
 
-    public void SimpleLog(string userName, DateTime loggedinTime)
+    public void SimpleLogWithCA2254(string userName, DateTime loggedOnTime)
     {
-        _logger.Log(LogLevel.Information, $"User {userName} logged in at {loggedinTime}");
+        _logger.Log(LogLevel.Information, $"User {userName} logged on {loggedOnTime}");
+    }
+    
+    public void SimpleLogWithFixedCA2254(string userName, DateTime loggedOnTime)
+    {
+        _logger.LogInformation("User {userName} logged on {loggedOnTime}", userName, loggedOnTime);
+    }
+    
+    public void LogMessageTemplateInCSharp(string userName)
+    {
+        _logger.LogInformation("User '{userName}' added apples to the basket.", userName);
+    }
+    
+    public void LogMessageTemplateInCSharp2(string randomSentence)
+    {
+        _logger.LogInformation("User '{name}' added apples to the basket.", randomSentence);
     }
 }
