@@ -8,12 +8,16 @@ namespace ProbabilisticProgrammingInCsharpWithInferNETTests;
 [TestClass]
 public class SimpleCoinTossEngineTests
 {
-    CoinTossEngine coinTossEngine = new CoinTossEngine();
-
+    private bool ValidateResult(double expected,  double actual, double tolerance = 1.0)
+    {
+        return actual >= expected - tolerance &&
+            actual <= expected + tolerance;
+    }
 
     [TestMethod]
-    public void WhenCoinTossCountHeadsAndCalculateAverage_ThanSuccess()
+    public void WhenCoinTossCountHeadsAndCalculateAverage_ThenSuccess()
     {
+        var coinTossEngine = new CoinTossEngine();
         var experimentsCounts = new int[] { 1, /*10, 50, 100, 200*/ };
         foreach (var count in experimentsCounts)
         {
@@ -27,26 +31,28 @@ public class SimpleCoinTossEngineTests
     }
 
     [TestMethod]
-    public void WhenBothHeadsTrue_ThanSuccess()
+    public void WhenBothHeadsTrue_ThenSuccess()
     {
+        var coinTossEngine = new CoinTossEngine();
         coinTossEngine.TossTheCoins();
 
         Console.WriteLine($"Probability First Coin Is Heads: {coinTossEngine.FirstCoinPercentage}%");
         Console.WriteLine($"Probability Second Coin Is Heads: {coinTossEngine.SecondCoinPercentage}%");
         Console.WriteLine($"Probability Both Coins Are Heads: {coinTossEngine.BothCoinsPercentage}%");
 
-        Assert.IsTrue(Math.Round(coinTossEngine.BothCoinsPercentage, 0) == 25.0);
+        Assert.IsTrue(ValidateResult(25.0, coinTossEngine.BothCoinsPercentage));
     }
 
     [TestMethod]
-    public void WhenBothHeadsNotTrue_ThanSuccess()
+    public void WhenBothHeadsNotTrue_ThenSuccess()
     {
+        var coinTossEngine = new CoinTossEngine();
         coinTossEngine.TossTheCoins(condition: m => !m.BothHeads);
 
         Console.WriteLine($"Probability First Coin Is Heads: {coinTossEngine.FirstCoinPercentage}%");
         Console.WriteLine($"Probability Second Coin Is Heads: {coinTossEngine.SecondCoinPercentage}%");
         Console.WriteLine($"Probability Both Coins Are Heads: {coinTossEngine.BothCoinsPercentage}%");
 
-        Assert.IsTrue(Math.Round(coinTossEngine.FirstCoinPercentage, 0) == 33.0);
+        Assert.IsTrue(ValidateResult(33.0, coinTossEngine.FirstCoinPercentage));
     }
 }

@@ -5,8 +5,8 @@ namespace ProbabilisticProgrammingInCsharpWithInferNET;
 public class CoinTossInferNetEngine
 {
     private Variable<bool> IsHeads => Variable.Bernoulli(0.5);
-    public Variable<bool> FirstHead { get; private set; }
-    public Variable<bool> SecondHead { get; private set; }
+    public Variable<bool> FirstHeads { get; private set; }
+    public Variable<bool> SecondHeads { get; private set; }
     public Variable<bool> BothHeads { get; private set; }
 
     public double FirstCoinPercentage { get; private set; }
@@ -17,14 +17,14 @@ public class CoinTossInferNetEngine
 
     public void TossTheCoins(Func<CoinTossInferNetEngine, bool> condition = null)
     {
-        FirstHead = IsHeads;
-        SecondHead = IsHeads;
-        BothHeads = FirstHead & SecondHead;
+        FirstHeads = IsHeads;
+        SecondHeads = IsHeads;
+        BothHeads = FirstHeads & SecondHeads;
 
         condition?.Invoke(this);
 
-        FirstCoinPercentage = Math.Round(100.0 * inferenceEngine.Infer<Bernoulli>(FirstHead).GetProbTrue(), 2);
-        SecondCoinPercentage = Math.Round(100.0 * inferenceEngine.Infer<Bernoulli>(SecondHead).GetProbTrue(), 2);
+        FirstCoinPercentage = Math.Round(100.0 * inferenceEngine.Infer<Bernoulli>(FirstHeads).GetProbTrue(), 2);
+        SecondCoinPercentage = Math.Round(100.0 * inferenceEngine.Infer<Bernoulli>(SecondHeads).GetProbTrue(), 2);
         BothCoinsPercentage = Math.Round(100.0 * inferenceEngine.Infer<Bernoulli>(BothHeads).GetProbTrue(), 2);
     }
 }

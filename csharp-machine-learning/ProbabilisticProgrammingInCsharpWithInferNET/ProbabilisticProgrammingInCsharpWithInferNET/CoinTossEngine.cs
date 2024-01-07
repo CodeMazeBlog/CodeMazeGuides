@@ -2,8 +2,8 @@
 public class CoinTossEngine
 {
     private bool IsHeads { get { return Random.Shared.NextDouble() > 0.5; } }
-    public bool FirstHead { get; private set; }
-    public bool SecondHead { get; private set; }
+    public bool FirstHeads { get; private set; }
+    public bool SecondHeads { get; private set; }
     public bool BothHeads { get; private set; }
 
     public int FirstCoinHeadCount { get; private set; }
@@ -20,14 +20,14 @@ public class CoinTossEngine
         RunCount = 0;
         for (int i = 0; i < numberOfRuns; i++)
         {
-            FirstHead = IsHeads;
-            SecondHead = IsHeads;
-            BothHeads = FirstHead && SecondHead;
+            FirstHeads = IsHeads;
+            SecondHeads = IsHeads;
+            BothHeads = FirstHeads && SecondHeads;
 
             if (condition == null || condition(this))
             {
-                if (FirstHead) FirstCoinHeadCount++;
-                if (SecondHead) SecondCoinHeadCount++;
+                if (FirstHeads) FirstCoinHeadCount++;
+                if (SecondHeads) SecondCoinHeadCount++;
                 if (BothHeads) BothCoinsHeadCount++;
                 RunCount++;
             }

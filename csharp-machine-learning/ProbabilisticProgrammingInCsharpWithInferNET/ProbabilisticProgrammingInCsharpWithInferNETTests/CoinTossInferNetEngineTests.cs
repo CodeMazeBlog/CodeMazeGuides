@@ -7,29 +7,30 @@ namespace ProbabilisticProgrammingInCsharpWithInferNETTests;
 [TestClass]
 public class CoinTossInferNetEngineTests
 {
-    CoinTossInferNetEngine coinTossInferNetEngine = new CoinTossInferNetEngine();
 
     [TestMethod]
-    public void WhenBothHeadsTrue_ThanSuccess()
+    public void WhenBothHeadsTrue_ThenSuccess()
     {
+        var coinTossInferNetEngine = new CoinTossInferNetEngine();
         coinTossInferNetEngine.TossTheCoins();
 
         Console.WriteLine($"Probability First Coin Is Heads: {coinTossInferNetEngine.FirstCoinPercentage}%");
         Console.WriteLine($"Probability Second Coin Is Heads: {coinTossInferNetEngine.SecondCoinPercentage}%");
         Console.WriteLine($"Probability Both Coins Are Heads: {coinTossInferNetEngine.BothCoinsPercentage}%");
 
-        Assert.IsTrue(Math.Round(coinTossInferNetEngine.BothCoinsPercentage, 0) == 25.0);
+        Assert.IsTrue(coinTossInferNetEngine.BothCoinsPercentage == 25.0);
     }
 
     [TestMethod]
-    public void WhenBothHeadsNotTrue_ThanSuccess()
+    public void WhenBothHeadsNotTrue_ThenSuccess()
     {
+        var coinTossInferNetEngine = new CoinTossInferNetEngine();
         coinTossInferNetEngine.TossTheCoins(condition: m => m.BothHeads.ObservedValue = false);
 
         Console.WriteLine($"Probability First Coin Is Heads: {coinTossInferNetEngine.FirstCoinPercentage}%");
         Console.WriteLine($"Probability Second Coin Is Heads: {coinTossInferNetEngine.SecondCoinPercentage}%");
         Console.WriteLine($"Probability Both Coins Are Heads: {coinTossInferNetEngine.BothCoinsPercentage}%");
 
-        Assert.IsTrue(Math.Round(coinTossInferNetEngine.FirstCoinPercentage, 0) == 33.0);
+        Assert.IsTrue(coinTossInferNetEngine.FirstCoinPercentage == 33.33);
     }
 }
