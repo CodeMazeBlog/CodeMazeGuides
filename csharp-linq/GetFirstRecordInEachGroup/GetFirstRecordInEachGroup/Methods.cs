@@ -4,10 +4,8 @@ namespace GetFirstRecordInEachGroup;
 
 public static class Methods
 {
-    private static readonly Faker<Student> _faker = new Faker<Student>();
-
     public static List<Student> GenerateStudents(int count = 100000) =>
-         _faker
+         new Faker<Student>()
         .RuleFor(m => m.FirstName, faker => faker.Person.FirstName)
         .RuleFor(m => m.LastName, faker => faker.Person.LastName)
         .RuleFor(m => m.DateOfBirth, faker => DateOnly.FromDateTime(faker.Person.DateOfBirth))
