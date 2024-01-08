@@ -4,7 +4,7 @@ namespace RetrievePropertyValuebyNameinCSharp;
 public class PropertyRetrieval
 {
 
-    public static bool TryGetPropertyValue<T>(object obj, string propertyName, out T? value)
+    public static bool TryGetPropertyValue<TType, TObj>(TObj obj, string propertyName, out TType? value)
     {
         value = default;
 
@@ -14,7 +14,7 @@ public class PropertyRetrieval
             return false;
         }
 
-        PropertyInfo? propertyInfo = obj.GetType().GetProperty(propertyName);
+        PropertyInfo? propertyInfo = typeof(TObj).GetProperty(propertyName);
 
         if (propertyInfo == null)
         {
@@ -24,14 +24,14 @@ public class PropertyRetrieval
 
         object? propertyValue = propertyInfo.GetValue(obj);
 
-        if (propertyValue is null && Nullable.GetUnderlyingType(typeof(T)) != null)
+        if (propertyValue is null && Nullable.GetUnderlyingType(typeof(TType)) != null)
         {
             return true;
         }
 
-        if (propertyValue is not T typedValue)
+        if (propertyValue is not TType typedValue)
         {
-            Console.WriteLine($"Property '{propertyName}' is of type {propertyInfo.PropertyType}, got {typeof(T)}.");
+            Console.WriteLine($"Property '{propertyName}' is of type {propertyInfo.PropertyType}, got {typeof(TType)}.");
             return false;
         }
 

@@ -10,5 +10,5 @@ Person person = new()
 };
 
 
-PropertyRetrieval.TryGetPropertyValue<int>(person, "Age", out var value);
+PropertyRetrieval.TryGetPropertyValue<int, Person>(person, "Age", out var value);
 Console.WriteLine($"Retrieved value: {value}.");

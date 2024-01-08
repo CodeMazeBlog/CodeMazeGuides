@@ -12,7 +12,7 @@ public class PropertyRetrievalTests
         Person person = null;
 
         //Act
-        var result = PropertyRetrieval.TryGetPropertyValue<string>(person, "Name", out _);
+        var result = PropertyRetrieval.TryGetPropertyValue<string, Person?>(person, "Name", out _);
 
         // Assert
         Assert.False(result);
@@ -25,7 +25,7 @@ public class PropertyRetrievalTests
         var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
 
         // Act
-        var result = PropertyRetrieval.TryGetPropertyValue<string>(person, "NonExistentProperty", out _);
+        var result = PropertyRetrieval.TryGetPropertyValue<string, Person>(person, "NonExistentProperty", out _);
 
         // Assert
         Assert.False(result);
@@ -38,7 +38,7 @@ public class PropertyRetrievalTests
         var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
 
         // Act
-        var result = PropertyRetrieval.TryGetPropertyValue<int>(person, "Name", out _);
+        var result = PropertyRetrieval.TryGetPropertyValue<int, Person>(person, "Name", out _);
 
         // Assert
         Assert.False(result);
@@ -51,7 +51,7 @@ public class PropertyRetrievalTests
         var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
 
         // Act
-        var result = PropertyRetrieval.TryGetPropertyValue<string>(person, "FirstName", out string value);
+        var result = PropertyRetrieval.TryGetPropertyValue<string, Person>(person, "FirstName", out string value);
 
         // Assert
         Assert.True(result);
@@ -65,7 +65,7 @@ public class PropertyRetrievalTests
         var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
 
         // Act
-        var result = PropertyRetrieval.TryGetPropertyValue<int?>(person, "Age", out int? value);
+        var result = PropertyRetrieval.TryGetPropertyValue<int?, Person>(person, "Age", out int? value);
 
         // Assert
         Assert.True(result);
