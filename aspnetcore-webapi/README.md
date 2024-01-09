@@ -10,6 +10,7 @@ This section contains articles about ASP.NET Core Web API-related topics.
 - [The AddEndpointsApiExplorer Method in ASP.NET Core](https://code-maze.com/apsnetcore-webapi-addendpointsapiexplorer-method/)
 - [ApiController Attribute in ASP.NET Core Web API](https://code-maze.com/apicontroller-attribute-in-asp-net-core-web-api/)
 - [Implementing API Gateway with Ocelot in ASP.NET Core](https://code-maze.com/aspnetcore-api-gateway-with-ocelot/)
+- [How to Append or Update Query String Values in C#](https://code-maze.com/csharp-append-or-update-query-string-values/)
 - [How to Build a Query String for a URL in C#?](https://code-maze.com/how-to-create-a-url-query-string/)
 - [Creating Multiple Resources with a Single Request in ASP.NET Core](https://code-maze.com/aspnetcore-creating-multiple-resources-with-single-request/)
 - [How to Add Custom Headers in ASP.NET Core Web API](https://code-maze.com/aspnetcore-add-custom-headers/)
