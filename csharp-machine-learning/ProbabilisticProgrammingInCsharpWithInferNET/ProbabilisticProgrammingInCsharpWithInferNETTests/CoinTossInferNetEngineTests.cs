@@ -18,7 +18,7 @@ public class CoinTossInferNetEngineTests
         Console.WriteLine($"Probability Second Coin Is Heads: {coinTossInferNetEngine.SecondCoinPercentage}%");
         Console.WriteLine($"Probability Both Coins Are Heads: {coinTossInferNetEngine.BothCoinsPercentage}%");
 
-        Assert.IsTrue(coinTossInferNetEngine.BothCoinsPercentage == 25.0);
+        Assert.AreEqual(coinTossInferNetEngine.BothCoinsPercentage, 25.0, 1e-3);
     }
 
     [TestMethod]
@@ -31,6 +31,6 @@ public class CoinTossInferNetEngineTests
         Console.WriteLine($"Probability Second Coin Is Heads: {coinTossInferNetEngine.SecondCoinPercentage}%");
         Console.WriteLine($"Probability Both Coins Are Heads: {coinTossInferNetEngine.BothCoinsPercentage}%");
 
-        Assert.IsTrue(coinTossInferNetEngine.FirstCoinPercentage == 33.33);
+        Assert.AreEqual(coinTossInferNetEngine.FirstCoinPercentage, 33.33, 1e-3);
     }
 }

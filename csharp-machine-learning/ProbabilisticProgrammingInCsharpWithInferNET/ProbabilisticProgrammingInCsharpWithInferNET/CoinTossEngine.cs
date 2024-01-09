@@ -1,7 +1,8 @@
 ﻿namespace ProbabilisticProgrammingInCsharpWithInferNET;
 public class CoinTossEngine
 {
-    private bool IsHeads { get { return Random.Shared.NextDouble() > 0.5; } }
+    private static bool IsHeads => Random.Shared.NextDouble() > 0.5;
+
     public bool FirstHeads { get; private set; }
     public bool SecondHeads { get; private set; }
     public bool BothHeads { get; private set; }
@@ -15,7 +16,7 @@ public class CoinTossEngine
     public double SecondCoinPercentage { get; private set; }
     public double BothCoinsPercentage { get; private set; }
 
-    public void TossTheCoins(int numberOfRuns = 1000000, Func<CoinTossEngine, bool> condition = null)
+    public void TossTheCoins(int numberOfRuns = 1_000_000, Func<CoinTossEngine, bool> condition = null)
     {
         RunCount = 0;
         for (int i = 0; i < numberOfRuns; i++)
@@ -32,12 +33,13 @@ public class CoinTossEngine
                 RunCount++;
             }
         }
+
         FirstCoinPercentage = Math.Round(100.0 * FirstCoinHeadCount / RunCount, 2);
         SecondCoinPercentage = Math.Round(100.0 * SecondCoinHeadCount / RunCount, 2);
         BothCoinsPercentage = Math.Round(100.0 * BothCoinsHeadCount / RunCount, 2);
     }
 
-    public int TossCoin(int numberOfRuns = 1000000)
+    public int TossCoin(int numberOfRuns = 1_000_000)
     {
         var headsCount = 0;
         for (int i = 0; i < numberOfRuns; i++)
@@ -49,10 +51,10 @@ public class CoinTossEngine
 
     public int[] IsCoinFairExperiments(int numberOfExperiments = 10)
     {
-        var headCounts = new List<int>();
+        var headCounts = new int[numberOfExperiments];
         for (int i = 0; i < numberOfExperiments; i++)
-            headCounts.Add(TossCoin());
+            headCounts[i] = TossCoin();
 
-        return headCounts.ToArray();
+        return headCounts;
     }
 }

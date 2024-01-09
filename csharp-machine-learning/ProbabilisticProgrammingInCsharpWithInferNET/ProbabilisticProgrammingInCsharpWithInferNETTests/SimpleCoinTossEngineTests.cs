@@ -8,12 +8,6 @@ namespace ProbabilisticProgrammingInCsharpWithInferNETTests;
 [TestClass]
 public class SimpleCoinTossEngineTests
 {
-    private bool ValidateResult(double expected,  double actual, double tolerance = 1.0)
-    {
-        return actual >= expected - tolerance &&
-            actual <= expected + tolerance;
-    }
-
     [TestMethod]
     public void WhenCoinTossCountHeadsAndCalculateAverage_ThenSuccess()
     {
@@ -26,7 +20,7 @@ public class SimpleCoinTossEngineTests
 
             Console.WriteLine($"Experiment count: {count}, head count average: {average}");
 
-            Assert.IsFalse(average == 500000);
+            Assert.AreNotEqual(average, 500000, 1.0);
         }
     }
 
@@ -40,7 +34,7 @@ public class SimpleCoinTossEngineTests
         Console.WriteLine($"Probability Second Coin Is Heads: {coinTossEngine.SecondCoinPercentage}%");
         Console.WriteLine($"Probability Both Coins Are Heads: {coinTossEngine.BothCoinsPercentage}%");
 
-        Assert.IsTrue(ValidateResult(25.0, coinTossEngine.BothCoinsPercentage));
+        Assert.AreEqual(25.0, coinTossEngine.BothCoinsPercentage, 1.0);
     }
 
     [TestMethod]
@@ -53,6 +47,6 @@ public class SimpleCoinTossEngineTests
         Console.WriteLine($"Probability Second Coin Is Heads: {coinTossEngine.SecondCoinPercentage}%");
         Console.WriteLine($"Probability Both Coins Are Heads: {coinTossEngine.BothCoinsPercentage}%");
 
-        Assert.IsTrue(ValidateResult(33.0, coinTossEngine.FirstCoinPercentage));
+        Assert.AreEqual(33.0, coinTossEngine.FirstCoinPercentage, 1.0);
     }
 }
