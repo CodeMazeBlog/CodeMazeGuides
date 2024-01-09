@@ -1,5 +1,4 @@
-﻿using TemperatureCommand;
-using PluginPatternInCSharp;
+﻿using PluginPatternInCSharp;
 
 namespace PluginPatternInCSharpTests
 {
@@ -9,7 +8,7 @@ namespace PluginPatternInCSharpTests
         [TestMethod]
         public void GivenCommandString_WhenMainIsInvoked_ThenProgramRunsWithoutIssues()
         {
-            Program.Main(["temperature"]);
+            Program.Main(new [] {"temperature"});
         }
 
         [TestMethod]
