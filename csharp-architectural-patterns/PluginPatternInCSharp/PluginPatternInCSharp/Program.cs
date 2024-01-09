@@ -24,33 +24,23 @@ public class Program
                 return CreateCommands(pluginAssembly);
             }).ToList();
 
-            if (args.Length == 0)
+            Console.WriteLine("Welcome to the Weather App.");
+
+            foreach (string commandName in args)
             {
-                Console.WriteLine("Welcome to the Weather App. Here are the available commands: \n\nCommands: ");
-                // Output the loaded commands.
-                foreach (var command in commands)
+                Console.WriteLine($"-- {commandName} --");
+
+                // Execute the command with the name passed as an argument.
+                var command = commands.FirstOrDefault(c => c.Name == commandName);
+                if (command == null)
                 {
-                    Console.WriteLine($"{command.Name}\t - {command.Description}");
+                    Console.WriteLine();
+                    Console.WriteLine("No such command is known.");
+
+                    return;
                 }
-            }
-            else
-            {
-                foreach (string commandName in args)
-                {
-                    Console.WriteLine($"-- {commandName} --");
 
-                    // Execute the command with the name passed as an argument.
-                    var command = commands.FirstOrDefault(c => c.Name == commandName);
-                    if (command == null)
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("No such command is known.");
-
-                        return;
-                    }
-
-                    command.Invoke();
-                }
+                command.Invoke();
             }
 
             Console.WriteLine("\nApplication Closing");
