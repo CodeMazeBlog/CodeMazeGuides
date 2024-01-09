@@ -2,17 +2,17 @@
 
 namespace SecretMgt;
 
-public class OrderService
+public class PaymentService
 {
     private IList<Order> _orders;
     private IConfiguration _configuration;
     private readonly string? _key;
     private PayStackApi _paystackApi;
 
-    public OrderService(IConfiguration configuration)
+    public PaymentService(IConfiguration configuration)
     {
         _configuration = configuration;
-        _key = _configuration["Paystack:APIKey"];
+        _key = _configuration["Paystack:ApiKey"];
         _paystackApi = new PayStackApi(_key);
 
         _orders = new List<Order>()
@@ -33,7 +33,6 @@ public class OrderService
                Cost = 6
            }
         };
-
     }
 
     public TransactionInitializeResponse PayViaPaystack(int orderId, string email)

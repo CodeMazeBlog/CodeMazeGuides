@@ -7,9 +7,9 @@ namespace SecretMgt.Controllers
     [ApiController]
     public class OrderController : Controller
     {
-        private readonly OrderService _orderService;
+        private readonly PaymentService _orderService;
 
-        public OrderController(OrderService orderService)
+        public OrderController(PaymentService orderService)
         {
             _orderService = orderService;
         }
