@@ -33,13 +33,6 @@ namespace ReadXml.Read
             return result;
         }
 
-        private class PersonData
-        {
-            public string? FirstName { get; set; }
-            public string? LastName { get; set; }
-            public void Init() => FirstName = LastName = "";
-        }
-
         public static IEnumerable<string> ReadNamesAndAges(string xml)
         {
             var settings = new XmlReaderSettings
@@ -77,6 +70,13 @@ namespace ReadXml.Read
             }
 
             return result;
+        }
+
+        private class PersonData
+        {
+            public string? FirstName { get; set; }
+            public string? LastName { get; set; }
+            public void Init() => FirstName = LastName = "";
         }
     }
 }

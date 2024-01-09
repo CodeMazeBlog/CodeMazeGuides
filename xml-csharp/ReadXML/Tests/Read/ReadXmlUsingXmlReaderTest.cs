@@ -50,6 +50,7 @@
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
             var personXml = CreateXmlUsingXmlWriter.CreateSimpleXml(person);
+
             return personXml;
         }
 
@@ -57,6 +58,7 @@
         {
             var person = new Person("John", "Doe", "john.doe@code-maze.com", new DateTime(1980, 4, 13));
             var personXml = CreateXmlUsingXmlWriter.CreateWrongXml(person);
+
             return personXml;
         }
     }
