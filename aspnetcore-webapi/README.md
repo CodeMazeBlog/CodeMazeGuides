@@ -28,7 +28,6 @@ This section contains articles about ASP.NET Core Web API-related topics.
 - [How to Add Multiple POST Actions in ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-add-multiple-post-actions/)
 - [Secure Microservices Using JWT With Ocelot in .NET Core](https://code-maze.com/dotnetcore-secure-microservices-jwt-ocelot/)
 - [Optional Parameters in ASP.NET Core Web API Routing](https://code-maze.com/aspnetcore-web-api-optional-parameters/)
-- [Using Query String Parameters with Minimal APIs](https://code-maze.com/aspnetcore-query-string-parameters-minimal-apis/)
 - [Rate Limiting in ASP.NET Core Web API](https://code-maze.com/aspnetcore-web-api-rate-limiting/)
 - [How to Register Services for Different Environments in .NET](https://code-maze.com/aspnetcore-register-services-for-different-environments/)
 - [Return File in ASP.NET Core Web API](https://code-maze.com/aspnetcore-register-services-for-different-environments/)
