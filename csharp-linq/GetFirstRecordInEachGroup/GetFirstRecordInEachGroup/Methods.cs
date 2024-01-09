@@ -40,16 +40,16 @@ public static class Methods
     public static List<Student> GetYoungestStudentInClassIterativeDictionary
         (this List<Student> students)
     {
-        var grouppedStudents = new Dictionary<int, Student>();
+        var groupedStudents = new Dictionary<int, Student>();
         foreach (var student in students)
         {
-            if (!grouppedStudents.ContainsKey(student.Class))
-                grouppedStudents.Add(student.Class, student);
-            else if (student.DateOfBirth < 
-                grouppedStudents[student.Class].DateOfBirth)
-                grouppedStudents[student.Class] = student;
+            if (!groupedStudents.TryGetValue(student.Class, out Student existingStudent) ||
+                student.DateOfBirth < existingStudent.DateOfBirth)
+            {
+                groupedStudents[student.Class] = student;
+            }
         }
 
-        return grouppedStudents.Values.ToList();
+        return groupedStudents.Values.ToList();
     }
 }

@@ -10,7 +10,7 @@ namespace GetFirstRecordInEachGroup;
 public class PerformanceBenchmark 
 {
     private static readonly List<Student> students = 
-        Methods.GenerateStudents();
+        Methods.GenerateStudents(10000000);
 
     [Benchmark]
     public List<Student> LinqGroupBy1() => 
