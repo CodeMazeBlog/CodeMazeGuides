@@ -1,8 +1,8 @@
 ﻿namespace JsonValidatorsTest;
 
-public class JsonSchemaAgainstDesiredStructureTests()
+public class NewtonsoftJsonSchemaTests()
 {
-    private readonly IJsonValidator _sut = new JsonSchemaAgainstDesiredStructureUseCase();
+    private readonly IJsonValidator _sut = new NewtonsoftJsonSchemaUseCase();
 
     [Fact]
     public void WhenGivenValidJson_ThenIsValidReturnsTrue()

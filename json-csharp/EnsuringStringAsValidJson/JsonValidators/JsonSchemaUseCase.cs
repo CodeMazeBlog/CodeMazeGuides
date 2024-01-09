@@ -5,11 +5,11 @@ using JsonValidators.Abstracts;
 
 namespace JsonValidators;
 
-public class JsonSchemaSimpleValidationUseCase : IJsonValidator
+public class JsonSchemaUseCase : IJsonValidator
 {
     private readonly JsonSchema _desiredJsonSchema;
 
-    public JsonSchemaSimpleValidationUseCase()
+    public JsonSchemaUseCase()
     {
         _desiredJsonSchema = new JsonSchemaBuilder()
             .Properties(

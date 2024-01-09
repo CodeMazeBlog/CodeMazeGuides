@@ -5,11 +5,11 @@ using Newtonsoft.Json.Schema;
 
 namespace JsonValidators;
 
-public class JsonSchemaAgainstDesiredStructureUseCase : IJsonValidator
+public class NewtonsoftJsonSchemaUseCase : IJsonValidator
 {
     private readonly string _desiredJsonSchema;
 
-    public JsonSchemaAgainstDesiredStructureUseCase()
+    public NewtonsoftJsonSchemaUseCase()
     {
         _desiredJsonSchema = @"{
             'type': 'object',

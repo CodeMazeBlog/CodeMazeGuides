@@ -1,5 +1,5 @@
 ﻿namespace JsonValidatorsTest;
 
-public class JsonSchemaTests() : JsonValidatorsTestBase(new JsonSchemaSimpleValidationUseCase())
+public class JsonSchemaTests() : JsonValidatorsTestBase(new JsonSchemaUseCase())
 {
 }
