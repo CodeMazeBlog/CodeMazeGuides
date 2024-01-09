@@ -9,12 +9,6 @@ public class Program
     {
         try
         {
-            if (args.Length == 1 && args[0] == "/d")
-            {
-                Console.WriteLine("Waiting for any key...");
-                Console.ReadLine();
-            }
-
             // Load commands from plugins.
             var binDir = Environment.CurrentDirectory;
             var files = Directory.GetFiles(binDir, "*.dll").ToList();
@@ -32,30 +26,12 @@ public class Program
 
             if (args.Length == 0)
             {
-                Console.WriteLine("Welcome to the Weather App. Please select a command...\n\nCommands: ");
+                Console.WriteLine("Welcome to the Weather App. Here are the available commands: \n\nCommands: ");
                 // Output the loaded commands.
                 foreach (var command in commands)
                 {
                     Console.WriteLine($"{command.Name}\t - {command.Description}");
                 }
-
-                Console.WriteLine(); // print empty line
-
-                var commandName = Console.ReadLine();
-
-                var theCommand = commands.FirstOrDefault(c => c.Name == commandName);
-
-                if (theCommand == null)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("No such command is known.");
-
-                    return;
-                }
-
-                theCommand.Invoke();
-
-                Console.WriteLine("Application Closing");
             }
             else
             {
@@ -74,10 +50,10 @@ public class Program
                     }
 
                     command.Invoke();
-
-                    Console.WriteLine("Application Closing");
                 }
             }
+
+            Console.WriteLine("\nApplication Closing");
         }
         catch (Exception ex)
         {

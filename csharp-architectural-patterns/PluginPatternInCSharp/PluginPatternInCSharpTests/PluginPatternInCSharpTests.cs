@@ -11,5 +11,11 @@ namespace PluginPatternInCSharpTests
         {
             Program.Main(["temperature"]);
         }
+
+        [TestMethod]
+        public void GivenNoCommandString_WhenMainIsInvoked_ThenProgramRunsWithoutIssues()
+        {
+            Program.Main([]);
+        }
     }
 }
