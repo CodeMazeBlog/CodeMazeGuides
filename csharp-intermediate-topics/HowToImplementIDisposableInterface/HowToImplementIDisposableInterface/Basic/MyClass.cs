@@ -1,6 +1,4 @@
-﻿using HowToImplementIDisposableInterface.DisposePattern;
-
-namespace HowToImplementIDisposableInterface.Basic;
+﻿namespace HowToImplementIDisposableInterface.Basic;
 
 public sealed class MyClass : IDisposable
 {
@@ -20,7 +18,7 @@ public sealed class MyClass : IDisposable
         // If this object has been disposed, throw an exception.
         if (_disposed)
         {
-            throw new ObjectDisposedException(nameof(MyParentClass));
+            throw new ObjectDisposedException(nameof(MyClass));
         }
 
         Console.WriteLine($"Called {nameof(MyClass)}.{nameof(DoSomething)}");
