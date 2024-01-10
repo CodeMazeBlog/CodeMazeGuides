@@ -6,7 +6,7 @@ namespace Tests
     public class EmployeeRepositoryTests
     {
         [TestMethod]
-        public void WhenGetEmployeesUsingWhereWithList_ReturnsRecords()
+        public void GivenTenUserInDb_WhenGetEmployeesUsingWhereWithList_ThenReturnsTenRecords()
         {
             var dbContext = new CompanyDbContext();
             dbContext.Database.EnsureCreated();
@@ -21,7 +21,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenGetEmployeesUsingWhereWithHashSet_ReturnsRecords()
+        public void GivenTenUserInDb_WhenGetEmployeesUsingWhereWithHashSet_ThenReturnsTenRecords()
         {
             var dbContext = new CompanyDbContext();
             dbContext.Database.EnsureCreated();
@@ -36,7 +36,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenGetEmployeesUsingJoinWithList_ReturnsRecords()
+        public void GivenTenUserInDb_WhenGetEmployeesUsingJoinWithList_ThenReturnsTenRecords()
         {
             var dbContext = new CompanyDbContext();
             dbContext.Database.EnsureCreated();
@@ -51,7 +51,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenGetEmployeesUsingJoinWithHasSet_ReturnsRecords()
+        public void GivenTenUserInDb_WhenGetEmployeesUsingJoinWithHasSet_ThenReturnsTenRecords()
         {
             var dbContext = new CompanyDbContext();
             dbContext.Database.EnsureCreated();
