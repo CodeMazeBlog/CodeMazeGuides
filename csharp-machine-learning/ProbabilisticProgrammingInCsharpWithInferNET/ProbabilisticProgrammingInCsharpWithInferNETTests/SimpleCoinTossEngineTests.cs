@@ -9,19 +9,20 @@ namespace ProbabilisticProgrammingInCsharpWithInferNETTests;
 public class SimpleCoinTossEngineTests
 {
     [TestMethod]
-    public void WhenCoinTossCountHeadsAndCalculateAverage_ThenSuccess()
+    [DataRow(1)]
+    [DataRow(10)]
+    [DataRow(50)]
+    [DataRow(100)]
+    [DataRow(200)]
+    public void WhenCoinTossCountHeadsAndCalculateAverage_ThenSuccess(int experimentsCount)
     {
         var coinTossEngine = new CoinTossEngine();
-        var experimentsCounts = new int[] { 1, /*10, 50, 100, 200*/ };
-        foreach (var count in experimentsCounts)
-        {
-            var headCounts = coinTossEngine.IsCoinFairExperiments(count);
-            var average = headCounts.Average();
+        var headCounts = coinTossEngine.IsCoinFairExperiments(experimentsCount);
+        var average = headCounts.Average();
 
-            Console.WriteLine($"Experiment count: {count}, head count average: {average}");
+        Console.WriteLine($"Experiment count: {experimentsCount}, head count average: {average}");
 
-            Assert.AreNotEqual(average, 500000, 1.0);
-        }
+        Assert.AreNotEqual(average, 500000, 1e-3);
     }
 
     [TestMethod]
