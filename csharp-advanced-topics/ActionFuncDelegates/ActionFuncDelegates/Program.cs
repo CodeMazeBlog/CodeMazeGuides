@@ -1,34 +1,33 @@
 ﻿using System.Globalization;
 namespace ActionFuncDelegates
 {
-    internal class Program
+    public static class Program
     {
+        public static Action<string> Greet = lang => Console.WriteLine($"Welcome to {lang} demo!");
+
+        public static Func<float, float, float> Divide = (a, b) => a / b;
+
+        public static Func<string, string> ConvertMethod = Titlecase;
+       
         static void Main(string[] args)
         {
-            // Simple Action Delegate without parameters
-            Action test = () => Console.WriteLine("Performing some task");
-            test(); // Invoking the action delegate
-
-            // Action Delegate with parameter
-            Action<string> greet = lang => Console.WriteLine($"Welcome to {lang} demo!");
-            greet("C#"); // Displays: Welcome to C# demo
-
-            // Simple Function Delegate 
-            Func<float, float, float> divide = (a, b) => a / b;
-            Console.WriteLine(divide(5, 3)); // Displays: 1.666666
-
-            // Another Function Delegate Example
-            // Instantiate delegate to reference Titlecase method
-            Func<string, string> convertMethod = Titlecase;
-            string name = "illinois";
-            // Use delegate instance to call Titlecase method
-            Console.WriteLine(convertMethod(name));
+            Action Test = () => Console.WriteLine("Performing some task");
+            Test(); 
+            
+            Greet("C#"); // Displays: Welcome to C# demo       
+            
+            Console.WriteLine(Divide(5, 3)); 
+            
+            var name = "illinois";
+                        
+            Console.WriteLine(ConvertMethod(name));
             Console.ReadKey();
         }
 
-        static string Titlecase(string inputString)
+        public static string Titlecase(string inputString)
         {
             var textinfo = new CultureInfo("en-US", false).TextInfo;
+            
             return textinfo.ToTitleCase(inputString);
         }
     }
