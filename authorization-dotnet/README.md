@@ -19,6 +19,7 @@ This section contains articles about authorization related topics in .NET.
 - [How to Use Multiple Authentication Schemes in .NET](https://code-maze.com/dotnet-multiple-authentication-schemes/)
 - [Implementing Passwordless Authentication in ASP.NET Core](https://code-maze.com/aspnetcore-passwordless-authentication/)
 - [Resource-Based Authorization in ASP.NET Core](https://code-maze.com/aspnetcore-resource-based-authorization/)
+- [How to Set an Authenticator for a New RestClient in RestSharp](https://code-maze.com/csharp-how-to-set-an-authenticator-for-a-new-restclient-in-restsharp/)
 - [Two Factor Authentication with Angular using Google Authenticator](https://code-maze.com/dotnet-angular-two-factor-authentication-with-using-google-authenticator/)
 - [Two-Factor Authentication With SMS in ASP.NET Core](https://code-maze.com/aspnetcore-two-factor-authentication-sms/)
 - [Using Authorization with Swagger in ASP.NET Core](https://code-maze.com/swagger-authorization-aspnet-core/)
