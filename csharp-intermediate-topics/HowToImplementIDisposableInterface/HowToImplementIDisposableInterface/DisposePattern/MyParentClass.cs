@@ -53,7 +53,6 @@ public class MyParentClass : IDisposable
         // Free native resources if there are any.
         // For simplicity, we'll assume there aren't any.
 
-
         // Mark this object as disposed.
         _disposed = true;
     }
