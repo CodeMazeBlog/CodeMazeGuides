@@ -16,7 +16,7 @@ public class CoinTossInferNetEngine
     public double SecondCoinPercentage { get; private set; }
     public double BothCoinsPercentage { get; private set; }
 
-    public void TossTheCoins(Func<CoinTossInferNetEngine, bool> condition = null)
+    public void TossTheCoins(Action<CoinTossInferNetEngine> condition = null)
     {
         FirstHeads = IsHeads;
         SecondHeads = IsHeads;
