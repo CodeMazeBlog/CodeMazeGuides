@@ -3,7 +3,7 @@
 public class MyParentClass : IDisposable
 {
     // This field is a flag that indicates whether this object has been disposed.
-    private bool _disposed;
+    private bool _disposed = false;
 
     // This field is disposable, so this class must (also) implement the IDisposable interface.
     private readonly IManagedResource _parentManagedResource;
