@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EscapingCurlyBracketsInFormatStrings
+﻿namespace EscapingCurlyBracketsInFormatStrings
 {
     public static class FormatStringsEscaping
     {
@@ -18,8 +12,8 @@ namespace EscapingCurlyBracketsInFormatStrings
 
         public static string CurlyBracketsEscaping()
         {
-            var value = "World";
-            var formattedString = string.Format("{{Hello, {0}!}}", value);
+            var formatValue = "World";
+            var formattedString = string.Format("{{Hello, {0}!}}", formatValue);
 
             return formattedString;
         }
