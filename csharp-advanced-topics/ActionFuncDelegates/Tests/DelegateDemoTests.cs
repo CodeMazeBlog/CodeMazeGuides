@@ -1,12 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ActionFuncDelegates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Globalization;
-using System.Diagnostics;
+﻿using ActionFuncDelegates;
 
 namespace Tests
 {
@@ -26,7 +18,7 @@ namespace Tests
         public void WhenActionDelegateInvoked_ThenCorrectValueDisplayed()
         {
             //Act
-            Program.greet("PHP");
+            Program.Greet("PHP");
             var output = stringWriter.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             var expected = "Welcome to PHP demo!";
             
@@ -37,7 +29,7 @@ namespace Tests
         [TestMethod]
         public void WhenFuncDelegateInvoked_ThenCorrectValueDisplayed()
         {                      
-            var expected = Program.convertMethod("florida");
+            var expected = Program.ConvertMethod("florida");
             
             Assert.AreEqual(expected, "Florida");
         }

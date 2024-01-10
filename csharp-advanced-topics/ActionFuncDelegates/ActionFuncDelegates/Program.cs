@@ -3,35 +3,31 @@ namespace ActionFuncDelegates
 {
     public static class Program
     {
-        // Action Delegate with parameter
-        public static Action<string> greet = lang => Console.WriteLine($"Welcome to {lang} demo!");
+        public static Action<string> Greet = lang => Console.WriteLine($"Welcome to {lang} demo!");
 
-        // Simple Function Delegate
-        public static Func<float, float, float> divide = (a, b) => a / b;
+        public static Func<float, float, float> Divide = (a, b) => a / b;
 
-        // Another Function Delegate
-        public static Func<string, string> convertMethod = Titlecase;
+        public static Func<string, string> ConvertMethod = Titlecase;
+       
         static void Main(string[] args)
         {
-         
-            Action test = () => Console.WriteLine("Performing some task");
-            test(); 
+            Action Test = () => Console.WriteLine("Performing some task");
+            Test(); 
             
-            greet("C#"); // Displays: Welcome to C# demo           
+            Greet("C#"); // Displays: Welcome to C# demo       
             
+            Console.WriteLine(Divide(5, 3)); 
             
-            Console.WriteLine(divide(5, 3)); 
-            
-            string name = "illinois";
-            
-            
-            Console.WriteLine(convertMethod(name));
+            var name = "illinois";
+                        
+            Console.WriteLine(ConvertMethod(name));
             Console.ReadKey();
         }
 
         public static string Titlecase(string inputString)
         {
             var textinfo = new CultureInfo("en-US", false).TextInfo;
+            
             return textinfo.ToTitleCase(inputString);
         }
     }
