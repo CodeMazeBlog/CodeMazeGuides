@@ -12,35 +12,35 @@ var balanceMessageWithCultureInfo =
 Console.WriteLine(balanceMessageWithCultureInfo);
 
 var balanceMessageWithSeparators =
-    NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(null, englishCultureInfo);
+    NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifier(null, englishCultureInfo);
 Console.WriteLine(balanceMessageWithSeparators);
 
-var balanceMessageWithFourDigits =
-    NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(4, englishCultureInfo);
-Console.WriteLine(balanceMessageWithFourDigits);
+var balanceMessageWithFourDecimalPlaces =
+    NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifier(4, englishCultureInfo);
+Console.WriteLine(balanceMessageWithFourDecimalPlaces);
 
-var balanceMessageWithoutDecimals =
-    NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(0, englishCultureInfo);
-Console.WriteLine(balanceMessageWithoutDecimals);
+var balanceMessageWithoutDecimalPlaces =
+    NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifier(0, englishCultureInfo);
+Console.WriteLine(balanceMessageWithoutDecimalPlaces);
 
 var balanceMessageUsingToString = NumbersFormatting.GetBalanceUsingTheToStringMethod("n", null);
 Console.WriteLine(balanceMessageUsingToString);
 
-var balanceMessageUsingToStringeWithFourDigits = NumbersFormatting.GetBalanceUsingTheToStringMethod("n4", null);
-Console.WriteLine(balanceMessageUsingToStringeWithFourDigits);
+var balanceMessageUsingToStringeWithFourDecimalPlaces = NumbersFormatting.GetBalanceUsingTheToStringMethod("n4", null);
+Console.WriteLine(balanceMessageUsingToStringeWithFourDecimalPlaces);
 
-var balanceMessageUsingToStringWithoutDigits = NumbersFormatting.GetBalanceUsingTheToStringMethod("n0", null);
-Console.WriteLine(balanceMessageUsingToStringWithoutDigits);
+var balanceMessageUsingToStringWithoutDecimalPlaces = NumbersFormatting.GetBalanceUsingTheToStringMethod("n0", null);
+Console.WriteLine(balanceMessageUsingToStringWithoutDecimalPlaces);
 
 
 var spanishCultureInfoBalanceMessage = NumbersFormatting.GetBalanceUsingTheToStringMethod("n4", spanishCultureInfo);
 Console.WriteLine(spanishCultureInfoBalanceMessage);
 
-var message = NumbersFormatting.GetBalanceUsingStringInterpolation(null);
-Console.WriteLine(message);
-
-var numericInterpolatedMessage = NumbersFormatting.GetBalanceUsingStringInterpolation(4);
+var numericInterpolatedMessage = NumbersFormatting.GetBalanceUsingStringInterpolation(null);
 Console.WriteLine(numericInterpolatedMessage);
+
+var numericInterpolatedMessageWithFourDecimalPlaces = NumbersFormatting.GetBalanceUsingStringInterpolation(4);
+Console.WriteLine(numericInterpolatedMessageWithFourDecimalPlaces);
 
 var numericInterpolatedMessageWithEnglishCulture =
    NumbersFormatting.GetBalanceUsingStringInterpolationWithCultureInfo("n4", englishCultureInfo);

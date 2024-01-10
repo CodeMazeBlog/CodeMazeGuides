@@ -25,25 +25,25 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenNumericValue_WhenStringFormatWithCultureInfoAndNumericSpecifierIsUsed_ShouldReturnExpectedStringValue()
+        public void GivenNumericValue_WhenStringFormatWithCultureInfoWithoutSpecifierIsUsed_ShouldReturnExpectedStringValue()
         {
-            var message = NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(null, _englishCultureInfo);
+            var message = NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifier(null, _englishCultureInfo);
 
             Assert.Equal("Your account balance is: 2,154,002.54", message);
         }
 
         [Fact]
-        public void GivenNumericValue_WhenStringFormatWithCultureInfoNumericSpecifierAndDecimalCountIsUsed_ShouldReturnExpectedStringValue()
+        public void GivenNumericValue_WhenStringFormatWithCultureInfoAndSpecifierWithDecimalPlacesIsUsed_ShouldReturnExpectedStringValue()
         {
-            var message = NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(4, _englishCultureInfo);
+            var message = NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifier(4, _englishCultureInfo);
 
             Assert.Equal("Your account balance is: 2,154,002.5350", message);
         }
 
         [Fact]
-        public void GivenNumericValue_WhenStringFormatWithCultureInfoNumericSpecifierAndDecimalCount0IsUsed_ShouldReturnExpectedStringValue()
+        public void GivenNumericValue_WhenStringFormatWithCultureInfoAndSpecifierWithoutDecimalPlacesIsUsed_ShouldReturnExpectedStringValue()
         {
-            var message = NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifiers(0, _englishCultureInfo);
+            var message = NumbersFormatting.GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifier(0, _englishCultureInfo);
 
             Assert.Equal("Your account balance is: 2,154,003", message);
         }
@@ -57,7 +57,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenNumericValue_WhenToStringWithSpecifierAndDigitCountIsUsed_ShouldReturnExpectedStringValue()
+        public void GivenNumericValue_WhenToStringWithSpecifierWithDecimalPlacesIsUsed_ShouldReturnExpectedStringValue()
         {
             var formattedBallance = NumbersFormatting.GetBalanceUsingTheToStringMethod("n4", null);
 
@@ -65,7 +65,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenNumericValue_WhenToStringWithSpecifierAndDigitCount0IsUsed_ShouldReturnExpectedStringValue()
+        public void GivenNumericValue_WhenToStringWithSpecifierWithoutDecimalPlacesIsUsed_ShouldReturnExpectedStringValue()
         {
             var formattedBallance = NumbersFormatting.GetBalanceUsingTheToStringMethod("n0", null);
 
@@ -73,7 +73,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenNumericValue_WhenToStringWithSpecifierAndDigitCountAndCultureInfoIsUsed_ShouldReturnExpectedStringValue()
+        public void GivenNumericValue_WhenToStringWithSpecifierWithDecimalPlacesAndCultureInfoIsUsed_ShouldReturnExpectedStringValue()
         {
             var formattedBallance = NumbersFormatting.GetBalanceUsingTheToStringMethod("n4", _spanishCultureInfo);
 
@@ -81,7 +81,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenNumericValue_WhenStringInterpolationIsUsed_ShouldReturnExpectedStringValue()
+        public void GivenNumericValue_WhenStringInterpolationWitboutSpecifierIsUsed_ShouldReturnExpectedStringValue()
         {
             var message = NumbersFormatting.GetBalanceUsingStringInterpolation(null);
 
@@ -89,7 +89,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenNumericValue_WhenStringInterpolationIsUsedWithSpecifier_ShouldReturnExpectedStringValue()
+        public void GivenNumericValue_WhenStringInterpolationWithSpecifierIsUsed_ShouldReturnExpectedStringValue()
         {
             var message = NumbersFormatting.GetBalanceUsingStringInterpolation(4);
 
@@ -97,7 +97,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenNumericValue_WhenStringInterpolationIsUsedWithSpecifierAndCultureInfo_ShouldReturnExpectedStringValue()
+        public void GivenNumericValue_WhenStringInterpolationWithSpecifierAndCultureInfoIsUsed_ShouldReturnExpectedStringValue()
         {
             var message = NumbersFormatting.GetBalanceUsingStringInterpolationWithCultureInfo("n4", _spanishCultureInfo);
 
