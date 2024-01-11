@@ -7,3 +7,4 @@ This section contains the topics related to threads in C#.
 - [Debugging and Profiling Multithreaded .NET Applications](https://code-maze.com/dotnet-debugging-and-profiling-multithreaded-applications/)
 - [PeriodicTimer in C#](https://code-maze.com/csharp-periodic-timer/)
 - [Tasks vs Threads in C#](https://code-maze.com/csharp-tasks-vs-threads/)
+- [When to Use Thread.Sleep, When to Use Task.Delay?](https://code-maze.com/csharp-thread-sleep-vs-task-delay/)
