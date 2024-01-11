@@ -13,15 +13,16 @@ public class Application
 
     public void Run()
     {
-        const string userName = "John Doe";
+        var userName = "John Doe";
         var loggedinTime = DateTime.Now;
-        SimpleLogWithCA2254(userName, loggedinTime);
-        LogJson(userName, loggedinTime);
-        LogMessageTemplateInCSharp(userName);
-        LogMessageTemplateInCSharp2(userName);
+        LogMessageWithJson(userName, loggedinTime);
+        LogMessageWithSamePlaceholderAndVariableName(userName);
+        LogMessageWithDifferentPlaceholderAndVariableName(userName);
+        LogMessageWithCA2254Warning(userName, loggedinTime);
+        LogMessageToFixCA2254Warning(userName, loggedinTime);
     }
 
-    public void LogJson(string userName, DateTime loggedinTime)
+    public void LogMessageWithJson(string userName, DateTime loggedinTime)
     {
         var logEntry = new
         {
@@ -34,23 +35,23 @@ public class Application
         _logger.Log(LogLevel.Information, message);
     }
 
-    public void SimpleLogWithCA2254(string userName, DateTime loggedOnTime)
-    {
-        _logger.Log(LogLevel.Information, $"User {userName} logged on {loggedOnTime}");
-    }
-    
-    public void SimpleLogWithFixedCA2254(string userName, DateTime loggedOnTime)
-    {
-        _logger.LogInformation("User {userName} logged on {loggedOnTime}", userName, loggedOnTime);
-    }
-    
-    public void LogMessageTemplateInCSharp(string userName)
+    public void LogMessageWithSamePlaceholderAndVariableName(string userName)
     {
         _logger.LogInformation("User '{userName}' added apples to the basket.", userName);
     }
     
-    public void LogMessageTemplateInCSharp2(string randomSentence)
+    public void LogMessageWithDifferentPlaceholderAndVariableName(string randomSentence)
     {
         _logger.LogInformation("User '{name}' added apples to the basket.", randomSentence);
+    }
+    
+    public void LogMessageWithCA2254Warning(string userName, DateTime loggedOnTime)
+    {
+        _logger.Log(LogLevel.Information, $"User {userName} logged on {loggedOnTime}");
+    }
+    
+    public void LogMessageToFixCA2254Warning(string userName, DateTime loggedOnTime)
+    {
+        _logger.LogInformation("User {userName} logged on {loggedOnTime}", userName, loggedOnTime);
     }
 }

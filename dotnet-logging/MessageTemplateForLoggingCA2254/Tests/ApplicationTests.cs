@@ -1,7 +1,6 @@
 using MessageTemplateForLoggingCA2254;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
-using Bogus;
 using System.Text.Json;
 using Xunit;
 
@@ -9,70 +8,91 @@ namespace Tests;
 
 public class ApplicationTests
 {
-    private readonly ILogger<Application> Logger;
-    private readonly Faker Faker;
+    private readonly ILogger<Application> _logger;
+    private readonly string _userName;
+    private readonly DateTime _loggedOnTime;
+
     public ApplicationTests()
     {
-        Logger = Substitute.For<ILogger<Application>>();
-        Faker = new Faker();
+        _logger = Substitute.For<ILogger<Application>>();
+
+        _userName = "John Wick";
+        _loggedOnTime = DateTime.UtcNow;
     }
 
     private Application GetApplication() => 
-        new Application(Logger);
+        new Application(_logger);
 
     [Fact]
-    public void WhenSimpleLogWithCA2254_ThenShowUsernameAndTimeTest()
+    public void WhenLogMessageWithJson_ThenShowUsernameAndTimeAsJsonTest()
     {
         var app = GetApplication();
-        var userName = Faker.Person.UserName;
-        var loggedOnTime = Faker.Date.Recent();
-
-        app.SimpleLogWithCA2254(userName, loggedOnTime);
-
-        Logger.Received(1).Log(LogLevel.Information, $"User {userName} logged on {loggedOnTime}");
-    }
-    
-    [Fact]
-    public void WhenSimpleLogWithFixedCA2254_ThenShowUsernameAndTimeTest()
-    {
-        var app = GetApplication();
-        var userName = Faker.Person.UserName;
-        var loggedinTime = Faker.Date.Recent();
-
-        app.SimpleLogWithFixedCA2254(userName, loggedinTime);
-
-        Logger.ReceivedWithAnyArgs(1).LogInformation(default, default, default, default);
-    }
-    
-    [Fact]
-    public void WhenLogJson_ThenShowUsernameAndTimeAsJsonTest()
-    {
-        var app = GetApplication();
-        var userName = Faker.Person.UserName;
-        var loggedinTime = Faker.Date.Recent();
-
         var logEntry = new
         {
             EventId = "logged_in",
-            Username = userName,
-            Time = loggedinTime,
+            Username = _userName,
+            Time = _loggedOnTime,
         };
 
         var message = JsonSerializer.Serialize(logEntry);
 
-        app.LogJson(userName, loggedinTime);
+        app.LogMessageWithJson(_userName, _loggedOnTime);
 
-        Logger.Received(1).Log(LogLevel.Information, message);
+        _logger.Received(1).Log(LogLevel.Information, message);
+    }
+
+    [Fact]
+    public void WhenLogMessageWithSamePlaceholderAndVariableName_ThenShowUsernameTest()
+    {
+        var app = GetApplication();
+        app.LogMessageWithSamePlaceholderAndVariableName(_userName);
+
+        _logger.Received(1).Log(
+            LogLevel.Information,
+            Arg.Any<EventId>(),
+            Arg.Is<object>(o => o.ToString()!.Contains($"User '{_userName}' added apples to the basket.")),
+            Arg.Any<Exception>(),
+            Arg.Any<Func<object, Exception?, string>>()
+        );
     }
     
     [Fact]
-    public void WhenLogMessageTemplateInCSharp_ThenShowUsernameTest()
+    public void WhenLogMessageWithDifferentPlaceholderAndVariableName_ThenShowUsernameTest()
     {
         var app = GetApplication();
-        var userName = Faker.Person.UserName;
+        app.LogMessageWithDifferentPlaceholderAndVariableName(_userName);
 
-        app.LogMessageTemplateInCSharp(userName);
+        _logger.Received(1).Log(
+            LogLevel.Information,
+            Arg.Any<EventId>(),
+            Arg.Is<object>(o => o.ToString()!.Contains($"User '{_userName}' added apples to the basket.")),
+            Arg.Any<Exception>(),
+            Arg.Any<Func<object, Exception?, string>>()
+        );
+    }
 
-        Logger.ReceivedWithAnyArgs(1).LogInformation(default, default, default, default);
+    [Fact]
+    public void WhenLogMessageWithCA2254Warning_ThenShowUsernameAndTimeTest()
+    {
+        var app = GetApplication();
+        app.LogMessageWithCA2254Warning(_userName, _loggedOnTime);
+
+        _logger.Received(1).Log(LogLevel.Information, $"User {_userName} logged on {_loggedOnTime}");
+    }
+    
+    [Fact]
+    public void WhenLogMessageToFixCA2254Warning_ThenShowUsernameAndTimeTest()
+    {
+        var app = GetApplication();
+        app.LogMessageToFixCA2254Warning(_userName, _loggedOnTime);
+
+        _logger.Received(1).Log(
+            LogLevel.Information,
+            Arg.Any<EventId>(),
+            Arg.Is<object>(o => 
+                o.ToString()!.Contains($"User {_userName} logged on {_loggedOnTime:MM/dd/yyyy HH:mm:ss}")),
+            Arg.Any<Exception>(),
+            Arg.Any<Func<object, Exception?, string>>()
+        );
     }
 }
