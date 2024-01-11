@@ -17,7 +17,7 @@ public class MusicRepository
         new Concert(2, "Australia", new DateOnly(2024, 5, 1))
     };
 
-    public Artist? GetArtistById(int Id) => _artists.SingleOrDefault(artist => artist.Id == Id);
+    public Artist? GetArtistById(int id) => _artists.SingleOrDefault(artist => artist.Id == id);
     public IEnumerable<Artist> GetAllArtists() => _artists;
 
     public IEnumerable<Concert> GetAllConcerts() => _concerts;

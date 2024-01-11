@@ -2,7 +2,7 @@ using Business.Models;
 using Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Monolith.Presentation.Controllers;
+namespace ArtistsApplication.Controllers;
 
 [ApiController]
 [Route("[controller]")]

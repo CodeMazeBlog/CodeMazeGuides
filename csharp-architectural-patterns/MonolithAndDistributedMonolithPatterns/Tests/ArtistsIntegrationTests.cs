@@ -1,6 +1,4 @@
-using ConcertsApplication.Controllers;
-using Data;
-using Monolith.Presentation.Controllers;
+using ArtistsApplication.Controllers;
 
 namespace Tests;
 

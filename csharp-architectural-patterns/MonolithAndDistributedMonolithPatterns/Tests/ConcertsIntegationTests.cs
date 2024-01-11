@@ -1,5 +1,4 @@
 using ConcertsApplication.Controllers;
-using Data;
 
 namespace Tests;
 
