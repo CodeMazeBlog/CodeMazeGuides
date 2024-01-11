@@ -10,11 +10,11 @@ public class JTokenJArrayUseCase : IJsonValidator
     {
         try
         {
-            if (jsonString.StartsWith("{") && jsonString.EndsWith("}"))
+            if (jsonString.StartsWith('{') && jsonString.EndsWith('}'))
             {
                 JToken.Parse(jsonString);
             }
-            else if (jsonString.StartsWith("[") && jsonString.EndsWith("]"))
+            else if (jsonString.StartsWith('[') && jsonString.EndsWith(']'))
             {
                 JArray.Parse(jsonString);
             }

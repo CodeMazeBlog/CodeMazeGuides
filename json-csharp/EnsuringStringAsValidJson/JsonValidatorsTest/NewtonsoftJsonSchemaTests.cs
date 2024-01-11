@@ -18,7 +18,7 @@ public class NewtonsoftJsonSchemaTests()
     }
     
     [Fact]
-    public void WhenGivenInValidJson_ThenIsValidReturnsFalse()
+    public void WhenGivenInvalidJson_ThenIsValidReturnsFalse()
     {
         // Assign
         const string jsonString = "{'username': 'Sample Username', 'password': 'Sample Password'}";
