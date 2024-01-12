@@ -10,14 +10,14 @@ public class ApplicationTests
 {
     private readonly ILogger<Application> _logger;
     private readonly string _userName;
-    private readonly DateTime _loggedOnTime;
+    private readonly DateTime _loggedInTime;
 
     public ApplicationTests()
     {
         _logger = Substitute.For<ILogger<Application>>();
 
         _userName = "John Wick";
-        _loggedOnTime = DateTime.UtcNow;
+        _loggedInTime = DateTime.UtcNow;
     }
 
     private Application GetApplication() => 
@@ -31,14 +31,21 @@ public class ApplicationTests
         {
             EventId = "logged_in",
             Username = _userName,
-            Time = _loggedOnTime,
+            Time = _loggedInTime,
         };
 
         var message = JsonSerializer.Serialize(logEntry);
 
-        app.LogMessageWithJson(_userName, _loggedOnTime);
+        app.LogMessageWithJson(_userName, _loggedInTime);
 
-        _logger.Received(1).Log(LogLevel.Information, message);
+        _logger.Received(1).Log(
+            LogLevel.Information,
+            Arg.Any<EventId>(),
+            Arg.Is<object>(o =>
+                o.ToString()!.Contains(message)),
+            Arg.Any<Exception>(),
+            Arg.Any<Func<object, Exception?, string>>()
+        );
     }
 
     [Fact]
@@ -75,22 +82,29 @@ public class ApplicationTests
     public void WhenLogMessageWithCA2254Warning_ThenShowUsernameAndTimeTest()
     {
         var app = GetApplication();
-        app.LogMessageWithCA2254Warning(_userName, _loggedOnTime);
+        app.LogMessageWithCA2254Warning(_userName, _loggedInTime);
 
-        _logger.Received(1).Log(LogLevel.Information, $"User {_userName} logged on {_loggedOnTime}");
+        _logger.Received(1).Log(
+            LogLevel.Information,
+            Arg.Any<EventId>(),
+            Arg.Is<object>(o =>
+                o.ToString()!.Contains($"User {_userName} logged on {_loggedInTime}")),
+            Arg.Any<Exception>(),
+            Arg.Any<Func<object, Exception?, string>>()
+        );
     }
     
     [Fact]
     public void WhenLogMessageToFixCA2254Warning_ThenShowUsernameAndTimeTest()
     {
         var app = GetApplication();
-        app.LogMessageToFixCA2254Warning(_userName, _loggedOnTime);
+        app.LogMessageToFixCA2254Warning(_userName, _loggedInTime);
 
         _logger.Received(1).Log(
             LogLevel.Information,
             Arg.Any<EventId>(),
             Arg.Is<object>(o => 
-                o.ToString()!.Contains($"User {_userName} logged on {_loggedOnTime:MM/dd/yyyy HH:mm:ss}")),
+                o.ToString()!.Contains($"User {_userName} logged on {_loggedInTime:MM/dd/yyyy HH:mm:ss}")),
             Arg.Any<Exception>(),
             Arg.Any<Func<object, Exception?, string>>()
         );

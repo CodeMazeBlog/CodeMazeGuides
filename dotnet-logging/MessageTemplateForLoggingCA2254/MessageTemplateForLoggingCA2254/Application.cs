@@ -14,21 +14,21 @@ public class Application
     public void Run()
     {
         var userName = "John Doe";
-        var loggedinTime = DateTime.Now;
-        LogMessageWithJson(userName, loggedinTime);
+        var loggedInTime = DateTime.Now;
+        LogMessageWithJson(userName, loggedInTime);
         LogMessageWithSamePlaceholderAndVariableName(userName);
         LogMessageWithDifferentPlaceholderAndVariableName(userName);
-        LogMessageWithCA2254Warning(userName, loggedinTime);
-        LogMessageToFixCA2254Warning(userName, loggedinTime);
+        LogMessageWithCA2254Warning(userName, loggedInTime);
+        LogMessageToFixCA2254Warning(userName, loggedInTime);
     }
 
-    public void LogMessageWithJson(string userName, DateTime loggedinTime)
+    public void LogMessageWithJson(string userName, DateTime loggedInTime)
     {
         var logEntry = new
         {
             EventId = "logged_in",
             Username = userName,
-            Time = loggedinTime,
+            Time = loggedInTime,
         };
 
         var message = JsonSerializer.Serialize(logEntry);
@@ -37,21 +37,21 @@ public class Application
 
     public void LogMessageWithSamePlaceholderAndVariableName(string userName)
     {
-        _logger.LogInformation("User '{userName}' added apples to the basket.", userName);
+        _logger.Log(LogLevel.Information, "User '{userName}' added apples to the basket.", userName);
     }
     
     public void LogMessageWithDifferentPlaceholderAndVariableName(string randomSentence)
     {
-        _logger.LogInformation("User '{name}' added apples to the basket.", randomSentence);
+        _logger.Log(LogLevel.Information, "User '{name}' added apples to the basket.", randomSentence);
     }
     
-    public void LogMessageWithCA2254Warning(string userName, DateTime loggedOnTime)
+    public void LogMessageWithCA2254Warning(string userName, DateTime loggedInTime)
     {
-        _logger.Log(LogLevel.Information, $"User {userName} logged on {loggedOnTime}");
+        _logger.Log(LogLevel.Information, $"User {userName} logged on {loggedInTime}");
     }
     
-    public void LogMessageToFixCA2254Warning(string userName, DateTime loggedOnTime)
+    public void LogMessageToFixCA2254Warning(string userName, DateTime loggedInTime)
     {
-        _logger.LogInformation("User {userName} logged on {loggedOnTime}", userName, loggedOnTime);
+        _logger.Log(LogLevel.Information, "User {userName} logged on {loggedInTime}", userName, loggedInTime);
     }
 }
