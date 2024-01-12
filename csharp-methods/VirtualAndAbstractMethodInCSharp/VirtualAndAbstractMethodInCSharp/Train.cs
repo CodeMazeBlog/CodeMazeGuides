@@ -1,24 +1,23 @@
 ﻿namespace VirtualAndAbstractMethodInCSharp
-{
-    // Class representing a train
-    internal class Train(double fixedJourneyTime) : TransportMode
+{    
+    public class Train(double fixedJourneyTime) : TransportMode
     {
         private double fixedJourneyTime = fixedJourneyTime;
 
         public override double GetTravelTime(double distance)
         {
-            return fixedJourneyTime; // Assume fixed travel time regardless of distance
+            return fixedJourneyTime; 
         }
 
-        // Override base fare calculation specific to trains (apply discounts for longer distances)
         public override double CalculateBaseFare(double distance)
         {
-            double baseFare = base.CalculateBaseFare(distance);
+            var baseFare = base.CalculateBaseFare(distance);
             
             if (distance > 500)
             {
-                baseFare *= 0.9; // Apply 10% discount for longer trips                
+                baseFare *= 0.9;            
             }
+            
             return baseFare;
         }
     }

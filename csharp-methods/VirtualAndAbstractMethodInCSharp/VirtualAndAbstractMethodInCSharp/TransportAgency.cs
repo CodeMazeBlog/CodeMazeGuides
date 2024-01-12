@@ -6,30 +6,28 @@
         Plane,
         Train
     }
-    internal class TransportAgency
+
+    public class TransportAgency
     {
         public TransportMode CreateTransportMode(TransportModeType modeType)
         {
             return modeType switch
             {
-                TransportModeType.Car => new Car(60),// Average speed in km/h
-                TransportModeType.Train => new Train(4),// Fixed journey time in hours
-                TransportModeType.Plane => new Plane(800),// Cruising speed in km/h
+                TransportModeType.Car => new Car(60),
+                TransportModeType.Train => new Train(4),
+                TransportModeType.Plane => new Plane(800),
                 _ => throw new ArgumentException("Invalid transport mode type."),
             };
         }
     }
 
-    // Abstract class representing a generic transportation mode
-    internal abstract class TransportMode
+    public abstract class TransportMode
     {
-        // Abstract method for estimating travel time
         public abstract double GetTravelTime(double distance);
 
-        // Virtual method for calculating base fare (can be overridden)
         public virtual double CalculateBaseFare(double distance)
         {
-            return distance * 0.5; // Default fare per km
+            return distance * 0.5; 
         }
     }
 }
