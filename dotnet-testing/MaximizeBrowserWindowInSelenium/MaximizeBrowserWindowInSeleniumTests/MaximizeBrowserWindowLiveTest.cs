@@ -8,28 +8,28 @@ namespace MaximizeBrowserWindowInSeleniumTests;
 
 public class MaximizeBrowserWindowLiveTest : IDisposable
 {
-    private IWebDriver ?driver;
+    private IWebDriver ?_driver;
 
     [Fact]
     public void GivenTestInChrome_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
     {
-        driver = new ChromeDriver();
+        _driver = new ChromeDriver();
 
-        driver.Navigate().GoToUrl("https://localhost:7016/");
+        _driver.Navigate().GoToUrl("https://code-maze.com/");
 
-        driver.Manage().Window.Maximize();
+        _driver.Manage().Window.Maximize();
     }
 
     [Fact]
-    public void GivenTestInChromeWOptions_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
+    public void GivenTestInChromeWOptions_WhenBrowserOpens_ThenBrowserWindowIsMaximized()
     {
         ChromeOptions options = new ChromeOptions();
 
         options.AddArguments("--start-maximized");
 
-        driver = new ChromeDriver(options);
+        _driver = new ChromeDriver(options);
 
-        driver.Navigate().GoToUrl("https://localhost:7016/");
+        _driver.Navigate().GoToUrl("https://code-maze.com/");
     }
 
     [Fact]
@@ -37,11 +37,11 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
     {
         FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
 
-        driver = new FirefoxDriver(service);
+        _driver = new FirefoxDriver(service);
 
-        driver.Navigate().GoToUrl("https://localhost:7016/");
+        _driver.Navigate().GoToUrl("https://code-maze.com/");
 
-        driver.Manage().Window.Maximize();
+        _driver.Manage().Window.Maximize();
     }
 
     [Fact]
@@ -49,11 +49,11 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
     {
         EdgeDriverService service = EdgeDriverService.CreateDefaultService();
 
-        driver = new EdgeDriver(service);
+        _driver = new EdgeDriver(service);
 
-        driver.Navigate().GoToUrl("https://localhost:7016/");
+        _driver.Navigate().GoToUrl("https://code-maze.com/");
 
-        driver.Manage().Window.Maximize();
+        _driver.Manage().Window.Maximize();
     }
 
     [Fact]
@@ -61,16 +61,16 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
     {
         SafariDriverService service = SafariDriverService.CreateDefaultService();
 
-        driver = new SafariDriver(service);
+        _driver = new SafariDriver(service);
 
-        driver.Navigate().GoToUrl("https://localhost:7016/");
+        _driver.Navigate().GoToUrl("https://code-maze.com/");
 
-        driver.Manage().Window.Maximize();
+        _driver.Manage().Window.Maximize();
     }
 
     public void Dispose()
     {
-        driver?.Quit();
-        driver?.Dispose();
+        _driver?.Quit();
+        _driver?.Dispose();
     }
 }
