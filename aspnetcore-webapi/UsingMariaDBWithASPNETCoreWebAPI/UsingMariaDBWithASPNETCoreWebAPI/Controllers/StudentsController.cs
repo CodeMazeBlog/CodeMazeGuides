@@ -22,7 +22,7 @@ namespace UsingMariaDBWithASPNETCoreWebAPI.Controllers
         public IActionResult GetStudent(int id)
         {
             var student = _dataRepository.Get(id);
-            if (student == null)
+            if (student is null)
             {
                 return NotFound("Student not found.");
             }
@@ -36,10 +36,6 @@ namespace UsingMariaDBWithASPNETCoreWebAPI.Controllers
             if (student is null)
             {
                 return BadRequest("Student is null.");
-            }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
             }
             _dataRepository.Add(student);
 
@@ -59,10 +55,6 @@ namespace UsingMariaDBWithASPNETCoreWebAPI.Controllers
             {
                 return NotFound("The Student record couldn't be found.");
             }
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
             _dataRepository.Update(studentToUpdate, student);
 
             return NoContent();
@@ -72,7 +64,7 @@ namespace UsingMariaDBWithASPNETCoreWebAPI.Controllers
         public IActionResult DeleteStudent(int id)
         {
             var student = _dataRepository.Get(id);
-            if (student == null)
+            if (student is null)
             {
                 return NotFound("The Student record couldn't be found.");
             }

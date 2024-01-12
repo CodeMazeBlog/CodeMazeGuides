@@ -10,7 +10,7 @@ using UsingMariaDBWithASPNETCoreWebAPI.Models;
 namespace UsingMariaDBWithASPNETCoreWebAPI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240111132105_FirstMigration")]
+    [Migration("20240112140143_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
