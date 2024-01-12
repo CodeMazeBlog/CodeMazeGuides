@@ -11,7 +11,6 @@ public class ListExistsInAnotherUnitTests
     private readonly List<Student> _artStudents;
     private readonly List<Student> _scienceStudents;
     private readonly List<Student> _businessStudents;
-    private readonly CompareStudentsExamples _compareStudentsExamples = new();
 
     public ListExistsInAnotherUnitTests()
     {
@@ -90,35 +89,35 @@ public class ListExistsInAnotherUnitTests
     [TestMethod]
     public void GivenTwoStudentLists_WhenComparedUsingIntersect_ValidateCorrectResults()
     {
-        Assert.IsTrue(_compareStudentsExamples.CompareStudentsUsingIntersect(_artStudents, _scienceStudents));
-        Assert.IsFalse(_compareStudentsExamples.CompareStudentsUsingIntersect(_scienceStudents, _businessStudents));
+        Assert.IsTrue(CompareStudentsExamples.CompareStudentsUsingIntersect(_artStudents, _scienceStudents));
+        Assert.IsFalse(CompareStudentsExamples.CompareStudentsUsingIntersect(_scienceStudents, _businessStudents));
     }
 
     [TestMethod]
     public void GivenTwoStudentLists_WhenComparedUsingIteration_ValidateCorrectResults()
     {
-        Assert.IsTrue(_compareStudentsExamples.CompareStudentsUsingIteration(_artStudents, _scienceStudents));
-        Assert.IsFalse(_compareStudentsExamples.CompareStudentsUsingIteration(_scienceStudents, _businessStudents));
+        Assert.IsTrue(CompareStudentsExamples.CompareStudentsUsingIteration(_artStudents, _scienceStudents));
+        Assert.IsFalse(CompareStudentsExamples.CompareStudentsUsingIteration(_scienceStudents, _businessStudents));
     }
 
     [TestMethod]
     public void GivenTwoStudentLists_WhenComparedUsingAnyContains_ValidateCorrectResults()
     {
-        Assert.IsTrue(_compareStudentsExamples.CompareStudentsUsingAnyContains(_artStudents, _scienceStudents));
-        Assert.IsFalse(_compareStudentsExamples.CompareStudentsUsingAnyContains(_scienceStudents, _businessStudents));
+        Assert.IsTrue(CompareStudentsExamples.CompareStudentsUsingAnyContains(_artStudents, _scienceStudents));
+        Assert.IsFalse(CompareStudentsExamples.CompareStudentsUsingAnyContains(_scienceStudents, _businessStudents));
     }
 
     [TestMethod]
     public void GivenTwoStudentLists_WhenComparedUsingExcept_ValidateCorrectResults()
     {
-        Assert.IsTrue(_compareStudentsExamples.CompareStudentsUsingExcept(_artStudents, _scienceStudents));
-        Assert.IsFalse(_compareStudentsExamples.CompareStudentsUsingExcept(_scienceStudents, _businessStudents));
+        Assert.IsTrue(CompareStudentsExamples.CompareStudentsUsingExcept(_artStudents, _scienceStudents));
+        Assert.IsFalse(CompareStudentsExamples.CompareStudentsUsingExcept(_scienceStudents, _businessStudents));
     }
 
     [TestMethod]
     public void GivenTwoStudentLists_WhenComparedUsingWhereAny_ValidateCorrectResults()
     {
-        Assert.IsTrue(_compareStudentsExamples.CompareStudentsUsingWhereAny(_artStudents, _scienceStudents));
-        Assert.IsFalse(_compareStudentsExamples.CompareStudentsUsingWhereAny(_scienceStudents, _businessStudents));
+        Assert.IsTrue(CompareStudentsExamples.CompareStudentsUsingWhereAny(_artStudents, _scienceStudents));
+        Assert.IsFalse(CompareStudentsExamples.CompareStudentsUsingWhereAny(_scienceStudents, _businessStudents));
     }
 }
