@@ -9,26 +9,26 @@ namespace GetFirstRecordInEachGroup;
 [RankColumn]
 public class PerformanceBenchmark 
 {
-    private static readonly List<Student> students = 
-        Methods.GenerateStudents(10000000);
+    private static readonly List<Student> _students = 
+        Methods.GenerateStudents(1_000_000);
 
     [Benchmark]
     public List<Student> LinqGroupBy1() => 
-        students.GetYoungestStudentInClassLinqGroupBy1();
+        _students.GetYoungestStudentInClassLinqGroupBy1();
 
     [Benchmark]
     public List<Student> LinqGroupBy2() => 
-        students.GetYoungestStudentInClassLinqGroupBy2();
+        _students.GetYoungestStudentInClassLinqGroupBy2();
 
     [Benchmark]
     public List<Student> LinqLookup() =>
-       students.GetYoungestStudentInClassLinqLookup();
+       _students.GetYoungestStudentInClassLinqLookup();
 
     [Benchmark]
     public List<Student> LinqDictionary() =>
-       students.GetYoungestStudentInClassLinqDictionary();
+       _students.GetYoungestStudentInClassLinqDictionary();
 
     [Benchmark]
     public List<Student> IterativeDictionary() => 
-        students.GetYoungestStudentInClassIterativeDictionary();
+        _students.GetYoungestStudentInClassIterativeDictionary();
 }

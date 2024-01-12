@@ -1,5 +1,4 @@
 using GetFirstRecordInEachGroup;
-using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -7,27 +6,24 @@ namespace Tests
 {
     public class Tests
     {
-        private readonly List<Student> students;
-        private readonly Dictionary<int, Student> grouppedStudents = 
-            new Dictionary<int, Student>();
+        private readonly List<Student> _students;
+        private readonly Dictionary<int, Student> _groupedStudents = new();
 
         public Tests()
         {
-            students = Methods.GenerateStudents();
-            foreach (var student in students)
+            _students = Methods.GenerateStudents();
+            foreach (var student in _students)
             {
-                if (!grouppedStudents.ContainsKey(student.Class))
-                    grouppedStudents.Add(student.Class, student);
-                else if (student.DateOfBirth < 
-                    grouppedStudents[student.Class].DateOfBirth)
-                    grouppedStudents[student.Class] = student;
+                if (!_groupedStudents.TryAdd(student.Class, student) &&
+                    student.DateOfBirth < _groupedStudents[student.Class].DateOfBirth)
+                    _groupedStudents[student.Class] = student;
             }
         }
 
         private bool ValidateResults(List<Student> students)
         {
             foreach (var student in students)
-                if (!student.Equals(grouppedStudents[student.Class]))
+                if (!student.Equals(_groupedStudents[student.Class]))
                     return false;
             
             return true;
@@ -37,7 +33,7 @@ namespace Tests
         public void WhenLinqGroupBy1_ThenSuccess()
         {
             var youngestStudents = 
-                students.GetYoungestStudentInClassLinqGroupBy1();
+                _students.GetYoungestStudentInClassLinqGroupBy1();
 
             Assert.True(ValidateResults(youngestStudents));
         }
@@ -46,7 +42,7 @@ namespace Tests
         public void WhenLinqGroupBy2_ThenSuccess()
         {
             var youngestStudents =
-                students.GetYoungestStudentInClassLinqGroupBy2();
+                _students.GetYoungestStudentInClassLinqGroupBy2();
 
             Assert.True(ValidateResults(youngestStudents));
         }
@@ -55,7 +51,7 @@ namespace Tests
         public void WhenLinqLookup_ThenSuccess()
         {
             var youngestStudents =
-                 students.GetYoungestStudentInClassLinqLookup();
+                 _students.GetYoungestStudentInClassLinqLookup();
 
             Assert.True(ValidateResults(youngestStudents));
         }
@@ -64,7 +60,7 @@ namespace Tests
         public void WhenLinqDictionary_ThenSuccess()
         {
             var youngestStudents =
-                 students.GetYoungestStudentInClassLinqDictionary();
+                 _students.GetYoungestStudentInClassLinqDictionary();
 
             Assert.True(ValidateResults(youngestStudents));
         }
@@ -73,7 +69,7 @@ namespace Tests
         public void WhenIterativeDictionary_ThenSuccess()
         {
             var youngestStudents =
-                students.GetYoungestStudentInClassIterativeDictionary();
+                _students.GetYoungestStudentInClassIterativeDictionary();
 
             Assert.True(ValidateResults(youngestStudents));
         }
