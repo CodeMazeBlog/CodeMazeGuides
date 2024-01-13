@@ -7,6 +7,32 @@ namespace ParsingHtmlWithAngleSharp;
 
 public class AngleSharpExamples
 {
+    private const string Html = @"<!DOCTYPE html>
+                     <html>
+                     <body>
+                        <section id='section'>
+                            <div id='articles'>
+                                <article id='a1'>Article 1 <em>content</em>.</article>
+                            </div>
+                            <p class='paragraph'>This is a paragraph.</p>
+                            <ul id='list'>
+                                <li class='blue'>Item 1</li>
+                                <li>Item 2</li>
+                                <li class='blue'>Item 3</li>
+                            </ul>
+                            <form id='sign-up-form'>
+                                <label for='username'>Username: </label>
+                                <input id='username' name='username' type='text'>
+
+                                <label for='password'>Password: </label>
+                                <input id='password' name='password' type='password'>
+
+                                <button type='submit'>Sign up</button>
+                            </form>
+                        </section>
+                     </body>
+                     </html>";
+
     public static async Task BasicExample()
     {
         var html = @"<!DOCTYPE html>
@@ -42,36 +68,10 @@ public class AngleSharpExamples
 
     public static async Task QuerySelectors()
     {
-        var html = @"<!DOCTYPE html>
-                     <html>
-                     <body>
-                        <section id='section'>
-                            <div id='articles'>
-                                <article id='a1'>Article 1 <em>content</em>.</article>
-                            </div>
-                            <p class='paragraph'>This is a paragraph.</p>
-                            <ul id='list'>
-                                <li class='blue'>Item 1</li>
-                                <li>Item 2</li>
-                                <li class='blue'>Item 3</li>
-                            </ul>
-                            <form id='sign-up-form'>
-                                <label for='username'>Username: </label>
-                                <input id='username' name='username' type='text'>
-
-                                <label for='password'>Password: </label>
-                                <input id='password' name='password' type='password'>
-
-                                <button type='submit'>Sign up</button>
-                            </form>
-                        </section>
-                     </body>
-                     </html>";
-
         var config = Configuration.Default.WithDefaultLoader().WithDefaultCookies().WithJs();
         var context = BrowsingContext.New(config);
 
-        var document = await context.OpenAsync(req => req.Content(html));
+        var document = await context.OpenAsync(req => req.Content(Html));
 
         var paragraphElements = document.Body!.QuerySelectorAll<IHtmlParagraphElement>("p");
         var paragraphElementsLinq = document.All
@@ -116,39 +116,13 @@ public class AngleSharpExamples
 
     public static async Task DomManipulation()
     {
-        var html = @"<!DOCTYPE html>
-                             <html>
-                             <body>
-                                <section id='section'>
-                                    <div id='articles'>
-                                        <article id='a1'>Article 1 <em>content</em>.</article>
-                                    </div>
-                                    <p class='paragraph'>This is a paragraph.</p>
-                                    <ul id='list'>
-                                        <li class='blue'>Item 1</li>
-                                        <li>Item 2</li>
-                                        <li class='blue'>Item 3</li>
-                                    </ul>
-                                    <form id='sign-up-form'>
-                                        <label for='username'>Username: </label>
-                                        <input id='username' name='username' type='text'>
-        
-                                        <label for='password'>Password: </label>
-                                        <input id='password' name='password' type='password'>
-        
-                                        <button type='submit'>Sign up</button>
-                                    </form>
-                                </section>
-                             </body>
-                             </html>";
-        
         var config = Configuration.Default
             .WithDefaultLoader()
             .WithJs();
 
         var context = BrowsingContext.New(config);
 
-        var document = await context.OpenAsync(req => req.Content(html));
+        var document = await context.OpenAsync(req => req.Content(Html));
 
         var paragraphElement = document.CreateElement("p")!;
         // OR
@@ -166,7 +140,7 @@ public class AngleSharpExamples
 
         var ulElement = document.QuerySelector<IHtmlUnorderedListElement>("ul#list")!;
         var blueLiElement = ulElement.QuerySelector<IHtmlListItemElement>("li.blue")!;
-            
+
         // Remove element from the the list:
         blueLiElement.Remove();
         // OR
@@ -198,6 +172,44 @@ public class AngleSharpExamples
 
         @event.Init("custom", false, false);
         document.Dispatch(@event);
+    }
+
+    public static async Task Forms()
+    {
+        var config = Configuration.Default
+            .WithDefaultLoader();
+        var context = BrowsingContext.New(config);
+
+        var document = await context.OpenAsync(req => req.Content(Html));
+
+        var form = document.QuerySelector<IHtmlFormElement>("#signup-form")!;
+        // Get all the elements of the form:
+        var formInputElements = form.Elements;
+
+        var userNameInput = document.QuerySelector<IHtmlInputElement>("#username")!;
+        // OR
+        userNameInput = form.Elements["username"] as IHtmlInputElement;
+        userNameInput!.Value = "John";
+
+        var passwordInput = document.QuerySelector<IHtmlInputElement>("#password")!;
+        // OR
+        passwordInput = form.Elements["password"] as IHtmlInputElement;
+        passwordInput.Value = "Doe123!";
+
+        var filesInput = document.QuerySelector<IHtmlInputElement>("input[type=file][name='profile-picture']")!;
+        // OR
+        filesInput = form.Elements["profile-picture"] as IHtmlInputElement;
+
+        // Attaching a file to a file input
+        string imagesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+        var fileEntry = new FileEntry("profile-picture.png", "jpeg",
+            File.OpenRead(Path.Combine(imagesPath, "profile-picture.jpg")));
+        filesInput!.Files.Add(fileEntry);
+
+
+        var link = document.QuerySelector<IHtmlLinkElement>("a");
+        link.DoClick();
+        await form.SubmitAsync();
     }
 
     public static async Task WebScrapingExample()
