@@ -1,11 +1,9 @@
 namespace CheckNumberOfDaysBetweenTwoDates;
 public class NumberOfDaysBetweenTwoDates
 {
-    public static int CalculateDaysUntilVacation(DateTime summerVacationStart)
+    public static int CalculateDaysUntilVacation(DateTime summerVacationStart, DateTime currentDate)
     {
-        DateTime today = DateTime.Today;
-
-        TimeSpan daysUntilVacation = summerVacationStart - today;
+        TimeSpan daysUntilVacation = summerVacationStart - currentDate;
         return daysUntilVacation.Days;
     }
 }

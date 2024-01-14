@@ -3,17 +3,18 @@ namespace Tests;
 public class NumberOfDaysBetweenTwoDatesTests
 {
     [Theory]
-    [InlineData("2024-01-01", 151)] // Test with New Year's Day
-    [InlineData("2024-05-01", 31)]  // Test with May 1st
-    [InlineData("2024-06-01", 0)]   // Test with the day of Summer Vacation
-    [InlineData("2023-01-01", -365)] // Test with a past date
-    [InlineData("2024-02-29", -1)]  // Test with leap year date
-    [InlineData("2074-01-01", 18262)] // Test with a distant future date
-    public void GivenSpecificVacationStartDate_WhenCalculateDaysUntilVacationCalled_ThenReturnsCorrectNumberOfDays(string vacationDate, int expectedDays)
+    [InlineData("2024-01-01", "2023-12-31", 1)] 
+    [InlineData("2024-05-01", "2024-04-30", 1)] 
+    [InlineData("2024-06-01", "2024-06-01", 0)] 
+    [InlineData("2023-01-01", "2024-01-01", -365)] // Test with a past date
+    [InlineData("2024-02-29", "2024-02-28", 1)] // Test with leap year date
+    [InlineData("2074-01-01", "2024-01-01", 18263)] // Test with a distant future date
+    public void GivenSpecificVacationStartDate_WhenCalculateDaysUntilVacationCalled_ThenReturnsCorrectNumberOfDays(string vacationDate, string currentDate, int expectedDays)
     {
         DateTime vacationStartDate = DateTime.Parse(vacationDate);
+        DateTime currentTestDate = DateTime.Parse(currentDate);
 
-        int actualDays = NumberOfDaysBetweenTwoDates.CalculateDaysUntilVacation(vacationStartDate);
+        int actualDays = NumberOfDaysBetweenTwoDates.CalculateDaysUntilVacation(vacationStartDate, currentTestDate);
 
         Assert.Equal(expectedDays, actualDays);
     }
@@ -22,7 +23,7 @@ public class NumberOfDaysBetweenTwoDatesTests
 public class DifferentTimeZoneTests
 {
     [Theory]
-    [InlineData("2024-09-01T10:00:00-05:00", "2024-01-01T00:00:00-05:00", 243)]
+    [InlineData("2024-09-01T10:00:00-05:00", "2024-01-01T00:00:00-05:00", 244)]
     public void GivenSpecificDates_WhenCalculateDaysUntilEventCalled_ThenReturnsCorrectNumberOfDays(string eventDate, string currentDate, int expectedDays)
     {
         DateTimeOffset eventDateTime = DateTimeOffset.Parse(eventDate);
