@@ -6,7 +6,7 @@ namespace Tests;
 public class DataBatchingBenchmarkLiveTest
 {
     [Fact]
-    public void Given_ListOfIntegers_When_ComparingBatchingApproaches_Then_ChunkIsFastest()
+    public void GivenListOfIntegers_WhenComparingBatchingApproaches_ThenChunkIsFastest()
     {
         var summary = DataBatchingBenchmarks.RunBenchmarks();
 
