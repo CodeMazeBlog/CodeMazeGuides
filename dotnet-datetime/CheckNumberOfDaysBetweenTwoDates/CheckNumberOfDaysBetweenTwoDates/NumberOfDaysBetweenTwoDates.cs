@@ -1,4 +1,5 @@
 namespace CheckNumberOfDaysBetweenTwoDates;
+
 public static class NumberOfDaysBetweenTwoDates
 {
     public static int CalculateDaysUntilVacation(DateTime summerVacationStart, DateTime currentDate)

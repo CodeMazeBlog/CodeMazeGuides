@@ -6,9 +6,9 @@ public class NumberOfDaysBetweenTwoDatesTests
     [InlineData("2024-01-01T14:00", "2023-12-31T10:00", 1)]
     [InlineData("2024-05-01T09:30", "2024-04-30T20:45", 0)]
     [InlineData("2024-06-01T00:00", "2024-06-01T00:00", 0)]
-    [InlineData("2023-01-01T15:30", "2024-01-01T08:15", -364)] // Test with a past date
-    [InlineData("2024-02-29T12:00", "2024-02-28T18:00", 0)] // Test with leap year date
-    [InlineData("2074-01-01T10:00", "2024-01-01T05:00", 18263)] // Test with a distant future date
+    [InlineData("2023-01-01T15:30", "2024-01-01T08:15", -364)]
+    [InlineData("2024-02-29T12:00", "2024-02-28T18:00", 0)]
+    [InlineData("2074-01-01T10:00", "2024-01-01T05:00", 18263)]
     public void GivenSpecificVacationStartDate_WhenCalculateDaysUntilVacationCalled_ThenReturnsCorrectNumberOfDays(string vacationDate, string currentDate, int expectedDays)
     {
         DateTime vacationStartDate = DateTime.Parse(vacationDate);
