@@ -6,6 +6,7 @@ This section contains the topics related to JSON manipulation in C#.
 - [Using System.Text.Json for Camel Case Serialization](https://code-maze.com/csharp-using-system-text-json-for-camel-case-serialization/)
 - [How to Compare Two Json Objects Using C#](https://code-maze.com/csharp-compare-two-json-objects/)
 - [How to Create a Custom JsonConverter in Json.NET](https://code-maze.com/json-dotnet-create-custom-jsonconverter/)
+- [Custom Naming Policy for JSON in C#](https://code-maze.com/csharp-custom-naming-policy-for-json/)
 - [How to Deserialize a Complex JSON Object in C# .NET](https://code-maze.com/csharp-deserialize-complex-json-object/)
 - [JSON Deserialization to a POCO Class in C#](https://code-maze.com/csharp-json-deserialization-poco-class/)
 - [How to Exclude Properties From JSON Serialization in C#](https://code-maze.com/csharp-exclude-properties-from-json-serialization/)
@@ -23,3 +24,4 @@ This section contains the topics related to JSON manipulation in C#.
 - [How to Convert JSON to XML or XML to JSON in C#](https://code-maze.com/csharp-convert-json-to-xml-or-xml-to-json/)
 - [Property Ordering in C# JSON Serialization](https://code-maze.com/csharp-property-ordering-json-serialization/)
 - [How to Read and Parse a JSON File in C#](https://code-maze.com/csharp-read-and-process-json-file/)
+- [How to Retrieve JSON Property Names in C#](https://code-maze.com/csharp-retrieve-json-property-names/)

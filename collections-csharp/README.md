@@ -5,11 +5,13 @@ This section contains articles about C#/.NET collections.
 ### Relevant articles:
 
 - [BitArray in C#](https://code-maze.com/csharp-bitarray/)
+- [Simple Initialization With Collection Expressions in .NET](https://code-maze.com/csharp-simple-initialization-with-collection-expressions-in-net-8/)
 - [Working With Collections in .NET](https://code-maze.com/dotnet-collections-overview/)
 - [Concurrent Collections in C#](https://code-maze.com/csharp-concurrent-collections/)
 - [ConcurrentBag in C#](https://code-maze.com/csharp-concurrentbag/)
 - [ConcurrentDictionary in C# – Detailed Guide](https://code-maze.com/concurrentdictionary-csharp/)
 - [ConcurrentQueue in C#](https://code-maze.com/csharp-concurrentqueue/)
+- [ConcurrentStack in C#](https://code-maze.com/csharp-concurrentstack/)
 - [List Collection in C#](https://code-maze.com/csharp-list-collection/)
 - [Dictionary in C#](https://code-maze.com/dictionary-csharp/)
 - [HashSet vs SortedSet in C#](https://code-maze.com/csharp-hashset-vs-sortedset/)

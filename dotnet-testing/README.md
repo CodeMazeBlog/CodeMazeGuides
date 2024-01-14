@@ -4,6 +4,7 @@ This section contains the topics related to all kinds of testing in C#/.NET
 ### Relevant articles:
 
 - [Performance Testing of ASP.NET Core APIs With k6](https://code-maze.com/aspnetcore-performance-testing-with-k6/)
+- [Introduction to Autofac FakeItEasy Package](https://code-maze.com/autofac-fakeiteasy-package-basics/)
 - [Introduction to Behavior Driven Development (BDD) in C#](https://code-maze.com/behavior-driven-development-bdd-csharp/)
 - [Using Moq to Determine If a Method is Called](https://code-maze.com/using-moq-to-determine-if-method-is-called/)
 - [How to Mock EF Core DbContext](https://code-maze.com/ef-core-mock-dbcontext/)
@@ -16,6 +17,7 @@ This section contains the topics related to all kinds of testing in C#/.NET
 - [Effective Mocking With NSubstitute in .NET](https://code-maze.com/csharp-effective-mocking-with-nsubstitute/)
 - [How to Test a REST API with .NET and xUnit](https://code-maze.com/dotnet-test-rest-api-xunit/)
 - [Testing Exceptions in MSTest, NUnit, and xUnit](https://code-maze.com/csharp-testing-exceptions-in-mstest-nunit-and-xunit/)
+- [Select a Dropdown Option Using Selenium WebDriver in C#](https://code-maze.com/csharp-select-a-dropdown-option-using-selenium-webdriver/)
 - [How to Unit Test ILogger in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-unit-test-ilogger/)
 - [Introduction to Unit Testing With NUnit in C#](https://code-maze.com/csharp-nunit-unit-testing/)
 - [Testing Repository Pattern Using Entity Framework](https://code-maze.com/testing-repository-pattern-entity-framework/)

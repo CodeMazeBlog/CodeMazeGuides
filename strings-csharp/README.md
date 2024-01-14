@@ -4,6 +4,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 ### Relevant articles:
 
 - [How to Add Parameters to a String in C#](https://code-maze.com/csharp-add-parameters-to-string/)
+- [Consistent Byte Representation of Strings in C# Without Encoding](https://code-maze.com/csharp-consistent-byte-representation-of-strings-without-encoding/)
 - [How to Perform Case-Insensitive Substring Search in C#](https://code-maze.com/substring-in-string-case-insensitive-csharp/)
 - [How to Check if a String Ends With a Number in C#](https://code-maze.com/csharp-check-if-string-ends-with-a-number/)
 - [How to Convert Char Array to String in C#](https://code-maze.com/csharp-convert-char-array-to-string/)
