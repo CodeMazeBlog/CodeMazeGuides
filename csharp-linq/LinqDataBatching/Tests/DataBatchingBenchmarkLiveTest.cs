@@ -3,7 +3,7 @@ using BenchmarkDotNet.Reports;
 
 namespace Tests;
 
-public class DataBatchingBenchmarkIntegrationTest
+public class DataBatchingBenchmarkLiveTest
 {
     [Fact]
     public void Given_ListOfIntegers_When_ComparingBatchingApproaches_Then_ChunkIsFastest()
