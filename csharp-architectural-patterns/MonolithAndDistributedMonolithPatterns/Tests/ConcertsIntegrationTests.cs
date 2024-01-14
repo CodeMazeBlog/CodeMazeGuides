@@ -5,7 +5,7 @@ namespace Tests;
 public class ConcertsIntegrationTests
 {
     [Fact]
-    public void WhenCallingGet_Concerts_ReturnsAllConcerts()
+    public void GivenConcertsController_WhenCallingGet_ThenReturnsAllConcerts()
     {
         // Arrange.
         var musicRepository = new MusicRepository();

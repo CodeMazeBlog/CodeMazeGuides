@@ -5,7 +5,7 @@ namespace Tests;
 public class ArtistsIntegrationTests
 {
     [Fact]
-    public void WhenCallingGet_Artists_ReturnsAllArtists()
+    public void GivenArtistsController_WhenCallingGet_ThenReturnsAllArtists()
     {
         // Arrange.
         var musicRepository = new MusicRepository();
