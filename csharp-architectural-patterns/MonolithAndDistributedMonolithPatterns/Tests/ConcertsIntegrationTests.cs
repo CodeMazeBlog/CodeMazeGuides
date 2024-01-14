@@ -2,7 +2,7 @@ using ConcertsApplication.Controllers;
 
 namespace Tests;
 
-public class ConcertsIntegationTests
+public class ConcertsIntegrationTests
 {
     [Fact]
     public void WhenCallingGet_Concerts_ReturnsAllConcerts()

@@ -2,7 +2,7 @@ using ArtistsApplication.Controllers;
 
 namespace Tests;
 
-public class ArtistsIntegationTests
+public class ArtistsIntegrationTests
 {
     [Fact]
     public void WhenCallingGet_Artists_ReturnsAllArtists()
