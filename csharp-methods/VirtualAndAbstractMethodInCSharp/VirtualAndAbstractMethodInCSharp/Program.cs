@@ -39,8 +39,7 @@
                     Console.Write("Enter travel distance (km): ");                    
                     double distance = double.Parse(Console.ReadLine() ?? "0");
                     Console.WriteLine("Estimated travel time: {0} hours", mode.GetTravelTime(distance));
-                    Console.WriteLine("Base fare: ${0}", mode.CalculateBaseFare(distance));
-                    Console.WriteLine((distance * 0.5) * 0.9);
+                    Console.WriteLine("Base fare: ${0}", mode.CalculateBaseFare(distance));                    
                     Console.Write("\nDo you want to choose another transport mode? (y/n): ");
                     string continueChoice = Console.ReadLine() ?? string.Empty;
                     if (!continueChoice.Equals("y", StringComparison.CurrentCultureIgnoreCase))
