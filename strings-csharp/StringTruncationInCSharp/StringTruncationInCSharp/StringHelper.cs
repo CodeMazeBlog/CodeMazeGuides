@@ -3,38 +3,37 @@ using System.Text.RegularExpressions;
 
 namespace StringTruncationInCSharp
 {
-    public class StringHelper
+    public static class StringHelper
     {
-        public string TruncateWithSubstring(string originalString, int maxLength)
+        public static string TruncateWithSubstring(string originalString, int maxLength)
         {
             return TruncateString(originalString, maxLength, UsingSubstring);
 
-            string UsingSubstring(string str, int length)
+            static string UsingSubstring(string str, int length)
             {
                 return str.Substring(0, length);
             }
         }
 
-        public string TruncateWithRemove(string originalString, int maxLength)
+        public static string TruncateWithRemove(string originalString, int maxLength)
         {
             return TruncateString(originalString, maxLength, UsingRemove);
 
-            string UsingRemove(string str, int length)
+            static string UsingRemove(string str, int length)
             {
                 return str.Remove(length);
             }
         }
 
-        public string TruncateWithForLoopStringBuilder(string originalString, int maxLength)
+        public static string TruncateWithForLoopStringBuilder(string originalString, int maxLength)
         {
             return TruncateString(originalString, maxLength, UsingForLoopStringBuilder);
 
-            string UsingForLoopStringBuilder(string str, int length)
+            static string UsingForLoopStringBuilder(string str, int length)
             {
-                var len = Math.Min(length, str.Length);
-                var truncatedStringBuilder = new StringBuilder(len);
+                var truncatedStringBuilder = new StringBuilder(length);
 
-                for (int i = 0; i < len; i++)
+                for (int i = 0; i < length; i++)
                 {
                     truncatedStringBuilder.Append(str[i]);
                 }
@@ -43,11 +42,11 @@ namespace StringTruncationInCSharp
             }
         }
 
-        public string TruncateWithLINQ(string originalString, int maxLength)
+        public static string TruncateWithLINQ(string originalString, int maxLength)
         {
             return TruncateString(originalString, maxLength, UsingLINQ);
 
-            string UsingLINQ(string str, int length)
+            static string UsingLINQ(string str, int length)
             {
                 var truncatedString = new string(str.Take(length).ToArray());
 
@@ -55,14 +54,14 @@ namespace StringTruncationInCSharp
             }
         }
 
-        public string TruncateWithForLoop(string originalString, int maxLength)
+        public static string TruncateWithForLoop(string originalString, int maxLength)
         {
             return TruncateString(originalString, maxLength, UsingForLoop);
 
-            string UsingForLoop(string str, int length)
+            static string UsingForLoop(string str, int length)
             {
                 var truncatedString = string.Empty;
-                int loopLength = Math.Min(length, str.Length);
+                var loopLength = Math.Min(length, str.Length);
 
                 for (int i = 0; i < loopLength; i++)
                 {
@@ -73,28 +72,28 @@ namespace StringTruncationInCSharp
             }
         }
 
-        public string TruncateWithRegularExpressions(string originalString, int maxLength)
+        public static string TruncateWithRegularExpressions(string originalString, int maxLength)
         {
             return TruncateString(originalString, maxLength, UsingRegularExpressions);
 
-            string UsingRegularExpressions(string str, int length)
+            static string UsingRegularExpressions(string str, int length)
             {
                 return Regex.Replace(str, $"^(.{{0,{length}}}).*$", "$1");
             }
         }
 
-        public string TruncateWithSpan(string originalString, int maxLength)
+        public static string TruncateWithSpan(string originalString, int maxLength)
         {
             return TruncateString(originalString, maxLength, UsingSpan);
 
-            string UsingSpan(string str, int length)
+            static string UsingSpan(string str, int length)
             {
-                ReadOnlySpan<char> originalStringAsSpan = str.AsSpan();
+                var originalStringAsSpan = str.AsSpan();
                 return originalStringAsSpan[..length].ToString();
             }
         }
 
-        private string TruncateString(string originalString, int maxLength, Func<string, int, string> specificTruncateMethod)
+        private static string TruncateString(string originalString, int maxLength, Func<string, int, string> specificTruncateMethod)
         {
             if (maxLength <= 0)
             {
