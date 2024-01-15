@@ -16,11 +16,11 @@ builder.Services.Configure<HostOptions>(options =>
 });
 
 builder.Services.AddHostedService<InitializationHostedService>();
-builder.Services.AddHostedService<InitializationBackgroundService>();
-builder.Services.AddHostedService<InitializationHostedLifecycleService>();
+//builder.Services.AddHostedService<InitializationBackgroundService>();
+//builder.Services.AddHostedService<InitializationHostedLifecycleService>();
 
-builder.Services.AddHostedService<PeriodicHostedService>();
-builder.Services.AddHostedService<PeriodicBackgroundService>();
+//builder.Services.AddHostedService<PeriodicHostedService>();
+//builder.Services.AddHostedService<PeriodicBackgroundService>();
 builder.Services.AddHostedService<PeriodicHostedLifecycleService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(
