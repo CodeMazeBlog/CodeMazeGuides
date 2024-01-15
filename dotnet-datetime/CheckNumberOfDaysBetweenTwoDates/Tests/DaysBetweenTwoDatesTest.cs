@@ -11,8 +11,8 @@ public class NumberOfDaysBetweenTwoDatesTests
     [InlineData("2074-01-01T10:00", "2024-01-01T05:00", 18263)]
     public void GivenSpecificVacationStartDate_WhenCalculateDaysUntilVacationCalled_ThenReturnsCorrectNumberOfDays(string vacationDate, string currentDate, int expectedDays)
     {
-        DateTime vacationStartDate = DateTime.Parse(vacationDate);
-        DateTime currentTestDate = DateTime.Parse(currentDate);
+        var vacationStartDate = DateTime.Parse(vacationDate);
+        var currentTestDate = DateTime.Parse(currentDate);
 
         int actualDays = NumberOfDaysBetweenTwoDates.CalculateDaysUntilVacation(vacationStartDate, currentTestDate);
 
@@ -26,8 +26,8 @@ public class NumberOfDaysBetweenTwoDatesTests
     [InlineData("2024-11-28T08:00:00+00:00", "2024-11-27T20:00:00-08:00", 0)]
     public void GivenSpecificDates_WhenCalculateDaysUntilEventCalled_ThenReturnsCorrectNumberOfDays(string eventDate, string currentDate, int expectedDays)
     {
-        DateTimeOffset eventDateTime = DateTimeOffset.Parse(eventDate);
-        DateTimeOffset currentDateTime = DateTimeOffset.Parse(currentDate);
+        var eventDateTime = DateTimeOffset.Parse(eventDate);
+        var currentDateTime = DateTimeOffset.Parse(currentDate);
 
         int actualDays = NumberOfDaysBetweenTwoDates.CalculateDaysUntilEvent(eventDateTime, currentDateTime);
 
