@@ -9,18 +9,15 @@ namespace ActionFuncDelegatesUnitTest
         [TestMethod]
         public void WhenDelegateGetValue_ThenShowValue()
         {
-
-            int result = DelegatesTypes.Program.number;
+            var result = DelegatesTypes.Program.number;
             Assert.AreEqual(15, result);
         }
 
         [TestMethod]
         public void WhenDelegateGetInvalidValue_ThenShowValue()
         {
-            int result = DelegatesTypes.Program.number;
+            var result = DelegatesTypes.Program.number;
             Assert.AreNotEqual(10, result);
-
-        }
-    
+        }    
     }
 }
