@@ -61,9 +61,8 @@ namespace StringTruncationInCSharp
             static string UsingForLoop(string str, int length)
             {
                 var truncatedString = string.Empty;
-                var loopLength = Math.Min(length, str.Length);
 
-                for (int i = 0; i < loopLength; i++)
+                for (int i = 0; i < length; i++)
                 {
                     truncatedString += str[i];
                 }

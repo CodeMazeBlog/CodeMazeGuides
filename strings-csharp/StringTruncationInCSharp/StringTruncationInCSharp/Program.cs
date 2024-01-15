@@ -22,7 +22,4 @@ Console.WriteLine("Using Remove method: " + truncatedUsingRemove);
 var truncatedUsingLINQ = StringHelper.TruncateWithLINQ(originalString, maxLength);
 Console.WriteLine("Using LINQ: " + truncatedUsingLINQ);
 
-var truncatedUsingExtensionMethod = originalString.TruncateString(maxLength);
-Console.WriteLine("Using Extension method: " + truncatedUsingExtensionMethod);
-
 BenchmarkRunner.Run<StringHelperBenchmark>();
