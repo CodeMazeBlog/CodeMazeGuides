@@ -11,6 +11,7 @@ public class ApplicationTests
     private readonly ILogger<Application> _logger;
     private readonly string _userName;
     private readonly DateTime _loggedInTime;
+    private readonly Guid _userId;
 
     public ApplicationTests()
     {
@@ -18,6 +19,7 @@ public class ApplicationTests
 
         _userName = "John Wick";
         _loggedInTime = DateTime.UtcNow;
+        _userId = Guid.NewGuid();
     }
 
     private Application GetApplication() => 
@@ -58,6 +60,36 @@ public class ApplicationTests
             LogLevel.Information,
             Arg.Any<EventId>(),
             Arg.Is<object>(o => o.ToString()!.Contains($"User '{_userName}' added apples to the basket.")),
+            Arg.Any<Exception>(),
+            Arg.Any<Func<object, Exception?, string>>()
+        );
+    }
+    
+    [Fact]
+    public void WhenLogMessageWithoutFormatting_ThenShowUsernameAndTimeWithoutFormattingTest()
+    {
+        var app = GetApplication();
+        app.LogMessageWithoutFormatting(_userId, _loggedInTime);
+
+        _logger.Received(1).Log(
+            LogLevel.Information,
+            Arg.Any<EventId>(),
+            Arg.Is<object>(o => o.ToString()!.Contains($"User {_userId} logged in at {_loggedInTime:MM/dd/yyyy HH:mm:ss}.")),
+            Arg.Any<Exception>(),
+            Arg.Any<Func<object, Exception?, string>>()
+        );
+    }
+    
+    [Fact]
+    public void WhenLogMessageWithFormatting_ThenShowUsernameAndTimeWithFormattingTest()
+    {
+        var app = GetApplication();
+        app.LogMessageWithFormatting(_userId, _loggedInTime);
+
+        _logger.Received(1).Log(
+            LogLevel.Information,
+            Arg.Any<EventId>(),
+            Arg.Is<object>(o => o.ToString()!.Contains($"User {_userId:N} logged in at {_loggedInTime:F}.")),
             Arg.Any<Exception>(),
             Arg.Any<Func<object, Exception?, string>>()
         );

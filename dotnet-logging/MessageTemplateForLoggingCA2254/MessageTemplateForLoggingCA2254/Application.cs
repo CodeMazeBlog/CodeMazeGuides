@@ -14,10 +14,13 @@ public class Application
     public void Run()
     {
         var userName = "John Doe";
-        var loggedInTime = DateTime.Now;
+        var loggedInTime = DateTime.UtcNow;
+        var userId = Guid.NewGuid();
         LogMessageWithJson(userName, loggedInTime);
         LogMessageWithSamePlaceholderAndVariableName(userName);
         LogMessageWithDifferentPlaceholderAndVariableName(userName);
+        LogMessageWithoutFormatting(userId, loggedInTime);
+        LogMessageWithFormatting(userId, loggedInTime);
         LogMessageWithCA2254Warning(userName, loggedInTime);
         LogMessageToFixCA2254Warning(userName, loggedInTime);
     }
@@ -42,9 +45,19 @@ public class Application
     
     public void LogMessageWithDifferentPlaceholderAndVariableName(string randomSentence)
     {
-        _logger.Log(LogLevel.Information, "User '{name}' added apples to the basket.", randomSentence);
+        _logger.Log(LogLevel.Information, "User '{userName}' added apples to the basket.", randomSentence);
     }
-    
+
+    public void LogMessageWithoutFormatting(Guid userId, DateTime loggedInTime)
+    {
+        _logger.Log(LogLevel.Information, "User {userId} logged in at {loggedInTime}.", userId, loggedInTime);
+    }
+
+    public void LogMessageWithFormatting(Guid userId, DateTime loggedInTime)
+    {
+        _logger.Log(LogLevel.Information, "User {userId:N} logged in at {loggedInTime:F}.", userId, loggedInTime);
+    }
+
     public void LogMessageWithCA2254Warning(string userName, DateTime loggedInTime)
     {
         _logger.Log(LogLevel.Information, $"User {userName} logged on {loggedInTime}");
