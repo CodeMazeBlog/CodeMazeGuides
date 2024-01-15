@@ -27,8 +27,8 @@ namespace HowToAddSeparatorsInThousandsPlaceForANumber
 
         public static string GetBalanceUsingTheToStringMethod(string specifier, CultureInfo? cultureInfo)
         {
-            var formatedBalance = _balance.ToString(specifier, cultureInfo);
-            return "Your account balance is: " + formatedBalance;
+            var formattedBalance = _balance.ToString(specifier, cultureInfo);
+            return "Your account balance is: " + formattedBalance;
         }
 
         public static string GetBalanceUsingStringInterpolation(int? decimalPlaces)
@@ -42,9 +42,9 @@ namespace HowToAddSeparatorsInThousandsPlaceForANumber
 
         public static string GetBalanceUsingStringInterpolationWithCultureInfo(string specifier, CultureInfo cultureInfo)
         {
-            var formatedBalance = _balance.ToString(specifier, cultureInfo);
+            var formattedBalance = _balance.ToString(specifier, cultureInfo);
 
-            return $"Your account balance is: {formatedBalance}";
+            return $"Your account balance is: {formattedBalance}";
         }
     }
 }
