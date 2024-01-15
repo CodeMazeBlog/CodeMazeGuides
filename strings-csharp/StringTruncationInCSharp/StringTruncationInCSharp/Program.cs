@@ -1,33 +1,25 @@
 ﻿using BenchmarkDotNet.Running;
 using StringTruncationInCSharp;
 
-
-StringHelper stringHelper = new StringHelper();
 var originalString = "This is a long string.";
 var maxLength = 10;
 
-var truncatedString_substring = stringHelper.TruncateWithSubstring(originalString, maxLength);
-Console.WriteLine("Using Substring method: " + truncatedString_substring);
+var truncatedUsingSubstring = StringHelper.TruncateWithSubstring(originalString, maxLength);
+Console.WriteLine("Using Substring method: " + truncatedUsingSubstring);
 
-var truncatedString_forLoop = stringHelper.TruncateWithForLoop(originalString, maxLength);
-Console.WriteLine("Using For Loop: " + truncatedString_forLoop);
+var truncatedUsingForLoop = StringHelper.TruncateWithForLoop(originalString, maxLength);
+Console.WriteLine("Using For Loop: " + truncatedUsingForLoop);
 
-var truncatedString_stringBuilder = stringHelper.TruncateWithForLoopStringBuilder(originalString, maxLength);
-Console.WriteLine("Using StringBuilder: " + truncatedString_stringBuilder);
+var truncatedUsingStringBuilder = StringHelper.TruncateWithForLoopStringBuilder(originalString, maxLength);
+Console.WriteLine("Using StringBuilder: " + truncatedUsingStringBuilder);
 
-var truncatedString_regularExpressions = stringHelper.TruncateWithRegularExpressions(originalString, maxLength);
-Console.WriteLine("Using Regular Expressions: " + truncatedString_regularExpressions);
+var truncatedUsingRegularExpressions = StringHelper.TruncateWithRegularExpressions(originalString, maxLength);
+Console.WriteLine("Using Regular Expressions: " + truncatedUsingRegularExpressions);
 
-var truncatedString_remove = stringHelper.TruncateWithRemove(originalString, maxLength);
-Console.WriteLine("Using Remove method: " + truncatedString_remove);
+var truncatedUsingRemove = StringHelper.TruncateWithRemove(originalString, maxLength);
+Console.WriteLine("Using Remove method: " + truncatedUsingRemove);
 
-var truncatedString_LINQ = stringHelper.TruncateWithLINQ(originalString, maxLength);
-Console.WriteLine("Using LINQ: " + truncatedString_LINQ);
+var truncatedUsingLINQ = StringHelper.TruncateWithLINQ(originalString, maxLength);
+Console.WriteLine("Using LINQ: " + truncatedUsingLINQ);
 
-var truncatedString_extensionMethod = originalString.TruncateString(maxLength);
-Console.WriteLine("Using Extension method: " + truncatedString_extensionMethod);
-
-var summary = BenchmarkRunner.Run<StringHelperBenchmark>();
-
-
-Console.ReadKey();
+BenchmarkRunner.Run<StringHelperBenchmark>();
