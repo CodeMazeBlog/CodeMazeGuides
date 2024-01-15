@@ -8,7 +8,7 @@ namespace MaximizeBrowserWindowInSeleniumTests;
 
 public class MaximizeBrowserWindowLiveTest : IDisposable
 {
-    private IWebDriver ?_driver;
+    private IWebDriver? _driver; 
 
     [Fact]
     public void GivenTestInChrome_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
@@ -23,7 +23,7 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
     [Fact]
     public void GivenTestInChromeWOptions_WhenBrowserOpens_ThenBrowserWindowIsMaximized()
     {
-        ChromeOptions options = new ChromeOptions();
+        var options = new ChromeOptions();
 
         options.AddArguments("--start-maximized");
 
@@ -35,7 +35,7 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
     [Fact]
     public void GivenTestInFirefox_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
     {
-        FirefoxDriverService service = FirefoxDriverService.CreateDefaultService();
+        var service = FirefoxDriverService.CreateDefaultService();
 
         _driver = new FirefoxDriver(service);
 
@@ -47,7 +47,7 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
     [Fact]
     public void GivenTestInMSEdge_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
     {
-        EdgeDriverService service = EdgeDriverService.CreateDefaultService();
+        var service = EdgeDriverService.CreateDefaultService();
 
         _driver = new EdgeDriver(service);
 
@@ -59,7 +59,7 @@ public class MaximizeBrowserWindowLiveTest : IDisposable
     [Fact]
     public void GivenTestInSafari_WhenBrowserNavigatesToURL_ThenBrowserWindowMaximizes()
     {
-        SafariDriverService service = SafariDriverService.CreateDefaultService();
+        var service = SafariDriverService.CreateDefaultService();
 
         _driver = new SafariDriver(service);
 
