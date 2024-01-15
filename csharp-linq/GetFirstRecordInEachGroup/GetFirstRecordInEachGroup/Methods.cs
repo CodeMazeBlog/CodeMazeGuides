@@ -15,17 +15,17 @@ public static class Methods
 
     public static List<Student> GetYoungestStudentInClassLinqGroupBy1
         (this List<Student> students) =>
-        students.GroupBy(m => m.Class, (key, g) => g.OrderBy(e => e.DateOfBirth).First())
+        students.GroupBy(m => m.Class, (key, g) => g.OrderByDescending(e => e.DateOfBirth).First())
         .ToList();
 
     public static List<Student> GetYoungestStudentInClassLinqGroupBy2
         (this List<Student> students) =>
-        students.GroupBy(m => m.Class).Select(g => g.OrderBy(e => e.DateOfBirth).First())
+        students.GroupBy(m => m.Class).Select(g => g.OrderByDescending(e => e.DateOfBirth).First())
         .ToList();
 
     public static List<Student> GetYoungestStudentInClassLinqLookup
        (this List<Student> students) =>
-       students.ToLookup(m => m.Class).Select(g => g.OrderBy(e => e.DateOfBirth).First())
+       students.ToLookup(m => m.Class).Select(g => g.OrderByDescending(e => e.DateOfBirth).First())
        .ToList();
 
     public static List<Student> GetYoungestStudentInClassLinqDictionary
@@ -34,7 +34,7 @@ public static class Methods
         .ToDictionary(m => m, 
           m => students
           .Where(s => s.Class.Equals(m))
-          .OrderBy(s => s.DateOfBirth).First())
+          .OrderByDescending(s => s.DateOfBirth).First())
         .Values
         .ToList();
 
@@ -45,7 +45,7 @@ public static class Methods
         foreach (var student in students)
         {
             if (!groupedStudents.TryGetValue(student.Class, out Student existingStudent) ||
-                student.DateOfBirth < existingStudent.DateOfBirth)
+                student.DateOfBirth > existingStudent.DateOfBirth)
             {
                 groupedStudents[student.Class] = student;
             }

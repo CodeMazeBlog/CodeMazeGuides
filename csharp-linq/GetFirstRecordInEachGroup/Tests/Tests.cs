@@ -15,7 +15,7 @@ namespace Tests
             foreach (var student in _students)
             {
                 if (!_groupedStudents.TryAdd(student.Class, student) &&
-                    student.DateOfBirth < _groupedStudents[student.Class].DateOfBirth)
+                    student.DateOfBirth > _groupedStudents[student.Class].DateOfBirth)
                     _groupedStudents[student.Class] = student;
             }
         }
