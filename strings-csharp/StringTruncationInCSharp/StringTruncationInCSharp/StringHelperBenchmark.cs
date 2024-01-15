@@ -2,9 +2,7 @@
 
 namespace StringTruncationInCSharp
 {
-    [MemoryDiagnoser]
-    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
-    [RankColumn]
+    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.Default)]
     public class StringHelperBenchmark
     {
         private readonly string _originalString = new ('a',1_000);
