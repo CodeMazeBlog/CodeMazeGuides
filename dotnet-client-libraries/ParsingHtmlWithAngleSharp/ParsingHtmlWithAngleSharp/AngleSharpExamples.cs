@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using AngleSharp;
+﻿using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 
@@ -7,8 +6,13 @@ namespace ParsingHtmlWithAngleSharp;
 
 public class AngleSharpExamples
 {
-    private const string Html = @"<!DOCTYPE html>
+    private const string Html = $@"<!DOCTYPE html>
                      <html>
+                     <style>
+                        .blue {{
+                            color: blue;
+                        }}
+                     </style>
                      <body>
                         <section id='section'>
                             <div id='articles'>
@@ -35,30 +39,10 @@ public class AngleSharpExamples
 
     public static async Task BasicExample()
     {
-        var html = @"<!DOCTYPE html>
-                     <html>
-                     <body>
-                        <section id=""section"">
-                            <div id=""articles"">
-                                <article id=""a1"">Article 1 content.</article>
-                                <article id=""a2"">Article 2 content.</article>
-                                <article id=""a3"">Article 3 content.</article>
-                            </div>
-                            <div class=""container""></div>
-                            <ul id=""list"">
-                                <li>Item 1</li>
-                                <li>Item 2</li>
-                                <li class=""bold"">Item 3</li>
-                                <li>Item 4</li>
-                            </ul>
-                        </section>
-                     </body>
-                     </html>";
-
         var config = Configuration.Default;
         var context = BrowsingContext.New(config);
 
-        var document = await context.OpenAsync(req => req.Content(html));
+        var document = await context.OpenAsync(req => req.Content(Html));
 
         var articles = document.QuerySelectorAll<IHtmlElement>("article").ToList();
         var firstArticleTextContent = articles[0].TextContent;
@@ -68,7 +52,10 @@ public class AngleSharpExamples
 
     public static async Task QuerySelectors()
     {
-        var config = Configuration.Default.WithDefaultLoader().WithDefaultCookies().WithJs();
+        var config = Configuration.Default
+            .WithDefaultLoader()
+            .WithDefaultCookies()
+            .WithJs();
         var context = BrowsingContext.New(config);
 
         var document = await context.OpenAsync(req => req.Content(Html));
@@ -77,6 +64,8 @@ public class AngleSharpExamples
         var paragraphElementsLinq = document.All
             .Where(e => e.TagName.Equals("p", StringComparison.InvariantCultureIgnoreCase));
 
+        // -----
+        
         var blueListItemElements = document.Body!.QuerySelectorAll<IHtmlListItemElement>("li.blue");
         var blueListItemElementsLinq = document.All!.Where(e => e.LocalName == "li" && e.ClassList.Contains("blue"));
 
@@ -85,10 +74,14 @@ public class AngleSharpExamples
             document.All!.First(e => e.TagName.ToLower() == "form" && (e.Id?.Equals("sign-up-form") ?? false));
         var formElementById = document.GetElementById("sign-up-form") as IHtmlFormElement;
 
+        // -----
+        
         var userNameInputElement = document.Body!.QuerySelector<IHtmlInputElement>("form > input[name='username']");
         var userNameInputElementLinq =
             document.All.Where(e => e.LocalName == "input" && e.Attributes["name"]?.Value == "username");
 
+        // -----
+        
         var section = document.Body!.QuerySelector<IHtmlElement>("section")!;
         var sectionInnerHtml = section.InnerHtml;
         var sectionTextContent = section.TextContent;
@@ -97,15 +90,6 @@ public class AngleSharpExamples
 
         var nextSibling = section.NextSibling;
         var previousSibling = section.PreviousSibling;
-
-        // Getting text nodes:
-        var p = document.QuerySelector<IHtmlParagraphElement>(".paragraph")!;
-        var textNode = p.ChildNodes
-            .First(node => node.NodeType == NodeType.Text
-                           && !string.IsNullOrEmpty(node.TextContent.Trim()));
-        Console.WriteLine(textNode.TextContent.Trim());
-
-        var ulList = document.GetElementById("ul") as IHtmlUnorderedListElement;
 
         var title = document.Title;
         var styles = document.StyleSheets;
@@ -176,7 +160,8 @@ public class AngleSharpExamples
 
     public static async Task Forms()
     {
-        var config = Configuration.Default
+        var config = Configuration
+            .Default
             .WithDefaultLoader();
         var context = BrowsingContext.New(config);
 
@@ -194,7 +179,7 @@ public class AngleSharpExamples
         var passwordInput = document.QuerySelector<IHtmlInputElement>("#password")!;
         // OR
         passwordInput = form.Elements["password"] as IHtmlInputElement;
-        passwordInput.Value = "Doe123!";
+        passwordInput.Value = "secret_password";
 
         var filesInput = document.QuerySelector<IHtmlInputElement>("input[type=file][name='profile-picture']")!;
         // OR
@@ -204,12 +189,12 @@ public class AngleSharpExamples
         string imagesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
         var fileEntry = new FileEntry("profile-picture.png", "jpeg",
             File.OpenRead(Path.Combine(imagesPath, "profile-picture.jpg")));
-        filesInput!.Files.Add(fileEntry);
+        filesInput!.Files!.Add(fileEntry);
 
+        await form.SubmitAsync();
 
         var link = document.QuerySelector<IHtmlLinkElement>("a");
         link.DoClick();
-        await form.SubmitAsync();
     }
 
     public static async Task WebScrapingExample()
@@ -260,16 +245,4 @@ public class AngleSharpExamples
     }
 
     public record Book(string Title, decimal Price, double Rating, string ImageUrl);
-
-
-    public class Productx
-    {
-        public string Name { get; set; } = default!;
-
-        public decimal Price { get; set; }
-
-        public string ImageUrl { get; set; } = default!;
-
-        public double Rating { get; set; }
-    }
 }
