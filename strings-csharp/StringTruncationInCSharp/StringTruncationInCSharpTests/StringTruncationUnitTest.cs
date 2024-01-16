@@ -6,7 +6,7 @@ namespace StringTruncationInCSharpTests
     {
         private const int MaxLength = 10;
         private const string OriginalString = "This is a long string.";
-        private const int _maxLengthLessThanZero = -10;
+        private const int MaxLengthLessThanZero = -10;
         private const string ExpectedTruncatedString = "This is a ";
 
         [Fact]
@@ -44,7 +44,7 @@ namespace StringTruncationInCSharpTests
         [Fact]
         public void GivenANonPositiveLength_WhenTruncatingAString_ThenUseSubstringMethodAndReturnAnEmptyString()
         {
-            var truncatedString = StringHelper.TruncateWithSubstring(OriginalString, _maxLengthLessThanZero);
+            var truncatedString = StringHelper.TruncateWithSubstring(OriginalString, MaxLengthLessThanZero);
 
             Assert.Equal(string.Empty, truncatedString);
         }
@@ -84,7 +84,7 @@ namespace StringTruncationInCSharpTests
         [Fact]
         public void GivenANonPositiveLength_WhenTruncatingAString_ThenUseForLoopMethodAndReturnAnEmptyString()
         {
-            var truncatedString = StringHelper.TruncateWithForLoop(OriginalString, _maxLengthLessThanZero);
+            var truncatedString = StringHelper.TruncateWithForLoop(OriginalString, MaxLengthLessThanZero);
 
             Assert.Equal(string.Empty, truncatedString);
         }
@@ -125,7 +125,7 @@ namespace StringTruncationInCSharpTests
         [Fact]
         public void GivenANonPositiveLength_WhenTruncatingAString_ThenUseForLoopWithStringBuilderMethodAndReturnAnEmptyString()
         {
-            var truncatedString = StringHelper.TruncateWithForLoopStringBuilder(OriginalString, _maxLengthLessThanZero);
+            var truncatedString = StringHelper.TruncateWithForLoopStringBuilder(OriginalString, MaxLengthLessThanZero);
 
             Assert.Equal(string.Empty, truncatedString);
         }
@@ -165,7 +165,7 @@ namespace StringTruncationInCSharpTests
         [Fact]
         public void GivenANonPositiveLength_WhenTruncatingAString_ThenUseRegularExpressionsMethodAndReturnAnEmptyString()
         {
-            var truncatedString = StringHelper.TruncateWithRegularExpressions(OriginalString, _maxLengthLessThanZero);
+            var truncatedString = StringHelper.TruncateWithRegularExpressions(OriginalString, MaxLengthLessThanZero);
 
             Assert.Equal(string.Empty, truncatedString);
         }
@@ -206,7 +206,7 @@ namespace StringTruncationInCSharpTests
         [Fact]
         public void GivenANonPositiveLength_WhenTruncatingAString_ThenUseRemoveMethodAndReturnAnEmptyString()
         {
-            var truncatedString = StringHelper.TruncateWithRemove(OriginalString, _maxLengthLessThanZero);
+            var truncatedString = StringHelper.TruncateWithRemove(OriginalString, MaxLengthLessThanZero);
 
             Assert.Equal(string.Empty, truncatedString);
         }
@@ -247,7 +247,7 @@ namespace StringTruncationInCSharpTests
         [Fact]
         public void GivenANonPositiveLength_WhenTruncatingAString_ThenUseLINQMethodAndReturnAnEmptyString()
         {
-            var truncatedString = StringHelper.TruncateWithLINQ(OriginalString, _maxLengthLessThanZero);
+            var truncatedString = StringHelper.TruncateWithLINQ(OriginalString, MaxLengthLessThanZero);
 
             Assert.Equal(string.Empty, truncatedString);
         }
@@ -289,7 +289,7 @@ namespace StringTruncationInCSharpTests
         [Fact]
         public void GivenANonPositiveLength_WhenTruncatingAString_ThenUseSpanMethodAndReturnAnEmptyString()
         {
-            var truncatedString = StringHelper.TruncateWithSpan(OriginalString, _maxLengthLessThanZero);
+            var truncatedString = StringHelper.TruncateWithSpan(OriginalString, MaxLengthLessThanZero);
 
             Assert.Equal(string.Empty, truncatedString);
         }
