@@ -1,11 +1,10 @@
-﻿namespace UsingMariaDBWithASPNETCoreWebAPI.Models.Contracts
+﻿namespace UsingMariaDBWithASPNETCoreWebAPI.Models.Contracts;
+
+public interface IDataRepository
 {
-    public interface IDataRepository
-    {
-        IEnumerable<Student> GetAll();
-        Student? Get(int id);
-        void Add(Student entity);
-        void Update(Student entityToUpdate, Student entity);
-        void Delete(Student entity);
-    }
+    Task<IEnumerable<Student>> GetAllAsync();
+    Task<Student?> GetAsync(int id);
+    Task AddAsync(Student entity);
+    Task UpdateAsync(Student entityToUpdate, Student entity);
+    Task DeleteAsync(Student entity);
 }

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using UsingMariaDBWithASPNETCoreWebAPI.Models;
 using UsingMariaDBWithASPNETCoreWebAPI.Models.Contracts;
-using UsingMariaDBWithASPNETCoreWebAPI.Models.DataManagers;
+using UsingMariaDBWithASPNETCoreWebAPI.Models.DataRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +17,7 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("StudentsConnection");
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
-builder.Services.AddScoped<IDataRepository, StudentDataManager>();
+builder.Services.AddScoped<IDataRepository, StudentRepository>();
 
 var app = builder.Build();
 

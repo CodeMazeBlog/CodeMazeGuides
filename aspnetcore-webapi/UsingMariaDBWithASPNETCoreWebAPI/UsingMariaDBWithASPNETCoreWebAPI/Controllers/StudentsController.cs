@@ -2,75 +2,74 @@
 using UsingMariaDBWithASPNETCoreWebAPI.Models;
 using UsingMariaDBWithASPNETCoreWebAPI.Models.Contracts;
 
-namespace UsingMariaDBWithASPNETCoreWebAPI.Controllers
+namespace UsingMariaDBWithASPNETCoreWebAPI.Controllers;
+
+[Route("api/students")]
+[ApiController]
+public class StudentsController(IDataRepository dataRepository) : ControllerBase
 {
-    [Route("api/students")]
-    [ApiController]
-    public class StudentsController(IDataRepository dataRepository) : ControllerBase
+    private readonly IDataRepository _dataRepository = dataRepository;
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllStudents()
     {
-        private readonly IDataRepository _dataRepository = dataRepository;
+        var students = await _dataRepository.GetAllAsync();
 
-        [HttpGet]
-        public IActionResult GetAllStudents()
+        return Ok(students);
+    }
+
+    [HttpGet("{id}", Name = "GetStudent")]
+    public async Task<IActionResult> GetStudent(int id)
+    {
+        var student = await _dataRepository.GetAsync(id);
+        if (student is null)
         {
-            var students = _dataRepository.GetAll();
-
-            return Ok(students);
+            return NotFound("Student not found.");
         }
 
-        [HttpGet("{id}", Name = "GetStudent")]
-        public IActionResult GetStudent(int id)
-        {
-            var student = _dataRepository.Get(id);
-            if (student is null)
-            {
-                return NotFound("Student not found.");
-            }
+        return Ok(student);
+    }
 
-            return Ok(student);
+    [HttpPost]
+    public async Task<IActionResult> PostStudent([FromBody] Student student)
+    {
+        if (student is null)
+        {
+            return BadRequest("Student is null.");
+        }
+        await _dataRepository.AddAsync(student);
+
+        return CreatedAtRoute("GetStudent", new { student.Id }, null);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutStudent(int id, [FromBody] Student student)
+    {
+        if (student is null)
+        {
+            return BadRequest("Student is null.");
         }
 
-        [HttpPost]
-        public IActionResult PostStudent(Student student)
+        var studentToUpdate = await _dataRepository.GetAsync(id);
+        if (studentToUpdate is null)
         {
-            if (student is null)
-            {
-                return BadRequest("Student is null.");
-            }
-            _dataRepository.Add(student);
-
-            return CreatedAtRoute("GetStudent", new { student.Id }, null);
+            return NotFound("The Student record couldn't be found.");
         }
+        await _dataRepository.UpdateAsync(studentToUpdate, student);
 
-        [HttpPut("{id}")]
-        public IActionResult PutStudent(int id, Student student)
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteStudent(int id)
+    {
+        var student = await _dataRepository.GetAsync(id);
+        if (student is null)
         {
-            if (student is null)
-            {
-                return BadRequest("Student is null.");
-            }
-
-            var studentToUpdate = _dataRepository.Get(id);
-            if (studentToUpdate is null)
-            {
-                return NotFound("The Student record couldn't be found.");
-            }
-            _dataRepository.Update(studentToUpdate, student);
-
-            return NoContent();
+            return NotFound("The Student record couldn't be found.");
         }
+        await _dataRepository.DeleteAsync(student);
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteStudent(int id)
-        {
-            var student = _dataRepository.Get(id);
-            if (student is null)
-            {
-                return NotFound("The Student record couldn't be found.");
-            }
-            _dataRepository.Delete(student);
-
-            return NoContent();
-        }
+        return NoContent();
     }
 }
