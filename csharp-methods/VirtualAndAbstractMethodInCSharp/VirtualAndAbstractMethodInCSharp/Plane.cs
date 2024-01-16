@@ -2,11 +2,11 @@
 {
     public class Plane(double cruisingSpeed) : TransportMode
     {
-        private readonly double cruisingSpeed = cruisingSpeed;
+        private readonly double _cruisingSpeed = cruisingSpeed;
 
         public override double GetTravelTime(double distance)
         {
-            return distance / cruisingSpeed + 0.5; 
+            return distance / _cruisingSpeed + 0.5; 
         }
 
         public override double CalculateBaseFare(double distance)

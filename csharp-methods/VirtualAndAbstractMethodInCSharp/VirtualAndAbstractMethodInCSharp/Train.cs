@@ -2,11 +2,11 @@
 {    
     public class Train(double fixedJourneyTime) : TransportMode
     {
-        private double fixedJourneyTime = fixedJourneyTime;
+        private double _fixedJourneyTime = fixedJourneyTime;
 
         public override double GetTravelTime(double distance)
         {
-            return fixedJourneyTime; 
+            return _fixedJourneyTime; 
         }
 
         public override double CalculateBaseFare(double distance)
