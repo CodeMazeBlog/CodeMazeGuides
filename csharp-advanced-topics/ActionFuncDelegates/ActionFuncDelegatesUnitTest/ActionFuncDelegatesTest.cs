@@ -10,6 +10,7 @@ namespace ActionFuncDelegatesUnitTest
         public void WhenDelegateGetValue_ThenShowValue()
         {
             var result = DelegatesTypes.Program.number;
+
             Assert.AreEqual(15, result);
         }
 
@@ -17,6 +18,7 @@ namespace ActionFuncDelegatesUnitTest
         public void WhenDelegateGetInvalidValue_ThenShowValue()
         {
             var result = DelegatesTypes.Program.number;
+
             Assert.AreNotEqual(10, result);
         }    
     }

@@ -8,11 +8,13 @@ namespace DelegatesTypes
         public static int SumNumber(int p)
         {
             number += p;
+
             return number;
         }
         static void Main(string[] args)
         {
             var number1 = new Numbers(SumNumber);
+
             number1(10);
             Console.WriteLine("The number is: {0}", number);
         }

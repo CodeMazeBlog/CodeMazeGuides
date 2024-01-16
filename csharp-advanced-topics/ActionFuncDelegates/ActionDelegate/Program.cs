@@ -14,7 +14,7 @@
                 Console.WriteLine(message); 
             };
 
-            ActionCalculator( 4, 2 );
+            ActionCalculator(4, 2);
             ActionDisplayMessage("this is an Action<T> in action");           
         }
     }
