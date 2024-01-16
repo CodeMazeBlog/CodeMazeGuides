@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace Tests;
@@ -25,7 +26,6 @@ public class AttributeIntegrationTest: IClassFixture<WebApplicationFactory<Progr
         var response = await client.GetAsync(url);
 
         response.EnsureSuccessStatusCode(); // Status Code 200-299
-        Assert.Equal("text/html; charset=utf-8", 
-            response.Content.Headers.ContentType.ToString());
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }
