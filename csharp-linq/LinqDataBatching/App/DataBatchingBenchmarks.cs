@@ -1,9 +1,11 @@
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Reports;
 using BenchmarkDotNet.Running;
 
 namespace App;
 
+[Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class DataBatchingBenchmarks
 {
     private const int BatchSize = 100;
