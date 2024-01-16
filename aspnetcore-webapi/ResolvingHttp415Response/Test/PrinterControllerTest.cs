@@ -55,19 +55,40 @@ public class PrinterControllerTest
         var result = await SendPrintRequest(testMsg);
         Assert.AreEqual(415, (int)result.StatusCode);   
     }
+
+    [TestMethod]
+    public async Task GivenInValidMediaType_WhenActionCalled_ShouldReturnCustomHttp415Response()
+    {
+        string testMsg = "Some Invalid Data"; 
+
+        var result = await SendPrintCustomErrorResponseTest(testMsg);
+        Assert.AreEqual(415, (int)result.StatusCode);   
+        Assert.AreEqual($"Unsupported Media Type. Received: text/plain; charset=utf-8 Expected: application/x-www-form-urlencoded", 
+        await result.Content.ReadAsStringAsync());
+    }
+
     private async Task<HttpResponseMessage> SendPrintFromBodyRequest(string msg)
     {
         return await _httpClient.PostAsync("/api/Printer/PrintFromBody", 
         new StringContent($"\"{msg}\"", Encoding.UTF8, "application/json"));
     }
+    
     private async Task<HttpResponseMessage> SendPrintFromFormRequest(string msg)
     {
         return await _httpClient.PostAsync("/api/Printer/PrintFromForm", 
         new StringContent($"data={msg}", Encoding.UTF8, "application/x-www-form-urlencoded"));
     }
+    
     private async Task<HttpResponseMessage> SendPrintRequest(string msg)
     {
         return await _httpClient.PostAsync("/api/Printer/Print", 
         new StringContent($"data={msg}", Encoding.UTF8, "application/x-www-form-urlencoded"));
+
+    }
+    
+    private async Task<HttpResponseMessage> SendPrintCustomErrorResponseTest(string msg)
+    {
+        return await _httpClient.PostAsync("/api/Printer/PrintFromBodyManualCheck", 
+        new StringContent($"data={msg}", Encoding.UTF8, "text/plain"));
     }
 }

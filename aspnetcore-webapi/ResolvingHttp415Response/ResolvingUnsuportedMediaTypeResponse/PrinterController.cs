@@ -10,7 +10,6 @@ public class PrinterController : Controller
         {
             return Ok($"Recievd: {data}");
         }
-        // Web API approach using [FromBody]
         
         [HttpPost]
         [Consumes("application/json")]
@@ -20,7 +19,6 @@ public class PrinterController : Controller
             return Ok($"Received (FromBody): {data}");
         }
 
-        // MVC approach using [FromForm]
         [HttpPost]
         [Consumes("application/x-www-form-urlencoded", "application/xml")]
         [Produces("application/json", "text/plain")]
@@ -31,9 +29,9 @@ public class PrinterController : Controller
 
         [HttpPost]
         [ProducesResponseType(415, Type = typeof(string))]
-        public IActionResult PrintFromBodyManualCheck([FromBody] string data)
+        public IActionResult PrintFromBodyManualCheck([FromForm] string data)
         {
-            if (!Request.ContentType.StartsWith("application/json"))
+            if (!Request.ContentType.StartsWith("application/x-www-form-urlencoded"))
             {
                 return UnsupportedMediaType(Request.ContentType);
             }
@@ -44,6 +42,6 @@ public class PrinterController : Controller
         {
             Response.StatusCode = 415;
             Response.ContentType = "text/plain";
-            return Content($"Unsupported Media Type. Received: {type} Expected: application/json");
+            return Content($"Unsupported Media Type. Received: {type} Expected: application/x-www-form-urlencoded");
         }
 }
