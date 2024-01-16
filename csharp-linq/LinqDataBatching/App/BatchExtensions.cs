@@ -15,6 +15,7 @@ public static class BatchExtensions
         }
 
         if (batch.Count > 0) batches.Add(batch);
+        
         return batches;
     }
 
