@@ -9,25 +9,25 @@ public class CustomersController : Controller
     [Route("Index")]
     public IActionResult Index()
     {
-        return View();
+        return Ok();
     }
 
     [HttpGet("Info/{id}")]
     public IActionResult Detail(int id)
     {
-        return View();
+        return Ok();
     }
 
     [Route("Order")]
     [Route("Customer/Order")]
     public IActionResult Order()
     {
-        return View();
+        return Ok();
     }
     
     [HttpGet("/Special")]
     public IActionResult SpecialRoute()
     {
-        return View();
+        return Ok();
     }
 }
