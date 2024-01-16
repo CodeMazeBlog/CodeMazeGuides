@@ -11,7 +11,7 @@ public class InitializationBackgroundService(
         using IServiceScope scope = serviceProvider.CreateScope();
 
         using var context = scope.ServiceProvider
-        .GetRequiredService<ApplicationDbContext>();
+            .GetRequiredService<ApplicationDbContext>();
 
         await context.Database.MigrateAsync(stoppingToken);
     }

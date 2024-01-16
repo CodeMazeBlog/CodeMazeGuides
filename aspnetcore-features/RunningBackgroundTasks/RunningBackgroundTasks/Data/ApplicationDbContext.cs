@@ -3,9 +3,18 @@ using RunningBackgroundTasks.Data.Models;
 
 namespace RunningBackgroundTasks.Data;
 
-public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
+public class ApplicationDbContext : DbContext
 {
-    public DbSet<Client> Clients { get; set; }
+    public ApplicationDbContext()
+    {
+    }
+
+    public ApplicationDbContext(DbContextOptions options)
+        : base(options)
+    {
+    }
+
+    public virtual DbSet<Client> Clients { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

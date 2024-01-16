@@ -7,7 +7,7 @@ public class PeriodicHostedService(
     TimeProvider timeProvider,
     IServiceProvider serviceProvider) : IHostedService
 {
-    private readonly TimeSpan _period = TimeSpan.FromHours(24);
+    private readonly TimeSpan _period = TimeSpan.FromSeconds(24);
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {

@@ -3,53 +3,59 @@ using RunningBackgroundTasks.Data;
 using RunningBackgroundTasks.Services.One_off;
 using RunningBackgroundTasks.Services.Periodic;
 
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddSingleton(TimeProvider.System);
-
-builder.Services.Configure<HostOptions>(options =>
+public class Program
 {
-    options.ServicesStartConcurrently = true;
-});
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHostedService<InitializationHostedService>();
-//builder.Services.AddHostedService<InitializationBackgroundService>();
-//builder.Services.AddHostedService<InitializationHostedLifecycleService>();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
-//builder.Services.AddHostedService<PeriodicHostedService>();
-//builder.Services.AddHostedService<PeriodicBackgroundService>();
-builder.Services.AddHostedService<PeriodicHostedLifecycleService>();
+        builder.Services.AddSingleton(TimeProvider.System);
 
-builder.Services.AddDbContext<ApplicationDbContext>(
-    options => options.UseSqlServer(
-        builder.Configuration.GetConnectionString("ClientsDbConnectionString"),
-        options => options.EnableRetryOnFailure()));
+        builder.Services.Configure<HostOptions>(options =>
+        {
+            options.ServicesStartConcurrently = true;
+        });
 
-var app = builder.Build();
+        builder.Services.AddHostedService<InitializationHostedService>();
+        //builder.Services.AddHostedService<InitializationBackgroundService>();
+        //builder.Services.AddHostedService<InitializationHostedLifecycleService>();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+        builder.Services.AddHostedService<PeriodicHostedService>();
+        //builder.Services.AddHostedService<PeriodicBackgroundService>();
+        //builder.Services.AddHostedService<PeriodicHostedLifecycleService>();
+
+        builder.Services.AddDbContext<ApplicationDbContext>(
+            options => options.UseSqlServer(
+                builder.Configuration.GetConnectionString("ClientsDbConnectionString"),
+                options => options.EnableRetryOnFailure()));
+
+        var app = builder.Build();
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.MapGet("/clients/active", (ApplicationDbContext context) =>
+        {
+            return context.Clients.Where(x => x.IsActive).AsNoTracking();
+        })
+        .WithName("GetActiveClients")
+        .WithOpenApi();
+
+        app.MapGet("/clients/archived", (ApplicationDbContext context) =>
+        {
+            return context.Clients.Where(x => !x.IsActive).AsNoTracking();
+        })
+        .WithName("GetArchivedClients")
+        .WithOpenApi();
+
+        app.Run();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.MapGet("/clients/active", (ApplicationDbContext context) =>
-{
-    return context.Clients.Where(x => x.IsActive).AsNoTracking();
-})
-.WithName("GetActiveClients")
-.WithOpenApi();
-
-app.MapGet("/clients/archived", (ApplicationDbContext context) =>
-{
-    return context.Clients.Where(x => !x.IsActive).AsNoTracking();
-})
-.WithName("GetArchivedClients")
-.WithOpenApi();
-
-app.Run();
