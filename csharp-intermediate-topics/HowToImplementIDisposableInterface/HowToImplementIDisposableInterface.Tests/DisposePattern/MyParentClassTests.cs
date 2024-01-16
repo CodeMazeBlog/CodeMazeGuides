@@ -14,7 +14,6 @@ public class MyParentClassTests
         // Act
         {
             var myClass = new MyParentClass(managedResource);
-
             myClass.DoSomething();
         }
 
@@ -31,9 +30,7 @@ public class MyParentClassTests
         // Act
         {
             var myClass = new MyParentClass(managedResource);
-
             myClass.DoSomething();
-
             myClass.Dispose();
         }
 
@@ -50,7 +47,6 @@ public class MyParentClassTests
         // Act
         {
             using var myClass = new MyParentClass(managedResource);
-
             myClass.DoSomething();
         }
 
@@ -64,9 +60,9 @@ public class MyParentClassTests
         // Arrange
         var managedResource = Substitute.For<IManagedResource>();
 
+        // Act
         {
             using var myClass = new MyParentClass(managedResource);
-
             myClass.DoSomething();
         }
 

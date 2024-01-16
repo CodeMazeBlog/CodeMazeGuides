@@ -14,7 +14,6 @@ public class MyChildClassTests
 
         {
             using var myClass = new MyChildClass(parentManagedResource, childManagedResource);
-
             myClass.DoSomething();
         }
 
