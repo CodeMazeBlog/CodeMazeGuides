@@ -3,14 +3,14 @@
 // CREATING ARRAY SEGMENTS
 string[] cities = ["Atlanta", "Belgrade", "Warsaw", "Berlin", "Tokyo", "London", "Cairo", "Sydney"];
 
-Console.WriteLine("Delimiting the entire array");
-Console.WriteLine($"Original array: {cities.Length} elements");
-Console.WriteLine($"Array view: {Utilities.GetArraySegmentLength(cities)} elements");
-Console.WriteLine();
-
 Console.WriteLine("Creating array segment");
 Console.WriteLine($"Original array: {cities.Length} elements");
 Console.WriteLine($"Array view: {Utilities.GetArraySegmentLength(cities, 2, 5)} elements");
+Console.WriteLine();
+
+Console.WriteLine("Delimiting the entire array");
+Console.WriteLine($"Original array: {cities.Length} elements");
+Console.WriteLine($"Array view: {Utilities.GetArraySegmentLength(cities)} elements");
 Console.WriteLine();
 
 // RETRIEVING ELEMENTS
@@ -21,26 +21,21 @@ Console.WriteLine();
 
 // ITERATING OVER THE ELEMENTS OF AN ARRAY SEGMENT
 Console.WriteLine("Iterating over the elements of an array segment using the for loop");
+
 for (int i = 0; i < segment.Count; i++)
-{
     Console.WriteLine(segment[i]);
-}
 Console.WriteLine();
 
 Console.WriteLine("Iterating over the elements of an array segment using the foreach loop");
 foreach (var element in segment)
-{
     Console.WriteLine(element);
-}
 Console.WriteLine();
 
 // ARRAY SEGMENT PROPERTIES
 Console.WriteLine("The original array accessed using the Array property:");
 var originalArray = Utilities.GetOriginalArray(segment);
 for (int i = 0; i < originalArray?.Length; i++)
-{
     Console.WriteLine(originalArray[i]);
-}
 Console.WriteLine();
 
 Console.Write("The number of elements in the array segment: ");
@@ -84,18 +79,14 @@ Console.WriteLine();
 Console.WriteLine("Slicing an array segment");
 Console.WriteLine("The segment contains the following elements:");
 foreach (var element in segment)
-{
     Console.Write(element + " ");
-}
 var slice1 = Utilities.GetSegmentSlice(segment, 2);
 
 Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("Slice 1 contains the following elements:");
 foreach (var element in slice1)
-{
     Console.Write(element + " ");
-}
 Console.WriteLine();
 
 var slice2 = Utilities.GetSegmentSlice(segment, 2, 2);
@@ -103,9 +94,7 @@ var slice2 = Utilities.GetSegmentSlice(segment, 2, 2);
 Console.WriteLine();
 Console.WriteLine("Slice 2 contains the following elements:");
 foreach (var element in slice2)
-{
     Console.Write(element + " ");
-}
 Console.WriteLine();
 Console.WriteLine();
 
@@ -113,17 +102,13 @@ Console.WriteLine();
 Console.WriteLine("Modifying an element of an array segment");
 Console.WriteLine("Original array:");
 foreach (var element in cities)
-{
     Console.Write(element + " ");
-}
 Console.WriteLine();
 Console.WriteLine();
 
 Console.WriteLine("Segment:");
 foreach (var element in segment)
-{
     Console.Write(element + " ");
-}
 Console.WriteLine();
 Console.WriteLine();
 
@@ -131,22 +116,16 @@ Console.WriteLine("Modifying an element in the segment...");
 Utilities.ModifySegmentElement(segment, 2, "Kyoto");
 Console.WriteLine("Modified segment:");
 foreach (var element in segment)
-{
     Console.Write(element + " ");
-}
 Console.WriteLine();
 Console.WriteLine();
 
 Console.WriteLine("Original array:");
 foreach (var element in cities)
-{
     Console.Write(element + " ");
-}
 Console.WriteLine();
 Console.WriteLine();
 
 Console.WriteLine("Relationships between indices");
 for (int i = segment.Offset; i < segment.Offset + segment.Count; i++)
-{
     Console.WriteLine(segment.Array?[i]);
-}

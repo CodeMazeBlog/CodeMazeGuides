@@ -5,14 +5,12 @@ public static class Utilities
     public static int GetArraySegmentLength<T>(T[] array)
     {
         var arrayView = new ArraySegment<T>(array);
-
         return arrayView.Count;
     }
 
     public static int GetArraySegmentLength<T>(T[] array, int from, int howMany)
     {
         var arraySegment = new ArraySegment<T>(array, from, howMany);
-
         return arraySegment.Count;
     }
 
