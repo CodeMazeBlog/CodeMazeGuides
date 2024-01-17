@@ -120,4 +120,22 @@ public class ListExistsInAnotherUnitTests
         Assert.IsTrue(CompareStudentsExamples.CompareStudentsUsingWhereAny(_artStudents, _scienceStudents));
         Assert.IsFalse(CompareStudentsExamples.CompareStudentsUsingWhereAny(_scienceStudents, _businessStudents));
     }
+
+    [TestMethod]
+    public void GivenListSize_WhenMiddleElementOptionSelected_ValidateCorrectResults()
+    {
+        var testList = _compareListsMethods.GenerateIntegerList(false, true, 100, 100);
+
+        Assert.AreEqual(100, testList.Count);
+        Assert.AreEqual(50, testList[50]);
+    }
+
+    [TestMethod]
+    public void GivenListSize_WhenReversedElementOptionSelected_ValidateCorrectResults()
+    {
+        var testList = _compareListsMethods.GenerateIntegerList(true, false, 100, 100);
+
+        Assert.AreEqual(199, testList.First());
+        Assert.AreEqual(100, testList.Last());
+    }
 }

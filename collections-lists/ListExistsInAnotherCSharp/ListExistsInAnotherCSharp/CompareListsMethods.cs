@@ -12,31 +12,31 @@ public class CompareListsMethods
 {
     public IEnumerable<object[]> SampleLists()
     {
-        yield return new object[] 
-        { 
-            GenerateIntegerList(false, false, true, 10000000), 
-            GenerateIntegerList(false, false, true, 10000000), 
-            "Random" 
+        yield return new object[]
+        {
+            GenerateIntegerList(false, false, 0, 1000000),
+            GenerateIntegerList(true, false, 0, 1000000),
+            "Reversed"
         };
 
-        yield return new object[] 
-        { 
-            GenerateIntegerList(true, false, false, 10000000), 
-            GenerateIntegerList(true, false, false, 10000000), 
-            "Common" 
+        yield return new object[]
+        {
+            GenerateIntegerList(false, false, 0, 1000000),
+            GenerateIntegerList(false, false, 1000001, 1000000),
+            "Random"
         };
 
-        yield return new object[] 
-        { 
-            GenerateIntegerList(false, true, false, 10000000), 
-            GenerateIntegerList(false, false, false, 10000000), 
-            "Equal" 
+        yield return new object[]
+        {
+            GenerateIntegerList(false, false, 0, 1000000),
+            GenerateIntegerList(false, true, 1000001, 1000000),
+            "Middle"
         };
     }
 
     [ArgumentsSource(nameof(SampleLists))]
     [Benchmark]
-    public bool CompareListUsingIntersect(List<int> firstList, List<int> secondList, string listName) 
+    public bool CompareListUsingIntersect(List<int> firstList, List<int> secondList, string listName)
     {
         return firstList.Intersect(secondList).Any();
     }
@@ -50,7 +50,7 @@ public class CompareListsMethods
 
     [ArgumentsSource(nameof(SampleLists))]
     [Benchmark]
-    public bool CompareListUsingIteration(List<int> firstList, List<int> secondList, string listName) 
+    public bool CompareListUsingIteration(List<int> firstList, List<int> secondList, string listName)
     {
         foreach (var item in firstList)
         {
@@ -67,7 +67,7 @@ public class CompareListsMethods
     [Benchmark]
     public bool CompareListUsingExcept(List<int> firstList, List<int> secondList, string listName)
     {
-        return secondList.Except(firstList).Count() != secondList.Count;       
+        return secondList.Except(firstList).Count() != secondList.Count;
     }
 
     [ArgumentsSource(nameof(SampleLists))]
@@ -77,37 +77,28 @@ public class CompareListsMethods
         return secondList.Where(firstList.Contains).Any();
     }
 
-    private List<int> GenerateIntegerList(bool useCommon, bool useAll, bool useRandom, int size)
+    public List<int> GenerateIntegerList(bool useReverse, bool useMiddle, int startIndex, int size)
     {
         var integerList = new List<int>(size);
+        var i = 0;
 
-        if (useRandom) 
-        {
-            for(int i = 0; i < size; i++) 
-            {
-                integerList.Add(Random.Shared.Next());
-            }
+        while(i < size) 
+        { 
+            integerList.Add(startIndex);
+            startIndex++;
+            i++;
         }
 
-        if (useAll) 
+        if (useReverse)
         {
-            for (int i = 0; i < size; i++)
-            {
-                integerList.Add(i);
-            }
+            integerList.Reverse();
         }
 
-        if (useCommon) 
+        if (useMiddle)
         {
-            for (int i = 0; i < size/2; i++)
-            {
-                integerList.Add(i);
-            }
+            var middleElement = size / 2;
 
-            for (int i = size/2; i < size; i++)
-            {
-                integerList.Add(Random.Shared.Next());
-            }
+            integerList[middleElement] = middleElement;
         }
 
         return integerList;
