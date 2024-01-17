@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using RetrievePropertyValuebyNameinCSharp;
+﻿using RetrievePropertyValuebyNameinCSharp;
 
 Person person = new()
 {
@@ -8,7 +7,6 @@ Person person = new()
     Age = 18,
     IsDeleted = false,
 };
-
 
 PropertyRetrieval.TryGetPropertyValue<int, Person>(person, "Age", out var value);
 

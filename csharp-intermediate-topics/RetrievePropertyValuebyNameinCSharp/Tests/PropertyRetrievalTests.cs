@@ -9,7 +9,7 @@ public class PropertyRetrievalTests
     public void WhenObjectIsNull_ThenReturnsFalse()
     {
         // Arrange
-        Person person = null;
+        Person? person = null;
 
         //Act
         var result = PropertyRetrieval.TryGetPropertyValue<string, Person?>(person, "Name", out _);
@@ -51,7 +51,7 @@ public class PropertyRetrievalTests
         var person = new Person { FirstName = "John", LastName = "Doe", Age = 30, IsDeleted = false };
 
         // Act
-        var result = PropertyRetrieval.TryGetPropertyValue<string, Person>(person, "FirstName", out string value);
+        var result = PropertyRetrieval.TryGetPropertyValue<string, Person>(person, "FirstName", out string? value);
 
         // Assert
         Assert.True(result);
