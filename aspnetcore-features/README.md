@@ -21,7 +21,6 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [How to Read AppSettings Values From a JSON File in .NET Core](https://code-maze.com/aspnetcore-read-appsettings-values-from-a-json-file/)
 - [ASP.NET Core Get JSON Array Using IConfiguration](https://code-maze.com/aspnetcore-get-json-array-using-iconfiguration/)
 - [Output Caching in ASP.NET Core](https://code-maze.com/aspnet-core-output-caching/)
-- [How to Read Values From Query Strings In ASP.NET Core](https://code-maze.com/aspnetcore-read-values-from-query-strings/)
 - [How to Resolve Instances With ASP.NET Core DI](https://code-maze.com/aspnetcore-resolve-instances-with-dependency-injection/)
 - [Response Caching in ASP.NET Core](https://code-maze.com/aspnetcore-response-caching/)
 - [Different Ways to Use Select Tag Helper in ASP.NET Core](https://code-maze.com/select-tag-helper-aspnetcore/)
@@ -30,3 +29,4 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [URI Encode and Decode in .NET](https://code-maze.com/dotnet-uri-encode-and-decode/)
 - [Validate User Input With Regular Expressions in Blazor WebAssembly](https://code-maze.com/validate-input-regular-expressions-blazor-webassembly/)
 - [Multipart Form-Data in HttpClient with ASP.NET Core](https://code-maze.com/aspnetcore-multipart-form-data-in-httpclient/)
+- [What Is Service Discovery in .NET and How to Use It?](https://code-maze.com/aspnetcore-what-is-service-discovery-and-how-to-use-it/)
