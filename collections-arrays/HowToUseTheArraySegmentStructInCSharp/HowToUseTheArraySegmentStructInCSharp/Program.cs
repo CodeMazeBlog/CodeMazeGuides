@@ -98,6 +98,15 @@ foreach (var element in slice2)
 Console.WriteLine();
 Console.WriteLine();
 
+var slice3 = Utilities.GetSegmentSliceUsingRangeIndexer(segment, 1, 3);
+
+Console.WriteLine();
+Console.WriteLine("Slice 3 contains the following elements:");
+foreach (var element in slice3)
+    Console.Write(element + " ");
+Console.WriteLine();
+Console.WriteLine();
+
 // RELATIONSHIPS BETWEEN ARRAY AND ARRAY SEGMENT
 Console.WriteLine("Modifying an element of an array segment");
 Console.WriteLine("Original array:");

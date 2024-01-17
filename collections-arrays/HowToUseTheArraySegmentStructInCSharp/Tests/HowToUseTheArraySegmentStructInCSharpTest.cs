@@ -1,11 +1,9 @@
-using HowToUseTheArraySegmentStructInCSharp;
-
 namespace Tests;
 
 public class HowToUseTheArraySegmentStructInCSharpTest
 {   
     [Fact]
-    public void GivenGetArraySegmentLengthMethod_WhenEnireArrayIsDelimited_ThenSegmentAndArrayAreOfEqualLength()
+    public void GivenGetArraySegmentLengthMethod_WhenEntireArrayIsDelimited_ThenSegmentAndArrayAreOfEqualLength()
     {
         // Arrange
         int[] array = [1, 2, 3, 4, 5];
@@ -15,7 +13,6 @@ public class HowToUseTheArraySegmentStructInCSharpTest
 
         //Assert
         var expected = array.Length;
-
         Assert.Equal(expected, output);
     }
 
@@ -30,7 +27,6 @@ public class HowToUseTheArraySegmentStructInCSharpTest
 
         //Assert
         var expected = 2;
-
         Assert.Equal(expected, output);
     }
 
@@ -46,7 +42,6 @@ public class HowToUseTheArraySegmentStructInCSharpTest
 
         //Assert
         var expected = 6;
-
         Assert.Equal(expected, output);
     }
 
@@ -58,11 +53,10 @@ public class HowToUseTheArraySegmentStructInCSharpTest
         var segment = new ArraySegment<int>(array, 4, 3);
 
         // Act
-        var output = Utilities.GetOriginalArray(segment)[0];
+        var output = Utilities.GetOriginalArray(segment)?[0];
 
         //Assert
         var expected = 1;
-
         Assert.Equal(expected, output);
     }
 
@@ -78,7 +72,6 @@ public class HowToUseTheArraySegmentStructInCSharpTest
 
         //Assert
         var expected = 3;
-
         Assert.Equal(expected, output);
     }
 
@@ -94,7 +87,6 @@ public class HowToUseTheArraySegmentStructInCSharpTest
 
         //Assert
         var expected = 4;
-
         Assert.Equal(expected, output);
     }
 
@@ -106,7 +98,6 @@ public class HowToUseTheArraySegmentStructInCSharpTest
 
         //Assert
         var expected = 0;
-
         Assert.Equal(expected, output);
     }
 
@@ -155,6 +146,23 @@ public class HowToUseTheArraySegmentStructInCSharpTest
         Assert.Contains(7, output);
         Assert.DoesNotContain(4, output);
         Assert.DoesNotContain(5, output);
+    }
+
+    [Fact]
+    public void GivenGetSegmentSliceUsingRangeIndexerMethod_WhenStartAndEndIndicesArePassed_ThenCorrectSliceIsReturned()
+    {
+        // Arrange
+        int[] array = [1, 2, 3, 4, 5, 6, 7, 8];
+        var segment = new ArraySegment<int>(array, 3, 4); // [4, 5, 6, 7]
+
+        // Act
+        var output = Utilities.GetSegmentSliceUsingRangeIndexer(segment, 1, 3); // [5, 6]
+
+        //Assert
+        Assert.Contains(5, output);
+        Assert.Contains(6, output);
+        Assert.DoesNotContain(4, output);
+        Assert.DoesNotContain(7, output);
     }
 
     [Fact]
