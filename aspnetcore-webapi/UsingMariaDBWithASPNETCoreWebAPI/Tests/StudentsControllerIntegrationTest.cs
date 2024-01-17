@@ -10,7 +10,7 @@ namespace Tests
         private readonly HttpClient _client = factory.CreateClient();
 
         [Fact, Order(1)]
-        public async Task WhenGetExecuted_ReturnsAllStudents()
+        public async Task WhenGetExecuted_ThenReturnsAllStudents()
         {
             var response = await _client.GetAsync("/api/students");
 
@@ -23,7 +23,7 @@ namespace Tests
         }
 
         [Fact, Order(2)]
-        public async Task WhenGetExecuted_ReturnsAStudent()
+        public async Task WhenGetExecuted_ThenReturnsAStudent()
         {
             var response = await _client.GetAsync("/api/students/1");
 
@@ -36,7 +36,7 @@ namespace Tests
         }
 
         [Fact, Order(3)]
-        public async Task WhenPostExecuted_ReturnsCreatedAtRoute()
+        public async Task WhenPostExecuted_ThenReturnsCreatedAtRoute()
         {
             var postRequest = new HttpRequestMessage(HttpMethod.Post, "/api/students");
 
@@ -54,7 +54,7 @@ namespace Tests
         }
 
         [Fact, Order(4)]
-        public async Task WhenUpdateExecuted_ReturnsNoContent()
+        public async Task WhenUpdateExecuted_ThenReturnsNoContent()
         {
             var postRequest = new HttpRequestMessage(HttpMethod.Put, "/api/students/1");
 
@@ -72,7 +72,7 @@ namespace Tests
         }
 
         [Fact, Order(5)]
-        public async Task WhenDeleteExecuted_DeletesAStudent()
+        public async Task WhenDeleteExecuted_ThenDeletesAStudent()
         {
             var response = await _client.DeleteAsync("/api/students/1");
 
