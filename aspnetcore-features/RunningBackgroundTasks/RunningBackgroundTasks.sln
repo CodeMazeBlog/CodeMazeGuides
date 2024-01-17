@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34407.89
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunningBackgroundTasks.AppHost", "RunningBackgroundTasks\RunningBackgroundTasks.AppHost\RunningBackgroundTasks.AppHost.csproj", "{0E780F79-2403-4D62-ADB3-9FA0EC7C7C01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunningBackgroundTasks.AppHost", "RunningBackgroundTasks\RunningBackgroundTasks.AppHost\RunningBackgroundTasks.AppHost.csproj", "{0E780F79-2403-4D62-ADB3-9FA0EC7C7C01}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunningBackgroundTasks.ServiceDefaults", "RunningBackgroundTasks\RunningBackgroundTasks.ServiceDefaults\RunningBackgroundTasks.ServiceDefaults.csproj", "{E2A8226C-7968-41E2-AC26-096A82E97B1E}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunningBackgroundTasks.ApiS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunningBackgroundTasks.Web", "RunningBackgroundTasks\RunningBackgroundTasks.Web\RunningBackgroundTasks.Web.csproj", "{103C6759-73F6-4722-AF8C-33C5E699C13E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunningBackgroundTasks.Domain", "RunningBackgroundTasks\RunningBackgroundTasks.Domain\RunningBackgroundTasks.Domain.csproj", "{DDFC0654-A628-40F3-AA02-3EAAC2733116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunningBackgroundTasks.Domain", "RunningBackgroundTasks\RunningBackgroundTasks.Domain\RunningBackgroundTasks.Domain.csproj", "{DDFC0654-A628-40F3-AA02-3EAAC2733116}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunningBackgroundTasks.ApiService.Tests", "RunningBackgroundTasks\RunningBackgroundTasks.ApiService.Tests\RunningBackgroundTasks.ApiService.Tests.csproj", "{914791B6-3047-48D1-A5E4-B9795B5B51E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{DDFC0654-A628-40F3-AA02-3EAAC2733116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDFC0654-A628-40F3-AA02-3EAAC2733116}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDFC0654-A628-40F3-AA02-3EAAC2733116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{914791B6-3047-48D1-A5E4-B9795B5B51E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{914791B6-3047-48D1-A5E4-B9795B5B51E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{914791B6-3047-48D1-A5E4-B9795B5B51E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{914791B6-3047-48D1-A5E4-B9795B5B51E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
