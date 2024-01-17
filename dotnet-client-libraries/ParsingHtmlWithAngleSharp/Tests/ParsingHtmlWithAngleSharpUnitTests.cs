@@ -2,19 +2,11 @@ using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using ParsingHtmlWithAngleSharp;
-using Xunit.Abstractions;
 
 namespace Tests;
 
-public class ParsingHtmlWithAngleSharpTests
+public class ParsingHtmlWithAngleSharpUnitTests
 {
-    private readonly ITestOutputHelper _testOutputHelper;
-
-    public ParsingHtmlWithAngleSharpTests(ITestOutputHelper testOutputHelper)
-    {
-        _testOutputHelper = testOutputHelper;
-    }
-
     private const string Html = @"<!DOCTYPE html>
                      <html>
                      <style>
@@ -48,6 +40,7 @@ public class ParsingHtmlWithAngleSharpTests
                      </body>
                      </html>";
 
+
     [Fact]
     public async Task WhenParsingHtmlFromString_ThenDocumentIsCreatedAndArticleContentCanBeExtracted()
     {
@@ -71,7 +64,18 @@ public class ParsingHtmlWithAngleSharpTests
         var context = BrowsingContext.New(config);
 
         var document = await context.OpenAsync(req => req.Content(Html));
-
+        
+        var paragraphElements = document.Body!
+            .QuerySelectorAll<IHtmlParagraphElement>("p")
+            .ToList();
+        var paragraphElementsLinq = document.All
+                .Where(e => e.TagName.Equals("p", StringComparison.InvariantCultureIgnoreCase))
+                .ToList();
+        
+        Assert.Single(paragraphElements);
+        Assert.Single(paragraphElementsLinq);
+        Assert.Equal(paragraphElements, paragraphElementsLinq);
+        
         var blueListItemElements = document.Body!
             .QuerySelectorAll<IHtmlListItemElement>("li.blue")
             .ToList();
@@ -83,8 +87,9 @@ public class ParsingHtmlWithAngleSharpTests
         Assert.Equal(2, blueListItemElementsLinq.Count);
 
         var formElement = document.Body!.QuerySelector<IHtmlFormElement>("form#sign-up-form");
-        var formElementLinq =
-            document.All!.First(e => e.TagName.ToLower() == "form" && (e.Id?.Equals("sign-up-form") ?? false));
+        var formElementLinq = document.All!
+            .First(e => e.TagName.ToLower() == "form"
+                        && (e.Id?.Equals("sign-up-form") ?? false));
         var formElementById = document.GetElementById("sign-up-form") as IHtmlFormElement;
 
         Assert.NotNull(formElement);
@@ -100,12 +105,9 @@ public class ParsingHtmlWithAngleSharpTests
 
         var document = await context.OpenAsync(req => req.Content(Html));
 
-        var userNameInputElement = document.Body!
-            .QuerySelector<IHtmlInputElement>("form > input[name='username']");
-        var userNameInputElementLinq = document
-            .All
-            .First(e => e.LocalName == "input"
-                        && e.Attributes["name"]?.Value == "username");
+        var userNameInputElement = document.Body!.QuerySelector<IHtmlInputElement>("form > input[name='username']");
+        var userNameInputElementLinq = document.All
+            .First(e => e.LocalName == "input" && e.Attributes["name"]?.Value == "username");
 
         Assert.NotNull(userNameInputElement);
         Assert.Equal("username", userNameInputElement.Id);
@@ -153,7 +155,7 @@ public class ParsingHtmlWithAngleSharpTests
 
                                 <button id=""button"" type=""submit"">Sign up</button>
                             </form>
-                    ".Trim().Replace("\r\n", "\n"),
+                    ".Trim().Replace(Environment.NewLine, "\n"),
             sectionInnerHtml.Trim());
 
 
@@ -167,7 +169,7 @@ public class ParsingHtmlWithAngleSharpTests
     [Fact]
     public async Task WhenParsingHtmlFromUrl_ThenDocumentIsCreatedAndBooksDataIsProperlyRetrieved()
     {
-        const string booksCatalogUrl = "https://books.toscrape.com/";
+        var booksCatalogUrl = "https://books.toscrape.com/";
 
         var config = Configuration.Default
             .WithDefaultLoader()
@@ -182,6 +184,7 @@ public class ParsingHtmlWithAngleSharpTests
             .ToCollection();
 
         var books = bookInfoArticles.Select(ToBook).ToList();
+        Console.WriteLine(books.Count()); // 20
 
         Assert.Equal(20, books.Count);
         Assert.Equal("A Light in the Attic", books[0].Title);
@@ -197,29 +200,20 @@ public class ParsingHtmlWithAngleSharpTests
             .WithJs();
 
         var context = BrowsingContext.New(config);
-
         var document = await context.OpenAsync(req => req.Content(Html));
 
-        var paragraphElement = document.CreateElement("p")!;
+        var paragraphElement = document.CreateElement("p");
         // OR
         paragraphElement = document.CreateElement<IHtmlParagraphElement>();
-
         paragraphElement.TextContent = "This is a new paragraph.";
-        paragraphElement.ClassList.Add("new");
-        paragraphElement.Id = "paragraph-one";
 
-        paragraphElement.SetAttribute("data-name", "new-paragraph");
-        paragraphElement.RemoveAttribute("some-attribute");
-
-        // Add it to the document's body:
-        document.Body!.AppendChild(paragraphElement);
+        document.Body.AppendChild(paragraphElement);
 
         Assert.IsAssignableFrom<IHtmlParagraphElement>(document.Body.Children[^1]);
 
         var ulElement = document.QuerySelector<IHtmlUnorderedListElement>("ul#list")!;
         var blueLiElement = ulElement.QuerySelector<IHtmlListItemElement>("li.blue")!;
 
-        // Remove element from the the list:
         blueLiElement.Remove();
         // OR
         // ulElement.RemoveChild(blueLiElement);
@@ -229,21 +223,20 @@ public class ParsingHtmlWithAngleSharpTests
         var article = document.QuerySelector<IElement>("article#a1")!;
         article.TextContent = "New article content";
         article.InnerHtml = "New article content. <br /> Second article row.";
-        
+
         article.ClassList.Add("small-article");
         article.Id = "news-article";
-        
+
         article.SetAttribute("data-category", "news");
-        
+
         Assert.Contains(article.Attributes, attr => attr.Name == "data-category");
-        
+
         article.RemoveAttribute("data-category");
-        
-        var children = article.Children;
+
         Assert.Equal("New article content. <br> Second article row.", article.InnerHtml);
-        Assert.IsAssignableFrom<IHtmlBreakRowElement>(children[0]);
-        
+        Assert.IsAssignableFrom<IHtmlBreakRowElement>(article.Children[0]);
         Assert.Equal(1, article.ClassList.Length);
+        Assert.Equal("small-article", article.ClassList[0]);
         Assert.NotEmpty(article.Id);
         Assert.DoesNotContain(article.Attributes, attr => attr.Name == "data-category");
 
@@ -251,19 +244,15 @@ public class ParsingHtmlWithAngleSharpTests
         Console.SetOut(writer);
 
         var button = document.QuerySelector<IHtmlButtonElement>("button#button")!;
-        button.AddEventListener("click", (sender,
-            @event) => Console.WriteLine("Button was clicked!"));
 
-        // Simulate a click:
+        button.AddEventListener("click", (_, @event) => Console.WriteLine("Button was clicked!"));
         button.DoClick();
 
-        // Custom events:
-        document.AddEventListener("custom", (s,
-            e) => Console.WriteLine("Custom event fired!"));
+        document.AddEventListener("custom", (_, @event) => Console.WriteLine("Custom event fired!"));
 
         var @event = document.CreateEvent("event");
         @event.Init("custom", false, false);
-        
+
         document.Dispatch(@event);
 
         Assert.Equal(
@@ -271,7 +260,8 @@ public class ParsingHtmlWithAngleSharpTests
             writer.ToString());
     }
 
-    private static AngleSharpExamples.Book ToBook(IElement e)
+
+    private static Book ToBook(IElement e)
     {
         var imageUrl = e.QuerySelector<IHtmlImageElement>("div.image_container > a > img.thumbnail")!.Source;
         var titleElement = e.QuerySelector<IHtmlAnchorElement>("h3 > a")!;
@@ -295,6 +285,6 @@ public class ParsingHtmlWithAngleSharpTests
             _ => 0
         };
 
-        return new AngleSharpExamples.Book(title, price, rating, imageUrl!);
+        return new Book(title, price, rating, imageUrl!);
     }
 }
