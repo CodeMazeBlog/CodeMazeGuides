@@ -8,7 +8,7 @@ namespace Tests
         public void GivenTwoNumbers_ThenShouldBeAdded()
         {
             // Act
-            int result = FuncDelegate.AddNumbers(5, 7);
+            var result = FuncDelegate.AddNumbers(5, 7);
 
             // Assert
             Assert.Equal(12, result);
@@ -18,7 +18,7 @@ namespace Tests
         public void GivenTwoNegativeNumbers_ThenShouldBeAdded()
         {
             // Act
-            int result = FuncDelegate.AddNumbers(-3, -5);
+            var result = FuncDelegate.AddNumbers(-3, -5);
 
             // Assert
             Assert.Equal(-8, result);

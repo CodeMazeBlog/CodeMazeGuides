@@ -5,7 +5,7 @@ namespace Tests
     public class ActionDelegateTests
     {
         [Fact]
-        public void MethodCalled_ThenMessageShouldBeWritten()
+        public void Given_WhenMethodCalled_ThenMessageShouldBeWritten()
         {
             // Arrange
             var output = new StringWriter();
@@ -15,8 +15,7 @@ namespace Tests
             ActionDelegate.MethodToBeCalled();
 
             // Assert
-            var expectedMessage = "MethodToBeCalled() was called." + Environment.NewLine;
-            Assert.Equal(expectedMessage, output.ToString());
+            Assert.Equal("MethodToBeCalled() was called." + Environment.NewLine, output.ToString());
         }
 
         [Fact]
@@ -30,12 +29,11 @@ namespace Tests
             ActionDelegate.AddNumbers(2, 5);
 
             // Assert
-            var expectedMessage = "Sum of 2 and 5 is: 7" + Environment.NewLine;
-            Assert.Equal(expectedMessage, output.ToString());
+            Assert.Equal("Sum of 2 and 5 is: 7" + Environment.NewLine, output.ToString());
         }
 
         [Fact]
-        public void DisplayMessage_ThenShouldWriteCorrectMessage()
+        public void Given_WhenDisplayMessage_ThenShouldWriteCorrectMessage()
         {
             // Arrange
             var output = new StringWriter();
@@ -45,8 +43,7 @@ namespace Tests
             ActionDelegate.DisplayMessage("Test Message");
 
             // Assert
-            var expectedMessage = "Message: Test Message" + Environment.NewLine;
-            Assert.Equal(expectedMessage, output.ToString());
+            Assert.Equal("Message: Test Message" + Environment.NewLine, output.ToString());
         }
     }
 }
