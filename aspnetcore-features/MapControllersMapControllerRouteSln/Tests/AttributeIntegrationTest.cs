@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace Tests;
 
-public class AttributeIntegrationTest: IClassFixture<WebApplicationFactory<Program>>
+public class AttributeIntegrationTest : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _factory;
 
