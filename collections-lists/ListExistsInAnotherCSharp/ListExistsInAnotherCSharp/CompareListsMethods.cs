@@ -23,7 +23,7 @@ public class CompareListsMethods
         {
             GenerateIntegerList(false, false, 0, 1000000),
             GenerateIntegerList(false, false, 1000001, 1000000),
-            "Random"
+            "Exclusive"
         };
 
         yield return new object[]
