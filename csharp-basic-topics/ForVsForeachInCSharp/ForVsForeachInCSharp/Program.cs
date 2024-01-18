@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
 using ForVsForeachInCSharp;
 
-var summary = BenchmarkRunner.Run<ForVsForeachExamples>();
+BenchmarkDotNet.Reports.Summary summary = BenchmarkRunner.Run<ForVsForeachExamples>();
