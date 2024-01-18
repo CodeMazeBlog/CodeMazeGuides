@@ -39,7 +39,7 @@ namespace JObjectToDictionary
 
         private static List<object> ConvertJArrayToList(JArray jArray)
         {
-            List<object> result = new List<object>();
+            var result = new List<object>();
 
             foreach (var item in jArray)
             {

@@ -23,9 +23,7 @@ namespace JObjectToDictionaryUnitTests
             var result = JObjectConverter.ConvertJObjectToDictionary(person);
 
             Assert.IsNotNull(result);
-
             Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
-
             Assert.AreEqual(4, result.Count);
         }
 
@@ -35,9 +33,7 @@ namespace JObjectToDictionaryUnitTests
             var result = JObjectConverter.ConvertUsingNewtonsoftJson(person);
 
             Assert.IsNotNull(result);
-
             Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
-
             Assert.AreEqual(4, result.Count);
         }
 
@@ -47,9 +43,7 @@ namespace JObjectToDictionaryUnitTests
             var result = JObjectConverter.ConvertUsingLinq(person);
 
             Assert.IsNotNull(result);
-
             Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
-
             Assert.AreEqual(4, result.Count);
         }
 
@@ -59,9 +53,7 @@ namespace JObjectToDictionaryUnitTests
             var result = person.ToDictionary();
 
             Assert.IsNotNull(result);
-
             Assert.IsInstanceOfType(result, typeof(Dictionary<string, object>));
-
             Assert.AreEqual(4, result.Count);
         }
     }
