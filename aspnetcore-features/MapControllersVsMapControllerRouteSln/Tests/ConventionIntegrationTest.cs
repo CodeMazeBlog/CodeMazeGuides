@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace Tests;
 
-public class ConventionIntegrationTest: IClassFixture<WebApplicationFactory<Program>>
+public class ConventionIntegrationTest : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _factory;
 
