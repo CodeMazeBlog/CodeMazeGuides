@@ -6,9 +6,12 @@ namespace RunningBackgroundTasks.ApiService.Services;
 
 public class Worker(TimeProvider timeProvider) : IWorker
 {
-    private static readonly string[] Names = ["John", "Jane", "Alice", "Bob", "Charlie", "David", "Eva", "Frank"];
+    private static readonly string[] Names =
+        ["John", "Jane", "Alice", "Bob", "Charlie", "David", "Eva", "Frank"];
 
-    public async Task<int> ArchiveOldClientsAsync(ApplicationDbContext context, CancellationToken cancellationToken = default)
+    public async Task<int> ArchiveOldClientsAsync(
+        ApplicationDbContext context,
+        CancellationToken cancellationToken = default)
     {
         var cutoff = timeProvider.GetUtcNow().AddMonths(-6);
 
@@ -24,7 +27,9 @@ public class Worker(TimeProvider timeProvider) : IWorker
         return await context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<int> SeedDatabaseAsync(ApplicationDbContext context, CancellationToken cancellationToken = default)
+    public async Task<int> SeedDatabaseAsync(
+        ApplicationDbContext context,
+        CancellationToken cancellationToken = default)
     {
         await context.Database.EnsureCreatedAsync(cancellationToken);
 
