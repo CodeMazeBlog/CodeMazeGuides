@@ -12,7 +12,7 @@ public class PaymentServiceWithPoco
     public PaymentServiceWithPoco(IConfiguration configuration, SecretManager secretManager)
     {
         _secretManager = secretManager;
-        _secrets = _secretManager.GetSecrets();
+        _secrets = _secretManager.GetSecrets;
         _key = _secrets.ApiKey;
         _paystackApi = new PayStackApi(_key);
     }

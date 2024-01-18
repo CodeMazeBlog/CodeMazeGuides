@@ -17,7 +17,7 @@ namespace SecretMgt.Tests
             var paymentService = new PaymentService(configuration.Object);
             paymentService = new PaymentService(configuration.Object);
             var orderId = 0;
-            var email = "test@yopmil.com";
+            var email = "test@yopmail.com";
 
             // Act
             var result = paymentService.PayViaPaystack(orderId, email);
