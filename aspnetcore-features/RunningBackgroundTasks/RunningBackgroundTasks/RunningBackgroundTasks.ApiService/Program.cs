@@ -19,7 +19,7 @@ builder.Services.AddProblemDetails();
 
 builder.Services.AddTransient<IWorker, Worker>();
 builder.Services.AddSingleton(TimeProvider.System);
-builder.Services.AddTransient<IPeriodicTimer, CustomPeriodicTimer>();
+builder.Services.AddTransient<IPeriodicTimer, DailyPeriodicTimer>();
 
 // builder.Services.AddHostedService<InitializationHostedService>();
 // builder.Services.AddHostedService<InitializationBackgroundService>();

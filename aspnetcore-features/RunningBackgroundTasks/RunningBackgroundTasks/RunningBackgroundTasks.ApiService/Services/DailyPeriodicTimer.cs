@@ -2,9 +2,9 @@
 
 namespace RunningBackgroundTasks.ApiService.Services;
 
-public sealed class CustomPeriodicTimer : IPeriodicTimer
+public sealed class DailyPeriodicTimer : IPeriodicTimer
 {
-    private readonly PeriodicTimer _timer = new(TimeSpan.FromSeconds(5));
+    private readonly PeriodicTimer _timer = new(TimeSpan.FromHours(24));
 
     public async ValueTask<bool> WaitForNextTickAsync(CancellationToken cancellationToken = default)
         => await _timer.WaitForNextTickAsync(cancellationToken);

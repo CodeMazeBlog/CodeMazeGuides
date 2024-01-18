@@ -9,11 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunningBackgroundTasks.Serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunningBackgroundTasks.ApiService", "RunningBackgroundTasks\RunningBackgroundTasks.ApiService\RunningBackgroundTasks.ApiService.csproj", "{48F6D189-6B50-4642-AFA0-A4107CF99311}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunningBackgroundTasks.Web", "RunningBackgroundTasks\RunningBackgroundTasks.Web\RunningBackgroundTasks.Web.csproj", "{103C6759-73F6-4722-AF8C-33C5E699C13E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunningBackgroundTasks.Domain", "RunningBackgroundTasks\RunningBackgroundTasks.Domain\RunningBackgroundTasks.Domain.csproj", "{DDFC0654-A628-40F3-AA02-3EAAC2733116}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunningBackgroundTasks.ApiService.Tests", "RunningBackgroundTasks\RunningBackgroundTasks.ApiService.Tests\RunningBackgroundTasks.ApiService.Tests.csproj", "{914791B6-3047-48D1-A5E4-B9795B5B51E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RunningBackgroundTasks.ApiService.Tests", "RunningBackgroundTasks\RunningBackgroundTasks.ApiService.Tests\RunningBackgroundTasks.ApiService.Tests.csproj", "{914791B6-3047-48D1-A5E4-B9795B5B51E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		{48F6D189-6B50-4642-AFA0-A4107CF99311}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48F6D189-6B50-4642-AFA0-A4107CF99311}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48F6D189-6B50-4642-AFA0-A4107CF99311}.Release|Any CPU.Build.0 = Release|Any CPU
-		{103C6759-73F6-4722-AF8C-33C5E699C13E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{103C6759-73F6-4722-AF8C-33C5E699C13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{103C6759-73F6-4722-AF8C-33C5E699C13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{103C6759-73F6-4722-AF8C-33C5E699C13E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DDFC0654-A628-40F3-AA02-3EAAC2733116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DDFC0654-A628-40F3-AA02-3EAAC2733116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDFC0654-A628-40F3-AA02-3EAAC2733116}.Release|Any CPU.ActiveCfg = Release|Any CPU
