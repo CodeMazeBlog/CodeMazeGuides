@@ -1,4 +1,6 @@
 using ArtistsApplication.Controllers;
+using Business.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Tests;
 
@@ -12,9 +14,11 @@ public class ArtistsIntegrationTests
         var controller = new ArtistsController(musicRepository);
 
         // Act.
-        var artists = controller.Get();
+        var actionResult = controller.Get();
 
         // Assert.
+        var okResult = Assert.IsType<OkObjectResult>(actionResult.Result);
+        var artists = Assert.IsType<Artist[]>(okResult.Value);
         Assert.NotNull(artists);
         Assert.NotEmpty(artists);
     }
