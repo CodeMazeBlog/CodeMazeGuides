@@ -203,7 +203,7 @@ public class ParsingHtmlWithAngleSharpUnitTests
         var document = await context.OpenAsync(req => req.Content(Html));
 
         var paragraphElement = document.CreateElement("p");
-        // OR
+        
         paragraphElement = document.CreateElement<IHtmlParagraphElement>();
         paragraphElement.TextContent = "This is a new paragraph.";
 
@@ -215,8 +215,7 @@ public class ParsingHtmlWithAngleSharpUnitTests
         var blueLiElement = ulElement.QuerySelector<IHtmlListItemElement>("li.blue")!;
 
         blueLiElement.Remove();
-        // OR
-        // ulElement.RemoveChild(blueLiElement);
+        if(ulElement.Contains(blueLiElement)) ulElement.RemoveChild(blueLiElement);
 
         Assert.Equal(2, ulElement.Children.Length);
 

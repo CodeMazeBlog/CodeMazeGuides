@@ -4,12 +4,12 @@ namespace ParsingHtmlWithAngleSharp;
 
 public class FileEntry : IFile
 {
-    private readonly String _fileName;
+    private readonly string _fileName;
     private readonly Stream _content;
-    private readonly String _type;
+    private readonly string _type;
     private readonly DateTime _modified;
 
-    public FileEntry(String fileName, String type, Stream content)
+    public FileEntry(string fileName, string type, Stream content)
     {
         _fileName = fileName;
         _type = type;
@@ -19,31 +19,28 @@ public class FileEntry : IFile
 
     public Stream Body => _content;
 
-    public Boolean IsClosed => _content.CanRead == false;
+    public bool IsClosed => _content.CanRead == false;
 
     public DateTime LastModified => _modified;
 
-    public Int32 Length => (Int32)_content.Length;
+    public int Length => (int)_content.Length;
 
-    public String Name => _fileName;
+    public string Name => _fileName;
 
-    public String Type => _type;
+    public string Type => _type;
 
     public void Close()
     {
         _content.Close();
     }
 
-    public void Dispose()
-    {
-        _content.Dispose();
-    }
+    public void Dispose() => _content.Dispose();
 
-    public IBlob Slice(Int32 start = 0, Int32 end = Int32.MaxValue, String contentType = null)
+    public IBlob Slice(int start = 0, int end = int.MaxValue, string contentType = null)
     {
         var ms = new MemoryStream();
         _content.Position = start;
-        var buffer = new Byte[Math.Max(0, Math.Min(end, _content.Length) - start)];
+        var buffer = new byte[Math.Max(0, Math.Min(end, _content.Length) - start)];
 
         _content.Read(buffer, 0, buffer.Length);
 
