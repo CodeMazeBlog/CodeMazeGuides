@@ -18,6 +18,7 @@ public class MusicRepository
     };
 
     public Artist? GetArtistById(int id) => _artists.SingleOrDefault(artist => artist.Id == id);
+
     public IEnumerable<Artist> GetAllArtists() => _artists;
 
     public IEnumerable<Concert> GetAllConcerts() => _concerts;

@@ -9,5 +9,5 @@ namespace ArtistsApplication.Controllers;
 public class ArtistsController(MusicRepository musicRepository) : ControllerBase
 {
     [HttpGet]
-    public IEnumerable<Artist> Get() => musicRepository.GetAllArtists();
+    public ActionResult<IEnumerable<Artist>> Get() => Ok(musicRepository.GetAllArtists());
 }
