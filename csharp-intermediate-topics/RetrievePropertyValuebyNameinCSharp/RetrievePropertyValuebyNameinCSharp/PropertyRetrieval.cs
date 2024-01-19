@@ -16,7 +16,7 @@ public class PropertyRetrieval
 
         PropertyInfo? propertyInfo = typeof(TObj).GetProperty(propertyName);
 
-        if (propertyInfo == null)
+        if (propertyInfo is null)
         {
             Console.WriteLine($"Property '{propertyName}' not found.");
             return false;
@@ -24,7 +24,7 @@ public class PropertyRetrieval
 
         object? propertyValue = propertyInfo.GetValue(obj);
 
-        if (propertyValue is null && Nullable.GetUnderlyingType(typeof(TType)) != null)
+        if (propertyValue is null && Nullable.GetUnderlyingType(typeof(TType)) is not null)
         {
             return true;
         }
