@@ -7,5 +7,4 @@ global using RunningBackgroundTasks.ApiService.Services;
 global using RunningBackgroundTasks.ApiService.Services.Abstractions;
 global using RunningBackgroundTasks.ApiService.Services.One_off;
 global using RunningBackgroundTasks.Domain;
-global using Testcontainers.MsSql;
 global using Xunit;
