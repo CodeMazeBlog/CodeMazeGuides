@@ -85,9 +85,8 @@ Console.WriteLine("Slice 2 contains the following elements:");
 foreach (var element in slice2)
     Console.Write(element + " ");
 Console.WriteLine();
-Console.WriteLine();
 
-var slice3 = Utilities.GetSegmentSliceUsingRangeIndexer(segment, 1, 3);
+var slice3 = segment[1..3];
 
 Console.WriteLine();
 Console.WriteLine("Slice 3 contains the following elements:");

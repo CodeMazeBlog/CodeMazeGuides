@@ -10,9 +10,7 @@ public class HowToUseTheArraySegmentStructInCSharpTest
         var arraySegment = new ArraySegment<int>(array);
 
         //Assert
-        var expected = array.Length;
-
-        Assert.Equal(expected, output);
+        Assert.Equal(array.Length, arraySegment.Count);
     }
 
     [Fact]
@@ -23,9 +21,7 @@ public class HowToUseTheArraySegmentStructInCSharpTest
         var arraySegment = new ArraySegment<int>(array, 1, 2);
 
         //Assert
-        var expected = 2;
-
-        Assert.Equal(expected, output);
+        Assert.Equal(2, arraySegment.Count);
     }
 
     [Fact]
@@ -39,9 +35,7 @@ public class HowToUseTheArraySegmentStructInCSharpTest
         var output = arraySegment[1]; // 6
 
         //Assert
-        var expected = 6;
-
-        Assert.Equal(expected, output);
+        Assert.Equal(6, output);
     }
 
     [Fact]
@@ -52,12 +46,10 @@ public class HowToUseTheArraySegmentStructInCSharpTest
         var segment = new ArraySegment<int>(array, 4, 3);
 
         // Act
-        var output = Utilities.GetOriginalArray(segment)[0];
+        var segmentArray = segment.Array;
 
         //Assert
-        var expected = 1;
-
-        Assert.Equal(expected, output);
+        Assert.Equal(array, segmentArray);
     }
 
     [Fact]
@@ -69,9 +61,7 @@ public class HowToUseTheArraySegmentStructInCSharpTest
         var arraySegment = new ArraySegment<int>(array, 4, count);
 
         //Assert
-        var expected = 3;
-
-        Assert.Equal(expected, output);
+        Assert.Equal(count, arraySegment.Count);
     }
 
     [Fact]
@@ -83,9 +73,7 @@ public class HowToUseTheArraySegmentStructInCSharpTest
         var segment = new ArraySegment<int>(array, offset, 3);
 
         //Assert
-        var expected = 4;
-
-        Assert.Equal(expected, output);
+        Assert.Equal(offset, segment.Offset);
     }
 
     [Fact]
@@ -95,9 +83,7 @@ public class HowToUseTheArraySegmentStructInCSharpTest
         var emptySegment = ArraySegment<int>.Empty;
 
         //Assert
-        var expected = 0;
-
-        Assert.Equal(expected, output);
+        Assert.Empty(emptySegment);
     }
 
     [Fact]
@@ -146,7 +132,7 @@ public class HowToUseTheArraySegmentStructInCSharpTest
     }
 
     [Fact]
-    public void GivenModifySegmentElementMethod_WhenIndexAndNewValueArePassed_ThenSegmentAndArrayAreModified()
+    public void GivenArraySegment_WhenSettingViaIndexer_ThenSegmentAndArrayAreModified()
     {
         // Arrange
         const int expectedValue = 600;
