@@ -20,13 +20,7 @@ builder.Services.AddProblemDetails();
 builder.Services.AddTransient<IWorker, Worker>();
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddTransient<IPeriodicTimer, DailyPeriodicTimer>();
-
-// builder.Services.AddHostedService<InitializationHostedService>();
-// builder.Services.AddHostedService<InitializationBackgroundService>();
 builder.Services.AddHostedService<InitializationHostedLifecycleService>();
-
-// builder.Services.AddHostedService<PeriodicHostedService>();
-// builder.Services.AddHostedService<PeriodicBackgroundService>();
 builder.Services.AddHostedService<PeriodicHostedLifecycleService>();
 
 var app = builder.Build();

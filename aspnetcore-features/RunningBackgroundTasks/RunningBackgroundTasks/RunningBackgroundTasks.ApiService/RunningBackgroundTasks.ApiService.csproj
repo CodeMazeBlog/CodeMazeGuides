@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\RunningBackgroundTasks.Domain\RunningBackgroundTasks.Domain.csproj" />
     <ProjectReference Include="..\RunningBackgroundTasks.Domain\RunningBackgroundTasks.Domain.csproj" />
     <ProjectReference Include="..\RunningBackgroundTasks.ServiceDefaults\RunningBackgroundTasks.ServiceDefaults.csproj" />
   </ItemGroup>

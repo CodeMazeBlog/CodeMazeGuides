@@ -6,7 +6,6 @@ public class InitializationHostedLifecycleServiceTests
     public async Task WhenStartAsyncIsInvoked_ThenSeedDatabaseAsyncMethodIsCalledOnce()
     {
         // Arrange
-        // Arrange
         var worker = Substitute.For<IWorker>();
         var serviceProvider = new ServiceCollection()
             .AddDbContext<ApplicationDbContext>(options =>

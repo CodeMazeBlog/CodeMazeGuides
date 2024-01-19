@@ -1,9 +1,7 @@
 ﻿namespace RunningBackgroundTasks.ApiService.Tests;
 
-public class WorkerTests : IAsyncLifetime
+public class WorkerTests
 {
-    private readonly MsSqlContainer _msSqlContainer = new MsSqlBuilder().Build();
-
     [Fact]
     public async Task WhenArchiveOldClientsAsyncIsInvoked_ThenExpectedNumberOfClientsAreArchived()
     {
@@ -50,19 +48,12 @@ public class WorkerTests : IAsyncLifetime
         result.Should().Be(10);
     }
 
-    private ApplicationDbContext InitializeDatabase()
+    private static ApplicationDbContext InitializeDatabase()
     {
-        var connectionString = _msSqlContainer.GetConnectionString();
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseSqlServer(connectionString)
+            .UseInMemoryDatabase("someDb")
             .Options;
 
         return new ApplicationDbContext(options);
     }
-
-    public Task InitializeAsync()
-        => _msSqlContainer.StartAsync();
-
-    public Task DisposeAsync()
-        => _msSqlContainer.DisposeAsync().AsTask();
 }
