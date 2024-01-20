@@ -40,6 +40,12 @@ public class ParsingHtmlWithAngleSharpUnitTests
                      </body>
                      </html>";
 
+    private static readonly StringWriter StringWriter = new();
+    
+    static ParsingHtmlWithAngleSharpUnitTests()
+    {
+        Console.SetOut(StringWriter);
+    }
 
     [Fact]
     public async Task WhenParsingHtmlFromString_ThenDocumentIsCreatedAndArticleContentCanBeExtracted()
@@ -64,18 +70,18 @@ public class ParsingHtmlWithAngleSharpUnitTests
         var context = BrowsingContext.New(config);
 
         var document = await context.OpenAsync(req => req.Content(Html));
-        
+
         var paragraphElements = document.Body!
             .QuerySelectorAll<IHtmlParagraphElement>("p")
             .ToList();
         var paragraphElementsLinq = document.All
-                .Where(e => e.TagName.Equals("p", StringComparison.InvariantCultureIgnoreCase))
-                .ToList();
-        
+            .Where(e => e.TagName.Equals("p", StringComparison.InvariantCultureIgnoreCase))
+            .ToList();
+
         Assert.Single(paragraphElements);
         Assert.Single(paragraphElementsLinq);
         Assert.Equal(paragraphElements, paragraphElementsLinq);
-        
+
         var blueListItemElements = document.Body!
             .QuerySelectorAll<IHtmlListItemElement>("li.blue")
             .ToList();
@@ -203,7 +209,7 @@ public class ParsingHtmlWithAngleSharpUnitTests
         var document = await context.OpenAsync(req => req.Content(Html));
 
         var paragraphElement = document.CreateElement("p");
-        
+
         paragraphElement = document.CreateElement<IHtmlParagraphElement>();
         paragraphElement.TextContent = "This is a new paragraph.";
 
@@ -215,7 +221,7 @@ public class ParsingHtmlWithAngleSharpUnitTests
         var blueLiElement = ulElement.QuerySelector<IHtmlListItemElement>("li.blue")!;
 
         blueLiElement.Remove();
-        if(ulElement.Contains(blueLiElement)) ulElement.RemoveChild(blueLiElement);
+        if (ulElement.Contains(blueLiElement)) ulElement.RemoveChild(blueLiElement);
 
         Assert.Equal(2, ulElement.Children.Length);
 
@@ -239,15 +245,16 @@ public class ParsingHtmlWithAngleSharpUnitTests
         Assert.NotEmpty(article.Id);
         Assert.DoesNotContain(article.Attributes, attr => attr.Name == "data-category");
 
-        var writer = new StringWriter();
-        Console.SetOut(writer);
+        await StringWriter.FlushAsync();
 
         var button = document.QuerySelector<IHtmlButtonElement>("button#button")!;
 
-        button.AddEventListener("click", (_, @event) => Console.WriteLine("Button was clicked!"));
+        button.AddEventListener("click", (_,
+            @event) => Console.WriteLine("Button was clicked!"));
         button.DoClick();
 
-        document.AddEventListener("custom", (_, @event) => Console.WriteLine("Custom event fired!"));
+        document.AddEventListener("custom", (_,
+            @event) => Console.WriteLine("Custom event fired!"));
 
         var @event = document.CreateEvent("event");
         @event.Init("custom", false, false);
@@ -256,7 +263,7 @@ public class ParsingHtmlWithAngleSharpUnitTests
 
         Assert.Equal(
             $"Button was clicked!{Environment.NewLine}Custom event fired!{Environment.NewLine}",
-            writer.ToString());
+            StringWriter.ToString());
     }
 
 
