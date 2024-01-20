@@ -17,13 +17,7 @@ public class PaymentService
 
     public TransactionInitializeResponse PayViaPaystack(int orderId, string email)
     {
-        var request = new TransactionInitializeRequest()
-        {
-            AmountInKobo = 100, //total amount
-            Email = email,
-            Currency = "NGN",
-            CallbackUrl = "https://localhost:7061/swagger/index.html"
-        };
+        var request = new TransactionInitializeRequest();     
 
         return _paystackApi.Transactions.Initialize(request);
     }
