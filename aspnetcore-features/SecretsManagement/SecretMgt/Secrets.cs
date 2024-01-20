@@ -7,8 +7,8 @@
 
     public class SecretManager
     {
-        IConfiguration _configuration;
-        readonly string? _key;
+        private IConfiguration _configuration;
+        private readonly string? _key;
         public Secrets GetSecrets
         {
             get
