@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Order;
 
 namespace ForVsForeachInCSharp;
 
@@ -6,6 +8,7 @@ namespace ForVsForeachInCSharp;
 [RankColumn]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
+
 public class ForVsForeachExamples
 {
     private readonly GenerateData _generateData = new();
@@ -15,120 +18,109 @@ public class ForVsForeachExamples
     private readonly Queue<int> _intQueue;
     private readonly Dictionary<int, int> _intDictionary;
 
-    public ForVsForeachExamples() 
+    public ForVsForeachExamples()
     {
-        _intArray = _generateData.GenerateRandomArray(10000000);
-        _intList = _generateData.GenerateRandomList(10000000);
-        _intStack = _generateData.GenerateRandomStack(10000000);
-        _intQueue = _generateData.GenerateRandomQueue(10000000);
-        _intDictionary = _generateData.GenerateRandomDictionary(10000000);
+        _intArray = _generateData.GenerateRandomArray(100000);
+        _intList = _generateData.GenerateRandomList(100000);
+        _intStack = _generateData.GenerateRandomStack(100000);
+        _intQueue = _generateData.GenerateRandomQueue(100000);
+        _intDictionary = _generateData.GenerateRandomDictionary(100000);
     }
-    public void PrintArrayUsingForeach() 
+
+    [Benchmark]
+    public void PrintArrayUsingForeach()
     {
-        foreach (var element in _intArray) 
+        foreach (var element in _intArray)
         {
             Console.WriteLine(element);
-        foreach (var element in _intArray) 
-
-        return _intArray;
-        {
-            _intArray[element - 1] = _intValue;
         }
     }
 
+    [Benchmark]
     public void PrintArrayUsingForLoop()
     {
-        int[] array = new int[size];
-
-        foreach (int index in Enumerable.Range(0, size))
+        for (int i = 0; i < _intArray.Length; i++)
         {
             Console.WriteLine(_intArray[i]);
         }
     }
 
+    [Benchmark]
     public void PrintListUsingForeach()
     {
-        List<int> list = new List<int>(size);
-
-        for (int i = 0; i < size; i++)
+        foreach (var element in _intList)
         {
             Console.WriteLine(element);
         }
     }
 
+    [Benchmark]
     public void PrintListUsingForLoop()
     {
-        List<int> list = new List<int>(size);
-
-        foreach (int index in Enumerable.Range(0, size))
+        for (int i = 0; i < _intList.Count; i++)
         {
             Console.WriteLine(_intList[i]);
         }
     }
 
+    [Benchmark]
     public void PrintStackUsingForeach()
     {
-        Stack<int> stack = new Stack<int>(size);
-
-        for (int i = 0; i < size; i++)
+        foreach (var element in _intStack)
         {
-            stack.Push(Random.Shared.Next());
+            Console.WriteLine(element);
         }
     }
 
+    [Benchmark]
     public void PrintStackUsingForLoop()
     {
-        Stack<int> stack = new Stack<int>(size);
+        var array = _intStack.ToArray();
 
-        foreach (int index in Enumerable.Range(0, size))
+        for (int i = 0; i < array.Length; i++)
         {
-            stack.Push(Random.Shared.Next());
+            Console.WriteLine(array[i]);
         }
-
-        return stack;
     }
 
+    [Benchmark]
     public void PrintQueueUsingForeach()
     {
-        Queue<int> queue = new Queue<int>(size);
-
-        for (int i = 0; i < size; i++)
+        foreach (var element in _intQueue)
         {
-            queue.Enqueue(Random.Shared.Next());
+            Console.WriteLine(element);
         }
-
-        return queue;
     }
 
+    [Benchmark]
     public void PrintQueueUsingForLoop()
     {
-        Queue<int> queue = new Queue<int>(size);
+        var array = _intQueue.ToArray();
 
-        foreach (var index in Enumerable.Range(0, size))
+        for (int i = 0; i < array.Length; i++)
         {
-            queue.Enqueue(Random.Shared.Next());
+            Console.WriteLine(array[i]);
         }
-
-        return queue;
     }
 
+    [Benchmark]
     public void PrintDictionaryUsingForeach()
     {
         foreach (var element in _intDictionary)
         {
-            Console.WriteLine(element);
+            Console.WriteLine($"Key: {element.Key}, Value: {element.Value}");
         }
-
-        return dictionary;
     }
 
-    //public void PrintDictionaryUsingForLoop()
-    //{
-    //    var array = _intQueue.ToArray();
+    [Benchmark]
+    public void PrintDictionaryUsingForLoop()
+    {
+        for (int i = 0; i < _intDictionary.Count; i++)
+        {
+            var key = _intDictionary.Keys.ElementAt(i);
+            var value = _intDictionary[key];
 
-    //    for (int i = 0; i < array.Length; i++)
-    //    {
-    //        Console.WriteLine(array[i]);
-    //    }
-    //}
+            Console.WriteLine($"Key: {key}, Value: {value}");
+        }
+    }
 }
