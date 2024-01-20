@@ -1,4 +1,2 @@
-﻿using BenchmarkDotNet.Running;
-using ForVsForeachInCSharp;
-
-BenchmarkDotNet.Reports.Summary summary = BenchmarkRunner.Run<ForVsForeachExamples>();
+﻿// See https://aka.ms/new-console-template for more information
+Console.WriteLine("Hello, World!");
