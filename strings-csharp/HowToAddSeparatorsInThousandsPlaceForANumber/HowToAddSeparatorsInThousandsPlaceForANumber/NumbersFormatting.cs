@@ -15,6 +15,7 @@ namespace HowToAddSeparatorsInThousandsPlaceForANumber
         {
             return string.Format("Your account balance is: {0}", _balance, cultureInfo);
         }
+
         public static string GetBalanceUsingTheStringFormatMethodACultureInfoAndSpecifier(int? decimalPlaces, CultureInfo cultureInfo)
         {
             return decimalPlaces switch
