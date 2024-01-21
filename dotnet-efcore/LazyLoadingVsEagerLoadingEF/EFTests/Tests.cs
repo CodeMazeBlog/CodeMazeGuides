@@ -11,17 +11,14 @@ public class Tests
 
     private void InitializeDatabase()
     {
-        if (!_context.Authors.Any())
-        {
-            var author1 = new Author { Name = "Author 1" };
-            var author2 = new Author { Name = "Author 2" };
+        var author1 = new Author { Name = "Author 1" };
+        var author2 = new Author { Name = "Author 2" };
 
-            var book1 = new Book { Title = "Book 1", AuthorId = 1 };
-            var book2 = new Book { Title = "Book 2", AuthorId = 2 };
+        var book1 = new Book { Title = "Book 1", AuthorId = 1 };
+        var book2 = new Book { Title = "Book 2", AuthorId = 2 };
 
-            _context.Authors.AddRange(author1, author2);
-            _context.Books.AddRange(book1, book2);
-        }
+        _context.Authors.AddRange(author1, author2);
+        _context.Books.AddRange(book1, book2);
 
         _context.Database.EnsureCreated();
         _context.SaveChanges();
