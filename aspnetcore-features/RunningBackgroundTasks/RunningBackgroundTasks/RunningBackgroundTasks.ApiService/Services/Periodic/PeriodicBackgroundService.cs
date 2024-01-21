@@ -12,7 +12,7 @@ public class PeriodicBackgroundService(
     {
         using IServiceScope scope = serviceProvider.CreateScope();
 
-        using var context = scope.ServiceProvider
+        await using var context = scope.ServiceProvider
             .GetRequiredService<ApplicationDbContext>();
 
         while (!stoppingToken.IsCancellationRequested &&

@@ -11,7 +11,7 @@ public class InitializationHostedService(
     {
         using IServiceScope scope = serviceProvider.CreateScope();
 
-        using var context = scope.ServiceProvider
+        await using var context = scope.ServiceProvider
             .GetRequiredService<ApplicationDbContext>();
 
         await worker.SeedDatabaseAsync(context, cancellationToken);

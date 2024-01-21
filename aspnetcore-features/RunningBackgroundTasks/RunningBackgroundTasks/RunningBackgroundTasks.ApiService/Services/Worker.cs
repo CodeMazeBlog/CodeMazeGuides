@@ -15,11 +15,12 @@ public class Worker(TimeProvider timeProvider) : IWorker
     {
         var cutoff = timeProvider.GetUtcNow().AddMonths(-6);
 
-        var clientsToBeArchived = await context.Clients
+        var clientsToBeArchived = context.Clients
             .Where(x => x.LastOrderDate <= cutoff)
-            .ToListAsync(cancellationToken);
+            .AsAsyncEnumerable()
+            .WithCancellation(cancellationToken);
 
-        foreach (var client in clientsToBeArchived)
+        await foreach (var client in clientsToBeArchived)
         {
             client.IsActive = false;
         }
