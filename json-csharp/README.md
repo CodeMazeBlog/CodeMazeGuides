@@ -9,6 +9,7 @@ This section contains the topics related to JSON manipulation in C#.
 - [Custom Naming Policy for JSON in C#](https://code-maze.com/csharp-custom-naming-policy-for-json/)
 - [How to Deserialize a Complex JSON Object in C# .NET](https://code-maze.com/csharp-deserialize-complex-json-object/)
 - [JSON Deserialization to a POCO Class in C#](https://code-maze.com/csharp-json-deserialization-poco-class/)
+- [How to Ensure a String Is Valid JSON in C#](https://code-maze.com/csharp-how-to-ensure-a-string-is-valid-json/)
 - [How to Exclude Properties From JSON Serialization in C#](https://code-maze.com/csharp-exclude-properties-from-json-serialization/)
 - [How to Get Value by Key from JObject in C#](https://code-maze.com/csharp-get-value-by-key-from-jobject/)
 - [How to Turn a C# Object Into a JSON String in .NET?](https://code-maze.com/csharp-object-into-json-string-dotnet/)
