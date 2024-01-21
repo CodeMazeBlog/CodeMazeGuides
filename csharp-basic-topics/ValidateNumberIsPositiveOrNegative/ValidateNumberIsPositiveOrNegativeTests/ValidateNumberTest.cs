@@ -13,13 +13,15 @@ namespace ValidateNumberIsPositiveOrNegativeTests
             // Arrange - Nothing to arrange in this case
 
             // Act
-                var actualOutput= NumberValidation.IsPositiveOrNegativeUsingConditionalMethod(number);
+            var actualOutput= NumberValidation.IsPositiveOrNegativeUsingConditionalMethod(number);
 
             // Assert
             Assert.That(expectedOutput, Is.EqualTo(actualOutput));
         }
+
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
+        [TestCase(0, 0)]
         public void GivenNumber_WhenUsingLeftShiftMethod_ThenPrintResult(int number, int expectedOutput)
         {
             // Arrange - Nothing to arrange in this case
@@ -30,8 +32,10 @@ namespace ValidateNumberIsPositiveOrNegativeTests
             // Assert
             Assert.That(expectedOutput, Is.EqualTo(actualOutput));
         }
+
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
+        [TestCase(0, 0)]
         public void GivenNumber_WhenUsingRightShiftMethod_ThenPrintResult(int number, int expectedOutput)
         {
             // Act
@@ -40,8 +44,10 @@ namespace ValidateNumberIsPositiveOrNegativeTests
             // Assert
             Assert.That(expectedOutput, Is.EqualTo(actualOutput));
         }
+
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
+        [TestCase(0, 0)]
         public void GivenNumber_WhenUsingMathAbsMethod_ThenPrintResult(int number, int expectedOutput)
         {
             // Act
@@ -62,8 +68,10 @@ namespace ValidateNumberIsPositiveOrNegativeTests
             // Assert
             Assert.That(expectedOutput, Is.EqualTo(actualOutput));
         }
+
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
+        [TestCase(0, 0)]
         public void GivenNumber_WhenUsingIsPositiveOrNegative_ThenPrintResult(int number, int expectedOutput)
         {
             // Act

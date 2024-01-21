@@ -4,7 +4,7 @@ public class Program
 {
     private static void Main(string[] args)
     {
-        int number = -42;
+        var number = -42;
         Console.WriteLine($"The function will return 1 if number is greater than zero, -1 if the number is less than zero, 0 if the number is equal to zero.");
         Console.WriteLine($"IsPositiveOrNegative Using Conditional Statement -> {NumberValidation.IsPositiveOrNegativeUsingConditionalMethod(number)} ");
         Console.WriteLine($"IsPositiveOrNegative Using Bitwise Oerator RightShift -> {NumberValidation.IsPositiveOrNegativeUsingRightShiftMethod(number)} ");
