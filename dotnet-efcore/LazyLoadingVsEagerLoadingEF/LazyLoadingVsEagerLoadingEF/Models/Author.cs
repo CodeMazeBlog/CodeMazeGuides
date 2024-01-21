@@ -1,4 +1,4 @@
-﻿namespace LazyLoadingVsEagerLoadingEF.Models;
+﻿namespace LazyLoadingVsEagerLoadingEF;
 public class Author
 {
     public int AuthorId { get; set; }

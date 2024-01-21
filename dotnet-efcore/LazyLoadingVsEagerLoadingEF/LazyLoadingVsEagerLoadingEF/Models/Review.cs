@@ -1,4 +1,4 @@
-﻿namespace LazyLoadingVsEagerLoadingEF.Models;
+﻿namespace LazyLoadingVsEagerLoadingEF;
 public class Review
 {
     public int ReviewId { get; set; }

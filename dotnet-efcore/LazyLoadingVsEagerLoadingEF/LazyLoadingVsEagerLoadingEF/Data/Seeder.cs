@@ -1,10 +1,10 @@
-﻿using LazyLoadingVsEagerLoadingEF.Models;
-
-namespace LazyLoadingVsEagerLoadingEF.Data;
+﻿namespace LazyLoadingVsEagerLoadingEF;
 public static class Seeder
 {
     public static void SeedData(DataContext context)
     {
+        context.Database.EnsureCreated();
+
         if (context.Authors.Any())
         {
             Console.WriteLine("Database already seeded.");

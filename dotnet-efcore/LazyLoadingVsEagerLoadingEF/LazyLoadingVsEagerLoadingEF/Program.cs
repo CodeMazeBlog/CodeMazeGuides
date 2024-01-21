@@ -1,5 +1,4 @@
-﻿using LazyLoadingVsEagerLoadingEF.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace LazyLoadingVsEagerLoadingEF;
 
