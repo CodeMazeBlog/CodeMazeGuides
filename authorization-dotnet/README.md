@@ -6,6 +6,7 @@ This section contains articles about authorization related topics in .NET.
 
 - [How to Get an Access Token from HttpContext in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-get-an-access-token-from-httpcontext/)
 - [How to Add a BearerToken to an HttpClient Request](https://code-maze.com/add-bearertoken-httpclient-request/)
+- [Add Custom Claims to Access Token in Duende](https://code-maze.com/add-custom-claims-to-access-token-in-duende/)
 - [Adding a User Login to a .NET App With Auth0](https://code-maze.com/dotnet-adding-a-user-login-with-auth0/)
 - [Implement Custom Authorization Policy Provider in ASP.NET Core](https://code-maze.com/aspnetcore-implement-custom-authorization-policy-provider-in-asp-net-core/)
 - [How to Use Basic Authentication With HttpClient?](https://code-maze.com/aspnetcore-basic-authentication-with-httpclient/)
