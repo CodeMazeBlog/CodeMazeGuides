@@ -6,7 +6,7 @@ public sealed class WorkerTests
     public async Task WhenArchiveOldClientsAsyncIsInvoked_ThenExpectedNumberOfClientsAreArchived()
     {
         // Arrange
-        var context = InitializeDatabase();
+        var context = InitializeDatabase("archive");
         await context.Database.EnsureCreatedAsync();
 
         var fakeTimeProvider = new FakeTimeProvider();
@@ -37,7 +37,7 @@ public sealed class WorkerTests
     public async Task WhenSeedDatabaseAsyncIsInvoked_ThenExpectedNumberOfClientsAreCreated()
     {
         // Arrange
-        var context = InitializeDatabase();
+        var context = InitializeDatabase("seed");
         var fakeTimeProvider = new FakeTimeProvider();
 
         var sut = new Worker(fakeTimeProvider);
@@ -50,10 +50,10 @@ public sealed class WorkerTests
         await context.DisposeAsync();
     }
 
-    private static ApplicationDbContext InitializeDatabase()
+    private static ApplicationDbContext InitializeDatabase(string dbName)
     {
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseInMemoryDatabase("someDb")
+            .UseInMemoryDatabase(dbName)
             .Options;
 
         return new ApplicationDbContext(options);
