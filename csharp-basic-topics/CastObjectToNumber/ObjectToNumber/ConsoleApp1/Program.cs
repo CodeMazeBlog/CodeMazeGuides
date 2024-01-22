@@ -51,7 +51,7 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            var boolResult = CheckIfIntegerWithEqualityOperator(123);    // Returns True
+            var boolResult = CheckIfIntegerWithEqualityOperator(123);    // Returns True 
             Console.WriteLine(boolResult);
             boolResult = CheckIfIntegerWithEqualityOperator(456d);       // Returns False
             Console.WriteLine(boolResult);

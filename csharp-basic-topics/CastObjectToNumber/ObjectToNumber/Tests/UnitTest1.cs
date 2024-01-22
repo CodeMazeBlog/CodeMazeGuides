@@ -7,7 +7,7 @@ namespace Tests
         [Fact]
         public void GivenMultipleTypes_WhenCheckedWithEqualityOperator_ThenReturnsBoolean()
         {
-            // Act
+            // Act 
             var checkIntIsTrue = Program.CheckIfIntegerWithEqualityOperator(-15);
             var checkFloatIsFalse = Program.CheckIfIntegerWithEqualityOperator(2.54f);
             var checkStringIsFalse = Program.CheckIfIntegerWithEqualityOperator("123");
