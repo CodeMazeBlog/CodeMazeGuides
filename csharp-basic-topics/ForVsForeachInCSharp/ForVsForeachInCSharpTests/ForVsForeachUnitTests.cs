@@ -11,7 +11,7 @@ public class ForVsForeachUnitTests
     [TestMethod]
     public void GivenAnArray_WhenInitializedWithASpecificSize_VerifyAccurateResults()
     {
-        var array = GenerateData.GenerateRandomArray(size);
+        var array = GenerateData.GenerateArray(size);
 
         Assert.IsInstanceOfType(array, typeof(int[]));
         Assert.IsNotNull(array);
@@ -21,7 +21,7 @@ public class ForVsForeachUnitTests
     [TestMethod]
     public void GivenAList_WhenInitializedWithASpecificSize_VerifyAccurateResults()
     {
-        var list = GenerateData.GenerateRandomList(size);
+        var list = GenerateData.GenerateList(size);
 
         Assert.IsInstanceOfType(list, typeof(List<int>));
         Assert.IsNotNull(list);
@@ -31,7 +31,7 @@ public class ForVsForeachUnitTests
     [TestMethod]
     public void GivenAnArrayList_WhenInitializedWithASpecificSize_VerifyAccurateResults()
     {
-        var arrayList = GenerateData.GenerateRandomArrayList(size);
+        var arrayList = GenerateData.GenerateArrayList(size);
 
         Assert.IsInstanceOfType(arrayList, typeof(ArrayList));
         Assert.IsNotNull(arrayList);

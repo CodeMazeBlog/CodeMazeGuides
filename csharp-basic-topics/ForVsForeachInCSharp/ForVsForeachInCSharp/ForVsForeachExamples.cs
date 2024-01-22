@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System.Collections;
+using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
 
@@ -8,18 +9,21 @@ namespace ForVsForeachInCSharp;
 [RankColumn]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
-
 public class ForVsForeachExamples
 {
-    private const int size = 10000000;
+    private const int size = 10_000_000;
+    
+    private static readonly int[] _intArray = GenerateData.GenerateArray(size);
+    private static readonly List<int> _intList = GenerateData.GenerateList(size);
+    private static readonly ArrayList _arrayList = GenerateData.GenerateArrayList(size);
+    private static readonly Dictionary<int, int> _intDictionary = GenerateData.GenerateRandomDictionary(size);
 
     [Benchmark]
     public long ArrayUsingForeach()
     {
-        var sum = 0;
-        var intArray = GenerateData.GenerateRandomArray(size);
+        var sum = 0L;
 
-        foreach (var element in intArray)
+        foreach (var element in _intArray)
         {
             sum += element;
         }
@@ -30,12 +34,11 @@ public class ForVsForeachExamples
     [Benchmark]
     public long ArrayUsingForLoop()
     {
-        var sum = 0;
-        var intArray = GenerateData.GenerateRandomArray(size);
+        var sum = 0L;
 
-        for (int i = 0; i < intArray.Length; i++)
+        for (int i = 0; i < _intArray.Length; i++)
         {
-            sum += intArray[i];
+            sum += _intArray[i];
         }
 
         return sum;
@@ -44,10 +47,9 @@ public class ForVsForeachExamples
     [Benchmark]
     public long ListUsingForeach()
     {
-        var sum = 0;
-        var intList = GenerateData.GenerateRandomList(size);
+        var sum = 0L;
 
-        foreach (var element in intList)
+        foreach (var element in _intList)
         {
             sum += element;
         }
@@ -58,12 +60,11 @@ public class ForVsForeachExamples
     [Benchmark]
     public long ListUsingForLoop()
     {
-        var sum = 0;
-        var intList = GenerateData.GenerateRandomList(size);
+        var sum = 0L;
 
-        for (int i = 0; i < intList.Count; i++)
+        for (int i = 0; i < _intList.Count; i++)
         {
-            sum += intList[i];
+            sum += _intList[i];
         }
 
         return sum;
@@ -72,10 +73,9 @@ public class ForVsForeachExamples
     [Benchmark]
     public long ArrayListUsingForeach()
     {
-        var sum = 0;
-        var arrayList = GenerateData.GenerateRandomArrayList(size);
+        var sum = 0L;
 
-        foreach (var element in arrayList)
+        foreach (var element in _arrayList)
         {
             sum =+ (int) element;
         }
@@ -86,12 +86,11 @@ public class ForVsForeachExamples
     [Benchmark]
     public long ArrayListUsingForLoop()
     {
-        var arrayList = GenerateData.GenerateRandomArrayList(size);
-        var sum = 0;
+        var sum = 0L;
 
-        for (int i = 0; i < arrayList.Count; i++)
+        for (int i = 0; i < _arrayList.Count; i++)
         {
-            sum += (int) arrayList[i];
+            sum += (int) _arrayList[i];
         }
 
         return sum;
@@ -100,10 +99,9 @@ public class ForVsForeachExamples
     [Benchmark]
     public long DictionaryUsingForeach()
     {
-        var sum = 0;
-        var intDictionary = GenerateData.GenerateRandomDictionary(size);
+        var sum = 0L;
 
-        foreach (var element in intDictionary.Values)
+        foreach (var element in _intDictionary.Values)
         {
             sum += element;
         }
@@ -114,12 +112,11 @@ public class ForVsForeachExamples
     [Benchmark]
     public long DictionaryUsingForLoop()
     {
-        var sum = 0;
-        var intDictionary = GenerateData.GenerateRandomDictionary(size);
+        var sum = 0L;
 
-        for (int i = 0; i < intDictionary.Count; i++)
+        for (int i = 0; i < _intDictionary.Count; i++)
         {
-            sum += intDictionary[i];
+            sum += _intDictionary[i];
         }
 
         return sum;

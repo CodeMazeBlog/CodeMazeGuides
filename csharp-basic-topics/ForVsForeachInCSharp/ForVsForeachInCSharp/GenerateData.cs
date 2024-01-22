@@ -2,33 +2,15 @@
 
 namespace ForVsForeachInCSharp;
 
-public class GenerateData
+public static class GenerateData
 {
-    public static int[] GenerateRandomArray(int size)
-    {
-        var array = new int[size];
+    public static int[] GenerateArray(int size)
+        => Enumerable.Range(0, size).ToArray();
 
-        for (int i = 0; i < size; i++)
-        {
-            array[i] = i;
-        }
+    public static List<int> GenerateList(int size)
+        => Enumerable.Range(0, size).ToList();
 
-        return array;
-    }
-
-    public static List<int> GenerateRandomList(int size)
-    {
-        var list = new List<int>(size);
-
-        for (int i = 0; i < size; i++)
-        {
-            list.Add(i);
-        }
-
-        return list;
-    }
-
-    public static ArrayList GenerateRandomArrayList(int size)
+    public static ArrayList GenerateArrayList(int size)
     {
         var arrayList = new ArrayList(size);
 
@@ -41,14 +23,5 @@ public class GenerateData
     }
 
     public static Dictionary<int, int> GenerateRandomDictionary(int size)
-    {
-        var dictionary = new Dictionary<int, int>(size);
-
-        for (int i = 0; i < size; i++)
-        {
-            dictionary.Add(i, i);
-        }
-
-        return dictionary;
-    }
+        => Enumerable.Range(0, size).ToDictionary(k => k, v => v);
 }
