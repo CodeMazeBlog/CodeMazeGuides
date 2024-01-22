@@ -11,116 +11,117 @@ namespace ForVsForeachInCSharp;
 
 public class ForVsForeachExamples
 {
-    private readonly GenerateData _generateData = new();
-    private readonly int[] _intArray;
-    private readonly List<int> _intList;
-    private readonly Stack<int> _intStack;
-    private readonly Queue<int> _intQueue;
-    private readonly Dictionary<int, int> _intDictionary;
+    private const int size = 10000000;
 
-    public ForVsForeachExamples()
+    [Benchmark]
+    public long ArrayUsingForeach()
     {
-        _intArray = _generateData.GenerateRandomArray(100000);
-        _intList = _generateData.GenerateRandomList(100000);
-        _intStack = _generateData.GenerateRandomStack(100000);
-        _intQueue = _generateData.GenerateRandomQueue(100000);
-        _intDictionary = _generateData.GenerateRandomDictionary(100000);
+        var sum = 0;
+        var intArray = GenerateData.GenerateRandomArray(size);
+
+        foreach (var element in intArray)
+        {
+            sum += element;
+        }
+
+        return sum;
     }
 
     [Benchmark]
-    public void PrintArrayUsingForeach()
+    public long ArrayUsingForLoop()
     {
-        foreach (var element in _intArray)
+        var sum = 0;
+        var intArray = GenerateData.GenerateRandomArray(size);
+
+        for (int i = 0; i < intArray.Length; i++)
         {
-            Console.WriteLine(element);
+            sum += intArray[i];
         }
+
+        return sum;
     }
 
     [Benchmark]
-    public void PrintArrayUsingForLoop()
+    public long ListUsingForeach()
     {
-        for (int i = 0; i < _intArray.Length; i++)
+        var sum = 0;
+        var intList = GenerateData.GenerateRandomList(size);
+
+        foreach (var element in intList)
         {
-            Console.WriteLine(_intArray[i]);
+            sum += element;
         }
+
+        return sum;
     }
 
     [Benchmark]
-    public void PrintListUsingForeach()
+    public long ListUsingForLoop()
     {
-        foreach (var element in _intList)
+        var sum = 0;
+        var intList = GenerateData.GenerateRandomList(size);
+
+        for (int i = 0; i < intList.Count; i++)
         {
-            Console.WriteLine(element);
+            sum += intList[i];
         }
+
+        return sum;
     }
 
     [Benchmark]
-    public void PrintListUsingForLoop()
+    public long ArrayListUsingForeach()
     {
-        for (int i = 0; i < _intList.Count; i++)
+        var sum = 0;
+        var arrayList = GenerateData.GenerateRandomArrayList(size);
+
+        foreach (var element in arrayList)
         {
-            Console.WriteLine(_intList[i]);
+            sum =+ (int) element;
         }
+
+        return sum;
     }
 
     [Benchmark]
-    public void PrintStackUsingForeach()
+    public long ArrayListUsingForLoop()
     {
-        foreach (var element in _intStack)
+        var arrayList = GenerateData.GenerateRandomArrayList(size);
+        var sum = 0;
+
+        for (int i = 0; i < arrayList.Count; i++)
         {
-            Console.WriteLine(element);
+            sum += (int) arrayList[i];
         }
+
+        return sum;
     }
 
     [Benchmark]
-    public void PrintStackUsingForLoop()
+    public long DictionaryUsingForeach()
     {
-        var array = _intStack.ToArray();
+        var sum = 0;
+        var intDictionary = GenerateData.GenerateRandomDictionary(size);
 
-        for (int i = 0; i < array.Length; i++)
+        foreach (var element in intDictionary.Values)
         {
-            Console.WriteLine(array[i]);
+            sum += element;
         }
+
+        return sum;
     }
 
     [Benchmark]
-    public void PrintQueueUsingForeach()
+    public long DictionaryUsingForLoop()
     {
-        foreach (var element in _intQueue)
+        var sum = 0;
+        var intDictionary = GenerateData.GenerateRandomDictionary(size);
+
+        for (int i = 0; i < intDictionary.Count; i++)
         {
-            Console.WriteLine(element);
+            sum += intDictionary[i];
         }
-    }
 
-    [Benchmark]
-    public void PrintQueueUsingForLoop()
-    {
-        var array = _intQueue.ToArray();
-
-        for (int i = 0; i < array.Length; i++)
-        {
-            Console.WriteLine(array[i]);
-        }
-    }
-
-    [Benchmark]
-    public void PrintDictionaryUsingForeach()
-    {
-        foreach (var element in _intDictionary)
-        {
-            Console.WriteLine($"Key: {element.Key}, Value: {element.Value}");
-        }
-    }
-
-    [Benchmark]
-    public void PrintDictionaryUsingForLoop()
-    {
-        for (int i = 0; i < _intDictionary.Count; i++)
-        {
-            var key = _intDictionary.Keys.ElementAt(i);
-            var value = _intDictionary[key];
-
-            Console.WriteLine($"Key: {key}, Value: {value}");
-        }
+        return sum;
     }
 }

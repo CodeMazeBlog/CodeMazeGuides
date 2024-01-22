@@ -1,65 +1,50 @@
 using ForVsForeachInCSharp;
+using System.Collections;
 
 namespace ForVsForeachInCSharpTests;
 
 [TestClass]
 public class ForVsForeachUnitTests
 {
-    private readonly int _size;
-    private readonly GenerateData _generateData = new();
-
-    public ForVsForeachUnitTests() 
-    {
-        _size = 10;
-    }
+    private const int size = 10;
 
     [TestMethod]
     public void GivenAnArray_WhenInitializedWithASpecificSize_VerifyAccurateResults()
     {
-        var array = _generateData.GenerateRandomArray(_size);
+        var array = GenerateData.GenerateRandomArray(size);
 
         Assert.IsInstanceOfType(array, typeof(int[]));
         Assert.IsNotNull(array);
-        Assert.AreEqual(_size, array.Length);
+        Assert.AreEqual(size, array.Length);
     }
 
     [TestMethod]
     public void GivenAList_WhenInitializedWithASpecificSize_VerifyAccurateResults()
     {
-        var list = _generateData.GenerateRandomList(_size);
+        var list = GenerateData.GenerateRandomList(size);
 
         Assert.IsInstanceOfType(list, typeof(List<int>));
         Assert.IsNotNull(list);
-        Assert.AreEqual(_size, list.Count);
+        Assert.AreEqual(size, list.Count);
     }
 
     [TestMethod]
-    public void GivenAStack_WhenInitializedWithASpecificSize_VerifyAccurateResults()
+    public void GivenAnArrayList_WhenInitializedWithASpecificSize_VerifyAccurateResults()
     {
-        var stack = _generateData.GenerateRandomStack(_size);
+        var arrayList = GenerateData.GenerateRandomArrayList(size);
 
-        Assert.IsInstanceOfType(stack, typeof(Stack<int>));
-        Assert.IsNotNull(stack);
-        Assert.AreEqual(_size, stack.Count);
-    }
-
-    [TestMethod]
-    public void GivenAQueue_WhenInitializedWithASpecificSize_VerifyAccurateResults()
-    {
-        var queue = _generateData.GenerateRandomQueue(_size);
-
-        Assert.IsInstanceOfType(queue, typeof(Queue<int>));
-        Assert.IsNotNull(queue);
-        Assert.AreEqual(_size, queue.Count);
+        Assert.IsInstanceOfType(arrayList, typeof(ArrayList));
+        Assert.IsNotNull(arrayList);
+        Assert.AreEqual(size, arrayList.Count);
     }
 
     [TestMethod]
     public void GivenADictionary_WhenInitializedWithASpecificSize_VerifyAccurateResults()
     {
-        var dictionary = _generateData.GenerateRandomDictionary(_size);
+        var dictionary = GenerateData.GenerateRandomDictionary(size);
 
         Assert.IsInstanceOfType(dictionary, typeof(Dictionary<int, int>));
         Assert.IsNotNull(dictionary);
-        Assert.AreEqual(_size, dictionary.Count);
+        Assert.AreEqual(size, dictionary.Count);
     }
 }
