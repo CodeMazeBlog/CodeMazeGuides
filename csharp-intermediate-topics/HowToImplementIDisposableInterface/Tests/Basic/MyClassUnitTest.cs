@@ -6,7 +6,7 @@ namespace HowToImplementIDisposableInterface.Tests.Basic;
 public class MyClassUnitTest
 {
     [Fact]
-    public void GivenChildAndParentResources_WhenDisposeIsCalled_ThenResourcesAreDisposed()
+    public void GivenManagedResource_WhenDisposeNotCalled_ThenResourceNotDisposed()
     {
         // Arrange
         var managedResource = Substitute.For<IManagedResource>();
