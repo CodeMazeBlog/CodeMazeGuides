@@ -75,7 +75,7 @@ namespace ValidateNumberIsPositiveOrNegativeTests
         public void GivenNumber_WhenUsingIsPositiveOrNegative_ThenPrintResult(int number, int expectedOutput)
         {
             // Act
-            var actualOutput = NumberValidation.IsPositiveOrNegative(number);
+            var actualOutput = NumberValidation.IsPositiveOrNegativeUsingBuiltInMethod(number);
 
             // Assert
             Assert.That(expectedOutput, Is.EqualTo(actualOutput));

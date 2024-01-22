@@ -11,7 +11,7 @@ public class Program
         Console.WriteLine($"IsPositiveOrNegative Using Bitwise Oerator LeftShift -> {NumberValidation.IsPositiveOrNegativeUsingLeftShiftMethod(number)} ");
         Console.WriteLine($"IsPositiveOrNegative Using MathAbs -> {NumberValidation.IsPositiveOrNegativeUsingMathAbsMethod(number)} ");
         Console.WriteLine($"IsPositiveOrNegative Using MathSign -> {NumberValidation.IsPositiveOrNegativeUsingMathSignMethod(number)} ");
-        Console.WriteLine($"IsPositiveOrNegative Using IsPositive or IsNegative -> {NumberValidation.IsPositiveOrNegative(number)} ");
+        Console.WriteLine($"IsPositiveOrNegative Using IsPositive or IsNegative -> {NumberValidation.IsPositiveOrNegativeUsingBuiltInMethod(number)} ");
     }
     
 }

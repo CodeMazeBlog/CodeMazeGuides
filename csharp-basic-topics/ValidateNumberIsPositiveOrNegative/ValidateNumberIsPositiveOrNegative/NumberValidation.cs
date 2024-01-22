@@ -82,17 +82,10 @@ namespace ValidateNumberIsPositiveOrNegative
 
         public static int IsPositiveOrNegativeUsingMathSignMethod(int number)
         {
-            var result = 0;
-
-            if (number != 0)
-            {
-                result = Math.Sign(number);
-            }
-            
-            return result;
+            return Math.Sign(number);
         }
 
-        public static int IsPositiveOrNegative(int number)
+        public static int IsPositiveOrNegativeUsingBuiltInMethod(int number)
         {
             var result = 0;
 
