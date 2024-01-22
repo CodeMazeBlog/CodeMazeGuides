@@ -106,7 +106,7 @@ namespace Tests
             var doubleValue = -4.24708d;
             var stringValue = "123";
             var charactersValue = "test";
-            var listIntegers = new List<int> { 0, 9, 8 };
+            var listIntegers = new List<int> { 0, 9, 8, -2 };
 
             // Act & Assert
             Assert.True(shortValue.IsNumber());
