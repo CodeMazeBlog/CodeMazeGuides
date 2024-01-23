@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ValidateNumberIsPositiveOrNegative
+﻿namespace ValidateNumberIsPositiveOrNegative
 {
     public static class NumberValidation
     {
@@ -28,9 +22,9 @@ namespace ValidateNumberIsPositiveOrNegative
         {
             var result = 0;
 
-            // Using left shift operator to check the sign bit
             if(number != 0) 
-            { 
+            {
+                // Using left shift operator to check the sign bit
                 if ((number & (1 << 31)) == 0)
                 {
                     result = 1;
@@ -47,9 +41,9 @@ namespace ValidateNumberIsPositiveOrNegative
         {
             var result = 0;
 
-            // Using right shift operator to check the sign bit
             if(number != 0) 
-            { 
+            {
+                // Using right shift operator to check the sign bit
                 if ((number >> 31) == 0)
                 {
                     result = 1;

@@ -8,7 +8,7 @@ namespace ValidateNumberIsPositiveOrNegativeTests
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
         [TestCase(0, 0)]
-        public void GivenNumber_WhenUsingConditionalMethod_ThenPrintResult(int number, int expectedOutput)
+        public void GivenNumber_WhenUsingConditionalMethod_ThenVerifyResult(int number, int expectedOutput)
         {
             // Arrange - Nothing to arrange in this case
 
@@ -22,7 +22,7 @@ namespace ValidateNumberIsPositiveOrNegativeTests
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
         [TestCase(0, 0)]
-        public void GivenNumber_WhenUsingLeftShiftMethod_ThenPrintResult(int number, int expectedOutput)
+        public void GivenNumber_WhenUsingLeftShiftMethod_ThenVerifyResult(int number, int expectedOutput)
         {
             // Arrange - Nothing to arrange in this case
 
@@ -36,7 +36,7 @@ namespace ValidateNumberIsPositiveOrNegativeTests
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
         [TestCase(0, 0)]
-        public void GivenNumber_WhenUsingRightShiftMethod_ThenPrintResult(int number, int expectedOutput)
+        public void GivenNumber_WhenUsingRightShiftMethod_ThenVerifyResult(int number, int expectedOutput)
         {
             // Act
             var actualOutput = NumberValidation.IsPositiveOrNegativeUsingRightShiftMethod(number);
@@ -48,7 +48,7 @@ namespace ValidateNumberIsPositiveOrNegativeTests
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
         [TestCase(0, 0)]
-        public void GivenNumber_WhenUsingMathAbsMethod_ThenPrintResult(int number, int expectedOutput)
+        public void GivenNumber_WhenUsingMathAbsMethod_ThenVerifyResult(int number, int expectedOutput)
         {
             // Act
             var actualOutput = NumberValidation.IsPositiveOrNegativeUsingMathAbsMethod(number);
@@ -60,7 +60,7 @@ namespace ValidateNumberIsPositiveOrNegativeTests
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
         [TestCase(0, 0)]
-        public void GivenNumber_WhenUsingMathSign_ThenPrintResult(int number, int expectedOutput)
+        public void GivenNumber_WhenUsingMathSign_ThenVerifyResult(int number, int expectedOutput)
         {            
             // Act
             var actualOutput = NumberValidation.IsPositiveOrNegativeUsingMathSignMethod(number);
@@ -72,7 +72,7 @@ namespace ValidateNumberIsPositiveOrNegativeTests
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
         [TestCase(0, 0)]
-        public void GivenNumber_WhenUsingIsPositiveOrNegative_ThenPrintResult(int number, int expectedOutput)
+        public void GivenNumber_WhenUsingIsPositiveOrNegative_ThenVerifyResult(int number, int expectedOutput)
         {
             // Act
             var actualOutput = NumberValidation.IsPositiveOrNegativeUsingBuiltInMethod(number);
