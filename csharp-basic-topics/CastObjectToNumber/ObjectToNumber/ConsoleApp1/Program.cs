@@ -58,19 +58,33 @@ namespace ConsoleApp1
             boolResult = CheckIfIntegerWithEqualityOperator(0);          // Returns True
             Console.WriteLine(boolResult);
 
-            var intResult = CheckIfFloatWithExplicitCasting((long)5);  // System.InvalidCastException
-            intResult = CheckIfFloatWithExplicitCasting(5.0d);         // System.InvalidCastException
-            intResult = CheckIfFloatWithExplicitCasting(-2.5f);
+            var intResult = CheckIfFloatWithExplicitCasting(-2.5f);
             Console.WriteLine(intResult);                // Returns -2.5
+            try
+            {
+                intResult = CheckIfFloatWithExplicitCasting((long)5);  // System.InvalidCastException
+            }
+            catch (InvalidCastException) { Console.WriteLine(typeof(InvalidCastException)); }
+            catch (Exception e) { Console.WriteLine(e.Message); }
+            try
+            {
+                intResult = CheckIfFloatWithExplicitCasting(5.0d);         // System.InvalidCastException
+            }
+            catch (InvalidCastException) { Console.WriteLine(typeof(InvalidCastException)); }
+            catch (Exception e) { Console.WriteLine(e.Message); }
 
             var convertResult = CheckIfShortUsingConvert((long)5);
             Console.WriteLine(convertResult);       // Returns 5 
             convertResult = CheckIfShortUsingConvert(19);
             Console.WriteLine(convertResult);       // Returns 19
             convertResult = CheckIfShortUsingConvert(12.54f);
-            Console.WriteLine(convertResult);       // Returns 13
-            convertResult = CheckIfShortUsingConvert(Decimal.MaxValue);
-            Console.WriteLine(convertResult);       // System.OverflowException  
+            Console.WriteLine(convertResult);       // Returns 13           
+            try
+            {
+                convertResult = CheckIfShortUsingConvert(Decimal.MaxValue); // System.OverflowException       
+            }
+            catch (OverflowException) { Console.WriteLine(typeof(OverflowException)); }
+            catch (Exception e) { Console.WriteLine(e.Message); }
 
             var isFloat = CheckIfFloatWithIsOperator(6.99f);
             Console.WriteLine(isFloat);     // Returns True
