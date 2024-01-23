@@ -9,10 +9,12 @@
         {
             return var1 > var2 ? var1 : var2;
         }
+
         public static void Print(string str)
         {
             Console.WriteLine(str);
         }
+
         public static int DelegateCaller(int var1, int var2, MathDelegate delegateVar)
         {
             return delegateVar(var1, var2);
