@@ -9,13 +9,7 @@ namespace App;
 public class DataBatchingBenchmarks
 {
     private const int BatchSize = 100;
-    private readonly List<int> _data;
-
-    public DataBatchingBenchmarks()
-    {
-        _data = new List<int>();
-        for (var i = 0; i < 10000; i++) _data.Add(i);
-    }
+    private readonly List<int> _data = Enumerable.Range(0, 10000).ToList();
 
     [Benchmark]
     public void BatchByTraditionalBenchmark()
