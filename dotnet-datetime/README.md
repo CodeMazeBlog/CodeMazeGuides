@@ -5,6 +5,7 @@ This section contains the topics related to the DateTime class in .NET.
 ### Relevant articles:
 
 - [Check if DateTime Is Weekend or Weekday](https://code-maze.com/csharp-datetime-weekend-weekday/)
+- [How to Calculate the Number of Days Between Two Dates in C#](https://code-maze.com/csharp-calculate-the-number-of-days-between-two-dates/)
 - [Determine Whether Two Date Ranges Overlap in C#](https://code-maze.com/csharp-determine-whether-two-date-ranges-overlap/)
 - [Compare DateTime in C#](https://code-maze.com/csharp-compare-datetime/)
 - [Convert DateTime to ISO 8601 String in C#](https://code-maze.com/convert-datetime-to-iso-8601-string-csharp/)
