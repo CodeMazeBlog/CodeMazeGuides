@@ -9,13 +9,20 @@ public static class BatchExtensions
         foreach (var item in source)
         {
             batch.Add(item);
-            if (batch.Count != batchSize) continue;
+            if (batch.Count != batchSize)
+            {
+                continue;
+            }
+
             batches.Add(batch);
             batch = new List<T>(batchSize);
         }
 
-        if (batch.Count > 0) batches.Add(batch);
-        
+        if (batch.Count > 0)
+        {
+            batches.Add(batch);
+        }
+
         return batches;
     }
 

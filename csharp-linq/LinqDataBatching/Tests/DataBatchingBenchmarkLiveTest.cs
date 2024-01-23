@@ -10,8 +10,7 @@ public class DataBatchingBenchmarkLiveTest
     {
         var summary = DataBatchingBenchmarks.RunBenchmarks();
 
-        var traditionalBenchmark =
-            GetBenchmarkResult(summary, nameof(DataBatchingBenchmarks.BatchByTraditionalBenchmark));
+        var traditionalBenchmark = GetBenchmarkResult(summary, nameof(DataBatchingBenchmarks.BatchByTraditionalBenchmark));
         var linqBenchmark = GetBenchmarkResult(summary, nameof(DataBatchingBenchmarks.BatchByLinqBenchmark));
         var chunkBenchmark = GetBenchmarkResult(summary, nameof(DataBatchingBenchmarks.BatchByChunkBenchmark));
 
