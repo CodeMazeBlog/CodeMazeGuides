@@ -11,6 +11,7 @@ This section contains the topics related to all kinds of testing in C#/.NET
 - [How to Mock the File System for Unit Testing in .NET](https://code-maze.com/dotnet-unit-testing-mock-file-system/)
 - [Improving Unit Tests with Fluent Assertions](https://code-maze.com/unit-tests-with-fluent-assertions/)
 - [How to Use Shouldly to Improve Unit Tests in .NET?](https://code-maze.com/improve-unit-tests-shouldly-dotnet/)
+- [How to Maximize the Browser Window With Selenium in C#](https://code-maze.com/csharp-selenium-maximize-browser/)
 - [Mock Asynchronous Methods Using Moq in C#](https://code-maze.com/csharp-mock-asynchronous-methods-using-moq/)
 - [How to Mock HttpClient with Unit Tests in C#](https://code-maze.com/csharp-mock-httpclient-with-unit-tests/)
 - [How to Mock IOptions in ASP.NET Core](https://code-maze.com/csharp-mock-ioptions/)
