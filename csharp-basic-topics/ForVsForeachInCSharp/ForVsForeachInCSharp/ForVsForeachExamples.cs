@@ -12,11 +12,10 @@ namespace ForVsForeachInCSharp;
 public class ForVsForeachExamples
 {
     private const int size = 10_000_000;
-    
     private static readonly int[] _intArray = GenerateData.GenerateArray(size);
     private static readonly List<int> _intList = GenerateData.GenerateList(size);
     private static readonly ArrayList _arrayList = GenerateData.GenerateArrayList(size);
-    private static readonly Dictionary<int, int> _intDictionary = GenerateData.GenerateRandomDictionary(size);
+    private static readonly Dictionary<int, int> _intDictionary = GenerateData.GenerateDictionary(size);
 
     [Benchmark]
     public long ArrayUsingForeach()

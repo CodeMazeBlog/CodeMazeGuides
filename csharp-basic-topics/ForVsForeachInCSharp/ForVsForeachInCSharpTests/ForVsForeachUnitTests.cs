@@ -41,7 +41,7 @@ public class ForVsForeachUnitTests
     [TestMethod]
     public void GivenADictionary_WhenInitializedWithASpecificSize_VerifyAccurateResults()
     {
-        var dictionary = GenerateData.GenerateRandomDictionary(size);
+        var dictionary = GenerateData.GenerateDictionary(size);
 
         Assert.IsInstanceOfType(dictionary, typeof(Dictionary<int, int>));
         Assert.IsNotNull(dictionary);

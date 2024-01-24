@@ -22,6 +22,6 @@ public static class GenerateData
         return arrayList;
     }
 
-    public static Dictionary<int, int> GenerateRandomDictionary(int size)
+    public static Dictionary<int, int> GenerateDictionary(int size)
         => Enumerable.Range(0, size).ToDictionary(k => k, v => v);
 }
