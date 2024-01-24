@@ -8,12 +8,26 @@ namespace ValidateNumberIsPositiveOrNegativeTests
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
         [TestCase(0, 0)]
-        public void GivenNumber_WhenUsingConditionalMethod_ThenVerifyResult(int number, int expectedOutput)
+        public void GivenIntegerNumber_WhenUsingConditionalMethod_ThenVerifyResult(int number, int expectedOutput)
         {
             // Arrange - Nothing to arrange in this case
 
             // Act
             var actualOutput= NumberValidation.IsPositiveOrNegativeUsingConditionalMethod(number);
+
+            // Assert
+            Assert.That(expectedOutput, Is.EqualTo(actualOutput));
+        }
+
+        [TestCase(60.0, 1)]
+        [TestCase(-30.0, -1)]
+        [TestCase(0.0, 0)]
+        public void GivenDoubleNumber_WhenUsingConditionalMethod_ThenVerifyResult(double number, double expectedOutput)
+        {
+            // Arrange - Nothing to arrange in this case
+
+            // Act
+            var actualOutput = NumberValidation.IsPositiveOrNegativeUsingConditionalMethod(number);
 
             // Assert
             Assert.That(expectedOutput, Is.EqualTo(actualOutput));
@@ -32,6 +46,19 @@ namespace ValidateNumberIsPositiveOrNegativeTests
             // Assert
             Assert.That(expectedOutput, Is.EqualTo(actualOutput));
         }
+        //TODO: Remove once agreed.
+        //[TestCase(60, false)]
+        //[TestCase(-42, true)]
+        //public void GivenNumber_WhenUsingRotateLeftShiftMethod_ThenVerifyResult(int number, bool expectedOutput)
+        //{
+        //    // Arrange - Nothing to arrange in this case
+
+        //    // Act
+        //    var actualOutput = NumberValidation.IsNegativeShift(number);
+
+        //    // Assert
+        //    Assert.That(expectedOutput, Is.EqualTo(actualOutput));
+        //}
 
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
@@ -72,7 +99,19 @@ namespace ValidateNumberIsPositiveOrNegativeTests
         [TestCase(60, 1)]
         [TestCase(-30, -1)]
         [TestCase(0, 0)]
-        public void GivenNumber_WhenUsingIsPositiveOrNegative_ThenVerifyResult(int number, int expectedOutput)
+        public void GivenIntegerNumber_WhenUsingIsPositiveOrNegative_ThenVerifyResult(int number, int expectedOutput)
+        {
+            // Act
+            var actualOutput = NumberValidation.IsPositiveOrNegativeUsingBuiltInMethod(number);
+
+            // Assert
+            Assert.That(expectedOutput, Is.EqualTo(actualOutput));
+        }
+
+        [TestCase(60.0, 1)]
+        [TestCase(-30.0, -1)]
+        [TestCase(0.0, 0)]
+        public void GivenDoubleNumber_WhenUsingIsPositiveOrNegative_ThenVerifyeResult(double number, double expectedOutput)
         {
             // Act
             var actualOutput = NumberValidation.IsPositiveOrNegativeUsingBuiltInMethod(number);

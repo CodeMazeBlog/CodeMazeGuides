@@ -12,6 +12,9 @@ public class Program
         Console.WriteLine($"IsPositiveOrNegative Using MathAbs -> {NumberValidation.IsPositiveOrNegativeUsingMathAbsMethod(number)} ");
         Console.WriteLine($"IsPositiveOrNegative Using MathSign -> {NumberValidation.IsPositiveOrNegativeUsingMathSignMethod(number)} ");
         Console.WriteLine($"IsPositiveOrNegative Using IsPositive or IsNegative -> {NumberValidation.IsPositiveOrNegativeUsingBuiltInMethod(number)} ");
+        //Todo : remove it 
+        //Console.WriteLine($"Is negative {number}: {NumberValidation.IsNegativeShift(number)}");
+        //Console.WriteLine($"Is negative {number}: {NumberValidation.IsNegativeShift(number)}");
     }
-    
+
 }

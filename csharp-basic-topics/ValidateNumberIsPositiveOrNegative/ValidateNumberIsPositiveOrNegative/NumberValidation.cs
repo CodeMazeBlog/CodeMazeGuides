@@ -1,28 +1,35 @@
-﻿namespace ValidateNumberIsPositiveOrNegative
+﻿using System.Numerics;
+
+namespace ValidateNumberIsPositiveOrNegative
 {
     public static class NumberValidation
     {
-        public static int IsPositiveOrNegativeUsingConditionalMethod(int number)
+        public static int IsPositiveOrNegativeUsingConditionalMethod<T>(T number) where T : ISignedNumber<T>, IComparisonOperators<T, T, bool>
         {
             var result = 0;
 
-            if (number > 0)
+            if (number > T.Zero)
             {
                 result = 1;
             }
-            else if (number < 0)
+            else if (number < T.Zero)
             {
-                result = - 1;
+                result = -1;
             }
             
             return result;
         }
+        //TODO: This works fine when called from main method but failing when called from test case.
+        public static bool IsNegativeShift<T>(T val) where T : IBinaryInteger<T>, IBitwiseOperators<T, T, T>
+        {
+            return (T.RotateLeft(val, 31) & val) != T.Zero;
+        }
 
-        public static int IsPositiveOrNegativeUsingLeftShiftMethod(int number)
+        public static int IsPositiveOrNegativeUsingLeftShiftMethod(int number) 
         {
             var result = 0;
 
-            if(number != 0) 
+            if (number != 0)
             {
                 // Using left shift operator to check the sign bit
                 if ((number & (1 << 31)) == 0)
@@ -32,8 +39,9 @@
                 else
                 {
                     result = -1;
-                }           
+                }
             }
+
             return result;
         }
 
@@ -79,21 +87,22 @@
             return Math.Sign(number);
         }
 
-        public static int IsPositiveOrNegativeUsingBuiltInMethod(int number)
+        public static int IsPositiveOrNegativeUsingBuiltInMethod<T>(T number) where T : ISignedNumber<T>, IComparisonOperators<T, T, bool>
         {
             var result = 0;
 
-            if (number != 0)
+            if (!number.Equals(default(T)))
             {
-                if (Int32.IsPositive(number))
+                if (T.IsPositive(number))
                 {
                     result = 1;
                 }
-                else if (Int32.IsNegative(number))
+                else if (T.IsNegative(number))
                 {
                     result = -1;
                 }
             }
+
             return result;
         }
     }
