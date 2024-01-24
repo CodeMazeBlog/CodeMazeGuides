@@ -5,7 +5,7 @@ using SingleAndSplitQueriesInEFCore.Model;
 namespace SingleAndSplitQueriesInEFCore;
 
 [MemoryDiagnoser]
-public class SingleAndSplitBenchmark
+public class SingleAndSplitQueriesBenchmark
 {
     private CompaniesContext _companiesContext;
 
