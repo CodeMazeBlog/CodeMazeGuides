@@ -3,10 +3,16 @@
     private string _accountNumber;
     private decimal _balance;
 
+    public BankAccount(string accountNumber, decimal balance)
+    {
+        _accountNumber = accountNumber;
+        _balance = balance;
+    }
+
     public string AccountNumber
     {
         get { return _accountNumber; }
-        set { _accountNumber = value; }
+        private set { _accountNumber = value; }
     }
 
     public decimal Balance
