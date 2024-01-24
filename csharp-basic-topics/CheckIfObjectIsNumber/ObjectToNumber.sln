@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{2610D0A7-9271-491F-A86B-D543BEA33064}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckIfObjectIsNumber", "CheckIfObjectIsNumber\CheckIfObjectIsNumber.csproj", "{2610D0A7-9271-491F-A86B-D543BEA33064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B2395AD6-EDA4-413B-98F7-8F9EA10696A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{B2395AD6-EDA4-413B-98F7-8F9EA10696A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

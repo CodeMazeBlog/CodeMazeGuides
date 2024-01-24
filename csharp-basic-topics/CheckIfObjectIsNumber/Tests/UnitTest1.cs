@@ -1,4 +1,4 @@
-using ConsoleApp1;
+using CheckIfObjectIsNumber;
 
 namespace Tests
 {

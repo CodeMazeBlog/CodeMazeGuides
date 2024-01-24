@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace ConsoleApp1
+﻿namespace CheckIfObjectIsNumber
 {
     public class Program
     {
@@ -58,20 +56,20 @@ namespace ConsoleApp1
             boolResult = CheckIfIntegerWithEqualityOperator(0);          // Returns True
             Console.WriteLine(boolResult);
 
-            var intResult = CheckIfFloatWithExplicitCasting(-2.5f);
-            Console.WriteLine(intResult);                // Returns -2.5
+            var floatResult = CheckIfFloatWithExplicitCasting(-2.5f);
+            Console.WriteLine(floatResult);   // Returns -2.5
+
             try
             {
-                intResult = CheckIfFloatWithExplicitCasting((long)5);  // System.InvalidCastException
+                floatResult = CheckIfFloatWithExplicitCasting((long)5);  // System.InvalidCastException
             }
             catch (InvalidCastException) { Console.WriteLine(typeof(InvalidCastException)); }
-            catch (Exception e) { Console.WriteLine(e.Message); }
+            
             try
             {
-                intResult = CheckIfFloatWithExplicitCasting(5.0d);         // System.InvalidCastException
+                floatResult = CheckIfFloatWithExplicitCasting(5.0d);         // System.InvalidCastException
             }
-            catch (InvalidCastException) { Console.WriteLine(typeof(InvalidCastException)); }
-            catch (Exception e) { Console.WriteLine(e.Message); }
+            catch (InvalidCastException) { Console.WriteLine(typeof(InvalidCastException)); }           
 
             var convertResult = CheckIfShortUsingConvert((long)5);
             Console.WriteLine(convertResult);       // Returns 5 
@@ -84,7 +82,6 @@ namespace ConsoleApp1
                 convertResult = CheckIfShortUsingConvert(Decimal.MaxValue); // System.OverflowException       
             }
             catch (OverflowException) { Console.WriteLine(typeof(OverflowException)); }
-            catch (Exception e) { Console.WriteLine(e.Message); }
 
             var isFloat = CheckIfFloatWithIsOperator(6.99f);
             Console.WriteLine(isFloat);     // Returns True
