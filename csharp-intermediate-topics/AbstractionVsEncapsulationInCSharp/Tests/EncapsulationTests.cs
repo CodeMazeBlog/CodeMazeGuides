@@ -4,8 +4,8 @@
     public void GivenValidDepositAmount_WhenDepositCalled_ThenBalanceIncreased()
     {
         // Arrange
-        BankAccount account = new BankAccount();
-        decimal initialBalance = account.Balance;
+        decimal initialBalance = 500;
+        BankAccount account = new BankAccount("12345", initialBalance);
         decimal depositAmount = 100;
 
         // Act
@@ -20,8 +20,8 @@
     public void GivenInvalidDepositAmount_WhenDepositCalled_ThenBalanceRemainsSame()
     {
         // Arrange
-        BankAccount account = new BankAccount();
-        decimal initialBalance = account.Balance;
+        decimal initialBalance = 500; 
+        BankAccount account = new BankAccount("12345", initialBalance);
         decimal invalidDepositAmount = -50;
 
         // Act
@@ -36,9 +36,8 @@
     public void GivenValidWithdrawalAmount_WhenWithdrawCalled_ThenBalanceDecreased()
     {
         // Arrange
-        BankAccount account = new BankAccount();
-        account.Deposit(200);
-        decimal initialBalance = account.Balance;
+        decimal initialBalance = 200; 
+        BankAccount account = new BankAccount("12345", initialBalance);
         decimal withdrawalAmount = 100;
 
         // Act
@@ -53,9 +52,8 @@
     public void GivenInvalidWithdrawalAmount_WhenWithdrawCalled_ThenBalanceRemainsSame()
     {
         // Arrange
-        BankAccount account = new BankAccount();
-        account.Deposit(100);
-        decimal initialBalance = account.Balance;
+        decimal initialBalance = 100;
+        BankAccount account = new BankAccount("12345", initialBalance);
         decimal invalidWithdrawalAmount = -50;
 
         // Act
