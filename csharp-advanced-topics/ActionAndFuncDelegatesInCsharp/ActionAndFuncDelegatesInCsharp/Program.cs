@@ -4,23 +4,21 @@
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Here is an example with Action Delegates");
+			Console.WriteLine("Here is an example with Action delegates");
 
-			Action<int, int> Addition_Action = AddActionNumbers;
-			Addition_Action(4, 8);
+			Action<int, int> additionAction = AddActionNumbers;
+			additionAction(4, 8);
 
-			Console.WriteLine("\n");
+			Console.WriteLine("\nHere is an example with Func delegates");
 
-			Console.WriteLine("Here is an example with Func Delegates");
-
-			Func<int, int, int> Addition_Func = AddFuncNumbers;
-			int sum = Addition_Func(4, 8);
-			Console.WriteLine("The sum of the addition is: " + sum);
+			Func<int, int, int> additionFunc = AddFuncNumbers;
+			var sum = additionFunc(4, 8);
+			Console.WriteLine("The addition's sum: " + sum);
 		}
 
 		public static void AddActionNumbers(int a, int b)
 		{
-			Console.WriteLine($"The sum of the addition is: {a + b}");
+			Console.WriteLine($"The addition's sum: {a + b}");
 		}
 
 		public static int AddFuncNumbers(int i, int j)
