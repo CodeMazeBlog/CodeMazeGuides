@@ -14,16 +14,13 @@ public class CompaniesContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        var companies = DataGenerator.GenerateCompanies(100);
+        var companies = DataGenerator.GenerateCompanies(1000);
         modelBuilder.Entity<Company>().HasData(companies);
 
-        var products = DataGenerator.GenerateProducts(1000, companies);
+        var products = DataGenerator.GenerateProducts(10000, companies);
         modelBuilder.Entity<Product>().HasData(products);
 
-        var departments = DataGenerator.GenerateDepartments(1000, companies);
+        var departments = DataGenerator.GenerateDepartments(10000, companies);
         modelBuilder.Entity<Department>().HasData(departments);
-
-        var employees = DataGenerator.GenerateEmployees(10000, departments);
-        modelBuilder.Entity<Employee>().HasData(employees);
     }
 }

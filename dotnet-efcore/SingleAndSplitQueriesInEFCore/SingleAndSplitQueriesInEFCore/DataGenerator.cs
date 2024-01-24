@@ -34,14 +34,4 @@ public class DataGenerator
 
         return faker.Generate(count);
     }
-
-    public static List<Employee> GenerateEmployees(int count, List<Department> departments)
-    {
-        var id = 1;
-
-        var faker = new Faker<Employee>()
-            .CustomInstantiator(faker => new Employee(id++, faker.Person.FullName, faker.PickRandom(departments).Id));
-
-        return faker.Generate(count);
-    }
 }

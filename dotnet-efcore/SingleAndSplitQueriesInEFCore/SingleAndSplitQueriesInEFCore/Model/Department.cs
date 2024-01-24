@@ -7,5 +7,4 @@ public class Department(int id, string name, int companyId)
     public int CompanyId { get; private set; } = companyId;
 
     public Company Company { get; private set; } = null!;
-    public List<Employee> Employees { get; } = new();
 }
