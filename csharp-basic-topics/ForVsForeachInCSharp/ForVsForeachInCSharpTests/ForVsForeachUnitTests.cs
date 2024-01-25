@@ -29,16 +29,6 @@ public class ForVsForeachUnitTests
     }
 
     [TestMethod]
-    public void GivenAnArrayList_WhenInitializedWithASpecificSize_VerifyAccurateResults()
-    {
-        var arrayList = GenerateData.GenerateArrayList(size);
-
-        Assert.IsInstanceOfType(arrayList, typeof(ArrayList));
-        Assert.IsNotNull(arrayList);
-        Assert.AreEqual(size, arrayList.Count);
-    }
-
-    [TestMethod]
     public void GivenADictionary_WhenInitializedWithASpecificSize_VerifyAccurateResults()
     {
         var dictionary = GenerateData.GenerateDictionary(size);

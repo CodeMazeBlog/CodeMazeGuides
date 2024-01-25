@@ -14,7 +14,6 @@ public class ForVsForeachExamples
     private const int size = 10_000_000;
     private static readonly int[] _intArray = GenerateData.GenerateArray(size);
     private static readonly List<int> _intList = GenerateData.GenerateList(size);
-    private static readonly ArrayList _arrayList = GenerateData.GenerateArrayList(size);
     private static readonly Dictionary<int, int> _intDictionary = GenerateData.GenerateDictionary(size);
 
     [Benchmark]
@@ -64,32 +63,6 @@ public class ForVsForeachExamples
         for (int i = 0; i < _intList.Count; i++)
         {
             sum += _intList[i];
-        }
-
-        return sum;
-    }
-
-    [Benchmark]
-    public long ArrayListUsingForeach()
-    {
-        var sum = 0L;
-
-        foreach (var element in _arrayList)
-        {
-            sum =+ (int) element;
-        }
-
-        return sum;
-    }
-
-    [Benchmark]
-    public long ArrayListUsingForLoop()
-    {
-        var sum = 0L;
-
-        for (int i = 0; i < _arrayList.Count; i++)
-        {
-            sum += (int) _arrayList[i];
         }
 
         return sum;
