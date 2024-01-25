@@ -1,4 +1,5 @@
 ﻿namespace DifferenceBetweenFieldsAndProperty;
+
 public class Voter
 {
     private int _age;
@@ -18,9 +19,8 @@ public class Voter
             }
         }
     }
-    public static string Name { get; set; }
 
-    public Voter() { }
+    public static string Name { get; set; }
 
     public Voter(int initialValue)
     {

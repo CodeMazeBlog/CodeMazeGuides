@@ -3,15 +3,13 @@ namespace Tests;
 public class Tests
 {
     [Fact]
-    public void GivenPersonAgeLessThanEighteen_WhenAssignedToProperty_ThenReturnErrorMessage()
+    public void GivenVoter_WhenAssigningAgeLessThanEighteen_ThenThrowsException()
     {
-        var voterObject = new Voter();
-
-        Assert.Throws<ArgumentException>(() => voterObject.Age = 14);
+        Assert.Throws<ArgumentException>(() => new Voter(14));
     }
 
     [Fact]
-    public void GivenPersonAgeGreaterThanEighteen_WhenAssignedToPropertyAndCallMethod_ThenReturnMessage()
+    public void GivenVoterWithAgeGreaterThanEighteen_WhenInvokingDisplayIsVoter_ThenReturnsMessage()
     {
         var voterObject = new Voter(35);
 

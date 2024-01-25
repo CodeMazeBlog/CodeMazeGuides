@@ -2,8 +2,8 @@
 
 public class Person
 {
-    public string name = "John Doe";
     public static int age;
+    public string name = "John Doe";
     public required bool hasSuperPowers;
 
     public Person()
