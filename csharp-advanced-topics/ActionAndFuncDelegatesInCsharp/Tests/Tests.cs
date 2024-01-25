@@ -1,5 +1,4 @@
-﻿// Inside the existing "Program" class
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Tests
 {
@@ -7,41 +6,29 @@ namespace Tests
 	public class Tests
 	{
 		[TestMethod]
-		public void TestActionAndFuncDelegates_LogMessageAndCalculateSquare_CorrectOutput()
+		public void GivenValidNameAndAge_WhenPrintDetailsIsCalled()
 		{
-			// Arrange
-			Action<string> logMessage = (message) =>
+			Action<string, int> printDetails = (name, age) =>
+				Console.WriteLine($"Name: {name}, Age: {age}");
+
+			string expectedOutput = "Name: John Doe, Age: 30\r\n";
+			using (StringWriter sw = new StringWriter())
 			{
-				Assert.IsNotNull(message);
-				Console.WriteLine($"[LOG]: {message}");
-			};
-
-			Func<int, int> calculateSquare = (number) =>
+				Console.SetOut(sw);
+				printDetails("John Doe", 30);
+				Assert.AreEqual(expectedOutput, sw.ToString());
+			}
+		}
+		[TestMethod]
+		public void GivenGreetPersonFunction_WhenCallingWithValidNameAndAge()
+		{
+			Func<string, int, string> greetPerson = (name, age) =>
 			{
-				return number * number;
+				return $"Hello, {name}! You are {age} years old.";
 			};
-
-			Action<string> closingMessage = (message) =>
-			{
-				Assert.IsNotNull(message);
-				Console.WriteLine($"[CLOSING]: {message}");
-			};
-
-			// Example scenario: Logging and calculating square
-			int inputNumber = 5;
-
-			// Act
-			logMessage("Starting the calculation...");
-
-			var result = calculateSquare(inputNumber);
-
-			logMessage($"The square of {inputNumber} is: {result}");
-
-			// Assert
-			Assert.AreEqual(result, 25);
-
-			// New line before the Then section
-			closingMessage("Calculation complete. End of the program.");
+			string greeting = greetPerson("Alice", 25);
+			string expectedGreeting = "Hello, Alice! You are 25 years old.";
+			Assert.AreEqual(expectedGreeting, greeting);
 		}
 	}
 }
