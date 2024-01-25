@@ -1,21 +1,18 @@
+using FileUploadValidation.ActionFilters;
 using FileUploadValidation.Controllers;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace Tests
 {
     public class FileUploadTests
     {
-        private readonly FileController _controller;
-        public FileUploadTests()
-        {
-            _controller = new FileController();
-        }
 
         [Fact]
-        public void WhenUploadingFile_WithInvalidExtension_ThenShouldReturnBadRequest()
+        public void WhenUploadingFile_WithInvalidExtension_ThenFilterShouldReturnBadRequest()
         {
-            //Setup mock file using a memory stream
             var content = "Hello World from a Fake File";
             var fileName = "test.txt";
             var stream = new MemoryStream();
@@ -24,25 +21,29 @@ namespace Tests
             writer.Flush();
             stream.Position = 0;
 
-            //create FormFile with desired data
             IFormFile file = new FormFile(stream, 0, stream.Length, "id_from_form", fileName);
 
-            // Act
-            var result = _controller.Upload(file);
-            
-            var statusCode = (HttpStatusCode)result
-                .GetType()
-                .GetProperty("StatusCode")
-                .GetValue(result, null);
+            // Arrange 
+            var validateUserRoleActionFilter =
+                new FileValidationFilter();
+            var httpContext = new DefaultHttpContext();
 
-            // Then
-            Assert.Equal(HttpStatusCode.BadRequest, statusCode);
+            var actionContext = new ActionContext(httpContext, new(), new(), new());
+            var actionExecutingContext = new ActionExecutingContext(actionContext,
+            new List<IFilterMetadata>(),
+            new Dictionary<string, object?>() { { "UploadedFile", file } },
+            controller: null);
+
+            // Act
+            validateUserRoleActionFilter.OnActionExecuting(actionExecutingContext);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(actionExecutingContext.Result);
         }
 
         [Fact]
-        public void WhenUploadingFile_WithValidExtension_ThenShouldReturnOK()
+        public void WhenUploadingFile_WithValidExtension_ThenFilterShouldReturnNull()
         {
-            //Setup mock file using a memory stream
             var content = "Hello World from a Fake File";
             var fileName = "test.pdf";
             var stream = new MemoryStream();
@@ -51,19 +52,55 @@ namespace Tests
             writer.Flush();
             stream.Position = 0;
 
-            //create FormFile with desired data
             IFormFile file = new FormFile(stream, 0, stream.Length, "id_from_form", fileName);
 
+            // Arrange 
+            var validateUserRoleActionFilter =
+                new FileValidationFilter();
+            var httpContext = new DefaultHttpContext();
+
+            var actionContext = new ActionContext(httpContext, new(), new(), new());
+            var actionExecutingContext = new ActionExecutingContext(actionContext,
+            new List<IFilterMetadata>(),
+            new Dictionary<string, object?>() { { "UploadedFile", file } },
+            controller: null);
+
             // Act
-            var result = _controller.Upload(file);
+            validateUserRoleActionFilter.OnActionExecuting(actionExecutingContext);
 
-            var statusCode = (HttpStatusCode)result
-                .GetType()
-                .GetProperty("StatusCode")
-                .GetValue(result, null);
+            // Assert
+            Assert.Null(actionExecutingContext.Result);
+        }
 
-            // Then
-            Assert.Equal(HttpStatusCode.OK, statusCode);
+        [Fact]
+        public void WhenUploadingFile_WithSizeThatExceedsTheLimit_ThenShouldReturnBadRequest()
+        {
+            var content = new String('a', 1024 * 1024 * 10);
+            var fileName = "test.pdf";
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(content);
+            writer.Flush();
+            stream.Position = 0;
+
+            IFormFile file = new FormFile(stream, 0, stream.Length, "id_from_form", fileName);
+
+            // Arrange 
+            var validateUserRoleActionFilter =
+                new FileValidationFilter();
+            var httpContext = new DefaultHttpContext();
+
+            var actionContext = new ActionContext(httpContext, new(), new(), new());
+            var actionExecutingContext = new ActionExecutingContext(actionContext,
+            new List<IFilterMetadata>(),
+            new Dictionary<string, object?>() { { "UploadedFile", file } },
+            controller: null);
+
+            // Act
+            validateUserRoleActionFilter.OnActionExecuting(actionExecutingContext);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(actionExecutingContext.Result);
         }
     }
 }
