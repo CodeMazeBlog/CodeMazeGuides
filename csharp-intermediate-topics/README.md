@@ -29,6 +29,7 @@ This section contains the topics considered intermediate level in C#.
 - [Polymorphism in C#](https://code-maze.com/csharp-polymorphism/)
 - [Readonly Modifier in C#](https://code-maze.com/csharp-readonly-modifier/)
 - [Reflection in C#](https://code-maze.com/csharp-reflection/)
+- [How to Get a Value of a Property By Using its Name in C#](https://code-maze.com/csharp-get-a-value-of-a-property-by-using-its-name/)
 - [How to Implement Retry Logic in C#](https://code-maze.com/csharp-implement-retry-logic/)
 - [Tuple in C#](https://code-maze.com/csharp-tuple/)
 - [Tuple Aliases in C#](https://code-maze.com/csharp-tuple-aliases/)
