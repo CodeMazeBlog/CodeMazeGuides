@@ -2,11 +2,11 @@
 
 public static class NumberOfMonthsBetweenTwoDates
 {
-    public static int CalculateSubscriptionDuration(DateTime subscriptionStart, DateTime currentDate)
+    public static int CalculateSubscriptionDuration(DateTime subscriptionStart, DateTime endDate)
     {
-        int months = (currentDate.Year - subscriptionStart.Year) * 12 + currentDate.Month - subscriptionStart.Month;
+        int months = (endDate.Year - subscriptionStart.Year) * 12 + endDate.Month - subscriptionStart.Month;
 
-        if (currentDate.Day < subscriptionStart.Day)
+        if (endDate.Day < subscriptionStart.Day)
         {
             months--;
         }
@@ -14,11 +14,11 @@ public static class NumberOfMonthsBetweenTwoDates
         return months;
     }
 
-    public static double CalculateCourseDuration(DateTime courseStart, DateTime currentDate)
+    public static double CalculateCourseDuration(DateTime courseStart, DateTime endDate)
     {
-        double totalDays = (currentDate - courseStart).TotalDays;
+        double totalDays = (endDate - courseStart).TotalDays;
 
-        double totalMonths = totalDays / (365.25 / 12);
+        double totalMonths = totalDays / (365.2425 / 12);
 
         return totalMonths;
     }
