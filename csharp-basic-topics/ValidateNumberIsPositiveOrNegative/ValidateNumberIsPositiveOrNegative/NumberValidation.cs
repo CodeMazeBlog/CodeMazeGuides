@@ -19,46 +19,42 @@ namespace ValidateNumberIsPositiveOrNegative
             
             return result;
         }
-        //TODO: This works fine when called from main method but failing when called from test case.
-        public static bool IsNegativeShift<T>(T val) where T : IBinaryInteger<T>, IBitwiseOperators<T, T, T>
-        {
-            return (T.RotateLeft(val, 31) & val) != T.Zero;
-        }
 
-        public static int IsPositiveOrNegativeUsingLeftShiftMethod(int number) 
+        public static int IsPositiveOrNegativeUsingLeftShiftMethod<T>(T number) where T : IBinaryInteger<T>, IBitwiseOperators<T, T, T>
         {
             var result = 0;
 
-            if (number != 0)
+            if (!number.Equals(default(T)))
             {
-                // Using left shift operator to check the sign bit
-                if ((number & (1 << 31)) == 0)
-                {
-                    result = 1;
-                }
-                else
+                var isNumberNegative = (T.RotateLeft(number, 31) & number) != T.Zero;
+
+                if (isNumberNegative == true)
                 {
                     result = -1;
                 }
+                else
+                {
+                    result = 1;
+                }
             }
-
             return result;
         }
 
-        public static int IsPositiveOrNegativeUsingRightShiftMethod(int number)
+        public static int IsPositiveOrNegativeUsingRightShiftMethod<T>(T number) where T : IBinaryInteger<T>, IBitwiseOperators<T, T, T>
         {
             var result = 0;
 
-            if(number != 0) 
+            if (!number.Equals(default(T)))
             {
-                // Using right shift operator to check the sign bit
-                if ((number >> 31) == 0)
+                var isNumberNegative = (T.RotateRight(number, 31) & number) != T.Zero;
+
+                if (isNumberNegative == true)
                 {
-                    result = 1;
+                    result = -1;
                 }
                 else
                 {
-                    result = -1;
+                    result = 1;
                 }
             }
             return result;
