@@ -9,6 +9,7 @@
     {
         private IConfiguration _configuration;
         private readonly string? _key;
+
         public Secrets GetSecrets
         {
             get
