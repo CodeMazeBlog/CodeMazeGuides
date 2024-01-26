@@ -13,7 +13,7 @@
         }
 
         [Fact]
-        public void WhenGetAllExecutes_ThenReturnsExactNumberOfBooks()
+        public void WhenGetAllBooksExecutes_ThenReturnsExactNumberOfBooks()
         {
             _mockService.Setup(service => service.GetAllBooks())
                 .Returns([new Book(), new Book()]);
