@@ -8,7 +8,6 @@ namespace ActionFuncDelegates
 {
     public class ActionDelegates
     {
-  
         public static void Add(int a, int b) 
         { 
             Console.WriteLine("Add Inputs: {0}", a + b); 
@@ -40,8 +39,7 @@ namespace ActionFuncDelegates
         {
             Action<int, int> result = (x, y) => 
             { 
-                Console.WriteLine("Result: {0}", x - y); 
-            
+                Console.WriteLine("Result: {0}", x - y);           
             }; 
             result(50, 40); // Result: 10
         }
