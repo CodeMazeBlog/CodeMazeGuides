@@ -50,7 +50,7 @@ namespace ActionFuncDelegates.Tests
     }
 
     // Helper class to capture console output
-    public class ConsoleOutput : IDisposable
+    public class ConsoleOutput
     {
         private readonly StringWriter stringWriter;
         private readonly TextWriter originalOutput;
