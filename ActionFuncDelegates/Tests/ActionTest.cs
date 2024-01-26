@@ -67,11 +67,7 @@ namespace ActionFuncDelegates.Tests
             return stringWriter.ToString().Split(Environment.NewLine).ToList();
         }
 
-        public void Dispose()
-        {
-            stringWriter.Dispose();
-            Console.SetOut(originalOutput);
-        }
+       
     }
 
 }
