@@ -4,53 +4,51 @@ using BenchmarkDotNet.Order;
 namespace AddValuesToArray.Benchmark;
 
 [MemoryDiagnoser, Orderer(SummaryOrderPolicy.FastestToSlowest)]
+[GroupBenchmarksBy(BenchmarkDotNet.Configs.BenchmarkLogicalGroupRule.ByCategory)]
+[CategoriesColumn]
 public class AddValuesToArrayBenchmark
 {
+    int[] concatArray = Enumerable.Range(0, 10000).ToArray();
+    int[] copyToArray = Enumerable.Range(0, 10000).ToArray();
+    List<int> list = Enumerable.Range(0, 10000).ToList();
+
     public IEnumerable<object> ArraySize()
     {
-        yield return 1_000;
         yield return 10_000;
     }
 
-    [Benchmark]
+    [Benchmark, BenchmarkCategory("Manual")]
     [ArgumentsSource(nameof(ArraySize))]
     public void ArrayIndexInitializer(int arraySize)
     {
         AddValuesToArrayMethods.ArrayIndexInitializer(arraySize);
     }
 
-    [Benchmark]
+    [Benchmark, BenchmarkCategory("Manual")]
     [ArgumentsSource(nameof(ArraySize))]
     public void SetValueMethod(int arraySize)
     {
         AddValuesToArrayMethods.SetValueMethod(arraySize);
     }
 
-    [Benchmark]
+    [Benchmark, BenchmarkCategory("Populated Collection")]
     [ArgumentsSource(nameof(ArraySize))]
     public void ListCollection(int arraySize)
     {
-        AddValuesToArrayMethods.UsingList(arraySize);
+        AddValuesToArrayMethods.UsingList(arraySize, list);
     }
 
-    [Benchmark]
+    [Benchmark, BenchmarkCategory("Populated Collection")]
     [ArgumentsSource(nameof(ArraySize))]
     public void LinqConcat(int arraySize)
     {
-        AddValuesToArrayMethods.LinqConcat(arraySize);
+        AddValuesToArrayMethods.LinqConcat(concatArray);
     }
 
-    [Benchmark]
-    [ArgumentsSource(nameof(ArraySize))]
-    public void LinqAppend(int arraySize)
-    {
-        AddValuesToArrayMethods.LinqAppend(arraySize);
-    }
-
-    [Benchmark]
+    [Benchmark, BenchmarkCategory("Populated Collection")]
     [ArgumentsSource(nameof(ArraySize))]
     public void ArrayCopyTo(int arraySize)
     {
-        AddValuesToArrayMethods.ArrayCopyTo(arraySize);
+        AddValuesToArrayMethods.ArrayCopyTo(arraySize, copyToArray);
     }
 }

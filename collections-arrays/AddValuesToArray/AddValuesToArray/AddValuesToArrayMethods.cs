@@ -24,58 +24,26 @@ public class AddValuesToArrayMethods
 
         return array;
     }
-    public static int[] UsingList(int arraySize)
+
+    public static int[] UsingList(int arraySize, List<int> list)
     {
-        var list = new List<int>();
-
-        for (var index = 0; index < arraySize; index++)
-        {
-            list.Add(index);
-        }
-
         return list.ToArray();
     }
 
-    public static int[] LinqConcat(int arraySize)
+    public static int[] LinqConcat(int[] array)
     {
         var array1 = Array.Empty<int>();
-        var array2 = Enumerable.Range(0, arraySize).Select(x => x).ToArray();
 
-        array1 = array1.Concat(array2).ToArray();
+        array1 = array1.Concat(array).ToArray();
 
         return array1;
     }
 
-    public static int[] LinqAppend(int arraySize)
+    public static int[] ArrayCopyTo(int arraySize, int[] array)
     {
-        var array = Array.Empty<int>();
-        for (var index = 0; index < arraySize; index++)
-        {
-            array = array.Append(index).ToArray();
-        }
+        var array1 = new int[arraySize];       
 
-        return array;
-    }
-
-    public static int[] ArrayResize(int arraySize)
-    {
-        var array = Array.Empty<int>();
-        Array.Resize(ref array, arraySize);
-
-        for (var index = 0; index < arraySize; index++)
-        {
-            array[index] = index;
-        }
-
-        return array;
-    }
-
-    public static int[] ArrayCopyTo(int arraySize)
-    {
-        var array1 = new int[arraySize];
-        var array2 = Enumerable.Range(0, arraySize).Select(x => x).ToArray();
-
-        array2.CopyTo(array1, 0);
+        array.CopyTo(array1, 0);
 
         return array1;
     }
