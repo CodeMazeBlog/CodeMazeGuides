@@ -3,6 +3,7 @@ namespace EFTests;
 public class Tests
 {
     private readonly DataContext _context;
+
     public Tests()
     {
         _context = new DataContext();
