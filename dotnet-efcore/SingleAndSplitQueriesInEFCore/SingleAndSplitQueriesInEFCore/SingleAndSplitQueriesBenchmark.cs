@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Attributes;
-using Microsoft.EntityFrameworkCore;
 using SingleAndSplitQueriesInEFCore.Model;
 
 namespace SingleAndSplitQueriesInEFCore;
@@ -7,57 +6,47 @@ namespace SingleAndSplitQueriesInEFCore;
 [MemoryDiagnoser]
 public class SingleAndSplitQueriesBenchmark
 {
-    private CompaniesContext _companiesContext;
+    private CompaniesContext _dbContext;
+    private CompaniesRepository _companiesRepository;
 
     [IterationSetup]
     public void Setup()
     {
-        _companiesContext = new CompaniesContext();
+        this._dbContext = new CompaniesContext();
+        _companiesRepository = new CompaniesRepository(_dbContext);
     }
 
     [IterationCleanup]
     public void Cleanup()
     {
-        _companiesContext.Dispose();
+        _dbContext.Dispose();
     }
 
     [Benchmark]
     [IterationCount(100)]
-    public Task<List<Company>> GetCompaniesWithDepartmentsUsingSingleQuery()
+    public IReadOnlyCollection<Company> GetCompaniesWithDepartmentsUsingSingleQuery()
     {
-        return _companiesContext.Companies
-            .Include(company => company.Departments)
-            .ToListAsync();
+        return _companiesRepository.GetCompaniesWithDepartmentsUsingSingleQuery();
     }
 
     [Benchmark]
     [IterationCount(100)]
-    public Task<List<Company>> GetCompaniesWithDepartmentsAndProductsUsingSingleQuery()
+    public IReadOnlyCollection<Company> GetCompaniesWithDepartmentsAndProductsUsingSingleQuery()
     {
-        return _companiesContext.Companies
-            .Include(company => company.Products)
-            .Include(company => company.Departments)
-            .ToListAsync();
+        return _companiesRepository.GetCompaniesWithDepartmentsAndProductsUsingSingleQuery();
     }
 
     [Benchmark]
     [IterationCount(100)]
-    public Task<List<Company>> GetCompaniesWithDepartmentsUsingSplitQuery()
+    public IReadOnlyCollection<Company> GetCompaniesWithDepartmentsUsingSplitQuery()
     {
-        return _companiesContext.Companies
-            .Include(company => company.Departments)
-            .AsSplitQuery()
-            .ToListAsync();
+        return _companiesRepository.GetCompaniesWithDepartmentsUsingSplitQuery();
     }
 
     [Benchmark]
     [IterationCount(100)]
-    public Task<List<Company>> GetCompaniesWithDepartmentsAndProductsUsingSplitQuery()
+    public IReadOnlyCollection<Company> GetCompaniesWithDepartmentsAndProductsUsingSplitQuery()
     {
-        return _companiesContext.Companies
-            .Include(company => company.Products)
-            .Include(company => company.Departments)
-            .AsSplitQuery()
-            .ToListAsync();
+        return _companiesRepository.GetCompaniesWithDepartmentsAndProductsUsingSplitQuery();
     }
 }

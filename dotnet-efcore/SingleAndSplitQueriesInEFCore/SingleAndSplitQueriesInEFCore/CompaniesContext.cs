@@ -7,9 +7,21 @@ public class CompaniesContext : DbContext
 {
     public DbSet<Company> Companies { get; set; } = null!;
 
+    public CompaniesContext()
+    {
+    }
+
+    public CompaniesContext(DbContextOptions<CompaniesContext> options)
+        : base(options)
+    {
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Integrated Security=true;Initial Catalog=SingleAndSplitQueriesInEFCore");
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Integrated Security=true;Initial Catalog=SingleAndSplitQueriesInEFCore");
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -17,10 +29,10 @@ public class CompaniesContext : DbContext
         var companies = DataGenerator.GenerateCompanies(1000);
         modelBuilder.Entity<Company>().HasData(companies);
 
-        var products = DataGenerator.GenerateProducts(10000, companies);
+        var products = DataGenerator.GenerateProducts(companies);
         modelBuilder.Entity<Product>().HasData(products);
 
-        var departments = DataGenerator.GenerateDepartments(10000, companies);
+        var departments = DataGenerator.GenerateDepartments(companies);
         modelBuilder.Entity<Department>().HasData(departments);
     }
 }
