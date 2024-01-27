@@ -16,7 +16,7 @@ public static class NumberOfMonthsBetweenTwoDates
 
     public static double CalculateCourseDuration(DateTime courseStart, DateTime endDate)
     {
-        double totalDays = (endDate - courseStart).TotalDays;
+        double totalDays = (endDate - courseStart).TotalDays + 1;
 
         double totalMonths = totalDays / (365.2425 / 12);
 

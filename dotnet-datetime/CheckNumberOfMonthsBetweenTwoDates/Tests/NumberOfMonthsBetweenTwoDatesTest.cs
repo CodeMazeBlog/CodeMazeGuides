@@ -19,11 +19,11 @@ public class NumberOfMonthsBetweenTwoDates
     }
 
     [Theory]
-    [InlineData("2023-02-15", "2023-03-15", 0.92)]
-    [InlineData("2023-09-12", "2024-01-12", 4)] 
-    [InlineData("2023-01-01", "2023-12-31", 12)] 
-    [InlineData("2022-06-15", "2023-06-14", 12)] 
-    [InlineData("2021-01-01", "2023-01-01", 24)] 
+    [InlineData("2023-02-15", "2023-03-15", 0.95)]
+    [InlineData("2023-09-12", "2024-01-12", 4.04)]
+    [InlineData("2023-01-01", "2023-12-31", 11.99)]
+    [InlineData("2022-06-15", "2023-06-14", 11.99)]
+    [InlineData("2021-01-01", "2023-01-01", 24.02)]
     public void GivenSpecificDates_WhenCalculateCourseDurationCalled_ThenReturnsApproximateNumberOfMonths(string courseStartDate, string endDateString, double expectedMonths)
     {
         var courseStart = DateTime.Parse(courseStartDate);
@@ -31,7 +31,7 @@ public class NumberOfMonthsBetweenTwoDates
 
         double actualMonths = CheckNumberOfMonthsBetweenTwoDates.NumberOfMonthsBetweenTwoDates.CalculateCourseDuration(courseStart, endDate);
 
-        double delta = 0.05; 
+        double delta = 0.05;
         Assert.True(Math.Abs(expectedMonths - actualMonths) <= delta);
     }
 }
