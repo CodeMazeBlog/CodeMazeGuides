@@ -2,7 +2,7 @@ using CheckIfObjectIsNumber;
 
 namespace Tests
 {
-    public class UnitTest1
+    public class UnitTests
     {
         [Fact]
         public void GivenMultipleTypes_WhenCheckedWithEqualityOperator_ThenReturnsBoolean()

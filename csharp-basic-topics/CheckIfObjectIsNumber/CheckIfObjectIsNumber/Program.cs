@@ -63,13 +63,19 @@
             {
                 floatResult = CheckIfFloatWithExplicitCasting((long)5);  // System.InvalidCastException
             }
-            catch (InvalidCastException) { Console.WriteLine(typeof(InvalidCastException)); }
+            catch (InvalidCastException)
+            { 
+                Console.WriteLine(typeof(InvalidCastException));
+            }
             
             try
             {
                 floatResult = CheckIfFloatWithExplicitCasting(5.0d);         // System.InvalidCastException
             }
-            catch (InvalidCastException) { Console.WriteLine(typeof(InvalidCastException)); }           
+            catch (InvalidCastException)
+            { 
+                Console.WriteLine(typeof(InvalidCastException));
+            }           
 
             var convertResult = CheckIfShortUsingConvert((long)5);
             Console.WriteLine(convertResult);       // Returns 5 
@@ -81,7 +87,10 @@
             {
                 convertResult = CheckIfShortUsingConvert(Decimal.MaxValue); // System.OverflowException       
             }
-            catch (OverflowException) { Console.WriteLine(typeof(OverflowException)); }
+            catch (OverflowException)
+            { 
+                Console.WriteLine(typeof(OverflowException)); 
+            }
 
             var isFloat = CheckIfFloatWithIsOperator(6.99f);
             Console.WriteLine(isFloat);     // Returns True
