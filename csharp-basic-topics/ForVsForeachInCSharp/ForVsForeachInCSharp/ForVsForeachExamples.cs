@@ -11,10 +11,10 @@ namespace ForVsForeachInCSharp;
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
 public class ForVsForeachExamples
 {
-    private const int size = 10_000_000;
-    private static readonly int[] _intArray = GenerateData.GenerateArray(size);
-    private static readonly List<int> _intList = GenerateData.GenerateList(size);
-    private static readonly Dictionary<int, int> _intDictionary = GenerateData.GenerateDictionary(size);
+    private const int elementCount = 10_000_000;
+    private static readonly int[] _intArray = GenerateData.GenerateArray(elementCount);
+    private static readonly List<int> _intList = GenerateData.GenerateList(elementCount);
+    private static readonly Dictionary<int, int> _intDictionary = GenerateData.GenerateDictionary(elementCount);
 
     [Benchmark]
     public long ArrayUsingForeach()
