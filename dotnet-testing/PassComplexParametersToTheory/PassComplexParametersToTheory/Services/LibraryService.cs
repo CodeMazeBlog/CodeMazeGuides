@@ -11,6 +11,7 @@ public class LibraryService(Library library) : ILibraryService
         if (book is not null && !book.IsCheckedOut)
         {
             book.IsCheckedOut = true;
+            
             return true;
         }
         else
@@ -26,6 +27,7 @@ public class LibraryService(Library library) : ILibraryService
         if (book is not null && book.IsCheckedOut)
         {
             book.IsCheckedOut = false;
+
             return true;
         }
         else

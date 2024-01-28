@@ -10,6 +10,7 @@ public class Library
         if (book is not null && !Books.Contains(book))
         {
             Books.Add(book);
+
             return true;
         }
 
@@ -21,6 +22,7 @@ public class Library
         if (author is not null && !Authors.Contains(author))
         {
             Authors.Add(author);
+            
             return true;
         }
 
