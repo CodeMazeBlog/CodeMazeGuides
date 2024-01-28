@@ -1,5 +1,4 @@
 using ForVsForeachInCSharp;
-using System.Collections;
 
 namespace ForVsForeachInCSharpTests;
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace ForVsForeachInCSharp;
+﻿namespace ForVsForeachInCSharp;
 
 public static class GenerateData
 {
