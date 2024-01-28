@@ -190,7 +190,6 @@ public class ParsingHtmlWithAngleSharpUnitTests
             .ToCollection();
 
         var books = bookInfoArticles.Select(ToBook).ToList();
-        Console.WriteLine(books.Count()); // 20
 
         Assert.Equal(20, books.Count);
         Assert.Equal("A Light in the Attic", books[0].Title);
