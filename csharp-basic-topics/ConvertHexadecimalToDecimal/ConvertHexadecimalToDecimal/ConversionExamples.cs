@@ -10,49 +10,50 @@ namespace ConvertHexadecimalToDecimal;
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
 public class ConversionExamples
 {
-    private const string hexVal = "7FFFFFFF";
-    private const int decimalVal = int.MaxValue;
+    private const string hexValue = "7FFFFFFF";
+    private const int decimalValue = int.MaxValue;
 
     [Benchmark]
-    [Arguments(decimalVal)]
+    [Arguments(decimalValue)]
     public string DecimalToHexUsingToString(int decimalVal)
     {
         return decimalVal.ToString("X");
     }
 
     [Benchmark]
-    [Arguments(decimalVal)]
+    [Arguments(decimalValue)]
     public string DecimalToHexUsingStringFormat(int decimalVal)
     {
         return string.Format("{0:X}", decimalVal);
     }
 
     [Benchmark]
-    [Arguments(decimalVal)]
+    [Arguments(decimalValue)]
     public string DecimalToHexUsingBitwiseMethod(int decimalVal)
     {
         var hexVal = string.Empty;
+        var decimalNumber = decimalVal;
 
-        while (decimalVal > 0)
+        while (decimalNumber > 0)
         {
-            var remainder = decimalVal % 16;
+            var remainder = decimalNumber % 16;
             var hexDigit = remainder < 10 ? (char)(remainder + '0') : (char)(remainder - 10 + 'A');
             hexVal = hexDigit + hexVal;
-            decimalVal /= 16;
+            decimalNumber /= 16;
         }
 
         return hexVal;
     }
 
     [Benchmark]
-    [Arguments(hexVal)]
+    [Arguments(hexValue)]
     public int HexToDecimalUsingParse(string hexVal)
     {
         return int.Parse(hexVal, System.Globalization.NumberStyles.HexNumber);
     }
 
     [Benchmark]
-    [Arguments(hexVal)]
+    [Arguments(hexValue)]
     public int HexToDecimalUsingConvert(string hexVal)
     {
         return Convert.ToInt32(hexVal, 16);

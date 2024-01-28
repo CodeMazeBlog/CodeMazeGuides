@@ -58,4 +58,37 @@ public class ConversionExamplesUnitTests
         Assert.IsInstanceOfType(result, typeof(int));
         Assert.AreEqual(decimalVal, result);
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(FormatException))]
+    public void GivenInvalidHexadecimalValue_WhenHexToDecimalUsingParseInvoked_VerifyAccurateConversion()
+    {
+        var invalidHex = "wxyz";
+
+        var result = _conversionExamples.HexToDecimalUsingParse(invalidHex);
+
+        Assert.IsNotNull(result);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(FormatException))]
+    public void GivenInvalidHexadecimalValue_WhenHexToDecimalUsingConvertInvoked_VerifyAccurateConversion()
+    {
+        var invalidHex = "wxyz";
+
+        var result = _conversionExamples.HexToDecimalUsingConvert(invalidHex);
+
+        Assert.IsNotNull(result);
+    }
+
+    [TestMethod]
+    public void GivenANullValue_WhenHexToDecimalUsingConvertInvoked_VerifyReturnsZero()
+    {
+        string? nullValue = null;
+
+        var result = _conversionExamples.HexToDecimalUsingConvert(nullValue);
+
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0, result);
+    }
 }
