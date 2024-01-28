@@ -137,7 +137,7 @@ public class ParsingHtmlWithAngleSharpUnitTests
         var sectionInnerHtml = section.InnerHtml;
         var sectionTextContent = section.TextContent;
         var sectionAttributes = section.Attributes;
-        var sectionChildren = section.Children; // IHtmlCollection<IElement>
+        var sectionChildren = section.Children;
 
         var nextSibling = section.NextElementSibling;
         var previousSibling = section.PreviousElementSibling;
@@ -237,7 +237,7 @@ public class ParsingHtmlWithAngleSharpUnitTests
         Assert.Contains(article.Attributes, attr => attr.Name == "data-category");
 
         article.RemoveAttribute("data-category");
-
+    
         Assert.Equal("New article content. <br> Second article row.", article.InnerHtml);
         Assert.IsAssignableFrom<IHtmlBreakRowElement>(article.Children[0]);
         Assert.Equal(1, article.ClassList.Length);
