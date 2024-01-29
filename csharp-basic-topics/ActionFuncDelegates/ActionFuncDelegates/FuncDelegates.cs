@@ -22,6 +22,7 @@ namespace ActionFuncDelegates
             return result;
         }
 
+
         public static int FuncDelegateWithAnonymous()
         {
             int result = 0;
