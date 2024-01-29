@@ -10,15 +10,11 @@ namespace Tests
 			Action<string, int> printDetails = (name, age) =>
 				Console.WriteLine($"Name: {name}, Age: {age}");
 
-			string expectedOutput = "Name: John Doe, Age: 30\r\n";
+			string expectedOutput = $"Name: John Doe, Age: 30{Environment.NewLine}";
 			using (StringWriter sw = new StringWriter())
 			{
 				Console.SetOut(sw);
-
-				// Act
 				printDetails("John Doe", 30);
-
-				// Assert
 				Assert.AreEqual(expectedOutput, sw.ToString());
 			}
 		}
