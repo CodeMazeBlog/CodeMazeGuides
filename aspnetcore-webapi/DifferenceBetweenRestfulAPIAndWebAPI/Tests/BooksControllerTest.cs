@@ -2,7 +2,6 @@
 {
     public class BooksControllerTest
     {
-       
         private readonly Mock<IBookService> _mockService;
         private readonly BooksController _controller;
 
@@ -22,6 +21,7 @@
 
             var actionResult = Assert.IsType<OkObjectResult>(result);
             var books = Assert.IsType<List<Book>>(actionResult.Value);
+
             Assert.Equal(2, books.Count);
         }
     }

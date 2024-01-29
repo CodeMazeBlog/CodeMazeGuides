@@ -13,5 +13,12 @@ namespace DifferenceBetweenRestfulAPIAndWebAPI.Services
         ];
 
         public List<Book> GetAllBooks() => Books;
+
+        public void Delete(int id)
+        {
+            var book = Books.First(b => b.Id == id);
+
+            Books.Remove(book);
+        }
     }
 }
