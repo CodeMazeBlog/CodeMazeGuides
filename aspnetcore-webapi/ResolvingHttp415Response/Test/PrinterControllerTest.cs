@@ -7,8 +7,8 @@ namespace ResolvingUnsuportedMediaTypesTest;
 [TestClass]
 public class PrinterControllerTest
 {
-    private static HttpClient _httpClient;
-    private static WebApplicationFactory<Program> _factory;
+    private static HttpClient? _httpClient;
+    private static WebApplicationFactory<Program>? _factory;
 
     [ClassInitialize]
     public static void ClassInitialize(TestContext testContext)
@@ -20,8 +20,8 @@ public class PrinterControllerTest
     [ClassCleanup]
     public static void ClassCleanup()
     {
-        _httpClient.Dispose();
-        _factory.Dispose();
+        _httpClient?.Dispose();
+        _factory?.Dispose();
     }
     
     [TestMethod]
@@ -67,6 +67,17 @@ public class PrinterControllerTest
         await result.Content.ReadAsStringAsync());
     }
 
+    [TestMethod]
+    public async Task GivenInValidMediaType_WhenActionFilterCalled_ShouldReturnCustomHttp415Response()
+    {
+        string testMsg = "Some Invalid Data";
+
+        var result = await SendPrintFromBodyAttributeValidationRequest(testMsg);
+        Assert.AreEqual(415, (int)result.StatusCode);   
+        Assert.AreEqual($"Unsupported Media Type. Received: application/json; charset=utf-8 Expected: application/x-www-form-urlencoded", 
+        await result.Content.ReadAsStringAsync());
+    }
+
     private async Task<HttpResponseMessage> SendPrintFromBodyRequest(string msg)
     {
         return await _httpClient.PostAsync("/api/Printer/PrintFromBody", 
@@ -85,10 +96,17 @@ public class PrinterControllerTest
         new StringContent($"data={msg}", Encoding.UTF8, "application/x-www-form-urlencoded"));
 
     }
+
+     private async Task<HttpResponseMessage> SendPrintFromBodyAttributeValidationRequest(string msg)
+    {
+        return await _httpClient.PostAsync("/api/Printer/PrintFromBodyAttributeValidation", 
+        new StringContent($"data={msg}", Encoding.UTF8, "application/json"));
+
+    }
     
     private async Task<HttpResponseMessage> SendPrintCustomErrorResponseTest(string msg)
     {
-        return await _httpClient.PostAsync("/api/Printer/PrintFromBodyManualCheck", 
+        return await _httpClient.PostAsync("/api/Printer/PrintFromBodyManualCheck",
         new StringContent($"data={msg}", Encoding.UTF8, "text/plain"));
     }
 }
