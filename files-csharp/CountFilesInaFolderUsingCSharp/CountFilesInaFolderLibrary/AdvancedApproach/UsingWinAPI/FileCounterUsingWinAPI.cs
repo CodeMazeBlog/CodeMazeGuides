@@ -1,6 +1,11 @@
-﻿using System.Runtime.InteropServices;
+﻿#if NETCOREAPP3_1_OR_GREATER
+#define WINDOWS
+#endif
+using System.Runtime.InteropServices;
 
 namespace CountFilesInaFolderLibrary.AdvancedApproach.UsingWinAPI;
+
+#if WINDOWS
 public class FileCounterUsingWinAPI
 {
     [DllImport("kernel32.dll")]
@@ -45,3 +50,4 @@ public class FileCounterUsingWinAPI
         return fileCount;
     }
 }
+#endif
