@@ -11,6 +11,25 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.2.0" />
     <PackageReference Include="MSTest.TestFramework" Version="3.2.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights" version="2.21.0" />
+    <PackageReference Include="Microsoft.CodeCoverage" version="17.8.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" version="17.8.0" />
+    <PackageReference Include="Microsoft.Testing.Extensions.Telemetry" version="1.0.0" />
+    <PackageReference Include="Microsoft.Testing.Extensions.TrxReport.Abstractions" version="1.0.0" />
+    <PackageReference Include="Microsoft.Testing.Extensions.VSTestBridge" version="1.0.0" />
+    <PackageReference Include="Microsoft.Testing.Platform" version="1.0.0" />
+    <PackageReference Include="Microsoft.Testing.Platform.MSBuild" version="1.0.0" />
+    <PackageReference Include="Microsoft.TestPlatform.ObjectModel" version="17.8.0" />
+    <PackageReference Include="MSTest.TestAdapter" version="3.2.0" />
+    <PackageReference Include="MSTest.TestFramework" version="3.2.0" />
+    <PackageReference Include="NuGet.Frameworks" version="6.8.0" />
+    <PackageReference Include="System.Buffers" version="4.5.1" />
+    <PackageReference Include="System.Collections.Immutable" version="1.5.0" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" version="5.0.0" />
+    <PackageReference Include="System.Memory" version="4.5.4" />
+    <PackageReference Include="System.Numerics.Vectors" version="4.5.0" />
+    <PackageReference Include="System.Reflection.Metadata" version="1.6.0" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
