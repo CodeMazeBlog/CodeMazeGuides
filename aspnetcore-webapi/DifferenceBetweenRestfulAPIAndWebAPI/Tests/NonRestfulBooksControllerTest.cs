@@ -12,7 +12,7 @@
         }
 
         [Fact]
-        public void WhenGetAllBooksExecutes_ThenReturnsExactNumberOfBooks()
+        public void WhenDeleteBookExecutes_ThenReturnsNoContent()
         {
             _mockService.Setup(service => service.Delete(1));
 
