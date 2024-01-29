@@ -44,6 +44,7 @@ public class FileCountingBenchmark
         return FileCounterUsingLINQ.CountFilesUsingLINQEnumerateFiles(directory.FullName);
     }
 
+#if WINDOWS
     [Benchmark]
     public int WinAPICount_InMemory()
     {
@@ -51,6 +52,7 @@ public class FileCountingBenchmark
 
         return FileCounterUsingWinAPI.CountFilesUsingWinAPI(directory.FullName);
     }
+#endif
 
     [GlobalCleanup]
     public void Cleanup()

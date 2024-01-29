@@ -1,13 +1,10 @@
-﻿#if NETCOREAPP3_1_OR_GREATER
-#define WINDOWS
-#endif
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace CountFilesInaFolderLibrary.AdvancedApproach.UsingWinAPI;
 
-#if WINDOWS
 public class FileCounterUsingWinAPI
 {
+#if WINDOWS
     [DllImport("kernel32.dll")]
     static extern IntPtr FindFirstFile(string lpFileName, out WIN32_FIND_DATA lpFindFileData);
     [DllImport("kernel32.dll")]
@@ -49,5 +46,5 @@ public class FileCounterUsingWinAPI
 
         return fileCount;
     }
-}
 #endif
+}

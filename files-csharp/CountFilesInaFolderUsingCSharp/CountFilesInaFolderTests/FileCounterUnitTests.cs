@@ -39,11 +39,13 @@ public class FileCounterUnitTests : IDisposable
     [Fact]
     public void GivenDirectoryWithFiles_WhenUsingWinAPI_ThenReturnCorrectFileCount()
     {
+#if WINDOWS
         // Act
         var actualFileCount = FileCounterUsingWinAPI.CountFilesUsingWinAPI(TempDirectory);
 
         // Assert
         Assert.Equal(ExpectedFileCount, actualFileCount);
+#endif
     }
 
     public void Dispose()

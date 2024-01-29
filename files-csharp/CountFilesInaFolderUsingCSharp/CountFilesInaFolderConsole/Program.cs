@@ -17,8 +17,10 @@ Console.WriteLine();
 Console.WriteLine($"File count using CountFilesUsingLINQEnumerateFiles method: {FileCounterUsingLINQ.CountFilesUsingLINQEnumerateFiles(tempDirectory)}");
 Console.WriteLine();
 
+#if WINDOWS
 Console.WriteLine($"File count using CountFilesUsingWinAPI method: {FileCounterUsingWinAPI.CountFilesUsingWinAPI(tempDirectory)}");
 Console.WriteLine();
+#endif
 
 if (Directory.Exists(tempDirectory))
     Directory.Delete(tempDirectory, true);
