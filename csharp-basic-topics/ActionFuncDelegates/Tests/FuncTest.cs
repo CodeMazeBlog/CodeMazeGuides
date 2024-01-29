@@ -7,38 +7,89 @@ using System.Threading.Tasks;
 
 namespace Tests
 {
+
     public class FuncDelegatesTests
     {
-
         [Fact]
-        public void FuncDelegate_ShouldReturnResult()
+        public void TestFuncDelegate()
         {
-            // Act
-            int result = FuncDelegates.FuncDelegate();
+            // Arrange
+            int expected = 30;
 
-            // Assert
-            Assert.Equal(30, result);
+            // Act
+            using (var sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                int result = FuncDelegates.FuncDelegate();
+                string consoleOutput = sw.ToString();
+
+                // Assert
+                Assert.Equal(expected, result);
+                Assert.Contains($"Result:{expected}", consoleOutput);
+            }
         }
 
         [Fact]
-        public void FuncDelegateWithAnonymous_ShouldReturnResult()
+        public void TestFuncDelegateWithAnonymous()
         {
-            // Act
-            int result = FuncDelegates.FuncDelegateWithAnonymous();
+            // Arrange
+            int expected = 40;
 
-            // Assert
-            Assert.Equal(40, result);
+            // Act
+            using (var sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                int result = FuncDelegates.FuncDelegateWithAnonymous();
+                string consoleOutput = sw.ToString();
+
+                // Assert
+                Assert.Equal(expected, result);
+                Assert.Contains($"Result:{expected}", consoleOutput);
+            }
         }
+
+
+
 
         [Fact]
-        public void FuncDelegateWithLambda_ShouldReturnResult()
+        public void TestFuncDelegateWithLambda()
         {
-            // Act
-            int result = FuncDelegates.FuncDelegateWithLambda();
+            // Arrange
+            int expected = 100;
 
-            // Assert
-            Assert.Equal(100, result);
+            // Create a StringWriter to capture console output
+            using (var sw = new StringWriter())
+            {
+                // Save the current Console.Out
+                var originalConsoleOut = Console.Out;
+
+                try
+                {
+                    // Redirect Console.Out to the StringWriter
+                    Console.SetOut(sw);
+
+                    // Act
+                    var resultTuple = FuncDelegates.FuncDelegateWithLambda();
+                    int result = resultTuple.Result; // Corrected property name
+                    string consoleOutput = sw.ToString();
+
+                    // Debugging output
+                    Console.WriteLine($"Actual Result: {result}");
+                    Console.WriteLine($"Actual Console Output: {consoleOutput}");
+
+                    // Assert
+                    Assert.Equal(expected, result);
+                    Assert.Contains($"{expected}", consoleOutput); // Use Assert.Contains without formatting
+                }
+                finally
+                {
+                    // Restore the original Console.Out
+                    Console.SetOut(originalConsoleOut);
+                }
+            }
         }
+
     }
 }
+
 

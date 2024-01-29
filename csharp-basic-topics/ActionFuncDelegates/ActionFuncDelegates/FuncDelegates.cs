@@ -36,16 +36,16 @@ namespace ActionFuncDelegates
             return result;
         }
 
-        public static int FuncDelegateWithLambda()
+        public static (int Result, string Output) FuncDelegateWithLambda()
         {
             int result = 0;
 
             Func<int, int, int> numbers = (x, y) => x + y;
-            {
-                result = numbers(50, 50); // Result: 100
-                Console.WriteLine("Result: {0}", result); 
-            };
-            return result;
+            result = numbers(50, 50); // Result: 100
+            string output = $"Result: {result}";
+            Console.WriteLine(output);
+
+            return (result, output);
         }
     }
 }

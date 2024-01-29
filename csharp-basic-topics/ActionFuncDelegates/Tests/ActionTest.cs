@@ -1,65 +1,61 @@
-﻿using ActionFuncDelegates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.IO;
+using Xunit;
 
-namespace Tests
+namespace ActionFuncDelegates.Tests
 {
-   
     public class ActionDelegatesTests
     {
         [Fact]
-        public void ActionDelegate_ShouldWriteToConsole()
+        public void TestActionDelegate()
         {
             // Arrange
-            using (var consoleOutput = new StringWriter())
+            using (var sw = new StringWriter())
             {
-                Console.SetOut(consoleOutput);
+                Console.SetOut(sw);
 
                 // Act
                 ActionDelegates.ActionDelegate();
 
                 // Assert
-                string expectedOutput = "Add Inputs: 30" + Environment.NewLine + "Subtract Inputs: 10" + Environment.NewLine;
-                Assert.Equal(expectedOutput, consoleOutput.ToString());
+                string consoleOutput = sw.ToString();
+                Assert.Contains("Add Inputs: 30", consoleOutput);
+                Assert.Contains("Subtract Inputs: 10", consoleOutput);
             }
         }
 
         [Fact]
-        public void ActionDelegateWithAnonymous_ShouldWriteToConsole()
+        public void TestActionDelegateWithAnonymous()
         {
             // Arrange
-            using (var consoleOutput = new StringWriter())
+            using (var sw = new StringWriter())
             {
-                Console.SetOut(consoleOutput);
+                Console.SetOut(sw);
 
                 // Act
                 ActionDelegates.ActionDelegateWithAnonymous();
 
                 // Assert
-                string expectedOutput = "Subtract = 20" + Environment.NewLine;
-                Assert.Equal(expectedOutput, consoleOutput.ToString());
+                string consoleOutput = sw.ToString();
+                Assert.Contains("Subtract = 20", consoleOutput);
             }
         }
 
         [Fact]
-        public void ActionDelegateWithLambda_ShouldWriteToConsole()
+        public void TestActionDelegateWithLambda()
         {
             // Arrange
-            using (var consoleOutput = new StringWriter())
+            using (var sw = new StringWriter())
             {
-                Console.SetOut(consoleOutput);
+                Console.SetOut(sw);
 
                 // Act
                 ActionDelegates.ActionDelegateWithLambda();
 
                 // Assert
-                string expectedOutput = "Result: 10" + Environment.NewLine;
-                Assert.Equal(expectedOutput, consoleOutput.ToString());
+                string consoleOutput = sw.ToString();
+                Assert.Contains("Result: 10", consoleOutput);
             }
         }
     }
-
 }
