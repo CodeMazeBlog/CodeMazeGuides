@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ActionAndFuncInCsharp
+﻿namespace ActionAndFuncInCsharp
 {
     public class ActionAndFuncInCSharp
     {
         public static Action<int, int> AddNumbersDelegate = (a, b) =>
         {
-            int sum = a + b;
+            var sum = a + b;
+
             Console.WriteLine($"Sum of {a} and {b} is {sum}");
         };
 
@@ -21,9 +16,9 @@ namespace ActionAndFuncInCsharp
             Action<int, int> addNumbers = AddNumbersDelegate;
             addNumbers(5, 7);
 
-
             Func<int, int> square = SquareDelegate;
-            int result = square(4);
+            var result = square(4);
+
             Console.WriteLine($"Square of 4 is {result}");
         }
     }
