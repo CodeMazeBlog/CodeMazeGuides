@@ -13,23 +13,18 @@ internal class Program
         Console.WriteLine(string.Join(", ", array2));
 
         Console.WriteLine(nameof(AddValuesToArrayMethods.UsingList));
-        var array3 = AddValuesToArrayMethods.UsingList(5);
+        var list = Enumerable.Range(0, 5).ToList();
+        var array3 = AddValuesToArrayMethods.UsingList(5, list);
         Console.WriteLine(string.Join(", ", array3));
 
         Console.WriteLine(nameof(AddValuesToArrayMethods.LinqConcat));
-        var array4 = AddValuesToArrayMethods.LinqConcat(5);
+        var populatedArray = Enumerable.Range(0, 5).ToArray();
+        var array4 = AddValuesToArrayMethods.LinqConcat(populatedArray);
         Console.WriteLine(string.Join(", ", array4));
 
-        Console.WriteLine(nameof(AddValuesToArrayMethods.LinqAppend));
-        var array5 = AddValuesToArrayMethods.LinqAppend(5);
-        Console.WriteLine(string.Join(", ", array5));
-
-        Console.WriteLine(nameof(AddValuesToArrayMethods.ArrayResize));
-        var array6 = AddValuesToArrayMethods.ArrayResize(5);
-        Console.WriteLine(string.Join(", ", array6));
-
         Console.WriteLine(nameof(AddValuesToArrayMethods.ArrayCopyTo));
-        var array7 = AddValuesToArrayMethods.ArrayCopyTo(5);
-        Console.WriteLine(string.Join(", ", array6));
+        var populatedArray1 = Enumerable.Range(0, 5).ToArray();
+        var array7 = AddValuesToArrayMethods.ArrayCopyTo(5, populatedArray1);
+        Console.WriteLine(string.Join(", ", array7));
     }
 }
