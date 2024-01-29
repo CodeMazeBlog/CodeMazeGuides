@@ -80,33 +80,68 @@ public class PrinterControllerTest
 
     private async Task<HttpResponseMessage> SendPrintFromBodyRequest(string msg)
     {
-        return await _httpClient.PostAsync("/api/Printer/PrintFromBody", 
-        new StringContent($"\"{msg}\"", Encoding.UTF8, "application/json"));
+        if (_httpClient != null)
+        {
+            return await _httpClient.PostAsync("/api/Printer/PrintFromBody", 
+            new StringContent($"\"{msg}\"", Encoding.UTF8, "application/json"));        }
+        else
+        {
+            throw new InvalidOperationException("HttpClient is not initialized.");
+        }
     }
     
     private async Task<HttpResponseMessage> SendPrintFromFormRequest(string msg)
     {
-        return await _httpClient.PostAsync("/api/Printer/PrintFromForm", 
-        new StringContent($"data={msg}", Encoding.UTF8, "application/x-www-form-urlencoded"));
+        if (_httpClient != null)
+        {
+            return await _httpClient.PostAsync("/api/Printer/PrintFromForm", 
+            new StringContent($"data={msg}", Encoding.UTF8, "application/x-www-form-urlencoded"));
+        }
+        else
+        {
+            throw new InvalidOperationException("HttpClient is not initialized.");
+        }
     }
     
     private async Task<HttpResponseMessage> SendPrintRequest(string msg)
     {
-        return await _httpClient.PostAsync("/api/Printer/Print", 
-        new StringContent($"data={msg}", Encoding.UTF8, "application/x-www-form-urlencoded"));
+        if (_httpClient != null)
+        {
+            return await _httpClient.PostAsync("/api/Printer/Print", 
+            new StringContent($"data={msg}", Encoding.UTF8, "application/x-www-form-urlencoded"));
+        }
+        else
+        {
+            throw new InvalidOperationException("HttpClient is not initialized.");
+        }
 
     }
 
      private async Task<HttpResponseMessage> SendPrintFromBodyAttributeValidationRequest(string msg)
     {
-        return await _httpClient.PostAsync("/api/Printer/PrintFromBodyAttributeValidation", 
-        new StringContent($"data={msg}", Encoding.UTF8, "application/json"));
+
+        if (_httpClient != null)
+        {
+            return await _httpClient.PostAsync("/api/Printer/PrintFromBodyAttributeValidation", 
+            new StringContent($"data={msg}", Encoding.UTF8, "application/json"));
+        }
+        else
+        {
+            throw new InvalidOperationException("HttpClient is not initialized.");
+        }
 
     }
     
     private async Task<HttpResponseMessage> SendPrintCustomErrorResponseTest(string msg)
     {
-        return await _httpClient.PostAsync("/api/Printer/PrintFromBodyManualCheck",
-        new StringContent($"data={msg}", Encoding.UTF8, "text/plain"));
+         if (_httpClient != null)
+         {
+            return await _httpClient.PostAsync("/api/Printer/PrintFromBodyManualCheck",
+            new StringContent($"data={msg}", Encoding.UTF8, "text/plain"));
+        }
+        else
+        {
+            throw new InvalidOperationException("HttpClient is not initialized.");
+        }
     }
 }
