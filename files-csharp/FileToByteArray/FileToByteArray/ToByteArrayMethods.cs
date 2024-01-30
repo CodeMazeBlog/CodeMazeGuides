@@ -12,9 +12,6 @@ public static class ToByteArrayMethods
 
     public static byte[] ConvertUsingMemoryStream(string filePath)
     {
-        var fileInfo = new FileInfo(filePath);
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(fileInfo.Length, Array.MaxLength, "File length");
-
         using var fs = File.OpenRead(filePath);
         using var ms = new MemoryStream(DefaultBufferSize);
 
@@ -25,9 +22,6 @@ public static class ToByteArrayMethods
 
     public static async Task<byte[]> ConvertUsingMemoryStreamAsync(string filePath)
     {
-        var fileInfo = new FileInfo(filePath);
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(fileInfo.Length, Array.MaxLength, "File length");
-
         await using var fs = File.OpenRead(filePath);
         await using var ms = new MemoryStream(DefaultBufferSize);
 
@@ -68,9 +62,6 @@ public static class ToByteArrayMethods
 
     public static byte[] ConvertUsingPooledWriter(string filePath)
     {
-        var fileInfo = new FileInfo(filePath);
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(fileInfo.Length, Array.MaxLength, "File length");
-
         using var writer = new ArrayPoolBufferWriter<byte>(DefaultBufferSize);
         using var stream = writer.AsStream();
         
@@ -82,9 +73,6 @@ public static class ToByteArrayMethods
 
     public static async Task<byte[]> ConvertUsingPooledWriterAsync(string filePath)
     {
-        var fileInfo = new FileInfo(filePath);
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(fileInfo.Length, Array.MaxLength, "File length");
-
         using var writer = new ArrayPoolBufferWriter<byte>(DefaultBufferSize);
         await using var stream = writer.AsStream();
 

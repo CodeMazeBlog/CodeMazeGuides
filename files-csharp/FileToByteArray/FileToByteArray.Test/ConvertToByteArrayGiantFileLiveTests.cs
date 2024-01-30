@@ -41,14 +41,18 @@ public class ConvertToByteArrayGiantFileLiveTests(LiveTestGiantFileFixture fixtu
     {
         var func = async () => { _ = await ToByteArrayMethods.ConvertUsingMemoryStreamAsync(fixture.GiantTestFile); };
 
-        await func.Should().ThrowAsync<ArgumentOutOfRangeException>();
+        await func.Should().
+            ThrowAsync<Exception>().Where(ex =>
+                ex.GetType() == typeof(OutOfMemoryException) ||
+                ex.GetType() == typeof(IOException)
+            );
     }
 
     [Fact]
     public void
         GivenGiantFileWithLengthExceedingMaxArray_WhenConvertUsingPooledWriter_ThenThrowsArgumentOutOfRangeException()
     {
-        var action = () => { _ = ToByteArrayMethods.ConvertUsingMemoryStream(fixture.GiantTestFile); };
+        var action = () => { _ = ToByteArrayMethods.ConvertUsingPooledWriter(fixture.GiantTestFile); };
 
         action.Should().Throw<ArgumentOutOfRangeException>();
     }
@@ -64,11 +68,15 @@ public class ConvertToByteArrayGiantFileLiveTests(LiveTestGiantFileFixture fixtu
 
     [Fact]
     public void
-        GivenGiantFileWithLengthExceedingMaxArray_WhenConvertUsingMemoryStream_ThenThrowsArgumentOutOfRangeException()
+        GivenGiantFileWithLengthExceedingMaxArray_WhenConvertUsingMemoryStream_ThenThrowsException()
     {
-        var action = () => { _ = ToByteArrayMethods.ConvertUsingPooledWriter(fixture.GiantTestFile); };
+        var action = () => { _ = ToByteArrayMethods.ConvertUsingMemoryStream(fixture.GiantTestFile); };
 
-        action.Should().Throw<ArgumentOutOfRangeException>();
+        action.Should().
+            Throw<Exception>().Where(ex =>
+                ex.GetType() == typeof(OutOfMemoryException) ||
+                ex.GetType() == typeof(IOException)
+            );
     }
 
     [Fact]

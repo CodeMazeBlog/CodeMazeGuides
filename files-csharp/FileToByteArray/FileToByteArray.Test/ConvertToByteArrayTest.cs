@@ -132,4 +132,21 @@ public sealed class ConvertToByteArrayTest(TestFilesFixture fixture) : IClassFix
 
         hash.Should().BeEquivalentTo(fixture.LargeTestFileHash);
     }
+    
+    [Fact]
+    public async void GivenFile_WhenCallingConvertInChunksWithGreaterThanMaxArrayChunkSize_ThenThrowsArgumentException()
+    {
+        var func = async () =>
+        {
+            using var md5Hasher = MD5.Create();
+            await foreach (var chunk in ToByteArrayMethods.ConvertInChunks(fixture.SmallTestFile,
+                               Array.MaxLength + 1))
+                md5Hasher.TransformBlock(chunk, 0, chunk.Length, null, 0);
+
+            md5Hasher.TransformFinalBlock([], 0, 0);
+            return md5Hasher.Hash;
+        };
+
+        await func.Should().ThrowAsync<ArgumentOutOfRangeException>();
+    }
 }
