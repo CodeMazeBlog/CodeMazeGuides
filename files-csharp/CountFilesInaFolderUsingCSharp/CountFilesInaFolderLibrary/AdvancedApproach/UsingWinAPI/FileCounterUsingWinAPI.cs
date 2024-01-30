@@ -4,12 +4,13 @@ namespace CountFilesInaFolderLibrary.AdvancedApproach.UsingWinAPI;
 
 public class FileCounterUsingWinAPI
 {
-#if WINDOWS
-    [DllImport("kernel32.dll")]
+    [DllImport("kernel32.dll", SetLastError = true)]
     static extern IntPtr FindFirstFile(string lpFileName, out WIN32_FIND_DATA lpFindFileData);
-    [DllImport("kernel32.dll")]
+
+    [DllImport("kernel32.dll", SetLastError = true)]
     static extern bool FindNextFile(IntPtr hFindFile, out WIN32_FIND_DATA lpFindFileData);
-    [DllImport("kernel32.dll")]
+
+    [DllImport("kernel32.dll", SetLastError = true)]
     static extern bool FindClose(IntPtr hFindFile);
 
     public static int CountFilesUsingWinAPI(string directoryPath, bool searchSubDirectories = false)
@@ -46,5 +47,4 @@ public class FileCounterUsingWinAPI
 
         return fileCount;
     }
-#endif
 }
