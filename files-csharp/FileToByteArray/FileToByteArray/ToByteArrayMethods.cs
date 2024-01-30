@@ -15,8 +15,8 @@ public static class ToByteArrayMethods
         var fileInfo = new FileInfo(filePath);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(fileInfo.Length, Array.MaxLength, "File length");
 
-        using var ms = new MemoryStream(DefaultBufferSize);
         using var fs = File.OpenRead(filePath);
+        using var ms = new MemoryStream(DefaultBufferSize);
 
         fs.CopyTo(ms);
 
@@ -28,8 +28,8 @@ public static class ToByteArrayMethods
         var fileInfo = new FileInfo(filePath);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(fileInfo.Length, Array.MaxLength, "File length");
 
-        await using var ms = new MemoryStream(DefaultBufferSize);
         await using var fs = File.OpenRead(filePath);
+        await using var ms = new MemoryStream(DefaultBufferSize);
 
         await fs.CopyToAsync(ms);
 
@@ -41,7 +41,7 @@ public static class ToByteArrayMethods
         var fileInfo = new FileInfo(filePath);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(fileInfo.Length, Array.MaxLength, "File length");
 
-        var length = (int) fileInfo.Length;
+        var length = (int)fileInfo.Length;
         var array = ArrayPool<byte>.Shared.Rent(length);
         var span = array.AsSpan(0, length);
 
@@ -56,9 +56,10 @@ public static class ToByteArrayMethods
         var fileInfo = new FileInfo(filePath);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(fileInfo.Length, Array.MaxLength, "File length");
 
-        var length = (int) fileInfo.Length;
+        var length = (int)fileInfo.Length;
         var array = ArrayPool<byte>.Shared.Rent(length);
         var memory = array.AsMemory(0, length);
+        
         await using var fs = fileInfo.OpenRead();
         await fs.ReadExactlyAsync(memory);
 
@@ -72,8 +73,8 @@ public static class ToByteArrayMethods
 
         using var writer = new ArrayPoolBufferWriter<byte>(DefaultBufferSize);
         using var stream = writer.AsStream();
+        
         using var fs = File.OpenRead(filePath);
-
         fs.CopyTo(stream);
 
         return writer.WrittenSpan.ToArray();
@@ -86,8 +87,8 @@ public static class ToByteArrayMethods
 
         using var writer = new ArrayPoolBufferWriter<byte>(DefaultBufferSize);
         await using var stream = writer.AsStream();
-        await using var fs = File.OpenRead(filePath);
 
+        await using var fs = File.OpenRead(filePath);
         await fs.CopyToAsync(stream);
 
         return writer.WrittenSpan.ToArray();
@@ -109,9 +110,7 @@ public static class ToByteArrayMethods
 
             int bytesRead;
             while ((bytesRead = await accessor.ReadAsync(memory, cancellationToken)) != 0)
-            {
                 yield return memory[..bytesRead].ToArray();
-            }
         }
         finally
         {
