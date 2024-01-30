@@ -9,21 +9,19 @@ public class WeatherForecastEndpoint
 
     public IResult GetWeatherForecast()
     {
-        _logger.Here().Information("Get WeatherForecast called");
+        _logger.Here<WeatherForecastEndpoint>().Information("Get WeatherForecast called");
         var summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot",
             "Sweltering", "Scorching"
         };
-
         var forecast = Enumerable.Range(1, 5).Select(index =>
                 new WeatherForecast
                 (
                     DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                     Random.Shared.Next(-20, 55),
                     summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
+                )).ToArray();
 
         return TypedResults.Ok(forecast);
     }
