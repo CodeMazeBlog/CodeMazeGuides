@@ -75,5 +75,17 @@ namespace GenericsInCSharpTests
             Assert.AreEqual(firstChar, 'z');
             Assert.AreEqual(lastChar, 'a');
         }
+
+        [TestMethod]
+        public void RunDelegate_GivenTwoNumbers_ReturnCorrectResult()
+        {
+            var delegates = new ActionandFunctionDelegates();
+
+            var result = delegates.RunDelegate(5, 10);
+
+            Assert.AreEqual(15, result.IncrementedNumber, "IncrementedNumber should be 15.");
+            Assert.AreEqual(15, result.AddResult, "AddResult should be 15.");
+
+        }
     }
 }

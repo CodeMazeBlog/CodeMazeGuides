@@ -6,6 +6,7 @@
 
         static void Main(string[] args)
         {
+           
             var delegateObj = new GenericDelegates();
             var addition = new ArithmeticDelegates<int>(delegateObj.AdditionFunc);
             var multiplication = new ArithmeticDelegates<int>(delegateObj.MultiplicationFunc);
@@ -18,6 +19,13 @@
 
             printOutput = $"The multiplication of {num1} and {num2} is {multiplication(num1, num2)}";
             delegateObj.PrintString(printOutput);
+
+            var delegates = new ActionandFunctionDelegates();
+            var results = delegates.RunDelegate(num1, num2);
+
+            Console.WriteLine($"Result of add: {results.AddResult}");
+            Console.WriteLine($"Incremented number: {results.IncrementedNumber}");
         }
     }
 }
+
