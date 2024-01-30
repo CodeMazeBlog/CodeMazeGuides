@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidateNumberIsPositiveOrNegative", "ValidateNumberIsPositiveOrNegative\ValidateNumberIsPositiveOrNegative.csproj", "{8AEB36F6-AA9E-46A2-9232-1364426C17E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidateNumberIsPositiveOrNegativeTests", "ValidateNumberIsPositiveOrNegativeTests\ValidateNumberIsPositiveOrNegativeTests.csproj", "{2369A31F-A256-4CB3-B701-9E03720EFC6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidateNumberIsPositiveOrNegativeTests", "ValidateNumberIsPositiveOrNegativeTests\ValidateNumberIsPositiveOrNegativeTests.csproj", "{2369A31F-A256-4CB3-B701-9E03720EFC6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

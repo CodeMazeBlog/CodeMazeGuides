@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Runtime.InteropServices;
 
 namespace ValidateNumberIsPositiveOrNegative
 {
@@ -19,16 +20,18 @@ namespace ValidateNumberIsPositiveOrNegative
             
             return result;
         }
-
-        public static int IsPositiveOrNegativeUsingLeftShiftMethod<T>(T number) where T : IBinaryInteger<T>, IBitwiseOperators<T, T, T>
+        
+        public static unsafe int IsPositiveOrNegativeUsingLeftShiftMethod<T>(T number) where T : unmanaged, IBinaryInteger<T>,ISignedNumber<T>
         {
             var result = 0;
 
             if (!number.Equals(default(T)))
             {
-                var isNumberNegative = (T.RotateLeft(number, 31) & number) != T.Zero;
+                int bits = (sizeof(T) * 8) - 1;
 
-                if (isNumberNegative == true)
+                var checkNegative = ((T.CreateChecked(1) << bits) & number) != T.Zero;
+
+                if (checkNegative == true)
                 {
                     result = -1;
                 }
@@ -40,15 +43,17 @@ namespace ValidateNumberIsPositiveOrNegative
             return result;
         }
 
-        public static int IsPositiveOrNegativeUsingRightShiftMethod<T>(T number) where T : IBinaryInteger<T>, IBitwiseOperators<T, T, T>
+        public static unsafe int IsPositiveOrNegativeUsingRightShiftMethod<T>(T number) where T : unmanaged, IBinaryInteger<T>, ISignedNumber<T>
         {
             var result = 0;
 
             if (!number.Equals(default(T)))
             {
-                var isNumberNegative = (T.RotateRight(number, 31) & number) != T.Zero;
+                int bits = (sizeof(T) * 8) - 1;
 
-                if (isNumberNegative == true)
+                var checkNegative = (number >> bits) != T.Zero;
+
+                if (checkNegative == true)
                 {
                     result = -1;
                 }
@@ -57,16 +62,17 @@ namespace ValidateNumberIsPositiveOrNegative
                     result = 1;
                 }
             }
+
             return result;
         }
 
-        public static int IsPositiveOrNegativeUsingMathAbsMethod(int number)
+        public static int IsPositiveOrNegativeUsingMathAbsMethod<T>(T number) where T : ISignedNumber<T>
         {
             var result = 0;
 
-            if (number != 0)
+            if (number != T.Zero)
             {
-                if (Math.Abs(number) == number)
+                if (T.Abs(number) == number)
                 {
                     result = 1;
                 }
@@ -78,12 +84,12 @@ namespace ValidateNumberIsPositiveOrNegative
             return result;
         }
 
-        public static int IsPositiveOrNegativeUsingMathSignMethod(int number)
+        public static int IsPositiveOrNegativeUsingMathSignMethod<T>(T number) where T : INumber<T>
         {
-            return Math.Sign(number);
+            return T.Sign(number);
         }
 
-        public static int IsPositiveOrNegativeUsingBuiltInMethod<T>(T number) where T : ISignedNumber<T>, IComparisonOperators<T, T, bool>
+        public static int IsPositiveOrNegativeUsingBuiltInMethod<T>(T number) where T : ISignedNumber<T>
         {
             var result = 0;
 
