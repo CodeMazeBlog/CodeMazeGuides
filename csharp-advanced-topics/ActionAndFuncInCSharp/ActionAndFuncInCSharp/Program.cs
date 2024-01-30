@@ -2,7 +2,7 @@
 {
     public class ActionAndFuncInCSharp
     {
-        public static Action<int, int> AddNumbersDelegate = (a, b) =>
+        public static Action<int, int> AddNumbersDelegate = (a,b) =>
         {
             var sum = a + b;
 

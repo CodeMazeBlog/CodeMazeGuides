@@ -1,4 +1,5 @@
 using ActionAndFuncInCsharp;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ActionAndFuncInCSharpTest
 {
@@ -8,14 +9,14 @@ namespace ActionAndFuncInCSharpTest
         [TestMethod]
         public void WhenValidInputProvided_ThenPrintsCorrectSum()
         {
-            // Arrange       
+            //Arrange
             var consoleOutput = new System.IO.StringWriter();
             Console.SetOut(consoleOutput);
 
-            //Act 
+            //Act
             ActionAndFuncInCSharp.AddNumbersDelegate(5, 7);
 
-            // Assert    
+            //Assert
             var expectedOutput = "Sum of 5 and 7 is 12";
             Assert.AreEqual(expectedOutput, consoleOutput.ToString().Trim());
         }
@@ -23,14 +24,14 @@ namespace ActionAndFuncInCSharpTest
         [TestMethod]
         public void WhenZeroValuesProvided_ThenReturnsZeroSum()
         {
-            // Arrange   
+            //Arrange
             var consoleOutput = new System.IO.StringWriter();
             Console.SetOut(consoleOutput);
 
-            //Act 
+            //Act
             ActionAndFuncInCSharp.AddNumbersDelegate(0, 0);
 
-            //Assert 
+            //Assert
             var expectedOutput = "Sum of 0 and 0 is 0";
             Assert.AreEqual(expectedOutput, consoleOutput.ToString().Trim());
         }
@@ -38,10 +39,10 @@ namespace ActionAndFuncInCSharpTest
         [TestMethod]
         public void WhenPositiveNumberProvided_ThenReturnsCorrectSquare()
         {
-            // Act       
+            //Act
             var result = ActionAndFuncInCSharp.SquareDelegate(4);
 
-            //Assert   
+            //Assert
             var expectedSquare = 16;
             Assert.AreEqual(expectedSquare, result);
         }
@@ -49,10 +50,10 @@ namespace ActionAndFuncInCSharpTest
         [TestMethod]
         public void WhenNegativeNumberProvided_ThenReturnsPositiveSquare()
         {
-            // Act 
+            //Act
             var result = ActionAndFuncInCSharp.SquareDelegate(-3);
 
-            // Assert   
+            //Assert
             var expectedSquare = 9;
             Assert.AreEqual(expectedSquare, result);
         }
