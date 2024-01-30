@@ -1,5 +1,4 @@
 ﻿using DifferenceBetweenRestfulAPIAndWebAPI.Interfaces;
-using DifferenceBetweenRestfulAPIAndWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DifferenceBetweenRestfulAPIAndWebAPI.Controllers
