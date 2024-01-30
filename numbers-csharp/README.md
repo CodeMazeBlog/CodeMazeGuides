@@ -5,6 +5,7 @@ This section contains the topics related numbers (parsing, conversion, random nu
 
 - [Check if a Number is a Power of 2 in C#](https://code-maze.com/check-if-number-is-power-of-2-csharp/)
 - [How to Convert String to Int in C#](https://code-maze.com/csharp-convert-string-to-int/)
+- [Controlling Precision of Decimal Numbers in C#](https://code-maze.com/csharp-controlling-precision-of-decimal-numbers/)
 - [Techniques for Checking Floating-Point Equality in C#](https://code-maze.com/csharp-techniques-for-checking-floating-point-equality/)
 - [Floating-Point Types in C# – Double vs Float vs Decimal](https://code-maze.com/csharp-floating-point-types/)
 - [Random Class in C#](https://code-maze.com/csharp-random-class/)
