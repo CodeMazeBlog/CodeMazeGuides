@@ -9,11 +9,7 @@ public static class NumberValidation
         if (number == T.Zero)
             return 0;
 
-        if (number > T.Zero)
-            return 1;
-
-        return -1;
-
+        return number > T.Zero ? 1 : -1;
     }
 
     public static unsafe int IsPositiveOrNegativeUsingLeftShiftMethod<T>(T number) where T : unmanaged, IBinaryInteger<T>,ISignedNumber<T>
@@ -31,7 +27,7 @@ public static class NumberValidation
         if (number == T.Zero)
             return 0;
 
-        int bits = (sizeof(T) * 8) - 1;
+        int bits = sizeof(T) * 8 - 1;
 
         return number >> bits == T.Zero ? 1 : -1;
     }
