@@ -16,6 +16,7 @@ This section contains the topics related to JSON manipulation in C#.
 - [How to Get Formatted JSON in .Net Using C#](https://code-maze.com/csharp-how-to-get-formatted-json/)
 - [How to Serialize a List to JSON in C#](https://code-maze.com/serialize-list-to-json-csharp/)
 - [How to Iterate Over JSON Objects in C#](https://code-maze.com/csharp-how-to-iterate-over-json-objects/)
+- [Fastest Way to Convert a JObject to a Dictionary in C#](https://code-maze.com/csharp-convert-a-jobject-to-a-dictionary/)
 - [How to Deserialize JSON Into Dynamic Object in C#](https://code-maze.com/csharp-deserialize-json-into-dynamic-object/)
 - [How to Insert a Key Value Pair Into an Existing JSON in C#](https://code-maze.com/csharp-insert-a-key-value-pair-into-an-existing-json/)
 - [Polymorphic Serialization and Deserialization with System.Text.Json](https://code-maze.com/csharp-polymorphic-serialization-and-deserialization/)

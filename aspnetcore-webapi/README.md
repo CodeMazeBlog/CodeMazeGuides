@@ -37,6 +37,7 @@ This section contains articles about ASP.NET Core Web API-related topics.
 - [Web API Return Types in ASP.NET Core](https://code-maze.com/aspnetcore-web-api-return-types/)
 - [Serialization and Deserialization in C#](https://code-maze.com/serialization-deserialization-csharp/)
 - [Introduction to Google Charts With Angular and ASP.NET Core Web API](https://code-maze.com/google-charts-angular-aspnetcore-webapi/)
+- [Using MariaDB With ASP.NET Core Web API](https://code-maze.com/aspnetcore-using-mariadb-with-web-api/)
 - [Using OData with ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-using-odata/)
 - [API Versioning in ASP.NET Core](https://code-maze.com/aspnetcore-api-versioning/)
 - [How to Return HTTP 500 From ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-return-http-status-code-500/)
