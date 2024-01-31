@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ConditionalRequiredAttributeValidation.Controllers;
 
-[Route("api/v1/orders")]
+[Route("api/v1/work-items")]
 [ApiController]
-public class OrdersController : ControllerBase
+public class WorkItemsController : ControllerBase
 {
-    [HttpPost("place-order")]
-    public Task<IActionResult> PlaceOrder([FromBody] Order order)
+    [HttpPost("create")]
+    public Task<IActionResult> PlaceOrder([FromBody] WorkItem workItem)
     {
         if (!ModelState.IsValid)
         {
             return Task.FromResult<IActionResult>(BadRequest());
         }
 
-        return Task.FromResult<IActionResult>(Ok(order));
+        return Task.FromResult<IActionResult>(Ok(workItem));
     }
 }

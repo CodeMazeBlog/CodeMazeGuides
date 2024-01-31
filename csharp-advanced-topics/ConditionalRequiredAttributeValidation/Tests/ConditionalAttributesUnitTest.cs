@@ -16,96 +16,52 @@ public class ConditionalAttributesUnitTest
     }
 
     [Theory]
-    [InlineData("api/v1/orders/place-order")]
-    public async Task WhenAccurateOrderDataIsPassed_ThenReturn2ooOk(string url)
+    [InlineData("api/v1/work-items/create")]
+    public async Task WhenWorkItemIsAssignedToAnAssignee_ThenReturn200Ok(string url)
     {
-        var order = new Order
+        var workItem = new WorkItem
         {
-            IsExpressShipping = true,
-            ShippingAddress = "1234 Street",
-            CustomerName = "John Doe",
-            DeliveryDate = new DateTime(2024, 1, 28),
-            ProductId = 5,
-            ProductDescription = "Test Product"
+            Id = 1,
+            Title = "Work item 1",
+            IsAssigned = true,
+            Assignee = "John Doe"
         };
 
-        var response = await _client.PostAsJsonAsync(url, order);
+        var response = await _client.PostAsJsonAsync(url, workItem);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Theory]
-    [InlineData("api/v1/orders/place-order")]
-    public async Task WhenInvalidShippingAddressIsPassed_ThenReturnBadRequest(string url)
+    [InlineData("api/v1/work-items/create")]
+    public async Task WhenWorkItemIsUnAssignedDuringCreation_ThenReturn200Ok(string url)
     {
-        var order = new Order
+        var workItem = new WorkItem
         {
-            IsExpressShipping = true,
-            ShippingAddress = "",
-            CustomerName = "John Doe",
-            DeliveryDate = new DateTime(2024, 1, 28),
-            ProductId = 5,
-            ProductDescription = "Test Product"
+            Id = 2,
+            Title = "Work item 2",
+            IsAssigned = false,
+            Assignee = string.Empty
         };
 
-        var response = await _client.PostAsJsonAsync(url, order);
-
-        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-    }
-
-    [Theory]
-    [InlineData("api/v1/orders/place-order")]
-    public async Task WhenExpressShippingIsFalse_ThenConditionallyValidateShippingAddress(string url)
-    {
-        var order = new Order
-        {
-            IsExpressShipping = false,
-            ShippingAddress = "",
-            CustomerName = "Test Customer",
-            DeliveryDate = null,
-            ProductId = 5,
-            ProductDescription = "Test Product"
-        };
-
-        var response = await _client.PostAsJsonAsync(url, order);
+        var response = await _client.PostAsJsonAsync(url, workItem);
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Theory]
-    [InlineData("api/v1/orders/place-order")]
-    public async Task WhenEmptyCustomerNameIsPassed_ThenReturnBadRequest(string url)
+    [InlineData("api/v1/work-items/create")]
+    public async Task WhenAnAssignedWorkItemHasNoAssignee_ThenReturnBadRequest(string url)
     {
-        var order = new Order
+        var workItem = new WorkItem
         {
-            IsExpressShipping = true,
-            ShippingAddress = "1234 Test Street",
-            CustomerName = "",
-            DeliveryDate = new DateTime(2024, 1, 28),
-            ProductId = 5,
-            ProductDescription = "Test Product"
+            Id = 3,
+            Title = "Work item 3",
+            IsAssigned = true,
+            Assignee = string.Empty
         };
 
-        var response = await _client.PostAsJsonAsync(url, order);
-
-        Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-    }
-
-    [Theory]
-    [InlineData("api/v1/orders/place-order")]
-    public async Task WhenDeliveryDateIsNull_ThenReturnBadRequest(string url)
-    {
-        var order = new Order
-        {
-            IsExpressShipping = true,
-            ShippingAddress = "1234 Test Street",
-            CustomerName = "",
-            DeliveryDate = null,
-            ProductId = 5,
-            ProductDescription = "Test Product"
-        };
-
-        var response = await _client.PostAsJsonAsync(url, order);
+        var response = await _client.PostAsJsonAsync(url, workItem);
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }

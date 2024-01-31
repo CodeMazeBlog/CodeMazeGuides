@@ -2,7 +2,7 @@
 
 namespace ConditionalRequiredAttributeValidation.Validators;
 
-public class RequiredIfAttribute(string otherProperty, object targetValue) : ValidationAttribute
+public class RequiredIfCustomAttribute(string otherProperty, object targetValue) : ValidationAttribute
 {
     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
@@ -14,7 +14,7 @@ public class RequiredIfAttribute(string otherProperty, object targetValue) : Val
         {
             return new ValidationResult(ErrorMessage ?? "This field is required.");
         }
-
+            
         return ValidationResult.Success;
     }
 }
