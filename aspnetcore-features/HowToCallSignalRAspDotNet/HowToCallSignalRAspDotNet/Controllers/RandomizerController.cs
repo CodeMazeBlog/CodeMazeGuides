@@ -1,19 +1,19 @@
-﻿using HowToCallSignalRHubFromController.HubConfig;
-using HowToCallSignalRHubFromController.Models;
-using HowToCallSignalRHubFromController.TimerFeatures;
+﻿using HowToCallSignalRAspDotNet.HubConfig;
+using HowToCallSignalRAspDotNet.Models;
+using HowToCallSignalRAspDotNet.TimerFeatures;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 
-namespace HowToCallSignalRHubFromController.Controllers
+namespace HowToCallSignalRAspDotNet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NonStronglyTypedRandomizerController : ControllerBase
+    public class RandomizerController : ControllerBase
     {
-        private readonly IHubContext<RandomizerHub> _hub;
+        private readonly IHubContext<RandomizerHub, IRandomizerClient> _hub;
         private readonly TimerManager _timer;
 
-        public NonStronglyTypedRandomizerController(IHubContext<RandomizerHub> hub, TimerManager timer)
+        public RandomizerController(IHubContext<RandomizerHub, IRandomizerClient> hub, TimerManager timer)
         {
             _hub = hub;
             _timer = timer;
@@ -27,7 +27,7 @@ namespace HowToCallSignalRHubFromController.Controllers
             if (!_timer.IsTimerStarted)
                 _timer.PrepareTimer(() =>
                 _hub.Clients.All
-                .SendAsync("SendClientRandomEvenNumber",randomValue));
+                .SendClientRandomEvenNumber(randomValue));
 
             return Ok(randomValue);
         }

@@ -1,4 +1,4 @@
-﻿namespace HowToCallSignalRHubFromController.TimerFeatures
+﻿namespace HowToCallSignalRAspDotNet.TimerFeatures
 {
     public class TimerManager
     {

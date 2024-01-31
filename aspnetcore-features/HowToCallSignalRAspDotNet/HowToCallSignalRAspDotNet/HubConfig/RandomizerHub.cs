@@ -1,7 +1,7 @@
-﻿using HowToCallSignalRHubFromController.Models;
+﻿using HowToCallSignalRAspDotNet.Models;
 using Microsoft.AspNetCore.SignalR;
 
-namespace HowToCallSignalRHubFromController.HubConfig
+namespace HowToCallSignalRAspDotNet.HubConfig
 {
     public class RandomizerHub : Hub<IRandomizerClient>
     {
