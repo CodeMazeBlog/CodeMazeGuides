@@ -2,23 +2,23 @@
 
 public class Person
 {
-    public static int age;
-    public string name = "John Doe";
-    public required bool hasSuperPowers;
+    public static int Age;
+    private string _name = "John Doe";
+    public required bool HasSuperPowers;
 
     public Person()
     {
-        Console.WriteLine(name);
+        Console.WriteLine(_name);
 
-        name = "Jane Doe";
+        _name = "Jane Doe";
     }
 
     public void UpdateName(string name)
     {
-        Console.WriteLine(this.name);
+        Console.WriteLine(_name);
 
-        this.name = name;
+        _name = name;
 
-        Console.WriteLine(this.name);
+        Console.WriteLine(_name);
     }
 }

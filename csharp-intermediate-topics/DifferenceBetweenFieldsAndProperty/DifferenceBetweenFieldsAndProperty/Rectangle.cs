@@ -4,6 +4,7 @@ public class Rectangle
 {
     public double Width { get; init; }
     public double Height { get; init; }
+    public static double ScalingFactor { get; set; } = 1.0;
 
     public Rectangle(double width, double height)
     {
@@ -11,8 +12,8 @@ public class Rectangle
         Height = height;
     }
 
-    public double CalculateArea()
+    public Rectangle CreateScaledRectangle()
     {
-        return Width * Height;
+        return new Rectangle(Width * ScalingFactor, Height * ScalingFactor);
     }
 }

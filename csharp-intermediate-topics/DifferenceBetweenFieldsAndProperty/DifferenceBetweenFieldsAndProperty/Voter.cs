@@ -9,26 +9,23 @@ public class Voter
         get { return _age; }
         set
         {
-            if (value >= 18)
-            {
-                _age = value;
-            }
-            else
-            {
+            if (value < 18)
                 throw new ArgumentException("The person is a minor and cannot vote.", nameof(value));
-            }
+
+            _age = value;
         }
     }
 
-    public static string Name { get; set; }
+    public string Name { get; set; }
 
-    public Voter(int initialValue)
+    public Voter(string name, int age)
     {
-        Age = initialValue;
+        Name = name;
+        Age = age;
     }
 
     public string DisplayIsVoter()
     {
-        return $"The person can vote as their age is: {_age}";
+        return $"{Name} can vote as their age is: {_age}";
     }
 }
