@@ -17,7 +17,6 @@ namespace ActionFuncDelegates
             return result;
         }
 
-
         public static int FuncDelegateWithAnonymous()
         {
             Func<int, int, int> numbers = delegate (int a, int b)
