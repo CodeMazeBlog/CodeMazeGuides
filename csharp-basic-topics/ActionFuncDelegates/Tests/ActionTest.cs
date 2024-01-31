@@ -4,7 +4,7 @@ namespace ActionFuncDelegates.Tests
     public class ActionDelegatesTests
     {
         [Fact]
-        public void TestActionDelegate()
+        public void GivenActionDelegate_WhenCallingActionDelegate_ThenCorrectOutputsArePrinted()
         {
             // Arrange
             using (var sw = new StringWriter())
@@ -22,7 +22,7 @@ namespace ActionFuncDelegates.Tests
         }
 
         [Fact]
-        public void TestActionDelegateWithAnonymous()
+        public void GivenActionDelegateWithAnonymous_WhenCallingActionDelegateWithAnonymous_ThenCorrectOutputsArePrinted()
         {
             // Arrange
             using (var sw = new StringWriter())
@@ -39,7 +39,7 @@ namespace ActionFuncDelegates.Tests
         }
 
         [Fact]
-        public void TestActionDelegateWithLambda()
+        public void GivenActionDelegateWithLambda_WhenCallingActionDelegateWithLambda_ThenCorrectResultIsPrinted()
         {
             // Arrange
             using (var sw = new StringWriter())

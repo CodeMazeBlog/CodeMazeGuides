@@ -23,6 +23,7 @@ namespace ActionFuncDelegates
             {
                 return a + b;   
             };
+
             var result = numbers(30, 10); //Result: 40
             Console.WriteLine($"Result:{result}");
 

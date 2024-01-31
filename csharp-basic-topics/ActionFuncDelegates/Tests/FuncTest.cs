@@ -5,7 +5,7 @@ namespace Tests
     public class FuncDelegatesTests
     {
         [Fact]
-        public void TestFuncDelegate()
+        public void GivenFuncDelegate_WhenCallingFuncDelegate_ThenResultIsExpected()
         {
             // Arrange
             var expected = 30;
@@ -24,7 +24,7 @@ namespace Tests
         }
 
         [Fact]
-        public void TestFuncDelegateWithAnonymous()
+        public void GivenFuncDelegateWithAnonymous_WhenCallingFuncDelegateWithAnonymous_ThenResultIsExpected()
         {
             // Arrange
             var expected = 40;
@@ -44,7 +44,7 @@ namespace Tests
 
 
         [Fact]
-        public void TestFuncDelegateWithLambda()
+        public void GivenFuncDelegateWithLambda_WhenInvokingFuncDelegateWithLambda_ThenResultIsExpected()
         {
             // Arrange
             var expected = 100;
