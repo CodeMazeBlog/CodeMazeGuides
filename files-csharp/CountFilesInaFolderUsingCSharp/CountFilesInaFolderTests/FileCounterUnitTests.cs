@@ -2,17 +2,17 @@ namespace CountFilesInaFolderTests;
 
 public class FileCounterUnitTests : IDisposable
 {
-    private readonly string TempDirectory;
-    private readonly int ExpectedFileCount = 1000;
+    private readonly string _tempDirectory;
+    private readonly int _expectedFileCount = 1000;
 
     public FileCounterUnitTests()
     {
-        TempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-        Directory.CreateDirectory(TempDirectory);
+        _tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        Directory.CreateDirectory(_tempDirectory);
 
         for (var i = 0; i < 1000; i++)
         {
-            File.Create(Path.Combine(TempDirectory, $"file{i}.txt")).Dispose();
+            File.Create(Path.Combine(_tempDirectory, $"file{i}.txt")).Dispose();
         }
     }
 
@@ -20,20 +20,20 @@ public class FileCounterUnitTests : IDisposable
     public void GivenDirectoryWithFiles_WhenUsingGetFiles_ThenReturnCorrectFileCount()
     {
         // Act
-        var actualFileCount = FileCounterUsingGetFiles.CountFilesUsingGetFiles(TempDirectory);
+        var actualFileCount = FileCounterUsingGetFiles.CountFilesUsingGetFiles(_tempDirectory);
 
         // Assert
-        Assert.Equal(ExpectedFileCount, actualFileCount);
+        Assert.Equal(_expectedFileCount, actualFileCount);
     }
 
     [Fact]
     public void GivenDirectoryWithFiles_WhenUsingLINQEnumerateFiles_ThenReturnCorrectFileCount()
     {
         // Act
-        var actualFileCount = FileCounterUsingLINQ.CountFilesUsingLINQEnumerateFiles(TempDirectory);
+        var actualFileCount = FileCounterUsingLINQ.CountFilesUsingLINQEnumerateFiles(_tempDirectory);
 
         // Assert
-        Assert.Equal(ExpectedFileCount, actualFileCount);
+        Assert.Equal(_expectedFileCount, actualFileCount);
     }
 
     /*[Fact]
@@ -46,6 +46,6 @@ public class FileCounterUnitTests : IDisposable
 
     public void Dispose()
     {
-        Directory.Delete(TempDirectory, true);
+        Directory.Delete(_tempDirectory, true);
     }
 }

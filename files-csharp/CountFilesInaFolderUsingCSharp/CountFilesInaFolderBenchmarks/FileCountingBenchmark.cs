@@ -10,14 +10,14 @@ namespace CountFilesInaFolderBenchmarks;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class FileCountingBenchmark
 {
-    private string DirectoryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+    private string _directoryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
     [Params(1000, 5000, 10000)]
     public int FileCount;
 
     public DirectoryInfo CreateSimulatedDirectory(int fileCount)
     {
-        var directory = Directory.CreateDirectory(DirectoryPath);
+        var directory = Directory.CreateDirectory(_directoryPath);
 
         for (int i = 0; i < fileCount; i++)
         {
@@ -44,7 +44,6 @@ public class FileCountingBenchmark
         return FileCounterUsingLINQ.CountFilesUsingLINQEnumerateFiles(directory.FullName);
     }
 
-
     [Benchmark]
     public int WinAPICount_InMemory()
     {
@@ -61,16 +60,16 @@ public class FileCountingBenchmark
 
     private void CleanDirectory()
     {
-        if (DirectoryPath is not null)
+        if (_directoryPath is not null)
         {
-            foreach (var filePath in Directory.EnumerateFiles(DirectoryPath))
+            foreach (var filePath in Directory.EnumerateFiles(_directoryPath))
             {
                 File.Delete(filePath);
             }
 
-            if (Directory.Exists(DirectoryPath))
+            if (Directory.Exists(_directoryPath))
             {
-                Directory.Delete(DirectoryPath, true);
+                Directory.Delete(_directoryPath, true);
             }
         }
     }
