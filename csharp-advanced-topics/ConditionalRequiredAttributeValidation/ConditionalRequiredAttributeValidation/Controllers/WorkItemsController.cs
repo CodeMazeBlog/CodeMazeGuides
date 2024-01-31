@@ -8,7 +8,7 @@ namespace ConditionalRequiredAttributeValidation.Controllers;
 public class WorkItemsController : ControllerBase
 {
     [HttpPost("create")]
-    public Task<IActionResult> PlaceOrder([FromBody] WorkItem workItem)
+    public Task<IActionResult> CreateWorkItem([FromBody] WorkItem workItem)
     {
         if (!ModelState.IsValid)
         {
@@ -17,4 +17,4 @@ public class WorkItemsController : ControllerBase
 
         return Task.FromResult<IActionResult>(Ok(workItem));
     }
-}
+}   
