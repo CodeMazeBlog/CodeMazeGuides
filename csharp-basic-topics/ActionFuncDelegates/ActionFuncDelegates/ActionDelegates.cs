@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ActionFuncDelegates
 {
     public class ActionDelegates
@@ -32,6 +27,7 @@ namespace ActionFuncDelegates
             { 
                 Console.WriteLine("Subtract = {0}", a - b); 
             }; 
+
             subtract(30, 10); //Result: 20
         }
 
@@ -41,6 +37,7 @@ namespace ActionFuncDelegates
             { 
                 Console.WriteLine("Result: {0}", x - y);           
             }; 
+
             result(50, 40); // Result: 10
         }
     }

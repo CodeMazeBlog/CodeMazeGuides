@@ -1,27 +1,21 @@
 ﻿using ActionFuncDelegates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests
 {
-
     public class FuncDelegatesTests
     {
         [Fact]
         public void TestFuncDelegate()
         {
             // Arrange
-            int expected = 30;
+            var expected = 30;
 
             // Act
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                int result = FuncDelegates.FuncDelegate();
-                string consoleOutput = sw.ToString();
+                var result = FuncDelegates.FuncDelegate();
+                var consoleOutput = sw.ToString();
 
                 // Assert
                 Assert.Equal(expected, result);
@@ -33,14 +27,14 @@ namespace Tests
         public void TestFuncDelegateWithAnonymous()
         {
             // Arrange
-            int expected = 40;
+            var expected = 40;
 
             // Act
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                int result = FuncDelegates.FuncDelegateWithAnonymous();
-                string consoleOutput = sw.ToString();
+                var result = FuncDelegates.FuncDelegateWithAnonymous();
+                var consoleOutput = sw.ToString();
 
                 // Assert
                 Assert.Equal(expected, result);
@@ -49,13 +43,11 @@ namespace Tests
         }
 
 
-
-
         [Fact]
         public void TestFuncDelegateWithLambda()
         {
             // Arrange
-            int expected = 100;
+            var expected = 100;
 
             // Create a StringWriter to capture console output
             using (var sw = new StringWriter())
@@ -70,8 +62,8 @@ namespace Tests
 
                     // Act
                     var resultTuple = FuncDelegates.FuncDelegateWithLambda();
-                    int result = resultTuple.Result; // Corrected property name
-                    string consoleOutput = sw.ToString();
+                    var result = resultTuple.Result; // Corrected property name
+                    var consoleOutput = sw.ToString();
 
                     // Debugging output
                     Console.WriteLine($"Actual Result: {result}");

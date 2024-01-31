@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using Xunit;
-
+﻿
 namespace ActionFuncDelegates.Tests
 {
     public class ActionDelegatesTests
@@ -18,7 +15,7 @@ namespace ActionFuncDelegates.Tests
                 ActionDelegates.ActionDelegate();
 
                 // Assert
-                string consoleOutput = sw.ToString();
+                var consoleOutput = sw.ToString();
                 Assert.Contains("Add Inputs: 30", consoleOutput);
                 Assert.Contains("Subtract Inputs: 10", consoleOutput);
             }
@@ -36,7 +33,7 @@ namespace ActionFuncDelegates.Tests
                 ActionDelegates.ActionDelegateWithAnonymous();
 
                 // Assert
-                string consoleOutput = sw.ToString();
+                var consoleOutput = sw.ToString();
                 Assert.Contains("Subtract = 20", consoleOutput);
             }
         }
@@ -53,7 +50,7 @@ namespace ActionFuncDelegates.Tests
                 ActionDelegates.ActionDelegateWithLambda();
 
                 // Assert
-                string consoleOutput = sw.ToString();
+                var consoleOutput = sw.ToString();
                 Assert.Contains("Result: 10", consoleOutput);
             }
         }
