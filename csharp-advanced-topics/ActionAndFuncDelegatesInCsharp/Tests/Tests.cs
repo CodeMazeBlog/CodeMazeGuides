@@ -10,7 +10,7 @@ namespace Tests
 			Action<string, int> printDetails = (name, age) =>
 				Console.WriteLine($"Name: {name}, Age: {age}");
 
-			string expectedOutput = $"Name: John Doe, Age: 30{Environment.NewLine}";
+			var expectedOutput = $"Name: John Doe, Age: 30{Environment.NewLine}";
 			using (StringWriter sw = new StringWriter())
 			{
 				Console.SetOut(sw);
@@ -26,9 +26,9 @@ namespace Tests
 				return $"Hello, {name}! You are {age} years old.";
 			};
 
-			string greeting = greetPerson("Alice", 25);
+			var greeting = greetPerson("Alice", 25);
 
-			string expectedGreeting = "Hello, Alice! You are 25 years old.";
+			var expectedGreeting = "Hello, Alice! You are 25 years old.";
 			Assert.AreEqual(expectedGreeting, greeting);
 		}
 	}
