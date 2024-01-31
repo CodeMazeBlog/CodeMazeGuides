@@ -1,3 +1,4 @@
+using Xunit;
 using CheckIfObjectIsNumber;
 
 namespace Tests
@@ -8,9 +9,9 @@ namespace Tests
         public void GivenMultipleTypes_WhenCheckedWithEqualityOperator_ThenReturnsBoolean()
         {
             // Act 
-            var checkIntIsTrue = Program.CheckIfIntegerWithEqualityOperator(-15);
-            var checkFloatIsFalse = Program.CheckIfIntegerWithEqualityOperator(2.54f);
-            var checkStringIsFalse = Program.CheckIfIntegerWithEqualityOperator("123");
+            var checkIntIsTrue = Methods.CheckIfIntegerWithEqualityOperator(-15);
+            var checkFloatIsFalse = Methods.CheckIfIntegerWithEqualityOperator(2.54f);
+            var checkStringIsFalse = Methods.CheckIfIntegerWithEqualityOperator("123");
 
             // Assert
             Assert.True(checkIntIsTrue);
@@ -28,13 +29,13 @@ namespace Tests
             var stringValue = "123";
 
             // Act
-            var resultFromFloat = Program.CheckIfFloatWithExplicitCasting(floatValue);
+            var resultFromFloat = Methods.CheckIfFloatWithExplicitCasting(floatValue);
 
             // Assert
             Assert.Equal(floatValue, resultFromFloat);
-            Assert.Throws<InvalidCastException>(() => Program.CheckIfFloatWithExplicitCasting(integerValue));
-            Assert.Throws<InvalidCastException>(() => Program.CheckIfFloatWithExplicitCasting(doubleValue));
-            Assert.Throws<InvalidCastException>(() => Program.CheckIfFloatWithExplicitCasting(stringValue));
+            Assert.Throws<InvalidCastException>(() => Methods.CheckIfFloatWithExplicitCasting(integerValue));
+            Assert.Throws<InvalidCastException>(() => Methods.CheckIfFloatWithExplicitCasting(doubleValue));
+            Assert.Throws<InvalidCastException>(() => Methods.CheckIfFloatWithExplicitCasting(stringValue));
         }
 
         [Fact]
@@ -49,18 +50,18 @@ namespace Tests
             var decimalValue = decimal.MaxValue;
 
             // Act
-            var resultFromNegativeInteger = Program.CheckIfShortUsingConvert(negativeIntegerValue);
-            var resultFromInteger = Program.CheckIfShortUsingConvert(integerValue);
-            var resultFromFloat = Program.CheckIfShortUsingConvert(floatValue);
-            var resultFromString = Program.CheckIfShortUsingConvert(stringValue);
+            var resultFromNegativeInteger = Methods.CheckIfShortUsingConvert(negativeIntegerValue);
+            var resultFromInteger = Methods.CheckIfShortUsingConvert(integerValue);
+            var resultFromFloat = Methods.CheckIfShortUsingConvert(floatValue);
+            var resultFromString = Methods.CheckIfShortUsingConvert(stringValue);
 
             // Assert
             Assert.Equal(negativeIntegerValue, resultFromNegativeInteger);
             Assert.Equal(integerValue, resultFromInteger);
             Assert.Equal(-5, resultFromFloat);
             Assert.Equal(123, resultFromString);
-            Assert.Throws<OverflowException>(() => Program.CheckIfShortUsingConvert(doubleValue));
-            Assert.Throws<OverflowException>(() => Program.CheckIfShortUsingConvert(decimalValue));
+            Assert.Throws<OverflowException>(() => Methods.CheckIfShortUsingConvert(doubleValue));
+            Assert.Throws<OverflowException>(() => Methods.CheckIfShortUsingConvert(decimalValue));
         }
 
         [Fact]
@@ -73,10 +74,10 @@ namespace Tests
             var stringValue = "123";
 
             // Act & Assert
-            Assert.True(Program.CheckIfFloatWithIsOperator(floatValue));
-            Assert.False(Program.CheckIfFloatWithIsOperator(integerValue));
-            Assert.False(Program.CheckIfFloatWithIsOperator(doubleValue));
-            Assert.False(Program.CheckIfFloatWithIsOperator(stringValue));
+            Assert.True(Methods.CheckIfFloatWithIsOperator(floatValue));
+            Assert.False(Methods.CheckIfFloatWithIsOperator(integerValue));
+            Assert.False(Methods.CheckIfFloatWithIsOperator(doubleValue));
+            Assert.False(Methods.CheckIfFloatWithIsOperator(stringValue));
         }
 
         [Fact]
@@ -90,11 +91,11 @@ namespace Tests
             var charactersValue = "test";
 
             // Act & Assert
-            Assert.Equal(integerValue, Program.ConvertToIntWithAsOperator(integerValue));
-            Assert.Equal(0, Program.ConvertToIntWithAsOperator(floatValue));
-            Assert.Equal(0, Program.ConvertToIntWithAsOperator(doubleValue));
-            Assert.Equal(0, Program.ConvertToIntWithAsOperator(stringValue));
-            Assert.Equal(0, Program.ConvertToIntWithAsOperator(charactersValue));
+            Assert.Equal(integerValue, Methods.ConvertToIntWithAsOperator(integerValue));
+            Assert.Equal(0, Methods.ConvertToIntWithAsOperator(floatValue));
+            Assert.Equal(0, Methods.ConvertToIntWithAsOperator(doubleValue));
+            Assert.Equal(0, Methods.ConvertToIntWithAsOperator(stringValue));
+            Assert.Equal(0, Methods.ConvertToIntWithAsOperator(charactersValue));
         }
 
         [Fact]
