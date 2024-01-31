@@ -25,3 +25,4 @@ This section contains the topics about arrays and solving specific problems with
 - [Remove Duplicates From a C# Array](https://code-maze.com/csharp-array-remove-duplicates/)
 - [Array Slicing in C#](https://code-maze.com/csharp-array-slicing/)
 - [How to Sum Up Elements of an Array in C#](https://code-maze.com/csharp-sum-up-elements-of-an-array/)
+- [How To Use ArraySegment in C#](https://code-maze.com/csharp-arraysegment/)
