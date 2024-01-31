@@ -13,6 +13,6 @@ public class Tests
     {
         var voterObject = new Voter("Steve", 35);
 
-        Assert.Equal("The person can vote as their age is: 35", voterObject.DisplayIsVoter());
+        Assert.Equal("Steve can vote as their age is: 35", voterObject.DisplayIsVoter());
     }
 }
