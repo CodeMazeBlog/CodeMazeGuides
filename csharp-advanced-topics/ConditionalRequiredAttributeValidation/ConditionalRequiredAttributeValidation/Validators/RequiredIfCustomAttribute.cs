@@ -6,9 +6,14 @@ public class RequiredIfCustomAttribute(string otherProperty, object targetValue)
 {
     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
-        var otherPropertyValue = validationContext.ObjectType.GetProperty(otherProperty)?.GetValue(validationContext.ObjectInstance);
+        var otherPropertyValue = validationContext.ObjectType
+                                                  .GetProperty(otherProperty)?
+                                                  .GetValue(validationContext.ObjectInstance);
 
-        if (otherPropertyValue == null || !otherPropertyValue.Equals(targetValue)) return ValidationResult.Success;
+        if (otherPropertyValue == null || !otherPropertyValue.Equals(targetValue))
+        {
+            return ValidationResult.Success;
+        }
 
         if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
         {
