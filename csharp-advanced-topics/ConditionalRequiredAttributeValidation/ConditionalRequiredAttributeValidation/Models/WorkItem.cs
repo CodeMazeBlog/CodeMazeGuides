@@ -6,7 +6,10 @@ namespace ConditionalRequiredAttributeValidation.Models;
 public class WorkItem
 {
     public long Id { get; set; }
-    [Required] public string Title { get; set; }
+
+    [Required]
+    public string Title { get; set; }
+
     public bool IsAssigned { get; set; }
 
     [RequiredIf(nameof(IsAssigned),
