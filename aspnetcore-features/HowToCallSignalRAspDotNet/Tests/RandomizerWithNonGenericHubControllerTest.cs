@@ -8,7 +8,7 @@
             //Act
             TestNonGenericRandomizerController.SendRandomNumber();
 
-            await Task.Delay(3000);//Delay to allow complete intialization of our Timer
+            await Task.Delay(5000);//Delay to allow complete intialization of our Timer
 
             //Assert
             ClientProxy.Verify(m => m.SendCoreAsync(It.IsAny<string>(), It.IsAny<object?[]>(), It.IsAny<CancellationToken>()), Times.AtLeast(1));
