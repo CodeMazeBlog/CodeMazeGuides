@@ -8,7 +8,7 @@
             //Act
             TestRandomizerController.SendRandomNumber();
 
-            await Task.Delay(4000);//Delay to allow complete intialization of our Timer
+            await Task.Delay(5000);//Delay to allow complete intialization of our Timer
 
             //Assert
             RandomizerClient.Verify(m => m.SendClientRandomEvenNumber(It.IsAny<int>()), Times.AtLeast(1));
