@@ -7,26 +7,31 @@ namespace HowToCallSignalRAspDotNet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RandomizerControllerWithNonGenericHub: ControllerBase
+    public class RandomizerWithNonGenericHubController : ControllerBase
     {
         private readonly IHubContext<RandomizerHub> _hub;
+
         private readonly TimerManager _timer;
 
-        public RandomizerControllerWithNonGenericHub(IHubContext<RandomizerHub> hub, TimerManager timer)
+        public RandomizerWithNonGenericHubController(IHubContext<RandomizerHub> hub, TimerManager timer)
         {
             _hub = hub;
+
             _timer = timer;
         }
 
+        [Route("SendRandomNumber")]
         [HttpGet]
         public ActionResult<int> SendRandomNumber()
         {
             var randomValue = new Random().Next(1, 51) * 2;
 
             if (!_timer.IsTimerStarted)
+            {
                 _timer.PrepareTimer(() =>
                 _hub.Clients.All
-                .SendAsync("SendClientRandomEvenNumber", randomValue));
+                .SendCoreAsync("SendClientRandomEvenNumber", [randomValue]));
+            }                
 
             return Ok(randomValue);
         }

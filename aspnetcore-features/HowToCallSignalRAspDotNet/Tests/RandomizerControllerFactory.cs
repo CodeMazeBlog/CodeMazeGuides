@@ -3,29 +3,47 @@
     public static class RandomizerControllerFactory
     {
         public static RandomizerController TestRandomizerController { get; }
+        public static RandomizerWithNonGenericHubController TestNonGenericRandomizerController { get; }
 
         public static Mock<IRandomizerClient> RandomizerClient { get; }
+        public static Mock<IClientProxy> ClientProxy { get; }
 
         static  RandomizerControllerFactory()
         {
-            //Initialize Mocks
-            var _hubContext = new Mock<IHubContext<RandomizerHub, IRandomizerClient>>();
+            var timerManager = new TimerManager();
+
+
+            //Initialize TestRandomControllerMocks
+            var hubContext = new Mock<IHubContext<RandomizerHub, IRandomizerClient>>();
 
             var mockClient = new Mock<IHubCallerClients<IRandomizerClient>>();
+            
+            hubContext.Setup(m => m.Clients).Returns(mockClient.Object);
 
             RandomizerClient = new Mock<IRandomizerClient>();
 
-            //Mock Setup
-            _hubContext.Setup(m => m.Clients).Returns(mockClient.Object);
-
             RandomizerClient.Setup(m => m.SendClientRandomEvenNumber(It.IsAny<int>()));
 
-            mockClient.Setup(m => m.All).Returns(RandomizerClient.Object);
+            mockClient.Setup(m => m.All).Returns(RandomizerClient.Object);            
 
-            //Initialize RandomizerController
-            var timerManager = new TimerManager();
+            TestRandomizerController = new(hubContext.Object, timerManager);
 
-            TestRandomizerController = new(_hubContext.Object, timerManager);
+
+            //Initialize TestNonGenericRandomizerController
+
+            var nonGenericHubContext = new Mock<IHubContext<RandomizerHub>>();
+
+            var nonGenericMockClient = new Mock<IHubClients>();
+
+            ClientProxy = new Mock<IClientProxy>();
+
+            ClientProxy.Setup(c => c.SendCoreAsync(It.IsAny<string>(), It.IsAny<object?[]>(), It.IsAny<CancellationToken>()));
+
+            nonGenericHubContext.Setup(m => m.Clients).Returns(nonGenericMockClient.Object);
+
+            nonGenericMockClient.Setup(m => m.All).Returns(ClientProxy.Object);
+
+            TestNonGenericRandomizerController = new RandomizerWithNonGenericHubController(nonGenericHubContext.Object, timerManager);
         }
     }
 }

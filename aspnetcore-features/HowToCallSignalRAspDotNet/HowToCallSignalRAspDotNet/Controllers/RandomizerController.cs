@@ -19,15 +19,18 @@ namespace HowToCallSignalRAspDotNet.Controllers
             _timer = timer;
         }
 
+        [Route("SendRandomNumber")]
         [HttpGet]
         public ActionResult<int> SendRandomNumber()
         {
             var randomValue = new Random().Next(1, 51) * 2;
 
             if (!_timer.IsTimerStarted)
+            {
                 _timer.PrepareTimer(() =>
                 _hub.Clients.All
                 .SendClientRandomEvenNumber(randomValue));
+            }
 
             return Ok(randomValue);
         }

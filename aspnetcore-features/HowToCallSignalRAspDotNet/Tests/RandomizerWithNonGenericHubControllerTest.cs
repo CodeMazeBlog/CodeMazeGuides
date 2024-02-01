@@ -1,24 +1,24 @@
-﻿namespace Test
+﻿namespace Tests
 {
-    public class RandomizerControllerUnitTest
+    public class RandomizerWithNonGenericHubControllerTest
     {
         [Fact]
         public async Task GivenSendRandomNumber_WhenCalled_ThenInvokeMethodOnClient()
         {
             //Act
-            TestRandomizerController.SendRandomNumber();
+            TestNonGenericRandomizerController.SendRandomNumber();
 
-            await Task.Delay(2000);//Delay to allow complete intialization of our Timer
+            await Task.Delay(3000);//Delay to allow complete intialization of our Timer
 
             //Assert
-            RandomizerClient.Verify(m => m.SendClientRandomEvenNumber(It.IsAny<int>()), Times.AtLeast(1));
+            ClientProxy.Verify(m => m.SendCoreAsync(It.IsAny<string>(), It.IsAny<object?[]>(), It.IsAny<CancellationToken>()), Times.AtLeast(1));
         }
 
         [Fact]
         public void WhenSendRandomNumber_ThenReturnActionResult()
         {
             //Act
-            var result = TestRandomizerController.SendRandomNumber();
+            var result = TestNonGenericRandomizerController.SendRandomNumber();
 
             //Assert
             Assert.IsAssignableFrom<ActionResult<int>>(result);
@@ -28,7 +28,7 @@
         public void WhenSendRandomNumber_ThenReturnOkObject()
         {
             //Act
-            var result = TestRandomizerController.SendRandomNumber();
+            var result = TestNonGenericRandomizerController.SendRandomNumber();
 
             //Assert
             Assert.IsType<OkObjectResult>(result.Result);
@@ -38,7 +38,7 @@
         public void WhenSendRandomNumber_ThenReturnInt()
         {
             //Act
-            var result = TestRandomizerController.SendRandomNumber();
+            var result = TestNonGenericRandomizerController.SendRandomNumber();
 
             //Assert
             var okResult = (OkObjectResult)result.Result!;
