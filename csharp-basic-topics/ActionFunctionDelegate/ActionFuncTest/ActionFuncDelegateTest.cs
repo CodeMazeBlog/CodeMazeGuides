@@ -4,9 +4,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ActionFuncTest
 {
     [TestClass]
+
     public class ActionFuncDelegateTest
     {
         [TestMethod]
+
         public void GivenTwoNumbers_WhenRunDelegateInvoked_ReturnCorrectResults()
         {
             var delegates = new ActionFuncDelegate();
