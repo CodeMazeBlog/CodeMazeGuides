@@ -3,12 +3,12 @@
     public class TimerManager
     {
         private Timer? _timer;
-
         private AutoResetEvent? _autoResetEvent;
-
         private Action? _action;
+
         public DateTime TimerStarted { get; set; }
         public bool IsTimerStarted { get; set; }
+
         public void PrepareTimer(Action action)
         {
             _action = action;
