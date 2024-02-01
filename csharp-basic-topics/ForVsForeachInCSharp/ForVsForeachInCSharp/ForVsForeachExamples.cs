@@ -7,7 +7,7 @@ namespace ForVsForeachInCSharp;
 [MemoryDiagnoser]
 [RankColumn]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-[GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
+[GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
 public class ForVsForeachExamples
 {
     private const int elementCount = 10_000_000;
@@ -16,6 +16,7 @@ public class ForVsForeachExamples
     private static readonly Dictionary<int, int> _intDictionary = GenerateData.GenerateDictionary(elementCount);
 
     [Benchmark]
+    [BenchmarkCategory("Array")]
     public long ArrayUsingForeach()
     {
         var sum = 0L;
@@ -29,6 +30,7 @@ public class ForVsForeachExamples
     }
 
     [Benchmark]
+    [BenchmarkCategory("Array")]
     public long ArrayUsingForLoop()
     {
         var sum = 0L;
@@ -42,6 +44,7 @@ public class ForVsForeachExamples
     }
 
     [Benchmark]
+    [BenchmarkCategory("List")]
     public long ListUsingForeach()
     {
         var sum = 0L;
@@ -55,6 +58,7 @@ public class ForVsForeachExamples
     }
 
     [Benchmark]
+    [BenchmarkCategory("List")]
     public long ListUsingForLoop()
     {
         var sum = 0L;
@@ -68,6 +72,7 @@ public class ForVsForeachExamples
     }
 
     [Benchmark]
+    [BenchmarkCategory("Dictionary")]
     public long DictionaryUsingForeach()
     {
         var sum = 0L;
@@ -81,6 +86,7 @@ public class ForVsForeachExamples
     }
 
     [Benchmark]
+    [BenchmarkCategory("Dictionary")]
     public long DictionaryUsingForLoop()
     {
         var sum = 0L;
