@@ -8,7 +8,7 @@
             //Act
             TestNonGenericRandomizerController.SendRandomNumber();
 
-            await Task.Delay(5000);//Delay to allow complete intialization of our Timer
+            await Task.Delay(2000);//Delay to allow complete intialization of our Timer
 
             //Assert
             ClientProxy.Verify(m => m.SendCoreAsync(It.IsAny<string>(), It.IsAny<object?[]>(), It.IsAny<CancellationToken>()), Times.AtLeast(1));
@@ -21,28 +21,9 @@
             var result = TestNonGenericRandomizerController.SendRandomNumber();
 
             //Assert
-            Assert.IsAssignableFrom<ActionResult<int>>(result);
-        }
-
-        [Fact]
-        public void WhenSendRandomNumber_ThenReturnOkObject()
-        {
-            //Act
-            var result = TestNonGenericRandomizerController.SendRandomNumber();
-
-            //Assert
-            Assert.IsType<OkObjectResult>(result.Result);
-        }
-
-        [Fact]
-        public void WhenSendRandomNumber_ThenReturnInt()
-        {
-            //Act
-            var result = TestNonGenericRandomizerController.SendRandomNumber();
-
-            //Assert
             var okResult = (OkObjectResult)result.Result!;
-
+            Assert.IsAssignableFrom<ActionResult<int>>(result);
+            Assert.IsType<OkObjectResult>(result.Result);
             Assert.IsType<int>(okResult.Value);
         }
     }

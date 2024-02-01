@@ -8,41 +8,22 @@
             //Act
             TestRandomizerController.SendRandomNumber();
 
-            await Task.Delay(5000);//Delay to allow complete intialization of our Timer
+            await Task.Delay(2000);//Delay to allow complete intialization of our Timer
 
             //Assert
             RandomizerClient.Verify(m => m.SendClientRandomEvenNumber(It.IsAny<int>()), Times.AtLeast(1));
         }
 
         [Fact]
-        public void WhenSendRandomNumber_ThenReturnActionResult()
-        {
-            //Act
-            var result = TestRandomizerController.SendRandomNumber();
-
-            //Assert
-            Assert.IsAssignableFrom<ActionResult<int>>(result);
-        }
-
-        [Fact]
-        public void WhenSendRandomNumber_ThenReturnOkObject()
-        {
-            //Act
-            var result = TestRandomizerController.SendRandomNumber();
-
-            //Assert
-            Assert.IsType<OkObjectResult>(result.Result);
-        }
-
-        [Fact]
-        public void WhenSendRandomNumber_ThenReturnInt()
+        public void WhenSendRandomNumber_ThenVerifyResult()
         {
             //Act
             var result = TestRandomizerController.SendRandomNumber();
 
             //Assert
             var okResult = (OkObjectResult)result.Result!;
-
+            Assert.IsAssignableFrom<ActionResult<int>>(result);
+            Assert.IsType<OkObjectResult>(result.Result);
             Assert.IsType<int>(okResult.Value);
         }
     }

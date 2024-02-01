@@ -19,8 +19,7 @@ namespace HowToCallSignalRAspDotNet.Controllers
             _timer = timer;
         }
 
-        [Route("SendRandomNumber")]
-        [HttpGet]
+        [HttpGet("SendRandomNumber")]
         public ActionResult<int> SendRandomNumber()
         {
             var randomValue = new Random().Next(1, 51) * 2;
@@ -28,8 +27,8 @@ namespace HowToCallSignalRAspDotNet.Controllers
             if (!_timer.IsTimerStarted)
             {
                 _timer.PrepareTimer(() =>
-                _hub.Clients.All
-                .SendClientRandomEvenNumber(randomValue));
+                    _hub.Clients.All
+                        .SendClientRandomEvenNumber(randomValue));
             }
 
             return Ok(randomValue);
