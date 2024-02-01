@@ -9,5 +9,8 @@ public static class Reducers
     public static WeatherState ReduceFetchDataAction(WeatherState state) => new() { IsLoading = true };
     
     [ReducerMethod]
-    public static WeatherState ReduceDataFetchedAction(WeatherState state, DataFetchedAction action) => new() { IsLoading = false, Forecasts = action.Forecasts };
+    public static WeatherState ReduceDataFetchedAction(WeatherState state, DataFetchedAction action)
+    {
+        return new() {IsLoading = false, Forecasts = action.Forecasts};
+    }
 }

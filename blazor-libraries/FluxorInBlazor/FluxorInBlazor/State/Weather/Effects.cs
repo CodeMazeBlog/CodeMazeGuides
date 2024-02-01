@@ -9,7 +9,8 @@ public class Effects(HttpClient http)
     [EffectMethod(typeof(FetchDataAction))]
     public async Task HandleFetchDataAction(IDispatcher dispatcher)
     {
-        var forecasts = await http.GetFromJsonAsync<Pages.Weather.WeatherForecast[]>("sample-data/weather.json") ?? Array.Empty<Pages.Weather.WeatherForecast>();
+        var forecasts = await http.GetFromJsonAsync<Pages.Weather.WeatherForecast[]>("sample-data/weather.json") 
+                        ?? Array.Empty<Pages.Weather.WeatherForecast>();
         dispatcher.Dispatch(new DataFetchedAction(forecasts));
     }
 }

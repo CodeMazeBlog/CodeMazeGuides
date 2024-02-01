@@ -6,5 +6,8 @@ namespace FluxorInBlazor.State.Counter;
 public static class Reducers
 {
     [ReducerMethod]
-    public static CounterState ReduceIncrementCounterAction(CounterState state, IncrementCounterAction action) => new() { ClickCount = state.ClickCount + 1 };
+    public static CounterState ReduceIncrementCounterAction(CounterState state, IncrementCounterAction action)
+    {
+        return new() {ClickCount = state.ClickCount + 1};
+    }
 }
