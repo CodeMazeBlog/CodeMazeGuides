@@ -1,9 +1,8 @@
-﻿namespace ToDoApp.Domain.Entities
+﻿namespace ToDoApp.Domain.Entities;
+
+public class ToDoItem
 {
-    public class ToDoItem
-    {
-        public int Id { get; set; }
-        public required string Description { get; set; }
-        public bool IsDone { get; set; }
-    }
+    public int Id { get; set; }
+    public required string Description { get; set; }
+    public bool IsDone { get; set; }
 }

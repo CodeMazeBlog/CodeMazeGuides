@@ -1,10 +1,9 @@
 ﻿using ToDoApp.Domain.Entities;
 
-namespace ToDoApp.Domain.Interfaces
+namespace ToDoApp.Domain.Interfaces;
+
+public interface IToDoRepository
 {
-    public interface IToDoRepository
-    {
-        Task<List<ToDoItem>> GetAllAsync();
-        Task<int> CreateAsync(ToDoItem item);
-    }
+    Task<List<ToDoItem>> GetAllAsync();
+    Task<int> CreateAsync(ToDoItem item);
 }

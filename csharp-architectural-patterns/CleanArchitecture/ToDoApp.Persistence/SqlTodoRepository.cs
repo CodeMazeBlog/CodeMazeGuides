@@ -2,26 +2,26 @@
 using ToDoApp.Domain.Entities;
 using ToDoApp.Domain.Interfaces;
 
-namespace ToDoApp.Persistence
+namespace ToDoApp.Persistence;
+
+public class SqlTodoRepository : IToDoRepository
 {
-    public class SqlTodoRepository : IToDoRepository
+    private readonly ToDoDbContext _context;
+
+    public SqlTodoRepository(ToDoDbContext context)
     {
-        private readonly ToDoDbContext _context;
+        _context = context;
+    }
 
-        public SqlTodoRepository(ToDoDbContext context)
-        {
-            _context = context;
-        }
+    public Task<int> CreateAsync(ToDoItem item)
+    {
+        _context.ToDoItems.Add(item);
 
-        public Task<int> CreateAsync(ToDoItem item)
-        {
-            _context.ToDoItems.Add(item);
-            return _context.SaveChangesAsync();
-        }
+        return _context.SaveChangesAsync();
+    }
 
-        public Task<List<ToDoItem>> GetAllAsync()
-        {
-            return _context.ToDoItems.ToListAsync();
-        }
+    public Task<List<ToDoItem>> GetAllAsync()
+    {
+        return _context.ToDoItems.ToListAsync();
     }
 }

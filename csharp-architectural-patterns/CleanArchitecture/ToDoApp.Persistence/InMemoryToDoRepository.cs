@@ -1,21 +1,21 @@
 ﻿using ToDoApp.Domain.Entities;
 using ToDoApp.Domain.Interfaces;
 
-namespace ToDoApp.Persistence
+namespace ToDoApp.Persistence;
+
+public class InMemoryToDoRepository : IToDoRepository
 {
-    public class InMemoryToDoRepository : IToDoRepository
+    private static readonly List<ToDoItem> _items = [];
+
+    public Task<int> CreateAsync(ToDoItem item)
     {
-        private static readonly List<ToDoItem> _items = [];
+        _items.Add(item);
 
-        public Task<int> CreateAsync(ToDoItem item)
-        {
-            _items.Add(item);
-            return Task.FromResult(item.Id);
-        }
+        return Task.FromResult(item.Id);
+    }
 
-        public Task<List<ToDoItem>> GetAllAsync()
-        {
-            return Task.FromResult(_items);
-        }
+    public Task<List<ToDoItem>> GetAllAsync()
+    {
+        return Task.FromResult(_items);
     }
 }

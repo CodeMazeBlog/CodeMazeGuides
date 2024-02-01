@@ -1,9 +1,8 @@
 ﻿using MediatR;
 
-namespace ToDoApp.Application.Commands.CreateToDo
+namespace ToDoApp.Application.Commands.CreateToDo;
+
+public class CreateToDoItemCommand : IRequest<int>
 {
-    public class CreateToDoItemCommand : IRequest<int>
-    {
-        public required string Description { get; set; }
-    }
+    public required string Description { get; set; }
 }
