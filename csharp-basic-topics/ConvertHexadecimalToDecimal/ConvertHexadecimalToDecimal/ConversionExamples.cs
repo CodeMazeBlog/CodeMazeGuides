@@ -29,20 +29,44 @@ public class ConversionExamples
 
     [Benchmark]
     [Arguments(decimalValue)]
+    //public string DecimalToHexUsingBitwiseMethod(int decimalVal)
+    //{
+    //    var hexVal = string.Empty;
+    //    var decimalNumber = decimalVal;
+
+    //    while (decimalNumber > 0)
+    //    {
+    //        var remainder = decimalNumber % 16;
+    //        var hexDigit = remainder < 10 ? (char)(remainder + '0') : (char)(remainder - 10 + 'A');
+    //        hexVal = hexDigit + hexVal;
+    //        decimalNumber /= 16;
+    //    }
+
+    //    return hexVal;
+    //}
     public string DecimalToHexUsingBitwiseMethod(int decimalVal)
     {
-        var hexVal = string.Empty;
-        var decimalNumber = decimalVal;
+        var length = 0;
+        var tempVal = decimalVal;
 
-        while (decimalNumber > 0)
+        while (tempVal > 0)
         {
-            var remainder = decimalNumber % 16;
-            var hexDigit = remainder < 10 ? (char)(remainder + '0') : (char)(remainder - 10 + 'A');
-            hexVal = hexDigit + hexVal;
-            decimalNumber /= 16;
+            tempVal /= 16;
+            length++;
         }
 
-        return hexVal;
+        return string.Create(length, decimalVal, (span, value) =>
+        {
+            var decimalNumber = value;
+
+            for (int i = length - 1; i >= 0; i--)
+            {
+                var remainder = decimalNumber % 16;
+                var hexDigit = remainder < 10 ? (char)(remainder + '0') : (char)(remainder - 10 + 'A');
+                span[i] = hexDigit;
+                decimalNumber /= 16;
+            }
+        });
     }
 
     [Benchmark]

@@ -1,5 +1,3 @@
-using ConvertHexadecimalToDecimal;
-
 namespace ConvertHexaDecimalToDecimalTests;
 
 [TestClass]
