@@ -29,21 +29,6 @@ public class ConversionExamples
 
     [Benchmark]
     [Arguments(decimalValue)]
-    //public string DecimalToHexUsingBitwiseMethod(int decimalVal)
-    //{
-    //    var hexVal = string.Empty;
-    //    var decimalNumber = decimalVal;
-
-    //    while (decimalNumber > 0)
-    //    {
-    //        var remainder = decimalNumber % 16;
-    //        var hexDigit = remainder < 10 ? (char)(remainder + '0') : (char)(remainder - 10 + 'A');
-    //        hexVal = hexDigit + hexVal;
-    //        decimalNumber /= 16;
-    //    }
-
-    //    return hexVal;
-    //}
     public string DecimalToHexUsingBitwiseMethod(int decimalVal)
     {
         var length = 0;
