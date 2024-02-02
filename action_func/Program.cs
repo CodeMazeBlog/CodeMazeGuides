@@ -18,6 +18,8 @@ namespace Action_Func
             };
 
             ActionCalculator(9, 3);
+
+            Console.ReadLine();
         }
     }
 }
