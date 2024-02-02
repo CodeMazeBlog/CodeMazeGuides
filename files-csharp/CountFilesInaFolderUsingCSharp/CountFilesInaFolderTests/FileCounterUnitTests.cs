@@ -1,26 +1,20 @@
 namespace CountFilesInaFolderTests;
 
-public class FileCounterUnitTests : IDisposable
+public class FileCounterUnitTests : IClassFixture<FileCounterFixture>
 {
-    private readonly string _tempDirectory;
+    FileCounterFixture _fixture { get; set; }
     private readonly int _expectedFileCount = 1000;
 
-    public FileCounterUnitTests()
+    public FileCounterUnitTests(FileCounterFixture fixture)
     {
-        _tempDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-        Directory.CreateDirectory(_tempDirectory);
-
-        for (var i = 0; i < 1000; i++)
-        {
-            File.Create(Path.Combine(_tempDirectory, $"file{i}.txt")).Dispose();
-        }
+        _fixture = fixture;
     }
 
     [Fact]
     public void GivenDirectoryWithFiles_WhenUsingGetFiles_ThenReturnCorrectFileCount()
     {
         // Act
-        var actualFileCount = FileCounterUsingGetFiles.CountFilesUsingGetFiles(_tempDirectory);
+        var actualFileCount = FileCounterUsingGetFiles.CountFilesUsingGetFiles(_fixture.TempDirectory);
 
         // Assert
         Assert.Equal(_expectedFileCount, actualFileCount);
@@ -30,22 +24,22 @@ public class FileCounterUnitTests : IDisposable
     public void GivenDirectoryWithFiles_WhenUsingLINQEnumerateFiles_ThenReturnCorrectFileCount()
     {
         // Act
-        var actualFileCount = FileCounterUsingLINQ.CountFilesUsingLINQEnumerateFiles(_tempDirectory);
+        var actualFileCount = FileCounterUsingLINQ.CountFilesUsingLINQEnumerateFiles(_fixture.TempDirectory);
 
         // Assert
         Assert.Equal(_expectedFileCount, actualFileCount);
     }
 
-    /*[Fact]
+    [Fact]
     public void GivenDirectoryWithFiles_WhenUsingWinAPI_ThenReturnCorrectFileCount()
     {
-        var actualFileCount = FileCounterUsingWinAPI.CountFilesUsingWinAPI(TempDirectory);
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            // Act
+            var actualFileCount = FileCounterUsingWinAPI.CountFilesUsingWinAPI(_fixture.TempDirectory);
 
-        Assert.Equal(ExpectedFileCount, actualFileCount);
-    }*/
-
-    public void Dispose()
-    {
-        Directory.Delete(_tempDirectory, true);
+            // Assert
+            Assert.Equal(_expectedFileCount, actualFileCount);
+        }
     }
 }

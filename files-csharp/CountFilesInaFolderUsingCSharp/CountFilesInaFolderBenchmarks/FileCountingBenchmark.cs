@@ -10,46 +10,40 @@ namespace CountFilesInaFolderBenchmarks;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class FileCountingBenchmark
 {
-    private string _directoryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-
     [Params(1000, 5000, 10000)]
     public int FileCount;
 
-    public DirectoryInfo CreateSimulatedDirectory(int fileCount)
+    private string? _tempDirectoryPath;
+
+    [GlobalSetup]
+    public void GlobalSetup()
     {
-        var directory = Directory.CreateDirectory(_directoryPath);
+        _tempDirectoryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+        Directory.CreateDirectory(_tempDirectoryPath);
 
-        for (int i = 0; i < fileCount; i++)
+        for (int i = 0; i < FileCount; i++)
         {
-            var filePath = Path.Combine(directory.FullName, $"File{i}.txt");
-            File.WriteAllText(filePath, "Test content");
+            var filePath = Path.Combine(_tempDirectoryPath, $"File{i}.txt");
+            File.Create(filePath).Dispose();
         }
-
-        return directory;
     }
 
     [Benchmark]
     public int DirectoryGetFiles_InMemory()
     {
-        var directory = CreateSimulatedDirectory(FileCount);
-
-        return FileCounterUsingGetFiles.CountFilesUsingGetFiles(directory.FullName);
+        return FileCounterUsingGetFiles.CountFilesUsingGetFiles(_tempDirectoryPath!);
     }
 
     [Benchmark]
     public int DirectoryEnumerateFiles_InMemory()
     {
-        var directory = CreateSimulatedDirectory(FileCount);
-
-        return FileCounterUsingLINQ.CountFilesUsingLINQEnumerateFiles(directory.FullName);
+        return FileCounterUsingLINQ.CountFilesUsingLINQEnumerateFiles(_tempDirectoryPath!);
     }
 
     [Benchmark]
     public int WinAPICount_InMemory()
     {
-        var directory = CreateSimulatedDirectory(FileCount);
-
-        return FileCounterUsingWinAPI.CountFilesUsingWinAPI(directory.FullName);
+        return FileCounterUsingWinAPI.CountFilesUsingWinAPI(_tempDirectoryPath!);
     }
 
     [GlobalCleanup]
@@ -60,17 +54,7 @@ public class FileCountingBenchmark
 
     private void CleanDirectory()
     {
-        if (_directoryPath is not null)
-        {
-            foreach (var filePath in Directory.EnumerateFiles(_directoryPath))
-            {
-                File.Delete(filePath);
-            }
-
-            if (Directory.Exists(_directoryPath))
-            {
-                Directory.Delete(_directoryPath, true);
-            }
-        }
+        if (Directory.Exists(_tempDirectoryPath))
+            Directory.Delete(_tempDirectoryPath, true);
     }
 }

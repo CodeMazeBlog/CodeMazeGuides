@@ -27,8 +27,7 @@ public class FileCounterUsingWinAPI
         {
             do
             {
-                if (findData.dwFileAttributes != FileAttributes.Directory
-                    && findData.cFileName != ".")
+                if ((findData.dwFileAttributes & FileAttributes.Directory) == 0)
                 {
                     fileCount++;
                 }
@@ -36,7 +35,7 @@ public class FileCounterUsingWinAPI
                     && findData.cFileName != "..")
                 {
                     var subDir = Path.Combine(directoryPath, findData.cFileName);
-                    fileCount += CountFilesUsingWinAPI(subDir);
+                    fileCount += CountFilesUsingWinAPI(subDir, false);
                 }
             } while (FindNextFile(handleFindFile, out findData));
 
