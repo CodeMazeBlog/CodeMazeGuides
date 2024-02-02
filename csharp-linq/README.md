@@ -15,3 +15,4 @@ This section contains LINQ related topics
 - [Difference Between Select and SelectMany Methods in LINQ](https://code-maze.com/csharp-difference-between-select-and-selectmany-methods-in-linq/)
 - [Using Dynamic LINQ With System.Linq.Dynamic.Core Library](https://code-maze.com/using-dynamic-linq/)
 - [Understanding PLINQ in .NET](https://code-maze.com/dotnet-understanding-plinq/)
+- [Different Ways to Get the First Record in Each Group With LINQ](https://code-maze.com/csharp-different-ways-to-get-the-first-record-in-each-group-with-linq/)
