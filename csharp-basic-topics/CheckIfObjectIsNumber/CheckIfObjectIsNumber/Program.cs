@@ -4,21 +4,21 @@
     {
         static void Main()
         {
-            var boolResult1 = Methods.CheckIfIntegerWithEqualityOperator(123);    // Returns True 
+            var boolResult1 = Methods.CheckIfIntegerWithEqualityOperator(123);
             Console.WriteLine(boolResult1);
 
-            var boolResult2 = Methods.CheckIfIntegerWithEqualityOperator(456D);       // Returns False
+            var boolResult2 = Methods.CheckIfIntegerWithEqualityOperator(456D);
             Console.WriteLine(boolResult2);
 
-            var boolResult3 = Methods.CheckIfIntegerWithEqualityOperator(0);          // Returns True
+            var boolResult3 = Methods.CheckIfIntegerWithEqualityOperator(0);
             Console.WriteLine(boolResult3);
 
             var floatResult = Methods.CheckIfFloatWithExplicitCasting(-2.5F);
-            Console.WriteLine(floatResult);   // Returns -2.5
+            Console.WriteLine(floatResult);
 
             try
             {
-                floatResult = Methods.CheckIfFloatWithExplicitCasting(5L);  // System.InvalidCastException
+                floatResult = Methods.CheckIfFloatWithExplicitCasting(5L);
             }
             catch (InvalidCastException)
             { 
@@ -27,7 +27,7 @@
             
             try
             {
-                floatResult = Methods.CheckIfFloatWithExplicitCasting(5.0D);         // System.InvalidCastException
+                floatResult = Methods.CheckIfFloatWithExplicitCasting(5.0D);
             }
             catch (InvalidCastException)
             { 
@@ -35,17 +35,17 @@
             }           
 
             var convertResult = Methods.CheckIfShortUsingConvert(5L);
-            Console.WriteLine(convertResult);       // Returns 5 
+            Console.WriteLine(convertResult);
 
             convertResult = Methods.CheckIfShortUsingConvert(19);
-            Console.WriteLine(convertResult);       // Returns 19
+            Console.WriteLine(convertResult);
 
             convertResult = Methods.CheckIfShortUsingConvert(12.54F);
-            Console.WriteLine(convertResult);       // Returns 13
+            Console.WriteLine(convertResult);
                                                     
             try
             {
-                convertResult = Methods.CheckIfShortUsingConvert(Decimal.MaxValue); // System.OverflowException       
+                convertResult = Methods.CheckIfShortUsingConvert(Decimal.MaxValue);       
             }
             catch (OverflowException)
             { 
@@ -53,11 +53,11 @@
             }
 
             convertResult = Methods.CheckIfShortUsingConvert("255");
-            Console.WriteLine(convertResult);       // Returns 255
+            Console.WriteLine(convertResult);
                                                   
             try
             {
-                convertResult = Methods.CheckIfShortUsingConvert("ABC"); // System.FormatException       
+                convertResult = Methods.CheckIfShortUsingConvert("ABC");       
             }
             catch (FormatException)
             {
@@ -65,29 +65,29 @@
             }
 
             var isFloat = Methods.CheckIfFloatWithIsOperator(6.99F);
-            Console.WriteLine(isFloat);     // Returns True
+            Console.WriteLine(isFloat);
 
             isFloat = Methods.CheckIfFloatWithIsOperator(Math.PI);
-            Console.WriteLine(isFloat);     // Returns False
+            Console.WriteLine(isFloat);
 
             var intValue = Methods.ConvertToIntWithAsOperator(19);
-            Console.WriteLine(intValue);     // Returns 19
+            Console.WriteLine(intValue);
 
             intValue = Methods.ConvertToIntWithAsOperator(.25);
-            Console.WriteLine(intValue);     // Returns 0
+            Console.WriteLine(intValue);
 
             object value = "123";
             var isNumber = value.IsNumber();
-            Console.WriteLine(isNumber);    // Returns False
+            Console.WriteLine(isNumber);
             value = 123;
             isNumber = value.IsNumber();
-            Console.WriteLine(isNumber);    // Returns True
+            Console.WriteLine(isNumber);
 
             var price = Methods.CalculateAllTaxesIncludedPrice(10.0);
-            Console.WriteLine(price);       // Returns 30.8
+            Console.WriteLine(price);
 
             price = Methods.CalculateAllTaxesIncludedPrice(20);
-            Console.WriteLine(price);       // Returns 28
+            Console.WriteLine(price);
         }
     }
 }
