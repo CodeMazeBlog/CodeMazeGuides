@@ -123,6 +123,25 @@ namespace Tests
             Assert.StrictEqual(expectedResult, actualResult);
         }
 
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(-1, -1)]
+        [InlineData(7, 7)]
+        [InlineData(-10, -1)]
+        [InlineData(2147483647, 0)]
+        [InlineData(2147483640, 463847412)]
+        [InlineData(-2147483648, 0)]
+        [InlineData(-2147483647, 0)]
+        [InlineData(-2147483640, -463847412)]
+        public void GivenEdgeCases_WhenReversingAsString_ThenNoError(int num, int expectedResult)
+        {
+            int actualResult = ReverseNumbers.ReverseAsString(num);
+
+            _output.WriteLine($"This test validates reverse as string method to reverse a number as a string.");
+
+            Assert.StrictEqual(expectedResult, actualResult);
+        }
+
 
         [Theory]
         [InlineData("1234500309480945804890555512324447866666", "6666687444232155550984085490849030054321")]
@@ -223,6 +242,23 @@ namespace Tests
             BigInteger actualResult = ReverseLargeNumbers.ReverseBySwappingDigits(num);
             
             _output.WriteLine($"This test validates Swapping digits method to reverse a large number as an integer.");
+
+            Assert.StrictEqual(expectedResult, actualResult);
+        }
+
+        [Theory]
+        [InlineData("1234500309480945804890555512324447866666", "6666687444232155550984085490849030054321")]
+        [InlineData("-919293847576943309435893857695833", "-338596758398534903349675748392919")]
+        [InlineData("5055919293847576965498454987546498784649879845416546565466516516549847651100000000000000000000000000000000000", "11567489456156156645656456145489789464878946457894548945696757483929195505")]
+        public void GivenLargeNumber_WhenReversingAsString_ThenNoError(string str, string expectedResultstr)
+        {
+            BigInteger num = BigInteger.Parse(str);
+
+            BigInteger expectedResult = BigInteger.Parse(expectedResultstr);
+
+            BigInteger actualResult = ReverseLargeNumbers.ReverseAsString(num);
+
+            _output.WriteLine($"This test validates reversing as string method to reverse a large number as a string.");
 
             Assert.StrictEqual(expectedResult, actualResult);
         }

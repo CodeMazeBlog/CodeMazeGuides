@@ -176,13 +176,11 @@ namespace ReverseNumberAsInteger
             int reversedNumber = num.ToString()
                 .Reverse()
                 .Select(digit => digit - '0')
-                       // .Aggregate(0, (result, digit) => result * 10 + digit - '0');
                        .Aggregate(0, (result, digit) =>
                        {
-                           // Check for potential overflow
                            if (CheckForOverflow(result))
                            {
-                               return 0; // Handling overflow
+                               return 0; 
                            }
                            return result * 10 + digit;
                        });
@@ -193,20 +191,31 @@ namespace ReverseNumberAsInteger
 
         public static int ReverseAsString(int num)
         {
-            string numStr = num.ToString();
-            char[] charArray = numStr.ToCharArray();
-            Array.Reverse(charArray);
-
-            string reversedStr = new string(charArray);
-
-            if (string.IsNullOrEmpty(reversedStr))
+            if (num == int.MinValue || num == int.MaxValue)
             {
-                return 0;
+                return 0; 
             }
 
-            return Int32.Parse(reversedStr);
-        }
+            bool isNegative = num < 0;
+            char[] numChars = Math.Abs(num).ToString().ToCharArray();
+            int length = numChars.Length;
 
+            Span<char> reversedChars = stackalloc char[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                reversedChars[i] = numChars[length - i - 1];
+            }
+
+            if (int.TryParse(reversedChars, out int reversedNumber))
+            {
+                return isNegative ? -reversedNumber : reversedNumber;
+            }
+            else
+            {
+                return 0; 
+            }
+        }
         private static bool CheckForOverflow(int currentReversedNumber)
         {
             int maxValueDiv10 = int.MaxValue / 10;
@@ -214,11 +223,11 @@ namespace ReverseNumberAsInteger
             
             if (currentReversedNumber > 0 && currentReversedNumber > maxValueDiv10)
             {
-                return true; // Overflow
+                return true; 
             }
             else if (currentReversedNumber < 0 && currentReversedNumber < minValueDiv10)
             {
-                return true; // Underflow
+                return true; 
             }
                 return false;
         }

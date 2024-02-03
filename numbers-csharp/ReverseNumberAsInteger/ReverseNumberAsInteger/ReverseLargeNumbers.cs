@@ -141,11 +141,6 @@ namespace ReverseNumberAsInteger
 
             string reversedStr = new(charArray);
 
-            if (string.IsNullOrEmpty(reversedStr))
-            {
-                return BigInteger.Zero;
-            }
-
             return isNegative ? -BigInteger.Parse(reversedStr) : BigInteger.Parse(reversedStr);
         }
     }

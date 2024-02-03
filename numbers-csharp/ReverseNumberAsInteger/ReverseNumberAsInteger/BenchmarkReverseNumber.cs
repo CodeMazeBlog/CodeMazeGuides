@@ -29,7 +29,5 @@ namespace ReverseNumberAsInteger
 
         [Benchmark]
         public void SwappingDigits_LargePosNum() => ReverseLargeNumbers.ReverseBySwappingDigits(num);
-
-
     }
 }
