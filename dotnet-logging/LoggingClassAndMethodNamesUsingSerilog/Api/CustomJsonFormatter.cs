@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using Serilog.Events;
 using Serilog.Formatting;
@@ -12,9 +13,10 @@ public class CustomJsonFormatter : ITextFormatter
     {
         _options = new JsonSerializerOptions
         {
-            //In this code, System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping is used as the encoder for the JsonSerializerOptions.
+            //In this code, System.Text.Encodings.Web.JavaScriptEncoder.
+            //UnsafeRelaxedJsonEscaping is used as the encoder for the JsonSerializerOptions.
             //This encoder does not escape the special characters in the JSON string, which makes the output cleaner.
-            Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         };
     }
 
@@ -23,7 +25,7 @@ public class CustomJsonFormatter : ITextFormatter
         var logObject = new
         {
             Timestamp = logEvent.Timestamp.ToString("yyyy-MM-dd HH:mm:ss.fff zzz"),
-           Level= logEvent.Level.ToString(),
+            Level = logEvent.Level.ToString(),
             SourceContext = GetPropertyValue(logEvent, "SourceContext"),
             Message = logEvent.RenderMessage(),
             ClassName = GetPropertyValue(logEvent, "ClassName"),
@@ -34,6 +36,8 @@ public class CustomJsonFormatter : ITextFormatter
 
     private string GetPropertyValue(LogEvent logEvent, string propertyName)
     {
-        return (logEvent.Properties.ContainsKey(propertyName) ? ((ScalarValue)logEvent.Properties[propertyName]).Value?.ToString() : null)!;
+        return (logEvent.Properties.ContainsKey(propertyName)
+            ? ((ScalarValue)logEvent.Properties[propertyName]).Value?.ToString()
+            : null)!;
     }
 }

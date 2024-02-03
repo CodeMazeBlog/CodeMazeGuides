@@ -19,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 // });
 
 #endregion
+
 builder.Host.UseSerilog((context, configuration) =>
 {
     configuration
@@ -44,7 +45,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.MapGet("/weatherforecast",new WeatherForecastEndpoint().GetWeatherForecast)
+app.MapGet("/weatherforecast", new WeatherForecastEndpoint().GetWeatherForecast)
     .WithName("GetWeatherForecast")
     .WithOpenApi();
 
