@@ -355,3 +355,5 @@ global.json
 
 # MacOS
 **/.DS_Store
+csharp-advanced-topics/ActionAndFuncDelegatesInCSharp/.vscode/launch.json
+csharp-advanced-topics/ActionAndFuncDelegatesInCSharp/.vscode/tasks.json
