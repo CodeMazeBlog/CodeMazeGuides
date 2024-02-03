@@ -30,12 +30,12 @@ public static class ToByteArrayMethods
         return ms.ToArray();
     }
 
-    public static (byte[] rentedBuffer, int length) ConvertToPooledArray(string filePath)
+    public static (byte[] rentedArray, int length) ConvertToPooledArray(string filePath)
     {
         var fileInfo = new FileInfo(filePath);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(fileInfo.Length, Array.MaxLength, "File length");
 
-        var length = (int)fileInfo.Length;
+        var length = (int) fileInfo.Length;
         var array = ArrayPool<byte>.Shared.Rent(length);
         var span = array.AsSpan(0, length);
 
@@ -50,10 +50,10 @@ public static class ToByteArrayMethods
         var fileInfo = new FileInfo(filePath);
         ArgumentOutOfRangeException.ThrowIfGreaterThan(fileInfo.Length, Array.MaxLength, "File length");
 
-        var length = (int)fileInfo.Length;
+        var length = (int) fileInfo.Length;
         var array = ArrayPool<byte>.Shared.Rent(length);
         var memory = array.AsMemory(0, length);
-        
+
         await using var fs = fileInfo.OpenRead();
         await fs.ReadExactlyAsync(memory);
 
@@ -64,7 +64,7 @@ public static class ToByteArrayMethods
     {
         using var writer = new ArrayPoolBufferWriter<byte>(DefaultBufferSize);
         using var stream = writer.AsStream();
-        
+
         using var fs = File.OpenRead(filePath);
         fs.CopyTo(stream);
 
@@ -82,7 +82,7 @@ public static class ToByteArrayMethods
         return writer.WrittenSpan.ToArray();
     }
 
-    public static async IAsyncEnumerable<byte[]> ConvertInChunks(string filePath, int chunkSize,
+    public static async IAsyncEnumerable<byte[]> ConvertInChunksMemoryMapped(string filePath, int chunkSize,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         ArgumentOutOfRangeException.ThrowIfGreaterThan(chunkSize, Array.MaxLength);
@@ -98,7 +98,33 @@ public static class ToByteArrayMethods
 
             int bytesRead;
             while ((bytesRead = await accessor.ReadAsync(memory, cancellationToken)) != 0)
+            {
                 yield return memory[..bytesRead].ToArray();
+            }
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(rentedBuffer);
+        }
+    }
+
+    public static async IAsyncEnumerable<byte[]> ConvertInChunksFileStream(string filePath, int chunkSize,
+        [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        ArgumentOutOfRangeException.ThrowIfGreaterThan(chunkSize, Array.MaxLength);
+
+        var rentedBuffer = ArrayPool<byte>.Shared.Rent(chunkSize);
+        try
+        {
+            var memory = rentedBuffer.AsMemory(0, chunkSize);
+
+            await using var fs = File.OpenRead(filePath);
+
+            int bytesRead;
+            while ((bytesRead = await fs.ReadAsync(memory, cancellationToken)) != 0)
+            {
+                yield return memory[..bytesRead].ToArray();
+            }
         }
         finally
         {

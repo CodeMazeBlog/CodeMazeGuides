@@ -41,11 +41,10 @@ public class ConvertToByteArrayGiantFileLiveTests(LiveTestGiantFileFixture fixtu
     {
         var func = async () => { _ = await ToByteArrayMethods.ConvertUsingMemoryStreamAsync(fixture.GiantTestFile); };
 
-        await func.Should().
-            ThrowAsync<Exception>().Where(ex =>
-                ex.GetType() == typeof(OutOfMemoryException) ||
-                ex.GetType() == typeof(IOException)
-            );
+        await func.Should().ThrowAsync<Exception>().Where(ex =>
+            ex.GetType() == typeof(OutOfMemoryException) ||
+            ex.GetType() == typeof(IOException)
+        );
     }
 
     [Fact]
@@ -72,11 +71,10 @@ public class ConvertToByteArrayGiantFileLiveTests(LiveTestGiantFileFixture fixtu
     {
         var action = () => { _ = ToByteArrayMethods.ConvertUsingMemoryStream(fixture.GiantTestFile); };
 
-        action.Should().
-            Throw<Exception>().Where(ex =>
-                ex.GetType() == typeof(OutOfMemoryException) ||
-                ex.GetType() == typeof(IOException)
-            );
+        action.Should().Throw<Exception>().Where(ex =>
+            ex.GetType() == typeof(OutOfMemoryException) ||
+            ex.GetType() == typeof(IOException)
+        );
     }
 
     [Fact]
@@ -93,11 +91,28 @@ public class ConvertToByteArrayGiantFileLiveTests(LiveTestGiantFileFixture fixtu
     }
 
     [Fact]
-    public async void GivenGiantFile_WhenCallingConvertInChunks_ThenReturnsCorrectContent()
+    public async void GivenGiantFile_WhenCallingConvertInChunksMemoryMapped_ThenReturnsCorrectContent()
     {
         using var md5Hasher = MD5.Create();
-        await foreach (var chunk in ToByteArrayMethods.ConvertInChunks(fixture.GiantTestFile,
-                           ToByteArrayMethods.DefaultBufferSize))
+        await foreach (var chunk in ToByteArrayMethods.ConvertInChunksMemoryMapped(fixture.GiantTestFile,
+            ToByteArrayMethods.DefaultBufferSize))
+        {
+            md5Hasher.TransformBlock(chunk, 0,
+                chunk.Length, null, 0);
+        }
+
+        md5Hasher.TransformFinalBlock([], 0, 0);
+        var hash = md5Hasher.Hash;
+
+        hash.Should().BeEquivalentTo(fixture.GiantTestFileHash);
+    }
+
+    [Fact]
+    public async void GivenGiantFile_WhenCallingConvertInChunksFileStream_ThenReturnsCorrectContent()
+    {
+        using var md5Hasher = MD5.Create();
+        await foreach (var chunk in ToByteArrayMethods.ConvertInChunksFileStream(fixture.GiantTestFile,
+            ToByteArrayMethods.DefaultBufferSize))
         {
             md5Hasher.TransformBlock(chunk, 0,
                 chunk.Length, null, 0);
