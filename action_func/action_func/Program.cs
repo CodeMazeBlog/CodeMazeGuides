@@ -1,25 +1,16 @@
-﻿using System;
+﻿// See https://aka.ms/new-console-template for more information
 
-namespace Action_Func
+
+Func<int, int, int> sumFunc = (a, b) => a + b; int result = sumFunc(3, 4); // result = 7
+
+Action<int, int> ActionCalculator = (a, b) =>
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
+    Console.WriteLine($"Addition result: {a + b}");
+    Console.WriteLine($"Subtraction result: {a - b}");
+    Console.WriteLine($"Multiplication result: {a * b}");
+    Console.WriteLine($"Division result: {a / b}");
+};
 
-            Func<int, int, int> sumFunc = (a, b) => a + b; int result = sumFunc(3, 4); // result = 7
+ActionCalculator(9, 3);
 
-            Action<int, int> ActionCalculator = (a, b) =>
-            {
-                Console.WriteLine($"Addition result: {a + b}");
-                Console.WriteLine($"Subtraction result: {a - b}");
-                Console.WriteLine($"Multiplication result: {a * b}");
-                Console.WriteLine($"Division result: {a / b}");
-            };
-
-            ActionCalculator(9, 3);
-
-            Console.ReadLine();
-        }
-    }
-}
+Console.ReadLine();
