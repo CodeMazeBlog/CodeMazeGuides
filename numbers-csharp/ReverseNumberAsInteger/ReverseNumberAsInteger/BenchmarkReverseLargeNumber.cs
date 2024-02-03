@@ -40,24 +40,24 @@ namespace ReverseNumberAsInteger
         readonly BigInteger veryLargeInt = BigInteger.Parse("50559192938475769654984549875464987846498798454888888888888888888888888898498451849849849879846546548798498484784848748741849898321654656546651651654984765110000545487485468489645443309435893857695833");
 
         [Benchmark]
-        public void MathPow_200Digits() => ReverseLargeNumbers.ReverseUsingMathPow(veryLargeInt);
+        public void MathPow_200DigitNumber() => ReverseLargeNumbers.ReverseUsingMathPow(veryLargeInt);
 
         [Benchmark]
-        public void SwappingDigits_200Digits() => ReverseLargeNumbers.ReverseBySwappingDigits(veryLargeInt);
+        public void SwappingDigits_200DigitNumber() => ReverseLargeNumbers.ReverseBySwappingDigits(veryLargeInt);
 
         [Benchmark]
-        public void Linq_200Digits() => ReverseLargeNumbers.ReverseUsingLinq(veryLargeInt);
+        public void Linq_200DigitNumber() => ReverseLargeNumbers.ReverseUsingLinq(veryLargeInt);
 
         [Benchmark]
-        public void DigitExtractAndReconstruct_LargePosNum_200Digits() => ReverseLargeNumbers.ReverseUsingDigitExtractionAndReconstruction(veryLargeInt);
+        public void DigitExtractAndReconstruct_200DigitNumber() => ReverseLargeNumbers.ReverseUsingDigitExtractionAndReconstruction(veryLargeInt);
 
         [Benchmark]
-        public void ModuloAndDivision_200Digits() => ReverseLargeNumbers.ReverseUsingDigitExtractionAndReconstruction(veryLargeInt);
+        public void ModuloAndDivision_200DigitNumber() => ReverseLargeNumbers.ReverseUsingDigitExtractionAndReconstruction(veryLargeInt);
 
         [Benchmark]
-        public void Recursion_200Digits() => ReverseLargeNumbers.ReverseUsingRecursion(veryLargeInt);
+        public void Recursion_200DigitNumber() => ReverseLargeNumbers.ReverseUsingRecursion(veryLargeInt);
 
         [Benchmark]
-        public void ReverseAsString_200Digits() => ReverseLargeNumbers.ReverseAsString(veryLargeInt);
+        public void ReverseAsString_200DigitNumber() => ReverseLargeNumbers.ReverseAsString(veryLargeInt);
     }
 }
