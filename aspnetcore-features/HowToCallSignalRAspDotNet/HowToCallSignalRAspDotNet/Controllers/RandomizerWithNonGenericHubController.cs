@@ -24,7 +24,7 @@ namespace HowToCallSignalRAspDotNet.Controllers
         [HttpGet]
         public ActionResult<int> SendRandomNumber()
         {
-            var randomValue = new Random().Next(1, 51) * 2;
+            var randomValue = Random.Shared.Next(1, 51) * 2;
 
             if (!_timer.IsTimerStarted)
             {

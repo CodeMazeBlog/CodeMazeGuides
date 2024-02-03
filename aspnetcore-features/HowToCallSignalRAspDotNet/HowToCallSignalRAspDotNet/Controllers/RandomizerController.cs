@@ -11,6 +11,7 @@ namespace HowToCallSignalRAspDotNet.Controllers
     public class RandomizerController : ControllerBase
     {
         private readonly IHubContext<RandomizerHub, IRandomizerClient> _hub;
+
         private readonly TimerManager _timer;
 
         public RandomizerController(IHubContext<RandomizerHub, IRandomizerClient> hub, TimerManager timer)
@@ -23,7 +24,7 @@ namespace HowToCallSignalRAspDotNet.Controllers
         [HttpGet]
         public ActionResult<int> SendRandomNumber()
         {
-            var randomValue = new Random().Next(1, 51) * 2;
+            var randomValue = Random.Shared.Next(1, 51) * 2;
 
             if (!_timer.IsTimerStarted)
             {
