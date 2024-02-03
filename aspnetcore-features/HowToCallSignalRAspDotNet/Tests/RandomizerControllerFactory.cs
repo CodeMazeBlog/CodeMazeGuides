@@ -10,9 +10,6 @@
 
         static  RandomizerControllerFactory()
         {
-            var timerManager = new TimerManager();
-
-
             //Initialize TestRandomControllerMocks
             var hubContext = new Mock<IHubContext<RandomizerHub, IRandomizerClient>>();
 
@@ -26,7 +23,7 @@
 
             mockClient.Setup(m => m.All).Returns(RandomizerClient.Object);            
 
-            TestRandomizerController = new(hubContext.Object, timerManager);
+            TestRandomizerController = new(hubContext.Object, new TimerManager());
 
 
             //Initialize TestNonGenericRandomizerController
@@ -43,7 +40,7 @@
 
             nonGenericMockClient.Setup(m => m.All).Returns(ClientProxy.Object);
 
-            TestNonGenericRandomizerController = new RandomizerWithNonGenericHubController(nonGenericHubContext.Object, timerManager);
+            TestNonGenericRandomizerController = new(nonGenericHubContext.Object, new TimerManager());
         }
     }
 }
