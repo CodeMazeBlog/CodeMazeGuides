@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="DelegatesExamples\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DelegatesExamples\" />
+  </ItemGroup>
 </Project>
