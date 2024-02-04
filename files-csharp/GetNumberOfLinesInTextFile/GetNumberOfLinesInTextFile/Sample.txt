@@ -1,0 +1,7 @@
+﻿This is a sample text file.
+It contains multiple lines.
+Each line has different content.
+Lines can vary in length.
+Some lines may be empty.
+
+Feel free to add more lines or modify the content for testing purposes.
