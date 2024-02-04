@@ -11,7 +11,6 @@ namespace HowToCallSignalRAspDotNet.Controllers
     public class RandomizerController : ControllerBase
     {
         private readonly IHubContext<RandomizerHub, IRandomizerClient> _hub;
-
         private readonly TimerManager _timer;
 
         public RandomizerController(IHubContext<RandomizerHub, IRandomizerClient> hub, TimerManager timer)

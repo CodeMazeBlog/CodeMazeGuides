@@ -4,7 +4,6 @@
     {
         public static RandomizerController TestRandomizerController { get; }
         public static RandomizerWithNonGenericHubController TestNonGenericRandomizerController { get; }
-
         public static Mock<IRandomizerClient> RandomizerClient { get; }
         public static Mock<IClientProxy> ClientProxy { get; }
 

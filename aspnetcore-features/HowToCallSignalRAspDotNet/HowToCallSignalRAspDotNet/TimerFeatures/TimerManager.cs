@@ -3,11 +3,9 @@
     public class TimerManager
     {
         private Timer? _timer;
-
         private Action? _action;
 
         public DateTime TimerStarted { get; set; }
-
         public bool IsTimerStarted { get; set; }
 
         public void PrepareTimer(Action action)
@@ -23,13 +21,19 @@
 
         public void Execute(object? stateInfo)
         {
-            _action();
+            if (_action != null)
+            {
+                _action();
+            }
 
             if ((DateTime.Now - TimerStarted).TotalSeconds > 60)
             {
                 IsTimerStarted = false;
 
-                _timer.Dispose();
+                if (_timer != null)
+                {
+                    _timer.Dispose();
+                }
             }
         }
     }
