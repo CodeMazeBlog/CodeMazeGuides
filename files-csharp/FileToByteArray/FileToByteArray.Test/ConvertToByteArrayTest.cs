@@ -110,7 +110,7 @@ public sealed class ConvertToByteArrayTest(TestFilesFixture fixture) : IClassFix
     }
 
     [Fact]
-    public async void GivenFile_WhenCallingConvertInChunks_ThenReturnsCorrectContent()
+    public async void GivenSmallFile_WhenCallingConvertInChunksMemoryMapped_ThenReturnsCorrectContent()
     {
         using var md5Hasher = MD5.Create();
         await foreach (var chunk in ToByteArrayMethods.ConvertInChunksMemoryMapped(fixture.SmallTestFile,
@@ -126,7 +126,7 @@ public sealed class ConvertToByteArrayTest(TestFilesFixture fixture) : IClassFix
     }
 
     [Fact]
-    public async void GivenLargeFile_WhenCallingConvertInChunks_ThenReturnsCorrectContent()
+    public async void GivenLargeFile_WhenCallingConvertInChunksMemoryMapped_ThenReturnsCorrectContent()
     {
         using var md5Hasher = MD5.Create();
         await foreach (var chunk in ToByteArrayMethods.ConvertInChunksMemoryMapped(fixture.LargeTestFile,
@@ -142,12 +142,64 @@ public sealed class ConvertToByteArrayTest(TestFilesFixture fixture) : IClassFix
     }
 
     [Fact]
-    public async void GivenFile_WhenCallingConvertInChunksWithGreaterThanMaxArrayChunkSize_ThenThrowsArgumentException()
+    public async void GivenFile_WhenCallingConvertInChunksMemoryMappedWithGreaterThanMaxArrayChunkSize_ThenThrowsArgumentException()
     {
         var func = async () =>
         {
             using var md5Hasher = MD5.Create();
             await foreach (var chunk in ToByteArrayMethods.ConvertInChunksMemoryMapped(fixture.SmallTestFile,
+                Array.MaxLength + 1))
+            {
+                md5Hasher.TransformBlock(chunk, 0, chunk.Length, null, 0);
+            }
+
+            md5Hasher.TransformFinalBlock([], 0, 0);
+
+            return md5Hasher.Hash;
+        };
+
+        await func.Should().ThrowAsync<ArgumentOutOfRangeException>();
+    }
+
+    [Fact]
+    public async void GivenSmallFile_WhenCallingConvertInChunksFileStream_ThenReturnsCorrectContent()
+    {
+        using var md5Hasher = MD5.Create();
+        await foreach (var chunk in ToByteArrayMethods.ConvertInChunksFileStream(fixture.SmallTestFile,
+            ToByteArrayMethods.DefaultBufferSize))
+        {
+            md5Hasher.TransformBlock(chunk, 0, chunk.Length, null, 0);
+        }
+
+        md5Hasher.TransformFinalBlock([], 0, 0);
+        var hash = md5Hasher.Hash;
+
+        hash.Should().BeEquivalentTo(fixture.SmallTestFileHash);
+    }
+
+    [Fact]
+    public async void GivenLargeFile_WhenCallingConvertInChunksFileStream_ThenReturnsCorrectContent()
+    {
+        using var md5Hasher = MD5.Create();
+        await foreach (var chunk in ToByteArrayMethods.ConvertInChunksFileStream(fixture.LargeTestFile,
+            ToByteArrayMethods.DefaultBufferSize))
+        {
+            md5Hasher.TransformBlock(chunk, 0, chunk.Length, null, 0);
+        }
+
+        md5Hasher.TransformFinalBlock([], 0, 0);
+        var hash = md5Hasher.Hash;
+
+        hash.Should().BeEquivalentTo(fixture.LargeTestFileHash);
+    }
+
+    [Fact]
+    public async void GivenFile_WhenCallingConvertInChunksFileStreamWithGreaterThanMaxArrayChunkSize_ThenThrowsArgumentException()
+    {
+        var func = async () =>
+        {
+            using var md5Hasher = MD5.Create();
+            await foreach (var chunk in ToByteArrayMethods.ConvertInChunksFileStream(fixture.SmallTestFile,
                 Array.MaxLength + 1))
             {
                 md5Hasher.TransformBlock(chunk, 0, chunk.Length, null, 0);
