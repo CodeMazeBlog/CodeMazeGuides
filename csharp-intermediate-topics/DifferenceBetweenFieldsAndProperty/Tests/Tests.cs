@@ -3,16 +3,21 @@ namespace Tests;
 public class Tests
 {
     [Fact]
-    public void GivenVoter_WhenAssigningAgeLessThanEighteen_ThenThrowsException()
+    public void GivenRectangle_WhenAssigningNegativeWidth_ThenThrowsException()
     {
-        Assert.Throws<ArgumentException>(() => new Voter("Kramer", 14));
+        Assert.Throws<ArgumentException>(() => new Rectangle(-2, 14));
     }
 
     [Fact]
-    public void GivenVoterWithAgeGreaterThanEighteen_WhenInvokingDisplayIsVoter_ThenReturnsMessage()
+    public void GivenRectangle_WhenScaling_ThenReturnsScaledDimensions()
     {
-        var voterObject = new Voter("Steve", 35);
+        var rectangle = new Rectangle(40, 35);
+        Rectangle.ScalingFactor = 3;
 
-        Assert.Equal("Steve can vote as their age is: 35", voterObject.DisplayIsVoter());
+        var scaledRectangle = rectangle.CreateScaledRectangle();
+
+        Assert.Equal(120, scaledRectangle.Width);
+
+        Assert.Equal(105, scaledRectangle.Height);
     }
 }

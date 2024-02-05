@@ -17,7 +17,7 @@ internal class Program
         Console.Write("Enter the scaling factor: ");
         double.TryParse(Console.ReadLine(), out var scalingFactor);
 
-        var rectangle = new Rectangle(width, height);
+        var rectangle = new Rectangle { Width = width, Height = height };
         Console.WriteLine($"Dimensions of the initial rectangle: {rectangle.Width} X {rectangle.Height}");
 
         Rectangle.ScalingFactor = scalingFactor;
@@ -25,17 +25,8 @@ internal class Program
         var scaledRectangle = rectangle.CreateScaledRectangle();
         Console.WriteLine($"Dimensions of the scaled rectangle: {scaledRectangle.Width} X {scaledRectangle.Height}");
 
-        Console.Write("Enter the age: ");
-        int.TryParse(Console.ReadLine(), out var age);
-
-        Console.Write("Enter the name: ");
-        var inputName = Console.ReadLine();
-        var name = string.IsNullOrEmpty(inputName) ? "John Doe" : inputName;
-
-        var voterObject = new Voter(name, age);
-
-        Console.WriteLine($"Age entered: {voterObject.Age}");
-
-        Console.WriteLine(voterObject.DisplayIsVoter());
+        var newRectangle = new Rectangle { Width = 10.5, Height = 5.5 };
+        var newRectangleScaled = newRectangle.CreateScaledRectangle();
+        Console.WriteLine($"Dimensions of the new rectangle after scaling: {newRectangleScaled.Width} X {newRectangleScaled.Height}");
     }
 }
