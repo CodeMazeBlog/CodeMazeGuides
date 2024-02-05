@@ -1,0 +1,1 @@
+﻿Console.WriteLine("How To Check if an URL Is Valid in .Net - Please go to `Tests` project for examples.");
