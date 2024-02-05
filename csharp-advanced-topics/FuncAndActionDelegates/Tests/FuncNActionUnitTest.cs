@@ -14,7 +14,7 @@ namespace Tests
         }
 
         [TestMethod]
-        public void TestFuncDelegate()
+        public void WhenAssigningFuncDelegate_ThenExpectedResult()
         {
             var result = _funcDelegate.GetFactorial(3);
 
@@ -22,26 +22,23 @@ namespace Tests
         }
 
         [TestMethod]
-        public void IsPrimeNumber_ShouldReturnTrueForPrime()
+        public void WhenAssigningAPrimeNumber_ThenReturnTrue()
         {
-            bool expectedResult = true;
+            var expectedResult = true;
 
-            bool actualResult = _actionDelegate.IsPrimeNumber(13);
+            var actualResult = _actionDelegate.IsPrimeNumber(13);
 
             Assert.AreEqual(expectedResult, actualResult);
         }
 
         [TestMethod]
-        public void IsPrimeNumber_ShouldReturnFalseForNonPrime()
+        public void WhenAssigningNonPrimeNumber_ThenReturnFalse()
         {
-            bool expectedResult = false;
+            var expectedResult = false;
 
-            bool actualResult = _actionDelegate.IsPrimeNumber(10);
+            var actualResult = _actionDelegate.IsPrimeNumber(10);
 
             Assert.AreEqual(expectedResult, actualResult);
         }
-
-
     }
-
 }
