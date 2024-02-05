@@ -38,6 +38,16 @@ public class ConversionExamplesUnitTests
     }
 
     [TestMethod]
+    public void GivenANegativeDecimalValue_WhenDecimalToHexUsingBitwiseMethodInvoked_VerifyAccurateConversion()
+    {
+        var result = _conversionExamples.DecimalToHexUsingBitwiseMethod(int.MinValue);
+
+        Assert.IsNotNull(result);
+        Assert.IsInstanceOfType(result, typeof(string));
+        Assert.AreEqual(int.MinValue.ToString("X"), result);
+    }
+
+    [TestMethod]
     public void GivenAHexadecimalValue_WhenHexToDecimalUsingParseInvoked_VerifyAccurateConversion()
     {
         var result = _conversionExamples.HexToDecimalUsingParse(hexVal);
