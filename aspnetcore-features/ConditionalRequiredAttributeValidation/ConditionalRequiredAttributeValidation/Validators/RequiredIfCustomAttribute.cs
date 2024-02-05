@@ -8,9 +8,9 @@ public class RequiredIfCustomAttribute(string otherProperty, object targetValue)
     {
         var otherPropertyValue = validationContext.ObjectType.GetProperty(otherProperty)?.GetValue(validationContext.ObjectInstance);
 
-        if (otherPropertyValue == null || !otherPropertyValue.Equals(targetValue)) return ValidationResult.Success;
+        if (otherPropertyValue is null || !otherPropertyValue.Equals(targetValue)) return ValidationResult.Success;
 
-        if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
+        if (value is null || string.IsNullOrWhiteSpace(value.ToString()))
         {
             return new ValidationResult(ErrorMessage ?? "This field is required.");
         }

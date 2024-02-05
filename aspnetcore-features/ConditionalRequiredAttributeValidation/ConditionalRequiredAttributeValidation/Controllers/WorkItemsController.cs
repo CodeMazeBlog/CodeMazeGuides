@@ -8,13 +8,13 @@ namespace ConditionalRequiredAttributeValidation.Controllers;
 public class WorkItemsController : ControllerBase
 {
     [HttpPost("create")]
-    public Task<IActionResult> CreateWorkItem([FromBody] WorkItem workItem)
+    public IActionResult CreateWorkItem([FromBody] WorkItem workItem)
     {
         if (!ModelState.IsValid)
         {
-            return Task.FromResult<IActionResult>(BadRequest());
+            return BadRequest();
         }
 
-        return Task.FromResult<IActionResult>(Ok(workItem));
+        return Ok(workItem);
     }
 }   
