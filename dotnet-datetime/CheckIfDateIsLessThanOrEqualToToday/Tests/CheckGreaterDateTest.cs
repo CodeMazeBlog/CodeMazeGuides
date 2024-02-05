@@ -1,6 +1,4 @@
-﻿using CheckIfDateIsLessThanOrEqualToToday;
-
-namespace Tests;
+﻿namespace Tests;
 
 public class CheckGreaterDateTest
 {

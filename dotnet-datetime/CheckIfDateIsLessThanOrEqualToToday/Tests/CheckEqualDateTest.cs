@@ -1,6 +1,5 @@
-﻿using CheckIfDateIsLessThanOrEqualToToday;
+﻿namespace Tests;
 
-namespace Tests;
 public class CheckEqualDateTest
 {
     private readonly CheckDateMethods _checkDateMethod;
