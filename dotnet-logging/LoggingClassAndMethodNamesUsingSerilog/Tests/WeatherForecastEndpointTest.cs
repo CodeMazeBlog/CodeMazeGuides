@@ -1,7 +1,3 @@
-using Api;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-
 namespace Tests;
 
 public class WeatherForecastEndpointTest

@@ -13,10 +13,7 @@ public class CustomJsonFormatter : ITextFormatter
     {
         _options = new JsonSerializerOptions
         {
-            //In this code, System.Text.Encodings.Web.JavaScriptEncoder.
-            //UnsafeRelaxedJsonEscaping is used as the encoder for the JsonSerializerOptions.
-            //This encoder does not escape the special characters in the JSON string, which makes the output cleaner.
-            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+          Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         };
     }
 
