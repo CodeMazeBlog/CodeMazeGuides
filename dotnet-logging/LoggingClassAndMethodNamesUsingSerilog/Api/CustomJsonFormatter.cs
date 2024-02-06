@@ -13,7 +13,7 @@ public class CustomJsonFormatter : ITextFormatter
     {
         _options = new JsonSerializerOptions
         {
-          Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
         };
     }
 
