@@ -21,10 +21,10 @@ public class WeatherForecastController() : ControllerBase
         "Scorching"
     ];
 
-    [HttpGet(Name = "GetWeatherForecastParallelForEachAsync")]
+    [HttpGet("weather-forecast-parallel", Name = "GetWeatherForecastParallelForEachAsync")]
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastParallelForEachAsync()
     {
-        Console.WriteLine($"GetWeatherForecast started on thread: {Environment.CurrentManagedThreadId}");
+        Console.WriteLine($"GetWeatherForecastParallelForEachAsync started on thread: {Environment.CurrentManagedThreadId}");
         ParallelOptions parallelOptions = new()
         {
             MaxDegreeOfParallelism = 3
@@ -37,18 +37,19 @@ public class WeatherForecastController() : ControllerBase
             var result = await AsyncMethod(); resultBag.Add(result);
         });
 
-        Console.WriteLine($"GetWeatherForecast completed on thread: {Environment.CurrentManagedThreadId}");
+        Console.WriteLine($"GetWeatherForecastParallelForEachAsync completed on thread: {Environment.CurrentManagedThreadId}");
         return resultBag.SelectMany(cr => cr);
     }
 
-    [HttpGet(Name = "GetWeatherForecastWhenAll")]
+    [HttpGet("weather-forecast-when-all", Name = "GetWeatherForecastWhenAll")]
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastWhenAll()
     {
+        Console.WriteLine($"GetWeatherForecastWhenAll started on thread: {Environment.CurrentManagedThreadId}");
         var tasks = new List<Task<IEnumerable<WeatherForecast>>>();
 
-        var result1 = AsyncMethod();
-        var result2 = AsyncMethod();
-        var result3 = AsyncMethod();
+        var result1 = Task.Run(() => AsyncMethod());
+        var result2 = Task.Run(() => AsyncMethod());
+        var result3 = Task.Run(() => AsyncMethod());
 
         tasks.Add(result1);
         tasks.Add(result2);
@@ -56,6 +57,8 @@ public class WeatherForecastController() : ControllerBase
 
         var combinedResults = await Task.WhenAll(tasks);
         var result = combinedResults.SelectMany(cr => cr);
+
+        Console.WriteLine($"GetWeatherForecastWhenAll started on thread: {Environment.CurrentManagedThreadId}");
         return result;
     }
 
