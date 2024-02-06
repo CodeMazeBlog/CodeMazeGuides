@@ -1,50 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CheckIfObjectIsNumber
+﻿namespace CheckIfObjectIsNumber
 {
     public static class Methods
     {
-        public static bool CheckIfIntegerWithEqualityOperator(object value)
-        {
-            var isInteger = value.GetType() == typeof(int);
+        public static bool CheckIfIntegerWithEqualityOperator(object value) => value.GetType() == typeof(int);
 
-            return isInteger;
-        }
+        public static float CheckIfFloatWithExplicitCasting(object value) => (float)value;
 
-        public static float CheckIfFloatWithExplicitCasting(object value)
-        {
-            float _float = (float)value;
+        public static short CheckIfShortUsingConvert(object value) => Convert.ToInt16(value);
 
-            return _float;
-        }
-
-        public static short CheckIfShortUsingConvert(object value)
-        {
-            short _short = Convert.ToInt16(value);
-
-            return _short;
-        }
-
-        public static bool CheckIfFloatWithIsOperator(object value)
-        {
-            if (value is float)
-            {
-                return true;
-            }
-
-            return false;
-        }
+        public static bool CheckIfFloatWithIsOperator(object value) => value is float;
 
         public static int ConvertToIntWithAsOperator(object value)
         {
             var amount = value as int?;
-            if (amount == null) return 0;
 
-            return amount.Value;
+            return amount ?? 0;
         }
 
         public static double CalculateAllTaxesIncludedPrice(object tax)

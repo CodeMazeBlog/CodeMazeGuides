@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CheckIfObjectIsNumber
+﻿namespace CheckIfObjectIsNumber
 {
     public static class Extensions
     {
@@ -18,8 +12,11 @@ namespace CheckIfObjectIsNumber
                     || value is uint
                     || value is long
                     || value is ulong
+                    || value is Int128
+                    || value is UInt128
                     || value is nint
                     || value is nuint
+                    || value is Half
                     || value is float
                     || value is double
                     || value is decimal;
