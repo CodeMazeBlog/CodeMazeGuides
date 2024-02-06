@@ -8,7 +8,7 @@ public static class UrlValidator
     public static bool ValidateUrlWithRegex(string url)
     {
         var urlRegex = new Regex(
-            @"^(https?|ftp):\/\/(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}(?::\d+)?(?:\/(?:[-a-zA-Z0-9@:%_\+.~#?&=]+\/?)*)?$",
+            @"^(https?|ftps?):\/\/(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}(?::\d+)?(?:\/(?:[-a-zA-Z0-9@%_\+.~#?&=]+\/?)*)?",
             RegexOptions.IgnoreCase);
         return urlRegex.IsMatch(url);
     }
@@ -34,9 +34,16 @@ public static class UrlValidator
             var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Head, url));
             return response.IsSuccessStatusCode;
         }
-        catch (HttpRequestException e) when (e.InnerException is SocketException { SocketErrorCode: SocketError.HostNotFound })
+        catch (HttpRequestException e)
+            when (e.InnerException is SocketException
+                  { SocketErrorCode: SocketError.HostNotFound })
         {
             return false;
+        }
+        catch (HttpRequestException e)
+            when (e.StatusCode.HasValue && (int)e.StatusCode.Value > 500)
+        {
+            return true;
         }
     }
 }
