@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.HighPerformance;
 using CommunityToolkit.HighPerformance.Buffers;
+using System.Buffers;
+using System;
 using System.Text.RegularExpressions;
 
 namespace HowtoUseStringPool;
@@ -32,14 +34,7 @@ public class StringPoolHelper()
 
     public bool AddUser(ReadOnlySpan<char> nameSpan, ReadOnlySpan<char> emailSpan)
     {
-        var prefix = _myPool.GetOrAdd("USER_");
-        var name = _myPool.GetOrAdd(nameSpan);
-
-        Span<char> combined = stackalloc char[prefix.Length + nameSpan.Length];
-        prefix.CopyTo(combined);
-        name.CopyTo(combined[prefix.Length..]);
-
-        var cacheKey = _myPool.GetOrAdd(combined);
+        var cacheKey = GetUserCacheKey(nameSpan);
         var cacheValue = _myPool.GetOrAdd(emailSpan);
         _cache[cacheKey] = cacheValue;
 
@@ -48,17 +43,36 @@ public class StringPoolHelper()
 
     public string GetUser(ReadOnlySpan<char> nameSpan)
     {
-        var prefix = _myPool.GetOrAdd("USER_");
-        var name = _myPool.GetOrAdd(nameSpan);
-
-        Span<char> combined = stackalloc char[prefix.Length + nameSpan.Length];
-        prefix.CopyTo(combined);
-        name.CopyTo(combined[prefix.Length..]);
-
-        var cacheKey = _myPool.GetOrAdd(combined);
+        var cacheKey = GetUserCacheKey(nameSpan);
         _cache.TryGetValue(cacheKey, out string value);
 
         return value;
+    }
+
+    public string GetUserCacheKey(ReadOnlySpan<char> nameSpan)
+    {
+        var prefix = _myPool.GetOrAdd("USER_");
+        var name = _myPool.GetOrAdd(nameSpan);
+        var combined = GetSpan(prefix, name);
+        var cacheKey = _myPool.GetOrAdd(combined);
+
+        return cacheKey;
+    }
+
+    private static Span<char> GetSpan(params string[] valueList)
+    {
+        var size = valueList.Sum(value => value.Length);
+        char[] pooledArray = ArrayPool<char>.Shared.Rent(size);
+        var combined = new Span<char>(pooledArray, 0, size);
+
+        var position = 0;
+        foreach (var value in valueList)
+        {
+            value.CopyTo(combined[position..]);
+            position += value.Length;
+        }
+
+        return combined;
     }
 
     public string GetHostName(string url)
@@ -109,10 +123,7 @@ public class StringPoolHelper()
     {
         var prefix = _myPool.GetOrAdd("TOKEN_");
         var token = GetHeaderValue(request, "Authorization");
-
-        Span<char> combined = stackalloc char[prefix.Length + token.Length];
-        prefix.CopyTo(combined);
-        token.CopyTo(combined[prefix.Length..]);
+        var combined = GetSpan(prefix, token);
         var tokenKey = _myPool.GetOrAdd(combined);
 
         if (_cache.ContainsKey(tokenKey))
@@ -155,11 +166,7 @@ public class StringPoolHelper()
         var prefix = _myPool.GetOrAdd("LOCALIZATION_");
         var lang = _myPool.GetOrAdd(langSpan);
         var key = _myPool.GetOrAdd(keySpan);
-
-        Span<char> combined = stackalloc char[prefix.Length + langSpan.Length + keySpan.Length];
-        prefix.CopyTo(combined);
-        lang.CopyTo(combined[prefix.Length..]);
-        key.CopyTo(combined[(prefix.Length + lang.Length)..]);
+        var combined = GetSpan(prefix, lang, key);
 
         var calculatedKey = _myPool.GetOrAdd(combined);
         _cache.TryGetValue(calculatedKey, out string? value);
@@ -199,10 +206,7 @@ public class StringPoolHelper()
     {
         var prefix = _myPool.GetOrAdd("[ERROR]:");
         var detail = _myPool.GetOrAdd(detailSpan);
-
-        Span<char> combined = stackalloc char[prefix.Length + detailSpan.Length];
-        prefix.CopyTo(combined);
-        detail.CopyTo(combined[prefix.Length..]);
+        var combined = GetSpan(prefix, detail);
 
         var logMessage = _myPool.GetOrAdd(combined);
         _logger.Add(logMessage);
