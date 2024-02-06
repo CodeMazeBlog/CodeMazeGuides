@@ -32,21 +32,21 @@ public class ConversionExamples
 
     [Benchmark]
     [Arguments(DecimalValue)]
-public string DecimalToHexUsingBitwiseMethod(int decimalVal)
-{
-    const int hexBaseOffset = 'A' - 0xA; 
-    var hexStringLength = (BitOperations.Log2((uint) decimalVal) >> 2) + 1;
-
-    return string.Create(hexStringLength, decimalVal, (span, value) =>
+    public string DecimalToHexUsingBitwiseMethod(int decimalVal)
     {
-        for (int i = span.Length - 1; i >= 0; i--)
+        const int hexBaseOffset = 'A' - 0xA; 
+        var hexStringLength = (BitOperations.Log2((uint) decimalVal) >> 2) + 1;
+
+        return string.Create(hexStringLength, decimalVal, (span, value) =>
         {
-            var digit = (byte) (value & 0xF);
-            span[i] = (char) (digit + (digit < 10 ? '0' : hexBaseOffset));
-            value >>= 4;
-        }
-    });
-}
+            for (int i = span.Length - 1; i >= 0; i--)
+            {
+                var digit = (byte) (value & 0xF);
+                span[i] = (char) (digit + (digit < 10 ? '0' : hexBaseOffset));
+                value >>= 4;
+            }
+        });
+    }
 
     [Benchmark]
     [Arguments(HexValue)]
