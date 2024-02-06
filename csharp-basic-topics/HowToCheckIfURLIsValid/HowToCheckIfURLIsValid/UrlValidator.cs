@@ -8,7 +8,7 @@ public static class UrlValidator
     public static bool ValidateUrlWithRegex(string url)
     {
         var urlRegex = new Regex(
-            @"^(https?|ftps?):\/\/(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}(?::\d+)?(?:\/(?:[-a-zA-Z0-9@%_\+.~#?&=]+\/?)*)?",
+            @"^(https?|ftps?):\/\/(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}(?::\d+)?(?:\/(?:[-a-zA-Z0-9@%_\+.~#?&=]+\/?)*)?$",
             RegexOptions.IgnoreCase);
         return urlRegex.IsMatch(url);
     }
