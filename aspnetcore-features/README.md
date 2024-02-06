@@ -32,3 +32,4 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [What Is Service Discovery in .NET and How to Use It?](https://code-maze.com/aspnetcore-what-is-service-discovery-and-how-to-use-it/)
 - [Different Ways to Run Background Tasks in ASP.NET Core](https://code-maze.com/aspnetcore-different-ways-to-run-background-tasks/)
 - [Tools and Best Practices for Secret Management in .NET](https://code-maze.com/aspnetcore-secret-management/)
+- [MapControllers vs MapControllerRoute Routing in ASP.NET Core](https://code-maze.com/aspnetcore-mapcontrollers-vs-mapcontrollerroute-routing/)
