@@ -10,5 +10,3 @@ var courseStart = new DateTime(2023, 9, 12);
 
 double courseDuration = NumberOfMonthsBetweenTwoDates.CalculateCourseDuration(courseStart, endDate);
 Console.WriteLine($"This course has been online for {courseDuration:F2} months.");
-
-
