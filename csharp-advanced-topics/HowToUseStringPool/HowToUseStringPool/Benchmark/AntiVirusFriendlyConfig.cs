@@ -2,7 +2,7 @@
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Toolchains.InProcess.NoEmit;
 
-namespace HowToUseStringPoolBenchmark;
+namespace HowToUseStringPool.Benchmark;
 
 public class AntiVirusFriendlyConfig : ManualConfig
 {

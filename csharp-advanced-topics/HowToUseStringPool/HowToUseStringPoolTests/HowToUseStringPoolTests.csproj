@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HowtoUseStringPoolApi\HowtoUseStringPoolApi.csproj" />
+    <ProjectReference Include="..\HowToUseStringPool\HowToUseStringPool.csproj" />
   </ItemGroup>
 
 </Project>

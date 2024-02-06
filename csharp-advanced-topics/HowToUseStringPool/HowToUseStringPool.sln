@@ -3,16 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowtoUseStringPoolApi", "HowtoUseStringPoolApi\HowtoUseStringPoolApi.csproj", "{64D15396-B99F-424B-A27F-1ABA8CB60BAB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{78C21EA4-08BA-47DA-8354-086CE6343089}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToUseStringPoolBenchmark", "HowToUseStringPoolBenchmark\HowToUseStringPoolBenchmark.csproj", "{2DC375B5-560C-4386-92A2-5FEF047DA5BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowToUseStringPoolTests", "HowToUseStringPoolTests\HowToUseStringPoolTests.csproj", "{AC4E2116-2F33-49B5-8A05-9CFFF0AD61D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToUseStringPoolTests", "HowToUseStringPoolTests\HowToUseStringPoolTests.csproj", "{AC4E2116-2F33-49B5-8A05-9CFFF0AD61D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowToUseStringPool", "HowToUseStringPool\HowToUseStringPool.csproj", "{74DEC5F7-BA2E-497E-BF90-AD7C523D7B47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,18 +15,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{64D15396-B99F-424B-A27F-1ABA8CB60BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64D15396-B99F-424B-A27F-1ABA8CB60BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64D15396-B99F-424B-A27F-1ABA8CB60BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64D15396-B99F-424B-A27F-1ABA8CB60BAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DC375B5-560C-4386-92A2-5FEF047DA5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DC375B5-560C-4386-92A2-5FEF047DA5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DC375B5-560C-4386-92A2-5FEF047DA5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DC375B5-560C-4386-92A2-5FEF047DA5BC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC4E2116-2F33-49B5-8A05-9CFFF0AD61D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC4E2116-2F33-49B5-8A05-9CFFF0AD61D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC4E2116-2F33-49B5-8A05-9CFFF0AD61D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC4E2116-2F33-49B5-8A05-9CFFF0AD61D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74DEC5F7-BA2E-497E-BF90-AD7C523D7B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74DEC5F7-BA2E-497E-BF90-AD7C523D7B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74DEC5F7-BA2E-497E-BF90-AD7C523D7B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74DEC5F7-BA2E-497E-BF90-AD7C523D7B47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

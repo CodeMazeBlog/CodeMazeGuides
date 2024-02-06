@@ -1,29 +1,27 @@
 ﻿using CommunityToolkit.HighPerformance;
 using CommunityToolkit.HighPerformance.Buffers;
-using System;
 using System.Text.RegularExpressions;
 
-namespace HowtoUseStringPoolApi;
+namespace HowtoUseStringPool;
 
-public class StringPoolHelper(IConfiguration configuration)
+public class StringPoolHelper()
 {
     private readonly StringPool _myPool = new();
     private readonly Dictionary<string, string> _cache = [];
     private readonly List<string> _logger = [];
-    private readonly IConfiguration _configuration = configuration;
 
-    public string Init()
+    public bool Init()
     {
-        var value1 = _myPool.GetOrAdd("codemaze".AsSpan());
-        var value2 = _myPool.GetOrAdd("codemaze".AsSpan());
+        var value1 = _myPool.GetOrAdd("codemaze");
+        var value2 = _myPool.GetOrAdd("codemaze");
 
-        return string.Format("Hash of value1: {0}, value2: {1}",
-             value1.GetHashCode(), value2.GetHashCode());
+        return ReferenceEquals(value1, value2);
     }
 
     public string SharedInstance(ReadOnlySpan<char> message)
     {
         string result;
+
         if (_myPool.Size <= 10)
             result = _myPool.GetOrAdd(message);
         else
@@ -34,11 +32,10 @@ public class StringPoolHelper(IConfiguration configuration)
 
     public bool AddUser(ReadOnlySpan<char> nameSpan, ReadOnlySpan<char> emailSpan)
     {
-        var prefixSpan = "USER_".AsSpan();
-        var prefix = _myPool.GetOrAdd(prefixSpan);
+        var prefix = _myPool.GetOrAdd("USER_");
         var name = _myPool.GetOrAdd(nameSpan);
 
-        Span<char> combined = stackalloc char[prefixSpan.Length + nameSpan.Length];
+        Span<char> combined = stackalloc char[prefix.Length + nameSpan.Length];
         prefix.CopyTo(combined);
         name.CopyTo(combined[prefix.Length..]);
 
@@ -51,11 +48,10 @@ public class StringPoolHelper(IConfiguration configuration)
 
     public string GetUser(ReadOnlySpan<char> nameSpan)
     {
-        var prefixSpan = "USER_".AsSpan();
-        var prefix = _myPool.GetOrAdd(prefixSpan);
+        var prefix = _myPool.GetOrAdd("USER_");
         var name = _myPool.GetOrAdd(nameSpan);
 
-        Span<char> combined = stackalloc char[prefixSpan.Length + nameSpan.Length];
+        Span<char> combined = stackalloc char[prefix.Length + nameSpan.Length];
         prefix.CopyTo(combined);
         name.CopyTo(combined[prefix.Length..]);
 
@@ -63,20 +59,6 @@ public class StringPoolHelper(IConfiguration configuration)
         _cache.TryGetValue(cacheKey, out string value);
 
         return value;
-    }
-
-    public void LogError(ReadOnlySpan<char> detailSpan)
-    {
-        var prefixSpan = "[ERROR]:".AsSpan();
-        var prefix = _myPool.GetOrAdd(prefixSpan);
-        var detail = _myPool.GetOrAdd(detailSpan);
-
-        Span<char> combined = stackalloc char[prefixSpan.Length + detailSpan.Length];
-        prefix.CopyTo(combined);
-        detail.CopyTo(combined[prefix.Length..]);
-
-        var logMessage = _myPool.GetOrAdd(combined);
-        _logger.Add(logMessage);
     }
 
     public string GetHostName(string url)
@@ -91,24 +73,31 @@ public class StringPoolHelper(IConfiguration configuration)
         return result;
     }
 
-    public string GetHeaderValue(HttpRequest request, ReadOnlySpan<char> key)
+    public string GetHeaderValue(HttpRequestMessage request, ReadOnlySpan<char> key)
     {
-        string keyValue = _myPool.GetOrAdd(key);
+        var keyValue = _myPool.GetOrAdd(key);
 
-        if (request.Headers.ContainsKey(keyValue))
-            return _myPool.GetOrAdd(request.Headers[keyValue]);
+        if (request.Headers.Contains(keyValue))
+        {
+            if (request.Headers.TryGetValues(keyValue, out var headerValues))
+            {
+                var headerValue = string.Join(",", headerValues);
+
+                return headerValue;
+            }
+        }
 
         return string.Empty;
     }
 
-    public bool CheckHeader(HttpRequest request)
+    public bool CheckHeader(HttpRequestMessage request)
     {
-        string authorization = GetHeaderValue(request, "Authorization".AsSpan());
+        var authorization = GetHeaderValue(request, "Authorization");
+        var expectedContentType = _myPool.GetOrAdd("chrome");
+        var contentType = GetHeaderValue(request, "User-Agent");
+
         if (string.IsNullOrEmpty(authorization))
             return false;
-
-        var expectedContentType = _myPool.GetOrAdd("application/json".AsSpan());
-        string contentType = GetHeaderValue(request, "Content-Type".AsSpan());
 
         if (contentType != expectedContentType)
             return false;
@@ -116,17 +105,16 @@ public class StringPoolHelper(IConfiguration configuration)
         return true;
     }
 
-    public bool CheckToken(HttpRequest request)
+    public bool CheckToken(HttpRequestMessage request)
     {
-        var tokenPrefix = "TOKEN_".AsSpan();
-        var prefix = _myPool.GetOrAdd(tokenPrefix);
-        var token = GetHeaderValue(request, "AuthorizationToken".AsSpan());
+        var prefix = _myPool.GetOrAdd("TOKEN_");
+        var token = GetHeaderValue(request, "Authorization");
 
-        Span<char> combined = stackalloc char[tokenPrefix.Length + token.Length];
+        Span<char> combined = stackalloc char[prefix.Length + token.Length];
         prefix.CopyTo(combined);
         token.CopyTo(combined[prefix.Length..]);
-
         var tokenKey = _myPool.GetOrAdd(combined);
+
         if (_cache.ContainsKey(tokenKey))
         {
             var userId = _myPool.GetOrAdd(_cache[tokenKey]);
@@ -139,9 +127,8 @@ public class StringPoolHelper(IConfiguration configuration)
 
     public string Encrypt(string text)
     {
-        var passwordKey = _myPool.GetOrAdd("EncryptionPassword".AsSpan());
-        var password = _myPool.GetOrAdd(_configuration.GetValue<string>(passwordKey));
-
+        var passwordKey = _myPool.GetOrAdd("EncryptionPassword");
+        var password = _myPool.GetOrAdd(Environment.GetEnvironmentVariable(passwordKey));
         var charArray = new char[text.Length * 2];
         var ind = 0;
 
@@ -156,25 +143,23 @@ public class StringPoolHelper(IConfiguration configuration)
             {
                 charArray[2 * ind] = c;
             }
+
             charArray[2 * ind + 1] = password.Length > ind ? password[ind++] : '$';
         }
 
-        var encryptedText = charArray.ToString();
-
-        return encryptedText;
+        return _myPool.GetOrAdd(charArray.AsSpan());
     }
 
     public string Translate(ReadOnlySpan<char> keySpan, ReadOnlySpan<char> langSpan)
     {
-        var prefixSpan = "LOCALIZATION_".AsSpan();
-        var prefix = _myPool.GetOrAdd(prefixSpan);
+        var prefix = _myPool.GetOrAdd("LOCALIZATION_");
         var lang = _myPool.GetOrAdd(langSpan);
         var key = _myPool.GetOrAdd(keySpan);
 
-        Span<char> combined = stackalloc char[prefixSpan.Length + langSpan.Length+ keySpan.Length];
+        Span<char> combined = stackalloc char[prefix.Length + langSpan.Length + keySpan.Length];
         prefix.CopyTo(combined);
         lang.CopyTo(combined[prefix.Length..]);
-        key.CopyTo(combined[(prefix.Length+lang.Length)..]);
+        key.CopyTo(combined[(prefix.Length + lang.Length)..]);
 
         var calculatedKey = _myPool.GetOrAdd(combined);
         _cache.TryGetValue(calculatedKey, out string? value);
@@ -182,24 +167,16 @@ public class StringPoolHelper(IConfiguration configuration)
         return value ?? calculatedKey;
     }
 
-    public bool IsValidEmail(string email)
-    {
-        var patternSpan = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$".AsSpan();
-        string pattern = _myPool.GetOrAdd(patternSpan);
-
-        return Regex.IsMatch(email, pattern);
-    }
-
     public bool CheckContent(string content)
     {
+        var valid = true;
         var blockedWords = new HashSet<string>
         {
             _myPool.GetOrAdd("badword1"),
             _myPool.GetOrAdd("badword2"),
         };
 
-        var valid = true;
-        foreach (string word in content.Split(' '))
+        foreach (var word in content.Split(' '))
         {
             if (blockedWords.Contains(word))
             {
@@ -209,6 +186,26 @@ public class StringPoolHelper(IConfiguration configuration)
         }
 
         return valid;
+    }
+
+    public bool IsValidEmail(string email)
+    {
+        var pattern = _myPool.GetOrAdd(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+
+        return Regex.IsMatch(email, pattern);
+    }
+
+    public void LogError(ReadOnlySpan<char> detailSpan)
+    {
+        var prefix = _myPool.GetOrAdd("[ERROR]:");
+        var detail = _myPool.GetOrAdd(detailSpan);
+
+        Span<char> combined = stackalloc char[prefix.Length + detailSpan.Length];
+        prefix.CopyTo(combined);
+        detail.CopyTo(combined[prefix.Length..]);
+
+        var logMessage = _myPool.GetOrAdd(combined);
+        _logger.Add(logMessage);
     }
 
     public bool CacheContains(string key)

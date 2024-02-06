@@ -1,12 +1,3 @@
-using System.Text;
-using AutoFixture;
-using HowtoUseStringPoolApi;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
-
 namespace HowToUseStringPoolTests;
 
 [TestClass]
@@ -19,16 +10,8 @@ public class HowToUseStringPoolTests
     public void Setup()
     {
         _fixture = new Fixture();
-
-        var inMemorySettings = new List<KeyValuePair<string, string>> {
-            new("EncryptionPassword", "Codemaze")
-        };
-
-        var configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(inMemorySettings)
-            .Build();
-
-        _poolHelper = new StringPoolHelper(configuration);
+        _poolHelper = new StringPoolHelper();
+        Environment.SetEnvironmentVariable("EncryptionPassword", "123abcd");
     }
 
     [TestMethod]
@@ -37,7 +20,7 @@ public class HowToUseStringPoolTests
         var user = _fixture.Create<string>();
         var email = _fixture.Create<string>();
 
-        var result = _poolHelper.AddUser(user.AsSpan(), email.AsSpan());
+        var result = _poolHelper.AddUser(user, email);
 
         Assert.IsTrue(result);
         Assert.IsTrue(_poolHelper.CacheContains("USER_" + user));
@@ -49,7 +32,7 @@ public class HowToUseStringPoolTests
     {
         var user = _fixture.Create<string>();
 
-        var result = _poolHelper.GetUser(user.AsSpan());
+        var result = _poolHelper.GetUser(user);
 
         Assert.IsNull(result);
     }
@@ -58,9 +41,9 @@ public class HowToUseStringPoolTests
     public void WhenLogErrorCalled_ThenLogCountMustBeIncrease()
     {
         var errorMessage = _fixture.Create<string>();
-
         var beforeLogCount = _poolHelper.GetLogCount();
-        _poolHelper.LogError(errorMessage.AsSpan());
+
+        _poolHelper.LogError(errorMessage);
         var afterLogCount = _poolHelper.GetLogCount();
 
         Assert.IsTrue(afterLogCount > beforeLogCount);
@@ -81,19 +64,22 @@ public class HowToUseStringPoolTests
     [TestMethod]
     public void WhenGetHeaderValueCalled_ThenResultMustBeReturn()
     {
-        var httpRequest = GetHttpRequest();
-        var contentType = _fixture.Create<string>();
-        httpRequest.Headers.Append("Content-Type", contentType);
+        var headerKey = _fixture.Create<string>();
+        var headerValue = _fixture.Create<string>();
+        var httpRequest = GetHttpRequest(new Dictionary<string, string>()
+        {
+            { headerKey,headerValue }
+        });
 
-        var result = _poolHelper.GetHeaderValue(httpRequest, "Content-Type".AsSpan());
+        var result = _poolHelper.GetHeaderValue(httpRequest, headerKey);
 
-        Assert.AreEqual(contentType, result);
+        Assert.AreEqual(headerValue, result);
     }
 
     [TestMethod]
     public void WhenCheckHeaderCalled_WithNoHeader_ThenResultMustBeFalse()
     {
-        var httpRequest = GetHttpRequest();
+        var httpRequest = GetHttpRequest([]);
 
         var result = _poolHelper.CheckHeader(httpRequest);
 
@@ -103,10 +89,12 @@ public class HowToUseStringPoolTests
     [TestMethod]
     public void WhenCheckHeaderCalled_WithRightHeaderValues_ThenResultMustBeTrue()
     {
-        var httpRequest = GetHttpRequest();
-        var authorizationValue = _fixture.Create<string>();
-        httpRequest.Headers.Append("Content-Type", "application/json");
-        httpRequest.Headers.Append("Authorization", authorizationValue);
+        var authorizationToken = _fixture.Create<string>();
+        var httpRequest = GetHttpRequest(new Dictionary<string, string>()
+        {
+            { "Authorization", authorizationToken },
+            { "User-Agent", "chrome"}
+        });
 
         var result = _poolHelper.CheckHeader(httpRequest);
 
@@ -116,9 +104,11 @@ public class HowToUseStringPoolTests
     [TestMethod]
     public void WhenCheckTokenCalled_ThenResultMustBeFalse()
     {
-        var httpRequest = GetHttpRequest();
         var authorizationToken = _fixture.Create<string>();
-        httpRequest.Headers.Append("AuthorizationToken", authorizationToken);
+        var httpRequest = GetHttpRequest(new Dictionary<string, string>()
+        {
+            { "AuthorizationToken",authorizationToken },
+        });
 
         var result = _poolHelper.CheckToken(httpRequest);
 
@@ -194,22 +184,18 @@ public class HowToUseStringPoolTests
         Assert.IsFalse(result);
     }
 
-    private HttpRequest GetHttpRequest()
+    private static HttpRequestMessage GetHttpRequest(Dictionary<string, string> headerItems)
     {
-        var bodyString = _fixture.Create<string>();
-        var stream = new MemoryStream(Encoding.UTF8.GetBytes(bodyString));
-        var httpContext = new DefaultHttpContext()
-        {
-            Request = { Body = stream, ContentLength = stream.Length, RouteValues = [] }
-        };
+        var request = new HttpRequestMessage(HttpMethod.Get, "https://code-maze.com/");
 
-        var controllerContext = new ControllerContext
+        if (headerItems != null && headerItems.Count != 0)
         {
-            HttpContext = httpContext,
-            RouteData = new RouteData(),
-            ActionDescriptor = new ControllerActionDescriptor()
-        };
+            foreach (var item in headerItems)
+            {
+                request.Headers.Add(item.Key, item.Value);
+            }
+        }
 
-        return controllerContext.HttpContext.Request;
+        return request;
     }
 }

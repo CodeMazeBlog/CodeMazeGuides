@@ -1,2 +1,3 @@
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
-global using Moq;
+global using AutoFixture;
+global using HowtoUseStringPool;

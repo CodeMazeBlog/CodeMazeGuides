@@ -3,7 +3,7 @@ using BenchmarkDotNet.Order;
 using CommunityToolkit.HighPerformance.Buffers;
 using System.Text;
 
-namespace HowToUseStringPoolBenchmark;
+namespace HowToUseStringPool.Benchmark;
 
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [Config(typeof(AntiVirusFriendlyConfig))]
@@ -29,7 +29,7 @@ public class HowtoUseStringPoolBenchmark
         for (int i = 0; i < Iterations; i++)
         {
             int startIndex = i % (charArray.Length - ChunkSize);
-            string instance = new(charArray, startIndex, ChunkSize);
+            var instance = new string(charArray, startIndex, ChunkSize);
         }
     }
 
@@ -41,7 +41,6 @@ public class HowtoUseStringPoolBenchmark
             int startIndex = i % (charArray.Length - ChunkSize);
             ReadOnlySpan<char> span = charArray.AsSpan(startIndex, ChunkSize);
             var instance = StringPool.Shared.GetOrAdd(span);
-
         }
     }
 
@@ -53,7 +52,7 @@ public class HowtoUseStringPoolBenchmark
             int startIndex = i % (charArray.Length - ChunkSize);
             var sb = new StringBuilder();
             sb.Append(charArray, startIndex, ChunkSize);
-            string instance = sb.ToString();
+            var instance = sb.ToString();
             sb.Clear();
         }
     }
