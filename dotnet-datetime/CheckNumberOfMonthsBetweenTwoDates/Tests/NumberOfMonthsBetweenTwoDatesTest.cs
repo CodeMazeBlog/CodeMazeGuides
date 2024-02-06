@@ -3,11 +3,17 @@ namespace Tests;
 public class NumberOfMonthsBetweenTwoDates
 {
     [Theory]
-    [InlineData("2023-04-10", "2024-01-09", 8)]
-    [InlineData("2023-01-15", "2023-02-14", 0)]
-    [InlineData("2023-05-01", "2023-05-31", 0)]
-    [InlineData("2022-12-31", "2023-01-30", 0)]
+    [InlineData("2023-04-10", "2024-01-09", 9)]
+    [InlineData("2023-01-15", "2023-02-14", 1)]
+    [InlineData("2023-05-01", "2023-05-31", 1)]
+    [InlineData("2022-12-31", "2023-01-30", 1)]
     [InlineData("2021-01-01", "2023-01-01", 24)]
+    [InlineData("2014-02-28", "2024-02-27", 120)]
+    [InlineData("2023-01-01", "2023-01-01", 0)]
+    [InlineData("2023-01-29", "2023-02-28", 1)]
+    [InlineData("2024-02-28", "2024-03-29", 1)]
+    [InlineData("2023-02-28", "2024-02-29", 12)]
+    [InlineData("2023-01-01", "2023-02-28", 2)]
     public void GivenSpecificDates_WhenCalculateSubscriptionDurationCalled_ThenReturnsCorrectNumberOfMonths(string subscriptionStartDate, string endDateString, int expectedMonths)
     {
         var subscriptionStart = DateTime.Parse(subscriptionStartDate);
