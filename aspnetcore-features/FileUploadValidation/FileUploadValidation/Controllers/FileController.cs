@@ -7,33 +7,29 @@ namespace FileUploadValidation.Controllers
     [Route("[controller]")]
     public class FileController : ControllerBase
     {
-        [HttpPost(nameof(Upload))]
+        [HttpPost(nameof(UploadFile))]
         [FileValidationFilter([".pdf", ".doc", ".docx"], 1024 * 1024)]
-        public IActionResult Upload(IFormFile file)
+        public IActionResult UploadFile(IFormFile file)
         {
             // Do something with the file
             return Ok();
         }
 
-        [HttpPost(nameof(UploadWithHardcodedValidation))]
-        public IActionResult UploadWithHardcodedValidation(IFormFile file)
+        [HttpPost(nameof(Upload))]
+        public IActionResult Upload(IFormFile file)
         {
-            // Do something with the file
+            if (file is null || file.Length == 0) 
+                return BadRequest("The file is null");
 
-            if (!FileValidator.IsFileExtensionAllowed(file.FileName, [".pdf", ".doc", ".docx"]))
-            {
+            if (!FileValidator.IsFileExtensionAllowed(file, [".pdf", ".doc", ".docx"]))
                 return BadRequest("Invalid file type. Please upload a PDF, DOC, or DOCX file.");
-            }
 
-            if (!!FileValidator.IsFileSizeWithinLimit(file, 1024 * 1024))
-            {
+            if (!FileValidator.IsFileSizeWithinLimit(file, 1024 * 1024)) 
                 return BadRequest("File size exceeds the maximum allowed size (1 MB).");
-            }
 
-            if (FileValidator.FileWithSameNameExists(file.FileName))
-            {
+
+            if (FileValidator.FileWithSameNameExists(file))
                 return BadRequest("Duplicate file name detected. Please upload a file with a different name.");
-            }
 
             return Ok();
         }

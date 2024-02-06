@@ -11,27 +11,32 @@ namespace FileUploadValidation.ActionFilters
 
             var file = param.Value as IFormFile;
 
-            if (file is null)
+            if (file is null || file.Length == 0)
             {
-                context.Result = new BadRequestObjectResult("Object is null");
+                context.Result = new BadRequestObjectResult("File is null");
                 return;
             }
 
-            if (!FileValidator.IsFileExtensionAllowed(file.FileName, allowedExtensions))
+            if (!FileValidator.IsFileExtensionAllowed(file, allowedExtensions))
             {
-                context.Result = new BadRequestObjectResult("Invalid file type. Please upload a PDF, DOC, or DOCX file.");
+                var allowedExtensionsMessage = String.Join(", ", allowedExtensions).Replace(".", "").ToUpper();
+                context.Result = new BadRequestObjectResult("Invalid file type. " +
+                    $"Please upload {allowedExtensionsMessage} file.");
+
                 return;
             }
 
             if (!FileValidator.IsFileSizeWithinLimit(file, maxSize))
             {
-                context.Result = new BadRequestObjectResult("File size exceeds the maximum allowed size (1 MB).");
+                var mbSize = (double)maxSize / 1024 / 1024;
+                context.Result = new BadRequestObjectResult($"File size exceeds the maximum allowed size ({mbSize} MB).");
                 return;
             }
 
-            if (FileValidator.FileWithSameNameExists(file.FileName))
+            if (FileValidator.FileWithSameNameExists(file))
             {
-                context.Result = new BadRequestObjectResult("Duplicate file name detected. Please upload a file with a different name.");
+                context.Result = new BadRequestObjectResult("Duplicate file name detected. " +
+                    "Please upload a file with a different name.");
                 return;
             }
         }
