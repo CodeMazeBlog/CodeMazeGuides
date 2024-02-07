@@ -9,9 +9,7 @@ namespace FileUploadValidation.ActionFilters
         {
             var param = context.ActionArguments.SingleOrDefault(p => p.Value is IFormFile);
 
-            var file = param.Value as IFormFile;
-
-            if (file is null || file.Length == 0)
+            if (param.Value is not IFormFile file || file.Length == 0)
             {
                 context.Result = new BadRequestObjectResult("File is null");
                 return;
@@ -30,6 +28,7 @@ namespace FileUploadValidation.ActionFilters
             {
                 var mbSize = (double)maxSize / 1024 / 1024;
                 context.Result = new BadRequestObjectResult($"File size exceeds the maximum allowed size ({mbSize} MB).");
+
                 return;
             }
 
@@ -37,6 +36,7 @@ namespace FileUploadValidation.ActionFilters
             {
                 context.Result = new BadRequestObjectResult("Duplicate file name detected. " +
                     "Please upload a file with a different name.");
+
                 return;
             }
         }
