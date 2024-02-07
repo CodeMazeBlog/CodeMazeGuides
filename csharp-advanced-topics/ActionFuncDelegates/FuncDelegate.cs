@@ -4,7 +4,7 @@
     {
         public static void Run()
         {
-            Console.WriteLine("Delegate Func");
+            Console.WriteLine("Func Delegate");
 
             var customers = new Dictionary<string, int>();
 
