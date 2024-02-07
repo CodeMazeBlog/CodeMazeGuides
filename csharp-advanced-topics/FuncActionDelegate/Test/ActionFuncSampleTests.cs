@@ -18,7 +18,7 @@ namespace Test
         public void Greeting_ShouldPrintCorrectMessages()
         {
             // Arrange
-            var names = new List<string> { "Alicee", "Bob", "Charlie" };
+            var names = new List<string> { "Alice", "Bob", "Charlie" };
             var actionSample = new ActionSample();
             var output = new StringWriter();
             Console.SetOut(output);
