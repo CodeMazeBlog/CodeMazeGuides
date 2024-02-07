@@ -12,6 +12,6 @@ public class Program
         Console.WriteLine($"IsPositiveOrNegative Using MathAbs {number} -> {NumberValidation.IsPositiveOrNegativeUsingMathAbsMethod(number)} ");
         Console.WriteLine($"IsPositiveOrNegative Using MathSign {number} -> {NumberValidation.IsPositiveOrNegativeUsingMathSignMethod(number)} ");
         Console.WriteLine($"IsPositiveOrNegative Using IsPositive or IsNegative {number} -> {NumberValidation.IsPositiveOrNegativeUsingBuiltInMethod(number)} ");
+        //BenchmarkRunner.Run<BenchmarkTester>();
     }
-
 }
