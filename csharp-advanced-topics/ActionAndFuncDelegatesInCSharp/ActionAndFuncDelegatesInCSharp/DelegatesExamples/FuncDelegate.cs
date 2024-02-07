@@ -1,12 +1,10 @@
-﻿using static ActionAndFuncDelegatesInCSharp.DelegatesExamples.FuncDelegate;
-
-namespace ActionAndFuncDelegatesInCSharp.DelegatesExamples
+﻿namespace ActionAndFuncDelegatesInCSharp.DelegatesExamples
 {
     public class FuncDelegate
     {
         public void Execute(Operation op)
         {
-            var FuncMathOperations = Multiply;
+            Func<int, int, string>? FuncMathOperations;
             switch (op)
             {
                 case Operation.Sum:
