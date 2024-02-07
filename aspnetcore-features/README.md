@@ -33,3 +33,4 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [Different Ways to Run Background Tasks in ASP.NET Core](https://code-maze.com/aspnetcore-different-ways-to-run-background-tasks/)
 - [Tools and Best Practices for Secret Management in .NET](https://code-maze.com/aspnetcore-secret-management/)
 - [MapControllers vs MapControllerRoute Routing in ASP.NET Core](https://code-maze.com/aspnetcore-mapcontrollers-vs-mapcontrollerroute-routing/)
+- [How to Get appsettings.json Content as a Dictionary in ASP.NET Core](https://code-maze.com/dotnet-appsettings-json-content-to-dictionary/)
