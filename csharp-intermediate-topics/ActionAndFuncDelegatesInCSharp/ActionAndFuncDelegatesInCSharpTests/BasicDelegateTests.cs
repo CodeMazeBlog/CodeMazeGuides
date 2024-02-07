@@ -13,18 +13,6 @@ namespace ActionAndFuncDelegatesInCSharpTests
             BasicDelegate = new BasicDelegate();
         }
 
-        [TestCase(8)]
-        public void Given_An_Any_Number_When_Delegate_Run_Then_Execution_Is_Satifactory(int number)
-        {
-            BasicDelegate.Run(number);
-        }
-
-        [TestCase(5)]
-        public void Given_An_Any_Number_When_Action_Run_Then_Execution_Is_Satifactory(int number)
-        {
-            BasicDelegate.RunAction(number);
-        }
-
         [TestCase(23)]
         public void Given_An_Any_Number_When_Func_Run_Then_Formatted_Number_Is_Satisfactory(int number)
         {

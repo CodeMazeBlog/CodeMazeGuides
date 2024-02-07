@@ -1,6 +1,7 @@
 ﻿using ActionAndFuncDelegatesInCSharp;
 using ActionAndFuncDelegatesInCSharp.AdvancedDelegates;
 using System.Runtime.InteropServices;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 internal class Program
 {
@@ -12,23 +13,14 @@ internal class Program
 
         ExecuteAdvancedActionExample();
     }
-
-    private static void ExecuteAdvancedActionExample()
-    {
-        //throw new NotImplementedException();
-    }
-
     private static void ExecuteBasicExamples() { 
         var basicDelegate = new BasicDelegate();
         var inputNumber = 5;
 
-        //Basic example delegate
         basicDelegate.Run(inputNumber);
 
-        //Basic example action
         basicDelegate.RunAction(inputNumber);
 
-        //Basic example func
         var result = basicDelegate.RunFunc(inputNumber);
         Console.WriteLine(result);
     }
@@ -49,4 +41,19 @@ internal class Program
         }
     }
 
+    private static void ExecuteAdvancedActionExample()
+    {
+        var numberChecker = new NumberChecker();
+        var numbers = Enumerable.Range(1, 5).ToList();
+
+        numbers.ForEach(num => numberChecker.Add(num));
+
+        numberChecker.EvenNumbers.ForEach(number => Console.WriteLine($"Number {number} is even"));
+
+        numbers = Enumerable.Range(6, 5).ToList();
+
+        numberChecker.Add(numbers, numberChecker.isEvenNumber);
+
+        numberChecker.EvenNumbers.ForEach(number => Console.WriteLine($"Number {number} is even"));
+    }
 }
