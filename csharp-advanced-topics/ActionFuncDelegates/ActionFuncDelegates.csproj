@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="ActionFuncDelegates.Test\**" />
+    <EmbeddedResource Remove="ActionFuncDelegates.Test\**" />
+    <None Remove="ActionFuncDelegates.Test\**" />
+  </ItemGroup>
+
 </Project>
