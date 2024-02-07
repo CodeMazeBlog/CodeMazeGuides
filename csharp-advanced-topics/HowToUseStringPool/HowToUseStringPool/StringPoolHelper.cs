@@ -1,16 +1,22 @@
 ﻿using CommunityToolkit.HighPerformance;
 using CommunityToolkit.HighPerformance.Buffers;
 using System.Buffers;
-using System;
 using System.Text.RegularExpressions;
 
 namespace HowtoUseStringPool;
 
-public class StringPoolHelper()
+public class StringPoolHelper
 {
-    private readonly StringPool _myPool = new();
-    private readonly Dictionary<string, string> _cache = [];
-    private readonly List<string> _logger = [];
+    private readonly StringPool _myPool;
+    private readonly Dictionary<string, string> _cache;
+    private readonly List<string> _logger;
+
+    public StringPoolHelper()
+    {
+        _myPool = new();
+        _cache = [];
+        _logger = [];
+    }
 
     public bool Init()
     {
@@ -64,8 +70,8 @@ public class StringPoolHelper()
         var size = valueList.Sum(value => value.Length);
         char[] pooledArray = ArrayPool<char>.Shared.Rent(size);
         var combined = new Span<char>(pooledArray, 0, size);
-
         var position = 0;
+
         foreach (var value in valueList)
         {
             value.CopyTo(combined[position..]);
