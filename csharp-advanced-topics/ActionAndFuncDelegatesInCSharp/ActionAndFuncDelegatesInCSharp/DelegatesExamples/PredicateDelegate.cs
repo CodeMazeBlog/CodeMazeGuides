@@ -1,11 +1,9 @@
-﻿using System;
-namespace ActionAndFuncDelegatesInCSharp.DelegatesExamples
+﻿namespace ActionAndFuncDelegatesInCSharp.DelegatesExamples
 {
-	public class PredicateDelegate
-	{
-		public void Execute()
-		{
-            //Predicate Examples
+    public class PredicateDelegate
+    {
+        public void Execute()
+        {
             Predicate<int> PredicateCheck = CheckIfAdult;
 
             bool result = PredicateCheck(12);
@@ -19,7 +17,7 @@ namespace ActionAndFuncDelegatesInCSharp.DelegatesExamples
                 Console.WriteLine("I am an Adult");
             }
 
-            //Predicate Anonymous Implementation
+            //Anonymous Function Implementation
             Predicate<int> AnonPredicateCheck = delegate (int a)
             {
                 return a > 18;
@@ -32,7 +30,7 @@ namespace ActionAndFuncDelegatesInCSharp.DelegatesExamples
                 Console.WriteLine("I am an Adult");
             }
 
-            //Predicate Lamda Implementation
+            //Lambda Implementation
             Predicate<int> LamdaPredicateCheck = a =>
             {
                 return a < 18;
@@ -48,13 +46,7 @@ namespace ActionAndFuncDelegatesInCSharp.DelegatesExamples
 
         public bool CheckIfAdult(int age)
         {
-            if (age > 18)
-            {
-                return true;
-            }
-
-            return false;
+            return age > 18 ? true : false;
         }
     }
 }
-

@@ -1,5 +1,5 @@
-﻿
-using ActionAndFuncDelegatesInCSharp.DelegatesExamples;
+﻿using ActionAndFuncDelegatesInCSharp.DelegatesExamples;
+using static ActionAndFuncDelegatesInCSharp.DelegatesExamples.FuncDelegate;
 
 namespace ActionAndFuncDelegatesInCSharp
 {
@@ -7,13 +7,13 @@ namespace ActionAndFuncDelegatesInCSharp
     {
         static void Main(string[] args)
         {
-            FuncDelegate fd = new FuncDelegate();
-            fd.Execute();
+            var fd = new FuncDelegate();
+            fd.Execute(Operation.Multiply);
 
-            ActionDelegate ad = new ActionDelegate();
+            var ad = new ActionDelegate();
             ad.Execute();
 
-            PredicateDelegate pd = new PredicateDelegate();
+            var pd = new PredicateDelegate();
             pd.Execute();
         }
     }

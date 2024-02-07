@@ -1,22 +1,26 @@
-﻿using System;
-namespace ActionAndFuncDelegatesInCSharp.DelegatesExamples
+﻿namespace ActionAndFuncDelegatesInCSharp.DelegatesExamples
 {
-	public class ActionDelegate
-	{
+    public class ActionDelegate
+    {
         public void Execute()
         {
-            //Action Examples
             Action<int, int> ActionMathOperations = PrintMultiplyResult;
             ActionMathOperations(5, 5);
 
-            //Action Annonymous Implementation
+            //Anonymous Function Implementation
             Action<int, int> ActionMathAnonOperations = delegate (int a, int b)
-            { Console.WriteLine($"Print my Multiplication Result(Anon Delegate) : {a * b}"); };
+            {
+                Console.WriteLine($"Print my Multiplication Result(Anon Delegate) : {a * b}");
+            };
+
             ActionMathAnonOperations(5, 5);
 
-            //Action Lamda Implementation
+            //Lambda Implementation
             Action<int, int> ActionMathLamdaOperations = (int a, int b) =>
-            { Console.WriteLine($"Print my Multiplication Result(Lamda Delegate) : {a * b}"); };
+            {
+                Console.WriteLine($"Print my Multiplication Result(Lamda Delegate) : {a * b}");
+            };
+
             ActionMathLamdaOperations(5, 5);
         }
 
@@ -26,4 +30,3 @@ namespace ActionAndFuncDelegatesInCSharp.DelegatesExamples
         }
     }
 }
-
