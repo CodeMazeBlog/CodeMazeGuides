@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetNumberOfLinesInTextFile", "GetNumberOfLinesInTextFile\GetNumberOfLinesInTextFile.csproj", "{497F340D-F145-4B50-9DB8-2EE6AB98284A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetNumberOfLinesInTextFileUnitTests", "GetNumberOfLinesInTextFileUnitTests\GetNumberOfLinesInTextFileUnitTests.csproj", "{7AE77257-985B-45F1-9A93-C92EE5584F92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetNumberOfLinesInTextFileUnitTests", "GetNumberOfLinesInTextFileUnitTests\GetNumberOfLinesInTextFileUnitTests.csproj", "{7AE77257-985B-45F1-9A93-C92EE5584F92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetNumberOfLinesInTextFileBenchmark", "GetNumberOfLinesInTextFileBenchmark\GetNumberOfLinesInTextFileBenchmark.csproj", "{1DF1E108-ED51-40A9-9BF0-DA839520EBC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7AE77257-985B-45F1-9A93-C92EE5584F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AE77257-985B-45F1-9A93-C92EE5584F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AE77257-985B-45F1-9A93-C92EE5584F92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DF1E108-ED51-40A9-9BF0-DA839520EBC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DF1E108-ED51-40A9-9BF0-DA839520EBC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DF1E108-ED51-40A9-9BF0-DA839520EBC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DF1E108-ED51-40A9-9BF0-DA839520EBC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

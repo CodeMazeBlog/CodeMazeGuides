@@ -6,12 +6,12 @@ namespace GetNumberOfLinesInTextFileUnitTests
     [TestClass]
     public class NumberOfLinesInTextFileUnitTests
     {
-        private const string FILE_NAME = "Sample.txt";
+        private const string FileName = "Sample.txt";
 
         [TestMethod]
         public void GivenFileName_WhenCountingLinesUsingReadAllLinesMethod_ThenReturnCorrectNumberOfLines()
         {
-            int result = FileHelper.CountLinesUsingReadAllLinesMethod(FILE_NAME);
+            var result = FileHelper.CountLinesUsingReadAllLinesMethod(FileName);
 
             Assert.AreEqual(7, result, "The method should return the correct number of lines in the file.");
         }
@@ -19,7 +19,7 @@ namespace GetNumberOfLinesInTextFileUnitTests
         [TestMethod]
         public void GivenFileName_WhenCountingLinesUsingStreamRider_ThenReturnCorrectNumberOfLines()
         {
-            int result = FileHelper.CountLinesUsingStreamReader(FILE_NAME);
+            var result = FileHelper.CountLinesUsingStreamReader(FileName);
 
             Assert.AreEqual(7, result, "The method should return the correct number of lines in the file.");
         }
@@ -27,7 +27,7 @@ namespace GetNumberOfLinesInTextFileUnitTests
         [TestMethod]
         public void GivenFileName_WhenCountingLinesUsingReadLinesMethod_ThenReturnCorrectNumberOfLines()
         {
-            int result = FileHelper.CountLinesUsingReadLinesMethod(FILE_NAME);
+            var result = FileHelper.CountLinesUsingReadLinesMethod(FileName);
 
             Assert.AreEqual(7, result, "The method should return the correct number of lines in the file.");
         }

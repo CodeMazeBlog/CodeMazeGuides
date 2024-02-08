@@ -24,7 +24,7 @@
             var lineCount = 0;
             using StreamReader reader = new(fileName);
 
-            while (reader.ReadLine() != null)
+            while (reader.ReadLine() is not null)
             {
                 lineCount++;
             }

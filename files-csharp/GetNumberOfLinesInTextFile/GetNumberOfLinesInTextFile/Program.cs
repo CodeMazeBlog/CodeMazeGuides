@@ -1,9 +1,9 @@
 ﻿using GetNumberOfLinesInTextFile;
 
-const string FILE_NAME = "Sample.txt";
+const string FileName = "Sample.txt";
 
-Console.WriteLine($"Total Number of Lines in the text file: {FileHelper.CountLinesUsingReadAllLinesMethod(FILE_NAME)}");
+Console.WriteLine($"Total Number of Lines in the text file: {FileHelper.CountLinesUsingReadAllLinesMethod(FileName)}");
 
-Console.WriteLine($"Total Number of Lines in the text file: {FileHelper.CountLinesUsingStreamReader(FILE_NAME)}");
+Console.WriteLine($"Total Number of Lines in the text file: {FileHelper.CountLinesUsingStreamReader(FileName)}");
 
-Console.WriteLine($"Total Number of Lines in the text file: {FileHelper.CountLinesUsingReadLinesMethod(FILE_NAME)}");
+Console.WriteLine($"Total Number of Lines in the text file: {FileHelper.CountLinesUsingReadLinesMethod(FileName)}");
