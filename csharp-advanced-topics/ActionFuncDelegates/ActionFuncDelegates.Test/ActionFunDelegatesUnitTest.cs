@@ -62,7 +62,7 @@ namespace ActionFuncDelegates.Test
                 FuncDelegate.Run();
 
                 // Assert
-                string expectedOutput = "Delegate Func" + Environment.NewLine +
+                string expectedOutput = "Func Delegate" + Environment.NewLine +
                                         "Customers Platinum get 50% Discount" + Environment.NewLine +
                                         "Customers Gold get 30% Discount" + Environment.NewLine +
                                         "Customers Silver get 10% Discount" + Environment.NewLine;
