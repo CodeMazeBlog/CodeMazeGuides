@@ -40,7 +40,7 @@ public class StringPoolHelper
 
     public bool AddUser(ReadOnlySpan<char> nameSpan, ReadOnlySpan<char> emailSpan)
     {
-        var cacheKey = GetUserCacheKey(nameSpan);
+        var cacheKey = BuildCacheKey("USER_", nameSpan);
         var cacheValue = _myPool.GetOrAdd(emailSpan);
         _cache[cacheKey] = cacheValue;
 
@@ -49,23 +49,23 @@ public class StringPoolHelper
 
     public string GetUser(ReadOnlySpan<char> nameSpan)
     {
-        var cacheKey = GetUserCacheKey(nameSpan);
+        var cacheKey = BuildCacheKey("USER_", nameSpan);
         _cache.TryGetValue(cacheKey, out string value);
 
         return value;
     }
 
-    public string GetUserCacheKey(ReadOnlySpan<char> nameSpan)
+    private string BuildCacheKey(ReadOnlySpan<char> prefixSpan, ReadOnlySpan<char> keySpan)
     {
-        var prefix = _myPool.GetOrAdd("USER_");
-        var name = _myPool.GetOrAdd(nameSpan);
-        var combined = GetSpan(prefix, name);
+        var prefix = _myPool.GetOrAdd(prefixSpan);
+        var name = _myPool.GetOrAdd(keySpan);
+        var combined = CombineSpan(prefix, name);
         var cacheKey = _myPool.GetOrAdd(combined);
 
         return cacheKey;
     }
 
-    private static Span<char> GetSpan(params string[] valueList)
+    private static Span<char> CombineSpan(params string[] valueList)
     {
         var size = valueList.Sum(value => value.Length);
         char[] pooledArray = ArrayPool<char>.Shared.Rent(size);
@@ -113,13 +113,13 @@ public class StringPoolHelper
     public bool CheckHeader(HttpRequestMessage request)
     {
         var authorization = GetHeaderValue(request, "Authorization");
-        var expectedContentType = _myPool.GetOrAdd("chrome");
-        var contentType = GetHeaderValue(request, "User-Agent");
+        var expectedAgent = _myPool.GetOrAdd("chrome");
+        var userAgent = GetHeaderValue(request, "User-Agent");
 
         if (string.IsNullOrEmpty(authorization))
             return false;
 
-        if (contentType != expectedContentType)
+        if (userAgent != expectedAgent)
             return false;
 
         return true;
@@ -127,10 +127,8 @@ public class StringPoolHelper
 
     public bool CheckToken(HttpRequestMessage request)
     {
-        var prefix = _myPool.GetOrAdd("TOKEN_");
         var token = GetHeaderValue(request, "Authorization");
-        var combined = GetSpan(prefix, token);
-        var tokenKey = _myPool.GetOrAdd(combined);
+        var tokenKey = BuildCacheKey("TOKEN_", token);
 
         if (_cache.ContainsKey(tokenKey))
         {
@@ -172,7 +170,7 @@ public class StringPoolHelper
         var prefix = _myPool.GetOrAdd("LOCALIZATION_");
         var lang = _myPool.GetOrAdd(langSpan);
         var key = _myPool.GetOrAdd(keySpan);
-        var combined = GetSpan(prefix, lang, key);
+        var combined = CombineSpan(prefix, lang, key);
 
         var calculatedKey = _myPool.GetOrAdd(combined);
         _cache.TryGetValue(calculatedKey, out string? value);
@@ -212,7 +210,7 @@ public class StringPoolHelper
     {
         var prefix = _myPool.GetOrAdd("[ERROR]:");
         var detail = _myPool.GetOrAdd(detailSpan);
-        var combined = GetSpan(prefix, detail);
+        var combined = CombineSpan(prefix, detail);
 
         var logMessage = _myPool.GetOrAdd(combined);
         _logger.Add(logMessage);
