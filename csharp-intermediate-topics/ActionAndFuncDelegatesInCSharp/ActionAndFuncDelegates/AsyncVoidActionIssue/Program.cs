@@ -16,6 +16,8 @@ public class Program
         try
         {
             myAsyncAction(1000);
+
+            Thread.Sleep(1200); // wait for myAsyncAction to complete 
         }
         catch (Exception ex)
         {
