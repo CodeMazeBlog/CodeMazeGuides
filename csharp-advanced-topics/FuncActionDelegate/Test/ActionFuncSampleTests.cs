@@ -15,39 +15,40 @@ namespace Test
         }
 
         [Test]
-        public void Greeting_ShouldPrintCorrectMessages()
+        public void Given_ListOfNames_When_GreetingIsCalled_Then_ShouldPrintCorrectMessages()
+
         {
-            // Arrange
             var names = new List<string> { "Alice", "Bob", "Charlie" };
             var actionSample = new ActionSample();
             var output = new StringWriter();
+
             Console.SetOut(output);
 
-            // Act
             actionSample.Greeting(names);
 
-            // Assert
+            
             var outputString = output.ToString();
+
             StringAssert.Contains("Hello, Alice!", outputString);
             StringAssert.Contains("Hello, Bob!", outputString);
             StringAssert.Contains("Hello, Charlie!", outputString);
 
-            // Cleanup
+            
             Console.SetOut(Console.Out);
         }
 
         [Test]
-        public void FilterAndSum_ShouldReturnSumOfEvenNumbers()
+        public void Given_ListOfIntegers_When_FilterAndSumIsCalled_Then_ShouldReturnSumOfEvenNumbers()
         {
-            // Arrange
+
             var numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var funcSample = new FuncSample();
 
-            // Act
+           
             int result = funcSample.FilterAndSum(numbers);
 
-            // Assert
-            Assert.That(result, Is.EqualTo(30)); // The sum of even numbers (2 + 4 + 6 + 8 + 10) is 30.
+           
+            Assert.That(result, Is.EqualTo(30)); 
         }
     }
 }
