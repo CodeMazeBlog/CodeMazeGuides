@@ -4,36 +4,27 @@
     {
         static void Main()
         {
-            var boolResult1 = Methods.CheckIfIntegerWithEqualityOperator(123);
-            Console.WriteLine(boolResult1);
+            Console.WriteLine($">>> Using {nameof(Methods.CheckIfIntegerWithEqualityOperator)}");
+            var boolResult = Methods.CheckIfIntegerWithEqualityOperator(123);
+            Console.WriteLine(boolResult);
 
-            var boolResult2 = Methods.CheckIfIntegerWithEqualityOperator(456D);
-            Console.WriteLine(boolResult2);
+            boolResult = Methods.CheckIfIntegerWithEqualityOperator(456D);
+            Console.WriteLine(boolResult);
 
-            var boolResult3 = Methods.CheckIfIntegerWithEqualityOperator(0);
-            Console.WriteLine(boolResult3);
+            boolResult = Methods.CheckIfIntegerWithEqualityOperator(0);
+            Console.WriteLine(boolResult);
 
-            var floatResult = Methods.CheckIfFloatWithExplicitCasting(-2.5F);
-            Console.WriteLine(floatResult);
+            Console.WriteLine($">>> Using {nameof(Methods.CheckIfFloatWithExplicitCast)}");
+            boolResult = Methods.CheckIfFloatWithExplicitCast(-2.5F);
+            Console.WriteLine(boolResult);
 
-            try
-            {
-                floatResult = Methods.CheckIfFloatWithExplicitCasting(5L);
-            }
-            catch (InvalidCastException)
-            { 
-                Console.WriteLine(typeof(InvalidCastException));
-            }
+            boolResult = Methods.CheckIfFloatWithExplicitCast(5L);
+            Console.WriteLine(boolResult);
             
-            try
-            {
-                floatResult = Methods.CheckIfFloatWithExplicitCasting(5.0D);
-            }
-            catch (InvalidCastException)
-            { 
-                Console.WriteLine(typeof(InvalidCastException));
-            }           
+            boolResult = Methods.CheckIfFloatWithExplicitCast(5.0D);
+            Console.WriteLine(boolResult);
 
+            Console.WriteLine($">>> Using {nameof(Methods.CheckIfShortUsingConvert)}");
             var convertResult = Methods.CheckIfShortUsingConvert(5L);
             Console.WriteLine(convertResult);
 
@@ -43,39 +34,30 @@
             convertResult = Methods.CheckIfShortUsingConvert(12.54F);
             Console.WriteLine(convertResult);
                                                     
-            try
-            {
-                convertResult = Methods.CheckIfShortUsingConvert(Decimal.MaxValue);       
-            }
-            catch (OverflowException)
-            { 
-                Console.WriteLine(typeof(OverflowException)); 
-            }
+            convertResult = Methods.CheckIfShortUsingConvert(Decimal.MaxValue);
+            Console.WriteLine(convertResult);
 
             convertResult = Methods.CheckIfShortUsingConvert("255");
             Console.WriteLine(convertResult);
                                                   
-            try
-            {
-                convertResult = Methods.CheckIfShortUsingConvert("ABC");       
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine(typeof(FormatException));
-            }
+            convertResult = Methods.CheckIfShortUsingConvert("ABC");
+            Console.WriteLine(convertResult);
 
+            Console.WriteLine($">>> Using {nameof(Methods.CheckIfFloatWithIsOperator)}");
             var isFloat = Methods.CheckIfFloatWithIsOperator(6.99F);
             Console.WriteLine(isFloat);
 
             isFloat = Methods.CheckIfFloatWithIsOperator(Math.PI);
             Console.WriteLine(isFloat);
 
-            var intValue = Methods.ConvertToIntWithAsOperator(19);
+            Console.WriteLine($">>> Using {nameof(Methods.CheckIfIntWithAsOperator)}");
+            var intValue = Methods.CheckIfIntWithAsOperator(19);
             Console.WriteLine(intValue);
 
-            intValue = Methods.ConvertToIntWithAsOperator(.25);
+            intValue = Methods.CheckIfIntWithAsOperator(.25);
             Console.WriteLine(intValue);
 
+            Console.WriteLine(">>> Using object.IsNumber");
             object value = "123";
             var isNumber = value.IsNumber();
             Console.WriteLine(isNumber);
@@ -83,7 +65,8 @@
             isNumber = value.IsNumber();
             Console.WriteLine(isNumber);
 
-            var price = Methods.CalculateAllTaxesIncludedPrice(10.0);
+            Console.WriteLine($">>> Using {nameof(Methods.CalculateAllTaxesIncludedPrice)}");
+             var price = Methods.CalculateAllTaxesIncludedPrice(10.0);
             Console.WriteLine(price);
 
             price = Methods.CalculateAllTaxesIncludedPrice(20);

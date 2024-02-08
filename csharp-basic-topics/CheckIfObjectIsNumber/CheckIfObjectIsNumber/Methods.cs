@@ -4,17 +4,56 @@
     {
         public static bool CheckIfIntegerWithEqualityOperator(object value) => value.GetType() == typeof(int);
 
-        public static float CheckIfFloatWithExplicitCasting(object value) => (float)value;
+        public static bool CheckIfFloatWithExplicitCast(object value)
+        {
+            try
+            {
+                var result = (float)value;
+                Console.WriteLine(result);
 
-        public static short CheckIfShortUsingConvert(object value) => Convert.ToInt16(value);
+                return true;
+            }
+            catch(InvalidCastException)
+            {
+                Console.WriteLine(typeof(InvalidCastException));
+
+                return false;
+            }
+        }
+
+        public static bool CheckIfShortUsingConvert(object value)
+        {
+            try
+            {
+                var result = Convert.ToInt16(value);
+                Console.WriteLine(result);
+
+                return true;
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine(typeof(OverflowException));
+
+                return false;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine(typeof(FormatException));
+                return false;
+            }
+        }
 
         public static bool CheckIfFloatWithIsOperator(object value) => value is float;
 
-        public static int ConvertToIntWithAsOperator(object value)
+        public static bool CheckIfIntWithAsOperator(object value)
         {
             var amount = value as int?;
+            if(amount is not null)
+                Console.WriteLine(amount);
+            else
+                Console.WriteLine("null");
 
-            return amount ?? 0;
+            return amount is not null;
         }
 
         public static double CalculateAllTaxesIncludedPrice(object tax)

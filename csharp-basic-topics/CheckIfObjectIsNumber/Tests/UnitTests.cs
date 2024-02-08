@@ -20,7 +20,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenMultipleTypes_WhenCheckedWithExplicitCasting_ThenReturnsFloat()
+        public void GivenMultipleTypes_WhenCheckedWithExplicitCast_ThenReturnsBoolean()
         {
             // Arrange
             var integerValue = -15;
@@ -28,18 +28,15 @@ namespace Tests
             var doubleValue = -4.7513247659008d;
             var stringValue = "123";
 
-            // Act
-            var resultFromFloat = Methods.CheckIfFloatWithExplicitCasting(floatValue);
-
-            // Assert
-            Assert.Equal(floatValue, resultFromFloat);
-            Assert.Throws<InvalidCastException>(() => Methods.CheckIfFloatWithExplicitCasting(integerValue));
-            Assert.Throws<InvalidCastException>(() => Methods.CheckIfFloatWithExplicitCasting(doubleValue));
-            Assert.Throws<InvalidCastException>(() => Methods.CheckIfFloatWithExplicitCasting(stringValue));
+            // Act & Assert
+            Assert.True(Methods.CheckIfFloatWithExplicitCast(floatValue));
+            Assert.False(Methods.CheckIfFloatWithExplicitCast(integerValue));
+            Assert.False(Methods.CheckIfFloatWithExplicitCast(doubleValue));
+            Assert.False(Methods.CheckIfFloatWithExplicitCast(stringValue));
         }
 
         [Fact]
-        public void GivenMultipleTypes_WhenCheckedWithConvert_ThenReturnsShort()
+        public void GivenMultipleTypes_WhenCheckedWithConvert_ThenReturnsBoolean()
         {
             // Arrange
             var negativeIntegerValue = -5;
@@ -56,12 +53,12 @@ namespace Tests
             var resultFromString = Methods.CheckIfShortUsingConvert(stringValue);
 
             // Assert
-            Assert.Equal(negativeIntegerValue, resultFromNegativeInteger);
-            Assert.Equal(integerValue, resultFromInteger);
-            Assert.Equal(-5, resultFromFloat);
-            Assert.Equal(123, resultFromString);
-            Assert.Throws<OverflowException>(() => Methods.CheckIfShortUsingConvert(doubleValue));
-            Assert.Throws<OverflowException>(() => Methods.CheckIfShortUsingConvert(decimalValue));
+            Assert.True(resultFromNegativeInteger);
+            Assert.True(resultFromInteger);
+            Assert.True(resultFromFloat);
+            Assert.True(resultFromString);
+            Assert.False(Methods.CheckIfShortUsingConvert(doubleValue));
+            Assert.False(Methods.CheckIfShortUsingConvert(decimalValue));
         }
 
         [Fact]
@@ -81,7 +78,7 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenMultipleTypes_WhenConvertToIntegerWithAsOperator_ThenReturnsInteger()
+        public void GivenMultipleTypes_WhenConvertToIntegerWithAsOperator_ThenReturnsBoolean()
         {
             // Arrange
             var integerValue = -15;
@@ -91,11 +88,11 @@ namespace Tests
             var charactersValue = "test";
 
             // Act & Assert
-            Assert.Equal(integerValue, Methods.ConvertToIntWithAsOperator(integerValue));
-            Assert.Equal(0, Methods.ConvertToIntWithAsOperator(floatValue));
-            Assert.Equal(0, Methods.ConvertToIntWithAsOperator(doubleValue));
-            Assert.Equal(0, Methods.ConvertToIntWithAsOperator(stringValue));
-            Assert.Equal(0, Methods.ConvertToIntWithAsOperator(charactersValue));
+            Assert.True(Methods.CheckIfIntWithAsOperator(integerValue));
+            Assert.False(Methods.CheckIfIntWithAsOperator(floatValue));
+            Assert.False(Methods.CheckIfIntWithAsOperator(doubleValue));
+            Assert.False(Methods.CheckIfIntWithAsOperator(stringValue));
+            Assert.False(Methods.CheckIfIntWithAsOperator(charactersValue));
         }
 
         [Fact]
