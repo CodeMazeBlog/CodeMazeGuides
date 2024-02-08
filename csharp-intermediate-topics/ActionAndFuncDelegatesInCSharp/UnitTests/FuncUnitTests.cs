@@ -10,8 +10,8 @@ public class FuncUnitTests
         // Arrange
         Func<int, Task> awaitableFunc = async (milliseconds) =>
         {
-            await Task.Delay(milliseconds); // Simulate some async work
-            throw new Exception("I will not break your application."); // simulate exception
+            await Task.Delay(milliseconds);
+            throw new Exception("I will not break your application.");
         };
 
         // Act
