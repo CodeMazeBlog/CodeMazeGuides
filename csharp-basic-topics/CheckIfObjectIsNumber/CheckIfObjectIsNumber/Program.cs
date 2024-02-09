@@ -4,7 +4,7 @@ Console.WriteLine($">>> Using {nameof(Methods.CheckIfIntegerWithEqualityOperator
 var boolResult = Methods.CheckIfIntegerWithEqualityOperator(123);
 Console.WriteLine(boolResult);
 
-boolResult = Methods.CheckIfIntegerWithEqualityOperator(456D);
+boolResult = Methods.CheckIfIntegerWithEqualityOperator(456.0);
 Console.WriteLine(boolResult);
 
 boolResult = Methods.CheckIfIntegerWithEqualityOperator(0);
@@ -17,7 +17,7 @@ Console.WriteLine(boolResult);
 boolResult = Methods.CheckIfFloatWithExplicitCast(5L);
 Console.WriteLine(boolResult);
             
-boolResult = Methods.CheckIfFloatWithExplicitCast(5.0D);
+boolResult = Methods.CheckIfFloatWithExplicitCast(5.0);
 Console.WriteLine(boolResult);
 
 Console.WriteLine($">>> Using {nameof(Methods.CheckIfShortUsingConvert)}");
