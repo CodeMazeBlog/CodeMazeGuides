@@ -44,8 +44,6 @@ Console.WriteLine("Log Count : {0}", stringPoolHelper.GetLogCount());
 
 BenchmarkRunner.Run<HowtoUseStringPoolBenchmark>();
 
-Console.ReadLine();
-
 static HttpRequestMessage GetRequest()
 {
     var request = new HttpRequestMessage(HttpMethod.Get, "https://code-maze.com/");
