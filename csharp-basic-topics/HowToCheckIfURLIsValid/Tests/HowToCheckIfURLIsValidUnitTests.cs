@@ -23,6 +23,7 @@ public class HowToCheckIfURLIsValidUnitTests
             "https://site.company///",
             "xxx://org.company.com"
         ];
+        
         foreach (var url in urls)
         {
             Assert.False(UrlValidator.ValidateUrlWithRegex(url));
@@ -33,15 +34,19 @@ public class HowToCheckIfURLIsValidUnitTests
     public void GivenACorrectUrl_WhenValidatedWithUriTryCreate_ThenItShouldBeValid()
     {
         var url = "https://api.facebook.com:443";
+        
         Assert.True(UrlValidator.ValidateUrlWithUriCreate(url, out var uri));
         
         var url2 = "ftps://user:password@secure.example.org/files";
+        
         Assert.True(UrlValidator.ValidateUrlWithUriCreate(url2, out uri));
         
         var url3 = "file:///C:/Users/username/Documents/file.txt";
+        
         Assert.True(UrlValidator.ValidateUrlWithUriCreate(url3, out uri));
         
         List<string> urls = [url, url2, url3];
+        
         Assert.True(urls.All(x => Uri.IsWellFormedUriString(x, UriKind.RelativeOrAbsolute)));
     }
 
@@ -57,8 +62,11 @@ public class HowToCheckIfURLIsValidUnitTests
         ];
         
         Assert.False(UrlValidator.ValidateUrlWithUriWellFormedString(urls[0]));
+        
         Assert.True(UrlValidator.ValidateUrlWithUriWellFormedString(urls[1]));
+        
         Assert.True(UrlValidator.ValidateUrlWithUriWellFormedString(urls[2]));
+        
         Assert.False(UrlValidator.ValidateUrlWithUriWellFormedString(urls[3]));
     }
 
@@ -66,6 +74,7 @@ public class HowToCheckIfURLIsValidUnitTests
     public async Task GivenACorrectUrl_WhenValidatedWithUriHttpRequest_ThenItShouldBeValid()
     {
         var url = "https://api.facebook.com";
+        
         Assert.True(await UrlValidator.ValidateUrlWithHttpClient(url));
     }
 
@@ -73,6 +82,7 @@ public class HowToCheckIfURLIsValidUnitTests
     public async Task GivenAnIncorrectUrl_WhenValidatedWithUriHttpRequest_ThenItShouldBeInvalid()
     {
         var url = "https://www.example-nonexistent-url.com";
+        
         Assert.False(await UrlValidator.ValidateUrlWithHttpClient(url));
     }
 }
