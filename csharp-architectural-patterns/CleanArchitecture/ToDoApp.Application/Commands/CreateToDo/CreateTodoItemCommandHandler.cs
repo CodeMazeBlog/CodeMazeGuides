@@ -4,7 +4,7 @@ using ToDoApp.Domain.Interfaces;
 
 namespace ToDoApp.Application.Commands.CreateToDo;
 
-public class CreateTodoItemCommandHandler(IToDoRepository toDoRepository)
+public class CreateToDoItemCommandHandler(IToDoRepository toDoRepository)
     : IRequestHandler<CreateToDoItemCommand, int>
 {
     public Task<int> Handle(

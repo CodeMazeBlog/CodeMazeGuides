@@ -1,6 +1,4 @@
-﻿using Moq;
-using ToDoApp.Application.Queries.ToDoItem;
-using ToDoApp.Domain.Interfaces;
+﻿using ToDoApp.Application.Queries.ToDoItem;
 
 namespace ToDoApp.Application.Tests;
 

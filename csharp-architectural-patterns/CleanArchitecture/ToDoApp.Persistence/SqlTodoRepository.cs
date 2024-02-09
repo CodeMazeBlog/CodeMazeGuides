@@ -4,11 +4,11 @@ using ToDoApp.Domain.Interfaces;
 
 namespace ToDoApp.Persistence;
 
-public class SqlTodoRepository : IToDoRepository
+public class SqlToDoRepository : IToDoRepository
 {
     private readonly ToDoDbContext _context;
 
-    public SqlTodoRepository(ToDoDbContext context)
+    public SqlToDoRepository(ToDoDbContext context)
     {
         _context = context;
     }
