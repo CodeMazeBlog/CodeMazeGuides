@@ -5,7 +5,7 @@ namespace Api;
 
 public static class LoggerExtensions
 {
-    public static ILogger Here<T>(this ILogger logger, [CallerMemberName] string memberName = "")
+    public static ILogger WithClassAndMethodNames<T>(this ILogger logger, [CallerMemberName] string memberName = "")
     {
         var className = typeof(T).Name;
 
