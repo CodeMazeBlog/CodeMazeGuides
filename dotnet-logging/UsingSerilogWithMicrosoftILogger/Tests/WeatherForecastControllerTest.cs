@@ -10,7 +10,7 @@ namespace Tests
         public void WhenLoggingInformationWithAMessage_ThenMessageShouldBeShownInConsole()
         {
             // Arrange
-            Mock<ILogger<WeatherForecastController>> _loggerMock = new Mock<ILogger<WeatherForecastController>>();
+            var _loggerMock = new Mock<ILogger<WeatherForecastController>>();
 
             // Act
             var response = new WeatherForecastController(_loggerMock.Object).Get();
