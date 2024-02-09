@@ -1,4 +1,5 @@
-﻿using ValidateNumberIsPositiveOrNegative;
+﻿using BenchmarkDotNet.Running;
+using ValidateNumberIsPositiveOrNegative;
 
 public class Program
 {

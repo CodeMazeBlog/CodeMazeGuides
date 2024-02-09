@@ -7,66 +7,65 @@ namespace ValidateNumberIsPositiveOrNegative
     [RankColumn]
     public class BenchmarkTester
     {
-        [Params(500)]
-        public int Iteration;
+        private int[] data;
+
+        [GlobalSetup]
+        public void GlobalSetup()
+        {
+            data = Enumerable.Range(-500, 499).ToArray();
+        }
 
         [Benchmark]
         public void ConditionalMethod()
         {
-            for (int i = 0; i < Iteration; i++)
+            for (int i = 0; i < data.Length; i++)
             {
-                var number = Random.Shared.Next(-20000, 20000);
-                NumberValidation.IsPositiveOrNegativeUsingConditionalMethod(number);
+                NumberValidation.IsPositiveOrNegativeUsingConditionalMethod(data[i]);
             }
         }
 
         [Benchmark]
         public void LeftShiftMethod()
         {
-            for (int i = 0; i < Iteration; i++)
+            for (int i = 0; i < data.Length; i++)
             {
-                var number = Random.Shared.Next(-20000, 20000);
-                NumberValidation.IsPositiveOrNegativeUsingLeftShiftMethod(number);
+                NumberValidation.IsPositiveOrNegativeUsingLeftShiftMethod(data[i]);
             }
         }
 
         [Benchmark]
         public void RightShiftMethod()
         {
-            for (int i = 0; i < Iteration; i++)
+            for (int i = 0; i < data.Length; i++)
             {
-                var number = Random.Shared.Next(-20000, 20000);
-                NumberValidation.IsPositiveOrNegativeUsingRightShiftMethod(number);
+                NumberValidation.IsPositiveOrNegativeUsingRightShiftMethod(data[i]);
             }
         }
 
         [Benchmark]
         public void MathAbsMethod()
         {
-            for (int i = 0; i < Iteration; i++)
+            for (int i = 0; i < data.Length; i++)
             {
-                var number = Random.Shared.Next(-20000, 20000);
-                NumberValidation.IsPositiveOrNegativeUsingMathAbsMethod(number);
+                NumberValidation.IsPositiveOrNegativeUsingMathAbsMethod(data[i]);
             }
         }
 
         [Benchmark]
         public void MathSignMethod()
         {
-            for (int i = 0; i < Iteration; i++)
+            for (int i = 0; i < data.Length; i++)
             {
-                var number = Random.Shared.Next(-20000, 20000);
-                NumberValidation.IsPositiveOrNegativeUsingMathSignMethod(number);
+                NumberValidation.IsPositiveOrNegativeUsingMathSignMethod(data[i]);
             }
         }
 
         [Benchmark]
         public void BuiltInMethod()
         {
-            for (int i = 0; i < Iteration; i++)
+            for (int i = 0; i < data.Length; i++)
             {
-                var number = Random.Shared.Next(-20000, 20000);
-                NumberValidation.IsPositiveOrNegativeUsingBuiltInMethod(number);
+                NumberValidation.IsPositiveOrNegativeUsingBuiltInMethod(data[i]);
             }
         }
     }
