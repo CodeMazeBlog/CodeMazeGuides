@@ -1,70 +1,59 @@
-﻿namespace CheckIfObjectIsNumber
+﻿namespace CheckIfObjectIsNumber;
+
+public static class Methods
 {
-    public static class Methods
+    public static bool CheckIfIntegerWithEqualityOperator(object value)
+        => value.GetType() == typeof(int);
+
+    public static bool CheckIfFloatWithExplicitCast(object value)
     {
-        public static bool CheckIfIntegerWithEqualityOperator(object value) => value.GetType() == typeof(int);
-
-        public static bool CheckIfFloatWithExplicitCast(object value)
+        try
         {
-            try
-            {
-                var result = (float)value;
-                Console.WriteLine(result);
+            _ = (float)value;
 
-                return true;
-            }
-            catch(InvalidCastException)
-            {
-                Console.WriteLine(typeof(InvalidCastException));
+            return true;
+        }
+        catch (InvalidCastException)
+        {
+            return false;
+        }
+    }
 
-                return false;
-            }
+    public static bool CheckIfShortUsingConvert(object value)
+    {
+        try
+        {
+            _ = Convert.ToInt16(value);
+
+            return true;
+        }
+        catch (OverflowException)
+        {
+            return false;
+        }
+        catch (FormatException)
+        {
+            return false;
+        }
+    }
+
+    public static bool CheckIfFloatWithIsOperator(object value) => value is float;
+
+    public static bool CheckIfIntWithAsOperator(object value)
+    {
+        var amount = value as int?;
+
+        return amount is not null;
+    }
+
+    public static double CalculateAllTaxesIncludedPrice(object tax)
+    {
+        var price = 28.0;
+        if (tax is double vat)
+        {
+            price += (price * vat) / 100;
         }
 
-        public static bool CheckIfShortUsingConvert(object value)
-        {
-            try
-            {
-                var result = Convert.ToInt16(value);
-                Console.WriteLine(result);
-
-                return true;
-            }
-            catch (OverflowException)
-            {
-                Console.WriteLine(typeof(OverflowException));
-
-                return false;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine(typeof(FormatException));
-                return false;
-            }
-        }
-
-        public static bool CheckIfFloatWithIsOperator(object value) => value is float;
-
-        public static bool CheckIfIntWithAsOperator(object value)
-        {
-            var amount = value as int?;
-            if(amount is not null)
-                Console.WriteLine(amount);
-            else
-                Console.WriteLine("null");
-
-            return amount is not null;
-        }
-
-        public static double CalculateAllTaxesIncludedPrice(object tax)
-        {
-            double price = 28;
-            if (tax is double vat)
-            {
-                price += (price * vat) / 100;
-            }
-
-            return price;
-        }
+        return price;
     }
 }
