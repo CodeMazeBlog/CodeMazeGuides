@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SingleAndSplitQueriesInEFCore;
+using Xunit;
 
 namespace Tests;
 
@@ -20,7 +21,7 @@ public class CompaniesRepositoryUnitTests : IDisposable
     }
 
     [Fact]
-    public void GetCompaniesWithDepartmentsUsingSingleQuery_CompanyDepartmentsAreNotEmpty()
+    public void WhenGettingCompaniesWithDepartmentsUsingSingleQuery_ThenCompanyDepartmentsAreNotEmpty()
     {
         var repository = new CompaniesRepository(_dbContext);
 
@@ -34,7 +35,7 @@ public class CompaniesRepositoryUnitTests : IDisposable
     }
 
     [Fact]
-    public void GetCompaniesWithDepartmentsAndProductsUsingSingleQuery_CompanyDepartmentsAndProductsAreNotEmpty()
+    public void WhenGettingCompaniesWithDepartmentsAndProductsUsingSingleQuery_ThenCompanyDepartmentsAndProductsAreNotEmpty()
     {
         var repository = new CompaniesRepository(_dbContext);
 
@@ -49,7 +50,7 @@ public class CompaniesRepositoryUnitTests : IDisposable
     }
 
     [Fact]
-    public void GetCompaniesWithDepartmentsUsingSplitQuery_CompanyDepartmentsAreNotEmpty()
+    public void WhenGettingCompaniesWithDepartmentsUsingSplitQuery_ThenCompanyDepartmentsAreNotEmpty()
     {
         var repository = new CompaniesRepository(_dbContext);
 
@@ -63,11 +64,11 @@ public class CompaniesRepositoryUnitTests : IDisposable
     }
 
     [Fact]
-    public void GetCompaniesWithDepartmentsAndProductsUsingSplitQuery_CompanyDepartmentsAndProductsAreNotEmpty()
+    public void WhenGettingCompaniesWithDepartmentsAndProductsUsingSplitQuery_ThenCompanyDepartmentsAndProductsAreNotEmpty()
     {
         var repository = new CompaniesRepository(_dbContext);
 
-        var companies = repository.GetCompaniesWithDepartmentsAndProductsUsingSingleQuery();
+        var companies = repository.GetCompaniesWithDepartmentsAndProductsUsingSplitQuery();
 
         Assert.NotEmpty(companies);
         Assert.Equal(1000, companies.Count);
