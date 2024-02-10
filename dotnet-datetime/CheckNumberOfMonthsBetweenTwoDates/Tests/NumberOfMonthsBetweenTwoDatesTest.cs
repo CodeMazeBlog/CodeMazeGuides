@@ -16,12 +16,31 @@ public class NumberOfMonthsBetweenTwoDates
     [InlineData("2023-01-01", "2023-02-28", 2)]
     public void GivenSpecificDates_WhenCalculateSubscriptionDurationCalled_ThenReturnsCorrectNumberOfMonths(string subscriptionStartDate, string endDateString, int expectedMonths)
     {
-        var subscriptionStart = DateTime.Parse(subscriptionStartDate);
-        var endDate = DateTime.Parse(endDateString);
+        var subscriptionStart = DateOnly.Parse(subscriptionStartDate);
+        var endDate = DateOnly.Parse(endDateString);
 
         int actualMonths = CheckNumberOfMonthsBetweenTwoDates.NumberOfMonthsBetweenTwoDates.CalculateSubscriptionDuration(subscriptionStart, endDate);
 
         Assert.Equal(expectedMonths, actualMonths);
+    }
+
+    [Theory]
+    [InlineData("2024-01-09", "2023-04-10")]
+    [InlineData("2023-03-15", "2023-02-15")]
+    [InlineData("2030-01-01", "2023-01-01")]
+    [InlineData("2025-12-31", "2020-01-01")]
+    [InlineData("2040-06-15", "2030-12-31")]
+    [InlineData("2028-07-01", "2023-06-30")]
+    [InlineData("2035-02-28", "2025-02-27")]
+    public void GivenStartDateAfterEndDate_WhenCalculateSubscriptionDurationCalled_ThenThrowsArgumentOutOfRangeException(string subscriptionStartDate, string endDateString)
+    {
+        var subscriptionStart = DateOnly.Parse(subscriptionStartDate);
+        var endDate = DateOnly.Parse(endDateString);
+
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => CheckNumberOfMonthsBetweenTwoDates.NumberOfMonthsBetweenTwoDates.CalculateSubscriptionDuration(subscriptionStart, endDate));
+
+        Assert.Equal("subscriptionStart", exception.ParamName);
+        Assert.Contains("The subscription start date must be before the end date.", exception.Message);
     }
 
     [Theory]
@@ -39,5 +58,24 @@ public class NumberOfMonthsBetweenTwoDates
 
         double delta = 0.05;
         Assert.True(Math.Abs(expectedMonths - actualMonths) <= delta);
+    }
+
+    [Theory]
+    [InlineData("2024-01-09", "2023-04-10")]
+    [InlineData("2023-03-15", "2023-02-15")]
+    [InlineData("2030-01-01", "2023-01-01")]
+    [InlineData("2025-12-31", "2020-01-01")]
+    [InlineData("2040-06-15", "2030-12-31")]
+    [InlineData("2028-07-01", "2023-06-30")]
+    [InlineData("2035-02-28", "2025-02-27")]
+    public void GivenStartDateAfterEndDate_WhenCalculateCourseDurationCalled_ThenThrowsArgumentOutOfRangeException(string courseStartDate, string endDateString)
+    {
+        var courseStart = DateTime.Parse(courseStartDate);
+        var endDate = DateTime.Parse(endDateString);
+
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => CheckNumberOfMonthsBetweenTwoDates.NumberOfMonthsBetweenTwoDates.CalculateCourseDuration(courseStart, endDate));
+
+        Assert.Equal("courseStart", exception.ParamName);
+        Assert.Contains("The course start date must be before the end date.", exception.Message);
     }
 }
