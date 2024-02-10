@@ -1,6 +1,4 @@
-﻿using CountNumberOfDigitsInANumber;
-
-namespace Tests
+﻿namespace Tests
 {
     [TestClass]
     public class LogCountTest

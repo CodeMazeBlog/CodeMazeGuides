@@ -12,6 +12,7 @@
                 number /= 10;
                 count++;
             }
+
             return count;
         }
 
@@ -21,12 +22,14 @@
             {
                 return 1;
             }
+
             return 1 + GetRecursiveCount(number / 10);
         }
 
         public int GetLog10Count(int number)
         {
             if (number == 0) return 1;
+
             return 1 + (int)Math.Floor(Math.Log10((double)Math.Abs(number)));
         }
 
@@ -47,6 +50,7 @@
             if (number < 10000000) return 7;
             if (number < 100000000) return 8;
             if (number < 1000000000) return 9;
+
             return 10;
         }
     }

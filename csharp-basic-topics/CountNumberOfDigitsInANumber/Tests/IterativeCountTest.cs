@@ -1,5 +1,3 @@
-using CountNumberOfDigitsInANumber;
-
 namespace Tests
 {
     [TestClass]
