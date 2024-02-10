@@ -2,8 +2,6 @@
 using HowtoUseStringPool;
 using HowToUseStringPool.Benchmark;
 
-Environment.SetEnvironmentVariable("EncryptionPassword", "123abcd");
-
 var stringPoolHelper = new StringPoolHelper();
 var referenceEquals = stringPoolHelper.Init();
 Console.WriteLine("Reference Equals : {0}", referenceEquals);
@@ -27,20 +25,8 @@ Console.WriteLine("CheckHeader : {0}", checkResult);
 var tokenResult = stringPoolHelper.CheckToken(request);
 Console.WriteLine("CheckToken : {0}", tokenResult);
 
-var encrypted = stringPoolHelper.Encrypt("CodeMaze");
-Console.WriteLine("Encrypt : {0}", encrypted);
-
 var message = stringPoolHelper.Translate("TEST", "en-US");
 Console.WriteLine("Translate : {0}", message);
-
-var contentResult = stringPoolHelper.CheckContent("lorem badword2 ipsum");
-Console.WriteLine("CheckContent : {0}", contentResult);
-
-var validationResult = stringPoolHelper.IsValidEmail("a.b@example.com");
-Console.WriteLine("IsValidEmail : {0}", validationResult);
-
-stringPoolHelper.LogError("Invalid Age");
-Console.WriteLine("Log Count : {0}", stringPoolHelper.GetLogCount());
 
 BenchmarkRunner.Run<HowtoUseStringPoolBenchmark>();
 

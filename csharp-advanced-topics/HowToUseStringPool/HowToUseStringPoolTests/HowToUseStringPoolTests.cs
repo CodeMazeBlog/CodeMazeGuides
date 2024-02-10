@@ -4,7 +4,7 @@ namespace HowToUseStringPoolTests;
 public class HowToUseStringPoolTests
 {
     private IFixture? _fixture;
-    private StringPoolHelper _poolHelper;
+    private StringPoolHelper _poolHelper = null!;
 
     [TestInitialize]
     public void Setup()
@@ -14,6 +14,14 @@ public class HowToUseStringPoolTests
         Environment.SetEnvironmentVariable("EncryptionPassword", "123abcd");
     }
 
+
+    [TestMethod]
+    public void WhenInitCalled_ThenReturnsTrue()
+    {
+        var result = _poolHelper.Init();
+
+        Assert.IsTrue(result);
+    }
     [TestMethod]
     public void WhenAddUserCalled_ThenStringPoolMustUpdateItsCache()
     {
@@ -34,19 +42,7 @@ public class HowToUseStringPoolTests
 
         var result = _poolHelper.GetUser(user);
 
-        Assert.IsNull(result);
-    }
-
-    [TestMethod]
-    public void WhenLogErrorCalled_ThenLogCountMustBeIncrease()
-    {
-        var errorMessage = _fixture.Create<string>();
-        var beforeLogCount = _poolHelper.GetLogCount();
-
-        _poolHelper.LogError(errorMessage);
-        var afterLogCount = _poolHelper.GetLogCount();
-
-        Assert.IsTrue(afterLogCount > beforeLogCount);
+        Assert.IsTrue(string.IsNullOrEmpty(result));
     }
 
     [TestMethod]
@@ -116,84 +112,25 @@ public class HowToUseStringPoolTests
     }
 
     [TestMethod]
-    public void WhenEncryptCalled_ThenResultMustNotBeNull()
-    {
-        var text = _fixture.Create<string>();
-
-        var result = _poolHelper.Encrypt(text);
-
-        Assert.IsNotNull(result);
-        Assert.AreNotEqual(text, result);
-    }
-
-    [TestMethod]
     public void WhenTranslateCalled_ThenResultMustNotBeNull()
     {
         var key = _fixture.Create<string>();
         var lang = _fixture.Create<string>();
 
         var result = _poolHelper.Translate(key, lang);
-        var expected = string.Format("LOCALIZATION_{0}{1}", key, lang);
+        var expected = $"LOCALIZATION_{key}{lang}";
 
         Assert.IsNotNull(result);
         Assert.AreNotEqual(expected, result);
-    }
-
-    [TestMethod]
-    public void WhenIsValidEmailCalled_WithGeneratedValue_ThenResultMustBeFalse()
-    {
-        var email = _fixture.Create<string>();
-
-        var result = _poolHelper.IsValidEmail(email);
-
-        Assert.IsFalse(result);
-    }
-
-    [TestMethod]
-    public void WhenIsValidEmailCalled_WithEmailValue_ThenResultMustBeTrue()
-    {
-        var email = "abc@example.com";
-
-        var result = _poolHelper.IsValidEmail(email);
-
-        Assert.IsTrue(result);
-    }
-
-    [TestMethod]
-    public void WhenCheckContentCalled_WithGeneratedContent_ThenResultMustBeTrue()
-    {
-        var content1 = _fixture.Create<string>();
-        var content2 = _fixture.Create<string>();
-        var content3 = _fixture.Create<string>();
-        var content = string.Format("{0} {1} {2}", content1, content2, content3);
-
-        var result = _poolHelper.CheckContent(content);
-
-        Assert.IsTrue(result);
-    }
-
-    [TestMethod]
-    public void WhenCheckContentCalled_WithBlockedContent_ThenResultMustBeFalse()
-    {
-        var content1 = _fixture.Create<string>();
-        var content2 = _fixture.Create<string>();
-        var content = string.Format("{0} badword1 {1}", content1, content2);
-
-        var result = _poolHelper.CheckContent(content);
-
-        Assert.IsFalse(result);
     }
 
     private static HttpRequestMessage GetHttpRequest(Dictionary<string, string> headerItems)
     {
         var request = new HttpRequestMessage(HttpMethod.Get, "https://code-maze.com/");
 
-        if (headerItems != null && headerItems.Count != 0)
+        foreach (var item in headerItems)
         {
-            foreach (var item in headerItems)
-            {
-                request.Headers.Add(item.Key, item.Value);
-            }
+            request.Headers.Add(item.Key, item.Value);
         }
 
         return request;

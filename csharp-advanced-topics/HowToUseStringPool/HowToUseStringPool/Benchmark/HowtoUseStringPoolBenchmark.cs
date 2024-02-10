@@ -11,7 +11,7 @@ namespace HowToUseStringPool.Benchmark;
 public class HowtoUseStringPoolBenchmark
 {
     private const int ChunkSize = 64;
-    private char[] charArray;
+    private char[] _charArray = null!;
 
     [Params(1000, 10000, 100000)]
     public int Iterations;
@@ -19,8 +19,8 @@ public class HowtoUseStringPoolBenchmark
     [GlobalSetup]
     public void Setup()
     {
-        charArray = new char[1024];
-        Array.Fill(charArray, 'a');
+        _charArray = new char[1024];
+        Array.Fill(_charArray, 'a');
     }
 
     [Benchmark(Description = "UseString")]
@@ -28,8 +28,9 @@ public class HowtoUseStringPoolBenchmark
     {
         for (int i = 0; i < Iterations; i++)
         {
-            int startIndex = i % (charArray.Length - ChunkSize);
-            var instance = new string(charArray, startIndex, ChunkSize);
+            int startIndex = i % (_charArray.Length - ChunkSize);
+
+            var instance = new string(_charArray, startIndex, ChunkSize);
         }
     }
 
@@ -38,8 +39,9 @@ public class HowtoUseStringPoolBenchmark
     {
         for (int i = 0; i < Iterations; i++)
         {
-            int startIndex = i % (charArray.Length - ChunkSize);
-            ReadOnlySpan<char> span = charArray.AsSpan(startIndex, ChunkSize);
+            int startIndex = i % (_charArray.Length - ChunkSize);
+            ReadOnlySpan<char> span = _charArray.AsSpan(startIndex, ChunkSize);
+
             var instance = StringPool.Shared.GetOrAdd(span);
         }
     }
@@ -47,11 +49,12 @@ public class HowtoUseStringPoolBenchmark
     [Benchmark(Description = "UseStringBuilder")]
     public void Benchmark_UseStringBuilder()
     {
+        var sb = new StringBuilder();
         for (int i = 0; i < Iterations; i++)
         {
-            int startIndex = i % (charArray.Length - ChunkSize);
-            var sb = new StringBuilder();
-            sb.Append(charArray, startIndex, ChunkSize);
+            int startIndex = i % (_charArray.Length - ChunkSize);
+            sb.Append(_charArray, startIndex, ChunkSize);
+
             var instance = sb.ToString();
             sb.Clear();
         }
