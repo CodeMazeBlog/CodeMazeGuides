@@ -6,7 +6,7 @@ namespace GetNumberOfLinesInTextFileUnitTests
     [TestClass]
     public class NumberOfLinesInTextFileUnitTests
     {
-        private const string FileName = "Sample.txt";
+        private const string FileName = "SmallFile.txt";
 
         [TestMethod]
         public void GivenFileName_WhenCountingLinesUsingReadAllLinesMethod_ThenReturnCorrectNumberOfLines()

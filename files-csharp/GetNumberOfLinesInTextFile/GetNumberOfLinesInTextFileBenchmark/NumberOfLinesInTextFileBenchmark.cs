@@ -3,17 +3,19 @@ using GetNumberOfLinesInTextFile;
 
 namespace GetNumberOfLinesInTextFileBenchmark
 {
+    [MemoryDiagnoser(false)]
     public class NumberOfLinesInTextFileBenchmark
     {
-        const string FileName = "Sample.txt";
+        const string SmallFileName = "SmallFile.txt";
+        const string LargeFileName = "LargeFile.txt";
 
         [Benchmark]
-        public void CountLinesUsingReadAllLinesMethod() => FileHelper.CountLinesUsingReadAllLinesMethod(FileName);
+        public void CountLinesUsingReadAllLines() => FileHelper.CountLinesUsingReadAllLinesMethod(SmallFileName);
 
         [Benchmark]
-        public void CountLinesUsingStreamReader() => FileHelper.CountLinesUsingStreamReader(FileName);
+        public void CountLinesUsingStreamReader() => FileHelper.CountLinesUsingStreamReader(SmallFileName);
 
         [Benchmark]
-        public void CountLinesUsingReadLines() => FileHelper.CountLinesUsingReadLinesMethod(FileName);
+        public void CountLinesUsingReadLines() => FileHelper.CountLinesUsingReadLinesMethod(SmallFileName);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using GetNumberOfLinesInTextFile;
 
-const string FileName = "Sample.txt";
+const string FileName = "SmallFile.txt";
 
 Console.WriteLine($"Total Number of Lines in the text file: {FileHelper.CountLinesUsingReadAllLinesMethod(FileName)}");
 
