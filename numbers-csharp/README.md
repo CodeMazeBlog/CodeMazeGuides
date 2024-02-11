@@ -15,3 +15,4 @@ This section contains the topics related numbers (parsing, conversion, random nu
 - [Math Class in C#](https://code-maze.com/csharp-math/)
 - [Parse and TryParse in C#](https://code-maze.com/csharp-parse-tryparse/)
 - [How to Round Down a Number to a Nearest Integer in C#](https://code-maze.com/csharp-round-down-a-number-to-a-nearest-integer/)
+- [Different Techniques to Convert a Number Between Hexadecimal and Decimal in C#](https://code-maze.com/csharp-convert-a-number-between-hexadecimal-and-decimal/)
