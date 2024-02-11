@@ -72,7 +72,7 @@ public class WeatherForecastController() : ControllerBase
     {
         Console.WriteLine($"AsyncMethod started on thread: {Environment.CurrentManagedThreadId}");
        
-        await Task.Delay(1000);
+        await Task.Delay(250);
 
         Console.WriteLine($"AsyncMethod completed on thread: {Environment.CurrentManagedThreadId}");
 
