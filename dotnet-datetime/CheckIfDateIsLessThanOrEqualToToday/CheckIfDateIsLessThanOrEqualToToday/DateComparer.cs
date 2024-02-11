@@ -10,7 +10,8 @@ public class DateComparer
     public DateComparer(string dateString = "01/01/2024")
     {
         _todayDate = DateOnly.FromDateTime(DateTime.Today);
-        if (!DateOnly.TryParseExact(dateString, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _dateToCheck))
+        if (!DateOnly.TryParseExact(dateString, "MM/dd/yyyy",
+            CultureInfo.InvariantCulture, DateTimeStyles.None, out _dateToCheck))
         {
             // Handle a case where the input date string is invalid
         }
