@@ -25,6 +25,7 @@ public class WeatherForecastController() : ControllerBase
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastParallelForEachAsync()
     {
         Console.WriteLine($"GetWeatherForecastParallelForEachAsync started on thread: {Environment.CurrentManagedThreadId}");
+
         ParallelOptions parallelOptions = new()
         {
             MaxDegreeOfParallelism = 3
@@ -34,10 +35,12 @@ public class WeatherForecastController() : ControllerBase
 
         await Parallel.ForEachAsync(Enumerable.Range(0, 3), parallelOptions, async (index, _) =>
         {
-            var result = await AsyncMethod(); resultBag.Add(result);
+            var result = await AsyncMethod();
+            resultBag.Add(result);
         });
 
         Console.WriteLine($"GetWeatherForecastParallelForEachAsync completed on thread: {Environment.CurrentManagedThreadId}");
+
         return resultBag.SelectMany(cr => cr);
     }
 
@@ -45,6 +48,7 @@ public class WeatherForecastController() : ControllerBase
     public async Task<IEnumerable<WeatherForecast>> GetWeatherForecastWhenAll()
     {
         Console.WriteLine($"GetWeatherForecastWhenAll started on thread: {Environment.CurrentManagedThreadId}");
+
         var tasks = new List<Task<IEnumerable<WeatherForecast>>>();
 
         var result1 = Task.Run(() => AsyncMethod());
@@ -58,7 +62,8 @@ public class WeatherForecastController() : ControllerBase
         var combinedResults = await Task.WhenAll(tasks);
         var result = combinedResults.SelectMany(cr => cr);
 
-        Console.WriteLine($"GetWeatherForecastWhenAll started on thread: {Environment.CurrentManagedThreadId}");
+        Console.WriteLine($"GetWeatherForecastWhenAll completed on thread: {Environment.CurrentManagedThreadId}");
+
         return result;
     }
 
@@ -66,9 +71,11 @@ public class WeatherForecastController() : ControllerBase
     private static async Task<IEnumerable<WeatherForecast>> AsyncMethod()
     {
         Console.WriteLine($"AsyncMethod started on thread: {Environment.CurrentManagedThreadId}");
+       
         await Task.Delay(1000);
 
         Console.WriteLine($"AsyncMethod completed on thread: {Environment.CurrentManagedThreadId}");
+
         return Enumerable.Range(6, 5).Select(index => new WeatherForecast
         {
             Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
