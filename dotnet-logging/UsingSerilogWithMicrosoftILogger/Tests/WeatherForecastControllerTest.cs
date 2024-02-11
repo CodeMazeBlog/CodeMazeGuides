@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
 using UsingSerilogWithMicrosoftILogger.Controllers;
+using Xunit;
 
 namespace Tests
 {
