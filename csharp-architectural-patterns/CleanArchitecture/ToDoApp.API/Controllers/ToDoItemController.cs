@@ -10,7 +10,7 @@ namespace ToDoApp.API.Controllers;
 public class ToDoItemController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetAsync()
+    public async Task<IActionResult> Get()
     {
         return Ok(await mediator.Send(new ToDoItemQuery()));
     }
