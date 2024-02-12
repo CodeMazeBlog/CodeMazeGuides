@@ -19,3 +19,4 @@ This section contains the topics related to files in C#.
 - [Uploading Large Files in ASP.NET Core](https://code-maze.com/aspnetcore-upload-large-files/)
 - [How to Create a Temp File in the Temp Folder in C#](https://code-maze.com/csharp-how-to-create-a-temp-file-in-temp-folder/)
 - [Writing to a CSV File in C#](https://code-maze.com/csharp-writing-csv-file/)
+- [How to Get the Number of Files in a Folder With C#](https://code-maze.com/csharp-get-the-number-of-files-in-a-folder/)
