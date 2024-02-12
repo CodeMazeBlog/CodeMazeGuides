@@ -11,6 +11,7 @@ public static class NativeStringChecker
             else
                 return false;
         }
+
         return true;
     }
 
@@ -27,6 +28,7 @@ public static class NativeStringChecker
                     return false;
             }
         }
+
         return true;
     }
 }
