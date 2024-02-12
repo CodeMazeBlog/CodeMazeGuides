@@ -16,27 +16,7 @@ namespace ReverseNumberAsInteger
             }
 
             return reversedNumber;
-        }
-
-        public static BigInteger ReverseUsingModuloAndDivision(BigInteger num)
-        {
-            bool isNegative = false;
-            BigInteger reversedNumber = 0;
-
-            if (num < 0)
-            {
-                isNegative = true;
-                num *= -1;
-            }
-
-            while (num > 0)
-            {
-                reversedNumber = (reversedNumber * 10) + (num % 10);
-                num /= 10;
-            }
-
-            return isNegative == true ? reversedNumber * -1 : reversedNumber;
-        }
+        }        
 
         public static BigInteger ReverseUsingMathPow(BigInteger num)
         {
@@ -59,27 +39,25 @@ namespace ReverseNumberAsInteger
 
         public static BigInteger ReverseBySwappingDigits(BigInteger num)
         {
-            int totalNumOfDigits = (int)BigInteger.Log10(BigInteger.Abs(num)) + 1;
-            int leftPtr = totalNumOfDigits - 1;
-            int rightPtr = 0;
-            BigInteger reversedNumber = 0;
             bool isNegative = false;
-
             if (num < 0)
             {
                 isNegative = true;
                 num = -num;
             }
 
-            var leftPow = BigInteger.Pow(10, leftPtr);
-            var rightPow = BigInteger.Pow(10, rightPtr);
+            int totalNumOfDigits = (int)BigInteger.Log10(num);
+            BigInteger reversedNumber = 0;            
 
-            while (leftPtr >= rightPtr)
+            var leftPow = BigInteger.Pow(10, totalNumOfDigits);
+            var rightPow = BigInteger.Pow(10, 0);
+
+           while(leftPow >= rightPow)
             {
                 BigInteger leftDigit = (num / leftPow) % 10;
                 BigInteger rightDigit = (num / rightPow) % 10;
 
-                if (leftPtr != rightPtr)
+                if (leftPow != rightPow)
                 {
                     reversedNumber += leftDigit * rightPow;
                     reversedNumber += rightDigit * leftPow;
@@ -89,8 +67,6 @@ namespace ReverseNumberAsInteger
                     reversedNumber += leftDigit * leftPow;
                 }
 
-                leftPtr--;
-                rightPtr++;
                 leftPow /= 10;
                 rightPow *= 10;
             }
@@ -130,11 +106,13 @@ namespace ReverseNumberAsInteger
         public static BigInteger ReverseAsString(BigInteger num)
         {
             bool isNegative = false;
+
             if (num < 0)
             {
                 isNegative = true;
                 num *= -1;
             }
+
             string numStr = num.ToString();
             char[] charArray = numStr.ToCharArray();
             Array.Reverse(charArray);

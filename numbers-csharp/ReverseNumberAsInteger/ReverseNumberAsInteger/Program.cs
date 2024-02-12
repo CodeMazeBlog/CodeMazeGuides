@@ -7,6 +7,7 @@ namespace ReverseNumberAsInteger
     {
         static void Main(string[] args)
         {
+            RunBenchmark();
             List<int> input = [1276345, -12345, 10, 0];
             List<BigInteger> bigNum = [BigInteger.Parse("12345003094809458066"),
                 BigInteger.Parse("-9192938475769433833")];
@@ -18,8 +19,6 @@ namespace ReverseNumberAsInteger
             {
                 reversedNum = ReverseNumbers.ReverseUsingDigitExtractionAndReconstruction(i);
                 Console.WriteLine("Reverse number using Digit Extraction and Reconstruction method:\nOriginal Num: {0} Reversed Num: {1}", i, reversedNum);
-                reversedNum = ReverseNumbers.ReverseUsingModuloAndDivision(i);
-                Console.WriteLine("Reverse number using Modulo And Division method:\nOriginal Num: {0} Reversed Num: {1}", i, reversedNum);
                 reversedNum = ReverseNumbers.ReverseBySwappingDigits(i);
                 Console.WriteLine("Reverse number by swapping digits method:\nOriginal Num: {0} Reversed Num: {1}", i, reversedNum);
                 reversedNum = ReverseNumbers.ReverseUsingMathPow(i);
@@ -35,8 +34,6 @@ namespace ReverseNumberAsInteger
             {
                 reversedLargeNum = ReverseLargeNumbers.ReverseUsingDigitExtractionAndReconstruction(num);
                 Console.WriteLine("Reverse number using Digit Extraction and Reconstruction method:\nOriginal Num: {0} Reversed Num: {1}", num, reversedLargeNum);
-                reversedLargeNum = ReverseLargeNumbers.ReverseUsingModuloAndDivision(num);
-                Console.WriteLine("Reverse number using Modulo And Division method:\nOriginal Num: {0} Reversed Num: {1}", num, reversedLargeNum);
                 reversedLargeNum = ReverseLargeNumbers.ReverseBySwappingDigits(num);
                 Console.WriteLine("Reverse number by swapping digits method:\nOriginal Num: {0} Reversed Num: {1}", num, reversedLargeNum);
                 reversedLargeNum = ReverseLargeNumbers.ReverseUsingMathPow(num);
