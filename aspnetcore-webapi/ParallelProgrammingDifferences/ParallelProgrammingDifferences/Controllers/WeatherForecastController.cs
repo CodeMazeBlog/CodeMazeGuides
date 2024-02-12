@@ -31,7 +31,7 @@ public class WeatherForecastController() : ControllerBase
             MaxDegreeOfParallelism = 3
         };
 
-        ConcurrentBag<IEnumerable<WeatherForecast>> resultBag = [];
+        var resultBag = new ConcurrentBag<IEnumerable<WeatherForecast>>();
 
         await Parallel.ForEachAsync(Enumerable.Range(0, 3), parallelOptions, async (index, _) =>
         {
