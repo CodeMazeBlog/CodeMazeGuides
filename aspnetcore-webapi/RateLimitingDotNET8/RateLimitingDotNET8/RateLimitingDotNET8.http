@@ -1,0 +1,6 @@
+@RateLimitingDotNET8_HostAddress = http://localhost:5120
+
+GET {{RateLimitingDotNET8_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
