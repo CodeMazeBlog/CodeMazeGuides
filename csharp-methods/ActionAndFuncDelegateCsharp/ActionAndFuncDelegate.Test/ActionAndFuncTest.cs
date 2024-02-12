@@ -33,7 +33,7 @@ namespace ActionAndFuncDelegate.Test
 
             // Act
             ActionDelegateExample.ActionDelegate();
-            string actualOutput = consoleOutput.ToString();
+            var actualOutput = consoleOutput.ToString();
 
             // Assert
             Assert.Equal(expectedOutput, actualOutput);
@@ -44,14 +44,14 @@ namespace ActionAndFuncDelegate.Test
         public void WhenValuesAre3And5_ThenOutPutIs8()
         {
             // Arrange
-            int expectedSum = 8;
+            var expectedSum = 8;
             var consoleOutput = new StringBuilder();
             var stringWriter = new StringWriter(consoleOutput);
             Console.SetOut(stringWriter);
 
             // Act
             FuncDelegateExample.FuncDelegate();
-            string actualOutput = consoleOutput.ToString();
+            var actualOutput = consoleOutput.ToString();
 
             // Assert
             Assert.Contains("The result of adding 5 and 3 is: " + expectedSum, actualOutput);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace ActionAndFuncDelegate.Func
 {
@@ -15,7 +11,8 @@ namespace ActionAndFuncDelegate.Func
                 return a + b;
             };
 
-            int result = add(5, 3);
+            var result = add(5, 3);
+
             Console.WriteLine("The result of adding 5 and 3 is: " + result);
         }
     }
