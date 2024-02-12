@@ -4,7 +4,7 @@ using System;
 namespace DelegateApplication;
 
 
-public class DelegateExamples 
+public class DelegateExamples
 {
   public static string DelegateMethod(int previousAmount, int currentAmount)
   {
@@ -12,7 +12,7 @@ public class DelegateExamples
   }
 }
 
-public class FuncAndActionDelegateExamples 
+public class FuncAndActionDelegateExamples
 {
   public static string FuncDelegateMethod(int previousAmount, int currentAmount)
   {
@@ -32,6 +32,7 @@ public class Program
 {
     static void Main(string[] args)
     {
+      //DELEGATE
       // Creating an instance of OurDelegate 
       OurDelegate instanceOfOurDelegate = DelegateExamples.DelegateMethod; 
       instanceOfOurDelegate.Invoke(3000, 500); 
