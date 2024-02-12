@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.RateLimiting;
-using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using RateLimitingDotNET8;
-using System.Globalization;
 using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
