@@ -1,35 +1,39 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests;
+using static ActionDelegate.Program;
+using static FuncDelegate.Program;
 
-[TestClass]
-public class FuncAndActionUnitTest
+namespace Tests
 {
-    [TestMethod]
-    public void WhenNotifying_ThenWritesCorrectMessageToConsole()
+    [TestClass]
+    public class FuncAndActionUnitTest
     {
-        var expectedMessage = "Received message: 'build project'";
-        TextWriter oldOut = Console.Out;
-
-        using (var stringWriter = new StringWriter())
+        [TestMethod]
+        public void WhenNotifying_ThenWritesCorrectMessageToConsole()
         {
-            Console.SetOut(stringWriter);
-            ActionDelegate.Program.SendNotification();
+            var expectedMessage = "Received message: 'build project'";
+            TextWriter oldOut = Console.Out;
 
-            var actualConsoleOutput = stringWriter.ToString().Trim();
-            Assert.AreEqual(expectedMessage, actualConsoleOutput);
+            using (var stringWriter = new StringWriter())
+            {
+                Console.SetOut(stringWriter);
+                SendNotification();
+
+                var actualConsoleOutput = stringWriter.ToString().Trim();
+                Assert.AreEqual(expectedMessage, actualConsoleOutput);
+            }
+
+            Console.SetOut(oldOut);
         }
 
-        Console.SetOut(oldOut);
-    }
+        [TestMethod]
+        public void WhenNotifying_ThenReceiveResult()
+        {
+            var expectedMessage = "building";
 
-    [TestMethod]
-    public void WhenNotifying_ThenReceiveResult()
-    {
-        var expectedMessage = "building";
-
-        // known notification
-        string result = FuncDelegate.Program.GetNotification();
-        Assert.AreEqual(expectedMessage, result);
+            // known notification
+            string result = GetNotification();
+            Assert.AreEqual(expectedMessage, result);
+        }
     }
 }
