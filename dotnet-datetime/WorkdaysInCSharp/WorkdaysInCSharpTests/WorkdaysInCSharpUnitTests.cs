@@ -51,31 +51,31 @@ public class WorkdaysInCSharpUnitTests
     }
 
     [TestMethod]
-    public void GivenNumberOfDaysAndDate_WhenAddWorkDaysExcludingHolidaysInvoked_VerifyCorrectResults()
+    public async Task GivenNumberOfDaysAndDate_WhenAddWorkDaysExcludingHolidaysInvoked_VerifyCorrectResultsAsync()
     {
         var startDate = new DateTime(2024, 1, 1);
         var expectedDate = new DateTime(2024, 1, 16);
         var daysToAdd = 10;
         var countryCode = "US";
 
-        var actualDate = WorkdaysInCSharpMethods.AddWorkDaysExcludingHolidaysAsync(startDate, daysToAdd, countryCode);
+        var actualDate = await WorkdaysInCSharpMethods.AddWorkDaysExcludingHolidaysAsync(startDate, daysToAdd, countryCode);
 
-        Assert.IsInstanceOfType(actualDate, typeof(Task<DateTime>));
-        Assert.AreEqual(expectedDate, actualDate.Result);
+        Assert.IsInstanceOfType(actualDate, typeof(DateTime));
+        Assert.AreEqual(expectedDate, actualDate);
     }
 
     [TestMethod]
-    public void GivenTwoDateTimeValues_WhenCalculateBusinessDaysExcludingHolidaysInvoked_VerifyAccurateNumberOfWeekdays()
+    public async Task GivenTwoDateTimeValues_WhenCalculateBusinessDaysExcludingHolidaysInvoked_VerifyAccurateNumberOfWeekdaysAsync()
     {
         var startDate = new DateTime(2024, 1, 1);
         var endDate = new DateTime(2024, 1, 16);
         var expectedWeekdays = 9;
         var countryCode = "US";
 
-        var actualWeekdays = WorkdaysInCSharpMethods.CalculateBusinessDaysExcludingHolidaysAsync(startDate, endDate, countryCode);
+        var actualWeekdays = await WorkdaysInCSharpMethods.CalculateBusinessDaysExcludingHolidaysAsync(startDate, endDate, countryCode);
 
-        Assert.IsInstanceOfType(actualWeekdays, typeof(Task<int>));
-        Assert.AreEqual(expectedWeekdays, actualWeekdays.Result);
+        Assert.IsInstanceOfType(actualWeekdays, typeof(int));
+        Assert.AreEqual(expectedWeekdays, actualWeekdays);
     }
 
     [TestMethod]

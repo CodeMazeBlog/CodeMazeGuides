@@ -36,24 +36,33 @@ public static class WorkdaysInCSharpMethods
         return endDate;
     }
 
-    public static async Task<int> CalculateBusinessDaysExcludingHolidaysAsync(DateTime startDate, DateTime endDate, string countryCode)
+    public static async Task<int> CalculateBusinessDaysExcludingHolidaysAsync(DateTime startDate, DateTime endDate,
+                                                                              string countryCode)
     {
         var weekDays = 0;
+        var holidaysArray = await GetHolidaysAsync(startDate.Year, countryCode);
+        var holidays = new HashSet<string>(holidaysArray); 
 
-        var holidays = await GetHolidaysAsync(startDate.Year, countryCode);
-
-        for (var currentDate = startDate.Date; currentDate < endDate.Date; currentDate = currentDate.AddDays(1))
+        for (var currentDate = startDate.Date; currentDate < endDate.Date;)
         {
-            if (IsWorkDay(currentDate) && (!holidays.Contains(currentDate.ToString("yyyy-MM-dd"))))
+            if (IsWorkDay(currentDate))
             {
-                weekDays++;
+                var currentDateStr = currentDate.ToString("yyyy-MM-dd");
+
+                if (!holidays.Contains(currentDateStr))
+                {
+                    weekDays++;
+                }
             }
+
+            currentDate = currentDate.AddDays(currentDate.DayOfWeek == DayOfWeek.Friday ? 3 : 1);
         }
 
         return weekDays;
     }
 
-    public static async Task<DateTime> AddWorkDaysExcludingHolidaysAsync(DateTime startDate, int workDays, string countryCode)
+    public static async Task<DateTime> AddWorkDaysExcludingHolidaysAsync(DateTime startDate, int workDays,
+                                                                         string countryCode)
     {
         var endDate = startDate;
         var holidays = await GetHolidaysAsync(startDate.Year, countryCode);

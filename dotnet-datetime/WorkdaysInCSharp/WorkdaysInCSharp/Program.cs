@@ -2,7 +2,7 @@
 
 internal class Program
 {
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
         Console.WriteLine("""
             Select the example to run
@@ -20,19 +20,18 @@ internal class Program
                 RunCalculateBusinessDays();
                 break;
             case 2:
-                RunCalculateBusinessDaysExcludingHolidays();
+                await RunCalculateBusinessDaysExcludingHolidaysAsync();
                 break;
             case 3:
                 RunAddWorkDays();
                 break;
             case 4:
-                RunAddWorkDaysExcludingHolidays();
+                await RunAddWorkDaysExcludingHolidaysAsync();
                 break;
             default:
                 Console.WriteLine("Invalid input");
                 break;
         }
-
 
         static void RunCalculateBusinessDays()
         {
@@ -52,7 +51,8 @@ internal class Program
                 Console.WriteLine("Please enter the correct date format.");
             }
         }
-        static void RunCalculateBusinessDaysExcludingHolidays()
+
+        static async Task RunCalculateBusinessDaysExcludingHolidaysAsync()
         {
             Console.WriteLine("Enter the start date (YYYY-MM-DD): ");
             var firstInput = Console.ReadLine();
@@ -65,8 +65,8 @@ internal class Program
 
             if (DateTime.TryParse(firstInput, out DateTime startDate) && DateTime.TryParse(secondInput, out DateTime endDate))
             {
-                var weekDays = WorkdaysInCSharpMethods.CalculateBusinessDaysExcludingHolidaysAsync(startDate, endDate, countryCode);
-                Console.WriteLine($"Number of weekdays between {startDate.ToShortDateString()} and {endDate.ToShortDateString()}: {weekDays.Result}");
+                var weekDays = await WorkdaysInCSharpMethods.CalculateBusinessDaysExcludingHolidaysAsync(startDate, endDate, countryCode);
+                Console.WriteLine($"Number of weekdays between {startDate.ToShortDateString()} and {endDate.ToShortDateString()}: {weekDays}");
             }
             else
             {
@@ -93,7 +93,7 @@ internal class Program
             }
         }
 
-        static void RunAddWorkDaysExcludingHolidays()
+        static async Task RunAddWorkDaysExcludingHolidaysAsync()
         {
             Console.WriteLine("Enter the start date (YYYY-MM-DD): ");
             var firstInput = Console.ReadLine();
@@ -106,8 +106,8 @@ internal class Program
 
             if (DateTime.TryParse(firstInput, out DateTime startDate))
             {
-                var endDate = WorkdaysInCSharpMethods.AddWorkDaysExcludingHolidaysAsync(startDate, workDays, countryCode);
-                Console.WriteLine($"Adding {workDays} to {startDate.ToShortDateString()} equals {endDate.Result.ToShortDateString()}: ");
+                var endDate = await WorkdaysInCSharpMethods.AddWorkDaysExcludingHolidaysAsync(startDate, workDays, countryCode);
+                Console.WriteLine($"Adding {workDays} to {startDate.ToShortDateString()} equals {endDate.ToShortDateString()}: ");
             }
             else
             {
