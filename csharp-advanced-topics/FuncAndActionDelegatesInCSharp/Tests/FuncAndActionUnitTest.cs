@@ -22,15 +22,15 @@ public class FuncAndActionUnitTest
     [TestMethod]
     public void WhenNotifying_ThenWritesCorrectMessageToConsole()
     {
-        string expectedMessage = "Received message: 'build project'";
+        var expectedMessage = "Received message: 'build project'";
         TextWriter oldOut = Console.Out;
 
-        using (StringWriter stringWriter = new StringWriter())
+        using (var stringWriter = new StringWriter())
         {
             Console.SetOut(stringWriter);
             SendNotification();
 
-            string actualConsoleOutput = stringWriter.ToString().Trim();
+            var actualConsoleOutput = stringWriter.ToString().Trim();
             Assert.AreEqual(expectedMessage, actualConsoleOutput);
         }
 
@@ -40,7 +40,7 @@ public class FuncAndActionUnitTest
     [TestMethod]
     public void WhenNotifying_ThenReceiveResult()
     {
-        string expectedMessage = "building";
+        var expectedMessage = "building";
 
         // known notification
         string result = GetNotification("build project");
