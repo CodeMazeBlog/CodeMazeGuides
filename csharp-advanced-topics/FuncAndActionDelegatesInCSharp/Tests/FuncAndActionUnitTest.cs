@@ -5,13 +5,6 @@ namespace Tests;
 [TestClass]
 public class FuncAndActionUnitTest
 {
-    public static void SendNotification()
-    {
-        Action<string> notify
-            = (string message) => Console.WriteLine($"Received message: '{message}'");
-        notify("build project");
-    }
-
     [TestMethod]
     public void WhenNotifying_ThenWritesCorrectMessageToConsole()
     {
@@ -21,7 +14,7 @@ public class FuncAndActionUnitTest
         using (var stringWriter = new StringWriter())
         {
             Console.SetOut(stringWriter);
-            SendNotification();
+            ActionDelegate.Program.SendNotification();
 
             var actualConsoleOutput = stringWriter.ToString().Trim();
             Assert.AreEqual(expectedMessage, actualConsoleOutput);
@@ -36,7 +29,7 @@ public class FuncAndActionUnitTest
         var expectedMessage = "building";
 
         // known notification
-        string result = FuncDelegate.Program.Notify();
+        string result = FuncDelegate.Program.GetNotification();
         Assert.AreEqual(expectedMessage, result);
     }
 }

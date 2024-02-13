@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FuncDelegate\FuncDelegate.csproj" />
+    <ProjectReference Include="..\ActionDelegate\ActionDelegate.csproj" />
   </ItemGroup>
 
 </Project>

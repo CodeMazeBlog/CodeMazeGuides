@@ -2,7 +2,7 @@
 {
     public class Program
     {
-        public static string Notify()
+        public static string GetNotification()
         {
             // Func delegate with one parameter and a return type
             Func<string, string> notify
