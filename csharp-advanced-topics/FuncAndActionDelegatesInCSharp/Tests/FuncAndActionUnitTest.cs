@@ -12,13 +12,6 @@ public class FuncAndActionUnitTest
         notify("build project");
     }
 
-    public static string GetNotification(string notification)
-    {
-        Func<string, string> notify
-            = (string message) => message == "build project" ? "building" : "unkown notification";
-        return notify(notification);
-    }
-
     [TestMethod]
     public void WhenNotifying_ThenWritesCorrectMessageToConsole()
     {
@@ -43,12 +36,7 @@ public class FuncAndActionUnitTest
         var expectedMessage = "building";
 
         // known notification
-        string result = GetNotification("build project");
-        Assert.AreEqual(expectedMessage, result);
-
-        // unknown notification
-        expectedMessage = "unkown notification";
-        result = GetNotification("C# supports Generics");
+        string result = FuncDelegate.Program.Notify();
         Assert.AreEqual(expectedMessage, result);
     }
 }
