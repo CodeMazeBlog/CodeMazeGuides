@@ -24,4 +24,13 @@ public class DummyController : ControllerBase
         var message = "This is working fine!";
         return Ok(message);
     }
+
+    [HttpGet]
+    [Route("best")]
+    [EnableCors("BestPolicy")]
+    public IActionResult GetBest()
+    {
+        var message = "This is the best!";
+        return Ok(message);
+    }
 }

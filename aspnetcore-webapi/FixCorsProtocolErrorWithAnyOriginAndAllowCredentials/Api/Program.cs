@@ -4,7 +4,7 @@ builder.Services.AddCors(options =>
 {
     try
     {
-        options.AddPolicy("BadPolicy", builder => builder
+        options.AddPolicy("BadPolicy", policyBuilder => policyBuilder
             .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader()
@@ -17,12 +17,29 @@ builder.Services.AddCors(options =>
         Console.WriteLine(exception.StackTrace);
     }
 
-    options.AddPolicy("GoodPolicy", builder => builder
+    options.AddPolicy("GoodPolicy", policyBuilder => policyBuilder
         .SetIsOriginAllowed(origin => true) // allow any origin
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials()
     );
+
+    options.AddPolicy("BestPolicy", policyBuilder =>
+    {
+        var origins = new List<string>();
+        builder.Configuration.Bind("Cors:Origins", origins);
+
+        if (origins.Any())
+        {
+            policyBuilder
+                .WithOrigins(origins.ToArray())
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials();
+        }
+    });
+
+    options.DefaultPolicyName = "BestPolicy";
 });
 
 builder.Services.AddControllers();
