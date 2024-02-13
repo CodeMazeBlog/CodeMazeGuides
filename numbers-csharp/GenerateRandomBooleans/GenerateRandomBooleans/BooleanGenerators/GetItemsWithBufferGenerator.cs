@@ -7,7 +7,6 @@ namespace GenerateRandomBooleans.BooleanGenerators
         private readonly IRandomGenerator _randomGenerator = randomGenerator;
         private readonly int _bufferLength = bufferLength;
 
-        private readonly int _maxBufferIndex = bufferLength;
         private readonly bool[] _allPossibilities = [false, true];
 
         private int _currentBufferIndex = bufferLength;
@@ -15,7 +14,7 @@ namespace GenerateRandomBooleans.BooleanGenerators
 
         public bool NextBool()
         {
-            if (_currentBufferIndex >= _maxBufferIndex)
+            if (_currentBufferIndex >= _bufferLength)
             {
                 _buffer = _randomGenerator.GetItems<bool>(_allPossibilities, _bufferLength);
                 _currentBufferIndex = 0;

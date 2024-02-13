@@ -11,7 +11,7 @@ namespace Tests
         [DataRow(0x13, "1100 1000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000")]
         [DataRow(0x7BCDEF98, "0001 1001 1111 0111 1011 0011 1101 1110 0000 0000 0000 0000 0000 0000 0000 0000")]
         [DataRow(long.MaxValue, "1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1111 1110")]
-        public void GivenInteger_WhenGeneratingBoolean_ThenExpectCorrectReturnValues(long number, string bits)
+        public void GivenLong_WhenGeneratingBoolean_ThenExpectCorrectReturnValues(long number, string bits)
         {
             // this test is only valid for little endian systems
             if (!BitConverter.IsLittleEndian)
