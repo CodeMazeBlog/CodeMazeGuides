@@ -31,7 +31,6 @@ namespace Tests
         {
             var expectedMessage = "building";
 
-            // known notification
             string result = GetNotification();
             Assert.AreEqual(expectedMessage, result);
         }
