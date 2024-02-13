@@ -5,9 +5,7 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
     private readonly int _numberOfCharacters = numberOfCharacters;
 
     private bool IsInputStringNullOrTooShort()
-    {
-        return string.IsNullOrEmpty(_inputString) || _inputString.Length < _numberOfCharacters;
-    }
+        => string.IsNullOrEmpty(_inputString) || _inputString.Length < _numberOfCharacters;
 
     public string? UseRemove()
     {
@@ -50,9 +48,7 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
     }
 
     public string? UsePadRight()
-    {
-        return string.IsNullOrEmpty(_inputString)
-            ? _inputString
-            : _inputString.PadRight(_numberOfCharacters)[.._numberOfCharacters].Trim();
-    }
+        => string.IsNullOrEmpty(_inputString)
+        ? _inputString
+        : _inputString.PadRight(_numberOfCharacters)[.._numberOfCharacters].Trim();
 }
