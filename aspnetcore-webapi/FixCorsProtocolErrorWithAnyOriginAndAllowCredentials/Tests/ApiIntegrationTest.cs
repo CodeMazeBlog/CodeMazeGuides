@@ -1,0 +1,50 @@
+﻿namespace Tests;
+
+public class ApiIntegrationTest : IClassFixture<ApiApplicationFactory>
+{
+    private readonly HttpClient _client;
+
+    public ApiIntegrationTest(ApiApplicationFactory factory)
+    {
+        _client = factory.CreateClient();
+    }
+
+    [Theory]
+    [InlineData("https://unknown.com")]
+    [InlineData("https://another.com")]
+    [InlineData("https://yet-one-more.com")]
+    public async Task GivenApiDummyController_WhenGoodEndpointIsCalled_ThenAllowOriginAndAllowCredentialsIsReturned(string origin)
+    {
+        // Arrange
+        var url = "https://localhost:5001/api/dummy/good";
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add("Origin", origin);
+
+        // Act
+        var response = await _client.SendAsync(request);
+
+        // Assert
+        Assert.True(response.Headers.Contains("Access-Control-Allow-Origin"));
+        Assert.Contains(origin, response.Headers.GetValues("Access-Control-Allow-Origin"));
+        Assert.True(response.Headers.Contains("Access-Control-Allow-Credentials"));
+    }
+
+    [Theory]
+    [InlineData("https://unknown.com")]
+    [InlineData("https://another.com")]
+    [InlineData("https://yet-one-more.com")]
+    public async Task GivenApiDummyController_WhenBadEndpointIsCalled_ThenAllowOriginAndAllowCredentialsIsNotReturned(string origin)
+    {
+        // Arrange
+        var url = "https://localhost:5001/api/dummy/bad";
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add("Origin", origin);
+
+        // Act
+        var response = await _client.SendAsync(request);
+
+        // Assert
+        Assert.False(response.Headers.Contains("Access-Control-Allow-Origin"));
+        Assert.False(response.Headers.Contains("Access-Control-Allow-Credentials"));
+    }
+}
