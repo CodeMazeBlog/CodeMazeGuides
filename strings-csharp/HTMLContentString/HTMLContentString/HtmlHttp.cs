@@ -15,6 +15,7 @@ public class HtmlHttp
         response.EnsureSuccessStatusCode();
 
         var htmlContent = await response.Content.ReadAsStringAsync();
+        
         return htmlContent;
     }
 }

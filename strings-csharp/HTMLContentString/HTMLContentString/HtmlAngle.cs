@@ -13,6 +13,7 @@ public class HtmlAngle
 
         return document.Body.InnerHtml;
     }
+    
     public List<string> GetList(string htmlContent)
     {
         var parser = new HtmlParser();
