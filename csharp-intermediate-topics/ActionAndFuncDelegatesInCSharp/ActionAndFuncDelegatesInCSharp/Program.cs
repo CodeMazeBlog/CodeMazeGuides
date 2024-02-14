@@ -12,7 +12,8 @@ internal class Program
         ExecuteAdvancedActionExample();
     }
 
-    private static void ExecuteBasicExamples() { 
+    private static void ExecuteBasicExamples() 
+    { 
         var basicDelegate = new BasicDelegate();
         var inputNumber = 5;
 
