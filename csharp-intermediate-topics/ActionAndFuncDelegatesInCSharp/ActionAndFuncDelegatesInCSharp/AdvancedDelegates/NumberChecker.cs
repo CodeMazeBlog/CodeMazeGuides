@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace ActionAndFuncDelegatesInCSharp.AdvancedDelegates
+﻿namespace ActionAndFuncDelegatesInCSharp.AdvancedDelegates
 {
     public class NumberChecker
     {
@@ -18,7 +11,7 @@ namespace ActionAndFuncDelegatesInCSharp.AdvancedDelegates
 
         public void Add(int number)
         {
-            if (isEvenNumber(number))
+            if (IsEvenNumber(number))
                 EvenNumbers.Add(number);
         }
 
@@ -34,7 +27,6 @@ namespace ActionAndFuncDelegatesInCSharp.AdvancedDelegates
             }
         }
 
-        public bool isEvenNumber(int num) => (num % 2 == 0);
-
+        public bool IsEvenNumber(int num) => (num % 2 == 0);
     }
 }

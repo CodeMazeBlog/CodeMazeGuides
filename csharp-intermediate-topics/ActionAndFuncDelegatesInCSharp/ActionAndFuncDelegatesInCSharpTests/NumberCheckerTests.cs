@@ -21,14 +21,14 @@ namespace ActionAndFuncDelegatesInCSharpTests
         [TestCase(8)]
         public void Given_An_Even_Number_When_Is_Even_Number_Run_Then_Return_True(int number)
         {
-            var result = numberChecker.isEvenNumber(number);
+            var result = numberChecker.IsEvenNumber(number);
             Assert.IsTrue(result);
         }
 
         [TestCase(5)]
         public void Given_An_Odd_Number_When_Is_Even_Number_Run_Then_Return_False(int number)
         {
-            var result = numberChecker.isEvenNumber(number);
+            var result = numberChecker.IsEvenNumber(number);
             Assert.IsFalse(result);
         }
 
@@ -53,7 +53,7 @@ namespace ActionAndFuncDelegatesInCSharpTests
         [TestCase(new int[] { 1, 2, 3, 4 })]
         public void Given_A_List_Of_Numbers_When_Add_Number_Then_EvenNumbers_Count_Is_Equal_To_Two(int[] numbers)
         {
-            numberChecker.Add(numbers.ToList(), numberChecker.isEvenNumber);
+            numberChecker.Add(numbers.ToList(), numberChecker.IsEvenNumber);
 
             Assert.IsTrue(numberChecker.EvenNumbers.Count() == 2);
         }
@@ -61,7 +61,7 @@ namespace ActionAndFuncDelegatesInCSharpTests
         [TestCase(new int[] { 7, 11, 3, 43 })]
         public void Given_A_List_Of_Numbers_When_Add_Number_Then_EvenNumbers_Count_Is_Equal_To_Zero(int[] numbers)
         {
-            numberChecker.Add(numbers.ToList(), numberChecker.isEvenNumber);
+            numberChecker.Add(numbers.ToList(), numberChecker.IsEvenNumber);
 
             Assert.IsTrue(numberChecker.EvenNumbers.Count() == 0);
         }

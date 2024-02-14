@@ -1,7 +1,5 @@
 ﻿using ActionAndFuncDelegatesInCSharp;
 using ActionAndFuncDelegatesInCSharp.AdvancedDelegates;
-using System.Runtime.InteropServices;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 internal class Program
 {
@@ -13,6 +11,7 @@ internal class Program
 
         ExecuteAdvancedActionExample();
     }
+
     private static void ExecuteBasicExamples() { 
         var basicDelegate = new BasicDelegate();
         var inputNumber = 5;
@@ -29,6 +28,7 @@ internal class Program
     {
         var exceptionHandlerService = new ExceptionHandlerService();
         var inputNumber = -5;
+
         try
         {
             if (inputNumber < 0)
@@ -52,7 +52,7 @@ internal class Program
 
         numbers = Enumerable.Range(6, 5).ToList();
 
-        numberChecker.Add(numbers, numberChecker.isEvenNumber);
+        numberChecker.Add(numbers, numberChecker.IsEvenNumber);
 
         numberChecker.EvenNumbers.ForEach(number => Console.WriteLine($"Number {number} is even"));
     }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ActionAndFuncDelegatesInCSharp
+﻿namespace ActionAndFuncDelegatesInCSharp
 {
     public  class BasicDelegate
     {
@@ -19,6 +13,7 @@ namespace ActionAndFuncDelegatesInCSharp
         public string RunFunc(int number)
         {
             Func<int, string> formatter = (number) => Format(number);
+
             return formatter(number);
         }
 
