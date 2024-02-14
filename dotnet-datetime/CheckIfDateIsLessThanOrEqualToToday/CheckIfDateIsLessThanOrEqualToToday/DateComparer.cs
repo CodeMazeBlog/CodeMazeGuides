@@ -6,6 +6,8 @@ public class DateComparer
 {
     private readonly DateOnly _todayDate;
     private readonly DateOnly _dateToCheck;
+    private readonly DateTime _todayDateTime;
+    private readonly DateTime _dateTimeToCheck;
 
     public DateComparer(string dateString = "01/01/2024")
     {
@@ -15,6 +17,9 @@ public class DateComparer
         {
             // Handle a case where the input date string is invalid
         }
+
+        _todayDateTime = _todayDate.ToDateTime(TimeOnly.MinValue);
+        _dateTimeToCheck = _dateToCheck.ToDateTime(TimeOnly.MinValue);
     }
 
     public bool CheckWithComparisonOperator() => _dateToCheck <= _todayDate;
@@ -25,7 +30,7 @@ public class DateComparer
 
     public bool CheckWithTimeSpan()
     {
-        TimeSpan timeDifference = _dateToCheck.ToDateTime(TimeOnly.MinValue) - _todayDate.ToDateTime(TimeOnly.MinValue);
+        TimeSpan timeDifference = _dateTimeToCheck - _todayDateTime;
 
         return timeDifference.TotalDays <= 0;
     }
