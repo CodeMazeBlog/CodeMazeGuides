@@ -14,11 +14,12 @@ namespace ActionAndFuncDelegatesInCSharpTests
         }
 
         [TestCase(23)]
-        public void Given_An_Any_Number_When_Func_Run_Then_Formatted_Number_Is_Satisfactory(int number)
+        public void GivenAnAnyNumber_WhenFuncRun_ThenFormattedNumberIsSatisfactory(int number)
         {
             var result = BasicDelegate.RunFunc(number);
 
             var expected = $"Formatted {number}";
+
             Assert.That(result, Is.EqualTo(expected));
         }
     }
