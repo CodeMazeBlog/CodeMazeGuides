@@ -20,6 +20,7 @@ namespace Tests
                 SendNotification();
 
                 var actualConsoleOutput = stringWriter.ToString().Trim();
+
                 Assert.AreEqual(expectedMessage, actualConsoleOutput);
             }
 
@@ -31,7 +32,8 @@ namespace Tests
         {
             var expectedMessage = "building";
 
-            string result = GetNotification();
+            var result = GetNotification();
+
             Assert.AreEqual(expectedMessage, result);
         }
     }
