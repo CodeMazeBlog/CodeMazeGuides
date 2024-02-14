@@ -1,10 +1,12 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using SingleAndSplitQueriesInEFCore.Model;
 
 namespace SingleAndSplitQueriesInEFCore;
 
 [MemoryDiagnoser]
 [IterationCount(100)]
+[HideColumns(Column.StdDev, Column.Gen2)]
 public class SingleAndSplitQueriesBenchmark
 {
     private CompaniesContext _dbContext = null!;
