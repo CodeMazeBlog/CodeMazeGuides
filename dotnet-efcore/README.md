@@ -19,3 +19,4 @@ This section contains articles about Entity Framework Core.
 - [Should We Use Records With EF Core as Model Classes?](https://code-maze.com/dotnet-efcore-records-as-model-classes/)
 - [How to Revert a Migration in EF Core](https://code-maze.com/efcore-how-to-revert-a-migration/)
 - [How to Split an Entity Into Multiple Tables in EF Core](https://code-maze.com/efcore-how-to-split-an-entity-into-multiple-tables/)
+- [Lazy Loading and Eager Loading in Entity Framework Core](https://code-maze.com/lazy-loading-and-eager-loading-in-entity-framework-core/)
