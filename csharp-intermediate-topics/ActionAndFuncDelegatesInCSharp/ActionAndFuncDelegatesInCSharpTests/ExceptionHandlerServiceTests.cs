@@ -6,20 +6,14 @@ namespace ActionAndFuncDelegatesInCSharpTests
 {
     public class ExceptionHandlerServiceTests
     {
-        private ExceptionHandlerService exceptionHandlerService;
-
-        [SetUp]
-        public void Setup()
-        {
-            exceptionHandlerService = new ExceptionHandlerService();
-        }
+        private ExceptionHandlerService _exceptionHandlerService = new();
 
         [Test]
         public void GivenAValidationException_WhenGetError_ThenStatusCodeIs400()
         {
             var validationException = new ValidationException();
 
-            var result = exceptionHandlerService.GetError(validationException);
+            var result = _exceptionHandlerService.GetError(validationException);
 
             var expected = (int)HttpStatusCode.BadRequest;
 
@@ -31,7 +25,7 @@ namespace ActionAndFuncDelegatesInCSharpTests
         {
             var notFoundException = new NotFoundException();
 
-            var result = exceptionHandlerService.GetError(notFoundException);
+            var result = _exceptionHandlerService.GetError(notFoundException);
 
             var expected = (int)HttpStatusCode.NotFound;
 
@@ -43,7 +37,7 @@ namespace ActionAndFuncDelegatesInCSharpTests
         {
             var argumentException = new ArgumentException();
 
-            var result = exceptionHandlerService.GetError(argumentException);
+            var result = _exceptionHandlerService.GetError(argumentException);
 
             var expected = (int)HttpStatusCode.InternalServerError;
 

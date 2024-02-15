@@ -4,19 +4,12 @@ namespace ActionAndFuncDelegatesInCSharpTests
 {
     public class BasicDelegateTests
     {
-        private BasicDelegate BasicDelegate;
-
-
-        [SetUp]
-        public void Setup()
-        {
-            BasicDelegate = new BasicDelegate();
-        }
+        private BasicDelegate _basicDelegate = new();
 
         [TestCase(23)]
         public void GivenAnAnyNumber_WhenFuncRun_ThenFormattedNumberIsSatisfactory(int number)
         {
-            var result = BasicDelegate.RunFunc(number);
+            var result = _basicDelegate.RunFunc(number);
 
             var expected = $"Formatted {number}";
 
