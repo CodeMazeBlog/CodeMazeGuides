@@ -3,7 +3,7 @@ using System.Text;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
         string fileName = "CodeMaze.txt";
 
