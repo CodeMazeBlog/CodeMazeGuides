@@ -1,3 +1,5 @@
+using CommunityToolkit.HighPerformance.Buffers;
+
 namespace HowToUseStringPoolTests;
 
 [TestClass]
@@ -14,14 +16,33 @@ public class HowToUseStringPoolTests
         Environment.SetEnvironmentVariable("EncryptionPassword", "123abcd");
     }
 
-
     [TestMethod]
     public void WhenInitCalled_ThenReturnsTrue()
     {
-        var result = _poolHelper.Init();
+        var result = StringPoolHelper.Init();
 
         Assert.IsTrue(result);
     }
+
+    [TestMethod]
+    public void WhenUseSharedInstanceCalled_ThenReturnsTrue()
+    {
+        var result = StringPoolHelper.UseSharedInstance();
+
+        Assert.IsTrue(result);
+    }
+
+    [TestMethod]
+    public void WhenGetPoolSizeCalled_ThenSizeMustBeReturn()
+    {
+        var minimumSize = _fixture.Create<int>();
+
+        var result = StringPoolHelper.GetPoolSize(minimumSize);
+        var expected = new StringPool(minimumSize).Size;
+
+        Assert.AreEqual(result, expected);
+    }
+
     [TestMethod]
     public void WhenAddUserCalled_ThenStringPoolMustUpdateItsCache()
     {
@@ -67,7 +88,7 @@ public class HowToUseStringPoolTests
             { headerKey,headerValue }
         });
 
-        var result = _poolHelper.GetHeaderValue(httpRequest, headerKey);
+        var result = StringPoolHelper.GetHeaderValue(httpRequest, headerKey);
 
         Assert.AreEqual(headerValue, result);
     }
@@ -77,7 +98,7 @@ public class HowToUseStringPoolTests
     {
         var httpRequest = GetHttpRequest([]);
 
-        var result = _poolHelper.CheckHeader(httpRequest);
+        var result = StringPoolHelper.CheckHeader(httpRequest);
 
         Assert.IsFalse(result);
     }
@@ -92,7 +113,7 @@ public class HowToUseStringPoolTests
             { "User-Agent", "chrome"}
         });
 
-        var result = _poolHelper.CheckHeader(httpRequest);
+        var result = StringPoolHelper.CheckHeader(httpRequest);
 
         Assert.IsTrue(result);
     }

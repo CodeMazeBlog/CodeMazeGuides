@@ -5,29 +5,36 @@ namespace HowtoUseStringPool;
 
 public class StringPoolHelper
 {
-    private readonly StringPool _myPool = new();
     private readonly Dictionary<string, string> _cache = [];
 
-    public bool Init()
+    public static bool Init()
     {
-        var value1 = _myPool.GetOrAdd("codemaze");
-        var value2 = _myPool.GetOrAdd("codemaze"u8, Encoding.UTF8);
+        var myPool = new StringPool();
+        var value1 = myPool.GetOrAdd("codemaze");
+        var value2 = myPool.GetOrAdd("codemaze"u8, Encoding.UTF8);
 
         return ReferenceEquals(value1, value2);
     }
 
-    public string SharedInstance(ReadOnlySpan<char> message)
+    public static bool UseSharedInstance()
     {
-        if (_myPool.Size <= 10)
-            return _myPool.GetOrAdd(message);
-        else
-            return StringPool.Shared.GetOrAdd(message);
+        var value1 = StringPool.Shared.GetOrAdd("codemaze");
+        var value2 = StringPool.Shared.GetOrAdd("codemaze"u8, Encoding.UTF8);
+
+        return ReferenceEquals(value1, value2);
+    }
+
+    public static int GetPoolSize(int minimumSize)
+    {
+        var myPool = new StringPool(minimumSize);
+
+        return myPool.Size;
     }
 
     public bool AddUser(ReadOnlySpan<char> nameSpan, ReadOnlySpan<char> emailSpan)
     {
         var cacheKey = BuildCacheKey("USER_", nameSpan);
-        var cacheValue = _myPool.GetOrAdd(emailSpan);
+        var cacheValue = StringPool.Shared.GetOrAdd(emailSpan);
         _cache[cacheKey] = cacheValue;
 
         return true;
@@ -41,13 +48,13 @@ public class StringPoolHelper
         return value ?? string.Empty;
     }
 
-    private string BuildCacheKey(ReadOnlySpan<char> prefixSpan, ReadOnlySpan<char> keySpan)
+    private static string BuildCacheKey(ReadOnlySpan<char> prefixSpan, ReadOnlySpan<char> keySpan)
     {
-        var prefix = _myPool.GetOrAdd(prefixSpan);
-        var name = _myPool.GetOrAdd(keySpan);
+        var prefix = StringPool.Shared.GetOrAdd(prefixSpan);
+        var name = StringPool.Shared.GetOrAdd(keySpan);
 
         using var combined = CombineSpan(prefix, name);
-        var cacheKey = _myPool.GetOrAdd(combined.Span);
+        var cacheKey = StringPool.Shared.GetOrAdd(combined.Span);
 
         return cacheKey;
     }
@@ -81,14 +88,14 @@ public class StringPoolHelper
         int end = url.AsSpan(start).IndexOf('/');
 
         var hostName = url.AsSpan(start, end);
-        var result = _myPool.GetOrAdd(hostName);
+        var result = StringPool.Shared.GetOrAdd(hostName);
 
         return result;
     }
 
-    public string GetHeaderValue(HttpRequestMessage request, ReadOnlySpan<char> key)
+    public static string GetHeaderValue(HttpRequestMessage request, ReadOnlySpan<char> key)
     {
-        var keyValue = _myPool.GetOrAdd(key);
+        var keyValue = StringPool.Shared.GetOrAdd(key);
 
         if (request.Headers.TryGetValues(keyValue, out var headerValues))
         {
@@ -100,7 +107,7 @@ public class StringPoolHelper
         return string.Empty;
     }
 
-    public bool CheckHeader(HttpRequestMessage request)
+    public static bool CheckHeader(HttpRequestMessage request)
     {
         const string expectedAgent = "chrome";
         var authorization = GetHeaderValue(request, "Authorization");
@@ -134,7 +141,7 @@ public class StringPoolHelper
 
         using var combined = CombineSpan(prefix, langSpan, keySpan);
 
-        var calculatedKey = _myPool.GetOrAdd(combined.Span);
+        var calculatedKey = StringPool.Shared.GetOrAdd(combined.Span);
         _cache.TryGetValue(calculatedKey, out var value);
 
         return value ?? calculatedKey;

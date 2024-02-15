@@ -2,10 +2,16 @@
 using HowtoUseStringPool;
 using HowToUseStringPool.Benchmark;
 
-var stringPoolHelper = new StringPoolHelper();
-var referenceEquals = stringPoolHelper.Init();
+var referenceEquals = StringPoolHelper.Init();
 Console.WriteLine("Reference Equals : {0}", referenceEquals);
 
+referenceEquals = StringPoolHelper.UseSharedInstance();
+Console.WriteLine("Shared Reference Equals : {0}", referenceEquals);
+
+var size = StringPoolHelper.GetPoolSize(10);
+Console.WriteLine("GetPoolSize : {0}", size);
+
+var stringPoolHelper = new StringPoolHelper();
 var userAdded = stringPoolHelper.AddUser("Mark Twain", "mark.twain@example.com");
 Console.WriteLine("AddUser : {0}", userAdded);
 
@@ -16,10 +22,10 @@ var hostname = stringPoolHelper.GetHostName("https://code-maze.com/code-maze-wee
 Console.WriteLine("GetHostName : {0}", hostname);
 
 var request = GetRequest();
-var headerValue = stringPoolHelper.GetHeaderValue(request, "Authorization");
+var headerValue = StringPoolHelper.GetHeaderValue(request, "Authorization");
 Console.WriteLine("GetHeaderValue : {0}", headerValue);
 
-var checkResult = stringPoolHelper.CheckHeader(request);
+var checkResult = StringPoolHelper.CheckHeader(request);
 Console.WriteLine("CheckHeader : {0}", checkResult);
 
 var tokenResult = stringPoolHelper.CheckToken(request);
