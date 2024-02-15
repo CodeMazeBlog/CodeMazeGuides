@@ -26,7 +26,7 @@ public class DateComparer
 
     public bool CheckWithCompareTo() => _dateToCheck.CompareTo(_todayDate) <= 0;
 
-    public bool CheckWithDayNumber() => _dateToCheck.DayNumber - _todayDate.DayNumber <= 0;
+    public bool CheckWithDayNumber() => _dateToCheck.DayNumber <= _todayDate.DayNumber;
 
     public bool CheckWithTimeSpan()
     {
