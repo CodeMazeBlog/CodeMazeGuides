@@ -10,7 +10,7 @@ public class TestProgram
         string expectedContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
         string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         string filePath = Path.Combine(baseDirectory, fileName);
-        File.WriteAllText(filePath, expectedContent); // Create a test file in AppDomain's base directory
+        File.WriteAllText(filePath, expectedContent); 
 
         // Act
         string fileContent = Program.ReadFileUsingAppDomain(fileName);
@@ -49,7 +49,7 @@ public class TestProgram
         string expectedContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
         string directory = Directory.GetCurrentDirectory();
         string filePath = Path.Combine(directory, fileName);
-        File.WriteAllText(filePath, expectedContent); // Creating a test file
+        File.WriteAllText(filePath, expectedContent); 
 
         // Act
         string fileContent = Program.ReadFileUsingDirectory(fileName);
