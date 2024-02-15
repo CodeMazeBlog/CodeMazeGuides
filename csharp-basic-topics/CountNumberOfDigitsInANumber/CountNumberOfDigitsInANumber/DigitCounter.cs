@@ -1,10 +1,13 @@
 ﻿namespace CountNumberOfDigitsInANumber
 {
-    public class DigitCounter
+    public static class DigitCounter
     {
-        public int GetIterativeCount(int number)
+        public static int GetIterativeCount(int number)
         {
-            if (number == 0) return 1;
+            if (number == 0)
+            {
+                return 1;
+            }
 
             int count = 0;
             while (number != 0)
@@ -16,7 +19,7 @@
             return count;
         }
 
-        public int GetRecursiveCount(int number)
+        public static int GetRecursiveCount(int number)
         {
             if (Math.Abs(number) < 10) 
             {
@@ -26,19 +29,22 @@
             return 1 + GetRecursiveCount(number / 10);
         }
 
-        public int GetLog10Count(int number)
+        public static int GetLog10Count(int number)
         {
-            if (number == 0) return 1;
+            if (number == 0)
+            {
+                return 1;
+            }
 
             return 1 + (int)Math.Floor(Math.Log10((double)Math.Abs(number)));
         }
 
-        public int GetStringLengthCount(int number)
+        public static int GetStringLengthCount(int number)
         {
             return Math.Abs(number).ToString().Length;
         }
 
-        public int GetIfChainCount(int number)
+        public static int GetIfChainCount(int number)
         {
             number = Math.Abs(number);
             if (number < 10) return 1;

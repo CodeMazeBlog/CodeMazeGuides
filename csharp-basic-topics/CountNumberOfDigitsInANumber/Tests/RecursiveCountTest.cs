@@ -7,9 +7,9 @@
         public void WhenNumberIsGreaterThanZero_ThenReturnsTheRightNumberOfDigits()
         {
             int number = 12345;
-            var counter = new DigitCounter();
 
-            int digits = counter.GetRecursiveCount(number);
+            int digits = DigitCounter.GetRecursiveCount(number);
+
             Assert.AreEqual(5, digits);
         }
 
@@ -17,9 +17,9 @@
         public void WhenNumberIsLessThanZero_ThenReturnsTheRightNumberOfDigits()
         {
             int number = -1234;
-            var counter = new DigitCounter();
 
-            int digits = counter.GetRecursiveCount(number);
+            int digits = DigitCounter.GetRecursiveCount(number);
+
             Assert.AreEqual(4, digits);
         }
 
@@ -27,9 +27,9 @@
         public void WhenNumberIsZero_ThenReturns1()
         {
             int number = 0;
-            var counter = new DigitCounter();
 
-            int digits = counter.GetRecursiveCount(number);
+            int digits = DigitCounter.GetRecursiveCount(number);
+
             Assert.AreEqual(1, digits);
         }
     }
