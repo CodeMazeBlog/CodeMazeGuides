@@ -4,12 +4,12 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
     private readonly string _inputString = inputString;
     private readonly int _numberOfCharacters = numberOfCharacters;
 
-    private bool IsInputStringNullOrTooShort()
+    private bool IsInputStringNullOrEmptyOrShorter()
         => string.IsNullOrEmpty(_inputString) || _inputString.Length < _numberOfCharacters;
 
     public string? UseRemove()
     {
-        if (IsInputStringNullOrTooShort())
+        if (IsInputStringNullOrEmptyOrShorter())
             return _inputString;
 
         return _inputString.Remove(_numberOfCharacters);
@@ -17,7 +17,7 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
 
     public string? UseLINQ()
     {
-        if (IsInputStringNullOrTooShort())
+        if (IsInputStringNullOrEmptyOrShorter())
             return _inputString;
 
         return string.Join("", _inputString.Take(_numberOfCharacters));
@@ -25,7 +25,7 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
 
     public string? UseRangeOperator()
     {
-        if (IsInputStringNullOrTooShort())
+        if (IsInputStringNullOrEmptyOrShorter())
             return _inputString;
 
         return _inputString[.._numberOfCharacters];
@@ -33,7 +33,7 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
 
     public string? UseAsSpan()
     {
-        if (IsInputStringNullOrTooShort())
+        if (IsInputStringNullOrEmptyOrShorter())
             return _inputString;
 
         return _inputString.AsSpan(0, _numberOfCharacters).ToString();
@@ -41,7 +41,7 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
 
     public string? UseToCharArray()
     {
-        if (IsInputStringNullOrTooShort())
+        if (IsInputStringNullOrEmptyOrShorter())
             return _inputString;
 
         return string.Join("", _inputString.ToCharArray(0, _numberOfCharacters));

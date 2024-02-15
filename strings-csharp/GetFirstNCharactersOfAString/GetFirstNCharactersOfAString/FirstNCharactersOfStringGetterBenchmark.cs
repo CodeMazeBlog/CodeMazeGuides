@@ -3,7 +3,6 @@ using BenchmarkDotNet.Order;
 
 namespace GetFirstNCharactersOfAString
 {
-    [MemoryDiagnoser(false)]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class FirstNCharactersOfStringGetterBenchmark
     {
@@ -11,7 +10,8 @@ namespace GetFirstNCharactersOfAString
 
         public FirstNCharactersOfStringGetterBenchmark()
         {
-            _firstNCharactersOfStringGetter = new FirstNCharactersOfStringGetter();
+            _firstNCharactersOfStringGetter
+                = new FirstNCharactersOfStringGetter();
         }
 
         [Benchmark]
