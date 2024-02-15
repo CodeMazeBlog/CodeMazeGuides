@@ -32,28 +32,30 @@ public class Program
 {
     static void Main(string[] args)
     {
-      //DELEGATE
-      // Creating an instance of OurDelegate 
+      
+      // custom delegate
       OurDelegate instanceOfOurDelegate = DelegateExamples.DelegateMethod; 
+
       instanceOfOurDelegate.Invoke(3000, 500); 
 
-
-      // FUNC DELEGATE
+      // Func delegate
       Func<int, int, string> instanceOfFuncDelegate = FuncAndActionDelegateExamples.FuncDelegateMethod;
-      string returnValue = instanceOfFuncDelegate.Invoke(500, 540); 
+
+      var returnValue = instanceOfFuncDelegate.Invoke(500, 540); 
       Console.WriteLine(returnValue);
        
-      //  OR 
 
-       // using arrow function approach 
+       // using arrow function approach with func delegate
       Func<int, int, string> instanceOfFuncDelegateArrowFunction = (int currentAmount, int previousAmount) 
           => $"Amount difference is {currentAmount - previousAmount}"; 
-      string returnValueArrowFunction = instanceOfFuncDelegateArrowFunction.Invoke(500, 540); 
+
+      var returnValueArrowFunction = instanceOfFuncDelegateArrowFunction.Invoke(500, 540); 
       Console.WriteLine(returnValueArrowFunction);
 
 
-       // ACTION DELEGATES
-       Action<int, int> instanceOfActionDelegate = FuncAndActionDelegateExamples.ActionDelegateMethod; 
-       instanceOfActionDelegate.Invoke(500, 550);
+      // Action Delegate
+      Action<int, int> instanceOfActionDelegate = FuncAndActionDelegateExamples.ActionDelegateMethod; 
+
+      instanceOfActionDelegate.Invoke(500, 550);
     }
 }
