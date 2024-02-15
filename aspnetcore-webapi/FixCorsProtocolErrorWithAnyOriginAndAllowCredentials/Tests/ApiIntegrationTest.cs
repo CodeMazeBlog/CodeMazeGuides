@@ -16,7 +16,7 @@ public class ApiIntegrationTest : IClassFixture<ApiApplicationFactory>
     public async Task GivenApiDummyController_WhenBadEndpointIsCalledWithAnyOrigin_ThenAllowOriginAndAllowCredentialsIsNotReturned(string origin)
     {
         // Arrange
-        var url = "https://localhost:5001/api/dummy/bad";
+        const string url = "https://localhost:5001/api/dummy/bad";
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Add("Origin", origin);
 
@@ -24,8 +24,8 @@ public class ApiIntegrationTest : IClassFixture<ApiApplicationFactory>
         var response = await _client.SendAsync(request);
 
         // Assert
-        Assert.False(response.Headers.Contains("Access-Control-Allow-Origin"));
-        Assert.False(response.Headers.Contains("Access-Control-Allow-Credentials"));
+        Assert.False(response.Headers.Contains(HeaderNames.AccessControlAllowOrigin));
+        Assert.False(response.Headers.Contains(HeaderNames.AccessControlAllowCredentials));
     }
 
     [Theory]
@@ -36,7 +36,7 @@ public class ApiIntegrationTest : IClassFixture<ApiApplicationFactory>
     public async Task GivenApiDummyController_WhenGoodEndpointIsCalledWithAnyOrigin_ThenAllowOriginAndAllowCredentialsIsReturned(string origin)
     {
         // Arrange
-        var url = "https://localhost:5001/api/dummy/good";
+        const string url = "https://localhost:5001/api/dummy/good";
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Add("Origin", origin);
 
@@ -44,9 +44,9 @@ public class ApiIntegrationTest : IClassFixture<ApiApplicationFactory>
         var response = await _client.SendAsync(request);
 
         // Assert
-        Assert.True(response.Headers.Contains("Access-Control-Allow-Origin"));
-        Assert.Contains(origin, response.Headers.GetValues("Access-Control-Allow-Origin"));
-        Assert.True(response.Headers.Contains("Access-Control-Allow-Credentials"));
+        Assert.True(response.Headers.Contains(HeaderNames.AccessControlAllowOrigin));
+        Assert.Contains(origin, response.Headers.GetValues(HeaderNames.AccessControlAllowOrigin));
+        Assert.True(response.Headers.Contains(HeaderNames.AccessControlAllowCredentials));
     }
 
     [Theory]
@@ -56,7 +56,7 @@ public class ApiIntegrationTest : IClassFixture<ApiApplicationFactory>
         string origin)
     {
         // Arrange
-        var url = "https://localhost:5001/api/dummy/best";
+        const string url = "https://localhost:5001/api/dummy/best";
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Add("Origin", origin);
 
@@ -64,9 +64,9 @@ public class ApiIntegrationTest : IClassFixture<ApiApplicationFactory>
         var response = await _client.SendAsync(request);
 
         // Assert
-        Assert.True(response.Headers.Contains("Access-Control-Allow-Origin"));
-        Assert.Contains(origin, response.Headers.GetValues("Access-Control-Allow-Origin"));
-        Assert.True(response.Headers.Contains("Access-Control-Allow-Credentials"));
+        Assert.True(response.Headers.Contains(HeaderNames.AccessControlAllowOrigin));
+        Assert.Contains(origin, response.Headers.GetValues(HeaderNames.AccessControlAllowOrigin));
+        Assert.True(response.Headers.Contains(HeaderNames.AccessControlAllowCredentials));
     }
 
     [Theory]
@@ -79,7 +79,7 @@ public class ApiIntegrationTest : IClassFixture<ApiApplicationFactory>
             string origin)
     {
         // Arrange
-        var url = "https://localhost:5001/api/dummy/best";
+        const string url = "https://localhost:5001/api/dummy/best";
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Add("Origin", origin);
 
@@ -87,7 +87,7 @@ public class ApiIntegrationTest : IClassFixture<ApiApplicationFactory>
         var response = await _client.SendAsync(request);
 
         // Assert
-        Assert.False(response.Headers.Contains("Access-Control-Allow-Origin"));
-        Assert.False(response.Headers.Contains("Access-Control-Allow-Credentials"));
+        Assert.False(response.Headers.Contains(HeaderNames.AccessControlAllowOrigin));
+        Assert.False(response.Headers.Contains(HeaderNames.AccessControlAllowCredentials));
     }
 }

@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
-
-namespace FixCorsProtocolErrorWithAnyOriginAndAllowCredentials.Api.Controllers;
+﻿namespace FixCorsProtocolErrorWithAnyOriginAndAllowCredentials.Api.Controllers;
 
 [ApiController]
 [Route("api/dummy")]
@@ -13,6 +10,7 @@ public class DummyController : ControllerBase
     public IActionResult GetBad()
     {
         var message = "Sorry, this won't work!";
+
         return Ok(message);
     }
 
@@ -22,6 +20,7 @@ public class DummyController : ControllerBase
     public IActionResult GetGood()
     {
         var message = "This is working fine!";
+
         return Ok(message);
     }
 
@@ -31,6 +30,7 @@ public class DummyController : ControllerBase
     public IActionResult GetBest()
     {
         var message = "This is the best!";
+
         return Ok(message);
     }
 }

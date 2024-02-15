@@ -70,7 +70,4 @@ app.MapControllers();
 app.Run();
 
 
-namespace FixCorsProtocolErrorWithAnyOriginAndAllowCredentials.Api 
-{
-    public partial class Program;
-}
+public partial class Program;
