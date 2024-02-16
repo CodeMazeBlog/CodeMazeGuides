@@ -4,7 +4,7 @@ namespace WorkdaysInCSharpTests;
 public class WorkdaysInCSharpUnitTests
 {
     [TestMethod]
-    public void GivenTwoDateTimeValues_WhenCalculateBusinessDaysinvoked_VerifyAccurateNumberOfWeekdays()
+    public void GivenTwoDateTimeValues_WhenCalculateBusinessDaysinvoked_ThenVerifyAccurateNumberOfWeekdays()
     {
         var startDate = new DateTime(2024, 1, 1);
         var endDate = new DateTime(2024, 1, 15);
@@ -17,7 +17,7 @@ public class WorkdaysInCSharpUnitTests
     }
 
     [TestMethod]
-    public void GivenTwoDates_WhenCalculateBusinessDaysMethodInvoked_VerifyReturnsZero()
+    public void GivenTwoDates_WhenCalculateBusinessDaysMethodInvoked_ThenVerifyReturnsZero()
     {
         var startDate = new DateTime(2024, 1, 15);
         var endDate = new DateTime(2024, 1, 1);
@@ -28,7 +28,7 @@ public class WorkdaysInCSharpUnitTests
     }
 
     [TestMethod]
-    public void GivenSameDates_WhenCalculateBusinessDaysMethodInvoked_VerifyReturnsZero()
+    public void GivenSameDates_WhenCalculateBusinessDaysMethodInvoked_ThenVerifyReturnsZero()
     {
         var date = new DateTime(2024, 1, 1);
 
@@ -38,7 +38,7 @@ public class WorkdaysInCSharpUnitTests
     }
 
     [TestMethod]
-    public void GivenNumberOfDaysAndDate_WhenAddWorkdaysInvoked_VerifyCorrectResults()
+    public void GivenNumberOfDaysAndDate_WhenAddWorkdaysInvoked_ThenVerifyCorrectResults()
     {
         var startDate = new DateTime(2024, 1, 1);
         var expectedDate = new DateTime(2024, 1, 15);
@@ -51,7 +51,7 @@ public class WorkdaysInCSharpUnitTests
     }
 
     [TestMethod]
-    public async Task GivenNumberOfDaysAndDate_WhenAddWorkDaysExcludingHolidaysInvoked_VerifyCorrectResultsAsync()
+    public async Task GivenNumberOfDaysAndDate_WhenAddWorkDaysExcludingHolidaysInvoked_ThenVerifyCorrectResultsAsync()
     {
         var startDate = new DateTime(2024, 1, 1);
         var expectedDate = new DateTime(2024, 1, 16);
@@ -65,7 +65,7 @@ public class WorkdaysInCSharpUnitTests
     }
 
     [TestMethod]
-    public async Task GivenTwoDateTimeValues_WhenCalculateBusinessDaysExcludingHolidaysInvoked_VerifyAccurateNumberOfWeekdaysAsync()
+    public async Task GivenTwoDateTimeValues_WhenCalculateBusinessDaysExcludingHolidaysInvoked_ThenVerifyAccurateNumberOfWeekdaysAsync()
     {
         var startDate = new DateTime(2024, 1, 1);
         var endDate = new DateTime(2024, 1, 16);
@@ -79,7 +79,7 @@ public class WorkdaysInCSharpUnitTests
     }
 
     [TestMethod]
-    public void GivenTwoDateTimeValues_WhenIsWorkingDayInvoked_VerifyAccurateResults()
+    public void GivenTwoDateTimeValues_WhenIsWorkingDayInvoked_ThenVerifyAccurateResults()
     {
         var firstDate = new DateTime(2024, 1, 1);
         var secondDate = new DateTime(2024, 1, 6);
