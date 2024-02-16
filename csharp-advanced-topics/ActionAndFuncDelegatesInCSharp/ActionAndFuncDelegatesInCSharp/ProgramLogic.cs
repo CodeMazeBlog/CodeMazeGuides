@@ -1,28 +1,26 @@
-﻿
-namespace ActionAndFuncDelegatesInCSharp
+﻿namespace ActionAndFuncDelegatesInCSharp;
+
+public class ProgramLogic
 {
-	public class ProgramLogic
+	public void AddFunc()
 	{
-		public void AddFunc()
-		{
-			Func<int, int, int> add = (x, y) => x + y;
-			var result = add(2, 3);
+		Func<int, int, int> add = (x, y) => x + y;
+		var result = add(2, 3);
 
-			Console.WriteLine(result);
-		}
+		Console.WriteLine(result);
+	}
 
-		public void GreetAction()
-		{
-			Action greet = () => Console.WriteLine("Hello!");
+	public void GreetAction()
+	{
+		Action greet = () => Console.WriteLine("Hello!");
 
-			greet();
-		}
+		greet();
+	}
 
-		public void GreetSomeoneAction()
-		{
-			Action<string> greetSomeone = name => Console.WriteLine($"Hello, {name}!");
+	public void GreetSomeoneAction()
+	{
+		Action<string> greetSomeone = name => Console.WriteLine($"Hello, {name}!");
 
-			greetSomeone("John");
-		}
+		greetSomeone("John");
 	}
 }
