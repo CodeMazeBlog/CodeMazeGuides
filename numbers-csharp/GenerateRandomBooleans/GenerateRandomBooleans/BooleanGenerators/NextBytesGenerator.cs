@@ -4,9 +4,8 @@ namespace GenerateRandomBooleans.BooleanGenerators
 {
     public class NextBytesGenerator(IRandomGenerator randomGenerator, int bufferLength) : IBooleanGenerator
     {
-        public const int BitsInByte = 8;
+        private const int BitsInByte = 8;
 
-        private readonly IRandomGenerator _randomGenerator = randomGenerator;
         private readonly byte[] _buffer = new byte[bufferLength];
 
         private readonly int _maxBitIndex = bufferLength * BitsInByte;
@@ -16,7 +15,7 @@ namespace GenerateRandomBooleans.BooleanGenerators
         {
             if (_currentBitIndex >= _maxBitIndex)
             {
-                _randomGenerator.NextBytes(_buffer);
+                randomGenerator.NextBytes(_buffer);
                 _currentBitIndex = 0;
             }
 

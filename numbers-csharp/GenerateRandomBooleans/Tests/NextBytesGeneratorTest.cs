@@ -9,13 +9,7 @@
         [DataRow((byte)0xA5, "1010 0101")]
         public void GivenByte_WhenGeneratingBoolean_ThenExpectCorrectReturnValues(byte sourceByte, string bits)
         {
-            var generator = Substitute.For<IRandomGenerator>();
-
-            generator.When(x => x.NextBytes(Arg.Any<byte[]>())).Do(callInfo =>
-            {
-                var buffer = callInfo.Arg<byte[]>();
-                buffer[0] = sourceByte;
-            });
+            var generator = new MockRandomGenerator([], [sourceByte]);
 
             var nextBytesGenerator = new NextBytesGenerator(generator, 1);
             var expected = bits.Replace(" ", "");
@@ -35,14 +29,7 @@
         [DataRow(new byte[] { 0xA1, 0x75 }, "1000 0101 1010 1110")]
         public void GivenTwoBytes_WhenGeneratingBoolean_ThenExpectCorrectReturnValues(byte[] sourceBytes, string bits)
         {
-            var generator = Substitute.For<IRandomGenerator>();
-
-            generator.When(x => x.NextBytes(Arg.Any<byte[]>())).Do(callInfo =>
-            {
-                var buffer = callInfo.Arg<byte[]>();
-                buffer[0] = sourceBytes[0];
-                buffer[1] = sourceBytes[1];
-            });
+            var generator = new MockRandomGenerator([], sourceBytes);
 
             var nextBytesGenerator = new NextBytesGenerator(generator, 2);
             var expected = bits.Replace(" ", "");

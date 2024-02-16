@@ -12,20 +12,22 @@ namespace GenerateRandomBooleans.AlgorithmBenchmarks
         [Arguments(1)]
         [Arguments(1_000)]
         [Arguments(1_000_000)]
-        public void NextIntegerGenerator(int numberOfBooleans)
+        public long NextIntegerGenerator(int numberOfBooleans)
         {
             var generator = new NextIntegerGenerator(RandomGenerator);
-            RoundRobin(generator, numberOfBooleans);
+
+            return RoundRobin(generator, numberOfBooleans);
         }
 
         [Benchmark]
         [Arguments(1)]
         [Arguments(1_000)]
         [Arguments(1_000_000)]
-        public void GetItemsWithBufferGenerator(int numberOfBooleans)
+        public long GetItemsWithBufferGenerator(int numberOfBooleans)
         {
             var generator = new GetItemsWithBufferGenerator(RandomGenerator, 128);
-            RoundRobin(generator, numberOfBooleans);
+
+            return RoundRobin(generator, numberOfBooleans);
         }
     }
 }

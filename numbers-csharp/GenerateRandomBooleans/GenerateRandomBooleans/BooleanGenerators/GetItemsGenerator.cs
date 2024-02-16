@@ -4,8 +4,12 @@ namespace GenerateRandomBooleans.BooleanGenerators
 {
     public class GetItemsGenerator(IRandomGenerator randomGenerator) : IBooleanGenerator
     {
-        private readonly IRandomGenerator _randomGenerator = randomGenerator;
+        public bool NextBool()
+        {
+            Span<bool> destination = stackalloc bool[1];
+            randomGenerator.GetItems([false, true], destination);
 
-        public bool NextBool() => _randomGenerator.GetItems([false, true], 1)[0];
+            return destination[0];
+        }
     }
 }

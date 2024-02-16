@@ -1,26 +1,31 @@
 ﻿using GenerateRandomBooleans.RandomGenerators;
 
-namespace GenerateRandomBooleans.BooleanGenerators
+namespace GenerateRandomBooleans.BooleanGenerators;
+
+public class GetItemsWithBufferGenerator : IBooleanGenerator
 {
-    public class GetItemsWithBufferGenerator(IRandomGenerator randomGenerator, int bufferLength) : IBooleanGenerator
+    private static readonly bool[] _allPossibilities = [false, true];
+    private readonly bool[] _buffer;
+
+    private readonly IRandomGenerator _randomGenerator;
+    private int _currentBufferIndex;
+
+    public GetItemsWithBufferGenerator(IRandomGenerator randomGenerator, int bufferLength)
     {
-        private readonly IRandomGenerator _randomGenerator = randomGenerator;
-        private readonly int _bufferLength = bufferLength;
+        _randomGenerator = randomGenerator;
 
-        private readonly bool[] _allPossibilities = [false, true];
+        _buffer = new bool[bufferLength];
+        _currentBufferIndex = bufferLength;
+    }
 
-        private int _currentBufferIndex = bufferLength;
-        private bool[] _buffer = [];
-
-        public bool NextBool()
+    public bool NextBool()
+    {
+        if (_currentBufferIndex >= _buffer.Length)
         {
-            if (_currentBufferIndex >= _bufferLength)
-            {
-                _buffer = _randomGenerator.GetItems<bool>(_allPossibilities, _bufferLength);
-                _currentBufferIndex = 0;
-            }
-
-            return _buffer[_currentBufferIndex++];
+            _randomGenerator.GetItems<bool>(_allPossibilities, _buffer);
+            _currentBufferIndex = 0;
         }
+
+        return _buffer[_currentBufferIndex++];
     }
 }

@@ -12,8 +12,7 @@
         [DataRow(new bool[] { false, false, true })]
         public void GivenGetItemsTrue_WhenCallingNextBool_ThenExpectTheCorrectReturn(bool[] items)
         {
-            var generator = Substitute.For<IRandomGenerator>();
-            _ = generator.GetItems(Arg.Any<bool[]>(), Arg.Any<int>()).Returns(items);
+            var generator = new MockRandomGenerator(items, []);
 
             var boolGenerator = new GetItemsWithBufferGenerator(generator, items.Length);
 

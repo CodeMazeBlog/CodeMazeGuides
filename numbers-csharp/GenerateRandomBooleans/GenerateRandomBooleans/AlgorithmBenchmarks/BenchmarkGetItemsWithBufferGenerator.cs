@@ -17,10 +17,11 @@ namespace GenerateRandomBooleans.AlgorithmBenchmarks
         [Arguments(128)]
         [Arguments(256)]
         [Arguments(1024)]
-        public void GetItemsWithBufferGenerator(int bufferSize)
+        public long GetItemsWithBufferGenerator(int bufferSize)
         {
             var generator = new GetItemsWithBufferGenerator(RandomGenerator, bufferSize);
-            RoundRobin(generator, NumberOfBooleans);
+
+            return RoundRobin(generator, NumberOfBooleans);
         }
     }
 }

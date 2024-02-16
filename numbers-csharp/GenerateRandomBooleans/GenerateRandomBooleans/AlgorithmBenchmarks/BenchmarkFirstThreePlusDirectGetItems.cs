@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System.Buffers;
+using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 using GenerateRandomBooleans.BooleanGenerators;
 using GenerateRandomBooleans.RandomGenerators;
@@ -9,45 +10,47 @@ namespace GenerateRandomBooleans.AlgorithmBenchmarks
     [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
     public class BenchmarkFirstThreePlusDirectGetItems : BenchmarkBase
     {
+        [Params(1_000, 1_000_000)]
+        public int NumberOfBooleans { get; set; }
+
         [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public void NextIntegerGenerator(int numberOfBooleans)
+        public void NextIntegerGenerator()
         {
             var generator = new NextIntegerGenerator(RandomGenerator);
-            StoreEverything(generator, numberOfBooleans);
+            StoreEverything(generator, NumberOfBooleans);
         }
 
         [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public void NextDoubleGenerator(int numberOfBooleans)
+        public void NextDoubleGenerator()
         {
             var generator = new NextDoubleGenerator(RandomGenerator);
-            StoreEverything(generator, numberOfBooleans);
+            StoreEverything(generator, NumberOfBooleans);
         }
 
         [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public void GetItemsGenerator(int numberOfBooleans)
+        public void GetItemsGenerator()
         {
             var generator = new GetItemsGenerator(RandomGenerator);
-            StoreEverything(generator, numberOfBooleans);
+            StoreEverything(generator, NumberOfBooleans);
         }
 
         [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public void GetItemsDirectGenerator(int numberOfBooleans)
+        public void GetItemsDirectGenerator()
         {
-            var r = new SystemRandomGenerator();
+            bool[]? buffer = null;
+            try
+            {
+                buffer = ArrayPool<bool>.Shared.Rent(NumberOfBooleans);
+                var bufferSpan = buffer.AsSpan(NumberOfBooleans);
 
-            var _ = r.GetItems([true, false], numberOfBooleans);
+                var r = new SystemRandomGenerator();
+                r.GetItems([true, false], bufferSpan);
+            }
+            finally
+            {
+                if (buffer is not null)
+                    ArrayPool<bool>.Shared.Return(buffer);
+            }
         }
     }
 }

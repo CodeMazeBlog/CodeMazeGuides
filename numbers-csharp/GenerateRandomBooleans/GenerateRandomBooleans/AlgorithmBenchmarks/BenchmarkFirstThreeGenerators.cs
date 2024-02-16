@@ -8,34 +8,31 @@ namespace GenerateRandomBooleans.AlgorithmBenchmarks
     [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
     public class BenchmarkFirstThreeGenerators : BenchmarkBase
     {
+        [Params(1_000, 1_000_000)]
+        public int NumberOfBooleans { get; set; }
+
         [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public void NextIntegerGenerator(int numberOfBooleans)
+        public long NextIntegerGenerator()
         {
             var generator = new NextIntegerGenerator(RandomGenerator);
-            RoundRobin(generator, numberOfBooleans);
+
+            return RoundRobin(generator, NumberOfBooleans);
         }
 
         [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public void NextDoubleGenerator(int numberOfBooleans)
+        public long NextDoubleGenerator()
         {
             var generator = new NextDoubleGenerator(RandomGenerator);
-            RoundRobin(generator, numberOfBooleans);
+
+            return RoundRobin(generator, NumberOfBooleans);
         }
 
         [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public void GetItemsGenerator(int numberOfBooleans)
+        public long GetItemsGenerator()
         {
             var generator = new GetItemsGenerator(RandomGenerator);
-            RoundRobin(generator, numberOfBooleans);
+
+            return RoundRobin(generator, NumberOfBooleans);
         }
     }
 }
