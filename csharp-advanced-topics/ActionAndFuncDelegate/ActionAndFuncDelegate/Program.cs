@@ -8,7 +8,7 @@ public class DelegateExamples
 {
   public static string DelegateMethod(int previousAmount, int currentAmount)
   {
-        return $"Amount difference is {currentAmount - previousAmount}";
+    return $"Amount difference is {currentAmount - previousAmount}";
   }
 }
 
@@ -16,12 +16,12 @@ public class FuncAndActionDelegateExamples
 {
   public static string FuncDelegateMethod(int previousAmount, int currentAmount)
   {
-        return  $"Amount difference is {currentAmount - previousAmount}";
+    return $"Amount difference is {currentAmount - previousAmount}";
   }
 
   public static void ActionDelegateMethod(int previousAmount, int currentAmount)
   {
-       Console.WriteLine($"Amount difference is {currentAmount - previousAmount}");
+    Console.WriteLine($"Amount difference is {currentAmount - previousAmount}");
   }
 }
 
@@ -30,32 +30,32 @@ public delegate string OurDelegate(int previousAmount, int currentAmount);
 
 public class Program
 {
-    static void Main(string[] args)
-    {
-      
-      // custom delegate
-      OurDelegate instanceOfOurDelegate = DelegateExamples.DelegateMethod; 
+  static void Main(string[] args)
+  {
 
-      instanceOfOurDelegate.Invoke(3000, 500); 
+    // custom delegate
+    OurDelegate instanceOfOurDelegate = DelegateExamples.DelegateMethod;
 
-      // Func delegate
-      Func<int, int, string> instanceOfFuncDelegate = FuncAndActionDelegateExamples.FuncDelegateMethod;
+    instanceOfOurDelegate.Invoke(3000, 500);
 
-      var returnValue = instanceOfFuncDelegate.Invoke(500, 540); 
-      Console.WriteLine(returnValue);
-       
+    // Func delegate
+    Func<int, int, string> instanceOfFuncDelegate = FuncAndActionDelegateExamples.FuncDelegateMethod;
 
-       // using arrow function approach with func delegate
-      Func<int, int, string> instanceOfFuncDelegateArrowFunction = (int currentAmount, int previousAmount) 
-          => $"Amount difference is {currentAmount - previousAmount}"; 
-
-      var returnValueArrowFunction = instanceOfFuncDelegateArrowFunction.Invoke(500, 540); 
-      Console.WriteLine(returnValueArrowFunction);
+    var returnValue = instanceOfFuncDelegate.Invoke(500, 540);
+    Console.WriteLine(returnValue);
 
 
-      // Action Delegate
-      Action<int, int> instanceOfActionDelegate = FuncAndActionDelegateExamples.ActionDelegateMethod; 
+    // using arrow function approach with func delegate
+    Func<int, int, string> instanceOfFuncDelegateArrowFunction = (int currentAmount, int previousAmount)
+        => $"Amount difference is {currentAmount - previousAmount}";
 
-      instanceOfActionDelegate.Invoke(500, 550);
-    }
+    var returnValueArrowFunction = instanceOfFuncDelegateArrowFunction.Invoke(500, 540);
+    Console.WriteLine(returnValueArrowFunction);
+
+
+    // Action Delegate
+    Action<int, int> instanceOfActionDelegate = FuncAndActionDelegateExamples.ActionDelegateMethod;
+
+    instanceOfActionDelegate.Invoke(500, 550);
+  }
 }

@@ -17,7 +17,7 @@ public class DelegateTest
 
         Assert.Equal(expected, actual);
     }
-    
+
     [Fact]
     public void GivenPreviousAndCurrentAmount_WhenCalculatingDifferenceWithActionDelegate_ThenReturnVoid()
     {
@@ -30,7 +30,7 @@ public class DelegateTest
 
         Assert.True(true);
     }
-    
+
     [Fact]
     public void GivenPreviousAndCurrentAmount_WhenCalculatingDifferenceWithFuncDelegate_ThenReturnString()
     {
@@ -39,12 +39,12 @@ public class DelegateTest
         const string expected = $"Amount difference is 150";
 
         Func<int, int, string> instanceOfFuncDelegate = FuncAndActionDelegateExamples.FuncDelegateMethod;
-        
+
         var actual = instanceOfFuncDelegate.Invoke(previousAmount, currentAmount);
-        
+
         Assert.Equal(expected, actual);
     }
-    
+
     [Fact]
     public void GivenPreviousAndCurrentAmount_WhenCalculatingDifferenceUsingFuncDelegateAndArrowFunction_ThenReturnString()
     {
