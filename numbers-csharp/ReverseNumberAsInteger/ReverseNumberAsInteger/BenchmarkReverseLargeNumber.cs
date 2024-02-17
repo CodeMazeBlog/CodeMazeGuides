@@ -1,37 +1,11 @@
 ﻿using BenchmarkDotNet.Attributes;
-using System;
 using System.Numerics;
 
 namespace ReverseNumberAsInteger
 {
     [MemoryDiagnoser]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
-    [RankColumn]
-    public class BenchmarkReverseLargeNumber
-    {
-        readonly BigInteger largeInt = BigInteger.Parse("-919293847576943309435893857695833");
-
-        [Benchmark]
-        public void DigitExtractAndReconstruct_LargePosNum() => ReverseLargeNumbers.ReverseUsingDigitExtractionAndReconstruction(largeInt);
-
-        [Benchmark]
-        public void Recursion_LargePosNum() => ReverseLargeNumbers.ReverseUsingRecursion(largeInt);
-
-        [Benchmark]
-        public void MathPow_LargePosNum() => ReverseLargeNumbers.ReverseUsingMathPow(largeInt);
-
-        [Benchmark]
-        public void SwappingDigits_LargePosNum() => ReverseLargeNumbers.ReverseBySwappingDigits(largeInt);
-
-        [Benchmark]
-        public void Linq_LargePosNum() => ReverseLargeNumbers.ReverseUsingLinq(largeInt);
-
-        [Benchmark]
-        public void ReverseAsString_LargePosNum() => ReverseLargeNumbers.ReverseAsString(largeInt);
-    }
-
-    [MemoryDiagnoser]
-    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
+    [HideColumns(["Job", "Error", "StdDev", "Median"])]
     [RankColumn]
     public class BenchmarkReverseVeryLargeNumber
     {

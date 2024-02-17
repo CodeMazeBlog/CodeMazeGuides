@@ -7,7 +7,7 @@ namespace ReverseNumberAsInteger
     {
         static void Main(string[] args)
         {
-            RunBenchmark();
+            //RunBenchmark();
             List<int> input = [1276345, -12345, 10, 0];
             List<BigInteger> bigNum = [BigInteger.Parse("12345003094809458066"),
                 BigInteger.Parse("-9192938475769433833")];
@@ -51,7 +51,6 @@ namespace ReverseNumberAsInteger
         public static void RunBenchmark()
         {
             BenchmarkRunner.Run<BenchmarkReverseNumber>();
-            BenchmarkRunner.Run<BenchmarkReverseLargeNumber>();
             BenchmarkRunner.Run<BenchmarkReverseVeryLargeNumber>();
         }
     }

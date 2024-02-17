@@ -4,6 +4,7 @@ namespace ReverseNumberAsInteger
 {
     [MemoryDiagnoser]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
+    [HideColumns(["Job", "Error", "StdDev", "Median"])]
     [RankColumn]
     public class BenchmarkReverseNumber
     {

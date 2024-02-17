@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace ReverseNumberAsInteger
+﻿namespace ReverseNumberAsInteger
 {
     public class ReverseNumbers
     {
