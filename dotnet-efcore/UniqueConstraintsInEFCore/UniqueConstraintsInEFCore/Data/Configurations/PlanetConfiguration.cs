@@ -8,6 +8,7 @@ public class PlanetConfiguration : IEntityTypeConfiguration<Planet>
 {
     public void Configure(EntityTypeBuilder<Planet> builder)
     {
-        builder.HasIndex(p => p.Name).IsUnique();
+        builder.HasIndex(p => p.Name)
+            .IsUnique();
     }
 }
