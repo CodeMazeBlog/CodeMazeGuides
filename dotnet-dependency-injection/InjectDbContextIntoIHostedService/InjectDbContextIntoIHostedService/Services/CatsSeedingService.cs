@@ -16,15 +16,13 @@ public class CatsSeedingService(IServiceScopeFactory scopeFactory)
 
         await context.Database.EnsureCreatedAsync(cancellationToken);
 
-        for (int i = 0; i < 50; i++)
-        {
-            context.Cats.Add(new()
+        context.Cats.AddRange(Enumerable.Range(1, 50)
+            .Select(_ => new Cat
             {
                 Id = Guid.NewGuid(),
                 Name = Names[Random.Shared.Next(Names.Length)],
                 Age = Random.Shared.Next(1, MaxAge)
-            });
-        }
+            }));
 
         await context.SaveChangesAsync(cancellationToken);
     }
