@@ -1,9 +1,8 @@
 ﻿using InjectDbContextIntoIHostedService.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace InjectDbContextIntoIHostedService.Services;
 
-public class CatsSeedingService(IDbContextFactory<CatsDbContext> contextFactory)
+public class CatsSeedingService(IServiceScopeFactory scopeFactory)
     : IHostedService
 {
     private static readonly int MaxAge = 15;
@@ -11,8 +10,9 @@ public class CatsSeedingService(IDbContextFactory<CatsDbContext> contextFactory)
         ["Whiskers", "Luna", "Simba", "Bella", "Oliver", "Shadow", "Gizmo", "Cleo", "Jasper", "Mocha"];
 
     public async Task StartAsync(CancellationToken cancellationToken)
-    {        
-        using var context = await contextFactory.CreateDbContextAsync(cancellationToken);
+    {
+        using var scope = scopeFactory.CreateScope();
+        using var context = scope.ServiceProvider.GetRequiredService<CatsDbContext>();
 
         await context.Database.EnsureCreatedAsync(cancellationToken);
 
