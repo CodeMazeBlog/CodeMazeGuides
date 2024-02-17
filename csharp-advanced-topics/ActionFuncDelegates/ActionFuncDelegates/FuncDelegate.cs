@@ -22,12 +22,13 @@
         public static void GetBenefit(Func<int, int> benefit, int amount, string customer)
         {
             var updatedAmount = benefit(amount);
+
             Console.WriteLine($"Customers {customer} get {updatedAmount}% Discount");
         }
 
         public static int AddDiscount(int amount)
         {
-            return amount = +amount * 2;
+            return +amount * 2;
         }
     }
 }

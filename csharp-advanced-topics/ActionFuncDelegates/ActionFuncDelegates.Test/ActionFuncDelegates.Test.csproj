@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ActionFuncDelegates.csproj" />
+    <ProjectReference Include="..\ActionFuncDelegates\ActionFuncDelegates.csproj" />
   </ItemGroup>
 
 </Project>
