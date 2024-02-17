@@ -1,6 +1,6 @@
 ﻿namespace UniqueConstraintsInEFCore.Tests;
 
-public class AddPlanetEndpointTests(SolarSystemApiApplicationFactory factory)
+public class AddPlanetEndpointLiveTests(SolarSystemApiApplicationFactory factory)
     : IClassFixture<SolarSystemApiApplicationFactory>
 {
     [Fact]
