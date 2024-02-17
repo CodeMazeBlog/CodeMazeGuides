@@ -9,8 +9,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHostedService<CatsSeedingService>();
 
-builder.Services.AddDbContext<CatsDbContext>(options =>
-        options.UseInMemoryDatabase("Cats"));
+builder.Services.AddDbContextFactory<CatsDbContext>(options
+    => options.UseInMemoryDatabase("Cats"));
 
 var app = builder.Build();
 
@@ -26,7 +26,7 @@ app.MapGet("/cats", async (CatsDbContext context) =>
 {
     return await context.Cats.AsNoTracking().ToListAsync();
 })
-.WithName("GetWeather")
+.WithName("GetCats")
 .WithOpenApi();
 
 app.Run();
