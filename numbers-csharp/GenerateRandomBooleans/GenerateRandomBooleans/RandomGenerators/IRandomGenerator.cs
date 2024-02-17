@@ -1,15 +1,14 @@
-﻿namespace GenerateRandomBooleans.RandomGenerators
+﻿namespace GenerateRandomBooleans.RandomGenerators;
+
+public interface IRandomGenerator
 {
-    public interface IRandomGenerator
-    {
-        int NextInteger(int fromInclusive, int toExclusive);
+    int NextInteger(int fromInclusive, int toExclusive);
 
-        long NextLong(long fromInclusive, long toExclusive);
+    long NextLong(long fromInclusive, long toExclusive);
 
-        double NextDouble();
+    double NextDouble();
 
-        void GetItems<T>(ReadOnlySpan<T> choices, Span<T> destination);
+    T[] GetItems<T>(T[] choices, int length);
 
-        void NextBytes(Span<byte> buffer);
-    }
+    void NextBytes(byte[] buffer);
 }

@@ -2,40 +2,42 @@
 using BenchmarkDotNet.Order;
 using GenerateRandomBooleans.RandomGenerators;
 
-namespace GenerateRandomBooleans.AlgorithmBenchmarks
+namespace GenerateRandomBooleans.AlgorithmBenchmarks;
+
+[MemoryDiagnoser]
+[Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
+public class BenchmarkRandomGenerators
 {
-    [MemoryDiagnoser]
-    [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
-    public class BenchmarkRandomGenerators
+    [Params(1_000, 1_000_000)]
+    public int NumberOfIntegers { get; set; }
+
+    public int[] Buffer { get; set; } = null!;
+
+    [GlobalSetup]
+    public void Setup()
     {
-        [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public void SystemRandomGenerator(int numberOfIntegers)
-        {
-            var r = new SystemRandomGenerator();
-            var result = new int[numberOfIntegers];
+        Buffer = new int[NumberOfIntegers];
+    }
 
-            for (var index = 0; index < numberOfIntegers; index++)
-            {
-                result[index] = r.NextInteger(0, 2);
-            }
+    [Benchmark]
+    public void SystemRandomGenerator()
+    {
+        var r = new SystemRandomGenerator();
+
+        for (var index = 0; index < NumberOfIntegers; index++)
+        {
+            Buffer[index] = r.NextInteger(0, 2);
         }
+    }
 
-        [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public void CryptographyRandomGenerator(int numberOfIntegers)
+    [Benchmark]
+    public void CryptographyRandomGenerator()
+    {
+        var r = new CryptographyRandomGenerator();
+
+        for (var index = 0; index < NumberOfIntegers; index++)
         {
-            var r = new CryptographyRandomGenerator();
-            var result = new int[numberOfIntegers];
-
-            for (var index = 0; index < numberOfIntegers; index++)
-            {
-                result[index] = r.NextInteger(0, 2);
-            }
+            Buffer[index] = r.NextInteger(0, 2);
         }
     }
 }

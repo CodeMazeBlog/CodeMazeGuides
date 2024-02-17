@@ -2,32 +2,28 @@
 using BenchmarkDotNet.Order;
 using GenerateRandomBooleans.BooleanGenerators;
 
-namespace GenerateRandomBooleans.AlgorithmBenchmarks
+namespace GenerateRandomBooleans.AlgorithmBenchmarks;
+
+[MemoryDiagnoser]
+[Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
+public class BenchmarkNextIntegerBitsGeneratorVsNextIntegerGenerator : BenchmarkBase
 {
-    [MemoryDiagnoser]
-    [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
-    public class BenchmarkNextIntegerBitsGeneratorVsNextIntegerGenerator : BenchmarkBase
+    [Params(1_000, 1_000_000)]
+    public int NumberOfBooleans { get; set; }
+
+    [Benchmark]
+    public long NextIntegerGenerator()
     {
-        [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public long NextIntegerGenerator(int numberOfBooleans)
-        {
-            var generator = new NextIntegerGenerator(RandomGenerator);
+        var generator = new NextIntegerGenerator(RandomGenerator);
 
-            return RoundRobin(generator, numberOfBooleans);
-        }
+        return RoundRobin(generator, NumberOfBooleans);
+    }
 
-        [Benchmark]
-        [Arguments(1)]
-        [Arguments(1_000)]
-        [Arguments(1_000_000)]
-        public long NextIntegerBitsGenerator(int numberOfBooleans)
-        {
-            var generator = new NextIntegerBitsGenerator(RandomGenerator);
+    [Benchmark]
+    public long NextIntegerBitsGenerator()
+    {
+        var generator = new NextIntegerBitsGenerator(RandomGenerator);
 
-            return RoundRobin(generator, numberOfBooleans);
-        }
+        return RoundRobin(generator, NumberOfBooleans);
     }
 }

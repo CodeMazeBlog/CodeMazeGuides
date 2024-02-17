@@ -1,7 +1,6 @@
-﻿namespace GenerateRandomBooleans.BooleanGenerators
+﻿namespace GenerateRandomBooleans.BooleanGenerators;
+
+public interface IBooleanGenerator
 {
-    public interface IBooleanGenerator
-    {
-        bool NextBool();
-    }
+    bool NextBool();
 }

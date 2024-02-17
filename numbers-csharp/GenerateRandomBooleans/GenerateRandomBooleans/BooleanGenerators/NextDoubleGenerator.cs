@@ -1,9 +1,8 @@
 ﻿using GenerateRandomBooleans.RandomGenerators;
 
-namespace GenerateRandomBooleans.BooleanGenerators
+namespace GenerateRandomBooleans.BooleanGenerators;
+
+public class NextDoubleGenerator(IRandomGenerator randomGenerator) : IBooleanGenerator
 {
-    public class NextDoubleGenerator(IRandomGenerator randomGenerator) : IBooleanGenerator
-    {
-        public bool NextBool() => randomGenerator.NextDouble() > 0.5;
-    }
+    public bool NextBool() => randomGenerator.NextDouble() > 0.5;
 }

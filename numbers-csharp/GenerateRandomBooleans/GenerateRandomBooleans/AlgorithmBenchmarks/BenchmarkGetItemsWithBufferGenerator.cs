@@ -2,26 +2,22 @@
 using BenchmarkDotNet.Order;
 using GenerateRandomBooleans.BooleanGenerators;
 
-namespace GenerateRandomBooleans.AlgorithmBenchmarks
+namespace GenerateRandomBooleans.AlgorithmBenchmarks;
+
+[MemoryDiagnoser]
+[Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
+public class BenchmarkGetItemsWithBufferGenerator : BenchmarkBase
 {
-    [MemoryDiagnoser]
-    [Orderer(SummaryOrderPolicy.FastestToSlowest, MethodOrderPolicy.Declared)]
-    public class BenchmarkGetItemsWithBufferGenerator : BenchmarkBase
+    private readonly int NumberOfBooleans = 1_000_000;
+
+    [Params(4, 23, 64, 128, 256, 1024)]
+    public int BufferSize { get; set; }
+
+    [Benchmark]
+    public long GetItemsWithBufferGenerator()
     {
-        private readonly int NumberOfBooleans = 1_000_000;
+        var generator = new GetItemsWithBufferGenerator(RandomGenerator, BufferSize);
 
-        [Benchmark]
-        [Arguments(4)]
-        [Arguments(32)]
-        [Arguments(64)]
-        [Arguments(128)]
-        [Arguments(256)]
-        [Arguments(1024)]
-        public long GetItemsWithBufferGenerator(int bufferSize)
-        {
-            var generator = new GetItemsWithBufferGenerator(RandomGenerator, bufferSize);
-
-            return RoundRobin(generator, NumberOfBooleans);
-        }
+        return RoundRobin(generator, NumberOfBooleans);
     }
 }

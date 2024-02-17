@@ -1,30 +1,29 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
-namespace GenerateRandomBooleans.RandomGenerators
+namespace GenerateRandomBooleans.RandomGenerators;
+
+public sealed class CryptographyRandomGenerator : IRandomGenerator, IDisposable
 {
-    public sealed class CryptographyRandomGenerator : IRandomGenerator, IDisposable
+    private readonly RandomNumberGenerator _random = RandomNumberGenerator.Create();
+
+    public int NextInteger(int fromInclusive, int toExclusive) => RandomNumberGenerator.GetInt32(fromInclusive, toExclusive);
+
+    public long NextLong(long fromInclusive, long toExclusive) => throw new System.NotImplementedException();
+
+    public double NextDouble() => throw new System.NotImplementedException();
+
+    public T[] GetItems<T>(T[] choices, int length)
     {
-        private readonly RandomNumberGenerator _random = RandomNumberGenerator.Create();
+        ReadOnlySpan<T> choicesSpan = choices;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int NextInteger(int fromInclusive, int toExclusive) => RandomNumberGenerator.GetInt32(fromInclusive, toExclusive);
+        return RandomNumberGenerator.GetItems(choicesSpan, length);
+    }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public long NextLong(long fromInclusive, long toExclusive) => throw new System.NotImplementedException();
+    public void NextBytes(byte[] buffer) => _random.GetBytes(buffer);
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public double NextDouble() => throw new System.NotImplementedException();
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void GetItems<T>(ReadOnlySpan<T> choices, Span<T> result) => RandomNumberGenerator.GetItems(choices, result);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void NextBytes(Span<byte> buffer) => _random.GetBytes(buffer);
-
-        public void Dispose()
-        {
-            _random.Dispose();
-        }
+    public void Dispose()
+    {
+        _random.Dispose();
     }
 }
