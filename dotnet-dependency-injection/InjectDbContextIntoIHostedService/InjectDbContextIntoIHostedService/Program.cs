@@ -2,6 +2,8 @@ using InjectDbContextIntoIHostedService.Data;
 using InjectDbContextIntoIHostedService.Services;
 using Microsoft.EntityFrameworkCore;
 
+namespace InjectDbContextIntoIHostedService;
+
 public class Program
 {
     public static void Main(string[] args)
