@@ -1,0 +1,9 @@
+@BrighterExample_HostAddress = http://localhost:5006
+
+GET {{BrighterExample_HostAddress}}/ping/
+Accept: application/json
+
+GET {{BrighterExample_HostAddress}}/ping-async/
+Accept: application/json
+
+###

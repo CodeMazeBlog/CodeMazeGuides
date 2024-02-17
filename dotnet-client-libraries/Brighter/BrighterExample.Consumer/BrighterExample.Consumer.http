@@ -1,0 +1,6 @@
+@BrighterExample.Consumer_HostAddress = http://localhost:5151
+
+GET {{BrighterExample.Consumer_HostAddress}}/consume/
+Accept: application/json
+
+###
