@@ -12,11 +12,21 @@
         }
 
         [Fact]
+        public void WhenUseForLoopIsCalledWithShorterString_ThenReturnsTheInputString()
+        {
+            var result = _firstNCharactersOfStringGetter.UseForLoop();
+
+            Assert.Equal(_stringToTest.Length, result.Length);
+            Assert.Equal(_stringToTest, result.ToString());
+        }
+
+        [Fact]
         public void WhenUseRemoveIsCalledWithShorterString_ThenReturnsTheInputString()
         {
             var result = _firstNCharactersOfStringGetter.UseRemove();
 
-            Assert.Equal(_stringToTest, result);
+            Assert.Equal(_stringToTest.Length, result.Length);
+            Assert.Equal(_stringToTest, result.ToString());
         }
 
         [Fact]
@@ -24,15 +34,8 @@
         {
             var result = _firstNCharactersOfStringGetter.UseLINQ();
 
-            Assert.Equal(_stringToTest, result);
-        }
-
-        [Fact]
-        public void WhenUseRangeOperatorIsCalledWithShorterString_ThenReturnsTheInputString()
-        {
-            var result = _firstNCharactersOfStringGetter.UseRangeOperator();
-
-            Assert.Equal(_stringToTest, result);
+            Assert.Equal(_stringToTest.Length, result.Length);
+            Assert.Equal(_stringToTest, result.ToString());
         }
 
         [Fact]
@@ -40,7 +43,26 @@
         {
             var result = _firstNCharactersOfStringGetter.UseAsSpan();
 
-            Assert.Equal(_stringToTest, result);
+            Assert.Equal(_stringToTest.Length, result.Length);
+            Assert.Equal(_stringToTest, result.ToString());
+        }
+
+        [Fact]
+        public void WhenUseAsSpanWithRangeOperatorIsCalledWithShorterString_ThenReturnsTheInputString()
+        {
+            var result = _firstNCharactersOfStringGetter.UseAsSpanWithRangeOperator();
+
+            Assert.Equal(_stringToTest.Length, result.Length);
+            Assert.Equal(_stringToTest, result.ToString());
+        }
+
+        [Fact]
+        public void WhenUseReadOnlyMemoryIsCalledWithShorterString_ThenReturnsTheInputString()
+        {
+            var result = _firstNCharactersOfStringGetter.UseReadOnlyMemory();
+
+            Assert.Equal(_stringToTest.Length, result.Length);
+            Assert.Equal(_stringToTest, result.ToString());
         }
 
         [Fact]
@@ -48,15 +70,8 @@
         {
             var result = _firstNCharactersOfStringGetter.UseToCharArray();
 
-            Assert.Equal(_stringToTest, result);
-        }
-
-        [Fact]
-        public void WhenUsePadRightIsCalledWithShorterString_ThenReturnsTheInputString()
-        {
-            var result = _firstNCharactersOfStringGetter.UsePadRight();
-
-            Assert.Equal(_stringToTest, result);
+            Assert.Equal(_stringToTest.Length, result.Length);
+            Assert.Equal(_stringToTest, result.ToString());
         }
     }
 }

@@ -15,6 +15,10 @@ namespace GetFirstNCharactersOfAString
         }
 
         [Benchmark]
+        public void UseForLoop()
+            => _firstNCharactersOfStringGetter.UseForLoop();
+
+        [Benchmark]
         public void UseRemove()
             => _firstNCharactersOfStringGetter.UseRemove();
 
@@ -23,19 +27,19 @@ namespace GetFirstNCharactersOfAString
             => _firstNCharactersOfStringGetter.UseLINQ();
 
         [Benchmark]
-        public void UseRangeOperator()
-            => _firstNCharactersOfStringGetter.UseRangeOperator();
-
-        [Benchmark]
         public void UseAsSpan()
             => _firstNCharactersOfStringGetter.UseAsSpan();
 
         [Benchmark]
-        public void UseToCharArray()
-            => _firstNCharactersOfStringGetter.UseToCharArray();
+        public void UseAsSpanWithRangeOperator()
+            => _firstNCharactersOfStringGetter.UseAsSpanWithRangeOperator();
 
         [Benchmark]
-        public void UsePadRight()
-            => _firstNCharactersOfStringGetter.UsePadRight();
+        public void UseReadOnlyMemory()
+            => _firstNCharactersOfStringGetter.UseReadOnlyMemory();
+
+        [Benchmark]
+        public void UseToCharArray()
+            => _firstNCharactersOfStringGetter.UseToCharArray();
     }
 }
