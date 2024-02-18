@@ -5,8 +5,8 @@ namespace InjectDbContextIntoIHostedService.Services;
 public class CatsSeedingService(IServiceScopeFactory scopeFactory)
     : IHostedService
 {
-    private static readonly int MaxAge = 15;
-    private static readonly string[] Names =
+    private static readonly int _maxAge = 15;
+    private static readonly string[] _names =
         ["Whiskers", "Luna", "Simba", "Bella", "Oliver", "Shadow", "Gizmo", "Cleo", "Jasper", "Mocha"];
 
     public async Task StartAsync(CancellationToken cancellationToken)
@@ -20,8 +20,8 @@ public class CatsSeedingService(IServiceScopeFactory scopeFactory)
             .Select(_ => new Cat
             {
                 Id = Guid.NewGuid(),
-                Name = Names[Random.Shared.Next(Names.Length)],
-                Age = Random.Shared.Next(1, MaxAge)
+                Name = _names[Random.Shared.Next(_names.Length)],
+                Age = Random.Shared.Next(1, _maxAge)
             }));
 
         await context.SaveChangesAsync(cancellationToken);
