@@ -44,7 +44,7 @@
         }
 
         [Fact]
-        public void When_RunIsInvoked_Then_AddedDiscountShouldBePrintedForAllCustomers()
+        public void WhenRunIsInvoked_ThenAddedDiscountShouldBePrintedForAllCustomers()
         {
                 // Arrange
             using (var sw = new StringWriter())
@@ -68,7 +68,7 @@
         [InlineData(25, "Platinum", "Customers Platinum get 50% Discount")]
         [InlineData(15, "Gold", "Customers Gold get 30% Discount")]
         [InlineData(5, "Silver", "Customers Silver get 10% Discount")]
-        public void When_GetBenefitIsInvoked_DiscountShouldBeAddedCorrectly(int amount, string customer, string expectedOutput)
+        public void WhenGetBenefitIsInvoked_ThenDiscountShouldBeAddedCorrectly(int amount, string customer, string expectedOutput)
         {
                 // Arrange
             using (var sw = new StringWriter())
@@ -87,7 +87,7 @@
         [InlineData(25, 50)]
         [InlineData(15, 30)]
         [InlineData(5, 10)]
-        public void When_AddDiscountIsInvoked_DiscountShouldBeReturnedCorrectly(int amount, int expectedDiscount)
+        public void WhenAddDiscountIsInvoked_ThenDiscountShouldBeReturnedCorrectly(int amount, int expectedDiscount)
         {
             // Act
             var result = FuncDelegate.AddDiscount(amount);
