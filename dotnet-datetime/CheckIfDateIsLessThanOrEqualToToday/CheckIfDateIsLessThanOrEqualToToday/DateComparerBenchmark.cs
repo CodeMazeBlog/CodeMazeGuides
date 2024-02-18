@@ -3,7 +3,6 @@ using BenchmarkDotNet.Order;
 
 namespace CheckIfDateIsLessThanOrEqualToToday;
 
-[MemoryDiagnoser(false)]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class DateComparerBenchmark
 {
