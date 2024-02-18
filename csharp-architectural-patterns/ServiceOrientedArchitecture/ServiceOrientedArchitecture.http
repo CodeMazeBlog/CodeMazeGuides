@@ -1,0 +1,6 @@
+@ServiceOrientedArchitecture_HostAddress = http://localhost:5283
+
+GET {{ServiceOrientedArchitecture_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
