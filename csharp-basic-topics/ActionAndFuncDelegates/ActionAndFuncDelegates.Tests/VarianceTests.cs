@@ -5,7 +5,7 @@ namespace ActionAndFuncDelegates.Tests;
 public class VarianceTests
 {
     [Fact]
-    public void Actions_inputs_are_contravariant()
+    public void WhenSubstitutingAction_InputsAreContravariant()
     {
         bool animalActionCalled = false;
         bool bearActionCalled = false;
@@ -24,7 +24,7 @@ public class VarianceTests
     }
 
     [Fact]
-    public void Func_outputs_are_covariant()
+    public void WhenSubstitutingFunc_OutputsAreCovariant()
     {
         Func<Animal> animalFunc = () => new Animal();
         Func<Bear> bearFunc = () => new Bear();
