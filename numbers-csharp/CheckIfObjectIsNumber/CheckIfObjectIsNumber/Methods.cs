@@ -1,4 +1,6 @@
-﻿namespace CheckIfObjectIsNumber;
+﻿using System.Numerics;
+
+namespace CheckIfObjectIsNumber;
 
 public static class Methods
 {
@@ -55,5 +57,10 @@ public static class Methods
         }
 
         return price;
+    }
+
+    public static bool IsNumber<T>(object obj) where T : INumber<T>
+    {
+        return obj is INumber<T>;
     }
 }

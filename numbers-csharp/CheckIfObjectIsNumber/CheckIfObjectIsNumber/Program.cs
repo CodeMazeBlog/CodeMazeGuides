@@ -57,6 +57,7 @@ Console.WriteLine(">>> Using object.IsNumber");
 object value = "123";
 var isNumber = value.IsNumber();
 Console.WriteLine(isNumber);
+
 value = 123;
 isNumber = value.IsNumber();
 Console.WriteLine(isNumber);
@@ -67,3 +68,10 @@ Console.WriteLine(price);
 
 price = Methods.CalculateAllTaxesIncludedPrice(20);
 Console.WriteLine(price);
+
+Console.WriteLine($">>> Using {nameof(Methods.IsNumber)}");
+var response = Methods.IsNumber<double>(12.58);
+Console.WriteLine(response);
+
+response = Methods.IsNumber<long>(1299951437765);
+Console.WriteLine(response);
