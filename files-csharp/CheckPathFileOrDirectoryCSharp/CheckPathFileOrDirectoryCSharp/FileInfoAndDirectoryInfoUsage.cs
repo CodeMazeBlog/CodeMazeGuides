@@ -20,7 +20,7 @@
             directoryInfo = new DirectoryInfo(testFile);
 
             isFile = fileInfo.Exists;
-            isDirectory = fileInfo.Exists;
+            isDirectory = directoryInfo.Exists;
 
             Console.WriteLine($"{testFile}: isFile = {isFile}, isDirectory = {isDirectory}\n");
 
@@ -32,7 +32,7 @@
             directoryInfo = new DirectoryInfo(testDirectory);
 
             isFile = fileInfo.Exists;
-            isDirectory = fileInfo.Exists;
+            isDirectory = directoryInfo.Exists;
 
             Console.WriteLine($"{testDirectory}: isFile = {isFile}, isDirectory = {isDirectory}\n");
 
@@ -43,7 +43,7 @@
             directoryInfo = new DirectoryInfo(notExistingPath);
 
             isFile = fileInfo.Exists;
-            isDirectory = fileInfo.Exists;
+            isDirectory = directoryInfo.Exists;
 
             Console.WriteLine($"{notExistingPath}: isFile = {isFile}, isDirectory = {isDirectory}\n");
         }

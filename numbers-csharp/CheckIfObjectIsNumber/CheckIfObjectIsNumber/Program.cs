@@ -1,4 +1,4 @@
-﻿using CheckIfObjectIsNumber;
+using CheckIfObjectIsNumber;
 
 Console.WriteLine($">>> Using {nameof(Methods.CheckIfIntegerWithEqualityOperator)}");
 var boolResult = Methods.CheckIfIntegerWithEqualityOperator(123);
@@ -75,3 +75,4 @@ Console.WriteLine(response);
 
 response = Methods.IsNumber<long>(1299951437765);
 Console.WriteLine(response);
+

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9C7E16E6-A677-4A81-B0FC-65D5E1BAAA97}") = "ReadXML", "ReadXML\ReadXML.csproj", "{1CCF3EE2-B1BB-4039-A3ED-B554A5FC8AEA}"
+EndProject
+Project("{9C7E16E6-A677-4A81-B0FC-65D5E1BAAA97}") = "Tests", "Tests\Tests.csproj", "{044EB62A-A002-4BBA-81B0-6CC368D92490}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CCF3EE2-B1BB-4039-A3ED-B554A5FC8AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CCF3EE2-B1BB-4039-A3ED-B554A5FC8AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CCF3EE2-B1BB-4039-A3ED-B554A5FC8AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CCF3EE2-B1BB-4039-A3ED-B554A5FC8AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{044EB62A-A002-4BBA-81B0-6CC368D92490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{044EB62A-A002-4BBA-81B0-6CC368D92490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{044EB62A-A002-4BBA-81B0-6CC368D92490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{044EB62A-A002-4BBA-81B0-6CC368D92490}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7D328AFA-6F9F-453A-9467-70589F94D928}
+	EndGlobalSection
+EndGlobal

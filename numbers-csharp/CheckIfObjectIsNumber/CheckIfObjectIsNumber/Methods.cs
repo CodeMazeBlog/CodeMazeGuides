@@ -1,6 +1,7 @@
-﻿using System.Numerics;
+using System.Numerics;
 
 namespace CheckIfObjectIsNumber;
+
 
 public static class Methods
 {

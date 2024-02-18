@@ -44,8 +44,10 @@ namespace GetValueByKeyFromJObject
             var model = jsonObject.Value<string>("model");
             var year = jsonObject.Value<string>("year");
 
-            var amount = jsonObject.Value<int>("price.amount");
-            var currency = jsonObject.Value<string>("price.currency");
+            var amount = jsonObject.Value<JObject>("price")
+                .Value<int>("amount");
+            var currency = jsonObject.Value<JObject>("price")
+                .Value<string>("currency");
 
             Console.WriteLine($"A {make} {name} {model} {year} costs {amount} {currency} \n");
 
