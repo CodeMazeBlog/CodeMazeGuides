@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HowToCreateAnOuterJoinInLINQLeftAndRight\HowToCreateAnOuterJoinInLINQLeftAndRight.csproj" />
+  </ItemGroup>
+
 </Project>
