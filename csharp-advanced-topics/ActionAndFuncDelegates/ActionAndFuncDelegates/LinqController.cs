@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ActionAndFuncDelegates
+﻿namespace ActionAndFuncDelegates
 {
     public static class LinqController
     {
@@ -12,7 +6,7 @@ namespace ActionAndFuncDelegates
 
         public static void SayHello()
         {
-            List<string> list = new List<string>() { "Marc", "Jennifer", "Alex" };
+            var list = new List<string>() { "Marc", "Jennifer", "Alex" };
 
             list.ForEach(x => hello(x));
         }

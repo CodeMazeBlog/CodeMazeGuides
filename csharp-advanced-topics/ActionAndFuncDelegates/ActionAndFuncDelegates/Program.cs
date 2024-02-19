@@ -16,6 +16,6 @@ Console.WriteLine("-----------------");
 Console.WriteLine("What is 5 + 2?");
 
 Func<int, Task<int>> asyncFunc = AsyncController.DoubleAsync;
-int result = await asyncFunc(5);
+var result = await asyncFunc(5);
 
 Console.WriteLine($"The result is: {result}");

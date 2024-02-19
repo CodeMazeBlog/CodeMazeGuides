@@ -1,9 +1,4 @@
 ﻿using ActionAndFuncDelegates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -19,14 +14,14 @@ namespace Tests
                 number = item;
             }
 
-            Assert.Equal(number, "1");
+            Assert.Equal( "1", number);
         }
 
         [Fact]
         public async void WhenNumberIsGiven_MultiplyItByTwo()
         {
             Func<int, Task<int>> asyncFunc = AsyncController.DoubleAsync;
-            int result = await asyncFunc(5);
+            var result = await asyncFunc(5);
 
             Assert.Equal(5 * 2, result);
         }
