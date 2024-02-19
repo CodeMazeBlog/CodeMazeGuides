@@ -94,4 +94,60 @@ public static class Utilities
 
         return results.ToList();
     }
+       
+    public static List<SongWithAuthor> PerformFullOuterJoin(
+        List<Song> songs, List<Author> authors)
+    {
+        var resultsLeft = PerformLeftJoinWithQuerySyntax(songs, authors);
+        var resultsRight = PerformRightJoinWithQuerySyntax(songs, authors);
+
+        var results = resultsLeft.Union(resultsRight, new SongWithAuthorComparer());
+
+        return results.ToList();
+    }
+
+    public static List<SongWithAuthor> PerformInnerJoin(
+        List<Song> songs, List<Author> authors)
+    {
+        var results =
+            from s in songs
+            join a in authors
+            on s.AuthorId equals a.Id
+            select new SongWithAuthor { Title = s.Title, AuthorName = a.Name };
+
+        return results.ToList();
+    }
+
+    public static List<SongWithAuthor> PerformLeftExcludingJoin(
+        List<Song> songs, List<Author> authors)
+    {
+        var resultsLeft = PerformLeftJoinWithQuerySyntax(songs, authors);
+        var resultsInner = PerformInnerJoin(songs, authors);
+
+        var results = resultsLeft.Except(resultsInner, new SongWithAuthorComparer());
+
+        return results.ToList();
+    }
+
+    public static List<SongWithAuthor> PerformRightExcludingJoin(
+        List<Song> songs, List<Author> authors)
+    {
+        var resultsRight = PerformRightJoinWithQuerySyntax(songs, authors);
+        var resultsInner = PerformInnerJoin(songs, authors);
+
+        var results = resultsRight.Except(resultsInner, new SongWithAuthorComparer());
+
+        return results.ToList();
+    }
+
+    public static List<SongWithAuthor> PerformFullOuterExcludingJoin(
+        List<Song> songs, List<Author> authors)
+    {
+        var resultsFull = PerformFullOuterJoin(songs, authors);
+        var resultsInner = PerformInnerJoin(songs, authors);
+
+        var results = resultsFull.Except(resultsInner, new SongWithAuthorComparer());
+
+        return results.ToList();
+    }
 }

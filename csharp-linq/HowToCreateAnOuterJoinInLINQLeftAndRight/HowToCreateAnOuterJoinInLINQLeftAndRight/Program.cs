@@ -56,3 +56,58 @@ foreach (var item in results)
 Console.WriteLine();
 Console.WriteLine();
 
+// Full outer join
+Console.WriteLine("Full outer join");
+Console.WriteLine();
+
+results = Utilities.PerformFullOuterJoin(Utilities.Songs, Utilities.Authors);
+
+foreach (var item in results)
+{
+    Console.WriteLine($"Title: {item.Title}, Author: {item.AuthorName}");
+}
+
+Console.WriteLine();
+Console.WriteLine();
+
+// Left excluding join
+Console.WriteLine("Left excluding join");
+Console.WriteLine();
+
+results = Utilities.PerformLeftExcludingJoin(Utilities.Songs, Utilities.Authors);
+
+foreach (var item in results)
+{
+    Console.WriteLine($"Title: {item.Title}, Author: {item.AuthorName}");
+}
+
+Console.WriteLine();
+Console.WriteLine();
+
+// Right excluding join
+Console.WriteLine("Right excluding join");
+Console.WriteLine();
+
+results = Utilities.PerformRightExcludingJoin(Utilities.Songs, Utilities.Authors);
+
+foreach (var item in results)
+{
+    Console.WriteLine($"Title: {item.Title}, Author: {item.AuthorName}");
+}
+
+Console.WriteLine();
+Console.WriteLine();
+
+// Full outer excluding join
+Console.WriteLine("Full outer excluding join");
+Console.WriteLine();
+
+results = Utilities.PerformFullOuterExcludingJoin(Utilities.Songs, Utilities.Authors);
+
+foreach (var item in results)
+{
+    Console.WriteLine($"Title: {item.Title}, Author: {item.AuthorName}");
+}
+
+Console.WriteLine();
+Console.WriteLine();
