@@ -18,7 +18,7 @@ internal class Program
 
     internal static string CapitaliseMessage(string message)
     {
-        return message.ToUpper();
+        return message.ToUpperInvariant();
     }
 
     static void Main(string[] args)
@@ -32,16 +32,14 @@ internal class Program
         actionWithoutParameters();
         actionWithParameters("Happy Coding", " with CodeMaze");
 
-        string upperHappyCoding = funcWithParameter("Happy Coding");
+        var upperHappyCoding = funcWithParameter("Happy Coding");
         Console.WriteLine(upperHappyCoding);
 
         var messages = new List<string>() { "Happy", "Coding", "with", "CodeMaze" };
         messages = messages
                     .Where(m => m.Length > 4)
-                    .Select(m => m.ToUpper())
+                    .Select(m => m.ToUpperInvariant())
                     .ToList();
         //messages is: { "HAPPY", "CODING", "CODEMAZE" }
     }
-
-
 }

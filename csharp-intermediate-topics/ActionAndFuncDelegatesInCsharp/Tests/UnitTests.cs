@@ -8,12 +8,12 @@ public class UnitTests
     [TestMethod]
     public void GivenAMessage_WhenFuncIsCalled_ThenMessageCapitalised()
     {
-        string messsage = "Happy Coding";
+        var messsage = "Happy Coding";
         Func<string, string> funcWithParameter = ActionAndFuncDelegatesInCsharp.Program.CapitaliseMessage;
         
-        string capitalised = funcWithParameter(messsage);
+        var capitalised = funcWithParameter(messsage);
 
-        Assert.AreEqual("HAPPY CODING", capitalised);
+        Assert.AreEqual(messsage.ToUpperInvariant(), capitalised);
     }
 
     [TestMethod]
@@ -31,7 +31,7 @@ public class UnitTests
         var messages = new List<string>() { "Happy", "Coding", "with", "CodeMaze" };
         messages = messages
                     .Where(m => m.Length > 4)
-                    .Select(m => m.ToUpper())
+                    .Select(m => m.ToUpperInvariant())
                     .ToList();
 
         Assert.AreEqual(3, messages.Count);
