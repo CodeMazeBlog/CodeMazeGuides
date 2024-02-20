@@ -20,6 +20,7 @@ namespace AwaitInForEachLoop
                 await Task.Delay(1000);
 
             }
+
             Console.WriteLine("Done Processing");
 
             return numbers;
