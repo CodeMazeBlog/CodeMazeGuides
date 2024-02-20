@@ -4,7 +4,7 @@ public static class CalculateQuarterMethods
 {
     public static int CalculateQuarter(DateTime inputDate)
     {
-        return (int)Math.Ceiling(inputDate.Month / 3.0);
+        return (inputDate.Month + 2) / 3; ;
     }
 
     public static int CalculateQuarterUsingSelection(DateTime inputDate)
@@ -36,16 +36,19 @@ public static class CalculateQuarterMethods
 
     public static int CalculateQuarterUsingLinq(DateTime inputDate)
     {
-        return Enumerable.Range(1, 12)
-                         .Select(m => new { Month = m, Quarter = (m - 1) / 3 + 1 })
-                         .Single(q => q.Month == inputDate.Month)
-                         .Quarter;
+        return Enumerable.Range(1, 4).First(q => inputDate.Month <= q * 3);
     }
 
     public struct QuarterRange
     {
         public DateTime StartQuarterDate { get; set; }
         public DateTime EndQuarterDate { get; set; }
+
+        public QuarterRange(DateTime startQuarterDate, DateTime endQuarterDate)
+        {
+            StartQuarterDate = startQuarterDate;
+            EndQuarterDate = endQuarterDate;
+        }
     }
 
     public static QuarterRange CalculateQuarterDates(DateTime inputDate)
@@ -57,23 +60,22 @@ public static class CalculateQuarterMethods
         var startQuarterDate = new DateTime(inputDate.Year, startQuarterMonth, 1);
         var endQuarterDate = new DateTime(inputDate.Year, endQuarterMonth, daysInMonth);
 
-        return new QuarterRange { StartQuarterDate = startQuarterDate, EndQuarterDate = endQuarterDate };
+        return new QuarterRange (startQuarterDate, endQuarterDate);
     }
 
     public static int CalculateFiscalQuarterOffset(DateTime inputDate, DateTime fiscalYearStart)
     {
-        var fiscalStartMonth = fiscalYearStart.Month;
-        var fiscalYearStartDay = fiscalYearStart.Day;
+        var monthOffset = inputDate.Month - fiscalYearStart.Month;
 
-        var year = inputDate.Year;
-        var month = inputDate.Month;
-
-        if (month < fiscalStartMonth || (month == fiscalStartMonth && inputDate.Day < fiscalYearStartDay))
+        if (inputDate.Month == fiscalYearStart.Month
+            && inputDate.Day < fiscalYearStart.Day
+            || inputDate.Month < fiscalYearStart.Month)
         {
-            year--;
+            monthOffset--;
         }
 
-        var quarter = ((month - fiscalStartMonth + 3) % 12 + 1) / 3;
+        monthOffset = (monthOffset + 12) % 12;
+        var quarter = (monthOffset / 3) + 1;
 
         return quarter;
     }
