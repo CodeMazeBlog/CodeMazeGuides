@@ -22,7 +22,6 @@ namespace AwaitInForEachLoop
 
             return numbers;
         }
-
         public static async Task ProcessNumberAsync(int number)
         {
             // Simulate an asynchronous operation
