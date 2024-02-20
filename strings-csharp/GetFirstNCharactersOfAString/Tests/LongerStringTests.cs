@@ -1,77 +1,76 @@
-﻿namespace Tests
+﻿namespace Tests;
+
+public class LongerStringTests
 {
-    public class LongerStringTests
+    private readonly FirstNCharactersOfStringGetter _firstNCharactersOfStringGetter;
+    private readonly string _stringToTest = "CodeMazeGuides";
+    private readonly int _numberOfCharacters = 8;
+
+    public LongerStringTests()
     {
-        private readonly FirstNCharactersOfStringGetter _firstNCharactersOfStringGetter;
-        private readonly string _stringToTest = "CodeMazeGuides";
-        private readonly int _numberOfCharacters = 8;
+        _firstNCharactersOfStringGetter = new FirstNCharactersOfStringGetter(_stringToTest, _numberOfCharacters);
+    }
 
-        public LongerStringTests()
-        {
-            _firstNCharactersOfStringGetter = new FirstNCharactersOfStringGetter(_stringToTest, _numberOfCharacters);
-        }
+    [Fact]
+    public void WhenUseForLoopIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    {
+        var result = _firstNCharactersOfStringGetter.UseForLoop();
 
-        [Fact]
-        public void WhenUseForLoopIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
-        {
-            var result = _firstNCharactersOfStringGetter.UseForLoop();
+        Assert.Equal("CodeMaze".Length, result.Length);
+        Assert.Equal("CodeMaze", result.ToString());
+    }
 
-            Assert.Equal("CodeMaze".Length, result.Length);
-            Assert.Equal("CodeMaze", result.ToString());
-        }
+    [Fact]
+    public void WhenUseRemoveIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    {
+        var result = _firstNCharactersOfStringGetter.UseRemove();
 
-        [Fact]
-        public void WhenUseRemoveIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
-        {
-            var result = _firstNCharactersOfStringGetter.UseRemove();
+        Assert.Equal("CodeMaze".Length, result.Length);
+        Assert.Equal("CodeMaze", result.ToString());
+    }
 
-            Assert.Equal("CodeMaze".Length, result.Length);
-            Assert.Equal("CodeMaze", result.ToString());
-        }
+    [Fact]
+    public void WhenUseLINQIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    {
+        var result = _firstNCharactersOfStringGetter.UseLINQ();
 
-        [Fact]
-        public void WhenUseLINQIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
-        {
-            var result = _firstNCharactersOfStringGetter.UseLINQ();
+        Assert.Equal("CodeMaze".Length, result.Length);
+        Assert.Equal("CodeMaze", result.ToString());
+    }
 
-            Assert.Equal("CodeMaze".Length, result.Length);
-            Assert.Equal("CodeMaze", result.ToString());
-        }
+    [Fact]
+    public void WhenUseAsSpanIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    {
+        var result = _firstNCharactersOfStringGetter.UseAsSpan();
 
-        [Fact]
-        public void WhenUseAsSpanIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
-        {
-            var result = _firstNCharactersOfStringGetter.UseAsSpan();
+        Assert.Equal("CodeMaze".Length, result.Length);
+        Assert.Equal("CodeMaze", result.ToString());
+    }
 
-            Assert.Equal("CodeMaze".Length, result.Length);
-            Assert.Equal("CodeMaze", result.ToString());
-        }
+    [Fact]
+    public void WhenUseAsSpanWithRangeOperatorIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    {
+        var result = _firstNCharactersOfStringGetter.UseAsSpanWithRangeOperator();
 
-        [Fact]
-        public void WhenUseAsSpanWithRangeOperatorIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
-        {
-            var result = _firstNCharactersOfStringGetter.UseAsSpanWithRangeOperator();
+        Assert.Equal("CodeMaze".Length, result.Length);
+        Assert.Equal("CodeMaze", result.ToString());
+    }
 
-            Assert.Equal("CodeMaze".Length, result.Length);
-            Assert.Equal("CodeMaze", result.ToString());
-        }
+    [Fact]
+    public void WhenUseAsMemoryIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    {
+        var result = _firstNCharactersOfStringGetter.UseAsMemory();
 
-        [Fact]
-        public void WhenUseReadOnlyMemoryIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
-        {
-            var result = _firstNCharactersOfStringGetter.UseReadOnlyMemory();
+        Assert.Equal("CodeMaze".Length, result.Length);
+        Assert.Equal("CodeMaze", result.ToString());
+    }
 
-            Assert.Equal("CodeMaze".Length, result.Length);
-            Assert.Equal("CodeMaze", result.ToString());
-        }
+    [Fact]
+    public void WhenUseToCharArrayIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    {
+        var result = _firstNCharactersOfStringGetter.UseToCharArray();
 
-        [Fact]
-        public void WhenUseToCharArrayIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
-        {
-            var result = _firstNCharactersOfStringGetter.UseToCharArray();
-
-            Assert.Equal("CodeMaze".Length, result.Length);
-            Assert.Equal("CodeMaze", result.ToString());
-        }
+        Assert.Equal("CodeMaze".Length, result.Length);
+        Assert.Equal("CodeMaze", result.ToString());
     }
 }

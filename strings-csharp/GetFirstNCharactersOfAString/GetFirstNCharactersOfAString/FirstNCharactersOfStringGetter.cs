@@ -1,23 +1,21 @@
 ﻿using System.Text;
 
 namespace GetFirstNCharactersOfAString;
+
 public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int numberOfCharacters = 4)
 {
-    private readonly string _inputString = inputString;
-    private readonly int _numberOfCharacters = numberOfCharacters;
-
     private bool IsInputStringShorter()
-        => _inputString.Length < _numberOfCharacters;
+        => inputString.Length < numberOfCharacters;
 
     public ReadOnlySpan<char> UseForLoop()
     {
         if (IsInputStringShorter())
-            return _inputString;
+            return inputString;
 
-        var strBuilder = new StringBuilder();
-        for (int i = 0; i < _numberOfCharacters; i++)
+        var strBuilder = new StringBuilder(numberOfCharacters);
+        for (int i = 0; i < numberOfCharacters; i++)
         {
-            strBuilder.Append(_inputString[i]);
+            strBuilder.Append(inputString[i]);
         }
 
         return strBuilder.ToString();
@@ -26,45 +24,40 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
     public ReadOnlySpan<char> UseRemove()
     {
         if (IsInputStringShorter())
-            return _inputString;
+            return inputString;
 
-        return _inputString.Remove(_numberOfCharacters);
+        return inputString.Remove(numberOfCharacters);
     }
 
     public ReadOnlySpan<char> UseLINQ()
-    {
-        if (IsInputStringShorter())
-            return _inputString;
-
-        return string.Join("", _inputString.Take(_numberOfCharacters));
-    }
+        => string.Join("", inputString.Take(numberOfCharacters));
 
     public ReadOnlySpan<char> UseAsSpanWithRangeOperator()
         => IsInputStringShorter()
-        ? _inputString
-        : _inputString.AsSpan()[.._numberOfCharacters];
+        ? inputString
+        : inputString.AsSpan()[..numberOfCharacters];
 
     public ReadOnlySpan<char> UseAsSpan()
     {
         if (IsInputStringShorter())
-            return _inputString;
+            return inputString;
 
-        return _inputString.AsSpan(0, _numberOfCharacters);
+        return inputString.AsSpan(0, numberOfCharacters);
     }
 
-    public ReadOnlySpan<char> UseReadOnlyMemory()
+    public ReadOnlySpan<char> UseAsMemory()
     {
         if (IsInputStringShorter())
-            return _inputString;
+            return inputString;
 
-        return _inputString.AsMemory()[.._numberOfCharacters].Span;
+        return inputString.AsMemory()[..numberOfCharacters].Span;
     }
 
     public ReadOnlySpan<char> UseToCharArray()
     {
         if (IsInputStringShorter())
-            return _inputString;
+            return inputString;
 
-        return _inputString.ToCharArray(0, _numberOfCharacters);
+        return inputString.ToCharArray(0, numberOfCharacters);
     }
 }
