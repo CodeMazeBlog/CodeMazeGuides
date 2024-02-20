@@ -1,6 +1,5 @@
 ﻿
 
-
 namespace AwaitInForEachLoop
 {
     public class TaskWhenAllInLoop
