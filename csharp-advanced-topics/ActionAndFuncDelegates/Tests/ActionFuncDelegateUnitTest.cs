@@ -18,7 +18,7 @@ namespace Tests
         }
 
         [Fact]
-        public async void WhenNumberIsGiven_MultiplyItByTwo()
+        public async void WhenNumberIsGiven_ThenMultiplyItByTwo()
         {
             Func<int, Task<int>> asyncFunc = AsyncController.DoubleAsync;
             var result = await asyncFunc(5);
