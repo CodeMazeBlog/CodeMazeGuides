@@ -14,7 +14,9 @@ cat.MakeSound();
 Console.WriteLine($"\n--------------------\n");
 
 //Code for Encapsulation 
-BankAccount account = new BankAccount("1234567890", 0);
+BankAccount account = new BankAccount("1234567890");
 
 account.Deposit(500);
 account.Withdraw(200);
+
+Console.WriteLine($"Final Account Information - Account Number: {account.AccountNumber}, Balance: {account.Balance}");

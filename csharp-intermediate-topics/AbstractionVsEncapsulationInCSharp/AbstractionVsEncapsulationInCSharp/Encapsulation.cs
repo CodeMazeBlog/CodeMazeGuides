@@ -1,24 +1,12 @@
 ﻿public class BankAccount
 {
-    private string _accountNumber;
-    private decimal _balance;
+    public string AccountNumber { get; }
+    public decimal Balance { get; private set; }
 
-    public BankAccount(string accountNumber, decimal balance)
+    public BankAccount(string accountNumber, decimal initialBalance = 0)
     {
-        _accountNumber = accountNumber;
-        _balance = balance;
-    }
-
-    public string AccountNumber
-    {
-        get { return _accountNumber; }
-        private set { _accountNumber = value; }
-    }
-
-    public decimal Balance
-    {
-        get { return _balance; }
-        private set { _balance = value; }
+        AccountNumber = accountNumber;
+        Balance = initialBalance;
     }
 
     public void Deposit(decimal amount)
