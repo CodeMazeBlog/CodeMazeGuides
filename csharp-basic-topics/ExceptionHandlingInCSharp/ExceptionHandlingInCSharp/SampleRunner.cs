@@ -17,6 +17,8 @@ public static class SampleRunner
             {
                 var user = userService.GetById(id);
                 Console.WriteLine($"Got user with ID: {user.Id}");
+                LogUserDetails(user);
+
                 return GetUserResult.Success(user);
             }
             catch(InvalidUserIdException) when (id <= 0)
@@ -40,6 +42,19 @@ public static class SampleRunner
         finally
         {
             userService?.Clear();
+        }
+    }
+
+    private static void LogUserDetails(User user)
+    {
+        try
+        {
+            Console.WriteLine($"ID: {user.Id}");
+            Console.WriteLine($"Name: {user.Name}");
+        }
+        finally
+        {
+            Console.WriteLine("Exiting Logging Method...");
         }
     }
 }
