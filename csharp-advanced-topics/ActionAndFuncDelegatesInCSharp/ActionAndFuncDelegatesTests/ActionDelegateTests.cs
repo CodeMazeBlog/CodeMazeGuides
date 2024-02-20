@@ -2,29 +2,44 @@
 using System.IO;
 using Xunit;
 
-public class ActionDelegatesTests
+namespace ActionAndFuncDelegates.Tests
 {
-    [Fact]
-    public void TestLogger()
+    public class ActionDelegatesTests
     {
-        // Arrange
-        var log1 = "Info1";
-        var log2 = "Info2";
-
-        // Act
-        var result = CaptureConsoleOutput(() => ActionDelegates.Logger(log1, log2));
-
-        // Assert
-        Assert.Equal($"This logs stuff to the console. Example: {log1}, \n {log2}", result);
-    }
-
-    private string CaptureConsoleOutput(Action action)
-    {
-        using (var consoleOutput = new StringWriter())
+        private string CaptureConsoleOutput(Action action)
         {
-            Console.SetOut(consoleOutput);
-            action.Invoke();
-            return consoleOutput.ToString().Trim();
+            using (var consoleOutput = new StringWriter())
+            {
+                Console.SetOut(consoleOutput);
+                action.Invoke();
+                return consoleOutput.ToString().Trim();
+            }
+        }
+
+        [Fact]
+        public void LogInformation_ShouldWriteToConsole()
+        {
+            // Arrange
+            string info = "information";
+
+            // Act
+            string result = CaptureConsoleOutput(() => ActionDelegates.LogInformation(info));
+
+            // Assert
+            Assert.Equal($"This logs some {info} to the console", result);
+        }
+
+        [Fact]
+        public void LogError_ShouldWriteToConsole()
+        {
+            // Arrange
+            string error = "error";
+
+            // Act
+            string result = CaptureConsoleOutput(() => ActionDelegates.LogError(error));
+
+            // Assert
+            Assert.Equal($"This logs the {error} to the console", result);
         }
     }
 }

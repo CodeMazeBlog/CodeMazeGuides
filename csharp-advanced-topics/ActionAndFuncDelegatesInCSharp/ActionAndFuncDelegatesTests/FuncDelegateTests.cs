@@ -1,19 +1,64 @@
-﻿using ActionAndFuncDelegates;
+﻿using System;
 using Xunit;
 
-public class FuncDelegatesTests
+namespace ActionAndFuncDelegates.Tests
 {
-    [Fact]
-    public void TestPerformAddition()
+    public class FuncDelegatesTests
     {
-        // Arrange
-        int a = 5;
-        int b = 7;
+        [Fact]
+        public void Add_ShouldReturnSum()
+        {
+            // Arrange
+            int x = 5;
+            int y = 3;
 
-        // Act
-        int result = FuncDelegates.PerformAddition(a, b);
+            // Act
+            int result = FuncDelegates.Add(x, y);
 
-        // Assert
-        Assert.Equal(a+b, result);
+            // Assert
+            Assert.Equal(8, result);
+        }
+
+        [Fact]
+        public void Subtract_ShouldReturnDifference()
+        {
+            // Arrange
+            int x = 7;
+            int y = 4;
+
+            // Act
+            int result = FuncDelegates.Subtract(x, y);
+
+            // Assert
+            Assert.Equal(3, result);
+        }
+
+        [Fact]
+        public void Multiply_ShouldReturnProduct()
+        {
+            // Arrange
+            int x = 6;
+            int y = 2;
+
+            // Act
+            int result = FuncDelegates.Multiply(x, y);
+
+            // Assert
+            Assert.Equal(12, result);
+        }
+
+        [Fact]
+        public void PerformAddition_ShouldReturnSum()
+        {
+            // Arrange
+            int a = 10;
+            int b = 5;
+
+            // Act
+            int result = FuncDelegates.PerformAddition(a, b);
+
+            // Assert
+            Assert.Equal(15, result);
+        }
     }
 }

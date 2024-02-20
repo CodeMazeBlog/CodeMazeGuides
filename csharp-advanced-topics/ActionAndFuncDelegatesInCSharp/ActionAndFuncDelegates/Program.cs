@@ -4,23 +4,23 @@
     {
         static void Main(string[] args)
         {
-            Func<int, int, int> operation1 = (x, y) => FuncDelegates.Add(x, y);
-            Func<int, int, int> operation2 = (x, y) => FuncDelegates.Subtract(x, y);
-            Func<int, int, int> operation3 = (x, y) => FuncDelegates.Multiply(x, y);
-
-            Console.WriteLine($"These results { operation1(4,5)}, {operation2(4,5)}, {operation3(4, 5)}");
-
+            //Action delegates examples
             var info = "info";
             var error = "error";
 
             ActionDelegates.LogInformation(info);
-            ActionDelegates.LoggError(error);
+            ActionDelegates.LogError(error);
 
 
-            Action<string> logInfo = (infoDetail) => ActionDelegates.LogInformation(info); //Console.WriteLine($"This logs either some {info} to the console");
-            Action<string> logError = (errorDetail) => ActionDelegates.LoggError(error); //Console.WriteLine($"This logs either some {info} to the console");
+            Action<string> logInfo = (infoDetail) => ActionDelegates.LogInformation(info);
+            Action<string> logError = (errorDetail) => ActionDelegates.LogError(error);
+
             // Func delegate examples
-            Console.WriteLine(FuncDelegates.PerformAddition(5, 7));
+            Func<int, int, int> operation1 = (x, y) => FuncDelegates.Add(x, y);
+            Func<int, int, int> operation2 = (x, y) => FuncDelegates.Subtract(x, y);
+            Func<int, int, int> operation3 = (x, y) => FuncDelegates.Multiply(x, y);
+
+            Console.WriteLine($"These results {operation1(4, 5)}, {operation2(4, 5)}, {operation3(4, 5)}");
 
         }
     }
