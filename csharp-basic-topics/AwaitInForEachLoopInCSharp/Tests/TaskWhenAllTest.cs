@@ -1,5 +1,4 @@
 ﻿
-
 using AwaitInForEachLoop;
 
 namespace Tests
