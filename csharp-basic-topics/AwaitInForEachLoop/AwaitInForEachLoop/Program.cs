@@ -1,5 +1,4 @@
-﻿
-using AwaitInForEachLoop;
+﻿using AwaitInForEachLoop;
 
 await AwaitInLoop.ResultAsync();
 
