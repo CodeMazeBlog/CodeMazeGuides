@@ -17,7 +17,7 @@ namespace ActionAndFuncDelegates.Tests
         }
 
         [Fact]
-        public void LogInformation_ShouldWriteToConsole()
+        public void WhenLoggingInformation_ShouldWriteToConsole()
         {
             // Arrange
             string info = "information";
@@ -30,7 +30,7 @@ namespace ActionAndFuncDelegates.Tests
         }
 
         [Fact]
-        public void LogError_ShouldWriteToConsole()
+        public void WhenLoggingError_ShouldWriteToConsole()
         {
             // Arrange
             string error = "error";

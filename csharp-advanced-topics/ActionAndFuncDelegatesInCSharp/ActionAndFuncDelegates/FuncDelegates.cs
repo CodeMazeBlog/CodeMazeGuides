@@ -20,11 +20,5 @@ namespace ActionAndFuncDelegates
         {
             return x * y;
         }
-        public static int PerformAddition(int a, int b)
-        {
-            Func<int, int, int> add = (x, y) => x + y;
-            return add(a, b);
-        }
-
     }
 }

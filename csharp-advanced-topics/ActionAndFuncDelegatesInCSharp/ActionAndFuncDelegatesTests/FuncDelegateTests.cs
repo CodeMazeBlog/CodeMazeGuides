@@ -6,7 +6,7 @@ namespace ActionAndFuncDelegates.Tests
     public class FuncDelegatesTests
     {
         [Fact]
-        public void Add_ShouldReturnSum()
+        public void WhenPerformingAddition_ShouldReturnSum()
         {
             // Arrange
             int x = 5;
@@ -20,7 +20,7 @@ namespace ActionAndFuncDelegates.Tests
         }
 
         [Fact]
-        public void Subtract_ShouldReturnDifference()
+        public void WhenPerformingSubtraction_ShouldReturnDifference()
         {
             // Arrange
             int x = 7;
@@ -34,7 +34,7 @@ namespace ActionAndFuncDelegates.Tests
         }
 
         [Fact]
-        public void Multiply_ShouldReturnProduct()
+        public void WhenPerformingMultiplication_ShouldReturnProduct()
         {
             // Arrange
             int x = 6;
@@ -45,20 +45,6 @@ namespace ActionAndFuncDelegates.Tests
 
             // Assert
             Assert.Equal(12, result);
-        }
-
-        [Fact]
-        public void PerformAddition_ShouldReturnSum()
-        {
-            // Arrange
-            int a = 10;
-            int b = 5;
-
-            // Act
-            int result = FuncDelegates.PerformAddition(a, b);
-
-            // Assert
-            Assert.Equal(15, result);
         }
     }
 }
