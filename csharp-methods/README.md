@@ -11,5 +11,6 @@ This section contains the topics for methods in C#.
 - [Method Overriding in C#](https://code-maze.com/csharp-method-overriding/)
 - [How to Call Generic Method Using Reflection in C#](https://code-maze.com/csharp-call-generic-method-using-reflection/)
 - [Static Methods vs. Non-Static Methods in C#](https://code-maze.com/csharp-static-vs-non-static-methods/)
+- [Differences Between a Virtual and an Abstract Method in C#](https://code-maze.com/csharp-differences-between-a-virtual-method-and-an-abstract-method/)
 - [Virtual Methods in C#](https://code-maze.com/virtual-methods-csharp/)
 

@@ -4,6 +4,7 @@ This section contains articles about working with projects in .NET (templates, C
 
 ### Relevant articles:
 
+- [Building Distributed Applications With .NET Aspire](https://code-maze.com/dotnet-aspire-building-distributed-applications/)
 - [Generating Source Code Documentation With DocFx](https://code-maze.com/docfx-generating-source-code-documentation/)
 - [How to Execute CLI Applications From C#](https://code-maze.com/csharp-execute-cli-applications/)
 - [Targeting Multiple Frameworks in a .NET Project](https://code-maze.com/dotnet-targeting-multiple-frameworks/)

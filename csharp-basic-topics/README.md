@@ -14,6 +14,7 @@ This section contains the topics considered basic level in C#.
 - [Different Types of Comments in C# and Should We Use Them](https://code-maze.com/csharp-different-types-of-comments/)
 - [Differences Between Equality Operator (==) And Equals Method In C#](https://code-maze.com/csharp-equality-operator-and-equals-method/)
 - [Difference Between Is and Equality Operators in C# – “is null” vs “== null”](https://code-maze.com/csharp-difference-between-isnull-and-equality-operators/)
+- [How to Escape the Backslash Character in C#](https://code-maze.com/csharp-escape-the-backslash-character/)
 - [Expression-bodied Members in C#](https://code-maze.com/csharp-expression-bodied-members/)
 - [Extended Property Patterns in C#](https://code-maze.com/csharp-extended-property-patterns/)
 - [File access modifier in C#](https://code-maze.com/csharp-file-access-modifier/)
@@ -37,3 +38,4 @@ This section contains the topics considered basic level in C#.
 - [Value vs Reference Types in C# – In Depth Guide](https://code-maze.com/csharp-value-vs-reference-types/)
 - [How to Use the “Using Static” Feature in C#](https://code-maze.com/using-static-feature-csharp/)
 - [C# 10 New Features](https://code-maze.com/csharp-10-new-features/)
+- [Comparing for and foreach Loop in C#](https://code-maze.com/csharp-comparing-for-and-foreach-loop/)

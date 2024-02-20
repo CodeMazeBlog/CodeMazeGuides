@@ -33,6 +33,7 @@ This section contains the topics about the client libraries in .NET.
 - [Rebus in .NET – Service Bus Implementation](https://code-maze.com/rebus-dotnet/)
 - [Easy Sorting, Filtering and Pagination in .NET With Sieve Package](https://code-maze.com/dotnet-sorting-filtering-pagination-sieve-package/)
 - [Using Refit to Consume APIs in C#](https://code-maze.com/using-refit-to-consume-apis-in-csharp/)
+- [How To Remove HTML Tags From a String in C#](https://code-maze.com/csharp-remove-html-tags-from-a-string/)
 - [Execute JavaScript Using Selenium WebDriver in C#](https://code-maze.com/csharp-execute-javascript-using-selenium-webdriver/)
 - [How to Send Emails With the SendGrid API in C#](https://code-maze.com/csharp-send-emails-with-sendgrid-api/)
 - [How to Improve Enums With the SmartEnum Library](https://code-maze.com/csharp-improve-enums-with-the-smartenum-library/)
@@ -40,3 +41,4 @@ This section contains the topics about the client libraries in .NET.
 - [Testing Using Testcontainers for .NET and Docker](https://code-maze.com/csharp-testing-using-testcontainers-for-net-and-docker/)
 - [Test Data Generation With AutoFixture in .NET](https://code-maze.com/csharp-test-data-generation-with-autofixture/)
 - [Seamless Integration Testing With WireMock.NET](https://code-maze.com/integration-testing-wiremock-dotnet/)
+- [Parsing HTML With AngleSharp in C#](https://code-maze.com/csharp-parsing-html-with-anglesharp/)

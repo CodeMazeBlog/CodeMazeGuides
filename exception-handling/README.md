@@ -4,6 +4,7 @@ This section contains the topics related to handling exceptions in C#
 ### Relevant articles:
 
 - [Catch Multiple Exceptions in C#](https://code-maze.com/csharp-catch-multiple-exceptions/)
+- [How to Use IExceptionHandler to Handle Exceptions in .NET](https://code-maze.com/dotnet-use-iexceptionhandler-to-handle-exceptions/)
 - [Difference Between “throw” vs “throw ex” in C#](https://code-maze.com/difference-between-throw-vs-throwex-csharp/)
 - [Global Exception Handling for MediatR Requests](https://code-maze.com/csharp-global-exception-handling-for-mediatr-requests/)
 - [What is NullReferenceException in C#?](https://code-maze.com/csharp-nullreferenceexception/)
