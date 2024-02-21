@@ -19,6 +19,7 @@ public class VarianceTests
         };
         bearAction = animalAction;
         bearAction(new Bear());
+
         Assert.True(animalActionCalled);
         Assert.False(bearActionCalled);
     }
@@ -30,6 +31,7 @@ public class VarianceTests
         Func<Bear> bearFunc = () => new Bear();
         animalFunc = bearFunc;
         Animal animal = animalFunc();
+
         animal.Should().BeOfType<Bear>();
     }
 }
