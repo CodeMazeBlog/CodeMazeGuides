@@ -1,5 +1,5 @@
 ﻿{
   "configProperties": {
-    "System.Drawing.EnableUnixSupport": true
+    "System.Drawing.EnableUnixSupport": false
   }
 }
