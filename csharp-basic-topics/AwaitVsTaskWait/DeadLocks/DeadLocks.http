@@ -1,0 +1,7 @@
+﻿@DeadLocks_HostAddress = http://localhost:5118
+
+GET {{DeadLocks_HostAddress}}/locksanddeadlocks/
+Accept: application/json
+
+###
+

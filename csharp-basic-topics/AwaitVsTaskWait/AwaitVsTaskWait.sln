@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeadLocks", "DeadLocks\DeadLocks.csproj", "{524B096D-3CBD-4740-BD60-C1A679142061}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AwaitVsWait", "AwaitVsWait\AwaitVsWait.csproj", "{2E61FC84-6B17-491A-B273-84A84DA36C57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{AAE3C0D1-69C7-4EC1-AECD-EF3325C92ECE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{524B096D-3CBD-4740-BD60-C1A679142061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{524B096D-3CBD-4740-BD60-C1A679142061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{524B096D-3CBD-4740-BD60-C1A679142061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{524B096D-3CBD-4740-BD60-C1A679142061}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E61FC84-6B17-491A-B273-84A84DA36C57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E61FC84-6B17-491A-B273-84A84DA36C57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E61FC84-6B17-491A-B273-84A84DA36C57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E61FC84-6B17-491A-B273-84A84DA36C57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAE3C0D1-69C7-4EC1-AECD-EF3325C92ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAE3C0D1-69C7-4EC1-AECD-EF3325C92ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAE3C0D1-69C7-4EC1-AECD-EF3325C92ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAE3C0D1-69C7-4EC1-AECD-EF3325C92ECE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E2D5A9CA-FEBA-4E07-A41D-49A9D3547006}
+	EndGlobalSection
+EndGlobal
