@@ -12,7 +12,7 @@ public class LocksAndDeadLocksController : ControllerBase
         List<int> list1 = new();
         List<int> list2 = new();
 
-        Task task1 = Task.Run(() =>
+        var task1 = Task.Run(() =>
         {
             lock (list1)
             {
@@ -27,7 +27,7 @@ public class LocksAndDeadLocksController : ControllerBase
             }
         });
 
-        Task task2 = Task.Run(() =>
+        var task2 = Task.Run(() =>
         {
             lock (list2)
             {

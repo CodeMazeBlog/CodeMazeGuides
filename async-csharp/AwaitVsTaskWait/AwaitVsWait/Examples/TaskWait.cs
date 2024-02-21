@@ -5,7 +5,7 @@
         public int result;
         public void Execute()
         {
-            Task task = Task.Run(() =>
+            var task = Task.Run(() =>
             PerformTask());
 
             task.Wait();
