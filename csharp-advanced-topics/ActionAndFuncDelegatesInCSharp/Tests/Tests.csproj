@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ActionAndFuncDelegatesInCSharp\ActionAndFuncDelegates.Console.csproj" />
+    <ProjectReference Include="..\ActionAndFuncDelegatesInCSharp\ActionAndFuncDelegatesInCSharp.csproj" />
   </ItemGroup>
 
 </Project>
