@@ -6,7 +6,7 @@
         [TestMethod]
         public void WhenNumberIsGreaterThanZero_ThenReturnsTheRightNumberOfDigits()
         {
-            int number = 12345;
+            const int number = 12345;
 
             int digits = DigitCounter.GetStringLengthCount(number);
 
@@ -16,7 +16,7 @@
         [TestMethod]
         public void WhenNumberIsLessThanZero_ThenReturnsTheRightNumberOfDigits()
         {
-            int number = -1234;
+            const int number = -1234;
 
             int digits = DigitCounter.GetStringLengthCount(number);
 
@@ -26,7 +26,7 @@
         [TestMethod]
         public void WhenNumberIsZero_ThenReturns1()
         {
-            int number = 0;
+            const int number = 0;
 
             int digits = DigitCounter.GetStringLengthCount(number);
 
