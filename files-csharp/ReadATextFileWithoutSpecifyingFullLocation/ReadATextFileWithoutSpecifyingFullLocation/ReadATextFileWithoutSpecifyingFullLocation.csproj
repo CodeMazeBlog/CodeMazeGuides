@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="CodeMaze.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 

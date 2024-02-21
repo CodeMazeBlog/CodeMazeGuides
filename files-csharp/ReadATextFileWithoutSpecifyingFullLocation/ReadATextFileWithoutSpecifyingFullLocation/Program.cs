@@ -5,11 +5,14 @@ public class Program
 {
     public static void Main()
     {
-        string fileName = "CodeMaze.txt";
+        string fileName = @"C:\Code Maze\files-csharp\ReadATextFileWithoutSpecifyingFullLocation\CodeMaze.txt";
 
         try
         {
-            string fileContent = ReadFileUsingDirectory(fileName);
+            string currentDirectory = Directory.GetCurrentDirectory();
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+            string fileContent = ReadFileUsingDirectory(currentDirectory, fileName);
             Console.WriteLine("File content:\n" + fileContent);
         }
         catch (IOException ex)
@@ -18,18 +21,9 @@ public class Program
         }
     }
 
-    public static string ReadFileUsingDirectory(string fileName)
+    public static string ReadFileUsingDirectory(string currentDirectoryPath, string fileName)
     {
-        string currentDirectory = Directory.GetCurrentDirectory();
-        string filePath = Path.Combine(currentDirectory, fileName);
-
-        return File.ReadAllText(filePath);
-    }
-
-    public static string ReadFileUsingAppDomain(string fileName)
-    {
-        string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        string filePath = Path.Combine(baseDirectory, fileName);
+        string filePath = Path.Combine(currentDirectoryPath, fileName);
 
         return File.ReadAllText(filePath);
     }

@@ -13,7 +13,7 @@ public class TestProgram
         File.WriteAllText(filePath, expectedContent); 
 
         // Act
-        string fileContent = Program.ReadFileUsingAppDomain(fileName);
+        string fileContent = Program.ReadFileUsingDirectory(baseDirectory, fileName);
 
         // Assert
         Assert.Equal(expectedContent, fileContent);
@@ -52,7 +52,7 @@ public class TestProgram
         File.WriteAllText(filePath, expectedContent); 
 
         // Act
-        string fileContent = Program.ReadFileUsingDirectory(fileName);
+        string fileContent = Program.ReadFileUsingDirectory(directory, fileName);
 
         // Assert
         Assert.Equal(expectedContent, fileContent);
