@@ -11,25 +11,17 @@ builder.Services.AddSwaggerGen();
 
 var rmqConnection = new RmqMessagingGatewayConnection
 {
-    AmpqUri = new AmqpUriSpecification(new Uri("amqp://guest:guest@localhost:5672")),
-    Exchange = new Exchange("ping.exchange"),
+  AmpqUri = new AmqpUriSpecification(new Uri("amqp://guest:guest@localhost:5672")),
+  Exchange = new Exchange("ping.exchange"),
 };
 
 var rmqProducerRegistry = new RmqProducerRegistryFactory(
-    rmqConnection,
-    [
-        new()
-        {
-            MaxOutStandingMessages = 5,
-            MaxOutStandingCheckIntervalMilliSeconds = 500,
-            WaitForConfirmsTimeOutInMilliseconds = 1000,
-            MakeChannels =OnMissingChannel.Create,
-            Topic = new RoutingKey("ping.event")
-        }
-    ])
-    .Create();
+  rmqConnection,
+  [new() { Topic = new RoutingKey("ping.event") }]
+).Create();
 
-builder.Services.AddBrighter()
+builder
+  .Services.AddBrighter()
   .UseExternalBus(rmqProducerRegistry)
   .MapperRegistryFromAssemblies(typeof(PingEvent).Assembly);
 
@@ -43,13 +35,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/produce", (
-  [FromServices] IAmACommandProcessor commandProcessor) =>
-{
-  commandProcessor.Post(new PingEvent());
-  return Results.Ok();
-})
-.WithName("ping")
-.WithOpenApi();
+app.MapGet("/produce", (IAmACommandProcessor commandProcessor) =>
+    {
+      commandProcessor.Post(new PingEvent());
+      return Results.Ok();
+    }
+  )
+  .WithOpenApi();
 
 app.Run();

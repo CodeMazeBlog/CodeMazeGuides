@@ -1,5 +1,4 @@
-﻿global using Microsoft.AspNetCore.Mvc;
+﻿global using System.Reflection;
+global using BrighterExample.Common;
 global using Paramore.Brighter;
 global using Paramore.Brighter.Extensions.DependencyInjection;
-global using Paramore.Brighter.Logging.Attributes;
-global using BrighterExample;

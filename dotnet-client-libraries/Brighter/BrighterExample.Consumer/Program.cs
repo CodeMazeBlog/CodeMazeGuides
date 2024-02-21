@@ -11,28 +11,30 @@ builder.Services.AddSwaggerGen();
 
 var subscriptions = new Subscription[]
 {
-    new RmqSubscription<PingEvent>(
+  new RmqSubscription<PingEvent>(
     new SubscriptionName("ping.consumer"),
     new ChannelName("ping.event"),
     new RoutingKey("ping.event"),
     isDurable: true,
-    highAvailability: true),
+    highAvailability: true
+  ),
 };
 
 var rmqConnection = new RmqMessagingGatewayConnection
 {
-    AmpqUri = new AmqpUriSpecification(new Uri("amqp://guest:guest@localhost:5672")),
-    Exchange = new Exchange("ping.exchange")
+  AmpqUri = new AmqpUriSpecification(new Uri("amqp://guest:guest@localhost:5672")),
+  Exchange = new Exchange("ping.exchange")
 };
 
 var rmqMessageConsumerFactory = new RmqMessageConsumerFactory(rmqConnection);
 
-builder.Services.AddServiceActivator(options =>
-{
+builder
+  .Services.AddServiceActivator(options =>
+  {
     options.Subscriptions = subscriptions;
     options.ChannelFactory = new ChannelFactory(rmqMessageConsumerFactory);
-})
-.AutoFromAssemblies();
+  })
+  .AutoFromAssemblies();
 
 builder.Services.AddHostedService<ServiceActivatorHostedService>();
 
@@ -40,17 +42,10 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-
-app.MapGet("/consume", () =>
-{
-    return Results.Ok();
-})
-.WithName("consume")
-.WithOpenApi();
 
 app.Run();

@@ -11,9 +11,6 @@
     <PackageReference Include="Paramore.Brighter" Version="9.7.6" />
     <PackageReference Include="Paramore.Brighter.Extensions.DependencyInjection" Version="9.7.6" />
     <PackageReference Include="Paramore.Brighter.MessagingGateway.RMQ" Version="9.7.6" />
-    <PackageReference Include="Paramore.Brighter.ServiceActivator" Version="9.7.6" />
-    <PackageReference Include="Paramore.Brighter.ServiceActivator.Extensions.DependencyInjection" Version="9.7.6" />
-    <PackageReference Include="Paramore.Brighter.ServiceActivator.Extensions.Hosting" Version="9.7.6" />
   </ItemGroup>
 
 </Project>

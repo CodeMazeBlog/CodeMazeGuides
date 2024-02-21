@@ -2,35 +2,33 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddBrighter().AutoFromAssemblies();
+
+builder.Services.AddBrighter().AutoFromAssemblies(Assembly.GetAssembly(typeof(PingCommand)));
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.MapGet("/ping", (IAmACommandProcessor commandProcessor) =>
+    {
+      commandProcessor.Send(new PingCommand());
+      return Results.Ok();
+    }
+  )
+  .WithOpenApi();
 
-app.MapGet("/ping", (
-    [FromServices] IAmACommandProcessor commandProcessor) =>
-{
-    commandProcessor.Send(new PingCommand());
-    return Results.Ok();
-})
-.WithName("ping")
-.WithOpenApi();
-
-app.MapGet("/ping-async", async (
-    [FromServices] IAmACommandProcessor commandProcessor) =>
-{
-    await commandProcessor.SendAsync(new PingAsyncCommand());
-    return Results.Ok();
-})
-.WithName("ping-async")
-.WithOpenApi();
-
+app.MapGet("/ping-async", async (IAmACommandProcessor commandProcessor) =>
+    {
+      await commandProcessor.SendAsync(new PingAsyncCommand());
+      return Results.Ok();
+    }
+  )
+  .WithOpenApi();
 
 app.Run();
+
+public partial class Program{}

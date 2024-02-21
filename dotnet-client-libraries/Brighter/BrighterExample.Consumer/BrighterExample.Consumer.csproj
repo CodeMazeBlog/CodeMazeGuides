@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+    <PackageReference Include="Paramore.Brighter.ServiceActivator.Extensions.DependencyInjection" Version="9.7.6" />
+    <PackageReference Include="Paramore.Brighter.ServiceActivator.Extensions.Hosting" Version="9.7.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
