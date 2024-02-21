@@ -17,26 +17,26 @@ namespace CheckNumberInString
         }
 
         [Benchmark]
-        public void RegularExpressionMethod()
+        public void ExtractNumberUsingRegExMethod()
         {
-            for (int i = 0; i < data.Length; i++)
+            for (var i = 0; i < data.Length; i++)
             {
                 ExtractNumber.ExtractNumberUsingRegEx(inputString);
             }
         }
 
         [Benchmark]
-        public void LinqAndCharIsDigitMethod()
+        public void ExtractNumberUsingLinqAndCharIsDigitMethod()
         {
-            for (int i = 0; i < data.Length; i++)
+            for (var i = 0; i < data.Length; i++)
             {
                 ExtractNumber.ExtractNumberUsingLinqAndCharIsDigit(inputString);
             }
         }
         [Benchmark]
-        public void StringBuilderAndCharIsDigitMethod()
+        public void ExtractNumberUsingStringBuilderAndCharIsDigitMethod()
         {
-            for (int i = 0; i < data.Length; i++)
+            for (var i = 0; i < data.Length; i++)
             {
                 ExtractNumber.ExtractNumberUsingStringBuilderAndCharIsDigit(inputString);
             }

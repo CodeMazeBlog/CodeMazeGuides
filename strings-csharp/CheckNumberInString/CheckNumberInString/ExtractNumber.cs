@@ -10,9 +10,9 @@ namespace CheckNumberInString
             var number = 0.0;
 
             // Regex pattern to match decimal numbers with optional minus sign
-            string pattern = @"-?\d+(\.\d+)?";
+            var pattern = @"-?\d+(\.\d+)?";
 
-            MatchCollection matches = Regex.Matches(inputString, pattern);
+            var matches = Regex.Matches(inputString, pattern);
 
             foreach (Match match in matches)
             {
@@ -24,26 +24,26 @@ namespace CheckNumberInString
             return number;
         }
 
-        public static int ExtractNumberUsingLinqAndCharIsDigit(string inputString)
+        public static double ExtractNumberUsingLinqAndCharIsDigit(string inputString)
         {
-            string result = new string(inputString.Where(char.IsDigit).ToArray());
+            var result = new string(inputString.Where(c => char.IsDigit(c) || c == '.' || c == '-').ToArray());
 
-            return string.IsNullOrEmpty(result) ? 0 : int.Parse(result);
+            return string.IsNullOrEmpty(result) ? 0 : double.Parse(result);
         }
 
-        public static int ExtractNumberUsingStringBuilderAndCharIsDigit(string inputString)
+        public static double ExtractNumberUsingStringBuilderAndCharIsDigit(string inputString)
         {
-            StringBuilder result = new StringBuilder();
+            var result = new StringBuilder();
 
-            foreach (char c in inputString)
+            foreach (var c in inputString)
             {
-                if (char.IsDigit(c))
+                if (char.IsDigit(c) || c == '.' || c == '-')
                 {
                     result.Append(c);
                 }
             }
 
-            return result.Length > 0 ? int.Parse(result.ToString()) : 0;
+            return result.Length > 0 ? double.Parse(result.ToString()) : 0;
         }
     }
 }
