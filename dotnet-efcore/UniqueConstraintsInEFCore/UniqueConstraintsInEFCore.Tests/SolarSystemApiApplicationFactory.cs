@@ -17,6 +17,6 @@ public class SolarSystemApiApplicationFactory : WebApplicationFactory<Program>, 
     public Task InitializeAsync()
          => _msSqlContainer.StartAsync();
 
-    public new Task DisposeAsync()
+    Task IAsyncLifetime.DisposeAsync()
         => _msSqlContainer.DisposeAsync().AsTask();
 }
