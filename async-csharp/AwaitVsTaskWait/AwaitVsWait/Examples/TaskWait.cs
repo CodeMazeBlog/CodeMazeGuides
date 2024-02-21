@@ -2,22 +2,23 @@
 {
     public class TaskWait
     {
+        public int result;
         public void Execute()
         {
             Task task = Task.Run(() =>
-            PerformTask(1));
+            PerformTask());
 
             task.Wait();
 
             Console.WriteLine("All tasks are completed.");
         }
 
-        void PerformTask(int id)
+        private void PerformTask()
         {
-            for (int i = 0; i < 5; i++)
+            for (result = 0; result < 5; result++)
             {
-                Console.WriteLine($"Tasking Working at... {i}");
-                Task.Delay(1000).Wait(); // Wait for 1 second
+                Console.WriteLine($"Tasking Working at... {result}");
+                Task.Delay(200).Wait(); // Wait for 1 second
             }
         }
     }

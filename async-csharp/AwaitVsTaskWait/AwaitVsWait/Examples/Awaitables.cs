@@ -2,38 +2,40 @@
 {
 	public class Awaitables
 	{
+        public int resultS = 0;
+        public int resultL = 0;
         public void Execute()
         {
             ShortDelay();
             LongDelay();
         }
 
-        private async Task ShortDelay()
+        private async Task<int> ShortDelay()
         {
             await Task.Run(() =>
             {
-                int i = 0;
-                while (i < 10)
+                while (resultS < 10)
                 {
-                    Console.WriteLine($"(ShortDelay)Tasking Working at... {i}");
+                    Console.WriteLine($"(ShortDelay)Tasking Working at... {resultS}");
                     // Do something
                     Task.Delay(100).Wait();
-                    i++;
+                    resultS++;
                 }
             });
+            return resultS;
         }
 
-        private void LongDelay()
+        private int LongDelay()
         {
-            int i = 0;
-            while (i < 5)
+            while (resultL < 5)
             {
-                Console.WriteLine($"(LongDelay)Tasking Working at... {i}");
+                Console.WriteLine($"(LongDelay)Tasking Working at... {resultL}");
                 // Do something
                 Task.Delay(200).Wait();
 
-                i++;
+                resultL++;
             }
+            return resultL;
         }
     }
 }

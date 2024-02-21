@@ -16,4 +16,8 @@
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AwaitVsWait\AwaitVsWait.csproj" />
+    <ProjectReference Include="..\DeadLocks\DeadLocks.csproj" />
+  </ItemGroup>
 </Project>
