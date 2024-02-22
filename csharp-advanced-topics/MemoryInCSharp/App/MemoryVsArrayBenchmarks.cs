@@ -10,16 +10,13 @@ namespace App;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class MemoryVsArrayBenchmarks
 {
-    private const int Size = 10000000; // 10 million
-    private readonly int[] _array = new int[Size];
+    private const int Size = 10_000_000; 
+    private readonly int[] _array;
     private readonly Memory<int> _memory;
 
    public MemoryVsArrayBenchmarks()
     {
-        for (var i = 0; i < Size; i++)
-        {
-            _array[i] = i;
-        }
+        _array = Enumerable.Range(0, Size).ToArray();
         _memory = new Memory<int>(_array);
     }
 
