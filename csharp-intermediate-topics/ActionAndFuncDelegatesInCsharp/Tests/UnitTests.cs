@@ -11,7 +11,7 @@ public class UnitTests
         var messsage = "Happy Coding";
         Func<string, string> funcWithParameter = ActionAndFuncDelegatesInCsharp.Program.CapitaliseMessage;
         
-        var capitalised = funcWithParameter(messsage);
+        string capitalised = funcWithParameter(messsage);
 
         Assert.AreEqual(messsage.ToUpperInvariant(), capitalised);
     }

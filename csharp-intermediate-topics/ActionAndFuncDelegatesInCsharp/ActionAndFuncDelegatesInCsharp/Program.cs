@@ -32,7 +32,7 @@ internal class Program
         actionWithoutParameters();
         actionWithParameters("Happy Coding", " with CodeMaze");
 
-        var upperHappyCoding = funcWithParameter("Happy Coding");
+        string upperHappyCoding = funcWithParameter("Happy Coding");
         Console.WriteLine(upperHappyCoding);
 
         var messages = new List<string>() { "Happy", "Coding", "with", "CodeMaze" };
