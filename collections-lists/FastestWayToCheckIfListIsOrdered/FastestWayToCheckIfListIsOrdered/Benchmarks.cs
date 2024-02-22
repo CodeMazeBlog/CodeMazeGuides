@@ -20,10 +20,17 @@ public class Benchmarks
     [GlobalSetup]
     public void Setup()
     {
-        Array = Enumerable.Range(0, Length).ToArray();
         _pool = ArrayPool<int>.Shared;
+        Array = _pool.Rent(Length);
+        for (int i = 0; i < Length; i++) Array[i] = i;
         
         List = Array.ToList();
+    }
+    
+    [GlobalCleanup]
+    public void Cleanup()
+    {
+        _pool.Return(Array);
     }
 
     [Benchmark(Baseline = true)]
@@ -35,7 +42,7 @@ public class Benchmarks
     [Benchmark]
     public void IsOrderedUsingArraySort()
     {
-        var isOrdered = ListOrderValidator.IsOrderedUsingArraySort(List, _pool);
+        var isOrdered = ListOrderValidator.IsOrderedUsingArraySort(List, Array);
     }
 
     [Benchmark]
@@ -44,51 +51,51 @@ public class Benchmarks
         var isOrdered = ListOrderValidator.IsOrderedUsingSpans(List);
     }
     
-    // [Benchmark]
-    // public void IsOrderedUsingEnumerator()
-    // {
-    //     var isOrdered = ListOrderValidator.IsOrderedUsingEnumerator(List);
-    // }
-    //
-    // [Benchmark]
-    // public void IsOrderedUsingLinqWithSequenceEqual()
-    // {
-    //     var isOrdered = ListOrderValidator.IsOrderedUsingLinqWithSequenceEqual(List);
-    // }
-    //
-    // [Benchmark]
-    // public void IsOrderedUsingLinqWithOrder()
-    // {
-    //     var isOrdered = ListOrderValidator.IsOrderedUsingLinqWithOrder(List);
-    // }
-    //
-    // [Benchmark]
-    // public void IsOrderedUsingLinqWithZip()
-    // {
-    //     var isOrdered = ListOrderValidator.IsOrderedUsingLinqWithZip(List);
-    // }
-    //
-    // [Benchmark]
-    // public void IsOrderedUsingParallelFor()
-    // {
-    //     var isOrdered = ListOrderValidator.IsOrderedUsingParallelFor(List);
-    // }
-    //
-    // [Benchmark]
-    // public void IsOrderedUsingParallelForWithSpans()
-    // {
-    //     var isOrdered = ListOrderValidator.IsOrderedUsingParallelForWithSpans(List);
-    // }
-    //
-    // [Benchmark]
-    // public void IsOrderedUsingParallelForPartitioned()
-    // {
-    //     var isOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitioned(List);
-    // }
-    //
-    // [Benchmark]
-    // public void IsOrderedUsingParallelForPartitionedWithSpans()
-    // {
-    //     var isOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(List);
-    // }
+    [Benchmark]
+    public void IsOrderedUsingEnumerator()
+    {
+        var isOrdered = ListOrderValidator.IsOrderedUsingEnumerator(List);
+    }
+    
+    [Benchmark]
+    public void IsOrderedUsingLinqWithSequenceEqual()
+    {
+        var isOrdered = ListOrderValidator.IsOrderedUsingLinqWithSequenceEqual(List);
+    }
+    
+    [Benchmark]
+    public void IsOrderedUsingLinqWithOrder()
+    {
+        var isOrdered = ListOrderValidator.IsOrderedUsingLinqWithOrder(List);
+    }
+    
+    [Benchmark]
+    public void IsOrderedUsingLinqWithZip()
+    {
+        var isOrdered = ListOrderValidator.IsOrderedUsingLinqWithZip(List);
+    }
+    
+    [Benchmark]
+    public void IsOrderedUsingParallelFor()
+    {
+        var isOrdered = ListOrderValidator.IsOrderedUsingParallelFor(List);
+    }
+    
+    [Benchmark]
+    public void IsOrderedUsingParallelForWithSpans()
+    {
+        var isOrdered = ListOrderValidator.IsOrderedUsingParallelForWithSpans(List);
+    }
+    
+    [Benchmark]
+    public void IsOrderedUsingParallelForPartitioned()
+    {
+        var isOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitioned(List);
+    }
+    
+    [Benchmark]
+    public void IsOrderedUsingParallelForPartitionedWithSpans()
+    {
+        var isOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(List);
+    }
 }

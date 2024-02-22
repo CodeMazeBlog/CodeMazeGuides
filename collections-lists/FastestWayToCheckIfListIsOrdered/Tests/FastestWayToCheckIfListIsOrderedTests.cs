@@ -24,7 +24,8 @@ public class FastestWayToCheckIfListIsOrderedTests
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingArraySort_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingArraySort(Employees, ArrayPool<Employee>.Shared);
+        var array = ArrayPool<Employee>.Shared.Rent(Employees.Count);
+        var areOrdered = ListOrderValidator.IsOrderedUsingArraySort(Employees, array);
         Assert.True(areOrdered);
     }
     
@@ -53,6 +54,34 @@ public class FastestWayToCheckIfListIsOrderedTests
     public void GivenOrderedEmployees_WhenCheckedUsingLinqZip_ThenShouldBeTrue()
     {
         var areOrdered = ListOrderValidator.IsOrderedUsingLinqWithZip(Employees);
+        Assert.True(areOrdered);
+    }
+    
+    [Fact]
+    public void GivenOrderedEmployees_WhenCheckedUsingParallelFor_ThenShouldBeTrue()
+    {
+        var areOrdered = ListOrderValidator.IsOrderedUsingParallelFor(Employees);
+        Assert.True(areOrdered);
+    }
+    
+    [Fact]
+    public void GivenOrderedEmployees_WhenCheckedUsingParallelForWithSpans_ThenShouldBeTrue()
+    {
+        var areOrdered = ListOrderValidator.IsOrderedUsingParallelForWithSpans(Employees);
+        Assert.True(areOrdered);
+    }
+    
+    [Fact]
+    public void GivenOrderedEmployees_WhenCheckedUsingParallelForPartitioned_ThenShouldBeTrue()
+    {
+        var areOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitioned(Employees);
+        Assert.True(areOrdered);
+    }
+    
+    [Fact]
+    public void GivenOrderedEmployees_WhenCheckedUsingParallelForPartitionedWithSpans_ThenShouldBeTrue()
+    {
+        var areOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(Employees);
         Assert.True(areOrdered);
     }
 }
