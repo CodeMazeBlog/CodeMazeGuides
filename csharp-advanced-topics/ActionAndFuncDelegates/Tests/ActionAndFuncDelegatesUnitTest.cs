@@ -8,14 +8,17 @@ public class ActionAndFuncDelegatesUnitTest
     {
         //Arrange
         var output = new StringWriter();
+
         Console.SetOut(output);
-        string name = "Dave";
+
+        var name = "Dave";
 
         //Act
         ActionAndFunc.GreetUser(name);
 
         //Assert
-        string expected = $"Hello {name}, welcome to the magnificent world of Action Delegates.";
+        var expected = $"Hello {name}, welcome to the magnificent world of Action Delegates.";
+
         Assert.Equal(expected, output.ToString().Trim());
     }
 
@@ -23,11 +26,12 @@ public class ActionAndFuncDelegatesUnitTest
     public void WhenSquareNumber_ThenReturnCorrectValue()
     {
         //Arrange
-        int input = 3;
-        string expected = "9";
+        var input = 3;
+
+        var expected = "9";
 
         //Act
-        string actual = ActionAndFunc.SquareToString(input);
+        var actual = ActionAndFunc.SquareToString(input);
 
         //Assert
         Assert.Equal(expected, actual);
