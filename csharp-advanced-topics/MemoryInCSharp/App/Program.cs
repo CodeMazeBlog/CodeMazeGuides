@@ -1,5 +1,4 @@
-﻿
-using App;
+﻿using App;
 using BenchmarkDotNet.Running;
 
 public class Program

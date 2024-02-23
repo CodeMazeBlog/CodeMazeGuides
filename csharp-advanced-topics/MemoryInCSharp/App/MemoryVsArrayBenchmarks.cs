@@ -10,11 +10,11 @@ namespace App;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class MemoryVsArrayBenchmarks
 {
-    private const int Size = 10_000_000; 
+    private const int Size = 10_000_000;
     private readonly int[] _array;
     private readonly Memory<int> _memory;
 
-   public MemoryVsArrayBenchmarks()
+    public MemoryVsArrayBenchmarks()
     {
         _array = Enumerable.Range(0, Size).ToArray();
         _memory = new Memory<int>(_array);
@@ -25,10 +25,7 @@ public class MemoryVsArrayBenchmarks
     {
         await Task.Run(() =>
         {
-            for (var i = 0; i < _array.Length; i++)
-            {
-                _array[i] = i * 2;
-            }
+            for (var i = 0; i < _array.Length; i++) _array[i] = i * 2;
         });
     }
 
@@ -38,13 +35,10 @@ public class MemoryVsArrayBenchmarks
         await Task.Run(() =>
         {
             var span = _memory.Span;
-            for (var i = 0; i < span.Length; i++)
-            {
-                span[i] = i * 2;
-            }
+            for (var i = 0; i < span.Length; i++) span[i] = i * 2;
         });
     }
-    
+
     public static Summary RunBenchmarks()
     {
         return BenchmarkRunner.Run<MemoryVsArrayBenchmarks>();
