@@ -22,16 +22,17 @@ public class Benchmarks
     {
         _pool = ArrayPool<int>.Shared;
         Array = _pool.Rent(Length);
-        for (var i = 0; i < Length; i++) Array[i] = i;
+        
+        for (var i = 0; i < Length; i++)
+        {
+            Array[i] = i;
+        }
         
         List = Array.ToList();
     }
     
     [GlobalCleanup]
-    public void Cleanup()
-    {
-        _pool.Return(Array);
-    }
+    public void Cleanup() => _pool.Return(Array);
 
     [Benchmark(Baseline = true)]
     public void IsOrderedUsingForLoop()
