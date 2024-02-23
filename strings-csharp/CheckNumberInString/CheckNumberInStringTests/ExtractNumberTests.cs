@@ -13,7 +13,7 @@ namespace CheckNumberInStringTests
 
             var actualNumber = ExtractNumber.ExtractNumberUsingRegEx(inputString);
 
-            Assert.AreEqual(actualNumber,expectedNumber);
+            Assert.AreEqual(actualNumber, expectedNumber);
         }
 
         [TestMethod]
