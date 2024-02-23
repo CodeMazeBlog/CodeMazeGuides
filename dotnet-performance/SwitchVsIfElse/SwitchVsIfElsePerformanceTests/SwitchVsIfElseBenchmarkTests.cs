@@ -2,17 +2,20 @@ using BenchmarkDotNet.Attributes;
 
 namespace SwitchVsIfElsePerformanceTests;
 
+[MemoryDiagnoser(false)]
 public class SwitchVsIfElseBenchmarkTests
 {
-    private const int Iterations = 1000;
-    private readonly int[] inputData;
+    private readonly int _iterations = 1000;
+    private readonly int[] _inputData;
     
     public SwitchVsIfElseBenchmarkTests()
     {
-        inputData = new int[Iterations];
-        for (int i = 0; i < Iterations; i++)
+        _iterations = 1000;
+        _inputData = new int[_iterations];
+        
+        for (int i = 0; i < _iterations; i++)
         {
-            inputData[i] = i % 10;
+            _inputData[i] = i % 10;
         }
     }
 
@@ -21,9 +24,9 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            if (inputData[i] == 1)
+            if (_inputData[i] == 1)
             {
                 result = 1;
             }
@@ -39,9 +42,9 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            switch (inputData[i])
+            switch (_inputData[i])
             {
                 case 1: 
                     result = 1;
@@ -58,9 +61,9 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            result = inputData[i] switch
+            result = _inputData[i] switch
             {
                 1 => 1,
                 _ => -1
@@ -73,13 +76,13 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            if (inputData[i] == 1)
+            if (_inputData[i] == 1)
             {
                 result = 1;
             }
-            else if (inputData[i] == 2)
+            else if (_inputData[i] == 2)
             {
                 result = 2;
             }
@@ -95,9 +98,9 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            switch (inputData[i])
+            switch (_inputData[i])
             {
                 case 1: 
                     result = 1;
@@ -117,9 +120,9 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            result = inputData[i] switch
+            result = _inputData[i] switch
             {
                 1 => 1,
                 2 => 2,
@@ -133,25 +136,25 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            if (inputData[i] == 1)
+            if (_inputData[i] == 1)
             {
                 result = 1;
             }
-            else if (inputData[i] == 2)
+            else if (_inputData[i] == 2)
             {
                 result = 2;
             }
-            else if (inputData[i] == 3)
+            else if (_inputData[i] == 3)
             {
                 result = 3;
             }
-            else if (inputData[i] == 4)
+            else if (_inputData[i] == 4)
             {
                 result = 4;
             }
-            else if (inputData[i] == 5)
+            else if (_inputData[i] == 5)
             {
                 result = 5;
             }
@@ -167,9 +170,9 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            switch (inputData[i])
+            switch (_inputData[i])
             {
                 case 1: 
                     result = 1;
@@ -198,9 +201,9 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            result = inputData[i] switch
+            result = _inputData[i] switch
             {
                 1 => 1,
                 2 => 2,
@@ -217,45 +220,45 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            if (inputData[i] == 1)
+            if (_inputData[i] == 1)
             {
                 result = 1;
             }
-            else if (inputData[i] == 2)
+            else if (_inputData[i] == 2)
             {
                 result = 2;
             }
-            else if (inputData[i] == 3)
+            else if (_inputData[i] == 3)
             {
                 result = 3;
             }
-            else if (inputData[i] == 4)
+            else if (_inputData[i] == 4)
             {
                 result = 4;
             }
-            else if (inputData[i] == 5)
+            else if (_inputData[i] == 5)
             {
                 result = 5;
             }
-            else if (inputData[i] == 6)
+            else if (_inputData[i] == 6)
             {
                 result = 6;
             }
-            else if (inputData[i] == 7)
+            else if (_inputData[i] == 7)
             {
                 result = 7;
             }
-            else if (inputData[i] == 8)
+            else if (_inputData[i] == 8)
             {
                 result = 8;
             }
-            else if (inputData[i] == 9)
+            else if (_inputData[i] == 9)
             {
                 result = 9;
             }
-            else if (inputData[i] == 0)
+            else if (_inputData[i] == 0)
             {
                 result = 0;
             }
@@ -271,9 +274,9 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            switch (inputData[i])
+            switch (_inputData[i])
             {
                 case 1: 
                     result = 1;
@@ -317,9 +320,9 @@ public class SwitchVsIfElseBenchmarkTests
     {
         int result;
         
-        for (int i = 0; i < Iterations; i++)
+        for (int i = 0; i < _iterations; i++)
         {
-            result = inputData[i] switch
+            result = _inputData[i] switch
             {
                 1 => 1,
                 2 => 2,
