@@ -1,51 +1,46 @@
 ﻿using ActionAndFuncDelegatesInCSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests
 {
     public class FuncDelegatesTests
     {
         [Fact]
-        public void WhenPerformingAddition_ShouldReturnSum()
+        public void GivenAFuncDelegate_WhenTwoIntegersAreProvided_ShouldReturnTheirSum()
         {
             // Arrange
-            int x = 5;
-            int y = 3;
+            var x = 5;
+            var y = 3;
 
             // Act
-            int result = FuncDelegates.Add(x, y);
+            var result = FuncDelegates.Add(x, y);
 
             // Assert
             Assert.Equal(8, result);
         }
 
         [Fact]
-        public void WhenPerformingSubtraction_ShouldReturnDifference()
+        public void GivenAFuncDelegate_WhenTwoIntegersAreProvided_ShouldReturnTheirDifference()
         {
             // Arrange
-            int x = 7;
-            int y = 4;
+            var x = 7;
+            var y = 4;
 
             // Act
-            int result = FuncDelegates.Subtract(x, y);
+            var result = FuncDelegates.Subtract(x, y);
 
             // Assert
             Assert.Equal(3, result);
         }
 
         [Fact]
-        public void WhenPerformingMultiplication_ShouldReturnProduct()
+        public void GivenAFuncDelegate_WhenTwoIntegersAreProvided_ShouldReturnTheirProduct()
         {
             // Arrange
-            int x = 6;
-            int y = 2;
+            var x = 6;
+            var y = 2;
 
             // Act
-            int result = FuncDelegates.Multiply(x, y);
+            var result = FuncDelegates.Multiply(x, y);
 
             // Assert
             Assert.Equal(12, result);

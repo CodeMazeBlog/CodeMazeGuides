@@ -20,7 +20,8 @@
             Func<int, int, int> operation2 = (x, y) => FuncDelegates.Subtract(x, y);
             Func<int, int, int> operation3 = (x, y) => FuncDelegates.Multiply(x, y);
 
-            Console.WriteLine($"The results of these operations are: {operation1(4, 5)}, {operation2(4, 5)}, {operation3(4, 5)}");
+            Console.WriteLine($"The results of these operations are:" +
+                $"{operation1(4, 5)}, {operation2(4, 5)}, {operation3(4, 5)}");
 
         }
     }

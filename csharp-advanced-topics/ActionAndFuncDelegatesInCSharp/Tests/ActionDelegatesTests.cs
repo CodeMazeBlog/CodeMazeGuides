@@ -1,9 +1,4 @@
 ﻿using ActionAndFuncDelegatesInCSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests
 {
@@ -20,26 +15,26 @@ namespace Tests
         }
 
         [Fact]
-        public void WhenLoggingInformation_ShouldWriteToConsole()
+        public void GivenAnActionDelegate_WhenStringIsProvided_ShouldLogInfoToConsole()
         {
             // Arrange
-            string info = "information";
+            var info = "information";
 
             // Act
-            string result = CaptureConsoleOutput(() => ActionDelegates.LogInformation(info));
+            var result = CaptureConsoleOutput(() => ActionDelegates.LogInformation(info));
 
             // Assert
             Assert.Equal($"This logs some {info} to the console", result);
         }
 
         [Fact]
-        public void WhenLoggingError_ShouldWriteToConsole()
+        public void GivenAnActionDelegate_WhenStringIsProvided_ShouldLogErrorToConsole()
         {
             // Arrange
-            string error = "error";
+            var error = "error";
 
             // Act
-            string result = CaptureConsoleOutput(() => ActionDelegates.LogError(error));
+            var result = CaptureConsoleOutput(() => ActionDelegates.LogError(error));
 
             // Assert
             Assert.Equal($"This logs the {error} to the console", result);
