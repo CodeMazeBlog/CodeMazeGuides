@@ -11,6 +11,7 @@ public class PingEventMapper : IAmAMessageMapper<PingEvent>
     );
     var body = new MessageBody(JsonSerializer.Serialize(request, JsonSerialisationOptions.Options));
     var message = new Message(header, body);
+
     return message;
   }
 
@@ -21,6 +22,7 @@ public class PingEventMapper : IAmAMessageMapper<PingEvent>
       JsonSerialisationOptions.Options
     );
     ArgumentNullException.ThrowIfNull(pingCommand, nameof(pingCommand));
+
     return pingCommand;
   }
 }

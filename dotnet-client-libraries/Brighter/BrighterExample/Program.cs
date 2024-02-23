@@ -16,6 +16,7 @@ if (app.Environment.IsDevelopment())
 app.MapGet("/ping", (IAmACommandProcessor commandProcessor) =>
     {
       commandProcessor.Send(new PingCommand());
+
       return Results.Ok();
     }
   )
@@ -24,6 +25,7 @@ app.MapGet("/ping", (IAmACommandProcessor commandProcessor) =>
 app.MapGet("/ping-async", async (IAmACommandProcessor commandProcessor) =>
     {
       await commandProcessor.SendAsync(new PingAsyncCommand());
+
       return Results.Ok();
     }
   )
@@ -31,4 +33,4 @@ app.MapGet("/ping-async", async (IAmACommandProcessor commandProcessor) =>
 
 app.Run();
 
-public partial class Program{}
+public partial class Program { }

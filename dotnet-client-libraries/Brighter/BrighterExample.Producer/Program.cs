@@ -1,5 +1,4 @@
 using BrighterExample.Common;
-using Microsoft.AspNetCore.Mvc;
 using Paramore.Brighter;
 using Paramore.Brighter.Extensions.DependencyInjection;
 using Paramore.Brighter.MessagingGateway.RMQ;
@@ -36,11 +35,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGet("/produce", (IAmACommandProcessor commandProcessor) =>
-    {
-      commandProcessor.Post(new PingEvent());
-      return Results.Ok();
-    }
-  )
-  .WithOpenApi();
+  {
+    commandProcessor.Post(new PingEvent());
+
+    return Results.Ok();
+  }
+)
+.WithOpenApi();
 
 app.Run();
