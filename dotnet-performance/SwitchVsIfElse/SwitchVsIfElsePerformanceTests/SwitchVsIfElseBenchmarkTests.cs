@@ -5,7 +5,7 @@ namespace SwitchVsIfElsePerformanceTests;
 [MemoryDiagnoser(false)]
 public class SwitchVsIfElseBenchmarkTests
 {
-    private readonly int _iterations = 1000;
+    private readonly int _iterations;
     private readonly int[] _inputData;
     
     public SwitchVsIfElseBenchmarkTests()
