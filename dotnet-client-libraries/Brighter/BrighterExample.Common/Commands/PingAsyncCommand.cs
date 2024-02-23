@@ -1,5 +1,3 @@
 ﻿namespace BrighterExample.Common;
 
-public class PingAsyncCommand() : Command(Guid.NewGuid()) 
-{
-}
+public class PingAsyncCommand() : Command(Guid.NewGuid());

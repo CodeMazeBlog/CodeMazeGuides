@@ -1,5 +1,3 @@
 ﻿namespace BrighterExample.Common;
 
-public class PingCommand() : Command(Guid.NewGuid()) 
-{
-}
+public class PingCommand() : Command(Guid.NewGuid());
