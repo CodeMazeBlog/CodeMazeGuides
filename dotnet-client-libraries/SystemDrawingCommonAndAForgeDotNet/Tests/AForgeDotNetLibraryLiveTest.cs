@@ -2,7 +2,7 @@ using AForgeDotNetLibrary;
 
 namespace Tests;
 
-public class AForgeDotNetLibraryUnitTest
+public class AForgeDotNetLibraryLiveTest
 {
     private const int Width = 480;
     private const int Height = 300;
@@ -13,7 +13,7 @@ public class AForgeDotNetLibraryUnitTest
     private readonly Bitmap _bitmap;
     private readonly PointF[] _hexagonPoints;
 
-    public AForgeDotNetLibraryUnitTest()
+    public AForgeDotNetLibraryLiveTest()
     {
         _bitmap = ImageService.CreateBlankImage(Width, Height);
         _hexagonPoints = GetHexagonPoints();
