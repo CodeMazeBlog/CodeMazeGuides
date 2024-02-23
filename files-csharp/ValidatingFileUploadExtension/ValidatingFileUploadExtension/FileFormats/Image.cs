@@ -1,0 +1,19 @@
+﻿namespace ValidatingFileUploadExtension.FileFormats
+{
+    public class Image : FileFormatDescriptor
+    {
+        protected override void Initialize()
+        {
+            TypeName = "IMAGE FILE";
+            Extensions.AddRange(["jpeg", "jpg", "png"]);
+            MagicNumbers.AddRange(new byte[][]
+            {
+             [0xFF, 0xD8, 0xFF, 0xE0],
+             [0xFF, 0xD8, 0xFF, 0xE1],
+             [0xFF, 0xD8, 0xFF, 0xE2],
+             [0xFF, 0xD8, 0xFF, 0xE3],
+             [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]
+            }.OrderByDescending(m => m.Length));
+        }
+    }
+}
