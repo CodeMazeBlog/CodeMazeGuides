@@ -1,7 +1,6 @@
 ﻿using System.Buffers;
 using FastestWayToCheckIfListIsOrdered;
 
-
 List<Employee> employees = [
     new Employee("Jack", new DateTime(1998, 11, 1), 3_000),
     new Employee("Danniel", new DateTime(2000, 3, 2), 2_500),

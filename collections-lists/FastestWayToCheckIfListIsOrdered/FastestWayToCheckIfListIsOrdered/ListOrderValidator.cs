@@ -9,8 +9,8 @@ public class ListOrderValidator
 		if (list.Count <= 1) return true;
 
 		comparer ??= Comparer<T>.Default;
-		int length = list.Count;
-		for (int i = 1; i < length; i++)
+		var length = list.Count;
+		for (var i = 1; i < length; i++)
 		{
 			if (comparer.Compare(list[i - 1], list[i]) > 0) return false;
 		}
@@ -24,12 +24,12 @@ public class ListOrderValidator
 
 		comparer ??= Comparer<T>.Default;
 
-		int length = list.Count;
+		var length = list.Count;
 
 		list.CopyTo(array, 0);
 		Array.Sort(array, 0, length, comparer);
 
-		for (int i = 0; i < length; i++)
+		for (var i = 0; i < length; i++)
 		{
 			if (comparer.Compare(list[i], array[i]) != 0) return false;
 		}
@@ -42,8 +42,8 @@ public class ListOrderValidator
 		comparer ??= Comparer<T>.Default;
 		var span = CollectionsMarshal.AsSpan(list);
 
-		int length = span.Length;
-		for (int i = 1; i < length; i++)
+		var length = span.Length;
+		for (var i = 1; i < length; i++)
 		{
 			if (comparer.Compare(span[i - 1], span[i]) > 0) return false;
 		}
@@ -91,10 +91,9 @@ public class ListOrderValidator
 
 		using var enumerator = orderedList.GetEnumerator();
 		enumerator.MoveNext();
-		// list.Skip(1).Aggregate(list[0], (acc, current) => comparer.Compare(acc, current) > 0 ? default! : current);
 
-		int length = list.Count;
-		for (int i = 0; i < length; i++)
+		var length = list.Count;
+		for (var i = 0; i < length; i++)
 		{
 			if (comparer.Compare(list[i], enumerator.Current) != 0) return false;
 			enumerator.MoveNext();
@@ -162,7 +161,7 @@ public class ListOrderValidator
 		{
 			var low = Math.Max(1, partitionIndex * partitionSize + 1);
 			var high = Math.Min(length - 1, low + partitionSize - 1);
-			for (int i = low; i <= high && !state.IsStopped; i++)
+			for (var i = low; i <= high && !state.IsStopped; i++)
 			{
 				if (comparer.Compare(list[i - 1], list[i]) > 0) state.Stop();
 			}
@@ -189,7 +188,7 @@ public class ListOrderValidator
 				var low = Math.Max(1, partitionIndex * partitionSize + 1);
 				var high = Math.Min(length - 1, low + partitionSize - 1);
 				var span = CollectionsMarshal.AsSpan(list);
-				for (int i = low; i <= high && !state.IsStopped; i++)
+				for (var i = low; i <= high && !state.IsStopped; i++)
 				{
 					if (comparer.Compare(span[i - 1], span[i]) > 0 && !state.IsStopped)
 					{

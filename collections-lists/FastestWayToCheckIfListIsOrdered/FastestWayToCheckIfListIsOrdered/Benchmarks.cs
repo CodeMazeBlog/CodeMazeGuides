@@ -9,7 +9,7 @@ public class Benchmarks
 {
     
     [Params(100, 10_000, 1_000_000)]
-    public int Length { get; set; }
+    public int Length { get; }
 
     private ArrayPool<int> _pool;
 
@@ -22,7 +22,7 @@ public class Benchmarks
     {
         _pool = ArrayPool<int>.Shared;
         Array = _pool.Rent(Length);
-        for (int i = 0; i < Length; i++) Array[i] = i;
+        for (var i = 0; i < Length; i++) Array[i] = i;
         
         List = Array.ToList();
     }
