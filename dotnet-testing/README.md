@@ -25,3 +25,5 @@ This section contains the topics related to all kinds of testing in C#/.NET
 - [Testing Time-Dependent Code With TimeProvider in .NET](https://code-maze.com/csharp-testing-time-dependent-code-with-timeprovider/)
 - [Unit Testing With UserManager and RoleManager in ASP.NET Core Identity](https://code-maze.com/aspnetcore-identity-testing-usermanager-rolemanager/)
 - [How to Use Moq to Return a Value That Was Passed Into a Method?](https://code-maze.com/dotnet-use-moq-return-value-that-was-passed-into-a-method/)
+- [How to Pass Complex Parameters to Theory in xUnit](https://code-maze.com/xunit-how-to-pass-complex-parameters-to-theory/)
+- [How to Overwrite DateTime.Now During Testing in .NET](https://code-maze.com/dotnet-how-to-overwrite-datetime-now-during-testing/)
