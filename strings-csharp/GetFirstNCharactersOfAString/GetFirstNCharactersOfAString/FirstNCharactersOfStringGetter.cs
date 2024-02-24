@@ -29,8 +29,8 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
         return inputString.Remove(numberOfCharacters);
     }
 
-    public ReadOnlySpan<char> UseLINQ()
-        => string.Join("", inputString.Take(numberOfCharacters));
+    public IEnumerable<char> UseLINQEnumerable()
+        => inputString.Take(numberOfCharacters);
 
     public ReadOnlySpan<char> UseAsSpanWithRangeOperator()
         => IsInputStringShorter()

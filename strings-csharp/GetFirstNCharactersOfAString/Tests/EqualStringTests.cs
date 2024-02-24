@@ -1,14 +1,15 @@
-﻿namespace Tests;
+﻿using Xunit;
+
+namespace Tests;
 
 public class EqualStringTests
 {
     private readonly FirstNCharactersOfStringGetter _firstNCharactersOfStringGetter;
-    private readonly string _stringToTest = "Code";
-    private readonly int _numberOfCharacters = 4;
+    private readonly char[] _expectedChars = ['C', 'o', 'd', 'e'];
 
     public EqualStringTests()
     {
-        _firstNCharactersOfStringGetter = new FirstNCharactersOfStringGetter(_stringToTest, _numberOfCharacters);
+        _firstNCharactersOfStringGetter = new FirstNCharactersOfStringGetter("Code", 4);
     }
 
     [Fact]
@@ -16,8 +17,8 @@ public class EqualStringTests
     {
         var result = _firstNCharactersOfStringGetter.UseForLoop();
 
-        Assert.Equal(_stringToTest.Length, result.Length);
-        Assert.Equal(_stringToTest, result.ToString());
+        Assert.Equal(_expectedChars.Length, result.Length);
+        Assert.Equal(_expectedChars, result.ToArray());
     }
 
     [Fact]
@@ -25,17 +26,17 @@ public class EqualStringTests
     {
         var result = _firstNCharactersOfStringGetter.UseRemove();
 
-        Assert.Equal(_stringToTest.Length, result.Length);
-        Assert.Equal(_stringToTest, result.ToString());
+        Assert.Equal(_expectedChars.Length, result.Length);
+        Assert.Equal(_expectedChars, result.ToArray());
     }
 
     [Fact]
-    public void WhenUseLINQIsCalledWithEqualString_ThenReturnsTheInputString()
+    public void WhenUseLINQEnumerableIsCalledWithEqualString_ThenReturnsTheInputString()
     {
-        var result = _firstNCharactersOfStringGetter.UseLINQ();
+        var result = _firstNCharactersOfStringGetter.UseLINQEnumerable();
 
-        Assert.Equal(_stringToTest.Length, result.Length);
-        Assert.Equal(_stringToTest, result.ToString());
+        Assert.Equal(_expectedChars.Length, result.Count());
+        Assert.Equal(_expectedChars, result.ToArray());
     }
 
     [Fact]
@@ -43,8 +44,8 @@ public class EqualStringTests
     {
         var result = _firstNCharactersOfStringGetter.UseAsSpan();
 
-        Assert.Equal(_stringToTest.Length, result.Length);
-        Assert.Equal(_stringToTest, result.ToString());
+        Assert.Equal(_expectedChars.Length, result.Length);
+        Assert.Equal(_expectedChars, result.ToArray());
     }
 
     [Fact]
@@ -52,8 +53,8 @@ public class EqualStringTests
     {
         var result = _firstNCharactersOfStringGetter.UseAsSpanWithRangeOperator();
 
-        Assert.Equal(_stringToTest.Length, result.Length);
-        Assert.Equal(_stringToTest, result.ToString());
+        Assert.Equal(_expectedChars.Length, result.Length);
+        Assert.Equal(_expectedChars, result.ToArray());
     }
 
     [Fact]
@@ -61,8 +62,8 @@ public class EqualStringTests
     {
         var result = _firstNCharactersOfStringGetter.UseAsMemory();
 
-        Assert.Equal(_stringToTest.Length, result.Length);
-        Assert.Equal(_stringToTest, result.ToString());
+        Assert.Equal(_expectedChars.Length, result.Length);
+        Assert.Equal(_expectedChars, result.ToArray());
     }
 
     [Fact]
@@ -70,7 +71,7 @@ public class EqualStringTests
     {
         var result = _firstNCharactersOfStringGetter.UseToCharArray();
 
-        Assert.Equal(_stringToTest.Length, result.Length);
-        Assert.Equal(_stringToTest, result.ToString());
+        Assert.Equal(_expectedChars.Length, result.Length);
+        Assert.Equal(_expectedChars, result.ToArray());
     }
 }

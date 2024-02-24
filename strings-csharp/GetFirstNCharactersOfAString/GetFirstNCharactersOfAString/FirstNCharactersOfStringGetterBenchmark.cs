@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Order;
 
 namespace GetFirstNCharactersOfAString;
@@ -8,9 +9,11 @@ namespace GetFirstNCharactersOfAString;
 public class FirstNCharactersOfStringGetterBenchmark
 {
     private readonly FirstNCharactersOfStringGetter _firstNCharactersOfStringGetter;
+    private readonly Consumer _consumer;
 
     public FirstNCharactersOfStringGetterBenchmark()
     {
+        _consumer = new Consumer();
         _firstNCharactersOfStringGetter
             = new FirstNCharactersOfStringGetter();
     }
@@ -24,8 +27,8 @@ public class FirstNCharactersOfStringGetterBenchmark
         => _firstNCharactersOfStringGetter.UseRemove();
 
     [Benchmark]
-    public void UseLINQ()
-        => _firstNCharactersOfStringGetter.UseLINQ();
+    public void UseLINQEnumerable()
+        => ConsumerExtensions.Consume(_firstNCharactersOfStringGetter.UseLINQEnumerable(), _consumer);
 
     [Benchmark]
     public void UseAsSpan()
