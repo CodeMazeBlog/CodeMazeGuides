@@ -27,7 +27,7 @@ namespace HowToCallSignalRAspDotNet.Controllers
             {
                 _timer.PrepareTimer(() =>
                     _hub.Clients.All
-                        .SendCoreAsync("SendClientRandomEvenNumber", [randomValue]));
+                        .SendAsync("SendClientRandomEvenNumber", randomValue));
             }                
 
             return Ok(randomValue);
