@@ -45,9 +45,9 @@ app.MapGet("/cats/{id:guid}", async (Guid id, IServiceManager serviceManager) =>
 
 app.MapPost("/cats", async (CatForCreationDto dto, IServiceManager serviceManager) =>
 {
-    await serviceManager.CatService.CreateAsync(dto);
+    var cat = await serviceManager.CatService.CreateAsync(dto);
 
-    return Results.Created();
+    return Results.Created($"/cats/{cat.Id}", cat);
 })
 .WithOpenApi();
 
