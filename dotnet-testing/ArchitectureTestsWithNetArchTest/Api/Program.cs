@@ -1,13 +1,24 @@
+using Contracts;
+using Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Persistence;
+using Persistence.Repositories;
+using Services;
+using Services.Abstractions;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IServiceManager, ServiceManager>();
+builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
+
+builder.Services.AddDbContextPool<CatsDbContext>(options =>
+    options.UseInMemoryDatabase("Cats"));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -16,29 +27,44 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/cats", async (IServiceManager serviceManager) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var cats = await serviceManager.CatService.GetAllAsync();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    return Results.Ok(cats);
 })
-.WithName("GetWeatherForecast")
+.WithOpenApi();
+
+app.MapGet("/cats/{id:guid}", async (Guid id, IServiceManager serviceManager) =>
+{
+    var cat = await serviceManager.CatService.GetByIdAsync(id);
+
+    return Results.Ok(cat);
+})
+.WithOpenApi();
+
+app.MapPost("/cats", async (CatForCreationDto dto, IServiceManager serviceManager) =>
+{
+    await serviceManager.CatService.CreateAsync(dto);
+
+    return Results.Created();
+})
+.WithOpenApi();
+
+app.MapPut("/cats/{id:guid}", async (Guid id, CatForUpdateDto dto, IServiceManager serviceManager) =>
+{
+    await serviceManager.CatService.UpdateAsync(id, dto);
+
+    return Results.NoContent();
+})
+.WithOpenApi();
+
+app.MapDelete("/cats/{id:guid}", async (Guid id, IServiceManager serviceManager) =>
+{
+    await serviceManager.CatService.DeleteAsync(id);
+
+    return Results.NoContent();
+})
 .WithOpenApi();
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
