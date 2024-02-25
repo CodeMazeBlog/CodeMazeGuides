@@ -1,4 +1,3 @@
-using System.Buffers;
 using FastestWayToCheckIfListIsOrdered;
 
 namespace Tests;
@@ -42,8 +41,7 @@ public class FastestWayToCheckIfListIsOrderedTests
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingArraySort_ThenShouldBeTrue()
     {
-        var array = ArrayPool<Employee>.Shared.Rent(OrderedEmployees.Count);
-        var areOrdered = ListOrderValidator.IsOrderedUsingArraySort(OrderedEmployees, array);
+        var areOrdered = ListOrderValidator.IsOrderedUsingArraySort(OrderedEmployees);
 
         Assert.True(areOrdered);
     }
@@ -51,9 +49,8 @@ public class FastestWayToCheckIfListIsOrderedTests
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingArraySort_ThenShouldBeFalse()
     {
-        var array = ArrayPool<Employee>.Shared.Rent(OrderedEmployees.Count);
-
-        var areOrdered = ListOrderValidator.IsOrderedUsingArraySort(OutOfOrderEmployees, array);
+        var areOrdered = ListOrderValidator.IsOrderedUsingArraySort(OutOfOrderEmployees);
+        
         Assert.False(areOrdered);
     }
 

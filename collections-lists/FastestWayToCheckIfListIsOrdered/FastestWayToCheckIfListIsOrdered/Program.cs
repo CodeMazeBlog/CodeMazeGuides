@@ -1,5 +1,4 @@
-﻿using System.Buffers;
-using FastestWayToCheckIfListIsOrdered;
+﻿using FastestWayToCheckIfListIsOrdered;
 
 List<Employee> employees = [
     new Employee("Jack", new DateTime(1998, 11, 1), 3_000),
@@ -11,9 +10,7 @@ List<Employee> employees = [
 var areOrdered = ListOrderValidator.IsOrderedUsingForLoop(employees);
 Console.WriteLine(areOrdered);
 
-var array = ArrayPool<Employee>.Shared.Rent(employees.Count);
-
-areOrdered = ListOrderValidator.IsOrderedUsingArraySort(employees, array);
+areOrdered = ListOrderValidator.IsOrderedUsingArraySort(employees);
 Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidator.IsOrderedUsingEnumerator(employees);

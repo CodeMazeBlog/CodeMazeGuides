@@ -18,7 +18,7 @@ public class ListOrderValidator
 		return true;
 	}
 
-	public static bool IsOrderedUsingArraySort<T>(IList<T> list, T[] array, IComparer<T>? comparer = default)
+	public static bool IsOrderedUsingArraySort<T>(IList<T> list, IComparer<T>? comparer = default)
 	{
 		if (list.Count <= 1) return true;
 
@@ -26,6 +26,7 @@ public class ListOrderValidator
 
 		var length = list.Count;
 
+		var array = new T[length];
 		list.CopyTo(array, 0);
 		Array.Sort(array, 0, length, comparer);
 
@@ -39,6 +40,8 @@ public class ListOrderValidator
 
 	public static bool IsOrderedUsingSpans<T>(List<T> list, IComparer<T>? comparer = default)
 	{
+		if (list.Count <= 1) return true;
+		
 		comparer ??= Comparer<T>.Default;
 		var span = CollectionsMarshal.AsSpan(list);
 
@@ -104,6 +107,8 @@ public class ListOrderValidator
 
 	public static bool IsOrderedUsingLinqWithZip<T>(IList<T> list, IComparer<T>? comparer = default)
 	{
+		if (list.Count <= 1) return true;
+		
 		comparer ??= Comparer<T>.Default;
 		return !list
 			.Zip(list.Skip(1), (a, b) => comparer.Compare(a, b) <= 0)
@@ -114,6 +119,7 @@ public class ListOrderValidator
 	public static bool IsOrderedUsingParallelFor<T>(IList<T> list, IComparer<T>? comparer = default)
 	{
 		if (list.Count <= 1) return true;
+		
 		comparer ??= Comparer<T>.Default;
 
 		var result = Parallel.For(1, list.Count, (index, state) =>
@@ -130,6 +136,7 @@ public class ListOrderValidator
 	public static bool IsOrderedUsingParallelForWithSpans<T>(List<T> list, IComparer<T>? comparer = default)
 	{
 		if (list.Count <= 1) return true;
+		
 		comparer ??= Comparer<T>.Default;
 
 		var length = list.Count;
@@ -150,6 +157,7 @@ public class ListOrderValidator
 		IComparer<T>? comparer = default)
 	{
 		if (list.Count <= 1) return true;
+        
 		comparer ??= Comparer<T>.Default;
 
 		var length = list.Count;
@@ -175,6 +183,7 @@ public class ListOrderValidator
 		IComparer<T>? comparer = default)
 	{
 		if (list.Count <= 1) return true;
+		
 		comparer ??= Comparer<T>.Default;
 
 		var length = list.Count;

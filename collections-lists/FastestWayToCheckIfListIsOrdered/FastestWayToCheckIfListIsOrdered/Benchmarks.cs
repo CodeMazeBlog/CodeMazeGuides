@@ -1,5 +1,4 @@
-﻿using System.Buffers;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 
 namespace FastestWayToCheckIfListIsOrdered;
 
@@ -7,96 +6,56 @@ namespace FastestWayToCheckIfListIsOrdered;
 [MarkdownExporterAttribute.Default]
 public class Benchmarks
 {
-    
-    [Params(100, 10_000, 1_000_000)]
-    public int Length { get; }
-
-    private ArrayPool<int> _pool;
-
-    public int[] Array;
+    [Params(100, 10_000, 1_000_000)] public int Length { get; }
 
     public List<int> List;
 
     [GlobalSetup]
     public void Setup()
-    {
-        _pool = ArrayPool<int>.Shared;
-        Array = _pool.Rent(Length);
-        
-        for (var i = 0; i < Length; i++)
-        {
-            Array[i] = i;
-        }
-        
-        List = Array.ToList();
-    }
-    
-    [GlobalCleanup]
-    public void Cleanup() => _pool.Return(Array);
+        => List = Enumerable.Range(0, Length).ToList();
+
 
     [Benchmark(Baseline = true)]
-    public void IsOrderedUsingForLoop()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingForLoop(List);
-    }
-    
-    [Benchmark]
-    public void IsOrderedUsingArraySort()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingArraySort(List, Array);
-    }
+    public bool IsOrderedUsingForLoop()
+        => ListOrderValidator.IsOrderedUsingForLoop(List);
 
     [Benchmark]
-    public void IsOrderedUsingSpans()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingSpans(List);
-    }
-    
+    public bool IsOrderedUsingArraySort()
+        => ListOrderValidator.IsOrderedUsingArraySort(List);
+
     [Benchmark]
-    public void IsOrderedUsingEnumerator()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingEnumerator(List);
-    }
-    
+    public bool IsOrderedUsingSpans()
+        => ListOrderValidator.IsOrderedUsingSpans(List);
+
     [Benchmark]
-    public void IsOrderedUsingLinqWithSequenceEqual()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingLinqWithSequenceEqual(List);
-    }
-    
+    public bool IsOrderedUsingEnumerator()
+        => ListOrderValidator.IsOrderedUsingEnumerator(List);
+
     [Benchmark]
-    public void IsOrderedUsingLinqWithOrder()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingLinqWithOrder(List);
-    }
-    
+    public bool IsOrderedUsingLinqWithSequenceEqual()
+        => ListOrderValidator.IsOrderedUsingLinqWithSequenceEqual(List);
+
     [Benchmark]
-    public void IsOrderedUsingLinqWithZip()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingLinqWithZip(List);
-    }
-    
+    public bool IsOrderedUsingLinqWithOrder()
+        => ListOrderValidator.IsOrderedUsingLinqWithOrder(List);
+
     [Benchmark]
-    public void IsOrderedUsingParallelFor()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingParallelFor(List);
-    }
-    
+    public bool IsOrderedUsingLinqWithZip()
+        => ListOrderValidator.IsOrderedUsingLinqWithZip(List);
+
     [Benchmark]
-    public void IsOrderedUsingParallelForWithSpans()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingParallelForWithSpans(List);
-    }
-    
+    public bool IsOrderedUsingParallelFor()
+        => ListOrderValidator.IsOrderedUsingParallelFor(List);
+
     [Benchmark]
-    public void IsOrderedUsingParallelForPartitioned()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitioned(List);
-    }
-    
+    public bool IsOrderedUsingParallelForWithSpans()
+        => ListOrderValidator.IsOrderedUsingParallelForWithSpans(List);
+
     [Benchmark]
-    public void IsOrderedUsingParallelForPartitionedWithSpans()
-    {
-        var isOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(List);
-    }
+    public bool IsOrderedUsingParallelForPartitioned()
+        => ListOrderValidator.IsOrderedUsingParallelForPartitioned(List);
+
+    [Benchmark]
+    public bool IsOrderedUsingParallelForPartitionedWithSpans()
+        => ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(List);
 }
