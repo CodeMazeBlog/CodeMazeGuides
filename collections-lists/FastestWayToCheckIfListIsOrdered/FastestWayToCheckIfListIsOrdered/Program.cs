@@ -9,24 +9,36 @@ List<Employee> employees = [
 ];
 
 var areOrdered = ListOrderValidator.IsOrderedUsingForLoop(employees);
+Console.WriteLine(areOrdered);
 
 var array = ArrayPool<Employee>.Shared.Rent(employees.Count);
+
 areOrdered = ListOrderValidator.IsOrderedUsingArraySort(employees, array);
+Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidator.IsOrderedUsingEnumerator(employees);
+Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidator.IsOrderedUsingLinqWithSequenceEqual(employees);
+Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidator.IsOrderedUsingLinqWithOrder(employees);
+Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidator.IsOrderedUsingLinqWithZip(employees);
+Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidator.IsOrderedUsingSpans(employees);
+Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidator.IsOrderedUsingParallelFor(employees);
+Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidator.IsOrderedUsingParallelForWithSpans(employees);
+Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitioned(employees);
+Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(employees);
+Console.WriteLine(areOrdered);
