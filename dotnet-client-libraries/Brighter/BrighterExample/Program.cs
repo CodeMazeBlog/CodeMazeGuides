@@ -9,27 +9,27 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-  app.UseSwagger();
-  app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.MapGet("/ping", (IAmACommandProcessor commandProcessor) =>
     {
-      commandProcessor.Send(new PingCommand());
+        commandProcessor.Send(new PingCommand());
 
-      return Results.Ok();
+        return Results.Ok();
     }
-  )
-  .WithOpenApi();
+)
+.WithOpenApi();
 
 app.MapGet("/ping-async", async (IAmACommandProcessor commandProcessor) =>
     {
-      await commandProcessor.SendAsync(new PingAsyncCommand());
+        await commandProcessor.SendAsync(new PingAsyncCommand());
 
-      return Results.Ok();
+        return Results.Ok();
     }
-  )
-  .WithOpenApi();
+)
+.WithOpenApi();
 
 app.Run();
 
