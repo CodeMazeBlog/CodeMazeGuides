@@ -1,6 +1,6 @@
 ﻿namespace ExceptionHandlingInCSharp.Exceptions;
 
-public class GlobalExceptionHandler
+public static class GlobalExceptionHandler
 {
     public static void HandleException(object sender, UnhandledExceptionEventArgs e)
     {

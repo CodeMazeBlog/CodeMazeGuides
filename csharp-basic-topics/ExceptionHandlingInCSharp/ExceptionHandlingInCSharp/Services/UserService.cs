@@ -14,7 +14,9 @@ public class UserService
     public User GetById(int id)
     {
         ValidateID(id);
-        var user = _users.FirstOrDefault(x => x.Id == id);
+
+        var user = _users.First(x => x.Id == id);
+
         return user;
     }
 
