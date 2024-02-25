@@ -9,10 +9,11 @@ public static class SampleRunner
     public static GetUserResult GetUserById(int id)
     {
         AppDomain.CurrentDomain.UnhandledException += GlobalExceptionHandler.HandleException;
-        UserService? userService = null;
+
+        var userService = new UserService();
+
         try
         {
-            userService = new UserService();
             try
             {
                 var user = userService.GetById(id);
@@ -29,7 +30,7 @@ public static class SampleRunner
             {
                 return GetUserResult.Error("User ID should be less than 1000.");
             }
-            catch (NullReferenceException) 
+            catch (InvalidOperationException) 
             { 
                 return GetUserResult.Error("User not found."); 
             }

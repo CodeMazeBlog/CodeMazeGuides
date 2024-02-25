@@ -36,6 +36,7 @@ public class ExceptionHandlingTests
 
         // Assert
         Assert.That(response, Is.Not.Null);
+        
         Assert.Multiple(() =>
         {
             Assert.That(response.IsSuccessful, Is.False);
