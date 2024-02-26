@@ -1,6 +1,8 @@
 using App;
 using BenchmarkDotNet.Reports;
+
 namespace Tests;
+
 public class BenchmarksLiveTest
 {
     [Fact]
