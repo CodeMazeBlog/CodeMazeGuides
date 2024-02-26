@@ -23,8 +23,7 @@ namespace AwaitInLoopsInCsharp
         }
 
         public static async Task ProcessNumberAsync(int number)
-        {
-            // Simulate an asynchronous operation
+        {     
             await Task.Delay(1000);
 
             Console.WriteLine($"Processed {number}");
