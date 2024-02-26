@@ -24,7 +24,7 @@ namespace Tests
         public void WhenDirectoryInfoIsPassed_ReturnDirectorySize()
         {
             //Arrange
-            DirectoryInfo directoryInfo = new DirectoryInfo(_testDirectoryPath);
+            var directoryInfo = new DirectoryInfo(_testDirectoryPath);
             long size;
 
             //Act
@@ -38,7 +38,7 @@ namespace Tests
         public void WhenDirectoryInfoIsPassedToParallelProcess_ReturnDirectorySize()
         {
             // Arrange
-            DirectoryInfo directoryInfo = new DirectoryInfo(_testDirectoryPath);
+            var directoryInfo = new DirectoryInfo(_testDirectoryPath);
 
             // Act
             long size = DirectorySizeCalculator.GetSizeByParallelProcessing(directoryInfo);
