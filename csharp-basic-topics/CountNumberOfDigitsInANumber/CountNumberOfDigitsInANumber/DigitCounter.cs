@@ -36,7 +36,7 @@
                 return 1;
             }
 
-            return 1 + (int)Math.Floor(Math.Log10((double)Math.Abs(number)));
+            return 1 + (int)Math.Floor(Math.Log10(Math.Abs(number)));
         }
 
         public static int GetStringLengthCount(int number)
