@@ -5,7 +5,7 @@ namespace CountNumberOfDigitsInANumber.Benchmark
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
     public class DigitCounterBenchmark
     {
-        [Params(-12345, -1234, -123, -12, -1, 0, 1, 12, 123, 1234, 12345)]
+        [Params(-1234567890, -12345, 0, 12345, 1234567890)]
         public int N;
 
         [Benchmark]
