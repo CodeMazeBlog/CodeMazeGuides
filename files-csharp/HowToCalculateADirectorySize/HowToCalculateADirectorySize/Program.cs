@@ -3,6 +3,6 @@
 //DirectoryInfo directory = new(@"");
 //var size = DirectorySizeCalculator.GetSizeWithRecursion(directory);
 //var size = DirectorySizeCalculator.GetSizeByParallelProcessing(directory, true);
-var size = DirectorySizeCalculator.GetSizeByIteration(@"C:\Users\racho\Desktop\Nothing");
+var size = DirectorySizeCalculator.GetSizeByIteration(@"C:\Public\CM-Demos\Test");
 
 Console.WriteLine($"The directory has {size}bytes worth of files");
