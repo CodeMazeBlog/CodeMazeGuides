@@ -18,7 +18,6 @@ namespace Tests
             // Assert
             Assert.IsNotNull(result);
             CollectionAssert.AreEqual(expectedNumbers, result);
-
         }
     }
 }
