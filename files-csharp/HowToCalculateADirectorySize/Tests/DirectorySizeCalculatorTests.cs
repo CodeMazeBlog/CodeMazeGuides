@@ -5,7 +5,7 @@ namespace Tests
     public class DirectorySizeCalculatorTests
     {
         //add a valid directory path
-        string testDirectory = @"C:\Users\racho\Desktop\Nothing";
+        string testDirectory = @"";
 
         [Fact]
         public void WhenDirectoryInfoIsPassed_ReturnDirectorySize()
