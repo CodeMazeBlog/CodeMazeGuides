@@ -3,7 +3,7 @@ using ImageMagickLibrary;
 
 namespace Tests;
 
-public class ImageMagickLibraryUnitTest
+public class ImageMagickLibraryLiveTest
 {
     private readonly MagickColor _color = MagickColors.Green;
     private readonly MagickGeometry _imageSize = new(480, 300);
@@ -19,7 +19,7 @@ public class ImageMagickLibraryUnitTest
     private readonly int invalidPointX = -1;
     private readonly int invalidPointY = -1;
 
-    public ImageMagickLibraryUnitTest()
+    public ImageMagickLibraryLiveTest()
     {
         expectedColor = _color;
         centerX = _circle.X + _circle.Width / 2;

@@ -4,7 +4,7 @@ using ImageSharpLibrary;
 
 namespace Tests;
 
-public class ImageSharpLibraryUnitTest
+public class ImageSharpLibraryLiveTest
 {
     private readonly int _width = 350;
     private readonly int _height = 280;

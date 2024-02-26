@@ -3,7 +3,7 @@ using SkiaSharpLibrary;
 
 namespace Tests;
 
-public class SkiaSharpLibraryUnitTest : IDisposable
+public class SkiaSharpLibraryLiveTest : IDisposable
 {
     private SKBitmap _bitmap;
     private readonly int _width = 400;
@@ -13,7 +13,7 @@ public class SkiaSharpLibraryUnitTest : IDisposable
     private const string _pathWithNoWritePermission = @"C:\Windows\System32\outputImage.png";
     private const string _nullOutputPath = "";
 
-    public SkiaSharpLibraryUnitTest()
+    public SkiaSharpLibraryLiveTest()
     {
         _bitmap = ImageService.CreateBlankImage(_width, _height);
     }
