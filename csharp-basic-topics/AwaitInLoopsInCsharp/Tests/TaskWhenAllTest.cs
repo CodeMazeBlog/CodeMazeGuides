@@ -19,6 +19,7 @@ namespace AwaitInLoopsInCsharp.Tests
             {
                 Assert.IsTrue(task.IsCompletedSuccessfully, $"Task failed: {task.Exception?.ToString()}");
             }
+
         }
     }
 }
