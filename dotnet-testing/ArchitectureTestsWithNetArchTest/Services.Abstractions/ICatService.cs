@@ -10,4 +10,3 @@ public interface ICatService
     Task UpdateAsync(Guid id, CatForUpdateDto catForUpdateDto, CancellationToken cancellationToken = default);
     Task DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }
-

@@ -68,3 +68,5 @@ app.MapDelete("/cats/{id:guid}", async (Guid id, IServiceManager serviceManager)
 .WithOpenApi();
 
 app.Run();
+
+public partial class Program { }
