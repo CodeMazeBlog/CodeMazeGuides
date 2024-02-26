@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
-using System.Diagnostics;
 
 namespace RateLimitingDotNET8.Controllers;
 
-[EnableRateLimiting("fixed")]
+[EnableRateLimiting(Policies.Fixed)]
 public class CustomerController : Controller
 {
     public ActionResult Index()
@@ -12,8 +11,20 @@ public class CustomerController : Controller
         return View();
     }
 
-    [EnableRateLimiting("sliding")]
+    [EnableRateLimiting(Policies.Sliding)]
     public ActionResult Details()
+    {
+        return View();
+    }
+
+    [EnableRateLimiting(Policies.Token)]
+    public ActionResult GetById()
+    {
+        return View();
+    }
+
+    [EnableRateLimiting(Policies.Concurrency)]
+    public ActionResult Get()
     {
         return View();
     }

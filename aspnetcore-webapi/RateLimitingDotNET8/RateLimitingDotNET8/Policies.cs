@@ -2,8 +2,10 @@
 
 public static class Policies
 {
-    public static string Fixed = "fixed";
-    public static string Sliding = "fixed";
-    public static string Token = "token";
-    public static string Concurrency = "Concurrency";
+    public const string Fixed = "fixed";
+    public const string Sliding = "sliding";
+    public const string Token = "token";
+    public const string Concurrency = "concurrency";
+    public const string Authorization = "authorization";
+    public const string Chained = "chained";
 }
