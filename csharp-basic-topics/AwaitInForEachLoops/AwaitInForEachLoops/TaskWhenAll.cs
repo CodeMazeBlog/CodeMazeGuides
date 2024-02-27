@@ -4,7 +4,7 @@ namespace AwaitInForEachLoop
 {
     public class TaskWhenAllInLoop
     {
-        public static async Task<List<int>> ResultAsync()
+        public static async Task<List<Task>> ResultAsync()
         {
             var numbers = new List<int> { 10, 20, 30, 40, 50, 60, 70, 80, 90 };
 
@@ -12,7 +12,7 @@ namespace AwaitInForEachLoop
 
             foreach (int number in numbers)
             {
-                PrepNumbers();
+            
                 processingTasks.Add(ProcessNumberAsync(number));
             }
 
@@ -20,7 +20,7 @@ namespace AwaitInForEachLoop
 
             Console.WriteLine("Done Processing");
 
-            return numbers;
+            return processingTasks;
         }
 
         public static async Task ProcessNumberAsync(int number)
@@ -29,11 +29,6 @@ namespace AwaitInForEachLoop
             await Task.Delay(1000);
 
             Console.WriteLine($"Processed {number}");
-        }
-
-        public static void PrepNumbers()
-        {
-            Console.WriteLine("Incoming number");
         }
 
     }
