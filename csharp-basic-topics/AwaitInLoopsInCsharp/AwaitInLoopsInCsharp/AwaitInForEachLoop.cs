@@ -21,6 +21,7 @@ namespace AwaitInLoopsInCsharp
             Console.WriteLine("Done Processing");
 
             return result;
+
         }
     }
 }
