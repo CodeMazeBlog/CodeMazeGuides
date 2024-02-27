@@ -1,5 +1,3 @@
-using FastestWayToCheckIfListIsOrdered;
-
 namespace Tests;
 
 public class FastestWayToCheckIfListIsOrderedTests

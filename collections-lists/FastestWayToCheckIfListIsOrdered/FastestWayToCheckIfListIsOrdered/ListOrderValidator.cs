@@ -2,7 +2,7 @@
 
 namespace FastestWayToCheckIfListIsOrdered;
 
-public class ListOrderValidator
+public static class ListOrderValidator
 {
     public static bool IsOrderedUsingForLoop<T>(IList<T> list, IComparer<T>? comparer = default)
     {
@@ -82,6 +82,7 @@ public class ListOrderValidator
         equalityComparer ??= EqualityComparer<T>.Default;
 
         var orderedList = list.Order(comparer);
+
         return list.SequenceEqual(orderedList, equalityComparer);
     }
 
@@ -114,7 +115,6 @@ public class ListOrderValidator
             .Zip(list.Skip(1), (a, b) => comparer.Compare(a, b) <= 0)
             .Contains(false);
     }
-
 
     public static bool IsOrderedUsingParallelFor<T>(IList<T> list, IComparer<T>? comparer = default)
     {
