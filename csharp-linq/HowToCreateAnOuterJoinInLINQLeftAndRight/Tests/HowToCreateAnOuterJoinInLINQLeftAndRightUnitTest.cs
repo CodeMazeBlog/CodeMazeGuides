@@ -23,7 +23,7 @@ public class HowToCreateAnOuterJoinInLINQLeftAndRightUnitTest
         ];
 
         // Act
-        var output = Utilities.PerformLeftJoinWithQuerySyntax( songs, authors ).Count;
+        var output = Utilities.PerformLeftJoinWithQuerySyntax(songs, authors).Count;
 
         // Assert
         Assert.Equal(songs.Count, output);

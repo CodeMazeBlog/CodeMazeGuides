@@ -1,6 +1,5 @@
 ﻿using HowToCreateAnOuterJoinInLINQLeftAndRight;
 
-// Left outer join - query syntax
 Console.WriteLine("Left outer join - query syntax");
 Console.WriteLine();
 
@@ -14,7 +13,6 @@ foreach (var item in results)
 Console.WriteLine();
 Console.WriteLine();
 
-// Right outer join - query syntax
 Console.WriteLine("Right outer join - query syntax");
 Console.WriteLine();
 
@@ -28,7 +26,6 @@ foreach (var item in results)
 Console.WriteLine();
 Console.WriteLine();
 
-// Left outer join - method syntax
 Console.WriteLine("Left outer join - method syntax");
 Console.WriteLine();
 
@@ -42,7 +39,6 @@ foreach (var item in results)
 Console.WriteLine();
 Console.WriteLine();
 
-// Right outer join - method syntax
 Console.WriteLine("Right outer join - method syntax");
 Console.WriteLine();
 
@@ -56,7 +52,6 @@ foreach (var item in results)
 Console.WriteLine();
 Console.WriteLine();
 
-// Full outer join
 Console.WriteLine("Full outer join");
 Console.WriteLine();
 
@@ -70,7 +65,6 @@ foreach (var item in results)
 Console.WriteLine();
 Console.WriteLine();
 
-// Left excluding join
 Console.WriteLine("Left excluding join");
 Console.WriteLine();
 
@@ -84,7 +78,6 @@ foreach (var item in results)
 Console.WriteLine();
 Console.WriteLine();
 
-// Right excluding join
 Console.WriteLine("Right excluding join");
 Console.WriteLine();
 
@@ -98,7 +91,6 @@ foreach (var item in results)
 Console.WriteLine();
 Console.WriteLine();
 
-// Full outer excluding join
 Console.WriteLine("Full outer excluding join");
 Console.WriteLine();
 

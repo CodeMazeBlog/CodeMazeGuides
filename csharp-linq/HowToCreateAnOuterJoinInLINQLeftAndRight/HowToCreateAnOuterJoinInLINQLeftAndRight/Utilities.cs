@@ -2,7 +2,6 @@
 
 public static class Utilities
 {
-    // songs
     public static List<Song> Songs =
     [
         new Song() { Id = 1, Title = "Alabama Sundown", AuthorId = 3},
@@ -13,7 +12,6 @@ public static class Utilities
         new Song() { Id = 6, Title = "New Love", AuthorId = 1}
     ];
 
-    // authors
     public static List<Author> Authors =
     [
         new Author() { Id = 1, Name = "Sue Sherrington"},
