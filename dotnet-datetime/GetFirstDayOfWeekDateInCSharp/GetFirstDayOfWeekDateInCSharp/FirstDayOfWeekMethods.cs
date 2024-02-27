@@ -10,7 +10,7 @@ public class FirstDayOfWeekMethods
         int daysOffset = DayOfWeek.Thursday - firstOfJan.DayOfWeek;
 
         var firstThursdayOfYear = firstOfJan.AddDays(daysOffset);
-        var calendar = CultureInfo.CurrentCulture.Calendar;
+        var calendar = CultureInfo.InvariantCulture.Calendar;
         var firstWeekOfYear = calendar.GetWeekOfYear(firstThursdayOfYear, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
 
         var weekNumber = week;
