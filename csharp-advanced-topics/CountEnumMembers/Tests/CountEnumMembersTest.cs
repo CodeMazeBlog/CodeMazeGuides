@@ -10,6 +10,7 @@ namespace Tests
             var months = Enum.GetValues(typeof(Months));
             var expectedResult = 12;
             var actualResult = Program.Values(months);
+
             Assert.Equal(expectedResult, actualResult);
         }
 
