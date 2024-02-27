@@ -1,7 +1,6 @@
 ﻿@JsonObjectsWithHttpClient_HostAddress = http://localhost:5229
 
-GET {{JsonObjectsWithHttpClient_HostAddress}}/weatherforecast/
+GET {{JsonObjectsWithHttpClient_HostAddress}}/pet/
 Accept: application/json
 
 ###
-
