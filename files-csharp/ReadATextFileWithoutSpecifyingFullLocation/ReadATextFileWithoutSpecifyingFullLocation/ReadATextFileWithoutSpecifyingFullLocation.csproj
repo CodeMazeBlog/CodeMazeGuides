@@ -8,13 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="CodeMaze.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="CodeMaze.txt">
+    <None Update="CodeMaze.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </None>
   </ItemGroup>
 
 </Project>

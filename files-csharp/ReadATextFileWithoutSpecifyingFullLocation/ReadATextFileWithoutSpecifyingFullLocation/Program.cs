@@ -1,18 +1,12 @@
-﻿using System.Reflection;
-using System.Text;
-
-public class Program
+﻿public class Program
 {
     public static void Main()
     {
-        string fileName = @"C:\Code Maze\files-csharp\ReadATextFileWithoutSpecifyingFullLocation\CodeMaze.txt";
+        string fileName = @"CodeMaze.txt";
 
         try
         {
-            string currentDirectory = Directory.GetCurrentDirectory();
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-
-            string fileContent = ReadFileUsingDirectory(currentDirectory, fileName);
+            var fileContent = ReadFile(fileName);
             Console.WriteLine("File content:\n" + fileContent);
         }
         catch (IOException ex)
@@ -20,24 +14,24 @@ public class Program
             Console.WriteLine("An error occurred while reading the file: " + ex.Message);
         }
     }
-
-    public static string ReadFileUsingDirectory(string currentDirectoryPath, string fileName)
+    public static string ReadFileUsingCurrentDirectory(string fileName)
     {
+        string currentDirectoryPath = Directory.GetCurrentDirectory();
         string filePath = Path.Combine(currentDirectoryPath, fileName);
 
-        return File.ReadAllText(filePath);
+        return ReadFile(filePath);
     }
 
-    public static string ReadEmbeddedFile(string fileName)
+    public static string ReadFileUsingBaseDirectory(string fileName)
     {
-        Assembly assembly = Assembly.GetExecutingAssembly();
-        string resourceName = assembly.GetManifestResourceNames().FirstOrDefault(name => name.EndsWith(fileName, StringComparison.Ordinal));
+        string baseDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+        string filePath = Path.Combine(baseDirectoryPath, fileName);
 
-        using Stream stream = assembly.GetManifestResourceStream(resourceName) ??
-            throw new FileNotFoundException("Embedded resource not found after matching.", resourceName);
-
-        using StreamReader reader = new(stream, Encoding.UTF8);
-
-        return reader.ReadToEnd();
+        return ReadFile(filePath);
     }
+
+    public static string ReadFile(string filePath)
+    {
+        return File.ReadAllText(filePath);
+    }  
 }
