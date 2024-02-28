@@ -12,16 +12,13 @@ public class TestReadFileMethods
         var fileName = Path.GetRandomFileName();
         var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
         var filePath = Path.Combine(baseDirectory, fileName);
-        File.WriteAllText(filePath, ExpectedContent);
+        using var tempFile = TempFile.CreateTempFile(filePath, ExpectedContent);
 
         // Act
         var fileContent = ReadFileMethods.ReadFileUsingBaseDirectory(fileName);
 
         // Assert
         Assert.Equal(ExpectedContent, fileContent);
-
-        // Cleanup
-        File.Delete(filePath);
     }
 
     [Fact]
@@ -31,16 +28,13 @@ public class TestReadFileMethods
         var fileName = Path.GetRandomFileName();
         var directory = Directory.GetCurrentDirectory();
         var filePath = Path.Combine(directory, fileName);
-        File.WriteAllText(fileName, ExpectedContent);
+        using var tempFile = TempFile.CreateTempFile(filePath, ExpectedContent);
 
         // Act
         var fileContent = ReadFileMethods.ReadFile(fileName);
 
         // Assert
         Assert.Equal(ExpectedContent, fileContent);
-
-        // Cleanup
-        File.Delete(filePath);
     }
 
     [Fact]
@@ -50,15 +44,34 @@ public class TestReadFileMethods
         var fileName = Path.GetRandomFileName();
         var directory = Directory.GetCurrentDirectory();
         var filePath = Path.Combine(directory, fileName);
-        File.WriteAllText(filePath, ExpectedContent);
+        using var tempFile = TempFile.CreateTempFile(filePath, ExpectedContent);
 
         // Act
         var fileContent = ReadFileMethods.ReadFileUsingCurrentDirectory(fileName);
 
         // Assert
         Assert.Equal(ExpectedContent, fileContent);
+    }
 
-        // Cleanup
-        File.Delete(filePath);
+    private class TempFile : IDisposable
+    {
+        private readonly string _fileName;
+
+        private TempFile(string fileName, string fileContents)
+        {
+            _fileName = fileName;
+            File.WriteAllText(_fileName, fileContents);
+        }
+
+        public static TempFile CreateTempFile(string fileName, string fileContents) => new(fileName, fileContents);
+
+        public void Dispose()
+        {
+            try
+            {
+                File.Delete(_fileName);
+            }
+            catch { }
+        }
     }
 }
