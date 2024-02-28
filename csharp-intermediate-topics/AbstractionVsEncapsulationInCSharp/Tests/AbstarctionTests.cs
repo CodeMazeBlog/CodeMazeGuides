@@ -10,8 +10,8 @@
 
         // Act
         dog.MakeSound();
-        string expected = "Bark bark!";
-        string actual = sw.ToString().Trim();
+        var expected = "Bark bark!";
+        var actual = sw.ToString().Trim();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -27,8 +27,8 @@
 
         // Act
         cat.MakeSound();
-        string expected = "Meow!";
-        string actual = sw.ToString().Trim();
+        var expected = "Meow!";
+        var actual = sw.ToString().Trim();
 
         // Assert
         Assert.Equal(expected, actual);
@@ -39,11 +39,11 @@
     {
         // Arrange
         Animal animal = new Dog();
-        string expectedName = "Buddy";
+        var expectedName = "Buddy";
 
         // Act
         animal.Name = expectedName;
-        string actualName = animal.Name;
+        var actualName = animal.Name;
 
         // Assert
         Assert.Equal(expectedName, actualName);
@@ -54,11 +54,11 @@
     {
         // Arrange
         Animal animal = new Cat();
-        int expectedAge = 5;
+        var expectedAge = 5;
 
         // Act
         animal.Age = expectedAge;
-        int actualAge = animal.Age;
+        var actualAge = animal.Age;
 
         // Assert
         Assert.Equal(expectedAge, actualAge);
