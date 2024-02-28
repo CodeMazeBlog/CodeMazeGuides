@@ -58,15 +58,6 @@ public class EqualStringTests
     }
 
     [Fact]
-    public void WhenUseAsMemoryIsCalledWithEqualString_ThenReturnsTheInputString()
-    {
-        var result = _firstNCharactersOfStringGetter.UseAsMemory();
-
-        Assert.Equal(_expectedChars.Length, result.Length);
-        Assert.Equal(_expectedChars, result.ToArray());
-    }
-
-    [Fact]
     public void WhenUseToCharArrayIsCalledWithEqualString_ThenReturnsTheInputString()
     {
         var result = _firstNCharactersOfStringGetter.UseToCharArray();

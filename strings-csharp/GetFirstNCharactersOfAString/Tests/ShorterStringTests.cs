@@ -56,15 +56,6 @@ public class ShorterStringTests
     }
 
     [Fact]
-    public void WhenUseAsMemoryIsCalledWithShorterString_ThenReturnsTheInputString()
-    {
-        var result = _firstNCharactersOfStringGetter.UseAsMemory();
-
-        Assert.Equal(_expectedChars.Length, result.Length);
-        Assert.Equal(_expectedChars, result.ToArray());
-    }
-
-    [Fact]
     public void WhenUseToCharArrayIsCalledWithShorterString_ThenReturnsTheInputString()
     {
         var result = _firstNCharactersOfStringGetter.UseToCharArray();

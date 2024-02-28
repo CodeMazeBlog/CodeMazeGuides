@@ -12,13 +12,13 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
         if (IsInputStringShorter())
             return inputString;
 
-        var strBuilder = new StringBuilder(numberOfCharacters);
+        var dest = new char[numberOfCharacters];
         for (int i = 0; i < numberOfCharacters; i++)
         {
-            strBuilder.Append(inputString[i]);
+            dest[i] = inputString[i];
         }
 
-        return strBuilder.ToString();
+        return dest;
     }
 
     public ReadOnlySpan<char> UseRemove()
@@ -43,14 +43,6 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
             return inputString;
 
         return inputString.AsSpan(0, numberOfCharacters);
-    }
-
-    public ReadOnlySpan<char> UseAsMemory()
-    {
-        if (IsInputStringShorter())
-            return inputString;
-
-        return inputString.AsMemory()[..numberOfCharacters].Span;
     }
 
     public ReadOnlySpan<char> UseToCharArray()

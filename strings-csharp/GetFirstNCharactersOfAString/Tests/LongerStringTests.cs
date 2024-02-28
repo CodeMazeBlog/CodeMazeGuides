@@ -56,15 +56,6 @@ public class LongerStringTests
     }
 
     [Fact]
-    public void WhenUseAsMemoryIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
-    {
-        var result = _firstNCharactersOfStringGetter.UseAsMemory();
-
-        Assert.Equal(_expectedChars.Length, result.Length);
-        Assert.Equal(_expectedChars, result.ToArray());
-    }
-
-    [Fact]
     public void WhenUseToCharArrayIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
     {
         var result = _firstNCharactersOfStringGetter.UseToCharArray();

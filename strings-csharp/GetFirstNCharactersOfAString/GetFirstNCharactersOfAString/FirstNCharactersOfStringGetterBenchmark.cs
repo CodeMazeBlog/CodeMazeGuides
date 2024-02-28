@@ -19,30 +19,26 @@ public class FirstNCharactersOfStringGetterBenchmark
     }
 
     [Benchmark]
-    public void UseForLoop()
+    public ReadOnlySpan<char> UseForLoop()
         => _firstNCharactersOfStringGetter.UseForLoop();
 
     [Benchmark]
-    public void UseRemove()
+    public ReadOnlySpan<char> UseRemove()
         => _firstNCharactersOfStringGetter.UseRemove();
 
     [Benchmark]
     public void UseLINQEnumerable()
-        => ConsumerExtensions.Consume(_firstNCharactersOfStringGetter.UseLINQEnumerable(), _consumer);
+        => _firstNCharactersOfStringGetter.UseLINQEnumerable().Consume(_consumer);
 
     [Benchmark]
-    public void UseAsSpan()
+    public ReadOnlySpan<char> UseAsSpan()
         => _firstNCharactersOfStringGetter.UseAsSpan();
 
     [Benchmark]
-    public void UseAsSpanWithRangeOperator()
+    public ReadOnlySpan<char> UseAsSpanWithRangeOperator()
         => _firstNCharactersOfStringGetter.UseAsSpanWithRangeOperator();
 
     [Benchmark]
-    public void UseToCharArray()
+    public ReadOnlySpan<char> UseToCharArray()
         => _firstNCharactersOfStringGetter.UseToCharArray();
-
-    [Benchmark]
-    public void UseAsMemory()
-        => _firstNCharactersOfStringGetter.UseAsMemory();
 }
