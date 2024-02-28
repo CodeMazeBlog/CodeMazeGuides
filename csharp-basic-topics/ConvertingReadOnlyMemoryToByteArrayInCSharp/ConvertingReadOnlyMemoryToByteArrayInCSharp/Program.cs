@@ -1,57 +1,37 @@
 ﻿using System.Runtime.InteropServices;
 using System.Security.Cryptography;
-using System.Text;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        var numsResult = ReadOnlyMemoryOfIntToByteArray();
-        Console.WriteLine(Convert.ToBase64String(numsResult)); // output: AQAAAAIAAAADAAAA
+        var byteArray = ReadOnlyMemoryToByteArray<int>(new[] { 1, 2, 3 });
+        Console.WriteLine(BitConverter.ToString(byteArray));
 
-        var charsResult = ReadOnlyMemoryOfCharToByteArray();
-        Console.WriteLine(Convert.ToBase64String(charsResult)); // output: ZgBvAG8A
+        byteArray = ReadOnlyMemoryToByteArray("foo".AsMemory());
+        Console.WriteLine(BitConverter.ToString(byteArray));
 
-        string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-        var filePath = Path.Combine(documentsPath, "hello.txt");
-        var content = "Hello, World!";
-        SaveFile(filePath, content); // saves hello.txt in the Documents folder
+        var path = Path.GetTempFileName();
+        byteArray = SavePassword(path, "password".AsMemory());
+        Console.WriteLine(BitConverter.ToString(byteArray));
 
-        var hash = HashPassword("foo");
-        Console.WriteLine(Convert.ToBase64String(hash)); // output: LCa0a2j/xo/5m0U8HTBBNBNCLXBkg7+g+YpeiGJm564=
+        File.Delete(path);
     }
 
-    public static byte[] ReadOnlyMemoryOfIntToByteArray()
+    public static byte[] ReadOnlyMemoryToByteArray<T>(ReadOnlyMemory<T> memory)
+        where T : struct
     {
-        ReadOnlyMemory<int> numbers = new int[] { 1, 2, 3 };
-        var numsByteArray = MemoryMarshal.AsBytes(numbers.Span).ToArray();
-        return numsByteArray;
+        return MemoryMarshal.AsBytes(memory.Span).ToArray();
     }
 
-    public static byte[] ReadOnlyMemoryOfCharToByteArray()
+    public static byte[] SavePassword(string path, ReadOnlyMemory<char> password)
     {
-        ReadOnlyMemory<char> characters = "foo".AsMemory();
-        var charsByteArray = MemoryMarshal.AsBytes(characters.Span).ToArray();
-        return charsByteArray;
-    }
+        using var hashAlgorithm = SHA256.Create();
+        using var stream = new FileStream(path, FileMode.Create, FileAccess.Write);
 
-    public static void SaveFile(string path, string content)
-    {
-        ReadOnlyMemory<byte> readOnlyMemory = Encoding.UTF8.GetBytes(content);
-        using (var stream = new FileStream(path, FileMode.Create, FileAccess.Write))
-        {
-            byte[] byteArray = readOnlyMemory.ToArray();
-            stream.Write(byteArray, 0, byteArray.Length);
-        }
-    }
+        byte[] byteArray = MemoryMarshal.AsBytes(password.Span).ToArray();
+        stream.Write(byteArray, 0, byteArray.Length);
 
-    public static byte[] HashPassword(string password)
-    {
-        ReadOnlyMemory<byte> passwordMemory = Encoding.UTF8.GetBytes(password);
-        using (var hashAlgorithm = SHA256.Create())
-        {
-            byte[] byteArray = passwordMemory.ToArray();
-            return hashAlgorithm.ComputeHash(byteArray);
-        }
+        return hashAlgorithm.ComputeHash(byteArray);
     }
 }
