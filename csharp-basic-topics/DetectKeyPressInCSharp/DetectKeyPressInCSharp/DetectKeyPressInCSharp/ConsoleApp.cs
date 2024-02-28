@@ -29,7 +29,7 @@ namespace DetectKeyPressInCSharp
         public void KeyAvailableUse()
         {
             do
-            {
+            {   
                 _consoleService.WriteLine("Press 'x' to stop!");
                 Thread.Sleep(350);
                 _consoleService.Clear();
