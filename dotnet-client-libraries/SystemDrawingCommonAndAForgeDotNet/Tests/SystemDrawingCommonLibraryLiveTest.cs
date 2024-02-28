@@ -46,6 +46,7 @@ public class SystemDrawingCommonUnitTest
             for (int y = clampedRect.Top; y < clampedRect.Bottom; y++)
             {
                 var actualColor = _bitmap.GetPixel(x, y);
+
                 Assert.Equal(expectedColor, actualColor);
             }
         }

@@ -8,8 +8,8 @@ public class ImageMagickLibraryLiveTest
     private readonly MagickColor _color = MagickColors.Green;
     private readonly MagickGeometry _imageSize = new(480, 300);
     private readonly MagickGeometry _circle = new(50, 50, 100, 200);
-    private const string _outputPath = @"..\..\..\Image\outputImage.png";
-    private const string _nullOutputPath = "";
+    private const string OutputPath = @"..\..\..\Image\outputImage.png";
+    private const string NullOutputPath = "";
 
     private readonly MagickColor expectedColor;
     private readonly int centerX;
@@ -33,6 +33,7 @@ public class ImageMagickLibraryLiveTest
         var drawables = ImageService.CreateCircle(centerX, centerY, radius, strokeWidth, expectedColor, MagickColors.Transparent);
         var image = ImageService.CreateBlankImage(_imageSize.Width, _imageSize.Height, MagickColors.White);
         ImageService.DrawOnImage(image, drawables);
+
         return image;
     }
 
@@ -70,11 +71,13 @@ public class ImageMagickLibraryLiveTest
         // Check the color at the edge of the circle
         var edgePixel = pixels.GetPixel(centerX + radius - strokeWidth / 2, centerY);
         var edgeColor = edgePixel.ToColor();
+
         Assert.Equal(expectedColor, edgeColor);
 
         // Check the color outside the circle
         var outsidePixel = pixels.GetPixel(centerX + radius + strokeWidth / 2 + 1, centerY);
         var outsideColor = outsidePixel.ToColor();
+
         Assert.Equal(MagickColors.White, outsideColor);
     }
 
@@ -85,13 +88,13 @@ public class ImageMagickLibraryLiveTest
         var image = CreateCircleImage();
 
         // Act
-        ImageService.SaveImage(image, _outputPath);
+        ImageService.SaveImage(image, OutputPath);
 
         // Assert
-        Assert.True(File.Exists(_outputPath));
+        Assert.True(File.Exists(OutputPath));
 
         // Cleanup
-        File.Delete(_outputPath);
+        File.Delete(OutputPath);
     }
 
     [Fact]
@@ -103,7 +106,7 @@ public class ImageMagickLibraryLiveTest
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
         {
-            ImageService.SaveImage(image, _nullOutputPath);
+            ImageService.SaveImage(image, NullOutputPath);
         });
     }
 

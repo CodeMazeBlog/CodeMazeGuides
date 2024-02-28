@@ -8,10 +8,10 @@ public class SkiaSharpLibraryLiveTest : IDisposable
     private SKBitmap _bitmap;
     private readonly int _width = 400;
     private readonly int _height = 300;
-    private const string _validOutputPath = @"..\..\..\Image\outputImage.png";
-    private const string _invalidOutputPath = @"Z:\Invalid\Path\outputImage.png";
-    private const string _pathWithNoWritePermission = @"C:\Windows\System32\outputImage.png";
-    private const string _nullOutputPath = "";
+    private const string ValidOutputPath = @"..\..\..\Image\outputImage.png";
+    private const string InvalidOutputPath = @"Z:\Invalid\Path\outputImage.png";
+    private const string PathWithNoWritePermission = @"C:\Windows\System32\outputImage.png";
+    private const string NullOutputPath = "";
 
     public SkiaSharpLibraryLiveTest()
     {
@@ -65,38 +65,39 @@ public class SkiaSharpLibraryLiveTest : IDisposable
     public void GivenValidPath_WhenSaveImageIsCalled_ThenImageIsSavedToCorrectPath()
     {
         // Act
-        ImageService.SaveImage(_bitmap, _validOutputPath);
+        ImageService.SaveImage(_bitmap, ValidOutputPath);
 
         // Assert
-        Assert.True(File.Exists(_validOutputPath));
+        Assert.True(File.Exists(ValidOutputPath));
     }
 
     [Fact]
     public void GivenInvalidPath_WhenSaveImageIsCalled_ThenThrowDirectoryNotFoundException()
     {
         // Act & Assert
-        Assert.Throws<DirectoryNotFoundException>(() => ImageService.SaveImage(_bitmap, _invalidOutputPath));
+        Assert.Throws<DirectoryNotFoundException>(() => ImageService.SaveImage(_bitmap, InvalidOutputPath));
     }
 
     [Fact]
     public void GivenPathWithNoWritePermission_WhenSaveImageIsCalled_ThenThrowUnauthorizedAccessException()
     {
         // Act & Assert
-        Assert.Throws<UnauthorizedAccessException>(() => ImageService.SaveImage(_bitmap, _pathWithNoWritePermission));
+        Assert.Throws<UnauthorizedAccessException>(() => ImageService.SaveImage(_bitmap, PathWithNoWritePermission));
     }
 
     [Fact]
     public void GivenNullPath_WhenSavingImage_ThenThrowsArgumentNullException()
     {
         var image = ImageService.CreateBlankImage(_width, _height);
-        Assert.Throws<ArgumentNullException>(() => ImageService.SaveImage(image, _nullOutputPath));
+
+        Assert.Throws<ArgumentNullException>(() => ImageService.SaveImage(image, NullOutputPath));
     }
 
     public void Dispose()
     {
-        if (File.Exists(_validOutputPath))
+        if (File.Exists(ValidOutputPath))
         {
-            File.Delete(_validOutputPath);
+            File.Delete(ValidOutputPath);
         }
 
         _bitmap?.Dispose();
