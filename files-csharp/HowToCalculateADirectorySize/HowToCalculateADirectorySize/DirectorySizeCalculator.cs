@@ -39,7 +39,7 @@ public class DirectorySizeCalculator
     public static long GetSizeByIteration(string directoryPath)
     {
         long size = 0;
-        Stack<string> stack = new Stack<string>();
+        var stack = new Stack<string>();
 
         stack.Push(directoryPath);
 
@@ -49,16 +49,16 @@ public class DirectorySizeCalculator
 
             try
             {
-                string[] files = Directory.GetFiles(directory);
+                var files = Directory.GetFiles(directory);
 
                 foreach (var file in files)
                 {
                     size += new FileInfo(file).Length;
                 }
 
-                string[] sunDirectories = Directory.GetDirectories(directory);
+                var subDirectories = Directory.GetDirectories(directory);
 
-                foreach (var subDirectory in sunDirectories)
+                foreach (var subDirectory in subDirectories)
                 {
                     stack.Push(subDirectory);
                 }
