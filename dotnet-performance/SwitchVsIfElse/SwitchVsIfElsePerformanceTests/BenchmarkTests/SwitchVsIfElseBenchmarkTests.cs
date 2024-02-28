@@ -1,8 +1,7 @@
 using BenchmarkDotNet.Attributes;
 
-namespace SwitchVsIfElsePerformanceTests;
+namespace SwitchVsIfElsePerformanceTests.BenchmarkTests;
 
-[MemoryDiagnoser(false)]
 public class SwitchVsIfElseBenchmarkTests
 {
     private readonly int _iterations;
