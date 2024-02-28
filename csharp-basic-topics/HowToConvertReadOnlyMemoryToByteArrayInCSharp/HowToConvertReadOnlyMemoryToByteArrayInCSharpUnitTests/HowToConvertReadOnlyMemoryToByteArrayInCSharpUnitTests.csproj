@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ConvertingReadOnlyMemoryToByteArrayInCSharp\ConvertingReadOnlyMemoryToByteArrayInCSharp.csproj" />
+      <ProjectReference Include="..\HowToConvertReadOnlyMemoryToByteArrayInCSharp\HowToConvertReadOnlyMemoryToByteArrayInCSharp.csproj" />
     </ItemGroup>
 
 </Project>

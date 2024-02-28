@@ -1,4 +1,4 @@
-namespace ConvertingReadOnlyMemoryToByteArrayInCSharpUnitTests;
+namespace HowToConvertReadOnlyMemoryToByteArrayInCSharpUnitTests;
 
 public class ProgramTests
 {
