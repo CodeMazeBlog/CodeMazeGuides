@@ -1,4 +1,6 @@
-﻿int number = 123;
+﻿BenchmarkRunner.Run<DigitCounterBenchmark>();
+
+int number = 123;
 
 Console.WriteLine($"Number = {number}\n");
 
