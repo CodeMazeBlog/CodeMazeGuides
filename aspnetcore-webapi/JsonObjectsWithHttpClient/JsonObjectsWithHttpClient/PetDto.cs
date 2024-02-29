@@ -1,14 +1,18 @@
-﻿namespace JsonObjectsWithHttpClient;
+﻿using System.Text.Json.Serialization;
+
+namespace JsonObjectsWithHttpClient;
 
 public class PetDto
 {
-    public long id { get; set; }
-    public Category category { get; set; }
-    public string name { get; set; }
-    public string status { get; set; }
-}
+    [JsonPropertyName("id")]
+    public long Id { get; set; }
 
-public class Category
-{
-    public string name { get; set; }
+    [JsonPropertyName("category")]
+    public PetCategory? Category { get; set; }
+
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    [JsonPropertyName("status")]
+    public string? Status { get; set; }
 }

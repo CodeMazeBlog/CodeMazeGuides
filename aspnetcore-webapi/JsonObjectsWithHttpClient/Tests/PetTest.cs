@@ -1,18 +1,26 @@
-﻿using JsonObjectsWithHttpClient.Controllers;
+﻿using JsonObjectsWithHttpClient;
 
 namespace Tests;
 
 public class PetTest
 {
     [Fact]
-    public async void GivenPetObjectHasValues_WhenPetControllerIsCalled_ThenPetResultIsReturned()
+    public async void GivenPetObjectHasValues_WhenPostAsStringContentIsCalled_ThenPetResultIsReturned()
     {
-        var petController = new PetController();
+        var successResult = await (new PetService()).PostAsStringContent();
 
-        var successResult = await petController.Post();
+        Assert.NotEqual(0, successResult.Id);
 
-        Assert.NotEqual(0, successResult.id);
+        Assert.Equal("German Shepherd", successResult.Name);
+    }
 
-        Assert.Equal("German Shepherd", successResult.name);
+    [Fact]
+    public async void GivenPetObjectHasValues_WhenPostAsJsonIsCalled_ThenPetResultIsReturned()
+    {
+        var successResult = await (new PetService()).PostAsJson();
+
+        Assert.NotEqual(0, successResult.Id);
+
+        Assert.Equal("German Shepherd", successResult.Name);
     }
 }
