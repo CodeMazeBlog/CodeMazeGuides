@@ -1,10 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace JsonObjectsWithHttpClient
+namespace JsonObjectsWithHttpClient;
+
+public class PetCategory
 {
-    public class PetCategory
-	{
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-    }
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
 }

@@ -1,9 +1,8 @@
-﻿namespace JsonObjectsWithHttpClient
-{
-    public interface IPetService
-	{
-        Task<PetDto> PostAsStringContent();
+﻿namespace JsonObjectsWithHttpClient;
 
-        Task<PetDto> PostAsJson();
-    }
+public interface IPetService
+{
+    Task<PetDto> PostAsStringContent();
+
+    Task<PetDto> PostAsJson();
 }
