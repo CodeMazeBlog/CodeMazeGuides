@@ -20,10 +20,10 @@ public class Program
         File.Delete(path);
     }
 
-    public static byte[] ReadOnlyMemoryToByteArray<T>(ReadOnlyMemory<T> memory)
+    public static byte[] ReadOnlyMemoryToByteArray<T>(ReadOnlyMemory<T> input)
         where T : struct
     {
-        return MemoryMarshal.AsBytes(memory.Span).ToArray();
+        return MemoryMarshal.AsBytes(input.Span).ToArray();
     }
 
     public static byte[] SaveText(string path, ReadOnlyMemory<char> text)
