@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using GetFirstDayOfWeekDateInCSharp;
+
+var result = FirstDayOfWeekMethods.FirstDateOfWeekISO8601(2020, 1);
+Console.WriteLine(result);
