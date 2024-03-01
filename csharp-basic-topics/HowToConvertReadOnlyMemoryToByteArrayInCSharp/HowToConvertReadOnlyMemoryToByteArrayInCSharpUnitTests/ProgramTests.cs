@@ -35,12 +35,12 @@ public class ProgramTests
     {
         // Arrange
         var expected =
-            "E2-01-06-5D-05-54-65-26-15-C3-20-C0-0A-1D-5B-C8-ED-CA-46-9D-72-C2-79-0E-24-15-2D-0C-1E-2B-61-89";
+            "3F-AE-AF-C2-8D-3C-31-E6-D7-BF-62-8A-53-43-8E-7D-24-A8-68-16-F1-5D-10-F6-BA-54-E1-8F-8F-EC-26-C2";
         var path = Path.GetTempFileName();
-        var input = "password";
+        var input = "foo";
 
         // Act
-        var result = Program.SavePassword(path, input.ToArray());
+        var result = Program.SaveText(path, input.ToArray());
 
         // Assert
         Assert.Equal(expected, BitConverter.ToString(result));

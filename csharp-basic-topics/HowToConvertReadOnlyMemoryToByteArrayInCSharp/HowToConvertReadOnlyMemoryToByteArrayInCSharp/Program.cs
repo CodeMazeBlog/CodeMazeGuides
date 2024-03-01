@@ -5,14 +5,16 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        const string text = "foo";
+
         var byteArray = ReadOnlyMemoryToByteArray<int>(new[] { 1, 2, 3 });
         Console.WriteLine(BitConverter.ToString(byteArray));
 
-        byteArray = ReadOnlyMemoryToByteArray("foo".AsMemory());
+        byteArray = ReadOnlyMemoryToByteArray(text.AsMemory());
         Console.WriteLine(BitConverter.ToString(byteArray));
 
         var path = Path.GetTempFileName();
-        byteArray = SavePassword(path, "password".AsMemory());
+        byteArray = SaveText(path, text.AsMemory());
         Console.WriteLine(BitConverter.ToString(byteArray));
 
         File.Delete(path);
@@ -24,12 +26,12 @@ public class Program
         return MemoryMarshal.AsBytes(memory.Span).ToArray();
     }
 
-    public static byte[] SavePassword(string path, ReadOnlyMemory<char> password)
+    public static byte[] SaveText(string path, ReadOnlyMemory<char> text)
     {
         using var hashAlgorithm = SHA256.Create();
         using var stream = new FileStream(path, FileMode.Create, FileAccess.Write);
 
-        byte[] byteArray = MemoryMarshal.AsBytes(password.Span).ToArray();
+        byte[] byteArray = MemoryMarshal.AsBytes(text.Span).ToArray();
         stream.Write(byteArray, 0, byteArray.Length);
 
         return hashAlgorithm.ComputeHash(byteArray);
