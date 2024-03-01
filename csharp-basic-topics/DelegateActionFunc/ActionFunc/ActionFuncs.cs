@@ -7,9 +7,9 @@
 
         public static int SumFunc()
         {
-            int SumFunc(int a, int b) => a + b;
+            int Sum(int a, int b) => a + b;
 
-            var result = SumFunc(3, 4);
+            result = Sum(3, 4);
 
             return result;
         }
