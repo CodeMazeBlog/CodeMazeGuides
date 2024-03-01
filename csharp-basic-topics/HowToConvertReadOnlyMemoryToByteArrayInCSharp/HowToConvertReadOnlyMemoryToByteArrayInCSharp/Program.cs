@@ -31,7 +31,7 @@ public class Program
         using var hashAlgorithm = SHA256.Create();
         using var stream = new FileStream(path, FileMode.Create, FileAccess.Write);
 
-        byte[] byteArray = MemoryMarshal.AsBytes(text.Span).ToArray();
+        var byteArray = MemoryMarshal.AsBytes(text.Span).ToArray();
         stream.Write(byteArray, 0, byteArray.Length);
 
         return hashAlgorithm.ComputeHash(byteArray);
