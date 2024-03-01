@@ -3,7 +3,7 @@ namespace Architecture.Tests;
 public class ArchitectureTests
 {
     [Fact]
-    public void PersistenceLayerClasses_ShouldNot_BeInheritable()
+    public void GivenPersistenceLayerClasses_WhenInheritanceIsAttempted_ThenItShouldNotBePossible()
     {
         // Arrange
         var persistenceLayerAssembly = typeof(CatsDbContext).Assembly;
@@ -18,7 +18,7 @@ public class ArchitectureTests
     }
 
     [Fact]
-    public void ServiceLayerInterfaces_Should_BePublic()
+    public void GivenServiceLayerInterfaces_WhenAccessedFromOtherProjects_ThenTheyAreVisible()
     {
         // Arrange
         var serviceLayerAssembly = typeof(IServiceManager).Assembly;
@@ -33,7 +33,7 @@ public class ArchitectureTests
     }
 
     [Fact]
-    public void DomainLayer_ShouldNot_HaveAnyDependencies()
+    public void GivenDomainLayer_ThenShouldNotHaveAnyDependencies()
     {
         // Arrange
         var domainLayerAssembly = typeof(Cat).Assembly;
@@ -49,7 +49,7 @@ public class ArchitectureTests
     }
 
     [Fact]
-    public void CatNotFoundException_Should_InheritFromNotFoundException()
+    public void GivenCatNotFoundException_ThenShouldInheritFromNotFoundException()
     {
         // Arrange
         var domainLayerAssembly = typeof(CatNotFoundException).Assembly;
@@ -66,7 +66,7 @@ public class ArchitectureTests
     }
 
     [Fact]
-    public void ServiceInterfaces_Should_BePublic_And_BeInterfaces_And_StartWithI()
+    public void GivenServiceInterfaces_ThenShouldBePublicAndBeInterfacesAndStartWithI()
     {
         // Arrange
         var serviceLayerAssembly = typeof(IServiceManager).Assembly;
@@ -82,7 +82,7 @@ public class ArchitectureTests
     }
 
     [Fact]
-    public void ServiceInterfaces_Should_MeetCustomRule_And_ServiceManager_Should_HaveDependencyOnContracts()
+    public void GivenServiceInterfaces_ThenShouldMeetCustomRuleAndServiceManagerShouldHaveDependencyOnContracts()
     {
         // Arrange
         var serviceLayerAssembly = typeof(IServiceManager).Assembly;
