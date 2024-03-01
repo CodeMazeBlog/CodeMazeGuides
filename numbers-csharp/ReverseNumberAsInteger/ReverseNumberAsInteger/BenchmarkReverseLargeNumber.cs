@@ -23,7 +23,7 @@ namespace ReverseNumberAsInteger
         [Benchmark]
         public void SwappingDigits_200DigitNumber() => ReverseLargeNumbers.ReverseBySwappingDigits(veryLargeInt);
 
-        [Benchmark]
+        [Benchmark(Baseline = true)]
         public void ReverseAsString_200DigitNumber() => ReverseLargeNumbers.ReverseAsString(veryLargeInt);
     }
 }
