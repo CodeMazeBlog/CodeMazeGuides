@@ -6,13 +6,20 @@ namespace JsonObjectsWithHttpClient;
 
 public class PetService : IPetService
 {
-    private static readonly HttpClient _httpClient = new HttpClient();
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly HttpClient _httpClient;
+
+    public PetService(IHttpClientFactory httpClientFactory)
+    {
+        _httpClientFactory = httpClientFactory;
+        _httpClient = _httpClientFactory.CreateClient("PetStoreAPI");
+    }
 
     public async Task<PetDto> PostAsJson()
     {
         var petData = CreatePet();
 
-        var response = await _httpClient.PostAsJsonAsync("https://petstore.swagger.io/v2/pet", petData);
+        var response = await _httpClient.PostAsJsonAsync("", petData);
         response.EnsureSuccessStatusCode();
 
         var content = await response.Content.ReadAsStringAsync();
@@ -27,7 +34,7 @@ public class PetService : IPetService
 
         var pet = JsonSerializer.Serialize(petData);
 
-        var request = new HttpRequestMessage(HttpMethod.Post, "https://petstore.swagger.io/v2/pet");
+        var request = new HttpRequestMessage(HttpMethod.Post,"");
         request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         request.Content = new StringContent(pet, Encoding.UTF8);
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
