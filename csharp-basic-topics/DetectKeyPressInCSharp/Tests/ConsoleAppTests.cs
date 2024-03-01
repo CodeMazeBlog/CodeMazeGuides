@@ -1,8 +1,6 @@
 using DetectKeyPressInCSharp;
 using Moq;
 using NUnit.Framework;
-using System.Runtime;
-using System.Reflection;
 
 namespace Tests
 { 
