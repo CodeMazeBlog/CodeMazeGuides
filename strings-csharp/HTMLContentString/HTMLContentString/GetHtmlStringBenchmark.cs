@@ -1,12 +1,13 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Columns;
+using BenchmarkDotNet.Order;
 
 namespace HTMLContentString;
 
 [MemoryDiagnoser]
 [CsvExporter]
 [MarkdownExporterAttribute.Default]
-[MarkdownExporterAttribute.GitHub]
+[Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [HideColumns(Column.StdDev, Column.Gen0, Column.Gen1)]
 public class GetHtmlStringBenchmark
 {
