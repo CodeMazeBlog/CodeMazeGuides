@@ -7,13 +7,18 @@
 
         public static int ReverseUsingDigitExtractionAndReconstruction(int num)
         {
+            if (num == int.MaxValue || num == int.MinValue || num == 0)
+            {
+                return 0;
+            }
+
             int reversedNumber = 0;
 
             while (num != 0)
             {
                 int remainder = num % 10;
 
-                if (reversedNumber > 0 && reversedNumber > maxValueDiv10 || reversedNumber < 0 && reversedNumber < minValueDiv10)
+                if (reversedNumber > maxValueDiv10 || reversedNumber < minValueDiv10)
                 {
                     return 0;
                 }
@@ -27,12 +32,12 @@
 
         public static int ReverseUsingRecursion(int num, int reversedNumber = 0)
         {
-            if (num == 0)
+            if (num == int.MaxValue || num == int.MinValue || num == 0)
             {
                 return reversedNumber;
             }
 
-            if (reversedNumber > 0 && reversedNumber > maxValueDiv10 || reversedNumber < 0 && reversedNumber < minValueDiv10)
+            if (reversedNumber > maxValueDiv10 || reversedNumber < minValueDiv10)
             {
                 return 0;
             }
@@ -46,18 +51,13 @@
 
         public static int ReverseUsingMathPow(int num)
         {
-            if (num == int.MaxValue || num == int.MinValue)
+            if (num == int.MaxValue || num == int.MinValue || num == 0)
             {
                 return 0;
             }
 
-            bool isNegative = false;
-
-            if (num < 0)
-            {
-                isNegative = true;
-                num *= -1;                 
-            }
+            bool isNegative = num < 0;
+            num = isNegative ? -num : num;
 
             int length = (int)Math.Floor(Math.Log10(num) + 1);            
             int powerOf10 = (int)Math.Pow(10, length - 1);
@@ -67,7 +67,7 @@
             {                
                 int remainder = num % 10;
 
-                if ((remainder * (powerOf10 / 10)) >= int.MaxValue / 10)
+                if ((remainder * (powerOf10 / 10)) >= maxValueDiv10)
                 {
                     return 0;
                 }
@@ -82,29 +82,18 @@
         }
 
         public static int ReverseBySwappingDigits(int num)
-        {
-            bool isNegative = false;
-
-            if (num == int.MaxValue || num == int.MinValue)
+        {           
+            if (num == int.MaxValue || num == int.MinValue || num == 0)
             {
                 return 0;
             }
 
-            if (num < 0)
-            {
-                num *= -1;
-                isNegative = true;
-            }
+            bool isNegative = num < 0;
+            num = isNegative ? -num : num;
 
             int reversedNumber = 0;
 
-            int totalNumOfDigits = num == 0 ? 1 : (int)Math.Floor(Math.Log10(num)) + 1;
-
-            if (totalNumOfDigits <= 1)
-            {
-                return isNegative ? -num : num;
-            }
-
+            int totalNumOfDigits = (int)Math.Floor(Math.Log10(num)) + 1;
             int leftPow = (int)Math.Pow(10, totalNumOfDigits - 1);
             int rightPow = 1; 
 
@@ -113,7 +102,7 @@
                 int leftDigit = (num / leftPow) % 10;
                 int rightDigit = (num / rightPow) % 10;
 
-                if ((rightDigit * (leftPow / 10)) >= int.MaxValue / 10)
+                if ((rightDigit * (leftPow / 10)) >= maxValueDiv10)
                 {
                     return 0;
                 }
@@ -135,41 +124,11 @@
             return isNegative ? -reversedNumber : reversedNumber;
         }        
 
-        public static int ReverseUsingLinq(int num)
-        {
-            bool isNegative = false;
-
-            if (num == int.MaxValue || num == int.MinValue)
-            {
-                return 0;
-            }
-            else if (num < 0)
-            {                
-                isNegative = true;                
-                num *= -1;
-            }
-
-            int reversedNumber = num.ToString()
-                .Reverse()
-                .Select(digit => digit - '0')
-                       .Aggregate(0, (result, digit) =>
-                       {
-                           if (result > 0 && result > maxValueDiv10 || result < 0 && result < minValueDiv10)
-                           {
-                               return 0;
-                           }
-
-                           return result * 10 + digit;
-                       });
-
-            return isNegative ? -reversedNumber : reversedNumber;
-        }
-
         public static int ReverseAsString(int num)
         {
-            if (num == int.MinValue || num == int.MaxValue)
+            if (num == int.MaxValue || num == int.MinValue || num == 0)
             {
-                return 0; 
+                return 0;
             }
 
             bool isNegative = num < 0;

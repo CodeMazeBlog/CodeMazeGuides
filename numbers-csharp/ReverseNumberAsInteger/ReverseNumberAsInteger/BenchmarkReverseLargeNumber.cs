@@ -24,9 +24,6 @@ namespace ReverseNumberAsInteger
         public void SwappingDigits_200DigitNumber() => ReverseLargeNumbers.ReverseBySwappingDigits(veryLargeInt);
 
         [Benchmark]
-        public void Linq_200DigitNumber() => ReverseLargeNumbers.ReverseUsingLinq(veryLargeInt);
-
-        [Benchmark]
         public void ReverseAsString_200DigitNumber() => ReverseLargeNumbers.ReverseAsString(veryLargeInt);
     }
 }

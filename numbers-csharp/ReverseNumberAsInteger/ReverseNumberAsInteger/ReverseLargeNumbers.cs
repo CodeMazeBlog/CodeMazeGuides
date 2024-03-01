@@ -87,22 +87,6 @@ namespace ReverseNumberAsInteger
             return ReverseUsingRecursion(num / 10, reversedNumber);
         }
         
-        public static BigInteger ReverseUsingLinq(BigInteger num)
-        {
-            bool isNegative = false;
-            if (num < 0)
-            {
-                isNegative = true;
-                num *= -1;
-            }
-
-            BigInteger reversedNumber = num.ToString()
-                .Reverse()
-                .Aggregate(BigInteger.Zero, (result, digit) => result * 10 + digit - '0');
-
-            return isNegative ? -reversedNumber : reversedNumber;
-        }
-
         public static BigInteger ReverseAsString(BigInteger num)
         {
             bool isNegative = false;

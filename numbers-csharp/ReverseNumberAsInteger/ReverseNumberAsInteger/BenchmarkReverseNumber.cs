@@ -23,9 +23,6 @@ namespace ReverseNumberAsInteger
         public void SwappingDigits_Int() => ReverseNumbers.ReverseBySwappingDigits(num);
 
         [Benchmark]
-        public void Linq_Int() => ReverseNumbers.ReverseUsingLinq(num);
-
-        [Benchmark]
         public void ReverseAsString_Int() => ReverseLargeNumbers.ReverseAsString(num);
     }
 }

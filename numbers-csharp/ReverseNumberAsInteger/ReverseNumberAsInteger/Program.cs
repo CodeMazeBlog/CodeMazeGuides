@@ -25,8 +25,6 @@ namespace ReverseNumberAsInteger
                 Console.WriteLine("Reverse number using MathPow():\nOriginal Num: {0} Reversed Num: {1}", i, reversedNum);
                 reversedNum = ReverseNumbers.ReverseUsingRecursion(i);
                 Console.WriteLine("Reverse number using Recursion method:\nOriginal Num: {0} Reversed Num: {1}", i, reversedNum);
-                reversedNum = ReverseNumbers.ReverseUsingLinq(i);
-                Console.WriteLine("Reverse number using Linq:\nOriginal Num: {0} Reversed Num: {1}", i, reversedNum);
                 Console.WriteLine("\n---------------------------------------------------");
             }
 
@@ -40,11 +38,9 @@ namespace ReverseNumberAsInteger
                 Console.WriteLine("Reverse number using MathPow():\nOriginal Num: {0} Reversed Num: {1}", num, reversedLargeNum);
                 reversedLargeNum = ReverseLargeNumbers.ReverseUsingRecursion(num);
                 Console.WriteLine("Reverse number using Recursion method:\nOriginal Num: {0} Reversed Num: {1}", num, reversedLargeNum);
-                reversedLargeNum = ReverseLargeNumbers.ReverseUsingLinq(num);
-                Console.WriteLine("Reverse number using Linq:\nOriginal Num: {0} Reversed Num: {1}", num, reversedLargeNum);
                 Console.WriteLine("\n---------------------------------------------------");
             }
-
+            
             Console.ReadKey();
         }
 
