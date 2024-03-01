@@ -19,7 +19,9 @@ public class HowToUseStringPoolTests
     [TestMethod]
     public void WhenInitCalled_ThenReturnsTrue()
     {
-        var result = StringPoolHelper.Init();
+        var poolSize = _fixture.Create<int>();
+
+        var result = _poolHelper.Init(poolSize);
 
         Assert.IsTrue(result);
     }
@@ -35,10 +37,11 @@ public class HowToUseStringPoolTests
     [TestMethod]
     public void WhenGetPoolSizeCalled_ThenSizeMustBeReturn()
     {
-        var minimumSize = _fixture.Create<int>();
+        var poolSize = _fixture.Create<int>();
 
-        var result = StringPoolHelper.GetPoolSize(minimumSize);
-        var expected = new StringPool(minimumSize).Size;
+        _poolHelper.Init(poolSize);
+        var result = _poolHelper.GetPoolSize();
+        var expected = new StringPool(poolSize).Size;
 
         Assert.AreEqual(result, expected);
     }

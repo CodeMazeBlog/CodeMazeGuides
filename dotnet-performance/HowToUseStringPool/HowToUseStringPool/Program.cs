@@ -2,16 +2,18 @@
 using HowtoUseStringPool;
 using HowToUseStringPool.Benchmark;
 
-var referenceEquals = StringPoolHelper.Init();
+const int POOL_SIZE = 256;
+
+var stringPoolHelper = new StringPoolHelper();
+var referenceEquals = stringPoolHelper.Init(POOL_SIZE);
 Console.WriteLine("Reference Equals : {0}", referenceEquals);
+
+var size = stringPoolHelper.GetPoolSize();
+Console.WriteLine("GetPoolSize : {0}", size);
 
 referenceEquals = StringPoolHelper.UseSharedInstance();
 Console.WriteLine("Shared Reference Equals : {0}", referenceEquals);
 
-var size = StringPoolHelper.GetPoolSize(10);
-Console.WriteLine("GetPoolSize : {0}", size);
-
-var stringPoolHelper = new StringPoolHelper();
 var userAdded = stringPoolHelper.AddUser("Mark Twain", "mark.twain@example.com");
 Console.WriteLine("AddUser : {0}", userAdded);
 

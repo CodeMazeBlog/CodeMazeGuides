@@ -28,8 +28,7 @@ public class HowtoUseStringPoolBenchmark
     {
         for (int i = 0; i < Iterations; i++)
         {
-            int startIndex = i % (_charArray.Length - ChunkSize);
-
+            int startIndex =  i * ChunkSize % (_charArray.Length / ChunkSize);
             var instance = new string(_charArray, startIndex, ChunkSize);
         }
     }
@@ -39,9 +38,8 @@ public class HowtoUseStringPoolBenchmark
     {
         for (int i = 0; i < Iterations; i++)
         {
-            int startIndex = i % (_charArray.Length - ChunkSize);
+            int startIndex = i * ChunkSize % (_charArray.Length / ChunkSize);
             ReadOnlySpan<char> span = _charArray.AsSpan(startIndex, ChunkSize);
-
             var instance = StringPool.Shared.GetOrAdd(span);
         }
     }
@@ -52,7 +50,7 @@ public class HowtoUseStringPoolBenchmark
         var sb = new StringBuilder();
         for (int i = 0; i < Iterations; i++)
         {
-            int startIndex = i % (_charArray.Length - ChunkSize);
+            int startIndex = i * ChunkSize % (_charArray.Length / ChunkSize);
             sb.Append(_charArray, startIndex, ChunkSize);
 
             var instance = sb.ToString();

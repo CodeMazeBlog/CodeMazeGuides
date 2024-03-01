@@ -6,14 +6,20 @@ namespace HowtoUseStringPool;
 public class StringPoolHelper
 {
     private readonly Dictionary<string, string> _cache = [];
+    private StringPool _myPool;
 
-    public static bool Init()
+    public bool Init(int poolSize)
     {
-        var myPool = new StringPool();
-        var value1 = myPool.GetOrAdd("codemaze");
-        var value2 = myPool.GetOrAdd("codemaze"u8, Encoding.UTF8);
+        _myPool = new StringPool(poolSize);
+        var value1 = _myPool.GetOrAdd("codemaze");
+        var value2 = _myPool.GetOrAdd("codemaze"u8, Encoding.UTF8);
 
         return ReferenceEquals(value1, value2);
+    }
+
+    public int GetPoolSize()
+    {
+        return _myPool.Size;
     }
 
     public static bool UseSharedInstance()
@@ -24,16 +30,9 @@ public class StringPoolHelper
         return ReferenceEquals(value1, value2);
     }
 
-    public static int GetPoolSize(int minimumSize)
-    {
-        var myPool = new StringPool(minimumSize);
-
-        return myPool.Size;
-    }
-
     public bool AddUser(ReadOnlySpan<char> nameSpan, ReadOnlySpan<char> emailSpan)
     {
-        var cacheKey = BuildCacheKey("USER_", nameSpan);
+        var cacheKey = CombineSpan("USER_", nameSpan);
         var cacheValue = StringPool.Shared.GetOrAdd(emailSpan);
         _cache[cacheKey] = cacheValue;
 
@@ -42,34 +41,23 @@ public class StringPoolHelper
 
     public string GetUser(ReadOnlySpan<char> nameSpan)
     {
-        var cacheKey = BuildCacheKey("USER_", nameSpan);
+        var cacheKey = CombineSpan("USER_", nameSpan);
         _cache.TryGetValue(cacheKey, out var value);
 
         return value ?? string.Empty;
     }
 
-    private static string BuildCacheKey(ReadOnlySpan<char> prefixSpan, ReadOnlySpan<char> keySpan)
-    {
-        var prefix = StringPool.Shared.GetOrAdd(prefixSpan);
-        var name = StringPool.Shared.GetOrAdd(keySpan);
-
-        using var combined = CombineSpan(prefix, name);
-        var cacheKey = StringPool.Shared.GetOrAdd(combined.Span);
-
-        return cacheKey;
-    }
-
-    private static SpanOwner<char> CombineSpan(ReadOnlySpan<char> first, ReadOnlySpan<char> second)
+    private static string CombineSpan(ReadOnlySpan<char> first, ReadOnlySpan<char> second)
     {
         var combinedSpan = SpanOwner<char>.Allocate(first.Length + second.Length);
         var combined = combinedSpan.Span;
         first.CopyTo(combined);
         second.CopyTo(combined[first.Length..]);
 
-        return combinedSpan;
+        return StringPool.Shared.GetOrAdd(combinedSpan.Span);
     }
 
-    private static SpanOwner<char> CombineSpan(ReadOnlySpan<char> first, ReadOnlySpan<char> second, ReadOnlySpan<char> third)
+    private static string CombineSpan(ReadOnlySpan<char> first, ReadOnlySpan<char> second, ReadOnlySpan<char> third)
     {
         var combinedSpan = SpanOwner<char>.Allocate(first.Length + second.Length + third.Length);
         var combined = combinedSpan.Span;
@@ -78,19 +66,17 @@ public class StringPoolHelper
         second.CopyTo(combined);
         third.CopyTo(combined[second.Length..]);
 
-        return combinedSpan;
+        return StringPool.Shared.GetOrAdd(combinedSpan.Span);
     }
 
-    public string GetHostName(string url)
+    public string GetHostName(ReadOnlySpan<char> urlSpan)
     {
-        int offset = url.AsSpan().IndexOf([':', '/', '/']);
+        int offset = urlSpan.IndexOf([':', '/', '/']);
         int start = offset == -1 ? 0 : offset + 3;
-        int end = url.AsSpan(start).IndexOf('/');
+        int end = start + urlSpan[start..].IndexOf('/');
+        var hostName = urlSpan[start..end];
 
-        var hostName = url.AsSpan(start, end);
-        var result = StringPool.Shared.GetOrAdd(hostName);
-
-        return result;
+        return StringPool.Shared.GetOrAdd(hostName);
     }
 
     public static string GetHeaderValue(HttpRequestMessage request, ReadOnlySpan<char> key)
@@ -99,9 +85,10 @@ public class StringPoolHelper
 
         if (request.Headers.TryGetValues(keyValue, out var headerValues))
         {
-            var headerValue = string.Join(",", headerValues);
+            if (headerValues.Count() > 1)
+                return string.Join(",", headerValues);
 
-            return headerValue;
+            return headerValues.FirstOrDefault();
         }
 
         return string.Empty;
@@ -125,7 +112,7 @@ public class StringPoolHelper
     public bool CheckToken(HttpRequestMessage request)
     {
         var token = GetHeaderValue(request, "Authorization");
-        var tokenKey = BuildCacheKey("TOKEN_", token);
+        var tokenKey = CombineSpan("TOKEN_", token);
 
         if (_cache.TryGetValue(tokenKey, out var value))
         {
@@ -139,9 +126,7 @@ public class StringPoolHelper
     {
         const string prefix = "LOCALIZATION_";
 
-        using var combined = CombineSpan(prefix, langSpan, keySpan);
-
-        var calculatedKey = StringPool.Shared.GetOrAdd(combined.Span);
+        var calculatedKey = CombineSpan(prefix, langSpan, keySpan);
         _cache.TryGetValue(calculatedKey, out var value);
 
         return value ?? calculatedKey;
