@@ -8,21 +8,21 @@ if (!context.Database.CanConnect())
    context.AddSeedData();
 }
 
-PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesUsingAnyWithQuerySyntax(context));
+PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesAnyQuerySyntax(context));
 
-PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesUsingAnyWithMethodSyntax(context));
+PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesAnyMethodSyntax(context));
 
-PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesUsingJoinWithQuerySyntax(context));
+PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesJoinQuerySyntax(context));
 
-PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesUsingJoinWithMethodSyntax(context));
+PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesJoinMethodSyntax(context));
 
-PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesUsingContainsWithQuerySyntax(context));
+PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesContainsQuerySyntax(context));
 
-PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesUsingContainsWithMethodSyntax(context));
+PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesContainsMethodSyntax(context));
 
-PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesUsingAllWithQuerySyntax(context));
+PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesAllQuerySyntax(context));
 
-PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesUsingAllWithMethodSyntax(context));
+PrintEmployeeDetails(QueryExecutor.GetUnassignedEmployeesAllMethodSyntax(context));
 
 void PrintEmployeeDetails(List<Employee> employees)
 {

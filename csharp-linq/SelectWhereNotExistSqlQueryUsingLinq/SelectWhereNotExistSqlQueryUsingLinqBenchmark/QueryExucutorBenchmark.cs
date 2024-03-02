@@ -21,27 +21,27 @@ namespace SelectWhereNotExistSqlQueryUsingLinqBenchmark
         }
 
         [Benchmark]
-        public void GetUsingAnyWithQuerySyntax() => QueryExecutor.GetUnassignedEmployeesUsingAnyWithQuerySyntax(_context);
+        public void GetUsingAnyWithQuerySyntax() => QueryExecutor.GetUnassignedEmployeesAnyQuerySyntax(_context!);
 
         [Benchmark]
-        public void GetUsingAnyWithMethodSyntax() => QueryExecutor.GetUnassignedEmployeesUsingAnyWithMethodSyntax(_context);
+        public void GetUsingAnyWithMethodSyntax() => QueryExecutor.GetUnassignedEmployeesAnyMethodSyntax(_context!);
 
         [Benchmark]
-        public void GetUsingJoinWithQuerySyntax() => QueryExecutor.GetUnassignedEmployeesUsingJoinWithQuerySyntax(_context);
+        public void GetUsingJoinWithQuerySyntax() => QueryExecutor.GetUnassignedEmployeesJoinQuerySyntax(_context!);
 
         [Benchmark]
-        public void GetUsingJoinWithMethodSyntax() => QueryExecutor.GetUnassignedEmployeesUsingJoinWithMethodSyntax(_context);
+        public void GetUsingJoinWithMethodSyntax() => QueryExecutor.GetUnassignedEmployeesJoinMethodSyntax(_context!);
 
         [Benchmark]
-        public void GetUsingContainsWithQuerySyntax() => QueryExecutor.GetUnassignedEmployeesUsingContainsWithQuerySyntax(_context);
+        public void GetUsingContainsWithQuerySyntax() => QueryExecutor.GetUnassignedEmployeesContainsQuerySyntax(_context!);
 
         [Benchmark]
-        public void GetUsingContainsWithMethodSyntax() => QueryExecutor.GetUnassignedEmployeesUsingContainsWithMethodSyntax(_context);
+        public void GetUsingContainsWithMethodSyntax() => QueryExecutor.GetUnassignedEmployeesContainsMethodSyntax(_context!);
 
         [Benchmark]
-        public void GetUsingAllWithQuerySyntax() => QueryExecutor.GetUnassignedEmployeesUsingAllWithQuerySyntax(_context);
+        public void GetUsingAllWithQuerySyntax() => QueryExecutor.GetUnassignedEmployeesAllQuerySyntax(_context!);
 
         [Benchmark]
-        public void GetUsingAllWithMethodSyntax() => QueryExecutor.GetUnassignedEmployeesUsingAllWithMethodSyntax(_context);
+        public void GetUsingAllWithMethodSyntax() => QueryExecutor.GetUnassignedEmployeesAllMethodSyntax(_context!);
     }
 }

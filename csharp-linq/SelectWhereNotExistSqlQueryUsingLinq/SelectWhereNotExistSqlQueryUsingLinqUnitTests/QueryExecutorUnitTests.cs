@@ -6,7 +6,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
     [TestClass]
     public class QueryExecutorUnitTests
     {
-        private EmployeeDbContext _context;
+        private EmployeeDbContext? _context;
 
         [TestInitialize]
         public void TestInitialize()
@@ -24,7 +24,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
         public void GivenEmployeeDbContext_WhenExecuteUsingAnyWithQuerySyntax_ThenReturnUnassignedEmployees()
         {
             // Act
-            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesUsingAnyWithQuerySyntax(_context);
+            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesAnyQuerySyntax(_context!);
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
@@ -35,7 +35,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
         public void GivenEmployeeDbContext_WhenExecuteUsingAnyWithMethodSyntax_ThenReturnUnassignedEmployees()
         {
             // Act
-            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesUsingAnyWithMethodSyntax(_context);
+            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesAnyMethodSyntax(_context!);
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
@@ -46,7 +46,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
         public void GivenEmployeeDbContext_WhenExecuteUsingJoinWithQuerySyntax_ThenReturnUnassignedEmployees()
         {
             // Act
-            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesUsingJoinWithQuerySyntax(_context);
+            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesJoinQuerySyntax(_context!);
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
@@ -57,7 +57,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
         public void GivenEmployeeDbContext_WhenExecuteUsingJoinWithMethodSyntax_ThenReturnUnassignedEmployees()
         {
             // Act
-            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesUsingJoinWithMethodSyntax(_context);
+            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesJoinMethodSyntax(_context!);
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
@@ -68,7 +68,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
         public void GivenEmployeeDbContext_WhenExecuteUsingContainsWithQuerySyntax_ThenReturnUnassignedEmployees()
         {
             // Act
-            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesUsingContainsWithQuerySyntax(_context);
+            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesContainsQuerySyntax(_context!);
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
@@ -79,7 +79,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
         public void GivenEmployeeDbContext_WhenExecuteUsingContainsWithMethodSyntax_ThenReturnUnassignedEmployees()
         {
             // Act
-            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesUsingContainsWithMethodSyntax(_context);
+            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesContainsMethodSyntax(_context!);
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
@@ -90,7 +90,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
         public void GivenEmployeeDbContext_WhenExecuteUsingAllWithQuerySyntax_ThenReturnUnassignedEmployees()
         {
             // Act
-            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesUsingAllWithQuerySyntax(_context);
+            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesAllQuerySyntax(_context!);
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
@@ -101,7 +101,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
         public void GivenEmployeeDbContext_WhenExecuteUsingAllWithMethodSyntax_ThenReturnUnassignedEmployees()
         {
             // Act
-            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesUsingAllWithMethodSyntax(_context);
+            var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesAllMethodSyntax(_context!);
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
