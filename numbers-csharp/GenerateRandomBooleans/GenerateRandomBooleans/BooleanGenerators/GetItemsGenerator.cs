@@ -1,8 +1,15 @@
 ﻿using GenerateRandomBooleans.RandomGenerators;
 
-namespace GenerateRandomBooleans.BooleanGenerators;
-
-public class GetItemsGenerator(IRandomGenerator randomGenerator) : IBooleanGenerator
+namespace GenerateRandomBooleans.BooleanGenerators
 {
-    public bool NextBool() => randomGenerator.GetItems([false, true], 1)[0];
+    public class GetItemsGenerator(IRandomGenerator randomGenerator) : IBooleanGenerator
+    {
+        public bool NextBool()
+        {
+            Span<bool> destination = stackalloc bool[1];
+            randomGenerator.GetItems([false, true], destination);
+
+            return destination[0];
+        }
+    }
 }

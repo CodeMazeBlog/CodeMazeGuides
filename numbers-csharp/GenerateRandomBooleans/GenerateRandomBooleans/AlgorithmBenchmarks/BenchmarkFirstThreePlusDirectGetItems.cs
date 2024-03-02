@@ -2,6 +2,7 @@
 using BenchmarkDotNet.Order;
 using GenerateRandomBooleans.BooleanGenerators;
 using GenerateRandomBooleans.RandomGenerators;
+using System.Buffers;
 
 namespace GenerateRandomBooleans.AlgorithmBenchmarks;
 
@@ -44,7 +45,19 @@ public class BenchmarkFirstThreePlusDirectGetItems : BenchmarkBase
     [Benchmark]
     public void GetItemsDirectGenerator()
     {
-        var r = new SystemRandomGenerator();
-        var _ = r.GetItems([true, false], NumberOfBooleans);
+        bool[]? buffer = null;
+        try
+        {
+            buffer = ArrayPool<bool>.Shared.Rent(NumberOfBooleans);
+            var bufferSpan = buffer.AsSpan(NumberOfBooleans);
+
+            var r = new SystemRandomGenerator();
+            r.GetItems([true, false], bufferSpan);
+        }
+        finally
+        {
+            if (buffer is not null)
+                ArrayPool<bool>.Shared.Return(buffer);
+        }
     }
 }

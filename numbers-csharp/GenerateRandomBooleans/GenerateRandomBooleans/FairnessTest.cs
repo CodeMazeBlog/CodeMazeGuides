@@ -12,7 +12,6 @@ public static class FairnessTest
         {
             { "GetItemsGenerator", new GetItemsGenerator(randomGenerator) },
             { "GetItemsWithBufferGenerator", new GetItemsWithBufferGenerator(randomGenerator, 64) },
-            { "NextBytesGenerator", new NextBytesGenerator(randomGenerator, 64) },
             { "NextDoubleGenerator", new NextDoubleGenerator(randomGenerator) },
             { "NextIntegerGenerator", new NextIntegerGenerator(randomGenerator) },
             { "NextIntegerBitsGenerator", new NextIntegerBitsGenerator(randomGenerator) },

@@ -8,7 +8,5 @@ public interface IRandomGenerator
 
     double NextDouble();
 
-    T[] GetItems<T>(T[] choices, int length);
-
-    void NextBytes(byte[] buffer);
+    void GetItems<T>(ReadOnlySpan<T> choices, Span<T> destination);
 }

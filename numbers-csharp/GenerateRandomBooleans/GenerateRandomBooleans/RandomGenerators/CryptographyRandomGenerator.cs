@@ -13,14 +13,7 @@ public sealed class CryptographyRandomGenerator : IRandomGenerator, IDisposable
 
     public double NextDouble() => throw new System.NotImplementedException();
 
-    public T[] GetItems<T>(T[] choices, int length)
-    {
-        ReadOnlySpan<T> choicesSpan = choices;
-
-        return RandomNumberGenerator.GetItems(choicesSpan, length);
-    }
-
-    public void NextBytes(byte[] buffer) => _random.GetBytes(buffer);
+    public void GetItems<T>(ReadOnlySpan<T> choices, Span<T> result) => RandomNumberGenerator.GetItems(choices, result);
 
     public void Dispose()
     {

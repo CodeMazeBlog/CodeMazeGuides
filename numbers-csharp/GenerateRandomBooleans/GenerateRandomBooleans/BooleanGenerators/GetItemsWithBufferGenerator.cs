@@ -4,16 +4,16 @@ namespace GenerateRandomBooleans.BooleanGenerators;
 
 public class GetItemsWithBufferGenerator(IRandomGenerator randomGenerator, int bufferLength) : IBooleanGenerator
 {
-    private readonly bool[] _allPossibilities = [false, true];
+    private static readonly bool[] _allPossibilities = [false, true];
+    private readonly bool[] _buffer = new bool[bufferLength];
 
-    private int _currentBufferIndex = int.MaxValue;
-    private bool[] _buffer = [];
+    private int _currentBufferIndex = bufferLength;
 
     public bool NextBool()
     {
-        if (_currentBufferIndex >= bufferLength)
+        if (_currentBufferIndex >= _buffer.Length)
         {
-            _buffer = randomGenerator.GetItems<bool>(_allPossibilities, bufferLength);
+            randomGenerator.GetItems<bool>(_allPossibilities, _buffer);
             _currentBufferIndex = 0;
         }
 

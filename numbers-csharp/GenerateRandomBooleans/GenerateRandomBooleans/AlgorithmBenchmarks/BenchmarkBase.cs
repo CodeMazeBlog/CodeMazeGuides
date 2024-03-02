@@ -7,7 +7,7 @@ public class BenchmarkBase
 {
     protected readonly IRandomGenerator RandomGenerator = new SystemRandomGenerator();
 
-    protected long RoundRobin(IBooleanGenerator generator, int numberOfBooleans)
+    protected static long RoundRobin(IBooleanGenerator generator, int numberOfBooleans)
     {
         var countTrue = 0L;
         for (var i = 0; i < numberOfBooleans; i++)
@@ -19,7 +19,7 @@ public class BenchmarkBase
         return countTrue;
     }
 
-    protected void StoreEverything(IBooleanGenerator generator, bool[] buffer)
+    protected static void StoreEverything(IBooleanGenerator generator, bool[] buffer)
     {
         for (var index = 0; index < buffer.Length; index++)
         {

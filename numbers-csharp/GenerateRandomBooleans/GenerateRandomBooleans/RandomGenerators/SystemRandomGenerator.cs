@@ -1,4 +1,6 @@
-﻿namespace GenerateRandomBooleans.RandomGenerators;
+﻿using System.Runtime.CompilerServices;
+
+namespace GenerateRandomBooleans.RandomGenerators;
 
 public class SystemRandomGenerator : IRandomGenerator
 {
@@ -10,7 +12,5 @@ public class SystemRandomGenerator : IRandomGenerator
 
     public double NextDouble() => _random.NextDouble();
 
-    public T[] GetItems<T>(T[] choices, int length) => _random.GetItems(choices, length);
-
-    public void NextBytes(byte[] buffer) => _random.NextBytes(buffer);
+    public void GetItems<T>(ReadOnlySpan<T> choices, Span<T> result) => _random.GetItems(choices, result);
 }

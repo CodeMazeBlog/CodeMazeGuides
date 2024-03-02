@@ -8,7 +8,5 @@ BenchmarkRunner.Run<BenchmarkRandomGenerators>();
 // BenchmarkRunner.Run<BenchmarkGetItemsWithBufferGenerator>();
 // BenchmarkRunner.Run<BenchmarkGetItemsWithBufferGeneratorVsNextIntegerGenerator>();
 // BenchmarkRunner.Run<BenchmarkNextIntegerBitsGeneratorVsNextIntegerGenerator>();
-// BenchmarkRunner.Run<BenchmarkNextBytesGenerator>();
-// BenchmarkRunner.Run<BenchmarkNextBytesGeneratorVsNextIntegerBitsGenerator>();
 // BenchmarkRunner.Run<BenchmarkNextIntegerBitsGeneratorVsNextLongBitsGenerator>();
 // FairnessTest.Test();
