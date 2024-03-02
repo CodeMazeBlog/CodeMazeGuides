@@ -2,7 +2,7 @@
 
 public interface IPetService
 {
-    Task<PetDto> PostAsStringContent();
+    Task<PetDto?> PostAsStringContent();
 
-    Task<PetDto> PostAsJson();
+    Task<PetDto?> PostAsJson();
 }

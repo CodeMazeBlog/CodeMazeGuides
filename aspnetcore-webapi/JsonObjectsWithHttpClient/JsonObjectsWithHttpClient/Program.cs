@@ -5,9 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IPetService, PetService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient("PetStoreAPI", client =>
+builder.Services.AddHttpClient<IPetService, PetService>(client =>
 {
-    client.BaseAddress = new Uri("https://petstore.swagger.io/v2/pet");
+    client.BaseAddress = new Uri("https://petstore.swagger.io/v2/");
 });
 
 var app = builder.Build();

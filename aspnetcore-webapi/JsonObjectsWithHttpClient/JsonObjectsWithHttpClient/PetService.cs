@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
@@ -6,20 +7,18 @@ namespace JsonObjectsWithHttpClient;
 
 public class PetService : IPetService
 {
-    private readonly IHttpClientFactory _httpClientFactory;
     private readonly HttpClient _httpClient;
 
-    public PetService(IHttpClientFactory httpClientFactory)
+    public PetService(HttpClient httpClient)
     {
-        _httpClientFactory = httpClientFactory;
-        _httpClient = _httpClientFactory.CreateClient("PetStoreAPI");
+        _httpClient = httpClient;
     }
 
-    public async Task<PetDto> PostAsJson()
+    public async Task<PetDto?> PostAsJson()
     {
         var petData = CreatePet();
 
-        var response = await _httpClient.PostAsJsonAsync("", petData);
+        var response = await _httpClient.PostAsJsonAsync("pet", petData);
         response.EnsureSuccessStatusCode();
 
         var content = await response.Content.ReadAsStringAsync();
@@ -28,13 +27,13 @@ public class PetService : IPetService
         return createdPet;
     }
 
-    public async Task<PetDto> PostAsStringContent()
+    public async Task<PetDto?> PostAsStringContent()
     {
         var petData = CreatePet();
 
         var pet = JsonSerializer.Serialize(petData);
 
-        var request = new HttpRequestMessage(HttpMethod.Post,"");
+        var request = new HttpRequestMessage(HttpMethod.Post, "pet");
         request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         request.Content = new StringContent(pet, Encoding.UTF8);
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");

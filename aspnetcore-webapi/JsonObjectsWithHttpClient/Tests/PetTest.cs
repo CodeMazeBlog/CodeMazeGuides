@@ -1,39 +1,60 @@
-﻿using System.Net;
-using JsonObjectsWithHttpClient;
-using Moq;
-using Moq.Protected;
-
-namespace Tests;
+﻿namespace Tests;
 
 public class PetTest
 {
+    private const string _baseAddress = "https://mockdomain.mock";
+
     [Fact]
     public async void GivenPetObjectHasValues_WhenPostAsStringContentIsCalled_ThenPetResultIsReturned()
     {
-        var HttpClientFactoryMock = new Mock<IHttpClientFactory>();
-        var HttpMessageHandlerMock = new Mock<HttpMessageHandler>();
+        var httpMessageHandlerMock = new Mock<HttpMessageHandler>();
 
-        HttpMessageHandlerMock.Protected()
-            .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+        httpMessageHandlerMock.Protected()
+            .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.Is<HttpRequestMessage>(r => r.RequestUri!.AbsoluteUri == $"{_baseAddress}/pet"), ItExpr.IsAny<CancellationToken>())
             .ReturnsAsync(new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
                 Content = new StringContent("{\n  \"id\": 12,\n  \"name\": \"German Shepherd\"\n}")
             });
 
-        var httpClientMock = new HttpClient(HttpMessageHandlerMock.Object)
+        var httpClientMock = new HttpClient(httpMessageHandlerMock.Object)
         {
-            BaseAddress = new Uri("https://mockdomain.mock")
+            BaseAddress = new Uri(_baseAddress)
         };
 
-        HttpClientFactoryMock.Setup(_ => _.CreateClient(It.IsAny<string>()))
-            .Returns(httpClientMock);
-
-        var successResult = await new PetService(HttpClientFactoryMock.Object)
+        var successResult = await new PetService(httpClientMock)
             .PostAsStringContent();
 
-        Assert.Equal(12, successResult.Id);
+        Assert.NotNull(successResult);
+        Assert.Equal(12, successResult!.Id);
 
-        Assert.Equal("German Shepherd", successResult.Name);
+        Assert.Equal("German Shepherd", successResult!.Name);
+    }
+
+    [Fact]
+    public async void GivenPetObjectHasValues_WhenPostAsJsonIsCalled_ThenPetResultIsReturned()
+    {
+        var httpMessageHandlerMock = new Mock<HttpMessageHandler>();
+
+        httpMessageHandlerMock.Protected()
+            .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.Is<HttpRequestMessage>(r => r.RequestUri!.AbsoluteUri == $"{_baseAddress}/pet"), ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent("{\n  \"id\": 12,\n  \"name\": \"German Shepherd\"\n}")
+            });
+
+        var httpClientMock = new HttpClient(httpMessageHandlerMock.Object)
+        {
+            BaseAddress = new Uri(_baseAddress)
+        };
+        
+        var successResult = await new PetService(httpClientMock)
+            .PostAsJson();
+
+        Assert.NotNull(successResult);
+        Assert.Equal(12, successResult!.Id);
+
+        Assert.Equal("German Shepherd", successResult!.Name);
     }
 }
