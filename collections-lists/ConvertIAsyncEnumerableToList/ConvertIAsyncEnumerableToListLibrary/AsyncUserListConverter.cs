@@ -7,18 +7,15 @@ public static class AsyncUserListConverter
     {
         var usersAsync = UserPageFetcher.GetUsersAsync();
 
-        var usersList = await usersAsync.ToListAsync();
-
-        return usersList;
+        return await usersAsync.ToListAsync();
     }
 
     public static async Task<List<User>> GetUsersAsListAsyncWithCancellationToken
     (CancellationToken cancellationToken = default)
     {
-        var usersAsync = UserPageFetcher.GetUsersAsyncWithCancellationToken(cancellationToken);
+        var usersAsync = UserPageFetcher
+            .GetUsersAsyncWithCancellationToken(cancellationToken: cancellationToken);
 
-        var usersList = await usersAsync.ToListAsync();
-
-        return usersList;
+        return await usersAsync.ToListAsync(cancellationToken);
     }
 }
