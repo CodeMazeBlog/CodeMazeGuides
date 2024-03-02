@@ -48,14 +48,17 @@ public static class SampleRunner
 
     private static void LogUserDetails(User user)
     {
+        var previousColor = Console.ForegroundColor;
         try
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+            ArgumentNullException.ThrowIfNull(user, nameof(user));
             Console.WriteLine($"ID: {user.Id}");
             Console.WriteLine($"Name: {user.Name}");
         }
         finally
         {
-            Console.WriteLine("Exiting Logging Method...");
+            Console.ForegroundColor = previousColor;
         }
     }
 }
