@@ -1,16 +1,16 @@
 using System.Text;
-using API.IntegrationTests;
 using FluentAssertions;
 using Newtonsoft.Json.Linq;
+using Tests.Server;
 
 namespace GraphQLStrawberryShake.Server.IntegrationTests;
-public class StrawberryShakeServerIntegrationTest : IClassFixture<WebApiFixture>
+public class StrawberryShakeServerIntTest : IClassFixture<WebApiFixture>
 {
 
     private readonly WebApiFixture _fixture;
     private readonly HttpClient _client;
 
-    public StrawberryShakeServerIntegrationTest(WebApiFixture fixture)
+    public StrawberryShakeServerIntTest(WebApiFixture fixture)
     {
         _fixture = fixture;
         _client = _fixture.CreateClient();

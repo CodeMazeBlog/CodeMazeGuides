@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace API.IntegrationTests;
+namespace Tests.Server;
 
 public class WebApiFixture : WebApplicationFactory<Program>
 {

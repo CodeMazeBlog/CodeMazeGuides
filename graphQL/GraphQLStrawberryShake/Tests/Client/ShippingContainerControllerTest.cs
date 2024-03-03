@@ -5,13 +5,13 @@ using GraphQLStrawberryShake.GraphQL;
 using StrawberryShake;
 using FluentAssertions;
 
-namespace GraphQLStrawberryShake.Tests;
-public class ShippingContainerControllerTests
+namespace Tests.Client;
+public class ShippingContainerControllerTest
 {
     private readonly IShippingContainerClient _client;
     private readonly ShippingContainerController _controller;
 
-    public ShippingContainerControllerTests()
+    public ShippingContainerControllerTest()
     {
         _client = Substitute.For<IShippingContainerClient>();
         _controller = new ShippingContainerController(_client);
