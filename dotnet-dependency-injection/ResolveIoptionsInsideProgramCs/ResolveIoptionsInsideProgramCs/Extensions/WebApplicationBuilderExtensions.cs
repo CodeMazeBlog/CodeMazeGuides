@@ -17,9 +17,9 @@ public static class WebApplicationBuilderExtensions
 
     public static string GetSpecificValue(this WebApplicationBuilder builder)
     {
-        var value = builder.Configuration.GetValue<string>("MySettings:ImportantSetting");
+        var configurationValue = builder.Configuration.GetValue<string>("MySettings:ImportantSetting");
 
-        return value;
+        return configurationValue;
     }
 
     public static MySettings BindToSettingsModel(this WebApplicationBuilder builder)
