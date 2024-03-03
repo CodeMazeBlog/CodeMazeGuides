@@ -1,6 +1,0 @@
-@GraphQLStrawberryShake_HostAddress = http://localhost:5097
-
-GET {{GraphQLStrawberryShake_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
