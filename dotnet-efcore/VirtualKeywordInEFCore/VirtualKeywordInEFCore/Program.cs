@@ -1,4 +1,5 @@
-﻿using VirtualKeywordInEFCore.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using VirtualKeywordInEFCore.Models;
 
 namespace VirtualKeywordInEFCore
 {
@@ -9,7 +10,6 @@ namespace VirtualKeywordInEFCore
             LoadData();
 
             LoadDataWithLazyLoading();
-
         }
 
         public static void LoadData()
@@ -19,7 +19,8 @@ namespace VirtualKeywordInEFCore
             using var contextWithoutLazyLoading = new DataContextWithoutLazyLoading();
             DataSeeder.SeedWhitoutLazy(contextWithoutLazyLoading);
             Author author;
-            author = contextWithoutLazyLoading.Authors.First(a => a.FullName == "Lucy FOLEY");
+            author = contextWithoutLazyLoading.Authors.AsNoTracking().First(a => a.FullName == "Lucy FOLEY");
+
             if (author is not null)
             {
                 Console.WriteLine($"Author Name: {author.FullName}");
@@ -39,7 +40,7 @@ namespace VirtualKeywordInEFCore
             using var contextLazy = new DataContextLazyLoading();
             DataSeeder.SeedLazy(contextLazy);
             Author_lazy author_lazy;
-            author_lazy = contextLazy.Authors_lazy.First(a => a.FullName == "Holly JACKSON");
+            author_lazy = contextLazy.Authors_lazy.AsNoTracking().First(a => a.FullName == "Holly JACKSON");
 
             if (author_lazy is not null)
             {

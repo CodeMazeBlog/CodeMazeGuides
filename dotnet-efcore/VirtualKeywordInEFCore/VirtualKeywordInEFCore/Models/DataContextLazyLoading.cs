@@ -6,13 +6,12 @@ namespace VirtualKeywordInEFCore.Models
     {
         public DataContextLazyLoading() : base()
         {
-            //this.ChangeTracker.LazyLoadingEnabled = false;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer($"Server=(localdb)\\mssqllocaldb;Database=LibraryLazy.db;Trusted_Connection=True;MultipleActiveResultSets=true")
-                   .UseLazyLoadingProxies();
+            options.UseSqlite("DataSource=LibraryLazy.db")     
+                .UseLazyLoadingProxies();
 
             base.OnConfiguring(options);
         }

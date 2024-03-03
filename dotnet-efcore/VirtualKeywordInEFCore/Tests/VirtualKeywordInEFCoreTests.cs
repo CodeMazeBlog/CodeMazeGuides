@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using VirtualKeywordInEFCore.Models;
 
 namespace Tests
@@ -19,7 +20,7 @@ namespace Tests
         public void GivenDefaultSetup_WhenAuthorRetrieved_ThenNoBooksLazyLoaded()
         {
             // Act
-            var colleenHOOVER_author = _context.Authors.First(a => a.FullName == "Colleen HOOVER");
+            var colleenHOOVER_author = _context.Authors.AsNoTracking().First(a => a.FullName == "Colleen HOOVER");
 
             // Assert
             Assert.NotNull(colleenHOOVER_author);
@@ -33,7 +34,7 @@ namespace Tests
             var hollyJACKSON_author = new Author_lazy();
 
             // Act
-            hollyJACKSON_author = _contextLazyLoading.Authors_lazy.First(a => a.FullName == "Holly JACKSON");
+            hollyJACKSON_author = _contextLazyLoading.Authors_lazy.AsNoTracking().First(a => a.FullName == "Holly JACKSON");
 
             // Assert
             Assert.NotNull(hollyJACKSON_author);
@@ -41,6 +42,20 @@ namespace Tests
             Assert.IsNotType<Author_lazy>(hollyJACKSON_author);
             Assert.Equal("Castle.Proxies.Author_lazyProxy", hollyJACKSON_author.GetType().ToString());
             Assert.Equal("Castle.Proxies.Book_lazyProxy", hollyJACKSON_author.Books.First().GetType().ToString());
+        }
+
+
+        [Fact]
+        public void GivenLazyLoading_WithWhenAuthorRetrieved_ThenBooksLazyLoaded()
+        {
+            // Arrange & Act
+            _contextLazyLoading.ChangeTracker.LazyLoadingEnabled = false;
+            var hollyJACKSON_author = _contextLazyLoading.Authors_lazy.First(a => a.FullName == "Holly JACKSON");
+
+            // Assert
+            Assert.NotNull(hollyJACKSON_author);
+            Assert.False(hollyJACKSON_author.Books.Any());
+            Assert.Empty(hollyJACKSON_author.Books);
         }
     }
 }

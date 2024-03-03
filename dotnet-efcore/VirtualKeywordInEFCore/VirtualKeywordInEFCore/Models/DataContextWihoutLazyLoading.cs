@@ -11,7 +11,7 @@ namespace VirtualKeywordInEFCore.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer($"Server=(localdb)\\mssqllocaldb;Database=Library.db;Trusted_Connection=True;MultipleActiveResultSets=true");
+            options.UseSqlite("DataSource=Library.db");
 
             base.OnConfiguring(options);
         }
