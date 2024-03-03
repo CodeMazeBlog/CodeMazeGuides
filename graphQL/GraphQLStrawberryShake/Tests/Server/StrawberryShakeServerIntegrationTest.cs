@@ -4,13 +4,13 @@ using Newtonsoft.Json.Linq;
 using Tests.Server;
 
 namespace GraphQLStrawberryShake.Server.IntegrationTests;
-public class StrawberryShakeServerIntTest : IClassFixture<WebApiFixture>
+public class StrawberryShakeServerIntegrationTest : IClassFixture<WebApiFixture>
 {
 
     private readonly WebApiFixture _fixture;
     private readonly HttpClient _client;
 
-    public StrawberryShakeServerIntTest(WebApiFixture fixture)
+    public StrawberryShakeServerIntegrationTest(WebApiFixture fixture)
     {
         _fixture = fixture;
         _client = _fixture.CreateClient();

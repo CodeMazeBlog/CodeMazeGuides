@@ -6,12 +6,12 @@ using StrawberryShake;
 using FluentAssertions;
 
 namespace Tests.Client;
-public class ShippingContainerControllerTest
+public class ShippingContainerControllerUnitTest
 {
     private readonly IShippingContainerClient _client;
     private readonly ShippingContainerController _controller;
 
-    public ShippingContainerControllerTest()
+    public ShippingContainerControllerUnitTest()
     {
         _client = Substitute.For<IShippingContainerClient>();
         _controller = new ShippingContainerController(_client);
