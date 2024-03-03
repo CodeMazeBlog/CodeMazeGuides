@@ -13,28 +13,28 @@ namespace Tests
         private static int Sum(int x) => x + x;
 
         [TestMethod]
-        public void ProductReturnValueEqualsDelegateReturnValue()
+        public void GivenInteger_ProductReturnValue_EqualsDelegateReturnValue()
         {
             int methodOp = Product(5);
             int delegateOp = new DelegateOfMethod(Product)(5);
             Assert.AreEqual(methodOp, delegateOp);
         }
         [TestMethod]
-        public void SumReturnValueEqualsDelegateReturnValue()
+        public void GivenInteger_SumReturnValue_EqualsDelegateReturnValue()
         {
             int methodOp = Sum(5);
             int delegateOp = new DelegateOfMethod(Sum)(5);
             Assert.AreEqual(methodOp, delegateOp);
         }
         [TestMethod]
-        public void ReturnValueEqualsDelegateReturnValue()
+        public void GivenInteger_MethodReturnValue_EqualsDelegateReturnValue_Sum()
         {
             int methodOp = Sum(5);
             int delegateOp = MethodUsesDelegate(new DelegateOfMethod(Sum), 5);
             Assert.AreEqual(methodOp, delegateOp);
         }
         [TestMethod]
-        public void ReturnValueEqualsDelegateReturnValue_Product()
+        public void GivenInteger_MethodReturnValue_EqualsDelegateReturnValue_Product()
         {
             int methodOp = Product(5);
             int delegateOp = MethodUsesDelegate(new DelegateOfMethod(Product), 5);
