@@ -1,45 +1,54 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DelegatesInCsharp
 {
-	delegate void PrintMessage(string text);
-	delegate T Print<T>(T param1);
 
 	class Program
 	{
-		public static void WriteText(string text) => Console.WriteLine($"Text: {text}");
-		public static void ReverseWriteText(string text) => Console.WriteLine($"Text in reverse: {Reverse(text)}");
-		public static string ReverseText(string text) => Reverse(text);
+        private static void Main(string[] args)
+        {
+            #region Delegates
+            DelegateOfMethod delProduct = new DelegateOfMethod(Product);
+            Console.WriteLine(delProduct(5).ToString());
 
-		private static string Reverse(string s)
-		{
-			char[] charArray = s.ToCharArray();
-			Array.Reverse(charArray);
-			return new string(charArray);
-		}
+            int returnedFromMethod = MethodUsesDelegate(delProduct, 5);
+            Console.WriteLine(returnedFromMethod.ToString());
 
-		static void Main(string[] args)
-		{
-			var delegate1 = new PrintMessage(WriteText);
-			var delegate2 = new PrintMessage(ReverseWriteText);
-			// with + sign
-			var multicastDelegate = delegate1 + delegate2;
+            int anotherMethod = MethodUsesDelegate(new DelegateOfMethod(Sum), 5);
+            Console.WriteLine(anotherMethod.ToString());
+            #endregion
 
-			// with =, +=, and -=
-			multicastDelegate = delegate1;
-			multicastDelegate += delegate2;
+            #region Action
+            List<int> numbers = new() { 1, 2, 3, 4, 5 };
+            numbers.ForEach(x => Console.WriteLine(x.ToString()));
+            numbers.ForEach(x => Console.WriteLine((x * x).ToString()));
+            #endregion
 
-			multicastDelegate.Invoke("Go ahead, make my day.");
-			multicastDelegate("You're gonna need a bigger boat.");
+            #region Func
+            Func<int, int, int> del = (x, y) => { return (x + y); };
+            Console.WriteLine(del(1, 2).ToString());
+            del = (x, y) => { return (x * y); };
+            Console.WriteLine(del(1, 2).ToString());
 
-			var delegate3 = new Print<string>(ReverseText);
-			Console.WriteLine(delegate3("I'll be back."));
+            //on Linq
+            var evenNumbers = numbers.Where(x => x % 2 == 0);
+            evenNumbers.ToList().ForEach(x => Console.WriteLine(x.ToString()));
 
-			// comment out other stuff
-			Action<string> executeReverseWriteAction = ReverseWriteText;
-			executeReverseWriteAction("Are you not entertained?");
-			Func<string, string> executeReverseFunc = ReverseText;
-			Console.WriteLine(executeReverseFunc("Are you not entertained?"));
-		}
-	}
+            var oddNumbers = numbers.Where(x => x % 2 == 1);
+            oddNumbers.ToList().ForEach(x => Console.WriteLine(x.ToString()));
+            #endregion
+
+        }
+        #region delegate example methods
+        delegate int DelegateOfMethod(int x);
+        private static int Product(int x) => x * x;
+        private static int MethodUsesDelegate(DelegateOfMethod del, int x) => del(x);
+
+        //another method
+        private static int Sum(int x) => x + x;
+        #endregion
+
+    }
 }
