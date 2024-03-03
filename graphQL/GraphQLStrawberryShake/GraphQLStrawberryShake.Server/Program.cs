@@ -23,8 +23,6 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.MapGraphQL();
-// return get response "Hellow World" from the server
-app.MapGet("/", () => "Hello World");
 
 app.Run();
 
