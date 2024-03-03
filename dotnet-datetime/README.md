@@ -24,3 +24,4 @@ This section contains the topics related to the DateTime class in .NET.
 - [Calculate the Difference in Months Between Two Dates in C#](https://code-maze.com/csharp-calculate-the-difference-in-months-between-two-dates/)
 - [How to Get the Number of Weekdays Between Two Dates in C#](https://code-maze.com/csharp-find-number-of-weekdays-between-two-dates/)
 - [Fastest Method to Check if a Date Is Less Than or Equal to Today’s Date in C#](https://code-maze.com/csharp-fastest-method-to-check-if-a-date-is-less-than-or-equal-to-todays-date/)
+- [How to Get the Quarter of a Given Date in C#](https://code-maze.com/csharp-get-the-quarter-of-a-given-date/)
