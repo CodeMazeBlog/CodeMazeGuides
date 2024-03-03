@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Testing;
 using ResolveIoptionsInsideProgramCs.DTOs;
 using System.Net.Http.Json;
+using ResolveIoptionsInsideProgramCs.Extensions;
 
 public class ResolveIoptionsInsideProgramCsTests
 {
@@ -14,7 +15,7 @@ public class ResolveIoptionsInsideProgramCsTests
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions() { });
 
         // Act
-        var mySettingsWrapped = Program.GetSettingsIncorrect(builder);
+        var mySettingsWrapped = builder.GetSettingsIncorrect();
 
         // Assert
         Assert.NotNull(mySettingsWrapped);
@@ -29,7 +30,7 @@ public class ResolveIoptionsInsideProgramCsTests
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions() { });
 
         // Act
-        var mySettings = Program.GetSpecificValue(builder);
+        var mySettings = builder.GetSpecificValue();
 
         // Assert
         Assert.False(string.IsNullOrWhiteSpace(mySettings));
@@ -42,7 +43,7 @@ public class ResolveIoptionsInsideProgramCsTests
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions() { });
 
         // Act
-        var mySettings = Program.BindToSettingsModel(builder);
+        var mySettings = builder.BindToSettingsModel();
 
         // Assert
         Assert.NotNull(mySettings);
@@ -56,7 +57,7 @@ public class ResolveIoptionsInsideProgramCsTests
         var builder = WebApplication.CreateBuilder(new WebApplicationOptions() { });
 
         // Act
-        var mySettingsWrapped = Program.BindToSettingsModelAndWrapInIoptions(builder);
+        var mySettingsWrapped = builder.BindToSettingsModelAndWrapInIoptions();
 
         // Assert
         Assert.NotNull(mySettingsWrapped);
