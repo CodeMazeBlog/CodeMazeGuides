@@ -12,16 +12,17 @@ namespace AwaitInForEachLoop
 
             foreach (var number in numbers)
             {
-                result.Add(number);
-
-                Console.WriteLine($"Processed {number}");
+                Console.WriteLine($"Processing {number}");
 
                 await Task.Delay(1000);
 
+                Console.WriteLine($"Processed {number}");
+
+                result.Add(number);
             }
             Console.WriteLine("Done Processing");
 
-            return numbers;
+            return result;
         }
     }
 }
