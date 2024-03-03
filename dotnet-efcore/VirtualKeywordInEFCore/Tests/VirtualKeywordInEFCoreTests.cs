@@ -46,11 +46,11 @@ namespace Tests
 
 
         [Fact]
-        public void GivenLazyLoading_WithWhenAuthorRetrieved_ThenBooksLazyLoaded()
+        public void GivenLazyLoading_WithLazyLoadingEnabledPropertySetToFalse_WhenAuthorRetrieved_ThenNoBooksLazyLoaded()
         {
             // Arrange & Act
             _contextLazyLoading.ChangeTracker.LazyLoadingEnabled = false;
-            var hollyJACKSON_author = _contextLazyLoading.Authors_lazy.First(a => a.FullName == "Holly JACKSON");
+            var hollyJACKSON_author = _contextLazyLoading.Authors_lazy.AsNoTracking().First(a => a.FullName == "Holly JACKSON");
 
             // Assert
             Assert.NotNull(hollyJACKSON_author);
