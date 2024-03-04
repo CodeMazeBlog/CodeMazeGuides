@@ -1,5 +1,3 @@
-using AutomaticRegistrationOfMinimalAPIs.Contracts.Student;
-using AutomaticRegistrationOfMinimalAPIs.Contracts.Teacher;
 using AutomaticRegistrationOfMinimalAPIs.Data;
 using AutomaticRegistrationOfMinimalAPIs.Endpoints;
 using AutomaticRegistrationOfMinimalAPIs.Services;

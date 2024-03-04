@@ -17,7 +17,7 @@ public static class StudentEndpoint
 
         routeBuilder.MapGet("/students/{id:guid}", async (Guid id, IStudentService service) =>
         {
-            var student = await service.GetAllAsync();
+            var student = await service.GetByIdAsync(id);
 
             return Results.Ok(student);
         })

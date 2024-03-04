@@ -18,7 +18,7 @@ public class TeacherEndpoint : IMinimalEndpoint
 
         routeBuilder.MapGet("/teachers/{id:guid}", async (Guid id, ITeacherService service) =>
         {
-            var teacher = await service.GetAllAsync();
+            var teacher = await service.GetByIdAsync(id);
 
             return Results.Ok(teacher);
         })
