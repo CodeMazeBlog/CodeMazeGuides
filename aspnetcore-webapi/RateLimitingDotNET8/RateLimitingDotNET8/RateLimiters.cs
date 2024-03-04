@@ -29,7 +29,7 @@ public static class RateLimiters
             .AddSlidingWindowLimiter(policyName: Policies.Sliding, options =>
             {
                 options.PermitLimit = slidingOptions!.PermitLimit;
-                options.Window = TimeSpan.FromSeconds(slidingOptions.Window);
+                options.Window = TimeSpan.FromMinutes(slidingOptions.Window);
                 options.SegmentsPerWindow = slidingOptions.SegmentsPerWindow;
                 options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
                 options.QueueLimit = slidingOptions.QueueLimit;
@@ -46,7 +46,7 @@ public static class RateLimiters
                 options.TokenLimit = bucketOptions!.TokenLimit;
                 options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
                 options.QueueLimit = bucketOptions.QueueLimit;
-                options.ReplenishmentPeriod = TimeSpan.FromSeconds(bucketOptions.ReplenishmentPeriod);
+                options.ReplenishmentPeriod = TimeSpan.FromMinutes(bucketOptions.ReplenishmentPeriod);
                 options.TokensPerPeriod = bucketOptions.TokensPerPeriod;
                 options.AutoReplenishment = bucketOptions.AutoReplenishment;
             }));

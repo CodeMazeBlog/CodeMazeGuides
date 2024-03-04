@@ -15,25 +15,27 @@ RateLimiters.ConcurrencyRateLimiter(builder);
 
 RateLimiters.AuthorizationRateLimiter(builder);
 
-RateLimiters.ChainedRateLimiter(builder);
-
-// Add services to the container.
+// RateLimiters.ChainedRateLimiter(builder);
 
 builder.Services.AddControllers();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        options.RoutePrefix = string.Empty;
+    });
 
 app.UseAuthorization();
 
 app.UseRateLimiter();
 
-app.MapControllers();
-
 RateLimiters.MinimalApiRateLimiting(app);
+
+app.MapControllers();
 
 app.Run();
 
