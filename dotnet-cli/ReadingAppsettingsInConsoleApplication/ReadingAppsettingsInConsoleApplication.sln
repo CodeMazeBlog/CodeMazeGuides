@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingAppsettingsInConsoleApplication", "ReadingAppsettingsInConsoleApplication\ReadingAppsettingsInConsoleApplication.csproj", "{6215B15C-5A98-4B73-B7B7-FD206175C555}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadingAppsettingsInConsoleApplicationTests", "ReadingAppsettingsInConsoleApplicationTests\ReadingAppsettingsInConsoleApplicationTests.csproj", "{CAC627F8-3331-4A59-B6DE-146530BEA484}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6215B15C-5A98-4B73-B7B7-FD206175C555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6215B15C-5A98-4B73-B7B7-FD206175C555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6215B15C-5A98-4B73-B7B7-FD206175C555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6215B15C-5A98-4B73-B7B7-FD206175C555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAC627F8-3331-4A59-B6DE-146530BEA484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAC627F8-3331-4A59-B6DE-146530BEA484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAC627F8-3331-4A59-B6DE-146530BEA484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAC627F8-3331-4A59-B6DE-146530BEA484}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
