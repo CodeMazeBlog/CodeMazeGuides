@@ -15,7 +15,6 @@ public static class Program
 
         doMathAction(2, 3); // 5
 
-        // doMathAction now performs multiplication
         doMathAction = (x, y) => Console.WriteLine(x * y);
 
         doMathAction(2, 3); // 6
@@ -23,13 +22,10 @@ public static class Program
         // ********************
         Console.WriteLine("Without Action");
 
-        // Assign the method to a DoMathAction variable
         DoMathAction doMathActionDelegate = (x, y) => Console.WriteLine(x + y);
 
-        // Invoke
         doMathActionDelegate(2, 3); // 5
 
-        // doMathActionDelegate now performs multiplication
         doMathActionDelegate = (x, y) => Console.WriteLine(x * y);
 
         doMathActionDelegate(2, 3); // 6
@@ -42,7 +38,6 @@ public static class Program
 
         Console.WriteLine(doMathFunc(2, 3)); // 5
 
-        // doMathFunc now performs multiplication
         doMathFunc = (x, y) => x * y;
 
         Console.WriteLine(doMathFunc(2, 3)); // 6
@@ -50,13 +45,10 @@ public static class Program
         // ********************
         Console.WriteLine("Without Func");
 
-        // Assign the method to a DoMathFunc variable
         DoMathFunc doMathFuncDelegate = (x, y) => x + y;
 
-        // Invoke
         Console.WriteLine(doMathFuncDelegate(2, 3)); // 5
 
-        // doMathFuncDelegate now performs multiplication
         doMathFuncDelegate = (x, y) => x * y;
 
         Console.WriteLine(doMathFuncDelegate(2, 3)); // 6
