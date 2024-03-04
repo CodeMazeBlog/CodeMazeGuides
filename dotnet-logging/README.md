@@ -11,3 +11,4 @@ This section contains the topics related to logging and logging tools in .NET.
 - [How to Properly Create Message Templates for Logging in C#](https://code-maze.com/csharp-logging-message-templates/)
 - [How to Configure Rolling File Logging With Serilog](https://code-maze.com/csharp-configure-rolling-file-logging-with-serilog/)
 - [Structured Logging in ASP.NET Core With log4net](https://code-maze.com/aspnetcore-structured-logging-log4net/)
+- [Using Serilog with Microsoft’s ILogger API](https://code-maze.com/aspnetcore-using-serilog-with-microsofts-ilogger-api/)

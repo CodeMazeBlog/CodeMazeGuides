@@ -114,4 +114,18 @@ public class UnitTests
         Assert.False(charactersValue.IsNumber());
         Assert.False(listIntegers.IsNumber());
     }
+
+    [Fact]
+    public void GivenNumberTypes_WhenCheckIfNumberWithGenericMethod_ThenReturnsBoolean()
+    {
+        // Arrange
+        short shortValue = -51;
+        var floatValue = 41.2f;
+        var doubleValue = -4.2;
+
+        // Act & Assert
+        Assert.True(Methods.IsNumber<short>(shortValue));
+        Assert.True(Methods.IsNumber<float>(floatValue));
+        Assert.True(Methods.IsNumber<double>(doubleValue));
+    }
 }

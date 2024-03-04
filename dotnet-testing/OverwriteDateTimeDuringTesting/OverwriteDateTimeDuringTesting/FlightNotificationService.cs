@@ -8,7 +8,7 @@ public class FlightNotificationService(TimeProvider timeProvider) : IFlightNotif
 {
     public string GetFlightNotificationMessage(Flight flight)
     {
-        var now = timeProvider.GetUtcNow().ToLocalTime();
+        var now = timeProvider.GetLocalNow();
         var timeToDeparture = (flight.Time - now).TotalHours;
 
         return timeToDeparture switch
