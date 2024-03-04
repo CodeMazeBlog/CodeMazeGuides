@@ -5,7 +5,7 @@ namespace Tests;
 [TestClass]
 public class ActionAndFuncTest
 {
-    private string expected =
+    private readonly string _expected =
         $"With Action{Environment.NewLine}"
         + $"5{Environment.NewLine}"
         + $"6{Environment.NewLine}"
@@ -20,15 +20,18 @@ public class ActionAndFuncTest
         + $"6";
 
     [TestMethod]
-    public void ActionTest()
+    public void GivenActionAndFunc_WhenMainMethodIsCalled_ThenReturnExpectedOutput()
     {
+        // Given
         using var sw = new StringWriter();
         Console.SetOut(sw);
 
+        // When
         ActionAndFuncDelegateInCSharp.Program.Main();
 
-        // Assert
         var result = sw.ToString().Trim();
-        Assert.AreEqual(expected, result);
+
+        // Assert
+        Assert.AreEqual(_expected, result);
     }
 }
