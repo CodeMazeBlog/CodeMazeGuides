@@ -23,7 +23,7 @@ public class PetTest
         };
 
         var successResult = await new PetService(httpClientMock)
-            .PostAsStringContent();
+            .PostAsStringContentAsync();
 
         Assert.NotNull(successResult);
         Assert.Equal(12, successResult!.Id);
@@ -50,7 +50,7 @@ public class PetTest
         };
         
         var successResult = await new PetService(httpClientMock)
-            .PostAsJson();
+            .PostAsJsonAsync();
 
         Assert.NotNull(successResult);
         Assert.Equal(12, successResult!.Id);

@@ -14,20 +14,7 @@ public class PetService : IPetService
         _httpClient = httpClient;
     }
 
-    public async Task<PetDto?> PostAsJson()
-    {
-        var petData = CreatePet();
-
-        var response = await _httpClient.PostAsJsonAsync("pet", petData);
-        response.EnsureSuccessStatusCode();
-
-        var content = await response.Content.ReadAsStringAsync();
-        var createdPet = JsonSerializer.Deserialize<PetDto>(content);
-
-        return createdPet;
-    }
-
-    public async Task<PetDto?> PostAsStringContent()
+    public async Task<PetDto?> PostAsStringContentAsync()
     {
         var petData = CreatePet();
 
@@ -39,6 +26,19 @@ public class PetService : IPetService
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
         var response = await _httpClient.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+
+        var content = await response.Content.ReadAsStringAsync();
+        var createdPet = JsonSerializer.Deserialize<PetDto>(content);
+
+        return createdPet;
+    }
+    
+    public async Task<PetDto?> PostAsJsonAsync()
+    {
+        var petData = CreatePet();
+
+        var response = await _httpClient.PostAsJsonAsync("pet", petData);
         response.EnsureSuccessStatusCode();
 
         var content = await response.Content.ReadAsStringAsync();

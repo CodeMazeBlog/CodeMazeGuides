@@ -19,9 +19,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapPost("/postAsStringContent", async (IPetService petService)
-    => await petService.PostAsStringContent());
+    => await petService.PostAsStringContentAsync());
 
 app.MapPost("/postAsJson", async (IPetService petService)
-    => await petService.PostAsJson());
+    => await petService.PostAsJsonAsync());
 
 app.Run();
