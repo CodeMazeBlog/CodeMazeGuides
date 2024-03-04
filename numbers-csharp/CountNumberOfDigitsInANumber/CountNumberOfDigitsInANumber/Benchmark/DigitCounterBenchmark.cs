@@ -22,5 +22,11 @@ namespace CountNumberOfDigitsInANumber.Benchmark
 
         [Benchmark]
         public int IfChain() => DigitCounter.GetIfChainCount(N);
+
+        [Benchmark]
+        public int BitManip() => DigitCounter.GetBitManipCount(N);
+
+        [Benchmark]
+        public int Fast() => DigitCounter.GetFastCount(N);
     }
 }
