@@ -1,6 +1,4 @@
-﻿
-
-namespace ActionAndFuncDelegate.Func
+﻿namespace ActionAndFuncDelegate.Func
 {
     public class FuncDelegateExample
     {
