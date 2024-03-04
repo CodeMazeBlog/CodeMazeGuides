@@ -1,8 +1,8 @@
 ﻿namespace AutomaticRegistrationOfMinimalAPIs.Contracts.Teacher;
 
-public class TeacherDTO
+public class TeacherDto
 {
-    public required int Id { get; set; }
+    public required Guid Id { get; set; }
     public required string Name { get; set; }
     public required string Subject { get; set; }
 }
