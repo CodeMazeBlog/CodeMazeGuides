@@ -1,46 +1,94 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Tests
 {
-    [TestClass]
-    public class Tests
-    {
-        delegate int DelegateOfMethod(int x);
-        private static int Product(int x) => x * x;
-        private static int MethodUsesDelegate(DelegateOfMethod del, int x) => del(x);
+	delegate string PrintMessage(string text);
+	delegate T Print<T>(T param1);
 
-        //another method
-        private static int Sum(int x) => x + x;
+	[TestClass]
+	public class Tests
+	{
+		public static string WriteText(string text) { return $"Text:{text}"; }
+		public static string ReverseText(string text) { return Reverse(text); }
+		public static void ReverseWriteText(string text) { Console.WriteLine(Reverse(text)); }
 
-        [TestMethod]
-        public void GivenInteger_ProductReturnValue_EqualsDelegateReturnValue()
-        {
-            int methodOp = Product(5);
-            int delegateOp = new DelegateOfMethod(Product)(5);
-            Assert.AreEqual(methodOp, delegateOp);
-        }
-        [TestMethod]
-        public void GivenInteger_SumReturnValue_EqualsDelegateReturnValue()
-        {
-            int methodOp = Sum(5);
-            int delegateOp = new DelegateOfMethod(Sum)(5);
-            Assert.AreEqual(methodOp, delegateOp);
-        }
-        [TestMethod]
-        public void GivenInteger_MethodReturnValue_EqualsDelegateReturnValue_Sum()
-        {
-            int methodOp = Sum(5);
-            int delegateOp = MethodUsesDelegate(new DelegateOfMethod(Sum), 5);
-            Assert.AreEqual(methodOp, delegateOp);
-        }
-        [TestMethod]
-        public void GivenInteger_MethodReturnValue_EqualsDelegateReturnValue_Product()
-        {
-            int methodOp = Product(5);
-            int delegateOp = MethodUsesDelegate(new DelegateOfMethod(Product), 5);
-            Assert.AreEqual(methodOp, delegateOp);
-        }
-    }
-   
+		private static string Reverse(string s)
+		{
+			char[] charArray = s.ToCharArray();
+			Array.Reverse(charArray);
+			return new string(charArray);
+		}
 
+		[TestMethod]
+		public void whenStringIsSent_DelegateExecutesTheReferencedMethod()
+		{
+			var delegate1 = new PrintMessage(WriteText);
+			var result = delegate1("You're gonna need a bigger boat.");
+			Assert.AreEqual("Text:You're gonna need a bigger boat.", result);
+		}
+
+		[TestMethod]
+		public void whenStringIsSent_DelegateReturnsTheReversedString()
+		{
+			var delegate1 = new PrintMessage(ReverseText);
+			var result = delegate1("You're gonna need a bigger boat.");
+			Assert.AreEqual(Reverse("You're gonna need a bigger boat."), result);
+		}
+
+		[TestMethod]
+		public void givenMulticastDelegate_whenTwoReferencedMethodAndPlusSign_DelegateInvocationListContainsTwoMethods()
+		{
+			var delegate1 = new PrintMessage(WriteText);
+			var delegate2 = new PrintMessage(ReverseText);
+			var multicastDelegate = delegate1 + delegate2;
+
+			var invocationList = multicastDelegate.GetInvocationList();
+
+			Assert.AreEqual(invocationList.Length, 2);
+			Assert.AreEqual(invocationList[0].Method.Name, "WriteText");
+			Assert.AreEqual(invocationList[1].Method.Name, "ReverseText");
+		}
+
+		[TestMethod]
+		public void givenMulticastDelegate_whenTwoReferencedMethodAndPlusEquals_DelegateInvocationListContainsTwoMethods()
+		{
+			var delegate1 = new PrintMessage(WriteText);
+			var delegate2 = new PrintMessage(ReverseText);
+			var multicastDelegate = delegate1;
+			multicastDelegate += delegate2;
+
+			var invocationList = multicastDelegate.GetInvocationList();
+
+			Assert.AreEqual(invocationList.Length, 2);
+			Assert.AreEqual(invocationList[0].Method.Name, "WriteText");
+			Assert.AreEqual(invocationList[1].Method.Name, "ReverseText");
+		}
+
+		[TestMethod]
+		public void whenGenericDelegate_DelegateExecutesTheReferencedMethod()
+		{
+			var delegate1 = new Print<string>(ReverseText);
+			
+			var result = delegate1("You're gonna need a bigger boat.");
+
+			Assert.AreEqual(Reverse("You're gonna need a bigger boat."), result);
+		}
+
+		[TestMethod]
+		public void whenActionDelegate_DelegateInvocationListNotEmpty()
+		{
+			Action<string> executeReverseWriteAction = ReverseWriteText;
+			var invocationList = executeReverseWriteAction.GetInvocationList();
+			Assert.AreEqual(invocationList.Length, 1);
+		}
+
+		[TestMethod]
+		public void whenFuncDelegate_DelegateInvocationListNotEmpty()
+		{
+			Func<string, string> executeReverseWriteAction = ReverseText;
+			var invocationList = executeReverseWriteAction.GetInvocationList();
+			Assert.AreEqual(invocationList.Length, 1);
+		}
+	}
 }
