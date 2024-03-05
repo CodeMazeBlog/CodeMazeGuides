@@ -1,4 +1,5 @@
 using ActionAndFuncDelegates;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Test
 {
@@ -8,24 +9,50 @@ namespace Test
         private FuncDelegate _funcDelegate = new FuncDelegate();
         private string _helloWorldStr = "Hello, world!";
         private string _helloNameStr = $"Hello, Jack!";
-       [TestMethod]
-        public void GetGreetingTest()
+        private string _helloEmptyNameStr = $"Hello, !";
+
+        [TestMethod]
+        public void Given_GetGreeting_Initialized_When_GetGreeting_Method_Called_Then_Returns_Correct_Greeting()
         {
-            string helloWorldStr = _funcDelegate.GetGreeting();
+            var helloWorldStr = _funcDelegate.GetGreeting();
             Assert.AreEqual(helloWorldStr, _helloWorldStr);
         }
 
         [TestMethod]
-        public void GreetTest()
+        public void Given_Name_When_Greet_Method_Called_Then_Returns_Correct_Greeting()
         {
-            string helloNameStr = _funcDelegate.Greet("Jack");
+            var name = "Jack";
+            var helloNameStr = _funcDelegate.Greet(name);
             Assert.AreEqual(helloNameStr, _helloNameStr);
         }
+
         [TestMethod]
-        public void AAddTest()
+        public void GreetFunction_WhenCalledWithEmptyName_ReturnsExpectedGreeting()
         {
-            int number = _funcDelegate.Add(7,8);
-            Assert.AreEqual(number, 15);
+            var name = "";
+            var helloNameStr = _funcDelegate.Greet(name);
+            Assert.AreEqual(helloNameStr, _helloEmptyNameStr);
+        }
+        
+        [TestMethod]
+        public void When_Addition_Method_Called_With_Positive_Numbers()
+        {
+            var result = _funcDelegate.Add(7, 8);
+            Assert.AreEqual(15, result);
+        }
+
+        [TestMethod]
+        public void When_Addition_Method_Called_With_Negative_Numbers()
+        {
+            int result = _funcDelegate.Add(-10, -7);
+            Assert.AreEqual(-17, result);
+        }
+
+        [TestMethod]
+        public void When_Addition_Method_Called_With_Zero()
+        {
+            int result = _funcDelegate.Add(0, 0);
+            Assert.AreEqual(0, result);
         }
     }
 }
