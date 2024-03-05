@@ -2,11 +2,11 @@
 {
     public class ReverseNumbers
     {
-        readonly static int maxValueDiv10 = int.MaxValue / 10;
-        readonly static int minValueDiv10 = int.MinValue / 10;
-
         public static int ReverseUsingDigitExtractionAndReconstruction(int num)
         {
+            int maxValueDiv10 = int.MaxValue / 10;
+            int minValueDiv10 = int.MinValue / 10;
+
             if (num == int.MaxValue || num == int.MinValue || num == 0)
             {
                 return 0;
@@ -32,6 +32,9 @@
 
         public static int ReverseUsingRecursion(int num, int reversedNumber = 0)
         {
+            int maxValueDiv10 = int.MaxValue / 10;
+            int minValueDiv10 = int.MinValue / 10;
+
             if (num == int.MaxValue || num == int.MinValue || num == 0)
             {
                 return reversedNumber;
@@ -51,6 +54,8 @@
 
         public static int ReverseUsingMathPow(int num)
         {
+            int maxValueDiv10 = int.MaxValue / 10;
+
             if (num == int.MaxValue || num == int.MinValue || num == 0)
             {
                 return 0;
@@ -82,7 +87,9 @@
         }
 
         public static int ReverseBySwappingDigits(int num)
-        {           
+        {
+            int maxValueDiv10 = int.MaxValue / 10;
+
             if (num == int.MaxValue || num == int.MinValue || num == 0)
             {
                 return 0;
@@ -134,7 +141,6 @@
             bool isNegative = num < 0;
             char[] numChars = Math.Abs(num).ToString().ToCharArray();
             int length = numChars.Length;
-
             Span<char> reversedChars = stackalloc char[length];
 
             for (int i = 0; i < length; i++)
