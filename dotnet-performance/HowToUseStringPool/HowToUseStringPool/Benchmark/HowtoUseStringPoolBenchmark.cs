@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
 using CommunityToolkit.HighPerformance.Buffers;
@@ -8,6 +9,7 @@ namespace HowToUseStringPool.Benchmark;
 
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
+[HideColumns(Column.StdDev, Column.Error)]
 [MemoryDiagnoser]
 public class HowtoUseStringPoolBenchmark
 {
