@@ -49,8 +49,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinq
                 context.Tasks, 
                 employee => employee.Id, 
                 task => task.EmployeeId, 
-                (employee, joinedRecords) => new { employee, joinedRecords }
-                )
+                (employee, joinedRecords) => new { employee, joinedRecords })
                 .SelectMany(x => x.joinedRecords.DefaultIfEmpty(),
                 (x, task) => new { x.employee, task })
                 .Where(x => x.task == null)
