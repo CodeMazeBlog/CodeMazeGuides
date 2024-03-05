@@ -1,61 +1,68 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
+using BenchmarkDotNet.Order;
 
 namespace FastestWayToCheckIfListIsOrdered;
 
 [MemoryDiagnoser]
-[MarkdownExporterAttribute.Default]
+[Orderer(SummaryOrderPolicy.FastestToSlowest)]
+[HideColumns(Column.Median, Column.StdDev, Column.Error, Column.Ratio, Column.RatioSD, Column.AllocRatio)]
 public class Benchmarks
 {
-    [Params(100, 10_000, 1_000_000)] public int Length { get; }
+    private List<int> _list = null!;
 
-    public List<int> List;
+    [Params(100, 10_000, 1_000_000)]
+    public int Length;
 
     [GlobalSetup]
     public void Setup()
-        => List = Enumerable.Range(0, Length).ToList();
+        => _list = Enumerable.Range(0, Length).ToList();
 
-
-    [Benchmark(Baseline = true)]
-    public bool IsOrderedUsingForLoop()
-        => ListOrderValidator.IsOrderedUsingForLoop(List);
+    //[Benchmark(Baseline = true)]
+    //public bool IsOrderedUsingForLoop()
+    //    => ListOrderValidator.IsOrderedUsingForLoop(_list);
 
     [Benchmark]
     public bool IsOrderedUsingArraySort()
-        => ListOrderValidator.IsOrderedUsingArraySort(List);
+        => ListOrderValidators.IsOrderedUsingArraySort(_list);
 
     [Benchmark]
-    public bool IsOrderedUsingSpans()
-        => ListOrderValidator.IsOrderedUsingSpans(List);
+    public bool IsOrderedUsingSpanSort()
+        => ListOrderValidators.IsOrderedUsingSpanSort(_list);
 
-    [Benchmark]
-    public bool IsOrderedUsingEnumerator()
-        => ListOrderValidator.IsOrderedUsingEnumerator(List);
+    //[Benchmark]
+    //public bool IsOrderedUsingSpans()
+    //    => ListOrderValidator.IsOrderedUsingSpans(_list);
 
-    [Benchmark]
-    public bool IsOrderedUsingLinqWithSequenceEqual()
-        => ListOrderValidator.IsOrderedUsingLinqWithSequenceEqual(List);
+    //[Benchmark]
+    //public bool IsOrderedUsingEnumerator()
+    //    => ListOrderValidator.IsOrderedUsingEnumerator(_list);
 
-    [Benchmark]
-    public bool IsOrderedUsingLinqWithOrder()
-        => ListOrderValidator.IsOrderedUsingLinqWithOrder(List);
+    //[Benchmark]
+    //public bool IsOrderedUsingLinqWithSequenceEqual()
+    //    => ListOrderValidator.IsOrderedUsingLinqWithSequenceEqual(_list);
 
-    [Benchmark]
-    public bool IsOrderedUsingLinqWithZip()
-        => ListOrderValidator.IsOrderedUsingLinqWithZip(List);
+    //[Benchmark]
+    //public bool IsOrderedUsingLinqWithOrder()
+    //    => ListOrderValidator.IsOrderedUsingLinqWithOrder(_list);
 
-    [Benchmark]
-    public bool IsOrderedUsingParallelFor()
-        => ListOrderValidator.IsOrderedUsingParallelFor(List);
+    //[Benchmark]
+    //public bool IsOrderedUsingLinqWithZip()
+    //    => ListOrderValidator.IsOrderedUsingLinqWithZip(_list);
 
-    [Benchmark]
-    public bool IsOrderedUsingParallelForWithSpans()
-        => ListOrderValidator.IsOrderedUsingParallelForWithSpans(List);
+    //[Benchmark]
+    //public bool IsOrderedUsingParallelFor()
+    //    => ListOrderValidator.IsOrderedUsingParallelFor(_list);
 
-    [Benchmark]
-    public bool IsOrderedUsingParallelForPartitioned()
-        => ListOrderValidator.IsOrderedUsingParallelForPartitioned(List);
+    //[Benchmark]
+    //public bool IsOrderedUsingParallelForWithSpans()
+    //    => ListOrderValidator.IsOrderedUsingParallelForWithSpans(_list);
 
-    [Benchmark]
-    public bool IsOrderedUsingParallelForPartitionedWithSpans()
-        => ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(List);
+    //[Benchmark]
+    //public bool IsOrderedUsingParallelForPartitioned()
+    //    => ListOrderValidator.IsOrderedUsingParallelForPartitioned(_list);
+
+    //[Benchmark]
+    //public bool IsOrderedUsingParallelForPartitionedWithSpans()
+    //    => ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(_list);
 }

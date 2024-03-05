@@ -1,3 +1,4 @@
+
 namespace Tests;
 
 public class FastestWayToCheckIfListIsOrderedTests
@@ -23,176 +24,178 @@ public class FastestWayToCheckIfListIsOrderedTests
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingForLoop_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingForLoop(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingForLoop(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingForLoop_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingForLoop(OutOfOrderEmployees);
-
-        Assert.False(areOrdered);
+        ListOrderValidators.IsOrderedUsingForLoop(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingArraySort_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingArraySort(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingArraySort(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingArraySort_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingArraySort(OutOfOrderEmployees);
-        
-        Assert.False(areOrdered);
+        ListOrderValidators.IsOrderedUsingArraySort(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingEnumerator_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingEnumerator(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingEnumerator(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingEnumerator_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingEnumerator(OutOfOrderEmployees);
-
-        Assert.False(areOrdered);
+        ListOrderValidators.IsOrderedUsingEnumerator(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingSpans_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingSpans(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingSpans(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingSpans_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingSpans(OutOfOrderEmployees);
-
-        Assert.False(areOrdered);
+        ListOrderValidators.IsOrderedUsingSpans(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingLinqSequenceEqual_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingLinqWithSequenceEqual(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingLinqWithSequenceEqual(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingLinqSequenceEqual_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingLinqWithSequenceEqual(OutOfOrderEmployees);
-
-        Assert.False(areOrdered);
+        ListOrderValidators.IsOrderedUsingLinqWithSequenceEqual(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingLinqOrder_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingLinqWithOrder(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingLinqWithOrder(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingLinqOrder_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingLinqWithOrder(OutOfOrderEmployees);
-
-        Assert.False(areOrdered);
+        ListOrderValidators.IsOrderedUsingLinqWithOrder(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingLinqZip_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingLinqWithZip(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingLinqWithZip(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingLinqZip_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingLinqWithZip(OutOfOrderEmployees);
-
-        Assert.False(areOrdered);
+        ListOrderValidators.IsOrderedUsingLinqWithZip(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingParallelFor_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingParallelFor(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingParallelFor(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingParallelFor_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingParallelFor(OutOfOrderEmployees);
-
-        Assert.False(areOrdered);
+        ListOrderValidators.IsOrderedUsingParallelFor(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingParallelForWithSpans_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingParallelForWithSpans(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingParallelForWithSpans(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingParallelForWithSpans_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingParallelForWithSpans(OutOfOrderEmployees);
-
-        Assert.False(areOrdered);
+        ListOrderValidators.IsOrderedUsingParallelForWithSpans(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingParallelForPartitioned_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitioned(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingParallelForPartitioned(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingParallelForPartitioned_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitioned(OutOfOrderEmployees);
-
-        Assert.False(areOrdered);
+        ListOrderValidators.IsOrderedUsingParallelForPartitioned(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingParallelForPartitionedWithSpans_ThenShouldBeTrue()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(OrderedEmployees);
-
-        Assert.True(areOrdered);
+        ListOrderValidators.IsOrderedUsingParallelForPartitionedWithSpans(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingParallelForPartitionedWithSpans_ThenShouldBeFalse()
     {
-        var areOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(OutOfOrderEmployees);
+        ListOrderValidators.IsOrderedUsingParallelForPartitionedWithSpans(OutOfOrderEmployees).Should().BeFalse();
+    }
 
-        Assert.False(areOrdered);
+    [Fact]
+    public void GivenOrderedIntegers_WhenCheckedUsingParallelForPartitioned_ThenShouldBeTrue()
+    {
+        var list = Enumerable.Range(0, Environment.ProcessorCount * 100).ToList();
+
+        ListOrderValidators.IsOrderedUsingParallelForPartitioned(list).Should().BeTrue();
+    }
+
+    [Fact]
+    public void GivenUnorderedIntegers_WhenCheckedUsingParallelForPartitioned_ThenShouldBeFalse()
+    {
+        var list = Enumerable.Repeat(42, Environment.ProcessorCount * 100 + 53).ToList();
+        for (var i = 1; i < list.Count; ++i)
+        {
+            var temp = list[i];
+            list[i] = temp-2;
+
+            ListOrderValidators.IsOrderedUsingParallelForPartitioned(list).Should().BeFalse();
+
+            list[i] = temp;
+        }
+    }
+
+    [Fact]
+    public void GivenOrderedIntegers_WhenCheckedUsingParallelForPartitionedWithSpans_ThenShouldBeTrue()
+    {
+        var list = Enumerable.Range(0, Environment.ProcessorCount * 100).ToList();
+
+        ListOrderValidators.IsOrderedUsingParallelForPartitionedWithSpans(list).Should().BeTrue();
+    }
+
+    [Fact]
+    public void GivenUnorderedIntegers_WhenCheckedUsingParallelForPartitionedWithSpans_ThenShouldBeFalse()
+    {
+        var list = Enumerable.Repeat(42, Environment.ProcessorCount * 100 + 53).ToList();
+        for (var i = 1; i < list.Count; ++i)
+        {
+            var temp = list[i];
+            list[i] = temp-2;
+
+            ListOrderValidators.IsOrderedUsingParallelForPartitionedWithSpans(list).Should().BeFalse();
+
+            list[i] = temp;
+        }
     }
 }

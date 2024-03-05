@@ -1,4 +1,5 @@
-﻿using FastestWayToCheckIfListIsOrdered;
+﻿using BenchmarkDotNet.Running;
+using FastestWayToCheckIfListIsOrdered;
 
 List<Employee> employees = [
     new Employee("Jack", new DateTime(1998, 11, 1), 3_000),
@@ -7,35 +8,37 @@ List<Employee> employees = [
     new Employee("Angel", new DateTime(2001, 7, 14), 1_900)
 ];
 
-var areOrdered = ListOrderValidator.IsOrderedUsingForLoop(employees);
+var areOrdered = ListOrderValidators.IsOrderedUsingForLoop(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidator.IsOrderedUsingArraySort(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingArraySort(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidator.IsOrderedUsingEnumerator(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingEnumerator(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidator.IsOrderedUsingLinqWithSequenceEqual(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingLinqWithSequenceEqual(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidator.IsOrderedUsingLinqWithOrder(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingLinqWithOrder(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidator.IsOrderedUsingLinqWithZip(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingLinqWithZip(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidator.IsOrderedUsingSpans(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingSpans(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidator.IsOrderedUsingParallelFor(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingParallelFor(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidator.IsOrderedUsingParallelForWithSpans(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingParallelForWithSpans(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitioned(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingParallelForPartitioned(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidator.IsOrderedUsingParallelForPartitionedWithSpans(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingParallelForPartitionedWithSpans(employees);
 Console.WriteLine(areOrdered);
+
+BenchmarkRunner.Run<Benchmarks>();

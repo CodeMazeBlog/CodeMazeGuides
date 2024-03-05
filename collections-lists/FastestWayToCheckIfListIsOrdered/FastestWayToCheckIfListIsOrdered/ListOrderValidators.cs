@@ -1,18 +1,20 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Buffers;
+using System.Runtime.InteropServices;
 
 namespace FastestWayToCheckIfListIsOrdered;
 
-public static class ListOrderValidator
+public static class ListOrderValidators
 {
-    public static bool IsOrderedUsingForLoop<T>(IList<T> list, IComparer<T>? comparer = default)
+    public static bool IsOrderedUsingForLoop<T>(List<T> list, IComparer<T>? comparer = default)
     {
         if (list.Count <= 1) return true;
 
         comparer ??= Comparer<T>.Default;
-        var length = list.Count;
-        for (var i = 1; i < length; i++)
+
+        var listSpan = CollectionsMarshal.AsSpan(list);
+        for (var i = 1; i < listSpan.Length; i++)
         {
-            if (comparer.Compare(list[i - 1], list[i]) > 0) return false;
+            if (comparer.Compare(listSpan[i - 1], listSpan[i]) > 0) return false;
         }
 
         return true;
@@ -20,23 +22,65 @@ public static class ListOrderValidator
 
     public static bool IsOrderedUsingArraySort<T>(IList<T> list, IComparer<T>? comparer = default)
     {
+        T[]? array = null;
+        try
+        {
+            if (list.Count <= 1) return true;
+
+            comparer ??= Comparer<T>.Default;
+
+            var length = list.Count;
+
+            array = ArrayPool<T>.Shared.Rent(length);
+
+            list.CopyTo(array, 0);
+            Array.Sort(array, 0, length, comparer);
+
+            for (var i = 0; i < length; i++)
+            {
+                if (comparer.Compare(list[i], array[i]) != 0) return false;
+            }
+
+            return true;
+        }
+        finally
+        {
+            if (array is not null)
+                ArrayPool<T>.Shared.Return(array);
+        }
+    }
+
+public static bool IsOrderedUsingSpanSort<T>(List<T> list, IComparer<T>? comparer = default)
+{
+    T[]? array = null;
+    try
+    {
         if (list.Count <= 1) return true;
 
         comparer ??= Comparer<T>.Default;
 
-        var length = list.Count;
+        var listSpan = CollectionsMarshal.AsSpan<T>(list);
+        var length = listSpan.Length;
 
-        var array = new T[length];
-        list.CopyTo(array, 0);
-        Array.Sort(array, 0, length, comparer);
+        array = ArrayPool<T>.Shared.Rent(length);
+        var arraySpan = array.AsSpan(0, length);
+        listSpan.CopyTo(arraySpan);
+
+        arraySpan.Sort(comparer);
 
         for (var i = 0; i < length; i++)
         {
-            if (comparer.Compare(list[i], array[i]) != 0) return false;
+            if (comparer.Compare(listSpan[i], arraySpan[i]) != 0) return false;
         }
 
         return true;
     }
+    finally
+    {
+        if (array is not null)
+            ArrayPool<T>.Shared.Return(array);
+    }
+}
 
     public static bool IsOrderedUsingSpans<T>(List<T> list, IComparer<T>? comparer = default)
     {
