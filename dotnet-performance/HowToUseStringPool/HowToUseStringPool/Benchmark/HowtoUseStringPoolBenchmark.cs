@@ -1,60 +1,108 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System.Text;
+using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
 using CommunityToolkit.HighPerformance.Buffers;
-using System.Text;
 
 namespace HowToUseStringPool.Benchmark;
 
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-[Config(typeof(AntiVirusFriendlyConfig))]
+[GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
 [MemoryDiagnoser]
 public class HowtoUseStringPoolBenchmark
 {
     private const int ChunkSize = 64;
     private char[] _charArray = null!;
 
-    [Params(1000, 10000, 100000)]
-    public int Iterations;
+    private List<string> _dest = null!;
+
+    [Params(1000, 10000, 100000)] public int Iterations;
 
     [GlobalSetup]
-    public void Setup()
+    public void GlobalSetup()
     {
-        _charArray = new char[1024];
-        Array.Fill(_charArray, 'a');
-    }
+        const int arraySize = 1024;
+        ReadOnlySpan<char> chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'];
+        var groupLength = arraySize / chars.Length;
 
-    [Benchmark(Description = "UseString")]
-    public void Benchmark_UseString()
-    {
-        for (int i = 0; i < Iterations; i++)
+        _charArray = new char[arraySize];
+
+        var span = _charArray.AsSpan();
+        foreach (var c in chars)
         {
-            int startIndex =  i * ChunkSize % (_charArray.Length / ChunkSize);
-            var instance = new string(_charArray, startIndex, ChunkSize);
+            span[..groupLength].Fill(c);
+            span = span[groupLength..];
         }
+
+        span.Fill('z');
+
+        _dest = new List<string>(Iterations);
     }
 
-    [Benchmark(Description = "UseStringPool")]
-    public void Benchmark_UseStringPool()
+
+    [Benchmark]
+    public IList<string> UseString()
     {
-        for (int i = 0; i < Iterations; i++)
+        _dest.Clear();
+        var startIndex = 0;
+        for (var i = 0; i < Iterations; i++)
         {
-            int startIndex = i * ChunkSize % (_charArray.Length / ChunkSize);
+            if (startIndex + ChunkSize > _charArray.Length)
+            {
+                startIndex = 0;
+            }
+
+            _dest.Add(new string(_charArray, startIndex, ChunkSize));
+
+            startIndex += ChunkSize;
+        }
+
+        return _dest;
+    }
+
+    [Benchmark]
+    public IList<string> UseStringPool()
+    {
+        _dest.Clear();
+        var startIndex = 0;
+        for (var i = 0; i < Iterations; i++)
+        {
+            if (startIndex + ChunkSize > _charArray.Length)
+            {
+                startIndex = 0;
+            }
+
             ReadOnlySpan<char> span = _charArray.AsSpan(startIndex, ChunkSize);
-            var instance = StringPool.Shared.GetOrAdd(span);
+            _dest.Add(StringPool.Shared.GetOrAdd(span));
+
+            startIndex += ChunkSize;
         }
+
+        return _dest;
     }
 
-    [Benchmark(Description = "UseStringBuilder")]
-    public void Benchmark_UseStringBuilder()
+    [Benchmark]
+    public IList<string> UseStringBuilder()
     {
+        _dest.Clear();
         var sb = new StringBuilder();
-        for (int i = 0; i < Iterations; i++)
-        {
-            int startIndex = i * ChunkSize % (_charArray.Length / ChunkSize);
-            sb.Append(_charArray, startIndex, ChunkSize);
 
-            var instance = sb.ToString();
+        var startIndex = 0;
+        for (var i = 0; i < Iterations; i++)
+        {
+            if (startIndex + ChunkSize > _charArray.Length)
+            {
+                startIndex = 0;
+            }
+
+            sb.Append(_charArray.AsSpan(startIndex, ChunkSize));
+
+            _dest.Add(sb.ToString());
+
             sb.Clear();
+            startIndex += ChunkSize;
         }
+
+        return _dest;
     }
 }

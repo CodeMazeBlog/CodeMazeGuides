@@ -1,5 +1,5 @@
-﻿using CommunityToolkit.HighPerformance.Buffers;
-using System.Text;
+﻿using System.Text;
+using CommunityToolkit.HighPerformance.Buffers;
 
 namespace HowtoUseStringPool;
 
@@ -17,10 +17,7 @@ public class StringPoolHelper
         return ReferenceEquals(value1, value2);
     }
 
-    public int GetPoolSize()
-    {
-        return _myPool.Size;
-    }
+    public int GetMyPoolSize() => _myPool.Size;
 
     public static bool UseSharedInstance()
     {
@@ -42,9 +39,8 @@ public class StringPoolHelper
     public string GetUser(ReadOnlySpan<char> nameSpan)
     {
         var cacheKey = CombineSpan("USER_", nameSpan);
-        _cache.TryGetValue(cacheKey, out var value);
 
-        return value ?? string.Empty;
+        return _cache.TryGetValue(cacheKey, out var value) ? value : string.Empty;
     }
 
     private static string CombineSpan(ReadOnlySpan<char> first, ReadOnlySpan<char> second)
@@ -69,57 +65,20 @@ public class StringPoolHelper
         return StringPool.Shared.GetOrAdd(combinedSpan.Span);
     }
 
-    public string GetHostName(ReadOnlySpan<char> urlSpan)
+    public static string GetHostName(ReadOnlySpan<char> urlSpan)
     {
-        int offset = urlSpan.IndexOf([':', '/', '/']);
-        int start = offset == -1 ? 0 : offset + 3;
-        int end = start + urlSpan[start..].IndexOf('/');
+        var offset = urlSpan.IndexOf([':', '/', '/']);
+        var start = offset == -1 ? 0 : offset + 3;
+        var end = start + urlSpan[start..].IndexOf('/');
+
+        if (end == -1)
+        {
+            return string.Empty;
+        }
+
         var hostName = urlSpan[start..end];
 
         return StringPool.Shared.GetOrAdd(hostName);
-    }
-
-    public static string GetHeaderValue(HttpRequestMessage request, ReadOnlySpan<char> key)
-    {
-        var keyValue = StringPool.Shared.GetOrAdd(key);
-
-        if (request.Headers.TryGetValues(keyValue, out var headerValues))
-        {
-            if (headerValues.Count() > 1)
-                return string.Join(",", headerValues);
-
-            return headerValues.FirstOrDefault();
-        }
-
-        return string.Empty;
-    }
-
-    public static bool CheckHeader(HttpRequestMessage request)
-    {
-        const string expectedAgent = "chrome";
-        var authorization = GetHeaderValue(request, "Authorization");
-        var userAgent = GetHeaderValue(request, "User-Agent");
-
-        if (string.IsNullOrEmpty(authorization))
-            return false;
-
-        if (userAgent != expectedAgent)
-            return false;
-
-        return true;
-    }
-
-    public bool CheckToken(HttpRequestMessage request)
-    {
-        var token = GetHeaderValue(request, "Authorization");
-        var tokenKey = CombineSpan("TOKEN_", token);
-
-        if (_cache.TryGetValue(tokenKey, out var value))
-        {
-            return !string.IsNullOrEmpty(value);
-        }
-
-        return false;
     }
 
     public string Translate(ReadOnlySpan<char> keySpan, ReadOnlySpan<char> langSpan)

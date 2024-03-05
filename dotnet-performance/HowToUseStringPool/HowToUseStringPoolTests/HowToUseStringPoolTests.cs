@@ -1,5 +1,3 @@
-using CommunityToolkit.HighPerformance.Buffers;
-
 namespace HowToUseStringPoolTests;
 
 [TestClass]
@@ -13,7 +11,6 @@ public class HowToUseStringPoolTests
     {
         _fixture = new Fixture();
         _poolHelper = new StringPoolHelper();
-        Environment.SetEnvironmentVariable("EncryptionPassword", "123abcd");
     }
 
     [TestMethod]
@@ -40,7 +37,7 @@ public class HowToUseStringPoolTests
         var poolSize = _fixture.Create<int>();
 
         _poolHelper.Init(poolSize);
-        var result = _poolHelper.GetPoolSize();
+        var result = _poolHelper.GetMyPoolSize();
         var expected = new StringPool(poolSize).Size;
 
         Assert.AreEqual(result, expected);
@@ -73,66 +70,22 @@ public class HowToUseStringPoolTests
     public void WhenGetHostNameCalled_ThenResultMustBeReturn()
     {
         var hostName = _fixture.Create<string>();
-        var remaingUrl = _fixture.Create<string>();
-        var url = string.Format("https://{0}/{1}", hostName, remaingUrl);
+        var remainingUrl = _fixture.Create<string>();
+        var url = $"https://{hostName}/{remainingUrl}";
 
-        var result = _poolHelper.GetHostName(url);
+        var result = StringPoolHelper.GetHostName(url);
 
         Assert.AreEqual(hostName, result);
     }
 
     [TestMethod]
-    public void WhenGetHeaderValueCalled_ThenResultMustBeReturn()
+    public void GivenInvalidUrlString_WhenGetHostNameCalled_ThenReturnsEmptyString()
     {
-        var headerKey = _fixture.Create<string>();
-        var headerValue = _fixture.Create<string>();
-        var httpRequest = GetHttpRequest(new Dictionary<string, string>()
-        {
-            { headerKey,headerValue }
-        });
+        const string url = "ThisIsNot a URL";
 
-        var result = StringPoolHelper.GetHeaderValue(httpRequest, headerKey);
+        var result = StringPoolHelper.GetHostName(url);
 
-        Assert.AreEqual(headerValue, result);
-    }
-
-    [TestMethod]
-    public void WhenCheckHeaderCalled_WithNoHeader_ThenResultMustBeFalse()
-    {
-        var httpRequest = GetHttpRequest([]);
-
-        var result = StringPoolHelper.CheckHeader(httpRequest);
-
-        Assert.IsFalse(result);
-    }
-
-    [TestMethod]
-    public void WhenCheckHeaderCalled_WithRightHeaderValues_ThenResultMustBeTrue()
-    {
-        var authorizationToken = _fixture.Create<string>();
-        var httpRequest = GetHttpRequest(new Dictionary<string, string>()
-        {
-            { "Authorization", authorizationToken },
-            { "User-Agent", "chrome"}
-        });
-
-        var result = StringPoolHelper.CheckHeader(httpRequest);
-
-        Assert.IsTrue(result);
-    }
-
-    [TestMethod]
-    public void WhenCheckTokenCalled_ThenResultMustBeFalse()
-    {
-        var authorizationToken = _fixture.Create<string>();
-        var httpRequest = GetHttpRequest(new Dictionary<string, string>()
-        {
-            { "AuthorizationToken",authorizationToken },
-        });
-
-        var result = _poolHelper.CheckToken(httpRequest);
-
-        Assert.IsFalse(result);
+        Assert.AreEqual(string.Empty, result);
     }
 
     [TestMethod]
@@ -146,17 +99,5 @@ public class HowToUseStringPoolTests
 
         Assert.IsNotNull(result);
         Assert.AreNotEqual(expected, result);
-    }
-
-    private static HttpRequestMessage GetHttpRequest(Dictionary<string, string> headerItems)
-    {
-        var request = new HttpRequestMessage(HttpMethod.Get, "https://code-maze.com/");
-
-        foreach (var item in headerItems)
-        {
-            request.Headers.Add(item.Key, item.Value);
-        }
-
-        return request;
     }
 }
