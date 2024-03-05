@@ -3,11 +3,10 @@ using AutomaticRegistrationOfMinimalAPIs.Data;
 using AutomaticRegistrationOfMinimalAPIs.Data.Exceptions;
 using AutomaticRegistrationOfMinimalAPIs.Data.Models;
 using AutomaticRegistrationOfMinimalAPIs.Services.Abstractions;
-using Microsoft.EntityFrameworkCore;
 
 namespace AutomaticRegistrationOfMinimalAPIs.Services;
 
-public class TeacherService(SchoolDbContext context) : ITeacherService
+public class TeacherService(IUnitOfWork unitOfWork) : ITeacherService
 {
     public async Task<TeacherDto> CreateAsync(TeacherForCreationDto teacherForCreationDto, CancellationToken cancellationToken = default)
     {
@@ -18,8 +17,8 @@ public class TeacherService(SchoolDbContext context) : ITeacherService
             Subject = teacherForCreationDto.Subject
         };
 
-        await context.Teachers.AddAsync(teacher, cancellationToken);
-        await context.SaveChangesAsync(cancellationToken);
+        unitOfWork.TeacherRepository.Insert(teacher);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
 
         return new TeacherDto
         {
@@ -31,18 +30,19 @@ public class TeacherService(SchoolDbContext context) : ITeacherService
 
     public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var teacher = await context.Teachers
-           .FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
+        var teacher = await unitOfWork.TeacherRepository
+           .GetByIdAsync(id, cancellationToken)
            ?? throw new TeacherNotFoundException(id);
 
-        context.Teachers.Remove(teacher);
+        unitOfWork.TeacherRepository.Remove(teacher);
 
-        await context.SaveChangesAsync(cancellationToken);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<IEnumerable<TeacherDto>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        var teachers = await context.Teachers.ToListAsync(cancellationToken);
+        var teachers = await unitOfWork.TeacherRepository
+            .GetAllAsync(cancellationToken);
 
         var teachersDtos = new List<TeacherDto>();
 
@@ -61,8 +61,8 @@ public class TeacherService(SchoolDbContext context) : ITeacherService
 
     public async Task<TeacherDto> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var teacher = await context.Teachers
-            .FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
+        var teacher = await unitOfWork.TeacherRepository
+           .GetByIdAsync(id, cancellationToken)
             ?? throw new TeacherNotFoundException(id);
 
         return new TeacherDto
@@ -75,13 +75,13 @@ public class TeacherService(SchoolDbContext context) : ITeacherService
 
     public async Task UpdateAsync(Guid id, TeacherForUpdateDto teacherForUpdateDto, CancellationToken cancellationToken = default)
     {
-        var teacher = await context.Teachers
-            .FirstOrDefaultAsync(x => x.Id == id, cancellationToken)
+        var teacher = await unitOfWork.TeacherRepository
+           .GetByIdAsync(id, cancellationToken)
             ?? throw new TeacherNotFoundException(id);
 
         teacher.Name = teacherForUpdateDto.Name;
         teacher.Subject = teacherForUpdateDto.Subject;
 
-        await context.SaveChangesAsync(cancellationToken);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }
