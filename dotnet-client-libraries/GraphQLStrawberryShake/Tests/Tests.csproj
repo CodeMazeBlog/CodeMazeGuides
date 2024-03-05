@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GraphQLStrawberryShake.Server\GraphQLStrawberryShake.Server.csproj" />
     <ProjectReference Include="..\GraphQLStrawberryShake\GraphQLStrawberryShake.csproj" />
   </ItemGroup>
 
