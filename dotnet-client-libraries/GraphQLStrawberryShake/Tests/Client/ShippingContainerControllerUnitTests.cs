@@ -6,19 +6,19 @@ using StrawberryShake;
 using FluentAssertions;
 
 namespace Tests.Client;
-public class ShippingContainerControllerUnitTest
+public class ShippingContainerControllerUnitTests
 {
     private readonly IShippingContainerClient _client;
     private readonly ShippingContainerController _controller;
 
-    public ShippingContainerControllerUnitTest()
+    public ShippingContainerControllerUnitTests()
     {
         _client = Substitute.For<IShippingContainerClient>();
         _controller = new ShippingContainerController(_client);
     }
 
     [Fact]
-    public async Task GivenShippingContainerClient_WhenGetShippingContainersCalled_ThenReturnsOkResult()
+    public async Task GivenShippingContainerClient_WhenGetShippingContainersCalled_ThenReturnsOkResultTest()
     {
         var mockResult = Substitute.For<IOperationResult<IGetShippingContainersNameResult>>();
         mockResult.Data.Returns(Substitute.For<IGetShippingContainersNameResult>());
