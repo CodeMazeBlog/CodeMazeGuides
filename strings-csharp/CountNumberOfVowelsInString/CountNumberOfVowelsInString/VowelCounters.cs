@@ -5,7 +5,7 @@ public class VowelCounters
     static void Main()
     {
         var vowels = new HashSet<char> { 'A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u' };
-        string sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
+        var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
         Console.WriteLine(sentence);
 
         CountVowelsWithForLoop(sentence, vowels);
@@ -18,7 +18,7 @@ public class VowelCounters
 
     public static int CountVowelsWithForLoop(string sentence, HashSet<char> vowels)
     {
-        int total = 0;
+        var total = 0;
 
         for (int i = 0; i < sentence.Length; i++)
         {
@@ -35,11 +35,15 @@ public class VowelCounters
 
     public static int CountVowelsWithForEachLoop(string sentence, HashSet<char> vowels)
     {
-        int total = 0;
+        var total = 0;
 
         foreach (char c in sentence)
+        {
             if (vowels.Contains(c))
+            {
                 total++;
+            }
+        }
 
         Console.WriteLine($"The number of vowels counted using ForEach loop is: {total}");
 
@@ -48,7 +52,7 @@ public class VowelCounters
 
     public static int CountVowelsUsingSwitchStatement(string sentence)
     {
-        int total = 0;
+        var total = 0;
         foreach (char c in sentence)
         {
             switch (c)
@@ -65,7 +69,8 @@ public class VowelCounters
                 case 'u':
                     total++;
                     break;
-                default: continue;
+                default:
+                    break;
             }
 
         }
@@ -76,7 +81,7 @@ public class VowelCounters
 
     public static int CountVowelsUsingRegEx(string sentence)
     {
-        int total = Regex.Matches(sentence, @"[AEIOUaeiou]").Count;
+        var total = Regex.Matches(sentence, @"[AEIOU]", RegexOptions.IgnoreCase).Count;
 
         Console.WriteLine($"The number of vowels counted using RegEx is: {total}");
 
@@ -86,7 +91,7 @@ public class VowelCounters
     public static int CountVowelsUsingStrReplaceAndLength(string sentence)
     {
         Regex rxVowels = new Regex(@"[^AEIOU]+", RegexOptions.IgnoreCase);
-        int total = rxVowels.Replace(sentence, "").Length;
+        var total = rxVowels.Replace(sentence, "").Length;
 
         Console.WriteLine($"The number of vowels counted using String Replace and String Join is: {total}");
 
@@ -95,7 +100,7 @@ public class VowelCounters
 
     public static int CountVowelsUsingLinq(string sentence, HashSet<char> vowels)
     {
-        int total = sentence.Count(x => vowels.Contains(x));
+        var total = sentence.Count(x => vowels.Contains(x));
 
         Console.WriteLine($"The number of vowels counted using LINQ is: {total}");
 
