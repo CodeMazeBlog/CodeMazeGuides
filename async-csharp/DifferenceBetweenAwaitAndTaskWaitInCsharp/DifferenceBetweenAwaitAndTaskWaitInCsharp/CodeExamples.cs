@@ -11,6 +11,7 @@ public static class CodeExamples
         Task<string> taskToBlock = Task<string>.Run(() =>
         {
             Thread.Sleep(5000);
+            
             return "Hello, from a blocking task";
         });
 
