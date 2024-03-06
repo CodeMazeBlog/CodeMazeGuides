@@ -15,6 +15,7 @@ namespace Test
         public void Given_GetGreeting_Initialized_When_GetGreeting_Method_Called_Then_Returns_Correct_Greeting()
         {
             var helloWorldStr = _funcDelegate.GetGreeting();
+            
             Assert.AreEqual(helloWorldStr, _helloWorldStr);
         }
 
@@ -23,6 +24,7 @@ namespace Test
         {
             var name = "Jack";
             var helloNameStr = _funcDelegate.Greet(name);
+            
             Assert.AreEqual(helloNameStr, _helloNameStr);
         }
 
@@ -31,6 +33,7 @@ namespace Test
         {
             var name = "";
             var helloNameStr = _funcDelegate.Greet(name);
+            
             Assert.AreEqual(helloNameStr, _helloEmptyNameStr);
         }
         
@@ -38,20 +41,23 @@ namespace Test
         public void When_Addition_Method_Called_With_Positive_Numbers()
         {
             var result = _funcDelegate.Add(7, 8);
+            
             Assert.AreEqual(15, result);
         }
 
         [TestMethod]
         public void When_Addition_Method_Called_With_Negative_Numbers()
         {
-            int result = _funcDelegate.Add(-10, -7);
+            var result = _funcDelegate.Add(-10, -7);
+            
             Assert.AreEqual(-17, result);
         }
 
         [TestMethod]
         public void When_Addition_Method_Called_With_Zero()
         {
-            int result = _funcDelegate.Add(0, 0);
+            var result = _funcDelegate.Add(0, 0);
+            
             Assert.AreEqual(0, result);
         }
     }
