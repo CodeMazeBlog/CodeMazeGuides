@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 namespace ConvertIAsyncEnumerableToListLibrary;
 public static class UserPageFetcher
 {
-    public static async IAsyncEnumerable<User> GetUsersAsync(int delayMilliseconds = 500)
+    public static async IAsyncEnumerable<User> GetUsersAsync(int delayMilliseconds = 10)
     {
         for (int page = 1; page <= 3; page++)
         {
@@ -25,7 +25,7 @@ public static class UserPageFetcher
     }
 
     public static async IAsyncEnumerable<User> GetUsersAsyncWithCancellationToken
-    (int delayMilliseconds = 500, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    (int delayMilliseconds = 10, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         for (int page = 1; page <= 3; page++)
         {
