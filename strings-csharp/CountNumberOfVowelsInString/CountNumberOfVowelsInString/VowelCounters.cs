@@ -53,6 +53,7 @@ public class VowelCounters
     public static int CountVowelsUsingSwitchStatement(string sentence)
     {
         var total = 0;
+
         foreach (char c in sentence)
         {
             switch (c)
@@ -74,6 +75,7 @@ public class VowelCounters
             }
 
         }
+
         Console.WriteLine($"The number of vowels counted using Switch statement is: {total}");
 
         return total;
@@ -91,6 +93,7 @@ public class VowelCounters
     public static int CountVowelsUsingStrReplaceAndLength(string sentence)
     {
         Regex rxVowels = new Regex(@"[^AEIOU]+", RegexOptions.IgnoreCase);
+
         var total = rxVowels.Replace(sentence, "").Length;
 
         Console.WriteLine($"The number of vowels counted using String Replace and String Join is: {total}");
