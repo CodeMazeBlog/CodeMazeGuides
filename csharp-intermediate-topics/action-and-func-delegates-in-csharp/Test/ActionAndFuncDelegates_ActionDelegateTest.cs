@@ -1,5 +1,4 @@
 using ActionAndFuncDelegates;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
 
 namespace Test
 {
