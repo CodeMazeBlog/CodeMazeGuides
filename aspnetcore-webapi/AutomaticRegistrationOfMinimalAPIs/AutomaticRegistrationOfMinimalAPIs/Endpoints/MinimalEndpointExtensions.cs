@@ -7,10 +7,8 @@ public static class MinimalEndpointExtensions
 {
     public static IServiceCollection AddMinimalEndpoints(this IServiceCollection services)
     {
-        var assembly = typeof(Program).Assembly;
-
-        var serviceDescriptors = assembly
-            .DefinedTypes
+        var serviceDescriptors = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(s => s.GetTypes())
             .Where(type => !type.IsAbstract &&
                            !type.IsInterface &&
                            type.IsAssignableTo(typeof(IMinimalEndpoint)))
