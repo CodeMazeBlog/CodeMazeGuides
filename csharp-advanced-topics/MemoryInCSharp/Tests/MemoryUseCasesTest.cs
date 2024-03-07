@@ -5,47 +5,46 @@ namespace Tests;
 
 public class MemoryUseCasesTest
 {
-    private readonly MemoryUseCases _memoryUseCases;
     private readonly Mock<TextWriter> _mockTextWriter;
 
     public MemoryUseCasesTest()
     {
         _mockTextWriter = new Mock<TextWriter>();
         Console.SetOut(_mockTextWriter.Object);
-        _memoryUseCases = new MemoryUseCases();
+        
     }
 
     [Fact]
-    public void When_WorksWithBothStackAndHeap_Called_Then_ShouldWriteToConsole()
+    public void WhenWorksWithBothStackAndHeapCalled_ThenShouldWriteToConsole()
     {
-        _memoryUseCases.WorksWithBothStackAndHeap();
+        MemoryUseCases.WorksWithBothStackAndHeap();
         
         _mockTextWriter.Verify(tw => tw.WriteLine(It.IsAny<string>()), Times.AtLeastOnce);
     }
 
     [Fact]
-    public void When_StringAsMemoryExtensionMethod_Called_Then_ShouldWriteToConsole()
+    public void WhenStringAsMemoryExtensionMethod_Called_ThenShouldWriteToConsole()
     {
-        _memoryUseCases.StringAsMemoryExtensionMethod();
+        MemoryUseCases.StringAsMemoryExtensionMethod();
         
         _mockTextWriter.Verify(tw => tw.WriteLine(It.IsAny<string>()), Times.AtLeastOnce);
     }
 
     [Fact]
-    public void When_UseMemoryOwner_Called_Then_ShouldWriteToConsole()
+    public void WhenUseMemoryOwnerCalled_ThenShouldWriteToConsole()
     {
-        _memoryUseCases.UseMemoryOwner();
+        MemoryUseCases.UseMemoryOwner();
 
         _mockTextWriter.Verify(tw => tw.WriteLine(It.IsAny<int>()), Times.AtLeastOnce);
     }
 
     [Fact]
-    public async Task When_ProcessFileAsync_Called_Then_ShouldWriteToConsole()
+    public async Task WhenProcessFileAsyncCalled_ThenShouldWriteToConsole()
     {
         var filePath = "test.txt";
         var fileContent = "Hello World";
         await File.WriteAllTextAsync(filePath, fileContent);
-        await _memoryUseCases.ProcessFileAsync(filePath);
+        await MemoryUseCases.ProcessFileAsync(filePath);
 
         _mockTextWriter.Verify(tw => tw.Write(It.IsAny<char>()), Times.AtLeastOnce);
         File.Delete(filePath);

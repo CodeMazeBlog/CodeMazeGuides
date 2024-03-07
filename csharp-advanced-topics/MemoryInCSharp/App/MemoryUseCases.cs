@@ -2,12 +2,12 @@ using System.Buffers;
 
 namespace App;
 
-public class MemoryUseCases
+public static class MemoryUseCases
 {
     /// <summary>
     /// Memory  can be allocated on both the stack and the heap, unlike Span  which is restricted to the stack due to being a ref struct
     /// </summary>
-    public void WorksWithBothStackAndHeap()
+    public static void WorksWithBothStackAndHeap()
     {
         // Allocating Memory<T> on the stack
         Span<int> stackSpan = stackalloc int[3];
@@ -42,7 +42,7 @@ public class MemoryUseCases
     /// <summary>
     /// String.AsMemory extension method.
     /// </summary>
-    public void StringAsMemoryExtensionMethod()
+    public static void StringAsMemoryExtensionMethod()
     {
         const string str = "Hello Code Maze";
         var memory = str.AsMemory();
@@ -57,7 +57,7 @@ public class MemoryUseCases
     /// <summary>
     /// Ownership models, including the connection between Memory  and the IMemoryOwner interface.
     /// </summary>
-    public void UseMemoryOwner()
+    public static void UseMemoryOwner()
     {
         // Rent a block of memory from the shared pool
         using IMemoryOwner<int> owner = MemoryPool<int>.Shared.Rent(10);
@@ -80,7 +80,7 @@ public class MemoryUseCases
     /// Practical usage scenarios such as utilizing MemoryPool, IMemoryOwner, and the IMemoryOwner.Memory property.
     /// </summary>
     /// <param name="filePath"></param>
-    public async Task ProcessFileAsync(string filePath)
+    public static async Task ProcessFileAsync(string filePath)
     {
         // Rent a block of memory from the shared pool
         using IMemoryOwner<byte> owner = MemoryPool<byte>.Shared.Rent(4096);
@@ -99,7 +99,7 @@ public class MemoryUseCases
         }
     }
     
-    private void ProcessData(ReadOnlyMemory<byte> data)
+    private static void ProcessData(ReadOnlyMemory<byte> data)
     {
         // This is where you would add your data processing logic
         foreach (var b in data.Span)
