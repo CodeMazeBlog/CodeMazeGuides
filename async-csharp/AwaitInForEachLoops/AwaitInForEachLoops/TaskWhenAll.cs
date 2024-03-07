@@ -1,6 +1,4 @@
-﻿
-
-namespace AwaitInForEachLoop
+﻿namespace AwaitInForEachLoop
 {
     public class TaskWhenAllInLoop
     {
@@ -22,14 +20,13 @@ namespace AwaitInForEachLoop
             return result;
         }
 
-        public static async Task ProcessNumberAsync(int number)
+        public static async Task ProcessNumberAsync(int number, int delay = 1000)
         {
             Console.WriteLine($"Processing {number}");
             // Simulate an asynchronous operation
-            await Task.Delay(1000);
+            await Task.Delay(delay);
 
             Console.WriteLine($"Processed {number}");
         }
-
     }
 }
