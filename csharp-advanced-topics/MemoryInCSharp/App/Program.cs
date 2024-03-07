@@ -1,10 +1,22 @@
 ﻿using App;
-using BenchmarkDotNet.Running;
 
-public class Program
+public static class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
-        var summary = BenchmarkRunner.Run<MemoryVsArrayBenchmarks>();
+        var memoryUseCases = new MemoryUseCases();
+
+        // Call WorksWithBothStackAndHeap method
+        memoryUseCases.WorksWithBothStackAndHeap();
+
+        // Call StringAsMemoryExtensionMethod method
+        memoryUseCases.StringAsMemoryExtensionMethod();
+
+        // Call UseMemoryOwner method
+        memoryUseCases.UseMemoryOwner();
+
+        // Call ProcessFileAsync method
+        // Replace "your_file_path" with the path to the file you want to process
+        await memoryUseCases.ProcessFileAsync("./File.txt");
     }
 }
