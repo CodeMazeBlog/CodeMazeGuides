@@ -10,6 +10,7 @@ static void PrintMessage(string message)
 }
 
 
+
 // We defined a Func director that takes an int and returns its square.
 Func<int, int> squareFunc = Square;
 
