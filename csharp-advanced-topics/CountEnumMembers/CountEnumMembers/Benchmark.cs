@@ -7,17 +7,17 @@ namespace CountEnumMembersBenchmark
     public class Benchmark
     {
         [Benchmark]
-        public int MeasureGetValues()
+        public int MeasureGetNames()
         {
-            var getvalues = Enum.GetValues(typeof(Months));
-            return getvalues.Length;
+            var getnames = Enum.GetNames(typeof(Months)).Length;
+            return getnames;
         }
 
         [Benchmark]
-        public int MeasureGetNames()
+        public int MeasureGetValues()
         {
-            var getnames = Enum.GetNames(typeof(Months));
-            return getnames.Length;
+            var getvalues = Enum.GetValues(typeof(Months)).Length;
+            return getvalues;
         }
     }
 }
