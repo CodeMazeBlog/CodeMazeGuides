@@ -55,37 +55,41 @@
         public static int ReverseUsingMathPow(int num)
         {
             int maxValueDiv10 = int.MaxValue / 10;
+            bool isNegative = num < 0;
+            num = isNegative ? -num : num;
 
             if (num == int.MaxValue || num == int.MinValue || num == 0)
             {
                 return 0;
             }
 
-            bool isNegative = num < 0;
-            num = isNegative ? -num : num;
-
-            int length = (int)Math.Floor(Math.Log10(num) + 1);            
-            int powerOf10 = (int)Math.Pow(10, length - 1);
+            int length = (int)Math.Floor(Math.Log10(num) + 1);
             int reversedNumber = 0;
+            int[] powersOf10 = new int[10];
+            powersOf10[0] = 1;
 
-            for (int i = 1; i <= length; i++)
-            {                
+            for (int i = 1; i < 10; i++)
+            {
+                powersOf10[i] = powersOf10[i - 1] * 10;
+            }            
+
+            for (int i = length - 1; i >= 0; i--)
+            {
                 int remainder = num % 10;
 
-                if ((remainder * (powerOf10 / 10)) >= maxValueDiv10)
+                if ((remainder * powersOf10[i] / 10) >= maxValueDiv10)
                 {
                     return 0;
                 }
 
-                reversedNumber += remainder * powerOf10;
+                reversedNumber += remainder * powersOf10[i];
 
                 num /= 10;
-                powerOf10 /= 10;
             }
 
             return isNegative ? -reversedNumber : reversedNumber;
         }
-
+        
         public static int ReverseBySwappingDigits(int num)
         {
             int maxValueDiv10 = int.MaxValue / 10;
@@ -97,39 +101,45 @@
 
             bool isNegative = num < 0;
             num = isNegative ? -num : num;
-
             int reversedNumber = 0;
-
             int totalNumOfDigits = (int)Math.Floor(Math.Log10(num)) + 1;
-            int leftPow = (int)Math.Pow(10, totalNumOfDigits - 1);
-            int rightPow = 1; 
+            int[] powersOf10 = new int[10];
+            powersOf10[0] = 1;
 
-            while (leftPow >= rightPow)
+            for (int i = 1; i < 10; i++)
             {
-                int leftDigit = (num / leftPow) % 10;
-                int rightDigit = (num / rightPow) % 10;
+                powersOf10[i] = powersOf10[i - 1] * 10;
+            }
 
-                if ((rightDigit * (leftPow / 10)) >= maxValueDiv10)
+            int leftPowIndex = totalNumOfDigits - 1;
+            int rightPowIndex = 0;
+
+            while (leftPowIndex >= rightPowIndex)
+            {
+                int leftDigit = (num / powersOf10[leftPowIndex]) % 10;
+                int rightDigit = (num / powersOf10[rightPowIndex]) % 10;
+
+                if ((rightDigit * (powersOf10[leftPowIndex] / 10)) >= maxValueDiv10)
                 {
                     return 0;
                 }
 
-                if (leftPow != rightPow)
+                if (leftPowIndex != rightPowIndex)
                 {
-                    reversedNumber += leftDigit * rightPow;
-                    reversedNumber += rightDigit * leftPow;
+                    reversedNumber += leftDigit * powersOf10[rightPowIndex];
+                    reversedNumber += rightDigit * powersOf10[leftPowIndex];
                 }
                 else
                 {
-                    reversedNumber += leftDigit * leftPow;
+                    reversedNumber += leftDigit * powersOf10[leftPowIndex];
                 }
 
-                leftPow /= 10;
-                rightPow *= 10;
+                leftPowIndex--;
+                rightPowIndex++;
             }
-         
+
             return isNegative ? -reversedNumber : reversedNumber;
-        }        
+        }
 
         public static int ReverseAsString(int num)
         {
@@ -139,9 +149,9 @@
             }
 
             bool isNegative = num < 0;
-            char[] numChars = Math.Abs(num).ToString().ToCharArray();
+            ReadOnlySpan<char> numChars = Math.Abs(num).ToString().AsSpan();
             int length = numChars.Length;
-            Span<char> reversedChars = stackalloc char[length];
+            Span<char> reversedChars = stackalloc char[length];            
 
             for (int i = 0; i < length; i++)
             {
