@@ -7,7 +7,7 @@ public class IAsyncEnumerableToListTests
     {
         // Act
         var usersList = await AsyncUserListConverter
-            .GetUsersAsListAsync();
+            .GetUsersAsListAsync(10);
 
         // Assert
         Assert.NotNull(usersList);
@@ -23,7 +23,7 @@ public class IAsyncEnumerableToListTests
 
         // Act
         var usersList = await AsyncUserListConverter
-            .GetUsersAsListAsyncWithCancellationToken(cancellationToken);
+            .GetUsersAsListAsyncWithCancellationToken(10, cancellationToken);
 
         // Assert
         Assert.NotNull(usersList);
@@ -41,6 +41,6 @@ public class IAsyncEnumerableToListTests
         // Act
         await Assert.ThrowsAsync<OperationCanceledException>(() =>
             AsyncUserListConverter
-            .GetUsersAsListAsyncWithCancellationToken(cancellationToken));
+            .GetUsersAsListAsyncWithCancellationToken(10, cancellationToken));
     }
 }
