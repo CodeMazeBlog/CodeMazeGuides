@@ -1,116 +1,75 @@
+using ActionAndDelegatesInCSharp;
 namespace Tests;
-
 public class DelegatesUnitTest
-{
-    private delegate int Operate(int firstNumber, int secondNumber);
-
+{   
     [Fact]
     public void WhenTwoNumbersAreProvidedAsInput_ThenDelegateReturnsSumOfThem()
     {
         //Arrange
-        int Add(int firstNumber, int secondNumber)
-        {
-            return firstNumber + secondNumber;
-        }
-
         var firstNumber = 1;
         var secondNumber = 2;
         var expectedResult = 3;
 
         //Act
-        var operate = new Operate(Add);
+        var operate = new Program.OperateDelegate(Program.Add);
         var delegateExecutionResult = operate(firstNumber, secondNumber);
 
         //Assert
         Assert.Equal(expectedResult, delegateExecutionResult);
-
-    }
-
-    [Fact]
-    public void WhenTwoNumbersAreProvidedAsInput_ThenDelegateReturnsProductOfThem()
-    {
-        //Arrange
-        int Multiply(int firstNumber, int secondNumber)
-        {
-            return firstNumber * secondNumber;
-        }
-
-        var firstNumber = 1;
-        var secondNumber = -2;
-        var expectedResult = -2;
-
-        //Act
-        var operate = new Operate(Multiply);
-        var delegateExecutionResult = operate(firstNumber, secondNumber);
-
-        //Assert
-        Assert.Equal(expectedResult, delegateExecutionResult);
-
     }
 
     [Fact]
     public void WhenTwoNumbersAreProvidedAsInput_ThenFuncDelegateReturnsSumOfThem()
     {
         //Arrange
-        int Add(int firstNumber, int secondNumber)
-        {
-            return firstNumber + secondNumber;
-        }
-
         var firstNumber = 1;
         var secondNumber = 2;
         var expectedResult = 3;
 
         //Act
-        Func<int, int, int> operate = Add;
-        var delegateExecutionResult = operate(firstNumber, secondNumber);
+        Program.Operate = Program.Add;
+        var delegateExecutionResult = Program.Operate(firstNumber, secondNumber);
 
         //Assert
         Assert.Equal(expectedResult, delegateExecutionResult);
-
     }
 
     [Fact]
-    public void WhenTwoNumbersAreProvidedAsInput_ThenFuncDelegateReturnsProductOfThem()
+    public void WhenActionDelegateIsExecuted_ThenMessageIsLoggedOnConsole()
     {
         //Arrange
-        int Multiply(int firstNumber, int secondNumber)
-        {
-            return firstNumber * secondNumber;
-        }
-
-        var firstNumber = 1;
-        var secondNumber = -2;
-        var expectedResult = -2;
+        var expectedOutput = "The result of delegate operation is 1.\r\n";
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
 
         //Act
-        Func<int, int, int> operate = Multiply;
-        var delegateExecutionResult = operate(firstNumber, secondNumber);
+        Program.Display = Program.DisplayOnConsole;
+        Program.Display(1);
 
         //Assert
-        Assert.Equal(expectedResult, delegateExecutionResult);
-
+        Assert.Equal(expectedOutput, stringWriter.ToString());
     }
 
     [Fact]
-    public void WhenActionDelegateIsExecuted_ThenVariableValueIsUpdated()
-    {
+    public void WhenMainFunctionIsExecuted_ThenMessageIsLoggedOnConsole()
+    { 
         //Arrange
-        string variableToBeUpdated = string.Empty;
-        string updateMessage = "I am updated";
+        var expectedFirstOutput = "The result of operatedelegate operation is 3.";
+        var expectedSecondOutput = "The result of delegate operation is 3.";
+        var expectedOutputCounts = 2;
 
-        void UpdateVariable(string message)
-        {
-            variableToBeUpdated = message;
-        }
-
-        Action<string> update = UpdateVariable;
-
+        var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
+        
         //Act
-        update(updateMessage);
+        Program.Main(Array.Empty<string>());
 
         //Assert
-        Assert.Equal(updateMessage, variableToBeUpdated);
+        var appendedOutput = stringWriter.ToString();
+        var splitConsoleOutputs = appendedOutput.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
 
+        Assert.Equal(expectedOutputCounts, splitConsoleOutputs.Count());
+        Assert.Equal(expectedFirstOutput, splitConsoleOutputs[0]);
+        Assert.Equal(expectedSecondOutput, splitConsoleOutputs[1]);        
     }
 }
