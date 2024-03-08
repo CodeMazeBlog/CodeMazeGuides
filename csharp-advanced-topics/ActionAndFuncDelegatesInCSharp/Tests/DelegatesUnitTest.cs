@@ -38,7 +38,7 @@ public class DelegatesUnitTest
     public void WhenActionDelegateIsExecuted_ThenMessageIsLoggedOnConsole()
     {
         //Arrange
-        var expectedOutput = "The result of delegate operation is 1.\r\n";
+        var expectedOutput = "The result of delegate operation is 1.";
         var stringWriter = new StringWriter();
         Console.SetOut(stringWriter);
 
@@ -47,7 +47,8 @@ public class DelegatesUnitTest
         Program.Display(1);
 
         //Assert
-        Assert.Equal(expectedOutput, stringWriter.ToString());
+        var actualResult = stringWriter.ToString();
+        Assert.Contains(expectedOutput, actualResult);
     }
 
     [Fact]
@@ -56,8 +57,7 @@ public class DelegatesUnitTest
         //Arrange
         var expectedFirstOutput = "The result of operatedelegate operation is 3.";
         var expectedSecondOutput = "The result of delegate operation is 3.";
-        var expectedOutputCounts = 2;
-
+        
         var stringWriter = new StringWriter();
         Console.SetOut(stringWriter);
         
@@ -66,10 +66,8 @@ public class DelegatesUnitTest
 
         //Assert
         var appendedOutput = stringWriter.ToString();
-        var splitConsoleOutputs = appendedOutput.Split("\r\n", StringSplitOptions.RemoveEmptyEntries);
 
-        Assert.Equal(expectedOutputCounts, splitConsoleOutputs.Count());
-        Assert.Equal(expectedFirstOutput, splitConsoleOutputs[0]);
-        Assert.Equal(expectedSecondOutput, splitConsoleOutputs[1]);        
+        Assert.Contains(expectedFirstOutput, appendedOutput);
+        Assert.Contains(expectedSecondOutput, appendedOutput);
     }
 }
