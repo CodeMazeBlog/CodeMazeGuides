@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToCalculateADirectorySize", "HowToCalculateADirectorySize\HowToCalculateADirectorySize.csproj", "{A54CDDCF-F619-45BE-A720-74B88773F5D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowToCalculateADirectorySize", "HowToCalculateADirectorySize\HowToCalculateADirectorySize.csproj", "{A54CDDCF-F619-45BE-A720-74B88773F5D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4C272A42-38DC-40D4-9D47-F5F56ED0B96B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{4C272A42-38DC-40D4-9D47-F5F56ED0B96B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

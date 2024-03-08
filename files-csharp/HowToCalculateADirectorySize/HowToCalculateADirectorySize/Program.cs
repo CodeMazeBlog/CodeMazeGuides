@@ -1,8 +1,9 @@
 ﻿using HowToCalculateADirectorySize;
+string resourceFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Shared");
 
-var sizeOne = DirectorySizeCalculator.GetSizeWithRecursion(new DirectoryInfo(@"C:\Public\CM-Demos\Test"));
-var sizeTwo = DirectorySizeCalculator.GetSizeByIteration(@"C:\Public\CM-Demos\Test");
-var sizeThree = DirectorySizeCalculator.GetSizeByParallelProcessing(new DirectoryInfo(@"C:\Public\CM-Demos\Test"), true);
+var sizeOne = DirectorySizeCalculator.GetSizeWithRecursion(new DirectoryInfo(resourceFolderPath));
+var sizeTwo = DirectorySizeCalculator.GetSizeByIteration(resourceFolderPath);
+var sizeThree = DirectorySizeCalculator.GetSizeByParallelProcessing(new DirectoryInfo(resourceFolderPath), true);
 
 Console.WriteLine($"The directory has {sizeOne}bytes worth of files");
 Console.WriteLine($"The directory has {sizeTwo}bytes worth of files");

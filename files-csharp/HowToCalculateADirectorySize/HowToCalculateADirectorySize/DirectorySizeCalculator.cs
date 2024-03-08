@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HowToCalculateADirectorySize;
+﻿namespace HowToCalculateADirectorySize;
 
 public class DirectorySizeCalculator
 {
@@ -92,14 +86,27 @@ public class DirectorySizeCalculator
 
         try
         {
-            foreach (var fileInfo in directory.GetFiles())
+            // Use EnumerateFiles instead of GetFiles for better performance
+            Parallel.ForEach(directory.EnumerateFiles(), fileInfo =>
             {
-                size += fileInfo.Length;
-            }
+                try
+                {
+                    Interlocked.Add(ref size, fileInfo.Length);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    Console.WriteLine($"Unauthorized access to {fileInfo.FullName}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error processing {fileInfo.FullName}: ");
+                    Console.WriteLine($"{ex.Message}");
+                }
+            });
 
             if (recursive)
             {
-                Parallel.ForEach(directory.GetDirectories(), subDirectory =>
+                Parallel.ForEach(directory.EnumerateDirectories(), subDirectory =>
                 {
                     try
                     {
@@ -107,11 +114,11 @@ public class DirectorySizeCalculator
                     }
                     catch (UnauthorizedAccessException)
                     {
-                        Console.WriteLine($"We do not have access to {subDirectory}");
+                        Console.WriteLine($"Unauthorized access to {subDirectory.FullName}");
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"We encountered an error processing {subDirectory}: ");
+                        Console.WriteLine($"Error processing {subDirectory.FullName}: ");
                         Console.WriteLine($"{ex.Message}");
                     }
                 });
@@ -119,11 +126,11 @@ public class DirectorySizeCalculator
         }
         catch (UnauthorizedAccessException)
         {
-            Console.WriteLine($"Unauthorized access to {directory.Name}");
+            Console.WriteLine($"Unauthorized access to {directory.FullName}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error processing {directory.Name}: ");
+            Console.WriteLine($"Error processing {directory.FullName}: ");
             Console.WriteLine($"{ex.Message}");
         }
 
