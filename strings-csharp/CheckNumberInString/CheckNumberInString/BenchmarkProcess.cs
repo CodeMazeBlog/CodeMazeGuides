@@ -7,39 +7,30 @@ namespace CheckNumberInString
     [RankColumn]
     public class BenchmarkProcess
     {
-        private int[] data;
-        private const string inputString = "The total revenue is $123";
+        private const string inputString = "The price is $42.75 for two items and $18.50 for one item.";
 
-        [GlobalSetup]
-        public void GlobalSetup()
+        [Benchmark]
+        public string ExtractNumberUsingRegExMethod()
         {
-            data = Enumerable.Range(1, 1000).ToArray();
+            return  ExtractNumber.ExtractNumberUsingRegEx(inputString).ToString();
         }
 
         [Benchmark]
-        public void ExtractNumberUsingRegExMethod()
+        public string ExtractNumberUsingLinqMethod()
         {
-            for (var i = 0; i < data.Length; i++)
-            {
-                ExtractNumber.ExtractNumberUsingRegEx(inputString);
-            }
+            return ExtractNumber.ExtractNumbersUsingLinq(inputString).ToString();
         }
 
         [Benchmark]
-        public void ExtractNumberUsingLinqAndCharIsDigitMethod()
+        public string ExtractNumberUsingStringBuilderMethod()
         {
-            for (var i = 0; i < data.Length; i++)
-            {
-                ExtractNumber.ExtractNumberUsingLinqAndCharIsDigit(inputString);
-            }
+            return ExtractNumber.ExtractNumberUsingStringBuilder(inputString).ToString();
         }
+
         [Benchmark]
-        public void ExtractNumberUsingStringBuilderAndCharIsDigitMethod()
+        public string ExtractNumberUsingSpanMethod()
         {
-            for (var i = 0; i < data.Length; i++)
-            {
-                ExtractNumber.ExtractNumberUsingStringBuilderAndCharIsDigit(inputString);
-            }
+            return ExtractNumber.ExtractNumberUsingSpan(inputString).ToString();
         }
     }
 }
