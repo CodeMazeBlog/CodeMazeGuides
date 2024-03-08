@@ -1,4 +1,3 @@
-
 using ReplaceSpecialCharactersInString;
 
 namespace ReplaceSpecialCharactersInStringTests
@@ -8,85 +7,83 @@ namespace ReplaceSpecialCharactersInStringTests
     {
         private const string OriginalString = "a*b*c*d*e*f*g#h#i#j*k*l*m*n*o*p*q*r*s*t*u*v*w#x#y#z";
 
+        private const string ExpectedOutput = "a*b*c*d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
+
+        private char OldChar { get; set; } = '#';
+
+        private char NewChar { get; set; } = ' ';
+
         [TestMethod]
         public void WhenUsingStringReplace_ThenReplaceSpecialCharacters()
         {
-            var expected = "a*b*c*d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
-            var result = StringReplacer.ReplaceUsingStringReplace(OriginalString, '#', ' ');
+            var result = StringReplacer.ReplaceUsingStringReplace(OriginalString, OldChar, NewChar);
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
         public void WhenUsingStringBuilder_ThenReplaceMultipleSpecialCharacters()
         {
-            var expected = "a*b*c*d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
-            var result = StringReplacer.ReplaceUsingStringBuilder(OriginalString, '#', ' ');
+            var result = StringReplacer.ReplaceUsingStringBuilder(OriginalString, OldChar, NewChar);
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
         public void WhenUsingRegex_ThenReplaceSpecialCharacters()
         {
-            var expected = "a*b*c*d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
-            var result = StringReplacer.ReplaceUsingRegex(OriginalString, '#', ' ');
+            var result = StringReplacer.ReplaceUsingRegex(OriginalString, OldChar.ToString(), NewChar.ToString());
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
         public void WhenUsingSpan_ThenReplaceSpecialCharactersWithMemoryEfficient()
         {
-            var expected = "a*b*c*d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
-            var result = StringReplacer.ReplaceUsingSpan(OriginalString, '#', ' ');
+            var result = StringReplacer.ReplaceUsingSpan(OriginalString, OldChar, NewChar);
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
         public void WhenUsingInefficientMultipleReplacementsStringReplace_ThenReplaceSpecialCharacters()
         {
-            var expected = "a*b**d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
-            var result = StringReplacer.ReplaceUsingInefficientMultipleReplacementsStringReplace(OriginalString, '#', ' ');
+            var expectedOutput = "a*b**d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
+            var result = StringReplacer.ReplaceUsingInefficientMultipleReplacementsStringReplace(OriginalString, OldChar, NewChar);
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(expectedOutput, result);
         }
 
         [TestMethod]
         public void WhenUsingMemoryImpactStringReplace_ThenReplaceSpecialCharacters()
         {
-            var expected = "a*b*c*d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
-            var result = StringReplacer.ReplaceUsingMemoryImpactStringReplace(OriginalString, '#', ' ');
+            var result = StringReplacer.ReplaceUsingMemoryImpactStringReplace(OriginalString, OldChar, NewChar);
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
         public void WhenUsingCompiledRegex_ThenReplaceSpecialCharacters()
         {
-            var expected = "a*b*c*d*e*f*ghij*k*l*m*n*o*p*q*r*s*t*u*v*wxyz";
-            var result = StringReplacer.ReplaceUsingCompiledRegex(OriginalString, '#', ' ');
+            var result = StringReplacer.ReplaceUsingCompiledRegex(OriginalString, OldChar.ToString(), NewChar.ToString());
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
-        public void WhenUsingDotNet8Features_ThenReplaceSpecialCharacters()
+        public void WhenUsingNonBacktrackingRegex_ThenReplaceSpecialCharacters()
         {
-            var expected = "a*b*c*d*e*f*ghij*k*l*m*n*o*p*q*r*s*t*u*v*wxyz";
-            var result = StringReplacer.ReplaceUsingDotNet8Features(OriginalString, '#', ' ');
+            var result = StringReplacer.ReplaceUsingNonBacktrackingRegex(OriginalString, OldChar.ToString(), NewChar.ToString());
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
         public void WhenUsingUnsafeCode_ThenReplaceSpecialCharacters()
         {
-            var expected = "a*b*c*d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
-            var result = StringReplacer.ReplaceUsingUnsafeCode(OriginalString, '#', ' ');
+            var result = StringReplacer.ReplaceUsingUnsafeCode(OriginalString, OldChar, NewChar);
 
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(ExpectedOutput, result);
         }
     }
 }

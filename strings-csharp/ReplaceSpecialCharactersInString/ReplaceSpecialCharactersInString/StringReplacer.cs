@@ -4,40 +4,43 @@ using BenchmarkDotNet.Attributes;
 
 namespace ReplaceSpecialCharactersInString
 {
-    [MemoryDiagnoser]
     public class StringReplacer
     {
         [Benchmark]
-        public static string ReplaceUsingStringReplace(string originalString , char charToBeReplaced, char charToReplace)
+        public static string ReplaceUsingStringReplace(string originalString,
+            char oldChar, char newChar)
         {
-            return originalString.Replace(charToBeReplaced.ToString(), charToReplace.ToString());
+            return originalString.Replace(oldChar, newChar);
         }
 
 
         [Benchmark]
-        public static string ReplaceUsingStringBuilder(string originalString , char charToBeReplaced, char charToReplace)
+        public static string ReplaceUsingStringBuilder(string originalString,
+            char oldChar, char newChar)
         {
             var sb = new StringBuilder(originalString);
 
-            sb.Replace(charToBeReplaced.ToString(), charToReplace.ToString());
+            sb.Replace(oldChar, newChar);
 
             return sb.ToString();
         }
 
 
         [Benchmark]
-        public static string ReplaceUsingRegex(string originalString, char charToBeReplaced, char charToReplace)
+        public static string ReplaceUsingRegex(string originalString,
+            string oldChar, string newChar)
         {
-            var pattern = $"[{Regex.Escape(charToBeReplaced.ToString())}]";
+            var pattern = $"[{Regex.Escape(oldChar)}]";
 
-            return Regex.Replace(originalString, pattern, charToReplace.ToString());
+            return Regex.Replace(originalString, pattern, newChar);
         }
 
 
         [Benchmark]
-        public static string ReplaceUsingSpan(string originalString , char charToBeReplaced, char charToReplace)
+        public static string ReplaceUsingSpan(string originalString, char charToBeReplaced, char charToReplace)
         {
             var originalChars = originalString.ToCharArray();
+
             var span = new Span<char>(originalChars);
 
             for (int i = 0; i < originalString.Length; i++)
@@ -51,47 +54,66 @@ namespace ReplaceSpecialCharactersInString
 
 
         [Benchmark]
-        public static string ReplaceUsingInefficientMultipleReplacementsStringReplace(string originalString , char charToBeReplaced, char charToReplace)
+        public static string ReplaceUsingInefficientMultipleReplacementsStringReplace(
+            string originalString, char oldChar, char newChar)
         {
             var replacedString = originalString
-                .Replace(charToReplace.ToString(), charToBeReplaced.ToString())
+                .Replace(newChar, oldChar)
                 .Replace("c", "")
-                .Replace(charToBeReplaced.ToString(), charToReplace.ToString());
+                .Replace(oldChar, newChar);
 
             return replacedString;
         }
 
 
         [Benchmark]
-        public static string ReplaceUsingMemoryImpactStringReplace(string originalString , char charToBeReplaced, char charToReplace)
+        public static string ReplaceUsingMemoryImpactStringReplace(
+               string originalString, char oldChar, char newChar)
         {
-            var replacedString = originalString.Replace(charToBeReplaced.ToString(), charToReplace.ToString());
+            var iterations = 10;
+            var replacedString = originalString;
+
+            for (int i = 0; i < iterations; i++)
+            {
+                replacedString = replacedString.Replace(oldChar, newChar);
+            }
 
             return replacedString;
         }
 
 
         [Benchmark]
-        public static string ReplaceUsingCompiledRegex(string originalString , char charToBeReplaced, char charToReplace)
+        public static string ReplaceUsingCompiledRegex(string originalString,
+               string oldChar, string newChar)
         {
-            var compiledRegex = new Regex($"[{Regex.Escape(charToBeReplaced.ToString())}{Regex.Escape(charToReplace.ToString())}]", RegexOptions.Compiled);
-            var replacedString = compiledRegex.Replace(originalString, "");
+            var pattern = $"[{Regex.Escape(oldChar)}{Regex.Escape(newChar)}]";
+
+            var compiledRegex = new Regex(pattern, RegexOptions.Compiled);
+
+            var replacedString = compiledRegex.Replace(originalString, " ");
 
             return replacedString;
         }
 
 
+
         [Benchmark]
-        public static string ReplaceUsingDotNet8Features(string originalString , char charToBeReplaced, char charToReplace)
+        public static string ReplaceUsingNonBacktrackingRegex(string originalString,
+               string oldChar, string newChar)
         {
-            var replacedString = Regex.Replace(originalString, $"[{Regex.Escape(charToBeReplaced.ToString())}{Regex.Escape(charToReplace.ToString())}]", "", RegexOptions.NonBacktracking);
+            var pattern = $"[{Regex.Escape(oldChar)}{Regex.Escape(newChar)}]";
+
+            var replacedString = Regex.Replace(originalString, pattern, " ",
+                RegexOptions.NonBacktracking);
 
             return replacedString;
         }
 
 
+
         [Benchmark]
-        public static string ReplaceUsingUnsafeCode(string originalString , char charToBeReplaced, char charToReplace)
+        public static string ReplaceUsingUnsafeCode(string originalString,
+            char oldChar, char newChar)
         {
             unsafe
             {
@@ -99,8 +121,8 @@ namespace ReplaceSpecialCharactersInString
                 {
                     for (int i = 0; i < originalString.Length; i++)
                     {
-                        if (ptr[i] == charToBeReplaced)
-                            ptr[i] = charToReplace;
+                        if (ptr[i] == oldChar)
+                            ptr[i] = newChar;
                     }
                 }
             }

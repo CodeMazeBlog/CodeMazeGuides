@@ -1,6 +1,4 @@
-﻿using BenchmarkDotNet.Running;
-
-namespace ReplaceSpecialCharactersInString
+﻿namespace ReplaceSpecialCharactersInString
 {
     public class ReplaceSpecialCharactersInString
     {
@@ -10,27 +8,38 @@ namespace ReplaceSpecialCharactersInString
 
             Console.WriteLine("Original String :" + originalString);
 
-            var resultUsingStringReplace = StringReplacer.ReplaceUsingStringReplace(originalString, '#', ' ');
-            var resultUsingStringBuilder = StringReplacer.ReplaceUsingStringBuilder(originalString, '#', ' ');
-            var resultUsingRegex = StringReplacer.ReplaceUsingRegex(originalString, '#', ' ');
-            var resultUsingSpan = StringReplacer.ReplaceUsingSpan(originalString, '#', ' ');
-            var resultInefficientMultipleReplacements = StringReplacer.ReplaceUsingInefficientMultipleReplacementsStringReplace(originalString, '#', ' ');
-            var resultMemoryImpactStringReplace = StringReplacer.ReplaceUsingMemoryImpactStringReplace(originalString, '#', ' ');
-            var resultCompiledRegex = StringReplacer.ReplaceUsingCompiledRegex(originalString, '#', '_');
-            var resultDotNet8Features = StringReplacer.ReplaceUsingDotNet8Features(originalString, '#', ' ');
-            var resultUnsafeCode = StringReplacer.ReplaceUsingUnsafeCode(originalString, '#', ' ');
+            var resultUsingStringReplace = StringReplacer.
+                ReplaceUsingStringReplace(originalString, '#', ' ');
+            var resultUsingStringBuilder = StringReplacer.
+                ReplaceUsingStringBuilder(originalString, '#', ' ');
+            var resultUsingRegex = StringReplacer.
+                ReplaceUsingRegex(originalString, "#", " ");
+            var resultUsingSpan = StringReplacer.
+                ReplaceUsingSpan(originalString, '#', ' ');
+            var resultInefficientMultipleReplacements = StringReplacer.
+                ReplaceUsingInefficientMultipleReplacementsStringReplace(originalString, '#', ' ');
+            var resultMemoryImpactStringReplace = StringReplacer.
+                ReplaceUsingMemoryImpactStringReplace(originalString, '#', ' ');
+            var resultCompiledRegex = StringReplacer.
+                ReplaceUsingCompiledRegex(originalString, "#", "-");
+            var resultNonBacktrackingRegex = StringReplacer.
+                ReplaceUsingNonBacktrackingRegex(originalString, "#", " ");
+            var resultUnsafeCode = StringReplacer.
+                ReplaceUsingUnsafeCode(originalString, '#', ' ');
 
             Console.WriteLine("ReplaceUsingStringReplace: " + resultUsingStringReplace);
             Console.WriteLine("ReplaceUsingStringBuilder: " + resultUsingStringBuilder);
             Console.WriteLine("ReplaceUsingRegex: " + resultUsingRegex);
             Console.WriteLine("ReplaceUsingSpan: " + resultUsingSpan);
-            Console.WriteLine("ReplaceUsingInefficientMultipleReplacementsStringReplace: " + resultInefficientMultipleReplacements);
-            Console.WriteLine("ReplaceUsingMemoryImpactStringReplace: " + resultMemoryImpactStringReplace);
+            Console.WriteLine("ReplaceUsingInefficientMultipleReplacementsStringReplace: " + 
+                resultInefficientMultipleReplacements);
+            Console.WriteLine("ReplaceUsingMemoryImpactStringReplace: " +
+                resultMemoryImpactStringReplace);
             Console.WriteLine("ReplaceUsingCompiledRegex: " + resultCompiledRegex);
-            Console.WriteLine("ReplaceUsingDotNet8Features: " + resultDotNet8Features);
+            Console.WriteLine("ReplaceUsingNonBacktrackingRegex: " + resultNonBacktrackingRegex);
             Console.WriteLine("ReplaceUsingUnsafeCode: " + resultUnsafeCode);
 
-            BenchmarkRunner.Run<StringReplacerBenchmarks>();
+            //BenchmarkRunner.Run<StringReplacerBenchmarks>();
         }
     }
 }

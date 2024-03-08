@@ -2,15 +2,17 @@
 
 namespace ReplaceSpecialCharactersInString
 {
+    [MemoryDiagnoser]
     public class StringReplacerBenchmarks
     {
         private string originalString = "";
 
-        [Params(' ')]
-        public char charToReplace;
+        private char OldChar { get; set; } = '#';
 
-        [Params('#')]
-        public char charToBeReplaced;
+        private char NewChar { get; set; } = ' ';
+
+        [Params(50, 100)]
+        public int Iterations { get; set; }
 
         [GlobalSetup]
         public void Setup()
@@ -19,59 +21,85 @@ namespace ReplaceSpecialCharactersInString
         }
 
         [Benchmark]
-        public string ReplaceUsingStringReplace()
+        public void ReplaceUsingStringReplace()
         {
-            return StringReplacer.ReplaceUsingStringReplace(originalString, charToBeReplaced, charToReplace);
+            for (int i = 0; i < Iterations; i++)
+            {
+                StringReplacer.ReplaceUsingStringReplace(originalString, OldChar, NewChar);
+            }
         }
 
         [Benchmark]
-        public string ReplaceUsingStringBuilder()
+        public void ReplaceUsingStringBuilder()
         {
-            return StringReplacer.ReplaceUsingStringBuilder(originalString, charToBeReplaced, charToReplace);
+            for (int i = 0; i < Iterations; i++)
+            {
+                StringReplacer.ReplaceUsingStringBuilder(originalString, OldChar, NewChar);
+            }
         }
 
         [Benchmark]
-        public string ReplaceUsingRegex()
+        public void ReplaceUsingRegex()
         {
-            return StringReplacer.ReplaceUsingRegex(originalString, charToBeReplaced, charToReplace);
+            for (int i = 0; i < Iterations; i++)
+            {
+                StringReplacer.ReplaceUsingRegex(originalString, OldChar.ToString(), NewChar.ToString());
+            }
         }
 
         [Benchmark]
-        public string ReplaceUsingSpan()
+        public void ReplaceUsingSpan()
         {
-            return StringReplacer.ReplaceUsingSpan(originalString, charToBeReplaced, charToReplace);
+            for (int i = 0; i < Iterations; i++)
+            {
+                StringReplacer.ReplaceUsingSpan(originalString, OldChar, NewChar);
+            }
         }
 
         [Benchmark]
-        public string ReplaceUsingInefficientMultipleReplacementsStringReplace()
+        public void ReplaceUsingInefficientMultipleReplacementsStringReplace()
         {
-            return StringReplacer.ReplaceUsingInefficientMultipleReplacementsStringReplace(originalString, charToBeReplaced, charToReplace);
+            for (int i = 0; i < Iterations; i++)
+            {
+                StringReplacer.ReplaceUsingInefficientMultipleReplacementsStringReplace(originalString, OldChar, NewChar);
+            }
         }
 
         [Benchmark]
-        public string ReplaceUsingMemoryImpactStringReplace()
+        public void ReplaceUsingMemoryImpactStringReplace()
         {
-            return StringReplacer.ReplaceUsingMemoryImpactStringReplace(originalString, charToBeReplaced, charToReplace);
+            for (int i = 0; i < Iterations; i++)
+            {
+                StringReplacer.ReplaceUsingMemoryImpactStringReplace(originalString, OldChar, NewChar);
+            }
         }
 
         [Benchmark]
-        public string ReplaceUsingCompiledRegex()
+        public void ReplaceUsingCompiledRegex()
         {
-            return StringReplacer.ReplaceUsingCompiledRegex(originalString, charToBeReplaced, charToReplace);
+            for (int i = 0; i < Iterations; i++)
+            {
+                StringReplacer.ReplaceUsingCompiledRegex(originalString, OldChar.ToString(), NewChar.ToString());
+            }
         }
 
         [Benchmark]
-        public string ReplaceUsingDotNet8Features()
+        public void ReplaceUsingNonBacktrackingRegex()
         {
-            return StringReplacer.ReplaceUsingDotNet8Features(originalString, charToBeReplaced, charToReplace);
+            for (int i = 0; i < Iterations; i++)
+            {
+                StringReplacer.ReplaceUsingNonBacktrackingRegex(originalString, OldChar.ToString(), NewChar.ToString());
+            }
         }
 
         [Benchmark]
-        public string ReplaceUsingUnsafeCode()
+        public void ReplaceUsingUnsafeCode()
         {
-            return StringReplacer.ReplaceUsingUnsafeCode(originalString, charToBeReplaced, charToReplace);
+            for (int i = 0; i < Iterations; i++)
+            {
+                StringReplacer.ReplaceUsingUnsafeCode(originalString, OldChar, NewChar);
+            }
         }
 
     }
-
 }
