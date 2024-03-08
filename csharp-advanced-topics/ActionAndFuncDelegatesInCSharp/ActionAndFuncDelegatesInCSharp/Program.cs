@@ -11,17 +11,14 @@ public static class Program
     public static void Main(string[] args)
     {
         var operateDelegate = new OperateDelegate(Add);
-
         var delegateExecutionResult = operateDelegate(1, 2);
 
         Console.WriteLine($"The result of operatedelegate operation is {delegateExecutionResult}.");
 
         Operate = Add;
-
         var result = Operate(1, 2);
 
         Display = DisplayOnConsole;
-
         Display(result);
     }
     public static int Add(int firstNumber, int secondNumber)
