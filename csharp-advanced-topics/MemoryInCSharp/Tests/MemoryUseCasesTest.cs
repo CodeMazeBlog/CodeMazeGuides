@@ -11,7 +11,6 @@ public class MemoryUseCasesTest
     {
         _mockTextWriter = new Mock<TextWriter>();
         Console.SetOut(_mockTextWriter.Object);
-        
     }
 
     [Fact]
@@ -23,7 +22,7 @@ public class MemoryUseCasesTest
     }
 
     [Fact]
-    public void WhenStringAsMemoryExtensionMethod_Called_ThenShouldWriteToConsole()
+    public void WhenStringAsMemoryExtensionMethodCalled_ThenShouldWriteToConsole()
     {
         MemoryUseCases.StringAsMemoryExtensionMethod();
         
