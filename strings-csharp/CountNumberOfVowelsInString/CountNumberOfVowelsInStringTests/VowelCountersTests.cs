@@ -18,7 +18,7 @@ public class VowelCountersTests
     public void WhenVowelsAreCountedWithForLoop_ThenCorrectCountIsReturned()
     {
         
-        int result = VowelCounters.CountVowelsWithForLoop(sentence, vowels);
+        var result = VowelCounters.CountVowelsUsingForLoop(sentence, vowels);
 
         Assert.Equal(expectedNumOfVowels, result);
     }
@@ -26,7 +26,7 @@ public class VowelCountersTests
     [Fact]
     public void WhenVowelsAreCountedWithForEachLoop_ThenCorrectCountIsReturned()
     {
-        int result = VowelCounters.CountVowelsWithForEachLoop(sentence, vowels);
+        var result = VowelCounters.CountVowelsUsingForEachLoop(sentence, vowels);
 
         Assert.Equal(expectedNumOfVowels, result);
     }
@@ -34,7 +34,7 @@ public class VowelCountersTests
     [Fact]
     public void WhenVowelsAreCountedUsingSwitchStatement_ThenCorrectCountIsReturned()
     {
-        int result = VowelCounters.CountVowelsUsingSwitchStatement(sentence);
+        var result = VowelCounters.CountVowelsUsingSwitchStatement(sentence);
 
         Assert.Equal(expectedNumOfVowels, result);
     }
@@ -42,7 +42,7 @@ public class VowelCountersTests
     [Fact]
     public void WhenVowelsAreCountedUsingRegEx_ThenCorrectCountIsReturned()
     {
-        int result = VowelCounters.CountVowelsUsingRegEx(sentence);
+        var result = VowelCounters.CountVowelsUsingRegEx(sentence);
 
         Assert.Equal(expectedNumOfVowels, result);
     }
@@ -50,7 +50,7 @@ public class VowelCountersTests
     [Fact]
     public void WhenVowelsAreCountedUsingStrReplaceAndLength_ThenCorrectCountIsReturned()
     {
-        int result = VowelCounters.CountVowelsUsingStrReplaceAndLength(sentence);
+        var result = VowelCounters.CountVowelsUsingStrReplaceAndLength(sentence);
 
         Assert.Equal(expectedNumOfVowels, result);
     }
@@ -58,7 +58,7 @@ public class VowelCountersTests
     [Fact]
     public void WhenVowelsAreCountedUsingLINQ_ThenCorrectCountIsReturned()
     {
-        int result = VowelCounters.CountVowelsUsingLinq(sentence, vowels);
+        var result = VowelCounters.CountVowelsUsingLinq(sentence, vowels);
 
         Assert.Equal(expectedNumOfVowels, result);
     }
