@@ -1,4 +1,6 @@
-﻿namespace ReplaceSpecialCharactersInString
+﻿using BenchmarkDotNet.Running;
+
+namespace ReplaceSpecialCharactersInString
 {
     public class ReplaceSpecialCharactersInString
     {
@@ -39,7 +41,7 @@
             Console.WriteLine("ReplaceUsingNonBacktrackingRegex: " + resultNonBacktrackingRegex);
             Console.WriteLine("ReplaceUsingUnsafeCode: " + resultUnsafeCode);
 
-            //BenchmarkRunner.Run<StringReplacerBenchmarks>();
+            BenchmarkRunner.Run<StringReplacerBenchmarks>();
         }
     }
 }
