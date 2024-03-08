@@ -66,7 +66,6 @@ public class DelegatesUnitTest
 
         //Assert
         var appendedOutput = stringWriter.ToString();
-
         Assert.Contains(expectedFirstOutput, appendedOutput);
         Assert.Contains(expectedSecondOutput, appendedOutput);
     }
