@@ -2,7 +2,6 @@
 
 namespace ActionFuncDelegate
 {
-
     public class NumberAddition
     {
         /// <summary>
@@ -61,8 +60,3 @@ namespace ActionFuncDelegate
         }
     }
 }
-
-
-
-
-
