@@ -17,3 +17,4 @@ This section contains LINQ related topics
 - [Understanding PLINQ in .NET](https://code-maze.com/dotnet-understanding-plinq/)
 - [Different Ways to Get the First Record in Each Group With LINQ](https://code-maze.com/csharp-different-ways-to-get-the-first-record-in-each-group-with-linq/)
 - [How to Divide Data Into Batches With LINQ](https://code-maze.com/csharp-how-to-divide-data-into-batches-with-linq/)
+- [How to Create an Outer Join in LINQ – (Left and Right)](https://code-maze.com/csharp-outer-join-linq/)
