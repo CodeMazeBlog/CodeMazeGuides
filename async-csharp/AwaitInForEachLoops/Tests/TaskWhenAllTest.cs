@@ -9,9 +9,8 @@ namespace Tests
         public async Task WhenResultAsync_ThenCompleteProcessingTasks()
         {
             // Act
-            var result = await TaskWhenAllInLoop.ResultAsync();
+            var result = await TaskWhenAllInLoop.ResultAsync(10);
 
-            var processingTasks = result.Select(async task => await task.ConfigureAwait(false));
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(9, result.Count);
