@@ -4,10 +4,6 @@ namespace VirtualKeywordInEFCore.Models
 {
     public class DataContextLazyLoading : DbContext
     {
-        public DataContextLazyLoading() : base()
-        {
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlite("DataSource=LibraryLazy.db")     
@@ -19,7 +15,7 @@ namespace VirtualKeywordInEFCore.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book_lazy>()
-                .HasOne<Author_lazy>(s => s.Author)
+                .HasOne(s => s.Author)
                 .WithMany(g => g.Books)
                 .HasForeignKey(s => s.AuthorId);
         }

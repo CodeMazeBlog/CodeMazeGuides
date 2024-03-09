@@ -12,7 +12,7 @@ namespace Tests
         {
             _context = new DataContextWithoutLazyLoading();
             _contextLazyLoading = new DataContextLazyLoading();
-            DataSeeder.SeedWhitoutLazy(_context);
+            DataSeeder.SeedWhithoutLazy(_context);
             DataSeeder.SeedLazy(_contextLazyLoading);
         }
 
