@@ -56,5 +56,14 @@ namespace Tests
             var processorsCount = cpuInformation.GetProcessorsCount();
             Assert.IsTrue(processorsCount > 0);
         }
+
+        [TestMethod]
+        public void WhenGetProcessorsCountWithExcludedProcessors_ResultIsGreaterThanZero()
+        {
+            var cpuInformation = new CpuInformation();
+            var processorsCount = cpuInformation.GetExcludedProcessors();
+            Assert.IsTrue(processorsCount > 0);
+        }
+
     }
 }

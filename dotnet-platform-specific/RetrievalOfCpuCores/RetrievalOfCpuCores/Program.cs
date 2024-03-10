@@ -9,3 +9,5 @@ Console.WriteLine("Logical Processors: {0}", cpuInformation.GetLogicalProcessors
 Console.WriteLine("Number Of Cores: {0}", cpuInformation.GetNumberOfCores());
 
 Console.WriteLine("Physical Processors: {0}", cpuInformation.GetPhysicalProcessors());
+
+Console.WriteLine("Logical Processors (including excluded Processors): {0}", cpuInformation.GetExcludedProcessors());
