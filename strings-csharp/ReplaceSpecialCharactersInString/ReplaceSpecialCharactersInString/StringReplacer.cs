@@ -37,7 +37,8 @@ namespace ReplaceSpecialCharactersInString
 
 
         [Benchmark]
-        public static string ReplaceUsingSpan(string originalString, char charToBeReplaced, char charToReplace)
+        public static string ReplaceUsingSpan(string originalString,
+            char charToBeReplaced, char charToReplace)
         {
             var originalChars = originalString.ToCharArray();
 
