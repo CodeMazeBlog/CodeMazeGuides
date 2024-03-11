@@ -7,9 +7,9 @@ public class FuncDelegateUnitTest
     [Fact]
     public void WhenFuncIsInvoke_ThenShouldReturnCorrectMessage()
     {
-        var message = FuncDelegate.Func();
+        var message = FuncDelegate.Activity();
         
-        Assert.True(message is "Store is closed" or "Store is open");
+        Assert.True(message is "Hiking" or "Work");
     }
     
     [Fact]

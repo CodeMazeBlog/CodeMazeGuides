@@ -8,11 +8,11 @@ public class FuncDelegate
             is ( DayOfWeek.Saturday or DayOfWeek.Sunday ); 
     }
 
-    public static string Func()
+    public static string Activity()
     {
         Func<bool> dayOff = IsWeekend;
 
-        return dayOff() ? "Store is closed" : "Store is open";
+        return dayOff() ? "Hiking" : "Work";
     }
 
     public static int FuncParameters(int a, int b)
