@@ -19,7 +19,13 @@ public class CpuInformation
     /// <returns>number of logical processors</returns>
     public int GetLogicalProcessors()
     {
-        foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_ComputerSystem").Get())
+        if (!OperatingSystem.IsWindows())
+        {
+            throw new PlatformNotSupportedException();
+        }
+
+        var wmiQuery = "Select * from Win32_ComputerSystem";
+        foreach (var item in new System.Management.ManagementObjectSearcher(wmiQuery).Get())
         {
             return int.Parse(item["NumberOfLogicalProcessors"].ToString());
         }
@@ -33,8 +39,14 @@ public class CpuInformation
     /// <returns>number of cores of the CPU</returns>
     public int GetNumberOfCores()
     {
+        if (!OperatingSystem.IsWindows())
+        {
+            throw new PlatformNotSupportedException();
+        }
+
         var coreCount = 0;
-        foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_Processor").Get())
+        var wmiQuery = "Select * from Win32_Processor";
+        foreach (var item in new System.Management.ManagementObjectSearcher(wmiQuery).Get())
         {
             coreCount += int.Parse(item["NumberOfCores"].ToString());
         }
@@ -48,7 +60,13 @@ public class CpuInformation
     /// <returns>number of physical processors</returns>
     public int GetPhysicalProcessors()
     {
-        foreach (var item in new System.Management.ManagementObjectSearcher("Select * from Win32_ComputerSystem").Get())
+        if (!OperatingSystem.IsWindows())
+        {
+            throw new PlatformNotSupportedException();
+        }
+
+        var wmiQuery = "Select * from Win32_ComputerSystem";
+        foreach (var item in new System.Management.ManagementObjectSearcher(wmiQuery).Get())
         {
             return int.Parse(item["NumberOfProcessors"].ToString());
         }
@@ -61,6 +79,11 @@ public class CpuInformation
     /// <returns></returns>
     public int GetExcludedProcessors()
     {
+        if (!OperatingSystem.IsWindows())
+        {
+            throw new PlatformNotSupportedException();
+        }
+
         var deviceCount = 0;
         var deviceList = IntPtr.Zero;
         var processorGuid = new Guid("{50127dc3-0f36-415e-a6cc-4cb3be910b65}");
@@ -89,16 +112,16 @@ public class CpuInformation
 
     [DllImport("setupapi.dll", SetLastError = true)]
     private static extern IntPtr SetupDiGetClassDevs(ref Guid ClassGuid,
-        [MarshalAs(UnmanagedType.LPStr)] String enumerator,
+        [MarshalAs(UnmanagedType.LPStr)] string enumerator,
         IntPtr hwndParent,
-        Int32 Flags);
+        int Flags);
 
     [DllImport("setupapi.dll", SetLastError = true)]
-    private static extern Int32 SetupDiDestroyDeviceInfoList(IntPtr DeviceInfoSet);
+    private static extern int SetupDiDestroyDeviceInfoList(IntPtr DeviceInfoSet);
 
     [DllImport("setupapi.dll", SetLastError = true)]
     private static extern bool SetupDiEnumDeviceInfo(IntPtr DeviceInfoSet,
-        Int32 MemberIndex,
+        int MemberIndex,
         ref SP_DEVINFO_DATA DeviceInterfaceData);
 
     [StructLayout(LayoutKind.Sequential)]
