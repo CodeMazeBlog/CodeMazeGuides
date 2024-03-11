@@ -11,9 +11,10 @@ namespace DelegateApp.Test
         }
 
         [Fact]
-        public void Func_Test()
+        public void WhenGetEmployeeDelegateIsInvoked_ThenEmployeeIsReturned()
         {
             var result = _implementation.GetEmployee(1, "Name", EmployeeType.FullTime);
+
             Assert.IsType<Employee>(result);
             Assert.Equal(1, result.Id); 
             Assert.Equal("Name", result.Name);
@@ -21,7 +22,7 @@ namespace DelegateApp.Test
         }
 
         [Fact]
-        public void Action_Test()
+        public void WhenPrintDelegateIsInvoked_ThenOutputIsLoggedInConsole()
         {   
             var emp = _implementation.GetEmployee(1, "Name", EmployeeType.FullTime);
             var expectedOutput = $"{emp.Name} is a {emp.EmployeeType} employee.";
@@ -30,6 +31,7 @@ namespace DelegateApp.Test
             {
                 Console.SetOut(writer);
                 _implementation.Print(emp);
+
                 Assert.Equal(expectedOutput, writer.ToString().Trim());
             }
            
