@@ -1,13 +1,13 @@
 ﻿namespace Delegates
 {
-    class Program
+    public class Program
     {
-        static class MultiplicationUtility
+        public static class MultiplicationUtility
         {
             public static double MultiplyTwoNumbers(double a, double b) => a * b;
         }
 
-        static class ConsolePrinter
+        public static class ConsolePrinter
         {
             public static void PrintString(double num1, double num2) =>
                 Console.WriteLine($"The values are: {num1} and {num2}");
