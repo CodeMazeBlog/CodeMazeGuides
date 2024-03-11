@@ -1,15 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-#nullable disable
 namespace GraphQLStrawberryShake.Server;
 
 public class ShippingContainer
 {
-    public string Id { get; set; }
+    public string Id { get; set; } = null!;
     [Required]
     [StringLength(100)]
-    public string Name { get; set; }
-    public AvailableSpace Space { get; set; }
+    public string Name { get; set; } = null!;
+    public AvailableSpace Space { get; set; } = null!;
 
     public class AvailableSpace
     {

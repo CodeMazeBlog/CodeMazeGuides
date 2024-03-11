@@ -355,10 +355,3 @@ global.json
 
 # MacOS
 **/.DS_Store
-
-# VS Code
-.vscode/
-
-# Ignore SQLite temporary files
-*.db-shm
-*.db-wal
