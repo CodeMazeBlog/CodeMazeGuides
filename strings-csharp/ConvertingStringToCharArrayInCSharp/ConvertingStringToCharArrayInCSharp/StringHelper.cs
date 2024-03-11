@@ -4,28 +4,22 @@ namespace ConvertingStringToCharArrayInCSharp
 {
     public static class StringHelper
     {
-        public static char[] StringToCharArray(string inputString)
+        public static char[] ConvertStringToCharArray(string inputString)
         {
             return inputString.ToCharArray();
         }
 
-        public static ReadOnlySpan<char> StringToCharArrayUsingReadOnlySpan(string inputString)
+        public static ReadOnlySpan<char> ConvertStringToCharArrayUsingReadOnlySpan(string inputString)
         {
-            var charSpan = inputString.AsSpan();
-            return charSpan;
+            return inputString.AsSpan();
         }
 
-        public static char StringToChar(string inputString)
+        public static char ConvertSingleCharacterStringToChar(string inputString)
         {
-            if (inputString.Length == 1)
-            {
-                return inputString[0];
-            }
-
-            throw new ArgumentException("Input string must contain exactly one character.");
+            return char.Parse(inputString);
         }
 
-        public static char[] StringArrayToCharArrayUsingLoop(string[] stringArray)
+        public static char[] ConvertStringArrayToCharArrayUsingLoop(string[] stringArray)
         {
             StringBuilder combinedString = new StringBuilder();
 
@@ -37,7 +31,7 @@ namespace ConvertingStringToCharArrayInCSharp
             return combinedString.ToString().ToCharArray();
         }
 
-        public static char[] StringArrayToCharArrayUsingLinq(string[] stringArray)
+        public static char[] ConvertStringArrayToCharArrayUsingLinq(string[] stringArray)
         {
             return stringArray.SelectMany(s => s.ToCharArray()).ToArray();
         }
