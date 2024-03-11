@@ -10,7 +10,7 @@ public static class CodeExamples
 
         Task<string> taskToBlock = Task<string>.Run(() =>
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(10);
             
             return "Hello, from a blocking task";
         });
@@ -48,7 +48,7 @@ public static class CodeExamples
 
         Task<string> taskToAwait = Task<string>.Run(() =>
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(10);
 
             return "Hello, from an asyncrhonous task";
         });
