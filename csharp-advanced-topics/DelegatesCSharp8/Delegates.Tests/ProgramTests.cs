@@ -1,8 +1,8 @@
-using Delegates;
+using Xunit;
 
-namespace DelegateTests
+namespace Delegates.Tests
 {
-    public class UnitTest1
+    public class ProgramTests
     {
         [Fact]
         public void GivenTwoNumbers_WhenPrintStringCalled_ThenOutputShouldPrintValues()
@@ -33,4 +33,3 @@ namespace DelegateTests
         }
     }
 }
-
