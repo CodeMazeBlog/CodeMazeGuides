@@ -1,24 +1,28 @@
-﻿using System;
+﻿using Common;
+using System;
 
 namespace DelegatesInCsharp
 {
-	delegate void PrintMessage(string text);
+    delegate void PrintMessage(string text);
 	delegate T Print<T>(T param1);
-
 	class Program
 	{
 		public static void WriteText(string text) => Console.WriteLine($"Text: {text}");
 		public static void ReverseWriteText(string text) => Console.WriteLine($"Text in reverse: {Reverse(text)}");
 		public static string ReverseText(string text) => Reverse(text);
-
-		private static string Reverse(string s)
+		private static void DisplayText(string str)
+        {
+            Console.WriteLine(str);
+        }
+        private static string Reverse(string s)
 		{
 			char[] charArray = s.ToCharArray();
 			Array.Reverse(charArray);
 			return new string(charArray);
 		}
 
-		static void Main(string[] args)
+        delegate void MyDelegate(string str);
+        static void Main(string[] args)
 		{
 			var delegate1 = new PrintMessage(WriteText);
 			var delegate2 = new PrintMessage(ReverseWriteText);
@@ -40,6 +44,15 @@ namespace DelegatesInCsharp
 			executeReverseWriteAction("Are you not entertained?");
 			Func<string, string> executeReverseFunc = ReverseText;
 			Console.WriteLine(executeReverseFunc("Are you not entertained?"));
-		}
+
+			Action<string> actionDelegate = new Action<string>(DisplayText);
+            actionDelegate("Hello World!");
+
+            var myDelegate = new MyDelegate(DisplayText);
+            myDelegate("Hello World!");
+
+            Console.WriteLine(DelegateHelper.GetTax(100000));
+            Console.Read();
+        }
 	}
 }
