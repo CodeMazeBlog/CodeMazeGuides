@@ -1,119 +1,89 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Text;
-using System.Text.RegularExpressions;
+using ReplaceSpecialCharactersInString;
 
-namespace ReplaceSpecialCharactersInString
+namespace ReplaceSpecialCharactersInStringTests
 {
     [TestClass]
     public class ReplaceSpecialCharactersInStringTests
     {
+        private const string OriginalString = "a*b*c*d*e*f*g#h#i#j*k*l*m*n*o*p*q*r*s*t*u*v*w#x#y#z";
+
+        private const string ExpectedOutput = "a*b*c*d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
+
+        private char OldChar { get; set; } = '#';
+
+        private char NewChar { get; set; } = ' ';
+
         [TestMethod]
         public void WhenUsingStringReplace_ThenReplaceSpecialCharacters()
         {
-            string expected = "String.Replace Method: Hello! This is a sample string.";
-            string result = RunExampleMethodAndCaptureConsoleOutput(ReplaceSpecialCharactersInString.StringReplaceExample, expected);
-            
-            Assert.AreEqual(expected, result);
+            var result = StringReplacer.ReplaceUsingStringReplace(OriginalString, OldChar, NewChar);
+
+            Assert.AreEqual(ExpectedOutput, result);
         }
-
-        [TestMethod]
-        public void WhenDemonstratingLossOfOriginalStructureInStringReplace_ThenReplaceSpecialCharacters()
-        {
-            string expected = "Loss of Original Structure using String.Replace: apple banana cherry";
-            string result = RunExampleMethodAndCaptureConsoleOutput(ReplaceSpecialCharactersInString.LossOfOriginalStructureStringReplaceExample, expected);
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod]
-        public void WhenDemonstratingInefficientMultipleReplacementsInStringReplace_ThenReplaceSpecialCharacters()
-        {
-            string expected = "Inefficient for Multiple Replacements using String.Replace Method: abdef";
-            string result = RunExampleMethodAndCaptureConsoleOutput(ReplaceSpecialCharactersInString.InefficientMultipleReplacementsStringReplaceExample, expected);
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod]
-        public void WhenDemonstratingMemoryImpactInStringReplace_ThenReplaceSpecialCharacters()
-        {
-            string expected = "Memory Impact using String.Replace Method: ab";
-            string result = RunExampleMethodAndCaptureConsoleOutput(ReplaceSpecialCharactersInString.MemoryImpactStringReplaceExample, expected);
-
-            Assert.AreEqual(expected, result);
-        }
-
 
         [TestMethod]
         public void WhenUsingStringBuilder_ThenReplaceMultipleSpecialCharacters()
         {
-            string expected = "StringBuilder for Multiple Replacements: abdef";
-            string result = RunExampleMethodAndCaptureConsoleOutput(ReplaceSpecialCharactersInString.StringBuilderExample, expected);
-            
-            Assert.AreEqual(expected, result);
+            var result = StringReplacer.ReplaceUsingStringBuilder(OriginalString, OldChar, NewChar);
+
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
         public void WhenUsingRegex_ThenReplaceSpecialCharacters()
         {
-            string expected = "Regular Expressions (Regex): Hello! This is a sample string.";
-            string result = RunExampleMethodAndCaptureConsoleOutput(ReplaceSpecialCharactersInString.RegexExample, expected);
-            
-            Assert.AreEqual(expected, result);
+            var result = StringReplacer.ReplaceUsingRegex(OriginalString, OldChar.ToString(), NewChar.ToString());
+
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
-        public void WhenUsingSpanT_ThenReplaceSpecialCharactersWithMemoryEfficient()
+        public void WhenUsingSpan_ThenReplaceSpecialCharactersWithMemoryEfficient()
         {
-            string expected = "Memory-Efficient Replacements with Span<T>: Hello! This is a  string.";
-            string result = RunExampleMethodAndCaptureConsoleOutput(ReplaceSpecialCharactersInString.SpanTExample, expected);
-           
-            Assert.AreEqual(expected, result);
+            var result = StringReplacer.ReplaceUsingSpan(OriginalString, OldChar, NewChar);
+
+            Assert.AreEqual(ExpectedOutput, result);
+        }
+
+        [TestMethod]
+        public void WhenUsingInefficientMultipleReplacementsStringReplace_ThenReplaceSpecialCharacters()
+        {
+            var expectedOutput = "a*b**d*e*f*g h i j*k*l*m*n*o*p*q*r*s*t*u*v*w x y z";
+            var result = StringReplacer.ReplaceUsingInefficientMultipleReplacementsStringReplace(OriginalString, OldChar, NewChar);
+
+            Assert.AreEqual(expectedOutput, result);
+        }
+
+        [TestMethod]
+        public void WhenUsingMemoryImpactStringReplace_ThenReplaceSpecialCharacters()
+        {
+            var result = StringReplacer.ReplaceUsingMemoryImpactStringReplace(OriginalString, OldChar, NewChar);
+
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
         public void WhenUsingCompiledRegex_ThenReplaceSpecialCharacters()
         {
-            string expected = "Compiled Regex for Repeated Operations: Hello! This is a sample string.";
-            string result = RunExampleMethodAndCaptureConsoleOutput(ReplaceSpecialCharactersInString.CompiledRegexExample, expected);
-            
-            Assert.AreEqual(expected, result);
+            var result = StringReplacer.ReplaceUsingCompiledRegex(OriginalString, OldChar.ToString(), NewChar.ToString());
+
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
-        public void WhenUsingDotNet8Features_ThenSpecialCharacterRemoved()
+        public void WhenUsingNonBacktrackingRegex_ThenReplaceSpecialCharacters()
         {
-            string expected = ".NET 8 Features: Hello! This is a sample string.";
-            string result = RunExampleMethodAndCaptureConsoleOutput(ReplaceSpecialCharactersInString.DotNet8FeaturesExample, expected);
-            
-            Assert.AreEqual(expected, result);
+            var result = StringReplacer.ReplaceUsingNonBacktrackingRegex(OriginalString, OldChar.ToString(), NewChar.ToString());
+
+            Assert.AreEqual(ExpectedOutput, result);
         }
 
         [TestMethod]
         public void WhenUsingUnsafeCode_ThenReplaceSpecialCharacters()
         {
-            string expected = "Unsafe Code for Direct Memory Access: Hello! This is a *sample* string.";
-            string result = RunExampleMethodAndCaptureConsoleOutput(ReplaceSpecialCharactersInString.UnsafeCodeExample, expected);
-            
-            Assert.AreEqual(expected, result);
+            var result = StringReplacer.ReplaceUsingUnsafeCode(OriginalString, OldChar, NewChar);
+
+            Assert.AreEqual(ExpectedOutput, result);
         }
-
-        private string RunExampleMethodAndCaptureConsoleOutput(Action method, string expectedOutput)
-        {
-            using (StringWriter sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-
-                method.Invoke();
-
-                Console.SetOut(Console.Out);
-
-                string result = Regex.Replace(sw.ToString(), @"[^\u0020-\u007E]", "");
-
-                return result;
-            }
-        }
-
     }
 }
