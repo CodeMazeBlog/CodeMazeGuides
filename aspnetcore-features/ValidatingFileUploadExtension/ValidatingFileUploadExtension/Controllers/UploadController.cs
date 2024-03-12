@@ -10,6 +10,7 @@ namespace ValidatingFileUploadExtension.Controllers
         public IActionResult Upload(IFormFile file)
         {
             var result = FileValidator.Validate(file);
+
             return result.Acceptable ? Ok(result) : BadRequest(result);
         }
     }
