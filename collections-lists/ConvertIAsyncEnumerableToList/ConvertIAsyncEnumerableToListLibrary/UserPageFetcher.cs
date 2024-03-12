@@ -42,6 +42,7 @@ public static class UserPageFetcher
 
             foreach (var user in users)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 yield return user;
             }
         }

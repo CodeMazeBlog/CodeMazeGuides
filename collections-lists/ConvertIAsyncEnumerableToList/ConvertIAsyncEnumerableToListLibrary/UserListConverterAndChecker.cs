@@ -1,5 +1,4 @@
-﻿
-namespace ConvertIAsyncEnumerableToListLibrary;
+﻿namespace ConvertIAsyncEnumerableToListLibrary;
 public static class UserListConverterAndChecker
 {
     public static async Task ConvertAndCheckUserListTypeAsync()
