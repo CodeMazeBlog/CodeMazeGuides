@@ -3,7 +3,7 @@ string resourceFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, 
 
 var sizeOne = DirectorySizeCalculator.GetSizeWithRecursion(new DirectoryInfo(resourceFolderPath));
 var sizeTwo = DirectorySizeCalculator.GetSizeByIteration(resourceFolderPath);
-var sizeThree = DirectorySizeCalculator.GetSizeByParallelProcessing(new DirectoryInfo(resourceFolderPath), true);
+var sizeThree = DirectorySizeCalculator.GetSizeByParallelProcessing(new DirectoryInfo(resourceFolderPath), SearchOption.TopDirectoryOnly);
 
 Console.WriteLine($"The directory has {sizeOne} bytes worth of files");
 Console.WriteLine($"The directory has {sizeTwo} bytes worth of files");

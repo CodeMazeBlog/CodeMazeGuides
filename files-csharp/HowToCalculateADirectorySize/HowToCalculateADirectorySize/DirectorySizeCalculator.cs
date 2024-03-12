@@ -75,7 +75,7 @@ public class DirectorySizeCalculator
         return size;
     }
 
-    public static long GetSizeByParallelProcessing(DirectoryInfo directory, bool recursive = true)
+    public static long GetSizeByParallelProcessing(DirectoryInfo directory, SearchOption searchOption = SearchOption.AllDirectories)
     {
         if (directory == null || !directory.Exists)
         {
@@ -86,8 +86,7 @@ public class DirectorySizeCalculator
 
         try
         {
-            // Use EnumerateFiles instead of GetFiles for better performance
-            Parallel.ForEach(directory.EnumerateFiles(), fileInfo =>
+            Parallel.ForEach(directory.EnumerateFiles("*", searchOption), fileInfo =>
             {
                 try
                 {
@@ -103,26 +102,6 @@ public class DirectorySizeCalculator
                     Console.WriteLine($"{ex.Message}");
                 }
             });
-
-            if (recursive)
-            {
-                Parallel.ForEach(directory.EnumerateDirectories(), subDirectory =>
-                {
-                    try
-                    {
-                        Interlocked.Add(ref size, GetSizeByParallelProcessing(subDirectory, recursive));
-                    }
-                    catch (UnauthorizedAccessException)
-                    {
-                        Console.WriteLine($"Unauthorized access to {subDirectory.FullName}");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine($"Error processing {subDirectory.FullName}: ");
-                        Console.WriteLine($"{ex.Message}");
-                    }
-                });
-            }
         }
         catch (UnauthorizedAccessException)
         {
