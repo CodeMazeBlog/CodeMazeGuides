@@ -24,21 +24,20 @@ public static class MemoryUseCases
 
         // Displaying contents of stack and heap Memory<T>
         Console.WriteLine("Stack Memory:");
-        DisplayMemoryContents(stackMemory);
-        
+        foreach (var item in stackMemory.Span)
+        {
+            Console.WriteLine(item);
+        }
+
         Console.WriteLine("\nHeap Memory:");
-        DisplayMemoryContents(heapMemory);
-    }
-    
-    private static void DisplayMemoryContents(Memory<int> memory)
-    {
-        var span = memory.Span;
-        foreach (var item in span)
+        foreach (var item in heapMemory.Span)
         {
             Console.WriteLine(item);
         }
     }
+
     
+
     /// <summary>
     /// String.AsMemory extension method.
     /// </summary>
@@ -62,7 +61,7 @@ public static class MemoryUseCases
         // Rent a block of memory from the shared pool
         using IMemoryOwner<int> owner = MemoryPool<int>.Shared.Rent(10);
         // Get a Memory<T> that represents the rented block of memory
-        Memory<int> memory = owner.Memory;
+        var memory = owner.Memory;
 
         // Use the Memory<T>
         for (var i = 0; i < memory.Length; i++)
@@ -83,30 +82,26 @@ public static class MemoryUseCases
     public static async Task ProcessFileAsync(string filePath)
     {
         // Rent a block of memory from the shared pool
-        using IMemoryOwner<byte> owner = MemoryPool<byte>.Shared.Rent(4096);
+        using var owner = MemoryPool<byte>.Shared.Rent(4096);
 
         // Get a Memory<T> that represents the rented block of memory
         Memory<byte> buffer = owner.Memory.Slice(0, 4096);
 
-        using FileStream stream = File.OpenRead(filePath);
+        await using FileStream stream = File.OpenRead(filePath);
 
         // Read data from the file into the rented block of memory
         int bytesRead;
         while ((bytesRead = await stream.ReadAsync(buffer)) > 0)
         {
             // Process the data in the buffer
-            ProcessData(buffer.Slice(0, bytesRead));
+            var data = buffer.Slice(0, bytesRead);
+            for (var index = 0; index < data.Span.Length; index++)
+            {
+                var b = data.Span[index];
+                // Convert byte to char and display it
+                Console.Write((char)b);
+            }
+            Console.WriteLine();
         }
-    }
-    
-    private static void ProcessData(ReadOnlyMemory<byte> data)
-    {
-        // This is where you would add your data processing logic
-        foreach (var b in data.Span)
-        {
-            // Convert byte to char and display it
-            Console.Write((char)b);
-        }
-        Console.WriteLine();
     }
 }
