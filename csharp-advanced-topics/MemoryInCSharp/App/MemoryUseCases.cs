@@ -35,9 +35,7 @@ public static class MemoryUseCases
             Console.WriteLine(item);
         }
     }
-
     
-
     /// <summary>
     /// String.AsMemory extension method.
     /// </summary>
@@ -75,6 +73,7 @@ public static class MemoryUseCases
             Console.WriteLine(item);
         }
     }
+    
     /// <summary>
     /// Practical usage scenarios such as utilizing MemoryPool, IMemoryOwner, and the IMemoryOwner.Memory property.
     /// </summary>
