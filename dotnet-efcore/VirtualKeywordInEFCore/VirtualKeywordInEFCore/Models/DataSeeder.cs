@@ -2,7 +2,7 @@
 {
     public class DataSeeder
     {
-        public static void SeedWhithoutLazy(DataContextWithoutLazyLoading contextWithoutLazyLoading)
+        public static void SeedWithoutLazy(DataContextWithoutLazyLoading contextWithoutLazyLoading)
         {
             contextWithoutLazyLoading.Database.EnsureCreated();
 

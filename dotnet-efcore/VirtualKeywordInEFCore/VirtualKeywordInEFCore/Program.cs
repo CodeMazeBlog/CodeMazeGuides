@@ -17,7 +17,7 @@ namespace VirtualKeywordInEFCore
             Console.WriteLine("No Lazy Loading:");
 
             using var contextWithoutLazyLoading = new DataContextWithoutLazyLoading();
-            DataSeeder.SeedWhithoutLazy(contextWithoutLazyLoading);
+            DataSeeder.SeedWithoutLazy(contextWithoutLazyLoading);
             Author author;
             author = contextWithoutLazyLoading.Authors.AsNoTracking().First(a => a.FullName == "Lucy FOLEY");
 
