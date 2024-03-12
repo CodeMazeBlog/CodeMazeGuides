@@ -19,5 +19,12 @@ namespace CountEnumMembersBenchmark
             var getvalues = Enum.GetValues(typeof(Months)).Length;
             return getvalues;
         }
+
+        [Benchmark]
+        public int MeasureGetDistinctValues()
+        {
+            var distinct_values = Enum.GetValues(typeof(Seasons)).Cast<Seasons>().Distinct().Count();
+            return distinct_values;
+        }
     }
 }
