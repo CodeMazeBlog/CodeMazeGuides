@@ -3,7 +3,7 @@
     private static void Main(string[] args)
     {
         #region Delegates
-        DelegateOfMethod delProduct = new DelegateOfMethod(Product);
+        var delProduct = new DelegateOfMethod(Product);
         Console.WriteLine(delProduct(5).ToString());
 
         int returnedFromMethod = MethodUsesDelegate(delProduct, 5);
@@ -42,9 +42,6 @@
     //another method
     private static int Sum(int x) => x + x;
     #endregion
-
-
-
 }
 
 
