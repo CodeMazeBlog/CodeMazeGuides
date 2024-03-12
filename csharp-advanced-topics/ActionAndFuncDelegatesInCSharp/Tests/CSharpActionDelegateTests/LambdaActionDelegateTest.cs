@@ -1,7 +1,8 @@
-﻿using CSharp_Action_Delegate;
-
-namespace CSharpActionDelegateTests
+﻿namespace CSharpActionDelegateTests
 {
+    using CSharp_Action_Delegate;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     internal class LambdaActionDelegateTest
     {

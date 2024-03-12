@@ -1,7 +1,8 @@
-using CSharp_Func_Delegate;
-
 namespace CSharpFuncDelegateTests
 {
+    using CSharp_Func_Delegate;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
     [TestClass]
     public class FuncDelegateWithoutInputParameterTests
     {
