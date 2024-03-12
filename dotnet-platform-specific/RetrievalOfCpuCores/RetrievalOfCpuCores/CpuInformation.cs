@@ -29,6 +29,7 @@ public class CpuInformation
         {
             return int.Parse(item["NumberOfLogicalProcessors"].ToString());
         }
+
         return 0;
     }
 
@@ -50,6 +51,7 @@ public class CpuInformation
         {
             coreCount += int.Parse(item["NumberOfCores"].ToString());
         }
+
         return coreCount;
     }
 
@@ -70,6 +72,7 @@ public class CpuInformation
         {
             return int.Parse(item["NumberOfProcessors"].ToString());
         }
+
         return 0;
     }
 
@@ -107,6 +110,7 @@ public class CpuInformation
         {
             if (deviceList != IntPtr.Zero) { SetupDiDestroyDeviceInfoList(deviceList); }
         }
+
         return deviceCount;
     }
 
