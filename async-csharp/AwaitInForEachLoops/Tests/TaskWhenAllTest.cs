@@ -1,6 +1,4 @@
-﻿using AwaitInForEachLoop;
-
-namespace Tests
+﻿namespace Tests
 {
     [TestFixture]
     public class TaskWhenAllInLoopTests
