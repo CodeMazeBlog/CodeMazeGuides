@@ -70,5 +70,9 @@ catch (Exception ex)
         "The following {Exception} was thrown during application startup",
         ex);
 }
+finally
+{
+    Log.CloseAndFlush();
+}
 
 public partial class Program { }
