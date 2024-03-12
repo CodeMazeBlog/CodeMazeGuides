@@ -18,7 +18,8 @@ try
     builder.Services.AddSwaggerGen();
 
     builder.Host.UseSerilog((context, config) =>
-        config.ReadFrom.Configuration(context.Configuration));
+        config.ReadFrom.Configuration(context.Configuration)
+            .Enrich.With(new ThreadPriorityEnricher()));
 
     var app = builder.Build();
 
