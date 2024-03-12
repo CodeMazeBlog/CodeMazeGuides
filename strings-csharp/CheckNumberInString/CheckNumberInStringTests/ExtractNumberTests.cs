@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CheckNumberInStringTests
 {
     [TestClass]

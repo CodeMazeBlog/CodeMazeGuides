@@ -13,13 +13,13 @@ namespace CheckNumberInString
         private static partial Regex NumberRegex();
         public static string ExtractNumberUsingRegEx(string inputString)
         {
-            List<double> extractedNumbers = new List<double>();
+            var extractedNumbers = new List<double>();
 
             var matches = NumberRegex().Matches(inputString);
 
             foreach (Match match in matches)
             {
-                if (double.TryParse(match.Value, out double parsedNumber))
+                if (double.TryParse(match.Value, out var parsedNumber))
                 {
                     extractedNumbers.Add(parsedNumber);
                 }
@@ -39,7 +39,7 @@ namespace CheckNumberInString
         {
             var numbers = new List<double>();
             var currentNumber = new StringBuilder();
-            bool isInsideNumber = false;
+            var isInsideNumber = false;
 
             foreach (var c in inputString)
             {
@@ -92,7 +92,7 @@ namespace CheckNumberInString
         
         private static void AddNumberToList(string numberString, ICollection<double> numbers)
         {
-            if (double.TryParse(numberString, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
+            if (double.TryParse(numberString, NumberStyles.Any, CultureInfo.InvariantCulture, out var number))
             {
                 numbers.Add(number);
             }
