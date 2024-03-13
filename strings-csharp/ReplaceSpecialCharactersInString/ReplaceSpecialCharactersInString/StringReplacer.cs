@@ -34,17 +34,13 @@ namespace ReplaceSpecialCharactersInString
 
 
         public static string ReplaceUsingSpan(string originalString,
-            char charToBeReplaced, char charToReplace)
+            char oldChar, char newChar)
         {
             var originalChars = originalString.ToCharArray();
 
             var span = new Span<char>(originalChars);
 
-            for (int i = 0; i < originalString.Length; i++)
-            {
-                if (span[i] == charToBeReplaced)
-                    span[i] = charToReplace;
-            }
+            span.Replace(oldChar, newChar);
 
             return new string(span.ToArray());
         }
