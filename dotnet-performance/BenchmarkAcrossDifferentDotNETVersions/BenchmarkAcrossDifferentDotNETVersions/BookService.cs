@@ -1,12 +1,14 @@
 ﻿namespace BenchmarkAcrossDifferentDotNETVersions;
 
+public record Book(string Title, string Author, string Publisher);
+
 public class BookService
 {
     public static List<Book> GetBooks()
         => new()
         {
-            new() { Title = "Measuring Time", Author = "Helon Habila", Publisher = "W. W. Norton & Company" },
-            new() { Title = "Americanah", Author = "Chimamanda Adichie", Publisher = "Alfred Knopf" },
-            new() { Title = "Things Fall Apart", Author = "Chinua Achebe", Publisher = "William Heinemann Ltd." }
+            new("Measuring Time", "Helon Habila", "W. W. Norton & Company"),
+            new("Americanah", "Chimamanda Adichie", "Alfred Knopf"),
+            new("Things Fall Apart", "Chinua Achebe", "William Heinemann Ltd.")
         };
 }
