@@ -6,7 +6,7 @@ namespace ReplaceSpecialCharactersInString
 {
     public class StringReplacer
     {
-      
+        [Benchmark]
         public static string ReplaceUsingStringReplace(string originalString,
             char oldChar, char newChar)
         {
@@ -14,7 +14,7 @@ namespace ReplaceSpecialCharactersInString
         }
 
 
-        
+        [Benchmark]
         public static string ReplaceUsingStringBuilder(string originalString,
             char oldChar, char newChar)
         {
@@ -26,7 +26,7 @@ namespace ReplaceSpecialCharactersInString
         }
 
 
-        
+        [Benchmark]
         public static string ReplaceUsingRegex(string originalString,
             string oldChar, string newChar)
         {
@@ -36,7 +36,7 @@ namespace ReplaceSpecialCharactersInString
         }
 
 
-        
+        [Benchmark]
         public static string ReplaceUsingSpan(string originalString,
             char charToBeReplaced, char charToReplace)
         {
@@ -54,7 +54,7 @@ namespace ReplaceSpecialCharactersInString
         }
 
 
-        
+        [Benchmark]
         public static string ReplaceUsingInefficientMultipleReplacementsStringReplace(
             string originalString, char oldChar, char newChar)
         {
@@ -67,7 +67,7 @@ namespace ReplaceSpecialCharactersInString
         }
 
 
-        
+        [Benchmark]
         public static string ReplaceUsingMemoryImpactStringReplace(
                string originalString, char oldChar, char newChar)
         {
@@ -83,7 +83,7 @@ namespace ReplaceSpecialCharactersInString
         }
 
 
-        
+        [Benchmark]
         public static string ReplaceUsingCompiledRegex(string originalString,
                string oldChar, string newChar)
         {
@@ -98,7 +98,7 @@ namespace ReplaceSpecialCharactersInString
 
 
 
-       
+        [Benchmark]
         public static string ReplaceUsingNonBacktrackingRegex(string originalString,
                string oldChar, string newChar)
         {
@@ -112,7 +112,7 @@ namespace ReplaceSpecialCharactersInString
 
 
 
-       
+        [Benchmark]
         public static string ReplaceUsingUnsafeCode(string originalString,
             char oldChar, char newChar)
         {
