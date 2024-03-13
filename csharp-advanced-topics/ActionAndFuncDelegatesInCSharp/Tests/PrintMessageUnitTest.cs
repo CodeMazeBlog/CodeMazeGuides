@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using ActionAndFuncDelegatesInCSharp;
+using Xunit;
 
 namespace Tests;
 public class PrintMessageUnitTest
@@ -7,21 +8,15 @@ public class PrintMessageUnitTest
     public void WhenPrintMessageIsCalled_ThenCorrectMessageIsPrintedToConsole()
     {
         // Arrange
-        var expectedMessage = "Hello code maze, this is an action delegate!";
-        using var consoleOutput = new StringWriter();
-        Console.SetOut(consoleOutput);
-
-        Action<string> printAction = PrintMessage;
+        var expectedOutput = $"Hello, code maze, this is an action delegate!{Environment.NewLine}";
+        using var stringWriter = new StringWriter();
+        Console.SetOut(stringWriter);
 
         // Act
-        printAction(expectedMessage);
+        Program.PrintMessage("Hello, code maze, this is an action delegate!");
 
         // Assert
-        Assert.Equal(expectedMessage + Environment.NewLine, consoleOutput.ToString());
-    }
-
-    private void PrintMessage(string message)
-    {
-        Console.WriteLine(message);
-    }
+        var output = stringWriter.ToString();
+        Assert.Equal(expectedOutput, output);
+    }   
 }

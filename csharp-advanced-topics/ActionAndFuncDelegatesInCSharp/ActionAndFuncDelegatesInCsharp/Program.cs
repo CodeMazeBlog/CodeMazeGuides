@@ -1,18 +1,20 @@
-﻿Action<string> printAction = PrintMessage;
+﻿namespace ActionAndFuncDelegatesInCSharp;
 
-printAction("Hello code maze, this is an action delegate!");
-
-static void PrintMessage(string message)
+public class Program
 {
-    Console.WriteLine(message);
-}
+    static void Main(string[] args)
+    {
+        Action<string> printAction = PrintMessage;
+        printAction("Hello, code maze, this is an action delegate!");
 
-Func<int, int> squareFunc = Square;
 
-int result = squareFunc(7);
-Console.WriteLine($"Square of 7 is {result}");
+        Func<int, int> squareFunc = Square;
+        var result = squareFunc(7);
 
-static int Square(int number)
-{
-    return number * number;
+        Console.WriteLine($"A square of 7 is {result}");
+    }
+
+    public static void PrintMessage(string message) => Console.WriteLine(message);
+
+    public static int Square(int number) => number * number;
 }

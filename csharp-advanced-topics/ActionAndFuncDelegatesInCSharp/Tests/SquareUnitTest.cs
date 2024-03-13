@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using ActionAndFuncDelegatesInCSharp;
+using Xunit;
 
 namespace Tests;
 
@@ -8,18 +9,13 @@ public class SquareUnitTest
     public void GivenANumber_WhenSquareIsCalled_ThenCorrectSquareIsReturned()
     {
         // Arrange
-        int testNumber = 7;
-        int expectedSquare = 49;
+        var testNumber = 7;
+        var expectedSquare = 49;
 
         // Act
-        int result = Square(testNumber);
+        var result = Program.Square(testNumber);
 
         // Assert
         Assert.Equal(expectedSquare, result);
-    }
-
-    private static int Square(int number)
-    {
-        return number * number;
-    }
+    }   
 }
