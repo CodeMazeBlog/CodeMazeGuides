@@ -9,7 +9,7 @@ public class Program
         BenchmarkRunner.Run<Benchmark>();
 
         var names = Enum.GetNames<Months>();
-        var values = Enum.GetValues<Seasons>();
+        var values = Enum.GetValues<Months>();
         var getnames = Enum.GetNames<Months>().Length;
         var getvalues = Enum.GetValues<Months>().Length;
         var distinct_values = Enum.GetValues(typeof(Seasons)).Cast<Seasons>().Distinct().Count();

@@ -9,14 +9,14 @@ namespace CountEnumMembersBenchmark
         [Benchmark]
         public int MeasureGetNames()
         {
-            var getnames = Enum.GetNames(typeof(Months)).Length;
+            var getnames = Enum.GetNames<Months>().Length;
             return getnames;
         }
 
         [Benchmark]
         public int MeasureGetValues()
         {
-            var getvalues = Enum.GetValues(typeof(Months)).Length;
+            var getvalues = Enum.GetValues<Months>().Length;
             return getvalues;
         }
 
