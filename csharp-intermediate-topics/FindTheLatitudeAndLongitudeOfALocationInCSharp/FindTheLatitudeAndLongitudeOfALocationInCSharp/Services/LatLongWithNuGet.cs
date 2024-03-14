@@ -1,5 +1,4 @@
-namespace Controllers;
-using Services; 
+namespace Services; 
 
 public class LatLongWithNuGet
 {

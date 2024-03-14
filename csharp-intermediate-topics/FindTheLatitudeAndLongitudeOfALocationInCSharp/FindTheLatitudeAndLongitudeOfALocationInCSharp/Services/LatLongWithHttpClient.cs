@@ -1,4 +1,4 @@
-namespace Controllers;
+namespace Services;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -25,7 +25,8 @@ public class LatLongWithHttpClient
             response.EnsureSuccessStatusCode();
             var root = await response.Content.ReadFromJsonAsync<JsonElement>();
 
-            if (root.GetProperty("status").GetString() == "OK")
+            var status = root.GetProperty("status").GetString();
+            if (status == "OK")
             {
                 var location = root.GetProperty("results")[0].GetProperty("geometry").GetProperty("location");
                 double latitude = location.GetProperty("lat").GetDouble();
@@ -35,7 +36,7 @@ public class LatLongWithHttpClient
             }
             else
             {
-                return "Error retrieving geolocation.";
+                return $"Error retrieving coordinates: API returned '{status}'.";
             }
         }
         catch (Exception ex)
