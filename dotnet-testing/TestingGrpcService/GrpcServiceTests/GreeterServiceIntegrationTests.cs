@@ -14,7 +14,7 @@ namespace GrpcServiceTests
         }
 
         [Fact]
-        public async Task WhenSayHelloAsyncIsCalled_ShouldReturnCorrectName()
+        public async Task WhenSayHelloAsyncIsCalled_ThenItShouldReturnCorrectName()
         {
             // Arrange
             var channel = GrpcChannel.ForAddress(_factory.Server.BaseAddress, new GrpcChannelOptions { HttpHandler = _factory.Server.CreateHandler() });

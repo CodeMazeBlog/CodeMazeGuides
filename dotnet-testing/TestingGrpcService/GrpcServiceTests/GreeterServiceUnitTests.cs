@@ -21,7 +21,7 @@ namespace GrpcServiceTests
         }
 
         [Fact]
-        public async Task WhenSayHelloIsCalled_ThenItReturnsExpectedResponse2()
+        public async Task WhenSayHelloAsyncIsCalled_ThenItShouldReturnCorrectName()
         {
             // Arrange
             var service = CreateGreeterService();
