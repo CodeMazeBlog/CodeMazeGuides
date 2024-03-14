@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using System.Threading.RateLimiting;
 
@@ -9,7 +10,7 @@ public static class RateLimiters
 {
     public static void FixedRateLimiter(WebApplicationBuilder builder)
     {
-        var fixedOptions = builder.Configuration.GetSection(FixedOptions.Fixed).Get<FixedOptions>();
+        var fixedOptions = GetOptionValues<FixedOptions>(builder);
 
         builder.Services.AddRateLimiter(options => options
             .AddFixedWindowLimiter(policyName: Policies.Fixed, options =>
@@ -23,7 +24,7 @@ public static class RateLimiters
 
     public static void SlidingRateLimiter(WebApplicationBuilder builder)
     {
-        var slidingOptions = builder.Configuration.GetSection(SlidingWindowOptions.Sliding).Get<SlidingWindowOptions>();
+        var slidingOptions = GetOptionValues<SlidingWindowOptions>(builder);
 
         builder.Services.AddRateLimiter(options => options
             .AddSlidingWindowLimiter(policyName: Policies.Sliding, options =>
@@ -38,7 +39,7 @@ public static class RateLimiters
 
     public static void TokenBucketRateLimiter(WebApplicationBuilder builder)
     {
-        var bucketOptions = builder.Configuration.GetSection(TokenBucketOptions.Token).Get<TokenBucketOptions>();
+        var bucketOptions = GetOptionValues<TokenBucketOptions>(builder);
 
         builder.Services.AddRateLimiter(options => options
             .AddTokenBucketLimiter(policyName: Policies.Token, options =>
@@ -54,7 +55,7 @@ public static class RateLimiters
 
     public static void ConcurrencyRateLimiter(WebApplicationBuilder builder)
     {
-        var concurrentOptions = builder.Configuration.GetSection(ConcurrencyOptions.Concurrency).Get<ConcurrencyOptions>();
+        var concurrentOptions = GetOptionValues<ConcurrencyOptions>(builder);
 
         builder.Services.AddRateLimiter(_ => _
             .AddConcurrencyLimiter(policyName: Policies.Concurrency, options =>
@@ -69,7 +70,7 @@ public static class RateLimiters
     {
         var authorizedLimiterOptions = builder.Configuration.GetSection(AuthorizedOptions.Authorized).Get<AuthorizedOptions>();
 
-        var unauthorizedLimiterOptions = builder.Configuration.GetSection(UnauthorizedOptions.Unauthorized).Get<UnauthorizedOptions>();
+        var unauthorizedLimiterOptions = GetOptionValues<UnauthorizedOptions>(builder);
 
         builder.Services.AddAuthorization();
         builder.Services.AddAuthentication("Bearer");
@@ -106,9 +107,9 @@ public static class RateLimiters
 
     public static void ChainedRateLimiter(WebApplicationBuilder builder)
     {
-        var chainedFirstOptions = builder.Configuration.GetSection(ChainedFirstOptions.ChainedFirst).Get<ChainedFirstOptions>();
+        var chainedFirstOptions = GetOptionValues<ChainedFirstOptions>(builder);
 
-        var chainedSecondOptions = builder.Configuration.GetSection(ChainedSecondOptions.ChainedSecond).Get<ChainedSecondOptions>();
+        var chainedSecondOptions = GetOptionValues<ChainedSecondOptions>(builder);
 
         builder.Services.AddRateLimiter(limiterOptions =>
         {
@@ -145,5 +146,12 @@ public static class RateLimiters
         app.MapGet("/jwt", () => "This endpoint has Authorization Rate Limiter.")
         .RequireRateLimiting(Policies.Authorization)
         .RequireAuthorization();
+    }
+
+
+    private static T GetOptionValues<T>(WebApplicationBuilder builder) where T : class
+    {
+        var serviceProvider = builder.Services.BuildServiceProvider();
+        return serviceProvider.GetRequiredService<IOptions<T>>().Value;
     }
 }

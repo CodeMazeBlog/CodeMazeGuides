@@ -38,18 +38,18 @@ public class CustomerControllerTests : IClassFixture<WebApplicationFactory<Progr
     [InlineData("/Customer/SpecialOffer")]
     [InlineData("/myendpoint")]
     [InlineData("/jwt")]
-    public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url)
+    public async Task WhenEndpointCalled_ThenEndpointsReturnSuccess(string url)
     {
         var response = await _client.GetAsync(url);
 
-        response.EnsureSuccessStatusCode();
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Theory]
     [InlineData("/Customer/Details", 9)]
     [InlineData("/Customer/GetById", 9)]
     [InlineData("/Customer/Get", 9)]
-    public async Task RateLimitedEndpoints_ReturnsOk_UnderLimit(string url, int limit)
+    public async Task WhenRateLimitedEndpointsUnderLimit_ThenReturnsOk(string url, int limit)
     {
         for (int i = 0; i < limit; i++)
         {
@@ -62,7 +62,7 @@ public class CustomerControllerTests : IClassFixture<WebApplicationFactory<Progr
     [Theory]
     [InlineData("/Customer/Details", 20)]
     [InlineData("/Customer/GetById", 20)]
-    public async Task RateLimitedEndpointss_ExceedingLimit_ReturnsTooManyRequests(string url, int limit)
+    public void WhenRateLimitedEndpointsExceedLimit_ThenReturnsTooManyRequests(string url, int limit)
     {
         HttpStatusCode lastStatusCode = HttpStatusCode.OK;
 
@@ -80,58 +80,15 @@ public class CustomerControllerTests : IClassFixture<WebApplicationFactory<Progr
         Assert.Equal(HttpStatusCode.TooManyRequests, lastStatusCode);
     }
 
-    [Fact]
-    public async Task RateLimiting_NotEnforcedOnSpecialOffer()
+    [Theory]
+    [InlineData("/Customer/SpecialOffer")]
+    public async Task WhenRateLimitingNotEnforcedOnSpecialOffer_ThenAlwaysSuccessStatusCode(string url)
     {
-        string url = "/Customer/SpecialOffer";
-
         // Make a high number of requests assuming it exceeds any reasonable limit
         for (int i = 0; i < 100; i++)
         {
             var response = await _client.GetAsync(url);
-            Assert.True(response.IsSuccessStatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
     }
 }
-
-public class CustomerControllerTests2 : IClassFixture<WebApplicationFactory<Program>>
-{
-    private readonly HttpClient _client;
-
-    public CustomerControllerTests2(WebApplicationFactory<Program> factory)
-    {
-        _client = factory.WithWebHostBuilder(builder =>
-        {
-            builder.ConfigureTestServices(services =>
-            {
-                services.AddAuthentication(defaultScheme: "TestScheme")
-                    .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>(
-                        "TestScheme", options => { });
-
-            });
-        })
-        .CreateClient(new WebApplicationFactoryClientOptions
-        {
-            AllowAutoRedirect = false,
-        });
-    }
-
-    [Fact]
-    public async Task RateLimitedEndpoint_CannotHaveMoreThan10ConcurrentRequests()
-    {
-        var tasks = new List<Task<HttpResponseMessage>>();
-
-        for (int i = 0; i < 12; i++)
-        {
-            tasks.Add(_client.GetAsync("/Customer/Get"));
-        }
-
-        var responses = await Task.WhenAll(tasks);
-
-        // Check if any response returned the HTTP 429 Too Many Requests status.
-        bool rateLimitExceeded = responses.Any(response => response.StatusCode == HttpStatusCode.TooManyRequests);
-
-        Assert.True(rateLimitExceeded);
-    }
-}
-

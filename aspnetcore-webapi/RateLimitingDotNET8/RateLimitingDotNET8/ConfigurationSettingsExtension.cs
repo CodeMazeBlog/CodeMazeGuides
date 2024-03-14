@@ -19,7 +19,6 @@ public static class ConfigurationSettingsExtension
         IConfiguration configuration)
         where TSettings : class
     {
-        var section = configuration.GetSection(typeof(TSettings).Name);
         services
             .AddOptions<TSettings>()
             .Bind(configuration.GetSection(typeof(TSettings).Name));

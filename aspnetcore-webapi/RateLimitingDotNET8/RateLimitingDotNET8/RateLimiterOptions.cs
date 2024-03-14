@@ -21,7 +21,7 @@ public class SlidingWindowOptions : RateLimiterOptions
     public int SegmentsPerWindow { get; set; } = default!;
 }
 
-public class TokenBucketOptions
+public class TokenBucketOptions : RateLimiterOptions
 {
     public const string Token = "TokenBucketOptions";
 
@@ -29,8 +29,6 @@ public class TokenBucketOptions
     public int TokensPerPeriod { get; set; } = default!;
     public double ReplenishmentPeriod { get; set; } = default!;
     public bool AutoReplenishment { get; set; } = default!;
-    public int QueueLimit { get; set; } = default!;
-
 }
 
 public class ConcurrencyOptions : RateLimiterOptions
