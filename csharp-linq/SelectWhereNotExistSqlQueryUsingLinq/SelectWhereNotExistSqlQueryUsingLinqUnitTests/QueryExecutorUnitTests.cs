@@ -28,7 +28,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
-            Assert.AreEqual(1, unassignedEmployees.Count);
+            Assert.AreEqual(1, unassignedEmployees.ToList().Count);
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
-            Assert.AreEqual(1, unassignedEmployees.Count);
+            Assert.AreEqual(1, unassignedEmployees.ToList().Count);
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
-            Assert.AreEqual(1, unassignedEmployees.Count);
+            Assert.AreEqual(1, unassignedEmployees.ToList().Count);
         }
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
-            Assert.AreEqual(1, unassignedEmployees.Count);
+            Assert.AreEqual(1, unassignedEmployees.ToList().Count);
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
-            Assert.AreEqual(1, unassignedEmployees.Count);
+            Assert.AreEqual(1, unassignedEmployees.ToList().Count);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
-            Assert.AreEqual(1, unassignedEmployees.Count);
+            Assert.AreEqual(1, unassignedEmployees.ToList().Count);
         }
 
         [TestMethod]
@@ -94,7 +94,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
-            Assert.AreEqual(1, unassignedEmployees.Count);
+            Assert.AreEqual(1, unassignedEmployees.ToList().Count);
         }
 
         [TestMethod]
@@ -105,7 +105,7 @@ namespace SelectWhereNotExistSqlQueryUsingLinqUnitTests
 
             // Assert
             Assert.IsNotNull(unassignedEmployees);
-            Assert.AreEqual(1, unassignedEmployees.Count);
+            Assert.AreEqual(1, unassignedEmployees.ToList().Count);
         }
     }
 }

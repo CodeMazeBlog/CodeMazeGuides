@@ -4,30 +4,26 @@ namespace SelectWhereNotExistSqlQueryUsingLinq
 {
     public static class QueryExecutor
     {
-        public static List<Employee> GetUnassignedEmployeesAnyQuerySyntax(EmployeeDbContext context)
+        public static IQueryable<Employee> GetUnassignedEmployeesAnyQuerySyntax(EmployeeDbContext context)
         {
             var employees =
                 from employee in context.Employees
                 where !context.Tasks.Any(task => task.EmployeeId == employee.Id)
                 select employee;
 
-            Console.WriteLine(employees.ToQueryString());
-
-            return employees.ToList();
+            return employees;
         }
 
-        public static List<Employee> GetUnassignedEmployeesAnyMethodSyntax(EmployeeDbContext context)
+        public static IQueryable<Employee> GetUnassignedEmployeesAnyMethodSyntax(EmployeeDbContext context)
         {
             var employees = context.Employees
                 .Where(employee => !context.Tasks
                     .Any(task => task.EmployeeId == employee.Id));
 
-            Console.WriteLine(employees.ToQueryString());
-
-            return employees.ToList();
+            return employees;
         }
 
-        public static List<Employee> GetUnassignedEmployeesJoinQuerySyntax(EmployeeDbContext context)
+        public static IQueryable<Employee> GetUnassignedEmployeesJoinQuerySyntax(EmployeeDbContext context)
         {
             var employees =
                 from employee in context.Employees
@@ -38,12 +34,10 @@ namespace SelectWhereNotExistSqlQueryUsingLinq
                 where task == null
                 select employee;
 
-            Console.WriteLine(employees.ToQueryString());
-
-            return employees.ToList();
+            return employees;
         }
 
-        public static List<Employee> GetUnassignedEmployeesJoinMethodSyntax(EmployeeDbContext context)
+        public static IQueryable<Employee> GetUnassignedEmployeesJoinMethodSyntax(EmployeeDbContext context)
         {
             var employees = context.Employees.GroupJoin(
                 context.Tasks, 
@@ -55,25 +49,20 @@ namespace SelectWhereNotExistSqlQueryUsingLinq
                 .Where(x => x.task == null)
                 .Select(x => x.employee);
 
-
-            Console.WriteLine(employees.ToQueryString());
-
-            return employees.ToList();
+            return employees;
         }
 
-        public static List<Employee> GetUnassignedEmployeesContainsQuerySyntax(EmployeeDbContext context)
+        public static IQueryable<Employee> GetUnassignedEmployeesContainsQuerySyntax(EmployeeDbContext context)
         {
             var employees =
                 from employee in context.Employees
                 where context.Tasks.All(task => task.EmployeeId != employee.Id)
                 select employee;
 
-            Console.WriteLine(employees.ToQueryString());
-
-            return employees.ToList();
+            return employees;
         }
 
-        public static List<Employee> GetUnassignedEmployeesContainsMethodSyntax(EmployeeDbContext context)
+        public static IQueryable<Employee> GetUnassignedEmployeesContainsMethodSyntax(EmployeeDbContext context)
         {
             var employees = context
                 .Employees
@@ -82,33 +71,27 @@ namespace SelectWhereNotExistSqlQueryUsingLinq
                     .Select(task => task.EmployeeId)
                     .Contains(employee.Id));
 
-            Console.WriteLine(employees.ToQueryString());
-
-            return employees.ToList();
+            return employees;
         }
 
-        public static List<Employee> GetUnassignedEmployeesAllQuerySyntax(EmployeeDbContext context)
+        public static IQueryable<Employee> GetUnassignedEmployeesAllQuerySyntax(EmployeeDbContext context)
         {
             var employees =
                 from employee in context.Employees
                 where context.Tasks.All(task =>task.EmployeeId != employee.Id)
                 select employee;
 
-            Console.WriteLine(employees.ToQueryString());
-
-            return employees.ToList();
+            return employees;
         }
 
-        public static List<Employee> GetUnassignedEmployeesAllMethodSyntax(EmployeeDbContext context)
+        public static IQueryable<Employee> GetUnassignedEmployeesAllMethodSyntax(EmployeeDbContext context)
         {
             var employees = context
                 .Employees
                 .Where(employee => context.Tasks
                     .All(task => task.EmployeeId != employee.Id));
 
-            Console.WriteLine(employees.ToQueryString());
-
-            return employees.ToList();
+            return employees;
         }
     }
 }
