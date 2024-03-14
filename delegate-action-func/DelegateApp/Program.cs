@@ -21,7 +21,10 @@ namespace DelegateApp
             DisplayEmployees(implementations, employees, IsContractual);
         }
 
-        public static void DisplayEmployees(DelegateImplementation implementation, Employee[] employees, CheckEmployeeType employeeType)
+        public static void DisplayEmployees(
+            DelegateImplementation implementation,
+            Employee[] employees,
+            CheckEmployeeType employeeType)
         {
             foreach (Employee emp in employees)
             {
