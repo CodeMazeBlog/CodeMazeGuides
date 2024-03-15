@@ -29,10 +29,10 @@ public class Program
     public static byte[] SaveText(string path, ReadOnlyMemory<char> text)
     {
         using var stream = new FileStream(path, FileMode.Create, FileAccess.Write);
-
         var byteArray = MemoryMarshal.AsBytes(text.Span).ToArray();
         stream.Write(byteArray, 0, byteArray.Length);
 
-        return SHA256.HashData(byteArray);
+        using var hashAlgorithm = SHA256.Create();
+        return hashAlgorithm.ComputeHash(byteArray);
     }
 }
