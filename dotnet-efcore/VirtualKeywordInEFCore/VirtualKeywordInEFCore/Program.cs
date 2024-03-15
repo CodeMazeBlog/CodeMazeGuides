@@ -39,19 +39,19 @@ namespace VirtualKeywordInEFCore
 
             using var contextLazy = new DataContextLazyLoading();
             DataSeeder.SeedLazy(contextLazy);
-            Author_lazy author_lazy;
-            author_lazy = contextLazy.Authors_lazy.AsNoTracking().First(a => a.FullName == "Holly JACKSON");
+            AuthorLazy authorLazy;
+            authorLazy = contextLazy.AuthorsLazy.AsNoTracking().First(a => a.FullName == "Holly JACKSON");
 
-            if (author_lazy is not null)
+            if (authorLazy is not null)
             {
-                Console.WriteLine($"Author Name: {author_lazy.FullName}");                
-                Console.WriteLine($"{author_lazy.FullName}'s Books number: {author_lazy.Books?.Count}");
-                Console.WriteLine($"{nameof(Author_lazy)} datatype: {author_lazy.GetType()}");
-                Console.WriteLine($"{nameof(Book_lazy)} datatype: {author_lazy.Books?.First().GetType()}");
+                Console.WriteLine($"Author Name: {authorLazy.FullName}");                
+                Console.WriteLine($"{authorLazy.FullName}'s Books number: {authorLazy.Books?.Count}");
+                Console.WriteLine($"{nameof(AuthorLazy)} datatype: {authorLazy.GetType()}");
+                Console.WriteLine($"{nameof(BookLazy)} datatype: {authorLazy.Books?.First().GetType()}");
 
-                foreach (var book_lazy in author_lazy.Books)
+                foreach (var bookLazy in authorLazy.Books)
                 {
-                    Console.WriteLine($"Book Title: {book_lazy.Title}");
+                    Console.WriteLine($"Book Title: {bookLazy.Title}");
                 }
             }
         }

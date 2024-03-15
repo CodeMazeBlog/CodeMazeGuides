@@ -14,13 +14,13 @@ namespace VirtualKeywordInEFCore.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Book_lazy>()
+            modelBuilder.Entity<BookLazy>()
                 .HasOne(s => s.Author)
                 .WithMany(g => g.Books)
                 .HasForeignKey(s => s.AuthorId);
         }
 
-        public DbSet<Author_lazy> Authors_lazy { get; set; }
-        public DbSet<Book_lazy> Books_lazy { get; set; }
+        public DbSet<AuthorLazy> AuthorsLazy { get; set; }
+        public DbSet<BookLazy> BooksLazy { get; set; }
     }
 }

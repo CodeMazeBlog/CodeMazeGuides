@@ -2,12 +2,12 @@
 
 namespace VirtualKeywordInEFCore.Models
 {
-    public class Book_lazy
+    public class BookLazy
     {
         [Key]
         public int BookId { get; set; }
         public string? Title { get; set; }
         public int AuthorId { get; set; }
-        public virtual Author_lazy Author { get; set; }
+        public virtual AuthorLazy Author { get; set; }
     }
 }

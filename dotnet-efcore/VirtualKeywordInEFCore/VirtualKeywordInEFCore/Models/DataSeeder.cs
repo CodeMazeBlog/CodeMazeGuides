@@ -42,17 +42,17 @@
         public static void SeedLazy(DataContextLazyLoading contextLazy)
         {
             contextLazy.Database.EnsureCreated();
-            if (contextLazy.Authors_lazy.Any())
+            if (contextLazy.AuthorsLazy.Any())
             {
                 return;
             }
 
-            var authors_lazy = new List<Author_lazy>
+            var authorsLazy = new List<AuthorLazy>
             {
                 new () { FullName = "Holly JACKSON" }
             };
 
-            var books_lazy = new List<Book_lazy>
+            var booksLazy = new List<BookLazy>
             {
                 new () { Title = "A Good Girl's Guide to Murder", AuthorId = 1 },
                 new () { Title = "Good Girl, Bad Blood", AuthorId = 1 },
@@ -60,8 +60,8 @@
                 new () { Title = "Five Survive", AuthorId = 1 }
             };
 
-            contextLazy.AddRange(authors_lazy);
-            contextLazy.AddRange(books_lazy);
+            contextLazy.AddRange(authorsLazy);
+            contextLazy.AddRange(booksLazy);
             contextLazy.SaveChanges();
         }
     }
