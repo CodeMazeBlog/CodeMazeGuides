@@ -4,6 +4,8 @@ namespace RetrievalOfCpuCores;
 
 public class CpuInformation
 {
+    const string wmiQuery = "Select * from Win32_ComputerSystem";
+
     /// <summary>
     /// Retrieves the number of logical processors of the CPU by using Environment.ProcessorCount.
     /// </summary>
@@ -24,7 +26,6 @@ public class CpuInformation
             throw new PlatformNotSupportedException();
         }
 
-        var wmiQuery = "Select * from Win32_ComputerSystem";
         foreach (var item in new System.Management.ManagementObjectSearcher(wmiQuery).Get())
         {
             return int.Parse(item["NumberOfLogicalProcessors"].ToString());
@@ -46,7 +47,7 @@ public class CpuInformation
         }
 
         var coreCount = 0;
-        var wmiQuery = "Select * from Win32_Processor";
+        const string wmiQuery = "Select * from Win32_Processor";
         foreach (var item in new System.Management.ManagementObjectSearcher(wmiQuery).Get())
         {
             coreCount += int.Parse(item["NumberOfCores"].ToString());
@@ -67,7 +68,6 @@ public class CpuInformation
             throw new PlatformNotSupportedException();
         }
 
-        var wmiQuery = "Select * from Win32_ComputerSystem";
         foreach (var item in new System.Management.ManagementObjectSearcher(wmiQuery).Get())
         {
             return int.Parse(item["NumberOfProcessors"].ToString());
