@@ -4,12 +4,12 @@ using CSharp_Func_Delegate;
 
 //Func delegate without input parameters
 var funcDelegateWithoutInputParameter = new FuncDelegateWithoutInputParameter();
-Func<double> processfuncDelegateWithoutInputParameter = funcDelegateWithoutInputParameter.ProcessBmi;
+var processfuncDelegateWithoutInputParameter = funcDelegateWithoutInputParameter.ProcessBmi;
 Console.WriteLine($"The BMI is : {processfuncDelegateWithoutInputParameter():N}.");
 
 //Func delegate with input parameters
 var funcDelegateWithInputParameter = new FuncDelegateWithInputParameter();
-Func<double, double, double> processFuncDelegateWithInputParameter = funcDelegateWithInputParameter.ProcessBmi;
+var processFuncDelegateWithInputParameter = funcDelegateWithInputParameter.ProcessBmi;
 Console.WriteLine($"The BMI is : {processFuncDelegateWithInputParameter(175d, 75d):N}.");
 
 //Func delegate with lambda expressions

@@ -4,9 +4,9 @@
     {
         public Action BmiWithNonGenericAction = () =>
         {
-            double height = 175d;
-            double weight = 75d;
-            double bmi = 0d;
+            var height = 175d;
+            var weight = 75d;
+            var bmi = 0d;
             if (height > 0d && weight > 0d)
             {
                 var convertedheight = height / 100d;
@@ -19,7 +19,7 @@
 
         public Action<double, double> BmiWithGenericAction = (height, weight) =>
         {
-            double bmi = 0d;
+            var bmi = 0d;
             if (height > 0d && weight > 0d)
             {
                 var convertedheight = height / 100d;

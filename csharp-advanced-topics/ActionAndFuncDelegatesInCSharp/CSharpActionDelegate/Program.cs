@@ -3,13 +3,13 @@ using CSharp_Action_Delegate;
 
 //Non-Generic Action
 var nonGenericActionDelegate = new NonGenericActionDelegate();
-Action processBmiNonGenericAction = nonGenericActionDelegate.ProcessBmi;
+var processBmiNonGenericAction = nonGenericActionDelegate.ProcessBmi;
 
 processBmiNonGenericAction();
 
 // Generic Action
 var genericActionDelegate = new GenericActionDelegate();
-Action<double, double> processBmiGenericAction = genericActionDelegate.ProcessBmi;
+var processBmiGenericAction = genericActionDelegate.ProcessBmi;
 
 processBmiGenericAction(175d, 75d);
 

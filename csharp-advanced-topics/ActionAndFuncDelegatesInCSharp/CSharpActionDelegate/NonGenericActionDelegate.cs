@@ -4,9 +4,9 @@
     {
         public void ProcessBmi()
         {
-            double height = 175d;
-            double weight = 75d;
-            double bmi = 0d;
+            var height = 175d;
+            var weight = 75d;
+            var bmi = 0d;
             if (height > 0d && weight > 0d)
             {
                 var convertedheight = height / 100d;
@@ -15,11 +15,5 @@
 
             Console.WriteLine($"The BMI is : {bmi:N}.");
         }
-
-        //Action bmiNonGenericAction = new Action(ProcessBmi);
-        //Action bmiDirectNonGenericAction = ProcessBmi;
-
-        //bmiNonGenericAction();
-        //bmiDirectNonGenericAction();
     }
 }
