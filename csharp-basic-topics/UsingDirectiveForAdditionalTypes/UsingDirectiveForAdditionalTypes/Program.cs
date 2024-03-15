@@ -5,7 +5,7 @@ using UsingDirectiveForAdditionalTypes;
 
 Console.WriteLine("*");
 Console.WriteLine(nameof(UsingExamples));
-List<Article> articles = UsingExamples.GetArticles();
+var articles = UsingExamples.GetArticles();
 foreach (var article in articles)
 {
     Console.WriteLine($"{article.Title}:{article.WordsCount}");
@@ -44,5 +44,5 @@ foreach (var point in points)
     Console.WriteLine($"X:{point.X}, Y:{point.Y}");
 }
 
-Destination destination = new Destination("London", 2500.00);
+var destination = new Destination("London", 2500.00);
 Console.WriteLine($"My destination is {destination.Location} with distance {destination.Distance}");
