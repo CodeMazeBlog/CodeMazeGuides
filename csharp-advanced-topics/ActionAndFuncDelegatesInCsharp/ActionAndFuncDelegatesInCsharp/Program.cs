@@ -2,7 +2,7 @@
 using ActionAndFuncDelegatesInCsharp.Func;
 
 #region Action delegate
-ActionDelegate actionDelegate = new ActionDelegate();
+var actionDelegate = new ActionDelegate();
 actionDelegate.PrintNumber(1000);
 
 Action<int> PrintNumber = actionDelegate.PrintNumberNamedMethod;
@@ -10,7 +10,7 @@ PrintNumber(1000);
 #endregion
 
 #region Func delegate
-FuncDelegate funcDelegate = new FuncDelegate();
+var funcDelegate = new FuncDelegate();
 var sum = funcDelegate.Sum(10, 50);
 Console.WriteLine("Sum is: " + sum);
 

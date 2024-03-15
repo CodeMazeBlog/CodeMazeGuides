@@ -9,12 +9,12 @@ namespace Test
         [TestMethod]
         public void WhenTwoNumbers_ThenSumThem()
         {
-            FuncDelegate funcDelegate = new FuncDelegate();
+            var funcDelegate = new FuncDelegate();
 
             //Arrange
-            int number1 = 2024;
-            int number2 = 30;
-            int sum = 2054;
+            var number1 = 2024;
+            var number2 = 30;
+            var sum = number1 + number2;
 
             //Act                       
             var result = funcDelegate.Sum(number1, number2);
@@ -26,13 +26,13 @@ namespace Test
         [TestMethod]
         public void WhenTwoNumbers_ThenSum()
         {
-            FuncDelegate funcDelegate = new FuncDelegate();
+            var funcDelegate = new FuncDelegate();
             Func<int, int, int> funcUsingNamedMethod = funcDelegate.Sum;
 
             //Arrange
-            int number1 = 2024;
-            int number2 = 30;
-            int sum = 2054;
+            var number1 = 2024;
+            var number2 = 30;
+            var sum = number1 + number2;
 
             //Act                       
             var result = funcUsingNamedMethod(number1, number2);
