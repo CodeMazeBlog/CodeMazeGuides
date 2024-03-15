@@ -6,7 +6,7 @@ namespace FuncDelegateTest
     public class FuncDelegateTest
     {
         [TestMethod]
-        public void birthYearTest()
+        public void GivenCurrentYearAndCurrentAgeIsAdded_Then_ReturnBirthYear()
         {
             //Arrange
             int currentYear = 2024;
@@ -14,7 +14,7 @@ namespace FuncDelegateTest
             int birthYear = 1994;
 
             //Act
-            var result = FuncDelegate.Program.birthYear(currentYear, currentAge);
+            var result = FuncDelegate.Program.BirthYear(currentYear, currentAge);
             //Assert
             Assert.AreEqual(birthYear, result);
         }

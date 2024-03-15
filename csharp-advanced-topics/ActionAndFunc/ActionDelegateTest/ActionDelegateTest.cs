@@ -6,22 +6,29 @@ namespace Test
     public class ActionDelegateTest
     {
         [TestMethod]
-        public void TestbirthYear()
+        public void GivenCurrentYearAndCurrentAgeIsAdded_Then_ReturnBirthYear()
         {
             // Arrange
-            int currentYear = 2024;
-            int currentAge = 30;
-           
-            try
+            Action<int, int> BirthYear = (currentYear, currentAge) =>
             {
-                //Act
-                Program.birthYear(currentYear, currentAge);
-                return; // indicates success
-            }
-            catch (Exception ex)
+                int birthYear = currentYear - currentAge;
+                Console.WriteLine($"Your birth year is: {birthYear}");
+            };
+
+            int testCurrentYear = 2024;
+            int testCurrentAge = 30;
+            int expectedBirthYear = 1994;
+
+            // Act
+            int actualBirthYear = 0;
+            BirthYear += (currentYear, currentAge) =>
             {
-                Assert.Fail(ex.Message);
-            }
+                actualBirthYear = currentYear - currentAge;
+            };
+            BirthYear(testCurrentYear, testCurrentAge);
+
+            // Assert
+            Assert.AreEqual(expectedBirthYear, actualBirthYear);
         }
     }
 }

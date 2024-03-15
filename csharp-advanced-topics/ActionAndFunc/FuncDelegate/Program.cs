@@ -2,10 +2,11 @@
 {
     public class Program
     {
-        public static int birthYear(int currentYear, int currentAge)
+        public static int BirthYear(int currentYear, int currentAge)
         {
             return currentYear - currentAge;
         }
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, Let us find out your birth year. From today's date, what year are we in?");
@@ -14,7 +15,7 @@
             Console.WriteLine("How old are you?");
             var currentAge = Convert.ToInt32(Console.ReadLine());
 
-            Func<int, int, int> calculateBirthYear = birthYear;
+            Func<int, int, int> calculateBirthYear = BirthYear;
             
             var result = calculateBirthYear(currentYear, currentAge);
             

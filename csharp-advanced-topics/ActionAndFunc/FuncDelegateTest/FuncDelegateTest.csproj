@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Func\FuncDelegate.csproj" />
+    <ProjectReference Include="..\FuncDelegate\FuncDelegate.csproj" />
   </ItemGroup>
 
   <ItemGroup>

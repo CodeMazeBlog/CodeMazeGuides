@@ -8,4 +8,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="ActionDelegate\**" />
+    <EmbeddedResource Remove="ActionDelegate\**" />
+    <None Remove="ActionDelegate\**" />
+  </ItemGroup>
+
 </Project>

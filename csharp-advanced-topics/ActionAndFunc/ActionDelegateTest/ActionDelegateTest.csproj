@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Action\ActionDelegate.csproj" />
+    <ProjectReference Include="..\ActionDelegate\ActionDelegate.csproj" />
   </ItemGroup>
 
   <ItemGroup>
