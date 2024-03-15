@@ -9,38 +9,25 @@ if (!context.Database.CanConnect())
    context.AddSeedData();
 }
 
-var unassignedEmployees = QueryExecutor.GetUnassignedEmployeesAnyQuerySyntax(context);
-Console.WriteLine(unassignedEmployees.ToQueryString());
-PrintEmployeeDetails(unassignedEmployees.ToList());
+var queryMethods = new Func<EmployeeDbContext, IQueryable<Employee>>[]
+{
+    QueryExecutor.GetUnassignedEmployeesAnyQuerySyntax,
+    QueryExecutor.GetUnassignedEmployeesAnyMethodSyntax,
+    QueryExecutor.GetUnassignedEmployeesJoinQuerySyntax,
+    QueryExecutor.GetUnassignedEmployeesJoinMethodSyntax,
+    QueryExecutor.GetUnassignedEmployeesContainsQuerySyntax,
+    QueryExecutor.GetUnassignedEmployeesContainsMethodSyntax,
+    QueryExecutor.GetUnassignedEmployeesAllQuerySyntax,
+    QueryExecutor.GetUnassignedEmployeesAllMethodSyntax
+};
 
-unassignedEmployees = QueryExecutor.GetUnassignedEmployeesAnyMethodSyntax(context);
-Console.WriteLine(unassignedEmployees.ToQueryString());
-PrintEmployeeDetails(unassignedEmployees.ToList());
-
-unassignedEmployees = QueryExecutor.GetUnassignedEmployeesJoinQuerySyntax(context);
-Console.WriteLine(unassignedEmployees.ToQueryString());
-PrintEmployeeDetails(unassignedEmployees.ToList());
-
-unassignedEmployees = QueryExecutor.GetUnassignedEmployeesJoinMethodSyntax(context);
-Console.WriteLine(unassignedEmployees.ToQueryString());
-PrintEmployeeDetails(unassignedEmployees.ToList());
-
-unassignedEmployees = QueryExecutor.GetUnassignedEmployeesContainsQuerySyntax(context);
-Console.WriteLine(unassignedEmployees.ToQueryString());
-PrintEmployeeDetails(unassignedEmployees.ToList());
-
-unassignedEmployees = QueryExecutor.GetUnassignedEmployeesContainsMethodSyntax(context);
-Console.WriteLine(unassignedEmployees.ToQueryString());
-PrintEmployeeDetails(unassignedEmployees.ToList());
-
-unassignedEmployees = QueryExecutor.GetUnassignedEmployeesAllQuerySyntax(context);
-Console.WriteLine(unassignedEmployees.ToQueryString());
-PrintEmployeeDetails(unassignedEmployees.ToList());
-
-
-unassignedEmployees = QueryExecutor.GetUnassignedEmployeesAllMethodSyntax(context);
-Console.WriteLine(unassignedEmployees.ToQueryString());
-PrintEmployeeDetails(unassignedEmployees.ToList());
+foreach (var queryMethod in queryMethods)
+{
+    var unassignedEmployees = queryMethod(context);
+    Console.WriteLine(unassignedEmployees.ToQueryString());
+    PrintEmployeeDetails(unassignedEmployees.ToList());
+    Console.WriteLine();
+}
 
 void PrintEmployeeDetails(List<Employee> employees)
 {

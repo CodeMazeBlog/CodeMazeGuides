@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace SelectWhereNotExistSqlQueryUsingLinq
+﻿namespace SelectWhereNotExistSqlQueryUsingLinq
 {
     public static class QueryExecutor
     {
