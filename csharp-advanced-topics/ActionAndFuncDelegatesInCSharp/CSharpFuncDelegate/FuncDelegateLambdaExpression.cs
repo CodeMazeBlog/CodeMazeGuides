@@ -9,9 +9,9 @@ public class FuncDelegateLambdaExpression
         double bmi = 0d;
         if (height > 0d && weight > 0d)
         {
-            var h = height / 100d;
+            var convertedheight = height / 100d;
 
-            bmi = weight / h / h;
+            bmi = weight / convertedheight / convertedheight;
         }
 
         return bmi;
@@ -22,9 +22,9 @@ public class FuncDelegateLambdaExpression
         double bmi = 0d;
         if (height > 0d && weight > 0d)
         {
-            var h = height / 100d;
+            var convertedheight = height / 100d;
 
-            bmi = weight / h / h;
+            bmi = weight / convertedheight / convertedheight;
         }
 
         return bmi;

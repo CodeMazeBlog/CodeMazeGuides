@@ -7,14 +7,15 @@ namespace CSharpFuncDelegateTests
     public class FuncDelegateWithoutInputParameterTests
     {
         [TestMethod]
-        public void ProcessBmi_ReturnsCorrectBmi()
+        public void WhenInvokingFuncWithNoInputParameters_ThenFuncDelegateExecutesTheReferencedMethod()
         {
             // Arrange
-            FuncDelegateWithoutInputParameter funcDelegateWithoutInputParameter = new FuncDelegateWithoutInputParameter();
-            double expectedBmi = 24.49;
+            var funcDelegateWithoutInputParameter = new FuncDelegateWithoutInputParameter();
+            var processBmiFunc = funcDelegateWithoutInputParameter.ProcessBmi;
+            var expectedBmi = 24.49d;
 
             // Act
-            double actualBmi = funcDelegateWithoutInputParameter.ProcessBmi();
+            var actualBmi = processBmiFunc();
 
             // Assert
             Assert.AreEqual(expectedBmi, actualBmi, 0.01, "BMI values don't match");

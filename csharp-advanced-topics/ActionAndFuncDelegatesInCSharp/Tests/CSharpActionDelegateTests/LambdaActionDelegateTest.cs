@@ -7,53 +7,53 @@
     internal class LambdaActionDelegateTest
     {
         [TestMethod]
-        public void BmiWithNonGenericAction_ReturnsCorrectBmi()
+        public void WhenNonGenericAction_ThenActionDelegateExecutesTheReferencedMethod()
         {
             // Arrange
-            double expectedBmi = 24.49; 
+            var expectedBmi = 24.49;
+            var actionDelegate = new LambdaActionDelegate();
 
             // Act
             var oldConsoleOut = Console.Out;
             using (var consoleOutput = new ConsoleOutput())
             {
-                LambdaActionDelegate actionDelegate = new LambdaActionDelegate();
-                actionDelegate.BmiWithNonGenericAction(); 
-                string consoleOutputText = consoleOutput.GetOutput(); 
-                string[] lines = consoleOutputText.Split(Environment.NewLine); 
-                string bmiOutputLine = lines[0];
-                string[] parts = bmiOutputLine.Split(" : ");
-                string bmiValueStr = parts[1].Trim('.'); 
+                actionDelegate.BmiWithNonGenericAction();
+                var consoleOutputText = consoleOutput.GetOutput();
+                var lines = consoleOutputText.Split(Environment.NewLine);
+                var bmiOutputLine = lines[0];
+                var parts = bmiOutputLine.Split(" : ");
+                var bmiValueStr = parts[1].Trim('.');
                 double actualBmi;
-                bool parseSuccess = double.TryParse(bmiValueStr, out actualBmi); 
+                var parseSuccess = double.TryParse(bmiValueStr, out actualBmi);
 
                 // Assert
                 Assert.IsTrue(parseSuccess, "BMI value is not in the correct format");
                 Assert.AreEqual(expectedBmi, actualBmi, 0.01, "BMI values don't match");
             }
-            Console.SetOut(oldConsoleOut); 
+            Console.SetOut(oldConsoleOut);
         }
 
         [TestMethod]
-        public void BmiWithGenericAction_ReturnsCorrectBmi()
+        public void WhenGenericAction_ThenActionDelegateExecutesTheReferencedMethod()
         {
             // Arrange
-            double height = 175d;
-            double weight = 75d;
-            double expectedBmi = 24.49; 
+            var height = 175d;
+            var weight = 75d;
+            var expectedBmi = 24.49;
+            var actionDelegate = new LambdaActionDelegate();
 
             // Act
-            var oldConsoleOut = Console.Out; 
-            using (var consoleOutput = new ConsoleOutput()) 
+            var oldConsoleOut = Console.Out;
+            using (var consoleOutput = new ConsoleOutput())
             {
-                LambdaActionDelegate actionDelegate = new LambdaActionDelegate();
-                actionDelegate.BmiWithGenericAction(height, weight); 
-                string consoleOutputText = consoleOutput.GetOutput(); 
-                string[] lines = consoleOutputText.Split(Environment.NewLine);
-                string bmiOutputLine = lines[0]; 
-                string[] parts = bmiOutputLine.Split(" : ");
-                string bmiValueStr = parts[1].Trim('.');
+                actionDelegate.BmiWithGenericAction(height, weight);
+                var consoleOutputText = consoleOutput.GetOutput();
+                var lines = consoleOutputText.Split(Environment.NewLine);
+                var bmiOutputLine = lines[0];
+                var parts = bmiOutputLine.Split(" : ");
+                var bmiValueStr = parts[1].Trim('.');
                 double actualBmi;
-                bool parseSuccess = double.TryParse(bmiValueStr, out actualBmi);
+                var parseSuccess = double.TryParse(bmiValueStr, out actualBmi);
 
                 // Assert
                 Assert.IsTrue(parseSuccess, "BMI value is not in the correct format");

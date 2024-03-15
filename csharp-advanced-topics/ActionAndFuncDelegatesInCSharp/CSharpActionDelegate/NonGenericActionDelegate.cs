@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharp_Action_Delegate
+﻿namespace CSharp_Action_Delegate
 {
     public class NonGenericActionDelegate
     {
@@ -15,8 +9,8 @@ namespace CSharp_Action_Delegate
             double bmi = 0d;
             if (height > 0d && weight > 0d)
             {
-                var h = height / 100d;
-                bmi = weight / h / h;
+                var convertedheight = height / 100d;
+                bmi = weight / convertedheight / convertedheight;
             }
 
             Console.WriteLine($"The BMI is : {bmi:N}.");
