@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "patternProperties": {
+    "^Customer-[a-zA-Z0-9]+$": {
+      "type": "object",
+      "properties": {
+        "Client": {
+          "type": "string"
+        },
+        "Address": {
+          "type": "string"
+        },
+        "PhoneNumber": {
+          "type": "string"
+        },
+        "Invoices": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "InvoiceDate": {
+                  "type": "string"
+                },
+                "InvoiceId": {
+                  "type": "string"
+                },
+                "Items": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "Item": {
+                          "type": "object",
+                          "properties": {
+                            "Name": {
+                              "type": "string"
+                            },
+                            "CostPerItem": {
+                              "type": "number"
+                            },
+                            "ProductId": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Name",
+                            "CostPerItem",
+                            "ProductId"
+                          ]
+                        },
+                        "Quantity": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "Item",
+                        "Quantity"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "InvoiceDate",
+                "InvoiceId",
+                "Items"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "Client",
+        "Address",
+        "PhoneNumber",
+        "Invoices"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

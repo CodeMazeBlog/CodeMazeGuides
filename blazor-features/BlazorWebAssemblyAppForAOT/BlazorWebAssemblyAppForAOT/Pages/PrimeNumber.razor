@@ -1,0 +1,38 @@
+﻿@page "/primenumbers"
+@inject IPrimeNumberService PrimeNumberService
+
+@using System.Diagnostics;
+
+@if (PrimeNumbers == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <p>Time taken: @TimeToRun ms</p>
+    <p>The Prime Numbers Between 1 and 1000000 are:</p>
+    @foreach (var primeNumber in PrimeNumbers)
+    {
+        <p>@primeNumber</p>
+    }
+}
+
+@code {
+    private List<int>? _primeNumbers;
+    public List<int>? PrimeNumbers => _primeNumbers;
+
+    private double TimeToRun { get; set; }
+
+    protected override async Task<List<int>> OnInitializedAsync()
+    {
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
+
+        _primeNumbers = await PrimeNumberService.GetPrimeNumbersAsync();
+
+        stopwatch.Stop();
+        TimeToRun = stopwatch.Elapsed.TotalMilliseconds;
+
+        return _primeNumbers;
+    }
+}

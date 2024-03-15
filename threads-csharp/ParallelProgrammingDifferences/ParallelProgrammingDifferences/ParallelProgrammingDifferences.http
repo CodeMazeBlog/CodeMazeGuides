@@ -1,0 +1,6 @@
+@ParallelProgrammingDifferences_HostAddress = http://localhost:5042
+
+GET {{ParallelProgrammingDifferences_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

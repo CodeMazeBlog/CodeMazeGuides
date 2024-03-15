@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{676F54A9-40D9-43E1-91C2-C96446DEF176}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckNumberOfDaysBetweenTwoDates", "CheckNumberOfDaysBetweenTwoDates\CheckNumberOfDaysBetweenTwoDates.csproj", "{21B35FFD-F43C-4F2A-A18A-6776B4715A65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{676F54A9-40D9-43E1-91C2-C96446DEF176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{676F54A9-40D9-43E1-91C2-C96446DEF176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{676F54A9-40D9-43E1-91C2-C96446DEF176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{676F54A9-40D9-43E1-91C2-C96446DEF176}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21B35FFD-F43C-4F2A-A18A-6776B4715A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21B35FFD-F43C-4F2A-A18A-6776B4715A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21B35FFD-F43C-4F2A-A18A-6776B4715A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21B35FFD-F43C-4F2A-A18A-6776B4715A65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADE6408E-71CC-42C4-8AFA-304F226F1A16}
+	EndGlobalSection
+EndGlobal

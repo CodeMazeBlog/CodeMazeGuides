@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGenerationWithAutoFixture", "TestDataGenerationWithAutoFixture\TestDataGenerationWithAutoFixture.csproj", "{06571CDD-509F-4E1F-88DF-6DCA8057CFE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGenerationWithAutoFixture.Tests", "TestDataGenerationWithAutoFixture.Tests\TestDataGenerationWithAutoFixture.Tests.csproj", "{5A3C0F8E-6555-49C6-971F-0566E5911F44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06571CDD-509F-4E1F-88DF-6DCA8057CFE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06571CDD-509F-4E1F-88DF-6DCA8057CFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06571CDD-509F-4E1F-88DF-6DCA8057CFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06571CDD-509F-4E1F-88DF-6DCA8057CFE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A3C0F8E-6555-49C6-971F-0566E5911F44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A3C0F8E-6555-49C6-971F-0566E5911F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A3C0F8E-6555-49C6-971F-0566E5911F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A3C0F8E-6555-49C6-971F-0566E5911F44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA59BF16-2492-40F8-90D2-361A235B86AF}
+	EndGlobalSection
+EndGlobal

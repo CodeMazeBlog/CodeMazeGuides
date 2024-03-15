@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VirtualAndAbstractMethodInCSharp", "VirtualAndAbstractMethodInCSharp\VirtualAndAbstractMethodInCSharp.csproj", "{BB6F22C1-0D57-4CB0-8C31-8CF604C73F91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{8FCF286C-446B-4B14-9F5F-900F5C572D49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB6F22C1-0D57-4CB0-8C31-8CF604C73F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB6F22C1-0D57-4CB0-8C31-8CF604C73F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB6F22C1-0D57-4CB0-8C31-8CF604C73F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB6F22C1-0D57-4CB0-8C31-8CF604C73F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FCF286C-446B-4B14-9F5F-900F5C572D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FCF286C-446B-4B14-9F5F-900F5C572D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FCF286C-446B-4B14-9F5F-900F5C572D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FCF286C-446B-4B14-9F5F-900F5C572D49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB3B08E3-2368-4C2A-86C7-C70143C046E6}
+	EndGlobalSection
+EndGlobal

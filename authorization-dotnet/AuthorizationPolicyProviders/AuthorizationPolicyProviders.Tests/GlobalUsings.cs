@@ -1,0 +1,9 @@
+global using Xunit;
+global using System.Security.Claims;
+global using AuthorizationPolicyProviders.Authentication;
+global using AuthorizationPolicyProviders.Authorization.Handlers;
+global using AuthorizationPolicyProviders.Authorization.PolicyProviders;
+global using AuthorizationPolicyProviders.Authorization.Requirements;
+global using AuthorizationPolicyProviders.Data.Repositories;
+global using AuthorizationPolicyProviders.Models;
+global using Microsoft.AspNetCore.Authorization;

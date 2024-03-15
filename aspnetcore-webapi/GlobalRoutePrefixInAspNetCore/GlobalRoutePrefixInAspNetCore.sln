@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalRoutePrefixInAspNetCore.API", "GlobalRoutePrefixInAspNetCore.API\GlobalRoutePrefixInAspNetCore.API.csproj", "{DE823D26-8E5D-47CD-8E46-9ADE428A25D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalRoutePrefixInAspNetCore.API.Tests", "GlobalRoutePrefixInAspNetCore.API.Tests\GlobalRoutePrefixInAspNetCore.API.Tests.csproj", "{ED32E1ED-D1AC-4135-8ABD-3816ACD7D327}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE823D26-8E5D-47CD-8E46-9ADE428A25D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE823D26-8E5D-47CD-8E46-9ADE428A25D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE823D26-8E5D-47CD-8E46-9ADE428A25D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE823D26-8E5D-47CD-8E46-9ADE428A25D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED32E1ED-D1AC-4135-8ABD-3816ACD7D327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED32E1ED-D1AC-4135-8ABD-3816ACD7D327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED32E1ED-D1AC-4135-8ABD-3816ACD7D327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED32E1ED-D1AC-4135-8ABD-3816ACD7D327}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43E20926-087C-4C62-838C-4DB1400F6F2A}
+	EndGlobalSection
+EndGlobal

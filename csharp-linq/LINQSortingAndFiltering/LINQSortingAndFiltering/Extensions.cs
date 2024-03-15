@@ -1,17 +1,12 @@
-﻿namespace LINQSortingAndFiltering
+﻿namespace LINQSortingAndFiltering;
+
+public static class Extensions
 {
-    public static class Extensions
+    public static void PrintList(this IEnumerable<Shape?> shapes)
     {
-        public static List<T> RemoveNullFilter<T>(this List<T> list)
-        {
-            foreach (T item in list.ToList())
-            {
-                if(item == null)
-                {
-                    list.Remove(item);
-                }
-            }
-            return list;
-        }
+        Console.WriteLine("----------------------------------------");
+        foreach (var shape in shapes)
+            Console.WriteLine(shape?.ToString() ?? "Null Shape");
+        Console.WriteLine("----------------------------------------");
     }
 }

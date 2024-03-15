@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParsingHtmlWithAngleSharp", "ParsingHtmlWithAngleSharp\ParsingHtmlWithAngleSharp.csproj", "{261E32FB-38FD-4ED0-8772-1C2444B1C0BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{42C269CC-70F0-4BF6-92E4-D317EB57649B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{261E32FB-38FD-4ED0-8772-1C2444B1C0BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{261E32FB-38FD-4ED0-8772-1C2444B1C0BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{261E32FB-38FD-4ED0-8772-1C2444B1C0BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{261E32FB-38FD-4ED0-8772-1C2444B1C0BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42C269CC-70F0-4BF6-92E4-D317EB57649B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42C269CC-70F0-4BF6-92E4-D317EB57649B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42C269CC-70F0-4BF6-92E4-D317EB57649B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42C269CC-70F0-4BF6-92E4-D317EB57649B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+@FileUploadValidation_HostAddress = http://localhost:5034
+
+GET {{FileUploadValidation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

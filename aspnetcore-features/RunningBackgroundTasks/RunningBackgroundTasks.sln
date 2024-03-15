@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34407.89
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunningBackgroundTasks", "RunningBackgroundTasks\RunningBackgroundTasks\RunningBackgroundTasks.csproj", "{F934543F-A2E2-4C92-B9CC-1F8CBED5357C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunningBackgroundTasks.Tests", "RunningBackgroundTasks\RunningBackgroundTasks.Tests\RunningBackgroundTasks.Tests.csproj", "{15111998-3C62-4FE3-81DE-2498DFBAFC38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F934543F-A2E2-4C92-B9CC-1F8CBED5357C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F934543F-A2E2-4C92-B9CC-1F8CBED5357C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F934543F-A2E2-4C92-B9CC-1F8CBED5357C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F934543F-A2E2-4C92-B9CC-1F8CBED5357C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15111998-3C62-4FE3-81DE-2498DFBAFC38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15111998-3C62-4FE3-81DE-2498DFBAFC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15111998-3C62-4FE3-81DE-2498DFBAFC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15111998-3C62-4FE3-81DE-2498DFBAFC38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C04BF187-4D3B-477A-B211-6F52888B6E9B}
+	EndGlobalSection
+EndGlobal

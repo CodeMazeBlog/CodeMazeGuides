@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroductionToScrutorInDotNet", "IntroductionToScrutorInDotNet\IntroductionToScrutorInDotNet.csproj", "{C5241857-0016-4C94-A23B-0B08D3538BA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{DD6A0832-9F62-4860-8213-4B6F41F18D04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroductionToScrutorInDotNet.Customers", "IntroductionToScrutorInDotNet.Customers\IntroductionToScrutorInDotNet.Customers.csproj", "{1985FCA2-698E-41B4-B830-5E9C90B441BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5241857-0016-4C94-A23B-0B08D3538BA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5241857-0016-4C94-A23B-0B08D3538BA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5241857-0016-4C94-A23B-0B08D3538BA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5241857-0016-4C94-A23B-0B08D3538BA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD6A0832-9F62-4860-8213-4B6F41F18D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD6A0832-9F62-4860-8213-4B6F41F18D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD6A0832-9F62-4860-8213-4B6F41F18D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD6A0832-9F62-4860-8213-4B6F41F18D04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1985FCA2-698E-41B4-B830-5E9C90B441BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1985FCA2-698E-41B4-B830-5E9C90B441BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1985FCA2-698E-41B4-B830-5E9C90B441BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1985FCA2-698E-41B4-B830-5E9C90B441BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

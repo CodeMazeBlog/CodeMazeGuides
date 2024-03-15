@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34518.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverwriteDateTimeDuringTesting", "OverwriteDateTimeDuringTesting\OverwriteDateTimeDuringTesting.csproj", "{BAE55DDF-E06C-4306-8819-A195A9F4AA59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverwriteDateTimeDuringTesting.Tests", "OverwriteDateTimeDuringTesting.Tests\OverwriteDateTimeDuringTesting.Tests.csproj", "{A181673E-D73C-46BB-BA76-70A6073713EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAE55DDF-E06C-4306-8819-A195A9F4AA59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAE55DDF-E06C-4306-8819-A195A9F4AA59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAE55DDF-E06C-4306-8819-A195A9F4AA59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAE55DDF-E06C-4306-8819-A195A9F4AA59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A181673E-D73C-46BB-BA76-70A6073713EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A181673E-D73C-46BB-BA76-70A6073713EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A181673E-D73C-46BB-BA76-70A6073713EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A181673E-D73C-46BB-BA76-70A6073713EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3122FB2-87ED-4173-8401-344FA9C525EE}
+	EndGlobalSection
+EndGlobal

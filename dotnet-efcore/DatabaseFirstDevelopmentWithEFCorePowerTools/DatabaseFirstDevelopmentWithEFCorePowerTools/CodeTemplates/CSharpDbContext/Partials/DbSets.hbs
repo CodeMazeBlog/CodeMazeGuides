@@ -1,0 +1,3 @@
+﻿{{#each dbsets}}
+        public virtual DbSet<{{set-property-type}}> {{set-property-name}} { get; set; }{{#if nullable-reference-types }} = null!;{{/if}}
+{{/each}}

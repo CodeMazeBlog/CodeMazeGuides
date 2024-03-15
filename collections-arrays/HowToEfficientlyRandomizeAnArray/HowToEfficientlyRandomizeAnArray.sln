@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowToEfficientlyRandomizeAnArray", "HowToEfficientlyRandomizeAnArray\HowToEfficientlyRandomizeAnArray.csproj", "{5F687520-6305-4296-B2F7-8E64C6D3D45D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToEfficientlyRandomizeAnArray.Tests", "HowToEfficientlyRandomizeAnArray.Tests\HowToEfficientlyRandomizeAnArray.Tests.csproj", "{F4BA7D4B-CAD2-4979-A330-E9B016A20DFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F687520-6305-4296-B2F7-8E64C6D3D45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F687520-6305-4296-B2F7-8E64C6D3D45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F687520-6305-4296-B2F7-8E64C6D3D45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F687520-6305-4296-B2F7-8E64C6D3D45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4BA7D4B-CAD2-4979-A330-E9B016A20DFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4BA7D4B-CAD2-4979-A330-E9B016A20DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4BA7D4B-CAD2-4979-A330-E9B016A20DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4BA7D4B-CAD2-4979-A330-E9B016A20DFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7884B2E1-8701-47B7-9B2C-3F24CEA7A6BC}
+	EndGlobalSection
+EndGlobal

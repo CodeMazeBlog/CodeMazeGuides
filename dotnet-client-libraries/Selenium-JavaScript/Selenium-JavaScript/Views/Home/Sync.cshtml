@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Custom Synchronization</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                document.getElementById("dynamicContent").innerHTML = "Content Loaded";
+            }, 5000);
+        });
+    </script>
+</head>
+<body>
+    <div id="dynamicContent">Loading...</div>
+</body>
+</html>

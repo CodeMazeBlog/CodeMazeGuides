@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34302.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{8D058D23-748E-4F5C-A4DA-162526B3934A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClient", "WebClient\WebClient.csproj", "{EA3E4FDE-43D5-4930-81BC-B3B2BE780714}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{75F68889-23DC-4EC2-8B78-F5C8DC75FB37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D058D23-748E-4F5C-A4DA-162526B3934A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D058D23-748E-4F5C-A4DA-162526B3934A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D058D23-748E-4F5C-A4DA-162526B3934A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D058D23-748E-4F5C-A4DA-162526B3934A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA3E4FDE-43D5-4930-81BC-B3B2BE780714}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA3E4FDE-43D5-4930-81BC-B3B2BE780714}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA3E4FDE-43D5-4930-81BC-B3B2BE780714}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA3E4FDE-43D5-4930-81BC-B3B2BE780714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F68889-23DC-4EC2-8B78-F5C8DC75FB37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F68889-23DC-4EC2-8B78-F5C8DC75FB37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F68889-23DC-4EC2-8B78-F5C8DC75FB37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F68889-23DC-4EC2-8B78-F5C8DC75FB37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD39F7E9-01A2-4253-9B45-05E9EC330F5A}
+	EndGlobalSection
+EndGlobal

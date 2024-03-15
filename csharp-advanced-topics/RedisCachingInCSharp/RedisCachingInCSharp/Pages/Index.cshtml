@@ -1,0 +1,69 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container">
+    @if (Model.Games == null)
+    {
+        <div class="text-center mt-5">
+            <h2 class="display-4">Welcome Gamers!</h2>
+            <p class="lead"><b>Your mission:</b> Click the button below to list all the available games and unleash the adventure that awaits!</p>
+        </div>
+    }
+    else
+    {
+        <div class="text-center mt-5">
+            <h2 class="display-4">Mission Successfull!</h2>
+            @if (Model.IsFromCache)
+            {
+                <p class="lead">Loading games from the cache</p>
+            }
+            else
+            {
+                <p class="lead">Loading games from the API</p>
+            }
+        </div>
+    }
+
+    <div class="my-5 d-flex justify-content-between">
+        <form method="post">
+            <button type="submit" class="btn btn-primary btn-lg" asp-page-handler="ListGames">List All Games</button>
+        </form>
+        @if (Model.IsFromCache)
+        {
+            <form method="post">
+                <button type="submit" class="btn btn-danger btn-lg" asp-page-handler="RemoveCache">
+                    Remove Cached Data
+                </button>
+            </form>
+        }
+    </div>
+
+    @if (Model.Games != null && Model.Games.Length > 0)
+    {
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Platform</th>
+                    <th>Release Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var game in Model.Games)
+                {
+                    <tr>
+                        <td>@game.Title</td>
+                        <td>@game.Genre</td>
+                        <td>@game.Platform</td>
+                        <td>@game.ReleaseYear</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestingUserAndRoleManager", "TestingUserAndRoleManager\TestingUserAndRoleManager.csproj", "{166DD728-A468-4863-9522-AEA30C752780}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingUserAndRoleManagerUnitTests", "TestingUserAndRoleManagerUnitTests\TestingUserAndRoleManagerUnitTests.csproj", "{EFEFA7C2-E5C1-41D5-BD4A-4DE57160A36E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{166DD728-A468-4863-9522-AEA30C752780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166DD728-A468-4863-9522-AEA30C752780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166DD728-A468-4863-9522-AEA30C752780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166DD728-A468-4863-9522-AEA30C752780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFEFA7C2-E5C1-41D5-BD4A-4DE57160A36E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFEFA7C2-E5C1-41D5-BD4A-4DE57160A36E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFEFA7C2-E5C1-41D5-BD4A-4DE57160A36E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFEFA7C2-E5C1-41D5-BD4A-4DE57160A36E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30FE64B3-BC4B-4243-AACA-C30C064BC7D9}
+	EndGlobalSection
+EndGlobal

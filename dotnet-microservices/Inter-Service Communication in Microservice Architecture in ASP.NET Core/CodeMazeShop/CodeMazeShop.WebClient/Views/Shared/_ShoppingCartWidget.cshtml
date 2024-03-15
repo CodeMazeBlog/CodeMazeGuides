@@ -1,0 +1,15 @@
+﻿@model int
+<div class="row">
+    <div class="col-md-6">
+        <a asp-controller="ShoppingCart" asp-action="Index">
+            <img class="shoppingCartIcon" src="~/img/cart-plus.svg" alt="Shopping cart icon" />
+        </a>
+    </div>
+    <div class="col-md-6 productCount">
+        @Model
+        <span class="products">
+            ITEMS
+        </span>
+    </div>
+
+</div>

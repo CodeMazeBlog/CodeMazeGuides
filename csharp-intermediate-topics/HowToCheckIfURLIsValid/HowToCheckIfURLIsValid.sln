@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToCheckIfURLIsValid", "HowToCheckIfURLIsValid\HowToCheckIfURLIsValid.csproj", "{0B51A9AE-3B34-47AC-8E92-4599C7217752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{C0F04DEA-5644-4DDB-85C0-9817ABE3B138}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B51A9AE-3B34-47AC-8E92-4599C7217752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B51A9AE-3B34-47AC-8E92-4599C7217752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B51A9AE-3B34-47AC-8E92-4599C7217752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B51A9AE-3B34-47AC-8E92-4599C7217752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0F04DEA-5644-4DDB-85C0-9817ABE3B138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F04DEA-5644-4DDB-85C0-9817ABE3B138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F04DEA-5644-4DDB-85C0-9817ABE3B138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F04DEA-5644-4DDB-85C0-9817ABE3B138}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,15 @@
+﻿@page
+@model PreventSQLInjectionAttacks.Pages.CreateBookModel
+
+<h3>Create Book</h3>
+<form method="post">    
+    <div class="form-group">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" id="title" name="book.Title" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="author" class="form-label">Author</label>
+        <input type="text" id="author" name="book.Author" class="form-control" required>
+    </div>
+    <button type="submit" class="my-3 btn btn-primary">Create</button>
+</form>

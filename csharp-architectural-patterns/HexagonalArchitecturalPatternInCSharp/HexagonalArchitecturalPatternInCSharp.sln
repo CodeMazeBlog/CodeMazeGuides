@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34018.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HexagonalArchitecturalPatternInCSharp", "HexagonalArchitecturalPatternInCSharp\HexagonalArchitecturalPatternInCSharp.csproj", "{8B2122FF-DDD2-44F1-8842-4A1796EF0D82}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HexagonalArchitecturalPatternInCSharp.Core", "HexagonalArchitecturalPatternInCSharp.Core\HexagonalArchitecturalPatternInCSharp.Core.csproj", "{94D09325-6DD0-42EB-BD4B-40753874B9B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HexagonalArchitecturalPatternInCSharp.API", "HexagonalArchitecturalPatternInCSharp.API\HexagonalArchitecturalPatternInCSharp.API.csproj", "{DDEB4E53-E7A6-4585-9677-9DB172FE8E5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HexagonalArchitecturalPatternInCSharp.Messaging", "HexagonalArchitecturalPatternInCSharp.Messaging\HexagonalArchitecturalPatternInCSharp.Messaging.csproj", "{48CF5B15-AAB6-42D6-9258-1E68184E14F1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HexagonalArchitecturalPatternInCSharp.Persistence", "HexagonalArchitecturalPatternInCSharp.Persistence\HexagonalArchitecturalPatternInCSharp.Persistence.csproj", "{94B283F4-293E-4DBD-9711-C473A36354C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Tests", "Services.Tests\Services.Tests.csproj", "{7B326B6D-AC89-4A47-887F-EFF4E9FEAEA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B2122FF-DDD2-44F1-8842-4A1796EF0D82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B2122FF-DDD2-44F1-8842-4A1796EF0D82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B2122FF-DDD2-44F1-8842-4A1796EF0D82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B2122FF-DDD2-44F1-8842-4A1796EF0D82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94D09325-6DD0-42EB-BD4B-40753874B9B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94D09325-6DD0-42EB-BD4B-40753874B9B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94D09325-6DD0-42EB-BD4B-40753874B9B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94D09325-6DD0-42EB-BD4B-40753874B9B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDEB4E53-E7A6-4585-9677-9DB172FE8E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDEB4E53-E7A6-4585-9677-9DB172FE8E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDEB4E53-E7A6-4585-9677-9DB172FE8E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDEB4E53-E7A6-4585-9677-9DB172FE8E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48CF5B15-AAB6-42D6-9258-1E68184E14F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48CF5B15-AAB6-42D6-9258-1E68184E14F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48CF5B15-AAB6-42D6-9258-1E68184E14F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48CF5B15-AAB6-42D6-9258-1E68184E14F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94B283F4-293E-4DBD-9711-C473A36354C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94B283F4-293E-4DBD-9711-C473A36354C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94B283F4-293E-4DBD-9711-C473A36354C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94B283F4-293E-4DBD-9711-C473A36354C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B326B6D-AC89-4A47-887F-EFF4E9FEAEA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B326B6D-AC89-4A47-887F-EFF4E9FEAEA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B326B6D-AC89-4A47-887F-EFF4E9FEAEA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B326B6D-AC89-4A47-887F-EFF4E9FEAEA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E86E598-0B65-44BC-B318-0ED7EF2828B2}
+	EndGlobalSection
+EndGlobal

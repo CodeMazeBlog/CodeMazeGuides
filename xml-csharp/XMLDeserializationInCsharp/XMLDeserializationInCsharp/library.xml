@@ -1,0 +1,12 @@
+<Library>
+	<Books>
+		<Book>
+			<Title> Book 1 </Title>
+			<Author> Author 1 </Author>
+		</Book>
+		<Book>
+			<Title> Book 2 </Title>
+			<Author> Author 2 </Author>
+		</Book>
+	</Books>
+</Library>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForVsForeachInCSharp", "ForVsForeachInCSharp\ForVsForeachInCSharp.csproj", "{809D767C-7685-47B8-872B-9F96C327239D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForVsForeachInCSharpTests", "ForVsForeachInCSharpTests\ForVsForeachInCSharpTests.csproj", "{8F609EF2-27D1-4733-98F2-96D5BE37741B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{809D767C-7685-47B8-872B-9F96C327239D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{809D767C-7685-47B8-872B-9F96C327239D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{809D767C-7685-47B8-872B-9F96C327239D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{809D767C-7685-47B8-872B-9F96C327239D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F609EF2-27D1-4733-98F2-96D5BE37741B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F609EF2-27D1-4733-98F2-96D5BE37741B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F609EF2-27D1-4733-98F2-96D5BE37741B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F609EF2-27D1-4733-98F2-96D5BE37741B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3BAEF73D-82AE-4CE8-BE52-B6B626805C6C}
+	EndGlobalSection
+EndGlobal

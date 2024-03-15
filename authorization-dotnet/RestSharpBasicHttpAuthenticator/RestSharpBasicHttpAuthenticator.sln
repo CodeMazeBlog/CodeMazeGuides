@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestSharpBasicHttpAuthenticator", "RestSharpBasicHttpAuthenticator\RestSharpBasicHttpAuthenticator.csproj", "{83137EE9-643F-438F-A9EE-6B092EC56CCA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestSharpBasicHttpAuthenticatorTests", "RestSharpBasicHttpAuthenticatorTests\RestSharpBasicHttpAuthenticatorTests.csproj", "{0A28B4F1-5D7B-4168-910A-0C31F1C93E56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83137EE9-643F-438F-A9EE-6B092EC56CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83137EE9-643F-438F-A9EE-6B092EC56CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83137EE9-643F-438F-A9EE-6B092EC56CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83137EE9-643F-438F-A9EE-6B092EC56CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A28B4F1-5D7B-4168-910A-0C31F1C93E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A28B4F1-5D7B-4168-910A-0C31F1C93E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A28B4F1-5D7B-4168-910A-0C31F1C93E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A28B4F1-5D7B-4168-910A-0C31F1C93E56}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F61CE282-D1B2-42A5-98FE-85A4A966512A}
+	EndGlobalSection
+EndGlobal
