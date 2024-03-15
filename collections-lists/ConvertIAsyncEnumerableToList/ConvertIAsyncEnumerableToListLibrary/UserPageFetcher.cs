@@ -29,8 +29,6 @@ public static class UserPageFetcher
     {
         for (int page = 1; page <= 3; page++)
         {
-            cancellationToken.ThrowIfCancellationRequested();
-
             await Task.Delay(delayMilliseconds, cancellationToken);
 
             var users = new List<User>
