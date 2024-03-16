@@ -15,3 +15,4 @@ This section contains articles about asynchronous programming in C#.
 - [Using Task.CompletedTask, Task.FromResult and Return in C# Async Methods](https://code-maze.com/csharp-completedtask-fromresult-return-in-async-methods/)
 - [Difference Between Task.Run and Task.Factory.StartNew](https://code-maze.com/csharp-task-run-vs-task-factory-startnew/)
 - [Difference Between await and Task.Wait in C#](https://code-maze.com/csharp-difference-between-await-and-task-wait/)
+- [Why Should We Avoid Using Await in a Loop in C#](https://code-maze.com/csharp-avoid-await-in-loop/)
