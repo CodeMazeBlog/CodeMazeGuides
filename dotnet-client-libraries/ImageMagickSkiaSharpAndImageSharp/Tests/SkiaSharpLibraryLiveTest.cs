@@ -5,13 +5,13 @@ namespace Tests;
 
 public class SkiaSharpLibraryLiveTest : IDisposable
 {
+    private const string _ValidOutputPath = @"..\..\..\Image\outputImage.png";
+    private const string _InvalidOutputPath = @"Z:\Invalid\Path\outputImage.png";
+    private const string _PathWithNoWritePermission = @"C:\Windows\System32\outputImage.png";
+    private const string _NullOutputPath = "";
     private SKBitmap _bitmap;
     private readonly int _width = 400;
     private readonly int _height = 300;
-    private const string ValidOutputPath = @"..\..\..\Image\outputImage.png";
-    private const string InvalidOutputPath = @"Z:\Invalid\Path\outputImage.png";
-    private const string PathWithNoWritePermission = @"C:\Windows\System32\outputImage.png";
-    private const string NullOutputPath = "";
 
     public SkiaSharpLibraryLiveTest()
     {
@@ -65,24 +65,24 @@ public class SkiaSharpLibraryLiveTest : IDisposable
     public void GivenValidPath_WhenSaveImageIsCalled_ThenImageIsSavedToCorrectPath()
     {
         // Act
-        ImageService.SaveImage(_bitmap, ValidOutputPath);
+        ImageService.SaveImage(_bitmap, _ValidOutputPath);
 
         // Assert
-        Assert.True(File.Exists(ValidOutputPath));
+        Assert.True(File.Exists(_ValidOutputPath));
     }
 
     [Fact]
     public void GivenInvalidPath_WhenSaveImageIsCalled_ThenThrowDirectoryNotFoundException()
     {
         // Act & Assert
-        Assert.Throws<DirectoryNotFoundException>(() => ImageService.SaveImage(_bitmap, InvalidOutputPath));
+        Assert.Throws<DirectoryNotFoundException>(() => ImageService.SaveImage(_bitmap, _InvalidOutputPath));
     }
 
     [Fact]
     public void GivenPathWithNoWritePermission_WhenSaveImageIsCalled_ThenThrowUnauthorizedAccessException()
     {
         // Act & Assert
-        Assert.Throws<UnauthorizedAccessException>(() => ImageService.SaveImage(_bitmap, PathWithNoWritePermission));
+        Assert.Throws<UnauthorizedAccessException>(() => ImageService.SaveImage(_bitmap, _PathWithNoWritePermission));
     }
 
     [Fact]
@@ -90,14 +90,14 @@ public class SkiaSharpLibraryLiveTest : IDisposable
     {
         var image = ImageService.CreateBlankImage(_width, _height);
 
-        Assert.Throws<ArgumentNullException>(() => ImageService.SaveImage(image, NullOutputPath));
+        Assert.Throws<ArgumentNullException>(() => ImageService.SaveImage(image, _NullOutputPath));
     }
 
     public void Dispose()
     {
-        if (File.Exists(ValidOutputPath))
+        if (File.Exists(_ValidOutputPath))
         {
-            File.Delete(ValidOutputPath);
+            File.Delete(_ValidOutputPath);
         }
 
         _bitmap?.Dispose();

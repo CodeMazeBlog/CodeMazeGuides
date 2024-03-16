@@ -5,32 +5,31 @@ namespace Tests;
 
 public class ImageMagickLibraryLiveTest
 {
+    private const string _OutputPath = @"..\..\..\Image\outputImage.png";
+    private const string _NullOutputPath = "";
     private readonly MagickColor _color = MagickColors.Green;
     private readonly MagickGeometry _imageSize = new(480, 300);
-    private readonly MagickGeometry _circle = new(50, 50, 100, 200);
-    private const string OutputPath = @"..\..\..\Image\outputImage.png";
-    private const string NullOutputPath = "";
-
-    private readonly MagickColor expectedColor;
-    private readonly int centerX;
-    private readonly int centerY;
-    private readonly int radius;
-    private readonly int strokeWidth;
-    private readonly int invalidPointX = -1;
-    private readonly int invalidPointY = -1;
+    private readonly MagickGeometry _circle = new(50, 50, 100, 200);  
+    private readonly MagickColor _expectedColor;
+    private readonly int _centerX;
+    private readonly int _centerY;
+    private readonly int _radius;
+    private readonly int _strokeWidth;
+    private readonly int _invalidPointX = -1;
+    private readonly int _invalidPointY = -1;
 
     public ImageMagickLibraryLiveTest()
     {
-        expectedColor = _color;
-        centerX = _circle.X + _circle.Width / 2;
-        centerY = _circle.Y + _circle.Height / 2;
-        radius = _circle.Width / 2;
-        strokeWidth = 5;
+        _expectedColor = _color;
+        _centerX = _circle.X + _circle.Width / 2;
+        _centerY = _circle.Y + _circle.Height / 2;
+        _radius = _circle.Width / 2;
+        _strokeWidth = 5;
     }
 
     private MagickImage CreateCircleImage()
     {
-        var drawables = ImageService.CreateCircle(centerX, centerY, radius, strokeWidth, expectedColor, MagickColors.Transparent);
+        var drawables = ImageService.CreateCircle(_centerX, _centerY, _radius, _strokeWidth, _expectedColor, MagickColors.Transparent);
         var image = ImageService.CreateBlankImage(_imageSize.Width, _imageSize.Height, MagickColors.White);
         ImageService.DrawOnImage(image, drawables);
 
@@ -69,13 +68,13 @@ public class ImageMagickLibraryLiveTest
         // Assert
         using var pixels = image.GetPixels();
         // Check the color at the edge of the circle
-        var edgePixel = pixels.GetPixel(centerX + radius - strokeWidth / 2, centerY);
+        var edgePixel = pixels.GetPixel(_centerX + _radius - _strokeWidth / 2, _centerY);
         var edgeColor = edgePixel.ToColor();
 
-        Assert.Equal(expectedColor, edgeColor);
+        Assert.Equal(_expectedColor, edgeColor);
 
         // Check the color outside the circle
-        var outsidePixel = pixels.GetPixel(centerX + radius + strokeWidth / 2 + 1, centerY);
+        var outsidePixel = pixels.GetPixel(_centerX + _radius + _strokeWidth / 2 + 1, _centerY);
         var outsideColor = outsidePixel.ToColor();
 
         Assert.Equal(MagickColors.White, outsideColor);
@@ -88,13 +87,13 @@ public class ImageMagickLibraryLiveTest
         var image = CreateCircleImage();
 
         // Act
-        ImageService.SaveImage(image, OutputPath);
+        ImageService.SaveImage(image, _OutputPath);
 
         // Assert
-        Assert.True(File.Exists(OutputPath));
+        Assert.True(File.Exists(_OutputPath));
 
         // Cleanup
-        File.Delete(OutputPath);
+        File.Delete(_OutputPath);
     }
 
     [Fact]
@@ -106,7 +105,7 @@ public class ImageMagickLibraryLiveTest
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
         {
-            ImageService.SaveImage(image, NullOutputPath);
+            ImageService.SaveImage(image, _NullOutputPath);
         });
     }
 
@@ -121,7 +120,7 @@ public class ImageMagickLibraryLiveTest
         // Act & Assert
         Assert.Throws<ArgumentException>(() =>
         {
-            var circle = ImageService.CreateCircle(invalidPointX, invalidPointY, 100, 5, strokeColor, fillColor);
+            var circle = ImageService.CreateCircle(_invalidPointX, _invalidPointY, 100, 5, strokeColor, fillColor);
             ImageService.DrawOnImage(image, circle);
         });
     }
