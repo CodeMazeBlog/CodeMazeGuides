@@ -1,5 +1,6 @@
 using InMemoryZipFilesInNet;
 using InMemoryZipFilesInNet.Services;
+using Microsoft.Net.Http.Headers;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -18,13 +19,28 @@ _ = app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.MapGet("/create-and-read-zip-file", (IGetFile zipFile) =>
-    Results.File(zipFile.CreatingNewFileOnDisk(), zipFile.ContentType, "ByCreatingNewFileOnDisk.zip"));
+    Results.File(zipFile.CreateNewFileOnDisk(), zipFile.ContentType, "ByCreatingNewFileOnDisk.zip"));
 
 app.MapGet("/create-in-memory-zip-file", (IGetFile zipFile) =>
     Results.File(zipFile.GenerateFileOnFlyReturnStream(), zipFile.ContentType, "GenerateOnFly.zip"));
 
 app.MapGet("/create-in-memory-zip-file-as-byte-array", (IGetFile zipFile) =>
     Results.File(zipFile.GenerateFileOnFlyReturnBytes(), zipFile.ContentType, "GenerateOnFlyAsByteArray.zip"));
+
+app.MapGet("/downloading-bigger-file", async (HttpResponse response, IGetFile zipFile) =>
+{
+    var zipStream = await zipFile.GenerateFileOnFlyReturnStreamAsync();
+    zipStream.Position = 0;
+
+    response.ContentType = zipFile.ContentType;
+    ContentDispositionHeaderValue contentDisposition = new ContentDispositionHeaderValue("attachment")
+    {
+        FileName = "BigFile.zip"
+    };
+    response.Headers[HeaderNames.ContentDisposition] = contentDisposition.ToString();
+
+    await zipStream.CopyToAsync(response.Body);
+});
 
 app.Run();
 

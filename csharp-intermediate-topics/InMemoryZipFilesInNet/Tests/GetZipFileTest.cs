@@ -14,11 +14,11 @@ public class GetZipFileTest
     }
 
     [TestMethod]
-    public void GivenZipService_WhenExecutingCreatingNewFileOnDisk_ThenExpectZipFile()
+    public void GivenZipService_WhenExecutingCreateNewFileOnDisk_ThenExpectZipFile()
     {
         var sut = GetSut();
 
-        var fileName = sut.CreatingNewFileOnDisk();
+        var fileName = sut.CreateNewFileOnDisk();
 
         AssertZipFileContent(fileName);
     }
@@ -29,6 +29,16 @@ public class GetZipFileTest
         var sut = GetSut();
 
         Stream stream = sut.GenerateFileOnFlyReturnStream();
+
+        AssertZipStreamContent(stream);
+    }
+
+    [TestMethod]
+    public async Task GivenZipService_WhenExecutingGenerateOnFlyAsync_ThenExpectZipFile()
+    {
+        var sut = GetSut();
+
+        Stream stream = await sut.GenerateFileOnFlyReturnStreamAsync();
 
         AssertZipStreamContent(stream);
     }
