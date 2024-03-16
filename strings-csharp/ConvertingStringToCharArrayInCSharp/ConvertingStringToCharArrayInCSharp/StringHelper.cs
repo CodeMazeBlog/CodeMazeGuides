@@ -1,39 +1,41 @@
 ﻿using System.Text;
 
-namespace ConvertingStringToCharArrayInCSharp
+namespace ConvertingStringToCharArrayInCSharp;
+
+public static class StringHelper
 {
-    public static class StringHelper
+    public static char[] ConvertStringToCharArray(string inputString)
     {
-        public static char[] ConvertStringToCharArray(string inputString)
-        {
-            return inputString.ToCharArray();
-        }
+        return inputString.ToCharArray();
+    }
 
-        public static ReadOnlySpan<char> ConvertStringToCharArrayUsingReadOnlySpan(string inputString)
-        {
-            return inputString.AsSpan();
-        }
+    public static ReadOnlySpan<char> ConvertStringToCharArrayUsingReadOnlySpan(string inputString)
+    {
+        return inputString.AsSpan();
+    }
 
-        public static char ConvertSingleCharacterStringToChar(string inputString)
-        {
-            return char.Parse(inputString);
-        }
+    public static char ConvertSingleCharacterStringToChar(string inputString)
+    {
+        return char.Parse(inputString);
+    }
 
-        public static char[] ConvertStringArrayToCharArrayUsingLoop(string[] stringArray)
-        {
-            StringBuilder combinedString = new StringBuilder();
+public static char[] ConvertStringArrayToCharArrayUsingLoop(string[] stringArray)
+{
+    var combinedString = new StringBuilder();
 
-            foreach (string str in stringArray)
-            {
-                combinedString.Append(str);
-            }
+    foreach (var str in stringArray)
+    {
+        combinedString.Append(str);
+    }
 
-            return combinedString.ToString().ToCharArray();
-        }
+    var result = new char[combinedString.Length];
+    combinedString.CopyTo(0, result, 0, result.Length);
 
-        public static char[] ConvertStringArrayToCharArrayUsingLinq(string[] stringArray)
-        {
-            return stringArray.SelectMany(s => s.ToCharArray()).ToArray();
-        }
+    return result;
+}
+
+    public static char[] ConvertStringArrayToCharArrayUsingLinq(string[] stringArray)
+    {
+        return stringArray.SelectMany(s => s.ToCharArray()).ToArray();
     }
 }

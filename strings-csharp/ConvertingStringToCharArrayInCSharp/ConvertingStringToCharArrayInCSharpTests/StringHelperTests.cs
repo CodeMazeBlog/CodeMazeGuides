@@ -1,55 +1,52 @@
-﻿using ConvertingStringToCharArrayInCSharp;
+﻿namespace ConvertingStringToCharArrayInCSharpTests;
 
-namespace ConvertingStringToCharArrayInCSharpTests
+public class StringHelperTests
 {
-    public class StringHelperTests
+    private const string InputString = "Hello, World!";
+
+    [Fact]
+    public void GivenStringToCharArray_WhenValidInput_ThenReturnsCharArray()
     {
-        private const string INPUT_STRING = "Hello, World!";
+        char[] result = StringHelper.ConvertStringToCharArray(InputString);
 
-        [Fact]
-        public void GivenStringToCharArray_WhenValidInput_ThenReturnsCharArray()
-        {
-            char[] result = StringHelper.ConvertStringToCharArray(INPUT_STRING);
+        Assert.Equal(InputString.ToCharArray(), result);
+    }
 
-            Assert.Equal(INPUT_STRING.ToCharArray(), result);
-        }
+    [Fact]
+    public void GivenStringToCharArrayUsingReadOnlySpan_WhenValidInput_ThenReturnsReadOnlySpan()
+    {
+        ReadOnlySpan<char> result = StringHelper.ConvertStringToCharArrayUsingReadOnlySpan(InputString);
 
-        [Fact]
-        public void GivenStringToCharArrayUsingReadOnlySpan_WhenValidInput_ThenReturnsReadOnlySpan()
-        {
-            ReadOnlySpan<char> result = StringHelper.ConvertStringToCharArrayUsingReadOnlySpan(INPUT_STRING);
+        Assert.True(InputString.AsSpan().SequenceEqual(result));
+    }
 
-            Assert.True(INPUT_STRING.AsSpan().SequenceEqual(result));
-        }
+    [Fact]
+    public void GivenStringToChar_WhenValidInput_ThenReturnsChar()
+    {
+        const string inputString = "A";
 
-        [Fact]
-        public void GivenStringToChar_WhenValidInput_ThenReturnsChar()
-        {
-            string inputString = "A";
+        char result = StringHelper.ConvertSingleCharacterStringToChar(inputString);
 
-            char result = StringHelper.ConvertSingleCharacterStringToChar(inputString);
+        Assert.Equal('A', result);
+    }
 
-            Assert.Equal('A', result);
-        }
+    [Fact]
+    public void GivenStringArrayToCharArray_WhenValidInput_ThenReturnsCharArray()
+    {
+        string[] stringArray = [InputString[..7], InputString[7..]];
 
-        [Fact]
-        public void GivenStringArrayToCharArray_WhenValidInput_ThenReturnsCharArray()
-        {
-            string[] stringArray = { INPUT_STRING.Substring(0, 7), INPUT_STRING.Substring(7) };
+        char[] resultLoop = StringHelper.ConvertStringArrayToCharArrayUsingLoop(stringArray);
+        char[] resultLinq = StringHelper.ConvertStringArrayToCharArrayUsingLinq(stringArray);
 
-            char[] resultLoop = StringHelper.ConvertStringArrayToCharArrayUsingLoop(stringArray);
-            char[] resultLinq = StringHelper.ConvertStringArrayToCharArrayUsingLinq(stringArray);
+        Assert.Equal(InputString.ToCharArray(), resultLoop);
+        Assert.Equal(InputString.ToCharArray(), resultLinq);
+    }
 
-            Assert.Equal(INPUT_STRING.ToCharArray(), resultLoop);
-            Assert.Equal(INPUT_STRING.ToCharArray(), resultLinq);
-        }
+    [Fact]
+    public void GivenStringToChar_WhenInvalidInput_ThenThrowsArgumentException()
+    {
+        const string inputString = "AB";
 
-        [Fact]
-        public void GivenStringToChar_WhenInvalidInput_ThenThrowsArgumentException()
-        {
-            string inputString = "AB";
-
-            Assert.Throws<FormatException>(() => StringHelper.ConvertSingleCharacterStringToChar(inputString));
-        }
+        Assert.Throws<FormatException>(() => StringHelper.ConvertSingleCharacterStringToChar(inputString));
     }
 }
