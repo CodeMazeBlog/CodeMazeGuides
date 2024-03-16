@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using BenchmarkDotNet.Running;
 
 public class VowelCounters
 {
@@ -14,6 +15,8 @@ public class VowelCounters
         CountVowelsUsingRegEx(sentence);
         CountVowelsUsingStrReplaceAndLength(sentence);
         CountVowelsUsingLinq(sentence, vowels);
+
+        //BenchmarkRunner.Run<VowelCountersBenchmarks>();
     }
 
     public static int CountVowelsUsingForLoop(string sentence, HashSet<char> vowels)
