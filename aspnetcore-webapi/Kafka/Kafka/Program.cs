@@ -19,7 +19,8 @@ namespace Kafka
                 ClientId = "order-producer"
             };
 
-            builder.Services.AddSingleton<IProducer<string, string>>(new ProducerBuilder<string, string>(producerConfig).Build());
+            builder.Services.AddSingleton<IProducer<string, string>>(
+                new ProducerBuilder<string, string>(producerConfig).Build());
 
             var app = builder.Build();
 

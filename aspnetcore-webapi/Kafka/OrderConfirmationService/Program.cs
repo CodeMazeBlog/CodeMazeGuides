@@ -17,7 +17,8 @@ public class Program
         var builder = Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton<IConsumer<string, string>>(new ConsumerBuilder<string, string>(consumerConfig).Build());
+                    services.AddSingleton<IConsumer<string, string>>(
+                        new ConsumerBuilder<string, string>(consumerConfig).Build());
                     services.AddHostedService<ConsumerService>();
                 });
 
