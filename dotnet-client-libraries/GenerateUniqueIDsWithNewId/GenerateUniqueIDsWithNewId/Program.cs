@@ -66,3 +66,5 @@ app.MapDelete("/orders/{id:guid}", async (Guid id, IOrderService service) =>
 .WithOpenApi();
 
 app.Run();
+
+public partial class Program { }
