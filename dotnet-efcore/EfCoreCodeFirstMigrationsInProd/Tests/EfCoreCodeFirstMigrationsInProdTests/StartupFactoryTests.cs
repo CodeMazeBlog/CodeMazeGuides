@@ -27,9 +27,9 @@ public class StartupFactoryTests
     }
     
     [Test]
-    public void GivenStartupFactory_WhenNoMigrationArgIsPresent_ThenReturnWebApiStartup()
+    public void GivenStartupFactory_WhenMultipleArgsArePresentWithNoMigrationArg_ThenReturnWebApiStartup()
     {
-        var args = new[] {"arg1", "--arg2", "migrate", "--migration"};
+        var args = new[] {"arg1", "--arg2", "migrate"};
         var factory = new StartupFactory();
         
         var startup = factory.GetStartup(args);
