@@ -1,7 +1,19 @@
+using GenerateUniqueIDsWithNewId.Contracts;
+using GenerateUniqueIDsWithNewId.Data;
+using GenerateUniqueIDsWithNewId.Services;
+using GenerateUniqueIDsWithNewId.Services.Abstractions;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
+builder.Services.AddDbContext<OrdersDbContext>(options =>
+    options.UseInMemoryDatabase("Orders"));
 
 var app = builder.Build();
 
@@ -13,29 +25,44 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/orders", async (IOrderService service) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var orders = await service.GetAllAsync();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    return Results.Ok(orders);
 })
-.WithName("GetWeatherForecast")
+.WithOpenApi();
+
+app.MapGet("/orders/{id:guid}", async (Guid id, IOrderService service) =>
+{
+    var order = await service.GetByIdAsync(id);
+
+    return Results.Ok(order);
+})
+.WithOpenApi();
+
+app.MapPost("/orders", async (OrderForCreationDto dto, IOrderService service) =>
+{
+    var order = await service.CreateAsync(dto);
+
+    return Results.Created($"/orders/{order.Id}", order);
+})
+.WithOpenApi();
+
+app.MapPut("/orders/{id:guid}", async (Guid id, OrderForUpdateDto dto, IOrderService service) =>
+{
+    await service.UpdateAsync(id, dto);
+
+    return Results.NoContent();
+})
+.WithOpenApi();
+
+app.MapDelete("/orders/{id:guid}", async (Guid id, IOrderService service) =>
+{
+    await service.DeleteAsync(id);
+
+    return Results.NoContent();
+})
 .WithOpenApi();
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
