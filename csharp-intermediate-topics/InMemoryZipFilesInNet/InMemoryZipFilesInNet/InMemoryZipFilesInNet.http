@@ -14,3 +14,8 @@ GET {{InMemoryZipFilesInNet_HostAddress}}/create-in-memory-zip-file-as-byte-arra
 Accept: application/zip
 
 ###
+
+GET {{InMemoryZipFilesInNet_HostAddress}}/downloading-bigger-file/
+Accept: application/zip
+
+###
