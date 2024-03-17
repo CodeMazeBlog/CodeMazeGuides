@@ -17,7 +17,6 @@ public class VowelCountersTests
     [Fact]
     public void WhenVowelsAreCountedWithForLoop_ThenCorrectCountIsReturned()
     {
-        
         var result = VowelCounters.CountVowelsUsingForLoop(sentence, vowels);
 
         Assert.Equal(expectedNumOfVowels, result);
