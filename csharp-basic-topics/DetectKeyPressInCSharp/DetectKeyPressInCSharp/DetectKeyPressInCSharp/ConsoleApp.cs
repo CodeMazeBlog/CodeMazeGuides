@@ -3,6 +3,7 @@
     public class ConsoleApp
     {
         private readonly IConsoleService _consoleService;
+
         public ConsoleApp(IConsoleService consoleService)
         {
             _consoleService = consoleService;
