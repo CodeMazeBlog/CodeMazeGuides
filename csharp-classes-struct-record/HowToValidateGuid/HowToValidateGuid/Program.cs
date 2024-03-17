@@ -1,4 +1,8 @@
-﻿using HowToValidateGuid;
+﻿using BenchmarkDotNet.Running;
+using HowToUseStringPool.Benchmark;
+using HowToValidateGuid;
+
+BenchmarkRunner.Run<HowToValidateGuidBenchmark>();
 
 var guidString = Guid.NewGuid().ToString();
 const string nonGuidString = "loremipsum-sid-dolar-amet-34648208e86d";
