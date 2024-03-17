@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -7,17 +8,15 @@ namespace CheckNumberInString
     public static partial class ExtractNumber
     {
         // Define valid numerical characters including digits, minus sign, and decimal point
-        private static readonly char[] validNumericalValues = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '.' };
+        private static readonly char[] ValidNumericalValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '.'];
 
-        [GeneratedRegex(@"-?\d+(\.\d+)?", RegexOptions.Compiled)]
+        [GeneratedRegex(@"-?\d+(\.\d+)?")]
         private static partial Regex NumberRegex();
         public static string ExtractNumberUsingRegEx(string inputString)
         {
             var extractedNumbers = new List<double>();
 
-            var matches = NumberRegex().Matches(inputString);
-
-            foreach (Match match in matches)
+            foreach (Match match in NumberRegex().Matches(inputString))
             {
                 if (double.TryParse(match.Value, out var parsedNumber))
                 {
@@ -25,7 +24,7 @@ namespace CheckNumberInString
                 }
             }
 
-            return String.Join(",", extractedNumbers);
+            return string.Join(",", extractedNumbers);
         }
         
         public static string ExtractNumbersUsingLinq(string inputString)
@@ -61,7 +60,7 @@ namespace CheckNumberInString
                 AddNumberToList(currentNumber.ToString(), numbers);
             }
 
-            return String.Join(",", numbers);
+            return string.Join(",", numbers);
         }
 
         public static string ExtractNumberUsingSpan(string inputString)
@@ -71,37 +70,33 @@ namespace CheckNumberInString
             var inputStringSpan = inputString.AsSpan();
             while (true)
             {
-                var startIndex = inputStringSpan.IndexOfAny(validNumericalValues);
-                if (startIndex == -1) break; 
+                var startIndex = inputStringSpan.IndexOfAny(ValidNumericalValues);
+                if (startIndex == -1)
+                    break;
 
-                inputStringSpan = inputStringSpan.Slice(startIndex);
-                var endIndex = inputStringSpan.IndexOfAnyExcept(validNumericalValues);
+                inputStringSpan = inputStringSpan[startIndex..];
 
+                var endIndex = inputStringSpan.IndexOfAnyExcept(ValidNumericalValues);
                 if (endIndex == -1)
                 {
-                    AddNumber(inputStringSpan, numbers);
+                    AddNumberToList(inputStringSpan, numbers);
                     break;
                 }
 
-                AddNumber(inputStringSpan.Slice(0, endIndex), numbers);
-                inputStringSpan = inputStringSpan.Slice(endIndex);
+                AddNumberToList(inputStringSpan[..endIndex], numbers);
+                inputStringSpan = inputStringSpan[endIndex..];
             }
 
-            return String.Join(",", numbers);
+            return string.Join(",", numbers);
         }
         
-        private static void AddNumberToList(string numberString, ICollection<double> numbers)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void AddNumberToList(ReadOnlySpan<char> numberSpan, List<double> numbers)
         {
-            if (double.TryParse(numberString, NumberStyles.Any, CultureInfo.InvariantCulture, out var number))
+            if (double.TryParse(numberSpan, NumberStyles.Any, CultureInfo.InvariantCulture, out var number))
             {
                 numbers.Add(number);
             }
-        }
-
-        private static void AddNumber(ReadOnlySpan<char> numberSpan, List<double> numbers)
-        {
-            if (double.TryParse(numberSpan.ToString(), NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
-                numbers.Add(result);
         }
     }
 }
