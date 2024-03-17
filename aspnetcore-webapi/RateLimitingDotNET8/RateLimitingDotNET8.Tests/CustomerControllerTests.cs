@@ -54,7 +54,6 @@ public class CustomerControllerTests : IClassFixture<WebApplicationFactory<Progr
         for (int i = 0; i < limit; i++)
         {
             var response = await _client.GetAsync(url);
-            response.EnsureSuccessStatusCode();
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
     }
@@ -81,11 +80,11 @@ public class CustomerControllerTests : IClassFixture<WebApplicationFactory<Progr
     }
 
     [Theory]
-    [InlineData("/Customer/SpecialOffer")]
-    public async Task WhenRateLimitingNotEnforcedOnSpecialOffer_ThenAlwaysSuccessStatusCode(string url)
+    [InlineData("/Customer/SpecialOffer", 100)]
+    public async Task WhenRateLimitingNotEnforcedOnSpecialOffer_ThenAlwaysSuccessStatusCode(string url, int limit)
     {
         // Make a high number of requests assuming it exceeds any reasonable limit
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < limit; i++)
         {
             var response = await _client.GetAsync(url);
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
