@@ -45,4 +45,3 @@ foreach (var location in locations)
 
 var (Location, Distance) = new Destination("London", 2500.00);
 Console.WriteLine($"My destination is {Location} with distance {Distance}");
-Console.WriteLine($"My destination is {destination.Location} with distance {destination.Distance}");
