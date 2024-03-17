@@ -6,12 +6,12 @@ namespace Tests
     public class AdditionalTypesExamplesUnitTests
     {
         [TestMethod]
-        public void GivenAListOfPoints_WhenListIsRetrieved_ThenListNotEmpty()
+        public void GivenAListOfLocations_WhenListIsRetrieved_ThenListNotEmpty()
         {
-            var pointsOfInterest = AdditionalTypesExamples.GetPointsOfInterest();
+            var locationsOfInterest = AdditionalTypesExamples.GetLocationsOfInterest();
 
-            Assert.IsNotNull(pointsOfInterest);
-            Assert.IsTrue(pointsOfInterest.Any());
+            Assert.IsNotNull(locationsOfInterest);
+            Assert.IsTrue(locationsOfInterest.Any());
         }
 
         [TestMethod]

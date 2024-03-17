@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UsingDirectiveForAdditionalTypes;
 
 
@@ -38,10 +37,10 @@ foreach (var articleTitle in articleTitles)
     Console.WriteLine(articleTitle);
 }
 
-var points = AdditionalTypesExamples.GetPointsOfInterest();
-foreach (var point in points)
+var locations = AdditionalTypesExamples.GetLocationsOfInterest();
+foreach (var location in locations)
 {
-    Console.WriteLine($"X:{point.X}, Y:{point.Y}");
+    Console.WriteLine($"X:{location.X}, Y:{location.Y}");
 }
 
 var destination = new Destination("London", 2500.00);
