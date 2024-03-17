@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetFirstDayOfWeekDateInCSharp", "GetFirstDayOfWeekDateInCSharp\GetFirstDayOfWeekDateInCSharp.csproj", "{B1D71578-7190-4F4F-ACE6-AB5D9B527DD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetFirstDayOfWeekDateInCSharpTests", "GetFirstDayOfWeekDateInCSharpTests\GetFirstDayOfWeekDateInCSharpTests.csproj", "{748E27DF-4209-4F8E-9FEB-C28CE9463322}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1D71578-7190-4F4F-ACE6-AB5D9B527DD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1D71578-7190-4F4F-ACE6-AB5D9B527DD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1D71578-7190-4F4F-ACE6-AB5D9B527DD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1D71578-7190-4F4F-ACE6-AB5D9B527DD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{748E27DF-4209-4F8E-9FEB-C28CE9463322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{748E27DF-4209-4F8E-9FEB-C28CE9463322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{748E27DF-4209-4F8E-9FEB-C28CE9463322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{748E27DF-4209-4F8E-9FEB-C28CE9463322}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0BDBDEA3-BBB5-48F3-BF2D-4E2EFF6A37D6}
+	EndGlobalSection
+EndGlobal

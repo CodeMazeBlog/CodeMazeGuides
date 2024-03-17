@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34607.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomaticRegistrationOfMinimalAPIs", "AutomaticRegistrationOfMinimalAPIs\AutomaticRegistrationOfMinimalAPIs.csproj", "{3723F7E9-DB1A-45E4-95EB-E448ADC19C80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomaticRegistrationOfMinimalAPIsTests", "AutomaticRegistrationOfMinimalAPIsTests\AutomaticRegistrationOfMinimalAPIsTests.csproj", "{D67EC601-5F5A-4C5F-BA3B-2FB13FF7FE16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3723F7E9-DB1A-45E4-95EB-E448ADC19C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3723F7E9-DB1A-45E4-95EB-E448ADC19C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3723F7E9-DB1A-45E4-95EB-E448ADC19C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3723F7E9-DB1A-45E4-95EB-E448ADC19C80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D67EC601-5F5A-4C5F-BA3B-2FB13FF7FE16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D67EC601-5F5A-4C5F-BA3B-2FB13FF7FE16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D67EC601-5F5A-4C5F-BA3B-2FB13FF7FE16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D67EC601-5F5A-4C5F-BA3B-2FB13FF7FE16}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D4EEF68-34C6-4016-9906-9C5DBC96220B}
+	EndGlobalSection
+EndGlobal
