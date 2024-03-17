@@ -5,8 +5,8 @@ namespace Tests;
 
 public class ImageMagickLibraryLiveTest
 {
-    private const string _OutputPath = @"..\..\..\Image\outputImage.png";
-    private const string _NullOutputPath = "";
+    private const string OutputPath = @"..\..\..\Image\outputImage.png";
+    private const string NullOutputPath = "";
     private readonly MagickColor _color = MagickColors.Green;
     private readonly MagickGeometry _imageSize = new(480, 300);
     private readonly MagickGeometry _circle = new(50, 50, 100, 200);  
@@ -87,13 +87,13 @@ public class ImageMagickLibraryLiveTest
         var image = CreateCircleImage();
 
         // Act
-        ImageService.SaveImage(image, _OutputPath);
+        ImageService.SaveImage(image, OutputPath);
 
         // Assert
-        Assert.True(File.Exists(_OutputPath));
+        Assert.True(File.Exists(OutputPath));
 
         // Cleanup
-        File.Delete(_OutputPath);
+        File.Delete(OutputPath);
     }
 
     [Fact]
@@ -105,7 +105,7 @@ public class ImageMagickLibraryLiveTest
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() =>
         {
-            ImageService.SaveImage(image, _NullOutputPath);
+            ImageService.SaveImage(image, NullOutputPath);
         });
     }
 

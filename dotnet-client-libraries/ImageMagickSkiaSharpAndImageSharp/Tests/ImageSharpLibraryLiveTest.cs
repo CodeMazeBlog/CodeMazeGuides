@@ -6,9 +6,9 @@ namespace Tests;
 
 public class ImageSharpLibraryLiveTest
 {
-    private const string _InvalidOutputPath = @"C:\Windows\System32\outputImage.png";
-    private const string _ValidOutputPath = @"..\..\..\Image\outputImage.png";
-    private const string _NullOutputPath = "";
+    private const string InvalidOutputPath = @"C:\Windows\System32\outputImage.png";
+    private const string ValidOutputPath = @"..\..\..\Image\outputImage.png";
+    private const string NullOutputPath = "";
     private readonly int _width = 350;
     private readonly int _height = 280; 
 
@@ -52,14 +52,14 @@ public class ImageSharpLibraryLiveTest
     {
         var image = ImageService.CreateBlankImage(_width, _height);
 
-        Assert.Throws<UnauthorizedAccessException>(() => ImageService.SaveImage(image, _InvalidOutputPath));
+        Assert.Throws<UnauthorizedAccessException>(() => ImageService.SaveImage(image, InvalidOutputPath));
     }
 
     [Fact]
     public void GivenImageAndValidPath_WhenSavingImage_ThenDoesNotThrowException()
     {
         var image = ImageService.CreateBlankImage(_width, _height);
-        var ex = Record.Exception(() => ImageService.SaveImage(image, _ValidOutputPath));
+        var ex = Record.Exception(() => ImageService.SaveImage(image, ValidOutputPath));
 
         Assert.Null(ex);
     }
@@ -94,6 +94,6 @@ public class ImageSharpLibraryLiveTest
     {
         var image = ImageService.CreateBlankImage(_width, _height);
 
-        Assert.Throws<ArgumentNullException>(() => ImageService.SaveImage(image, _NullOutputPath));
+        Assert.Throws<ArgumentNullException>(() => ImageService.SaveImage(image, NullOutputPath));
     }
 }
