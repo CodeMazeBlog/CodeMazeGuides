@@ -1,4 +1,4 @@
-﻿internal class Program
+﻿public class Program
 {
     private static void Main(string[] args)
     {
@@ -35,12 +35,12 @@
 
     }
     #region delegate example methods
-    delegate int DelegateOfMethod(int x);
-    private static int Product(int x) => x * x;
-    private static int MethodUsesDelegate(DelegateOfMethod del, int x) => del(x);
+    public delegate int DelegateOfMethod(int x);
+    public static int Product(int x) => x * x;
+    public static int MethodUsesDelegate(DelegateOfMethod del, int x) => del(x);
 
     //another method
-    private static int Sum(int x) => x + x;
+    public static int Sum(int x) => x + x;
     #endregion
 }
 
