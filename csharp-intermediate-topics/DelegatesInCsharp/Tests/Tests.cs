@@ -1,29 +1,23 @@
+using DelegatesInCsharp;
+
 namespace Tests
 {
-    public class Tests
+    public class DelegateExampleTests
     {
-        private const string TEXT = "programming delegates in csharp";
+        private const string TEXT_IN_UPPER_CASE = "PROGRAMMING DELEGATES IN CSHARP";
 
         [Fact]
         public void IsTextInLowerCaseValid_ReturnTrue()
         {
-            var myDelegate = new MyDelegate(ConvertToLower);
-            var textInLowerCase = myDelegate("PROGRAMMING DELEGATES IN CSHARP");
-            Assert.True(TEXT.ToLower().Equals(textInLowerCase), "Error converting text to lower case.");
+            var textInLowerCase = DelegateExample.GetTextInLowercase(TEXT_IN_UPPER_CASE);
+            Assert.True(TEXT_IN_UPPER_CASE.ToLower().Equals(textInLowerCase), "Error converting text to lower case.");
         }
 
         [Fact]
         public void IsHraValid_ReturnTrue()
         {
-            Func<double, double> func = new Func<double, double>(GetHra);
-            var result = func(1000.00);
-            Assert.True(result == 400.00, "Error in hra calculation.");
+            var hra = DelegateExample.GetHra(1000.00);
+            Assert.True(hra == 400.00, "Error in hra calculation.");
         }
-
-        private void Display(string str) => Console.WriteLine(str);
-        private string ConvertToLower(string str) => str.ToLower();
-        private static double GetHra(double basic) => (double)(basic * .4);
-
-        private delegate string MyDelegate(string str);
     }
 }
