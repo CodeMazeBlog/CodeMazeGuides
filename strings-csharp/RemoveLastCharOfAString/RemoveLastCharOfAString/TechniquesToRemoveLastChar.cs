@@ -11,7 +11,6 @@ namespace RemoveLastCharOfAString;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
 [HideColumns([Column.StdDev, Column.Error])]
-
 public class TechniquesToRemoveLastChar
 {
     private const string TestString = "2147483647";
@@ -41,8 +40,7 @@ public class TechniquesToRemoveLastChar
     [Arguments(TestString)]
     public string RemoveLastCharUsingSpan(string inputString) 
     {
-        var inputSpan = inputString.AsSpan();
-        inputSpan = inputSpan.Slice(0, inputSpan.Length - 1);
+        var inputSpan = inputString.AsSpan()[..^1];
 
         return new string(inputSpan);
     }
