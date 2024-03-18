@@ -1,6 +1,5 @@
 using EfCoreCodeFirstMigrationsInProd.DataAccess;
 using EfCoreCodeFirstMigrationsInProd.Domain;
-using Microsoft.EntityFrameworkCore;
 
 namespace EfCoreCodeFirstMigrationsInProd.Startup;
 
