@@ -15,6 +15,9 @@ namespace HttpClientCookies.Controllers
             options.Domain = "example.com";
 
             Response.Cookies.Append("SimpleCookie", "RHsMeXPsMK", options);
+
+            Response.Cookies.Append("FavouriteColor", "Red", options);
+
             return Ok();
         }
     }
