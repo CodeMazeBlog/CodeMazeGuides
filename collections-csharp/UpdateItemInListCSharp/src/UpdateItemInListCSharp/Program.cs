@@ -1,9 +1,15 @@
-﻿using UpdateItemInListCSharp.Models;
+﻿using BenchmarkDotNet.Running;
+using UpdateItemInListCSharp.Models;
 
-internal class Program
+namespace UpdateItemInListCSharp;
+
+public class Program
 {
-    private static void Main(string[] args)
+    public static void Main(string[] args)
     {
+        // Uncomment to run benchmarks
+        //var summary = BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
+
         var library = new Library();
         var book = library.AddBook("J.K. Rowling", "978-0545010221", false, "Harry Potter and the Deathly Hallows");
 
