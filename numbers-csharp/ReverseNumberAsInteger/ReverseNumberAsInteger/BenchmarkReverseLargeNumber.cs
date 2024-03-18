@@ -5,8 +5,7 @@ namespace ReverseNumberAsInteger
 {
     [MemoryDiagnoser]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
-    [HideColumns(["Job", "Error", "StdDev", "Median"])]
-    [RankColumn]
+    [HideColumns(["Job", "Error", "StdDev", "Median"])]    
     public class BenchmarkReverseVeryLargeNumber
     {
         readonly BigInteger veryLargeInt = BigInteger.Parse("50559192938475769654984549875464987846498798454888888888888888888888888898498451849849849879846546548798498484784848748741849898321654656546651651654984765110000545487485468489645443309435893857695833");

@@ -55,7 +55,7 @@
         public static int ReverseUsingMathPow(int num)
         {
             int maxValueDiv10 = int.MaxValue / 10;
-            bool isNegative = num < 0;
+            var isNegative = num < 0;
             num = isNegative ? -num : num;
 
             if (num == int.MaxValue || num == int.MinValue || num == 0)
@@ -99,7 +99,7 @@
                 return 0;
             }
 
-            bool isNegative = num < 0;
+            var isNegative = num < 0;
             num = isNegative ? -num : num;
             int reversedNumber = 0;
             int totalNumOfDigits = (int)Math.Floor(Math.Log10(num)) + 1;
@@ -148,7 +148,7 @@
                 return 0;
             }
 
-            bool isNegative = num < 0;
+            var isNegative = num < 0;
             ReadOnlySpan<char> numChars = Math.Abs(num).ToString().AsSpan();
             int length = numChars.Length;
             Span<char> reversedChars = stackalloc char[length];            

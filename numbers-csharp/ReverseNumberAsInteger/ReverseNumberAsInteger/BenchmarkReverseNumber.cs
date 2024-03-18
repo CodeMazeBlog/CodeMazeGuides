@@ -5,7 +5,6 @@ namespace ReverseNumberAsInteger
     [MemoryDiagnoser]
     [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
     [HideColumns(["Job", "Error", "StdDev", "Median"])]
-    [RankColumn]
     public class BenchmarkReverseNumber
     {
         readonly int num = 123456789;
