@@ -10,6 +10,7 @@ namespace Tests
         public void Given_TextInLowerCase_Then_MethodReturnsTextInUpperCase()
         {
             var textInLowerCase = DelegateExample.GetTextInLowercase(TEXT_IN_UPPER_CASE);
+
             Assert.True(TEXT_IN_UPPER_CASE.ToLower().Equals(textInLowerCase), "Error converting text to lower case.");
         }
 
@@ -17,6 +18,7 @@ namespace Tests
         public void When_HraIsValid_Then_MethodReturnTrue()
         {
             var hra = DelegateExample.GetHra(1000.00);
+
             Assert.True(hra == 400.00, "Error in hra calculation.");
         }
     }
