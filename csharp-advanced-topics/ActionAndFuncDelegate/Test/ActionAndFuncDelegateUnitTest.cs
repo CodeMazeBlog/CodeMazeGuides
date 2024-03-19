@@ -16,10 +16,10 @@ namespace Test
         public void WhenLambdaInputString_ThenReturnString()
         {
             //Arrange
-            string actual = "Janelle";
+            var actual = "Janelle";
 
             //Act
-            string expected = _utility.GetByCondition(x => x.FirstOrDefault(a => a.Equals(actual)));
+            var expected = _utility.GetByCondition(x => x.FirstOrDefault(a => a.Equals(actual)));
 
             //Assert
             Assert.Equal(expected, actual);
@@ -29,7 +29,7 @@ namespace Test
         public void WhenMethodInputString_ThenReturnString()
         {
             //Arrange
-            string actual = "Peculiar";
+            var actual = "Peculiar";
 
             string Get(List<string> items)
             {
@@ -46,7 +46,7 @@ namespace Test
             }
 
             //Act
-            string expected = _utility.GetByCondition(Get);
+            var expected = _utility.GetByCondition(Get);
 
             //Assert
             Assert.Equal(expected, actual);

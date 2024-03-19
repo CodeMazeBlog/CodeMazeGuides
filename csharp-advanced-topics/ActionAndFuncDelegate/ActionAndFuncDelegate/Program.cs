@@ -4,11 +4,11 @@
     {
         static void Main(string[] args)
         {
-            Utility utility = new Utility();
+            var utility = new Utility();
 
-            string name = utility.GetByCondition(Get);
+            var name = utility.GetByCondition(Get);
 
-            string anotherName = utility.GetByCondition(x => x.FirstOrDefault(n => n == "Janelle"));
+            var anotherName = utility.GetByCondition(x => x.FirstOrDefault(n => n == "Janelle"));
 
             utility.DisplayAll(PrintAll);
 
@@ -33,9 +33,9 @@
 
         public static string Get(List<string> items)
         {
-            string request = "Jason";
+            var request = "Jason";
 
-            string name = "Not Found";
+            var name = "Not Found";
 
             foreach (var item in items)
             {
