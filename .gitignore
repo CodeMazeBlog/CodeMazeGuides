@@ -355,3 +355,4 @@ global.json
 
 # MacOS
 **/.DS_Store
+/aspnetcore-features/HSTS/HSTSExample/Properties/ServiceDependencies/codemaze-hsts-tests - Web Deploy
