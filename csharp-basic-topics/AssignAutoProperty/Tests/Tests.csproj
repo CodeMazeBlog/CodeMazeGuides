@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Assign_Auto_Property\AssignAutoProperty.csproj" />
+    <ProjectReference Include="..\AutoAssignProperty\AutoAssignProperty.csproj" />
   </ItemGroup>
 
 </Project>

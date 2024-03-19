@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssignAutoProperty
+namespace AutoAssignProperty
 {
     /// <summary>
     /// Class to set initial value with DefaultValue attribute

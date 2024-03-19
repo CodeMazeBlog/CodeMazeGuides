@@ -1,4 +1,5 @@
-﻿using AssignAutoProperty;
+﻿// See https://aka.ms/new-console-template for more information
+using AutoAssignProperty;
 using System.ComponentModel;
 
 HondaCars hondaCars = new HondaCars();

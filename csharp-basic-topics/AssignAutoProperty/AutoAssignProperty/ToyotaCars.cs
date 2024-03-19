@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssignAutoProperty
+namespace AutoAssignProperty
 {
     /// <summary>
     /// Class to assign value using Constructor initialization
