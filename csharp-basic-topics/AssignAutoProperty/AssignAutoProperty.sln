@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assign_Auto_Property", "Assign_Auto_Property\Assign_Auto_Property.csproj", "{CF477EEF-4A07-4B38-8913-E949546343B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssignAutoProperty", "Assign_Auto_Property\AssignAutoProperty.csproj", "{CF477EEF-4A07-4B38-8913-E949546343B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{170556D2-E928-4B0F-BA71-CA0C14298199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{170556D2-E928-4B0F-BA71-CA0C14298199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

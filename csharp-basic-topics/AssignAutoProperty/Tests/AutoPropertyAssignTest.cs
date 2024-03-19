@@ -1,4 +1,4 @@
-using Assign_Auto_Property;
+using AssignAutoProperty;
 using System.ComponentModel;
 
 namespace Tests
