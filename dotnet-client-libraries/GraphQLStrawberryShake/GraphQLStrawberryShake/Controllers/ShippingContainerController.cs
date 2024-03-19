@@ -1,20 +1,15 @@
 using System.Text.Json;
-using Microsoft.AspNetCore.Mvc;
 using GraphQLStrawberryShake.GraphQL;
+using Microsoft.AspNetCore.Mvc;
 using StrawberryShake;
 
 namespace GraphQLStrawberryShake.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ShippingContainerController : ControllerBase
+public class ShippingContainerController(IShippingContainerClient client) : ControllerBase
 {
-    private readonly IShippingContainerClient _client;
-
-    public ShippingContainerController(IShippingContainerClient client)
-    {
-        _client = client;
-    }
+    private readonly IShippingContainerClient _client = client;
 
     [HttpGet]
     public async Task<IActionResult> GetShippingContainers()
