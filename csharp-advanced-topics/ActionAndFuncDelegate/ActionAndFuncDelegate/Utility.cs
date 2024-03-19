@@ -4,7 +4,7 @@ public class Utility
 {
     private static readonly List<string> _data = new List<string>
     {
-        "Keneth", "Peculiar", "Harryson", "Jason", "Janelle", "Amara", "Josh"
+        "Keneth", "Peculiar", "Harrison", "Jason", "Janelle", "Amara", "Josh"
     };
 
     public void DisplayAll(Action<List<string>> action)
