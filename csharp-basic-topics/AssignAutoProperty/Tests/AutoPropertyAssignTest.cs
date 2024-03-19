@@ -38,7 +38,7 @@ namespace Tests
             var fordCars = new FordCars();
             DefaultValueAttribute attribute = (DefaultValueAttribute)TypeDescriptor.GetProperties(fordCars)["Color"].Attributes[typeof(DefaultValueAttribute)];
             string? defaultValue = (string)(attribute.Value);
-            
+
             Assert.AreEqual("Blue", defaultValue);
         }
     }
