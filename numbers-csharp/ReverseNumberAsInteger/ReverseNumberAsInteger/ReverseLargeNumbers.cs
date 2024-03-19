@@ -20,11 +20,11 @@ namespace ReverseNumberAsInteger
 
         public static BigInteger ReverseUsingMathPow(BigInteger num)
         {
-            bool isNegative = num < 0;
+            var isNegative = num < 0;
             num = num < 0 ? BigInteger.Abs(num) : num;
             int length = (int)BigInteger.Log10(num) + 1;
             BigInteger reversedNumber = 0;
-            BigInteger powerOf10 = BigInteger.Pow(10, length - 1);
+            var powerOf10 = BigInteger.Pow(10, length - 1);
 
             for (int i = 1; i <= length; i++)
             {
@@ -39,7 +39,7 @@ namespace ReverseNumberAsInteger
 
         public static BigInteger ReverseBySwappingDigits(BigInteger num)
         {
-            bool isNegative = false;
+            var isNegative = false;
             if (num < 0)
             {
                 isNegative = true;
@@ -54,8 +54,8 @@ namespace ReverseNumberAsInteger
 
            while(leftPow >= rightPow)
             {
-                BigInteger leftDigit = (num / leftPow) % 10;
-                BigInteger rightDigit = (num / rightPow) % 10;
+                var leftDigit = (num / leftPow) % 10;
+                var rightDigit = (num / rightPow) % 10;
 
                 if (leftPow != rightPow)
                 {
@@ -81,7 +81,7 @@ namespace ReverseNumberAsInteger
                 return reversedNumber;
             }
 
-            BigInteger remainder = num % 10;
+            var remainder = num % 10;
             reversedNumber = reversedNumber * 10 + remainder;
 
             return ReverseUsingRecursion(num / 10, reversedNumber);
@@ -89,7 +89,7 @@ namespace ReverseNumberAsInteger
         
         public static BigInteger ReverseAsString(BigInteger num)
         {
-            bool isNegative = false;
+            var isNegative = false;
 
             if (num < 0)
             {

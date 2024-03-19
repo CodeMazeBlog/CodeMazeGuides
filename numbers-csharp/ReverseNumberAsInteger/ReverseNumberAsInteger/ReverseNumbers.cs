@@ -16,7 +16,7 @@
 
             while (num != 0)
             {
-                int remainder = num % 10;
+                var remainder = num % 10;
 
                 if (reversedNumber > maxValueDiv10 || reversedNumber < minValueDiv10)
                 {
@@ -45,7 +45,7 @@
                 return 0;
             }
 
-            int remainder = num % 10;
+            var remainder = num % 10;
 
             reversedNumber = reversedNumber * 10 + remainder;
 
@@ -75,7 +75,7 @@
 
             for (int i = length - 1; i >= 0; i--)
             {
-                int remainder = num % 10;
+                var remainder = num % 10;
 
                 if ((remainder * powersOf10[i] / 10) >= maxValueDiv10)
                 {
