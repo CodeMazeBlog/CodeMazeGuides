@@ -33,7 +33,7 @@ namespace Tests
         }
 
         [Test]
-        public void KeyInputs_KeyAvailableUseIsCalled_ShouldStopWhenXIsPressed()
+        public void ApplicationIsRunning_WhenXIsPressed_ApplicationShouldStop()
         {
             _mockConsoleService.SetupSequence(m => m.KeyAvailable)
                 .Returns(false)
