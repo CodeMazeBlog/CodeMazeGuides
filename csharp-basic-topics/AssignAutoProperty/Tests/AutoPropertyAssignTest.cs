@@ -32,6 +32,7 @@ namespace Tests
             Assert.AreEqual("Silver", kiaCars.Color);
             Assert.AreEqual(600000.00m, kiaCars.Cost);
         }
+
         [TestMethod]
         public void GivenInitialValueWithDefaultValueAttribute_WhenPropertyAccessed_ThenExpectAssignedValue()
         {
