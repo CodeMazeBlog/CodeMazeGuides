@@ -47,11 +47,20 @@ public class TechniquesToRemoveLastChar
 
     [Benchmark]
     [Arguments(TestString)]
+    public ReadOnlySpan<char> RemoveLastCharAsSpan(string inputString)
+    {
+        return inputString.AsSpan()[..^1];
+    }
+
+
+    [Benchmark]
+    [Arguments(TestString)]
     public string RemoveLastCharUsingStringBuilder(string inputString) 
     {
         var stringBuilder = new StringBuilder(inputString);
-        stringBuilder.Remove(stringBuilder.Length - 1, 1);
+        --stringBuilder.Length;
 
         return stringBuilder.ToString();
     }
+
 }

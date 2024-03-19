@@ -6,8 +6,8 @@ namespace RemoveLastCharOfAStringTests;
 public class RemoveLastCharOfAStringUnitTests
 {
     private readonly TechniquesToRemoveLastChar _methodInstances = new();
-    private const string InputString = "2147483647";
     private const string OutputString = "214748364";
+    private const string InputString = OutputString + "7";
 
     [TestMethod]
     public void GivenAString_WhenSubstringUsed_ThenVerifyLastCharRemoved()
@@ -47,5 +47,13 @@ public class RemoveLastCharOfAStringUnitTests
         var actualString = _methodInstances.RemoveLastCharUsingStringBuilder(InputString);
 
         Assert.AreEqual(OutputString, actualString);
+    }
+
+    [TestMethod]
+    public void GivenAString_WhenReturnedAsSpanUsed_ThenVerifyLastCharRemoved()
+    {
+        var actualSpan = _methodInstances.RemoveLastCharAsSpan(InputString);
+
+        Assert.AreEqual(OutputString, actualSpan.ToString());
     }
 }
