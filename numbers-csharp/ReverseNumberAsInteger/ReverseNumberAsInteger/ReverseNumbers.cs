@@ -111,13 +111,13 @@
                 powersOf10[i] = powersOf10[i - 1] * 10;
             }
 
-            int leftPowIndex = totalNumOfDigits - 1;
-            int rightPowIndex = 0;
+            var leftPowIndex = totalNumOfDigits - 1;
+            var rightPowIndex = 0;
 
             while (leftPowIndex >= rightPowIndex)
             {
-                int leftDigit = (num / powersOf10[leftPowIndex]) % 10;
-                int rightDigit = (num / powersOf10[rightPowIndex]) % 10;
+                var leftDigit = (num / powersOf10[leftPowIndex]) % 10;
+                var rightDigit = (num / powersOf10[rightPowIndex]) % 10;
 
                 if ((rightDigit * (powersOf10[leftPowIndex] / 10)) >= maxValueDiv10)
                 {
