@@ -6,7 +6,7 @@ namespace Test
     public class DirectoryBrowsingTest
     {
         [TestMethod]
-        public async void Index_ShouldReturnViewResult()
+        public async void WhenAccessingTheDirectoryBrowsingPageThenCorrectStatusCode()
         {
             var client = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5291/wwwroot");
