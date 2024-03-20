@@ -19,7 +19,6 @@ namespace AutoAssignProperty
             get { return _color; }
             set { _color = value; }
         }
-
         public decimal Cost
         {
             get { return _cost; }
