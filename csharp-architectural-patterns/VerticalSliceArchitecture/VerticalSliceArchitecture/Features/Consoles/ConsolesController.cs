@@ -18,7 +18,7 @@ namespace VerticalSliceArchitecture.Features.Consoles
         {
             var result = await _mediator.Send(new GetAllConsoles.GetConsolesQuery());
 
-            if (result == null)
+            if (result is null)
                 return NotFound();
 
             return Ok(result);
