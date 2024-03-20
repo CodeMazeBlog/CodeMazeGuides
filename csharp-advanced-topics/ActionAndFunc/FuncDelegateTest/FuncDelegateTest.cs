@@ -6,12 +6,12 @@ namespace FuncDelegateTest
     public class FuncDelegateTest
     {
         [TestMethod]
-        public void GivenCurrentYearAndCurrentAgeIsAdded_Then_ReturnBirthYear()
+        public void WhenCurrentYearAndCurrentAgeIsSubmitted_ThenReturnBirthYear()
         {
             //Arrange
-            int currentYear = 2024;
-            int currentAge = 30;
-            int birthYear = 1994;
+            var currentYear = 2024;
+            var currentAge = 30;
+            var birthYear = 1994;
 
             //Act
             var result = FuncDelegate.Program.BirthYear(currentYear, currentAge);

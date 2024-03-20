@@ -7,6 +7,7 @@
             return currentYear - currentAge;
         }
 
+
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, Let us find out your birth year. From today's date, what year are we in?");
