@@ -18,3 +18,4 @@ This section contains LINQ related topics
 - [Different Ways to Get the First Record in Each Group With LINQ](https://code-maze.com/csharp-different-ways-to-get-the-first-record-in-each-group-with-linq/)
 - [How to Divide Data Into Batches With LINQ](https://code-maze.com/csharp-how-to-divide-data-into-batches-with-linq/)
 - [How to Create an Outer Join in LINQ – (Left and Right)](https://code-maze.com/csharp-outer-join-linq/)
+- [Execute the SELECT WHERE NOT EXIST SQL Query Using LINQ](https://code-maze.com/linq-execute-the-select-where-not-exist-sql-query-csharp/)
