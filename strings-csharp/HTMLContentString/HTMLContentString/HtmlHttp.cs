@@ -4,9 +4,9 @@ public class HtmlHttp
 {
     private readonly HttpClient _httpClient;
 
-    public HtmlHttp()
+    public HtmlHttp(IHttpClientFactory httpClientFactory)
     {
-        _httpClient = new HttpClient();
+        _httpClient = httpClientFactory.CreateClient();
     }
 
     public async Task<string> GetHtmlAsStringAsync(string url)

@@ -1,23 +1,30 @@
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Columns;
+using BenchmarkDotNet.Order;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HTMLContentString;
 
 [MemoryDiagnoser]
-[CsvExporter]
+[Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [MarkdownExporterAttribute.Default]
-[MarkdownExporterAttribute.GitHub]
 [HideColumns(Column.StdDev, Column.Gen0, Column.Gen1)]
 public class GetHtmlStringBenchmark
 {
     private readonly string _url = "https://www.wikipedia.org/";
-    private readonly HtmlHttp _htmlHttp;
-    private readonly HtmlAgility _htmlAgility;
-    private readonly HtmlAngle _htmlAngle;
+    private  HtmlHttp _htmlHttp;
+    private  HtmlAgility _htmlAgility;
+    private  HtmlAngle _htmlAngle;
+    private IServiceProvider _serviceProvider;
     
-    public GetHtmlStringBenchmark()
+    [GlobalSetup]
+    public void Setup()
     {
-        _htmlHttp = new ();
+        var services = new ServiceCollection();
+        services.AddHttpClient();
+
+        _serviceProvider = services.BuildServiceProvider();
+        _htmlHttp = new (_serviceProvider.GetRequiredService<IHttpClientFactory>());
         _htmlAgility = new();
         _htmlAngle = new();
     }
