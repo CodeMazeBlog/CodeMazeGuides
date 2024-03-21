@@ -14,6 +14,5 @@ namespace AssignInitialValueToAutoProperty
         //Inline initialization
         public string Color { get; set; } = "White";
         public decimal Cost { get; set; } = 500000.00m;
-
     }
 }
