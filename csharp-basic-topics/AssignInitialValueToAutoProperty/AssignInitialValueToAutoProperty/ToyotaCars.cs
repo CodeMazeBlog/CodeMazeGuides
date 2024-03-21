@@ -11,10 +11,10 @@ namespace AssignInitialValueToAutoProperty;
 /// </summary>
 public class ToyotaCars
 {
-    public ToyotaCars() //Constructor for the class
+    public ToyotaCars()
     {
-        Color = "Black"; //Constructor initialization
-        Cost = 400000.00m; //Constructor initialization
+        Color = "Black";
+        Cost = 400000.00m;
     }
 
     public string Color { get; set; }
