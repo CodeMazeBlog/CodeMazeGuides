@@ -1,35 +1,34 @@
 using AssignInitialValueToAutoProperty;
 
-namespace Tests
+namespace Tests;
+
+[TestClass]
+public class AutoPropertyAssignTest
 {
-    [TestClass]
-    public class AutoPropertyAssignTest
+    [TestMethod]
+    public void GivenInitialValueWithInlineInitialization_WhenPropertyAccessed_ThenExpectAssignedValue()
     {
-        [TestMethod]
-        public void GivenInitialValueWithInlineInitialization_WhenPropertyAccessed_ThenExpectAssignedValue()
-        {
-            var hondaCars = new HondaCars();
+        var hondaCars = new HondaCars();
 
-            Assert.AreEqual("White", hondaCars.Color);
-            Assert.AreEqual(500000.00m, hondaCars.Cost);
-        }
+        Assert.AreEqual("White", hondaCars.Color);
+        Assert.AreEqual(500000.00m, hondaCars.Cost);
+    }
 
-        [TestMethod]
-        public void GivenInitialValueWithConstructorInitialization_WhenPropertyAccessed_ThenExpectAssignedValue()
-        {
-            var toyotaCars = new ToyotaCars();
+    [TestMethod]
+    public void GivenInitialValueWithConstructorInitialization_WhenPropertyAccessed_ThenExpectAssignedValue()
+    {
+        var toyotaCars = new ToyotaCars();
 
-            Assert.AreEqual("Black", toyotaCars.Color);
-            Assert.AreEqual(400000.00m, toyotaCars.Cost);
-        }
+        Assert.AreEqual("Black", toyotaCars.Color);
+        Assert.AreEqual(400000.00m, toyotaCars.Cost);
+    }
 
-        [TestMethod]
-        public void GivenInitialValueWithPropertySetter_WhenPropertyAccessed_ThenExpectAssignedValue()
-        {
-            var kiaCars = new KiaCars();
+    [TestMethod]
+    public void GivenInitialValueWithPropertySetter_WhenPropertyAccessed_ThenExpectAssignedValue()
+    {
+        var kiaCars = new KiaCars();
 
-            Assert.AreEqual("Silver", kiaCars.Color);
-            Assert.AreEqual(600000.00m, kiaCars.Cost);
-        }
+        Assert.AreEqual("Silver", kiaCars.Color);
+        Assert.AreEqual(600000.00m, kiaCars.Cost);
     }
 }

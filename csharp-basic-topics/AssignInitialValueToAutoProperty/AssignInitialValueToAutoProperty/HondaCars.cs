@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AssignInitialValueToAutoProperty
+namespace AssignInitialValueToAutoProperty;
+
+/// <summary>
+/// Class to assign value with Inline Initialization
+/// </summary>
+public class HondaCars
 {
-    /// <summary>
-    /// Class to assign value with Inline Initialization
-    /// </summary>
-    public class HondaCars
-    {
-        //Inline initialization
-        public string Color { get; set; } = "White";
-        public decimal Cost { get; set; } = 500000.00m;
-    }
+    //Inline initialization
+    public string Color { get; set; } = "White";
+    public decimal Cost { get; set; } = 500000.00m;
 }

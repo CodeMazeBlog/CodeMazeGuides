@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using AssignInitialValueToAutoProperty;
+﻿using AssignInitialValueToAutoProperty;
 using System.ComponentModel;
 
 var hondaCars = new HondaCars();
