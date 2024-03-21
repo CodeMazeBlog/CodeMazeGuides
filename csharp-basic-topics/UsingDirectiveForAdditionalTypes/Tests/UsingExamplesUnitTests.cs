@@ -7,7 +7,7 @@ namespace Tests
     {
 
         [TestMethod]
-        public void GivenAListOfArticleTitles_WhenListIsRetrieved_ThenListNotEmpty()
+        public void GivenAListOfArticles_WhenListIsRetrieved_ThenListNotEmpty()
         {
             var articles = UsingExamples.GetArticles();
 

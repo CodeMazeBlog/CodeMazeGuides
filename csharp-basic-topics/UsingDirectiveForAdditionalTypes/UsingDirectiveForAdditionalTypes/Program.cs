@@ -16,7 +16,7 @@ Console.WriteLine($"The minimum int is {minInt}");
 
 Console.WriteLine("*");
 Console.WriteLine(nameof(AliasExamples));
-var codeMazeArticles = AliasExamples.GetArticles();
+var codeMazeArticles = AliasExamples.GetCodeMazeArticles();
 foreach (var codeMazeArticle in codeMazeArticles)
 {
     Console.WriteLine($"{codeMazeArticle.Title}:{codeMazeArticle.WordsCount}");
@@ -25,7 +25,7 @@ foreach (var codeMazeArticle in codeMazeArticles)
 
 Console.WriteLine("*");
 Console.WriteLine(nameof(AdditionalTypesExamples));
-var ints = AdditionalTypesExamples.GetInts();
+var ints = AdditionalTypesExamples.GetArticleIDs();
 foreach (var number in ints)
 {
     Console.WriteLine($"The number is: {number?.ToString() ?? "null"}");

@@ -26,7 +26,7 @@ namespace Tests
         [TestMethod]
         public void GivenAListOfInts_WhenListIsRetrieved_ThenListNotEmpty_And_ListContainsNull()
         {
-            var listOfInts = AdditionalTypesExamples.GetArticleTitles();
+            var listOfInts = AdditionalTypesExamples.GetArticleIDs();
 
             Assert.IsNotNull(listOfInts);
             Assert.IsTrue(listOfInts.Any());

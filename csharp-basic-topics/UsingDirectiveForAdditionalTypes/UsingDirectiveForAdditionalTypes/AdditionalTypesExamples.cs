@@ -8,24 +8,20 @@ namespace UsingDirectiveForAdditionalTypes;
 
 public static class AdditionalTypesExamples
 {
-    public static List<NullableInt> GetInts()
+    public static List<NullableInt> GetArticleIDs()
     {
-        var articles = new List<NullableInt>() { 1, 2, 3, null, 5 };    
-
-        return articles;
+        return [1, 2, 3, null, 5];
     }
 
     public static Titles GetArticleTitles()
     {
-        var articleTitles = AliasExamples.GetArticles()
-                                         .Select(a => a.Title)
-                                         .ToArray();
-
-        return articleTitles;
+        return AliasExamples.GetCodeMazeArticles()
+                            .Select(a => a.Title)
+                            .ToArray();
     }
 
     public static List<Location> GetLocationsOfInterest()
     {
-        return new List<Location>() { new Location(25, 3), new Location(12, 8), new Location(-2, 0) };
+        return [new Location(25, 3), new Location(12, 8), new Location(-2, 0)];
     }
 }

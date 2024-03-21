@@ -7,14 +7,12 @@ public static class UsingExamples
 {
     public static List<Article> GetArticles()
     {
-        var articles = new List<Article>() 
+        return new List<Article>() 
         {
             new("How to Use the “Using Static” Feature in C#", 950),
             new("Global Using Directives in C#", 1100),
             new("Using Directive for Additional Types", 800)
         };
-
-        return articles;
     }
 
     public static int GetMinimumInteger(int num1, int num2, int num3, int num4)
