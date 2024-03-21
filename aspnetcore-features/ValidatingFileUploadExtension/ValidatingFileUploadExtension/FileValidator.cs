@@ -1,8 +1,7 @@
 ﻿using ValidatingFileUploadExtension;
 
 public static class FileValidator
-{
-   
+{   
     private static readonly List<FileFormatDescriptor> AllowedFormats = [new Image(), new Pdf()];
 
     public static Result Validate(IFormFile file)
