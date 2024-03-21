@@ -1,0 +1,14 @@
+﻿global using System.ComponentModel.DataAnnotations;
+global using FluentResults;
+global using Microsoft.AspNetCore.Diagnostics;
+global using Microsoft.AspNetCore.Mvc;
+global using UsingResultPatternInNETWebAPI.Domain;
+global using UsingResultPatternInNETWebAPI.Dtos;
+global using UsingResultPatternInNETWebAPI.Repositories;
+global using UsingResultPatternInNETWebAPI.v1.Services;
+global using UsingResultPatternInNETWebAPI.v2.Services;
+global using UsingResultPatternInNETWebAPI.v3.Exceptions;
+global using UsingResultPatternInNETWebAPI.v3.Services;
+global using UsingResultPatternInNETWebAPI.v4.Services;
+global using UsingResultPatternInNETWebAPI.v4.TheResultPattern;
+global using UsingResultPatternInNETWebAPI.v5.Services;
