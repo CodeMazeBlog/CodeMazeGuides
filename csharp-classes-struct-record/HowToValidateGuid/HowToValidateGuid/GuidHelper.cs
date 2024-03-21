@@ -2,13 +2,14 @@
 
 namespace HowToValidateGuid;
 
-public class GuidHelper
+public partial class GuidHelper
 {
+    [GeneratedRegex("^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$")]
+    private static partial Regex GuidValidatorRegex();
+
     public static bool ValidateWithRegex(string input)
     {
-        const string pattern = @"^[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$";
-
-        return Regex.IsMatch(input, pattern, RegexOptions.IgnoreCase);
+        return GuidValidatorRegex().IsMatch(input);
     }
 
     public static bool ValidateWithGuidParse(string input)
