@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AssignInitialValueToAutoProperty
 {
     /// <summary>
-    /// Class to assign value with Inline initialization
+    /// Class to assign value with Inline Initialization
     /// </summary>
     public class HondaCars
     {
