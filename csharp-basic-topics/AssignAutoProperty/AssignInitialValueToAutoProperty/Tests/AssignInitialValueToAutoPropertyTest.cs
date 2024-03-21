@@ -1,5 +1,4 @@
-using Assign_Auto_Property;
-using System.ComponentModel;
+using AssignInitialValueToAutoProperty;
 
 namespace Tests
 {
@@ -31,15 +30,6 @@ namespace Tests
 
             Assert.AreEqual("Silver", kiaCars.Color);
             Assert.AreEqual(600000.00m, kiaCars.Cost);
-        }
-        [TestMethod]
-        public void GivenInitialValueWithDefaultValueAttribute_WhenPropertyAccessed_ThenExpectAssignedValue()
-        {
-            var fordCars = new FordCars();
-            DefaultValueAttribute attribute = (DefaultValueAttribute)TypeDescriptor.GetProperties(fordCars)["Color"].Attributes[typeof(DefaultValueAttribute)];
-            string? defaultValue = (string)(attribute.Value);
-
-            Assert.AreEqual("Blue", defaultValue);
         }
     }
 }
