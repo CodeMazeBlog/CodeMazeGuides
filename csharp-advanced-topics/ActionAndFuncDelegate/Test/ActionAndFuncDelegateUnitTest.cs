@@ -33,9 +33,9 @@ namespace Test
 
             string Get(List<string> items)
             {
-                string request = actual;
+                var request = actual;
 
-                string name = "Not Found";
+                var name = "Not Found";
 
                 foreach (var item in items)
                 {
