@@ -5,7 +5,7 @@ public class FileUploadLiveTest
 {
     private readonly WebApplicationFactory<Program> _factory = new();
     [Fact]
-    public async Task UploadEndpoint_ShouldReturnOk_WhenFileIsUploaded()
+    public async Task GivenFileUploadEndpoint_WhenFileIsUploaded_ThenShouldReturnOk()
     {
         const string filePath = "test.txt";
         var fileStream = File.OpenRead(filePath);
