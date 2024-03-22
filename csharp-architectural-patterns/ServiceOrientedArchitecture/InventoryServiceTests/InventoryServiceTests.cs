@@ -8,7 +8,7 @@ namespace InventoryServiceTests
     public class InventoryServiceTests
     {
         [TestMethod]
-        public async Task WhenGetInventoryCountByIdIsInvoked_ThenGetInventoryCountByIdResponseIsReturned()
+        public async Task WhenGetInventoryCountByIdIsInvoked_ThenResponseIsReturned()
         {
             var controller = new InventoryController();
 
