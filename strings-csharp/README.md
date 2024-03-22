@@ -34,3 +34,6 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [Efficiently Converting Strings With UTF-8 String Literals in C#](https://code-maze.com/csharp-efficiently-converting-strings-with-utf-8-string-literals/)
 - [Using Variables Inside Strings in C#](https://code-maze.com/csharp-using-variables-inside-strings/)
 - [C# String Interpolation](https://code-maze.com/csharp-string-interpolation/)
+- [How to Check if a String Contains Only Letters in C#](https://code-maze.com/csharp-check-if-a-string-contains-only-letters/)
+- [Fastest Way to Get the First N Characters of a String in C#](https://code-maze.com/csharp-fastest-way-to-get-the-first-n-characters-of-a-string/)
+- [How to Convert String to Char in C#](https://code-maze.com/csharp-how-to-convert-string-to-char/)

@@ -13,8 +13,8 @@ namespace VerticalSliceArchitecture.Features.Consoles
         public class ConsoleResult
         {
             public int Id { get; set; }
-            public string Name { get; set; }
-            public string Manufacturer { get; set; }
+            public string? Name { get; set; }
+            public string? Manufacturer { get; set; }
         }
 
         //Handler
@@ -33,6 +33,7 @@ namespace VerticalSliceArchitecture.Features.Consoles
             {
                 var consoles = await _serviceManager.Console.GetAllConsolesAsync();
                 var results = _mapper.Map<IEnumerable<ConsoleResult>>(consoles);
+
                 return results;
             }
         }
