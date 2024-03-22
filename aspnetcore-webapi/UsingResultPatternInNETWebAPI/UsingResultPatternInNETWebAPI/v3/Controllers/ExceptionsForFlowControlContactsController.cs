@@ -23,7 +23,7 @@ public class ExceptionsForFlowControlContactsController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public IActionResult GetById(Guid id)
+    public ActionResult<ContactDto> GetById(Guid id)
     {
         try
         {

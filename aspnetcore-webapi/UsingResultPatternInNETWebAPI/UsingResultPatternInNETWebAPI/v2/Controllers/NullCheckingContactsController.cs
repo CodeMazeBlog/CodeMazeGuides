@@ -23,7 +23,7 @@ public class NullCheckingContactsController : ControllerBase
     [HttpGet("{id}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public ActionResult<ContactDto?> GetById(Guid id)
+    public ActionResult<ContactDto> GetById(Guid id)
     {
         var contactDto = _contactsService.GetById(id);
 
