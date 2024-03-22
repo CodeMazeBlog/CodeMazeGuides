@@ -20,7 +20,7 @@ public class FluentResultsContactsService
         return Result.Ok(contactDtos);
     }
 
-    public Result<Contact> GetById(Guid id)
+    public Result<ContactDto> GetById(Guid id)
     {
         var contact = _contactsRepository.GetById(id);
 
@@ -29,10 +29,10 @@ public class FluentResultsContactsService
             return new ApiNotFoundError(id);
         }
 
-        return Result.Ok(contact);
+        return Result.Ok(new ContactDto(contact.Id, contact.Email));
     }
 
-    public Result<Contact> Create(CreateContactDto contact)
+    public Result<ContactDto> Create(CreateContactDto contact)
     {
         if (_contactsRepository.ExistsByEmail(contact.Email))
         {
@@ -41,6 +41,6 @@ public class FluentResultsContactsService
 
         var createdContact = _contactsRepository.Create(new Contact {Email = contact.Email});
 
-        return Result.Ok(createdContact);
+        return Result.Ok(new ContactDto(createdContact.Id, createdContact.Email));
     }
 }

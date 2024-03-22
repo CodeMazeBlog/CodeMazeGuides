@@ -39,6 +39,7 @@ public class FluentResultsContactsServiceIntegrationTest
         // Assert
         Assert.True(result.IsSuccess);
         var contact = result.Value;
+        Assert.IsType<ContactDto>(contact);
         Assert.Equal(existingId, contact.Id);
         Assert.NotNull(contact.Email);
     }
@@ -71,6 +72,7 @@ public class FluentResultsContactsServiceIntegrationTest
         // Assert
         Assert.True(result.IsSuccess);
         var contact = result.Value;
+        Assert.IsType<ContactDto>(contact);
         Assert.NotEqual(Guid.Empty, contact.Id);
         Assert.Equal(createContactDto.Email, contact.Email);
     }
