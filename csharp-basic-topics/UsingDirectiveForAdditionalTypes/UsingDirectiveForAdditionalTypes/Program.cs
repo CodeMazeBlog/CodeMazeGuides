@@ -1,7 +1,6 @@
 ﻿using System;
 using UsingDirectiveForAdditionalTypes;
 
-
 Console.WriteLine("*");
 Console.WriteLine(nameof(UsingExamples));
 var articles = UsingExamples.GetArticles();
@@ -13,7 +12,6 @@ foreach (var article in articles)
 int minInt = UsingExamples.GetMinimumInteger(5, 3, 4, 6);
 Console.WriteLine($"The minimum int is {minInt}");
 
-
 Console.WriteLine("*");
 Console.WriteLine(nameof(AliasExamples));
 var codeMazeArticles = AliasExamples.GetCodeMazeArticles();
@@ -21,7 +19,6 @@ foreach (var codeMazeArticle in codeMazeArticles)
 {
     Console.WriteLine($"{codeMazeArticle.Title}:{codeMazeArticle.WordsCount}");
 }
-
 
 Console.WriteLine("*");
 Console.WriteLine(nameof(AdditionalTypesExamples));
