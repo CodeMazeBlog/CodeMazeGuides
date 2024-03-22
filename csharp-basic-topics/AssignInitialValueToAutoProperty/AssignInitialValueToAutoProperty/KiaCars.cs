@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AssignInitialValueToAutoProperty;
 
 /// <summary>
-/// Class to assign value using property setter
+/// Class to assign value using Field Initialization
 /// </summary>
 public class KiaCars
 {

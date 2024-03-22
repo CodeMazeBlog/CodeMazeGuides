@@ -24,7 +24,7 @@ public class AutoPropertyAssignTest
     }
 
     [TestMethod]
-    public void GivenInitialValueWithPropertySetter_WhenPropertyAccessed_ThenExpectAssignedValue()
+    public void GivenInitialValueWithFieldInitialization_WhenPropertyAccessed_ThenExpectAssignedValue()
     {
         var kiaCars = new KiaCars();
 

@@ -12,6 +12,6 @@ Console.WriteLine($"Car Color: {toyotaCars.Color}");
 Console.WriteLine($"Car Cost: {toyotaCars.Cost}");
 
 var kiaCars = new KiaCars();
-Console.WriteLine("==========Using Property Setter===========");
+Console.WriteLine("==========Using Field Initialization===========");
 Console.WriteLine($"Car Color: {kiaCars.Color}");
 Console.WriteLine($"Car Cost: {kiaCars.Cost}");
