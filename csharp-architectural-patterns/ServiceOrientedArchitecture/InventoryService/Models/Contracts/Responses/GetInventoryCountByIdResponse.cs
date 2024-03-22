@@ -2,6 +2,9 @@
 {
     public sealed class GetInventoryCountByIdResponse
     {
-        public List<Guid> SearchResults { get; } = new();
+        public string Id { get; set; } = "";
+        public string Name { get; set; } = "";
+        public int Count { get; set; } = 0;
+        public string UnitOfMeasurement { get; set; } = "";
     }
 }

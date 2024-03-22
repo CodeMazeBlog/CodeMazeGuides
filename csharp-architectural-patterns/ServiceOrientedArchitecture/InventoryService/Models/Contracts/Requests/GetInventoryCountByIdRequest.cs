@@ -2,6 +2,6 @@
 {
     public sealed class GetInventoryCountByIdRequest
     {
-        public Guid ItemId { get; } = Guid.NewGuid();
+        public string ItemId { get; set; } = "";
     }
 }
