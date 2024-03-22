@@ -33,8 +33,8 @@ Content-Type: application/json
 ### Get all contacts
 GET {{baseUrl}}/{{apiVersion}}/contacts
 
-### Get contact by id with the basic controller
+### Get contact by id
 GET {{baseUrl}}/{{apiVersion}}/contacts/{{contactId}}
 
-### Get non-existing contact by id with the basic controller
+### Get non-existing contact by id
 GET {{baseUrl}}/{{apiVersion}}/contacts/00000000-0000-0000-0000-000000000000
