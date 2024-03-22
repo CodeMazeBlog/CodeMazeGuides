@@ -4,18 +4,18 @@
 [Route("api/v4/contacts")]
 public class TheResultPatternContactsController : ControllerBase
 {
-    private readonly TheResultPatternContactsService _contactsContactsService;
+    private readonly TheResultPatternContactsService _contactsService;
 
-    public TheResultPatternContactsController(TheResultPatternContactsService contactsContactsService)
+    public TheResultPatternContactsController(TheResultPatternContactsService contactsService)
     {
-        _contactsContactsService = contactsContactsService;
+        _contactsService = contactsService;
     }
 
     [HttpGet]
     [ProducesResponseType(200)]
     public ActionResult<IEnumerable<ContactDto>> GetAll()
     {
-        var contactDtos = _contactsContactsService.GetAll();
+        var contactDtos = _contactsService.GetAll();
         
         return Ok(contactDtos);
     }
@@ -25,7 +25,7 @@ public class TheResultPatternContactsController : ControllerBase
     [ProducesResponseType(404)]
     public ActionResult<ContactDto> GetById(Guid id)
     {
-        var result = _contactsContactsService.GetById(id);
+        var result = _contactsService.GetById(id);
 
         if (result.IsFailure)
         {
@@ -40,7 +40,7 @@ public class TheResultPatternContactsController : ControllerBase
     [ProducesResponseType(400)]
     public IActionResult Create(CreateContactDto createContactDto)
     {
-        var result = _contactsContactsService.Create(createContactDto);
+        var result = _contactsService.Create(createContactDto);
 
         if (result.IsFailure)
         {
