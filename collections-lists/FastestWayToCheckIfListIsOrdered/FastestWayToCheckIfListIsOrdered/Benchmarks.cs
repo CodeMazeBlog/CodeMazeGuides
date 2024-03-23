@@ -8,7 +8,8 @@ namespace FastestWayToCheckIfListIsOrdered;
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
-[HideColumns(Column.Median, Column.StdDev, Column.Error, Column.Ratio, Column.RatioSD, Column.AllocRatio)]
+[HideColumns(Column.Median, Column.StdDev, Column.Error, Column.Ratio, Column.RatioSD,
+    Column.AllocRatio, Column.Gen0, Column.Gen1, Column.Gen2)]
 public class Benchmarks
 {
     private List<int> _list = null!;
