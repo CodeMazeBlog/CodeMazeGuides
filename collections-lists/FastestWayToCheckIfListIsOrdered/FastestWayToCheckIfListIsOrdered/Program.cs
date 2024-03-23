@@ -11,9 +11,6 @@ List<Employee> employees = [
 var areOrdered = ListOrderValidators.IsOrderedUsingForLoop(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidators.IsOrderedUsingArraySort(employees);
-Console.WriteLine(areOrdered);
-
 areOrdered = ListOrderValidators.IsOrderedUsingEnumerator(employees);
 Console.WriteLine(areOrdered);
 
@@ -26,13 +23,10 @@ Console.WriteLine(areOrdered);
 areOrdered = ListOrderValidators.IsOrderedUsingLinqWithZip(employees);
 Console.WriteLine(areOrdered);
 
-areOrdered = ListOrderValidators.IsOrderedUsingSpans(employees);
+areOrdered = ListOrderValidators.IsOrderedUsingForLoopWithSpan(employees);
 Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidators.IsOrderedUsingParallelFor(employees);
-Console.WriteLine(areOrdered);
-
-areOrdered = ListOrderValidators.IsOrderedUsingParallelForWithSpans(employees);
 Console.WriteLine(areOrdered);
 
 areOrdered = ListOrderValidators.IsOrderedUsingParallelForPartitioned(employees);

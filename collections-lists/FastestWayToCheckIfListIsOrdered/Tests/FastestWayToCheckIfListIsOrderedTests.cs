@@ -1,4 +1,3 @@
-
 namespace Tests;
 
 public class FastestWayToCheckIfListIsOrderedTests
@@ -34,15 +33,15 @@ public class FastestWayToCheckIfListIsOrderedTests
     }
 
     [Fact]
-    public void GivenOrderedEmployees_WhenCheckedUsingArraySort_ThenShouldBeTrue()
+    public void GivenOrderedEmployees_WhenCheckedUsingSpanSort_ThenShouldBeTrue()
     {
-        ListOrderValidators.IsOrderedUsingArraySort(OrderedEmployees).Should().BeTrue();
+        ListOrderValidators.IsOrderedUsingSpanSort(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
-    public void GivenUnorderedEmployees_WhenCheckedUsingArraySort_ThenShouldBeFalse()
+    public void GivenUnorderedEmployees_WhenCheckedUsingSpanSort_ThenShouldBeFalse()
     {
-        ListOrderValidators.IsOrderedUsingArraySort(OutOfOrderEmployees).Should().BeFalse();
+        ListOrderValidators.IsOrderedUsingSpanSort(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
@@ -60,13 +59,13 @@ public class FastestWayToCheckIfListIsOrderedTests
     [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingSpans_ThenShouldBeTrue()
     {
-        ListOrderValidators.IsOrderedUsingSpans(OrderedEmployees).Should().BeTrue();
+        ListOrderValidators.IsOrderedUsingForLoopWithSpan(OrderedEmployees).Should().BeTrue();
     }
 
     [Fact]
     public void GivenUnorderedEmployees_WhenCheckedUsingSpans_ThenShouldBeFalse()
     {
-        ListOrderValidators.IsOrderedUsingSpans(OutOfOrderEmployees).Should().BeFalse();
+        ListOrderValidators.IsOrderedUsingForLoopWithSpan(OutOfOrderEmployees).Should().BeFalse();
     }
 
     [Fact]
@@ -118,18 +117,6 @@ public class FastestWayToCheckIfListIsOrderedTests
     }
 
     [Fact]
-    public void GivenOrderedEmployees_WhenCheckedUsingParallelForWithSpans_ThenShouldBeTrue()
-    {
-        ListOrderValidators.IsOrderedUsingParallelForWithSpans(OrderedEmployees).Should().BeTrue();
-    }
-
-    [Fact]
-    public void GivenUnorderedEmployees_WhenCheckedUsingParallelForWithSpans_ThenShouldBeFalse()
-    {
-        ListOrderValidators.IsOrderedUsingParallelForWithSpans(OutOfOrderEmployees).Should().BeFalse();
-    }
-
-    [Fact]
     public void GivenOrderedEmployees_WhenCheckedUsingParallelForPartitioned_ThenShouldBeTrue()
     {
         ListOrderValidators.IsOrderedUsingParallelForPartitioned(OrderedEmployees).Should().BeTrue();
@@ -162,13 +149,22 @@ public class FastestWayToCheckIfListIsOrderedTests
     }
 
     [Fact]
+    public void
+        GivenOrderedIntegersWithLengthOneOverProcessorCount_WhenCheckedUsingParallelForPartitioned_ThenShouldBeTrue()
+    {
+        var list = Enumerable.Range(0, Environment.ProcessorCount + 1).ToList();
+
+        ListOrderValidators.IsOrderedUsingParallelForPartitioned(list).Should().BeTrue();
+    }
+
+    [Fact]
     public void GivenUnorderedIntegers_WhenCheckedUsingParallelForPartitioned_ThenShouldBeFalse()
     {
-        var list = Enumerable.Repeat(42, Environment.ProcessorCount * 100 + 53).ToList();
+        var list = Enumerable.Repeat(42, Environment.ProcessorCount * 100).ToList();
         for (var i = 1; i < list.Count; ++i)
         {
             var temp = list[i];
-            list[i] = temp-2;
+            list[i] = temp - 2;
 
             ListOrderValidators.IsOrderedUsingParallelForPartitioned(list).Should().BeFalse();
 
@@ -185,17 +181,84 @@ public class FastestWayToCheckIfListIsOrderedTests
     }
 
     [Fact]
+    public void
+        GivenOrderedIntegersWithLengthOneOverProcessorCount_WhenCheckedUsingParallelForPartitionedWithSpans_ThenShouldBeTrue()
+    {
+        var list = Enumerable.Range(0, Environment.ProcessorCount + 1).ToList();
+
+        ListOrderValidators.IsOrderedUsingParallelForPartitionedWithSpans(list).Should().BeTrue();
+    }
+
+    [Fact]
     public void GivenUnorderedIntegers_WhenCheckedUsingParallelForPartitionedWithSpans_ThenShouldBeFalse()
     {
-        var list = Enumerable.Repeat(42, Environment.ProcessorCount * 100 + 53).ToList();
+        var list = Enumerable.Repeat(42, Environment.ProcessorCount * 100).ToList();
         for (var i = 1; i < list.Count; ++i)
         {
             var temp = list[i];
-            list[i] = temp-2;
+            list[i] = temp - 2;
 
             ListOrderValidators.IsOrderedUsingParallelForPartitionedWithSpans(list).Should().BeFalse();
 
             list[i] = temp;
+        }
+    }
+
+    [Fact]
+    public void GivenUnorderedIntegerLists_WhenCheckedUsingParallelForPartitioned_ThenShouldBeFalse()
+    {
+        for (var i = 1; i < 8; ++i)
+        {
+            var list = Enumerable.Range(0, Environment.ProcessorCount * i + 1).ToList();
+            for (var j = 1; j < list.Count; ++j)
+            {
+                var temp = list[j];
+                list[j] = temp - 2;
+
+                ListOrderValidators.IsOrderedUsingParallelForPartitioned(list).Should().BeFalse();
+
+                list[j] = temp;
+            }
+        }
+    }
+
+    [Fact]
+    public void GivenOrderedIntegerLists_WhenCheckedUsingParallelForPartitioned_ThenShouldBeTrue()
+    {
+        for (var i = 1; i < 8; ++i)
+        {
+            var list = Enumerable.Range(0, Environment.ProcessorCount * i + 1).ToList();
+
+            ListOrderValidators.IsOrderedUsingParallelForPartitioned(list).Should().BeTrue();
+        }
+    }
+
+    [Fact]
+    public void GivenUnorderedIntegerLists_WhenCheckedUsingParallelForPartitionedWithSpans_ThenShouldBeFalse()
+    {
+        for (var i = 1; i < 8; ++i)
+        {
+            var list = Enumerable.Range(0, Environment.ProcessorCount * i + 1).ToList();
+            for (var j = 1; j < list.Count; ++j)
+            {
+                var temp = list[j];
+                list[j] = temp - 2;
+
+                ListOrderValidators.IsOrderedUsingParallelForPartitionedWithSpans(list).Should().BeFalse();
+
+                list[j] = temp;
+            }
+        }
+    }
+
+    [Fact]
+    public void GivenOrderedIntegerLists_WhenCheckedUsingParallelForPartitionedWithSpans_ThenShouldBeFalse()
+    {
+        for (var i = 1; i < 8; ++i)
+        {
+            var list = Enumerable.Range(0, Environment.ProcessorCount * i + 1).ToList();
+
+            ListOrderValidators.IsOrderedUsingParallelForPartitionedWithSpans(list).Should().BeTrue();
         }
     }
 }
