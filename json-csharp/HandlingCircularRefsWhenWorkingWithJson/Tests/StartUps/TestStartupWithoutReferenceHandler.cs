@@ -1,9 +1,8 @@
-﻿using HandlingCircularRefsWhenWorkingWithJson.Services.Interfaces;
+﻿using HandlingCircularRefsWhenWorkingWithJson.Controllers;
 using HandlingCircularRefsWhenWorkingWithJson.Services;
+using HandlingCircularRefsWhenWorkingWithJson.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json.Serialization;
-using HandlingCircularRefsWhenWorkingWithJson.Controllers;
 
 namespace Tests.StartUps
 {
