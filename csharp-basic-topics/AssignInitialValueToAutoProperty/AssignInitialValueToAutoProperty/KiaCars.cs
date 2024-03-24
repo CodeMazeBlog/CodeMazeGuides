@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace AssignInitialValueToAutoProperty;
 
-namespace AssignInitialValueToAutoProperty;
-
-/// <summary>
-/// Class to assign value using Field Initialization
-/// </summary>
 public class KiaCars
 {
     private string _color = "Silver";

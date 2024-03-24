@@ -1,5 +1,3 @@
-using AssignInitialValueToAutoProperty;
-
 namespace Tests;
 
 [TestClass]
