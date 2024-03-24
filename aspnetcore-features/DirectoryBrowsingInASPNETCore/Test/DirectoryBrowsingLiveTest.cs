@@ -4,7 +4,7 @@ namespace Test
     public class DirectoryBrowsingLiveTest
     {
         [TestMethod]
-        public async void WhenAccessingTheDirectoryBrowsingPageThenCorrectStatusCode()
+        public async void WhenAccessingTheDirectoryBrowsingPage_ThenCorrectStatusCode()
         {
             var client = new HttpClient();
             var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5291/wwwroot");
