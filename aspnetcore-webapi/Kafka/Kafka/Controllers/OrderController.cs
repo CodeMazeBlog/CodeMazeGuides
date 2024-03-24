@@ -2,33 +2,32 @@ using Confluent.Kafka;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace Kafka.Controllers
+namespace Kafka.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class OrderController(IProducer<string, string> producer) : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class OrderController(IProducer<string, string> producer) : ControllerBase
+    private readonly IProducer<string, string> _producer = producer;
+    private readonly string _topic = "order-events";
+
+    [HttpPost("place-order")]
+    public async Task<IActionResult> PlaceOrder(OrderDetails orderDetails)
     {
-        private readonly IProducer<string, string> _producer = producer;
-        private readonly string _topic = "order-events";
-
-        [HttpPost("place-order")]
-        public async Task<IActionResult> PlaceOrder(OrderDetails orderDetails)
+        try
         {
-            try
+            var kafkaMessage = new Message<string, string>
             {
-                var kafkaMessage = new Message<string, string>
-                {
-                    Value = JsonConvert.SerializeObject(orderDetails)
-                };
+                Value = JsonConvert.SerializeObject(orderDetails)
+            };
 
-                await _producer.ProduceAsync(_topic, kafkaMessage);
+            await _producer.ProduceAsync(_topic, kafkaMessage);
 
-                return Ok("Order placed successfully");
-            }
-            catch (ProduceException<string, string> ex)
-            {
-                return BadRequest($"Error publishing message: {ex.Error.Reason}");
-            }
+            return Ok("Order placed successfully");
+        }
+        catch (ProduceException<string, string> ex)
+        {
+            return BadRequest($"Error publishing message: {ex.Error.Reason}");
         }
     }
 }

@@ -1,34 +1,34 @@
 ﻿using Confluent.Kafka;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
-namespace OrderConfirmationService
+
+namespace OrderConfirmationService;
+
+public class ConsumerService(IConsumer<string, string> consumer) : IHostedService
 {
-    public class ConsumerService(IConsumer<string, string> consumer) : IHostedService
+    private readonly IConsumer<string, string> _consumer = consumer;
+
+    public Task StartAsync(CancellationToken cancellationToken)
     {
-        private readonly IConsumer<string, string> _consumer = consumer;
+        _consumer.Subscribe("order-events");
 
-        public Task StartAsync(CancellationToken cancellationToken)
+        Task.Run(() =>
         {
-            _consumer.Subscribe("order-events");
-
-            Task.Run(() =>
+            while (!cancellationToken.IsCancellationRequested)
             {
-                while (!cancellationToken.IsCancellationRequested)
-                {
-                    var consumeResult = _consumer.Consume(cancellationToken);
+                var consumeResult = _consumer.Consume(cancellationToken);
 
-                    var message = JsonConvert.DeserializeObject<OrderDetails>(consumeResult.Message.Value);
+                var message = JsonConvert.DeserializeObject<OrderDetails>(consumeResult.Message.Value);
 
-                    Console.WriteLine($"Received message: {consumeResult.Message.Value}");
-                }
-            }, cancellationToken);
+                Console.WriteLine($"Received message: {consumeResult.Message.Value}");
+            }
+        }, cancellationToken);
 
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
+    }
 
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        return Task.CompletedTask;
     }
 }
