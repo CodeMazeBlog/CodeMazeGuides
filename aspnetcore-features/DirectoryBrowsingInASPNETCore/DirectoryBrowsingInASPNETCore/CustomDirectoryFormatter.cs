@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.StaticFiles;
+﻿using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
 using System.Text;
 
@@ -29,6 +28,7 @@ public class CustomDirectoryFormatter:IDirectoryFormatter
 
         var response = context.Response;
         response.ContentType = "text/html; charset=utf-8";
+
         await response.WriteAsync(html.ToString());
     }
 }
