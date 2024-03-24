@@ -1,6 +1,6 @@
 @InMemoryZipFilesInNet_HostAddress = http://localhost:5293
 
-GET {{InMemoryZipFilesInNet_HostAddress}}/create-and-read-zip-file/
+GET {{InMemoryZipFilesInNet_HostAddress}}/test-file/
 Accept: application/zip
 
 ###
