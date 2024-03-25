@@ -17,7 +17,6 @@ public class Program
         }
 
         var address = "Miami, Florida";
-
         var locationService = new GoogleLocationServiceWrapper(apiKey);
         var latLongWithNuGet = new LatLongWithNuGet(locationService);
         var coordinatesNuGet = latLongWithNuGet.GetLatLongWithNuGet(address);
