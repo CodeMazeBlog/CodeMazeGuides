@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Generator": {
-      "commandName": "Project",
-      "nativeDebugging": false
-    }
-  }
-}
