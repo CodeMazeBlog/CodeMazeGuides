@@ -4,12 +4,16 @@ namespace Test
     public class DirectoryBrowsingLiveTest
     {
         [TestMethod]
-        public async void WhenAccessingTheDirectoryBrowsingPage_ThenCorrectStatusCode()
+        public async Task WhenAccessingTheDirectoryBrowsingPage_ThenCorrectStatusCode()
         {
-            var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:5291/wwwroot");
-            var response = await client.SendAsync(request);
+            //Arrange
+            var webApplication = new WebApplicationFactory<Program>();
+            var client = webApplication.CreateClient();
 
+            //Act
+            var response = await client.GetAsync($"{client.BaseAddress}wwwroot");
+
+            //Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
     }
