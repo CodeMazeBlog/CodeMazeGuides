@@ -1,0 +1,6 @@
+@HandlingCircularRefsWhenWorkingWithJson_HostAddress = http://localhost:5161
+
+GET {{HandlingCircularRefsWhenWorkingWithJson_HostAddress}}/api/employee/
+Accept: application/json
+
+###
