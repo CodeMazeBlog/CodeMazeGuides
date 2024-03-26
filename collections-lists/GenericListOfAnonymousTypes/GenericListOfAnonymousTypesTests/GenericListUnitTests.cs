@@ -1,34 +1,49 @@
 using GenericListOfAnonymousTypes;
-using System.Collections;
 
 namespace GenericListOfAnonymousTypesTests;
 
 [TestClass]
-public class GenericListUnitTests<T>
+public class GenericListUnitTests
 {
-    object[] _inputObject = GenericListOfAnonymousTypesExamples<T>.GenerateRandomAnonymousObject();
+    object[] _inputObject = GenericListOfAnonymousTypesExamples.GenerateRandomAnonymousObject();
 
     [TestMethod]
     public void GivenAnonymousObject_WhenToListMethodInvoked_ThenValidateListCreated()
     {
-        var actualOutput = GenericListOfAnonymousTypesExamples<object>.GeneretaListOfAnonymousTypesUsingToList(_inputObject);
+        var actualOutput = GenericListOfAnonymousTypesExamples.GeneretaListOfAnonymousTypesUsingToList(_inputObject);
 
         Assert.IsInstanceOfType(actualOutput, typeof(List<object>));
     }
 
     [TestMethod]
-    public void GivenAnonymousObject_WhenArrayListMethodInvoked_ThenValidateListCreated()
+    public void GivenAnonymousObject_WhenDynamicUsed_ThenValidateListCreated()
     {
-        var actualOutput = GenericListOfAnonymousTypesExamples<object>.GeneretaListOfAnonymousTypesUsingArrayList(_inputObject);
+        var actualOutput = GenericListOfAnonymousTypesExamples.GeneretaListOfAnonymousTypesUsingDynamic(_inputObject);
 
-        Assert.IsInstanceOfType(actualOutput, typeof(ArrayList));
+        Assert.IsInstanceOfType(actualOutput, typeof(List<dynamic>));
     }
 
     [TestMethod]
-    public void GivenAnonymousObject_WhenCustomMethodInvoked_ThenValidateListCreated()
+    public void GivenAnonymousObject_WhenLinqUsed_ThenValidateListCreated()
     {
-        var actualOutput = GenericListOfAnonymousTypesExamples<object>.GenerateListOfAnonymousTypesUsingCustomMethod(_inputObject);
+        var actualOutput = GenericListOfAnonymousTypesExamples.GeneretaListOfAnonymousTypesUsingLINQ();
 
         Assert.IsInstanceOfType(actualOutput, typeof(List<object>));
+    }
+
+    [TestMethod]
+    public void GivenAnonymousObject_WhenGenericsUsed_ThenValidateListCreated()
+    {
+        var actualOutput = GenericMethod<object>.CreateGenericList(_inputObject);
+
+        Assert.IsInstanceOfType(actualOutput, typeof(List<object>));
+    }
+
+    [TestMethod]
+    public void GivenAnonymousObject_WhenGenerateSampleAnonymousTypeMethodInvoked_ThenValidateListCreated()
+    {
+        var actualOutput = GenericListOfAnonymousTypesExamples.GenerateRandomAnonymousObject();
+        
+        Assert.IsInstanceOfType(actualOutput, typeof(object[]));
     }
 }

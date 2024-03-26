@@ -1,10 +1,8 @@
-﻿using System.Collections;
+﻿namespace GenericListOfAnonymousTypes;
 
-namespace GenericListOfAnonymousTypes;
-
-public class GenericListOfAnonymousTypesExamples<T>
+public class GenericListOfAnonymousTypesExamples
 {
-    public static List<T> GeneretaListOfAnonymousTypesUsingToList(T[] listItems) 
+    public static List<object> GeneretaListOfAnonymousTypesUsingToList(object[] listItems) 
     {
          
         var listOfAnonymous = listItems.ToList();
@@ -12,21 +10,40 @@ public class GenericListOfAnonymousTypesExamples<T>
         return listOfAnonymous;
     }
 
-    public static ArrayList GeneretaListOfAnonymousTypesUsingArrayList(T[] listItems) 
+    public static List<dynamic> GeneretaListOfAnonymousTypesUsingDynamic(object[] listItems) 
     {
-        var anonymousObj = new ArrayList { listItems };
+        var anonymousObj = new List<dynamic>(listItems);
 
         return anonymousObj;
     }
 
-    public static List<T> GenerateListOfAnonymousTypesUsingCustomMethod(params T[] listItems) 
+    public static List<object> GeneretaListOfAnonymousTypesUsingObject(object[] listItems)
     {
-        return new List<T>(listItems);
+        var anonymousObj = new List<object>(listItems);
+
+        return anonymousObj;
+    }
+
+    public static List<object> GeneretaListOfAnonymousTypesUsingLINQ()
+    {
+        var anonymousObj = new[] {
+            new { Name = "Patrick", Age = 32 },
+            new { Name = "Mary", Age = 25 },
+            new { Name = "Marley", Age = 40 }
+        };
+
+        var result = anonymousObj.Select(x => new { x.Name, x.Age });
+
+        return new List<object>(result);
     }
 
     public static object[] GenerateRandomAnonymousObject() 
     {
-        var anonymousObj = new[] { new { Name = "John", Age = 30 }, new { Name = "Alice", Age = 25 }, new { Name = "Bob", Age = 40 } };
+        var anonymousObj = new[] { 
+            new { Name = "Patrick", Age = 32 },
+            new { Name = "Mary", Age = 25 },
+            new { Name = "Marley", Age = 40 } 
+        };
 
         return anonymousObj;
     }
