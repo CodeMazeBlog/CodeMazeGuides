@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace UsingResultPatternInNETWebAPI.Exceptions;
+﻿namespace UsingResultPatternInNETWebAPI.Exceptions;
 
 public class DefaultExceptionHandler : IExceptionHandler
 {

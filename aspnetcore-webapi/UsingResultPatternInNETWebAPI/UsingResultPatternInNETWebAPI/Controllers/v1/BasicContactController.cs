@@ -1,6 +1,4 @@
-﻿using UsingResultPatternInNETWebAPI.Services;
-
-namespace UsingResultPatternInNETWebAPI.Controllers.v1;
+﻿namespace UsingResultPatternInNETWebAPI.Controllers.v1;
 
 [ApiController]
 [Route("api/v1/contacts")]

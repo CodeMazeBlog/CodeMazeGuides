@@ -1,7 +1,4 @@
-﻿using UsingResultPatternInNETWebAPI.Exceptions;
-using UsingResultPatternInNETWebAPI.Services;
-
-namespace Tests.Services;
+﻿namespace Tests.Services;
 
 public class ExceptionsForFlowControlContactServiceTests
 {

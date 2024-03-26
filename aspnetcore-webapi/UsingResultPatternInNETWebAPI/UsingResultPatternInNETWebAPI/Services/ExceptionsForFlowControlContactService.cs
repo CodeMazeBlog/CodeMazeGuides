@@ -1,7 +1,4 @@
-﻿using UsingResultPatternInNETWebAPI.Exceptions;
-using ValidationException = UsingResultPatternInNETWebAPI.Exceptions.ValidationException;
-
-namespace UsingResultPatternInNETWebAPI.Services;
+﻿namespace UsingResultPatternInNETWebAPI.Services;
 
 public class ExceptionsForFlowControlContactService
 {

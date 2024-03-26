@@ -1,7 +1,4 @@
-﻿using UsingResultPatternInNETWebAPI.Errors;
-using UsingResultPatternInNETWebAPI.Services;
-
-namespace Tests.Services;
+﻿namespace Tests.Services;
 
 public class FluentResultsContactServiceTests
 {
