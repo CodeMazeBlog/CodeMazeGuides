@@ -28,14 +28,15 @@ public class CustomerControllerTestsConcurrency : IClassFixture<WebApplicationFa
         });
     }
 
-    [Fact]
-    public async Task WhenConcurrencyRateLimitedEndpoint_ThenCannotHaveMoreThan10ConcurrentRequests()
+    [Theory]
+    [InlineData("/Customer/Get", 11)]
+    public async Task WhenConcurrencyRateLimitedEndpoint_ThenCannotHaveMoreThan10ConcurrentRequests(string url, int limit)
     {
         var tasks = new List<Task<HttpResponseMessage>>();
 
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < limit; i++)
         {
-            tasks.Add(_client.GetAsync("/Customer/Get"));
+            tasks.Add(_client.GetAsync(url));
         }
 
         var responses = await Task.WhenAll(tasks);

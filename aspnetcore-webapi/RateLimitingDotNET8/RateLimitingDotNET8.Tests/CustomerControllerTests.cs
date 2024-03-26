@@ -61,13 +61,13 @@ public class CustomerControllerTests : IClassFixture<WebApplicationFactory<Progr
     [Theory]
     [InlineData("/Customer/Details", 20)]
     [InlineData("/Customer/GetById", 20)]
-    public void WhenRateLimitedEndpointsExceedLimit_ThenReturnsTooManyRequests(string url, int limit)
+    public async Task WhenRateLimitedEndpointsExceedLimit_ThenReturnsTooManyRequests(string url, int limit)
     {
         HttpStatusCode lastStatusCode = HttpStatusCode.OK;
 
         for (int i = 0; i < limit; i++)
         {
-            var response = _client.GetAsync(url).Result;
+            var response = await _client.GetAsync(url);
             lastStatusCode = response.StatusCode;
             // Break as soon as the rate limit has been reached.
             if (response.StatusCode == HttpStatusCode.TooManyRequests)
