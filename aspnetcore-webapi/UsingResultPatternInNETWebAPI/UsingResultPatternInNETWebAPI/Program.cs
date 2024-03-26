@@ -1,3 +1,6 @@
+using UsingResultPatternInNETWebAPI.Exceptions;
+using UsingResultPatternInNETWebAPI.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IContactRepository, InMemoryContactRepository>();

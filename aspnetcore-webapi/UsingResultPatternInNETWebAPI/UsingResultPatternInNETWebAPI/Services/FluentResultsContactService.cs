@@ -1,6 +1,6 @@
-﻿using UsingResultPatternInNETWebAPI.v5.Errors;
+﻿using UsingResultPatternInNETWebAPI.Errors;
 
-namespace UsingResultPatternInNETWebAPI.v5.Services;
+namespace UsingResultPatternInNETWebAPI.Services;
 
 public class FluentResultsContactService
 {

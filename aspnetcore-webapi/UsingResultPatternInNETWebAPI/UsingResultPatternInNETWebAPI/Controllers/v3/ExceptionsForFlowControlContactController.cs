@@ -1,4 +1,7 @@
-﻿namespace UsingResultPatternInNETWebAPI.v3.Controllers;
+﻿using UsingResultPatternInNETWebAPI.Exceptions;
+using UsingResultPatternInNETWebAPI.Services;
+
+namespace UsingResultPatternInNETWebAPI.Controllers.v3;
 
 [ApiController]
 [Route("api/v3/contacts")]

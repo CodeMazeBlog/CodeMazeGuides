@@ -1,4 +1,4 @@
-﻿namespace Tests;
+﻿namespace Tests.Controllers;
 
 public class ContactControllerTests : IClassFixture<ApiApplicationFactory>
 {

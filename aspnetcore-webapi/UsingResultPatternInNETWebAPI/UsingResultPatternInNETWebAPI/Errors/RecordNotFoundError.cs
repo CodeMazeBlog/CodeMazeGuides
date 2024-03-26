@@ -1,4 +1,4 @@
-﻿namespace UsingResultPatternInNETWebAPI.v5.Errors;
+﻿namespace UsingResultPatternInNETWebAPI.Errors;
 
 public class RecordNotFoundError : Error
 {

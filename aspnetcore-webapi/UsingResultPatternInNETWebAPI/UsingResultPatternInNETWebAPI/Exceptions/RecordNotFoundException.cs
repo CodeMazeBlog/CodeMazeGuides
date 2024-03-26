@@ -1,4 +1,4 @@
-﻿namespace UsingResultPatternInNETWebAPI.v3.Exceptions;
+﻿namespace UsingResultPatternInNETWebAPI.Exceptions;
 
 public class RecordNotFoundException : Exception
 {

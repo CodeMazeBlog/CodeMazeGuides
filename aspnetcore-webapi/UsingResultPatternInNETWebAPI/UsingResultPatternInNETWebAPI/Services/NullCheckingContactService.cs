@@ -1,4 +1,4 @@
-﻿namespace UsingResultPatternInNETWebAPI.v2.Services;
+﻿namespace UsingResultPatternInNETWebAPI.Services;
 
 public class NullCheckingContactService
 {

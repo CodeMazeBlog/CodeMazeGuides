@@ -1,4 +1,6 @@
-﻿namespace Tests;
+﻿using UsingResultPatternInNETWebAPI.Services;
+
+namespace Tests.Services;
 
 public class NullCheckingContactServiceTests
 {

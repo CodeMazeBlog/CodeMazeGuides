@@ -1,4 +1,4 @@
-﻿namespace UsingResultPatternInNETWebAPI.v4.TheResultPattern;
+﻿namespace UsingResultPatternInNETWebAPI.TheResultPattern;
 
 public sealed record CustomError(string Code, string Message)
 {

@@ -1,4 +1,6 @@
-﻿namespace UsingResultPatternInNETWebAPI.v2.Controllers;
+﻿using UsingResultPatternInNETWebAPI.Services;
+
+namespace UsingResultPatternInNETWebAPI.Controllers.v2;
 
 [ApiController]
 [Route("api/v2/contacts")]

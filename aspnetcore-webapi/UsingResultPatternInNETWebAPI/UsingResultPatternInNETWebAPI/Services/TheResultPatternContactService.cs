@@ -1,4 +1,6 @@
-﻿namespace UsingResultPatternInNETWebAPI.v4.Services;
+﻿using UsingResultPatternInNETWebAPI.TheResultPattern;
+
+namespace UsingResultPatternInNETWebAPI.Services;
 
 public class TheResultPatternContactService
 {

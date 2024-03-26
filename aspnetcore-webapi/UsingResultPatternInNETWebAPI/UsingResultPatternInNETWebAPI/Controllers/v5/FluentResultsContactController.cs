@@ -1,6 +1,6 @@
-﻿using System.Net;
+﻿using UsingResultPatternInNETWebAPI.Services;
 
-namespace UsingResultPatternInNETWebAPI.v5.Controllers;
+namespace UsingResultPatternInNETWebAPI.Controllers.v5;
 
 [ApiController]
 [Route("api/v5/contacts")]
