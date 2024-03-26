@@ -5,6 +5,7 @@
         private const double HRA_Percentage = 0.4;
         public const string TEXT_IN_LOWER_CASE = "programming delegates in csharp";
         public const string TEXT_IN_UPPER_CASE = "PROGRAMMING DELEGATES IN CSHARP";
+
         public static double GetHra(double basic) => (double)(basic * HRA_Percentage);
 
         private static string ConvertToLower(string str) => str.ToLower();

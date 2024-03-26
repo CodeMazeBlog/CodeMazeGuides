@@ -11,7 +11,7 @@ namespace Tests
         {
             var textInLowerCase = DelegateExample.GetTextInLowercase(TEXT_IN_UPPER_CASE);
 
-            Assert.True(TEXT_IN_UPPER_CASE.ToLower().Equals(textInLowerCase), "Error converting text to lower case.");
+            Assert.True(TEXT_IN_UPPER_CASE.ToLower().Equals(textInLowerCase), "Error in converting text to lower case.");
         }
 
         [Fact]

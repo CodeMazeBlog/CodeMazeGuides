@@ -4,7 +4,7 @@ var textInLowerCase = DelegateExample.GetTextInLowercase(DelegateExample.TEXT_IN
 Console.WriteLine(textInLowerCase);
 
 Action<string> actionDelegate = new Action<string>(Display);
-actionDelegate("Hello World!");
+actionDelegate("Hello World!!!");
 void Display(string str) => Console.WriteLine(str);
 
 Console.WriteLine(DelegateExample.GetHra(1000.00));
