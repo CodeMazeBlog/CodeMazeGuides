@@ -10,9 +10,11 @@ public class Program
             .AddUserSecrets<Program>();
         var configuration = builder.Build();
         var apiKey = configuration["YOUR_API_KEY"];
+
         if (string.IsNullOrEmpty(apiKey))
         {
             Console.WriteLine("API key not found.");
+            
             return;
         }
 
@@ -20,6 +22,7 @@ public class Program
         var locationService = new GoogleLocationServiceWrapper(apiKey);
         var latLongWithNuGet = new LatLongWithNuGet(locationService);
         var coordinatesNuGet = latLongWithNuGet.GetLatLongWithNuGet(address);
+
         Console.WriteLine(coordinatesNuGet);
 
         var httpClient = new HttpClient
@@ -28,6 +31,7 @@ public class Program
         };
         var latLongWithHttpClient = new LatLongWithHttpClient(httpClient, apiKey);
         var coordinatesHttpClient = await latLongWithHttpClient.GetLatLongWithHttpClient(address);
+
         Console.WriteLine(coordinatesHttpClient);
     }
 }

@@ -34,10 +34,8 @@ public class LatLongWithHttpClient
 
                 return $"Address ({address}) is at {latitude}, {longitude}";
             }
-            else
-            {
-                return $"Error retrieving coordinates: API returned '{status}'.";
-            }
+            
+            return $"Error retrieving coordinates: API returned '{status}'.";
         }
         catch (Exception ex)
         {

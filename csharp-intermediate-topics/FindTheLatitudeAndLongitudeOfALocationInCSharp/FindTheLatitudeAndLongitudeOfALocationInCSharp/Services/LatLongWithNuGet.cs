@@ -14,6 +14,7 @@ public class LatLongWithNuGet
         try
         {
             var latlong = _locationService.GetLatLongFromAddress(address);
+            
             return $"Address ({address}) is at {latlong.Latitude}, {latlong.Longitude}";
         }
         catch (Exception ex)
