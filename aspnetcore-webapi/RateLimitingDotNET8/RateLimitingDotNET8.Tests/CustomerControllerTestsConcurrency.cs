@@ -33,7 +33,7 @@ public class CustomerControllerTestsConcurrency : IClassFixture<WebApplicationFa
     {
         var tasks = new List<Task<HttpResponseMessage>>();
 
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 15; i++)
         {
             tasks.Add(_client.GetAsync("/Customer/Get"));
         }
