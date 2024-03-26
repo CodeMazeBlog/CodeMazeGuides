@@ -1,25 +1,12 @@
 ﻿using System.Text.RegularExpressions;
-using BenchmarkDotNet.Running;
+namespace CountNumberOfVowelsInString;
 
-public class VowelCounters
+public static partial class VowelCounters
 {
-    static void Main()
-    {
-        var vowels = new HashSet<char> { 'A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u' };
-        var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
-        Console.WriteLine(sentence);
+    [GeneratedRegex("[AEIOUaeiou]")]
+    public static partial Regex regexVowels();
 
-        CountVowelsUsingForLoop(sentence, vowels);
-        CountVowelsUsingForEachLoop(sentence, vowels);
-        CountVowelsUsingSwitchStatement(sentence);
-        CountVowelsUsingRegEx(sentence);
-        CountVowelsUsingStrReplaceAndLength(sentence);
-        CountVowelsUsingLinq(sentence, vowels);
-
-        //BenchmarkRunner.Run<VowelCountersBenchmarks>();
-    }
-
-    public static int CountVowelsUsingForLoop(string sentence, HashSet<char> vowels)
+    public static int CountVowelsUsingForLoop(ReadOnlySpan<char> sentence, ReadOnlySpan<char> vowels)
     {
         var total = 0;
 
@@ -31,12 +18,10 @@ public class VowelCounters
             }
         }
 
-        Console.WriteLine($"The number of vowels counted using For loop is: {total}");
-
         return total;
     }
 
-    public static int CountVowelsUsingForEachLoop(string sentence, HashSet<char> vowels)
+    public static int CountVowelsUsingForEachLoop(ReadOnlySpan<char> sentence, ReadOnlySpan<char> vowels)
     {
         var total = 0;
 
@@ -47,8 +32,6 @@ public class VowelCounters
                 total++;
             }
         }
-
-        Console.WriteLine($"The number of vowels counted using ForEach loop is: {total}");
 
         return total;
     }
@@ -79,27 +62,21 @@ public class VowelCounters
 
         }
 
-        Console.WriteLine($"The number of vowels counted using Switch statement is: {total}");
-
         return total;
     }
 
     public static int CountVowelsUsingRegEx(string sentence)
     {
-        var total = Regex.Matches(sentence, @"[AEIOU]", RegexOptions.IgnoreCase).Count;
-
-        Console.WriteLine($"The number of vowels counted using RegEx is: {total}");
+        var total = regexVowels().Matches(sentence).Count;
 
         return total;
     }
 
     public static int CountVowelsUsingStrReplaceAndLength(string sentence)
     {
-        var rxVowels = new Regex(@"[^AEIOU]+", RegexOptions.IgnoreCase);
+        var rxVowels = new Regex(@"[^AEIOUaeiou]+");
 
         var total = rxVowels.Replace(sentence, "").Length;
-
-        Console.WriteLine($"The number of vowels counted using String Replace and String Join is: {total}");
 
         return total;
     }
@@ -107,8 +84,6 @@ public class VowelCounters
     public static int CountVowelsUsingLinq(string sentence, HashSet<char> vowels)
     {
         var total = sentence.Count(x => vowels.Contains(x));
-
-        Console.WriteLine($"The number of vowels counted using LINQ is: {total}");
 
         return total;
     }

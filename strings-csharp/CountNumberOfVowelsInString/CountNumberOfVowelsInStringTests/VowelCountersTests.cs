@@ -1,5 +1,4 @@
 ﻿namespace CountNumberOfVowelsInStringTests;
-using System.Collections.Generic;
 
 public class VowelCountersTests
 {
@@ -17,7 +16,9 @@ public class VowelCountersTests
     [Fact]
     public void WhenVowelsAreCountedWithForLoop_ThenCorrectCountIsReturned()
     {
-        var result = VowelCounters.CountVowelsUsingForLoop(sentence, vowels);
+        var vowelsAsSpan = "AEIOUaeiou".AsSpan();
+        var sentenceAsSpan = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
+        var result = VowelCounters.CountVowelsUsingForLoop(sentenceAsSpan, vowelsAsSpan);
 
         Assert.Equal(expectedNumOfVowels, result);
     }
@@ -25,7 +26,9 @@ public class VowelCountersTests
     [Fact]
     public void WhenVowelsAreCountedWithForEachLoop_ThenCorrectCountIsReturned()
     {
-        var result = VowelCounters.CountVowelsUsingForEachLoop(sentence, vowels);
+        var vowelsAsSpan = "AEIOUaeiou".AsSpan();
+        var sentenceAsSpan = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
+        var result = VowelCounters.CountVowelsUsingForEachLoop(sentenceAsSpan, vowelsAsSpan);
 
         Assert.Equal(expectedNumOfVowels, result);
     }
