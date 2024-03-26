@@ -1,12 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<IContactsRepository, InMemoryContactsRepository>();
+builder.Services.AddSingleton<IContactRepository, InMemoryContactRepository>();
 
-builder.Services.AddScoped<BasicContactsService>();
-builder.Services.AddScoped<NullCheckingContactsService>();
-builder.Services.AddScoped<ExceptionsForFlowControlContactsService>();
-builder.Services.AddScoped<TheResultPatternContactsService>();
-builder.Services.AddScoped<FluentResultsContactsService>();
+builder.Services.AddScoped<BasicContactService>();
+builder.Services.AddScoped<NullCheckingContactService>();
+builder.Services.AddScoped<ExceptionsForFlowControlContactService>();
+builder.Services.AddScoped<TheResultPatternContactService>();
+builder.Services.AddScoped<FluentResultsContactService>();
 
 builder.Services.AddControllers();
 

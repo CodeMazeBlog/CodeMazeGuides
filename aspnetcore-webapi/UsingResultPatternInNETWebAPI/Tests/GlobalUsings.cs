@@ -11,3 +11,5 @@ global using UsingResultPatternInNETWebAPI.v2.Services;
 global using UsingResultPatternInNETWebAPI.v3.Exceptions;
 global using UsingResultPatternInNETWebAPI.v3.Services;
 global using UsingResultPatternInNETWebAPI.v4.Services;
+global using UsingResultPatternInNETWebAPI.v5.Errors;
+global using UsingResultPatternInNETWebAPI.v5.Services;
