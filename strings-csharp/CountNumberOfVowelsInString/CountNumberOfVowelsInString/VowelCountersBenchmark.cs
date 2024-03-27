@@ -1,58 +1,60 @@
-﻿using BenchmarkDotNet.Attributes;
-using CountNumberOfVowelsInString;
+﻿using System.Buffers;
+using BenchmarkDotNet.Attributes;
+
+namespace CountNumberOfVowelsInString;
 
 [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
 public class VowelCountersBenchmarks
 {
+    private const string Sentence =
+        "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
+
+    private const string Vowels = "AEIOUaeiou";
+
+    private static readonly SearchValues<char> _vowelsSearchValues = SearchValues.Create(Vowels);
+
+    private static readonly HashSet<char> _vowelsHash = new(Vowels);
+
+    [Benchmark]
+    public int CountVowelsUsingSearchValues()
+    {
+        return VowelCounters.CountVowelsUsingSearchValues(Sentence, _vowelsSearchValues);
+    }
+
     [Benchmark]
     public int CountVowelsUsingForLoop()
     {
-        var vowels = "AEIOUaeiou".AsSpan();
-        var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
-
-        return VowelCounters.CountVowelsUsingForLoop(sentence, vowels);
+        return VowelCounters.CountVowelsUsingForLoop(Sentence, Vowels);
     }
 
     [Benchmark]
     public int CountVowelsUsingForEachLoop()
     {
-        var vowels = "AEIOUaeiou".AsSpan();
-        var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
-
-        return VowelCounters.CountVowelsUsingForEachLoop(sentence, vowels);
+        return VowelCounters.CountVowelsUsingForEachLoop(Sentence, Vowels);
     }
 
     [Benchmark]
     public int CountVowelsUsingSwitchStatement()
     {
-        var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
-
-        return VowelCounters.CountVowelsUsingSwitchStatement(sentence);
+        return VowelCounters.CountVowelsUsingSwitchStatement(Sentence);
     }
 
     [Benchmark]
     public int CountVowelsUsingRegEx()
     {
-        var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
-
-        return VowelCounters.CountVowelsUsingRegEx(sentence);
+        return VowelCounters.CountVowelsUsingRegEx(Sentence);
     }
 
     [Benchmark]
-    public int CountVowelsUsingStrReplaceAndLength()
+    public int CountVowelsUsingRegexReplaceAndLength()
     {
-        var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
-
-        return VowelCounters.CountVowelsUsingStrReplaceAndLength(sentence);
+        return VowelCounters.CountVowelsUsingRegexReplaceAndLength(Sentence);
     }
 
     [Benchmark]
     public int CountVowelsUsingLinq()
     {
-        var vowels = new HashSet<char> { 'A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u' };
-        var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
-
-        return VowelCounters.CountVowelsUsingLinq(sentence, vowels);
+        return VowelCounters.CountVowelsUsingLinq(Sentence, _vowelsHash);
     }
 }

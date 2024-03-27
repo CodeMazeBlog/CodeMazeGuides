@@ -1,10 +1,27 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Buffers;
+using System.Text.RegularExpressions;
+
 namespace CountNumberOfVowelsInString;
 
 public static partial class VowelCounters
 {
-    [GeneratedRegex("[AEIOUaeiou]")]
-    public static partial Regex regexVowels();
+    [GeneratedRegex(@"[AEIOUaeiou]")]
+    private static partial Regex _regexVowels();
+
+    [GeneratedRegex(@"[^AEIOUaeiou]+")]
+    private static partial Regex _regexNotVowels();
+
+    public static int CountVowelsUsingSearchValues(ReadOnlySpan<char> sentence, SearchValues<char> vowelsSearchValues)
+    {
+        var count = 0;
+        for (var i = 0; i < sentence.Length; ++i)
+        {
+            if (vowelsSearchValues.Contains(sentence[i]))
+                ++count;
+        }
+
+        return count;
+    }
 
     public static int CountVowelsUsingForLoop(ReadOnlySpan<char> sentence, ReadOnlySpan<char> vowels)
     {
@@ -67,24 +84,16 @@ public static partial class VowelCounters
 
     public static int CountVowelsUsingRegEx(string sentence)
     {
-        var total = regexVowels().Matches(sentence).Count;
-
-        return total;
+        return _regexVowels().Matches(sentence).Count;
     }
 
-    public static int CountVowelsUsingStrReplaceAndLength(string sentence)
+    public static int CountVowelsUsingRegexReplaceAndLength(string sentence)
     {
-        var rxVowels = new Regex(@"[^AEIOUaeiou]+");
-
-        var total = rxVowels.Replace(sentence, "").Length;
-
-        return total;
+        return _regexNotVowels().Replace(sentence, "").Length;
     }
 
     public static int CountVowelsUsingLinq(string sentence, HashSet<char> vowels)
     {
-        var total = sentence.Count(x => vowels.Contains(x));
-
-        return total;
+        return sentence.Count(x => vowels.Contains(x));
     }
 }

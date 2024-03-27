@@ -1,3 +1,4 @@
-﻿global using Xunit;
+﻿global using CountNumberOfVowelsInString;
+global using System.Buffers;
 global using System.Collections.Generic;
-global using CountNumberOfVowelsInString;
+global using Xunit;

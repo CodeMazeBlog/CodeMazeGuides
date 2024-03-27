@@ -2,67 +2,124 @@
 
 public class VowelCountersTests
 {
-    private readonly string sentence;
-    private readonly HashSet<char> vowels;
-    private readonly int expectedNumOfVowels;
+    private const string Sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
+    private const string Vowels = "AEIOUaeiou";
+    private const int ExpectedNumOfVowels = 46;
 
-    public VowelCountersTests()
+    private static readonly string _noVowels = new('b', 100);
+    private static readonly HashSet<char> _vowelsHash = new(Vowels);
+
+    [Fact]
+    public void WhenVowelsAreCountedWithSearchValues_ThenCorrectCountIsReturned()
     {
-        vowels = new HashSet<char> { 'A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u' };
-        sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
-        expectedNumOfVowels = 46;
+        var vowelsSearchValues = SearchValues.Create(Vowels);
+        var result = VowelCounters.CountVowelsUsingSearchValues(Sentence.AsSpan(), vowelsSearchValues);
+
+        Assert.Equal(ExpectedNumOfVowels, result);
+    }
+
+    [Fact]
+    public void GivenStringWithNoVowels_WhenVowelsAreCountedWithSearchValues_ThenCorrectCountIsReturned()
+    {
+        var searchValues = SearchValues.Create(Vowels);
+        var result = VowelCounters.CountVowelsUsingSearchValues(_noVowels.AsSpan(), searchValues);
+
+        Assert.Equal(0, result);
     }
 
     [Fact]
     public void WhenVowelsAreCountedWithForLoop_ThenCorrectCountIsReturned()
     {
-        var vowelsAsSpan = "AEIOUaeiou".AsSpan();
-        var sentenceAsSpan = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
-        var result = VowelCounters.CountVowelsUsingForLoop(sentenceAsSpan, vowelsAsSpan);
+        var result = VowelCounters.CountVowelsUsingForLoop(Sentence.AsSpan(), Vowels.AsSpan());
 
-        Assert.Equal(expectedNumOfVowels, result);
+        Assert.Equal(ExpectedNumOfVowels, result);
+    }
+
+    [Fact]
+    public void GivenStringWithNoVowels_WhenVowelsAreCountedWithForLoop_ThenCorrectCountIsReturned()
+    {
+        var result = VowelCounters.CountVowelsUsingForLoop(_noVowels.AsSpan(), Vowels.AsSpan());
+
+        Assert.Equal(0, result);
     }
 
     [Fact]
     public void WhenVowelsAreCountedWithForEachLoop_ThenCorrectCountIsReturned()
     {
-        var vowelsAsSpan = "AEIOUaeiou".AsSpan();
-        var sentenceAsSpan = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
-        var result = VowelCounters.CountVowelsUsingForEachLoop(sentenceAsSpan, vowelsAsSpan);
+        var result = VowelCounters.CountVowelsUsingForEachLoop(Sentence.AsSpan(), Vowels.AsSpan());
 
-        Assert.Equal(expectedNumOfVowels, result);
+        Assert.Equal(ExpectedNumOfVowels, result);
+    }
+
+    [Fact]
+    public void GivenStringWithNoVowels_WhenVowelsAreCountedWithForEachLoop_ThenCorrectCountIsReturned()
+    {
+        var result = VowelCounters.CountVowelsUsingForEachLoop(_noVowels.AsSpan(), Vowels.AsSpan());
+
+        Assert.Equal(0, result);
     }
 
     [Fact]
     public void WhenVowelsAreCountedUsingSwitchStatement_ThenCorrectCountIsReturned()
     {
-        var sentenceAsSpan = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
-        var result = VowelCounters.CountVowelsUsingSwitchStatement(sentenceAsSpan);
+        var result = VowelCounters.CountVowelsUsingSwitchStatement(Sentence.AsSpan());
 
-        Assert.Equal(expectedNumOfVowels, result);
+        Assert.Equal(ExpectedNumOfVowels, result);
+    }
+    
+    [Fact]
+    public void GivenStringWithNoVowels_WhenVowelsAreCountedUsingSwitchStatement_ThenCorrectCountIsReturned()
+    {
+        var result = VowelCounters.CountVowelsUsingSwitchStatement(_noVowels.AsSpan());
+
+        Assert.Equal(0, result);
     }
 
     [Fact]
     public void WhenVowelsAreCountedUsingRegEx_ThenCorrectCountIsReturned()
     {
-        var result = VowelCounters.CountVowelsUsingRegEx(sentence);
+        var result = VowelCounters.CountVowelsUsingRegEx(Sentence);
 
-        Assert.Equal(expectedNumOfVowels, result);
+        Assert.Equal(ExpectedNumOfVowels, result);
     }
 
     [Fact]
-    public void WhenVowelsAreCountedUsingStrReplaceAndLength_ThenCorrectCountIsReturned()
+    public void GivenStringWithNoVowels_WhenVowelsAreCountedUsingRegEx_ThenCorrectCountIsReturned()
     {
-        var result = VowelCounters.CountVowelsUsingStrReplaceAndLength(sentence);
+        var result = VowelCounters.CountVowelsUsingRegEx(_noVowels);
 
-        Assert.Equal(expectedNumOfVowels, result);
+        Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void WhenVowelsAreCountedUsingRegexReplaceAndLength_ThenCorrectCountIsReturned()
+    {
+        var result = VowelCounters.CountVowelsUsingRegexReplaceAndLength(Sentence);
+
+        Assert.Equal(ExpectedNumOfVowels, result);
+    }
+
+    [Fact]
+    public void GivenStringWithNoVowels_WhenVowelsAreCountedUsingRegexReplaceAndLength_ThenCorrectCountIsReturned()
+    {
+        var result = VowelCounters.CountVowelsUsingRegexReplaceAndLength(_noVowels);
+
+        Assert.Equal(0, result);
     }
 
     [Fact]
     public void WhenVowelsAreCountedUsingLINQ_ThenCorrectCountIsReturned()
     {
-        var result = VowelCounters.CountVowelsUsingLinq(sentence, vowels);
+        var result = VowelCounters.CountVowelsUsingLinq(Sentence, _vowelsHash);
 
-        Assert.Equal(expectedNumOfVowels, result);
+        Assert.Equal(ExpectedNumOfVowels, result);
+    }
+
+    [Fact]
+    public void GivenStringWithNoVowels_WhenVowelsAreCountedUsingLINQ_ThenCorrectCountIsReturned()
+    {
+        var result = VowelCounters.CountVowelsUsingLinq(_noVowels, _vowelsHash);
+
+        Assert.Equal(0, result);
     }
 }
