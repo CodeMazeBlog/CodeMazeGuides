@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckNumberInString", "CheckNumberInString\CheckNumberInString.csproj", "{1D121EDC-0FF8-44C2-AF17-CF3330DC5D2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckNumberInStringTests", "CheckNumberInStringTests\CheckNumberInStringTests.csproj", "{ADDF5369-B5D4-40EC-9256-FF2285EF9949}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D121EDC-0FF8-44C2-AF17-CF3330DC5D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D121EDC-0FF8-44C2-AF17-CF3330DC5D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D121EDC-0FF8-44C2-AF17-CF3330DC5D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D121EDC-0FF8-44C2-AF17-CF3330DC5D2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADDF5369-B5D4-40EC-9256-FF2285EF9949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADDF5369-B5D4-40EC-9256-FF2285EF9949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADDF5369-B5D4-40EC-9256-FF2285EF9949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADDF5369-B5D4-40EC-9256-FF2285EF9949}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {099CD277-AF8C-4D7F-9433-7E066580F576}
+	EndGlobalSection
+EndGlobal
