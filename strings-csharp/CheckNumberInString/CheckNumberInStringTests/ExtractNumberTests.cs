@@ -7,7 +7,7 @@ namespace CheckNumberInStringTests
         [TestMethod]
         public void GivenStringWithNumbers_WhenUsingRegExMethod_ThenReturnResultAreEqual()
         {
-            var inputString = "Revenue for last 2 years is $101.45 and $105.85";
+            var inputString = "Revenue for last 2 years is 101.45 and 105.85";
 
             var expectedNumber = "2,101.45,105.85";
 
@@ -19,9 +19,21 @@ namespace CheckNumberInStringTests
         [TestMethod]
         public void GivenStringWithNegativeNumbers_WhenUsingRegExMethod_ThenReturnResultAreEqual()
         {
-            var inputString = "Revenue for last 2 years is $101.45 and $105.85";
+            var inputString = "Revenue for last 2 years is 101.45 and -105.85";
 
-            var expectedNumber = "2,101.45,105.85";
+            var expectedNumber = "2,101.45,-105.85";
+
+            var actualNumber = ExtractNumber.ExtractNumberUsingRegEx(inputString);
+
+            Assert.AreEqual(expectedNumber, actualNumber);
+        }
+
+        [TestMethod]
+        public void GivenStringWithoutNumbers_WhenUsingRegExMethod_ThenReturnResultAreEqual()
+        {
+            var inputString = "This has no numbers";
+
+            var expectedNumber = "";
 
             var actualNumber = ExtractNumber.ExtractNumberUsingRegEx(inputString);
 
@@ -32,7 +44,7 @@ namespace CheckNumberInStringTests
         [TestMethod]
         public void GivenStringWithNumbers_WhenUsingLinqMethod_ThenReturnResultAreEqual()
         {
-            var inputString = "Revenue for last 2 years is $101.45 and $105.85";
+            var inputString = "Revenue for last 2 years is 101.45 and 105.85";
 
             var expectedNumber = "2,101.45,105.85";
 
@@ -44,9 +56,21 @@ namespace CheckNumberInStringTests
         [TestMethod]
         public void GivenStringWithNegativeNumbers_WhenUsingLinqMethod_ThenReturnResultAreEqual()
         {
-            var inputString = "Revenue for last 2 years is $101.45 and $105.85";
+            var inputString = "Revenue for last 2 years is 101.45 and -105.85";
 
-            var expectedNumber = "2,101.45,105.85";
+            var expectedNumber = "2,101.45,-105.85";
+
+            var actualNumber = ExtractNumber.ExtractNumbersUsingLinq(inputString);
+
+            Assert.AreEqual(expectedNumber, actualNumber);
+        }
+
+        [TestMethod]
+        public void GivenStringWithoutNumbers_WhenUsingLinqMethod_ThenReturnResultAreEqual()
+        {
+            var inputString = "This has no numbers";
+
+            var expectedNumber = "";
 
             var actualNumber = ExtractNumber.ExtractNumbersUsingLinq(inputString);
 
@@ -57,9 +81,21 @@ namespace CheckNumberInStringTests
         [TestMethod]
         public void GivenStringWithNumbers_WhenUsingStringBuilderAndCharIsDigitMethod_ThenReturnResultAreEqual()
         {
-            var inputString = "Revenue for last 2 years is $101.45 and -$105.85";
+            var inputString = "Revenue for last 2 years is 101.45 and 105.85";
 
             var expectedNumber = "2,101.45,105.85";
+
+            var actualNumber = ExtractNumber.ExtractNumberUsingStringBuilder(inputString);
+
+            Assert.AreEqual(expectedNumber, actualNumber);
+        }
+
+        [TestMethod]
+        public void GivenStringWithNegativeNumbers_WhenUsingStringBuilderAndCharIsDigitMethod_ThenReturnResultAreEqual()
+        {
+            var inputString = "Revenue for last 2 years is 101.45 and -105.85";
+
+            var expectedNumber = "2,101.45,-105.85";
 
             var actualNumber = ExtractNumber.ExtractNumberUsingStringBuilder(inputString);
 
@@ -69,9 +105,9 @@ namespace CheckNumberInStringTests
         [TestMethod]
         public void GivenStringWithoutNumbers_WhenUsingStringBuilderAndCharIsDigitMethod_ThenReturnResultAreEqual()
         {
-            var inputString = "Revenue for last 2 years is $101.45 and -$105.85";
+            var inputString = "This has no numbers";
 
-            var expectedNumber = "2,101.45,105.85";
+            var expectedNumber = "";
 
             var actualNumber = ExtractNumber.ExtractNumberUsingStringBuilder(inputString);
 
@@ -80,11 +116,23 @@ namespace CheckNumberInStringTests
 
         //-----------------Span Method 
         [TestMethod]
-        public void GivenStringWithNumbers_WhenUsingSpantMethod_ThenReturnResultAreEqual()
+        public void GivenStringWithNumbers_WhenUsingSpanMethod_ThenReturnResultAreEqual()
         {
-            var inputString = "Revenue for last 2 years is $101.45 and -$105.85";
+            var inputString = "Revenue for last 2 years is 101.45 and 105.85";
 
             var expectedNumber = "2,101.45,105.85";
+
+            var actualNumber = ExtractNumber.ExtractNumberUsingSpan(inputString);
+
+            Assert.AreEqual(expectedNumber, actualNumber);
+        }
+
+        [TestMethod]
+        public void GivenStringWithNegativeNumbers_WhenUsingSpanMethod_ThenReturnResultAreEqual()
+        {
+            var inputString = "Revenue for last 2 years is 101.45 and -105.85";
+
+            var expectedNumber = "2,101.45,-105.85";
 
             var actualNumber = ExtractNumber.ExtractNumberUsingSpan(inputString);
 
