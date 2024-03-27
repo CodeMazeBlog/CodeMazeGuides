@@ -35,7 +35,8 @@ public class TheResultPatternContactService
     {
         if (_contactRepository.GetByEmail(createContactDto.Email) is not null)
         {
-            return CustomResult<ContactDto>.Failure(CustomError.ValidationError(createContactDto.Email));
+            var message = $"contact with email {createContactDto.Email} already exists";
+            return CustomResult<ContactDto>.Failure(CustomError.ValidationError(message));
         }
 
         var contact = new Contact

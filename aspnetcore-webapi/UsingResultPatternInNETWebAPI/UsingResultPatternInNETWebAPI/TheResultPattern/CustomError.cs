@@ -12,8 +12,8 @@ public sealed record CustomError(string Code, string Message)
         return new CustomError(RecordNotFoundCode, message);
     }
 
-    public static CustomError ValidationError(string email)
+    public static CustomError ValidationError(string message)
     {
-        return new CustomError(ValidationErrorCode, $"contact with email {email} already exists");
+        return new CustomError(ValidationErrorCode, message);
     }
 }

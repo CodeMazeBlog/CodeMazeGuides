@@ -5,11 +5,9 @@ public class ContactControllerTests : IClassFixture<ApiApplicationFactory>
     private readonly string _baseApiTemplate = "http://localhost:5000/api/v{0}/contacts";
 
     private readonly HttpClient _client;
-    private readonly ITestOutputHelper _output;
 
-    public ContactControllerTests(ApiApplicationFactory factory, ITestOutputHelper output)
+    public ContactControllerTests(ApiApplicationFactory factory)
     {
-        _output = output;
         _client = factory.CreateClient();
     }
 
@@ -29,11 +27,6 @@ public class ContactControllerTests : IClassFixture<ApiApplicationFactory>
         var response = await _client.GetAsync("");
 
         // Assert
-        var message = await response
-            .Content
-            .ReadAsStringAsync();
-        _output.WriteLine(message);
-
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
@@ -55,11 +48,6 @@ public class ContactControllerTests : IClassFixture<ApiApplicationFactory>
         var response = await _client.GetAsync($"{existingId}");
 
         // Assert
-        var message = await response
-            .Content
-            .ReadAsStringAsync();
-        _output.WriteLine(message);
-
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
@@ -82,11 +70,6 @@ public class ContactControllerTests : IClassFixture<ApiApplicationFactory>
         var response = await _client.GetAsync($"{nonExistingId}");
 
         // Assert
-        var message = await response
-            .Content
-            .ReadAsStringAsync();
-        _output.WriteLine(message);
-
         Assert.Equal(statusCode, response.StatusCode);
     }
 
@@ -109,11 +92,6 @@ public class ContactControllerTests : IClassFixture<ApiApplicationFactory>
         var response = await _client.PostAsJsonAsync("", createContactDto);
 
         // Assert
-        var message = await response
-            .Content
-            .ReadAsStringAsync();
-        _output.WriteLine(message);
-
         Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 
@@ -136,11 +114,6 @@ public class ContactControllerTests : IClassFixture<ApiApplicationFactory>
         var response = await _client.PostAsJsonAsync("", createContactDto);
 
         // Assert
-        var message = await response
-            .Content
-            .ReadAsStringAsync();
-        _output.WriteLine(message);
-
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
 
@@ -163,11 +136,6 @@ public class ContactControllerTests : IClassFixture<ApiApplicationFactory>
         var response = await _client.PostAsJsonAsync("", createContactDto);
 
         // Assert
-        var message = await response
-            .Content
-            .ReadAsStringAsync();
-        _output.WriteLine(message);
-
         Assert.Equal(statusCode, response.StatusCode);
     }
 }
