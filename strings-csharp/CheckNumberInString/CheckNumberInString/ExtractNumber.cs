@@ -29,9 +29,9 @@ namespace CheckNumberInString
         
         public static string ExtractNumbersUsingLinq(string inputString)
         {
-            return new string(inputString
+            return string.Join(",", new string(inputString
                 .Where(c => char.IsBetween(c, '0', '9') || c == '.' || c == '-' || char.IsWhiteSpace(c))
-                .ToArray());
+                .ToArray()).Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries));
         }
         
         public static string ExtractNumberUsingStringBuilder(string inputString)

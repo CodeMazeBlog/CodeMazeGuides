@@ -34,7 +34,7 @@ namespace CheckNumberInStringTests
         {
             var inputString = "Revenue for last 2 years is $101.45 and $105.85";
 
-            var expectedNumber = "   2   101.45  105.85";
+            var expectedNumber = "2,101.45,105.85";
 
             var actualNumber = ExtractNumber.ExtractNumbersUsingLinq(inputString);
 
@@ -46,7 +46,7 @@ namespace CheckNumberInStringTests
         {
             var inputString = "Revenue for last 2 years is $101.45 and $105.85";
 
-            var expectedNumber = "   2   101.45  105.85";
+            var expectedNumber = "2,101.45,105.85";
 
             var actualNumber = ExtractNumber.ExtractNumbersUsingLinq(inputString);
 
