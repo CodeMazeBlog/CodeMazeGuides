@@ -36,7 +36,8 @@ public class VowelCountersTests
     [Fact]
     public void WhenVowelsAreCountedUsingSwitchStatement_ThenCorrectCountIsReturned()
     {
-        var result = VowelCounters.CountVowelsUsingSwitchStatement(sentence);
+        var sentenceAsSpan = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
+        var result = VowelCounters.CountVowelsUsingSwitchStatement(sentenceAsSpan);
 
         Assert.Equal(expectedNumOfVowels, result);
     }

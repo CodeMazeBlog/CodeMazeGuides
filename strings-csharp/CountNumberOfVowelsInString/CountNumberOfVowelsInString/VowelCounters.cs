@@ -36,7 +36,7 @@ public static partial class VowelCounters
         return total;
     }
 
-    public static int CountVowelsUsingSwitchStatement(string sentence)
+    public static int CountVowelsUsingSwitchStatement(ReadOnlySpan<char> sentence)
     {
         var total = 0;
 

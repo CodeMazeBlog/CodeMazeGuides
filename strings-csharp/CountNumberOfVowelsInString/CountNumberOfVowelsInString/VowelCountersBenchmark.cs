@@ -26,7 +26,7 @@ public class VowelCountersBenchmarks
     [Benchmark]
     public int CountVowelsUsingSwitchStatement()
     {
-        var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
+        var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
 
         return VowelCounters.CountVowelsUsingSwitchStatement(sentence);
     }
