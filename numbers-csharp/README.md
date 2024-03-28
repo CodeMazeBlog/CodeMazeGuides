@@ -16,3 +16,7 @@ This section contains the topics related numbers (parsing, conversion, random nu
 - [Parse and TryParse in C#](https://code-maze.com/csharp-parse-tryparse/)
 - [How to Round Down a Number to a Nearest Integer in C#](https://code-maze.com/csharp-round-down-a-number-to-a-nearest-integer/)
 - [Different Techniques to Convert a Number Between Hexadecimal and Decimal in C#](https://code-maze.com/csharp-convert-a-number-between-hexadecimal-and-decimal/)
+- [How to Check if an Object Is a Number in C#](https://code-maze.com/csharp-how-to-check-if-an-object-is-a-number/)
+- [How to Check if a Number Is Positive or Negative in C#](https://code-maze.com/csharp-check-positive-negative-number/)
+- [Fastest Way to Generate a Random Boolean in C#](https://code-maze.com/csharp-fastest-way-to-generate-a-random-boolean/)
+- [How to Reverse a Number as an Integer and Not as a String in C#](https://code-maze.com/csharp-reverse-a-number-as-an-integer-and-not-string/)

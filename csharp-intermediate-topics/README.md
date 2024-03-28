@@ -42,3 +42,5 @@ This section contains the topics considered intermediate level in C#.
 - [Working With Zip Files in C#/.NET](https://code-maze.com/csharp-zip-files/)
 - [How to (Correctly) Implement IDisposable Interface](https://code-maze.com/csharp-how-to-correctly-implement-idisposable-interface/)
 - [What Is the Difference Between Properties and Fields in C#](https://code-maze.com/csharp-difference-between-properties-and-fields/)
+- [How To Check if an URL Is Valid in C#](https://code-maze.com/csharp-how-to-check-if-an-url-is-valid/)
+- [Difference Between Abstraction and Encapsulation in C#](https://code-maze.com/csharp-difference-between-abstraction-and-encapsulation/)

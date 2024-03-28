@@ -35,3 +35,5 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [MapControllers vs MapControllerRoute Routing in ASP.NET Core](https://code-maze.com/aspnetcore-mapcontrollers-vs-mapcontrollerroute-routing/)
 - [How to Get appsettings.json Content as a Dictionary in ASP.NET Core](https://code-maze.com/dotnet-appsettings-json-content-to-dictionary/)
 - [Different Ways to Validate an Uploaded File in ASP.Net Core](https://code-maze.com/aspnetcore-validate-uploaded-file/)
+- [Creating Conditional Required Attributes for Validation in .NET Web API](https://code-maze.com/aspnetcore-conditional-required-attributes/)
+- [How to Call SignalR Hub from Controller in ASP.NET Core](https://code-maze.com/aspnetcore-call-signalr-from-controller/)
