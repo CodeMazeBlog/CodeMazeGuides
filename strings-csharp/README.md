@@ -37,3 +37,4 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [How to Check if a String Contains Only Letters in C#](https://code-maze.com/csharp-check-if-a-string-contains-only-letters/)
 - [Fastest Way to Get the First N Characters of a String in C#](https://code-maze.com/csharp-fastest-way-to-get-the-first-n-characters-of-a-string/)
 - [How to Convert String to Char in C#](https://code-maze.com/csharp-how-to-convert-string-to-char/)
+- [How to Get the HTML Content of a Web Page as a String in .NET](https://code-maze.com/dotnet-get-the-html-content-of-a-web-page-as-a-string/)
