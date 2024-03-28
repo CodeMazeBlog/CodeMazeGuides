@@ -5,15 +5,9 @@ namespace HandlingCircularRefsWhenWorkingWithJson.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class EmployeeController : ControllerBase
+public class EmployeeController(IEmployeeService employeeService) : ControllerBase
 {
-    private readonly IEmployeeService _employeeService;
-    public EmployeeController(IEmployeeService employeeService)
-    {
-        _employeeService = employeeService;
-    }
-
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult GetEmployees() => Ok(_employeeService.GetEmployees());
+    public IActionResult GetEmployees() => Ok(employeeService.GetEmployees());
 }
