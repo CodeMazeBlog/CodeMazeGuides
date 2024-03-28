@@ -18,7 +18,7 @@ namespace Tests
         }
 
         [Test]
-        public void KeyInputs_ReadKeyUseIsCalled_ShouldPrintCorrectMessages()
+        public void WhenConsoleReadkey_ThenPrintCorrectMessage()
         {
             _mockConsoleService.SetupSequence(m => m.ReadKey(false))
                 .Returns(new ConsoleKeyInfo('A', ConsoleKey.A, false, false, false))
@@ -33,7 +33,7 @@ namespace Tests
         }
 
         [Test]
-        public void ApplicationIsRunning_WhenXIsPressed_ApplicationShouldStop()
+        public void WhenXIsPressed_ApplicationShouldStop()
         {
             _mockConsoleService.SetupSequence(m => m.KeyAvailable)
                 .Returns(false)
