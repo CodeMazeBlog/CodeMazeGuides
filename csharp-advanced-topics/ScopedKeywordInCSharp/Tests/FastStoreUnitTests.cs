@@ -14,18 +14,12 @@ public class FastStoreUnitTest
     }
 
     [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
     public void WhenCloning_ThenThrowsAnExceptionIfLengthIsNotThree()
     {
         var store = new FastStore<int>();
         Span<int> ints = stackalloc int[2] { 1, 2 };
 
-        try
-        {
-            store.Clone(ints);
-        }
-        catch (System.Exception exc)
-        {
-            Assert.AreEqual(typeof(ApplicationException), exc.GetType());
-        }
+        store.Clone(ints);
     }
 }
