@@ -1,0 +1,20 @@
+schema {
+  query: Query
+}
+
+type Query {
+  shippingContainers: [ShippingContainer!]!
+}
+
+type ShippingContainer {
+  id: String!
+  name: String!
+  space: AvailableSpace!
+}
+
+type AvailableSpace {
+  length: Float!
+  width: Float!
+  height: Float!
+  volume: Float!
+}
