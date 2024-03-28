@@ -13,7 +13,7 @@ public ref struct FastStore<T>
 	public void Clone(scoped ReadOnlySpan<T> values)
 	{
 		if (values.Length != 3)
-			throw new ApplicationException($"'{nameof(values)}' must contain 3 items");
+			throw new ArgumentException($"'{nameof(values)}' must contain 3 items");
 		values.CopyTo(_values);
 	}
 }
