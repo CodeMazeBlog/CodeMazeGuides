@@ -14,7 +14,7 @@ app.UseDirectoryBrowser(new DirectoryBrowserOptions
 {
     FileProvider = fileProvider,
     RequestPath = "/wwwroot", 
-    Formatter = new CustomDirectoryFormatter()
+    //Formatter = new CustomDirectoryFormatter()
 });
 
 // Configure the HTTP request pipeline.
