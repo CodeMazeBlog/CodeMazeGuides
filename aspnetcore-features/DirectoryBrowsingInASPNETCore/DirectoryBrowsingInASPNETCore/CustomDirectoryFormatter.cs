@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DirectoryBrowsingInASPNETCore;
 
-public class CustomDirectoryFormatter:IDirectoryFormatter
+public class CustomDirectoryFormatter : IDirectoryFormatter
 {
     public async Task GenerateContentAsync(HttpContext context, IEnumerable<IFileInfo> contents)
     {
