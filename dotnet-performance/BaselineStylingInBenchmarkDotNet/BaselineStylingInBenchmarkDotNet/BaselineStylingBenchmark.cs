@@ -1,18 +1,15 @@
 ﻿using BenchmarkDotNet.Attributes;
-using BenchmarkDotNet.Order;
 
 namespace BaselineStylingInBenchmarkDotNet;
 
-[Orderer(SummaryOrderPolicy.FastestToSlowest)]
-public class BaselineStylingBenchmark()
+[Config(typeof(StyleConfig))]
+public class BaselineStylingBenchmark(int finalNumber = 2000)
 {
-    private static readonly int _number = 2000;
-
     [Benchmark(Baseline = true)]
     public int UseForLoop()
     {
         var sum = 0;
-        for (int i = 1; i <= _number; i++)
+        for (int i = 1; i <= finalNumber; i++)
         {
             sum += i;
         }
@@ -20,15 +17,12 @@ public class BaselineStylingBenchmark()
         return sum;
     }
 
-    public int UseEnumerableSum()
-        => Enumerable.Range(1, _number).Sum();
-
     [Benchmark]
     public int UseWhileLoop()
     {
         var sum = 0;
         int i = 1;
-        while (i <= _number)
+        while (i <= finalNumber)
         {
             sum += i;
             i++;
@@ -36,4 +30,8 @@ public class BaselineStylingBenchmark()
 
         return sum;
     }
+
+    [Benchmark]
+    public int UseEnumerableSum()
+        => Enumerable.Range(1, finalNumber).Sum();
 }
