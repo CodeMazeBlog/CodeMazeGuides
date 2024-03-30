@@ -1,4 +1,5 @@
 ﻿using Confluent.Kafka;
+using KafkaUtilities;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 
@@ -18,9 +19,16 @@ public class ConsumerService(IConsumer<string, string> consumer) : IHostedServic
             {
                 var consumeResult = _consumer.Consume(cancellationToken);
 
-                var message = JsonConvert.DeserializeObject<OrderDetails>(consumeResult.Message.Value);
+                if (consumeResult is null)
+                {
+                    return;
+                }
 
-                Console.WriteLine($"Received message: {consumeResult.Message.Value}");
+                var orderDetails = JsonConvert.DeserializeObject<OrderDetails>(consumeResult.Message.Value);
+
+                Console.WriteLine($"Received message: " +
+                    $"Order Id: {orderDetails?.OrderId}, Product name: {orderDetails?.ProductName}, " +
+                    $"Price: {orderDetails?.Price}, Order date: {orderDetails?.OrderDate}");
             }
         }, cancellationToken);
 

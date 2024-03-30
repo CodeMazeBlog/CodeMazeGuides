@@ -1,4 +1,5 @@
-﻿namespace Kafka;
+﻿namespace KafkaUtilities;
+
 public class OrderDetails
 {
     public int OrderId { get; set; }

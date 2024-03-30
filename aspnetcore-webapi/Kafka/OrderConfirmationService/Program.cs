@@ -1,52 +1,29 @@
 ﻿using Confluent.Kafka;
+using KafkaUtilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OrderConfirmationService;
-using YamlDotNet.RepresentationModel;
 
-public class Program
+var consumerConfig = new ConsumerConfig
 {
-    static async Task Main(string[] args)
+    BootstrapServers = $"localhost:{Helper.GetKafkaBrokerPort(
+        Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.Parent?.FullName!)}",
+    GroupId = "order-consumer",
+    AutoOffsetReset = AutoOffsetReset.Earliest
+};
+
+var builder = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostContext, services) =>
     {
-        var consumerConfig = new ConsumerConfig
-        {
-            BootstrapServers = $"localhost:{GetKafkaBrokerPort()}",
-            GroupId = "order-consumer",
-            AutoOffsetReset = AutoOffsetReset.Earliest
-        };
+        services.AddSingleton(
+            new ConsumerBuilder<string, string>(consumerConfig).Build());
+        services.AddHostedService<ConsumerService>();
+    });
 
-        var builder = Host.CreateDefaultBuilder(args)
-                .ConfigureServices((hostContext, services) =>
-                {
-                    services.AddSingleton<IConsumer<string, string>>(
-                        new ConsumerBuilder<string, string>(consumerConfig).Build());
-                    services.AddHostedService<ConsumerService>();
-                });
+var host = builder.Build();
 
-        var host = builder.Build();
+var kafkaConsumerService = host.Services.GetRequiredService<IHostedService>();
 
-        var kafkaConsumerService = host.Services.GetRequiredService<IHostedService>();
+await kafkaConsumerService.StartAsync(default);
 
-        await kafkaConsumerService.StartAsync(default);
-
-        await Task.Delay(-1);
-    }
-
-    private static int GetKafkaBrokerPort()
-    {
-        var solutionDirectory = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.Parent?.FullName;
-
-        var input = new StreamReader(Path.Combine(solutionDirectory!, @"docker-compose.yml"));
-        var yaml = new YamlStream();
-        yaml.Load(input);
-
-        var root = (YamlMappingNode)yaml.Documents[0].RootNode;
-        var services = (YamlMappingNode)root.Children[new YamlScalarNode("services")];
-        var broker = (YamlMappingNode)services.Children[new YamlScalarNode("broker")];
-
-        var ports = (YamlSequenceNode)broker.Children[new YamlScalarNode("ports")];
-        var portMapping = (YamlScalarNode)ports.Children.First();
-
-        return int.Parse(portMapping.Value!.Split(":")[0]);
-    }
-}
+await Task.Delay(Timeout.Infinite);

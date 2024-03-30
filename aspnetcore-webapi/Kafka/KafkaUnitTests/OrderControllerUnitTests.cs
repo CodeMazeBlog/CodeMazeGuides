@@ -1,6 +1,7 @@
 using Confluent.Kafka;
 using Kafka;
 using Kafka.Controllers;
+using KafkaUtilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

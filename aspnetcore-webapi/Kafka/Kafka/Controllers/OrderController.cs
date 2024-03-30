@@ -1,4 +1,5 @@
 using Confluent.Kafka;
+using KafkaUtilities;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -9,7 +10,7 @@ namespace Kafka.Controllers;
 public class OrderController(IProducer<string, string> producer) : ControllerBase
 {
     private readonly IProducer<string, string> _producer = producer;
-    private readonly string _topic = "order-events";
+    private const string Topic = "order-events";
 
     [HttpPost("place-order")]
     public async Task<IActionResult> PlaceOrder(OrderDetails orderDetails)
@@ -21,7 +22,7 @@ public class OrderController(IProducer<string, string> producer) : ControllerBas
                 Value = JsonConvert.SerializeObject(orderDetails)
             };
 
-            await _producer.ProduceAsync(_topic, kafkaMessage);
+            await _producer.ProduceAsync(Topic, kafkaMessage);
 
             return Ok("Order placed successfully");
         }
