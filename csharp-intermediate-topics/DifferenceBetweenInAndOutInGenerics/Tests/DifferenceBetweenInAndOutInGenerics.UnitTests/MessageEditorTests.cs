@@ -3,14 +3,14 @@
 using MessageEditor;
 using Messages;
 
-public class MessageEdditorTests
+public class MessageEditorTests
 {
     [Fact]
     public void WhenEditAndCopyOriginalMessage_ThenOutputMessageIsANewObject()
     {
         // Arrange
         var message = new SubMessage();
-        IMessageEdditor<SubMessage> messageEditor = new MessageEdditor<SubMessage>();
+        IMessageEditor<SubMessage> messageEditor = new MessageEditor<SubMessage>();
 
         // Act
         var editedCopy = messageEditor.EditAndCopyOriginalMessage(message);

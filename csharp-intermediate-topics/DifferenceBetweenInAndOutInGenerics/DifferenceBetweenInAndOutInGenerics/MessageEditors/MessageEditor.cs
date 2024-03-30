@@ -2,7 +2,7 @@
 
 using Messages;
 
-public class MessageEdditor<TMessage> : IMessageEdditor<TMessage> where TMessage : BaseMessage, new()
+public class MessageEditor<TMessage> : IMessageEditor<TMessage> where TMessage : BaseMessage, new()
 {
     public TMessage EditAndCopyOriginalMessage(TMessage message)
     {

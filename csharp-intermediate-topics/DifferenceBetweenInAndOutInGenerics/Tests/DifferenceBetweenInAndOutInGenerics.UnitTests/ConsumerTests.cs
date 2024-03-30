@@ -6,11 +6,11 @@ using Messages;
 public class ConsumerTests
 {
     [Fact]
-    public void WhenConsumerIsBaseMessageConsumerButDowncastedToTestMessageConsumer_ThenTheConsumerIsStillBaseMessage()
+    public void WhenConsumerIsBaseMessageConsumerButDowncastToTestMessageConsumer_ThenTheConsumerIsStillBaseMessage()
     {
         // Arrange
         IConsumer<TestMessage> consumer = new Consumer<BaseMessage>();
-        
+
         // Act & Assert
         Assert.IsType<Consumer<BaseMessage>>(consumer);
     }

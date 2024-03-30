@@ -2,8 +2,7 @@
 
 using Messages;
 
-public class Producer<TMessage> : IProducer<TMessage>
-    where TMessage : BaseMessage, new()
+public class Producer<TMessage> : IProducer<TMessage> where TMessage : BaseMessage, new()
 {
     public TMessage Produce()
     {

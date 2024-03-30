@@ -3,21 +3,21 @@ using DifferenceBetweenInAndOutInGenerics.MessageEditor;
 using DifferenceBetweenInAndOutInGenerics.Messages;
 using DifferenceBetweenInAndOutInGenerics.Producers;
 
-// Invariance
+// Invariance (<T>)
 var message = new SubMessage();
 
-IMessageEdditor<SubMessage> messageEditor = new MessageEdditor<SubMessage>();
+IMessageEditor<SubMessage> messageEditor = new MessageEditor<SubMessage>();
 
 var editedCopy = messageEditor.EditAndCopyOriginalMessage(message);
 
-//IMessageEdditor<BaseMessage> messageEditor2 = new MessageEdditor<SubMessage>(); // won't compile
-//IMessageEdditor<SubMessage> messageEditor3 = new MessageEdditor<BaseMessage>(); // won't compile
+//IMessageEditor<BaseMessage> messageEditor2 = new MessageEditor<SubMessage>(); // won't compile
+//IMessageEditor<SubMessage> messageEditor3 = new MessageEditor<BaseMessage>(); // won't compile
 
-// Covariance
+// Covariance (<out T>)
 IProducer<BaseMessage> producer = new Producer<SubMessage>();
 var producedCovariantMessage = producer.Produce();
 
-// Contravariance
+// Contravariance (<in T>)
 var subMessage = new SubMessage();
 IConsumer<SubMessage> consumer = new Consumer<BaseMessage>();
 consumer.Consume(subMessage);

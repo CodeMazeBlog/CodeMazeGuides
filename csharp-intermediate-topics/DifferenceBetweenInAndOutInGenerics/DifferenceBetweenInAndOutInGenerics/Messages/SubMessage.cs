@@ -1,4 +1,3 @@
 ﻿namespace DifferenceBetweenInAndOutInGenerics.Messages;
 
-public class SubMessage : BaseMessage
-{ }
+public class SubMessage : BaseMessage { }
