@@ -1,7 +1,19 @@
+using IntroductionToCarter.Contracts;
+using IntroductionToCarter.Data;
+using IntroductionToCarter.Services;
+using IntroductionToCarter.Services.Abstractions;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IBookService, BookService>();
+
+builder.Services.AddDbContext<BooksDbContext>(options =>
+	options.UseInMemoryDatabase("Books"));
 
 var app = builder.Build();
 
@@ -13,29 +25,44 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/books", async (IBookService service) =>
 {
-	"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+	var books = await service.GetAllAsync();
 
-app.MapGet("/weatherforecast", () =>
-{
-	var forecast = Enumerable.Range(1, 5).Select(index =>
-		new WeatherForecast
-		(
-			DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-			Random.Shared.Next(-20, 55),
-			summaries[Random.Shared.Next(summaries.Length)]
-		))
-		.ToArray();
-	return forecast;
+	return Results.Ok(books);
 })
-.WithName("GetWeatherForecast")
+.WithOpenApi();
+
+app.MapGet("/books/{id:guid}", async (Guid id, IBookService service) =>
+{
+	var book = await service.GetByIdAsync(id);
+
+	return Results.Ok(book);
+})
+.WithOpenApi();
+
+app.MapPost("/books", async (CreateBookRequest request, IBookService service) =>
+{
+	var book = await service.CreateAsync(request);
+
+	Results.Created($"/books/{book.Id}", book);
+})
+.WithOpenApi();
+
+app.MapPut("/books/{id:guid}", async (Guid id, UpdateBookRequest request, IBookService service) =>
+{
+	await service.UpdateAsync(id, request);
+
+	return Results.NoContent();
+})
+.WithOpenApi();
+
+app.MapDelete("/books/{id:guid}", async (Guid id, IBookService service) =>
+{
+	await service.DeleteAsync(id);
+
+	return Results.NoContent();
+})
 .WithOpenApi();
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-	public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
