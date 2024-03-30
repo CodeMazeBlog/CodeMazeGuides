@@ -1,5 +1,5 @@
-﻿using Order.Models;
-using Order.Repositories;
+﻿using Order.Interfaces;
+using Order.Models;
 
 namespace Order.Services;
 
@@ -50,10 +50,4 @@ public class OrderService(
 
         return orders;
     }
-}
-
-public interface IOrderService
-{
-    Task AddAsync(OrderDto orderDto);
-    Task<List<OrderDto>> GetAllAsync();
 }

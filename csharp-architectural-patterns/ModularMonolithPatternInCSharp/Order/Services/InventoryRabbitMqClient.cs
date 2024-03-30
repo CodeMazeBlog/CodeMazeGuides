@@ -1,41 +1,29 @@
-﻿using Inventory.Models;
+﻿using Common.RabbitMq;
+using Inventory.Models;
 using Microsoft.Extensions.Configuration;
+using Order.Interfaces;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
 
 namespace Order.Services;
 
-public class InventoryRabbitMqClient(IConfiguration configuration) : IInventoryRabbitMqClient
+public class InventoryRabbitMqClient(IConfiguration configuration, IRabbitMqConnectionManager rabbitMqConnectionManager) : IInventoryRabbitMqClient
 {
     private readonly IConfiguration _configuration = configuration;
+    private readonly IRabbitMqConnectionManager _rabbitMqConnectionManager = rabbitMqConnectionManager;
 
     public void UpdateQuantity(UpdateQuantityDto updateQuantityDto)
     {
-        var connectionFactory = new ConnectionFactory
-        {
-            HostName = _configuration["RabbitMq:HostName"],
-            Port = _configuration.GetValue<int>("RabbitMq:Port"),
-            UserName = _configuration["RabbitMq:UserName"],
-            Password = _configuration["RabbitMq:Password"]
-        };
-
-        var connection = connectionFactory.CreateConnection();
-        var channel = connection.CreateModel();
 
         var serializedMessage = JsonSerializer.Serialize(updateQuantityDto);
         var body = Encoding.UTF8.GetBytes(serializedMessage);
 
         var queueName = _configuration["RabbitMq:QueueName"];
 
-        channel.BasicPublish(exchange: string.Empty,
+        _rabbitMqConnectionManager.Channel.BasicPublish(exchange: string.Empty,
                              routingKey: queueName,
                              basicProperties: null,
                              body: body);
     }
-}
-
-public interface IInventoryRabbitMqClient
-{
-    void UpdateQuantity(UpdateQuantityDto updateQuantityDto);
 }

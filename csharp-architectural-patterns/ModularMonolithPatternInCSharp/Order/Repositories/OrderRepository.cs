@@ -1,4 +1,5 @@
-﻿using Order.Models;
+﻿using Order.Interfaces;
+using Order.Models;
 
 namespace Order.Repositories;
 
@@ -27,10 +28,4 @@ internal class OrderRepository : IOrderRepository
     {
         return _orders.Select(i => i.ToDto()).ToList();
     }
-}
-
-public interface IOrderRepository
-{
-    void Add(OrderDto orderDto);
-    List<OrderDto> GetAll();
 }

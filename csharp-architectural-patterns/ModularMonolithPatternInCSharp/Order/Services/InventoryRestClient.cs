@@ -1,5 +1,6 @@
 ﻿using Inventory.Models;
 using Microsoft.Extensions.Configuration;
+using Order.Interfaces;
 using System.Net.Http.Json;
 
 namespace Order.Services;
@@ -19,9 +20,4 @@ public class InventoryRestClient(IHttpClientFactory clientFactory, IConfiguratio
 
         return await result.Content.ReadFromJsonAsync<ItemDto?>();
     }
-}
-
-public interface IInventoryRestClient
-{
-    Task<ItemDto?> GetItem(Guid id);
 }

@@ -1,3 +1,4 @@
+using Common.RabbitMq;
 using Inventory;
 using Order;
 using Testcontainers.RabbitMq;
@@ -18,16 +19,14 @@ var rabbitMqContainer = new RabbitMqBuilder()
 
 await rabbitMqContainer.StartAsync();
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient();
 
-// Add module services
+builder.Services.AddRabbitMqConnectionManager();
 builder.Services.AddInventoryModule();
 builder.Services.AddOrderModule();
 
@@ -42,8 +41,9 @@ appLifetime.ApplicationStopping.Register(() =>
     .GetResult();
 });
 
+app.UseRabbitMqConnectionManager();
+app.UseOrderConsumer();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

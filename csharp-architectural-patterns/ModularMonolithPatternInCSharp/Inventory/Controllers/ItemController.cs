@@ -1,4 +1,4 @@
-﻿using Inventory.Services;
+﻿using Inventory.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory.Controllers;

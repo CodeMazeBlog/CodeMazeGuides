@@ -1,5 +1,5 @@
-﻿using Inventory.Models;
-using Inventory.Repositories;
+﻿using Inventory.Interfaces;
+using Inventory.Models;
 
 namespace Inventory.Services;
 
@@ -21,11 +21,4 @@ internal class ItemService(IItemRepository itemRepository) : IItemService
     {
         return _itemRepository.UpdateQuantity(updateQuantityDto);
     }
-}
-
-public interface IItemService
-{
-    ItemDto? Get(Guid id);
-    List<ItemDto> GetAll();
-    bool UpdateQuantity(UpdateQuantityDto updateQuantityDto);
 }

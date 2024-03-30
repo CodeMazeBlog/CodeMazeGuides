@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Order.Interfaces;
 using Order.Repositories;
 using Order.Services;
 
 namespace Order;
 
-public static class DependencyInjection
+public static class ServiceCollectionExtensions
 {
     public static void AddOrderModule(this IServiceCollection services)
     {
