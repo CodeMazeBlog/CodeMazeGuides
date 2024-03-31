@@ -15,3 +15,4 @@ This section contains topics about the List collection and solving specific prob
 - [Techniques for Sorting a List in C#](https://code-maze.com/csharp-techniques-for-sorting-list/)
 - [How to Convert IAsyncEnumerable to List](https://code-maze.com/csharp-convert-iasyncenumerable-to-list/)
 - [Fastest Way to Check if a List is in Order in C#](https://code-maze.com/csharp-fastest-way-to-check-if-a-list-is-in-order/)
+- [Different Ways to Create a Generic List of Anonymous Types in C#](https://code-maze.com/csharp-different-ways-to-create-a-generic-list-of-anonymous-types/)
