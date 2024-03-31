@@ -9,7 +9,7 @@ namespace Tests
     {
 
         [Fact]
-        public void WhenGetCookie_ThenReturnOkResult_And_Sets_Cookie()
+        public void WhenGetCookie_ThenReturnOkResultAndSetsCookie()
         {
             // Arrange
             var controller = new CookieController();

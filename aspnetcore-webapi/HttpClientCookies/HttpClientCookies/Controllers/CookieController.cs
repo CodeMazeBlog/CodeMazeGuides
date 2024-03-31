@@ -9,7 +9,7 @@ namespace HttpClientCookies.Controllers
         [HttpGet(nameof(GetCookie))]
         public IActionResult GetCookie()
         {
-            CookieOptions options = new CookieOptions();
+            var options = new CookieOptions();
             options.Expires = DateTime.Now.AddHours(1);
             options.Secure = true;
             options.Domain = "example.com";
