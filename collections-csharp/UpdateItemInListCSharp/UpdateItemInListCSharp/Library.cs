@@ -65,9 +65,7 @@ namespace UpdateItemInListCSharp
 
         public void CheckoutBookUsingIndexOf(Book book)
         {
-            var newBook = new Book(book.Title, book.Author, book.ISBN, book.IsCheckedOut);
-
-            var index = Books.IndexOf(newBook);
+            var index = Books.IndexOf(book);
             if (index > -1)
             {
                 Books[index].IsCheckedOut = true;
