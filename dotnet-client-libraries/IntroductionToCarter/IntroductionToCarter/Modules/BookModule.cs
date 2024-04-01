@@ -50,7 +50,7 @@ public class BookModule : CarterModule
 
 			var book = await service.CreateAsync(request);
 
-			Results.Created($"/books/{book.Id}", book);
+			Results.Created($"/api/books/{book.Id}", book);
 		});
 
 		app.MapPut("/books/{id:guid}", async (			

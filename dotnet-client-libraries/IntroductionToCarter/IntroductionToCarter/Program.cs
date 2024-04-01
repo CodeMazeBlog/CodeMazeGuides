@@ -1,11 +1,8 @@
 using Carter;
-using IntroductionToCarter.Contracts;
 using IntroductionToCarter.Data;
 using IntroductionToCarter.Services;
 using IntroductionToCarter.Services.Abstractions;
-using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,3 +30,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.Run();
+
+public partial class Program { }
