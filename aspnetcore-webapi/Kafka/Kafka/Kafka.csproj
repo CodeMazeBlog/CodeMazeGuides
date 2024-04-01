@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KafkaUtilities\KafkaUtilities.csproj" />
+    <ProjectReference Include="..\KafkaUtilities\KafkaCommon.csproj" />
   </ItemGroup>
 
 </Project>

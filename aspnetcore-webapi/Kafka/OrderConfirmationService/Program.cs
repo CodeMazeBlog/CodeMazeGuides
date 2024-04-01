@@ -1,5 +1,5 @@
 ﻿using Confluent.Kafka;
-using KafkaUtilities;
+using KafkaCommon;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OrderConfirmationService;

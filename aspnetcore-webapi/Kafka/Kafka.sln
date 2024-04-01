@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderConfirmationService", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaUnitTests", "KafkaUnitTests\KafkaUnitTests.csproj", "{83A41992-7F55-4B8C-ABEC-3ADB40AC5FE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaUtilities", "KafkaUtilities\KafkaUtilities.csproj", "{06187720-3852-493A-B522-7A02803EDA7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KafkaCommon", "KafkaUtilities\KafkaCommon.csproj", "{06187720-3852-493A-B522-7A02803EDA7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

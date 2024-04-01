@@ -1,4 +1,4 @@
-﻿namespace KafkaUtilities;
+﻿namespace KafkaCommon;
 
 public class OrderDetails
 {
