@@ -33,7 +33,7 @@ namespace Tests
         }
 
         [Test]
-        public void WhenXIsPressed_ApplicationShouldStop()
+        public void WhenXIsPressed_ThenApplicationShouldStop()
         {
             _mockConsoleService.SetupSequence(m => m.KeyAvailable)
                 .Returns(false)
