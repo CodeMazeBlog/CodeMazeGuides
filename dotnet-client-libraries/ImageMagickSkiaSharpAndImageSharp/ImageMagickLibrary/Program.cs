@@ -1,7 +1,7 @@
 ﻿using ImageMagick;
 using ImageMagickLibrary;
 
-string outputPath = @"..\..\..\Image\outputImage.jpeg";
+string outputPath = @"outputImage.png";
 
 var image = ImageService.CreateBlankImage(480, 300, MagickColors.AliceBlue);
 var strokeColor = MagickColors.YellowGreen;
@@ -10,4 +10,4 @@ var circle = ImageService.CreateCircle(image.Width / 2, image.Height / 2, 100, 5
 ImageService.DrawOnImage(image, circle);
 ImageService.SaveImage(image, outputPath);
 
-Console.WriteLine("Image generated and saved successfully in Image folder.");
+Console.WriteLine("Image generated and saved successfully.");

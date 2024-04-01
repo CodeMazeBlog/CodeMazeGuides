@@ -1,7 +1,7 @@
 ﻿using ImageSharpLibrary;
 using SixLabors.ImageSharp;
 
-string outputPath = @"..\..\..\Image\outputImage.png";
+string outputPath = @"outputImage.png";
 
 var imageSize = new SizeF(350, 280);
 var point1 = new PointF(50, 50);
@@ -11,4 +11,4 @@ var image = ImageService.CreateBlankImage((int)imageSize.Width, (int)imageSize.H
 ImageService.DrawTriangleOnImage(image, point1, point2, point3);
 ImageService.SaveImage(image, outputPath);
 
-Console.WriteLine("Image generated and saved successfully in Image folder.");
+Console.WriteLine("Image generated and saved successfully.");

@@ -7,7 +7,7 @@ public static class ImageService
     public static SKBitmap CreateBlankImage(int width, int height)
     {
         var bitmap = new SKBitmap(width, height);
-        using (var canvas = new SKCanvas(bitmap))
+        using var canvas = new SKCanvas(bitmap);
         canvas.Clear(SKColors.White);
 
         return bitmap;
@@ -15,9 +15,9 @@ public static class ImageService
 
     public static void DrawSquareOnImage(SKBitmap bitmap, int squareSize, int startX, int startY)
     {
-        if (squareSize <= 0)
+        if (squareSize <= 0 || startX <= 0 || startY <= 0)
         { 
-            throw new ArgumentException("Square dimensions cannot be less than or equal to zero.");
+            throw new ArgumentException("Square size and coordinates must be greater than zero.");
         }
         using var canvas = new SKCanvas(bitmap);
         using var paint = new SKPaint();
@@ -28,16 +28,16 @@ public static class ImageService
 
     public static void SaveImage(SKBitmap bitmap, string outputPath)
     {
-        var directory = Path.GetDirectoryName(outputPath);
-        Directory.CreateDirectory(directory);
         try
         {
             using var stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
-            SKImage.FromBitmap(bitmap).Encode(SKEncodedImageFormat.Png, 100).SaveTo(stream);
+            using var image = SKImage.FromBitmap(bitmap); 
+            using var encodedImage = image.Encode(); 
+            encodedImage.SaveTo(stream);
         }
-        catch (System.Runtime.InteropServices.ExternalException)
+        catch (Exception ex)
         {
-            throw new UnauthorizedAccessException($"No write permission for path: {outputPath}");
+            throw new Exception($"An error occurred: {ex.Message}");
         }
     }
 }

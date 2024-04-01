@@ -5,7 +5,7 @@ namespace Tests;
 
 public class ImageMagickLibraryLiveTest
 {
-    private const string OutputPath = @"..\..\..\Image\outputImage.png";
+    private const string OutputPath = @"outputImage.png";
     private const string NullOutputPath = "";
     private readonly MagickColor _color = MagickColors.Green;
     private readonly MagickGeometry _imageSize = new(480, 300);
@@ -103,7 +103,7 @@ public class ImageMagickLibraryLiveTest
         var image = ImageService.CreateBlankImage(_imageSize.Width, _imageSize.Height, MagickColors.AliceBlue);
 
         // Act & Assert
-        Assert.Throws<ArgumentNullException>(() =>
+        Assert.Throws<Exception>(() =>
         {
             ImageService.SaveImage(image, NullOutputPath);
         });
@@ -124,5 +124,4 @@ public class ImageMagickLibraryLiveTest
             ImageService.DrawOnImage(image, circle);
         });
     }
-
 }

@@ -31,15 +31,13 @@ public static class ImageService
 
     public static void SaveImage(Image<Rgba32> image, string outputPath)
     {
-        var directory = Path.GetDirectoryName(outputPath);
-        Directory.CreateDirectory(directory);
         try
         {
             image.SaveAsPng(outputPath);
         }
-        catch (System.Runtime.InteropServices.ExternalException)
+        catch (Exception ex)
         {
-            throw new UnauthorizedAccessException($"No write permission for path: {outputPath}");
+            throw new Exception($"An error occurred: {ex.Message}");
         }
     }
 }
