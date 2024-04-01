@@ -1,48 +1,40 @@
 using HowToSetDefaultUserAgentOnHttpClient;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Tests;
 
 public class ProgramUnitTests
 {
     [Fact]
-    public void WhenUserAgentPropertyIsProvided_ThenSetUserAgentOnHttpRequestMessageSetsTheHeaderAndLogsToConsole()
+    public void WhenUserAgentPropertyIsProvided_ThenSetUserAgentOnHttpRequestMessageSetsTheHeader()
     {
         //Arrange
         var productName = "CodeMazeDesktopApp";
         var productVersion = "1.1";
-        var expectedOutput = $"The User-Agent header is set with value {productName}/{productVersion}";
-
-        var actualOutputWriter = new StringWriter();
-        Console.SetOut(actualOutputWriter);
+        var expectedOutput = $"{productName}/{productVersion}";
 
         //Act
-        Program.SetUserAgentOnHttpRequestMessage(productName, productVersion);
+        var actualOutput = Program.SetUserAgentOnHttpRequestMessage(productName, productVersion);
 
         //Assert
-        var actualOutput = actualOutputWriter.ToString();
-        var actualSanitizedOutput = actualOutput.Replace(Environment.NewLine, string.Empty);
-
-        Assert.Contains(expectedOutput, actualSanitizedOutput);
+        Assert.Equal(expectedOutput, actualOutput);
     }
 
     [Fact]
-    public void WhenUserAgentPropertyIsProvided_ThenSetUserAgentAsDefaultHeaderOnHttpClientSetsTheHeaderAndLogsToConsole()
+    public void WhenHttpClientIsRegisteredWithHostBuilder_ThenHttpClientGetsDefaultUserAgent()
     {
         //Arrange
         var productName = "CodeMazeDesktopApp";
         var productVersion = "1.1";
-        var expectedOutput = $"The User-Agent header is set with value {productName}/{productVersion}";
-
-        var actualOutputWriter = new StringWriter();
-        Console.SetOut(actualOutputWriter);
+        var expectedOutput = $"{productName}/{productVersion}";
 
         //Act
-        Program.SetUserAgentAsDefaultHeaderOnHttpClient(productName, productVersion);
+        var host = Program.BuildHost();
+        var httpClientFactory = host.Services.GetService<IHttpClientFactory>();
+
+        var actualOutput = Program.GetDefaultAgentOnHttpClient(httpClientFactory);
 
         //Assert
-        var actualOutput = actualOutputWriter.ToString();
-        var actualSanitizedOutput = actualOutput.Replace(Environment.NewLine, string.Empty);
-
-        Assert.Contains(expectedOutput, actualSanitizedOutput);
-        
+        Assert.Equal(expectedOutput, actualOutput);
     }
 }

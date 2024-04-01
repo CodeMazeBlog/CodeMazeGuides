@@ -1,14 +1,46 @@
-﻿using System.Net.Http.Headers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Net.Http.Headers;
+
 namespace HowToSetDefaultUserAgentOnHttpClient;
 public class Program
 {
     public static void Main(string[] args)
     {
+        var host = BuildHost();
+
+        var httpClientFactory = host.Services.GetService<IHttpClientFactory>();
+
+        GetDefaultAgentOnHttpClient(httpClientFactory);
+
         SetUserAgentOnHttpRequestMessage("CodeMazeDesktopApp", "1.1");
-        SetUserAgentAsDefaultHeaderOnHttpClient("CodeMazeDesktopApp", "1.1");
     }
 
-    public static void SetUserAgentOnHttpRequestMessage(string productName, string productVersion)
+    public static IHost BuildHost()
+    {
+        var builder = new HostBuilder()
+            .ConfigureServices(services =>
+            {
+                services.AddHttpClient("CodeMazeHttpClient", client =>
+                {
+                    var productHeaderValue = new ProductHeaderValue(name: "CodeMazeDesktopApp", version: "1.1");
+                    var productInfoHeaderValue = new ProductInfoHeaderValue(productHeaderValue);
+
+                    client.DefaultRequestHeaders.UserAgent.Add(productInfoHeaderValue);
+                });
+            });
+
+        return builder.Build();
+    }
+
+    public static string GetDefaultAgentOnHttpClient(IHttpClientFactory httpClientFactory)
+    { 
+        var httpClient = httpClientFactory.CreateClient("CodeMazeHttpClient");
+
+        return httpClient.DefaultRequestHeaders.UserAgent.ToString();
+    }
+
+    public static string SetUserAgentOnHttpRequestMessage(string productName, string productVersion)
     {
         var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "/users/1234");
 
@@ -17,18 +49,6 @@ public class Program
 
         httpRequestMessage.Headers.UserAgent.Add(productInfoHeaderValue);
 
-        Console.WriteLine($"The User-Agent header is set with value {httpRequestMessage.Headers.UserAgent.First()}");
-    }
-
-    public static void SetUserAgentAsDefaultHeaderOnHttpClient(string productName, string productVersion)
-    {
-        using var httpClient = new HttpClient();
-
-        var productHeaderValue = new ProductHeaderValue(name: productName, version: productVersion);
-        var productInfoHeader = new ProductInfoHeaderValue(product: productHeaderValue);
-
-        httpClient.DefaultRequestHeaders.UserAgent.Add(productInfoHeader);
-
-        Console.WriteLine($"The User-Agent header is set with value {httpClient.DefaultRequestHeaders.UserAgent.First()}");
+        return httpRequestMessage.Headers.UserAgent.ToString();
     }
 }
