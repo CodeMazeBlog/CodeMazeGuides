@@ -7,7 +7,6 @@
         public void Given_InputString_When_Linqmethod_Called_Then_ExpectedOutput()
         {
             // Arrange
-            var input = "The big black bird just blacked out";
             var substring = "b";
 
             // Redirect Console output to capture it

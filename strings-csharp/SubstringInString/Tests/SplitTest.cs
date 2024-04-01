@@ -6,9 +6,6 @@
         [Test]
         public void Given_Text_When_Splitmethod_Called_Then_ExpectedOutput()
         {
-            // Arrange
-            var text = "Bring the bricks to the brown box of brooks.";
-
             // Redirect Console output to capture it
             using (var sw = new StringWriter())
             {

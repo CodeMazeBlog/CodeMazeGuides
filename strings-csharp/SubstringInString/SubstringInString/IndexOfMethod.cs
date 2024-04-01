@@ -6,8 +6,7 @@
         {
             var input = "Taking a walk in spring is great";
             var substring = "a";
-            var startIndex = 0;
-
+            int startIndex;
             for (var i = input.IndexOf(substring); i != -1; i = input.IndexOf(substring, startIndex))
             {
                 Console.WriteLine("Found '{0}' in '{1}' at position {2}",
