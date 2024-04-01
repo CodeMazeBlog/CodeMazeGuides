@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Buffers;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -8,10 +9,11 @@ namespace CheckNumberInString
     public static partial class ExtractNumber
     {
         // Define valid numerical characters including digits, minus sign, and decimal point
-        private static readonly char[] ValidNumericalValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '.'];
+        private static readonly SearchValues<char> NumericSearchValues = SearchValues.Create(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '.']);
 
         [GeneratedRegex(@"-?\d+(\.\d+)?")]
         private static partial Regex NumberRegex();
+
         public static string ExtractNumberUsingRegEx(string inputString)
         {
             var extractedNumbers = new List<double>();
@@ -70,13 +72,13 @@ namespace CheckNumberInString
             var inputStringSpan = inputString.AsSpan();
             while (true)
             {
-                var startIndex = inputStringSpan.IndexOfAny(ValidNumericalValues);
+                var startIndex = inputStringSpan.IndexOfAny(NumericSearchValues);
                 if (startIndex == -1)
                     break;
 
                 inputStringSpan = inputStringSpan[startIndex..];
 
-                var endIndex = inputStringSpan.IndexOfAnyExcept(ValidNumericalValues);
+                var endIndex = inputStringSpan.IndexOfAnyExcept(NumericSearchValues);
                 if (endIndex == -1)
                 {
                     AddNumberToList(inputStringSpan, numbers);
