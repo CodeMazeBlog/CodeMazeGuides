@@ -16,10 +16,10 @@
 
                 // Act
                 LinqMethod.Linqmethod();
-                var expectedOutput = $"Found '{substring}' at index 4\r\n"
-                                      + $"Found '{substring}' at index 8\r\n"
-                                      + $"Found '{substring}' at index 14\r\n"
-                                      + $"Found '{substring}' at index 24\r\n";
+                var expectedOutput = $"Found '{substring}' at index 4{Environment.NewLine}"
+                                      + $"Found '{substring}' at index 8{Environment.NewLine}"
+                                      + $"Found '{substring}' at index 14{Environment.NewLine}"
+                                      + $"Found '{substring}' at index 24{Environment.NewLine}";
 
                 // Assert
                 Assert.That(sw.ToString(), Is.EqualTo(expectedOutput));

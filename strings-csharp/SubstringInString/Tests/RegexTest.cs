@@ -13,10 +13,10 @@
 
                 // Act
                 RegexMethod.Regexmethod();
-                var expectedOutput = "substring found at index 51: code\r\n" +
-                                        "substring found at index 75: code\r\n" +
-                                        "substring found at index 91: code\r\n" +
-                                        "substring found at index 124: code\r\n";
+                var expectedOutput = "substring found at index 51: code" + Environment.NewLine +
+                                 "substring found at index 75: code" + Environment.NewLine +
+                                 "substring found at index 91: code" + Environment.NewLine +
+                                 "substring found at index 124: code" + Environment.NewLine;
 
                 // Assert
                 Assert.That(sw.ToString(), Is.EqualTo(expectedOutput));

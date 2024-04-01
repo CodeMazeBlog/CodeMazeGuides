@@ -6,10 +6,9 @@
         [Test]
         public void Given_UserInput_When_Substringmethod_Called_Then_ExpectedOutput()
         {
-            var expectedOutput = $"Found 'sub' in 'This is a substring method for searching for substrings in a string' at position 10\r\n" +
-                     $"Found 'sub' in 'This is a substring method for searching for substrings in a string' at position 45\r\n" +
-                     $"Total occurrences found: 2\r\n";
-
+            var expectedOutput = $"Found 'sub' in 'This is a substring method for searching for substrings in a string' at position 10{Environment.NewLine}" +
+                         $"Found 'sub' in 'This is a substring method for searching for substrings in a string' at position 45{Environment.NewLine}" +
+                         $"Total occurrences found: 2{Environment.NewLine}";
 
             using (var sw = new StringWriter())
             {

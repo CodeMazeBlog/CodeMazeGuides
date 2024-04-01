@@ -13,16 +13,15 @@
 
                 // Act
                 SplitMethod.Splitmethod();
-                var expectedOutput = "Index 0: <Bring>\r\n" +
-                                        "Index 1: <the>\r\n" +
-                                        "Index 2: <bricks>\r\n" +
-                                        "Index 3: <to>\r\n" +
-                                        "Index 4: <the>\r\n" +
-                                        "Index 5: <brown>\r\n" +
-                                        "Index 6: <box>\r\n" +
-                                        "Index 7: <of>\r\n" +
-                                        "Index 8: <brooks.>\r\n";
-                                      
+                var expectedOutput = "Index 0: <Bring>" + Environment.NewLine +
+                                "Index 1: <the>" + Environment.NewLine +
+                                "Index 2: <bricks>" + Environment.NewLine +
+                                "Index 3: <to>" + Environment.NewLine +
+                                "Index 4: <the>" + Environment.NewLine +
+                                "Index 5: <brown>" + Environment.NewLine +
+                                "Index 6: <box>" + Environment.NewLine +
+                                "Index 7: <of>" + Environment.NewLine +
+                                "Index 8: <brooks.>" + Environment.NewLine;
                 // Assert
                 Assert.That(sw.ToString(), Is.EqualTo(expectedOutput));
             }
