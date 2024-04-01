@@ -14,6 +14,7 @@ public ref struct FastStore<T>
 	{
 		if (values.Length != 3)
 			throw new ArgumentException($"'{nameof(values)}' must contain 3 items");
+
 		values.CopyTo(_values);
 	}
 }
