@@ -12,6 +12,7 @@ public class Program
     {
         var yamlProduct = BasicSerializeAndDeserialize.SerializeProduct(new Product
         {
+            Id = 1,
             Name = "Apple",
             Price = 1.99m
         });
