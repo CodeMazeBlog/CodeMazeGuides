@@ -4,10 +4,9 @@ namespace Common.RabbitMq
 {
     public interface IRabbitMqConnectionManager
     {
-        IModel? Channel { get; set; }
-        IConnection? Connection { get; set; }
+        IModel? Channel { get; }
+        IConnection? Connection { get; }
 
-        void Dispose();
         void InitializeConnection();
     }
 }

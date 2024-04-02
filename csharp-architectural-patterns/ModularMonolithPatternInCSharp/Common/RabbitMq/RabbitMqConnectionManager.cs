@@ -7,8 +7,8 @@ internal class RabbitMqConnectionManager(IConfiguration configuration) : IDispos
 {
     private readonly IConfiguration _configuration = configuration;
 
-    public IConnection? Connection { get; set; }
-    public IModel? Channel { get; set; }
+    public IConnection? Connection { get; private set; }
+    public IModel? Channel { get; private set; }
 
     public void InitializeConnection()
     {
@@ -28,5 +28,4 @@ internal class RabbitMqConnectionManager(IConfiguration configuration) : IDispos
         Channel?.Close();
         Connection?.Close();
     }
-
 }
