@@ -1,20 +1,13 @@
-﻿using BenchmarkDotNet.Running;
-using CountEnumMembers;
-using CountEnumMembersBenchmark;
+﻿using CountEnumMembers;
 
 public class Program
 {
     public static void Main()
     {
-        BenchmarkRunner.Run<Benchmark>();
+        var names = Enum.GetNames<Seasons>();
+        var values = Enum.GetValues<Seasons>();
 
-        var names = Enum.GetNames<Months>();
-        var values = Enum.GetValues<Months>();
-        var getnames = Enum.GetNames<Months>().Length;
-        var getvalues = Enum.GetValues<Months>().Length;
-        var distinct_values = Enum.GetValues(typeof(Seasons)).Cast<Seasons>().Distinct().Count();
-
-        Console.WriteLine("Names array: ");
+        Console.WriteLine("Names array:");
 
         foreach (var n in names)
         {
@@ -27,7 +20,11 @@ public class Program
         foreach (var v in values)
         {
             Console.WriteLine(v);
-        }        
+        }
+
+        var getnames = Enum.GetNames<Seasons>().Length;
+        var getvalues = Enum.GetValues<Seasons>().Length;
+        var distinct_values = Enum.GetValues(typeof(Medals)).Cast<Medals>().Distinct().Count();
 
         Console.WriteLine("");
         Console.WriteLine("Total items by GetNames: " + getnames);
