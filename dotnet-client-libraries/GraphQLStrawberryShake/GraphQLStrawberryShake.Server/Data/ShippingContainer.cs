@@ -4,11 +4,11 @@ namespace GraphQLStrawberryShake.Server;
 
 public class ShippingContainer
 {
-    public string Id { get; set; } = null!;
+    public string? Id { get; set; }
     [Required]
     [StringLength(100)]
-    public string Name { get; set; } = null!;
-    public AvailableSpace Space { get; set; } = null!;
+    public string? Name { get; set; }
+    public AvailableSpace? Space { get; set; }
 
     public class AvailableSpace
     {
