@@ -1,5 +1,5 @@
 using Confluent.Kafka;
-using KafkaCommon;
+using Shared;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 

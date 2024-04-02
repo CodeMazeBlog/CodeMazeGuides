@@ -1,5 +1,5 @@
 using Confluent.Kafka;
-using KafkaCommon;
+using Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,4 @@
-﻿namespace KafkaCommon;
+﻿namespace Shared;
 
 public class OrderDetails
 {

@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KafkaUtilities\KafkaCommon.csproj" />
+    <ProjectReference Include="..\KafkaUtilities\Shared.csproj" />
     <ProjectReference Include="..\Kafka\Kafka.csproj" />
     <ProjectReference Include="..\OrderConfirmationService\OrderConfirmationService.csproj" />
   </ItemGroup>

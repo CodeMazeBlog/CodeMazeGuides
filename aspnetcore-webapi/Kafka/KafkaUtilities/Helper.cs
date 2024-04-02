@@ -1,6 +1,6 @@
 ﻿using YamlDotNet.RepresentationModel;
 
-namespace KafkaCommon;
+namespace Shared;
 public static class Helper
 {
     public static int GetKafkaBrokerPort(string filePath)
