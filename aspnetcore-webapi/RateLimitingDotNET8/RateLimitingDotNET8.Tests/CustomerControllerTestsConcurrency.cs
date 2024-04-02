@@ -29,7 +29,7 @@ public class CustomerControllerTestsConcurrency : IClassFixture<WebApplicationFa
     }
 
     [Theory]
-    [InlineData("/Customer/Get", 10)]
+    [InlineData("/Customer/Get", 4)]
     public async Task WhenConcurrencyRateLimitedEndpoint_ThenCannotHaveMoreThan10ConcurrentRequests(string url, int limit)
     {
         var tasks = new List<Task<HttpResponseMessage>>();
