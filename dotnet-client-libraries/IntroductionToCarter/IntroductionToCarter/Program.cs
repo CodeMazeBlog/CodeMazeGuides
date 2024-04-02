@@ -15,7 +15,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IBookService, BookService>();
 
 builder.Services.AddDbContext<BooksDbContext>(options =>
-	options.UseInMemoryDatabase("Books"));
+    options.UseInMemoryDatabase("Books"));
 
 var app = builder.Build();
 
@@ -23,8 +23,8 @@ app.MapCarter();
 
 if (app.Environment.IsDevelopment())
 {
-	app.UseSwagger();
-	app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

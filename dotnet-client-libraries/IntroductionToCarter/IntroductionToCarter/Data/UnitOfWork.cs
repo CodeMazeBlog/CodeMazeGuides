@@ -5,8 +5,8 @@ namespace IntroductionToCarter.Data;
 
 public class UnitOfWork(BooksDbContext context) : IUnitOfWork
 {
-	public IBookRepository BookRepository { get; } = new BookRepository(context);
+    public IBookRepository BookRepository { get; } = new BookRepository(context);
 
-	public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-		=> await context.SaveChangesAsync(cancellationToken);
+    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        => await context.SaveChangesAsync(cancellationToken);
 }
