@@ -1,6 +1,6 @@
 using Grpc.Core.Testing;
 using Microsoft.Extensions.Logging;
-using Moq;
+using NSubstitute;
 using TestingGrpcService;
 using TestingGrpcService.Services;
 
@@ -8,14 +8,14 @@ namespace GrpcServiceTests;
 
 public class GreeterServiceUnitTests
 {
-    private readonly Mock<ILogger<GreeterService>> _logger;
+    private readonly ILogger<GreeterService> _logger;
 
     public GreeterServiceUnitTests()
     {
-        _logger = new Mock<ILogger<GreeterService>>();
+        _logger = Substitute.For<ILogger<GreeterService>>();
     }
 
-    private GreeterService CreateGreeterService() => new(_logger.Object);
+    private GreeterService CreateGreeterService() => new(_logger);
 
     [Fact]
     public async Task WhenSayHelloAsyncIsCalled_ThenItShouldReturnCorrectName()
@@ -45,13 +45,12 @@ public class GreeterServiceUnitTests
 
         // Assert
         Assert.Equal(expectedOutput, response.Message);
-        _logger.Verify(
-             x => x.Log(
-                 LogLevel.Information,
-                 It.IsAny<EventId>(),
-                 It.Is<It.IsAnyType>((o, t) => string.Equals("Request from: localhost", o.ToString(), StringComparison.InvariantCultureIgnoreCase)),
-                 null,
-                 It.IsAny<Func<It.IsAnyType, Exception, string>>()),
-             Times.Once);
+
+        _logger.Received(1).Log(
+            LogLevel.Information,
+            Arg.Any<EventId>(),
+            Arg.Is<object>(o => o.ToString()!.Contains("Request from: localhost")),
+            null,
+            Arg.Any<Func<object, Exception, string>>());
     }
 }
