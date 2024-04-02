@@ -1,17 +1,19 @@
 using BenchmarkDotNet.Attributes;
 using Services;
 using Microsoft.Extensions.Configuration;
+using BenchmarkDotNet.Order;
 
 namespace BenchmarkRunner
 {
-    [MaxIterationCount(30)] 
+    [Orderer(SummaryOrderPolicy.Method, MethodOrderPolicy.Declared)]
+    [MaxIterationCount(40)]
     public class LocationServicesBenchmark
     {
         private GoogleLocationServiceWrapper? locationService;
         private LatLongWithNuGet? latLongWithNuGet;
         private LatLongWithHttpClient? latLongWithHttpClient;
         private string address = "Fort Myers, Florida";
-        private string? apiKey; 
+        private string? apiKey;
 
         [GlobalSetup]
         public void Setup()
@@ -31,14 +33,12 @@ namespace BenchmarkRunner
         }
 
         [Benchmark]
-        [MaxIterationCount(30)]
         public async Task<string> Benchmark_GetLatLongWithHttpClient()
         {
             return await latLongWithHttpClient!.GetLatLongWithHttpClient(address);
         }
 
         [Benchmark]
-        [MaxIterationCount(30)]
         public string Benchmark_GetLatLongWithNuGet()
         {
             return latLongWithNuGet!.GetLatLongWithNuGet(address);
