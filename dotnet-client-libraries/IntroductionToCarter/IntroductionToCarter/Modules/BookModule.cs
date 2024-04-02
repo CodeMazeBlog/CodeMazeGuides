@@ -45,12 +45,12 @@ public class BookModule : CarterModule
 				context.Response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
 				await context.Response.Negotiate(result.GetFormattedErrors());
 
-				return;
+				return Results.UnprocessableEntity();
 			}
 
 			var book = await service.CreateAsync(request);
 
-			Results.Created($"/api/books/{book.Id}", book);
+			return Results.Created($"/api/books/{book.Id}", book);
 		});
 
 		app.MapPut("/books/{id:guid}", async (			
