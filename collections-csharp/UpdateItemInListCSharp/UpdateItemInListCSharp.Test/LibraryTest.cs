@@ -66,10 +66,11 @@ namespace UpdateItemInListCSharp.Test
         public void WhenCheckoutBookIndexOf_ThenBookIsCheckedOut()
         {
             // Arrange
-            var book = _library.Books[0];
+            var book = _library.Books.Last();
+            var newBook = new Book(book.Title, book.Author, book.ISBN, book.IsCheckedOut);
 
             // Act
-            _library.CheckoutBookUsingIndexOf(book);
+            _library.CheckoutBookUsingIndexOf(newBook);
 
             // Assert
             Assert.True(book.IsCheckedOut);

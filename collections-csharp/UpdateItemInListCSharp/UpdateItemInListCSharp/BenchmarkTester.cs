@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using UpdateItemInListCSharp.Models;
 
 namespace UpdateItemInListCSharp
 {
@@ -36,7 +37,9 @@ namespace UpdateItemInListCSharp
         [Benchmark]
         public void CheckoutBookUsingIndexOf()
         {
-            _library.CheckoutBookUsingIndexOf(_library.Books[0]);
+            var book = _library.Books.Last();
+            var newBook = new Book(book.Title, book.Author, book.ISBN, book.IsCheckedOut);
+            _library.CheckoutBookUsingIndexOf(newBook);
         }
 
         [Benchmark]
