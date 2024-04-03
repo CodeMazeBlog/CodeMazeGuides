@@ -11,8 +11,8 @@ namespace VerticalSliceArchitecture.Features.Games
         //Input
         public class AddGameCommand : IRequest<GameResult>
         {
-            public string Name { get; set; }
-            public string Publisher { get; set; }
+            public string? Name { get; set; }
+            public string? Publisher { get; set; }
             public int ConsoleId { get; set; }
         }
 
@@ -20,8 +20,8 @@ namespace VerticalSliceArchitecture.Features.Games
         public class GameResult
         {
             public int Id { get; set; }
-            public string Name { get; set; }
-            public string Publisher { get; set; }
+            public string? Name { get; set; }
+            public string? Publisher { get; set; }
             public int ConsoleId { get; set; }
         }
 
@@ -41,7 +41,7 @@ namespace VerticalSliceArchitecture.Features.Games
             {
                 var console = await _serviceManager.Console.GetConsoleByIdAsync(request.ConsoleId);
 
-                if (console == null)
+                if (console is null)
                     throw new NoConsoleExistsException(request.ConsoleId);
 
                 var game = new Game()
