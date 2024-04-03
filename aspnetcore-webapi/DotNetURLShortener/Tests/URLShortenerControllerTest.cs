@@ -34,7 +34,7 @@ public class URLShortenerControllerTest
     }
 
     [Fact]
-    public void WhenRedirectShortUrlIsCalled_ThenRedirectsToTheLongUrl()
+    public void WhenGetLongUrlIsCalled_ThenRedirectsToTheLongUrl()
     {
         string shortCode = "eW3Ta";
         string expectedLongUrl = "https://localhost:7075/testurlshortener";
@@ -42,9 +42,9 @@ public class URLShortenerControllerTest
         _mockService.Setup(service => service.GetLongUrl(shortCode))
             .Returns(expectedLongUrl);
 
-        var result = _controller.RedirectShortUrl(shortCode);
+        var result = _controller.GetLongUrl(shortCode);
 
-        var redirectResult = Assert.IsType<RedirectResult>(result);
-        Assert.Equal(expectedLongUrl, redirectResult.Url);
+        var redirectResult = Assert.IsType<OkObjectResult>(result);
+        Assert.Equal(expectedLongUrl, redirectResult.Value);
     }
 }
