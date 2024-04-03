@@ -26,7 +26,7 @@
             do
             {   
                 _consoleService.WriteLine("Press 'x' to stop!");
-                Thread.Sleep(350);
+                Thread.Sleep(10);
                 _consoleService.Clear();
             } while (!(_consoleService.KeyAvailable && _consoleService.ReadKey(true).Key == ConsoleKey.X));
             _consoleService.WriteLine("Process stopped");
