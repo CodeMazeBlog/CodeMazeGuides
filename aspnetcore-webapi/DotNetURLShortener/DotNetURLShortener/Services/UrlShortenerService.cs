@@ -4,24 +4,17 @@ namespace DotNetURLShortener.Services;
 
 public class UrlShortenerService : IUrlShortenerService
 {
-    private const string AlphaNumericChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private const int ShortCodeLength = 5;
+    private static readonly char[] _chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+    private Dictionary<string, string> UrlDict { get; set; } = [];
 
-    public Dictionary<string, string> UrlDict { get; set; } = [];
+    private static string GenerateShortCode()
+    {
+        return string.Create(5, _chars, (shortCode, charsState)
+            => Random.Shared.GetItems(charsState, shortCode));
+    }
 
     public string GetShortCode(string longUrl)
     {
-        static string GenerateShortCode()
-        {
-            var shortCode = new char[ShortCodeLength];
-            for (var i = 0; i < ShortCodeLength; i++)
-            {
-                shortCode[i] = AlphaNumericChars[Random.Shared.Next(AlphaNumericChars.Length)];
-            };
-
-            return new string(shortCode);
-        }
-
         foreach (var pair in UrlDict)
         {
             if (pair.Value == longUrl)

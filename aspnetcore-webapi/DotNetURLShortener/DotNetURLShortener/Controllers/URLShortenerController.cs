@@ -10,15 +10,16 @@ public class URLShortenerController(IUrlShortenerService urlShortenerService) : 
     private readonly IUrlShortenerService _urlShortenerService = urlShortenerService;
 
     [HttpGet("/{shortCode}")]
-    public IActionResult RedirectShortUrl(string shortCode)
+    public IActionResult GetLongUrl(string shortCode)
     {
         var longUrl = _urlShortenerService.GetLongUrl(shortCode);
+
         if (longUrl is null)
         {
             return NotFound();
         }
 
-        return Redirect(longUrl);
+        return Ok(longUrl);
     }
 
     [HttpGet("/samplepage")]
