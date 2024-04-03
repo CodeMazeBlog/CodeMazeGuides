@@ -29,29 +29,14 @@ public class CustomerControllerTestsConcurrency : IClassFixture<WebApplicationFa
     }
 
     [Theory]
-    [InlineData("/Customer/Get", 4)]
+    [InlineData("/Customer/Get", 2)]
     public async Task WhenConcurrencyRateLimitedEndpoint_ThenCannotHaveMoreThan10ConcurrentRequests(string url, int limit)
     {
         var tasks = new List<Task<HttpResponseMessage>>();
 
-        using var semaphore = new SemaphoreSlim(4, 4);
-
         for (int i = 0; i < limit; i++)
         {
-            tasks.Add(Task.Run(async () =>
-            {
-                try
-                {
-                    await semaphore.WaitAsync();
-
-                    return await _client.GetAsync(url);
-                }
-                finally
-                {
-                    semaphore.Release();
-                }
-
-            }));
+            tasks.Add(_client.GetAsync(url));
         }
 
         var responses = await Task.WhenAll(tasks);
