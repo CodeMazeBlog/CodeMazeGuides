@@ -23,7 +23,11 @@ internal class RabbitMqConsumer(
     {
 
         var queueName = _configuration["RabbitMq:QueueName"];
-        _rabbitMqConnectionManager.Channel.QueueDeclare(queueName, true, true, false);
+        _rabbitMqConnectionManager.Channel.QueueDeclare(
+            queue: queueName,
+            durable: true,
+            exclusive: true,
+            autoDelete: false);
 
         var consumer = new EventingBasicConsumer(_rabbitMqConnectionManager.Channel);
 
