@@ -17,12 +17,6 @@ public class VowelCountersBenchmarks
     private static readonly HashSet<char> _vowelsHash = new(Vowels);
 
     [Benchmark]
-    public int CountVowelsUsingSearchValues()
-    {
-        return VowelCounters.CountVowelsUsingSearchValues(Sentence, _vowelsSearchValues);
-    }
-
-    [Benchmark]
     public int CountVowelsUsingForLoop()
     {
         return VowelCounters.CountVowelsUsingForLoop(Sentence, Vowels);
@@ -32,6 +26,12 @@ public class VowelCountersBenchmarks
     public int CountVowelsUsingForEachLoop()
     {
         return VowelCounters.CountVowelsUsingForEachLoop(Sentence, Vowels);
+    }
+
+    [Benchmark]
+    public int CountVowelsUsingSearchValues()
+    {
+        return VowelCounters.CountVowelsUsingSearchValues(Sentence, _vowelsSearchValues);
     }
 
     [Benchmark]

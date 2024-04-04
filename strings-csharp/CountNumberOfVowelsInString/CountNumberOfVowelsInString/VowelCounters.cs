@@ -11,18 +11,6 @@ public static partial class VowelCounters
     [GeneratedRegex(@"[^AEIOUaeiou]+")]
     private static partial Regex _regexNotVowels();
 
-    public static int CountVowelsUsingSearchValues(ReadOnlySpan<char> sentence, SearchValues<char> vowelsSearchValues)
-    {
-        var count = 0;
-        for (var i = 0; i < sentence.Length; ++i)
-        {
-            if (vowelsSearchValues.Contains(sentence[i]))
-                ++count;
-        }
-
-        return count;
-    }
-
     public static int CountVowelsUsingForLoop(ReadOnlySpan<char> sentence, ReadOnlySpan<char> vowels)
     {
         var total = 0;
@@ -48,6 +36,19 @@ public static partial class VowelCounters
             {
                 total++;
             }
+        }
+
+        return total;
+    }
+
+    public static int CountVowelsUsingSearchValues(ReadOnlySpan<char> sentence, SearchValues<char> vowelsSearchValues)
+    {
+        var total = 0;
+
+        for (var i = 0; i < sentence.Length; ++i)
+        {
+            if (vowelsSearchValues.Contains(sentence[i]))
+                ++total;
         }
 
         return total;
