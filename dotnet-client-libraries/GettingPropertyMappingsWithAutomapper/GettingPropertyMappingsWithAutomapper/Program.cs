@@ -6,8 +6,8 @@ using GettingPropertyMappingsWithAutomapper;
 var config = new MapperConfiguration(cfg => { cfg.AddProfile(new MyProfile()); });
 
 var mapper = config.CreateMapper();
-var source = new SourceClass { Name = "Jack", Age = 20 };
-var destination = mapper.Map<SourceClass, DestinationClass>(source);
+var source = new Source { Name = "Jack", Age = 20 };
+var destination = mapper.Map<Source, Destination>(source);
 Console.WriteLine($"Name: {destination.FullName}, Age: {destination.YearsOld}");
 
 var typeMaps = mapper.ConfigurationProvider.Internal().GetAllTypeMaps();
