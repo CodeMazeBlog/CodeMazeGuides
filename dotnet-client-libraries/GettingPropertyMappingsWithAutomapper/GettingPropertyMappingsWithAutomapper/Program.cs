@@ -11,11 +11,11 @@ var destination = mapper.Map<SourceClass, DestinationClass>(source);
 Console.WriteLine($"Name: {destination.FullName}, Age: {destination.YearsOld}");
 
 var typeMaps = mapper.ConfigurationProvider.Internal().GetAllTypeMaps();
-foreach (var typeMapType in typeMaps)
+foreach (var typeMap in typeMaps)
 {
-    Console.WriteLine($"Source Type: {typeMapType.SourceType.Name}");
-    Console.WriteLine($"Destination Type: {typeMapType.DestinationType.Name}");
-    foreach (var memberMap in typeMapType.MemberMaps)
+    Console.WriteLine($"Source Type: {typeMap.SourceType.Name}");
+    Console.WriteLine($"Destination Type: {typeMap.DestinationType.Name}");
+    foreach (var memberMap in typeMap.MemberMaps)
     {
         var sourceProperty = memberMap.SourceMember.Name;
         Console.WriteLine($"Source Property: {sourceProperty}");
