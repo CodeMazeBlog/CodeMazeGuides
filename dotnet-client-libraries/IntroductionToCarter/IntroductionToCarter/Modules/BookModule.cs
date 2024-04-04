@@ -14,7 +14,6 @@ public class BookModule : CarterModule
     {
         WithTags("Books");
         IncludeInOpenApi();
-        DisableRateLimiting();
     }
 
     public override void AddRoutes(IEndpointRouteBuilder app)
@@ -24,7 +23,7 @@ public class BookModule : CarterModule
             var books = await service.GetAllAsync();
 
             return Results.Ok(books);
-        }).WithOpenApi();
+        });
 
         app.MapGet("/books/{id:guid}", async (Guid id, IBookService service) =>
         {
