@@ -1,8 +1,8 @@
-[TestFixture]
-public class IndexOfTest
+﻿[TestFixture]
+public class SpanTest
 {
     [Test]
-    public void Given_InputStringAndSearchString_When_FindAllIndexesWithIndexOfCalled_Then_ReturnListOfIndexes()
+    public void Given_InputStringAndSearchString_When_FindAllIndexesWithSpanCalled_Then_ReturnListOfIndexes()
     {
         // Given
         var input = "Lorem ipsum dolor sit amet, consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan.";
@@ -10,7 +10,7 @@ public class IndexOfTest
         List<int> expectedIndexes = new List<int> { 6, 42, 53, 70, 85 };
 
         // When
-        var result = SubstringSearchMethods.FindAllIndexesWithIndexOf(input, search);
+        var result = SubstringSearchMethods.FindAllIndexesWithSpan(input, search);
 
         // Then
         Assert.IsNotNull(result);
@@ -18,14 +18,14 @@ public class IndexOfTest
     }
 
     [Test]
-    public void Given_InputStringWithNoMatches_When_FindAllIndexesWithIndexOfCalled_Then_ReturnEmptyList()
+    public void Given_InputStringWithNoMatches_When_FindAllIndexesWithSpanCalled_Then_ReturnEmptyList()
     {
         // Given
         var input = "This is a test string.";
         var search = "ip";
 
         // When
-        var result = SubstringSearchMethods.FindAllIndexesWithIndexOf(input, search);
+        var result = SubstringSearchMethods.FindAllIndexesWithSpan(input, search);
 
         // Then
         Assert.IsNotNull(result);
@@ -33,14 +33,14 @@ public class IndexOfTest
     }
 
     [Test]
-    public void Given_SubstringBiggerThanInputString_When_FindAllIndexesWithIndexOfCalled_Then_ReturnEmptyList()
+    public void Given_SubstringBiggerThanInputString_When_FindAllIndexesWithSpanCalled_Then_ReturnEmptyList()
     {
         // Given
         var input = "abc";
         var search = "abcdef";
 
         // When
-        var result = SubstringSearchMethods.FindAllIndexesWithIndexOf(input, search);
+        var result = SubstringSearchMethods.FindAllIndexesWithSpan(input, search);
 
         // Then
         Assert.IsNotNull(result);

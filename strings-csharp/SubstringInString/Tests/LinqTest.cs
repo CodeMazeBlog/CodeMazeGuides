@@ -1,29 +1,50 @@
-﻿namespace Tests
+﻿[TestFixture]
+public class LinqTest
 {
-    [TestFixture]
-    public class LinqMethodTests
+    [Test]
+    public void Given_InputStringAndSearchString_When_FindAllIndexesWithLINQCalled_Then_ReturnListOfIndexes()
     {
-        [Test]
-        public void Given_InputString_When_Linqmethod_Called_Then_ExpectedOutput()
-        {
-            // Arrange
-            var substring = "b";
+        // Given
+        var input = "Lorem ipsum dolor sit amet, consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan.";
+        var search = "ip";
+        List<int> expectedIndexes = new List<int> { 6, 42, 53, 70, 85 };
 
-            // Redirect Console output to capture it
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithLINQ(input, search);
 
-                // Act
-                LinqMethod.Linqmethod();
-                var expectedOutput = $"Found '{substring}' at index 4{Environment.NewLine}"
-                                      + $"Found '{substring}' at index 8{Environment.NewLine}"
-                                      + $"Found '{substring}' at index 14{Environment.NewLine}"
-                                      + $"Found '{substring}' at index 24{Environment.NewLine}";
+        // Then
+        Assert.IsNotNull(result);
+        CollectionAssert.AreEqual(expectedIndexes, result);
+    }
 
-                // Assert
-                Assert.That(sw.ToString(), Is.EqualTo(expectedOutput));
-            }
-        }
+    [Test]
+    public void Given_InputStringWithNoMatches_When_FindAllIndexesWithLINQCalled_Then_ReturnEmptyList()
+    {
+        // Given
+        var input = "This is a test string.";
+        var search = "ip";
+
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithLINQ(input, search);
+
+        // Then
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0, result.Count);
+    }
+
+    [Test]
+    public void Given_SubstringBiggerThanInputString_When_FindAllIndexesWithLINQCalled_Then_ReturnEmptyList()
+    {
+        // Given
+        var input = "abc";
+        var search = "abcdef";
+
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithLINQ(input, search);
+
+        // Then
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0, result.Count);
     }
 }
+

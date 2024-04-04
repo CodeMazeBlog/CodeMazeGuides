@@ -1,26 +1,49 @@
-﻿namespace Tests
+﻿[TestFixture]
+public class RegexTest
 {
-    [TestFixture]
-    public class RegexMethodTests
+    [Test]
+    public void Given_InputStringAndSearchString_When_FindAllIndexesWithRegexCalled_Then_ReturnListOfIndexes()
     {
-        [Test]
-        public void Given_InputString_When_Regexmethod_Called_Then_ExpectedOutput()
-        {
-            // Redirect Console output to capture it
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
+        // Given
+        var input = "Lorem ipsum dolor sit amet, consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan.";
+        var search = "ip";
+        List<int> expectedIndexes = new List<int> { 6, 42, 53, 70, 85 };
 
-                // Act
-                RegexMethod.Regexmethod();
-                var expectedOutput = "substring found at index 51: code" + Environment.NewLine +
-                                 "substring found at index 75: code" + Environment.NewLine +
-                                 "substring found at index 91: code" + Environment.NewLine +
-                                 "substring found at index 124: code" + Environment.NewLine;
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithRegex(input, search);
 
-                // Assert
-                Assert.That(sw.ToString(), Is.EqualTo(expectedOutput));
-            }
-        }
+        // Then
+        Assert.IsNotNull(result);
+        CollectionAssert.AreEqual(expectedIndexes, result);
+    }
+
+    [Test]
+    public void Given_InputStringWithNoMatches_When_FindAllIndexesWithRegexCalled_Then_ReturnEmptyList()
+    {
+        // Given
+        var input = "This is a test string.";
+        var search = "ip";
+
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithRegex(input, search);
+
+        // Then
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0, result.Count);
+    }
+
+    [Test]
+    public void Given_SubstringBiggerThanInputString_When_FindAllIndexesWithRegexCalled_Then_ReturnEmptyList()
+    {
+        // Given
+        var input = "abc";
+        var search = "abcdef";
+
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithRegex(input, search);
+
+        // Then
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0, result.Count);
     }
 }

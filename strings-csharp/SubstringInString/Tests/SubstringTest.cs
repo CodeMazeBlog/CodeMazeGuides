@@ -1,25 +1,50 @@
-﻿namespace Tests
+﻿[TestFixture]
+public class SubstringTest
 {
-    [TestFixture]
-    public class SubstringMethodTests
+    [Test]
+    public void Given_InputStringAndSearchString_When_FindAllIndexesWithSubstringCalled_Then_ReturnListOfIndexes()
     {
-        [Test]
-        public void Given_UserInput_When_Substringmethod_Called_Then_ExpectedOutput()
-        {
-            var expectedOutput = $"Found 'sub' in 'This is a substring method for searching for substrings in a string' at position 10{Environment.NewLine}" +
-                         $"Found 'sub' in 'This is a substring method for searching for substrings in a string' at position 45{Environment.NewLine}" +
-                         $"Total occurrences found: 2{Environment.NewLine}";
+        // Given
+        var input = "Lorem ipsum dolor sit amet, consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan.";
+        var search = "ip";
+        List<int> expectedIndexes = new() { 6, 42, 53, 70, 85 };
 
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithSubstring(input, search);
 
-                // Act
-                SubstringMethod.Substringmethod();
-
-                // Assert
-                Assert.That(sw.ToString(), Is.EqualTo(expectedOutput));
-            }
-        }
+        // Then
+        Assert.IsNotNull(result);
+        CollectionAssert.AreEqual(expectedIndexes, result);
     }
+
+    [Test]
+    public void Given_InputStringWithNoMatches_When_FindAllIndexesWithSubstringCalled_Then_ReturnEmptyList()
+    {
+        // Given
+        var input = "This is a test string.";
+        var search = "ip";
+
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithSubstring(input, search);
+
+        // Then
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0, result.Count);
+    }
+
+    [Test]
+    public void Given_SubstringBiggerThanInputString_When_FindAllIndexesWithSubstringCalled_Then_ReturnEmptyList()
+    {
+        // Given
+        var input = "abc";
+        var search = "abcdef";
+
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithSubstring(input, search);
+
+        // Then
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0, result.Count);
+    }
+
 }

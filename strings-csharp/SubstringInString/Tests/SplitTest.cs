@@ -1,30 +1,49 @@
-﻿namespace Tests
+﻿[TestFixture]
+public class SplitTest
 {
-    [TestFixture]
-    public class SplitMethodTests
+    [Test]
+    public void Given_InputStringAndSearchString_When_FindAllIndexesWithSplitCalled_Then_ReturnListOfIndexes()
     {
-        [Test]
-        public void Given_Text_When_Splitmethod_Called_Then_ExpectedOutput()
-        {
-            // Redirect Console output to capture it
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
+        // Given
+        var input = "Lorem ipsum dolor sit amet, consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan.";
+        var search = "ip";
+        List<int> expectedIndexes = new List<int> { 6, 42, 53, 70, 85 };
 
-                // Act
-                SplitMethod.Splitmethod();
-                var expectedOutput = "Index 0: <Bring>" + Environment.NewLine +
-                                "Index 1: <the>" + Environment.NewLine +
-                                "Index 2: <bricks>" + Environment.NewLine +
-                                "Index 3: <to>" + Environment.NewLine +
-                                "Index 4: <the>" + Environment.NewLine +
-                                "Index 5: <brown>" + Environment.NewLine +
-                                "Index 6: <box>" + Environment.NewLine +
-                                "Index 7: <of>" + Environment.NewLine +
-                                "Index 8: <brooks.>" + Environment.NewLine;
-                // Assert
-                Assert.That(sw.ToString(), Is.EqualTo(expectedOutput));
-            }
-        }
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithSplit(input, search);
+
+        // Then
+        Assert.IsNotNull(result);
+        CollectionAssert.AreEqual(expectedIndexes, result);
+    }
+
+    [Test]
+    public void Given_InputStringWithNoMatches_When_FindAllIndexesWithSplitCalled_Then_ReturnEmptyList()
+    {
+        // Given
+        var input = "This is a test string.";
+        var search = "ip";
+
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithSplit(input, search);
+
+        // Then
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0, result.Count);
+    }
+
+    [Test]
+    public void Given_SubstringBiggerThanInputString_When_FindAllIndexesWithSplitCalled_Then_ReturnEmptyList()
+    {
+        // Given
+        var input = "abc";
+        var search = "abcdef";
+
+        // When
+        var result = SubstringSearchMethods.FindAllIndexesWithSplit(input, search);
+
+        // Then
+        Assert.IsNotNull(result);
+        Assert.AreEqual(0, result.Count);
     }
 }

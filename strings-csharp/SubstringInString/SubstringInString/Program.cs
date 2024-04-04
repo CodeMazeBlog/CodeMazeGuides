@@ -1,13 +1,28 @@
 ﻿using BenchmarkDotNet.Running;
-using SubstringInString;
 
-SubstringMethod.Substringmethod();
-IndexOfMethod.Indexofmethod();
-RegexMethod.Regexmethod();
-LinqMethod.Linqmethod();
-SplitMethod.Splitmethod();
+var str = "Lorem ipsum dolor sit amet, consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan";
+var toFind = "ip";
 
-//var summary = BenchmarkRunner.Run<Benchmark>();
+var searchResults = SubstringSearchMethods.FindAllIndexesWithSubstring(str, toFind);
+SubstringSearchMethods.PrintResult(searchResults);
 
-//// Output summary
-//Console.WriteLine(summary);
+var spanResults = SubstringSearchMethods.FindAllIndexesWithSpan(str, toFind);
+SubstringSearchMethods.PrintResult(spanResults);
+
+var indexOfResults = SubstringSearchMethods.FindAllIndexesWithIndexOf(str, toFind);
+SubstringSearchMethods.PrintResult(indexOfResults);
+
+var regexResults = SubstringSearchMethods.FindAllIndexesWithRegex(str, toFind);
+SubstringSearchMethods.PrintResult(regexResults);
+
+var linqResults = SubstringSearchMethods.FindAllIndexesWithLINQ(str, toFind);
+SubstringSearchMethods.PrintResult(linqResults);
+
+var splitResults = SubstringSearchMethods.FindAllIndexesWithSplit(str, toFind);
+SubstringSearchMethods.PrintResult(splitResults);
+
+var summary = BenchmarkRunner.Run<Benchmark>();
+
+// Output summary
+Console.WriteLine(summary);
+
