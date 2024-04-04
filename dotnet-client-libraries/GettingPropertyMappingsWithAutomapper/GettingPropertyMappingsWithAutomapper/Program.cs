@@ -13,13 +13,10 @@ Console.WriteLine($"Name: {destination.FullName}, Age: {destination.YearsOld}");
 var typeMaps = mapper.ConfigurationProvider.Internal().GetAllTypeMaps();
 foreach (var typeMap in typeMaps)
 {
-    Console.WriteLine($"Source Type: {typeMap.SourceType.Name}");
-    Console.WriteLine($"Destination Type: {typeMap.DestinationType.Name}");
     foreach (var memberMap in typeMap.MemberMaps)
     {
-        var sourceProperty = memberMap.SourceMember.Name;
-        Console.WriteLine($"Source Property: {sourceProperty}");
-        Console.WriteLine($"Destination Property: {memberMap}");
+        Console.WriteLine(
+            $"{typeMap.SourceType.Name}.{memberMap.SourceMember.Name} "
+            + $"is mapped to {typeMap.DestinationType.Name}.{memberMap}");
     }
 }
-
