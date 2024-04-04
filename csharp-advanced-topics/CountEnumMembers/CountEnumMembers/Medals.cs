@@ -1,9 +1,8 @@
-﻿namespace CountEnumMembers
+﻿namespace CountEnumMembers;
+
+public enum Medals
 {
-    public enum Medals
-    {
-        Gold = 1,
-        Silver = 2,
-        Bronze = 2
-    }
+    Gold = 1,
+    Silver = 2,
+    Bronze = 2
 }

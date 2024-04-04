@@ -1,10 +1,9 @@
-﻿namespace CountEnumMembers
+﻿namespace CountEnumMembers;
+
+public enum Seasons
 {
-    public enum Seasons
-    {
-        Summer,
-        Autumn,
-        Winter,
-        Spring,
-    }
+    Summer,
+    Autumn,
+    Winter,
+    Spring
 }
