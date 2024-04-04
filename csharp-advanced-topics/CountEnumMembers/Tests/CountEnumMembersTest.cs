@@ -20,7 +20,7 @@ public class CountEnumMembersTest
     [Fact]
     public void WhenGetValuesDistinctMethodIsCalled_ThenTotalNumberOfDistinctValuesIsReturned()
     {
-        var distinct_values = Enum.GetValues(typeof(Medals)).Cast<Medals>().Distinct().Count();
-        Assert.Equal(2, distinct_values);
+        var distinctValues = Enum.GetValues(typeof(Medals)).Cast<Medals>().Distinct().Count();
+        Assert.Equal(2, distinctValues);
     }
 }
