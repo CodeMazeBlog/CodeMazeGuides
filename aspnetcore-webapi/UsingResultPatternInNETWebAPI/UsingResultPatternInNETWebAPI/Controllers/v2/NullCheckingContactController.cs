@@ -12,7 +12,7 @@ public class NullCheckingContactController : ControllerBase
     }
 
     [HttpGet]
-    [ProducesResponseType(200)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public ActionResult<IEnumerable<ContactDto>> GetAll()
     {
         var contactDtos = _contactService.GetAll();
@@ -21,8 +21,8 @@ public class NullCheckingContactController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [ProducesResponseType(200)]
-    [ProducesResponseType(404)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public ActionResult<ContactDto> GetById(Guid id)
     {
         var contactDto = _contactService.GetById(id);
@@ -36,8 +36,8 @@ public class NullCheckingContactController : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(201)]
-    [ProducesResponseType(400)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult Create(CreateContactDto createContactDto)
     {
         var contactDto = _contactService.Create(createContactDto);
