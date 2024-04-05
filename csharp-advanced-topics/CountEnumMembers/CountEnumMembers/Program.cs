@@ -18,11 +18,11 @@ foreach (var v in values)
     Console.WriteLine(v);
 }
 
-var getnames = Enum.GetNames<Seasons>().Length;
-var getvalues = Enum.GetValues<Seasons>().Length;
+var getNames = Enum.GetNames<Seasons>().Length;
+var getValues = Enum.GetValues<Seasons>().Length;
 var distinctValues = Enum.GetValues(typeof(Medals)).Cast<Medals>().Distinct().Count();
 
 Console.WriteLine("");
-Console.WriteLine("Total items by GetNames: " + getnames);
-Console.WriteLine("Total items by GetValues: " + getvalues);
+Console.WriteLine("Total items by GetNames: " + getNames);
+Console.WriteLine("Total items by GetValues: " + getValues);
 Console.WriteLine("Total number of distinct values: " + distinctValues);

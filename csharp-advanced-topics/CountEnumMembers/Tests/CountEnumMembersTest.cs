@@ -6,15 +6,15 @@ public class CountEnumMembersTest
     [Fact]
     public void WhenGetNamesMethodIsCalled_ThenTotalNumberOfItemsIsReturned()
     {
-        var getnames = Enum.GetNames<Seasons>().Length;
-        Assert.Equal(4, getnames);
+        var getNames = Enum.GetNames<Seasons>().Length;
+        Assert.Equal(4, getNames);
     }
 
     [Fact]
     public void WhenGetValuesMethodIsCalled_ThenTotalNumberOfValuesIsReturned()
     {
-        var getvalues = Enum.GetValues<Seasons>().Length;
-        Assert.Equal(4, getvalues);
+        var getValues = Enum.GetValues<Seasons>().Length;
+        Assert.Equal(4, getValues);
     }
 
     [Fact]
