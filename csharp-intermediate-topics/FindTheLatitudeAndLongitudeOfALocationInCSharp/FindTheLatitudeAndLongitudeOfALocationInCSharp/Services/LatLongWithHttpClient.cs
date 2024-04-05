@@ -6,26 +6,27 @@ using System.Threading.Tasks;
 
 public class LatLongWithHttpClient
 {
-    private readonly HttpClient _httpClient;
+    private readonly IHttpClientFactory _httpClientFactory;
     private readonly string _apiKey;
 
-    public LatLongWithHttpClient(HttpClient httpClient, string apiKey)
+    public LatLongWithHttpClient(IHttpClientFactory httpClientFactory, string apiKey)
     {
-        _httpClient = httpClient;
+        _httpClientFactory = httpClientFactory;
         _apiKey = apiKey;
     }
 
     public async Task<string> GetLatLongWithHttpClient(string address)
     {
+        var httpClient = _httpClientFactory.CreateClient("MapsClient");
         var relativeUri = $"maps/api/geocode/json?address={Uri.EscapeDataString(address)}&key={_apiKey}";
 
         try
         {
-            var response = await _httpClient.GetAsync(relativeUri);
+            var response = await httpClient.GetAsync(relativeUri);
             response.EnsureSuccessStatusCode();
             var root = await response.Content.ReadFromJsonAsync<JsonElement>();
-
             var status = root.GetProperty("status").GetString();
+            
             if (status == "OK")
             {
                 var location = root.GetProperty("results")[0].GetProperty("geometry").GetProperty("location");
@@ -34,7 +35,7 @@ public class LatLongWithHttpClient
 
                 return $"Address ({address}) is at {latitude}, {longitude}";
             }
-            
+
             return $"Error retrieving coordinates: API returned '{status}'.";
         }
         catch (Exception ex)

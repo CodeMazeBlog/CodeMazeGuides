@@ -1,6 +1,7 @@
 using BenchmarkDotNet.Attributes;
 using Services;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using BenchmarkDotNet.Order;
 
 namespace BenchmarkRunner
@@ -12,7 +13,7 @@ namespace BenchmarkRunner
         private GoogleLocationServiceWrapper? locationService;
         private LatLongWithNuGet? latLongWithNuGet;
         private LatLongWithHttpClient? latLongWithHttpClient;
-        private string address = "Fort Myers, Florida";
+        private string address = "Miami, Florida";
         private string? apiKey;
 
         [GlobalSetup]
@@ -29,7 +30,12 @@ namespace BenchmarkRunner
 
             locationService = new GoogleLocationServiceWrapper(apiKey);
             latLongWithNuGet = new LatLongWithNuGet(locationService!);
-            latLongWithHttpClient = new LatLongWithHttpClient(new HttpClient { BaseAddress = new Uri("https://maps.googleapis.com/") }, apiKey);
+
+            var services = new ServiceCollection();
+            services.AddHttpClient();
+            var serviceProvider = services.BuildServiceProvider();
+            var httpClientFactory = serviceProvider.GetService<IHttpClientFactory>();
+            latLongWithHttpClient = new LatLongWithHttpClient(httpClientFactory!, apiKey);
         }
 
         [Benchmark]
