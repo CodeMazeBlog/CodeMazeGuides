@@ -1,39 +1,86 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SerializationWithRootName;
 
-
 namespace SerializationWithRootNameTests
 {
 	[TestClass]
 	public class SerializationUnitTest
 	{
-		public List<Car> cars = [];
+		private string _model = "";
+		private string _owner = "";
+
 		[TestInitialize]
 		public void Initialize()
 		{
-			cars =
-				[
-					new Car { Make = "Toyota", Model = "Camry", Year = 2022 },
-					new Car { Make = "Honda", Model = "Accord", Year = 2021 }
-				];
+			//Arrange
+			_model = "Ford";
+			_owner = "John";
 		}
 
 		[TestMethod]
-		public void WhenJSONHasRootName_ThenOutputWithRootName()
+		public void WhenSerializeWithWrapper_ThenOutputWithRootName()
 		{
-			string json = Serialization.SerializeToJsonWithRootName(cars);
-			
+			//Act
+			string json = Serialization.SerializeWithWrapper(_model, _owner);
+
+			//Assert
 			Assert.IsNotNull(json);
-			Assert.IsTrue(json.Contains("car"));
+			Assert.IsTrue(json.Contains("MyCar"));
 		}
 
 		[TestMethod]
-		public void WhenXMLHasRootName_ThenOutputWithRootName()
+		public void WhenSerializeWithAnonymousClass_ThenOutputWithRootName()
 		{
-			string xml = Serialization.SerializeToXmlWithRootName(cars);
-			
-			Assert.IsNotNull(xml);
-			Assert.IsTrue(xml.Contains("Car"));
+			//Act
+			string json = Serialization.SerializeWithAnonymousClass(_model, _owner);
+
+			//Assert
+			Assert.IsNotNull(json);
+			Assert.IsTrue(json.Contains("MyCar"));
+		}
+
+		[TestMethod]
+		public void WhenSerializeWithCustomSerializer_ThenOutputWithRootName()
+		{
+			//Act
+			string json = Serialization.SerializeWithCustomSerializer(_model, _owner);
+
+			//Assert
+			Assert.IsNotNull(json);
+			Assert.IsTrue(json.Contains("MyCar"));
+		}
+
+		[TestMethod]
+		public void WhenSerializeWithDynamicTypes_ThenOutputWithRootName()
+		{
+			//Act
+			string json = Serialization.SerializeWithDynamicTypes(_model, _owner);
+
+			//Assert
+			Assert.IsNotNull(json);
+			Assert.IsTrue(json.Contains("MyCar"));
+		}
+
+		[TestMethod]
+		public void WhenSerializeWithJsonSerializerSettings_ThenOutputWithRootName()
+		{
+			//Act
+			string json = Serialization.SerializeWithJsonSerializerSettings(_model, _owner);
+
+			//Assert
+			Assert.IsNotNull(json);
+			Assert.IsTrue(json.Contains("Car"));
+		}
+
+		[TestMethod]
+		public void WhenSerializeToXmlWithRootName_ThenOutputWithRootName()
+		{
+			//Act
+			string json = Serialization.SerializeToXmlWithRootName(_model, _owner);
+
+			//Assert
+			Assert.IsNotNull(json);
+			Assert.IsTrue(json.Contains("MyCar"));
 		}
 	}
 }
