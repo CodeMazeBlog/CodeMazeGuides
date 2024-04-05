@@ -44,3 +44,4 @@ This section contains the topics about the client libraries in .NET.
 - [Parsing HTML With AngleSharp in C#](https://code-maze.com/csharp-parsing-html-with-anglesharp/)
 - [Introduction to Brighter in .NET](https://code-maze.com/dotnet-introduction-to-brighter/)
 - [How to Send a JSON Object Using HttpClient in .NET](https://code-maze.com/dotnet-how-to-send-a-json-object-using-httpclient/)
+- [Generate Sortable Unique IDs With the NewId Library in .NET](https://code-maze.com/dotnet-generate-sortable-unique-ids-with-the-newid-library/)

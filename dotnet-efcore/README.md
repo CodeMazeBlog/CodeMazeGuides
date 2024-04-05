@@ -22,3 +22,5 @@ This section contains articles about Entity Framework Core.
 - [Lazy Loading and Eager Loading in Entity Framework Core](https://code-maze.com/lazy-loading-and-eager-loading-in-entity-framework-core/)
 - [Single and Split Queries in Entity Framework Core](https://code-maze.com/efcore-single-and-split-queries/)
 - [How to Add Unique Constraints to a Property in EF Core Code-First](https://code-maze.com/efcore-add-unique-constraints-to-a-property-code-first/)
+- [Why Do We Use the Virtual Keyword for Class Properties in EF Core?](https://code-maze.com/efcore-why-do-we-use-the-virtual-keyword-for-class-properties/)
+- [How to Use Entity Framework Core Migrations in Production](https://code-maze.com/efcore-how-to-use-entity-framework-core-migrations-in-production/)
