@@ -2,7 +2,6 @@
 using AutoMapper.Internal;
 using GettingPropertyMappingsWithAutomapper;
 
-
 var config = new MapperConfiguration(cfg => { cfg.AddProfile(new MyProfile()); });
 
 var mapper = config.CreateMapper();
