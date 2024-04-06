@@ -12,6 +12,7 @@ namespace Test
         {
             var homeController = new HomeController();
             Microsoft.AspNetCore.Mvc.RedirectToActionResult result = homeController.Index() as Microsoft.AspNetCore.Mvc.RedirectToActionResult;
+
             Assert.IsNotNull(result);
         }
 
@@ -20,6 +21,7 @@ namespace Test
         {
             var homeController = new HomeController();
             RedirectToRouteResult result = homeController.OurProduct() as RedirectToRouteResult;
+
             Assert.IsTrue(true);
         }
 
@@ -28,6 +30,7 @@ namespace Test
         {
             var homeController = new HomeController();
             RedirectToRouteResult result = homeController.OurProduct() as RedirectToRouteResult;
+
             Assert.IsTrue(true);
         }
     }
