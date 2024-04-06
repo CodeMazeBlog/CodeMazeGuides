@@ -1,4 +1,4 @@
-namespace CallingActionFromAnotherController.Models
+﻿namespace CallingActionFromAnotherController.Models
 {
     public class ErrorViewModel
     {
