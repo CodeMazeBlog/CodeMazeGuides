@@ -37,3 +37,4 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [Different Ways to Validate an Uploaded File in ASP.Net Core](https://code-maze.com/aspnetcore-validate-uploaded-file/)
 - [Creating Conditional Required Attributes for Validation in .NET Web API](https://code-maze.com/aspnetcore-conditional-required-attributes/)
 - [How to Call SignalR Hub from Controller in ASP.NET Core](https://code-maze.com/aspnetcore-call-signalr-from-controller/)
+- [Present a List of Files in a Directory With Directory Browsing in ASP.NET Core](https://code-maze.com/aspnetcore-directory-browsing/)
