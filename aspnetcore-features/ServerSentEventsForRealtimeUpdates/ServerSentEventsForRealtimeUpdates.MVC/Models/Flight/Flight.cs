@@ -20,15 +20,14 @@ public class Flight : IFlight
     
     public IFlight GetFlight()
     {
-        return new Flight
-        {
-            Scheduled = GetRandomTime(1),
-            Destination = _cities[_random.Next(0,6)],
-            Number = _random.Next(1000,4000),
-            Terminal = _random.Next(1,15),
-            Estimated = GetRandomTime(-1),
-            Status = (Status)_random.Next(0,5)
-        };
+        Scheduled = GetRandomTime(1);
+        Destination = _cities[_random.Next(0, 6)];
+        Number = _random.Next(1000, 4000);
+        Terminal = _random.Next(1, 15);
+        Estimated = GetRandomTime(-1);
+        Status = (Status)_random.Next(0, 5);
+        
+        return this;
     }
 
     public string PrintFlight()
