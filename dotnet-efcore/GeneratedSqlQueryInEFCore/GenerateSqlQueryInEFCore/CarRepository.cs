@@ -2,14 +2,9 @@
 
 namespace GenerateSqlQueryInEFCore;
 
-public class CarRepository : ICarRepository
+public class CarRepository(ApiContext context) : ICarRepository
 {
-    readonly ApiContext _context;
-
-    public CarRepository(ApiContext context)
-    {
-        _context = context;
-    }
+    readonly ApiContext _context = context;
 
     public List<Car> GetCars()
     {
