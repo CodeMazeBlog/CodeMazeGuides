@@ -39,13 +39,6 @@ public static class ImageService
 
     public static void SaveImage(MagickImage image, string outputPath)
     {
-        try
-        {
-            image.Write(outputPath, MagickFormat.Png);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"An error occurred: {ex.Message}");
-        }
+        image.Write(outputPath, MagickFormat.Png);
     }
 }

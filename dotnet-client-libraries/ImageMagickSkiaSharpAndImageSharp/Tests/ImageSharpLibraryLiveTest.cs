@@ -87,6 +87,6 @@ public class ImageSharpLibraryLiveTest
     {
         var image = ImageService.CreateBlankImage(_width, _height);
 
-        Assert.Throws<Exception>(() => ImageService.SaveImage(image, NullOutputPath));
+        Assert.Throws<ArgumentException>(() => ImageService.SaveImage(image, NullOutputPath));
     }
 }

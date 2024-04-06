@@ -80,7 +80,7 @@ public class SkiaSharpLibraryLiveTest : IDisposable
         var image = ImageService.CreateBlankImage(_width, _height);
 
         // Act & Assert
-        Assert.Throws<Exception>(() => ImageService.SaveImage(image, NullOutputPath));
+        Assert.Throws<ArgumentException>(() => ImageService.SaveImage(image, NullOutputPath));
     }
 
     private (int Size, int StartX, int StartY) GetSquareDetails(int squareSize)

@@ -28,16 +28,9 @@ public static class ImageService
 
     public static void SaveImage(SKBitmap bitmap, string outputPath)
     {
-        try
-        {
-            using var stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
-            using var image = SKImage.FromBitmap(bitmap); 
-            using var encodedImage = image.Encode(); 
-            encodedImage.SaveTo(stream);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"An error occurred: {ex.Message}");
-        }
+        using var stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write);
+        using var image = SKImage.FromBitmap(bitmap); 
+        using var encodedImage = image.Encode(); 
+        encodedImage.SaveTo(stream);
     }
 }

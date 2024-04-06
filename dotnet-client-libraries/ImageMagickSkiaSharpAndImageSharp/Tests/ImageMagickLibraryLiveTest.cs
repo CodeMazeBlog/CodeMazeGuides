@@ -103,7 +103,7 @@ public class ImageMagickLibraryLiveTest
         var image = ImageService.CreateBlankImage(_imageSize.Width, _imageSize.Height, MagickColors.AliceBlue);
 
         // Act & Assert
-        Assert.Throws<Exception>(() =>
+        Assert.Throws<ArgumentException>(() =>
         {
             ImageService.SaveImage(image, NullOutputPath);
         });

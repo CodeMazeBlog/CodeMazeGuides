@@ -31,13 +31,6 @@ public static class ImageService
 
     public static void SaveImage(Image<Rgba32> image, string outputPath)
     {
-        try
-        {
-            image.SaveAsPng(outputPath);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"An error occurred: {ex.Message}");
-        }
+        image.SaveAsPng(outputPath);
     }
 }
