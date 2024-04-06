@@ -7,7 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<IFlight, Flight>();
 builder.Services.AddScoped<IFlightService, FlightService>();
 
 var app = builder.Build();
