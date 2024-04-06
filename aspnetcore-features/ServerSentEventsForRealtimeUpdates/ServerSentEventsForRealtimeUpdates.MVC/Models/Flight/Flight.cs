@@ -20,11 +20,11 @@ public class Flight : IFlight
     
     public IFlight GetFlight()
     {
-        Scheduled = GetRandomTime(1);
+        Scheduled = GetRandomTime(-1);
         Destination = _cities[_random.Next(0, 6)];
         Number = _random.Next(1000, 4000);
         Terminal = _random.Next(1, 15);
-        Estimated = GetRandomTime(-1);
+        Estimated = GetRandomTime(1);
         Status = (Status)_random.Next(0, 5);
         
         return this;
@@ -38,7 +38,7 @@ public class Flight : IFlight
     private string GetRandomTime(int factor)
     {
         var minutes = factor * _random.Next(1, 120);
-        return $"{DateTime.Now - TimeSpan.FromMinutes(minutes):t}";
+        return $"{DateTime.Now + TimeSpan.FromMinutes(minutes):t}";
     }
 }
 
