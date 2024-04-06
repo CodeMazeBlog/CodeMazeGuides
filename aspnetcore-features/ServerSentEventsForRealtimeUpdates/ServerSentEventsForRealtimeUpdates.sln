@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSentEventsForRealtimeUpdates.Test", "ServerSentEventsForRealtimeUpdates.Test\ServerSentEventsForRealtimeUpdates.Test.csproj", "{952D4800-658E-4184-BE93-B802EF5E5F91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSentEventsForRealtimeUpdates.MVC", "ServerSentEventsForRealtimeUpdates.MVC\ServerSentEventsForRealtimeUpdates.MVC.csproj", "{CFF5D15E-C819-41CA-ADDD-D069F2176420}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{952D4800-658E-4184-BE93-B802EF5E5F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{952D4800-658E-4184-BE93-B802EF5E5F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{952D4800-658E-4184-BE93-B802EF5E5F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{952D4800-658E-4184-BE93-B802EF5E5F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFF5D15E-C819-41CA-ADDD-D069F2176420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF5D15E-C819-41CA-ADDD-D069F2176420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF5D15E-C819-41CA-ADDD-D069F2176420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF5D15E-C819-41CA-ADDD-D069F2176420}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
