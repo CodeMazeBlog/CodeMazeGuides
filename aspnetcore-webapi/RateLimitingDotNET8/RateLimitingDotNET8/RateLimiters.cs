@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Primitives;
 using System.Threading.RateLimiting;
 
 namespace RateLimitingDotNET8;
@@ -13,12 +12,12 @@ public static class RateLimiters
         var fixedOptions = GetOptionValues<FixedOptions>(builder);
 
         builder.Services.AddRateLimiter(options => options
-            .AddFixedWindowLimiter(policyName: Policies.Fixed, options =>
+            .AddFixedWindowLimiter(policyName: Policies.Fixed, limiterOptions =>
             {
-                options.PermitLimit = fixedOptions!.PermitLimit;
-                options.Window = TimeSpan.FromMinutes(fixedOptions.Window);
-                options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-                options.QueueLimit = fixedOptions.QueueLimit;
+                limiterOptions.PermitLimit = fixedOptions!.PermitLimit;
+                limiterOptions.Window = TimeSpan.FromMinutes(fixedOptions.Window);
+                limiterOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                limiterOptions.QueueLimit = fixedOptions.QueueLimit;
             }));
     }
 
@@ -27,13 +26,13 @@ public static class RateLimiters
         var slidingOptions = GetOptionValues<SlidingWindowOptions>(builder);
 
         builder.Services.AddRateLimiter(options => options
-            .AddSlidingWindowLimiter(policyName: Policies.Sliding, options =>
+            .AddSlidingWindowLimiter(policyName: Policies.Sliding, limiterOptions =>
             {
-                options.PermitLimit = slidingOptions!.PermitLimit;
-                options.Window = TimeSpan.FromMinutes(slidingOptions.Window);
-                options.SegmentsPerWindow = slidingOptions.SegmentsPerWindow;
-                options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-                options.QueueLimit = slidingOptions.QueueLimit;
+                limiterOptions.PermitLimit = slidingOptions.PermitLimit;
+                limiterOptions.Window = TimeSpan.FromMinutes(slidingOptions.Window);
+                limiterOptions.SegmentsPerWindow = slidingOptions.SegmentsPerWindow;
+                limiterOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                limiterOptions.QueueLimit = slidingOptions.QueueLimit;
             }));
     }
 
@@ -42,14 +41,14 @@ public static class RateLimiters
         var bucketOptions = GetOptionValues<TokenBucketOptions>(builder);
 
         builder.Services.AddRateLimiter(options => options
-            .AddTokenBucketLimiter(policyName: Policies.Token, options =>
+            .AddTokenBucketLimiter(policyName: Policies.Token, limiterOptions =>
             {
-                options.TokenLimit = bucketOptions!.TokenLimit;
-                options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-                options.QueueLimit = bucketOptions.QueueLimit;
-                options.ReplenishmentPeriod = TimeSpan.FromMinutes(bucketOptions.ReplenishmentPeriod);
-                options.TokensPerPeriod = bucketOptions.TokensPerPeriod;
-                options.AutoReplenishment = bucketOptions.AutoReplenishment;
+                limiterOptions.TokenLimit = bucketOptions.TokenLimit;
+                limiterOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                limiterOptions.QueueLimit = bucketOptions.QueueLimit;
+                limiterOptions.ReplenishmentPeriod = TimeSpan.FromMinutes(bucketOptions.ReplenishmentPeriod);
+                limiterOptions.TokensPerPeriod = bucketOptions.TokensPerPeriod;
+                limiterOptions.AutoReplenishment = bucketOptions.AutoReplenishment;
             }));
     }
 
@@ -57,12 +56,12 @@ public static class RateLimiters
     {
         var concurrentOptions = GetOptionValues<ConcurrencyOptions>(builder);
 
-        builder.Services.AddRateLimiter(_ => _
-            .AddConcurrencyLimiter(policyName: Policies.Concurrency, options =>
+        builder.Services.AddRateLimiter(options => options
+            .AddConcurrencyLimiter(policyName: Policies.Concurrency, limiterOptions =>
             {
-                options.PermitLimit = concurrentOptions!.PermitLimit;
-                options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-                options.QueueLimit = concurrentOptions.QueueLimit;
+                limiterOptions.PermitLimit = concurrentOptions.PermitLimit;
+                limiterOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+                limiterOptions.QueueLimit = concurrentOptions.QueueLimit;
             }));
     }
 
@@ -80,27 +79,23 @@ public static class RateLimiters
             limiterOptions.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
             limiterOptions.AddPolicy(policyName: Policies.Authorization, partitioner: httpContext =>
             {
-                var accessToken = httpContext.GetTokenAsync("access_token").Result
-                                  ?? string.Empty;
+                var accessToken = httpContext.GetTokenAsync("access_token").Result;
 
-                if (!StringValues.IsNullOrEmpty(accessToken))
-                {
-                    return RateLimitPartition.GetFixedWindowLimiter(accessToken, options =>
+                return !string.IsNullOrEmpty(accessToken)
+                    ? RateLimitPartition.GetFixedWindowLimiter(accessToken, options =>
                         new FixedWindowRateLimiterOptions
                         {
                             QueueLimit = authorizedLimiterOptions!.QueueLimit,
                             PermitLimit = authorizedLimiterOptions.PermitLimit,
                             Window = TimeSpan.FromMinutes(authorizedLimiterOptions.Window),
+                        })
+                    : RateLimitPartition.GetFixedWindowLimiter("Anon", options =>
+                        new FixedWindowRateLimiterOptions
+                        {
+                            QueueLimit = unauthorizedLimiterOptions!.QueueLimit,
+                            PermitLimit = unauthorizedLimiterOptions.PermitLimit,
+                            Window = TimeSpan.FromMinutes(unauthorizedLimiterOptions.Window),
                         });
-                }
-
-                return RateLimitPartition.GetFixedWindowLimiter("Anon", options =>
-                    new FixedWindowRateLimiterOptions
-                    {
-                        QueueLimit = unauthorizedLimiterOptions!.QueueLimit,
-                        PermitLimit = unauthorizedLimiterOptions.PermitLimit,
-                        Window = TimeSpan.FromMinutes(unauthorizedLimiterOptions.Window),
-                    });
             });
         });
     }
