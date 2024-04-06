@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallingActionFromAnotherController", "CallingActionFromAnotherController\CallingActionFromAnotherController.csproj", "{45419EA0-13D3-4C95-B38E-47D7CA201909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CallingActionFromAnotherController", "CallingActionFromAnotherController\CallingActionFromAnotherController.csproj", "{45419EA0-13D3-4C95-B38E-47D7CA201909}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{699211BB-F527-40CB-83B3-40332E69B1C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{45419EA0-13D3-4C95-B38E-47D7CA201909}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45419EA0-13D3-4C95-B38E-47D7CA201909}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45419EA0-13D3-4C95-B38E-47D7CA201909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{699211BB-F527-40CB-83B3-40332E69B1C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{699211BB-F527-40CB-83B3-40332E69B1C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{699211BB-F527-40CB-83B3-40332E69B1C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{699211BB-F527-40CB-83B3-40332E69B1C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
