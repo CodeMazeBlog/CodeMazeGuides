@@ -9,6 +9,7 @@ namespace CallingActionFromAnotherController.Controllers
         {
             return RedirectToAction("List", "Product");
         }
+
         public IActionResult OurProduct()
         {
             return RedirectToRoute("productlist");
