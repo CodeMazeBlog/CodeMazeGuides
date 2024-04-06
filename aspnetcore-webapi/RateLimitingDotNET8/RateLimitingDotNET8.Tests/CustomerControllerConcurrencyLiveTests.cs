@@ -7,12 +7,12 @@ using Xunit.Abstractions;
 
 namespace RateLimitingDotNET8.Tests;
 
-public class CustomerControllerTestsConcurrency : IClassFixture<WebApplicationFactory<Program>>
+public class CustomerControllerConcurrencyLiveTests : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly HttpClient _client;
     private readonly ITestOutputHelper _output;
 
-    public CustomerControllerTestsConcurrency(ITestOutputHelper output, WebApplicationFactory<Program> factory)
+    public CustomerControllerConcurrencyLiveTests(ITestOutputHelper output, WebApplicationFactory<Program> factory)
     {
         _output = output;
 
