@@ -3,15 +3,19 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net;
+using Xunit.Abstractions;
 
 namespace RateLimitingDotNET8.Tests;
 
 public class CustomerControllerTestsConcurrency : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly HttpClient _client;
+    private readonly ITestOutputHelper _output;
 
-    public CustomerControllerTestsConcurrency(WebApplicationFactory<Program> factory)
+    public CustomerControllerTestsConcurrency(ITestOutputHelper output, WebApplicationFactory<Program> factory)
     {
+        _output = output;
+
         _client = factory.WithWebHostBuilder(builder =>
         {
             builder.ConfigureTestServices(services =>
@@ -29,20 +33,30 @@ public class CustomerControllerTestsConcurrency : IClassFixture<WebApplicationFa
     }
 
     [Theory]
-    [InlineData("/Customer/Get", 2)]
-    public async Task WhenConcurrencyRateLimitedEndpoint_ThenCannotHaveMoreThan10ConcurrentRequests(string url, int limit)
+    [InlineData("/Customer/Get")]
+    public async Task WhenConcurrencyRateLimitedEndpoint_ThenCannotHaveMoreThan1ConcurrentRequests(string url)
     {
         var tasks = new List<Task<HttpResponseMessage>>();
+        var threads = Math.Max(Environment.ProcessorCount, 4);
+        _output.WriteLine($"Threads: {threads}");
 
-        for (int i = 0; i < limit; i++)
+        using var eventSlim = new ManualResetEventSlim(false);
+        for (var i = 0; i < threads; i++)
         {
-            tasks.Add(_client.GetAsync(url));
+            tasks.Add(Task.Run(async () =>
+            {
+                eventSlim.Wait(TimeSpan.FromSeconds(1));
+                
+                return await _client.GetAsync(url);
+            }));
         }
+
+        eventSlim.Set();
 
         var responses = await Task.WhenAll(tasks);
 
         // Check if any response returned the HTTP 429 Too Many Requests status.
-        bool rateLimitExceeded = responses.Any(response => response.StatusCode == HttpStatusCode.TooManyRequests);
+        var rateLimitExceeded = responses.Any(response => response.StatusCode == HttpStatusCode.TooManyRequests);
 
         Assert.True(rateLimitExceeded);
     }
