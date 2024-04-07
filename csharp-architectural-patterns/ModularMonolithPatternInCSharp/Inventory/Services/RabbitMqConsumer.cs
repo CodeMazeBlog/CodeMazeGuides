@@ -21,7 +21,6 @@ internal class RabbitMqConsumer(
 
     public void Consume()
     {
-
         var queueName = _configuration["RabbitMq:QueueName"];
         _rabbitMqConnectionManager.Channel.QueueDeclare(
             queue: queueName,
