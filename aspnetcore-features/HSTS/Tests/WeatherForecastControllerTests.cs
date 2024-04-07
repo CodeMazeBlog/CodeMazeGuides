@@ -7,7 +7,7 @@ namespace Tests;
 public class WeatherForecastControllerTests
 {
     [Fact]
-    public void WeatherForecastController_WhenGetCalled_ReturnResults()
+    public void GivenWeatherForecastController_WhenGetIsCalled_ThenReturnResults()
     {
         // Arrange
         var mockLogger = new Mock<ILogger<WeatherForecastController>>();
