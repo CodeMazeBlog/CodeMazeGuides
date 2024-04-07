@@ -7,12 +7,10 @@ namespace UrlShortenerWebAPI.Controllers;
 [ApiController]
 public class URLShortenerController(IUrlShortenerService urlShortenerService) : ControllerBase
 {
-    private readonly IUrlShortenerService _urlShortenerService = urlShortenerService;
-
     [HttpGet("/{shortCode}")]
     public IActionResult GetLongUrl(string shortCode)
     {
-        var longUrl = _urlShortenerService.GetLongUrl(shortCode);
+        var longUrl = urlShortenerService.GetLongUrl(shortCode);
 
         if (longUrl is null)
         {
@@ -36,6 +34,6 @@ public class URLShortenerController(IUrlShortenerService urlShortenerService) : 
             return BadRequest("This is not a valid URL");
         }
 
-        return Ok(_urlShortenerService.GetShortCode(longUrl));
+        return Ok(urlShortenerService.GetShortCode(longUrl));
     }
 }
