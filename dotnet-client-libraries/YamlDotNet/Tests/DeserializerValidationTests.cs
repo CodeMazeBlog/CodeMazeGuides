@@ -11,7 +11,7 @@ public class DeserializerValidationTests
     [Fact]
     public void WhenValidYamlIsDeserialized_ThenPersonIsReturned()
     {
-        var yaml = "Name: Test\nAge: 30";
+        var yaml = $"Name: Test{Environment.NewLine}Age: 30";
         var expectedPerson = new Person { Name = "Test", Age = 30 };
         var deserializer = new DeserializerBuilder().WithNodeDeserializer
         (i => new DeserializerValidation(i),

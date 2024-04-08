@@ -9,7 +9,6 @@ public static class JsonSupport
         var deserializer = new DeserializerBuilder().Build();
         var yamlObject = deserializer.Deserialize(yaml);
         var serializer = new SerializerBuilder().JsonCompatible().Build();
-        var json = serializer.Serialize(yamlObject);
-        return json;
+        return serializer.Serialize(yamlObject);
     }
 }

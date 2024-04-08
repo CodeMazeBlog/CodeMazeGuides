@@ -8,14 +8,12 @@ public static class ObjectGraphSerializeAndDeserialize
     public static string SerializeStore(Store store)
     {
         var serializer = new SerializerBuilder().Build();
-        var yaml = serializer.Serialize(store);
-        return yaml;
+        return serializer.Serialize(store);
     }
 
     public static Store DeserializeStore(string yaml)
     {
         var deserializer = new DeserializerBuilder().Build();
-        var store = deserializer.Deserialize<Store>(yaml);
-        return store;
+        return deserializer.Deserialize<Store>(yaml);
     }
 }

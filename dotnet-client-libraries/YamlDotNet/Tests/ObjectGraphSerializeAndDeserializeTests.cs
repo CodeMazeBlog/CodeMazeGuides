@@ -8,8 +8,8 @@ public class ObjectGraphSerializeAndDeserializeTests
     [Fact]
     public void WhenStoreIsSerialized_ThenYamlIsReturned()
     {
-        var store = new Store { Name = "Test Store", Items = new List<Item>() };
-        var expectedYaml = "Name: Test Store\nItems: []\n";
+        var store = new Store { Name = "Test Store", Items = [] };
+        var expectedYaml = $"Name: Test Store\nItems: []{Environment.NewLine}";
         var actualYaml = ObjectGraphSerializeAndDeserialize.SerializeStore(store);
        
         Assert.Equal(expectedYaml, actualYaml);

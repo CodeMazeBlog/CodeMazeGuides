@@ -1,5 +1,6 @@
 ﻿using App.Models;
 using App.UseCases;
+using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NodeDeserializers;
 using static System.Console;
@@ -37,7 +38,6 @@ public class Program
                         Country = "USA"
                     }
                 },
-
                 new Item
                 {
                     Name = "Smartphone",
@@ -62,23 +62,18 @@ public class Program
             WriteLine($"Item: {item.Name}, Price: {item.Price}");
             WriteLine($"Manufacturer: {item.Manufacturer.Name}, Country: {item.Manufacturer.Country}");
         }
-
-
         // Deserialize invalid yaml
         var personYaml = @"Name: ~";
-
-
         var deserializer = new DeserializerBuilder().WithNodeDeserializer
         (i => new DeserializerValidation(i),
             s => s.InsteadOf<ObjectNodeDeserializer>()).Build();
-
         try
         {
             deserializer.Deserialize<Person>(personYaml);
         }
-        catch (Exception e)
+        catch (YamlException e)
         {
-            WriteLine("Unable to deserialize person");
+            WriteLine($"Unable to deserialize person: {e.InnerException?.Message}");
         }
 
         var yamlPerson = """

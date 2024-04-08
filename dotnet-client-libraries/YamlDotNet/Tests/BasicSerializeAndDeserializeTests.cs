@@ -8,9 +8,8 @@ public class BasicSerializeAndDeserializeTests
     [Fact]
     public void WhenProductIsSerialized_ThenYamlIsReturned()
     {
-        // Arrange
         var product = new Product { Id = 1, Name = "Test", Price = 10.0m };
-        var expectedYaml = "Id: 1\nName: Test\nPrice: 10.0\n";
+        var expectedYaml = $"Id: 1{Environment.NewLine}Name: Test{Environment.NewLine}Price: 10.0{Environment.NewLine}";
         var actualYaml = BasicSerializeAndDeserialize.SerializeProduct(product);
 
         Assert.Equal(expectedYaml, actualYaml);
@@ -19,7 +18,7 @@ public class BasicSerializeAndDeserializeTests
     [Fact]
     public void WhenYamlIsDeserialized_ThenProductIsReturned()
     {
-        var yaml = "Id: 1\nName: Test\nPrice: 10.0";
+        var yaml = $"Id: 1{Environment.NewLine}Name: Test{Environment.NewLine}Price: 10.0";
         var expectedProduct = new Product { Id = 1, Name = "Test", Price = 10.0m };
         var actualProduct = BasicSerializeAndDeserialize.DeserializeProduct(yaml);
 
