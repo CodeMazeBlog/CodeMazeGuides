@@ -7,7 +7,7 @@ public class IntegrationTest(WebApplicationFactory<Program> factory) : IClassFix
 {
     [Theory]
     [InlineData("/sse")]
-    public async Task WhenCallingSseEndpoint_ShouldValueZeroOnResult(string url)
+    public async Task WhenCallingSseEndpoint_ShouldHaveTheNumberZeroOnResult(string url)
     {
         // Arrange
         var source = new CancellationTokenSource();
