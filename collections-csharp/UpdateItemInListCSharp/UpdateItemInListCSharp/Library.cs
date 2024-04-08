@@ -21,7 +21,9 @@ namespace UpdateItemInListCSharp
         public Book AddBook(string title, string author, string isbn, bool isCheckedOut)
         {
             var book = new Book(title, author, isbn, isCheckedOut);
+
             Books.Add(book);
+
             return book;
         }
 
