@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ServerSentEventsForRealtimeUpdates.MVC\ServerSentEventsForRealtimeUpdates.MVC.csproj" />
+      <ProjectReference Include="..\ServerSentEventsForRealtimeUpdates.Server\ServerSentEventsForRealtimeUpdates.Server.csproj" />
     </ItemGroup>
 
 </Project>

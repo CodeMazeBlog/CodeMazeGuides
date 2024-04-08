@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodeMaze - Server Sent Events</title>
+    <style>
+        .cent {
+            position:absolute;
+            top:50%;
+            left:50%;
+            text-align: center;
+            font-size: xxx-large;
+        }
+    </style>
+</head>
+<body>
+<div id="counter" class="cent">
+   30
+</div>
+<script>
+    async function ServerConnection() {
+        const eventSource = new EventSource("http://localhost:5217/sse");
+
+        eventSource.onmessage = (event) => {
+            document.getElementById("counter").innerText = event.data;
+        }
+    }
+
+    ServerConnection();
+</script>
+</body>
+</html>

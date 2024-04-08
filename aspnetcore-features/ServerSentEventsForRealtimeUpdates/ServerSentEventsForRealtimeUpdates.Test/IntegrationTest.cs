@@ -1,15 +1,13 @@
-
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
-using ServerSentEventsForRealtimeUpdates.MVC.Models.Flight;
+
 
 namespace ServerSentEventsForRealtimeUpdates.Test;
 
 public class IntegrationTest(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
 {
     [Theory]
-    [InlineData("/test")]
-    public async Task WhenCallingSseEndpointTest_ShouldReturnFlight(string url)
+    [InlineData("/sse")]
+    public async Task WhenCallingSseEndpoint_ShouldValueZeroOnResult(string url)
     {
         // Arrange
         var source = new CancellationTokenSource();
@@ -17,13 +15,10 @@ public class IntegrationTest(WebApplicationFactory<Program> factory) : IClassFix
        
         // Act
         var response = await GetResponse(url, token);
-        var flight = JsonSerializer.Deserialize<Flight>(GetData(response));
         
         // Assert
-        Assert.NotNull(flight);
-        
-        var flightType = flight.GetType();
-        Assert.Equal(typeof(Flight), flightType);
+        Assert.NotNull(response);
+        Assert.Contains("0", response);
     }
     
     [Theory]
@@ -53,13 +48,5 @@ public class IntegrationTest(WebApplicationFactory<Program> factory) : IClassFix
     {
         await Task.Delay(TimeSpan.FromSeconds(4), token);
         await source.CancelAsync();
-    }
-
-    private static string GetData(string data)
-    {
-        var start = data.IndexOf('{');
-        var end = data.LastIndexOf('}');
-
-        return data.Substring(start, end - start + 1);
     }
 }
