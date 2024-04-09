@@ -2,17 +2,9 @@
 
 [MemoryDiagnoser]
 [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
-[RankColumn]
-public class Benchmark
+public class Benchmarking
 {
-    public string str = "Lorem ipsum dolor sit amet, consectetur adipiscing elip. " +
-        "Duis quis nisip eget sem vehipula accumsan. Lorem ipsum dolor sit amet, " +
-        "consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan." +
-        " Lorem ipsum dolor sit amet, consectetur adipiscing elip. Duis quis nisip " +
-        "eget sem vehipula accumsan. Lorem ipsum dolor sit amet, consectetur adipiscing " +
-        "elip. Duis quis nisip eget sem vehipula accumsan. Lorem ipsum dolor sit amet, " +
-        "consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan.";
-
+    public string str = new("Lorem".ToCharArray()[0], 5);
     public string toFind = "Lorem";
 
     [Benchmark]

@@ -7,7 +7,7 @@ public class SpanTest
         // Given
         var input = "Lorem ipsum dolor sit amet, consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan.";
         var search = "ip";
-        List<int> expectedIndexes = new List<int> { 6, 42, 53, 70, 85 };
+        var expectedIndexes = new List<int> { 6, 42, 53, 70, 85 };
 
         // When
         var result = SubstringSearchMethods.FindAllIndexesWithSpan(input, search);

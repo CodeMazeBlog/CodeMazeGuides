@@ -6,23 +6,16 @@ var toFind = "ip";
 var searchResults = SubstringSearchMethods.FindAllIndexesWithSubstring(str, toFind);
 SubstringSearchMethods.PrintResult(searchResults);
 
-var spanResults = SubstringSearchMethods.FindAllIndexesWithSpan(str, toFind);
-SubstringSearchMethods.PrintResult(spanResults);
+SubstringSearchMethods.FindAllIndexesWithSpan(str, toFind);
 
-var indexOfResults = SubstringSearchMethods.FindAllIndexesWithIndexOf(str, toFind);
-SubstringSearchMethods.PrintResult(indexOfResults);
+SubstringSearchMethods.FindAllIndexesWithIndexOf(str, toFind);
 
-var regexResults = SubstringSearchMethods.FindAllIndexesWithRegex(str, toFind);
-SubstringSearchMethods.PrintResult(regexResults);
+SubstringSearchMethods.FindAllIndexesWithRegex(str, toFind);
 
-var linqResults = SubstringSearchMethods.FindAllIndexesWithLINQ(str, toFind);
-SubstringSearchMethods.PrintResult(linqResults);
+SubstringSearchMethods.FindAllIndexesWithLINQ(str, toFind);
 
-var splitResults = SubstringSearchMethods.FindAllIndexesWithSplit(str, toFind);
-SubstringSearchMethods.PrintResult(splitResults);
+SubstringSearchMethods.FindAllIndexesWithSplit(str, toFind);
 
-var summary = BenchmarkRunner.Run<Benchmark>();
+BenchmarkRunner.Run<Benchmarking>();
 
-// Output summary
-Console.WriteLine(summary);
 
