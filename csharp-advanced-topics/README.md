@@ -28,3 +28,4 @@ This section contains the topics considered advanced level in C#.
 - [Using Trie Class for Efficient Text Pattern Searching in C#](https://code-maze.com/csharp-using-trie-class-for-efficient-text-pattern-searching/)
 - [Synchronization Mechanisms – Volatile vs Interlocked vs lock in C#](https://code-maze.com/csharp-volatile-interlocked-lock/)
 - [Using Memory For Efficient Memory Management in C#](https://code-maze.com/csharp-using-memory/)
+- [Restricting a Value Lifetime With the “scoped” Keyword in C#](https://code-maze.com/csharp-scoped-keyword/)
