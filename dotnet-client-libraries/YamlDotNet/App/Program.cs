@@ -69,9 +69,9 @@ public class Program
         // Deserialize and Validate Invalid YAML
 
         var personYaml = @"Name: ~";
-        var deserializer = new DeserializerBuilder().WithNodeDeserializer
-        (i => new DeserializerValidation(i),
-            s => s.InsteadOf<ObjectNodeDeserializer>()).Build();
+        var deserializer
+            = new DeserializerBuilder().WithNodeDeserializer(i => new DeserializerValidation(i),
+                                                             s => s.InsteadOf<ObjectNodeDeserializer>()).Build();
         try
         {
             deserializer.Deserialize<Person>(personYaml);
