@@ -54,17 +54,14 @@ public static partial class SubstringSearchMethods
 
         return indexes;
     }
-    public static List<int> FindAllIndexesWithRegex(string input, string search)
+    public static List<int> FindAllIndexesWithRegex(string input, Regex regex)
     {
         var indexes = new List<int>();
-        var regex = new Regex(@"\b" + Regex.Escape(search) + @"\b", RegexOptions.IgnoreCase);
+        var matches = regex.Matches(input);
 
-        for (int i = 0; i < input.Length - search.Length + 1; i++)
+        foreach (Match match in matches)
         {
-            if (regex.IsMatch(input.AsSpan(i, search.Length)))
-            {
-                indexes.Add(i);
-            }
+            indexes.Add(match.Index);
         }
 
         return indexes;

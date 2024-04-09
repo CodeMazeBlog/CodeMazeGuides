@@ -1,4 +1,6 @@
-﻿[TestFixture]
+﻿using System.Text.RegularExpressions;
+
+[TestFixture]
 public class RegexTest
 {
     [Test]
@@ -7,10 +9,11 @@ public class RegexTest
         // Given
         var input = "Lorem ipsum dolor sit amet, consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan.";
         var search = "ip";
+        var regex = new Regex(search, RegexOptions.Compiled);
         var expectedIndexes = new List<int> { 6, 42, 53, 70, 85 };
 
         // When
-        var result = SubstringSearchMethods.FindAllIndexesWithRegex(input, search);
+        var result = SubstringSearchMethods.FindAllIndexesWithRegex(input, regex);
 
         // Then
         Assert.IsNotNull(result);
@@ -23,9 +26,10 @@ public class RegexTest
         // Given
         var input = "This is a test string.";
         var search = "ip";
+        var regex = new Regex(search); // Compile the regex pattern into a Regex object
 
         // When
-        var result = SubstringSearchMethods.FindAllIndexesWithRegex(input, search);
+        var result = SubstringSearchMethods.FindAllIndexesWithRegex(input, regex);
 
         // Then
         Assert.IsNotNull(result);
@@ -38,9 +42,10 @@ public class RegexTest
         // Given
         var input = "abc";
         var search = "abcdef";
+        var regex = new Regex(search); // Compile the regex pattern into a Regex object
 
         // When
-        var result = SubstringSearchMethods.FindAllIndexesWithRegex(input, search);
+        var result = SubstringSearchMethods.FindAllIndexesWithRegex(input, regex);
 
         // Then
         Assert.IsNotNull(result);
