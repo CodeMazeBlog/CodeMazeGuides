@@ -1,5 +1,6 @@
 using App.Models;
 using App.UseCases;
+using static System.Environment;
 
 namespace Tests;
 
@@ -9,7 +10,7 @@ public class BasicSerializeAndDeserializeTests
     public void WhenProductIsSerialized_ThenYamlIsReturned()
     {
         var product = new Product { Id = 1, Name = "Test", Price = 10.0m };
-        var expectedYaml = $"Id: 1{Environment.NewLine}Name: Test{Environment.NewLine}Price: 10.0{Environment.NewLine}";
+        var expectedYaml = $"Id: 1{NewLine}Name: Test{NewLine}Price: 10.0{NewLine}";
         var actualYaml = BasicSerializeAndDeserialize.SerializeProduct(product);
 
         Assert.Equal(expectedYaml, actualYaml);
@@ -18,7 +19,7 @@ public class BasicSerializeAndDeserializeTests
     [Fact]
     public void WhenYamlIsDeserialized_ThenProductIsReturned()
     {
-        var yaml = $"Id: 1{Environment.NewLine}Name: Test{Environment.NewLine}Price: 10.0";
+        var yaml = $"Id: 1{NewLine}Name: Test{NewLine}Price: 10.0";
         var expectedProduct = new Product { Id = 1, Name = "Test", Price = 10.0m };
         var actualProduct = BasicSerializeAndDeserialize.DeserializeProduct(yaml);
 
