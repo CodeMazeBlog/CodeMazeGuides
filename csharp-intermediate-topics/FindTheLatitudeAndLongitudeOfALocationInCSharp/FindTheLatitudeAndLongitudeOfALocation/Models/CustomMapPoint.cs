@@ -1,5 +1,5 @@
-using System.ComponentModel.DataAnnotations;
 namespace Models;
+using System.ComponentModel.DataAnnotations;
 
 public class CustomMapPoint
 {

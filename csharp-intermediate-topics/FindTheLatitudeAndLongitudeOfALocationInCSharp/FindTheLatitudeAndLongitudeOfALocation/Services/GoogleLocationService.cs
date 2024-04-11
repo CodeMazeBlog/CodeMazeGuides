@@ -1,6 +1,5 @@
 using GoogleMaps.LocationServices;
 using Models;
-using Services;
 
 public class GoogleLocationServiceWrapper : IMapLocationService
 {

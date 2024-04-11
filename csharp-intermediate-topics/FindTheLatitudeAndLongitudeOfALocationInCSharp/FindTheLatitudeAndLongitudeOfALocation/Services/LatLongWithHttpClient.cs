@@ -1,8 +1,5 @@
-namespace Services;
-using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 public class LatLongWithHttpClient
 {
@@ -26,7 +23,7 @@ public class LatLongWithHttpClient
             response.EnsureSuccessStatusCode();
             var root = await response.Content.ReadFromJsonAsync<JsonElement>();
             var status = root.GetProperty("status").GetString();
-            
+
             if (status == "OK")
             {
                 var location = root.GetProperty("results")[0].GetProperty("geometry").GetProperty("location");

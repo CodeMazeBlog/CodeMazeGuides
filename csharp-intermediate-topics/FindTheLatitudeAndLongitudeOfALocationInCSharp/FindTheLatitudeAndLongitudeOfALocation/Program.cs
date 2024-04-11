@@ -44,7 +44,3 @@ public class Program
         Console.WriteLine(coordinatesHttpClient);
     }
 }
-
-
-
-

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindTheLatitudeAndLongitudeOfALocationInCSharp", "FindTheLatitudeAndLongitudeOfALocationInCSharp\FindTheLatitudeAndLongitudeOfALocationInCSharp.csproj", "{A0C7E754-02C0-46FE-80BA-5EF2448A3419}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindTheLatitudeAndLongitudeOfALocation", "FindTheLatitudeAndLongitudeOfALocation\FindTheLatitudeAndLongitudeOfALocation.csproj", "{A0C7E754-02C0-46FE-80BA-5EF2448A3419}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{30E26A86-091C-4183-9D66-8F3A68EE1387}"
 EndProject

@@ -22,7 +22,7 @@
   </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FindTheLatitudeAndLongitudeOfALocationInCSharp\FindTheLatitudeAndLongitudeOfALocationInCSharp.csproj" />
+      <ProjectReference Include="..\FindTheLatitudeAndLongitudeOfALocation\FindTheLatitudeAndLongitudeOfALocation.csproj" />
     </ItemGroup>
 
 </Project>
