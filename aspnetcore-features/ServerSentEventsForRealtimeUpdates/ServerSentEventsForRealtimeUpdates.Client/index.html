@@ -5,18 +5,16 @@
     <title>CodeMaze - Server Sent Events</title>
     <style>
         .cent {
-            position:absolute;
-            top:50%;
-            left:50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
             text-align: center;
             font-size: xxx-large;
         }
     </style>
 </head>
 <body>
-<div id="counter" class="cent">
-   30
-</div>
+<div id="counter" class="cent"></div>
 <script>
     async function ServerConnection() {
         const eventSource = new EventSource("https://localhost:7095/sse");
