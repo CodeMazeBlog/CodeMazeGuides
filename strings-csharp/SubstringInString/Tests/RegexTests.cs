@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 
 [TestFixture]
-public class RegexTest
+public class RegexTests
 {
     [Test]
     public void Given_InputStringAndSearchString_When_FindAllIndexesWithRegexCalled_Then_ReturnListOfIndexes()

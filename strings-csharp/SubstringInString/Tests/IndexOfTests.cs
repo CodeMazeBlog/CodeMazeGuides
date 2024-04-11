@@ -1,8 +1,8 @@
-﻿[TestFixture]
-public class SubstringTest
+[TestFixture]
+public class IndexOfTests
 {
     [Test]
-    public void Given_InputStringAndSearchString_When_FindAllIndexesWithSubstringCalled_Then_ReturnListOfIndexes()
+    public void Given_InputStringAndSearchString_When_FindAllIndexesWithIndexOfCalled_Then_ReturnListOfIndexes()
     {
         // Given
         var input = "Lorem ipsum dolor sit amet, consectetur adipiscing elip. Duis quis nisip eget sem vehipula accumsan.";
@@ -10,7 +10,7 @@ public class SubstringTest
         var expectedIndexes = new List<int> { 6, 42, 53, 70, 85 };
 
         // When
-        var result = SubstringSearchMethods.FindAllIndexesWithSubstring(input, search);
+        var result = SubstringSearchMethods.FindAllIndexesWithIndexOf(input, search);
 
         // Then
         Assert.IsNotNull(result);
@@ -18,14 +18,14 @@ public class SubstringTest
     }
 
     [Test]
-    public void Given_InputStringWithNoMatches_When_FindAllIndexesWithSubstringCalled_Then_ReturnEmptyList()
+    public void Given_InputStringWithNoMatches_When_FindAllIndexesWithIndexOfCalled_Then_ReturnEmptyList()
     {
         // Given
         var input = "This is a test string.";
         var search = "ip";
 
         // When
-        var result = SubstringSearchMethods.FindAllIndexesWithSubstring(input, search);
+        var result = SubstringSearchMethods.FindAllIndexesWithIndexOf(input, search);
 
         // Then
         Assert.IsNotNull(result);
@@ -33,18 +33,17 @@ public class SubstringTest
     }
 
     [Test]
-    public void Given_SubstringBiggerThanInputString_When_FindAllIndexesWithSubstringCalled_Then_ReturnEmptyList()
+    public void Given_SubstringBiggerThanInputString_When_FindAllIndexesWithIndexOfCalled_Then_ReturnEmptyList()
     {
         // Given
         var input = "abc";
         var search = "abcdef";
 
         // When
-        var result = SubstringSearchMethods.FindAllIndexesWithSubstring(input, search);
+        var result = SubstringSearchMethods.FindAllIndexesWithIndexOf(input, search);
 
         // Then
         Assert.IsNotNull(result);
         Assert.AreEqual(0, result.Count);
     }
-
 }

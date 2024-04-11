@@ -16,15 +16,12 @@ public static partial class SubstringSearchMethods
 
         return indexes;
     }
-    public static void PrintResult(List<int> result)
-    {
-        Console.WriteLine("Indexes where the substring is found: " + string.Join(", ", result));
-    }
-    public static List<int> FindAllIndexesWithSpan(string input, string search)
+
+    public static List<int> FindAllIndexesWithSpan(ReadOnlySpan<char> input, ReadOnlySpan<char> search)
     {
         var indexes = new List<int>();
-        var inputSpan = input.AsSpan();
-        var searchSpan = search.AsSpan();
+        var inputSpan = input;
+        var searchSpan = search;
 
         for (int i = 0; i <= input.Length - search.Length; i++)
         {
@@ -36,24 +33,24 @@ public static partial class SubstringSearchMethods
 
         return indexes;
     }
-    public static List<int> FindAllIndexesWithIndexOf(string input, string search)
+
+    public static List<int> FindAllIndexesWithIndexOf(ReadOnlySpan<char> input, ReadOnlySpan<char> search)
     {
         var indexes = new List<int>();
-        var startIndex = 0;
+        var searchLength = search.Length;
+        var inputLength = input.Length;
 
-        do
+        for (int i = 0; i <= inputLength - searchLength; i++)
         {
-            startIndex = input.IndexOf(search, startIndex);
-            if (startIndex != -1)
+            if (input.Slice(i, searchLength).SequenceEqual(search))
             {
-                indexes.Add(startIndex);
-                startIndex++;
+                indexes.Add(i);
             }
         }
-        while (startIndex != -1);
 
         return indexes;
     }
+
     public static List<int> FindAllIndexesWithRegex(string input, Regex regex)
     {
         var indexes = new List<int>();
@@ -66,19 +63,28 @@ public static partial class SubstringSearchMethods
 
         return indexes;
     }
-    public static List<int> FindAllIndexesWithLINQ(string input, string search)
+
+    public static List<int> FindAllIndexesWithLINQ(ReadOnlySpan<char> input, ReadOnlySpan<char> search)
     {
         var indexes = new List<int>();
 
         if (input.Length >= search.Length)
         {
+            var inputArray = input.ToArray();
+            var searchArray = search.ToArray();
+
             indexes = Enumerable.Range(0, input.Length - search.Length + 1)
-                .Where(i => Enumerable.Range(0, search.Length).All(j => input[i + j] == search[j]))
+                .Where(i =>
+                {
+                    var inputSlice = new ReadOnlySpan<char>(inputArray, i, searchArray.Length);
+                    return inputSlice.SequenceEqual(searchArray);
+                })
                 .ToList();
         }
 
         return indexes;
     }
+
     public static List<int> FindAllIndexesWithSplit(string input, string search)
     {
         var indexes = new List<int>();
@@ -93,5 +99,10 @@ public static partial class SubstringSearchMethods
         }
 
         return indexes;
+    }
+
+    public static void PrintResult(List<int> result)
+    {
+        Console.WriteLine("Indexes where the substring is found: " + string.Join(", ", result));
     }
 }
