@@ -24,7 +24,7 @@ app.MapGet("/sse", async Task (HttpContext ctx, CancellationToken token) =>
 {
     ctx.Response.Headers.Append(HeaderNames.ContentType, "text/event-stream");
     
-    var count = 10;
+    var count = 30;
     
     while (count >= 0 && !token.IsCancellationRequested)
     {

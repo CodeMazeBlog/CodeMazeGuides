@@ -1,6 +1,0 @@
-@ServerSentEventsForRealtimeUpdates.Server_HostAddress = http://localhost:5217
-
-GET {{ServerSentEventsForRealtimeUpdates.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

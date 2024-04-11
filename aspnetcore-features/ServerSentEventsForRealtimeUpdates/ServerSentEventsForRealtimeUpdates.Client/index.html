@@ -19,7 +19,7 @@
 </div>
 <script>
     async function ServerConnection() {
-        const eventSource = new EventSource("http://localhost:5217/sse");
+        const eventSource = new EventSource("https://localhost:7095/sse");
 
         eventSource.onmessage = (event) => {
             document.getElementById("counter").innerText = event.data;
