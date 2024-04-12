@@ -3,7 +3,6 @@ using App.UseCases;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NodeDeserializers;
-using static System.Console;
 
 namespace App;
 
@@ -13,20 +12,20 @@ public class Program
     {
         // Serialize and Deserialize Basic Object
 
-        var yamlProduct = BasicSerializeAndDeserialize.SerializeProduct(new Product
+        var yamlProduct = SerializeAndDeserialize.Serialize(new Product
         {
             Id = 1,
             Name = "Apple",
             Price = 1.99m
         });
-        WriteLine(yamlProduct);
+        Console.WriteLine(yamlProduct);
 
-        var deserializeProduct = BasicSerializeAndDeserialize.DeserializeProduct(yamlProduct);
-        WriteLine($"Name: {deserializeProduct.Name}, Price: {deserializeProduct.Price}");
+        var deserializeProduct = SerializeAndDeserialize.Deserialize<Product>(yamlProduct);
+       Console. WriteLine($"Name: {deserializeProduct.Name}, Price: {deserializeProduct.Price}");
 
         // Serialize and Deserialize Complex Object
 
-        var yamlStore = ObjectGraphSerializeAndDeserialize.SerializeStore(new Store
+        var yamlStore = SerializeAndDeserialize.Serialize(new Store
         {
             Name = "Tech Store",
             Items =
@@ -54,16 +53,16 @@ public class Program
             ]
         });
 
-        WriteLine(yamlStore);
+        Console.WriteLine(yamlStore);
 
-        var deserializeStore = ObjectGraphSerializeAndDeserialize.DeserializeStore(yamlStore);
+        var deserializeStore = SerializeAndDeserialize.Deserialize<Store>(yamlStore);
 
-        WriteLine($"Store: {deserializeStore.Name}");
+        Console.WriteLine($"Store: {deserializeStore.Name}");
 
         foreach (var item in deserializeStore.Items)
         {
-            WriteLine($"Item: {item.Name}, Price: {item.Price}");
-            WriteLine($"Manufacturer: {item.Manufacturer.Name}, Country: {item.Manufacturer.Country}");
+            Console.WriteLine($"Item: {item.Name}, Price: {item.Price}");
+            Console.WriteLine($"Manufacturer: {item.Manufacturer.Name}, Country: {item.Manufacturer.Country}");
         }
 
         // Deserialize and Validate Invalid YAML
@@ -78,7 +77,7 @@ public class Program
         }
         catch (YamlException e)
         {
-            WriteLine($"Unable to deserialize person: {e.InnerException?.Message}");
+            Console.WriteLine($"Unable to deserialize person: {e.InnerException?.Message}");
         }
 
         // JSON Support in YamlDotNet
@@ -87,6 +86,6 @@ public class Program
                          Name: John Doe
                          Age: 25
                          """;
-        WriteLine($"Json String: {JsonSupport.SerializeToJson(yamlPerson)}");
+        Console.WriteLine($"Json String: {JsonSupport.SerializeToJson(yamlPerson)}");
     }
 }

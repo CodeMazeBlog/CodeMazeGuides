@@ -14,7 +14,10 @@ public class DeserializerValidation(INodeDeserializer nodeDeserializer) : INodeD
 
         var context = new ValidationContext(value);
         var results = new List<ValidationResult>();
-        if (Validator.TryValidateObject(value, context, results, true)) return true;
+        if (Validator.TryValidateObject(value, context, results, true))
+        {
+            return true;
+        }
 
         var message = string.Join(NewLine, results.Select(r => r.ErrorMessage));
         throw new ValidationException(message);
