@@ -6,7 +6,7 @@ using BenchmarkDotNet.Order;
 
 namespace BenchmarkRunner
 {
-    [Orderer(SummaryOrderPolicy.Method, MethodOrderPolicy.Declared)]
+    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [MaxIterationCount(40)]
     public class LocationServicesBenchmark
     {
