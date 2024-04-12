@@ -30,7 +30,7 @@ namespace UpdateItemInListCSharp
         public void CheckoutBookUsingFind(string isbn)
         {
             var bookToCheckout = Books.Find(b => b.ISBN == isbn);
-            if (bookToCheckout != null)
+            if (bookToCheckout is not null)
             {
                 bookToCheckout.IsCheckedOut = true;
             }
@@ -48,7 +48,7 @@ namespace UpdateItemInListCSharp
         public void CheckoutBookUsingFirstOrDefault(string isbn)
         {
             var bookToCheckout = Books.FirstOrDefault(b => b.ISBN == isbn);
-            if (bookToCheckout != null)
+            if (bookToCheckout is not null)
             {
                 bookToCheckout.IsCheckedOut = true;
             }
@@ -77,7 +77,7 @@ namespace UpdateItemInListCSharp
         public void CheckoutBookUsingSingleOrDefault(string isbn)
         {
             var bookToCheckout = Books.SingleOrDefault(b => b.ISBN == isbn);
-            if (bookToCheckout != null)
+            if (bookToCheckout is not null)
             {
                 bookToCheckout.IsCheckedOut = true;
             }
