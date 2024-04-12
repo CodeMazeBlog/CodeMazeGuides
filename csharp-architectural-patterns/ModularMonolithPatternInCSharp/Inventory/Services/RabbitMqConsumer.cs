@@ -3,6 +3,7 @@ using Inventory.Interfaces;
 using Inventory.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -12,17 +13,17 @@ namespace Inventory.Services;
 
 internal class RabbitMqConsumer(
     IServiceScopeFactory scopeFactory, 
-    IConfiguration configuration, 
+    IOptions<RabbitMqConfiguration> rabbitMqConfiguration, 
     IRabbitMqConnectionManager rabbitMqConnectionManager) : IRabbitMqConsumer
 {   
     private readonly IServiceScopeFactory _scopeFactory = scopeFactory;
-    private readonly IConfiguration _configuration = configuration;
+    private readonly RabbitMqConfiguration _rabbitMqConfiguration = rabbitMqConfiguration.Value;
     private readonly IRabbitMqConnectionManager _rabbitMqConnectionManager = rabbitMqConnectionManager;
 
     public void Consume()
     {
 
-        var queueName = _configuration["RabbitMq:QueueName"];
+        var queueName = _rabbitMqConfiguration.QueueName;
         _rabbitMqConnectionManager.Channel.QueueDeclare(
             queue: queueName,
             durable: true,

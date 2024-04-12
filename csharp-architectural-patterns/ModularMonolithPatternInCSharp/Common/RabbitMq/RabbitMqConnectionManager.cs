@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 
 namespace Common.RabbitMq;
 
-internal class RabbitMqConnectionManager(IConfiguration configuration) : IDisposable, IRabbitMqConnectionManager
+internal class RabbitMqConnectionManager(IOptions<RabbitMqConfiguration> rabbitMqConfiguration) : IDisposable, IRabbitMqConnectionManager
 {
-    private readonly IConfiguration _configuration = configuration;
+    private readonly RabbitMqConfiguration _rabbitMqConfiguration = rabbitMqConfiguration.Value;
 
     public IConnection? Connection { get; private set; }
     public IModel? Channel { get; private set; }
@@ -14,10 +15,10 @@ internal class RabbitMqConnectionManager(IConfiguration configuration) : IDispos
     {
         var connectionFactory = new ConnectionFactory
         {
-            HostName = _configuration["RabbitMq:HostName"],
-            Port = _configuration.GetValue<int>("RabbitMq:Port"),
-            UserName = _configuration["RabbitMq:UserName"],
-            Password = _configuration["RabbitMq:Password"]
+            HostName = _rabbitMqConfiguration.HostName,
+            Port = _rabbitMqConfiguration.Port,
+            UserName = _rabbitMqConfiguration.UserName,
+            Password = _rabbitMqConfiguration.Password
         };
         Connection = connectionFactory.CreateConnection();
         Channel = Connection.CreateModel();

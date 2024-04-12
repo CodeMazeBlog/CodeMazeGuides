@@ -7,13 +7,13 @@ using Testcontainers.RabbitMq;
 var builder = WebApplication.CreateBuilder(args);
 
 var rabbitMqContainer = new RabbitMqBuilder()
-       .WithHostname(builder.Configuration["RabbitMq:HostName"])
-       .WithPortBinding(builder.Configuration.GetValue<int>("RabbitMq:Port"))
-       .WithExposedPort(builder.Configuration.GetValue<int>("RabbitMq:Port"))
-       .WithPortBinding(builder.Configuration.GetValue<int>("RabbitMq:DashboardPort"))
-       .WithExposedPort(builder.Configuration.GetValue<int>("RabbitMq:DashboardPort"))
-       .WithUsername(builder.Configuration["RabbitMq:UserName"])
-       .WithPassword(builder.Configuration["RabbitMq:Password"])
+       .WithHostname(builder.Configuration["RabbitMqConfiguration:HostName"])
+       .WithPortBinding(builder.Configuration.GetValue<int>("RabbitMqConfiguration:Port"))
+       .WithExposedPort(builder.Configuration.GetValue<int>("RabbitMqConfiguration:Port"))
+       .WithPortBinding(builder.Configuration.GetValue<int>("RabbitMqConfiguration:DashboardPort"))
+       .WithExposedPort(builder.Configuration.GetValue<int>("RabbitMqConfiguration:DashboardPort"))
+       .WithUsername(builder.Configuration["RabbitMqConfiguration:UserName"])
+       .WithPassword(builder.Configuration["RabbitMqConfiguration:Password"])
        .WithImage("rabbitmq:3-management")
        .Build();
 
@@ -26,7 +26,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient();
 
-builder.Services.AddRabbitMqConnectionManager();
+builder.Services.AddRabbitMqConnectionManager(builder.Configuration);
 builder.Services.AddInventoryModule();
 builder.Services.AddOrderModule();
 

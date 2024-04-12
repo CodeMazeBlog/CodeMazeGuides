@@ -20,7 +20,7 @@ public class OrderService(
                 throw new InvalidOperationException($"The requested item '{itemModel.ItemId} was not found.'");
 
             if (item.Quantity < itemModel.Quantity)
-                throw new InvalidOperationException($"There isn't enough stock for item '{itemModel.ItemId}'. Requested Amount: {itemModel.Quantity}, Available Amount: {item.Quantity}");
+                throw new InvalidOperationException($"There isn't enough stock for item '{itemModel.ItemId}'.");
 
             itemModel.PricePerUnit = item.Price;
             itemModel.Total = itemModel.Quantity * item.Price;
