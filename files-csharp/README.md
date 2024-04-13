@@ -20,3 +20,6 @@ This section contains the topics related to files in C#.
 - [How to Create a Temp File in the Temp Folder in C#](https://code-maze.com/csharp-how-to-create-a-temp-file-in-temp-folder/)
 - [Writing to a CSV File in C#](https://code-maze.com/csharp-writing-csv-file/)
 - [How to Get the Number of Files in a Folder With C#](https://code-maze.com/csharp-get-the-number-of-files-in-a-folder/)
+- [How to Get the Number of Lines in a Text File in C#](https://code-maze.com/csharp-get-the-number-of-lines-in-a-text-file/)
+- [Read a Text File Without Specifying the Full Path in C#](https://code-maze.com/csharp-read-a-text-file-without-specifying-the-full-path/)
+- [Different Methods for Computing the Size of a Directory in C#](https://code-maze.com/csharp-different-methods-for-computing-the-size-of-a-directory/)

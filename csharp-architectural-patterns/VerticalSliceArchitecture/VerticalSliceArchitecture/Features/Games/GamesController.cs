@@ -66,7 +66,7 @@ namespace VerticalSliceArchitecture.Features.Games
             {
                 command.ConsoleId = consoleId;
 
-                var result = await _mediator.Send(command);
+                await _mediator.Send(command);
 
                 return NoContent();
             }

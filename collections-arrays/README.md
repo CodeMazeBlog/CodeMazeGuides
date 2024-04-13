@@ -26,3 +26,4 @@ This section contains the topics about arrays and solving specific problems with
 - [Array Slicing in C#](https://code-maze.com/csharp-array-slicing/)
 - [How to Sum Up Elements of an Array in C#](https://code-maze.com/csharp-sum-up-elements-of-an-array/)
 - [How To Use ArraySegment in C#](https://code-maze.com/csharp-arraysegment/)
+- [How to Convert ReadOnlyMemory to a Byte Array in C#](https://code-maze.com/csharp-how-to-convert-readonlymemory-to-a-byte-array/)

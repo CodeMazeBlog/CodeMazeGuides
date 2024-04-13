@@ -1,0 +1,25 @@
+@baseUrl = https://localhost:5001/api
+
+### GET /dummy/bad
+GET {{baseUrl}}/dummy/bad
+Origin: https://unknown.com
+
+### GET /dummy/good
+GET {{baseUrl}}/dummy/good
+Origin: https://unknown.com
+
+### GET /dummy/good - * origin is allowed
+GET {{baseUrl}}/dummy/good
+Origin: *
+
+### GET /dummy/best - allowed origin
+GET {{baseUrl}}/dummy/best
+Origin: https://allowed-origin.com
+
+### GET /dummy/best - unknown origin
+GET {{baseUrl}}/dummy/best
+Origin: https://unknown.com
+
+### GET /dummy/best - * origin is also not allowed
+GET {{baseUrl}}/dummy/best
+Origin: *
