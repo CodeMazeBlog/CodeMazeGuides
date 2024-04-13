@@ -23,9 +23,6 @@ app.UseSwagger()
 app.MapGet("/test-file", () => 
     Results.File(MemoryZipFile.Create("Test"), "application/zip", "TestFile.zip"));
 
-app.MapGet("/create-and-read-zip-file", (IGetFile zipFile) =>
-    Results.File(zipFile.CreateNewFileOnDisk(), zipFile.ContentType, "ByCreatingNewFileOnDisk.zip"));
-
 app.MapGet("/create-in-memory-zip-file", (IGetFile zipFile) =>
     Results.File(zipFile.GenerateFileOnFlyReturnStream(), zipFile.ContentType, "GenerateOnFly.zip"));
 

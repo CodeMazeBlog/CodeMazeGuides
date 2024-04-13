@@ -11,9 +11,6 @@ public class GetZipFile(IEnumerable<IService> allServices) : IGetFile
 
     public string ContentType => "application/zip";
 
-    public string CreateNewFileOnDisk()
-        => GetServicesAsFileOnDisk(_allServices);
-
     public Stream GenerateFileOnFlyReturnStream() =>
         GetServicesAsZipStream(_allServices);
 
@@ -22,20 +19,6 @@ public class GetZipFile(IEnumerable<IService> allServices) : IGetFile
 
     public async Task<Stream> GenerateFileOnFlyReturnStreamAsync() =>
         await GetServicesAsZipStreamAsync(_allServices);
-
-    private static string GetServicesAsFileOnDisk(IService[] services)
-    {
-        var tempPath = Path.GetTempPath();
-        var tempFileName = Path.GetRandomFileName();
-        var tempZipFilePath = Path.Combine(tempPath, tempFileName);
-
-        using (var fileStream = new FileStream(tempZipFilePath, FileMode.Create, FileAccess.Write))
-        {
-            GenerateArchive(fileStream, services); 
-        }
-
-        return tempZipFilePath;
-    }
 
     private static MemoryStream GetServicesAsZipStream(IService[] services)
     {

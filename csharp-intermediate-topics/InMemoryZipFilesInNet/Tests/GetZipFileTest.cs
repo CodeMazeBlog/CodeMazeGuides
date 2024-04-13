@@ -14,16 +14,6 @@ public class GetZipFileTest
     }
 
     [TestMethod]
-    public void GivenZipService_WhenExecutingCreateNewFileOnDisk_ThenExpectZipFile()
-    {
-        var sut = GetSut();
-
-        var fileName = sut.CreateNewFileOnDisk();
-
-        AssertZipFileContent(fileName);
-    }
-
-    [TestMethod]
     public void GivenZipService_WhenExecutingGenerateOnFly_ThenExpectZipFile()
     {
         var sut = GetSut();
