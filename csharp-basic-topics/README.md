@@ -40,3 +40,4 @@ This section contains the topics considered basic level in C#.
 - [C# 10 New Features](https://code-maze.com/csharp-10-new-features/)
 - [Comparing for and foreach Loop in C#](https://code-maze.com/csharp-comparing-for-and-foreach-loop/)
 - [The Best Way to Assign an Initial Value to Auto-Properties in C#](https://code-maze.com/csharp-the-best-way-to-assign-an-initial-value-to-auto-properties/)
+- [Improvements in the Using Directive for Additional Types in C#](https://code-maze.com/csharp-improvements-in-the-using-directive-for-additional-types/)
