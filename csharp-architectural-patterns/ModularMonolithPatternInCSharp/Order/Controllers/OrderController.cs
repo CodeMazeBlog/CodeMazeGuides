@@ -27,8 +27,8 @@ public class OrderController(IOrderService orderService) : ControllerBase
 
             return Ok();
         }
-        catch(Exception ex) 
-        { 
+        catch (Exception ex)
+        {
             return BadRequest(ex.Message);
         }
     }
@@ -42,7 +42,7 @@ public class OrderController(IOrderService orderService) : ControllerBase
 
             return Ok(orders);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return BadRequest(ex.Message);
         }

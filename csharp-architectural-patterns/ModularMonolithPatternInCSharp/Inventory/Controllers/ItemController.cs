@@ -15,7 +15,7 @@ public class ItemController(IItemService itemService) : ControllerBase
         var item = _itemService.Get(id);
 
         return item is null ?
-            NotFound(id) : 
+            NotFound(id) :
             Ok(item);
     }
 

@@ -14,9 +14,9 @@ public class OrderService(
 
     public async Task AddAsync(OrderDto orderDto)
     {
-        foreach(var itemModel in orderDto.Items)
+        foreach (var itemModel in orderDto.Items)
         {
-            var item = await _inventoryRestClient.GetItem(itemModel.ItemId) ?? 
+            var item = await _inventoryRestClient.GetItem(itemModel.ItemId) ??
                 throw new InvalidOperationException($"The requested item '{itemModel.ItemId} was not found.'");
 
             if (item.Quantity < itemModel.Quantity)
@@ -25,9 +25,9 @@ public class OrderService(
             itemModel.PricePerUnit = item.Price;
             itemModel.Total = itemModel.Quantity * item.Price;
 
-            _inventoryRabbitMqClient.UpdateQuantity(new Inventory.Models.UpdateQuantityDto 
-            { 
-                ItemId = itemModel.ItemId, 
+            _inventoryRabbitMqClient.UpdateQuantity(new Inventory.Models.UpdateQuantityDto
+            {
+                ItemId = itemModel.ItemId,
                 Amount = itemModel.Quantity * -1
             });
         }
@@ -41,7 +41,7 @@ public class OrderService(
     {
         var orders = _orderRepository.GetAll();
 
-        foreach(var orderItem in orders.SelectMany(i => i.Items))
+        foreach (var orderItem in orders.SelectMany(i => i.Items))
         {
             var item = await _inventoryRestClient.GetItem(orderItem.ItemId) ??
                 throw new InvalidOperationException($"The requested item '{orderItem.ItemId} was not found.'");

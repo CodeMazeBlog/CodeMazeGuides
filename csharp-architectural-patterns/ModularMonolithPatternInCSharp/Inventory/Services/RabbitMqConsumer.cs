@@ -11,10 +11,10 @@ using System.Text.Json;
 namespace Inventory.Services;
 
 internal class RabbitMqConsumer(
-    IServiceScopeFactory scopeFactory, 
-    IConfiguration configuration, 
+    IServiceScopeFactory scopeFactory,
+    IConfiguration configuration,
     IRabbitMqConnectionManager rabbitMqConnectionManager) : IRabbitMqConsumer
-{   
+{
     private readonly IServiceScopeFactory _scopeFactory = scopeFactory;
     private readonly IConfiguration _configuration = configuration;
     private readonly IRabbitMqConnectionManager _rabbitMqConnectionManager = rabbitMqConnectionManager;
@@ -33,7 +33,7 @@ internal class RabbitMqConsumer(
         consumer.Received += HandleEventAsync;
 
         _rabbitMqConnectionManager.Channel.BasicConsume(
-            queue: queueName, 
+            queue: queueName,
             autoAck: true,
             consumer: consumer);
     }
