@@ -5,20 +5,18 @@ namespace Inventory.Services;
 
 internal class ItemService(IItemRepository itemRepository) : IItemService
 {
-    private readonly IItemRepository _itemRepository = itemRepository;
-
     public ItemDto? Get(Guid id)
     {
-        return _itemRepository.Get(id);
+        return itemRepository.Get(id);
     }
 
     public List<ItemDto> GetAll()
     {
-        return _itemRepository.GetAll();
+        return itemRepository.GetAll();
     }
 
     public bool UpdateQuantity(UpdateQuantityDto updateQuantityDto)
     {
-        return _itemRepository.UpdateQuantity(updateQuantityDto);
+        return itemRepository.UpdateQuantity(updateQuantityDto);
     }
 }

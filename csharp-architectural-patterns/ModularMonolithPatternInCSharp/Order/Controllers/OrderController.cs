@@ -9,14 +9,12 @@ namespace Order.Controllers;
 [ApiController]
 public class OrderController(IOrderService orderService) : ControllerBase
 {
-    private readonly IOrderService _orderService = orderService;
-
     [HttpPost]
     public async Task<IActionResult> AddAsync(OrderViewModel viewModel)
     {
         try
         {
-            await _orderService.AddAsync(new OrderDto
+            await orderService.AddAsync(new OrderDto
             {
                 Items = viewModel.Items.Select(i => new OrderItemDto
                 {
@@ -38,7 +36,7 @@ public class OrderController(IOrderService orderService) : ControllerBase
     {
         try
         {
-            var orders = await _orderService.GetAllAsync();
+            var orders = await orderService.GetAllAsync();
 
             return Ok(orders);
         }

@@ -10,18 +10,15 @@ namespace Order.Services;
 
 public class InventoryRabbitMqClient(IConfiguration configuration, IRabbitMqConnectionManager rabbitMqConnectionManager) : IInventoryRabbitMqClient
 {
-    private readonly IConfiguration _configuration = configuration;
-    private readonly IRabbitMqConnectionManager _rabbitMqConnectionManager = rabbitMqConnectionManager;
-
     public void UpdateQuantity(UpdateQuantityDto updateQuantityDto)
     {
 
         var serializedMessage = JsonSerializer.Serialize(updateQuantityDto);
         var body = Encoding.UTF8.GetBytes(serializedMessage);
 
-        var queueName = _configuration["RabbitMq:QueueName"];
+        var queueName = configuration["RabbitMq:QueueName"];
 
-        _rabbitMqConnectionManager.Channel.BasicPublish(exchange: string.Empty,
+        rabbitMqConnectionManager.Channel.BasicPublish(exchange: string.Empty,
                              routingKey: queueName,
                              basicProperties: null,
                              body: body);
