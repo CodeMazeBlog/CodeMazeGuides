@@ -41,3 +41,4 @@ This section contains the topics considered basic level in C#.
 - [Comparing for and foreach Loop in C#](https://code-maze.com/csharp-comparing-for-and-foreach-loop/)
 - [The Best Way to Assign an Initial Value to Auto-Properties in C#](https://code-maze.com/csharp-the-best-way-to-assign-an-initial-value-to-auto-properties/)
 - [Improvements in the Using Directive for Additional Types in C#](https://code-maze.com/csharp-improvements-in-the-using-directive-for-additional-types/)
+- [How to Detect if a Key is Pressed in a C# Console Application](https://code-maze.com/csharp-how-to-detect-if-a-key-is-pressed-in-a-console-application/)
