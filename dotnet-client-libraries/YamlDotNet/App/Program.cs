@@ -21,7 +21,7 @@ public class Program
         Console.WriteLine(yamlProduct);
 
         var deserializeProduct = SerializeAndDeserialize.Deserialize<Product>(yamlProduct);
-       Console. WriteLine($"Name: {deserializeProduct.Name}, Price: {deserializeProduct.Price}");
+        Console.WriteLine($"Name: {deserializeProduct.Name}, Price: {deserializeProduct.Price}");
 
         // Serialize and Deserialize Complex Object
 

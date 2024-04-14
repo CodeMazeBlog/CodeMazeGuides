@@ -1,21 +1,17 @@
 using App.UseCases;
+using static System.Environment;
 
 namespace Tests;
 
 public class JsonSupportTests
 {
     [Fact]
-    public void WhenYamlIsSerializedToJson_ThenJsonIsReturned()
+    public void GivenYamlInput_WhenYamlIsSerializedToJson_ThenJsonIsReturned()
     {
-        var yaml = "Name: Test\nAge: 30";
-        var expectedJson = "{\"Name\":\"Test\",\"Age\":\"30\"}\n";
+        var yaml = $"Name: Test{NewLine}Age: 30";
+        var expectedJson = $"{{\"Name\": \"Test\", \"Age\": \"30\"}}{NewLine}";
         var actualJson = JsonSupport.SerializeToJson(yaml);
 
-        Assert.Equal(RemoveWhitespace(expectedJson), RemoveWhitespace(actualJson));
-    }
-
-    private string RemoveWhitespace(string str)
-    {
-        return string.Join("", str.Split(default(string[]), StringSplitOptions.RemoveEmptyEntries));
+        Assert.Equal(expectedJson, actualJson);
     }
 }

@@ -1,24 +1,25 @@
 using App.Models;
 using App.UseCases;
+using static System.Environment;
 
 namespace Tests;
 
 public class SerializeAndDeserializeTests
 {
     [Fact]
-    public void WhenProductIsSerialized_ThenYamlIsReturned()
+    public void GivenProductAsInput_WhenProductIsSerialized_ThenYamlIsReturned()
     {
         var product = new Product { Id = 1, Name = "Test", Price = 10.0m };
-        var expectedYaml = $"Id: 1{Environment.NewLine}Name: Test{Environment.NewLine}Price: 10.0{Environment.NewLine}";
+        var expectedYaml = $"Id: 1{NewLine}Name: Test{NewLine}Price: 10.0{NewLine}";
         var actualYaml = SerializeAndDeserialize.Serialize(product);
 
         Assert.Equal(expectedYaml, actualYaml);
     }
 
     [Fact]
-    public void WhenYamlIsDeserialized_ThenProductIsReturned()
+    public void GivenYamlAsInput_WhenYamlIsDeserialized_ThenProductIsReturned()
     {
-        var yaml = $"Id: 1{Environment.NewLine}Name: Test{Environment.NewLine}Price: 10.0";
+        var yaml = $"Id: 1{NewLine}Name: Test{NewLine}Price: 10.0";
         var expectedProduct = new Product { Id = 1, Name = "Test", Price = 10.0m };
         var actualProduct = SerializeAndDeserialize.Deserialize<Product>(yaml);
 
@@ -28,19 +29,19 @@ public class SerializeAndDeserializeTests
     }
 
     [Fact]
-    public void WhenStoreIsSerialized_ThenYamlIsReturned()
+    public void GivenStoreAsInput_WhenStoreIsSerialized_ThenYamlIsReturned()
     {
         var store = new Store { Name = "Test Store", Items = [] };
-        var expectedYaml = $"Name: Test Store{Environment.NewLine}Items: []{Environment.NewLine}";
+        var expectedYaml = $"Name: Test Store{NewLine}Items: []{NewLine}";
         var actualYaml = SerializeAndDeserialize.Serialize(store);
 
         Assert.Equal(expectedYaml, actualYaml);
     }
 
     [Fact]
-    public void WhenYamlIsDeserialized_ThenStoreIsReturned()
+    public void GivenYamlAsInput_WhenYamlIsDeserialized_ThenStoreIsReturned()
     {
-        var yaml = $"Name: Test Store{Environment.NewLine}Items: []";
+        var yaml = $"Name: Test Store{NewLine}Items: []";
         var expectedStore = new Store { Name = "Test Store", Items = [] };
         var actualStore = SerializeAndDeserialize.Deserialize<Store>(yaml);
 
