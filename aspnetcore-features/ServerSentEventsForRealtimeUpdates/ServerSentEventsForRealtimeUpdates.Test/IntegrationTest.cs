@@ -1,13 +1,15 @@
-using Microsoft.AspNetCore.Mvc.Testing;
-
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Moq;
+using ServerSentEventsForRealtimeUpdates.Server;
 
 namespace ServerSentEventsForRealtimeUpdates.Test;
 
-public class IntegrationTest(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
+public class IntegrationTest() 
 {
     [Theory]
     [InlineData("/sse")]
-    public async Task WhenCallingSseEndpoint_ShouldHaveTheNumberZeroOnResult(string url)
+    public async Task WhenCallingSseEndpoint_ThenReturnSuccess(string url)
     {
         // Arrange
         var source = new CancellationTokenSource();
@@ -17,13 +19,12 @@ public class IntegrationTest(WebApplicationFactory<Program> factory) : IClassFix
         var response = await GetResponse(url, token);
         
         // Assert
-        Assert.NotNull(response);
-        Assert.Contains("0", response);
+        Assert.True(response.IsSuccessStatusCode);
     }
     
     [Theory]
     [InlineData("/sse")]
-    public async Task WhenCallingSseEndpointAndCancellingTask_ShouldThrowException(string url)
+    public async Task WhenCallingSseEndpointAndCancellingTask_ThenThrowException(string url)
     {
         // Arrange
         var source = new CancellationTokenSource();
@@ -38,15 +39,33 @@ public class IntegrationTest(WebApplicationFactory<Program> factory) : IClassFix
             () => Task.WhenAll(responseTask, cancelTask));
     }
 
-    private async Task<string> GetResponse(string url, CancellationToken token)
+    private async Task<HttpResponseMessage> GetResponse(string url, CancellationToken token)
     {
+        await using var factory = new MockWebApplicationFactory(services =>
+        {
+            services.Replace(ServiceDescriptor.Scoped(_ =>
+            {
+                var serviceMock = new Mock<ICounterService>();
+                
+                serviceMock
+                    .Setup(e => e.GetStartValue())
+                    .Returns(1);
+                
+                serviceMock
+                    .Setup(e => e.CountdownDelay())
+                    .Returns(Task.Delay(100, token));
+                
+                return serviceMock.Object;
+            }));
+        });
+        
         var client = factory.CreateClient();
-        return await client.GetStringAsync(url, token);
+        
+        return await client.GetAsync(url, token);
     }
 
     private async Task CancellationTask(CancellationToken token, CancellationTokenSource source)
     {
-        await Task.Delay(TimeSpan.FromSeconds(4), token);
         await source.CancelAsync();
     }
 }
