@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 
 namespace GlobalHeaderParameterInSwagger;
 
@@ -8,9 +9,7 @@ namespace GlobalHeaderParameterInSwagger;
 public class SampleController : ControllerBase
 {
     [HttpGet]
-    /// <summary>
-    /// Sample endpoint that requires a custom header for authentication
-    /// </summary>
+    [Description("Sample endpoint that requires a custom header for authentication")]
     public IActionResult Get(string test)
     {
         if (!HttpContext.Request.Headers.TryGetValue("X-Custom-Header", out var headerValue) || headerValue != "secret-key")
@@ -22,9 +21,7 @@ public class SampleController : ControllerBase
     }
 
     [HttpPost]
-    /// <summary>
-    /// Another sample endpoint that requires a custom header for authentication
-    /// </summary>
+    [Description("Another sample endpoint that requires a custom header for authentication")]
     public IActionResult Post()
     {
         if (!HttpContext.Request.Headers.TryGetValue("X-Custom-Header", out var headerValue) || headerValue != "secret-key")
@@ -41,9 +38,7 @@ public class SampleController : ControllerBase
 public class TestController : ControllerBase
 {
     [HttpPost]
-    /// <summary>
-    /// Another test endpoint in another controller that requires a custom header for authentication
-    /// </summary>
+    [Description("Another test endpoint in another controller that requires a custom header for authentication")]
     public IActionResult Post()
     {
         if (!HttpContext.Request.Headers.TryGetValue("X-Custom-Header", out var headerValue) || headerValue != "secret-key")
