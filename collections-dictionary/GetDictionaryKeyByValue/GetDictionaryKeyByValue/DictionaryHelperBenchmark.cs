@@ -1,15 +1,17 @@
 ﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Order;
 
 namespace GetDictionaryKeyByValue;
 
 [MemoryDiagnoser]
+[HideColumns(Column.Error, Column.StdDev)]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class DictionaryHelperBenchmark
 {
     private static readonly Dictionary<string, string> _benchmarkDict = GetDictionary();
 
-    private readonly DictionaryHelper _dictionaryHelper = new(_benchmarkDict, "value99999");
+    private readonly DictionaryHelper _dictionaryHelper = new(_benchmarkDict, "NonExistentValue");
 
     private static Dictionary<string, string> GetDictionary()
     {
@@ -29,8 +31,8 @@ public class DictionaryHelperBenchmark
         => _dictionaryHelper.UseReverseDictionary();
 
     [Benchmark]
-    public string? UseToLookup()
-          => _dictionaryHelper.UseToLookup();
+    public string? UseReverseLookup()
+          => _dictionaryHelper.UseReverseLookup();
 
     [Benchmark]
     public string? LoopThroughTheKeyValuePairs()

@@ -15,11 +15,11 @@ public class DictionaryHelper(Dictionary<string, string> dict, string value)
         return key;
     }
 
-    public string? UseToLookup()
+    public string? UseReverseLookup()
     {
         var reverseLookup = dict.ToLookup(x => x.Value, x => x.Key);
 
-        return reverseLookup[value].First();
+        return reverseLookup[value].FirstOrDefault();
     }
 
     public string? LoopThroughKeyValuePairs()

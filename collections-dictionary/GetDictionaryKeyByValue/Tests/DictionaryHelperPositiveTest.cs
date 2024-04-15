@@ -1,7 +1,7 @@
 ﻿using GetDictionaryKeyByValue;
 namespace Tests;
 
-public class DictionaryHelperTest
+public class DictionaryHelperPositiveTest
 {
     private static readonly Dictionary<string, string> _dictionary
         = new(5)
@@ -12,14 +12,13 @@ public class DictionaryHelperTest
             { "key4", "value4" },
             { "key5", "value5" }
         };
-    private static readonly string _value = "value3";
 
-    private readonly DictionaryHelper _dictionaryHelper = new(_dictionary, _value);
+    private readonly DictionaryHelper _dictionaryHelper = new(_dictionary, "value3");
 
     private static readonly string _expectedKey = "key3";
 
     [Fact]
-    public void WhenUseReverseDictionaryIsCalledThenReturnsTheDesiredKey()
+    public void GivenAnExistentValue_WhenUseReverseDictionaryIsCalled_ThenReturnsTheDesiredKey()
     {
         var result = _dictionaryHelper.UseReverseDictionary();
 
@@ -27,15 +26,15 @@ public class DictionaryHelperTest
     }
 
     [Fact]
-    public void WhenUseToLookUpIsCalledThenReturnsTheDesiredKey()
+    public void GivenAnExistentValue_WhenUseToLookUpIsCalled_ThenReturnsTheDesiredKey()
     {
-        var result = _dictionaryHelper.UseToLookup();
+        var result = _dictionaryHelper.UseReverseLookup();
 
         Assert.Equal(_expectedKey, result);
     }
 
     [Fact]
-    public void WhenLoopThroughKeyValuePairsIsCalledThenReturnsTheDesiredKey()
+    public void GivenAnExistentValue_WhenLoopThroughKeyValuePairsIsCalled_ThenReturnsTheDesiredKey()
     {
         var result = _dictionaryHelper.LoopThroughKeyValuePairs();
 
@@ -43,7 +42,7 @@ public class DictionaryHelperTest
     }
 
     [Fact]
-    public void WhenLoopThroughKeysIsCalledThenReturnsTheDesiredKey()
+    public void GivenAnExistentValue_WhenLoopThroughKeysIsCalled_ThenReturnsTheDesiredKey()
     {
         var result = _dictionaryHelper.LoopThroughKeys();
 
