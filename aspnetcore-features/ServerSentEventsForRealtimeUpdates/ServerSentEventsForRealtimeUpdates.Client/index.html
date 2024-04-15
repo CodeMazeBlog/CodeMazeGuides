@@ -1,30 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CodeMaze - Server Sent Events</title>
-    <style>
-        .cent {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            text-align: center;
-            font-size: xxx-large;
-        }
-    </style>
-</head>
-<body>
-<div id="counter" class="cent"></div>
-<script>
-    async function ServerConnection() {
-        const eventSource = new EventSource("https://localhost:7095/sse");
+    <head>
+        <meta charset="UTF-8">
+        <title>CodeMaze - Server Sent Events</title>
+        <style>
+            body {
+                background-color: #333333;
+                color: rgb(255, 198, 125);
+                font-family: sans-serif;
+            }
+            .cent {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                text-align: center;
+                font-size: xxx-large;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <a class="logo" href="https://code-maze.com/" target="_blank" rel="noreferrer noopener">
+                <img src="https://code-maze.com/wp-content/uploads/2021/02/Code-Maze-Logo-White-Text-Transparent-Small.png" alt="Code Maze" />
+            </a>
+        </div>
+        <div id="counter" class="cent" />
+        <script>
+            async function ServerConnection() {
+                const eventSource = new EventSource("https://localhost:7095/sse");
 
-        eventSource.onmessage = (event) => {
-            document.getElementById("counter").innerText = event.data;
-        }
-    }
+                eventSource.onmessage = (event) => {
+                    document.getElementById("counter").innerText = event.data;
+                }
+            }
 
-    ServerConnection();
-</script>
-</body>
+            ServerConnection();
+        </script>
+    </body>
 </html>
