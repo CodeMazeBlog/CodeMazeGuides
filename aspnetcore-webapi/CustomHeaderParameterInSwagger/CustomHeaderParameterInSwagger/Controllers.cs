@@ -5,12 +5,15 @@ using System.ComponentModel;
 namespace GlobalHeaderParameterInSwagger;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class SampleController : ControllerBase
 {
+    /// <summary>
+    /// Sample endpoint that requires a custom header for authentication
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
-    [Description("Sample endpoint that requires a custom header for authentication")]
-    public IActionResult Get(string test)
+    public IActionResult Get()
     {
         if (!HttpContext.Request.Headers.TryGetValue("X-Custom-Header", out var headerValue) || headerValue != "secret-key")
         {
@@ -20,8 +23,11 @@ public class SampleController : ControllerBase
         return Ok("Successfully authenticated with custom header!");
     }
 
+    /// <summary>
+    /// Another sample endpoint that requires a custom header for authentication
+    /// </summary>
+    /// <returns></returns>
     [HttpPost]
-    [Description("Another sample endpoint that requires a custom header for authentication")]
     public IActionResult Post()
     {
         if (!HttpContext.Request.Headers.TryGetValue("X-Custom-Header", out var headerValue) || headerValue != "secret-key")
@@ -34,11 +40,14 @@ public class SampleController : ControllerBase
 }
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class TestController : ControllerBase
 {
+    /// <summary>
+    /// Test endpoint in another controller that requires a custom header for authentication
+    /// </summary>
+    /// <returns></returns>
     [HttpPost]
-    [Description("Another test endpoint in another controller that requires a custom header for authentication")]
     public IActionResult Post()
     {
         if (!HttpContext.Request.Headers.TryGetValue("X-Custom-Header", out var headerValue) || headerValue != "secret-key")
