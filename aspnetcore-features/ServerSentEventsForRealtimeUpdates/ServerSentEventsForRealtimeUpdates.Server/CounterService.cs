@@ -2,16 +2,16 @@ namespace ServerSentEventsForRealtimeUpdates.Server;
 
 public class CounterService : ICounterService
 {
-    private const int StartValue = 30;
-    private const int MillisecondsDelay = 1000;
+    private const int cStartValue = 30;
+    private const int cMillisecondsDelay = 1000;
 
-    public async Task CountdownDelay()
+    public async Task CountdownDelay(CancellationToken cancellationToken)
     {
-        await Task.Delay(MillisecondsDelay);
+        await Task.Delay(cMillisecondsDelay, cancellationToken);
     }
 
-    public int GetStartValue()
+    public int StartValue
     {
-        return StartValue;
+        get => cStartValue;
     }
 }

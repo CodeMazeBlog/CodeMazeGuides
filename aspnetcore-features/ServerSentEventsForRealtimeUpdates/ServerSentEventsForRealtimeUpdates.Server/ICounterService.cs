@@ -2,6 +2,6 @@ namespace ServerSentEventsForRealtimeUpdates.Server;
 
 public interface ICounterService
 {
-    Task CountdownDelay();
-    int GetStartValue();
+    Task CountdownDelay(CancellationToken cancellationToken);
+    int StartValue { get; }
 }

@@ -32,7 +32,7 @@ public class IntegrationTest()
 
         // Act
         var responseTask = GetResponse(url, token);
-        var cancelTask = CancellationTask(token, source);
+        var cancelTask = CancelResponse(source);
 
         // Assert
         await Assert.ThrowsAsync<TaskCanceledException>(
@@ -48,12 +48,12 @@ public class IntegrationTest()
                 var serviceMock = new Mock<ICounterService>();
                 
                 serviceMock
-                    .Setup(e => e.GetStartValue())
+                    .Setup(e => e.StartValue)
                     .Returns(1);
                 
                 serviceMock
-                    .Setup(e => e.CountdownDelay())
-                    .Returns(Task.Delay(100, token));
+                    .Setup(e => e.CountdownDelay(It.Is<CancellationToken>(c => c == token)))
+                    .Returns(Task.CompletedTask);
                 
                 return serviceMock.Object;
             }));
@@ -64,7 +64,7 @@ public class IntegrationTest()
         return await client.GetAsync(url, token);
     }
 
-    private async Task CancellationTask(CancellationToken token, CancellationTokenSource source)
+    private async Task CancelResponse(CancellationTokenSource source)
     {
         await source.CancelAsync();
     }

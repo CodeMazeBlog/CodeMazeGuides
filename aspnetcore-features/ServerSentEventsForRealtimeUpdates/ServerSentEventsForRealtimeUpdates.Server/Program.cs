@@ -27,11 +27,13 @@ app.MapGet("/sse", async Task (HttpContext ctx, ICounterService service, Cancell
 {
     ctx.Response.Headers.Append(HeaderNames.ContentType, "text/event-stream");
 
-    var count = service.GetStartValue();
+    var count = service.StartValue;
 
-    while (count >= 0 && !token.IsCancellationRequested)
+    while (count >= 0)
     {
-        await service.CountdownDelay();
+        token.ThrowIfCancellationRequested();
+        
+        await service.CountdownDelay(token);
 
         await ctx.Response.WriteAsync($"data: {count}\n\n", cancellationToken: token);
         await ctx.Response.Body.FlushAsync(cancellationToken: token);
