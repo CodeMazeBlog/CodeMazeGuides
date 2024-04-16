@@ -9,19 +9,19 @@ var regex = new Regex(pattern);
 var searchResults = SubstringSearchMethods.FindAllIndexesWithSubstring(str, toFind);
 SubstringSearchMethods.PrintResult(searchResults);
 
-SubstringSearchMethods.FindAllIndexesWithSpan(str, toFind);
+searchResults = SubstringSearchMethods.FindAllIndexesWithSpan(str, toFind);
 SubstringSearchMethods.PrintResult(searchResults);
 
-SubstringSearchMethods.FindAllIndexesWithIndexOf(str, toFind);
+searchResults = SubstringSearchMethods.FindAllIndexesWithIndexOf(str, toFind);
 SubstringSearchMethods.PrintResult(searchResults);
 
-SubstringSearchMethods.FindAllIndexesWithRegex(str, regex);
+searchResults = SubstringSearchMethods.FindAllIndexesWithRegex(str, regex);
 SubstringSearchMethods.PrintResult(searchResults);
 
-SubstringSearchMethods.FindAllIndexesWithLINQ(str, toFind);
+searchResults = SubstringSearchMethods.FindAllIndexesWithLINQ(str, toFind);
 SubstringSearchMethods.PrintResult(searchResults);
 
-SubstringSearchMethods.FindAllIndexesWithSplit(str, toFind);
+searchResults = SubstringSearchMethods.FindAllIndexesWithSplit(str, toFind);
 SubstringSearchMethods.PrintResult(searchResults);
 
 BenchmarkRunner.Run<Benchmarking>();

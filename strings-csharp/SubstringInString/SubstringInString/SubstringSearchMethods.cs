@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-public static partial class SubstringSearchMethods
+public static class SubstringSearchMethods
 {
     public static List<int> FindAllIndexesWithSubstring(string input, string search)
     {
@@ -20,12 +20,10 @@ public static partial class SubstringSearchMethods
     public static List<int> FindAllIndexesWithSpan(ReadOnlySpan<char> input, ReadOnlySpan<char> search)
     {
         var indexes = new List<int>();
-        var inputSpan = input;
-        var searchSpan = search;
 
         for (int i = 0; i <= input.Length - search.Length; i++)
         {
-            if (inputSpan.Slice(i, search.Length).SequenceEqual(searchSpan))
+            if (input.Slice(i, search.Length).SequenceEqual(search))
             {
                 indexes.Add(i);
             }
@@ -37,16 +35,21 @@ public static partial class SubstringSearchMethods
     public static List<int> FindAllIndexesWithIndexOf(ReadOnlySpan<char> input, ReadOnlySpan<char> search)
     {
         var indexes = new List<int>();
-        var searchLength = search.Length;
-        var inputLength = input.Length;
+        var i = 0;
 
-        for (int i = 0; i <= inputLength - searchLength; i++)
+        do
         {
-            if (input.Slice(i, searchLength).SequenceEqual(search))
+            var index = input.Slice(i).IndexOf(search);
+            if (index != -1)
             {
-                indexes.Add(i);
+                indexes.Add(i + index);
+                i += index + search.Length;
             }
-        }
+            else
+            {
+                i++;
+            }
+        } while (i <= input.Length - search.Length);
 
         return indexes;
     }
