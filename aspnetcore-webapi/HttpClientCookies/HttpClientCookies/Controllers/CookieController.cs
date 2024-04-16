@@ -31,12 +31,17 @@ namespace HttpClientCookies.Controllers
             using (var handler = new HttpClientHandler() { CookieContainer = cookieContainer })
             using (var client = new HttpClient(handler) { BaseAddress = baseAddress })
             {
+
                 cookieContainer.Add(baseAddress, new Cookie("AuthCookie", input));
                 var result = await client.GetAsync($"{baseAddress}/ValidateAuthenticationCookie");
-                result.EnsureSuccessStatusCode();
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return Ok("Cookie validated");
+                }
             }
 
-            return Ok();
+            return BadRequest("Invalid input");
         }
 
         [HttpGet(nameof(ValidateAuthenticationCookie))]
@@ -45,7 +50,11 @@ namespace HttpClientCookies.Controllers
             var authCookie = Request.Cookies.FirstOrDefault(c => c.Key.Equals("AuthCookie"));
 
             if (authCookie.Value.Equals("secretKey"))
-                return Ok();
+            {
+                return Ok("Valid cookie");
+
+            }
+
             return BadRequest();
         }
     }
