@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReplaceSpecialCharactersInString", "ReplaceSpecialCharactersInString\ReplaceSpecialCharactersInString.csproj", "{61EE9DD4-D194-4CB3-BB9B-B37AA82B8D2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplaceSpecialCharactersInStringTests", "ReplaceSpecialCharactersInStringTests\ReplaceSpecialCharactersInStringTests.csproj", "{B9678CB1-324B-4538-A81F-041ADD32A930}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61EE9DD4-D194-4CB3-BB9B-B37AA82B8D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61EE9DD4-D194-4CB3-BB9B-B37AA82B8D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61EE9DD4-D194-4CB3-BB9B-B37AA82B8D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61EE9DD4-D194-4CB3-BB9B-B37AA82B8D2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9678CB1-324B-4538-A81F-041ADD32A930}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9678CB1-324B-4538-A81F-041ADD32A930}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9678CB1-324B-4538-A81F-041ADD32A930}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9678CB1-324B-4538-A81F-041ADD32A930}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D593DC5-28CB-48E2-92D0-01AD31CC9197}
+	EndGlobalSection
+EndGlobal
