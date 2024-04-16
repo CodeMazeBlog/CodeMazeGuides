@@ -77,7 +77,7 @@ public class Program
         }
         catch (YamlException e)
         {
-            Console.WriteLine($"Unable to deserialize person: {e.InnerException?.Message}");
+            Console.WriteLine($"Unable to deserialize person: {e.Message}");
         }
 
         // JSON Support in YamlDotNet

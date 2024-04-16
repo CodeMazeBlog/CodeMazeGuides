@@ -19,6 +19,6 @@ public class DeserializerValidation(INodeDeserializer nodeDeserializer) : INodeD
             return true;
 
         var message = string.Join(NewLine, results.Select(r => r.ErrorMessage));
-        throw new ValidationException(message);
+        throw new YamlException(message);
     }
 }
