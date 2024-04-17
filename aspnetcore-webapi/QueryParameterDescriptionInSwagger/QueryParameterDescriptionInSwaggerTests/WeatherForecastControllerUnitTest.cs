@@ -4,8 +4,8 @@ using static QueryParameterDescriptionInSwagger.Controllers.WeatherForecastContr
 
 namespace QueryParameterDescriptionInSwaggerTests;
 
-public class WeatherForecastControllerTests
-{
+public class WeatherForecastControllerUnitTest  
+{   
     [Fact]
     public void WhenLimitIsZero_ThenReturnEmptyCollection()
     {
