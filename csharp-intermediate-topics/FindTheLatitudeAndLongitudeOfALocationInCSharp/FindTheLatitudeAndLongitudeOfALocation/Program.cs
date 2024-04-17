@@ -10,7 +10,7 @@ public class Program
         var builder = new ConfigurationBuilder()
             .AddUserSecrets<Program>();
         var configuration = builder.Build();
-        var apiKey = configuration["YOUR_API_KEY"];
+        var apiKey = configuration["Secret:MyApiKey"];
 
         if (string.IsNullOrEmpty(apiKey))
         {

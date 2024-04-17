@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FindTheLatitudeAndLongitude
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{30E26A86-091C-4183-9D66-8F3A68EE1387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BenchmarkRunner", "BenchmarkRunner\BenchmarkRunner.csproj", "{EEE69484-DD6B-4A6C-99C9-D68605434D7F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{30E26A86-091C-4183-9D66-8F3A68EE1387}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30E26A86-091C-4183-9D66-8F3A68EE1387}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30E26A86-091C-4183-9D66-8F3A68EE1387}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EEE69484-DD6B-4A6C-99C9-D68605434D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEE69484-DD6B-4A6C-99C9-D68605434D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEE69484-DD6B-4A6C-99C9-D68605434D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEE69484-DD6B-4A6C-99C9-D68605434D7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
