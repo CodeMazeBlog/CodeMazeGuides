@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\QRCodeGeneratorWebSample.csproj" />
+    <ProjectReference Include="..\QRCodeGeneratorWebSample\QRCodeGeneratorWebSample.csproj" />
   </ItemGroup>
 
   <ItemGroup>

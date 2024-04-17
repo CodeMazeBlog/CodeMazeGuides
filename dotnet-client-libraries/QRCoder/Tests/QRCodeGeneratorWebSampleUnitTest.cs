@@ -4,7 +4,7 @@ using QRCodeGeneratorWebSample.Controllers;
 using QRCodeGeneratorWebSample.Models;
 
 namespace Tests;
-public class IndexTests
+public class QRCodeGeneratorWebSampleUnitTest
 {
     [Fact]
     public void GivenARequest_WhenCallingIndex_ThenTheControllerRendersAViewWithQrCodes()
