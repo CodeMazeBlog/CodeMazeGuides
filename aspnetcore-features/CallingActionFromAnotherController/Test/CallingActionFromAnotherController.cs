@@ -1,37 +1,35 @@
 using CallingActionFromAnotherController.Controllers;
-//using Microsoft.AspNetCore.Mvc;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Test
+namespace Test;
+
+[TestClass]
+public class CallingActionFromAnotherController
 {
-    [TestClass]
-    public class CallingActionFromAnotherController
+    [TestMethod]
+    public void GivenActionControllerName_WhenRedirectToActionCalled_ThenActionMethodCalled()
     {
-        [TestMethod]
-        public void GivenActionControllerName_WhenRedirectToActionCalled_ThenActionMethodCalled()
-        {
-            var homeController = new HomeController();
-            Microsoft.AspNetCore.Mvc.RedirectToActionResult result = homeController.Index() as Microsoft.AspNetCore.Mvc.RedirectToActionResult;
+        var homeController = new HomeController();
+        var result = homeController.Index() as RedirectToActionResult;
 
-            Assert.IsNotNull(result);
-        }
+        Assert.AreEqual("List", result?.ActionName);
+    }
 
-        [TestMethod]
-        public void GivenActionControllerName_WhenRedirectToRouteCalled_ThenActionMethodCalled()
-        {
-            var homeController = new HomeController();
-            RedirectToRouteResult result = homeController.OurProduct() as RedirectToRouteResult;
+    [TestMethod]
+    public void GivenActionControllerName_WhenRedirectToRouteCalled_ThenActionMethodCalled()
+    {
+        var homeController = new HomeController();
+        var result = homeController.OurProduct() as RedirectToRouteResult;
 
-            Assert.IsTrue(true);
-        }
+        Assert.AreEqual("productlist", result?.RouteName);
+    }
 
-        [TestMethod]
-        public void GivenActionControllerName_WhenRedirectToRouteWithPatternCalled_ThenActionMethodCalled()
-        {
-            var homeController = new HomeController();
-            RedirectToRouteResult result = homeController.OurProduct() as RedirectToRouteResult;
+    [TestMethod]
+    public void GivenActionControllerName_WhenRedirectToRouteWithPatternCalled_ThenActionMethodCalled()
+    {
+        var homeController = new HomeController();
+        var result = homeController.OurProduct() as RedirectToRouteResult;
 
-            Assert.IsTrue(true);
-        }
+        Assert.AreEqual("productlist", result?.RouteName);
     }
 }

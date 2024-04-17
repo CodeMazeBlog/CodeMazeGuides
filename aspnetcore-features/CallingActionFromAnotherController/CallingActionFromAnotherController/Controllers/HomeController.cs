@@ -1,27 +1,34 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+namespace CallingActionFromAnotherController.Controllers;
 
-namespace CallingActionFromAnotherController.Controllers
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return RedirectToAction("List", "Product");
-        }
+        return RedirectToAction("List", "Product");
+    }
 
-        public IActionResult OurProduct()
-        {
-            return RedirectToRoute("productlist");
-        }
+    public IActionResult OurProduct()
+    {
+        return RedirectToRoute("productlist");
+    }
 
-        public IActionResult FetchProduct()
+    public IActionResult FetchProduct()
+    {
+        return RedirectToRoute(new
         {
-            return RedirectToRoute(new
-            {
-                controller = "Product",
-                action = "List"
-            });
-        }
+            controller = "Product",
+            action = "List"
+        });
+    }
+
+    public IActionResult FetchProductById(int productId)
+    {
+        return RedirectToRoute(new
+        {
+            controller = "Product",
+            action = "GetProductById",
+            id = productId
+        });
     }
 }

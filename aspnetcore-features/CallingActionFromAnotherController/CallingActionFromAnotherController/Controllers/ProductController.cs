@@ -1,17 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+namespace CallingActionFromAnotherController.Controllers;
 
-namespace CallingActionFromAnotherController.Controllers
+public class ProductController : Controller
 {
-    public class ProductController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
+    }
 
-        public IActionResult List()
-        {
-            return View();
-        }
+    public IActionResult List()
+    {
+        return View();
+    }
+
+    public IActionResult GetProductById(int id)
+    {
+        ViewData["id"] = id;
+        return View();
     }
 }
