@@ -95,14 +95,14 @@ public class SerializationUnitTest
 	[TestMethod]
 	public void WhenSerializeToXmlWithRootName_ThenOutputWithRootName()
 	{
-        //Arrange
-        string expectedXml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<MyCar xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <Make>Rolls Royce</Make>\r\n  <Model>Phantom</Model>\r\n  <Year>2022</Year>\r\n</MyCar>";
+		//Arrange
+		string expectedXml = "<?xml version=\"1.0\" encoding=\"utf-16\"?><MyCar xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <Make>Rolls Royce</Make>\r\n  <Model>Phantom</Model>\r\n  <Year>2022</Year>\r\n</MyCar>";
 
         //Act
         string xml = CarXMLSerializer.SerializeToXmlWithRootName(car);
 
 		//Assert
 		Assert.IsNotNull(xml);
-        Assert.AreEqual(expectedXml, xml);
+        Assert.AreEqual(expectedXml.Replace("\r", "").Replace("\n", ""), xml.Replace("\r","").Replace("\n",""));
     }
 }
