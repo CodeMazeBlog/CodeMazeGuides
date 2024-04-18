@@ -1,13 +1,14 @@
-﻿using System;
-
-public class Car
+﻿namespace SerializationWithRootName
 {
-	public string Make { get; set; }
-	public string Model { get; set; }
-	public int Year { get; set; }
+    public class Car
+    {
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public int Year { get; set; }
+    }
+    public class CarWrapper
+    {
+        public Car MyCar { get; set; }
+    }
 }
 
-public class CarWrapper
-{
-	public Car MyCar { get; set; }
-}

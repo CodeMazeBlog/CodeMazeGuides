@@ -1,55 +1,56 @@
 ﻿using Newtonsoft.Json;
 using System.Dynamic;
 
-public static class CarJsonSerializer
+namespace SerializationWithRootName
 {
-	public static string SerializeWithWrapper(Car car)
-	{
-		var wrapper = new CarWrapper { MyCar = car };
-		var jsonWrapper = JsonConvert.SerializeObject(wrapper);
+    public static class CarJsonSerializer
+    {
+        public static string SerializeWithWrapper(Car car)
+        {
+            var wrapper = new CarWrapper { MyCar = car };
+            var jsonWrapper = JsonConvert.SerializeObject(wrapper);
 
-		return jsonWrapper;
-	}
+            return jsonWrapper;
+        }
 
-	public static string SerializeWithAnonymousClass(Car car)
-	{
-		var carAnonymous = new { MyCar = car };
-		var jsonAnonymous = JsonConvert.SerializeObject(carAnonymous);
+        public static string SerializeWithAnonymousClass(Car car)
+        {
+            var carAnonymous = new { MyCar = car };
+            var jsonAnonymous = JsonConvert.SerializeObject(carAnonymous);
 
-		return jsonAnonymous;
-	}
+            return jsonAnonymous;
+        }
 
-	public static string SerializeWithCustomSerializer(Car car)
-	{
-		var jsonCustom = JsonConvert.SerializeObject(car, new CarJsonConverter());
+        public static string SerializeWithCustomSerializer(Car car)
+        {
+            var jsonCustom = JsonConvert.SerializeObject(car, new CarJsonConverter());
 
-		return jsonCustom;
-	}
+            return jsonCustom;
+        }
 
-	public static string SerializeWithDynamicTypes(Car car)
-	{
-		dynamic carDynamic = new ExpandoObject();
-		carDynamic.MyCar = new ExpandoObject();
-		carDynamic.MyCar.Make = car.Make;
-		carDynamic.MyCar.Model = car.Model;
-		carDynamic.MyCar.Year = car.Year;
+        public static string SerializeWithDynamicTypes(Car car)
+        {
+            dynamic carDynamic = new ExpandoObject();
+            carDynamic.MyCar = new ExpandoObject();
+            carDynamic.MyCar.Make = car.Make;
+            carDynamic.MyCar.Model = car.Model;
+            carDynamic.MyCar.Year = car.Year;
 
-		var jsonDynamic = JsonConvert.SerializeObject(carDynamic);
+            var jsonDynamic = JsonConvert.SerializeObject(carDynamic);
 
-		return jsonDynamic;
-	}
+            return jsonDynamic;
+        }
 
-	public static string SerializeWithJsonSerializerSettings(Car car)
-	{
-		var settings = new JsonSerializerSettings
-		{
-			TypeNameHandling = TypeNameHandling.Objects,
-			Formatting = Formatting.Indented,
-		};
+        public static string SerializeWithJsonSerializerSettings(Car car)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects
+            };
 
-		var jsonSettings = JsonConvert.SerializeObject(car, settings);
+            var jsonSettings = JsonConvert.SerializeObject(car, settings);
 
-		return jsonSettings;
-	}
+            return jsonSettings;
+        }
+    }
 }
-

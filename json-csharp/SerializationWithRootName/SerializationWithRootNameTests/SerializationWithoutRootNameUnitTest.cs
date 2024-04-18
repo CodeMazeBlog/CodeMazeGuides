@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SerializationWithRootName;
 
 [TestClass]
 public class SerializationUnitTest
@@ -16,71 +17,89 @@ public class SerializationUnitTest
 			Model = "Phantom",
 			Year = 2022
 		};
-	}
+    }
 
 	[TestMethod]
 	public void WhenSerializeWithWrapper_ThenOutputWithRootName()
 	{
-		//Act
-		string json = CarJsonSerializer.SerializeWithWrapper(car);
+        //Arrange
+        string expectedJson = "{\"MyCar\":{\"Make\":\"Rolls Royce\",\"Model\":\"Phantom\",\"Year\":2022}}";
+
+        //Act
+        string json = CarJsonSerializer.SerializeWithWrapper(car);
 
 		//Assert
 		Assert.IsNotNull(json);
-		Assert.IsTrue(json.Contains("MyCar"));
-	}
+        Assert.AreEqual(expectedJson, json);
+    }
 
 	[TestMethod]
 	public void WhenSerializeWithAnonymousClass_ThenOutputWithRootName()
 	{
-		//Act
-		string json = CarJsonSerializer.SerializeWithAnonymousClass(car);
+        //Arrange
+        string expectedJson = "{\"MyCar\":{\"Make\":\"Rolls Royce\",\"Model\":\"Phantom\",\"Year\":2022}}";
+
+        //Act
+        string json = CarJsonSerializer.SerializeWithAnonymousClass(car);
 
 		//Assert
 		Assert.IsNotNull(json);
-		Assert.IsTrue(json.Contains("MyCar"));
-	}
+        Assert.AreEqual(expectedJson, json);
+    }
 
 	[TestMethod]
 	public void WhenSerializeWithCustomSerializer_ThenOutputWithRootName()
 	{
-		//Act
-		string json = CarJsonSerializer.SerializeWithCustomSerializer(car);
+        //Arrange
+        string expectedJson = "{\"MyCar\":{\"Make\":\"Rolls Royce\",\"Model\":\"Phantom\",\"Year\":2022}}";
+
+        //Act
+        string json = CarJsonSerializer.SerializeWithCustomSerializer(car);
 
 		//Assert
 		Assert.IsNotNull(json);
-		Assert.IsTrue(json.Contains("MyCar"));
-	}
+        Assert.AreEqual(expectedJson, json);
+    }
 
 	[TestMethod]
 	public void WhenSerializeWithDynamicTypes_ThenOutputWithRootName()
 	{
-		//Act
-		string json = CarJsonSerializer.SerializeWithDynamicTypes(car);
+        //Arrange
+        string expectedJson = "{\"MyCar\":{\"Make\":\"Rolls Royce\",\"Model\":\"Phantom\",\"Year\":2022}}";
+
+        //Act
+        string json = CarJsonSerializer.SerializeWithDynamicTypes(car);
 
 		//Assert
 		Assert.IsNotNull(json);
-		Assert.IsTrue(json.Contains("MyCar"));
-	}
+        Assert.AreEqual(expectedJson, json);
+    }
 
 	[TestMethod]
 	public void WhenSerializeWithJsonSerializerSettings_ThenOutputWithRootName()
 	{
-		//Act
-		string json = CarJsonSerializer.SerializeWithJsonSerializerSettings(car);
+        //Arrange
+        string expectedJson = "{\"$type\":\"Car, SerializationWithRootName\",\"Make\":\"Rolls Royce\",\"Model\":\"Phantom\",\"Year\":2022}";
+
+        //Act
+        string json = CarJsonSerializer.SerializeWithJsonSerializerSettings(car);
 
 		//Assert
 		Assert.IsNotNull(json);
-		Assert.IsTrue(json.Contains("Car"));
-	}
+        Assert.AreEqual(expectedJson, json);
+    }
 
 	[TestMethod]
 	public void WhenSerializeToXmlWithRootName_ThenOutputWithRootName()
 	{
-		//Act
-		string json = CarXMLSerializer.SerializeToXmlWithRootName(car);
+        //Arrange
+        string expectedXml = "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<MyCar xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <Make>Rolls Royce</Make>\r\n  <Model>Phantom</Model>\r\n  <Year>2022</Year>\r\n</MyCar>";
+
+        //Act
+        string xml = CarXMLSerializer.SerializeToXmlWithRootName(car);
 
 		//Assert
-		Assert.IsNotNull(json);
-		Assert.IsTrue(json.Contains("MyCar"));
-	}
+		Assert.IsNotNull(xml);
+        Assert.AreEqual(expectedXml, xml);
+    }
 }
