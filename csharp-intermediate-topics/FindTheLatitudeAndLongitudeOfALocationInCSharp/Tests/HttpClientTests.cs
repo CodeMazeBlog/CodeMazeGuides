@@ -33,9 +33,9 @@ public class HttpClientTests
         var serviceUnderTest = new LatLongWithHttpClient(httpClientFactoryMock.Object, apiKey);
 
         var invalidAddress = "Invalid Address";
-        var result = await serviceUnderTest.GetLatLongWithHttpClient(invalidAddress);
+        var exception = await Assert.ThrowsAsync<Exception>(() => serviceUnderTest.GetLatLongFromAddressAsync(invalidAddress));
 
-        Assert.StartsWith("Error retrieving coordinates:", result);
+        Assert.StartsWith("Error retrieving coordinates:", exception.Message);
     }
 
     [Fact]
@@ -64,8 +64,8 @@ public class HttpClientTests
         var serviceUnderTest = new LatLongWithHttpClient(httpClientFactoryMock.Object, apiKey);
 
         var validAddress = "123 Main Street";
-        var result = await serviceUnderTest.GetLatLongWithHttpClient(validAddress);
+        var exception = await Assert.ThrowsAsync<HttpRequestException>(() => serviceUnderTest.GetLatLongFromAddressAsync(validAddress));
 
-        Assert.StartsWith("Error retrieving coordinates:", result);
+        Assert.Contains("Internal Server Error", exception.Message);
     }
 }

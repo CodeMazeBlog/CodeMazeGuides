@@ -9,11 +9,11 @@ public class LatLongWithNuGet
         _locationService = locationService;
     }
 
-    public string GetLatLongWithNuGet(string address)
+    public async Task<string> GetLatLongWithNuGet(string address)
     {
         try
         {
-            var latlong = _locationService.GetLatLongFromAddress(address);
+            var latlong = await _locationService.GetLatLongFromAddressAsync(address);
             
             return $"Address ({address}) is at {latlong.Latitude}, {latlong.Longitude}";
         }

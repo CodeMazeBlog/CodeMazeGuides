@@ -10,9 +10,9 @@ public class GoogleLocationServiceWrapper : IMapLocationService
         _glsContext = new GoogleLocationService(apiKey);
     }
 
-    public CustomMapPoint GetLatLongFromAddress(string address)
+    public async Task<CustomMapPoint> GetLatLongFromAddressAsync(string address)
     {
-        var location = _glsContext.GetLatLongFromAddress(address);
+        var location = await Task.Run(() => _glsContext.GetLatLongFromAddress(address)); 
 
         return new CustomMapPoint() { Latitude = location.Latitude, Longitude = location.Longitude };
     }

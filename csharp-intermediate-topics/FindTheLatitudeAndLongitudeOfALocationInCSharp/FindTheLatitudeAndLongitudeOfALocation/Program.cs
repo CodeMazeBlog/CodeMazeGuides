@@ -23,7 +23,7 @@ public class Program
 
         var locationService = new GoogleLocationServiceWrapper(apiKey);
         var latLongWithNuGet = new LatLongWithNuGet(locationService);
-        var coordinatesNuGet = latLongWithNuGet.GetLatLongWithNuGet(address);
+        var coordinatesNuGet = await latLongWithNuGet.GetLatLongWithNuGet(address); 
 
         Console.WriteLine(coordinatesNuGet);
 
@@ -39,8 +39,8 @@ public class Program
 
         var serviceProvider = services.BuildServiceProvider();
         var latLongWithHttpClient = serviceProvider.GetRequiredService<LatLongWithHttpClient>();
-        var coordinatesHttpClient = await latLongWithHttpClient.GetLatLongWithHttpClient(address);
+        var coordinatesHttpClient = await latLongWithHttpClient.GetLatLongFromAddressAsync(address);
 
-        Console.WriteLine(coordinatesHttpClient);
+        Console.WriteLine($"Address ({address}) is at {coordinatesHttpClient.Latitude}, {coordinatesHttpClient.Longitude}");
     }
 }
