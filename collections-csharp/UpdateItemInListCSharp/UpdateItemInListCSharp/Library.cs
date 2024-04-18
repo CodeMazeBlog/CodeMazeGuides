@@ -9,12 +9,12 @@ public class Library
     public Library()
     {
         Books =
-            [
+        [
             new("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "978-0439708180", false),
-                new("Harry Potter and the Chamber of Secrets", "J.K. Rowling", "978-0439064873", false),
-                new("Harry Potter and the Goblet of Fire", "J.K. Rowling", "978-0439139601", false),
-                new("Harry Potter and the Order of the Phoenix", "J.K. Rowling", "978-0439358071", false),
-                new("Harry Potter and the Half-Blood Prince", "J.K. Rowling", "978-0439785969", false)
+            new("Harry Potter and the Chamber of Secrets", "J.K. Rowling", "978-0439064873", false),
+            new("Harry Potter and the Goblet of Fire", "J.K. Rowling", "978-0439139601", false),
+            new("Harry Potter and the Order of the Phoenix", "J.K. Rowling", "978-0439358071", false),
+            new("Harry Potter and the Half-Blood Prince", "J.K. Rowling", "978-0439785969", false)
         ];
     }
 

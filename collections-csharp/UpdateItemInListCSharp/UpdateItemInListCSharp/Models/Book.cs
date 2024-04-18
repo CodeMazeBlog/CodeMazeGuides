@@ -21,4 +21,9 @@ public class Book(string title, string author, string isbn, bool isCheckedOut)
             return false;
         }
     }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(this.Title, this.Author, this.ISBN);
+    }
 }
