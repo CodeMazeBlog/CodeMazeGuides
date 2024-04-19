@@ -9,28 +9,47 @@
                 color: rgb(255, 198, 125);
                 font-family: sans-serif;
             }
-            .cent {
+
+            #container {
+                display: flex;
+                align-items: center;
                 position: absolute;
                 top: 50%;
                 left: 50%;
-                text-align: center;
+                transform: translate(-50%, -50%); 
+            }
+
+            #logo {
+                display: block;
+                float: left;
+            }
+
+            #logo a {
+                display: block;
+                line-height: 0;
+            }
+
+            #counter {
                 font-size: xxx-large;
+                margin-left: 1rem;
             }
         </style>
     </head>
     <body>
-        <div>
-            <a class="logo" href="https://code-maze.com/" target="_blank" rel="noreferrer noopener">
-                <img src="https://code-maze.com/wp-content/uploads/2021/02/Code-Maze-Logo-White-Text-Transparent-Small.png" alt="Code Maze" />
-            </a>
+        <div id="container">
+            <div id="logo">
+                <a href="https://code-maze.com/" target="_blank" rel="noreferrer noopener">
+                    <img src="https://code-maze.com/wp-content/uploads/2021/02/Code-Maze-Logo-White-Text-Transparent-Small.png" alt="Code Maze" />
+                </a>
+            </div>
+            <div id="counter" class="cent" />
         </div>
-        <div id="counter" class="cent" />
         <script>
             async function ServerConnection() {
                 const eventSource = new EventSource("https://localhost:7095/sse");
 
                 eventSource.onmessage = (event) => {
-                    document.getElementById("counter").innerText = event.data;
+                    document.getElementById("counter").innerText = event.data.replace(/(\r\n|\n|\r)/gm, "");
                 }
             }
 
