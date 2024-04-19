@@ -6,7 +6,6 @@ public class Program
     {
         int discountRate = 50;
         double productAPrice = 60;
-        double tax = 1.7;
 
         double zero;
 

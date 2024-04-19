@@ -68,7 +68,7 @@ namespace PassingByValueVsPassingByReference.Test
             //Assert
             for (int i = 0; i < originalPrices.Length; i++)
             {
-                Assert.AreEqual(prices[i], originalPrices[i] * 50 / 100);
+                Assert.AreEqual(prices[i], originalPrices[i] * (1 + discountRate / 100.0));
             }
         }
 
