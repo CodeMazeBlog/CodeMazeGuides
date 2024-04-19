@@ -2,11 +2,11 @@ namespace HttpClientDefaultAndPerRequestTimeOut.Tests;
 
 using Microsoft.AspNetCore.Mvc.Testing;
 
-public class TimeOutTestsController
+public class TimeOutTestsControllerTests
 {
     private readonly WebApplicationFactory<Program> _factory;
 
-    public TimeOutTestsController()
+    public TimeOutTestsControllerTests()
     {
         _factory = new WebApplicationFactory<Program>();
     }
