@@ -9,7 +9,7 @@ builder.Services.AddHttpClient("TestClient", (sp, httpClient) =>
     var configuration = sp.GetRequiredService<IConfiguration>();
     var timeoutSeconds = configuration.GetValue<int>("TestClient:TimeOutSeconds");
 
-    httpClient.BaseAddress = new Uri("https://localhost:5001");
+    httpClient.BaseAddress = new Uri("http://localhost:5000");
     httpClient.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
 });
 
