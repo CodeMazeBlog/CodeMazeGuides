@@ -10,8 +10,8 @@ public class WeatherForecastControllerTests
     public void WhenLimitIsZero_ThenReturnEmptyCollection()
     {
         // Arrange
+        const int limit = 0;
         var controller = new WeatherForecastController();
-        int limit = 0;
         var parameters = new Parameters()
         {
             Limit = limit
@@ -28,8 +28,8 @@ public class WeatherForecastControllerTests
     public void WhenLimitIsPositive_ThenReturnCollectionWithSpecifiedCount()
     {
         // Arrange
+        const int limit = 5;
         var controller = new WeatherForecastController();
-        int limit = 5;
         var parameters = new Parameters()
         {
             Limit = limit
