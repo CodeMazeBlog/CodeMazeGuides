@@ -2,11 +2,13 @@
 using BenchmarkDotNet.Running;
 using CountNumberOfVowelsInString;
 
-var vowels = new HashSet<char> { 'A', 'a', 'E', 'e', 'I', 'i', 'O', 'o', 'U', 'u' };
-var vowelsAsSpan = "AEIOUaeiou".AsSpan();
-var sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
-var sentenceAsSpan = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.".AsSpan();
+const string vowels = "AEIOUaeiou";
+var vowelsAsSpan = vowels.AsSpan();
+var vowelsHash = new HashSet<char>(vowels);
 SearchValues<char> vowelsSearchValues = SearchValues.Create(vowelsAsSpan);
+
+const string sentence = "In the vast expanse of the universe, countless galaxies swirl in a cosmic dance, each telling a unique story of creation and destruction.";
+var sentenceAsSpan = sentence.AsSpan();
 
 Console.WriteLine(sentence);
 
@@ -16,6 +18,6 @@ Console.WriteLine($"The number of vowels counted using SearchValues is: {VowelCo
 Console.WriteLine($"The number of vowels counted using Switch statement is: {VowelCounters.CountVowelsUsingSwitchStatement(sentenceAsSpan)}");
 Console.WriteLine($"The number of vowels counted using RegEx is: {VowelCounters.CountVowelsUsingRegEx(sentence)}");
 Console.WriteLine($"The number of vowels counted using Regex Replace and Length is: {VowelCounters.CountVowelsUsingRegexReplaceAndLength(sentence)}");
-Console.WriteLine($"The number of vowels counted using LINQ is: {VowelCounters.CountVowelsUsingLinq(sentence, vowels)}");
+Console.WriteLine($"The number of vowels counted using LINQ is: {VowelCounters.CountVowelsUsingLinq(sentence, vowelsHash)}");
 
-//BenchmarkRunner.Run<VowelCountersBenchmarks>();
+BenchmarkRunner.Run<VowelCountersBenchmarks>();
