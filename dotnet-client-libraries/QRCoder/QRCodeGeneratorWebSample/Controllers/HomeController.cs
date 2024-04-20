@@ -20,6 +20,7 @@ public class HomeController(QrCodesDb db) : Controller
         };
 
         var model = new HomeModel(qrCodes);
+
         return View(model);
     }
 
@@ -28,37 +29,37 @@ public class HomeController(QrCodesDb db) : Controller
         var qrCodeData = qrGenerator.CreateQrCode(new CustomPayload("Reader"));
         db.Add("Custom", qrCodeData);
         var raw = db.Get("Custom");
+
         return GeneratePng(new QRCodeData(raw, QRCodeData.Compression.Uncompressed));
     }
 
     private string GenerateQRCodeString()
     {
-        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers :)", QRCodeGenerator.ECCLevel.Q);
+        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers", QRCodeGenerator.ECCLevel.Q);
+
         return GeneratePng(qrCodeData);
     }
 
     private string GenerateQRCodeURL()
     {
         var qrCodeData = qrGenerator.CreateQrCode(new Url("https://www.code-maze.com"));
+
         return GeneratePng(qrCodeData);
     }
 
     private string GenerateQRCodePhoneNumber()
     {
         var qrCodeData = qrGenerator.CreateQrCode(new PhoneNumber("+123456789"));
+
         return GeneratePng(qrCodeData);
     }
 
     private static string GeneratePng(QRCodeData data)
     {
-        // Create a PNG to render the QR Code
-        var qrCode = new PngByteQRCode(data);
+        using var qrCode = new PngByteQRCode(data);
         var qrCodeImage = qrCode.GetGraphic(20, [255, 0, 0], [0, 0, 139]);
 
-        // Convert it to a base-64 string, so it can be rendered on the webpage.
-        var qrCodeString = $"data:image/png;base64,{Convert.ToBase64String(qrCodeImage)}";
-
-        return qrCodeString;
+        return $"data:image/png;base64,{Convert.ToBase64String(qrCodeImage)}";
     }
 }
 
