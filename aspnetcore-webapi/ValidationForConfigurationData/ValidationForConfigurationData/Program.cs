@@ -6,20 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddOptions<NotificationSettings>()
-	.BindConfiguration(nameof(NotificationSettings))
-	.ValidateDataAnnotations()
-	.ValidateOnStart()
-	.Validate(options =>
-	{
-		if (options.EnableEmail &&
-			options.MaxNumberOfRetries > 5)
-		{
-			return false;
-		}
-
-		return true;
-	});
+builder.Services
+	.AddSingleton<IValidateOptions<NotificationSettings>, ValidateNotificationSettings>()
+	.AddOptionsWithValidateOnStart<NotificationSettings>();
 
 var app = builder.Build();
 
