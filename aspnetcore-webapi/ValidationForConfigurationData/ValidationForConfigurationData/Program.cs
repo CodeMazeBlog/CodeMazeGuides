@@ -10,6 +10,9 @@ builder.Services
 	.AddSingleton<IValidateOptions<NotificationSettings>, ValidateNotificationSettings>()
 	.AddOptionsWithValidateOnStart<NotificationSettings>();
 
+builder.Services.AddOptions<NotificationSettings>()
+	.BindConfiguration(nameof(NotificationSettings));
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -27,3 +30,5 @@ app.MapGet("/settings", (IOptions<NotificationSettings> options) =>
 .WithOpenApi();
 
 app.Run();
+
+public partial class Program { }

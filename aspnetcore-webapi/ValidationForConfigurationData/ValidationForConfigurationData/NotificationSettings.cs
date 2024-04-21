@@ -11,6 +11,6 @@ public class NotificationSettings
 	[Required]
 	public bool EnableEmail { get; init; }
 	[Required]
-	[DeniedValues([0])]
+	[Range(1, 10)]
 	public int MaxNumberOfRetries { get; init; }
 }
