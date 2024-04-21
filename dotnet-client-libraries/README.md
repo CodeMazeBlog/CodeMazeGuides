@@ -47,3 +47,4 @@ This section contains the topics about the client libraries in .NET.
 - [Generate Sortable Unique IDs With the NewId Library in .NET](https://code-maze.com/dotnet-generate-sortable-unique-ids-with-the-newid-library/)
 - [Introduction to Strawberry Shake and GraphQL in .NET](https://code-maze.com/dotnet-introduction-to-strawberry-shake-and-graphql/)
 - [Introduction to Carter in ASP.NET Core](https://code-maze.com/aspnetcore-introduction-to-carter/)
+- [Represent the Relationship of Properties Using Property Mappings From AutoMapper](https://code-maze.com/csharp-getting-property-mappings-from-automapper/)
