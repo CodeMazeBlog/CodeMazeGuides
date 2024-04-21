@@ -28,6 +28,7 @@ public class CustomPropertiesFromContextEnricher
 
     public void EnrichFromContextForContext(string userId)
     {
-        _logger.ForContext("UserId", userId).Information("User tried to login");
+        var contextLogger = _logger.ForContext("UserId", userId); 
+        contextLogger.Information("User tried to log in");
     }
 }
