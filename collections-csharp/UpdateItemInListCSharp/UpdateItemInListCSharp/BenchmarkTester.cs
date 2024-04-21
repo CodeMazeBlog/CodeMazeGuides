@@ -11,6 +11,14 @@ public class BenchmarkTester
     private Library _library = null!;
     private Book _newBook = null!;
 
+    [GlobalSetup]
+    public void GlobalSetup()
+    {
+        _library = new Library();
+        var book = _library.Books.Last();
+        _newBook = new Book(book.Title, book.Author, book.ISBN, book.IsCheckedOut);
+    }
+
     [Benchmark]
     public void CheckoutBookUsingFind()
     {
@@ -45,13 +53,5 @@ public class BenchmarkTester
     public void CheckoutBookUsingSingleOrDefault()
     {
         _library.CheckoutBookUsingSingleOrDefault("978-0439708180");
-    }
-
-    [GlobalSetup]
-    public void GlobalSetup()
-    {
-        _library = new Library();
-        var book = _library.Books.Last();
-        _newBook = new Book(book.Title, book.Author, book.ISBN, book.IsCheckedOut);
     }
 }
