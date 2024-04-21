@@ -2,11 +2,11 @@ namespace HttpClientDefaultAndPerRequestTimeOut.Tests;
 
 using Microsoft.AspNetCore.Mvc.Testing;
 
-public class TimeOutTestsControllerLiveTests
+public class EndpointsLiveTests
 {
     private readonly WebApplicationFactory<Program> _factory;
 
-    public TimeOutTestsControllerLiveTests()
+    public EndpointsLiveTests()
     {
         _factory = new WebApplicationFactory<Program>();
     }
@@ -18,11 +18,10 @@ public class TimeOutTestsControllerLiveTests
         var client = _factory.CreateClient();
 
         // Act      
-        var responseMessage = await client.GetAsync("/api/test-global-timeout");
-        var responseContent = await responseMessage.Content.ReadAsStringAsync();
+        var responseMessage = await client.GetStringAsync("/api/test-global-timeout");
 
         // Assert
-        Assert.Equal("TaskCanceledException: HttpClient global timeout passed", responseContent);
+        Assert.Equal("TaskCanceledException: HttpClient global timeout passed", responseMessage);
     }
 
     [Fact]
@@ -44,11 +43,10 @@ public class TimeOutTestsControllerLiveTests
         var client = _factory.CreateClient();
 
         // Act       
-        var responseMessage = await client.GetAsync("/api/test-combined-timeout");
-        var responseContent = await responseMessage.Content.ReadAsStringAsync();
+        var responseMessage = await client.GetStringAsync("/api/test-combined-timeout");
 
         // Assert
-        Assert.Equal("TaskCanceledException: Specific token canceled", responseContent);
+        Assert.Equal("TaskCanceledException: Specific token canceled", responseMessage);
     }
 
     [Fact]

@@ -1,6 +1,0 @@
-@HttpClientDefaultAndPerRequestTimeOut_HostAddress = http://localhost:5257
-
-GET {{HttpClientDefaultAndPerRequestTimeOut_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
