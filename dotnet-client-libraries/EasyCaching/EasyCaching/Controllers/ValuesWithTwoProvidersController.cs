@@ -21,7 +21,7 @@ namespace EasyCaching.Controllers
         }
 
         [HttpGet]
-        public async Task<ApiResponse> GetValues()
+        public async Task<ActionResult<ApiResponse>> GetValues()
         {
             var inMemoryProvider = _factory.GetCachingProvider("InMemoryCache");
             var sqliteProvider = _factory.GetCachingProvider("SQLiteCache");
@@ -63,7 +63,7 @@ namespace EasyCaching.Controllers
             _response.Duration = sw.ElapsedMilliseconds;
             _response.StatusCode = System.Net.HttpStatusCode.OK;
 
-            return _response;
+            return Ok(_response);
         }
     }
 }
