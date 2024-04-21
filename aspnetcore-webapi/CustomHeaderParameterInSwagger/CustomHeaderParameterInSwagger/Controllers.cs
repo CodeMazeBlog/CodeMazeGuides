@@ -7,10 +7,6 @@ namespace GlobalHeaderParameterInSwagger;
 [Route("api/[controller]")]
 public class SampleController : ControllerBase
 {
-    /// <summary>
-    /// Sample endpoint that requires a custom header for authentication
-    /// </summary>
-    /// <returns></returns>
     [HttpGet]
     public IActionResult Get()
     {
@@ -22,10 +18,6 @@ public class SampleController : ControllerBase
         return Ok("Successfully authenticated with custom header!");
     }
 
-    /// <summary>
-    /// Another sample endpoint that requires a custom header for authentication
-    /// </summary>
-    /// <returns></returns>
     [HttpPost]
     public IActionResult Post()
     {
