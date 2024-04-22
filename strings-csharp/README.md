@@ -36,3 +36,7 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [C# String Interpolation](https://code-maze.com/csharp-string-interpolation/)
 - [How to Check if a String Contains Only Letters in C#](https://code-maze.com/csharp-check-if-a-string-contains-only-letters/)
 - [Fastest Way to Get the First N Characters of a String in C#](https://code-maze.com/csharp-fastest-way-to-get-the-first-n-characters-of-a-string/)
+- [How to Convert String to Char in C#](https://code-maze.com/csharp-how-to-convert-string-to-char/)
+- [How to Get the HTML Content of a Web Page as a String in .NET](https://code-maze.com/dotnet-get-the-html-content-of-a-web-page-as-a-string/)
+- [The Fastest Way to Remove the Last Character of a String](https://code-maze.com/csharp-fastest-way-to-remove-the-last-character-of-a-string/)
+- [Fastest Way to Find and Extract a Number From a String in C#](https://code-maze.com/csharp-fastest-way-to-find-and-extract-a-number-from-a-string/)

@@ -15,8 +15,8 @@ namespace VerticalSliceArchitecture.Features.Games
         public class GameResult
         {
             public int Id { get; set; }
-            public string Name { get; set; }
-            public string Publisher { get; set; }
+            public string? Name { get; set; }
+            public string? Publisher { get; set; }
         }
 
         public class Handler : IRequestHandler<GetGamesQuery, IEnumerable<GameResult>>
@@ -34,7 +34,7 @@ namespace VerticalSliceArchitecture.Features.Games
             {
                 var console = await _serviceManager.Console.GetConsoleByIdAsync(request.ConsoleId);
 
-                if (console == null)
+                if (console is null)
                     throw new NoConsoleExistsException(request.ConsoleId);
 
                 var games = await _serviceManager.Game.GetAllGamesAsync(console.Id);

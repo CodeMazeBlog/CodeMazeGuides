@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>hsts_tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Properties\PublishProfiles\**" />
+    <Compile Remove="Properties\ServiceDependencies\**" />
+    <Content Remove="Properties\PublishProfiles\**" />
+    <Content Remove="Properties\ServiceDependencies\**" />
+    <EmbeddedResource Remove="Properties\PublishProfiles\**" />
+    <EmbeddedResource Remove="Properties\ServiceDependencies\**" />
+    <None Remove="Properties\PublishProfiles\**" />
+    <None Remove="Properties\ServiceDependencies\**" />
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\**" />
+    <_WebToolingArtifacts Remove="Properties\ServiceDependencies\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+</Project>

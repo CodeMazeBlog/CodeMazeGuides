@@ -28,3 +28,4 @@ This section contains the topics related to all kinds of testing in C#/.NET
 - [How to Pass Complex Parameters to Theory in xUnit](https://code-maze.com/xunit-how-to-pass-complex-parameters-to-theory/)
 - [How to Overwrite DateTime.Now During Testing in .NET](https://code-maze.com/dotnet-how-to-overwrite-datetime-now-during-testing/)
 - [Architecture Tests in .NET with NetArchTest.Rules](https://code-maze.com/csharp-architecture-tests-with-netarchtest-rules/)
+- [How to Test gRPC Services in ASP.NET Core](https://code-maze.com/aspnetcore-test-grpc-services/)

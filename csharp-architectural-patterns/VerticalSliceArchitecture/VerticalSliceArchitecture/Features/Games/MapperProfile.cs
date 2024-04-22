@@ -9,7 +9,6 @@ namespace VerticalSliceArchitecture.Features.Games
         {
             CreateMap<Game, AddGameToConsole.GameResult>();
             CreateMap<Game, GetAllGamesForConsole.GameResult>();
-            CreateMap<Game, UpdateGameForConsole.UpdateGameResult>();
         }
     }
 }
