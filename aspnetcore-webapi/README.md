@@ -46,3 +46,4 @@ This section contains articles about ASP.NET Core Web API-related topics.
 - [The Difference Between RESTful APIs and Web APIs Using ASP.NET Core](https://code-maze.com/aspnetcore-difference-between-restful-apis-and-web-apis/)
 - [How to Fix CORS Error With AnyOrigin and AllowCredentials](https://code-maze.com/aspnetcore-how-to-fix-cors-error-with-anyorigin-and-allowcredentials/)
 - [Automatic Registration of Minimal API Endpoints in .NET](https://code-maze.com/aspnetcore-automatic-registration-of-minimal-api-endpoints/)
+- [Built-In Rate Limiting in ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-rate-limiting/)
