@@ -25,10 +25,16 @@ public class HomeController(QrCodesDb db) : Controller
     }
 
     private string GenerateQRCodeCustom()
-    {
-        var qrCodeData = qrGenerator.CreateQrCode(new CustomPayload("Reader"));
-        db.Add("Custom", qrCodeData);
-        var raw = db.Get("Custom");
+    {        
+        var key = "Custom";
+
+        var raw = db.Get(key);
+        if (raw == null)
+        {
+            var qrCodeData = qrGenerator.CreateQrCode(new CustomPayload("Reader"));
+            db.Add("Custom", qrCodeData);
+            raw = qrCodeData.GetRawData(QRCodeData.Compression.Uncompressed);
+        }
 
         return GeneratePng(new QRCodeData(raw, QRCodeData.Compression.Uncompressed));
     }

@@ -13,11 +13,15 @@ public class QrCodesDb
 
     public void Add(string key, QRCodeData data)
     {
-        _qrCodes.Add(key, data.GetRawData(QRCodeData.Compression.Uncompressed));
+        if (!_qrCodes.ContainsKey(key))
+        {
+            _qrCodes.Add(key, data.GetRawData(QRCodeData.Compression.Uncompressed));
+        }        
     }
 
-    public byte[] Get(string key)
+    public byte[]? Get(string key)
     {
-        return _qrCodes[key];
+        _qrCodes.TryGetValue(key, out var value);
+        return value;
     }
 }
