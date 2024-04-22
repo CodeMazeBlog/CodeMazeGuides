@@ -12,9 +12,7 @@ public static class Utilities
         {
             sb.Append(item!.ToString());
             if (!item.Equals(list.Last()))
-            {
                 sb.Append(", ");
-            }
         }
 
         return sb.ToString();
@@ -27,9 +25,7 @@ public static class Utilities
         foreach (int item in listToFilter)
         {
             if (filteringList.Contains(item))
-            {
                 filteredList.Add(item);
-            }
         }
 
         return filteredList;
@@ -42,9 +38,7 @@ public static class Utilities
         foreach (int item in listToFilter)
         {
             if (!filteringList.Contains(item))
-            {
                 filteredList.Add(item);
-            }
         }
 
         return filteredList;
@@ -82,20 +76,20 @@ public static class Utilities
 
     public static List<string> FilterAnimalNamesByLengths(List<string> listToFilter, List<int> filteringList)
     {
-        return listToFilter.Where(animalName => filteringList.Any(
-            length => animalName.Length == length)).ToList();
+        return listToFilter.Where(animalName => filteringList.Any(length => animalName.Length == length))
+            .ToList();
     }
 
     public static List<string> FilterWordsByCharacters(List<string> listToFilter, List<char> filteringList)
     {
-        return listToFilter.Where(word => filteringList.Any(
-            letter => word.StartsWith(letter) && word.EndsWith(letter))).ToList();
+        return listToFilter.Where(word => filteringList.Any(letter => word.StartsWith(letter) && word.EndsWith(letter)))
+            .ToList();
     }
 
     public static List<Student> FilterStudentsBySchoolCity(List<Student> listToFilter, List<School> filteringList)
     {
-        return listToFilter.Where(student => filteringList.Any(
-            school => student.City == school.City)).ToList();
+        return listToFilter.Where(student => filteringList.Any(school => student.City == school.City))
+            .ToList();
     }
 
     public static List<string> FilterStudentsWithProperties(List<Student> listToFilter, List<int> filteringList)
@@ -109,9 +103,7 @@ public static class Utilities
         listToFilter.ForEach(student =>
         {
             if (filteringList.Contains(student.Id))
-            {
                 student.City = "Berlin";
-            }
         });
     }
 
