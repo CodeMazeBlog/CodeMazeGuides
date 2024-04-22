@@ -63,22 +63,6 @@ app.MapGet("/api/test-per-request-timeout", async (IHttpClientFactory httpClient
     }
 });
 
-app.MapGet("/api/test-combination-of-global-and-per-request-timeout", async (IHttpClientFactory httpClientFactory, CancellationToken cancellationToken) =>
-{
-    var httpClient = httpClientFactory.CreateClient("TestClient");
-
-    try
-    {
-        var response = await httpClient.GetAsync("/api/delay-4-seconds", cancellationToken);
-
-        return Results.Ok();
-    }
-    catch (TaskCanceledException)
-    {
-        return Results.Text("TaskCanceledException: HttpClient global timeout passed");
-    }
-});
-
 app.MapGet("/api/test-combined-timeout", async (IHttpClientFactory httpClientFactory, CancellationToken cancellationToken) =>
 {
     var httpClient = httpClientFactory.CreateClient("TestClient");
