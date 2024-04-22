@@ -38,8 +38,6 @@ app.MapGet("/api/test-global-timeout", async (IHttpClientFactory httpClientFacto
     {
         var response = await httpClient.GetAsync("/api/delay-4-seconds");
 
-        // Do something with the response
-
         return Results.Ok();
     }
     catch (TaskCanceledException)
