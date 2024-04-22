@@ -1,4 +1,3 @@
-
 namespace EasyCaching
 {
     public class Program
