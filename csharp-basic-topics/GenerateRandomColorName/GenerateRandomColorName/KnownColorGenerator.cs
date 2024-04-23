@@ -9,6 +9,7 @@ public static class KnownColorGenerator
     {
         int index = Random.Shared.Next(allColors.Length);
         KnownColor randomColorName = allColors[index];
+
         return Color.FromKnownColor(randomColorName);
     }
 }
