@@ -16,12 +16,13 @@ public class QrCodesDb
         if (!_qrCodes.ContainsKey(key))
         {
             _qrCodes.Add(key, data.GetRawData(QRCodeData.Compression.Uncompressed));
-        }        
+        }
     }
 
     public byte[]? Get(string key)
     {
         _qrCodes.TryGetValue(key, out var value);
+
         return value;
     }
 }
