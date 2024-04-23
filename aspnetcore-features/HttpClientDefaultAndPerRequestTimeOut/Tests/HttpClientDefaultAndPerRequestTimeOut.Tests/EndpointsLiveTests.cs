@@ -4,12 +4,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 public class EndpointsLiveTests
 {
-    private readonly WebApplicationFactory<Program> _factory;
-
-    public EndpointsLiveTests()
-    {
-        _factory = new WebApplicationFactory<Program>();
-    }
+    private readonly WebApplicationFactory<Program> _factory = new();
 
     [Fact]
     public async Task WhenGlobalTimeOutPassed_ThenReturnMessageWithCancellationDetails()
