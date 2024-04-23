@@ -1,20 +1,14 @@
 namespace GenerateRandomColorName;
 using System.Drawing;
 
-public class KnownColorGenerator
+public static class KnownColorGenerator
 {
-    private Random randomGen;
+    private static readonly KnownColor[] allColors = Enum.GetValues<KnownColor>();
 
-    public KnownColorGenerator()
+    public static Color GetRandomKnownColor()
     {
-        randomGen = new Random();
-    }
-
-    public Color GetRandomKnownColor()
-    {
-        KnownColor[] allColors = (KnownColor[])Enum.GetValues(typeof(KnownColor));
-        KnownColor randomColorName = allColors[randomGen.Next(allColors.Length)];
-
+        int index = Random.Shared.Next(allColors.Length);
+        KnownColor randomColorName = allColors[index];
         return Color.FromKnownColor(randomColorName);
     }
 }
