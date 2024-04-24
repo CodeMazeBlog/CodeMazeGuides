@@ -6,16 +6,7 @@ public static class Utilities
 {
     public static string PrintList<T>(List<T> list)
     {
-        StringBuilder sb = new();
-
-        foreach (T item in list)
-        {
-            sb.Append(item!.ToString());
-            if (!item.Equals(list.Last()))
-                sb.Append(", ");
-        }
-
-        return sb.ToString();
+        return string.Join(", ", list);
     }
        
     public static List<int> FilterContainedUsingLoop(List<int> listToFilter, List<int> filteringList)
