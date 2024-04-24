@@ -85,6 +85,20 @@ public class HowToFilterAListBasedOnAnotherListInCSharpUnitTest
 
         // Assert
         Assert.Equal([17, 34, 68, 7, 145], output);
+    }    
+
+    [Fact]
+    public void Given2Lists_WhenFilterContainedUniqueMethodCalled_ThenOnlyUniqueElementsAreKept()
+    {
+        // Arrange
+        List<int> numbers = [17, 34, 34, 50, 50, 50, 68, 68, 121, 7, 145];
+        List<int> otherNumbers = [50, 44, 121];
+
+        // Act
+        var output = Utilities.FilterContainedUnique(numbers, otherNumbers);
+
+        // Assert
+        Assert.Equal([50, 121], output);
     }
 
     [Fact]
@@ -99,20 +113,6 @@ public class HowToFilterAListBasedOnAnotherListInCSharpUnitTest
 
         // Assert
         Assert.Equal([17, 34, 68, 7, 145], output);
-    }
-
-    [Fact]
-    public void Given2Lists_WhenFilterContainedUniqueMethodCalled_ThenOnlyUniqueElementsAreKept()
-    {
-        // Arrange
-        List<int> numbers = [17, 34, 34, 50, 50, 50, 68, 68, 121, 7, 145];
-        List<int> otherNumbers = [50, 44, 121];
-
-        // Act
-        var output = Utilities.FilterContainedUnique(numbers, otherNumbers);
-
-        // Assert
-        Assert.Equal([50, 121], output);
     }
 
     [Fact]
@@ -142,21 +142,7 @@ public class HowToFilterAListBasedOnAnotherListInCSharpUnitTest
         // Assert
         Assert.Equal(["monkey", "rabbit", "crow"], output);
     }
-
-    [Fact]
-    public void Given2Lists_WhenFilterWordsByCharactersMethodCalled_ThenWordsThatStartAndEndWithSameCharacterAreKept()
-    {
-        // Arrange
-        List<string> words = ["monkey", "deed", "yummy", "dark", "mom", "yard"];
-        List<char> letters = ['m', 'd', 'y'];
-
-        // Act
-        var output = Utilities.FilterWordsByCharacters(words, letters);
-
-        // Assert
-        Assert.Equal(["deed", "yummy", "mom"], output);
-    }
-
+        
     [Fact]
     public void Given2Lists_WhenFilterStudentsBySchoolCityMethodCalled_ThenStudentsWhoAttendSchoolInTheirCityAreKept()
     {

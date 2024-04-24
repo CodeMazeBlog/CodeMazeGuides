@@ -1,6 +1,6 @@
 ﻿using HowToFilterAListBasedOnAnotherListInCSharp;
 
-List<int> intsToFilter = [1, 2, 3, 4, 4, 4, 5, 6, 7, 7, 8, 9];
+List<int> intsToFilter = [1, 2, 3, 4, 4, 4, 5, 6, 7, 7, 8, 8, 9];
 List<int> filteringIntList = [4, 4, 7, 9, 10];
 
 List<int> filteredContainedInts;
@@ -30,15 +30,15 @@ filteredContainedInts = Utilities.FilterNotContainedUsingWhere(intsToFilter, fil
 Console.WriteLine(Utilities.PrintList(filteredContainedInts));
 Console.WriteLine();
 
-Console.WriteLine("EXCEPT METHOD");
-Console.WriteLine("Elements from list 1 that are not contained in list 2:");
-filteredContainedInts = Utilities.FilterNotContainedUsingExcept(intsToFilter, filteringIntList);
-Console.WriteLine(Utilities.PrintList(filteredContainedInts));
-Console.WriteLine();
-
 Console.WriteLine("DUPLICATES");
 Console.WriteLine("Unique elements from list 1 that are contained in list 2:");
 filteredContainedInts = Utilities.FilterContainedUnique(intsToFilter, filteringIntList);
+Console.WriteLine(Utilities.PrintList(filteredContainedInts));
+Console.WriteLine();
+
+Console.WriteLine("EXCEPT METHOD");
+Console.WriteLine("Elements from list 1 that are not contained in list 2:");
+filteredContainedInts = Utilities.FilterNotContainedUsingExcept(intsToFilter, filteringIntList);
 Console.WriteLine(Utilities.PrintList(filteredContainedInts));
 Console.WriteLine();
 
@@ -58,15 +58,6 @@ List<string> filteredAnimalNames;
 Console.WriteLine("Animals from list 1 whose names' lengths are elements of list 2:");
 filteredAnimalNames = Utilities.FilterAnimalNamesByLengths(animalsToFilter, filteringLengthList);
 Console.WriteLine(Utilities.PrintList(filteredAnimalNames));
-Console.WriteLine();
-
-Console.WriteLine("MULTIPLE CRITERIA");
-List<string> wordsToFilter = ["knee", "kick", "book", "yard", "long", "else", "breeze"];
-List<char> filteringChars = ['k', 'e'];
-List<string> filteredWords;
-Console.WriteLine("Words from list 1 that start and end with characters from list 2:");
-filteredWords = Utilities.FilterWordsByCharacters(wordsToFilter, filteringChars);
-Console.WriteLine(Utilities.PrintList(filteredWords));
 Console.WriteLine();
 
 Console.WriteLine("COMPLEX OBJECTS");

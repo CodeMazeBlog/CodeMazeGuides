@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace HowToFilterAListBasedOnAnotherListInCSharp;
+﻿namespace HowToFilterAListBasedOnAnotherListInCSharp;
 
 public static class Utilities
 {
@@ -49,15 +47,15 @@ public static class Utilities
     {
         return listToFilter.Where(x => !filteringList.Contains(x)).ToList();
     }
+    
+    public static List<int> FilterContainedUnique(List<int> listToFilter, List<int> filteringList)
+    {
+        return listToFilter.Where(filteringList.Contains).Distinct().ToList();
+    }
 
     public static List<int> FilterNotContainedUsingExcept(List<int> listToFilter, List<int> filteringList)
     {
         return listToFilter.Except(filteringList).ToList();
-    }
-
-    public static List<int> FilterContainedUnique(List<int> listToFilter, List<int> filteringList)
-    {
-        return listToFilter.Where(filteringList.Contains).Distinct().ToList();
     }
 
     public static List<string> FilterStringsByInts(List<string> listToFilter, List<int> filteringList)
@@ -70,13 +68,7 @@ public static class Utilities
         return listToFilter.Where(animalName => filteringList.Any(length => animalName.Length == length))
             .ToList();
     }
-
-    public static List<string> FilterWordsByCharacters(List<string> listToFilter, List<char> filteringList)
-    {
-        return listToFilter.Where(word => filteringList.Any(letter => word.StartsWith(letter) && word.EndsWith(letter)))
-            .ToList();
-    }
-
+        
     public static List<Student> FilterStudentsBySchoolCity(List<Student> listToFilter, List<School> filteringList)
     {
         return listToFilter.Where(student => filteringList.Any(school => student.City == school.City))
