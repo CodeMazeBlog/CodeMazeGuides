@@ -26,13 +26,13 @@ public class HomeController(QrCodesDb db) : Controller
 
     private string GenerateQRCodeCustom()
     {        
-        var key = "Custom";
+        const string key = "Custom";
 
         var raw = db.Get(key);
         if (raw == null)
         {
             var qrCodeData = qrGenerator.CreateQrCode(new CustomPayload("Reader"));
-            db.Add("Custom", qrCodeData);
+            db.Add(key, qrCodeData);
             raw = qrCodeData.GetRawData(QRCodeData.Compression.Uncompressed);
         }
 

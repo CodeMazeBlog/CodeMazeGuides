@@ -4,12 +4,7 @@ namespace QRCodeGeneratorWebSample;
 
 public class QrCodesDb
 {
-    private readonly Dictionary<string, byte[]> _qrCodes;
-
-    public QrCodesDb()
-    {
-        _qrCodes = [];
-    }
+    private readonly Dictionary<string, byte[]> _qrCodes = [];
 
     public void Add(string key, QRCodeData data)
     {
