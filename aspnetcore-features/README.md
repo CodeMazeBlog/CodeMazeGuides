@@ -40,3 +40,4 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [Present a List of Files in a Directory With Directory Browsing in ASP.NET Core](https://code-maze.com/aspnetcore-directory-browsing/)
 - [How to Validate File Upload Extensions in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-validate-file-upload-extensions/)
 - [How to Set a Default User-Agent on an HttpClient in ASP.NET Core](https://code-maze.com/aspnetcore-set-a-default-user-agent-on-an-httpclient/)
+- [HSTS Header Implementation in ASP.NET Core](https://code-maze.com/aspnetcore-hsts-header-implementation/)
