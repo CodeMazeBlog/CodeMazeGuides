@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Options;
-using ValidationForConfigurationData;
 using ValidationForConfigurationData.Settings;
+using ValidationForConfigurationData.Settings.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,25 +8,25 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services
-    .AddSingleton<IValidateOptions<NotificationSettings>, ValidateNotificationSettings>()
-    .AddOptionsWithValidateOnStart<NotificationSettings>();
+	.AddSingleton<IValidateOptions<NotificationSettings>, ValidateNotificationSettings>()
+	.AddOptionsWithValidateOnStart<NotificationSettings>();
 
 builder.Services.AddOptions<NotificationSettings>()
-    .BindConfiguration(nameof(NotificationSettings));
+	.BindConfiguration(nameof(NotificationSettings));
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
 app.MapGet("/settings", (IOptions<NotificationSettings> options) =>
 {
-    return Results.Ok(options.Value);
+	return Results.Ok(options.Value);
 })
 .WithOpenApi();
 
