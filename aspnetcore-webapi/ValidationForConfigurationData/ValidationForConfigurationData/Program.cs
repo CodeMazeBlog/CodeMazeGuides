@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Options;
 using ValidationForConfigurationData;
+using ValidationForConfigurationData.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
