@@ -68,12 +68,10 @@ public class Tests
             model.OnGet();
 
             Assert.NotNull(model.Documents);
+
             Assert.Equal(2, model.Documents.Count);
 
-            foreach (var document in model.Documents)
-            {
-                Assert.True(model.HttpContext.User.IsInRole("Admin"));
-            }
+            Assert.True(model.HttpContext.User.IsInRole("Admin"));
 
         }
         finally
