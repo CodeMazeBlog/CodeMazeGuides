@@ -17,7 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InventoryModule", "Inventor
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrderModule", "OrderModule", "{620B7DE8-76F8-402F-8028-310472719A16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{4E98F09A-3A2F-4E93-8EDF-7FDFE4DC510D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{4E98F09A-3A2F-4E93-8EDF-7FDFE4DC510D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModularMonolithPatternInCSharp.Tests", "ModularMonolithPatternInCSharp.Tests\ModularMonolithPatternInCSharp.Tests.csproj", "{2538E071-EDDD-4705-87DC-4646EF160E5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{4E98F09A-3A2F-4E93-8EDF-7FDFE4DC510D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E98F09A-3A2F-4E93-8EDF-7FDFE4DC510D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E98F09A-3A2F-4E93-8EDF-7FDFE4DC510D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2538E071-EDDD-4705-87DC-4646EF160E5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2538E071-EDDD-4705-87DC-4646EF160E5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2538E071-EDDD-4705-87DC-4646EF160E5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2538E071-EDDD-4705-87DC-4646EF160E5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using System.Net.Http.Json;
 
 namespace Order.Services;
 
-public class InventoryRestClient(IHttpClientFactory clientFactory, IConfiguration configuration) : IInventoryRestClient
+internal class InventoryRestClient(IHttpClientFactory clientFactory, IConfiguration configuration) : IInventoryRestClient
 {
     private readonly IHttpClientFactory _clientFactory = clientFactory;
     private readonly IConfiguration _configuration = configuration;

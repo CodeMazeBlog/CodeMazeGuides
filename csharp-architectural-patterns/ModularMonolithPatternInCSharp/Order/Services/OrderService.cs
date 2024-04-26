@@ -3,7 +3,7 @@ using Order.Models;
 
 namespace Order.Services;
 
-public class OrderService(
+internal class OrderService(
     IOrderRepository orderRepository,
     IInventoryRabbitMqClient inventoryRabbitMqClient,
     IInventoryRestClient inventoryRestClient) : IOrderService
