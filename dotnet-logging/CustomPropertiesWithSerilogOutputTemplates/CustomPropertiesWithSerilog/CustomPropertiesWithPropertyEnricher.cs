@@ -2,14 +2,9 @@
 
 namespace CustomPropertiesWithSerilog;
 
-public class CustomPropertiesWithPropertyEnricher
+public class CustomPropertiesWithPropertyEnricher(ILogger logger)
 {
-    private readonly ILogger _logger;
-
-    public CustomPropertiesWithPropertyEnricher(ILogger logger)
-    {
-        _logger = logger;
-    }
+    private readonly ILogger _logger = logger;
 
     public void LogUsingPropertyEnrichedLogger()
     {

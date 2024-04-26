@@ -1,9 +1,4 @@
-using CustomPropertiesWithSerilog;
-using Serilog;
-using Serilog.Events;
-using Serilog.Sinks.TestCorrelator;
-
-namespace CustomePropertiesWithSerilogTests;
+namespace CustomPropertiesWithSerilogTests;
 
 [TestClass]
 public class ContextEnricherTests
@@ -16,18 +11,21 @@ public class ContextEnricherTests
            .WriteTo.TestCorrelator()
            .CreateLogger();
 
-        var sut = new CustomPropertiesFromContextEnricher(logger);
+        var customProperties = new CustomPropertiesFromContextEnricher(logger);
         var userId = Guid.NewGuid().ToString();
 
         using (TestCorrelator.CreateContext())
         {
-            sut.EnrichFromContextPushProperty(userId);
+            customProperties.EnrichFromContextPushProperty(userId);
             var logEvents = TestCorrelator.GetLogEventsFromCurrentContext();
+
             Assert.AreEqual(1, logEvents.Count());
-            var evt = logEvents.FirstOrDefault();
-            var evtProperty = evt.Properties.Single();
-            var evtPropertyVal = evtProperty.Value as ScalarValue;
-            Assert.AreEqual(userId, evtPropertyVal.Value);
+
+            var logEvent = logEvents.FirstOrDefault();
+            var eventProperty = logEvent.Properties.Single();
+            var eventPropertyValue = eventProperty.Value as ScalarValue;
+
+            Assert.AreEqual(userId, eventPropertyValue.Value);
         }
     }
 
@@ -39,18 +37,21 @@ public class ContextEnricherTests
            .WriteTo.TestCorrelator()
            .CreateLogger();
 
-        var sut = new CustomPropertiesFromContextEnricher(logger);
+        var customProperties = new CustomPropertiesFromContextEnricher(logger);
         var userId = Guid.NewGuid().ToString();
 
         using (TestCorrelator.CreateContext())
         {
-            sut.EnrichFromContextPushPropertyScoped(userId);
+            customProperties.EnrichFromContextPushPropertyScoped(userId);
             var logEvents = TestCorrelator.GetLogEventsFromCurrentContext();
+
             Assert.AreEqual(1, logEvents.Count());
-            var evt = logEvents.FirstOrDefault();
-            var evtProperty = evt.Properties.Single();
-            var evtPropertyVal = evtProperty.Value as ScalarValue;
-            Assert.AreEqual(userId, evtPropertyVal.Value);
+
+            var logEvent = logEvents.FirstOrDefault();
+            var eventProperty = logEvent.Properties.Single();
+            var eventPropertyValue = eventProperty.Value as ScalarValue;
+
+            Assert.AreEqual(userId, eventPropertyValue.Value);
         }
     }
 
@@ -61,18 +62,21 @@ public class ContextEnricherTests
            .WriteTo.TestCorrelator()
            .CreateLogger();
 
-        var sut = new CustomPropertiesFromContextEnricher(logger);
+        var customProperties = new CustomPropertiesFromContextEnricher(logger);
         var userId = Guid.NewGuid().ToString();
 
         using (TestCorrelator.CreateContext())
         {
-            sut.EnrichFromContextForContext(userId);
+            customProperties.EnrichFromContextForContext(userId);
             var logEvents = TestCorrelator.GetLogEventsFromCurrentContext();
+
             Assert.AreEqual(1, logEvents.Count());
-            var evt = logEvents.FirstOrDefault();
-            var evtProperty = evt.Properties.Single();
-            var evtPropertyVal = evtProperty.Value as ScalarValue;
-            Assert.AreEqual(userId, evtPropertyVal.Value);
+
+            var logEvent = logEvents.FirstOrDefault();
+            var eventProperty = logEvent.Properties.Single();
+            var eventPropertyValue = eventProperty.Value as ScalarValue;
+
+            Assert.AreEqual(userId, eventPropertyValue.Value);
         }
     }
 }

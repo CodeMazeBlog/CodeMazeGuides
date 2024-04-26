@@ -3,32 +3,27 @@ using Serilog.Context;
 
 namespace CustomPropertiesWithSerilog;
 
-public class CustomPropertiesFromContextEnricher
+public class CustomPropertiesFromContextEnricher(ILogger logger)
 {
-    private readonly ILogger _logger;
-
-    public CustomPropertiesFromContextEnricher(ILogger logger)
-    {
-        _logger = logger;
-    }
+    private readonly ILogger _logger = logger;
 
     public void EnrichFromContextPushProperty(string userId)
     {
         LogContext.PushProperty("UserId", userId);
-        _logger.Information("User Tried to Login");
+        _logger.Information("User tried to login");
     }
 
     public void EnrichFromContextPushPropertyScoped(string userId)
     {
         using (LogContext.PushProperty("UserId", userId))
         {
-            _logger.Information("User Tried to Login");
+            _logger.Information("User tried to login");
         }
     }
 
     public void EnrichFromContextForContext(string userId)
     {
-        var contextLogger = _logger.ForContext("UserId", userId); 
-        contextLogger.Information("User tried to log in");
+        var contextLogger = _logger.ForContext("UserId", userId);
+        contextLogger.Information("User tried to login");
     }
 }

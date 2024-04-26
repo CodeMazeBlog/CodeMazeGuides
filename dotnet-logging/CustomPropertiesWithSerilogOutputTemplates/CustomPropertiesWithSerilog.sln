@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomPropertiesWithSerilog", "CustomPropertiesWithSerilog\CustomPropertiesWithSerilog.csproj", "{96B937D0-D8F8-4A4F-AF55-D25228AE6388}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomPropertiesWithSerilog", "CustomPropertiesWithSerilog\CustomPropertiesWithSerilog.csproj", "{96B937D0-D8F8-4A4F-AF55-D25228AE6388}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B2326A50-6351-444A-9013-7CC1D148EA48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomePropertiesWithSerilogTests", "CustomePropertiesWithSerilogTests\CustomePropertiesWithSerilogTests.csproj", "{E808D6BD-FF5B-4A56-8E29-8C341EADECDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomPropertiesWithSerilogTests", "CustomePropertiesWithSerilogTests\CustomPropertiesWithSerilogTests.csproj", "{E808D6BD-FF5B-4A56-8E29-8C341EADECDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

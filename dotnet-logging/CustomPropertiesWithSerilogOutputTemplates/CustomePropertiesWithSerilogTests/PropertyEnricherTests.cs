@@ -1,9 +1,4 @@
-﻿using CustomPropertiesWithSerilog;
-using Serilog.Events;
-using Serilog.Sinks.TestCorrelator;
-using Serilog;
-
-namespace CustomePropertiesWithSerilogTests;
+﻿namespace CustomPropertiesWithSerilogTests;
 
 [TestClass]
 public class PropertyEnricherTests
@@ -16,18 +11,21 @@ public class PropertyEnricherTests
            .WriteTo.TestCorrelator()
            .CreateLogger();
 
-        var sut = new CustomPropertiesWithPropertyEnricher(logger);
+        var customProperties = new CustomPropertiesWithPropertyEnricher(logger);
 
         using (TestCorrelator.CreateContext())
         {
-            sut.LogUsingPropertyEnrichedLogger();
+            customProperties.LogUsingPropertyEnrichedLogger();
             var logEvents = TestCorrelator.GetLogEventsFromCurrentContext();
+
             Assert.AreEqual(1, logEvents.Count());
-            var evt = logEvents.FirstOrDefault();
-            var evtProperty = evt.Properties.Single();
-            var evtPropertyVal = evtProperty.Value as ScalarValue;
-            Assert.AreEqual("Version", evtProperty.Key);
-            Assert.AreEqual("1.0.0", evtPropertyVal.Value);
+
+            var logEvent = logEvents.FirstOrDefault();
+            var eventProperty = logEvent.Properties.Single();
+            var eventPropertyValue = eventProperty.Value as ScalarValue;
+
+            Assert.AreEqual("Version", eventProperty.Key);
+            Assert.AreEqual("1.0.0", eventPropertyValue.Value);
         }
     }
 
