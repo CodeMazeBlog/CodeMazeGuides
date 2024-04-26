@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DifferenceBetweenInAndOutInGenerics", "DifferenceBetweenInAndOutInGenerics\DifferenceBetweenInAndOutInGenerics.csproj", "{FD7BC8F1-B733-4856-B27F-06E47B66D54A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DifferenceBetweenInAndOutInGenerics.UnitTests", "Tests\DifferenceBetweenInAndOutInGenerics.UnitTests\DifferenceBetweenInAndOutInGenerics.UnitTests.csproj", "{97C3DAB4-DA47-488D-B1D9-9904086813B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD7BC8F1-B733-4856-B27F-06E47B66D54A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD7BC8F1-B733-4856-B27F-06E47B66D54A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD7BC8F1-B733-4856-B27F-06E47B66D54A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD7BC8F1-B733-4856-B27F-06E47B66D54A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97C3DAB4-DA47-488D-B1D9-9904086813B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97C3DAB4-DA47-488D-B1D9-9904086813B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97C3DAB4-DA47-488D-B1D9-9904086813B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97C3DAB4-DA47-488D-B1D9-9904086813B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42EECFAE-5505-4C41-B0E9-4A55DE95A74F}
+	EndGlobalSection
+EndGlobal

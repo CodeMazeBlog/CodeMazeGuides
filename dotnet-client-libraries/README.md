@@ -43,3 +43,8 @@ This section contains the topics about the client libraries in .NET.
 - [Seamless Integration Testing With WireMock.NET](https://code-maze.com/integration-testing-wiremock-dotnet/)
 - [Parsing HTML With AngleSharp in C#](https://code-maze.com/csharp-parsing-html-with-anglesharp/)
 - [Introduction to Brighter in .NET](https://code-maze.com/dotnet-introduction-to-brighter/)
+- [How to Send a JSON Object Using HttpClient in .NET](https://code-maze.com/dotnet-how-to-send-a-json-object-using-httpclient/)
+- [Generate Sortable Unique IDs With the NewId Library in .NET](https://code-maze.com/dotnet-generate-sortable-unique-ids-with-the-newid-library/)
+- [Introduction to Strawberry Shake and GraphQL in .NET](https://code-maze.com/dotnet-introduction-to-strawberry-shake-and-graphql/)
+- [Introduction to Carter in ASP.NET Core](https://code-maze.com/aspnetcore-introduction-to-carter/)
+- [Represent the Relationship of Properties Using Property Mappings From AutoMapper](https://code-maze.com/csharp-getting-property-mappings-from-automapper/)
