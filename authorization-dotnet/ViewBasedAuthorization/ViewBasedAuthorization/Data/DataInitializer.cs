@@ -44,7 +44,7 @@ public static class DataInitializer
     {
         var user = userManager.FindByEmailAsync(email).Result;
 
-        if (user == null)
+        if (user is null)
         {
             user = new IdentityUser { UserName = email, Email = email, EmailConfirmed = true };
             userManager.CreateAsync(user, password);
