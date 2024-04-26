@@ -76,17 +76,17 @@ public class VowelCountersTests
     }
 
     [Fact]
-    public void WhenVowelsAreCountedUsingRegEx_ThenCorrectCountIsReturned()
+    public void WhenVowelsAreCountedUsingRegExCount_ThenCorrectCountIsReturned()
     {
-        var result = VowelCounters.CountVowelsUsingRegEx(Sentence);
+        var result = VowelCounters.CountVowelsUsingRegexCount(Sentence);
 
         Assert.Equal(ExpectedNumOfVowels, result);
     }
 
     [Fact]
-    public void GivenStringWithNoVowels_WhenVowelsAreCountedUsingRegEx_ThenCorrectCountIsReturned()
+    public void GivenStringWithNoVowels_WhenVowelsAreCountedUsingRegExCount_ThenCorrectCountIsReturned()
     {
-        var result = VowelCounters.CountVowelsUsingRegEx(_noVowels);
+        var result = VowelCounters.CountVowelsUsingRegexCount(_noVowels);
 
         Assert.Equal(0, result);
     }

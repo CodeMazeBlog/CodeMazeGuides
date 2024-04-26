@@ -83,9 +83,9 @@ public static partial class VowelCounters
         return total;
     }
 
-    public static int CountVowelsUsingRegEx(string sentence)
+    public static int CountVowelsUsingRegexCount(string sentence)
     {
-        return _regexVowels().Matches(sentence).Count;
+        return _regexVowels().Count(sentence);
     }
 
     public static int CountVowelsUsingRegexReplaceAndLength(string sentence)

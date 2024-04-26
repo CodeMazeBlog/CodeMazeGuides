@@ -28,7 +28,7 @@ public class VowelCountersBenchmarks
         return VowelCounters.CountVowelsUsingForEachLoop(Sentence, Vowels);
     }
 
-    [Benchmark]
+    [Benchmark(Baseline = true)]
     public int CountVowelsUsingSearchValues()
     {
         return VowelCounters.CountVowelsUsingSearchValues(Sentence, _vowelsSearchValues);
@@ -41,9 +41,9 @@ public class VowelCountersBenchmarks
     }
 
     [Benchmark]
-    public int CountVowelsUsingRegEx()
+    public int CountVowelsUsingRegexCount()
     {
-        return VowelCounters.CountVowelsUsingRegEx(Sentence);
+        return VowelCounters.CountVowelsUsingRegexCount(Sentence);
     }
 
     [Benchmark]
