@@ -7,8 +7,6 @@ namespace Common.RabbitMq;
 internal class RabbitMqConnectionManager(IOptions<RabbitMqConfiguration> rabbitMqConfiguration)
     : IDisposable, IRabbitMqConnectionManager
 {
-    private readonly RabbitMqConfiguration _rabbitMqConfiguration = rabbitMqConfiguration.Value;
-
     public IConnection? Connection { get; private set; }
     public IModel? Channel { get; private set; }
 
@@ -16,10 +14,10 @@ internal class RabbitMqConnectionManager(IOptions<RabbitMqConfiguration> rabbitM
     {
         var connectionFactory = new ConnectionFactory
         {
-            HostName = _rabbitMqConfiguration.HostName,
-            Port = _rabbitMqConfiguration.Port,
-            UserName = _rabbitMqConfiguration.UserName,
-            Password = _rabbitMqConfiguration.Password
+            HostName = rabbitMqConfiguration.Value.HostName,
+            Port = rabbitMqConfiguration.Value.Port,
+            UserName = rabbitMqConfiguration.Value.UserName,
+            Password = rabbitMqConfiguration.Value.Password
         };
         Connection = connectionFactory.CreateConnection();
         Channel = Connection.CreateModel();
