@@ -15,7 +15,7 @@ internal class RabbitMqConsumer(
     IServiceScopeFactory scopeFactory, 
     IOptions<RabbitMqConfiguration> rabbitMqConfiguration, 
     IRabbitMqConnectionManager rabbitMqConnectionManager) : IRabbitMqConsumer
-{   
+{
     private readonly IServiceScopeFactory _scopeFactory = scopeFactory;
     private readonly RabbitMqConfiguration _rabbitMqConfiguration = rabbitMqConfiguration.Value;
     private readonly IRabbitMqConnectionManager _rabbitMqConnectionManager = rabbitMqConnectionManager;
@@ -35,7 +35,7 @@ internal class RabbitMqConsumer(
         consumer.Received += HandleEventAsync;
 
         _rabbitMqConnectionManager.Channel.BasicConsume(
-            queue: queueName, 
+            queue: queueName,
             autoAck: true,
             consumer: consumer);
     }

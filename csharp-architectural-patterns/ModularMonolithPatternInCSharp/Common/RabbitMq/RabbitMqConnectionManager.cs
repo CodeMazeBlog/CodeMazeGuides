@@ -4,7 +4,8 @@ using RabbitMQ.Client;
 
 namespace Common.RabbitMq;
 
-internal class RabbitMqConnectionManager(IOptions<RabbitMqConfiguration> rabbitMqConfiguration) : IDisposable, IRabbitMqConnectionManager
+internal class RabbitMqConnectionManager(IOptions<RabbitMqConfiguration> rabbitMqConfiguration)
+    : IDisposable, IRabbitMqConnectionManager
 {
     private readonly RabbitMqConfiguration _rabbitMqConfiguration = rabbitMqConfiguration.Value;
 
