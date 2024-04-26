@@ -20,7 +20,7 @@ public class SampleControllerTests
     }
 
     [TestMethod]
-    public void Get_ValidHeader_ReturnsOk()
+    public void GivenGetRequestWithCustomHeader_WhenValidHeader_ThenReturnsOk()
     {
         _httpContext.Request.Headers["X-Custom-Header"] = "secret-key";
 
@@ -30,7 +30,7 @@ public class SampleControllerTests
     }
 
     [TestMethod]
-    public void Get_InvalidHeader_ReturnsUnauthorized()
+    public void GivenGetRequestWithCustomHeader_WhenInvalidHeader_ThenReturnsUnauthorized()
     {
         _httpContext.Request.Headers["X-Custom-Header"] = "invalid-key";
 
@@ -40,7 +40,7 @@ public class SampleControllerTests
     }
 
     [TestMethod]
-    public void Post_ValidHeader_ReturnsOk()
+    public void GivenPostRequestWithCustomHeader_WhenValidHeader_ThenReturnsOk()
     {
         _httpContext.Request.Headers["X-Custom-Header"] = "secret-key";
 
@@ -50,7 +50,7 @@ public class SampleControllerTests
     }
 
     [TestMethod]
-    public void Post_EmptyHeader_ReturnsUnauthorized()
+    public void GivenPostRequestWithCustomHeader_WhenEmptyHeader_ThenReturnsUnauthorized()
     {
         _httpContext.Request.Headers["X-Custom-Header"] = "";
 
@@ -60,7 +60,7 @@ public class SampleControllerTests
     }
 
     [TestMethod]
-    public void Post_NoHeader_ReturnsUnauthorized()
+    public void GivenPostRequestWithCustomHeader_WhenNoHeader_ThenReturnsUnauthorized()
     {
         var result = _controller.Post();
 
