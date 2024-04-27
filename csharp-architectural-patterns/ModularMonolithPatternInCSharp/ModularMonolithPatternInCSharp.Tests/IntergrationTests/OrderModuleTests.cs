@@ -18,7 +18,7 @@ internal class OrderModuleTests : TestBase
         {
             Items =
             [
-                new OrderItemViewModel(){ ItemId = Guid.Parse("111f9883-4b53-41eb-bcc3-8f4e6f29edf6"), Quantity = 2 }
+                new OrderItemViewModel() { ItemId = Guid.Parse("111f9883-4b53-41eb-bcc3-8f4e6f29edf6"), Quantity = 2 }
             ]
         };
         var content = new StringContent(JsonSerializer.Serialize(orderViewModel), Encoding.UTF8, "application/json");

@@ -12,8 +12,8 @@ using System.Text.Json;
 namespace Inventory.Services;
 
 internal class RabbitMqConsumer(
-    IServiceScopeFactory scopeFactory, 
-    IOptions<RabbitMqConfiguration> rabbitMqConfiguration, 
+    IServiceScopeFactory scopeFactory,
+    IOptions<RabbitMqConfiguration> rabbitMqConfiguration,
     IRabbitMqConnectionManager rabbitMqConnectionManager) : IRabbitMqConsumer
 {
     private readonly IServiceScopeFactory _scopeFactory = scopeFactory;

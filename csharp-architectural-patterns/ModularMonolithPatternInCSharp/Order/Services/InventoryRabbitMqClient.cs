@@ -12,11 +12,10 @@ internal class InventoryRabbitMqClient(IOptions<RabbitMqConfiguration> rabbitMqC
 {
     public void UpdateQuantity(UpdateQuantityDto updateQuantityDto)
     {
-
         var serializedMessage = JsonSerializer.Serialize(updateQuantityDto);
         var body = Encoding.UTF8.GetBytes(serializedMessage);
 
-        var queueName = _rabbitMqConfiguration.Value.QueueName;
+        var queueName = rabbitMqConfiguration.Value.QueueName;
 
         rabbitMqConnectionManager.Channel.BasicPublish(exchange: string.Empty,
                              routingKey: queueName,
