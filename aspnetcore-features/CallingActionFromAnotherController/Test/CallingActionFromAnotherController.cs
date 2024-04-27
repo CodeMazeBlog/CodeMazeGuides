@@ -32,4 +32,13 @@ public class CallingActionFromAnotherController
 
         Assert.AreEqual("productlist", result?.RouteName);
     }
+
+    [TestMethod]
+    public void GivenProductId_WhenActionMethodCalled_ThenRedirectToActionCalled()
+    {
+        var homeController = new HomeController();
+        var result = homeController.AddProductToCart(1);
+        
+        Assert.AreEqual("Cart", ((Microsoft.AspNetCore.Mvc.RedirectToActionResult)result).ActionName);
+    }
 }

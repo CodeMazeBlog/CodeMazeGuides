@@ -31,4 +31,22 @@ public class HomeController : Controller
             id = productId
         });
     }
+
+    public IActionResult Cart()
+    {
+        return View();
+    }
+
+    public IActionResult AddProductToCart(int productId)
+    {
+        var productController = new ProductController();
+        if(productController.IsProductAvailable(productId))
+        {
+            return RedirectToAction("Cart");
+        }
+        else
+        {
+            return BadRequest("Product is out of stock");
+        }
+    }
 }

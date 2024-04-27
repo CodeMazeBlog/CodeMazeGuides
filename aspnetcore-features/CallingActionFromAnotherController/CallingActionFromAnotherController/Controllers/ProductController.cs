@@ -18,4 +18,9 @@ public class ProductController : Controller
         ViewData["id"] = id;
         return View();
     }
+
+    public bool IsProductAvailable(int productId)
+    { 
+        return true; 
+    }
 }
