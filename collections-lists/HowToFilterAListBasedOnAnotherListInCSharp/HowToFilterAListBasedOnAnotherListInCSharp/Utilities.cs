@@ -89,10 +89,12 @@ public static class Utilities
                 student.City = "Berlin";
         });
     }
-
+        
     public static List<int> FilterUsingHashSet(List<int> listToFilter, List<int> filteringList)
     {
-        return new HashSet<int>(listToFilter).Intersect(filteringList).ToList();
+        HashSet<int> hashToFilter = new HashSet<int>(listToFilter);
+        hashToFilter.IntersectWith(filteringList);
+        return hashToFilter.ToList();
     }
 
     public static List<int> FilterUsingMask(List<int> listToFilter, List<bool> mask)
