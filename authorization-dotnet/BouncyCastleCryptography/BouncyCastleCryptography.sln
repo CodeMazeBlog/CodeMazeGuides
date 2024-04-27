@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncyCastleCryptography", "BouncyCastleCryptography.csproj", "{06BA5DB0-E8C1-4AFE-8AC6-1547DA26BEFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{06BA5DB0-E8C1-4AFE-8AC6-1547DA26BEFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06BA5DB0-E8C1-4AFE-8AC6-1547DA26BEFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06BA5DB0-E8C1-4AFE-8AC6-1547DA26BEFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06BA5DB0-E8C1-4AFE-8AC6-1547DA26BEFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DB6C3A0-C495-4B59-88A5-3C037643B7CF}
+	EndGlobalSection
+EndGlobal
