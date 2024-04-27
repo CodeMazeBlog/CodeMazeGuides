@@ -8,7 +8,7 @@ using System.Text.Json;
 
 namespace ModularMonolithPatternInCSharp.Tests.IntergrationTests;
 
-internal class OrderModuleTests : TestBase
+internal class OrderModuleLiveTests : TestBase
 {
     [Test, Order(1)]
     public async Task WhenICallTheAddOrderEndpoint_ThenItShouldReturnA200OkStatusCode()

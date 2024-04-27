@@ -6,7 +6,7 @@ using System.Net.Http.Json;
 
 namespace ModularMonolithPatternInCSharp.Tests.IntergrationTests;
 
-internal class InventoryModuleTests : TestBase
+internal class InventoryModuleLiveTests : TestBase
 {
     [Test]
     public async Task WhenICallTheGetItemEndpoint_ThenItShouldReturnTheRequestedItem()
