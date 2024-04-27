@@ -41,3 +41,4 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [How to Validate File Upload Extensions in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-validate-file-upload-extensions/)
 - [How to Set a Default User-Agent on an HttpClient in ASP.NET Core](https://code-maze.com/aspnetcore-set-a-default-user-agent-on-an-httpclient/)
 - [HSTS Header Implementation in ASP.NET Core](https://code-maze.com/aspnetcore-hsts-header-implementation/)
+- [Using Server-Sent Events for Realtime Updates in ASP.NET Core](https://code-maze.com/aspnetcore-using-server-sent-events-for-realtime-updates/)
