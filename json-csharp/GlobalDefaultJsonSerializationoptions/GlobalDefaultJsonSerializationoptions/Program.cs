@@ -19,6 +19,8 @@ builder.Services.Configure<JsonOptions>(options =>
     options.JsonSerializerOptions.WriteIndented = false;
     options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Default;
     options.JsonSerializerOptions.AllowTrailingCommas = true;
+    options.JsonSerializerOptions.MaxDepth = 2;
+    options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
 });
 
 builder.Services.ConfigureHttpJsonOptions(options =>
@@ -28,6 +30,8 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.WriteIndented = false;
     options.SerializerOptions.Encoder = JavaScriptEncoder.Default;
     options.SerializerOptions.AllowTrailingCommas = true;
+    options.SerializerOptions.MaxDepth = 2;
+    options.SerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
 });
 
 JsonConvert.DefaultSettings = () => new JsonSerializerSettings
@@ -37,6 +41,7 @@ JsonConvert.DefaultSettings = () => new JsonSerializerSettings
     NullValueHandling = NullValueHandling.Ignore,
     DateFormatString = "dd-MM-yyyy",
     DefaultValueHandling = DefaultValueHandling.Ignore,
+    MaxDepth = 2
 };
 
 var app = builder.Build();
