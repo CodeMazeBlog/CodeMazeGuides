@@ -48,3 +48,4 @@ This section contains articles about ASP.NET Core Web API-related topics.
 - [Automatic Registration of Minimal API Endpoints in .NET](https://code-maze.com/aspnetcore-automatic-registration-of-minimal-api-endpoints/)
 - [Built-In Rate Limiting in ASP.NET Core Web API](https://code-maze.com/aspnetcore-webapi-rate-limiting/)
 - [How to Build a URL Shortener in .NET Applications](https://code-maze.com/aspnetcore-build-a-url-shortener/)
+- [Using Kafka in an ASP.NET Core Web API](https://code-maze.com/aspnetcore-using-kafka-in-a-web-api/)
