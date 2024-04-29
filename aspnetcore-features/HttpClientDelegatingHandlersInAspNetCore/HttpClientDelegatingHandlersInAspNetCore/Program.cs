@@ -14,14 +14,14 @@ builder.Services
     .AddTransient<MetricsHandler>();
 
 builder.Services
-    .AddHttpClient("ExtendedClient", (sp, httpClient) =>
+    .AddHttpClient("ExtendedClient", (httpClient) =>
     {
         httpClient.BaseAddress = new Uri("http://localhost:5000");
     })
     .AddHttpMessageHandler<SimpleHandler>();
 
 builder.Services
-    .AddHttpClient("ChainedClient", (sp, httpClient) =>
+    .AddHttpClient("ChainedClient", (httpClient) =>
     {
         httpClient.BaseAddress = new Uri("http://localhost:5000");
     })

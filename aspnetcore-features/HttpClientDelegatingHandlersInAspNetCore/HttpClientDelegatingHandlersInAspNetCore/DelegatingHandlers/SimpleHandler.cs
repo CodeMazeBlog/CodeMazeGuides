@@ -1,7 +1,6 @@
 ﻿namespace HttpClientDelegatingHandlersInAspNetCore.DelegatingHandlers;
 
-public class SimpleHandler(ILogger<SimpleHandler> logger)
-    : DelegatingHandler
+public class SimpleHandler(ILogger<SimpleHandler> logger) : DelegatingHandler
 {
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
