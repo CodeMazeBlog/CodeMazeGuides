@@ -21,23 +21,54 @@ public class FileComparer
 
     public static bool CompareByBytes(string file1, string file2)
     {
-        var bytes1 = File.ReadAllBytes(file1);
-        var bytes2 = File.ReadAllBytes(file2);
+        const int bufferSize = 1024;
+        using var stream1 = new FileStream(file1, FileMode.Open, FileAccess.Read);
+        using var stream2 = new FileStream(file2, FileMode.Open, FileAccess.Read);
 
-        if (bytes1.Length != bytes2.Length)
+        if (stream1.Length != stream2.Length)
         {
             return false;
         }
 
-        return Enumerable.SequenceEqual(bytes1, bytes2);
+        Span<byte> buffer1 = new byte[bufferSize];
+        Span<byte> buffer2 = new byte[bufferSize];
+
+        while (true)
+        {
+            var bytesRead1 = stream1.Read(buffer1);
+            var bytesRead2 = stream2.Read(buffer2);
+
+            if (bytesRead1 == bytesRead2 && bytesRead1 == 0)
+            {
+                return true;
+            }
+
+            if (!MemoryExtensions.SequenceEqual(buffer1, buffer2))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static bool CompareByChecksum(string file1, string file2)
     {
-        var hash1 = MD5.HashData(File.ReadAllBytes(file1));
-        var hash2 = MD5.HashData(File.ReadAllBytes(file2));
+        using var stream1 = new FileStream(file1, FileMode.Open, FileAccess.Read);
+        using var stream2 = new FileStream(file2, FileMode.Open, FileAccess.Read);
 
-        return Enumerable.SequenceEqual(hash1, hash2);
+        if (stream1.Length != stream2.Length)
+        {
+            return false;
+        }
+
+        Span<byte> hash1 = stackalloc byte[16];
+        Span<byte> hash2 = stackalloc byte[16];
+
+        MD5.HashData(stream1, hash1);
+        MD5.HashData(stream2, hash2);
+
+        return MemoryExtensions.SequenceEqual(hash1, hash2);
     }
 
     public static bool CompareByChecksumWithCache(string file1, string file2)
