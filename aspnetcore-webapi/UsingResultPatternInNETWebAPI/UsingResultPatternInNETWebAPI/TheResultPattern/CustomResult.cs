@@ -11,15 +11,14 @@ public class CustomResult<T>
         Error = CustomError.None;
     }
 
-    private CustomResult(bool isSuccess, CustomError error)
+    private CustomResult(CustomError error)
     {
-        if ((isSuccess && error != CustomError.None) ||
-            (!isSuccess && error == CustomError.None))
+        if (error == CustomError.None)
         {
             throw new ArgumentException("invalid error", nameof(error));
         }
 
-        IsSuccess = isSuccess;
+        IsSuccess = false;
         Error = error;
     }
 
@@ -51,6 +50,6 @@ public class CustomResult<T>
 
     public static CustomResult<T> Failure(CustomError error)
     {
-        return new CustomResult<T>(false, error);
+        return new CustomResult<T>(error);
     }
 }
