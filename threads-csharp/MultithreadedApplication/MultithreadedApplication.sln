@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultithreadedApplication", "MultithreadedApplication\MultithreadedApplication.csproj", "{5EB18C90-4C17-4720-862D-90F0841B0A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{11EBDA85-0DB9-4DEE-8FBD-BA59C0B2DA8F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5EB18C90-4C17-4720-862D-90F0841B0A4A} = {5EB18C90-4C17-4720-862D-90F0841B0A4A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EB18C90-4C17-4720-862D-90F0841B0A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EB18C90-4C17-4720-862D-90F0841B0A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EB18C90-4C17-4720-862D-90F0841B0A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EB18C90-4C17-4720-862D-90F0841B0A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11EBDA85-0DB9-4DEE-8FBD-BA59C0B2DA8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11EBDA85-0DB9-4DEE-8FBD-BA59C0B2DA8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11EBDA85-0DB9-4DEE-8FBD-BA59C0B2DA8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11EBDA85-0DB9-4DEE-8FBD-BA59C0B2DA8F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D140460B-119E-492F-9B6D-A34DCA9466D0}
+	EndGlobalSection
+EndGlobal
