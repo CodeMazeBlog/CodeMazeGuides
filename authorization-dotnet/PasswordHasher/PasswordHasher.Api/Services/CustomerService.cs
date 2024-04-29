@@ -4,8 +4,8 @@ using PasswordHasher.Api.Requests;
 
 namespace PasswordHasher.Api.Services;
 
-public class CustomerService(IUsersRepository usersRepository, IPasswordHasher<RegisteredUser> passwordHasher)
-    : ICustomerService
+public class CustomerService
+    (IUsersRepository usersRepository, IPasswordHasher<RegisteredUser> passwordHasher) : ICustomerService
 {
     public void RegisterUser(RegisterRequest request)
     {

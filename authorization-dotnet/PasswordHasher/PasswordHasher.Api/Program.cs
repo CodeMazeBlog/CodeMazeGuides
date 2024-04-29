@@ -39,12 +39,9 @@ app.MapPost("/login", (LoginRequest request, ICustomerService customerService) =
     {
         var result = customerService.Login(request);
 
-        if (result == LoginResult.Success)
-        {
-            return Results.Ok();
-        }
-
-        return Results.Unauthorized();
+        return result == LoginResult.Success 
+            ? Results.Ok() 
+            : Results.Unauthorized();
     })
     .WithName("LoginUser")
     .WithOpenApi();
