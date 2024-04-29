@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncyCastleCryptography", "BouncyCastleCryptography.csproj", "{06BA5DB0-E8C1-4AFE-8AC6-1547DA26BEFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BouncyCastleCryptographyTests", "BouncyCastleCryptographyTests\BouncyCastleCryptographyTests.csproj", "{F80DBDFD-DC40-40E9-B051-B19385BD2D7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{06BA5DB0-E8C1-4AFE-8AC6-1547DA26BEFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06BA5DB0-E8C1-4AFE-8AC6-1547DA26BEFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06BA5DB0-E8C1-4AFE-8AC6-1547DA26BEFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F80DBDFD-DC40-40E9-B051-B19385BD2D7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F80DBDFD-DC40-40E9-B051-B19385BD2D7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F80DBDFD-DC40-40E9-B051-B19385BD2D7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F80DBDFD-DC40-40E9-B051-B19385BD2D7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
