@@ -3,6 +3,6 @@
 namespace ValidationForConfigurationData.Settings.Validators;
 
 [OptionsValidator]
-public partial class ValidateNotificationSettings : IValidateOptions<NotificationSettings>
+public partial class ValidateNotificationOptions : IValidateOptions<NotificationOptions>
 {
 }

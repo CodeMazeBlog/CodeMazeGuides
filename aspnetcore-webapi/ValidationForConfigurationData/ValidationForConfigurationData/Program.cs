@@ -8,11 +8,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services
-	.AddSingleton<IValidateOptions<NotificationSettings>, ValidateNotificationSettings>()
-	.AddOptionsWithValidateOnStart<NotificationSettings>();
+	.AddSingleton<IValidateOptions<NotificationOptions>, ValidateNotificationOptions>()
+	.AddOptionsWithValidateOnStart<NotificationOptions>();
 
-builder.Services.AddOptions<NotificationSettings>()
-	.BindConfiguration(nameof(NotificationSettings));
+builder.Services.AddOptions<NotificationOptions>()
+	.BindConfiguration(nameof(NotificationOptions));
 
 var app = builder.Build();
 
@@ -24,7 +24,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/settings", (IOptions<NotificationSettings> options) =>
+app.MapGet("/options", (IOptions<NotificationOptions> options) =>
 {
 	return Results.Ok(options.Value);
 })

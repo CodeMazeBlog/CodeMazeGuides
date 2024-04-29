@@ -2,7 +2,7 @@
 
 namespace ValidationForConfigurationData.Settings;
 
-public class NotificationSettings
+public class NotificationOptions
 {
 	[Required]
 	public string Sender { get; init; }
