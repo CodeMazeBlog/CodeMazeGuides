@@ -35,11 +35,6 @@ public static class Utilities
 
     public static List<int> FilterContainedUsingWhere(List<int> listToFilter, List<int> filteringList)
     {
-        return listToFilter.Where(x => filteringList.Contains(x)).ToList();
-    }
-
-    public static List<int> FilterContainedUsingWhereSimplified(List<int> listToFilter, List<int> filteringList)
-    {
         return listToFilter.Where(filteringList.Contains).ToList();
     }
 

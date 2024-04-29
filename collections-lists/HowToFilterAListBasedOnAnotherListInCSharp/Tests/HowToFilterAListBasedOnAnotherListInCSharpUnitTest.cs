@@ -60,20 +60,6 @@ public class HowToFilterAListBasedOnAnotherListInCSharpUnitTest
     }
 
     [Fact]
-    public void Given2Lists_WhenFilterContainedUsingWhereSimplifiedMethodCalled_ThenOnlyElementsContainedInList2AreKept()
-    {
-        // Arrange
-        List<int> numbers = [17, 34, 50, 68, 121, 7, 145];
-        List<int> otherNumbers = [50, 44, 121];
-
-        // Act
-        var output = Utilities.FilterContainedUsingWhereSimplified(numbers, otherNumbers);
-
-        // Assert
-        Assert.Equal([50, 121], output);
-    }
-
-    [Fact]
     public void Given2Lists_WhenFilterNotContainedUsingWhereMethodCalled_ThenOnlyElementsNotContainedInList2AreKept()
     {
         // Arrange
