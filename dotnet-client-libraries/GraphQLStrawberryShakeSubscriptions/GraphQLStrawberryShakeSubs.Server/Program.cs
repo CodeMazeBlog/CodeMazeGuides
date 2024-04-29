@@ -13,7 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
-    //.AddMutationType<Mutation>()
+    .AddMutationType<Mutation>()
     ;
 
 var app = builder.Build();

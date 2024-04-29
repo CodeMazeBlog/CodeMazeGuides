@@ -2,13 +2,8 @@
 
 namespace GraphQLStrawberryShakeSubs.Server.Data;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-    }
-
     public DbSet<ShippingContainer> ShippingContainers { get; set; } = default!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

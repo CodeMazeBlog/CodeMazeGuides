@@ -1,44 +1,69 @@
 ﻿using GraphQLStrawberryShakeSubs.Server.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraphQLStrawberryShakeSubs.Server;
 
 public class Mutation
 {
-    public async Task<bool> AddAvaliableShippingContainerAsync(
-        ShippingContainer shippingContainer,
+    public async Task<AddShippingContainerPayload> AddAvaliableShippingContainerAsync(
+        AddShippingContainerInput input,
         [Service] ApplicationDbContext dbContext,
         CancellationToken cancellationToken)
     {
+        AddShippingContainerPayload payload;
         try
         {
+            var shippingContainer = new ShippingContainer
+            {
+                Id = dbContext.ShippingContainers.Count().ToString(),
+                Name = input.Name,
+                Space = new ShippingContainer.AvailableSpace
+                {
+                    Length = input.Length,
+                    Width = input.Width,
+                    Height = input.Height
+                }
+            };
+
             dbContext.ShippingContainers.Add(shippingContainer);
             await dbContext.SaveChangesAsync(cancellationToken);
+
+            payload = new AddShippingContainerPayload(shippingContainer);
         }
         catch (Exception exception)
         {
             Console.WriteLine(exception.Message);
-            return false;
+            return null!;
         }
 
-        return true;
+        return payload;
     }
 
-    //public async Task<bool> UpdateShippingContainerAsync(
-    //    ShippingContainer shippingContainer,
-    //    [Service] ApplicationDbContext dbContext,
-    //    CancellationToken cancellationToken)
-    //{
-    //    try
-    //    {
-    //        dbContext.ShippingContainers.Update(shippingContainer);
-    //        await dbContext.SaveChangesAsync(cancellationToken);
-    //    }
-    //    catch (Exception exception)
-    //    {
-    //        Console.WriteLine(exception.Message);
-    //        return false;
-    //    }
+    public async Task<UpdateShippingContainerPayload> UpdateShippingContainerAsync(
+        UpdateShippingContainerInput input,
+        [Service] ApplicationDbContext dbContext,
+        CancellationToken cancellationToken)
+    {
+        UpdateShippingContainerPayload payload;
+        try
+        {
+            var shippingContainer = await dbContext.ShippingContainers.FirstAsync(x => x.Name == input.Name,
+                cancellationToken);
+            shippingContainer!.Space!.Length = input.Length;
+            shippingContainer!.Space!.Width = input.Width;
+            shippingContainer!.Space!.Height = input.Height;
 
-    //    return true;
-    //}
+            dbContext.ShippingContainers.Update(shippingContainer);
+            await dbContext.SaveChangesAsync(cancellationToken);
+
+            payload = new UpdateShippingContainerPayload(shippingContainer);
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception.Message);
+            return null!;
+        }
+
+        return payload;
+    }
 }
