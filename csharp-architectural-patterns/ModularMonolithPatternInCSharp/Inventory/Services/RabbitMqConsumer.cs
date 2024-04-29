@@ -16,25 +16,20 @@ internal class RabbitMqConsumer(
     IOptions<RabbitMqConfiguration> rabbitMqConfiguration,
     IRabbitMqConnectionManager rabbitMqConnectionManager) : IRabbitMqConsumer
 {
-    private readonly IServiceScopeFactory _scopeFactory = scopeFactory;
-    private readonly RabbitMqConfiguration _rabbitMqConfiguration = rabbitMqConfiguration.Value;
-    private readonly IRabbitMqConnectionManager _rabbitMqConnectionManager = rabbitMqConnectionManager;
-
     public void Consume()
     {
-
-        var queueName = _rabbitMqConfiguration.QueueName;
-        _rabbitMqConnectionManager.Channel.QueueDeclare(
+        var queueName = rabbitMqConfiguration.Value.QueueName;
+        rabbitMqConnectionManager.Channel.QueueDeclare(
             queue: queueName,
             durable: true,
             exclusive: true,
             autoDelete: false);
 
-        var consumer = new EventingBasicConsumer(_rabbitMqConnectionManager.Channel);
+        var consumer = new EventingBasicConsumer(rabbitMqConnectionManager.Channel);
 
         consumer.Received += HandleEventAsync;
 
-        _rabbitMqConnectionManager.Channel.BasicConsume(
+        rabbitMqConnectionManager.Channel.BasicConsume(
             queue: queueName,
             autoAck: true,
             consumer: consumer);
@@ -54,7 +49,7 @@ internal class RabbitMqConsumer(
 
     private void UpdateItemQuantity(UpdateQuantityDto updateQuantityDto)
     {
-        var scope = _scopeFactory.CreateScope();
+        var scope = scopeFactory.CreateScope();
         var itemService = scope.ServiceProvider.GetRequiredService<IItemService>();
 
         itemService.UpdateQuantity(updateQuantityDto);
