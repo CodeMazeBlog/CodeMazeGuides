@@ -1,6 +1,6 @@
 namespace ValidationForConfigurationData.Tests;
 
-public class GetOptionsEndpointTests(WebApplicationFactory<Program> factory) 
+public class GetOptionsEndpointTests(WebApplicationFactory<Program> factory)
     : IClassFixture<WebApplicationFactory<Program>>
 {
     [Fact]

@@ -8,25 +8,25 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services
-	.AddSingleton<IValidateOptions<NotificationOptions>, ValidateNotificationOptions>()
-	.AddOptionsWithValidateOnStart<NotificationOptions>();
+    .AddSingleton<IValidateOptions<NotificationOptions>, ValidateNotificationOptions>()
+    .AddOptionsWithValidateOnStart<NotificationOptions>();
 
 builder.Services.AddOptions<NotificationOptions>()
-	.BindConfiguration(nameof(NotificationOptions));
+    .BindConfiguration(nameof(NotificationOptions));
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-	app.UseSwagger();
-	app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
 app.MapGet("/options", (IOptions<NotificationOptions> options) =>
 {
-	return Results.Ok(options.Value);
+    return Results.Ok(options.Value);
 })
 .WithOpenApi();
 
