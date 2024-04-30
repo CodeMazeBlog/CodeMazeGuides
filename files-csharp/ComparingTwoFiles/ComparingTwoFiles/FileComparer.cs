@@ -43,13 +43,11 @@ public class FileComparer
                 return true;
             }
 
-            if (!MemoryExtensions.SequenceEqual(buffer1, buffer2))
+            if (!buffer1.SequenceEqual(buffer2))
             {
                 return false;
             }
         }
-
-        return true;
     }
 
     public static bool CompareByChecksum(string file1, string file2)
@@ -68,7 +66,7 @@ public class FileComparer
         MD5.HashData(stream1, hash1);
         MD5.HashData(stream2, hash2);
 
-        return MemoryExtensions.SequenceEqual(hash1, hash2);
+        return hash1.SequenceEqual(hash2);
     }
 
     public static bool CompareByChecksumWithCache(string file1, string file2)
