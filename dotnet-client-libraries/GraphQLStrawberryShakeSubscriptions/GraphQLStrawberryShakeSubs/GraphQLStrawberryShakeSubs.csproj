@@ -7,15 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <GraphQL Remove="GetShippingConatiners.graphql" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\GraphQLStrawberryShakeSubs.Server\GraphQLStrawberryShakeSubs.Server.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="strawberryshake.server" Version="13.9.0" />
+    <PackageReference Include="StrawberryShake.Server" Version="13.9.0" />
+    <PackageReference Include="StrawberryShake.Transport.WebSockets" Version="13.9.0" />
   </ItemGroup>
 
 </Project>
