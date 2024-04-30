@@ -4,7 +4,7 @@ using BenchmarkDotNet.Order;
 namespace CompareTwoDictionaries;
 
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-public class DictionaryComparisonBenchmark
+public class DictionaryEqualityComparerBenchmark
 {
     private static readonly Dictionary<int, string> _dict1
         = new()
@@ -20,17 +20,15 @@ public class DictionaryComparisonBenchmark
             {2, "Clare Chiamaka"},
         };
 
-    private readonly DictionaryComparisonHelper _dictComparer = new(_dict1, _dict2);
-
     [Benchmark]
     public bool UseSequenceEqual()
-        => _dictComparer.UseSequenceEqual();
+        => DictionaryEqualityComparer.UseSequenceEqual(_dict1, _dict2);
 
     [Benchmark]
     public bool UseEnumerableAll()
-        => _dictComparer.UseEnumerableAll();
+        => DictionaryEqualityComparer.UseEnumerableAll(_dict1, _dict2);
 
     [Benchmark]
     public bool UseForeachLoop()
-        => _dictComparer.UseForeachLoop();
+        => DictionaryEqualityComparer.UseForeachLoop(_dict1, _dict2);
 }
