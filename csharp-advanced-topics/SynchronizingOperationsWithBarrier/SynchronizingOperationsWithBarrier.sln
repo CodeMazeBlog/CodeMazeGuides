@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynchronizeWithBarrier", "SynchronizeWithBarrier\SynchronizeWithBarrier.csproj", "{68F96422-6D64-41BD-8F49-1EE10CFE34E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{AC241346-1198-4A49-93BB-A2D62D01326C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{68F96422-6D64-41BD-8F49-1EE10CFE34E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68F96422-6D64-41BD-8F49-1EE10CFE34E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68F96422-6D64-41BD-8F49-1EE10CFE34E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC241346-1198-4A49-93BB-A2D62D01326C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC241346-1198-4A49-93BB-A2D62D01326C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC241346-1198-4A49-93BB-A2D62D01326C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC241346-1198-4A49-93BB-A2D62D01326C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
