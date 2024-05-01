@@ -3,6 +3,7 @@ using BenchmarkDotNet.Order;
 
 namespace CompareTwoDictionaries;
 
+[MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class DictionaryEqualityComparerBenchmark
 {

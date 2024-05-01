@@ -28,8 +28,8 @@ public class DictionaryEqualityComparerTest
     private static readonly Dictionary<int, string> _dict4
         = new()
         {
-            {1, "Clare Chiamaka"},
-            {2, "Rosary Ogechi"}
+            {1, "Clare Ogechi"},
+            {2, "Rosary Chiamaka"}
         };
 
     [Fact]
