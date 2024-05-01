@@ -19,7 +19,7 @@ builder.Services.Configure<JsonOptions>(options =>
     options.JsonSerializerOptions.WriteIndented = false;
     options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Default;
     options.JsonSerializerOptions.AllowTrailingCommas = true;
-    options.JsonSerializerOptions.MaxDepth = 2;
+    options.JsonSerializerOptions.MaxDepth = 3;
     options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
 });
 
@@ -30,7 +30,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.WriteIndented = false;
     options.SerializerOptions.Encoder = JavaScriptEncoder.Default;
     options.SerializerOptions.AllowTrailingCommas = true;
-    options.SerializerOptions.MaxDepth = 2;
+    options.SerializerOptions.MaxDepth = 3;
     options.SerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
 });
 
@@ -41,7 +41,7 @@ JsonConvert.DefaultSettings = () => new JsonSerializerSettings
     NullValueHandling = NullValueHandling.Ignore,
     DateFormatString = "dd-MM-yyyy",
     DefaultValueHandling = DefaultValueHandling.Ignore,
-    MaxDepth = 2
+    MaxDepth = 3
 };
 
 var app = builder.Build();
@@ -60,7 +60,6 @@ app.MapControllers();
 
 app.MapPost("api/Product/create", (Product product) =>
 {
-
     return product;
 });
 
