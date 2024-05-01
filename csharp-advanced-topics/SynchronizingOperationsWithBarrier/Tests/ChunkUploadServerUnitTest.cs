@@ -1,10 +1,20 @@
 using System.Net;
-using System.Text;
 using SimpleHTTPServer;
 
 [TestClass]
 public class ChunkUploadServerTests
 {
+    private HttpClientHandler clientHandler;
+
+    [TestInitialize]
+    public void TestInitialize()
+    {
+        clientHandler = new HttpClientHandler
+        {
+            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
+        };
+    }
+
     [TestMethod]
     public async Task WhenCreatingAServer_ThenItStartsSuccessfullyAndRejectInvalidHTTPMethods()
     {
@@ -19,7 +29,7 @@ public class ChunkUploadServerTests
         await Task.Delay(2000); // Allow some time for server to start
 
         // Assert
-        using (var client = new HttpClient())
+        using (var client = new HttpClient(clientHandler))
         {
             var response = await client.GetAsync($"http://localhost:{port}/upload/");
             Assert.AreEqual((int)HttpStatusCode.MethodNotAllowed, (int)response.StatusCode);
@@ -44,7 +54,7 @@ public class ChunkUploadServerTests
         await Task.Delay(2000); // Allow some time for server to start
 
         // Act
-        using var client = new HttpClient();
+        using var client = new HttpClient(clientHandler);
         using var content = new ByteArrayContent(new byte[fileSize]);
         content.Headers.Add("X-Filename", "test.txt");
         var response = await client.PostAsync($"http://localhost:{port}/upload/", content);
@@ -64,7 +74,7 @@ public class ChunkUploadServerTests
         await Task.Delay(2000);  // Allow some time for server to start
 
         // Act
-        using (var client = new HttpClient())
+        using (var client = new HttpClient(clientHandler))
         using (var content = new ByteArrayContent(new byte[fileSize]))
         {
             content.Headers.Add("X-Filename", "test.txt");
