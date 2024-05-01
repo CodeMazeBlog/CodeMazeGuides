@@ -16,28 +16,28 @@ public class UnitTests
     }
 
     [TestMethod]
-    public void ExampleWithLocks()
+    public void WhenAccessWithLockIsInvoked_ThenAllThreadsShouldExecute()
     {
         ExampleWithLock.AccessWithLock();
         AssertAllThreadsExecuted();
     }
 
     [TestMethod]
-    public void ExampleWithMutexs()
+    public void WhenAccessWithMutexIsInvoked_ThenAllThreadsShouldExecute()
     {
         ExampleWithMutex.AccessWithMutex();
         AssertAllThreadsExecuted();
     }
 
     [TestMethod]
-    public void ExampleWithSemaphores()
+    public void WhenAccessWithSemaphoreIsInvoked_ThenAllThreadsShouldExecute()
     {
         ExampleWithSemaphore.AccessWithSemaphore();
         AssertAllThreadsExecuted();
     }
 
     [TestMethod]
-    public async Task ExampleWithSemaphoreSlims()
+    public async Task WhenAccessWithSemaphoreSlimAsyncIsInvoked_ThenAllThreadsShouldExecute()
     {
         await ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync();
         AssertAllThreadsExecuted();
