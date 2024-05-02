@@ -1,9 +1,26 @@
 schema {
   query: Query
+  mutation: Mutation
 }
 
 type Query {
   shippingContainers: [ShippingContainer!]!
+}
+
+type Mutation {
+  addAvaliableShippingContainer(input: AddShippingContainerInput!): AddShippingContainerPayload!
+  updateShippingContainer(input: UpdateShippingContainerInput!): UpdateShippingContainerPayload!
+}
+
+input AddShippingContainerInput {
+  name: String!
+  length: Float!
+  width: Float!
+  height: Float!
+}
+
+type AddShippingContainerPayload {
+  shippingContainer: ShippingContainer!
 }
 
 type ShippingContainer {
@@ -12,9 +29,19 @@ type ShippingContainer {
   space: AvailableSpace
 }
 
+type UpdateShippingContainerPayload {
+  shippingContainer: ShippingContainer!
+}
+
+input UpdateShippingContainerInput {
+  name: String!
+  length: Float!
+  width: Float!
+  height: Float!
+}
+
 type AvailableSpace {
   length: Float!
   width: Float!
   height: Float!
-  volume: Float!
 }
