@@ -35,6 +35,8 @@ public class ChunkUploadServer
 			context.Response.StatusCode = (int)HttpStatusCode.MethodNotAllowed;
 			context.Response.Close();
 		}
+
+		listener.Close();
 	}
 
 	public async Task ProcessUpload(HttpListenerContext context)
