@@ -4,55 +4,57 @@ using DelegatingHandlers;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Moq.Protected;
-using Services.Abstract;
 using System.Net;
 
 public class AuthorizationHandlerUnitTests
 {
-    private static Func<HttpRequestMessage, string, bool> TokenValidationCondition = (req, expectedToken) => req.Headers.Authorization != null
-        && req.Headers.Authorization.Scheme == "Bearer"
-        && req.Headers.Authorization.Parameter == expectedToken;
-
     [Fact]
-    public async Task GivenSendAsyncIsInvoked_WhenAuthorizationHandlerIsUsed_ThenAddsAuthorizationHeaderWithToken()
+    public async Task AuthorizationHandler_Should_Add_Authorization_Header_And_Log_Correctly()
     {
         // Arrange
         var mockLogger = new Mock<ILogger<AuthorizationHandler>>();
-        var mockTokenGenerator = new Mock<ITokenGenerator>();
-        var expectedToken = "dummy-token";
+        var mockInnerHandler = new Mock<HttpMessageHandler>();
 
-        mockTokenGenerator.Setup(t => t.GenerateTokenAsync()).ReturnsAsync(expectedToken);
-
-        var mockInnerHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
-
+        // Mock the SendAsync method of the HttpMessageHandler using Moq's Protected extension
         mockInnerHandler.Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
-                ItExpr.Is<HttpRequestMessage>(request => TokenValidationCondition(request, expectedToken)),
+                ItExpr.IsAny<HttpRequestMessage>(),
                 ItExpr.IsAny<CancellationToken>())
-            .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK))
-            .Verifiable("Authorization header was not set correctly.");
+            .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK));
 
-        var handler = new AuthorizationHandler(mockTokenGenerator.Object, mockLogger.Object)
+        var authorizationHandler = new AuthorizationHandler(mockLogger.Object)
         {
             InnerHandler = mockInnerHandler.Object
         };
 
-        var invoker = new HttpMessageInvoker(handler);
-        var request = new HttpRequestMessage(HttpMethod.Get, "http://example.com");
+        var httpClient = new HttpClient(authorizationHandler);
 
         // Act
-        var response = await invoker.SendAsync(request, CancellationToken.None);
+        var request = new HttpRequestMessage(HttpMethod.Get, "http://example.com/test");
+        var response = await httpClient.SendAsync(request);
 
         // Assert
-        Assert.True(response.IsSuccessStatusCode);
+        Assert.NotNull(request.Headers.Authorization);
+        Assert.Equal("Bearer", request.Headers.Authorization.Scheme);
+        Assert.NotEmpty(request.Headers.Authorization.Parameter);
 
-        mockInnerHandler.Protected().Verify(
-            "SendAsync",
-            Times.Once(),
-            ItExpr.Is<HttpRequestMessage>(request => TokenValidationCondition(request, expectedToken)),
-            ItExpr.IsAny<CancellationToken>());
+        mockLogger.Verify(
+            x => x.Log(
+                LogLevel.Information,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Hello from AuthorizationHandler")),
+                null,
+                It.IsAny<Func<It.IsAnyType, Exception, string>>()),
+            Times.Once);
 
-        mockTokenGenerator.Verify(t => t.GenerateTokenAsync(), Times.Once);
+        mockLogger.Verify(
+            x => x.Log(
+                LogLevel.Information,
+                It.IsAny<EventId>(),
+                It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Goodbye from AuthorizationHandler")),
+                null,
+                It.IsAny<Func<It.IsAnyType, Exception, string>>()),
+            Times.Once);
     }
 }

@@ -1,22 +1,20 @@
 ﻿namespace HttpClientDelegatingHandlersInAspNetCore.DelegatingHandlers;
 
-using Services.Abstract;
 using System.Net.Http.Headers;
 
-public class AuthorizationHandler(ITokenGenerator tokenGenerator, ILogger<AuthorizationHandler> logger) 
-    : DelegatingHandler
+public class AuthorizationHandler(ILogger<AuthorizationHandler> Logger) : DelegatingHandler
 {
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Hello from AuthorizationHandler");
+        Logger.LogInformation("Hello from AuthorizationHandler");
 
-        var token = await tokenGenerator.GenerateTokenAsync();
+        var token = Guid.NewGuid().ToString();
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
         var response = await base.SendAsync(request, cancellationToken);
 
-        logger.LogInformation("Goodbye from AuthorizationHandler");
+        Logger.LogInformation("Goodbye from AuthorizationHandler");
 
         return response;
     }

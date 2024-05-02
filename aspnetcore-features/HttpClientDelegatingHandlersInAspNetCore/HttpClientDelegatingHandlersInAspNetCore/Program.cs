@@ -1,14 +1,10 @@
 using HttpClientDelegatingHandlersInAspNetCore.DelegatingHandlers;
-using HttpClientDelegatingHandlersInAspNetCore.Services.Abstract;
-using HttpClientDelegatingHandlersInAspNetCore.Services.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services
-    .AddTransient<IMetricsProvider, MetricsProvider>()
-    .AddTransient<ITokenGenerator, TokenGenerator>()
     .AddTransient<SimpleHandler>()
     .AddTransient<AuthorizationHandler>()
     .AddTransient<MetricsHandler>();
@@ -45,14 +41,14 @@ app.MapGet("/api/external-service", async () =>
 
 app.MapGet("/api/simple-handler-demo", async (IHttpClientFactory clientFactory) =>
 {
-    var httpClient = clientFactory.CreateClient("ExtendedClient");
+    using var httpClient = clientFactory.CreateClient("ExtendedClient");
 
     var response = await httpClient.GetAsync("/api/external-service");
 });
 
 app.MapGet("/api/chanined-handlers-demo", async (IHttpClientFactory clientFactory) =>
 {
-    var httpClient = clientFactory.CreateClient("ChainedClient");
+    using var httpClient = clientFactory.CreateClient("ChainedClient");
 
     var response = await httpClient.GetAsync("/api/external-service");
 });

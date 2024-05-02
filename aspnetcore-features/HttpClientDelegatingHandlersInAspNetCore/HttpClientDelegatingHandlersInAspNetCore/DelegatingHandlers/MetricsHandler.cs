@@ -1,22 +1,21 @@
 ﻿namespace HttpClientDelegatingHandlersInAspNetCore.DelegatingHandlers;
 
-using Services.Abstract;
+using System.Diagnostics;
 
-public class MetricsHandler(IMetricsProvider metricsProvider, ILogger<MetricsHandler> logger)
-    : DelegatingHandler
+public class MetricsHandler(ILogger<MetricsHandler> Logger) : DelegatingHandler
 {
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Hello from MetricsHandler");
+        Logger.LogInformation("Hello from MetricsHandler");
 
-        HttpResponseMessage response = null;
+        var stopwatch = Stopwatch.StartNew();
 
-        using (var metrics = metricsProvider.MeasureTime(request.RequestUri.AbsoluteUri))
-        {
-            response = await base.SendAsync(request, cancellationToken);
-        }
+        var response = await base.SendAsync(request, cancellationToken);
 
-        logger.LogInformation("Goodbye from MetricsHandler");
+        stopwatch.Stop();
+
+        Logger.LogInformation("Request duration for {uriPath}: {elapsedMs}ms", request.RequestUri.AbsoluteUri, stopwatch.ElapsedMilliseconds);
+        Logger.LogInformation("Goodbye from MetricsHandler");
 
         return response;
     }
