@@ -48,7 +48,8 @@ public class ChunkUploadServer
 		if (context.Request.ContentLength64 > chunkSize * threadCount)
 		{
 			Console.WriteLine("File size exceeds chunk capacity.");
-			context.Response.Abort();
+			context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+			context.Response.Close();
 			return;
 		}
 

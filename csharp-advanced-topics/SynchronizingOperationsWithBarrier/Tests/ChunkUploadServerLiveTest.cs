@@ -36,7 +36,9 @@ public class ChunkUploadServerTests
         }
 
         // Clean up
-        serverTask.Dispose();
+        // Wait for the server task to complete
+        await Task.Delay(2000);
+        serverTask.Wait();
     }
 
     [TestMethod]
@@ -46,18 +48,24 @@ public class ChunkUploadServerTests
         // Arrange
         int chunkSize = 1024 * 1024;
         int threadCount = 4;
-        int port = 8080;
+        int port = 8082;
         long fileSize = (chunkSize * threadCount) + 1; // Exceeds total chunk size
 
         var server = new ChunkUploadServer(chunkSize, threadCount);
-        _ = server.StartServer(port);
+        Task serverTask = server.StartServer(port);
         await Task.Delay(2000); // Allow some time for server to start
 
         // Act
-        using var client = new HttpClient(clientHandler);
-        using var content = new ByteArrayContent(new byte[fileSize]);
-        content.Headers.Add("X-Filename", "test.txt");
-        var response = await client.PostAsync($"http://localhost:{port}/upload/", content);
+        using (var client = new HttpClient(clientHandler))
+        using (var content = new ByteArrayContent(new byte[fileSize]))
+        {
+            content.Headers.Add("X-Filename", "test.txt");
+            var response = await client.PostAsync($"http://localhost:{port}/upload/", content);
+        }
+
+        // Wait for the server task to complete
+        await Task.Delay(2000);
+        serverTask.Wait();
     }
 
     [TestMethod]
@@ -66,7 +74,7 @@ public class ChunkUploadServerTests
         // Arrange
         int chunkSize = 1024 * 1024;
         int threadCount = 4;
-        int port = 8080;
+        int port = 8084;
         long fileSize = chunkSize * threadCount;
 
         var server = new ChunkUploadServer(chunkSize, threadCount);
