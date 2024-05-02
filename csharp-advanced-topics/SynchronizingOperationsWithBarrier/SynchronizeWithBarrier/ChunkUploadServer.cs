@@ -29,14 +29,13 @@ public class ChunkUploadServer
 		if (context.Request.HttpMethod == HttpMethod.Post.Method)
 		{
 			await ProcessUpload(context);
+			listener.Close();
 		}
 		else
 		{
 			context.Response.StatusCode = (int)HttpStatusCode.MethodNotAllowed;
 			context.Response.Close();
 		}
-
-		listener.Close();
 	}
 
 	public async Task ProcessUpload(HttpListenerContext context)
