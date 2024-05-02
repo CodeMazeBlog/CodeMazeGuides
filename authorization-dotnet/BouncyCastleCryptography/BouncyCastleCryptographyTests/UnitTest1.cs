@@ -138,6 +138,28 @@ namespace BouncyCastleCryptographyTests
             Assert.AreEqual(input, decryptedString);
         }
 
+        [TestMethod]
+        public void DsaSign()
+        {
+            // Input data to be signed
+            string input = "Hello, Bouncy Castle!";
+
+            // Generate DSA key pair
+            AsymmetricCipherKeyPair keyPair = GenerateDsaKeyPair();
+
+            // Sign the message using the private key
+            byte[] signature = DsaSign(input, keyPair.Private);
+
+            // Verify the signature using the public key
+            bool isSignatureValid = DsaVerify(input, signature, keyPair.Public);
+
+            // Print the result
+            Console.WriteLine("Signature verification result: " + isSignatureValid);
+
+            Assert.IsNotNull(signature);
+            Assert.IsTrue(isSignatureValid);
+        }
+
         // -------------------------------------------------------------------------------
 
         // SYMETRICAL -  AES and Triple DES
@@ -241,7 +263,7 @@ namespace BouncyCastleCryptographyTests
 
         // Asymetrical - RSA and DSA
 
-        public static AsymmetricCipherKeyPair GenerateRsaKeyPair()
+        public AsymmetricCipherKeyPair GenerateRsaKeyPair()
         {
             // Generate RSA key pair with 2048-bit key size
             RsaKeyPairGenerator rsaKeyPairGen = new RsaKeyPairGenerator();
@@ -249,7 +271,7 @@ namespace BouncyCastleCryptographyTests
             return rsaKeyPairGen.GenerateKeyPair();
         }
 
-        public static byte[] RsaEncrypt(string input, AsymmetricKeyParameter publicKey)
+        public byte[] RsaEncrypt(string input, AsymmetricKeyParameter publicKey)
         {
             // Convert the input string to bytes
             byte[] inputBytes = System.Text.Encoding.UTF8.GetBytes(input);
@@ -264,7 +286,7 @@ namespace BouncyCastleCryptographyTests
             return cipher.ProcessBlock(inputBytes, 0, inputBytes.Length);
         }
 
-        public static string RsaDecrypt(byte[] encryptedBytes, AsymmetricKeyParameter privateKey)
+        public string RsaDecrypt(byte[] encryptedBytes, AsymmetricKeyParameter privateKey)
         {
             // Create RSA cipher with PKCS1 v1.5 padding
             IAsymmetricBlockCipher cipher = new Pkcs1Encoding(new RsaEngine());
@@ -277,6 +299,57 @@ namespace BouncyCastleCryptographyTests
 
             // Convert the decrypted bytes back to a string
             return System.Text.Encoding.UTF8.GetString(decryptedBytes);
+        }
+
+        public AsymmetricCipherKeyPair GenerateDsaKeyPair()
+        {
+            // Create DSA parameters
+            DsaParametersGenerator dsaParamsGenerator = new DsaParametersGenerator();
+            SecureRandom random = new SecureRandom();
+            dsaParamsGenerator.Init(1024, 80, random); // key size: 1024 bits, certainty: 80
+
+            // Generate DSA key pair
+            DsaParameters dsaParams = dsaParamsGenerator.GenerateParameters();
+            DsaKeyGenerationParameters dsaKeyParams = new DsaKeyGenerationParameters(random, dsaParams);
+            DsaKeyPairGenerator dsaKeyPairGen = new DsaKeyPairGenerator();
+            dsaKeyPairGen.Init(dsaKeyParams);
+            return dsaKeyPairGen.GenerateKeyPair();
+        }
+
+        public byte[] DsaSign(string message, AsymmetricKeyParameter privateKey)
+        {
+            // Convert the input message to bytes
+            byte[] messageBytes = Encoding.UTF8.GetBytes(message);
+
+            // Create DSA signer
+            ISigner signer = SignerUtilities.GetSigner("SHA256withDSA");
+
+            // Initialize the signer for signing with the private key
+            signer.Init(true, privateKey);
+
+            // Update the signer with the message bytes
+            signer.BlockUpdate(messageBytes, 0, messageBytes.Length);
+
+            // Generate the signature
+            return signer.GenerateSignature();
+        }
+
+        public bool DsaVerify(string message, byte[] signature, AsymmetricKeyParameter publicKey)
+        {
+            // Convert the input message to bytes
+            byte[] messageBytes = Encoding.UTF8.GetBytes(message);
+
+            // Create DSA signer
+            ISigner signer = SignerUtilities.GetSigner("SHA256withDSA");
+
+            // Initialize the signer for verification with the public key
+            signer.Init(false, publicKey);
+
+            // Update the signer with the message bytes
+            signer.BlockUpdate(messageBytes, 0, messageBytes.Length);
+
+            // Verify the signature
+            return signer.VerifySignature(signature);
         }
 
         // Hashing
