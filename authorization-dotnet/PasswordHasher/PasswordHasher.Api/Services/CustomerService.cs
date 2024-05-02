@@ -7,16 +7,19 @@ namespace PasswordHasher.Api.Services;
 public class CustomerService
     (IUsersRepository usersRepository, IPasswordHasher<RegisteredUser> passwordHasher) : ICustomerService
 {
-    public void RegisterUser(RegisterRequest request)
+    public RegisteredUser RegisterUser(RegisterRequest request)
     {
         var hashedPassword = passwordHasher.HashPassword(new RegisteredUser(), request.Password);
         var newUser = new RegisteredUser
         {
+            Id = Guid.NewGuid(),
             Username = request.Username,
             HashedPassword = hashedPassword
         };
         
         usersRepository.AddNewUser(newUser);
+
+        return newUser;
     }
 
     public LoginResult Login(LoginRequest request)

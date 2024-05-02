@@ -28,9 +28,11 @@ app.UseHttpsRedirection();
 
 app.MapPost("/register", (RegisterRequest request, ICustomerService customerService) =>
     {
-        customerService.RegisterUser(request);
-        
-        return Results.Created();
+        var user = customerService.RegisterUser(request);
+
+        return user != null
+            ? Results.Accepted("Registration Successful")
+            : Results.BadRequest("Registration Failed");
     })
     .WithName("RegisterUser")
     .WithOpenApi();

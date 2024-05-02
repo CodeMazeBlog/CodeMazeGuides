@@ -5,6 +5,6 @@ namespace PasswordHasher.Api.Services;
 
 public interface ICustomerService
 {
-    void RegisterUser(RegisterRequest request);
+    RegisteredUser RegisterUser(RegisterRequest request);
     LoginResult Login(LoginRequest request);
 }
