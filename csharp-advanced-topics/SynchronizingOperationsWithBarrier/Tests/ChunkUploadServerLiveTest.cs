@@ -41,7 +41,7 @@ public class ChunkUploadServerTests
 
     [TestMethod]
     [ExpectedException(typeof(HttpRequestException))]
-    public async Task WhenUploadingLargeFiles_ShouldRejectLargeFilesExceedingChunkCapacityByThrowingException()
+    public async Task WhenUploadingLargeFiles_ThenShouldRejectLargeFilesExceedingChunkCapacityByThrowingException()
     {
         // Arrange
         int chunkSize = 1024 * 1024;
@@ -61,7 +61,7 @@ public class ChunkUploadServerTests
     }
 
     [TestMethod]
-    public async Task WhenUploadingAFile_ShouldProcessChunksWithMultipleThreads()
+    public async Task WhenUploadingAFile_ThenShouldProcessChunksWithMultipleThreads()
     {
         // Arrange
         int chunkSize = 1024 * 1024;
