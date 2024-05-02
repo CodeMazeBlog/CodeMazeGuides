@@ -1,4 +1,5 @@
 ﻿using GraphQLStrawberryShakeSubs.Server.Data;
+using HotChocolate.Subscriptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace GraphQLStrawberryShakeSubs.Server;
@@ -8,6 +9,7 @@ public class Mutation
     public async Task<AddShippingContainerPayload> AddAvaliableShippingContainerAsync(
         AddShippingContainerInput input,
         [Service] ApplicationDbContext dbContext,
+        [Service] ITopicEventSender eventSender,
         CancellationToken cancellationToken)
     {
         AddShippingContainerPayload payload;
@@ -26,7 +28,12 @@ public class Mutation
             };
 
             dbContext.ShippingContainers.Add(shippingContainer);
+
             await dbContext.SaveChangesAsync(cancellationToken);
+            await eventSender.SendAsync(
+                nameof(Subscriptions.OnShippingContainerAddedAsync),
+                shippingContainer.Id,
+                cancellationToken);
 
             payload = new AddShippingContainerPayload(shippingContainer);
         }

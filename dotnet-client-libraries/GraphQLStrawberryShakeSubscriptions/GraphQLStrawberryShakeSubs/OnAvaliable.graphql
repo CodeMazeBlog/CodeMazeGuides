@@ -1,8 +1,0 @@
-subscription OnAvaliable {
-  onAvaliable {
-    name
-    length
-    width
-    height
-  }
-}

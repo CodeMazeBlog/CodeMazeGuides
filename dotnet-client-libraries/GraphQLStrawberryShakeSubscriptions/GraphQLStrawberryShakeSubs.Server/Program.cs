@@ -14,6 +14,8 @@ builder.Services
     .AddGraphQLServer()
     .AddQueryType<Query>()
     .AddMutationType<Mutation>()
+    .AddSubscriptionType<Subscriptions>()
+    .AddInMemorySubscriptions()
     ;
 
 var app = builder.Build();
@@ -25,6 +27,7 @@ using (var scope = app.Services.CreateScope())
     Seed.Initialize(context);
 }
 
+app.UseWebSockets();
 app.MapGraphQL();
 
 app.Run();
