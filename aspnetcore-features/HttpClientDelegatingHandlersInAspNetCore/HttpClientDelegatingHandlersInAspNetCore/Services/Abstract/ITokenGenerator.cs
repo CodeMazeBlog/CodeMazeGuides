@@ -2,5 +2,5 @@
 
 public interface ITokenGenerator
 {
-    string GenerateToken();
+    Task<string> GenerateTokenAsync();
 }

@@ -10,7 +10,7 @@ public class AuthorizationHandler(ITokenGenerator tokenGenerator, ILogger<Author
     {
         logger.LogInformation("Hello from AuthorizationHandler");
 
-        var token = tokenGenerator.GenerateToken();
+        var token = await tokenGenerator.GenerateTokenAsync();
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
 

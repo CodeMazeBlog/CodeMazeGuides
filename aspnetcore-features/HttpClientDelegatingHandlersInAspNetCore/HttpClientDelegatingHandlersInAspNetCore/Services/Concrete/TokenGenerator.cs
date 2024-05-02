@@ -4,5 +4,5 @@ using Services.Abstract;
 
 public class TokenGenerator : ITokenGenerator
 {
-    public string GenerateToken() => Guid.NewGuid().ToString();
+    public Task<string> GenerateTokenAsync() => Task.FromResult(Guid.NewGuid().ToString());
 }

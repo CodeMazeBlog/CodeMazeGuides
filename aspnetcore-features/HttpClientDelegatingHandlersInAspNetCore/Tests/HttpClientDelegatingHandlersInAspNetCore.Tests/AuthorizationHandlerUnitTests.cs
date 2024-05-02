@@ -21,7 +21,7 @@ public class AuthorizationHandlerUnitTests
         var mockTokenGenerator = new Mock<ITokenGenerator>();
         var expectedToken = "dummy-token";
 
-        mockTokenGenerator.Setup(t => t.GenerateToken()).Returns(expectedToken);
+        mockTokenGenerator.Setup(t => t.GenerateTokenAsync()).ReturnsAsync(expectedToken);
 
         var mockInnerHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
 
@@ -53,6 +53,6 @@ public class AuthorizationHandlerUnitTests
             ItExpr.Is<HttpRequestMessage>(request => TokenValidationCondition(request, expectedToken)),
             ItExpr.IsAny<CancellationToken>());
 
-        mockTokenGenerator.Verify(t => t.GenerateToken(), Times.Once);
+        mockTokenGenerator.Verify(t => t.GenerateTokenAsync(), Times.Once);
     }
 }
