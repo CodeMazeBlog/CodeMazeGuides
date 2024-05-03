@@ -120,7 +120,7 @@ public class ConversionExamples
             }
                 
             decimalVal += oneDigit * quotient;
-            quotient *= radixVal * quotient;
+            quotient *= radixVal;
         }
 
         return decimalVal;
