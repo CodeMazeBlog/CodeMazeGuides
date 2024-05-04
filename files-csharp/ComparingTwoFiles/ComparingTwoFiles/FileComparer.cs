@@ -2,12 +2,17 @@ namespace ComparingTwoFiles;
 
 public class FileComparer
 {
-    public static bool CompareByNameAndSize(string firstFilePath, string secondFilePath)
+    public static bool CompareByNameAndSize(string firstFilePath, string secondFilePath, StringComparison fileNameComparisonType)
     {
         var fileInfo1 = new FileInfo(firstFilePath);
         var fileInfo2 = new FileInfo(secondFilePath);
 
-        return fileInfo1.Name == fileInfo2.Name && fileInfo1.Length == fileInfo2.Length;
+        if (fileInfo1.Length != fileInfo2.Length)
+        {
+            return false;
+        }
+
+        return fileInfo1.Name.Equals(fileInfo2.Name, fileNameComparisonType);
     }
 
     public static bool CompareByBytes(string firstFilePath, string secondFilePath)

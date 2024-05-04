@@ -38,7 +38,7 @@ public class UnitTest1
     [InlineData("batch2/hello-world.txt", "batch2/unchanged-hello-world.txt")]
     public void GivenDifferentNameFiles_WhenCompareByNameAndSize_ThenReturnsFalse(string file1, string file2)
     {
-        var result = FileComparer.CompareByNameAndSize(FullPath(file1), FullPath(file2));
+        var result = FileComparer.CompareByNameAndSize(FullPath(file1), FullPath(file2), StringComparison.OrdinalIgnoreCase);
         Assert.False(result);
     }
 
@@ -46,7 +46,7 @@ public class UnitTest1
     [InlineData("batch1/hello-world.txt", "batch2/hello-world.txt")]
     public void GivenSameNameAndSizeFiles_WhenCompareByNameAndSize_ThenReturnsTrue(string file1, string file2)
     {
-        var result = FileComparer.CompareByNameAndSize(FullPath(file1), FullPath(file2));
+        var result = FileComparer.CompareByNameAndSize(FullPath(file1), FullPath(file2), StringComparison.OrdinalIgnoreCase);
         Assert.True(result);
     }
 

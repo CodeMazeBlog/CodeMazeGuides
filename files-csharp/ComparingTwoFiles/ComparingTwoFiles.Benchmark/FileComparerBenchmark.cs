@@ -6,7 +6,7 @@ public class FileComparerBenchmark
     [Benchmark]
     public void CompareByNameAndSize()
     {
-        FileComparer.CompareByNameAndSize("files/batch1/hello-world.txt", "files/batch2/hello-world.txt");
+        FileComparer.CompareByNameAndSize("files/batch1/hello-world.txt", "files/batch2/hello-world.txt", StringComparison.OrdinalIgnoreCase);
     }
 
     [Benchmark]
