@@ -8,18 +8,10 @@ namespace CompareTwoDictionaries;
 public class DictionaryEqualityComparerBenchmark
 {
     private static readonly Dictionary<int, string> _dict1
-        = new()
-        {
-            {1, "Rosary Ogechi"},
-            {2, "Clare Chiamaka"},
-        };
+        = Enumerable.Range(1, 1000).ToDictionary(k => k, v => v.ToString());
 
     private static readonly Dictionary<int, string> _dict2
-        = new()
-        {
-            {1, "Rosary Ogechi"},
-            {2, "Clare Chiamaka"},
-        };
+        = Enumerable.Range(1, 1000).ToDictionary(k => k, v => v.ToString());
 
     [Benchmark]
     public bool UseSequenceEqual()
