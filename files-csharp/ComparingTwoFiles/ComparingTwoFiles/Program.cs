@@ -1,11 +1,11 @@
-﻿var file1 = FileUtils.Batch1.HelloWorld;
-var file2 = FileUtils.Batch2.HelloWorld;
+﻿var firstFilePath = FileUtils.Batch1.HelloWorld;
+var secondFilePath = FileUtils.Batch2.HelloWorld;
 
-Console.WriteLine($"{nameof(FileComparer.CompareByNameAndSize)}: {FileComparer.CompareByNameAndSize(file1, file2)}");
-Console.WriteLine($"{nameof(FileComparer.CompareByBytes)}: {FileComparer.CompareByBytes(file1, file2)}");
-Console.WriteLine($"{nameof(FileComparer.CompareByChecksum)}: {FileComparer.CompareByChecksum(file1, file2)}");
+Console.WriteLine($"CompareByNameAndSize: {FileComparer.CompareByNameAndSize(firstFilePath, secondFilePath)}");
+Console.WriteLine($"CompareByBytes: {FileComparer.CompareByBytes(firstFilePath, secondFilePath)}");
+Console.WriteLine($"CompareByChecksum: {FileComparer.CompareByChecksum(firstFilePath, secondFilePath)}");
 
-var result = FileComparer.ComputeDiff(file1, file2);
+var result = FileComparer.ComputeDiff(firstFilePath, secondFilePath);
 foreach (var diff in result)
 {
     Console.WriteLine($"{diff.Type}: {diff.Text}");

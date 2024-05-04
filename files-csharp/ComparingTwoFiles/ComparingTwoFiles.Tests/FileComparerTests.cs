@@ -50,11 +50,9 @@ public class UnitTest1
         Assert.True(result);
     }
 
-
     private static string FullPath(string name)
     {
         var filesDir = Path.Combine(Directory.GetCurrentDirectory(), "files");
         return Path.Combine(filesDir, name);
     }
-
 }
