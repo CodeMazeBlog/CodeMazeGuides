@@ -15,6 +15,7 @@ type Mutation {
 
 type Subscriptions {
   onShippingContainerAdded: ShippingContainer!
+  onShippingContainerSpaceChanged: ShippingContainer!
 }
 
 type UpdateShippingContainerPayload {
@@ -49,4 +50,5 @@ type AvailableSpace {
   length: Float!
   width: Float!
   height: Float!
+  volume: Float!
 }

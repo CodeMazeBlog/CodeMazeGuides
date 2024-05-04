@@ -12,4 +12,12 @@ public class Subscriptions
         [Service] ApplicationDbContext dbContext,
         CancellationToken cancellationToken) => await dbContext.ShippingContainers
             .FirstAsync(x => x.Id == shippingContainerId, cancellationToken);
+
+    [Subscribe]
+    [Topic]
+    public async Task<ShippingContainer> OnShippingContainerSpaceChangedAsync(
+        [EventMessage] string shippingContainerName,
+        [Service] ApplicationDbContext dbContext,
+        CancellationToken cancellationToken) => await dbContext.ShippingContainers
+            .FirstAsync(x => x.Name == shippingContainerName, cancellationToken);
 }

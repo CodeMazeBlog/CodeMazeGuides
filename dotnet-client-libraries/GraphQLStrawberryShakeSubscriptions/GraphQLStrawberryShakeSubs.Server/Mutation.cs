@@ -49,6 +49,7 @@ public class Mutation
     public async Task<UpdateShippingContainerPayload> UpdateShippingContainerAsync(
         UpdateShippingContainerInput input,
         [Service] ApplicationDbContext dbContext,
+        [Service] ITopicEventSender eventSender,
         CancellationToken cancellationToken)
     {
         UpdateShippingContainerPayload payload;
@@ -62,6 +63,10 @@ public class Mutation
 
             dbContext.ShippingContainers.Update(shippingContainer);
             await dbContext.SaveChangesAsync(cancellationToken);
+            await eventSender.SendAsync(
+                nameof(Subscriptions.OnShippingContainerSpaceChangedAsync),
+                shippingContainer.Name,
+                cancellationToken);
 
             payload = new UpdateShippingContainerPayload(shippingContainer);
         }

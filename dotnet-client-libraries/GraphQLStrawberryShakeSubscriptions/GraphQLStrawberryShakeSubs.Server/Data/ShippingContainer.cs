@@ -18,5 +18,6 @@ public class ShippingContainer
         public double Width { get; set; }
         [Required]
         public double Height { get; set; }
+        public double Volume => Length * Width * Height;
     }
 }

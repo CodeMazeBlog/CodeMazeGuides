@@ -1,0 +1,11 @@
+subscription OnContainerAdded {
+  onShippingContainerAdded {
+    name
+    space {
+	  length
+	  width
+	  height
+	  volume
+	}
+  }
+}

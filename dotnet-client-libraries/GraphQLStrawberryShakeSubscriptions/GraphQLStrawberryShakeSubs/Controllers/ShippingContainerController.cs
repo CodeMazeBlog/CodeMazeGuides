@@ -20,25 +20,47 @@ public class ShippingContainerController(IShippingContainerSubClient client) : C
         return Ok(JsonSerializer.Serialize(result.Data!.ShippingContainers));
     }
 
-    [HttpGet("update")]
-    public async Task<IActionResult> OnShippingContainerAdded()
+    [HttpGet("add")]
+    public async Task<IActionResult> OnContainerAdded()
     {
         var name = "";
         var tcs = new TaskCompletionSource<string>();
-        IDisposable res = null!;
+        IDisposable subscription = null!;
 
-        res = client.OnShippingContainerAdded
+        subscription = client.OnContainerAdded
             .Watch()
             .Subscribe(result =>
             {
                 result.EnsureNoErrors();
                 name = result.Data!.OnShippingContainerAdded.Name;
-                res?.Dispose();
+                subscription?.Dispose();
                 tcs.SetResult(name);
             });
 
         name = await tcs.Task;
 
         return Ok(JsonSerializer.Serialize(name));
+    }
+
+    [HttpGet("updated")]
+    public async Task<IActionResult> OnContainerSpaceChanged()
+    {
+        var tcs = new TaskCompletionSource<(string, double)>();
+        IDisposable subscription = null!;
+
+        subscription = client.OnContainerSpaceChanged
+            .Watch()
+            .Subscribe(result =>
+            {
+                result.EnsureNoErrors();
+
+                tcs.SetResult((result.Data!.OnShippingContainerSpaceChanged.Name,
+                    result.Data!.OnShippingContainerSpaceChanged.Space!.Volume));
+                subscription?.Dispose();
+            });
+
+        (var name, var volume) = await tcs.Task;
+
+        return Ok(JsonSerializer.Serialize(new { name, volume }));
     }
 }
