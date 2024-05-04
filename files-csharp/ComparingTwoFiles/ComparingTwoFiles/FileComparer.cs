@@ -65,11 +65,6 @@ public class FileComparer
         return hash1.SequenceEqual(hash2);
     }
 
-    public static bool CompareByChecksumWithCache(string firstFilePath, string secondFilePath)
-    {
-        return HashStore.Hashes[firstFilePath] == HashStore.Hashes[secondFilePath];
-    }
-
     public static List<DiffPiece> ComputeDiff(string firstFilePath, string secondFilePath)
     {
         var text1 = File.ReadAllText(firstFilePath);

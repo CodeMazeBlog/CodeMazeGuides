@@ -3,7 +3,6 @@ namespace ComparingTwoFiles.Benchmark;
 [MemoryDiagnoser]
 public class FileComparerBenchmark
 {
-
     [Benchmark]
     public void CompareByNameAndSize()
     {
@@ -20,11 +19,5 @@ public class FileComparerBenchmark
     public void CompareByChecksum()
     {
         FileComparer.CompareByChecksum("files/batch1/hello-world.txt", "files/batch2/hello-world.txt");
-    }
-
-    [Benchmark]
-    public void CompareByChecksumWithCache()
-    {
-        FileComparer.CompareByChecksumWithCache("files/batch1/hello-world.txt", "files/batch2/hello-world.txt");
     }
 }
