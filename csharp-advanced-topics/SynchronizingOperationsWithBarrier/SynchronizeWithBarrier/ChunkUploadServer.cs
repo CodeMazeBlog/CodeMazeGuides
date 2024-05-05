@@ -29,7 +29,6 @@ public class ChunkUploadServer
 		if (context.Request.HttpMethod == HttpMethod.Post.Method)
 		{
 			await ProcessUpload(context);
-			listener.Close();
 		}
 		else
 		{
@@ -59,14 +58,8 @@ public class ChunkUploadServer
 			int chunkNumber = i + 1;
 			var threadTask = Task.Run(() =>
 			{
-				var buffer = new byte[chunkSize];
-
-				int bytesRead = context.Request.InputStream.Read(buffer, 0, buffer.Length);
-				if (bytesRead > 0)
-				{
-					// Logic to process the chunk
-					Console.WriteLine($"Thread {chunkNumber} processed {bytesRead} bytes of chunk {chunkNumber}.");
-				}
+				// Logic to process the chunk from the request stream
+				Console.WriteLine($"Thread {chunkNumber} processed stream chunk.");
 
 				barrier.SignalAndWait();
 			});
@@ -83,5 +76,7 @@ public class ChunkUploadServer
 		using (Stream s = context.Response.OutputStream)
 		using (StreamWriter writer = new StreamWriter(s))
 			await writer.WriteAsync(message);
+
+		context.Response.Close();
 	}
 }
