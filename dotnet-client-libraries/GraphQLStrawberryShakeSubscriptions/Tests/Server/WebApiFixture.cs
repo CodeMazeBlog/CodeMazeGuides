@@ -15,10 +15,7 @@ public class WebApiFixture : WebApplicationFactory<Program>
     {
         builder.ConfigureLogging(logging => logging.ClearProviders());
 
-        builder.ConfigureTestServices(services =>
-        {
-            ConfigureDatabase(services);
-        });
+        builder.ConfigureTestServices(ConfigureDatabase);
     }
 
     private static void ConfigureDatabase(IServiceCollection services)

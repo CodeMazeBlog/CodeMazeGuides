@@ -1,0 +1,15 @@
+﻿{
+  "data": {
+    "addAvaliableShippingContainer": {
+      "shippingContainer": {
+        "id": "2",
+        "name": "Container 1",
+        "space": {
+          "length": 10,
+          "width": 10,
+          "height": 10
+        }
+      }
+    }
+  }
+}
