@@ -1,3 +1,3 @@
-global using Microsoft.VisualStudio.TestTools.UnitTesting;
-global using Microsoft.AspNetCore.Http;
-global using Microsoft.AspNetCore.Mvc;
+global using Xunit;
+global using Microsoft.AspNetCore.Mvc.Testing;
+global using System.Net;
