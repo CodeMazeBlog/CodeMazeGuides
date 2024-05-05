@@ -34,6 +34,7 @@ public class ChunkUploadServerTests
     }
 
     [TestMethod]
+    [ExpectedException(typeof(HttpRequestException))]
     public async Task WhenUploadingLargeFiles_ThenShouldRejectLargeFilesExceedingChunkCapacityByThrowingException()
     {
         // Arrange
