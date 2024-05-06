@@ -9,19 +9,20 @@ using System.Net;
 public class SimpleHandlerUnitTests
 {
     [Fact]
-    public void GivenSendAsyncIsInvoked_WhenSimpleHandlerIsUsed_ThenLogsInformationBeforeAndAfterSending()
+    public async Task GivenSendAsyncIsInvoked_WhenSimpleHandlerIsUsed_ThenLogsInformationBeforeAndAfterSending()
     {
         // Arrange
         var mockLogger = new Mock<ILogger<SimpleHandler>>();
         var mockInnerHandler = new Mock<HttpMessageHandler>();
 
+        // Mock the SendAsync method using Moq's Protected extension
         mockInnerHandler.Protected()
-           .Setup<HttpResponseMessage>(
-               "Send",
-               ItExpr.IsAny<HttpRequestMessage>(),
-               ItExpr.IsAny<CancellationToken>())
-           .Returns(new HttpResponseMessage(HttpStatusCode.OK))
-           .Verifiable();
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.IsAny<HttpRequestMessage>(),
+                ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK))
+            .Verifiable();
 
         var handler = new SimpleHandler(mockLogger.Object)
         {
@@ -31,7 +32,7 @@ public class SimpleHandlerUnitTests
         var invoker = new HttpMessageInvoker(handler);
 
         // Act
-        var response = invoker.Send(new HttpRequestMessage(HttpMethod.Get, "http://example.com"), CancellationToken.None);
+        var response = await invoker.SendAsync(new HttpRequestMessage(HttpMethod.Get, "http://example.com"), CancellationToken.None);
 
         // Assert
         Assert.True(response.IsSuccessStatusCode);

@@ -9,7 +9,7 @@ using System.Net;
 public class AuthorizationHandlerUnitTests
 {
     [Fact]
-    public async Task AuthorizationHandler_Should_Add_Authorization_Header_And_Log_Correctly()
+    public async Task GivenSendAsyncIsInvoked_WhenAuthorizationHandlerIsUsed_ThenLogsInformationBeforeAndAfterSending()
     {
         // Arrange
         var mockLogger = new Mock<ILogger<AuthorizationHandler>>();
