@@ -3,7 +3,7 @@
 public class DictionaryEqualityComparer
 {
     public static bool UseSequenceEqual<TKey, TValue>(Dictionary<TKey, TValue> dict1, Dictionary<TKey, TValue> dict2)
-        where TKey : notnull where TValue : IEquatable<TValue>
+        where TKey : notnull, IEquatable<TKey> where TValue : IEquatable<TValue>
     {
         if (dict1.Count != dict2.Count) return false;
 
