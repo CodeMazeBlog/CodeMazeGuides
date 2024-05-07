@@ -7,6 +7,7 @@ public class UnitTest1
     public void GivenDifferentFiles_WhenCompareByBytes_ThenReturnsFalse(string file1, string file2)
     {
         var result = FileComparer.CompareByBytes(FullPath(file1), FullPath(file2));
+
         Assert.False(result);
     }
 
@@ -15,6 +16,7 @@ public class UnitTest1
     public void GivenDifferentFiles_WhenCompareByChecksum_ThenReturnsFalse(string file1, string file2)
     {
         var result = FileComparer.CompareByChecksum(FullPath(file1), FullPath(file2));
+
         Assert.False(result);
     }
 
@@ -23,6 +25,7 @@ public class UnitTest1
     public void GivenSimilarFiles_WhenCompareByBytes_ThenReturnsTrue(string file1, string file2)
     {
         var result = FileComparer.CompareByBytes(FullPath(file1), FullPath(file2));
+
         Assert.True(result);
     }
 
@@ -31,6 +34,7 @@ public class UnitTest1
     public void GivenSimilarFiles_WhenCompareByChecksum_ThenReturnsTrue(string file1, string file2)
     {
         var result = FileComparer.CompareByChecksum(FullPath(file1), FullPath(file2));
+
         Assert.True(result);
     }
 
@@ -39,6 +43,7 @@ public class UnitTest1
     public void GivenDifferentNameFiles_WhenCompareByNameAndSize_ThenReturnsFalse(string file1, string file2)
     {
         var result = FileComparer.CompareByNameAndSize(FullPath(file1), FullPath(file2), StringComparison.OrdinalIgnoreCase);
+
         Assert.False(result);
     }
 
@@ -47,12 +52,14 @@ public class UnitTest1
     public void GivenSameNameAndSizeFiles_WhenCompareByNameAndSize_ThenReturnsTrue(string file1, string file2)
     {
         var result = FileComparer.CompareByNameAndSize(FullPath(file1), FullPath(file2), StringComparison.OrdinalIgnoreCase);
+
         Assert.True(result);
     }
 
     private static string FullPath(string name)
     {
         var filesDir = Path.Combine(Directory.GetCurrentDirectory(), "files");
+        
         return Path.Combine(filesDir, name);
     }
 }
