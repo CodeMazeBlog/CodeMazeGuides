@@ -48,3 +48,4 @@ This section contains the topics about the client libraries in .NET.
 - [Introduction to Strawberry Shake and GraphQL in .NET](https://code-maze.com/dotnet-introduction-to-strawberry-shake-and-graphql/)
 - [Introduction to Carter in ASP.NET Core](https://code-maze.com/aspnetcore-introduction-to-carter/)
 - [Represent the Relationship of Properties Using Property Mappings From AutoMapper](https://code-maze.com/csharp-getting-property-mappings-from-automapper/)
+- [Serialization and Deserialization with YamlDotNet](https://code-maze.com/csharp-serialization-and-deserialization-with-yamldotnet/)
