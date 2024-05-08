@@ -2,7 +2,7 @@
 
 public class ExceptMethodExamples
 {
-    List<Employee> Employees = new() 
+    List<Employee> Employees = new()
     {
         new Employee {ID =  1, Name = "John Doe", Age = 28, Department = "Sales"},
         new Employee {ID =  2, Name = "Emily Sanders", Age = 29, Department = "Sales"},
@@ -28,17 +28,25 @@ public class ExceptMethodExamples
 
     List<Employee> ITEmployees = new()
     {
-        
+
         new Employee {ID =  6, Name = "grace jones", Age = 32, Department = "IT"},
         new Employee {ID =  7, Name = "ava knowles", Age = 32, Department = "IT"}
     };
 
-    public List<Employee> GetEmployeesNotInSales() 
+    public List<Employee> GetEmployeesNotInSales()
     {
         var employeesNotInSales = Employees.Select(e => new { e.ID, e.Name, e.Age, e.Department })
                     .Except(SalesEmployees.Select(s => new { s.ID, s.Name, s.Age, s.Department })).ToList();
-        
-        return employeesNotInSales;
+
+        var list = employeesNotInSales.Select(x => new Employee
+        {
+            ID = x.ID,
+            Name = x.Name,
+            Age = x.Age,
+            Department = x.Department
+        }).ToList();
+
+        return list;
     }
 
     public List<string> GetEmployeesNotInITIgnoreCase()
@@ -46,5 +54,12 @@ public class ExceptMethodExamples
         var employeesNotInIT = Employees.Select(e => e.Name).Except(ITEmployees.Select(s => s.Name), StringComparer.OrdinalIgnoreCase).ToList();
 
         return employeesNotInIT;
+    }
+
+    public List<Employee> GetEmployeesNotInSalesUsingComparer() 
+    {
+        EmployeeComparer comparer = new ();
+
+        return Employees.Except(SalesEmployees, comparer).ToList();
     }
 }
