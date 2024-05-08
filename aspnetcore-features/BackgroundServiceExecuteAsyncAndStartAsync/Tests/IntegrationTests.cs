@@ -11,7 +11,7 @@ namespace Tests
     public class IntegrationTests
     {
         [TestMethod]
-        public async Task GivenAStockPriceAppWithBackgroundService_WhenApiIsCalled_DataIsPresent()
+        public async Task GivenAStockPriceAppWithBackgroundService_WhenApiIsCalled_ThenDataIsPresent()
         {
             //Arrange
             using var testServer =
