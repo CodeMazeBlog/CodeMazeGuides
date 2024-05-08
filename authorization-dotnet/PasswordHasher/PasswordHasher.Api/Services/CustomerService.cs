@@ -26,7 +26,7 @@ public class CustomerService
     {
         var user = usersRepository.GetHashedPassword(request.Username);
 
-        if (user == null)
+        if (user is null)
         {
             return LoginResult.Failure;
         }

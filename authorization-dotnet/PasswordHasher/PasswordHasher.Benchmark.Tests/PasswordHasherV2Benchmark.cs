@@ -7,16 +7,22 @@ namespace PasswordHasher.Benchmark.Tests;
 
 public class PasswordHasherV2Benchmark
 {
-    [Benchmark]
-    public void PasswordHasherWithIdentityV2()
+    private PasswordHasher<RegisteredUser> _sut;
+
+    [IterationSetup]
+    public void Setup()
     {
         var passwordHasherOptions = new PasswordHasherOptions
         {
             CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV2
         };
         var options = new OptionsWrapper<PasswordHasherOptions>(passwordHasherOptions);
-        var sut = new PasswordHasher<RegisteredUser>(options);
-
-        var result = sut.HashPassword(null, "cleverGreenHouse7");
+        _sut = new PasswordHasher<RegisteredUser>(options); 
+    }   
+    
+    [Benchmark]
+    public void PasswordHasherWithIdentityV2()
+    {
+        var result = _sut.HashPassword(null, "cleverGreenHouse7");
     }
 }

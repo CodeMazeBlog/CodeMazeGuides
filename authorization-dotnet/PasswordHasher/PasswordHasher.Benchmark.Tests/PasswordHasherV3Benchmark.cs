@@ -10,8 +10,10 @@ public class PasswordHasherV3Benchmark
     [Params(1000, 10_000, 100_000, 1_000_000)]
     public int IterationCount;
 
-    [Benchmark]
-    public void PasswordHasherWithIdentityV3()
+    private PasswordHasher<RegisteredUser> _sut;
+
+    [IterationSetup]
+    public void Setup()
     {
         var passwordHasherOptions = new PasswordHasherOptions
         {
@@ -19,8 +21,12 @@ public class PasswordHasherV3Benchmark
             IterationCount = IterationCount
         };
         var options = new OptionsWrapper<PasswordHasherOptions>(passwordHasherOptions);
-        var sut = new PasswordHasher<RegisteredUser>(options);
-
-        var result = sut.HashPassword(null, "cleverGreenHouse7");
+        _sut = new PasswordHasher<RegisteredUser>(options); 
+    }
+    
+    [Benchmark]
+    public void PasswordHasherWithIdentityV3()
+    {
+        var result = _sut.HashPassword(null, "cleverGreenHouse7");
     }
 }

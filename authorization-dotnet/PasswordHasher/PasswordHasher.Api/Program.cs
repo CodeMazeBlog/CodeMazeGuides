@@ -30,7 +30,7 @@ app.MapPost("/register", (RegisterRequest request, ICustomerService customerServ
     {
         var user = customerService.RegisterUser(request);
 
-        return user != null
+        return user is not null
             ? Results.Accepted("Registration Successful")
             : Results.BadRequest("Registration Failed");
     })
