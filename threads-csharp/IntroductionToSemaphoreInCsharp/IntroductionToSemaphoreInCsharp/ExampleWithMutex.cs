@@ -29,7 +29,11 @@ public class ExampleWithMutex
         _mutex.WaitOne();
         
         Thread.Sleep(2000); //mock a long-running operation - pretend work is happening
-        Console.WriteLine($"Mutex: Thread {sequenceNo} is accessing {nameof(_sharedResource)} at {DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture)}");
+        Console.WriteLine("Mutex: Thread {0} is accessing {1} at {2}",
+                sequenceNo,
+                nameof(_sharedResource),
+                DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture));
+
 
         _mutex.ReleaseMutex();
     }

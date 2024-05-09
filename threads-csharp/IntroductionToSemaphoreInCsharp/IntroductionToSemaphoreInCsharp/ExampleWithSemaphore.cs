@@ -24,13 +24,15 @@ public class ExampleWithSemaphore
         }
     }
 
-    static void WorkerWithSemaphore(object? threadNo)
+    static void WorkerWithSemaphore(object? sequenceNo)
     {
         _semaphore.WaitOne();
 
         Thread.Sleep(2000); //mock a long-running operation - pretend work is happening
-        Console.WriteLine($"Semaphore: Thread {threadNo} is accessing {nameof(_sharedResource)} at {DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff",
-                                        CultureInfo.InvariantCulture)}");
+        Console.WriteLine("Semaphore: Thread {0} is accessing {1} at {2}",
+                sequenceNo,
+                nameof(_sharedResource),
+                DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture));
 
         _semaphore.Release();
     }

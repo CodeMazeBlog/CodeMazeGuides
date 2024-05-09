@@ -18,13 +18,15 @@ public class ExampleWithSemaphoreSlim
         await Task.WhenAll(tasks);
     }
 
-    static async Task WorkerWithSemaphoreSlimAsync(int i)
+    static async Task WorkerWithSemaphoreSlimAsync(int sequenceNo)
     {
         await _semaphoreSlim.WaitAsync();
 
         await Task.Delay(2000); //mock a long-running operation - pretend work is happening
-        Console.WriteLine($"SemaphoreSlim: Thread {i} is accessing {nameof(_sharedResource)} at {DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff",
-                                        CultureInfo.InvariantCulture)}");
+        Console.WriteLine("SemaphoreSlim: Thread {0} is accessing {1} at {2}",
+                sequenceNo,
+                nameof(_sharedResource),
+                DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture));
 
         _semaphoreSlim.Release();
     }

@@ -29,8 +29,10 @@ public class ExampleWithLock
         lock (_locker)
         {
             Thread.Sleep(2000); //mock a long-running operation - pretend work is happening
-            Console.WriteLine($"Lock: Thread {sequenceNo} is accessing {nameof(_sharedResource)} at {DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff",
-                                        CultureInfo.InvariantCulture)}");
+            Console.WriteLine("Lock: Thread {0} is accessing {1} at {2}",
+                sequenceNo,
+                nameof(_sharedResource),
+                DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture));
         }
     }
 }
