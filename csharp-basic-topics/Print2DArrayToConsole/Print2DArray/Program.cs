@@ -1,3 +1,3 @@
-﻿﻿using GenerateChessBoard;
+﻿using GenerateChessBoard;
 
 Print2DArrayChessBoard.Display();

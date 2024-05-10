@@ -27,12 +27,11 @@ public static class Print2DArrayChessBoard
             {
                 Console.BackgroundColor = GetBackgroundColorOfSqaure(i, j);
                 Console.ForegroundColor = Console.BackgroundColor == ConsoleColor.White ? ConsoleColor.Black : ConsoleColor.White;
-                Console.Write(board[i, j] + " ");
+                Console.Write(" " + board[i, j] + " ");
                 Console.ResetColor();
             }
 
             Console.WriteLine();
         }
     }
-
 }
