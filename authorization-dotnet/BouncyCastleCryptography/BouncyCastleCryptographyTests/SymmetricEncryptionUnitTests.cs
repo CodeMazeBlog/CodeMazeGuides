@@ -16,10 +16,12 @@ namespace BouncyCastleCryptographyTests
         {
             string input = "Hello, Bouncy Castle!";
 
-            var encryptedData = AesEncrypter.AesEncrypt(input, out byte[] iv, out byte[] key, out byte[] encryptedBytes, out var cipher);
+            var encryptedData = AesEncryptor.AesEncrypt(input, out byte[] iv, out byte[] key);
+
+            string encryptedString = Convert.ToBase64String(encryptedData);
 
             Assert.IsNotNull(encryptedData);
-            Assert.AreNotEqual(input, encryptedData);
+            Assert.AreNotEqual(input, encryptedString);
         }
 
         [TestMethod]
@@ -27,11 +29,11 @@ namespace BouncyCastleCryptographyTests
         {
             string input = "Hello, Bouncy Castle!";
 
-            var myStr = AesEncrypter.AesEncrypt(input, out byte[] iv, out byte[] key, out byte[] encryptedBytes, out var cipher);
+            var encryptedData = AesEncryptor.AesEncrypt(input, out byte[] iv, out byte[] key);
 
-            Assert.IsNotNull(myStr);
+            Assert.IsNotNull(encryptedData);
 
-            var myDecryptedStr = AesEncrypter.AesDecrypt(cipher, key, iv, encryptedBytes);
+            var myDecryptedStr = AesEncryptor.AesDecrypt(key, iv, encryptedData);
 
             Assert.IsNotNull(myDecryptedStr);
             Assert.AreEqual(input, myDecryptedStr);
@@ -42,7 +44,7 @@ namespace BouncyCastleCryptographyTests
         {
             string input = "Hello, Bouncy Castle!";
 
-            var myStr = TripleDesEncrypter.TripleDesEncrypt(input, out byte[] iv, out byte[] key, out byte[] encryptedBytes);
+            var myStr = TripleDesEncryptor.TripleDesEncrypt(input, out byte[] iv, out byte[] key);
 
             Assert.IsNotNull(myStr);
         }
@@ -52,13 +54,13 @@ namespace BouncyCastleCryptographyTests
         {
             string input = "Hello, Bouncy Castle!";
 
-            var myStr = TripleDesEncrypter.TripleDesEncrypt(input, out byte[] iv, out byte[] key, out byte[] encryptedBytes);
+            var encryptedBytes = TripleDesEncryptor.TripleDesEncrypt(input, out byte[] iv, out byte[] key);
 
-            Assert.IsNotNull(myStr);
+            Assert.IsNotNull(encryptedBytes);
 
             IBufferedCipher cipher = CipherUtilities.GetCipher("DESede/CBC/PKCS7Padding");
 
-            var myDecryptedStr = TripleDesEncrypter.TripleDesDecrypt(cipher, key, iv, encryptedBytes);
+            var myDecryptedStr = TripleDesEncryptor.TripleDesDecrypt(key, iv, encryptedBytes);
 
             Assert.IsNotNull(myDecryptedStr);
             Assert.AreEqual(input, myDecryptedStr);
