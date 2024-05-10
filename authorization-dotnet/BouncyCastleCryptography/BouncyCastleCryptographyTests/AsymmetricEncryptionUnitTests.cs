@@ -15,16 +15,12 @@ namespace BouncyCastleCryptographyTests
         {
             string input = "Hello, Bouncy Castle!";
 
-            // Generate RSA key pair
-            AsymmetricCipherKeyPair keyPair = RsaEncrypter.GenerateRsaKeyPair();
+            AsymmetricCipherKeyPair keyPair = RsaEncryptor.GenerateRsaKeyPair();
 
-            // Encrypt the input data using the public key
-            byte[] encryptedBytes = RsaEncrypter.RsaEncrypt(input, keyPair.Public);
+            byte[] encryptedBytes = RsaEncryptor.RsaEncrypt(input, keyPair.Public);
 
-            // Decrypt the encrypted data using the private key
-            string decryptedString = RsaEncrypter.RsaDecrypt(encryptedBytes, keyPair.Private);
+            string decryptedString = RsaEncryptor.RsaDecrypt(encryptedBytes, keyPair.Private);
 
-            // Print the decrypted data
             Console.WriteLine("Decrypted data: " + decryptedString);
 
             Assert.IsNotNull(encryptedBytes);
@@ -35,19 +31,14 @@ namespace BouncyCastleCryptographyTests
         [TestMethod]
         public void DsaSign()
         {
-            // Input data to be signed
             string input = "Hello, Bouncy Castle!";
 
-            // Generate DSA key pair
-            AsymmetricCipherKeyPair keyPair = DsaEncrypter.GenerateDsaKeyPair();
+            AsymmetricCipherKeyPair keyPair = DsaEncryptor.GenerateDsaKeyPair();
 
-            // Sign the message using the private key
-            byte[] signature = DsaEncrypter.DsaSign(input, keyPair.Private);
+            byte[] signature = DsaEncryptor.DsaSign(input, keyPair.Private);
 
-            // Verify the signature using the public key
-            bool isSignatureValid = DsaEncrypter.DsaVerify(input, signature, keyPair.Public);
+            bool isSignatureValid = DsaEncryptor.DsaVerify(input, signature, keyPair.Public);
 
-            // Print the result
             Console.WriteLine("Signature verification result: " + isSignatureValid);
 
             Assert.IsNotNull(signature);

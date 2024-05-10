@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BouncyCastleCryptography.AsymmetricEncryption
 {
-    public static class DsaEncrypter
+    public static class DsaEncryptor
     {
         public static AsymmetricCipherKeyPair GenerateDsaKeyPair()
         {
