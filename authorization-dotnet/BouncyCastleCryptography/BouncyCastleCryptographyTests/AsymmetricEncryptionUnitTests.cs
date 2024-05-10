@@ -1,17 +1,14 @@
 ﻿using BouncyCastleCryptography.AsymmetricEncryption;
 using Org.BouncyCastle.Crypto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BouncyCastleCryptographyTests
 {
+    [TestClass]
     public class AsymmetricEncryptionUnitTests
     {
         [TestMethod]
-        public void rsaEncrypt()
+        public void GivenSecretData_WhenRsaEncrypting_ThenDataSignatureIsProduced()
         {
             string input = "Hello, Bouncy Castle!";
 
@@ -29,7 +26,7 @@ namespace BouncyCastleCryptographyTests
         }
 
         [TestMethod]
-        public void DsaSign()
+        public void GivenSecretData_WhenRsaEncrypting_ThenDataSignatureCanBeVerified()
         {
             string input = "Hello, Bouncy Castle!";
 

@@ -1,5 +1,4 @@
 using BouncyCastleCryptography.Hashing;
-using System.Collections;
 
 namespace BouncyCastleCryptographyTests
 {
