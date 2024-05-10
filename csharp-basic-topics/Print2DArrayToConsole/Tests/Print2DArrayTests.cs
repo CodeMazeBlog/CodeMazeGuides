@@ -10,7 +10,7 @@ public class ChessBoardTests
         int row = 0;
         int col = 0;
 
-        var color = Print2DArrayChessBoard.GetBackgroundColorOfSqaure(row, col);
+        var color = Print2DArrayChessBoard.GetBackgroundColorOfSquare(row, col);
 
         Assert.Equal(ConsoleColor.White, color);
     }
@@ -21,7 +21,7 @@ public class ChessBoardTests
         int row = 0;
         int col = 1;
 
-        var color = Print2DArrayChessBoard.GetBackgroundColorOfSqaure(row, col);
+        var color = Print2DArrayChessBoard.GetBackgroundColorOfSquare(row, col);
 
         Assert.Equal(ConsoleColor.Black, color);
     }

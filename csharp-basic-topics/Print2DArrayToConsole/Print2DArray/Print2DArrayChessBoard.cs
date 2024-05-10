@@ -14,7 +14,7 @@ public static class Print2DArrayChessBoard
         { "R", "N", "B", "Q", "K", "B", "N", "R" }
     };
 
-    public static ConsoleColor GetBackgroundColorOfSqaure(int row, int col)
+    public static ConsoleColor GetBackgroundColorOfSquare(int row, int col)
     {
         return (row + col) % 2 == 0 ? ConsoleColor.White : ConsoleColor.Black;
     }
@@ -25,7 +25,7 @@ public static class Print2DArrayChessBoard
         {
             for (int j = 0; j < board.GetLength(1); j++)
             {
-                Console.BackgroundColor = GetBackgroundColorOfSqaure(i, j);
+                Console.BackgroundColor = GetBackgroundColorOfSquare(i, j);
                 Console.ForegroundColor = Console.BackgroundColor == ConsoleColor.White ? ConsoleColor.Black : ConsoleColor.White;
                 Console.Write(" " + board[i, j] + " ");
                 Console.ResetColor();
