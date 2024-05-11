@@ -1,7 +1,6 @@
 ﻿using Exceptionless;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace ExceptionlessClient.Controllers;
 
 [Route("api/[controller]")]
@@ -82,5 +81,4 @@ public class ValuesController : ControllerBase
             "Your log message here",
             Exceptionless.Logging.LogLevel.Trace);
     }
-
 }
