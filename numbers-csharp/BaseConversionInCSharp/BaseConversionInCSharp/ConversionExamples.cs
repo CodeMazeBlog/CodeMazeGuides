@@ -36,7 +36,7 @@ public class ConversionExamples
     [Arguments(DecimalVal, BinaryRadix)]
     public string DecimalToAnyBase(long decimalVal, int radixVal)
     {
-        const int numOfBits = 64;
+        const int numOfBits = 32;
 
         if (radixVal < 2 || radixVal > 36) 
         {
@@ -50,7 +50,7 @@ public class ConversionExamples
 
         var position = numOfBits - 1;
         var currentNumVal = Math.Abs(decimalVal);
-        var resultArray = new char[numOfBits];
+        Span<char> resultArray = stackalloc char[numOfBits + 1];
 
         while (currentNumVal != 0)
         {
@@ -59,12 +59,12 @@ public class ConversionExamples
             currentNumVal = currentNumVal / radixVal;
         }
 
-        var baseString = new String(resultArray, position + 1, numOfBits - position - 1);
-
         if (decimalVal < 0)
         {
-            baseString = $"-{baseString}";
+            resultArray[position--] = '-';
         }
+
+        var baseString = new string(resultArray.Slice(position + 1, numOfBits - position - 1));
 
         return baseString;
     }
@@ -97,14 +97,13 @@ public class ConversionExamples
             return 0;
         }
 
-        anyBaseVal = anyBaseVal.ToUpperInvariant();
-
+        var anyBaseSpan = anyBaseVal.AsSpan(); 
         var decimalVal = 0;
         var quotient = 1;
 
         for (int i = anyBaseVal.Length - 1; i >= 0; i--)
         {
-            var singleChar = anyBaseVal[i];
+            var singleChar = anyBaseSpan[i];
 
             if (i == 0 && singleChar == '-')
             {
@@ -112,11 +111,11 @@ public class ConversionExamples
                 break;
             }
 
-            var oneDigit = DigitValues.IndexOf(singleChar);
+            var oneDigit = DigitValues.AsSpan().IndexOf(singleChar);
 
             if (oneDigit == -1) 
             {
-                throw new ArgumentException( "You have entered an invalid character", anyBaseVal);
+                throw new ArgumentException("You have entered an invalid character", anyBaseVal);
             }
                 
             decimalVal += oneDigit * quotient;
