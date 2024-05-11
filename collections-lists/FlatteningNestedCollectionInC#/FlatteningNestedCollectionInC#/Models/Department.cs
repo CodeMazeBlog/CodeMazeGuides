@@ -1,0 +1,8 @@
+﻿namespace FlatteningNestedCollection.Models;
+
+public record Department
+{
+    public string DepartmentName { get; init; }
+    public IEnumerable<Employee> Employees { get; init; }
+    public IEnumerable<Project> Projects { get; init; }
+}
