@@ -37,6 +37,8 @@ app.MapGet("/api/external-service", async () =>
     var delayTimeSpan = TimeSpan.FromMilliseconds(randomMilliseconds);
 
     await Task.Delay(delayTimeSpan);
+
+    return Results.Ok();
 });
 
 app.MapGet("/api/simple-handler-demo", async (IHttpClientFactory clientFactory) =>
@@ -44,6 +46,8 @@ app.MapGet("/api/simple-handler-demo", async (IHttpClientFactory clientFactory) 
     using var httpClient = clientFactory.CreateClient("ExtendedClient");
 
     var response = await httpClient.GetAsync("/api/external-service");
+
+    return Results.Ok(response);
 });
 
 app.MapGet("/api/chanined-handlers-demo", async (IHttpClientFactory clientFactory) =>
@@ -51,6 +55,8 @@ app.MapGet("/api/chanined-handlers-demo", async (IHttpClientFactory clientFactor
     using var httpClient = clientFactory.CreateClient("ChainedClient");
 
     var response = await httpClient.GetAsync("/api/external-service");
+
+    return Results.Ok(response);
 });
 
 app.Run();
