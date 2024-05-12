@@ -1,6 +1,4 @@
-﻿using DifferencesBetweenSpanAndMemoryInCSharp;
+﻿using BenchmarkDotNet.Running;
+using DifferencesBetweenSpanAndMemoryInCSharp;
 
-SpanExample.IntArrayAsSpan();
-SpanExample.SubstringWithSpan("SubstringWithSpan", 0, 9);
-
-MemoryExample.IntArrayAsMemory();
+BenchmarkRunner.Run<SpanMemoryBenchmark>();
