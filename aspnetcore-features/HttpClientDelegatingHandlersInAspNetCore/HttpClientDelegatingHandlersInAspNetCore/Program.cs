@@ -59,7 +59,7 @@ app.MapGet("/api/simple-handler-demo", async (IHttpClientFactory clientFactory) 
     return Results.Ok(response);
 });
 
-app.MapGet("/api/chanined-handlers-demo", async (IHttpClientFactory clientFactory) =>
+app.MapGet("/api/chained-handlers-demo", async (IHttpClientFactory clientFactory) =>
 {
     using var httpClient = clientFactory.CreateClient("ChainedClient");
 
