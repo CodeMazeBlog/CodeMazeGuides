@@ -7,19 +7,13 @@ public class ShippingContainerTests
     [Fact]
     public async Task ShippingContainer_Schema_Changed()
     {
-        // Arrange
-        // Act
         var schema = await TestServices.Executor.GetSchemaAsync(default);
-
-        // Assert
         schema.ToString().Should().MatchSnapshot();
     }
 
     [Fact]
     public async Task ShippingContainer_AddAvaliableShippingContainerAsync()
     {
-        // Arrange
-        // Act
         var result = await TestServices.ExecuteRequestAsync(
             b => b.SetQuery(@"
                 mutation AddAvaliableShippingContainer {
@@ -42,14 +36,12 @@ public class ShippingContainerTests
                     }
                 }"));
 
-        // Assert
         result.Should().MatchSnapshot();
     }
 
     [Fact]
     public async Task ShippingContainer_UpdateShippingContainerAsync()
     {
-        // Arrange
         await TestServices.ExecuteRequestAsync(
             b => b.SetQuery(@"
                 mutation AddAvaliableShippingContainer {
@@ -72,7 +64,6 @@ public class ShippingContainerTests
                     }
                 }"));
 
-        // Act
         var result = await TestServices.ExecuteRequestAsync(
             b => b.SetQuery(@"
                 mutation UpdateShippingContainer {
@@ -95,14 +86,12 @@ public class ShippingContainerTests
                     }
                 }"));
 
-        // Assert
         result.Should().MatchSnapshot();
     }
 
     [Fact]
     public async Task ShippingContainer_GetShippingContainersAsync()
     {
-        // Arrange
         await TestServices.ExecuteRequestAsync(
             b => b.SetQuery(@"
                 mutation AddAvaliableShippingContainer {
@@ -125,7 +114,6 @@ public class ShippingContainerTests
                     }
                 }"));
 
-        // Act
         var result = await TestServices.ExecuteRequestAsync(
             b => b.SetQuery(@"
                 query GetShippingContainers {
@@ -140,7 +128,6 @@ public class ShippingContainerTests
                     }
                 }"));
 
-        // Assert
         result.Should().MatchSnapshot();
     }
 }

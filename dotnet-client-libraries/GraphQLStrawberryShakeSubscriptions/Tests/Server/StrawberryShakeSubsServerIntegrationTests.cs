@@ -3,9 +3,9 @@ using Newtonsoft.Json.Linq;
 using System.Text;
 
 namespace Tests.Server;
+
 public class StrawberryShakeSubsServerIntegrationTests : IClassFixture<WebApiFixture>
 {
-
     private readonly WebApiFixture _fixture;
     private readonly HttpClient _client;
 

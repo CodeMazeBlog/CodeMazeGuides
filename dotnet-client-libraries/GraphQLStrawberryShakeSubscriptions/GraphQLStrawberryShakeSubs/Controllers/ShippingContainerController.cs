@@ -20,7 +20,7 @@ public class ShippingContainerController(IShippingContainerSubClient client) : C
         return Ok(JsonSerializer.Serialize(result.Data!.ShippingContainers));
     }
 
-    [HttpGet("add")]
+    [HttpGet("added")]
     public async Task<IActionResult> OnContainerAdded()
     {
         var name = "";

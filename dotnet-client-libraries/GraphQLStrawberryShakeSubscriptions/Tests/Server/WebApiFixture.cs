@@ -14,7 +14,6 @@ public class WebApiFixture : WebApplicationFactory<Program>
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.ConfigureLogging(logging => logging.ClearProviders());
-
         builder.ConfigureTestServices(ConfigureDatabase);
     }
 
