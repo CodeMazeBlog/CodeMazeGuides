@@ -18,7 +18,6 @@ public class MetricsHandlerUnitTests
         var mockLogger = new Mock<ILogger<MetricsHandler>>();
         var mockInnerHandler = new Mock<HttpMessageHandler>();
 
-        // Mock SendAsync to return a successful response
         mockInnerHandler.Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
@@ -27,13 +26,11 @@ public class MetricsHandlerUnitTests
             .ReturnsAsync(new HttpResponseMessage(HttpStatusCode.OK))
             .Verifiable();
 
-        // Create an instance of the handler, setting the inner handler
         var metricsHandler = new MetricsHandler(mockLogger.Object)
         {
             InnerHandler = mockInnerHandler.Object
         };
 
-        // Use HttpMessageInvoker instead of HttpClient to prevent automatic disposal
         var invoker = new HttpMessageInvoker(metricsHandler);
 
         // Act
@@ -43,7 +40,6 @@ public class MetricsHandlerUnitTests
         // Assert
         Assert.True(response.IsSuccessStatusCode);
 
-        // Verify that the log messages are called
         mockLogger.Verify(
             x => x.Log(
                 LogLevel.Information,

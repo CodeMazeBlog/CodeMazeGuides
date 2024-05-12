@@ -15,7 +15,6 @@ public class SimpleHandlerUnitTests
         var mockLogger = new Mock<ILogger<SimpleHandler>>();
         var mockInnerHandler = new Mock<HttpMessageHandler>();
 
-        // Mock the SendAsync method using Moq's Protected extension
         mockInnerHandler.Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",

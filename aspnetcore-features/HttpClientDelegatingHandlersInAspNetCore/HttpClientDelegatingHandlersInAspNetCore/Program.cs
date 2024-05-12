@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddTransient<SimpleHandler>()
     .AddTransient<AuthorizationHandler>()
-    .AddTransient<MetricsHandler>();
+    .AddTransient<MetricsHandler>()
+    .AddTransient<TransientIdentifiableHandler>();
 
 builder.Services
     .AddHttpClient("ExtendedClient", (httpClient) =>
@@ -23,6 +24,14 @@ builder.Services
     })
     .AddHttpMessageHandler<AuthorizationHandler>()
     .AddHttpMessageHandler<MetricsHandler>();
+
+builder.Services
+    .AddHttpClient("HandlerLifeTimeDemoClient", (httpClient) =>
+    {
+        httpClient.BaseAddress = new Uri("http://localhost:5000");
+    })
+    .AddHttpMessageHandler<TransientIdentifiableHandler>()
+    .SetHandlerLifetime(TimeSpan.FromSeconds(1));
 
 var app = builder.Build();
 
@@ -57,6 +66,19 @@ app.MapGet("/api/chanined-handlers-demo", async (IHttpClientFactory clientFactor
     var response = await httpClient.GetAsync("/api/external-service");
 
     return Results.Ok(response);
+});
+
+app.MapGet("/api/handler-lifetime-demo", async (IHttpClientFactory clientFactory) =>
+{
+    using var httpClient1 = clientFactory.CreateClient("HandlerLifeTimeDemoClient");
+    var response1 = await httpClient1.GetAsync("/api/external-service");
+
+    await Task.Delay(TimeSpan.FromSeconds(2));
+
+    using var httpClient2 = clientFactory.CreateClient("HandlerLifeTimeDemoClient");
+    var response2 = await httpClient2.GetAsync("/api/external-service");
+
+    return Results.Ok(new[] { response1, response2 });
 });
 
 app.Run();

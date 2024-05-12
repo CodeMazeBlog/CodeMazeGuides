@@ -15,7 +15,6 @@ public class AuthorizationHandlerUnitTests
         var mockLogger = new Mock<ILogger<AuthorizationHandler>>();
         var mockInnerHandler = new Mock<HttpMessageHandler>();
 
-        // Mock the SendAsync method of the HttpMessageHandler using Moq's Protected extension
         mockInnerHandler.Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
