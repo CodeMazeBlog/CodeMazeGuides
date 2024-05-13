@@ -26,7 +26,7 @@ public class FileManagerTests
     }
 
     [TestMethod]
-    public void ClassicalApproach_Test()
+    public void WhenReadFileCalled_ForARandomString_ThenInvalidExtensionLogTestMustPass()
     {
         var fileName = _fixture.Create<string>();
 
@@ -43,7 +43,7 @@ public class FileManagerTests
     }
 
     [TestMethod]
-    public void FakeLogger_Test()
+    public void WhenReadFileCalled_WithFakeLogger_ForARandomString_ThenInvalidExtensionLogTestMustPass()
     {
         var fileName = _fixture.Create<string>();
 
@@ -57,7 +57,7 @@ public class FileManagerTests
     }
 
     [TestMethod]
-    public void FakeLogger_ErrorLog_Test()
+    public void WhenReadFileCalled_WithFakeLogger_ForValidFilename_ThenErrorOccurredLogTestMustPass()
     {
         var fileName = "test-file.pdf";
 
@@ -72,7 +72,7 @@ public class FileManagerTests
     }
 
     [TestMethod]
-    public void FakeLogger_WithOptions_ErrorLog_Test()
+    public void WhenReadFileCalled_WithFakeLoggerOptions_ForValidFilename_ThenErrorOccurredLogTestMustPass()
     {
         var options = new FakeLogCollectorOptions()
         {
