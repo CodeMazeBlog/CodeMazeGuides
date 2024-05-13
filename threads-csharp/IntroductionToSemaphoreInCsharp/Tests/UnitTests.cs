@@ -7,6 +7,7 @@ namespace Tests;
 public class UnitTests
 {
     private StringBuilder ConsoleOutput { get; } = new StringBuilder();
+    const int SleepDelay = 50;
 
     [TestInitialize]
     public void Init()
@@ -18,28 +19,28 @@ public class UnitTests
     [TestMethod]
     public void GivenSomeConcurrentCode_WhenAccessWithLockIsInvoked_ThenAllThreadsShouldExecute()
     {
-        ExampleWithLock.AccessWithLock();
+        ExampleWithLock.AccessWithLock(SleepDelay);
         AssertAllThreadsExecuted();
     }
 
     [TestMethod]
     public void GivenSomeConcurrentCode_WhenAccessWithMutexIsInvoked_ThenAllThreadsShouldExecute()
     {
-        ExampleWithMutex.AccessWithMutex();
+        ExampleWithMutex.AccessWithMutex(SleepDelay);
         AssertAllThreadsExecuted();
     }
 
     [TestMethod]
     public void GivenSomeConcurrentCode_WhenAccessWithSemaphoreIsInvoked_ThenAllThreadsShouldExecute()
     {
-        ExampleWithSemaphore.AccessWithSemaphore();
+        ExampleWithSemaphore.AccessWithSemaphore(SleepDelay);
         AssertAllThreadsExecuted();
     }
 
     [TestMethod]
     public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreSlimAsyncIsInvoked_ThenAllThreadsShouldExecute()
     {
-        await ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync();
+        await ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync(SleepDelay);
         AssertAllThreadsExecuted();
     }
 

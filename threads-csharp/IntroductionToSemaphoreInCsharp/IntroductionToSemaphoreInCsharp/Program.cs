@@ -1,13 +1,15 @@
 ﻿using IntroductionToSemaphoreInCsharp;
 
+const int SleepDelay = 2000;
+
 Console.WriteLine("Executing with Lock...");
-ExampleWithLock.AccessWithLock();
+ExampleWithLock.AccessWithLock(SleepDelay);
 
 Console.WriteLine("Executing with Mutex...");
-ExampleWithMutex.AccessWithMutex();
+ExampleWithMutex.AccessWithMutex(SleepDelay);
 
 Console.WriteLine("Executing with Semaphore...");
-ExampleWithSemaphore.AccessWithSemaphore();
+ExampleWithSemaphore.AccessWithSemaphore(SleepDelay);
 
 Console.WriteLine("Executing with SemaphoreSlim...");
-await ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync();
+await ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync(SleepDelay);
