@@ -2,10 +2,8 @@
 
 namespace HowToUseFakeLogger;
 
-public class FileManager(ILogger logger)
+public class FileManager(ILogger _logger)
 {
-    private readonly ILogger _logger = logger;
-
     public string ReadFile(string fileName)
     {
         try
