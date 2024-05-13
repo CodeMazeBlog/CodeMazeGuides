@@ -9,16 +9,9 @@ namespace EasyCaching.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesWithTwoProvidersController : ControllerBase
+    public class ValuesWithTwoProvidersController(IEasyCachingProviderFactory _factory) : ControllerBase
     {
-        private readonly IEasyCachingProviderFactory _factory;
-        private ApiResponse _response;
-
-        public ValuesWithTwoProvidersController(IEasyCachingProviderFactory factory)
-        {
-            _response = new ApiResponse();
-            _factory = factory;
-        }
+        private ApiResponse _response = new();
 
         [HttpGet]
         public async Task<ActionResult<ApiResponse>> GetValues()
@@ -27,7 +20,7 @@ namespace EasyCaching.Controllers
             var sqliteProvider = _factory.GetCachingProvider("SQLiteCache");
             var prizeDto = new PrizeDto();
 
-            Stopwatch sw = Stopwatch.StartNew();
+            Stopwatch stopwatch = Stopwatch.StartNew();
             //In memory
             if (await inMemoryProvider.ExistsAsync("today"))
             {
@@ -57,10 +50,10 @@ namespace EasyCaching.Controllers
 
                 await sqliteProvider.SetAsync("prizes", prizes, TimeSpan.FromMinutes(1));
             }
-            sw.Stop();
+            stopwatch.Stop();
 
             _response.Result = prizeDto;
-            _response.Duration = sw.ElapsedMilliseconds;
+            _response.Duration = stopwatch.ElapsedMilliseconds;
             _response.StatusCode = System.Net.HttpStatusCode.OK;
 
             return Ok(_response);
