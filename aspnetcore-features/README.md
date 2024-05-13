@@ -42,3 +42,4 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [How to Set a Default User-Agent on an HttpClient in ASP.NET Core](https://code-maze.com/aspnetcore-set-a-default-user-agent-on-an-httpclient/)
 - [HSTS Header Implementation in ASP.NET Core](https://code-maze.com/aspnetcore-hsts-header-implementation/)
 - [Using Server-Sent Events for Realtime Updates in ASP.NET Core](https://code-maze.com/aspnetcore-using-server-sent-events-for-realtime-updates/)
+- [How to Call an Action From Another Controller in ASP.NET Core](https://code-maze.com/aspnetcore-call-an-action-from-another-controller/)
