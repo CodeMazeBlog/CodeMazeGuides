@@ -89,6 +89,7 @@ public static class Utilities
     {
         HashSet<int> hashToFilter = new HashSet<int>(listToFilter);
         hashToFilter.IntersectWith(filteringList);
+
         return hashToFilter.ToList();
     }
 
