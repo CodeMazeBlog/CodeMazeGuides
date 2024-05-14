@@ -6,7 +6,6 @@ using BenchmarkDotNet.Order;
 namespace BaseConversionInCSharp;
 
 [MemoryDiagnoser]
-[RankColumn]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
 [HideColumns([Column.StdDev, Column.Error])]
@@ -20,11 +19,11 @@ public class ConversionExamples
 
     [Benchmark]
     [Arguments(DecimalVal, BinaryRadix)]
-    public string ConvertAnyBaseUsingToString(int inputVal, int radixVal) 
+    public string ConvertAnyBaseUsingToString(int decimalVal, int radixVal) 
     {
         if (radixVal == 2 || radixVal == 8 || radixVal == 10 || radixVal == 16)
         {
-            return Convert.ToString(inputVal, radixVal);
+            return Convert.ToString(decimalVal, radixVal);
         }
         else
         { 
@@ -34,7 +33,7 @@ public class ConversionExamples
 
     [Benchmark]
     [Arguments(DecimalVal, BinaryRadix)]
-    public string DecimalToAnyBase(long decimalVal, int radixVal)
+    public string DecimalToAnyBase(int decimalVal, int radixVal)
     {
         const int numOfBits = 32;
 
@@ -48,15 +47,16 @@ public class ConversionExamples
             return "0";
         }
 
-        var position = numOfBits - 1;
+        var digitValuesSpan = DigitValues.AsSpan();
+        var position = numOfBits;
         var currentNumVal = Math.Abs(decimalVal);
         Span<char> resultArray = stackalloc char[numOfBits + 1];
 
         while (currentNumVal != 0)
         {
             var remainder = (int)(currentNumVal % radixVal);
-            resultArray[position--] = DigitValues[remainder];
-            currentNumVal = currentNumVal / radixVal;
+            resultArray[position--] = digitValuesSpan[remainder];
+            currentNumVal /= radixVal;
         }
 
         if (decimalVal < 0)
@@ -64,55 +64,54 @@ public class ConversionExamples
             resultArray[position--] = '-';
         }
 
-        var baseString = new string(resultArray.Slice(position + 1, numOfBits - position - 1));
+        var baseString = new string(resultArray[(position+1)..]);
 
         return baseString;
     }
 
     [Benchmark]
     [Arguments(HexVal, HexRadix)]
-    public decimal AnyBaseToDecimalUsingConvert(string anyBaseVal, int radixVal) 
+    public int AnyBaseToDecimalUsingConvert(string anyBaseVal, int radixVal)
     {
         if (radixVal == 2 || radixVal == 8 || radixVal == 10 || radixVal == 16)
         {
             return Convert.ToInt32(anyBaseVal, radixVal);
         }
-        else
-        {
-            throw new ArgumentException("Enter 2, 8, 10, or 16 as the radix");
-        }
+
+        throw new ArgumentException("Enter 2, 8, 10, or 16 as the radix");
     }
 
     [Benchmark]
     [Arguments(HexVal, HexRadix)]
-    public decimal AnyBaseToDecimal(string anyBaseVal, int radixVal)
+    public int AnyBaseToDecimal(string anyBaseVal, int radixVal)
     {
         if (radixVal < 2 || radixVal > 36) 
         {
             throw new ArgumentException("Radix should not be below 2 or above 36");
         }
 
-        if (String.IsNullOrEmpty(anyBaseVal)) 
+        if (string.IsNullOrEmpty(anyBaseVal)) 
         {
             return 0;
         }
 
-        var anyBaseSpan = anyBaseVal.AsSpan(); 
+        var digitValuesSpan = DigitValues.AsSpan();
+
+        var anyBaseSpan = anyBaseVal.AsSpan();
+        var isNegative = false;
+
+        if (anyBaseSpan[0] == '-')
+        {
+            isNegative = true;
+            anyBaseSpan = anyBaseSpan[1..];
+        }
+
         var decimalVal = 0;
         var quotient = 1;
 
-        for (int i = anyBaseVal.Length - 1; i >= 0; i--)
+        for (int i = anyBaseSpan.Length - 1; i >= 0; i--)
         {
-            var singleChar = anyBaseSpan[i];
-
-            if (i == 0 && singleChar == '-')
-            {
-                decimalVal = -decimalVal;
-                break;
-            }
-
-            var oneDigit = DigitValues.AsSpan().IndexOf(singleChar);
-
+            var oneDigit = digitValuesSpan.IndexOf(anyBaseSpan[i]);
             if (oneDigit == -1) 
             {
                 throw new ArgumentException("You have entered an invalid character", anyBaseVal);
@@ -120,6 +119,11 @@ public class ConversionExamples
                 
             decimalVal += oneDigit * quotient;
             quotient *= radixVal;
+        }
+
+        if (isNegative)
+        {
+            decimalVal = -decimalVal;
         }
 
         return decimalVal;
