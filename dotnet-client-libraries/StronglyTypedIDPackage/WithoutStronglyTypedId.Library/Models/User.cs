@@ -1,4 +1,5 @@
 ﻿namespace WithoutStronglyTypedId.Library.Models;
+
 public class User
 {
     public Guid Id { get; set; }
