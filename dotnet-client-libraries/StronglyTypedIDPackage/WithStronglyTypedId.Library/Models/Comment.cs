@@ -1,5 +1,5 @@
 ﻿using StronglyTypedIds;
-[assembly: StronglyTypedIdDefaults(Template.String)]
+
 namespace WithStronglyTypedId.Library.Models;
 
 [StronglyTypedId(Template.String)]

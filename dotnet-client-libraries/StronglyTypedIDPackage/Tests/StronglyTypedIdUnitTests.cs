@@ -2,8 +2,14 @@ namespace Tests;
 
 public class StronglyTypedIdUnitTests
 {
-    private readonly StronglyTypedIdCommentService _stronglyTypedIdCommentService = new();
-    private readonly CommentService _commentService = new();
+    private readonly StronglyTypedIdCommentService _stronglyTypedIdCommentService;
+    private readonly CommentService _commentService;
+
+    public StronglyTypedIdUnitTests()
+    {
+        _stronglyTypedIdCommentService = new();
+        _commentService = new();
+    }
 
     [Fact]
     public void GivenValidCommentIdAndUserId_WhenGettingSingleUserComment_ThenReturnCommentForStronglyTypedId()
