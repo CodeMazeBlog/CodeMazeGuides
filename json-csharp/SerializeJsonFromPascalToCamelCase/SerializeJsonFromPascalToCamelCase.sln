@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1706.11
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializeJsonFromPascalToCamelCase", "SerializeJsonFromPascalToCamelCase\SerializeJsonFromPascalToCamelCase.csproj", "{BBAE97A9-0850-43E2-B0F7-5A421E34BF9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{1E879957-DFB0-4986-B095-D33C4F4CE38C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BBAE97A9-0850-43E2-B0F7-5A421E34BF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBAE97A9-0850-43E2-B0F7-5A421E34BF9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBAE97A9-0850-43E2-B0F7-5A421E34BF9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E879957-DFB0-4986-B095-D33C4F4CE38C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E879957-DFB0-4986-B095-D33C4F4CE38C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E879957-DFB0-4986-B095-D33C4F4CE38C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E879957-DFB0-4986-B095-D33C4F4CE38C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
