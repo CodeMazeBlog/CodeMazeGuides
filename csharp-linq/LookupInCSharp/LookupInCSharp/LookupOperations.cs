@@ -1,34 +1,22 @@
 ﻿namespace LookupInCSharp;
 
-public record Student(string Name, string Course);
-
 public class LookupOperations
 {
-    private static readonly List<Student> _students
-        = [
-            new("Kate Green", "Accounting"),
-            new("Dan Sorla", "Economics"),
-            new("Luna Delgrino", "Finance")
-          ];
-
-    private static readonly List<Student> _duplicateStudents
-        = [
-            new("Dan Sorla", "Investment Management"),
-            new("Dan Sorla", "Economics"),
-            new("Luna Delgrino", "Finance")
-          ];
-
     private static readonly ILookup<string, string> _lookup
-        = CreateLookupWithKeysAndValues();
+        = CreateLookup();
 
-    public static ILookup<string, Student> CreateLookupWithKeyOnly()
-        => _students.ToLookup(s => s.Name);
+    public static ILookup<string, string> CreateLookup()
+    {
+        List<Student> students
+            = [
+                new("Dan Sorla", "Accounting"),
+                new("Dan Sorla", "Economics"),
+                new("Luna Delgrino", "Finance"),
+                new("Kate Green", "Investment Management")
+              ];
 
-    public static ILookup<string, string> CreateLookupWithKeysAndValues()
-        => _students.ToLookup(s => s.Name, s => s.Course);
-
-    public static ILookup<string, string> CreateLookupFromListWithDuplicateItem()
-        => _duplicateStudents.ToLookup(s => s.Name, s => s.Course);
+        return students.ToLookup(s => s.Name, s => s.Course);
+    }
 
     public static IEnumerable<string> RetrieveValuesOfAKeyFromLookup(string key)
         => _lookup[key];

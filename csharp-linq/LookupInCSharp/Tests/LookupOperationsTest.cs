@@ -4,46 +4,19 @@ namespace Tests;
 
 public class LookupOperationsTest
 {
-    private static readonly List<Student> _students
-        = [
-            new("Kate Green", "Accounting"),
-            new("Dan Sorla", "Economics"),
-            new("Luna Delgrino", "Finance")
-          ];
-
-    private static readonly List<Student> _duplicateStudents
-        = [
-            new("Dan Sorla", "Investment Management"),
-            new("Dan Sorla", "Economics"),
-            new("Luna Delgrino", "Finance")
-          ];
-
     [Fact]
-    public void WhenCreateLookupWithKeyOnlyIsCalled_ThenReturnsLookup()
+    public void WhenCreateLookupIsCalled_ThenReturnsLookup()
     {
-        var expectedLookup = _students.ToLookup(s => s.Name);
+        List<Student> students
+            = [
+                new("Dan Sorla", "Accounting"),
+                new("Dan Sorla", "Economics"),
+                new("Luna Delgrino", "Finance"),
+                new("Kate Green", "Investment Management")
+              ];
+        var expectedLookup = students.ToLookup(s => s.Name, s => s.Course);
 
-        var lookup = LookupOperations.CreateLookupWithKeyOnly();
-
-        Assert.Equal(expectedLookup, lookup);
-    }
-
-    [Fact]
-    public void WhenCreateLookupWithKeysAndValuesIsCalled_ThenReturnsLookup()
-    {
-        var expectedLookup = _students.ToLookup(s => s.Name, s => s.Course);
-
-        var lookup = LookupOperations.CreateLookupWithKeysAndValues();
-
-        Assert.Equal(expectedLookup, lookup);
-    }
-
-    [Fact]
-    public void WhenCreateLookupFromListWithDuplicateItemIsCalled_ThenReturnsLookup()
-    {
-        var expectedLookup = _duplicateStudents.ToLookup(s => s.Name, s => s.Course);
-
-        var lookup = LookupOperations.CreateLookupFromListWithDuplicateItem();
+        var lookup = LookupOperations.CreateLookup();
 
         Assert.Equal(expectedLookup, lookup);
     }
@@ -51,7 +24,7 @@ public class LookupOperationsTest
     [Fact]
     public void WhenRetrieveValuesOfAKeyFromLookupIsCalled_ThenReturnsTheKeysValues()
     {
-        IEnumerable<string> _expectedValues = ["Accounting"];
+        IEnumerable<string> _expectedValues = ["Investment Management"];
 
         var values = LookupOperations.RetrieveValuesOfAKeyFromLookup("Kate Green");
 
@@ -61,7 +34,7 @@ public class LookupOperationsTest
     [Fact]
     public void WhenRetrieveAllKeysFromLookupIsCalled_ThenReturnsAllKeys()
     {
-        IEnumerable<string> _expectedKeys = ["Kate Green", "Dan Sorla", "Luna Delgrino"];
+        IEnumerable<string> _expectedKeys = ["Dan Sorla", "Luna Delgrino", "Kate Green"];
 
         var keys = LookupOperations.RetrieveAllKeysFromLookup();
 
@@ -71,7 +44,7 @@ public class LookupOperationsTest
     [Fact]
     public void WhenRetrieveAllValuesFromLookupIsCalled_ThenReturnsAllValues()
     {
-        IEnumerable<string> _expectedValues = ["Accounting", "Economics", "Finance"];
+        IEnumerable<string> _expectedValues = ["Accounting", "Economics", "Finance", "Investment Management"];
 
         var values = LookupOperations.RetrieveAllValuesFromLookup();
 
@@ -89,7 +62,7 @@ public class LookupOperationsTest
     [Fact]
     public void GivenKeyThatDoesNotExists_WhenSearchForKeyInLookupIsCalled_ThenReturnsFalse()
     {
-        var result = LookupOperations.SearchForKeyInLookup("Michael Luna");
+        var result = LookupOperations.SearchForKeyInLookup("Michael Sorla");
 
         Assert.False(result);
     }
