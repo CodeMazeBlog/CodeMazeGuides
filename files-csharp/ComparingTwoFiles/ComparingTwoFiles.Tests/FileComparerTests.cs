@@ -1,6 +1,6 @@
 namespace ComparingTwoFiles.Tests;
 
-public class UnitTest1
+public class FileComparerTests
 {
     [Theory]
     [InlineData("batch1/hello-world.txt", "batch2/hello-world.txt")]
