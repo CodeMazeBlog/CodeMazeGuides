@@ -15,7 +15,6 @@ public class UsingExceptUnitTests
         var maryRecord = nonSales.Find(i => i.Name == "Mary Jane");
         var sheilaRecord = nonSales.Find(i => i.Name == "Sheila Foxx");
 
-        Assert.IsNotNull(nonSales);
         Assert.IsInstanceOfType(nonSales, typeof(List<Employee>));
         Assert.IsNull(maryRecord);
         Assert.IsNotNull(sheilaRecord);
@@ -50,7 +49,6 @@ public class UsingExceptUnitTests
         var sheilaRecord = nonSales.Find(i => i.Name == "Sheila Foxx");
         var comparison = _employeeComparer.Equals(expectedRecord, sheilaRecord);
 
-        Assert.IsNotNull(nonSales);
         Assert.IsInstanceOfType(nonSales, typeof(List<Employee>));
         Assert.IsTrue(comparison);
         Assert.IsNotNull(sheilaRecord);

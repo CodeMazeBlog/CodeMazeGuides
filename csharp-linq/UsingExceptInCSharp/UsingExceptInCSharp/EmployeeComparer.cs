@@ -6,15 +6,8 @@ public class EmployeeComparer : IEqualityComparer<Employee>
 {
     public bool Equals(Employee? x, Employee? y)
     {
-        if (object.ReferenceEquals(x, y))
-        {
-            return true;
-        }
-
-        if(object.ReferenceEquals(x, null) || object.ReferenceEquals(y, null)) 
-        {
-            return false;
-        }
+        if (x is null && y is null) return true;
+        if (x is null || y is null) return false;
 
         return x.ID == y.ID && x.Name == y.Name && x.Age == y.Age && x.Department == y.Department;
     }
