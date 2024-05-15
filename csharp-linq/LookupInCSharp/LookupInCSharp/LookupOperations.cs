@@ -2,21 +2,19 @@
 
 public class LookupOperations
 {
+    private static readonly List<Student> _students
+        = [
+            new("Dan Sorla", "Accounting"),
+            new("Dan Sorla", "Economics"),
+            new("Luna Delgrino", "Finance"),
+            new("Kate Green", "Investment Management")
+          ];
+
     private static readonly ILookup<string, string> _lookup
         = CreateLookup();
 
     public static ILookup<string, string> CreateLookup()
-    {
-        List<Student> students
-            = [
-                new("Dan Sorla", "Accounting"),
-                new("Dan Sorla", "Economics"),
-                new("Luna Delgrino", "Finance"),
-                new("Kate Green", "Investment Management")
-              ];
-
-        return students.ToLookup(s => s.Name, s => s.Course);
-    }
+        => _students.ToLookup(s => s.Name, s => s.Course);
 
     public static IEnumerable<string> RetrieveValuesOfAKeyFromLookup(string key)
         => _lookup[key];
@@ -33,18 +31,7 @@ public class LookupOperations
     }
 
     public static IEnumerable<string> RetrieveAllValuesFromLookup()
-    {
-        List<string> values = [];
-        foreach (var studentGroup in _lookup)
-        {
-            foreach (var str in studentGroup)
-            {
-                values.Add(str);
-            }
-        }
-
-        return values;
-    }
+        => _lookup.SelectMany(studentGroup => studentGroup);
 
     public static bool SearchForKeyInLookup(string key)
         => _lookup.Contains(key);

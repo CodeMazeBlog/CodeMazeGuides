@@ -4,17 +4,18 @@ namespace Tests;
 
 public class LookupOperationsTest
 {
+    private static readonly List<Student> _students
+        = [
+            new("Dan Sorla", "Accounting"),
+            new("Dan Sorla", "Economics"),
+            new("Luna Delgrino", "Finance"),
+            new("Kate Green", "Investment Management")
+          ];
+
     [Fact]
     public void WhenCreateLookupIsCalled_ThenReturnsLookup()
     {
-        List<Student> students
-            = [
-                new("Dan Sorla", "Accounting"),
-                new("Dan Sorla", "Economics"),
-                new("Luna Delgrino", "Finance"),
-                new("Kate Green", "Investment Management")
-              ];
-        var expectedLookup = students.ToLookup(s => s.Name, s => s.Course);
+        var expectedLookup = _students.ToLookup(s => s.Name, s => s.Course);
 
         var lookup = LookupOperations.CreateLookup();
 
