@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using SerializeJsonFromPascalToCamelCase.Models;
 
 namespace SerializeJsonFromPascalToCamelCase;
@@ -8,7 +9,33 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var unit1 = new House
+        var settings = new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        };
+
+        var result = JsonConvert.SerializeObject(GetData(), settings);
+
+        Console.WriteLine("Width and Length property in pascal case using JsonConvert DefaultSettings: {0}", result);
+
+        //JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+        //{
+        //    ContractResolver = new CamelCasePropertyNamesContractResolver()
+        //};
+
+        //var result = JsonConvert.SerializeObject(GetData());
+
+        //Console.WriteLine("Json converted to camel case using JsonConvert DefaultSettings: {0}", result);
+
+        var convertedUnit = FormatJson.ConvertToCamel(JObject.FromObject(GetData()));
+        result = JsonConvert.SerializeObject(convertedUnit);
+
+        Console.WriteLine("Json converted to camel case using CamelCasePropertyNamesContractResolver: {0}", result);
+    }
+
+    private static House GetData()
+    {
+        return new House
         {
             SizeInSqft = 1000,
             NoOfRooms = 2,
@@ -18,18 +45,5 @@ public class Program
                 Length = 100
             })
         };
-
-
-        //JsonConvert.DefaultSettings = () => new JsonSerializerSettings
-        //{
-        //    ContractResolver = new CamelCasePropertyNamesContractResolver()
-        //};
-
-        //Console.WriteLine("Json converted to camel case using JsonConvert DefaultSettings: {0}", JsonConvert.SerializeObject(unit1));
-
-        var codeMazeEstate = JObject.FromObject(unit1);
-        var result = FormatJson.ConvertToCamel(codeMazeEstate);
-
-        Console.WriteLine("Json converted to camel case using CamelCasePropertyNamesContractResolver: {0}", JsonConvert.SerializeObject(result));
     }
 }
