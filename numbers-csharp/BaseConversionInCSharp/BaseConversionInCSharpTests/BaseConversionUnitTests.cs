@@ -65,7 +65,6 @@ public class BaseConversionUnitTests
         Assert.AreEqual(octalResult, decimalVal);
         Assert.AreEqual(hexResult, decimalVal);
         Assert.AreEqual(base36Result, decimalVal);
-        Assert.AreEqual(base36Result, decimalVal);
         Assert.AreEqual(negativeBase36Result, -decimalVal);
     }
 
