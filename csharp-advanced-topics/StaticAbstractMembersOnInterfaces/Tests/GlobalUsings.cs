@@ -1,0 +1,5 @@
+global using Xunit;
+global using FluentAssertions;
+global using StaticAbstractMembersOnInterfaces.GenericMath;
+global using StaticAbstractMembersOnInterfaces.GenericMath.Money;
+global using StaticAbstractMembersOnInterfaces.StronglyTypedImplementation;
