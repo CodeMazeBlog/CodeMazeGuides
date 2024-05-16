@@ -12,10 +12,10 @@ public class TenantsController(DynamicTenantSetup tenantSetup) : Controller
     
     [HttpPost("create")]
     [IgnoreAntiforgeryToken]
-    public async Task<IActionResult> Create()
+    public async Task<IActionResult> Create(string tenantName, string urlPrefix)
     {
-        await tenantSetup.CreateTenant();
+        await tenantSetup.CreateTenant(tenantName, urlPrefix);
         
-        return Ok("Tenant created");
+        return Ok($"Tenant '{tenantName}' created");
     }
 }

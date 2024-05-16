@@ -6,13 +6,13 @@ namespace DynamicTenantModule;
 
 public class DynamicTenantSetup(IShellHost shellHost)
 {
-    public async Task CreateTenant()
+    public async Task CreateTenant(string tenantName, string urlPrefix)
     {
         var shellSettings = new ShellSettings();
         
-        shellSettings.Name = "CustomerC";
-        shellSettings.RequestUrlPrefix = "customer-c";
-        shellSettings["customProperty"] = "Custom settings for Customer C";
+        shellSettings.Name = tenantName;
+        shellSettings.RequestUrlPrefix = urlPrefix;
+        shellSettings["customProperty"] = $"Custom settings for '{tenantName}'";
         
         var context = new SetupContext
         {
