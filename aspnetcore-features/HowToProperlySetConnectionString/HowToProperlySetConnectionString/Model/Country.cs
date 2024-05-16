@@ -1,7 +1,6 @@
-﻿namespace HowToProperlySetConnectionString.Model
-{
-    public class Country
-    {        
-        public string CountryCode { get; set; }        
-    }
+﻿namespace HowToProperlySetConnectionString.Model;
+
+public class Country
+{        
+    public string CountryCode { get; set; }        
 }
