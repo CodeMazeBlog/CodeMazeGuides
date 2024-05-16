@@ -2,44 +2,38 @@
 using Org.BouncyCastle.Crypto;
 
 
-namespace BouncyCastleCryptographyTests
+namespace BouncyCastleCryptographyTests;
+
+[TestClass]
+public class AsymmetricEncryptionUnitTests
 {
-    [TestClass]
-    public class AsymmetricEncryptionUnitTests
+    [TestMethod]
+    public void GivenSecretData_WhenRsaEncrypting_ThenDataIsDecrypted()
     {
-        [TestMethod]
-        public void GivenSecretData_WhenRsaEncrypting_ThenDataSignatureIsProduced()
-        {
-            string input = "Hello, Bouncy Castle!";
+        string input = "Hello, Bouncy Castle!";
 
-            AsymmetricCipherKeyPair keyPair = RsaEncryptor.GenerateRsaKeyPair();
+        var keyPair = RsaEncryptor.GenerateRsaKeyPair();
 
-            byte[] encryptedBytes = RsaEncryptor.RsaEncrypt(input, keyPair.Public);
+        var encryptedBytes = RsaEncryptor.RsaEncrypt(input, keyPair.Public);
 
-            string decryptedString = RsaEncryptor.RsaDecrypt(encryptedBytes, keyPair.Private);
+        string decryptedString = RsaEncryptor.RsaDecrypt(encryptedBytes, keyPair.Private);
 
-            Console.WriteLine("Decrypted data: " + decryptedString);
+        Assert.IsNotNull(encryptedBytes);
+        Assert.AreEqual(input, decryptedString);
+    }
 
-            Assert.IsNotNull(encryptedBytes);
+    [TestMethod]
+    public void GivenSecretData_WhenRsaEncrypting_ThenDataSignatureISProducedAndCanBeVerified()
+    {
+        var input = "Hello, Bouncy Castle!";
 
-            Assert.AreEqual(input, decryptedString);
-        }
+        var keyPair = DsaEncryptor.GenerateDsaKeyPair();
 
-        [TestMethod]
-        public void GivenSecretData_WhenRsaEncrypting_ThenDataSignatureCanBeVerified()
-        {
-            string input = "Hello, Bouncy Castle!";
+        var signature = DsaEncryptor.DsaSign(input, keyPair.Private);
 
-            AsymmetricCipherKeyPair keyPair = DsaEncryptor.GenerateDsaKeyPair();
+        bool isSignatureValid = DsaEncryptor.DsaVerify(input, signature, keyPair.Public);
 
-            byte[] signature = DsaEncryptor.DsaSign(input, keyPair.Private);
-
-            bool isSignatureValid = DsaEncryptor.DsaVerify(input, signature, keyPair.Public);
-
-            Console.WriteLine("Signature verification result: " + isSignatureValid);
-
-            Assert.IsNotNull(signature);
-            Assert.IsTrue(isSignatureValid);
-        }
+        Assert.IsNotNull(signature);
+        Assert.IsTrue(isSignatureValid);
     }
 }

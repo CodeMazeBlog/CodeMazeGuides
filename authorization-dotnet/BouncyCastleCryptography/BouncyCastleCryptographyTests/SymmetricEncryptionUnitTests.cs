@@ -2,64 +2,64 @@
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Security;
 
-namespace BouncyCastleCryptographyTests
+namespace BouncyCastleCryptographyTests;
+
+[TestClass]
+public class SymmetricEncryptionUnitTests
 {
-    [TestClass]
-    public class SymmetricEncryptionUnitTests
+    [TestMethod]
+    public void GivenSecretData_WhenAesEncrypting_ThenDataIsEncrypted()
     {
-        [TestMethod]
-        public void GivenSecretData_WhenAesEncrypting_ThenDataIsEncrypted()
-        {
-            string input = "Hello, Bouncy Castle!";
+        var input = "Hello, Bouncy Castle!";
 
-            var encryptedData = AesEncryptor.AesEncrypt(input, out byte[] iv, out byte[] key);
+        var encryptedData = AesEncryptor.AesEncrypt(input, out byte[] iv, out byte[] key);
 
-            string encryptedString = Convert.ToBase64String(encryptedData);
+        var encryptedString = Convert.ToBase64String(encryptedData);
 
-            Assert.IsNotNull(encryptedData);
-            Assert.AreNotEqual(input, encryptedString);
-        }
+        Assert.IsNotNull(encryptedData);
+        Assert.AreNotEqual(input, encryptedString);
+    }
 
-        [TestMethod]
-        public void GivenSecretData_WhenAesEncrypting_ThenDataCanBeDecrypted()
-        {
-            string input = "Hello, Bouncy Castle!";
+    [TestMethod]
+    public void GivenSecretData_WhenAesEncrypting_ThenDataCanBeDecrypted()
+    {
+        var input = "Hello, Bouncy Castle!";
 
-            var encryptedData = AesEncryptor.AesEncrypt(input, out byte[] iv, out byte[] key);
+        var encryptedData = AesEncryptor.AesEncrypt(input, out byte[] iv, out byte[] key);
 
-            Assert.IsNotNull(encryptedData);
+        Assert.IsNotNull(encryptedData);
 
-            var myDecryptedStr = AesEncryptor.AesDecrypt(key, iv, encryptedData);
+        var myDecryptedStr = AesEncryptor.AesDecrypt(key, iv, encryptedData);
 
-            Assert.IsNotNull(myDecryptedStr);
-            Assert.AreEqual(input, myDecryptedStr);
-        }
+        Assert.IsNotNull(myDecryptedStr);
+        Assert.AreEqual(input, myDecryptedStr);
+    }
 
-        [TestMethod]
-        public void GivenSecretData_WhenTripleDesEncrypting_ThenDataIsEncrypted()
-        {
-            string input = "Hello, Bouncy Castle!";
+    [TestMethod]
+    public void GivenSecretData_WhenTripleDesEncrypting_ThenDataIsEncrypted()
+    {
+        var input = "Hello, Bouncy Castle!";
 
-            var myStr = TripleDesEncryptor.TripleDesEncrypt(input, out byte[] iv, out byte[] key);
+        var encryptedBytes = TripleDesEncryptor.TripleDesEncrypt(input, out byte[] iv, out byte[] key);
 
-            Assert.IsNotNull(myStr);
-        }
+        var encryptedString = Convert.ToBase64String(encryptedBytes);
 
-        [TestMethod]
-        public void GivenSecretData_WhenTripleDesEncrypting_ThenDataCanBeDecrypted()
-        {
-            string input = "Hello, Bouncy Castle!";
+        Assert.IsNotNull(encryptedBytes);
+        Assert.AreNotEqual(input, encryptedString);
+    }
 
-            var encryptedBytes = TripleDesEncryptor.TripleDesEncrypt(input, out byte[] iv, out byte[] key);
+    [TestMethod]
+    public void GivenSecretData_WhenTripleDesEncrypting_ThenDataCanBeDecrypted()
+    {
+        var input = "Hello, Bouncy Castle!";
 
-            Assert.IsNotNull(encryptedBytes);
+        var encryptedBytes = TripleDesEncryptor.TripleDesEncrypt(input, out byte[] iv, out byte[] key);
 
-            IBufferedCipher cipher = CipherUtilities.GetCipher("DESede/CBC/PKCS7Padding");
+        Assert.IsNotNull(encryptedBytes);
 
-            var myDecryptedStr = TripleDesEncryptor.TripleDesDecrypt(key, iv, encryptedBytes);
+        var myDecryptedStr = TripleDesEncryptor.TripleDesDecrypt(key, iv, encryptedBytes);
 
-            Assert.IsNotNull(myDecryptedStr);
-            Assert.AreEqual(input, myDecryptedStr);
-        }
+        Assert.IsNotNull(myDecryptedStr);
+        Assert.AreEqual(input, myDecryptedStr);
     }
 }

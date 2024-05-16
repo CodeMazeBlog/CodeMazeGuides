@@ -2,30 +2,29 @@
 using Org.BouncyCastle.Crypto;
 using System.Text;
 
-namespace BouncyCastleCryptography.Hashing
+namespace BouncyCastleCryptography.Hashing;
+
+public static class ShaHasher
 {
-    public static class ShaHasher
+    public static byte[] ShaHash(string secret)
     {
-        public static byte[] ShaHash(string secret)
+        var hash = new Sha256Digest();
+
+        var result = new byte[hash.GetDigestSize()];
+
+        using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(secret)))
         {
-            IDigest hash = new Sha256Digest();
+            var buffer = new byte[4092];
+            int bytesRead;
 
-            byte[] result = new byte[hash.GetDigestSize()];
-
-            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(secret)))
+            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
             {
-                byte[] buffer = new byte[4092];
-                int bytesRead;
-
-                while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    hash.BlockUpdate(buffer, 0, bytesRead);
-                }
-
-                hash.DoFinal(result, 0);
+                hash.BlockUpdate(buffer, 0, bytesRead);
             }
 
-            return result;
+            hash.DoFinal(result, 0);
         }
+
+        return result;
     }
 }

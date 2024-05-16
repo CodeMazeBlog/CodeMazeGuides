@@ -5,39 +5,37 @@ using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Security;
 using System.Text;
 
-namespace BouncyCastleCryptography.AsymmetricEncryption
+namespace BouncyCastleCryptography.AsymmetricEncryption;
+public static class RsaEncryptor
 {
-    public static class RsaEncryptor
+    public static AsymmetricCipherKeyPair GenerateRsaKeyPair()
     {
-        public static AsymmetricCipherKeyPair GenerateRsaKeyPair()
-        {
-            RsaKeyPairGenerator rsaKeyPairGen = new RsaKeyPairGenerator();
-            rsaKeyPairGen.Init(new KeyGenerationParameters(new SecureRandom(), 2048));
-            return rsaKeyPairGen.GenerateKeyPair();
-        }
+        var rsaKeyPairGen = new RsaKeyPairGenerator();
+        rsaKeyPairGen.Init(new KeyGenerationParameters(new SecureRandom(), 2048));
+        return rsaKeyPairGen.GenerateKeyPair();
+    }
 
-        public static byte[] RsaEncrypt(string input, AsymmetricKeyParameter publicKey)
-        {
-            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+    public static byte[] RsaEncrypt(string input, AsymmetricKeyParameter publicKey)
+    {
+        var inputBytes = Encoding.UTF8.GetBytes(input);
 
-            IAsymmetricBlockCipher cipher = new Pkcs1Encoding(new RsaEngine());
+        var cipher = new Pkcs1Encoding(new RsaEngine());
 
-            cipher.Init(true, publicKey);
+        cipher.Init(true, publicKey);
 
-            return cipher.ProcessBlock(inputBytes, 0, inputBytes.Length);
-        }
+        return cipher.ProcessBlock(inputBytes, 0, inputBytes.Length);
+    }
 
-        public static string RsaDecrypt(byte[] encryptedBytes, AsymmetricKeyParameter privateKey)
-        {
-            IAsymmetricBlockCipher cipher = new Pkcs1Encoding(new RsaEngine());
+    public static string RsaDecrypt(byte[] encryptedBytes, AsymmetricKeyParameter privateKey)
+    {
+        var cipher = new Pkcs1Encoding(new RsaEngine());
 
-            // Initialize the cipher for decryption with the private key
-            cipher.Init(false, privateKey);
+        // Initialize the cipher for decryption with the private key
+        cipher.Init(false, privateKey);
 
-            // Decrypt the encrypted data
-            byte[] decryptedBytes = cipher.ProcessBlock(encryptedBytes, 0, encryptedBytes.Length);
+        // Decrypt the encrypted data
+        byte[] decryptedBytes = cipher.ProcessBlock(encryptedBytes, 0, encryptedBytes.Length);
 
-            return Encoding.UTF8.GetString(decryptedBytes);
-        }
+        return Encoding.UTF8.GetString(decryptedBytes);
     }
 }
