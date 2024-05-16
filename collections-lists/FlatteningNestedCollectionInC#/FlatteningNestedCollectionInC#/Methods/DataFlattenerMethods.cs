@@ -2,7 +2,7 @@
 
 namespace FlatteningNestedCollection;
 
-public class Methods
+public class DataFlattenerMethods
 {
     public static IEnumerable<object> FlattenWithSelect(Department department)
     {

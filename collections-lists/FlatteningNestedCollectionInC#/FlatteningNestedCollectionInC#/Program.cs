@@ -11,13 +11,13 @@ var department = new Department
     }
 };
 Console.WriteLine("FlattenWithSelect method:");
-foreach (var flattenedObject in Methods.FlattenWithSelect(department))
+foreach (var flattenedObject in DataFlattenerMethods.FlattenWithSelect(department))
 {
     Console.WriteLine(flattenedObject);
 }
 
 Console.WriteLine("FlattenWithQueryExpression method:");
-foreach (var flattenedObject in Methods.FlattenWithQueryExpression(department))
+foreach (var flattenedObject in DataFlattenerMethods.FlattenWithQueryExpression(department))
 {
     Console.WriteLine(flattenedObject);
 }
@@ -38,7 +38,7 @@ department = new Department
 };
 
 Console.WriteLine("FlattenWithSelectMany method:");
-foreach (var flattenedObject in Methods.FlattenWithSelectMany(department))
+foreach (var flattenedObject in DataFlattenerMethods.FlattenWithSelectMany(department))
 {
     Console.WriteLine(flattenedObject);
 }
@@ -84,7 +84,7 @@ department = new Department
 };
 
 Console.WriteLine("FlattenComplexWithSelectMany method:");
-foreach (var flattenedObject in Methods.FlattenComplexWithSelectMany(department))
+foreach (var flattenedObject in DataFlattenerMethods.FlattenComplexWithSelectMany(department))
 {
     Console.WriteLine(flattenedObject);
 }
