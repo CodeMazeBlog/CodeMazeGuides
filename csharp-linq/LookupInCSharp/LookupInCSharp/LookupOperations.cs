@@ -21,13 +21,7 @@ public class LookupOperations
 
     public static List<string> RetrieveAllKeysFromLookup()
     {
-        List<string> keys = [];
-        foreach (var studentGroup in _lookup)
-        {
-            keys.Add(studentGroup.Key);
-        }
-
-        return keys;
+        return _lookup.Select(studentGroup => studentGroup.Key).ToList();
     }
 
     public static IEnumerable<string> RetrieveAllValuesFromLookup()
