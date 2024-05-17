@@ -2,11 +2,11 @@
 
 using System.Net.Http.Headers;
 
-public class AuthorizationHandler(ILogger<AuthorizationHandler> Logger) : DelegatingHandler
+public class AuthorizationHandler(ILogger<AuthorizationHandler> logger) : DelegatingHandler
 {
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        Logger.LogInformation("Hello from AuthorizationHandler");
+        logger.LogInformation("Hello from AuthorizationHandler");
 
         var token = Guid.NewGuid().ToString();
 
@@ -14,7 +14,7 @@ public class AuthorizationHandler(ILogger<AuthorizationHandler> Logger) : Delega
 
         var response = await base.SendAsync(request, cancellationToken);
 
-        Logger.LogInformation("Goodbye from AuthorizationHandler");
+        logger.LogInformation("Goodbye from AuthorizationHandler");
 
         return response;
     }

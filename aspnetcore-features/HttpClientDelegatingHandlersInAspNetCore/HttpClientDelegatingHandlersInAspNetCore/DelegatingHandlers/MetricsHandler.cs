@@ -2,11 +2,11 @@
 
 using System.Diagnostics;
 
-public class MetricsHandler(ILogger<MetricsHandler> Logger) : DelegatingHandler
+public class MetricsHandler(ILogger<MetricsHandler> logger) : DelegatingHandler
 {
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        Logger.LogInformation("Hello from MetricsHandler");
+        logger.LogInformation("Hello from MetricsHandler");
 
         var stopwatch = Stopwatch.StartNew();
 
@@ -14,8 +14,8 @@ public class MetricsHandler(ILogger<MetricsHandler> Logger) : DelegatingHandler
 
         stopwatch.Stop();
 
-        Logger.LogInformation("Request duration for {uriPath}: {elapsedMs}ms", request.RequestUri.AbsoluteUri, stopwatch.ElapsedMilliseconds);
-        Logger.LogInformation("Goodbye from MetricsHandler");
+        logger.LogInformation("Request duration for {uriPath}: {elapsedMs}ms", request.RequestUri.AbsoluteUri, stopwatch.ElapsedMilliseconds);
+        logger.LogInformation("Goodbye from MetricsHandler");
 
         return response;
     }

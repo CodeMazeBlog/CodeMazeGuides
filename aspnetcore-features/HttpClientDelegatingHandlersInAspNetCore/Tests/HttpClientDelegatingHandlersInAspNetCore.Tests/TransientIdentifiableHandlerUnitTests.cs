@@ -7,7 +7,7 @@ using Moq.Protected;
 using System.Net;
 using System.Reflection;
 
-public class TransientIdentifiableHandlerTests
+public class TransientIdentifiableHandlerUnitTests
 {
     [Fact]
     public async Task GivenSendAsyncIsInvoked_WhenTransientIdentifiableHandlerIsUsed_ThenLogsInformationWithRequestId()
