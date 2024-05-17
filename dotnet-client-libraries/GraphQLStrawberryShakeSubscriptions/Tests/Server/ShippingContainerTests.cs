@@ -5,14 +5,14 @@ namespace Tests.Server;
 public class ShippingContainerTests
 {
     [Fact]
-    public async Task ShippingContainer_Schema_Changed()
+    public async Task GivenShippingContainerSchema_WhenChanged_ThenCompareToSnapshot()
     {
         var schema = await TestServices.Executor.GetSchemaAsync(default);
         schema.ToString().Should().MatchSnapshot();
     }
 
     [Fact]
-    public async Task ShippingContainer_AddAvaliableShippingContainerAsync()
+    public async Task GivenShippingContainer_WhenAddAvaliableShippingContainerAsync_ThenCompareToSnapshot()
     {
         var result = await TestServices.ExecuteRequestAsync(
             b => b.SetQuery(@"
@@ -40,7 +40,7 @@ public class ShippingContainerTests
     }
 
     [Fact]
-    public async Task ShippingContainer_UpdateShippingContainerAsync()
+    public async Task GivenShippingContainer_WhenUpdateShippingContainerAsync_ThenCompareToSnapshot()
     {
         await TestServices.ExecuteRequestAsync(
             b => b.SetQuery(@"
@@ -90,7 +90,7 @@ public class ShippingContainerTests
     }
 
     [Fact]
-    public async Task ShippingContainer_GetShippingContainersAsync()
+    public async Task GivenShippingContainer_WhenGetShippingContainersAsync_ThenCompareToSnapshot()
     {
         await TestServices.ExecuteRequestAsync(
             b => b.SetQuery(@"

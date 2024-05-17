@@ -9,8 +9,6 @@ namespace GraphQLStrawberryShakeSubs.Controllers;
 [Route("[controller]")]
 public class ShippingContainerController(IShippingContainerSubClient client) : ControllerBase
 {
-    private readonly IShippingContainerSubClient client = client;
-
     [HttpGet]
     public async Task<IActionResult> GetShippingContainers()
     {
