@@ -5,10 +5,10 @@ using Xunit;
 public class ChessBoardTests
 {
     [Fact]
-    public void GetBackgroundColorForCell_WhenRowColSumIsEven_ReturnsWhite()
+    public void GivenRowColSumIsEven_WhenGettingBackgroundColor_ThenReturnsWhite()
     {
-        int row = 0;
-        int col = 0;
+        const int row = 0;
+        const int col = 0;
 
         var color = Print2DArrayChessBoard.GetBackgroundColorOfSquare(row, col);
 
@@ -16,10 +16,10 @@ public class ChessBoardTests
     }
 
     [Fact]
-    public void GetBackgroundColorForCell_WhenRowColSumIsOdd_ReturnsBlack()
+    public void GivenRowColSumIsOdd_WhenGettingBackgroundColor_ThenReturnsBlack()
     {
-        int row = 0;
-        int col = 1;
+        const int row = 0;
+        const int col = 1;
 
         var color = Print2DArrayChessBoard.GetBackgroundColorOfSquare(row, col);
 
