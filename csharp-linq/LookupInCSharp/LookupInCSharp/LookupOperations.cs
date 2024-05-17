@@ -19,10 +19,8 @@ public class LookupOperations
     public static IEnumerable<string> RetrieveValuesOfAKeyFromLookup(string key)
         => _lookup[key];
 
-    public static List<string> RetrieveAllKeysFromLookup()
-    {
-        return _lookup.Select(studentGroup => studentGroup.Key).ToList();
-    }
+    public static List<string> RetrieveAllKeysFromLookup() 
+        => _lookup.Select(studentGroup => studentGroup.Key).ToList();
 
     public static IEnumerable<string> RetrieveAllValuesFromLookup()
         => _lookup.SelectMany(studentGroup => studentGroup);
