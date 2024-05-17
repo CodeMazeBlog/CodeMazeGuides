@@ -35,7 +35,7 @@ public static class AesEncryptor
         // Decrypt the encrypted data
         var decryptedBytes = cipher.DoFinal(encryptedBytes);
 
-        string decryptedString = Encoding.UTF8.GetString(decryptedBytes);
+        var decryptedString = Encoding.UTF8.GetString(decryptedBytes);
 
         return decryptedString;
     }

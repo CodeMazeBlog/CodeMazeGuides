@@ -1,6 +1,4 @@
 ﻿using BouncyCastleCryptography.SymmetricEncryption;
-using Org.BouncyCastle.Crypto;
-using Org.BouncyCastle.Security;
 
 namespace BouncyCastleCryptographyTests;
 

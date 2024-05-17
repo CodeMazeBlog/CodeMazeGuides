@@ -2,7 +2,7 @@
 using BouncyCastleCryptography.Hashing;
 using BouncyCastleCryptography.SymmetricEncryption;
 
-string input = "Hello, Bouncy Castle!";
+var input = "Hello, Bouncy Castle!";
 
 // HASHING
 Console.WriteLine("Hashing:");
