@@ -14,7 +14,9 @@ public class MetricsHandler(ILogger<MetricsHandler> logger) : DelegatingHandler
 
         stopwatch.Stop();
 
-        logger.LogInformation("Request duration for {uriPath}: {elapsedMs}ms", request.RequestUri.AbsoluteUri, stopwatch.ElapsedMilliseconds);
+        logger.LogInformation("Request duration for {uriPath}: {elapsedMs}ms", 
+            request.RequestUri.AbsoluteUri, stopwatch.ElapsedMilliseconds);
+
         logger.LogInformation("Goodbye from MetricsHandler");
 
         return response;
