@@ -29,7 +29,7 @@ public class AsymmetricEncryptionUnitTests
 
         var signature = DsaEncryptor.DsaSign(input, keyPair.Private);
 
-        bool isSignatureValid = DsaEncryptor.DsaVerify(input, signature, keyPair.Public);
+        var isSignatureValid = DsaEncryptor.DsaVerify(input, signature, keyPair.Public);
 
         Assert.IsNotNull(signature);
         Assert.IsTrue(isSignatureValid);

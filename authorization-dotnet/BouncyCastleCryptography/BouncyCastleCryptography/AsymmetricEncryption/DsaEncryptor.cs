@@ -5,6 +5,7 @@ using Org.BouncyCastle.Security;
 using System.Text;
 
 namespace BouncyCastleCryptography.AsymmetricEncryption;
+
 public static class DsaEncryptor
 {
     public static AsymmetricCipherKeyPair GenerateDsaKeyPair()
