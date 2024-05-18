@@ -1,54 +1,55 @@
 ﻿using FlatteningNestedCollection.Models;
+using FlatteningNestedCollectionInCSharp.Models;
 
 namespace FlatteningNestedCollection;
 
 public class DataFlattenerMethods
 {
-    public static IEnumerable<object> FlattenWithSelect(Department department)
+    public static IEnumerable<DepartmentFlattened> FlattenWithSelect(Department department)
     {
-        return department?.Employees?.Select(employee => new
+        return department?.Employees?.Select(employee => new DepartmentFlattened()
         {
-            department.DepartmentName,
-            employee.EmployeeName,
-            employee.EmployeeEmail
+            DepartmentName = department.Name,
+            EmployeeName = employee.Name,
+            EmployeeEmail = employee.Email
         });
     }
 
-    public static IEnumerable<object> FlattenWithQueryExpression(Department department)
+    public static IEnumerable<DepartmentFlattened> FlattenWithQueryExpression(Department department)
     {
-        return from employee in department?.Employees ?? Enumerable.Empty<Employee>()
-            select new
+        return from employee in department?.Employees ?? []
+            select new DepartmentFlattened()
             {
-                department.DepartmentName,
-                employee.EmployeeName,
-                employee.EmployeeEmail
+                DepartmentName = department.Name,
+                EmployeeName = employee.Name,
+                EmployeeEmail = employee.Email
             };
     }
 
-    public static IEnumerable<object> FlattenWithSelectMany(Department department)
+    public static IEnumerable<DepartmentFlattenedMultipleCollections> FlattenWithSelectMany(Department department)
     {
         return department?.Employees?.SelectMany(
-            employee => department.Projects.Select(project => new
+            employee => department.Projects.Select(project => new DepartmentFlattenedMultipleCollections()
             {
-                department.DepartmentName,
-                employee.EmployeeName,
-                employee.EmployeeEmail,
-                project.ProjectTitle,
-                project.Budget
+                DepartmentName = department.Name,
+                EmployeeName = employee.Name,
+                EmployeeEmail = employee.Email,
+                ProjectTitle = project.Title,
+                ProjectBudget = project.Budget
             })
         );
     }
 
-    public static IEnumerable<object> FlattenComplexWithSelectMany(Department department)
+    public static IEnumerable<DepartmentFlattenedComplex> FlattenComplexWithSelectMany(Department department)
     {
         return department?.Employees?.SelectMany(
-            employee => employee.Certifications?.Select(certification => new
+            employee => employee.Certifications?.Select(certification => new DepartmentFlattenedComplex()
             {
-                department.DepartmentName,
-                employee.EmployeeName,
-                employee.EmployeeEmail,
-                certification.Title,
-                certification.IssueDate
+                DepartmentName = department.Name,
+                EmployeeName = employee.Name,
+                EmployeeEmail = employee.Email,
+                CertificationTitle = certification.Title,
+                CertificationIssueDate = certification.IssueDate
             })
         );
     }

@@ -2,6 +2,6 @@
 
 public record Project
 {
-    public string ProjectTitle { get; init; }
+    public string Title { get; init; }
     public int Budget { get; init; }       
 }

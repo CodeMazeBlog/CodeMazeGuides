@@ -3,12 +3,12 @@ using FlatteningNestedCollection.Models;
 
 var department = new Department
 {
-    DepartmentName = "Human Resources",
-    Employees = new List<Employee>
-    {
-        new() { EmployeeName = "Alice", EmployeeEmail = "alice@mail.com" },
-        new() { EmployeeName = "Bob", EmployeeEmail = "bob@mail.com" }
-    }
+    Name = "Human Resources",
+    Employees =
+    [
+        new() { Name = "Alice", Email = "alice@mail.com" },
+        new() { Name = "Bob", Email = "bob@mail.com" }
+    ]
 };
 Console.WriteLine("FlattenWithSelect method:");
 foreach (var flattenedObject in DataFlattenerMethods.FlattenWithSelect(department))
@@ -24,17 +24,17 @@ foreach (var flattenedObject in DataFlattenerMethods.FlattenWithQueryExpression(
 
 department = new Department
 {
-    DepartmentName = "Engineering",
-    Employees = new List<Employee>
-    {
-        new() { EmployeeName = "Charlie", EmployeeEmail = "charlie@mail.com" },
-        new() { EmployeeName = "David", EmployeeEmail = "david@mail.com" }
-    },
-    Projects = new List<Project>
-    {
-        new() { ProjectTitle = "Product Development", Budget = 50000 },
-        new() { ProjectTitle = "Research", Budget = 20000 }
-    }
+    Name = "Engineering",
+    Employees =
+    [
+        new() { Name = "Charlie", Email = "charlie@mail.com" },
+        new() { Name = "David", Email = "david@mail.com" }
+    ],
+    Projects =
+    [
+        new() { Title = "Product Development", Budget = 50000 },
+        new() { Title = "Research", Budget = 20000 }
+    ]
 };
 
 Console.WriteLine("FlattenWithSelectMany method:");
@@ -45,12 +45,12 @@ foreach (var flattenedObject in DataFlattenerMethods.FlattenWithSelectMany(depar
 
 department = new Department
 {
-    DepartmentName = "Engineering",
-    Employees = new List<Employee>
-    {
+    Name = "Engineering",
+    Employees =
+    [
         new() { 
-            EmployeeName = "Charlie", 
-            EmployeeEmail = "charlie@mail.com", 
+            Name = "Charlie", 
+            Email = "charlie@mail.com", 
             Certifications = [
                 new() 
                 { 
@@ -65,8 +65,8 @@ department = new Department
              ]
         },
         new() { 
-            EmployeeName = "David", 
-            EmployeeEmail = "david@mail.com" ,
+            Name = "David", 
+            Email = "david@mail.com" ,
             Certifications = [
                 new()
                 {
@@ -80,7 +80,7 @@ department = new Department
                 }
              ]
         }
-    }
+    ]
 };
 
 Console.WriteLine("FlattenComplexWithSelectMany method:");

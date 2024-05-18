@@ -1,3 +1,4 @@
+using FlatteningNestedCollectionInCSharp.Models;
 using Newtonsoft.Json;
 
 namespace FlatteningNestedCollection.Tests;
@@ -7,51 +8,51 @@ public class DataFLattenerUnitTests
     private readonly Department _defaultDepartment;
     private readonly Department _departmentTwoEmployees = new()
     {
-        DepartmentName = "IT",
+        Name = "IT",
         Employees =
             [
-                new() { EmployeeName = "John Doe", EmployeeEmail = "john@example.com" },
-                new() { EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com" }
+                new() { Name = "John Doe", Email = "john@example.com" },
+                new() { Name = "Jane Doe", Email = "jane@example.com" }
             ]
     };
 
-    private readonly object[] _departmentTwoEmployeesFlattened = new[]
-    {
-        new { DepartmentName = "IT", EmployeeName = "John Doe", EmployeeEmail = "john@example.com" },
-        new { DepartmentName = "IT", EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com" }
-    };
+    private readonly List<DepartmentFlattened> _departmentTwoEmployeesFlattened =
+    [
+        new() { DepartmentName = "IT", EmployeeName = "John Doe", EmployeeEmail = "john@example.com" },
+        new() { DepartmentName = "IT", EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com" }
+    ];
 
     private readonly Department _departmentTwoEmployeesTwoProjects = new()
     {
-        DepartmentName = "IT",
+        Name = "IT",
         Employees =
         [
-            new() { EmployeeName = "John Doe", EmployeeEmail = "john@example.com" },
-            new() { EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com" }
+            new() { Name = "John Doe", Email = "john@example.com" },
+            new() { Name = "Jane Doe", Email = "jane@example.com" }
         ],
         Projects =
         [
-            new() { ProjectTitle = "Product Development", Budget = 50000 },
-            new() { ProjectTitle = "Research", Budget = 20000 }
+            new() { Title = "Product Development", Budget = 50000 },
+            new() { Title = "Research", Budget = 20000 }
         ]
     };
 
-    private readonly object[] _departmentTwoEmployeesTwoProjectsFlattened = new[]
-    {
-        new { DepartmentName = "IT", EmployeeName = "John Doe", EmployeeEmail = "john@example.com", ProjectTitle = "Product Development", Budget = 50000 },
-        new { DepartmentName = "IT", EmployeeName = "John Doe", EmployeeEmail = "john@example.com", ProjectTitle = "Research", Budget = 20000 },
-        new { DepartmentName = "IT", EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com", ProjectTitle = "Product Development", Budget = 50000 },
-        new { DepartmentName = "IT", EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com", ProjectTitle = "Research", Budget = 20000 },
-    };
+    private readonly List<DepartmentFlattenedMultipleCollections> _departmentTwoEmployeesTwoProjectsFlattened =
+    [
+        new () { DepartmentName = "IT", EmployeeName = "John Doe", EmployeeEmail = "john@example.com", ProjectTitle = "Product Development", ProjectBudget = 50000 },
+        new () { DepartmentName = "IT", EmployeeName = "John Doe", EmployeeEmail = "john@example.com", ProjectTitle = "Research", ProjectBudget = 20000 },
+        new () { DepartmentName = "IT", EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com", ProjectTitle = "Product Development", ProjectBudget = 50000 },
+        new () { DepartmentName = "IT", EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com", ProjectTitle = "Research", ProjectBudget = 20000 },
+    ];
 
     private readonly Department _departmentTwoEmployeesFourCertificates = new()
     {
-        DepartmentName = "Engineering",
+        Name = "Engineering",
         Employees =
         [
             new() {
-                EmployeeName = "Charlie",
-                EmployeeEmail = "charlie@mail.com",
+                Name = "Charlie",
+                Email = "charlie@mail.com",
                 Certifications = [
                     new()
                     {
@@ -66,8 +67,8 @@ public class DataFLattenerUnitTests
                  ]
             },
             new() {
-                EmployeeName = "David",
-                EmployeeEmail = "david@mail.com" ,
+                Name = "David",
+                Email = "david@mail.com" ,
                 Certifications = [
                     new()
                     {
@@ -84,13 +85,13 @@ public class DataFLattenerUnitTests
         ]
     };
 
-    private readonly object[] _departmentTwoEmployeesFourCertificatesFlattened = new[]
-    {
-        new { DepartmentName = "Engineering", EmployeeName = "Charlie", EmployeeEmail = "charlie@mail.com", Title = "MCSD" , IssueDate = new DateOnly(2020, 4, 15) },
-        new { DepartmentName = "Engineering", EmployeeName = "Charlie", EmployeeEmail = "charlie@mail.com", Title = "PMP", IssueDate = new DateOnly(2022, 3, 1) },
-        new { DepartmentName = "Engineering", EmployeeName = "David", EmployeeEmail = "david@mail.com", Title = "Certified Solutions Architect", IssueDate = new DateOnly(2017, 7, 5) },
-        new { DepartmentName = "Engineering", EmployeeName = "David", EmployeeEmail = "david@mail.com", Title = "CCNA", IssueDate = new DateOnly(2019, 10, 1) },
-    };
+    private readonly List<DepartmentFlattenedComplex> _departmentTwoEmployeesFourCertificatesFlattened =
+    [
+        new () { DepartmentName = "Engineering", EmployeeName = "Charlie", EmployeeEmail = "charlie@mail.com", CertificationTitle = "MCSD" , CertificationIssueDate = new DateOnly(2020, 4, 15) },
+        new () { DepartmentName = "Engineering", EmployeeName = "Charlie", EmployeeEmail = "charlie@mail.com", CertificationTitle = "PMP", CertificationIssueDate = new DateOnly(2022, 3, 1) },
+        new () { DepartmentName = "Engineering", EmployeeName = "David", EmployeeEmail = "david@mail.com", CertificationTitle = "Certified Solutions Architect", CertificationIssueDate = new DateOnly(2017, 7, 5) },
+        new () { DepartmentName = "Engineering", EmployeeName = "David", EmployeeEmail = "david@mail.com", CertificationTitle = "CCNA", CertificationIssueDate = new DateOnly(2019, 10, 1) },
+    ];
 
     [Test]
     public void GivenFlattenWithSelect_WhenNullDepartment_ThenNull()
@@ -137,7 +138,7 @@ public class DataFLattenerUnitTests
     {
         var result = DataFlattenerMethods.FlattenWithSelect(_departmentTwoEmployees);
 
-        Assert.That(JsonConvert.SerializeObject(result), Is.EqualTo(JsonConvert.SerializeObject(_departmentTwoEmployeesFlattened)));
+        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFlattened));
     }
 
     [Test]
@@ -153,7 +154,7 @@ public class DataFLattenerUnitTests
     {
         var result = DataFlattenerMethods.FlattenWithQueryExpression(_departmentTwoEmployees);
 
-        Assert.That(JsonConvert.SerializeObject(result), Is.EqualTo(JsonConvert.SerializeObject(_departmentTwoEmployeesFlattened)));
+        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFlattened));
     }
 
     [Test]
@@ -169,7 +170,7 @@ public class DataFLattenerUnitTests
     {
         var result = DataFlattenerMethods.FlattenWithSelectMany(_departmentTwoEmployeesTwoProjects);
 
-        Assert.That(JsonConvert.SerializeObject(result), Is.EqualTo(JsonConvert.SerializeObject(_departmentTwoEmployeesTwoProjectsFlattened)));
+        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesTwoProjectsFlattened));
     }
 
     [Test]
@@ -185,6 +186,6 @@ public class DataFLattenerUnitTests
     {
         var result = DataFlattenerMethods.FlattenComplexWithSelectMany(_departmentTwoEmployeesFourCertificates);
 
-        Assert.That(JsonConvert.SerializeObject(result), Is.EqualTo(JsonConvert.SerializeObject(_departmentTwoEmployeesFourCertificatesFlattened)));
+        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFourCertificatesFlattened));
     }
 }
