@@ -1,39 +1,27 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ConditionalMiddleware.Controllers
+namespace ConditionalMiddleware.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class WeatherForecastController : ControllerBase
 {
-    [ApiController]
-    [Route("api")]
-    public class WeatherForecastController : ControllerBase
+    //[HttpGet]
+    //public IActionResult Get()
+    //{
+    //    return Ok();
+    //}
+
+    //[HttpPost("post-weather")]
+    //public IActionResult SaveWeather()
+    //{
+    //    return Ok();
+    //}
+
+    [HttpPut("update-weather")]
+    public IActionResult UpdateWeather()
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
-        }
-
-        [HttpGet()]
-        public IEnumerable<WeatherForecast> Get()
-        {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
-        }
-
-        [HttpPost("post-weather")]
-        public IActionResult GetWeather()
-        {
-            return Ok();
-        }
+        return Ok();
     }
 }
+
