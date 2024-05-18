@@ -107,7 +107,7 @@ public class ConversionExamples
         }
 
         var decimalVal = 0;
-        var quotient = 1;
+        var multiplier = 1;
 
         for (int i = anyBaseSpan.Length - 1; i >= 0; i--)
         {
@@ -117,8 +117,8 @@ public class ConversionExamples
                 throw new ArgumentException("You have entered an invalid character", anyBaseVal);
             }
                 
-            decimalVal += oneDigit * quotient;
-            quotient *= radixVal;
+            decimalVal += oneDigit * multiplier;
+            multiplier *= radixVal;
         }
 
         if (isNegative)
