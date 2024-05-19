@@ -39,10 +39,8 @@ public class ChunkUploadServer
 
 	public async Task ProcessUpload(HttpListenerContext context)
 	{
-		// Get the name of the file being uploaded from the request
 		var fileName = Path.GetFileName(context.Request.Headers["X-Filename"]);
 
-		//  If the file size is larger than total chunk size, handle appropriately
 		if (context.Request.ContentLength64 > chunkSize * threadCount)
 		{
 			Console.WriteLine("File size exceeds chunk capacity.");
@@ -58,7 +56,6 @@ public class ChunkUploadServer
 			int chunkNumber = i + 1;
 			var threadTask = Task.Run(() =>
 			{
-				// Logic to process the chunk from the request stream
 				Console.WriteLine($"Thread {chunkNumber} processed stream chunk.");
 
 				barrier.SignalAndWait();
@@ -67,7 +64,6 @@ public class ChunkUploadServer
 
 		barrier.SignalAndWait();
 
-		// Respond to request
 		var message = $"File '{fileName}' uploaded successfully...";
 
 		context.Response.ContentLength64 = Encoding.UTF8.GetByteCount(message);
