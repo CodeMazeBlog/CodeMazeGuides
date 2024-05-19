@@ -50,3 +50,6 @@ This section contains articles about ASP.NET Core Web API-related topics.
 - [How to Build a URL Shortener in .NET Applications](https://code-maze.com/aspnetcore-build-a-url-shortener/)
 - [Using Kafka in an ASP.NET Core Web API](https://code-maze.com/aspnetcore-using-kafka-in-a-web-api/)
 - [How to Show Query Parameters in Swagger in .NET Core](https://code-maze.com/aspnetcore-show-query-parameters-in-swagger/)
+- [Using the Result Pattern in .NET Web API](https://code-maze.com/aspnetcore-result-pattern/)
+- [Using Source Generators to Validate IOptions in ASP.NET Core](https://code-maze.com/aspnetcore-using-source-generators-to-validate-ioptions/)
+- [Add a Cookie to an HttpClient Request/Response in ASP.NET Core](https://code-maze.com/aspnetcore-add-a-cookie-to-an-httpclient-request-response/)

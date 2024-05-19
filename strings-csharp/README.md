@@ -40,3 +40,4 @@ This section contains the topics related to strings (parsing, conversion, other 
 - [How to Get the HTML Content of a Web Page as a String in .NET](https://code-maze.com/dotnet-get-the-html-content-of-a-web-page-as-a-string/)
 - [The Fastest Way to Remove the Last Character of a String](https://code-maze.com/csharp-fastest-way-to-remove-the-last-character-of-a-string/)
 - [Fastest Way to Find and Extract a Number From a String in C#](https://code-maze.com/csharp-fastest-way-to-find-and-extract-a-number-from-a-string/)
+- [Count the Number of Vowels in a String in C#](https://code-maze.com/csharp-count-the-number-of-vowels-in-a-string/)

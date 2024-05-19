@@ -26,3 +26,4 @@ This section contains articles about C#/.NET collections.
 - [SortedList in C#](https://code-maze.com/csharp-sortedlist/)
 - [SortedSet in C#](https://code-maze.com/csharp-sortedset/)
 - [Stack in C#](https://code-maze.com/stack-csharp/)
+- [How to Update an Item in a List in C#](https://code-maze.com/csharp-update-list-item/)
