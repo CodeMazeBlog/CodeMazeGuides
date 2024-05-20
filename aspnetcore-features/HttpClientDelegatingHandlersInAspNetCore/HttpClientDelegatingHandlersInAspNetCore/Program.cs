@@ -10,35 +10,31 @@ builder.Services
     .AddTransient<MetricsHandler>()
     .AddTransient<TransientIdentifiableHandler>();
 
-builder.Services
-    .AddHttpClient("ExtendedClient", (httpClient) =>
-    {
-        httpClient.BaseAddress = new Uri("http://localhost:5000");
-    })
-    .AddHttpMessageHandler<SimpleHandler>();
+builder.Services.AddHttpClient("ExtendedClient", (httpClient) =>
+{
+    httpClient.BaseAddress = new Uri("https://localhost:7133");
+})
+.AddHttpMessageHandler<SimpleHandler>();
 
-builder.Services
-    .AddHttpClient("ChainedClient", (httpClient) =>
-    {
-        httpClient.BaseAddress = new Uri("http://localhost:5000");
-    })
-    .AddHttpMessageHandler<AuthorizationHandler>()
-    .AddHttpMessageHandler<MetricsHandler>();
+builder.Services.AddHttpClient("ChainedClient", (httpClient) =>
+{
+    httpClient.BaseAddress = new Uri("https://localhost:7133");
+})
+.AddHttpMessageHandler<AuthorizationHandler>()
+.AddHttpMessageHandler<MetricsHandler>();
 
-builder.Services
-    .AddHttpClient("HandlerLifeTimeDemoClient", (httpClient) =>
-    {
-        httpClient.BaseAddress = new Uri("http://localhost:5000");
-    })
-    .AddHttpMessageHandler<TransientIdentifiableHandler>()
-    .SetHandlerLifetime(TimeSpan.FromSeconds(1));
+builder.Services.AddHttpClient("HandlerLifeTimeDemoClient", (httpClient) =>
+{
+    httpClient.BaseAddress = new Uri("https://localhost:7133");
+})
+.AddHttpMessageHandler<TransientIdentifiableHandler>()
+.SetHandlerLifetime(TimeSpan.FromSeconds(1));
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
-
 
 app.MapGet("/api/external-service", async () =>
 {
