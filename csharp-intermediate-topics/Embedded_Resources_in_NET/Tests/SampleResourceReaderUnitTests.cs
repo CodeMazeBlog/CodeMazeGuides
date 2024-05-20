@@ -8,7 +8,7 @@ namespace Tests;
 public class SampleResourceReaderTests
 {
     [TestMethod]
-    public void GivenMainAssembly_WhenRunningListResourcesInThisAssembly_ThenExpect9LinesInConsole()
+    public void GivenMainAssembly_WhenRunningListResourcesInThisAssembly_ThenExpect8LinesInConsole()
     {
         var (content, noLines) = GetConsoleOutput(SampleResourceReader.ListResourcesInThisAssembly);
         var expectedLines = 8;
@@ -19,7 +19,7 @@ public class SampleResourceReaderTests
     }
 
     [TestMethod]
-    public void GivenMainAssembly_WhenRunningListResourcesInAllAssemblies_ThenExpect177LinesInConsole()
+    public void GivenMainAssembly_WhenRunningListResourcesInAllAssemblies_ThenExpectKnownContent()
     {
         var (content, noLines) = GetConsoleOutput(SampleResourceReader.ListResourcesInAllAssemblies);
         var expectedText = "Embedded_Resources_in_NET.Embedded_Resources_in_NET.sln";

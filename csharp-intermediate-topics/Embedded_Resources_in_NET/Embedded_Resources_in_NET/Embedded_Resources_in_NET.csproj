@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Embedded_Resources_in_NET_Satelite\Embedded_Resources_in_NET_Satellite.csproj" />
+    <ProjectReference Include="..\Embedded_Resources_in_NET_Satellite\Embedded_Resources_in_NET_Satellite.csproj" />
   </ItemGroup>
 
 </Project>
