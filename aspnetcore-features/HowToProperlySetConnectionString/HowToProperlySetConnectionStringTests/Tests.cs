@@ -18,7 +18,7 @@ public class Tests
     }
 
     [TestMethod]
-    public void Retrieve_Connection_String()
+    public void GivenConnectionString_WhenRequestingConnectionString_ReturnsConnectionString()
     {        
         var ConnectionStringFromAppSettings = _configuration["ConnectionString:DefaultConnection"];
         var ConnectionStringValue = "Server=10.1.1.120;Database=Database;User=Admin;Password=MyStrongPassword;";
