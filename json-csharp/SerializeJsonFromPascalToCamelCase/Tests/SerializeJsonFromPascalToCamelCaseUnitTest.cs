@@ -1,9 +1,9 @@
 ﻿namespace Tests;
 
-public class SerializeJsonFromPascalToCamelCaseTest
+public class SerializeJsonFromPascalToCamelCaseUnitTest
 {
     [Fact]
-    public void GivenEdgeCase_WhenJsonSerializeObjectIsUsed_ThenDesiredOutputNotReturned()
+    public void GivenEdgeCase_WhenAJsonSerializeObjectIsUsed_ThenDesiredOutputNotReturned()
     {
         var serializedObject = JsonConvert.SerializeObject(GetData());
 
