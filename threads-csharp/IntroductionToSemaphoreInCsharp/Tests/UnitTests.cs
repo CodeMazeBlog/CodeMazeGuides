@@ -17,23 +17,23 @@ public class UnitTests
     }
 
     [TestMethod]
-    public void GivenSomeConcurrentCode_WhenAccessWithLockIsInvoked_ThenAllThreadsShouldExecute()
+    public async Task GivenSomeConcurrentCode_WhenAccessWithLockAsyncIsInvoked_ThenAllThreadsShouldExecute()
     {
-        ExampleWithLock.AccessWithLock(SleepDelay);
+        await ExampleWithLock.AccessWithLockAsync(SleepDelay);
         AssertAllThreadsExecuted();
     }
 
     [TestMethod]
-    public void GivenSomeConcurrentCode_WhenAccessWithMutexIsInvoked_ThenAllThreadsShouldExecute()
+    public async Task GivenSomeConcurrentCode_WhenAccessWithMutexAsyncIsInvoked_ThenAllThreadsShouldExecute()
     {
-        ExampleWithMutex.AccessWithMutex(SleepDelay);
+        await ExampleWithMutex.AccessWithMutexAsync(SleepDelay);
         AssertAllThreadsExecuted();
     }
 
     [TestMethod]
-    public void GivenSomeConcurrentCode_WhenAccessWithSemaphoreIsInvoked_ThenAllThreadsShouldExecute()
+    public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreAsyncIsInvoked_ThenAllThreadsShouldExecute()
     {
-        ExampleWithSemaphore.AccessWithSemaphore(SleepDelay);
+        await ExampleWithSemaphore.AccessWithSemaphoreAsync(SleepDelay);
         AssertAllThreadsExecuted();
     }
 

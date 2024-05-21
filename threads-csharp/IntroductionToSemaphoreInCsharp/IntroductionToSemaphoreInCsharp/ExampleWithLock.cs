@@ -8,36 +8,30 @@ public class ExampleWithLock
     private static List<string> _sharedResource = new List<string>();
     private static readonly object _locker = new object();
 
-    public static void AccessWithLock(int sleepDelay)
+    public static async Task AccessWithLockAsync(int sleepDelay)
     {
-        var threads = new Thread[10];
+        var tasks = new Task[10];
         for (int i = 0; i < 10; i++)
         {
             var processParams = new ProcessParams(i, sleepDelay);
-            var thread = new Thread(WorkerWithLock);
-            thread.Start(processParams);
-            threads[i] = thread;
+            var task = WorkerWithLockAsync(processParams);
+            tasks[i] = task;
         }
 
-        foreach (var thread in threads)
-        {
-            thread.Join();
-        }
+        await Task.WhenAll(tasks);
     }
 
-    static void WorkerWithLock(object? processParams)
+    static Task WorkerWithLockAsync(ProcessParams processParams)
     {
         lock (_locker)
         {
-            var processParamsObj = processParams as ProcessParams;
-            if (processParamsObj is null)
-                return;
-
-            Thread.Sleep(processParamsObj.SleepDelay); //mock a long-running operation - pretend work is happening
+            Thread.Sleep(processParams.SleepDelay);
             Console.WriteLine("Lock: Thread {0} is accessing {1} at {2}",
-                processParamsObj.SequenceNo,
+                processParams.SequenceNo,
                 nameof(_sharedResource),
                 DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture));
+
+            return Task.CompletedTask;
         }
     }
 }

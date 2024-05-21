@@ -8,38 +8,32 @@ public class ExampleWithMutex
     private static List<string> _sharedResource = new List<string>();
     private static readonly Mutex _mutex = new Mutex();
 
-    public static void AccessWithMutex(int sleepDelay)
+    public static async Task AccessWithMutexAsync(int sleepDelay)
     {
-        var threads = new Thread[10];
+        var tasks = new Task[10];
         for (int i = 0; i < 10; i++)
         {
             var processParams = new ProcessParams(i, sleepDelay);
-            var thread = new Thread(WorkerWithMutex);
-            thread.Start(processParams);
-            threads[i] = thread;
+            var task = WorkerWithMutexAsync(processParams);
+            tasks[i] = task;
         }
 
-        foreach (var thread in threads)
-        {
-            thread.Join();
-        }
+        await Task.WhenAll(tasks);
     }
 
-    static void WorkerWithMutex(object? processParams)
+    static Task WorkerWithMutexAsync(ProcessParams processParams)
     {
-        var processParamsObj = processParams as ProcessParams;
-        if (processParamsObj is null)
-            return;
-
         _mutex.WaitOne();
 
-        Thread.Sleep(processParamsObj.SleepDelay); //mock a long-running operation - pretend work is happening
+        Thread.Sleep(processParams.SleepDelay);
+        
         Console.WriteLine("Mutex: Thread {0} is accessing {1} at {2}",
-                processParamsObj.SequenceNo,
+                processParams.SequenceNo,
                 nameof(_sharedResource),
                 DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture));
 
-
         _mutex.ReleaseMutex();
+
+        return Task.CompletedTask;
     }
 }

@@ -3,13 +3,13 @@
 const int SleepDelay = 2000;
 
 Console.WriteLine("Executing with Lock...");
-ExampleWithLock.AccessWithLock(SleepDelay);
+await ExampleWithLock.AccessWithLockAsync(SleepDelay);
 
 Console.WriteLine("Executing with Mutex...");
-ExampleWithMutex.AccessWithMutex(SleepDelay);
+await ExampleWithMutex.AccessWithMutexAsync(SleepDelay);
 
 Console.WriteLine("Executing with Semaphore...");
-ExampleWithSemaphore.AccessWithSemaphore(SleepDelay);
+await ExampleWithSemaphore.AccessWithSemaphoreAsync(SleepDelay);
 
 Console.WriteLine("Executing with SemaphoreSlim...");
 await ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync(SleepDelay);
