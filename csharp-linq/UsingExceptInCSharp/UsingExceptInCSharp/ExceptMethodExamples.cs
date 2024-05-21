@@ -50,7 +50,8 @@ public class ExceptMethodExamples
 
     public List<string> GetEmployeesNotInITIgnoreCase()
     {
-        var employeesNotInIT = Employees.Select(e => e.Name).Except(ITEmployees.Select(s => s.Name), StringComparer.OrdinalIgnoreCase).ToList();
+        var employeesNotInIT = Employees.Select(e => e.Name)
+            .Except(ITEmployees.Select(s => s.Name), StringComparer.OrdinalIgnoreCase).ToList();
 
         return employeesNotInIT;
     }
