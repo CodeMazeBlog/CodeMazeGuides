@@ -33,7 +33,7 @@ public class ChunkUploadServerTests
     }
 
     [TestMethod]
-    public async Task WhenUploadingLargeFiles_ThenShouldRejectLargeFilesExceedingChunkCapacityByThrowingException()
+    public async Task WhenUploadingLargeFiles_ThenShouldRejectLargeFilesExceedingChunkCapacity()
     {
         // Arrange
         int chunkSize = 1024 * 1024;
@@ -48,7 +48,11 @@ public class ChunkUploadServerTests
         using var client = new HttpClient(clientHandler);
         using var content = new ByteArrayContent(new byte[fileSize]);
         content.Headers.Add("X-Filename", "test.txt");
-        var response = await client.PostAsync($"http://localhost:{port}/upload/", content);
+
+        var request = new HttpRequestMessage(HttpMethod.Post, new Uri($"http://localhost:{port}/upload/"));
+        request.Content = content;
+
+        var response = client.Send(request);
 
         // Assert
         Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
