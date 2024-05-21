@@ -1,4 +1,3 @@
-using EasyCaching;
 using EasyCaching.API;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Diagnostics;

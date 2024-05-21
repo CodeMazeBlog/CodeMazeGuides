@@ -29,7 +29,7 @@ namespace EasyCaching.Controllers
             }
             else
             {
-                await Task.Delay(1500);
+                await Task.Delay(50);
                 var today = DateTime.Now.Date;
                 prizeDto.Year = today.Year;
 
@@ -44,7 +44,7 @@ namespace EasyCaching.Controllers
             }
             else
             {
-                await Task.Delay(1500);
+                await Task.Delay(50);
                 var prizes = Data.GetWinePrizes();
                 prizeDto.Prizes = prizes;
 
