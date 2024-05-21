@@ -6,7 +6,7 @@ public class StockPriceService : IStockPriceService
 {
     public async Task<ApiToken> AuthenticateAsync(string username, string password, CancellationToken cancellationToken)
     {
-        await Task.Delay(500, cancellationToken);// pretend network call
+        await Task.Delay(50, cancellationToken);// pretend network call
         
         ApiToken apiToken;
         if (username.Equals(password, StringComparison.InvariantCultureIgnoreCase))
@@ -20,7 +20,7 @@ public class StockPriceService : IStockPriceService
     public async Task<StockPrice[]> GetStockPricesAsync(ApiToken token, CancellationToken cancellationToken)
     {
         var measurementTimeStamp = DateTime.UtcNow;
-        await Task.Delay(500, cancellationToken);// pretend network call
+        await Task.Delay(50, cancellationToken);// pretend network call
 
         if (token.Token == Guid.Empty)
             return [];
