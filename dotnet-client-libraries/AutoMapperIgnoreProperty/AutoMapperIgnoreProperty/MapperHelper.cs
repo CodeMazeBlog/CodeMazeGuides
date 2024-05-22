@@ -30,5 +30,4 @@ public class MapperHelper
 
         return configuration.CreateMapper();
     }
-
 }

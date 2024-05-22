@@ -28,11 +28,13 @@ PrintObject(userDto3);
 void PrintObject(object userObject)
 {
     Console.WriteLine("*** {0} ***", userObject.GetType().Name.ToString());
+    
     foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(userObject))
     {
         string name = descriptor.Name;
         object value = descriptor.GetValue(userObject);
         Console.WriteLine("{0}: {1}", name, value);
     }
+
     Console.WriteLine();
 }
