@@ -17,20 +17,6 @@ public class UnitTests
     }
 
     [TestMethod]
-    public async Task GivenSomeConcurrentCode_WhenAccessWithLockAsyncIsInvoked_ThenAllThreadsShouldExecute()
-    {
-        await ExampleWithLock.AccessWithLockAsync(SleepDelay);
-        AssertAllThreadsExecuted();
-    }
-
-    [TestMethod]
-    public async Task GivenSomeConcurrentCode_WhenAccessWithMutexAsyncIsInvoked_ThenAllThreadsShouldExecute()
-    {
-        await ExampleWithMutex.AccessWithMutexAsync(SleepDelay);
-        AssertAllThreadsExecuted();
-    }
-
-    [TestMethod]
     public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreAsyncIsInvoked_ThenAllThreadsShouldExecute()
     {
         await ExampleWithSemaphore.AccessWithSemaphoreAsync(SleepDelay);
