@@ -28,9 +28,9 @@ public static async Task ExecuteAsync()
     };
 
     var pipeline = new ResiliencePipelineBuilder()
-    .AddRetry(retryOptions)
-    .AddCircuitBreaker(circuitBreakerOptions)
-    .Build();
+        .AddRetry(retryOptions)
+        .AddCircuitBreaker(circuitBreakerOptions)
+        .Build();
     
     await pipeline.ExecuteAsync(async cancellationToken =>
     {

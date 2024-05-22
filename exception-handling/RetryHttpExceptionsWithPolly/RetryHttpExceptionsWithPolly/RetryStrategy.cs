@@ -15,7 +15,7 @@ public static class RetryStrategy
             Delay = TimeSpan.FromSeconds(1),
             DelayGenerator = async arg =>
             {
-                if(arg.Outcome.Exception is RateLimitedException rateLimitedException)
+                if (arg.Outcome.Exception is RateLimitedException rateLimitedException)
                     return rateLimitedException.RetryAfter;
                 return null;
             },
@@ -33,9 +33,10 @@ public static class RetryStrategy
 
         await pipeline.ExecuteAsync(async cancellationToken =>
         {
-            var response = await new HttpClient().GetAsync("https://jsonplaceholder.typicode.com/users", cancellationToken);
+            var response =
+                await new HttpClient().GetAsync("https://jsonplaceholder.typicode.com/users", cancellationToken);
             Console.WriteLine($"HTTP Status Code: {response.StatusCode}");
-            if(response.StatusCode == HttpStatusCode.TooManyRequests)
+            if (response.StatusCode == HttpStatusCode.TooManyRequests)
                 throw new RateLimitedException(response.Headers.RetryAfter?.Delta);
             response.EnsureSuccessStatusCode();
         });
