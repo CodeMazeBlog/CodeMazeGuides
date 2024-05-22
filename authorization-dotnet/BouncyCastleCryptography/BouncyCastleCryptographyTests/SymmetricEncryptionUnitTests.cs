@@ -34,11 +34,12 @@ public class SymmetricEncryptionUnitTests
     }
 
     [TestMethod]
-    public void GivenSecretData_WhenTripleDesEncrypting_ThenDataIsEncrypted()
+    public void GivenSecretData_WhenBlowfishEncrypting_ThenDataIsEncrypted()
     {
         var input = "Hello, Bouncy Castle!";
+        var password = "mysecretpassword";
 
-        var encryptedBytes = TripleDesEncryptor.TripleDesEncrypt(input, out byte[] iv, out byte[] key);
+        var encryptedBytes = BlowfishEncryptor.BlowfishEncrypt(input, password, out byte[] iv);
 
         var encryptedString = Convert.ToBase64String(encryptedBytes);
 
@@ -47,15 +48,14 @@ public class SymmetricEncryptionUnitTests
     }
 
     [TestMethod]
-    public void GivenSecretData_WhenTripleDesEncrypting_ThenDataCanBeDecrypted()
+    public void GivenSecretData_WhenBlowfishEncrypting_ThenDataCanBeDecrypted()
     {
         var input = "Hello, Bouncy Castle!";
+        var password = "mysecretpassword";
 
-        var encryptedBytes = TripleDesEncryptor.TripleDesEncrypt(input, out byte[] iv, out byte[] key);
+        var encryptedBytes = BlowfishEncryptor.BlowfishEncrypt(input, password, out byte[] iv);
 
-        Assert.IsNotNull(encryptedBytes);
-
-        var myDecryptedStr = TripleDesEncryptor.TripleDesDecrypt(key, iv, encryptedBytes);
+        var myDecryptedStr = BlowfishEncryptor.BlowfishDecrypt(encryptedBytes, password, iv);
 
         Assert.IsNotNull(myDecryptedStr);
         Assert.AreEqual(input, myDecryptedStr);

@@ -30,11 +30,13 @@ var encryptedString = Convert.ToBase64String(encryptedData);
 
 Console.WriteLine("AES encryption result: " + encryptedString);
 
-encryptedData = TripleDesEncryptor.TripleDesEncrypt(input, out byte[] iv2, out byte[] key2);
+var password = "mysecretpassword";
+
+encryptedData = BlowfishEncryptor.BlowfishEncrypt(input, password, out byte[] iv2);
 
 encryptedString = Convert.ToBase64String(encryptedData);
 
-Console.WriteLine("TripleDES encryption result: " + encryptedString);
+Console.WriteLine("Blowfish encryption result: " + encryptedString);
 Console.WriteLine();
 
 // Asymmetric Encryption

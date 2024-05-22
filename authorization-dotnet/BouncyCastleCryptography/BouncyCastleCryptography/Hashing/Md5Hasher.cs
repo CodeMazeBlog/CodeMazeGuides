@@ -10,18 +10,11 @@ public static class Md5Hasher
 
         var result = new byte[hash.GetDigestSize()];
 
-        using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(secret)))
-        {
-            var buffer = new byte[4092];
-            int bytesRead;
+        var data = Encoding.UTF8.GetBytes(secret);
 
-            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
-            {
-                hash.BlockUpdate(buffer, 0, bytesRead);
-            }
+        hash.BlockUpdate(data, 0, data.Length);
 
-            hash.DoFinal(result, 0);
-        }
+        hash.DoFinal(result, 0);
 
         return result;
     }
