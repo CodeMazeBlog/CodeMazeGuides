@@ -57,7 +57,7 @@ var signature = DsaEncryptor.DsaSign(input, keyPair2.Private);
 
 var signatureAsStr = Convert.ToBase64String(encryptedData);
 
-bool isSignatureValid = DsaEncryptor.DsaVerify(input, signature, keyPair2.Public);
+var isSignatureValid = DsaEncryptor.DsaVerify(input, signature, keyPair2.Public);
 
 Console.WriteLine("DSA signature result: " + signatureAsStr);
 Console.WriteLine("DSA signature is valid: " + isSignatureValid.ToString());

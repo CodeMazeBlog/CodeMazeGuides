@@ -2,6 +2,7 @@
 using System.Text;
 
 namespace BouncyCastleCryptography.Hashing;
+
 public static class Md5Hasher
 {
     public static byte[] Md5Hash(string secret)

@@ -6,6 +6,7 @@ using Org.BouncyCastle.Security;
 using System.Text;
 
 namespace BouncyCastleCryptography.AsymmetricEncryption;
+
 public static class RsaEncryptor
 {
     public static AsymmetricCipherKeyPair GenerateRsaKeyPair()
@@ -34,7 +35,7 @@ public static class RsaEncryptor
         cipher.Init(false, privateKey);
 
         // Decrypt the encrypted data
-        byte[] decryptedBytes = cipher.ProcessBlock(encryptedBytes, 0, encryptedBytes.Length);
+        var decryptedBytes = cipher.ProcessBlock(encryptedBytes, 0, encryptedBytes.Length);
 
         return Encoding.UTF8.GetString(decryptedBytes);
     }
