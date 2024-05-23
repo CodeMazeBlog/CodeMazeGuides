@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDictionaryMethodInCSharp", "ToDictionaryMethodInCSharp\ToDictionaryMethodInCSharp.csproj", "{4678A639-ADF7-4364-87FD-BDE212994D1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{1C4CB102-FCEA-4D52-995B-4602D235B47A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4678A639-ADF7-4364-87FD-BDE212994D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4678A639-ADF7-4364-87FD-BDE212994D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4678A639-ADF7-4364-87FD-BDE212994D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4678A639-ADF7-4364-87FD-BDE212994D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C4CB102-FCEA-4D52-995B-4602D235B47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C4CB102-FCEA-4D52-995B-4602D235B47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C4CB102-FCEA-4D52-995B-4602D235B47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C4CB102-FCEA-4D52-995B-4602D235B47A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B40ADC6B-EA28-4881-A987-95E3FA1E7224}
+	EndGlobalSection
+EndGlobal
