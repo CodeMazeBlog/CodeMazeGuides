@@ -22,7 +22,7 @@ public static class RetryStrategy
             UseJitter = true,
             OnRetry = args =>
             {
-                Console.WriteLine($"OnRetry, Attempt: {args.AttemptNumber}, Delay: {args.RetryDelay}");
+                Console.WriteLine($"OnRetry, Attempt: {args.AttemptNumber + 1}, Delay: {args.RetryDelay}");
                 return default;
             }
         };

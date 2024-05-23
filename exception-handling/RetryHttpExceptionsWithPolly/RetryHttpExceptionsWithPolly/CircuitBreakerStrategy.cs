@@ -13,7 +13,7 @@ public static async Task ExecuteAsync()
     {
         MaxRetryAttempts = 20,
         Delay = TimeSpan.FromSeconds(1),
-        OnRetry = async args => Console.WriteLine($"OnRetry, Attempt: {args.AttemptNumber}, Delay: {args.RetryDelay}")
+        OnRetry = async args => Console.WriteLine($"OnRetry, Attempt: {args.AttemptNumber + 1}, Delay: {args.RetryDelay}")
     };
     
     var circuitBreakerOptions = new CircuitBreakerStrategyOptions
