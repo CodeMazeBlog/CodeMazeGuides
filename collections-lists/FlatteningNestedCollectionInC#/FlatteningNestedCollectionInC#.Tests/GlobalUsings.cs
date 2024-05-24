@@ -1,2 +1,3 @@
 global using NUnit.Framework;
-global using FlatteningNestedCollection.Models;
+global using FlatteningNestedCollectionInCSharp;
+global using FlatteningNestedCollectionInCSharp.Models;

@@ -1,9 +1,6 @@
-using FlatteningNestedCollectionInCSharp.Models;
-using Newtonsoft.Json;
-
 namespace FlatteningNestedCollection.Tests;
 
-public class DataFLattenerUnitTests
+public class DataFlattenerUnitTests
 {
     private readonly Department _defaultDepartment;
     private readonly Department _departmentTwoEmployees = new()
@@ -96,7 +93,7 @@ public class DataFLattenerUnitTests
     [Test]
     public void GivenFlattenWithSelect_WhenNullDepartment_ThenNull()
     {
-        var result = DataFlattenerMethods.FlattenWithSelect(_defaultDepartment);
+        var result = DataFlattener.FlattenWithSelect(_defaultDepartment);
 
         Assert.That(result, Is.Null);
     }
@@ -104,7 +101,7 @@ public class DataFLattenerUnitTests
     [Test]
     public void GivenFlattenWithQueryExpression_WhenNullDepartment_ThenEmpty()
     {
-        var result = DataFlattenerMethods.FlattenWithQueryExpression(_defaultDepartment);
+        var result = DataFlattener.FlattenWithQueryExpression(_defaultDepartment);
 
         Assert.That(result, Is.Empty);
     }
@@ -112,7 +109,7 @@ public class DataFLattenerUnitTests
     [Test]
     public void GivenFlattenWithSelectMany_WhenNullDepartment_ThenNull()
     {
-        var result = DataFlattenerMethods.FlattenWithSelectMany(_defaultDepartment);
+        var result = DataFlattener.FlattenWithSelectMany(_defaultDepartment);
 
         Assert.That(result, Is.Null);
     }
@@ -120,72 +117,44 @@ public class DataFLattenerUnitTests
     [Test]
     public void GivenFlattenComplexWithSelectMany_WhenNullDepartment_ThenNull()
     {
-        var result = DataFlattenerMethods.FlattenComplexWithSelectMany(_defaultDepartment);
+        var result = DataFlattener.FlattenComplexWithSelectMany(_defaultDepartment);
 
         Assert.That(result, Is.Null);
     }
 
     [Test]
-    public void GivenFlattenWithSelect_WhenDepartmentTwoEmployees_ThenTwoResults()
-    {
-        var result = DataFlattenerMethods.FlattenWithSelect(_departmentTwoEmployees);
-
-        Assert.That(result.Count(), Is.EqualTo(2));
-    }
-
-    [Test]
     public void GivenFlattenWithSelect_WhenDepartmentTwoEmployees_ThenResultFlattenedObject()
     {
-        var result = DataFlattenerMethods.FlattenWithSelect(_departmentTwoEmployees);
-
-        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFlattened));
-    }
-
-    [Test]
-    public void GivenFlattenWithQueryExpression_WhenDepartmentTwoEmployees_ThenTwoResults()
-    {
-        var result = DataFlattenerMethods.FlattenWithQueryExpression(_departmentTwoEmployees);
+        var result = DataFlattener.FlattenWithSelect(_departmentTwoEmployees);
 
         Assert.That(result.Count(), Is.EqualTo(2));
+        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFlattened));
     }
 
     [Test]
     public void GivenFlattenWithQueryExpression_WhenDepartmentTwoEmployees_ThenResultFlattenedObject()
     {
-        var result = DataFlattenerMethods.FlattenWithQueryExpression(_departmentTwoEmployees);
+        var result = DataFlattener.FlattenWithQueryExpression(_departmentTwoEmployees);
 
+        Assert.That(result.Count(), Is.EqualTo(2));
         Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFlattened));
-    }
-
-    [Test]
-    public void GivenFlattenWithSelectMany_WhenDepartmentTwoEmployeesTwoProjects_ThenFourResults()
-    {
-        var result = DataFlattenerMethods.FlattenWithSelectMany(_departmentTwoEmployeesTwoProjects);
-
-        Assert.That(result.Count(), Is.EqualTo(4));
     }
 
     [Test]
     public void GivenFlattenWithSelectMany_WhenDepartmentTwoEmployeesTwoProjects_ThenResultFlattenedObject()
     {
-        var result = DataFlattenerMethods.FlattenWithSelectMany(_departmentTwoEmployeesTwoProjects);
-
-        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesTwoProjectsFlattened));
-    }
-
-    [Test]
-    public void GivenFlattenComplexWithSelectMany_WhenDepartmentTwoEmployeesFourCertificates_ThenTwoResults()
-    {
-        var result = DataFlattenerMethods.FlattenComplexWithSelectMany(_departmentTwoEmployeesFourCertificates);
+        var result = DataFlattener.FlattenWithSelectMany(_departmentTwoEmployeesTwoProjects);
 
         Assert.That(result.Count(), Is.EqualTo(4));
+        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesTwoProjectsFlattened));
     }
 
     [Test]
     public void GivenFlattenComplexWithSelectMany_WhenDepartmentTwoEmployeesFourCertificates_ThenResultFlattenedObject()
     {
-        var result = DataFlattenerMethods.FlattenComplexWithSelectMany(_departmentTwoEmployeesFourCertificates);
+        var result = DataFlattener.FlattenComplexWithSelectMany(_departmentTwoEmployeesFourCertificates);
 
+        Assert.That(result.Count(), Is.EqualTo(4));
         Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFourCertificatesFlattened));
     }
 }

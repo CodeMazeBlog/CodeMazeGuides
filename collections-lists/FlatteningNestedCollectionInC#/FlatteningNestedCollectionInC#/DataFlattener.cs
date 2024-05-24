@@ -1,9 +1,8 @@
-﻿using FlatteningNestedCollection.Models;
-using FlatteningNestedCollectionInCSharp.Models;
+﻿using FlatteningNestedCollectionInCSharp.Models;
 
-namespace FlatteningNestedCollection;
+namespace FlatteningNestedCollectionInCSharp;
 
-public class DataFlattenerMethods
+public class DataFlattener
 {
     public static IEnumerable<DepartmentFlattened> FlattenWithSelect(Department department)
     {
@@ -18,12 +17,12 @@ public class DataFlattenerMethods
     public static IEnumerable<DepartmentFlattened> FlattenWithQueryExpression(Department department)
     {
         return from employee in department?.Employees ?? []
-            select new DepartmentFlattened()
-            {
-                DepartmentName = department.Name,
-                EmployeeName = employee.Name,
-                EmployeeEmail = employee.Email
-            };
+               select new DepartmentFlattened()
+               {
+                   DepartmentName = department.Name,
+                   EmployeeName = employee.Name,
+                   EmployeeEmail = employee.Email
+               };
     }
 
     public static IEnumerable<DepartmentFlattenedMultipleCollections> FlattenWithSelectMany(Department department)

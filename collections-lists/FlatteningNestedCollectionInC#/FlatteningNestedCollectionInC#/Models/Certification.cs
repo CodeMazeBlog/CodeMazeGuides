@@ -1,4 +1,4 @@
-﻿namespace FlatteningNestedCollection.Models;
+﻿namespace FlatteningNestedCollectionInCSharp.Models;
 
 public record Certification
 {

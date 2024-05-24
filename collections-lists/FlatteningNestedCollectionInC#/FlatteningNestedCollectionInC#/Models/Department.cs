@@ -1,8 +1,8 @@
-﻿namespace FlatteningNestedCollection.Models;
+﻿namespace FlatteningNestedCollectionInCSharp.Models;
 
 public record Department
 {
-    public string Name { get; init; }
-    public IEnumerable<Employee> Employees { get; init; }
-    public IEnumerable<Project> Projects { get; init; }
+    public string Name { get; set; }
+    public IEnumerable<Employee> Employees { get; set; }
+    public IEnumerable<Project> Projects { get; set; }
 }

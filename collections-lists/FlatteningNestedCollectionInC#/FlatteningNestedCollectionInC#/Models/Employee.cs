@@ -1,6 +1,4 @@
-﻿using FlatteningNestedCollection.Models;
-
-namespace FlatteningNestedCollection;
+﻿namespace FlatteningNestedCollectionInCSharp.Models;
 
 public record Employee
 {

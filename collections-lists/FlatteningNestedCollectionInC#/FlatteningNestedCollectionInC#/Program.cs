@@ -1,5 +1,5 @@
-﻿using FlatteningNestedCollection;
-using FlatteningNestedCollection.Models;
+﻿using FlatteningNestedCollectionInCSharp;
+using FlatteningNestedCollectionInCSharp.Models;
 
 var department = new Department
 {
@@ -11,13 +11,13 @@ var department = new Department
     ]
 };
 Console.WriteLine("FlattenWithSelect method:");
-foreach (var flattenedObject in DataFlattenerMethods.FlattenWithSelect(department))
+foreach (var flattenedObject in DataFlattener.FlattenWithSelect(department))
 {
     Console.WriteLine(flattenedObject);
 }
 
 Console.WriteLine("FlattenWithQueryExpression method:");
-foreach (var flattenedObject in DataFlattenerMethods.FlattenWithQueryExpression(department))
+foreach (var flattenedObject in DataFlattener.FlattenWithQueryExpression(department))
 {
     Console.WriteLine(flattenedObject);
 }
@@ -38,7 +38,7 @@ department = new Department
 };
 
 Console.WriteLine("FlattenWithSelectMany method:");
-foreach (var flattenedObject in DataFlattenerMethods.FlattenWithSelectMany(department))
+foreach (var flattenedObject in DataFlattener.FlattenWithSelectMany(department))
 {
     Console.WriteLine(flattenedObject);
 }
@@ -84,7 +84,7 @@ department = new Department
 };
 
 Console.WriteLine("FlattenComplexWithSelectMany method:");
-foreach (var flattenedObject in DataFlattenerMethods.FlattenComplexWithSelectMany(department))
+foreach (var flattenedObject in DataFlattener.FlattenComplexWithSelectMany(department))
 {
     Console.WriteLine(flattenedObject);
 }
