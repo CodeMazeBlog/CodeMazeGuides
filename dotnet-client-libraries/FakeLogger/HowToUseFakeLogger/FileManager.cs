@@ -2,7 +2,7 @@
 
 namespace HowToUseFakeLogger;
 
-public class FileManager(ILogger _logger)
+public class FileManager(ILogger logger)
 {
     public string ReadFile(string fileName)
     {
@@ -13,11 +13,11 @@ public class FileManager(ILogger _logger)
 
             if (!allowedExtensions.Contains(extension))
             {
-                _logger.LogWarning("Invalid extension");
+                logger.LogWarning("Invalid extension");
                 return string.Empty;
             }
 
-            _logger.LogInformation("Reading file: {FileName}", fileName);
+            logger.LogInformation("Reading file: {FileName}", fileName);
 
             var filePath = Path.Combine("./files/", fileName);
             if (File.Exists(filePath))
@@ -31,7 +31,7 @@ public class FileManager(ILogger _logger)
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error occurred");
+            logger.LogError(ex, "Error occurred");
             return string.Empty;
         }
     }
