@@ -24,3 +24,4 @@ This section contains articles about authorization related topics in .NET.
 - [Two Factor Authentication with Angular using Google Authenticator](https://code-maze.com/dotnet-angular-two-factor-authentication-with-using-google-authenticator/)
 - [Two-Factor Authentication With SMS in ASP.NET Core](https://code-maze.com/aspnetcore-two-factor-authentication-sms/)
 - [Using Authorization with Swagger in ASP.NET Core](https://code-maze.com/swagger-authorization-aspnet-core/)
+- [How Does the Default ASP.NET Core Identity Password Hasher Work?](https://code-maze.com/aspnetcore-default-asp-net-core-identity-password-hasher/)
