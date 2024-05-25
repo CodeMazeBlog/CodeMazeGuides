@@ -29,7 +29,7 @@ Console.WriteLine("Width and Length property in pascal case using JsonConvert De
 //    ContractResolver = new CamelCasePropertyNamesContractResolver()
 //};
 
-//var result = JsonConvert.SerializeObject(GetData());
+//var result = JsonConvert.SerializeObject(houseInput);
 
 //Console.WriteLine("Json converted to camel case using JsonConvert DefaultSettings: {0}", result);
 
