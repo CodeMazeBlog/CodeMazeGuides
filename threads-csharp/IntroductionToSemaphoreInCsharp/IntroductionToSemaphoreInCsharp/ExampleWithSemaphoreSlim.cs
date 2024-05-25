@@ -28,7 +28,7 @@ public class ExampleWithSemaphoreSlim
 
         await _semaphoreSlim.WaitAsync();
 
-        await Task.Delay(processParams.SleepDelay); //mock a long-running operation - pretend work is happening
+        await Task.Delay(processParams.SleepDelay);
         Console.WriteLine("SemaphoreSlim: Thread {0} is accessing {1} at {2}",
                 processParams.SequenceNo,
                 nameof(_sharedResource),
