@@ -32,7 +32,7 @@ public class SerializeJsonFromPascalToCamelCaseUnitTest
         Assert.Equal(serializedObject, GetResult());
     }
 
-    public static House GetData()
+    private static House GetData()
     {
         return new House
         {
@@ -46,8 +46,6 @@ public class SerializeJsonFromPascalToCamelCaseUnitTest
         };
     }
 
-    public static string GetResult()
-    {
-        return "{\"noOfRooms\":2,\"sizeInSqft\":1000.0,\"otherDetails\":{\"width\":50,\"length\":100}}";
-    }
+    private static string GetResult() =>
+        "{\"noOfRooms\":2,\"sizeInSqft\":1000.0,\"otherDetails\":{\"width\":50,\"length\":100}}";
 }

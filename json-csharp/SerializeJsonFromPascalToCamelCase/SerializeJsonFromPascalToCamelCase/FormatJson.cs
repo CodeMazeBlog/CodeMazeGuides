@@ -9,12 +9,11 @@ public class FormatJson
 {
     public static JObject ConvertToCamel(JObject jsonObject)
     {
-        var settings = JsonSerializer.Create(
-                        new JsonSerializerSettings
-                        {
-                            ContractResolver = new CamelCasePropertyNamesContractResolver()
-                        });
+        var settings = JsonSerializer.Create(new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        });
 
-        return JObject.FromObject(jsonObject.ToObject<ExpandoObject>(), settings);
+        return JObject.FromObject(jsonObject.ToObject<ExpandoObject>()!, settings);
     }
 }
