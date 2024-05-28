@@ -6,8 +6,6 @@ namespace HowToProperlySetConnectionString.Data;
 
 public class AppDbContext(IConfiguration configuration) : DbContext
 {
-    private IConfiguration _configuration { get; set; } = configuration;
-
     public DbSet<Country> Countries { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -17,7 +15,7 @@ public class AppDbContext(IConfiguration configuration) : DbContext
         #endregion
 
         #region Example from the appsettings
-        optionsBuilder.UseSqlServer(_configuration.GetConnectionString("DefaultConnection"));
+        optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         #endregion
     }
 }
