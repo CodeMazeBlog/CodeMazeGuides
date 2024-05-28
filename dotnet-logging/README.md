@@ -13,3 +13,4 @@ This section contains the topics related to logging and logging tools in .NET.
 - [Structured Logging in ASP.NET Core With log4net](https://code-maze.com/aspnetcore-structured-logging-log4net/)
 - [Using Serilog with Microsoft’s ILogger API](https://code-maze.com/aspnetcore-using-serilog-with-microsofts-ilogger-api/)
 - [Best Practices for Logging With Serilog](https://code-maze.com/dotnet-best-practices-for-logging-with-serilog/)
+- [Real-Time .NET Error Reporting With Exceptionless](https://code-maze.com/csharp-real-time-net-error-reporting-with-exceptionless/)
