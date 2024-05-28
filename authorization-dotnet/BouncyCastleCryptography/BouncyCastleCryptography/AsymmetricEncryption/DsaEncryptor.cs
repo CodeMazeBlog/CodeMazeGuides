@@ -20,6 +20,7 @@ public static class DsaEncryptor
         var dsaKeyParams = new DsaKeyGenerationParameters(random, dsaParams);
         var dsaKeyPairGen = new DsaKeyPairGenerator();
         dsaKeyPairGen.Init(dsaKeyParams);
+
         return dsaKeyPairGen.GenerateKeyPair();
     }
 

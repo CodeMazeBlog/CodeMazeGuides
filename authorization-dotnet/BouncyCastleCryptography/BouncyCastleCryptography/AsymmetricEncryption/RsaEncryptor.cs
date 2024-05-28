@@ -13,6 +13,7 @@ public static class RsaEncryptor
     {
         var rsaKeyPairGen = new RsaKeyPairGenerator();
         rsaKeyPairGen.Init(new KeyGenerationParameters(new SecureRandom(), 2048));
+
         return rsaKeyPairGen.GenerateKeyPair();
     }
 
