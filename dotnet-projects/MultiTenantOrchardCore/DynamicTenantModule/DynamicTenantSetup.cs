@@ -1,27 +1,26 @@
 ﻿using OrchardCore.Environment.Shell;
 using OrchardCore.Environment.Shell.Models;
-using OrchardCore.Setup.Services;
 
 namespace DynamicTenantModule;
 
-public class DynamicTenantSetup(IShellHost shellHost)
+public class DynamicTenantSetup(IShellHost shellHost, IShellSettingsManager shellSettingsManager)
 {
     public async Task CreateTenant(string tenantName, string urlPrefix)
     {
-        var shellSettings = new ShellSettings();
-        
-        shellSettings.Name = tenantName;
-        shellSettings.RequestUrlPrefix = urlPrefix;
-        shellSettings["customProperty"] = $"Custom settings for '{tenantName}'";
-        
-        var context = new SetupContext
+        var shellSettings = new ShellSettings
         {
-            ShellSettings = shellSettings,
+            Name = tenantName,
+            RequestUrlHost = null,
+            RequestUrlPrefix = urlPrefix,
+            State = TenantState.Uninitialized,
         };
         
-        context.ShellSettings.State = TenantState.Initializing;
-        shellSettings.State = TenantState.Running;
+        shellSettings["customProperty"] = $"Custom settings for '{tenantName}'";
         
-        await shellHost.UpdateShellSettingsAsync(new ShellSettings(context.ShellSettings));
+        await shellSettingsManager.SaveSettingsAsync(shellSettings);
+
+        shellSettings.State = TenantState.Running;
+
+        await shellHost.UpdateShellSettingsAsync(shellSettings);
     }
 }
