@@ -6,17 +6,17 @@ namespace ConditionalMiddleware.Controllers;
 [Route("api/[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    //[HttpGet]
-    //public IActionResult Get()
-    //{
-    //    return Ok();
-    //}
+    [HttpGet]
+    public IActionResult Get()
+    {
+        return Ok();
+    }
 
-    //[HttpPost("post-weather")]
-    //public IActionResult SaveWeather()
-    //{
-    //    return Ok();
-    //}
+    [HttpPost("post-weather")]
+    public IActionResult SaveWeather()
+    {
+        return Ok();
+    }
 
     [HttpPut("update-weather")]
     public IActionResult UpdateWeather()
