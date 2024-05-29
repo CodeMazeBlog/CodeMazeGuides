@@ -1,4 +1,5 @@
 ﻿namespace WeakEventsInCSharp;
+
 public class Publisher
 {
     public event EventHandler Event;

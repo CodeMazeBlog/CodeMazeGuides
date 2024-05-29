@@ -1,4 +1,5 @@
 ﻿namespace WeakEventsInCSharp;
+
 public class WeakReferenceSubscriber
 {
     public void Subscribe(WeakReferencePublisher publisher)
