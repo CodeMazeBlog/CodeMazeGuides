@@ -1,6 +1,6 @@
 ﻿using IntroductionToSemaphoreInCsharp;
 
-const int SleepDelay = 2000;
+const int SleepDelay = 50;
 
 Console.WriteLine("Executing with Semaphore...");
 await ExampleWithSemaphore.AccessWithSemaphoreAsync(SleepDelay);
