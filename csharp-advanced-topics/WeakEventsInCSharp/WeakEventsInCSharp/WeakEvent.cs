@@ -3,11 +3,12 @@
 public class WeakEvent<TEventArgs> where TEventArgs : EventArgs
 {
     private readonly List<WeakReference<EventHandler<TEventArgs>>> _eventHandlers = [];
+
     public bool HandlerInvoked { get; private set; }
 
     public void AddEventHandler(EventHandler<TEventArgs> handler)
     {
-        if (handler == null) return;
+        if (handler is null) return;
 
         _eventHandlers.Add(new WeakReference<EventHandler<TEventArgs>>(handler));
     }
@@ -21,7 +22,7 @@ public class WeakEvent<TEventArgs> where TEventArgs : EventArgs
             return target == handler;
         });
 
-        if (eventHandler != null)
+        if (eventHandler is not null)
         {
             _eventHandlers.Remove(eventHandler);
         }

@@ -7,7 +7,7 @@ public class WeakReferenceSubscriber
         publisher.Event.AddEventHandler(HandleEvent);
     }
 
-    public void HandleEvent(object sender, EventArgs e)
+    public void HandleEvent(object? sender, EventArgs e)
     {
         Console.WriteLine("Weak Event received.");
     }

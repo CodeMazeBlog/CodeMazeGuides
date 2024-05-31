@@ -2,7 +2,7 @@
 
 public class Publisher
 {
-    public event EventHandler Event;
+    public event EventHandler? Event;
 
     public void RaiseEvent()
     {

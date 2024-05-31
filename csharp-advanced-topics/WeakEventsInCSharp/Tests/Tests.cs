@@ -5,10 +5,6 @@ namespace Tests;
 public class Tests
 {
     private bool _eventHandled;
-    private void EventHandlerMethod(object sender, EventArgs e)
-    {
-        _eventHandled = true;
-    }
 
     [Fact]
     public void GivenStrongEventWhenGCCollectedThenEventRaised()
@@ -44,5 +40,10 @@ public class Tests
         weakEventPublisher.RaiseEvent();
 
         Assert.False(weakEventPublisher.Event.HandlerInvoked);
+    }
+
+    private void EventHandlerMethod(object? sender, EventArgs e)
+    {
+        _eventHandled = true;
     }
 }
