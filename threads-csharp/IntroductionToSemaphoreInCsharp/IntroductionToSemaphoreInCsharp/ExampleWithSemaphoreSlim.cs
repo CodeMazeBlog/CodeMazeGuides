@@ -1,4 +1,5 @@
 ﻿using IntroductionToSemaphoreInCsharp.Models;
+using System.Collections.Concurrent;
 using System.Globalization;
 
 namespace IntroductionToSemaphoreInCsharp;
@@ -7,6 +8,8 @@ public class ExampleWithSemaphoreSlim
 {
     private static readonly List<string> _sharedResource = [];
     private static readonly SemaphoreSlim _semaphoreSlim = new(3, 3);
+
+    public static ConcurrentQueue<string> OutputQueue { get; set; } = new();
 
     public static async Task AccessWithSemaphoreSlimAsync(int sleepDelay)
     {
@@ -29,10 +32,13 @@ public class ExampleWithSemaphoreSlim
         await _semaphoreSlim.WaitAsync();
 
         await Task.Delay(processParams.SleepDelay);
-        Console.WriteLine("SemaphoreSlim: Thread {0} is accessing {1} at {2}",
-                processParams.SequenceNo,
-                nameof(_sharedResource),
-                DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture));
+
+        var output = string.Format("SemaphoreSlim: Thread {0} is accessing {1} at {2}",
+                                   processParams.SequenceNo,
+                                   nameof(_sharedResource),
+                                   DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture));
+
+        OutputQueue.Enqueue(output);
 
         _semaphoreSlim.Release();
     }

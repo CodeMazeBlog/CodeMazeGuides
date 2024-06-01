@@ -1,41 +1,27 @@
 using IntroductionToSemaphoreInCsharp;
-using System.Text;
 
 namespace Tests;
 
 [TestClass]
 public class UnitTests
 {
-    private StringBuilder ConsoleOutput { get; } = new StringBuilder();
     const int SleepDelay = 50;
-
-    [TestInitialize]
-    public void Init()
-    {
-        Console.SetOut(new StringWriter(this.ConsoleOutput));
-        this.ConsoleOutput.Clear();
-    }
 
     [TestMethod]
     public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreAsyncIsInvoked_ThenAllThreadsShouldExecute()
     {
         await ExampleWithSemaphore.AccessWithSemaphoreAsync(SleepDelay);
-        AssertAllThreadsExecuted();
+        var output = ExampleWithSemaphore.OutputQueue;
+
+        Assert.AreEqual(Constants.NumberOfThreads, output.Count);
     }
 
     [TestMethod]
     public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreSlimAsyncIsInvoked_ThenAllThreadsShouldExecute()
     {
         await ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync(SleepDelay);
-        AssertAllThreadsExecuted();
-    }
+        var output = ExampleWithSemaphoreSlim.OutputQueue;
 
-    private void AssertAllThreadsExecuted()
-    {
-        var result = ConsoleOutput.ToString();
-        for (int i = 0; i < Constants.NumberOfThreads; i++)
-        {
-            Assert.IsTrue(result.Contains($"Thread {i}"));
-        }
+        Assert.AreEqual(Constants.NumberOfThreads, output.Count);
     }
 }
