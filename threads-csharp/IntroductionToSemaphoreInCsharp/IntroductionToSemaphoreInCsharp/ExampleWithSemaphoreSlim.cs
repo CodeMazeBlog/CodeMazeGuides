@@ -9,7 +9,7 @@ public class ExampleWithSemaphoreSlim
     private static readonly List<string> _sharedResource = [];
     private static readonly SemaphoreSlim _semaphoreSlim = new(3, 3);
 
-    public static ConcurrentQueue<string> OutputQueue { get; set; } = new();
+    public static ConcurrentQueue<string> OutputQueue { get; private set; } = new();
 
     public static async Task AccessWithSemaphoreSlimAsync(int sleepDelay)
     {

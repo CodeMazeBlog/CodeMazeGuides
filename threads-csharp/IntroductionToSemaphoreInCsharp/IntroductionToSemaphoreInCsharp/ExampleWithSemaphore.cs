@@ -9,7 +9,7 @@ public class ExampleWithSemaphore
     private static readonly List<string> _sharedResource = [];
     private static readonly Semaphore _semaphore = new(initialCount: 3, maximumCount: 3);
 
-    public static ConcurrentQueue<string> OutputQueue { get; set; } = new();
+    public static ConcurrentQueue<string> OutputQueue { get; private set; } = new();
 
     public static async Task AccessWithSemaphoreAsync(int sleepDelay)
     {
