@@ -15,3 +15,5 @@ app.UseStaticFiles();
 app.UseOrchardCore();
 
 app.Run();
+
+public partial class Program { }
