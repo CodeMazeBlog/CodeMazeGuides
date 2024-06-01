@@ -33,7 +33,7 @@ public class UnitTests
     private void AssertAllThreadsExecuted()
     {
         var result = ConsoleOutput.ToString();
-        for (int i = 0;i < 10;i++)
+        for (int i = 0; i < Constants.NumberOfThreads; i++)
         {
             Assert.IsTrue(result.Contains($"Thread {i}"));
         }

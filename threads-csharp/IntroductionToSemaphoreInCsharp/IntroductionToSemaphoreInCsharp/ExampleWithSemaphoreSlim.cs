@@ -5,13 +5,13 @@ namespace IntroductionToSemaphoreInCsharp;
 
 public class ExampleWithSemaphoreSlim
 {
-    private static List<string> _sharedResource = new List<string>();
-    private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(3, 3);
+    private static readonly List<string> _sharedResource = [];
+    private static readonly SemaphoreSlim _semaphoreSlim = new(3, 3);
 
     public static async Task AccessWithSemaphoreSlimAsync(int sleepDelay)
     {
-        var tasks = new Task[10];
-        for (int i = 0; i < 10; i++)
+        var tasks = new Task[Constants.NumberOfThreads];
+        for (int i = 0; i < Constants.NumberOfThreads; i++)
         {
             var processParams = new ProcessParams(i, sleepDelay);
             var task = WorkerWithSemaphoreSlimAsync(processParams);
