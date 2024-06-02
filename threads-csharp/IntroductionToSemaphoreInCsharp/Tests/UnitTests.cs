@@ -10,8 +10,7 @@ public class UnitTests
     [TestMethod]
     public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreAsyncIsInvoked_ThenAllThreadsShouldExecute()
     {
-        await ExampleWithSemaphore.AccessWithSemaphoreAsync(SleepDelay);
-        var output = ExampleWithSemaphore.OutputQueue;
+        var output = await ExampleWithSemaphore.AccessWithSemaphoreAsync(SleepDelay);
 
         Assert.AreEqual(Constants.NumberOfThreads, output.Count);
     }
@@ -19,8 +18,7 @@ public class UnitTests
     [TestMethod]
     public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreSlimAsyncIsInvoked_ThenAllThreadsShouldExecute()
     {
-        await ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync(SleepDelay);
-        var output = ExampleWithSemaphoreSlim.OutputQueue;
+        var output = await ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync(SleepDelay);
 
         Assert.AreEqual(Constants.NumberOfThreads, output.Count);
     }
