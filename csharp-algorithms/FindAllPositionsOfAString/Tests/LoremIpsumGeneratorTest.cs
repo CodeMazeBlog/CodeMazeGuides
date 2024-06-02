@@ -1,4 +1,4 @@
-﻿using FindAllPositionsOfAString;
+﻿using FindAllPositionsOfAString.Samples;
 
 namespace Tests;
 

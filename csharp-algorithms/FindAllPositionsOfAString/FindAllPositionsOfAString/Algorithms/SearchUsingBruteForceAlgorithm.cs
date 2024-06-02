@@ -1,17 +1,12 @@
-﻿namespace FindAllPositionsOfAString;
+﻿using FindAllPositionsOfAString.Algorithms.Interfaces;
 
-public class SearchUsingBruteForceAlgorithm : ISearcher
+namespace FindAllPositionsOfAString.Algorithms;
+
+public class SearchUsingBruteForceAlgorithm : SearchBase, ISearcher
 {
-    private string _searchValue = string.Empty;
-
-    public void Initialize(string searchValue)
-    {
-        _searchValue = searchValue;
-    }
-
     public List<int> FindAll(string text)
     {
-        ReadOnlySpan<char> searchValueSpan = _searchValue.AsSpan();
+        ReadOnlySpan<char> searchValueSpan = _searchText.AsSpan();
         ReadOnlySpan<char> textSpan = text.AsSpan();
 
         List<int> positions = [];
@@ -24,12 +19,16 @@ public class SearchUsingBruteForceAlgorithm : ISearcher
 
             for (searchPosition = 0; searchPosition < searchLen; searchPosition++)
             {
-                if (textSpan[textPosition + searchPosition] != searchValueSpan[searchPosition])
+                if (!AreEqualCharacters(textSpan[textPosition + searchPosition], searchValueSpan[searchPosition]))
                     break;
             }
 
             if (searchPosition == searchLen)
+            {
                 positions.Add(textPosition);
+                if (SkipWholeFoundText)
+                    textPosition += searchLen - 1;
+            }
         }
 
         return positions;

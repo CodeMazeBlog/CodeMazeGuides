@@ -1,19 +1,20 @@
-﻿namespace FindAllPositionsOfAString;
+﻿using FindAllPositionsOfAString.Algorithms.Interfaces;
 
-public class SearchUsingKMPAlgorithm : ISearcher
+namespace FindAllPositionsOfAString.Algorithms;
+
+public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
 {
     private int[] prefix = [];
-    private string _searchValue = string.Empty;
 
-    public void Initialize(string searchValue)
+    public new void Initialize(string searchValue)
     {
-        _searchValue = searchValue;
+        base.Initialize(searchValue);
         ComputePrefix();
     }
 
     private void ComputePrefix()
     {
-        ReadOnlySpan<char> searchValueSpan = _searchValue.AsSpan();
+        ReadOnlySpan<char> searchValueSpan = _searchText.AsSpan();
 
         prefix = new int[searchValueSpan.Length];
 
@@ -21,7 +22,7 @@ public class SearchUsingKMPAlgorithm : ISearcher
         var positions = 1;
         while (positions < searchValueSpan.Length)
         {
-            if (searchValueSpan[positions] == searchValueSpan[len])
+            if (AreEqualCharacters(searchValueSpan[positions], searchValueSpan[len]))
             {
                 len++;
                 prefix[positions] = len;
@@ -44,7 +45,10 @@ public class SearchUsingKMPAlgorithm : ISearcher
 
     public List<int> FindAll(string text)
     {
-        ReadOnlySpan<char> searchValueSpan = _searchValue.AsSpan();
+        if (SkipWholeFoundText)
+            throw new NotSupportedException("SkipWholeFoundText is not supported for KMP algorithm.");
+
+        ReadOnlySpan<char> searchValueSpan = _searchText.AsSpan();
         ReadOnlySpan<char> textSpan = text.AsSpan();
 
         List<int> positions = [];
@@ -57,7 +61,7 @@ public class SearchUsingKMPAlgorithm : ISearcher
 
         while (textPosition < textSpan.Length)
         {
-            if (searchValueSpan[searchPosition] == textSpan[textPosition])
+            if (AreEqualCharacters(searchValueSpan[searchPosition], textSpan[textPosition]))
             {
                 textPosition++;
                 searchPosition++;
@@ -68,12 +72,16 @@ public class SearchUsingKMPAlgorithm : ISearcher
                 positions.Add(textPosition - searchPosition);
                 searchPosition = prefix[searchPosition - 1];
             }
-            else if (textPosition < textLength && searchValueSpan[searchPosition] != textSpan[textPosition])
+            else
             {
-                if (searchPosition != 0)
-                    searchPosition = prefix[searchPosition - 1];
-                else
-                    textPosition++;
+                if (textPosition < textLength && 
+                    !AreEqualCharacters(searchValueSpan[searchPosition], textSpan[textPosition]))
+                {
+                    if (searchPosition != 0)
+                        searchPosition = prefix[searchPosition - 1];
+                    else
+                        textPosition++;
+                }
             }
         }
 

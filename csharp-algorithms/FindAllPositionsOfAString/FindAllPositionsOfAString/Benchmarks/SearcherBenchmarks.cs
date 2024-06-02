@@ -1,6 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
+using FindAllPositionsOfAString.Algorithms;
+using FindAllPositionsOfAString.Samples;
 
-namespace FindAllPositionsOfAString;
+
+namespace FindAllPositionsOfAString.Benchmarks;
 
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 public class SearcherBenchmarks
@@ -20,7 +23,7 @@ public class SearcherBenchmarks
     [ArgumentsSource(nameof(Samples))]
     public void BenchmarkSearchUsingRegex(string text, string searchValue)
     {
-        var searcher = new SearchUsingRegex();
+        var searcher = new SearchUsingRegexWithMatch();
         searcher.Initialize(searchValue);
         var result = searcher.FindAll(text).ToList();
     }

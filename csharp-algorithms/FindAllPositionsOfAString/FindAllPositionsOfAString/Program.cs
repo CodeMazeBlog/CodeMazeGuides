@@ -1,34 +1,56 @@
 ﻿using BenchmarkDotNet.Running;
-using FindAllPositionsOfAString;
+using FindAllPositionsOfAString.Algorithms;
+using FindAllPositionsOfAString.Algorithms.Interfaces;
+using FindAllPositionsOfAString.Benchmarks;
+using FindAllPositionsOfAString.Samples;
 
 var benchmark = args.Length >= 1;
 
 if (benchmark)
 {
-    _ = BenchmarkRunner.Run<SearcherBenchmarks>();
+    var result = BenchmarkRunner.Run<SearcherBenchmarks>();
 }
 else
 {
     var searchers = new ISearcher[]
     {
         new SearchUsingIndexOf(),
-        new SearchUsingRegex(),
+        new SearchUsingRegexWithMatch(),
+        new SearchUsingRegexWithMatches(),
         new SearchUsingKMPAlgorithm(),
         new SearchUsingBruteForceAlgorithm(),
     };
 
     foreach (SearchPair searchPair in SearchingSamples.SampleForProgram())
     {
-        Console.WriteLine($"\n\n");
-
         foreach (ISearcher searcher in searchers)
         {
-            searcher.Initialize(searchPair.SearchValue);
-            List<int> positions = searcher.FindAll(searchPair.Text);
+            foreach (bool caseSensitivity in new bool[] { true, false })
+            {
+                foreach (bool skipFoundText in new bool[] { true, false })
+                {
+                    searcher.CaseSensitive = caseSensitivity;
+                    searcher.SkipWholeFoundText = skipFoundText;
 
-            Console.WriteLine($"Using {searcher.GetType().Name}");
-            Console.WriteLine($" ** Found '{searchPair.SearchValue}' {positions.Count} times in the text.");
-            Console.WriteLine($" ** Positions: {string.Join(", ", positions)}");
+                    if ((searcher is SearchUsingRegexWithMatches) && (!skipFoundText))
+                        continue;
+
+                    if ((searcher is SearchUsingKMPAlgorithm) && (skipFoundText))
+                        continue;
+
+                    searcher.Initialize(searchPair.SearchValue);
+                    List<int> positions = searcher.FindAll(searchPair.Text);
+
+                    Console.WriteLine($"Using {searcher.GetType().Name}");
+                    Console.WriteLine($" ** CaseSensitivity == {caseSensitivity}");
+                    Console.WriteLine($" ** SkipWholeFoundText == {skipFoundText}");
+                    Console.WriteLine($" ** Found '{searchPair.SearchValue}' {positions.Count} times in the text.");
+                    Console.WriteLine($" ** Positions: {string.Join(", ", positions)}");
+                }
+            }
+
+            Console.WriteLine($"\n");
         }
+        Console.WriteLine($"\n\n");
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace FindAllPositionsOfAString;
+namespace FindAllPositionsOfAString.Samples;
 
 public class LoremIpsumGenerator
 {
