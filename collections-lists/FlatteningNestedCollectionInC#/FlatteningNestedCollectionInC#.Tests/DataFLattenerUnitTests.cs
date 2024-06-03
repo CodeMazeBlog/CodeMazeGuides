@@ -1,102 +1,76 @@
-using FlatteningNestedCollectionInCSharp.Models;
-using Newtonsoft.Json;
-
 namespace FlatteningNestedCollection.Tests;
 
-public class DataFLattenerUnitTests
+public class DataFlattenerUnitTests
 {
     private readonly Department _defaultDepartment;
-    private readonly Department _departmentTwoEmployees = new()
-    {
-        Name = "IT",
-        Employees =
-            [
-                new() { Name = "John Doe", Email = "john@example.com" },
-                new() { Name = "Jane Doe", Email = "jane@example.com" }
-            ]
-    };
+    private readonly Department _departmentTwoEmployees = new(
+        "IT",
+        [
+            new("John Doe", "john@example.com"),
+            new("Jane Doe", "jane@example.com")
+        ]
+    );
 
     private readonly List<DepartmentFlattened> _departmentTwoEmployeesFlattened =
     [
-        new() { DepartmentName = "IT", EmployeeName = "John Doe", EmployeeEmail = "john@example.com" },
-        new() { DepartmentName = "IT", EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com" }
+        new("IT", "John Doe", "john@example.com"),
+        new("IT", "Jane Doe", "jane@example.com")
     ];
 
-    private readonly Department _departmentTwoEmployeesTwoProjects = new()
-    {
-        Name = "IT",
-        Employees =
+    private readonly Department _departmentTwoEmployeesTwoProjects = new(
+        "IT",
         [
-            new() { Name = "John Doe", Email = "john@example.com" },
-            new() { Name = "Jane Doe", Email = "jane@example.com" }
+            new("John Doe", "john@example.com" ),
+            new("Jane Doe", "jane@example.com" )
         ],
-        Projects =
         [
-            new() { Title = "Product Development", Budget = 50000 },
-            new() { Title = "Research", Budget = 20000 }
+            new("Product Development", 50000 ),
+            new("Research", 20000 )
         ]
-    };
+    );
 
     private readonly List<DepartmentFlattenedMultipleCollections> _departmentTwoEmployeesTwoProjectsFlattened =
     [
-        new () { DepartmentName = "IT", EmployeeName = "John Doe", EmployeeEmail = "john@example.com", ProjectTitle = "Product Development", ProjectBudget = 50000 },
-        new () { DepartmentName = "IT", EmployeeName = "John Doe", EmployeeEmail = "john@example.com", ProjectTitle = "Research", ProjectBudget = 20000 },
-        new () { DepartmentName = "IT", EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com", ProjectTitle = "Product Development", ProjectBudget = 50000 },
-        new () { DepartmentName = "IT", EmployeeName = "Jane Doe", EmployeeEmail = "jane@example.com", ProjectTitle = "Research", ProjectBudget = 20000 },
+        new ("IT", "John Doe", "john@example.com", "Product Development",  50000 ),
+        new ("IT", "John Doe", "john@example.com", "Research", 20000 ),
+        new ("IT", "Jane Doe", "jane@example.com", "Product Development", 50000 ),
+        new ("IT", "Jane Doe", "jane@example.com", "Research", 20000 )
     ];
 
-    private readonly Department _departmentTwoEmployeesFourCertificates = new()
-    {
-        Name = "Engineering",
-        Employees =
+    private readonly Department _departmentTwoEmployeesFourCertificates = new(
+        "Engineering",
         [
-            new() {
-                Name = "Charlie",
-                Email = "charlie@mail.com",
-                Certifications = [
-                    new()
-                    {
-                        Title = "MCSD",
-                        IssueDate = new DateOnly(2020, 4, 15)
-                    },
-                    new()
-                    {
-                        Title = "PMP",
-                        IssueDate = new DateOnly(2022, 3, 1)
-                    }
-                 ]
-            },
-            new() {
-                Name = "David",
-                Email = "david@mail.com" ,
-                Certifications = [
-                    new()
-                    {
-                        Title = "Certified Solutions Architect",
-                        IssueDate = new DateOnly(2017, 7, 5)
-                    },
-                    new()
-                    {
-                        Title = "CCNA",
-                        IssueDate = new DateOnly(2019, 10, 1)
-                    }
-                 ]
-            }
+            new(
+                "Charlie",
+                "charlie@mail.com",
+                [
+                    new("MCSD",new DateOnly(2020, 4, 15)),
+                    new("PMP",new DateOnly(2022, 3, 1))
+                ]
+            ),
+            new(
+                "David",
+                "david@mail.com",
+                [
+                    new("Certified Solutions Architect",new DateOnly(2017, 7, 5)),
+                    new("CCNA", new DateOnly(2019, 10, 1)),
+                ]
+            )
         ]
-    };
+    );
 
     private readonly List<DepartmentFlattenedComplex> _departmentTwoEmployeesFourCertificatesFlattened =
     [
-        new () { DepartmentName = "Engineering", EmployeeName = "Charlie", EmployeeEmail = "charlie@mail.com", CertificationTitle = "MCSD" , CertificationIssueDate = new DateOnly(2020, 4, 15) },
-        new () { DepartmentName = "Engineering", EmployeeName = "Charlie", EmployeeEmail = "charlie@mail.com", CertificationTitle = "PMP", CertificationIssueDate = new DateOnly(2022, 3, 1) },
-        new () { DepartmentName = "Engineering", EmployeeName = "David", EmployeeEmail = "david@mail.com", CertificationTitle = "Certified Solutions Architect", CertificationIssueDate = new DateOnly(2017, 7, 5) },
-        new () { DepartmentName = "Engineering", EmployeeName = "David", EmployeeEmail = "david@mail.com", CertificationTitle = "CCNA", CertificationIssueDate = new DateOnly(2019, 10, 1) },
+        new ("Engineering", "Charlie", "charlie@mail.com", "MCSD" , new DateOnly(2020, 4, 15) ),
+        new ("Engineering", "Charlie", "charlie@mail.com", "PMP", new DateOnly(2022, 3, 1) ),
+        new ("Engineering", "David", "david@mail.com", "Certified Solutions Architect", new DateOnly(2017, 7, 5) ),
+        new ("Engineering", "David", "david@mail.com", "CCNA", new DateOnly(2019, 10, 1) ),
     ];
 
     [Test]
     public void GivenFlattenWithSelect_WhenNullDepartment_ThenNull()
     {
-        var result = DataFlattenerMethods.FlattenWithSelect(_defaultDepartment);
+        var result = DataFlattener.FlattenWithSelect(_defaultDepartment);
 
         Assert.That(result, Is.Null);
     }
@@ -104,7 +78,7 @@ public class DataFLattenerUnitTests
     [Test]
     public void GivenFlattenWithQueryExpression_WhenNullDepartment_ThenEmpty()
     {
-        var result = DataFlattenerMethods.FlattenWithQueryExpression(_defaultDepartment);
+        var result = DataFlattener.FlattenWithQueryExpression(_defaultDepartment);
 
         Assert.That(result, Is.Empty);
     }
@@ -112,7 +86,7 @@ public class DataFLattenerUnitTests
     [Test]
     public void GivenFlattenWithSelectMany_WhenNullDepartment_ThenNull()
     {
-        var result = DataFlattenerMethods.FlattenWithSelectMany(_defaultDepartment);
+        var result = DataFlattener.FlattenWithSelectMany(_defaultDepartment);
 
         Assert.That(result, Is.Null);
     }
@@ -120,72 +94,44 @@ public class DataFLattenerUnitTests
     [Test]
     public void GivenFlattenComplexWithSelectMany_WhenNullDepartment_ThenNull()
     {
-        var result = DataFlattenerMethods.FlattenComplexWithSelectMany(_defaultDepartment);
+        var result = DataFlattener.FlattenComplexWithSelectMany(_defaultDepartment);
 
         Assert.That(result, Is.Null);
     }
 
     [Test]
-    public void GivenFlattenWithSelect_WhenDepartmentTwoEmployees_ThenTwoResults()
-    {
-        var result = DataFlattenerMethods.FlattenWithSelect(_departmentTwoEmployees);
-
-        Assert.That(result.Count(), Is.EqualTo(2));
-    }
-
-    [Test]
     public void GivenFlattenWithSelect_WhenDepartmentTwoEmployees_ThenResultFlattenedObject()
     {
-        var result = DataFlattenerMethods.FlattenWithSelect(_departmentTwoEmployees);
-
-        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFlattened));
-    }
-
-    [Test]
-    public void GivenFlattenWithQueryExpression_WhenDepartmentTwoEmployees_ThenTwoResults()
-    {
-        var result = DataFlattenerMethods.FlattenWithQueryExpression(_departmentTwoEmployees);
+        var result = DataFlattener.FlattenWithSelect(_departmentTwoEmployees);
 
         Assert.That(result.Count(), Is.EqualTo(2));
+        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFlattened));
     }
 
     [Test]
     public void GivenFlattenWithQueryExpression_WhenDepartmentTwoEmployees_ThenResultFlattenedObject()
     {
-        var result = DataFlattenerMethods.FlattenWithQueryExpression(_departmentTwoEmployees);
+        var result = DataFlattener.FlattenWithQueryExpression(_departmentTwoEmployees);
 
+        Assert.That(result.Count(), Is.EqualTo(2));
         Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFlattened));
-    }
-
-    [Test]
-    public void GivenFlattenWithSelectMany_WhenDepartmentTwoEmployeesTwoProjects_ThenFourResults()
-    {
-        var result = DataFlattenerMethods.FlattenWithSelectMany(_departmentTwoEmployeesTwoProjects);
-
-        Assert.That(result.Count(), Is.EqualTo(4));
     }
 
     [Test]
     public void GivenFlattenWithSelectMany_WhenDepartmentTwoEmployeesTwoProjects_ThenResultFlattenedObject()
     {
-        var result = DataFlattenerMethods.FlattenWithSelectMany(_departmentTwoEmployeesTwoProjects);
-
-        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesTwoProjectsFlattened));
-    }
-
-    [Test]
-    public void GivenFlattenComplexWithSelectMany_WhenDepartmentTwoEmployeesFourCertificates_ThenTwoResults()
-    {
-        var result = DataFlattenerMethods.FlattenComplexWithSelectMany(_departmentTwoEmployeesFourCertificates);
+        var result = DataFlattener.FlattenWithSelectMany(_departmentTwoEmployeesTwoProjects);
 
         Assert.That(result.Count(), Is.EqualTo(4));
+        Assert.That(result, Is.EqualTo(_departmentTwoEmployeesTwoProjectsFlattened));
     }
 
     [Test]
     public void GivenFlattenComplexWithSelectMany_WhenDepartmentTwoEmployeesFourCertificates_ThenResultFlattenedObject()
     {
-        var result = DataFlattenerMethods.FlattenComplexWithSelectMany(_departmentTwoEmployeesFourCertificates);
+        var result = DataFlattener.FlattenComplexWithSelectMany(_departmentTwoEmployeesFourCertificates);
 
+        Assert.That(result.Count(), Is.EqualTo(4));
         Assert.That(result, Is.EqualTo(_departmentTwoEmployeesFourCertificatesFlattened));
     }
 }

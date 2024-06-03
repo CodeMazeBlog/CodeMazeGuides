@@ -1,7 +1,3 @@
-﻿namespace FlatteningNestedCollection.Models;
+﻿namespace FlatteningNestedCollectionInCSharp.Models;
 
-public record Project
-{
-    public string Title { get; init; }
-    public int Budget { get; init; }       
-}
+public record Project(string Title, int Budget);

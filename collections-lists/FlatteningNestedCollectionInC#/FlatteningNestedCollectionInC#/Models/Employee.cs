@@ -1,10 +1,7 @@
-﻿using FlatteningNestedCollection.Models;
+﻿namespace FlatteningNestedCollectionInCSharp.Models;
 
-namespace FlatteningNestedCollection;
-
-public record Employee
-{
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public IEnumerable<Certification> Certifications { get; set; }
-}
+public record Employee(
+    string Name, 
+    string Email, 
+    IEnumerable<Certification>? Certifications = null
+);

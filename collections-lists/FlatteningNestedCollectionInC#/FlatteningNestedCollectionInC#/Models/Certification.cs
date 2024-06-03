@@ -1,7 +1,3 @@
-﻿namespace FlatteningNestedCollection.Models;
+﻿namespace FlatteningNestedCollectionInCSharp.Models;
 
-public record Certification
-{
-    public string Title { get; set; }
-    public DateOnly IssueDate { get; set; }
-}
+public record Certification(string Title, DateOnly IssueDate);
