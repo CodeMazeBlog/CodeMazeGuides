@@ -45,3 +45,4 @@ This section contains the topics considered intermediate level in C#.
 - [How To Check if an URL Is Valid in C#](https://code-maze.com/csharp-how-to-check-if-an-url-is-valid/)
 - [Difference Between Abstraction and Encapsulation in C#](https://code-maze.com/csharp-difference-between-abstraction-and-encapsulation/)
 - [The Difference Between Invariance, Contravariance, and Covariance in Generics in C#](https://code-maze.com/csharp-the-difference-between-invariance-contravariance-and-covariance-in-generics/)
+- [Embedded Resources in .NET](https://code-maze.com/dotnet-embedded-resources/)
