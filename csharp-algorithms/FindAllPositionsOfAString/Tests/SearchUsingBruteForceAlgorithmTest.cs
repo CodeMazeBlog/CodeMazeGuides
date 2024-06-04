@@ -1,4 +1,5 @@
 ﻿using FindAllPositionsOfAString.Algorithms;
+using FindAllPositionsOfAString.Samples;
 
 namespace Tests;
 
@@ -10,11 +11,10 @@ public class SearchUsingBruteForceAlgorithmTest
     {
         var searcher = new SearchUsingBruteForceAlgorithm();
         searcher.CaseSensitive = false;
-        var searchValue = "lorem";
-        var searchText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+        var searchText = "lorem";
+        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         var expectedPositions = new List<int> { 0, 28, 56, 84 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -25,11 +25,10 @@ public class SearchUsingBruteForceAlgorithmTest
     {
         var searcher = new SearchUsingBruteForceAlgorithm();
         searcher.CaseSensitive = true;
-        var searchValue = "lorem";
-        var searchText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+        var searchText = "lorem";
+        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         var expectedPositions = new List<int> { 0, 56 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -39,11 +38,10 @@ public class SearchUsingBruteForceAlgorithmTest
     public void GivenLoremText_WhenSearchingNotFound_ThenThereShouldBeNoMatches()
     {
         var searcher = new SearchUsingBruteForceAlgorithm();
-        var searchValue = "notfound";
-        var searchText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+        var searchText = "notfound";
+        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         Assert.IsTrue(positions.Count == 0);
     }
@@ -53,11 +51,10 @@ public class SearchUsingBruteForceAlgorithmTest
     {
         var searcher = new SearchUsingBruteForceAlgorithm();
         searcher.SkipWholeFoundText = true;
-        var searchValue = "III";
-        var searchText = "IIIIIII";
+        var searchText = "III";
+        var text = "IIIIIII";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         var expectedPositions = new List<int> { 0, 3 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -68,13 +65,37 @@ public class SearchUsingBruteForceAlgorithmTest
     {
         var searcher = new SearchUsingBruteForceAlgorithm();
         searcher.SkipWholeFoundText = false;
-        var searchValue = "III";
-        var searchText = "IIIIIII";
+        var searchText = "III";
+        var text = "IIIIIII";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         var expectedPositions = new List<int> { 0, 1, 2, 3, 4 };
         CollectionAssert.AreEqual(expectedPositions, positions);
+    }
+
+    [TestMethod]
+    [DataRow(true, true)]
+    [DataRow(true, false)]
+    [DataRow(false, true)]
+    [DataRow(false, false)]
+    public void GivenSearchConditions_WhenRunningSearcher_ThenSameResultsAreExpectedAsUsingIndexOfSearcher(bool caseSensitive, bool skipWholeWords)
+    {
+        foreach (SearchPair searchPair in SearchingSamples.SampleForProgram())
+        {
+            var searcher = new SearchUsingBruteForceAlgorithm();
+            searcher.CaseSensitive = caseSensitive;
+            searcher.SkipWholeFoundText = skipWholeWords;
+
+            var bruteForceSearcher = new SearchUsingIndexOf();
+            bruteForceSearcher.CaseSensitive = caseSensitive;
+            bruteForceSearcher.SkipWholeFoundText = skipWholeWords;
+
+            List<int> positions = searcher.FindAll(searchPair.Text, searchPair.SearchText);
+            List<int> bruteForcePositions = bruteForceSearcher.FindAll(searchPair.Text, searchPair.SearchText);
+
+            Assert.IsTrue(positions.Count == bruteForcePositions.Count);
+            CollectionAssert.AreEqual(bruteForcePositions, positions);
+        }
     }
 }

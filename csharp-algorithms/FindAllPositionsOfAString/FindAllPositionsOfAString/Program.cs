@@ -17,8 +17,8 @@ else
         new SearchUsingIndexOf(),
         new SearchUsingRegexWithMatch(),
         new SearchUsingRegexWithMatches(),
-        new SearchUsingKMPAlgorithm(),
         new SearchUsingBruteForceAlgorithm(),
+        new SearchUsingKMPAlgorithm(),
     };
 
     foreach (SearchPair searchPair in SearchingSamples.SampleForProgram())
@@ -38,14 +38,13 @@ else
                     if ((searcher is SearchUsingKMPAlgorithm) && (skipFoundText))
                         continue;
 
-                    searcher.Initialize(searchPair.SearchValue);
-                    List<int> positions = searcher.FindAll(searchPair.Text);
+                    List<int> positions = searcher.FindAll(searchPair.Text, searchPair.SearchText);
 
                     Console.WriteLine($"Using {searcher.GetType().Name}");
                     Console.WriteLine($" ** CaseSensitivity == {caseSensitivity}");
                     Console.WriteLine($" ** SkipWholeFoundText == {skipFoundText}");
-                    Console.WriteLine($" ** Found '{searchPair.SearchValue}' {positions.Count} times in the text.");
-                    Console.WriteLine($" ** Positions: {string.Join(", ", positions)}");
+                    Console.WriteLine($" ** Found '{searchPair.SearchText}' {positions.Count} times in the text.");
+                    // Console.WriteLine($" ** Positions: {string.Join(", ", positions)}");
                 }
             }
 

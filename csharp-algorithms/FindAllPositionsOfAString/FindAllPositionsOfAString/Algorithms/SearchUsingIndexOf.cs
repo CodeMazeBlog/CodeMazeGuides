@@ -4,24 +4,22 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingIndexOf : SearchBase, ISearcher
 {
-    public List<int> FindAll(string text)
+    public List<int> FindAll(string text, string searchText)
     {
         List<int> positions = [];
 
-        var skipSize = ((SkipWholeFoundText) ? _searchText.Length : 1);
+        var skipSize = ((SkipWholeFoundText) ? searchText.Length : 1);
 
-        var index = text.IndexOf(_searchText, GetStringComparison);
+        var index = text.IndexOf(searchText, StringComparison);
         while (index != -1)
         {
             positions.Add(index);
-            index = text.IndexOf(_searchText, index + skipSize, GetStringComparison);
+            index = text.IndexOf(searchText, index + skipSize, StringComparison);
         }
 
         return positions;
     }
 
-    private StringComparison GetStringComparison => 
-        CaseSensitive 
-            ? StringComparison.Ordinal 
-            : StringComparison.OrdinalIgnoreCase;
+    private StringComparison StringComparison =>
+        CaseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
 }

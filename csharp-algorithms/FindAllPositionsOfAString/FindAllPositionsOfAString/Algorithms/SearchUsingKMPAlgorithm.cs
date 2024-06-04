@@ -6,23 +6,16 @@ public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
 {
     private int[] prefix = [];
 
-    public new void Initialize(string searchValue)
+    private void ComputePrefix(string searchText)
     {
-        base.Initialize(searchValue);
-        ComputePrefix();
-    }
-
-    private void ComputePrefix()
-    {
-        ReadOnlySpan<char> searchValueSpan = _searchText.AsSpan();
-
-        prefix = new int[searchValueSpan.Length];
+        char[] chars = searchText.ToCharArray();
+        prefix = new int[chars.Length];
 
         var len = 0;
         var positions = 1;
-        while (positions < searchValueSpan.Length)
+        while (positions < chars.Length)
         {
-            if (AreEqualCharacters(searchValueSpan[positions], searchValueSpan[len]))
+            if (chars[positions] == chars[len])
             {
                 len++;
                 prefix[positions] = len;
@@ -43,25 +36,30 @@ public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
         }
     }
 
-    public List<int> FindAll(string text)
+    public List<int> FindAll(string text, string searchText)
     {
         if (SkipWholeFoundText)
             throw new NotSupportedException("SkipWholeFoundText is not supported for KMP algorithm.");
 
-        ReadOnlySpan<char> searchValueSpan = _searchText.AsSpan();
-        ReadOnlySpan<char> textSpan = text.AsSpan();
+        ComputePrefix(searchText);
 
         List<int> positions = [];
 
+        var textSpan = text.AsSpan();
+        var searchTextSpan = searchText.AsSpan();
+
         var textLength = textSpan.Length;
-        var searchLen = searchValueSpan.Length;
+        var searchLen = searchTextSpan.Length;
 
         var textPosition = 0;
         var searchPosition = 0;
 
-        while (textPosition < textSpan.Length)
+        Func<char, char, bool> AreEqualCharacters =
+            CaseSensitive ? AreEqualCharactersSensitive : AreEqualCharactersInsensitive;
+
+        while (textPosition < textLength)
         {
-            if (AreEqualCharacters(searchValueSpan[searchPosition], textSpan[textPosition]))
+            if (AreEqualCharacters(searchTextSpan[searchPosition], textSpan[textPosition]))
             {
                 textPosition++;
                 searchPosition++;
@@ -74,8 +72,8 @@ public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
             }
             else
             {
-                if (textPosition < textLength && 
-                    !AreEqualCharacters(searchValueSpan[searchPosition], textSpan[textPosition]))
+                if ((textPosition < textLength) &&
+                    !(AreEqualCharacters(searchTextSpan[searchPosition], textSpan[textPosition])))
                 {
                     if (searchPosition != 0)
                         searchPosition = prefix[searchPosition - 1];
@@ -87,4 +85,10 @@ public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
 
         return positions;
     }
+
+    protected bool AreEqualCharactersSensitive(char a, char b)
+        => a == b;
+
+    protected bool AreEqualCharactersInsensitive(char a, char b)
+        => char.ToLowerInvariant(a) == char.ToLowerInvariant(b);
 }

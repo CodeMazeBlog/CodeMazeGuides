@@ -1,25 +1,24 @@
 ﻿namespace FindAllPositionsOfAString.Samples;
 
-public record SearchPair(string Text, string SearchValue);
+public record SearchPair(string Text, string SearchText);
 
 public static class SearchingSamples
 {
+    private static string JuliusCaesar = JuliusCaesarText.Read();
+
     private readonly static SearchPair[] searchPairs =
     [
-        new SearchPair(new string('I', 10), "III"),
-        // new SearchPair("ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB", "ABABABABABAB"),
-        new SearchPair("the The THe THE", "the"),
-        // new SearchPair(LoremIpsumGenerator.GenerateWords(1000), "dolor"),
-        // new SearchPair(JuliusCaesarText.Read(), "Romans"),
-        // new SearchPair(JuliusCaesarText.Read(), "and Lucilius"),
-        // new SearchPair(JuliusCaesarText.Read(), "Themselves"),
+        new SearchPair("Some consider the occurrences to be the unconscious mind’s attempts to communicate to the conscious mind.", "the"),
+        new SearchPair("The quick brown fox jumps over the lazy dog?", "the"),
+        new SearchPair("ABABABABABABABABABABABABABABABABABABABABABABABABABABABABABAB", "ABABABABABAB"),
+        new SearchPair(JuliusCaesar, "Themselves"),
     ];
 
     public static IEnumerable<object[]> SamplesForBenchmark()
     {
         foreach (SearchPair searchPair in searchPairs)
         {
-            yield return new object[] { searchPair.Text, searchPair.SearchValue };
+            yield return new object[] { searchPair.Text, searchPair.SearchText };
         }
     }
 

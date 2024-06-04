@@ -10,40 +10,45 @@ public class SearcherBenchmarks
 {
     public static IEnumerable<object[]> Samples() => SearchingSamples.SamplesForBenchmark();
 
-    [Benchmark]
-    [ArgumentsSource(nameof(Samples))]
-    public void BenchmarkSearchUsingIndexOf(string text, string searchValue)
-    {
-        var searcher = new SearchUsingIndexOf();
-        searcher.Initialize(searchValue);
-        var result = searcher.FindAll(text).ToList();
-    }
-
-    [Benchmark]
-    [ArgumentsSource(nameof(Samples))]
-    public void BenchmarkSearchUsingRegex(string text, string searchValue)
-    {
-        var searcher = new SearchUsingRegexWithMatch();
-        searcher.Initialize(searchValue);
-        var result = searcher.FindAll(text).ToList();
-    }
-
-    [Benchmark]
-    [ArgumentsSource(nameof(Samples))]
-    public void BenchmarkSearchUsingKMPAlgorithm(string text, string searchValue)
-    {
-        var searcher = new SearchUsingKMPAlgorithm();
-        searcher.Initialize(searchValue);
-        var result = searcher.FindAll(text).ToList();
-    }
-
     [Benchmark(Baseline = true)]
     [ArgumentsSource(nameof(Samples))]
-    public void BenchmarkSearchUsingBruteForceAlgorithm(string text, string searchValue)
+    public void BenchmarkSearchUsingIndexOf(string text, string searchText)
+    {
+        var searcher = new SearchUsingIndexOf();
+        var result = searcher.FindAll(text, searchText);
+    }
+
+    [Benchmark]
+    [ArgumentsSource(nameof(Samples))]
+    public void BenchmarkSearchUsingRegexMatch(string text, string searchText)
+    {
+        var searcher = new SearchUsingRegexWithMatch();
+        var result = searcher.FindAll(text, searchText);
+    }
+
+    [Benchmark]
+    [ArgumentsSource(nameof(Samples))]
+    public void BenchmarkSearchUsingRegexMatches(string text, string searchText)
+    {
+        var searcher = new SearchUsingRegexWithMatches();
+        searcher.SkipWholeFoundText = true;
+        var result = searcher.FindAll(text, searchText);
+    }
+
+    [Benchmark]
+    [ArgumentsSource(nameof(Samples))]
+    public void BenchmarkSearchUsingBruteForce(string text, string searchText)
     {
         var searcher = new SearchUsingBruteForceAlgorithm();
-        searcher.Initialize(searchValue);
-        var result = searcher.FindAll(text);
+        var result = searcher.FindAll(text, searchText);
+    }
+
+    [Benchmark]
+    [ArgumentsSource(nameof(Samples))]
+    public void BenchmarkSearchUsingKMP(string text, string searchText)
+    {
+        var searcher = new SearchUsingKMPAlgorithm();
+        var result = searcher.FindAll(text, searchText);
     }
 }
 #pragma warning restore IDE0059 // Unnecessary assignment of a value

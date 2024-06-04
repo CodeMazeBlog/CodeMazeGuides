@@ -12,11 +12,10 @@ public class SearchUsingRegexWithMatchesTest
         var searcher = new SearchUsingRegexWithMatches();
         searcher.CaseSensitive = false;
         searcher.SkipWholeFoundText = true;
-        var searchValue = "lorem";
-        var searchText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+        var searchText = "lorem";
+        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         var expectedPositions = new List<int> { 0, 28, 56, 84 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -28,11 +27,10 @@ public class SearchUsingRegexWithMatchesTest
         var searcher = new SearchUsingRegexWithMatches();
         searcher.CaseSensitive = true;
         searcher.SkipWholeFoundText = true;
-        var searchValue = "lorem";
-        var searchText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+        var searchText = "lorem";
+        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         var expectedPositions = new List<int> { 0, 56 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -43,11 +41,10 @@ public class SearchUsingRegexWithMatchesTest
     {
         var searcher = new SearchUsingRegexWithMatches();
         searcher.SkipWholeFoundText = true;
-        var searchValue = "notfound";
-        var searchText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+        var searchText = "notfound";
+        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         Assert.IsTrue(positions.Count == 0);
     }
@@ -57,11 +54,10 @@ public class SearchUsingRegexWithMatchesTest
     {
         var searcher = new SearchUsingRegexWithMatches();
         searcher.SkipWholeFoundText = true;
-        var searchValue = "III";
-        var searchText = "IIIIIII";
+        var searchText = "III";
+        var text = "IIIIIII";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         var expectedPositions = new List<int> { 0, 3 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -72,32 +68,29 @@ public class SearchUsingRegexWithMatchesTest
     {
         var searcher = new SearchUsingRegexWithMatches();
         searcher.SkipWholeFoundText = false;
-        var searchValue = "III";
-        var searchText = "IIIIIII";
+        var searchText = "III";
+        var text = "IIIIIII";
 
-        searcher.Initialize(searchValue);
-        Assert.ThrowsException<NotSupportedException>(() => searcher.FindAll(searchText));
+        Assert.ThrowsException<NotSupportedException>(() => searcher.FindAll(text, searchText));
     }
 
     [TestMethod]
     [DataRow(true)]
     [DataRow(false)]
-    public void GivenSearchConditions_WhenRunningSearcher_ThenSameResultsAreExpectedAsUsingBruteForceSearcher(bool caseSensitive)
+    public void GivenSearchConditions_WhenRunningSearcher_ThenSameResultsAreExpectedAsUsingIndexOfSearcher(bool caseSensitive)
     {
         foreach (SearchPair searchPair in SearchingSamples.SampleForProgram())
         {
             var searcher = new SearchUsingRegexWithMatches();
             searcher.CaseSensitive = caseSensitive;
             searcher.SkipWholeFoundText = true;
-            searcher.Initialize(searchPair.SearchValue);
 
-            var bruteForceSearcher = new SearchUsingBruteForceAlgorithm();
+            var bruteForceSearcher = new SearchUsingIndexOf();
             bruteForceSearcher.CaseSensitive = caseSensitive;
             bruteForceSearcher.SkipWholeFoundText = true;
-            bruteForceSearcher.Initialize(searchPair.SearchValue);
 
-            List<int> positions = searcher.FindAll(searchPair.Text);
-            List<int> bruteForcePositions = bruteForceSearcher.FindAll(searchPair.Text);
+            List<int> positions = searcher.FindAll(searchPair.Text, searchPair.SearchText);
+            List<int> bruteForcePositions = bruteForceSearcher.FindAll(searchPair.Text, searchPair.SearchText);
 
             Assert.IsTrue(positions.Count == bruteForcePositions.Count);
             CollectionAssert.AreEqual(bruteForcePositions, positions);

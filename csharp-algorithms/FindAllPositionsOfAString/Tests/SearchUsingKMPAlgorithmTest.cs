@@ -11,11 +11,10 @@ public class SearchUsingKMPAlgorithmTest
     {
         var searcher = new SearchUsingKMPAlgorithm();
         searcher.CaseSensitive = false;
-        var searchValue = "lorem";
-        var searchText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+        var searchText = "lorem";
+        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         var expectedPositions = new List<int> { 0, 28, 56, 84 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -26,11 +25,10 @@ public class SearchUsingKMPAlgorithmTest
     {
         var searcher = new SearchUsingKMPAlgorithm();
         searcher.CaseSensitive = true;
-        var searchValue = "lorem";
-        var searchText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+        var searchText = "lorem";
+        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         var expectedPositions = new List<int> { 0, 56 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -40,25 +38,23 @@ public class SearchUsingKMPAlgorithmTest
     public void GivenLoremText_WhenSearchingNotFound_ThenThereShouldBeNoMatches()
     {
         var searcher = new SearchUsingKMPAlgorithm();
-        var searchValue = "notfound";
-        var searchText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+        var searchText = "notfound";
+        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         Assert.IsTrue(positions.Count == 0);
     }
 
     [TestMethod]
-    public void GivenIIIIIII_WhenSearchingIIIWithWholeWords_ThenThereShouldBeException()
+    public void GivenIIIIIII_WhenSearchingIIIWithWholeWords_ThenExpectException()
     {
         var searcher = new SearchUsingKMPAlgorithm();
         searcher.SkipWholeFoundText = true;
-        var searchValue = "III";
-        var searchText = "IIIIIII";
+        var searchText = "III";
+        var text = "IIIIIII";
 
-        searcher.Initialize(searchValue);
-        Assert.ThrowsException<NotSupportedException>(() => searcher.FindAll(searchText));
+        Assert.ThrowsException<NotSupportedException>(() => searcher.FindAll(text, searchText));
     }
 
     [TestMethod]
@@ -66,36 +62,32 @@ public class SearchUsingKMPAlgorithmTest
     {
         var searcher = new SearchUsingKMPAlgorithm();
         searcher.SkipWholeFoundText = false;
-        var searchValue = "III";
-        var searchText = "IIIIIII";
+        var searchText = "III";
+        var text = "IIIIIII";
 
-        searcher.Initialize(searchValue);
-        List<int> positions = searcher.FindAll(searchText);
+        List<int> positions = searcher.FindAll(text, searchText);
 
         var expectedPositions = new List<int> { 0, 1, 2, 3, 4 };
         CollectionAssert.AreEqual(expectedPositions, positions);
     }
 
-
     [TestMethod]
     [DataRow(true)]
     [DataRow(false)]
-    public void GivenSearchConditions_WhenRunningSearcher_ThenSameResultsAreExpectedAsUsingBruteForceSearcher(bool caseSensitive)
+    public void GivenSearchConditions_WhenRunningSearcher_ThenSameResultsAreExpectedAsUsingIndexOfSearcher(bool caseSensitive)
     {
         foreach (SearchPair searchPair in SearchingSamples.SampleForProgram())
         {
             var searcher = new SearchUsingKMPAlgorithm();
             searcher.CaseSensitive = caseSensitive;
             searcher.SkipWholeFoundText = false;
-            searcher.Initialize(searchPair.SearchValue);
 
-            var bruteForceSearcher = new SearchUsingBruteForceAlgorithm();
+            var bruteForceSearcher = new SearchUsingIndexOf();
             bruteForceSearcher.CaseSensitive = caseSensitive;
             bruteForceSearcher.SkipWholeFoundText = false;
-            bruteForceSearcher.Initialize(searchPair.SearchValue);
 
-            List<int> positions = searcher.FindAll(searchPair.Text);
-            List<int> bruteForcePositions = bruteForceSearcher.FindAll(searchPair.Text);
+            List<int> positions = searcher.FindAll(searchPair.Text, searchPair.SearchText);
+            List<int> bruteForcePositions = bruteForceSearcher.FindAll(searchPair.Text, searchPair.SearchText);
 
             Assert.IsTrue(positions.Count == bruteForcePositions.Count);
             CollectionAssert.AreEqual(bruteForcePositions, positions);

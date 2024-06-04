@@ -1,25 +1,29 @@
 ﻿using FindAllPositionsOfAString.Algorithms.Interfaces;
+using System.Buffers;
+using System.Reflection.Metadata.Ecma335;
 
 namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingBruteForceAlgorithm : SearchBase, ISearcher
 {
-    public List<int> FindAll(string text)
+    public List<int> FindAll(string text, string searchText)
     {
-        ReadOnlySpan<char> searchValueSpan = _searchText.AsSpan();
-        ReadOnlySpan<char> textSpan = text.AsSpan();
-
         List<int> positions = [];
-        var textLength = textSpan.Length;
-        var searchLen = searchValueSpan.Length;
+        var textSpan = text.AsSpan();
+        var searchTextSpan = searchText.AsSpan();
 
+        var textLength = textSpan.Length;
+        var searchLen = searchTextSpan.Length;
+
+        Func<char, char, bool> AreEqualCharacters = 
+            CaseSensitive ? AreEqualCharactersSensitive : AreEqualCharactersInsensitive;
+
+        int searchPosition = 0;
         for (var textPosition = 0; textPosition <= textLength - searchLen; textPosition++)
         {
-            int searchPosition;
-
             for (searchPosition = 0; searchPosition < searchLen; searchPosition++)
             {
-                if (!AreEqualCharacters(textSpan[textPosition + searchPosition], searchValueSpan[searchPosition]))
+                if (!AreEqualCharacters(textSpan[textPosition + searchPosition], searchTextSpan[searchPosition]))
                     break;
             }
 
@@ -33,4 +37,10 @@ public class SearchUsingBruteForceAlgorithm : SearchBase, ISearcher
 
         return positions;
     }
+
+    protected bool AreEqualCharactersSensitive(char a, char b) 
+        => a == b;
+
+    protected bool AreEqualCharactersInsensitive(char a, char b) 
+        => char.ToLowerInvariant(a) == char.ToLowerInvariant(b);
 }
