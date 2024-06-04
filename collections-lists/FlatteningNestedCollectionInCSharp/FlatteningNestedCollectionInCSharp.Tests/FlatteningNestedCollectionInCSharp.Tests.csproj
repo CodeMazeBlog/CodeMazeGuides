@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FlatteningNestedCollectionInC#\FlatteningNestedCollectionInCSharp.csproj" />
+    <ProjectReference Include="..\FlatteningNestedCollectionInCSharp\FlatteningNestedCollectionInCSharp.csproj" />
   </ItemGroup>
 
 </Project>
