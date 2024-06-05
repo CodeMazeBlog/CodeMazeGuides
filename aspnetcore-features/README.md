@@ -45,3 +45,4 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [How to Call an Action From Another Controller in ASP.NET Core](https://code-maze.com/aspnetcore-call-an-action-from-another-controller/)
 - [Change Default and per Request Timeout in HttpClient](https://code-maze.com/aspnetcore-change-default-and-per-request-timeout-in-httpclient/)
 - [Using Delegating Handlers to Extend HttpClient in ASP.NET Core](https://code-maze.com/aspnetcore-using-delegating-handlers-to-extend-httpclient/)
+- [Comparing ExecuteAsync() and StartAsync() Methods from the BackgroundService Class in .NET](https://code-maze.com/dotnet-comparing-executeasync-and-startasync-methods-from-the-backgroundservice-class/)
