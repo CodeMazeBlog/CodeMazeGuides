@@ -42,11 +42,11 @@ public class ExampleWithSemaphore
 
     public static void ReleaseMultipleTimes()
     {
-        var semaphoreForError = new Semaphore(initialCount: 2, maximumCount: 2);
+        var semaphore = new Semaphore(initialCount: 2, maximumCount: 2);
 
-        semaphoreForError.WaitOne();
-        semaphoreForError.Release();
+        semaphore.WaitOne();
+        semaphore.Release();
 
-        semaphoreForError.Release();
+        semaphore.Release();
     }
 }
