@@ -15,3 +15,6 @@ foreach (var output in outputQueue)
 {
     Console.WriteLine(output);
 }
+
+Console.WriteLine("Calling Release multiple times...");
+await ExampleWithSemaphore.ReleaseMultipleTimesAsync(SleepDelay);

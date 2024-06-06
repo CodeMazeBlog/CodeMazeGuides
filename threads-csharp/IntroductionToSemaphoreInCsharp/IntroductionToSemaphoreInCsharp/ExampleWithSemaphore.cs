@@ -39,4 +39,17 @@ public class ExampleWithSemaphore
 
         _semaphore.Release();
     }
+
+    public static async Task ReleaseMultipleTimesAsync(int sleepDelay)
+    {
+        _semaphore.WaitOne();
+
+        await Task.Delay(sleepDelay);
+
+        _semaphore.Release();
+
+        await Task.Delay(sleepDelay);
+
+        _semaphore.Release();
+    }
 }

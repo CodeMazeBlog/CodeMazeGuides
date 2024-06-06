@@ -22,4 +22,11 @@ public class UnitTests
 
         Assert.AreEqual(Constants.NumberOfThreads, output.Count);
     }
+
+    [TestMethod]
+    [ExpectedException(typeof(SemaphoreFullException))]
+    public async Task GivenASemaphore_WhenReleaseMultipleTimesAsyncIsInvoked_ThenAnExceptionIsThrown()
+    {
+        await ExampleWithSemaphore.ReleaseMultipleTimesAsync(SleepDelay);
+    }
 }
