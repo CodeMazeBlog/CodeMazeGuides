@@ -25,8 +25,8 @@ public class UnitTests
 
     [TestMethod]
     [ExpectedException(typeof(SemaphoreFullException))]
-    public async Task GivenASemaphore_WhenReleaseMultipleTimesAsyncIsInvoked_ThenAnExceptionIsThrown()
+    public void GivenASemaphore_WhenReleaseMultipleTimesIsInvoked_ThenAnExceptionIsThrown()
     {
-        await ExampleWithSemaphore.ReleaseMultipleTimesAsync(SleepDelay);
+        ExampleWithSemaphore.ReleaseMultipleTimes();
     }
 }

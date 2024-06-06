@@ -17,4 +17,4 @@ foreach (var output in outputQueue)
 }
 
 Console.WriteLine("Calling Release multiple times...");
-await ExampleWithSemaphore.ReleaseMultipleTimesAsync(SleepDelay);
+ExampleWithSemaphore.ReleaseMultipleTimes();

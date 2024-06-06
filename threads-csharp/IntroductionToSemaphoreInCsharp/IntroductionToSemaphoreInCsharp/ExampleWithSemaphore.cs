@@ -40,16 +40,13 @@ public class ExampleWithSemaphore
         _semaphore.Release();
     }
 
-    public static async Task ReleaseMultipleTimesAsync(int sleepDelay)
+    public static void ReleaseMultipleTimes()
     {
-        _semaphore.WaitOne();
+        var semaphoreForError = new Semaphore(initialCount: 2, maximumCount: 2);
 
-        await Task.Delay(sleepDelay);
+        semaphoreForError.WaitOne();
+        semaphoreForError.Release();
 
-        _semaphore.Release();
-
-        await Task.Delay(sleepDelay);
-
-        _semaphore.Release();
+        semaphoreForError.Release();
     }
 }
