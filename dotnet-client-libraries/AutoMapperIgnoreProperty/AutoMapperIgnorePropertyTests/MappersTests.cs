@@ -6,7 +6,7 @@ namespace AutoMapperIgnorePropertyTests;
 public class MappersTests
 {
     [TestMethod]
-    public void GivenSensitiveProperties_ThenPasswordAndIsAdminShouldBeIgnored()
+    public void GivenSensitiveProperties_WhenExecutingMap_ThenPasswordAndIsAdminShouldBeIgnored()
     {
         // Arrange
         var user = new User
@@ -31,7 +31,7 @@ public class MappersTests
     }
 
     [TestMethod]
-    public void GivenSensitivePropertiesMarkedWithAttribute_ThenPasswordAndIsAdminShouldBeIgnored()
+    public void GivenSensitivePropertiesMarkedWithAttribute_WhenExecutingMap_ThenPasswordAndIsAdminShouldBeIgnored()
     {
         // Arrange
         var user = new User
@@ -57,7 +57,7 @@ public class MappersTests
     }
 
     [TestMethod]
-    public void GivenMapperIgnoringSourceMembers_ThenEmailValidationShouldBeIgnored()
+    public void GivenMapperIgnoringSourceMembers_WhenExecutingMap_ThenEmailValidationShouldBeIgnored()
     {
         // Arrange
         var user = new User
