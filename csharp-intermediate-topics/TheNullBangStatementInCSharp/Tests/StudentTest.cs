@@ -1,11 +1,11 @@
-﻿using ThenullbangStatementInCSharp;
+﻿using TheNullBangStatementInCSharp;
 
 namespace Tests;
 
 public class StudentTest
 {
     [Fact]
-    public void WhenCreatingAStudent_ThenReturnsANonNullableName()
+    public void WhenCreatingAStudent_ThenReturnsName()
     {
         var student = new Student
         {

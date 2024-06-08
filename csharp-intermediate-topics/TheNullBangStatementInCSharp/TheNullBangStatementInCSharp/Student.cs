@@ -1,4 +1,4 @@
-﻿namespace ThenullbangStatementInCSharp;
+﻿namespace TheNullBangStatementInCSharp;
 
 public class Student
 {
