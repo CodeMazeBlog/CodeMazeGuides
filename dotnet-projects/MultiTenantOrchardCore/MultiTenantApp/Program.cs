@@ -1,19 +1,25 @@
-var builder = WebApplication.CreateBuilder(args);
+namespace MultiTenantApp;
 
-builder.Services.AddOrchardCore().AddMvc().WithTenants();
-
-var app = builder.Build();
-
-if (!app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+        builder.Services.AddOrchardCore().AddMvc().WithTenants();
+
+        var app = builder.Build();
+
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseExceptionHandler("/Error");
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+        app.UseOrchardCore();
+
+        app.Run();
+    }
 }
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseOrchardCore();
-
-app.Run();
-
-public partial class Program { }
