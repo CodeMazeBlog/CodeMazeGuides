@@ -3,10 +3,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 {
-    public ApplicationDbContext(DbContextOptions options) : base(options) { }
-
     public DbSet<User> Users { get; init; }
 
     protected override void OnModelCreating(ModelBuilder builder)

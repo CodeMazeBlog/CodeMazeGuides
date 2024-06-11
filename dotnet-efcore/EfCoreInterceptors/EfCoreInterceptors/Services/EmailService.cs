@@ -1,14 +1,7 @@
 ﻿namespace EfCoreInterceptors.Services;
 
-public class EmailService : IEmailService
+public class EmailService(ILogger<EmailService> logger) : IEmailService
 {
-    private readonly ILogger<EmailService> logger;
-
-    public EmailService(ILogger<EmailService> logger)
-    {
-        this.logger = logger;
-    }
-
     public async Task<bool> SendWelcomeEmailAsync(long userId, string userName, string userEmail)
     {
         logger.LogInformation("Sending welcome email to {email} with user id {userId} and user name {userName}",
