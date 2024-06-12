@@ -53,3 +53,4 @@ This section contains articles about ASP.NET Core Web API-related topics.
 - [Using the Result Pattern in .NET Web API](https://code-maze.com/aspnetcore-result-pattern/)
 - [Using Source Generators to Validate IOptions in ASP.NET Core](https://code-maze.com/aspnetcore-using-source-generators-to-validate-ioptions/)
 - [Add a Cookie to an HttpClient Request/Response in ASP.NET Core](https://code-maze.com/aspnetcore-add-a-cookie-to-an-httpclient-request-response/)
+- [Adding a Custom Header Parameter to All API Endpoints in Swagger](https://code-maze.com/aspnetcore-adding-a-custom-header-parameter-to-all-api-endpoints-in-swagger/)
