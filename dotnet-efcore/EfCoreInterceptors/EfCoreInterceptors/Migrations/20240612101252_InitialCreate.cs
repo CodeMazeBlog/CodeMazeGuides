@@ -15,7 +15,7 @@ namespace EfCoreInterceptors.Migrations
                 name: "master");
 
             migrationBuilder.CreateTable(
-                name: "Entities",
+                name: "Users",
                 schema: "master",
                 columns: table => new
                 {
@@ -28,7 +28,7 @@ namespace EfCoreInterceptors.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Entities", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
         }
 
@@ -36,7 +36,7 @@ namespace EfCoreInterceptors.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Entities",
+                name: "Users",
                 schema: "master");
         }
     }

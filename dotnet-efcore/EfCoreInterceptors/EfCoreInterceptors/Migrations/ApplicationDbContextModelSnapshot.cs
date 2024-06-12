@@ -36,7 +36,8 @@ namespace EfCoreInterceptors.Migrations
                         .HasColumnName("Created");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Email");
 
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2")
@@ -48,7 +49,7 @@ namespace EfCoreInterceptors.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Entities", "master");
+                    b.ToTable("Users", "master");
                 });
 #pragma warning restore 612, 618
         }
