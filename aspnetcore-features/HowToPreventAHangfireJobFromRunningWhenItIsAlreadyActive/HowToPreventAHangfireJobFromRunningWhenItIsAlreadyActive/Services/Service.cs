@@ -2,11 +2,11 @@
 
 namespace HowToPreventAHangfireJobFromRunningWhenItIsAlreadyActive.Services;
 
-public class LongRunningService : IILongRunningService
+public class Service : IService
 {
-    private readonly ILogger<LongRunningService> _logger;
+    private readonly ILogger<Service> _logger;
 
-    public LongRunningService(ILogger<LongRunningService> logger)
+    public Service(ILogger<Service> logger)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }

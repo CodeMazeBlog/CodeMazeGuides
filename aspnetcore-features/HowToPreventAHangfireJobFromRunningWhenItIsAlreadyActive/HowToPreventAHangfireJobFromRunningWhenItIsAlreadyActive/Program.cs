@@ -3,7 +3,7 @@ using HowToPreventAHangfireJobFromRunningWhenItIsAlreadyActive.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IILongRunningService, LongRunningService>();
+builder.Services.AddScoped<IService, Service>();
 
 builder.Services.AddHangfire(config =>
 {

@@ -1,6 +1,6 @@
 ﻿namespace HowToPreventAHangfireJobFromRunningWhenItIsAlreadyActive.Services;
 
-public interface IILongRunningService
+public interface IService
 {
     Task ProcessAsync();
 }
