@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EFCoreComplexTypes": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\User\\Desktop\\CodeMazeGuides\\dotnet-efcore\\EFCoreComplexTypes\\EFCoreComplexTypes"
+    }
+  }
+}
