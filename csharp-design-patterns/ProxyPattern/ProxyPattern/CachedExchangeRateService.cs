@@ -3,7 +3,7 @@
 public class CachedExchangeRateService : IExchangeRateService
 {
     private readonly IExchangeRateService _exchangeRateService;
-    private ExchangeRate[]? _exhangeRates;
+    private ExchangeRate[]? _exchangeRates;
 
     public CachedExchangeRateService()
     {
@@ -12,15 +12,15 @@ public class CachedExchangeRateService : IExchangeRateService
 
     public ExchangeRate[] GetExchangeRates()
     {
-        if (_exhangeRates is null)
+        if (_exchangeRates is null)
         {
-            _exhangeRates = _exchangeRateService.GetExchangeRates();
+            _exchangeRates = _exchangeRateService.GetExchangeRates();
 
-            return _exhangeRates;
+            return _exchangeRates;
         }
 
         Console.WriteLine("Read data from cache");
 
-        return _exhangeRates;
+        return _exchangeRates;
     }
 }
