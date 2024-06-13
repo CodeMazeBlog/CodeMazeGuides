@@ -4,18 +4,15 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
 {
-    private int[] prefix = [];
-
-    private void ComputePrefix(string searchText)
+    private int[] ComputePrefix(ReadOnlySpan<char> searchText)
     {
-        char[] chars = searchText.ToCharArray();
-        prefix = new int[chars.Length];
+        var prefix = new int[searchText.Length];
 
         var len = 0;
         var positions = 1;
-        while (positions < chars.Length)
+        while (positions < searchText.Length)
         {
-            if (chars[positions] == chars[len])
+            if (searchText[positions] == searchText[len])
             {
                 len++;
                 prefix[positions] = len;
@@ -34,6 +31,8 @@ public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
                 }
             }
         }
+
+        return prefix;
     }
 
     public List<int> FindAll(string text, string searchText)
@@ -41,45 +40,32 @@ public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
         if (SkipWholeFoundText)
             throw new NotSupportedException("SkipWholeFoundText is not supported for KMP algorithm.");
 
-        ComputePrefix(searchText);
-
-        List<int> positions = [];
-
         var textSpan = text.AsSpan();
         var searchTextSpan = searchText.AsSpan();
 
-        var textLength = textSpan.Length;
-        var searchLen = searchTextSpan.Length;
+        var prefix = ComputePrefix(searchTextSpan);
 
-        var textPosition = 0;
-        var searchPosition = 0;
+        List<int> positions = [];
+
+        var textLength = textSpan.Length;
+        var searchLength = searchTextSpan.Length;
 
         Func<char, char, bool> AreEqualCharacters =
             CaseSensitive ? AreEqualCharactersSensitive : AreEqualCharactersInsensitive;
 
-        while (textPosition < textLength)
+        int p = 0;
+        for (var i = 0; i < textLength; i++)
         {
-            if (AreEqualCharacters(searchTextSpan[searchPosition], textSpan[textPosition]))
-            {
-                textPosition++;
-                searchPosition++;
-            }
+            while (p != 0 && !AreEqualCharacters(textSpan[i], searchTextSpan[p]))
+                p = prefix[p - 1];
 
-            if (searchPosition == searchLen)
+            if (p != 0 || AreEqualCharacters(textSpan[i], searchTextSpan[p]))
+                p++;
+
+            if (p == searchLength)
             {
-                positions.Add(textPosition - searchPosition);
-                searchPosition = prefix[searchPosition - 1];
-            }
-            else
-            {
-                if ((textPosition < textLength) &&
-                    !(AreEqualCharacters(searchTextSpan[searchPosition], textSpan[textPosition])))
-                {
-                    if (searchPosition != 0)
-                        searchPosition = prefix[searchPosition - 1];
-                    else
-                        textPosition++;
-                }
+                positions.Add(i + 1 - searchLength);
+                p = prefix[p - 1];
             }
         }
 
