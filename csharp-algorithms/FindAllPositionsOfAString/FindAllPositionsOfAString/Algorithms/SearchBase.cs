@@ -9,5 +9,5 @@ public class SearchBase
         => a == b;
 
     protected bool AreEqualCharactersInsensitive(char a, char b)
-        => char.ToLowerInvariant(a) == char.ToLowerInvariant(b);
+        => char.ToUpperInvariant(a) == char.ToUpperInvariant(b);
 }
