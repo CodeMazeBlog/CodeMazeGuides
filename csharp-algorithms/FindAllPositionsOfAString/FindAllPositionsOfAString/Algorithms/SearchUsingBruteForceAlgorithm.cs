@@ -37,10 +37,4 @@ public class SearchUsingBruteForceAlgorithm : SearchBase, ISearcher
 
         return positions;
     }
-
-    protected bool AreEqualCharactersSensitive(char a, char b) 
-        => a == b;
-
-    protected bool AreEqualCharactersInsensitive(char a, char b) 
-        => char.ToLowerInvariant(a) == char.ToLowerInvariant(b);
 }

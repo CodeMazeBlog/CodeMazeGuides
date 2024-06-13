@@ -6,7 +6,7 @@ public static class SearchingSamples
 {
     private static string JuliusCaesar = JuliusCaesarText.Read();
 
-    private readonly static SearchPair[] searchPairs =
+    private static readonly SearchPair[] searchPairs =
     [
         new SearchPair("Some consider the occurrences to be the unconscious mind’s attempts to communicate to the conscious mind.", "the"),
         new SearchPair("The quick brown fox jumps over the lazy dog?", "the"),

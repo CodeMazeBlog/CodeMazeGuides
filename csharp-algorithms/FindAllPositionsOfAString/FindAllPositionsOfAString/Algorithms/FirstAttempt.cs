@@ -1,6 +1,6 @@
 ﻿namespace FindAllPositionsOfAString.Algorithms;
 
-public class FirstAttempt
+public static class FirstAttempt
 {
     public static List<int> FindAll(string text, string searchText)
     {
