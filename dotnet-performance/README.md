@@ -10,3 +10,4 @@ This section contains topics related to performance improvements and testing of 
 - [How to Benchmark a Method’s Performance Across Different .NET Versions](https://code-maze.com/csharp-benchmark-methods-performance-across-different-net-versions/)
 - [Improve Performance With Source-Generated RegEx in .NET](https://code-maze.com/csharp-improve-performance-with-source-generated-regex/)
 - [Baseline Styling in BenchmarkDotNet](https://code-maze.com/csharp-baseline-styling-in-benchmarkdotnet/)
+- [Differences Between Span and Memory in C#](https://code-maze.com/csharp-differences-between-span-and-memory/)
