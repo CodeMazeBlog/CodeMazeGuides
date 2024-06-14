@@ -20,6 +20,14 @@ public class SearcherBenchmarks
 
     [Benchmark]
     [ArgumentsSource(nameof(Samples))]
+    public void BenchmarkSearchUsingSearchValues(string text, string searchText)
+    {
+        var searcher = new SearchUsingSearchValues();
+        var result = searcher.FindAll(text, searchText);
+    }
+
+    [Benchmark]
+    [ArgumentsSource(nameof(Samples))]
     public void BenchmarkSearchUsingRegexMatch(string text, string searchText)
     {
         var searcher = new SearchUsingRegexWithMatch();
