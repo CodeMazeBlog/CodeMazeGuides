@@ -30,7 +30,6 @@ public class ServiceCollectionTest
     [Fact]
     public void GivenDependenciesExists_WhenWildAnimalServicesIsCalled_ThenServiceNotRegistered()
     {
-
         var petService = ServiceProvider.GetService<IAnimalService>();
 
         Assert.NotNull(petService);
