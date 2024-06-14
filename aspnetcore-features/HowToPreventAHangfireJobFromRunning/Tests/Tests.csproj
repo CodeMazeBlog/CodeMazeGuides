@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HowToPreventAHangfireJobFromRunningWhenItIsAlreadyActive\HowToPreventAHangfireJobFromRunningWhenItIsAlreadyActive.csproj" />
+    <ProjectReference Include="..\HowToPreventAHangfireJobFromRunning\HowToPreventAHangfireJobFromRunning.csproj" />
   </ItemGroup>
 
 </Project>

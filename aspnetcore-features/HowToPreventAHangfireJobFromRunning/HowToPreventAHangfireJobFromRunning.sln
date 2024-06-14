@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowToPreventAHangfireJobFromRunningWhenItIsAlreadyActive", "HowToPreventAHangfireJobFromRunningWhenItIsAlreadyActive\HowToPreventAHangfireJobFromRunningWhenItIsAlreadyActive.csproj", "{D7E7CFEC-CDC8-48C6-B185-6F0D0D46EB76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HowToPreventAHangfireJobFromRunning", "HowToPreventAHangfireJobFromRunning\HowToPreventAHangfireJobFromRunning.csproj", "{D7E7CFEC-CDC8-48C6-B185-6F0D0D46EB76}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{17A11263-40C1-4798-917F-75E5D0775101}"
 EndProject
