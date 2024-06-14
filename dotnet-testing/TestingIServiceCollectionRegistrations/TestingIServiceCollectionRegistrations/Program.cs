@@ -1,3 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿var services = new ServiceCollection();
 
+var configuration = new ConfigurationBuilder().Build();
+
+services.AddDependencies();
+
+var serviceProvider = services.BuildServiceProvider();
+
+serviceProvider.GetService<IAnimalService>()!
+   .PrintName("Cat");
