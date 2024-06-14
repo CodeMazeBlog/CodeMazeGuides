@@ -1,4 +1,19 @@
+using Hangfire;
+using HowToPreventAHangfireJobFromRunningWhenItIsAlreadyActive.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<IService, Service>();
+
+builder.Services.AddHangfire(config =>
+{
+    config.SetDataCompatibilityLevel(CompatibilityLevel.Version_180);
+    config.UseSimpleAssemblyNameTypeSerializer();
+    config.UseRecommendedSerializerSettings();
+    config.UseInMemoryStorage();
+    config.UseColouredConsoleLogProvider();
+});
+builder.Services.AddHangfireServer();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -15,6 +30,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseHangfireDashboard();
+app.MapHangfireDashboard("/hangfire");
 
 app.MapControllers();
 
