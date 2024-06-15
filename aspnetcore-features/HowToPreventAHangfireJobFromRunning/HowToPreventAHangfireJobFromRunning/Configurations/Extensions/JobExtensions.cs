@@ -30,4 +30,9 @@ public static class JobExtensions
 
         return fingerprint;
     }
+
+    public static bool SkipConcurrentExecution(this Job job)
+    {
+        return job.Method.GetCustomAttributes(typeof(SkipConcurrentExecutionAttribute), false).Length > 0;
+    }
 }

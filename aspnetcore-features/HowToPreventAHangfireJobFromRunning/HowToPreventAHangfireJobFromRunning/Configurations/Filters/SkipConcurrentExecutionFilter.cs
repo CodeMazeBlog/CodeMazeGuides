@@ -19,14 +19,13 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
         TimeSpan lockTimeout, TimeSpan fingerprintTimeout)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        
         _lockTimeout = lockTimeout;
         _fingerprintTimeout = fingerprintTimeout;
     }
 
     public void OnCreating(CreatingContext filterContext)
     {
-        if (filterContext.Job.Method.GetCustomAttributes(typeof(SkipConcurrentExecutionAttribute), false).Length == 0)
+        if (!filterContext.Job.SkipConcurrentExecution())
         {
             return;
         }
@@ -36,13 +35,14 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
         if (!AddFingerprintIfNotExists(filterContext.Connection, filterContext.Job))
         {
             _logger.LogWarning("Recurring job '{JobName}' is already running, skipping...", filterContext.Job.Method.Name);
+
             filterContext.Canceled = true;
         }
     }
 
     public void OnPerformed(PerformedContext filterContext)
     {
-        if (filterContext.BackgroundJob.Job.Method.GetCustomAttributes(typeof(SkipConcurrentExecutionAttribute), false).Length == 0)
+        if (!filterContext.BackgroundJob.Job.SkipConcurrentExecution())
         {
             return;
         }
@@ -62,8 +62,7 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
 
             DateTimeOffset timestamp;
 
-            if (fingerprint != null &&
-                fingerprint.ContainsKey("Timestamp") &&
+            if (fingerprint is not null && fingerprint.ContainsKey("Timestamp") &&
                 DateTimeOffset.TryParseExact(fingerprint["Timestamp"], "o", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, out timestamp) &&
                 DateTimeOffset.UtcNow <= timestamp.Add(_fingerprintTimeout))
             {
@@ -88,6 +87,7 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
         _logger.LogInformation("Removing fingerprint for job '{JobName}'...", job.Method.Name);
         
         using (connection.AcquireDistributedLock(job.GetFingerprintLockKey(), _lockTimeout))
+
         using (var transaction = connection.CreateWriteTransaction())
         {
             transaction.RemoveHash(job.GetFingerprintKey());
