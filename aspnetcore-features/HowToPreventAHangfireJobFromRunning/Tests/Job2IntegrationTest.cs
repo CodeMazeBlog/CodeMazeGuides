@@ -1,29 +1,33 @@
 ﻿namespace Tests;
 
-[Collection("sequential")]
-public class Job2IntegrationTests
+public class Job2IntegrationTests : IClassFixture<ApiApplicationFactory>
 {
     private readonly string _baseUri = "http://localhost:5000/api/jobs/";
+
+    private readonly HttpClient _client;
+
+    public Job2IntegrationTests(ApiApplicationFactory factory)
+    {
+        _client = factory.CreateClient();
+    }
 
     [Fact]
     public async Task GivenJobsController_WhenCreatingManyOccurrencesOfAGivenJobButUsingSkipConcurrentExecutionAttribute_ThenTheExtraJobsAreBeingSkipped()
     {
         // Arrange
-        await using var factory = new WebApplicationFactory<Program>();
-        var client = factory.CreateClient();
-        client.BaseAddress = new Uri(_baseUri);
+        _client.BaseAddress = new Uri(_baseUri);
         HttpResponseMessage response;
         var processingCount = 1;
 
         // Act
-        response = await client.PostAsync("create-job-2", null);
+        response = await _client.PostAsync("create-job-2", null);
         response.EnsureSuccessStatusCode();
 
-        response = await client.PostAsync("create-job-2", null);
+        response = await _client.PostAsync("create-job-2", null);
         response.EnsureSuccessStatusCode();
 
         // Assert
-        response = await client.GetAsync("statistics");
+        response = await _client.GetAsync("statistics");
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
 
