@@ -42,29 +42,60 @@ public class JobsController : ControllerBase
         return Ok(statisticsDto);
     }
     
-    [HttpPost("create-recurring-job/{number:int}")]
+    [HttpGet("{jobId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public ActionResult<JobDto> GetJob(string jobId)
+    {
+        var monitoringApi = JobStorage.Current.GetMonitoringApi();
+        var jobDetails = monitoringApi.JobDetails(jobId);
+        
+        if (jobDetails == null)
+        {
+            return NotFound();
+        }
+        
+        var jobDto = new JobDto
+        {
+            Id = jobId,
+            CreatedAt = jobDetails.CreatedAt,
+            StateName = jobDetails.History.LastOrDefault()?.StateName
+        };
+        
+        return Ok(jobDto);
+    }
+    
+    [HttpPost("create-job/{number:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult CreateRecurringJob(int number)
+    public IActionResult CreateJob(int number)
     {
         var jobName = $"job-{number}";
+        string? jobId;
         
         switch (jobName) 
         {
             case Job1:
-                _backgroundJobClient.Enqueue<JobService>(jobService => jobService.Job1());
+                jobId = _backgroundJobClient.Enqueue<JobService>(jobService => jobService.Job1());
                 break;
             case Job2:
-                _backgroundJobClient.Enqueue<JobService>(jobService => jobService.Job2());
+                jobId = _backgroundJobClient.Enqueue<JobService>(jobService => jobService.Job2());
                 break;
             case Job3:
-                _backgroundJobClient.Enqueue<JobService>(jobService => jobService.Job3());
+                jobId = _backgroundJobClient.Enqueue<JobService>(jobService => jobService.Job3());
                 break;
             default:
                 return BadRequest("Invalid job number.");
         }
-        
-        _logger.LogInformation("Created job '{JobName}'", jobName);
+
+        if (string.IsNullOrWhiteSpace(jobId))
+        {
+            _logger.LogWarning("Unable to create job '{JobName}'", jobName);
+        }
+        else
+        {
+            _logger.LogInformation("Created job '{JobName}' with ID '{JobId}'", jobName, jobId);
+        }
         
         return NoContent();
     }

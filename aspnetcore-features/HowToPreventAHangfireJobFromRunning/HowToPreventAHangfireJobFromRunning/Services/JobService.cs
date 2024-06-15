@@ -12,24 +12,15 @@ public class JobService
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
     
-    public void Job1()
-    {
-        PerformLongRunningOperation(nameof(Job1));
-    }
+    public Task Job1() => PerformLongRunningOperation(nameof(Job1));
 
     [DisableConcurrentExecution(timeoutInSeconds: TimeoutInSeconds)]
-    public void Job2()
-    {
-        PerformLongRunningOperation(nameof(Job2));
-    }
+    public Task Job2() => PerformLongRunningOperation(nameof(Job2));
 
     [DisableQueueing]
-    public void Job3()
-    {
-        PerformLongRunningOperation(nameof(Job3));
-    }
+    public Task Job3() => PerformLongRunningOperation(nameof(Job3)); 
     
-    private void PerformLongRunningOperation(string jobName)
+    private Task PerformLongRunningOperation(string jobName)
     {
         var guid = Guid.NewGuid();
         
@@ -38,5 +29,7 @@ public class JobService
         Thread.Sleep(TimeSpan.FromMinutes(OperationDurationInSeconds));
         
         _logger.LogInformation("Finished job \"{JobName}\" operation: {Guid}", jobName, guid);
+        
+        return Task.CompletedTask;
     }
 }
