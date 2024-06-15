@@ -1,21 +1,21 @@
 ﻿namespace HowToPreventAHangfireJobFromRunning.Configurations.Filters;
 
-public class DisableQueueingFilter : IClientFilter, IServerFilter
+public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
 {
-    private readonly ILogger<DisableQueueingFilter> _logger;
+    private readonly ILogger<SkipConcurrentExecutionFilter> _logger;
     private static readonly TimeSpan DefaultLockTimeout = TimeSpan.FromSeconds(5);
     private static readonly TimeSpan FingerprintTimeout = TimeSpan.FromHours(1);
 
     private readonly TimeSpan _lockTimeout;
     private readonly TimeSpan _fingerprintTimeout;
 
-    public DisableQueueingFilter(ILogger<DisableQueueingFilter> logger)
+    public SkipConcurrentExecutionFilter(ILogger<SkipConcurrentExecutionFilter> logger)
         : this(logger, DefaultLockTimeout, FingerprintTimeout)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 
-    public DisableQueueingFilter(ILogger<DisableQueueingFilter> logger, 
+    public SkipConcurrentExecutionFilter(ILogger<SkipConcurrentExecutionFilter> logger, 
         TimeSpan lockTimeout, TimeSpan fingerprintTimeout)
     {
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -26,7 +26,7 @@ public class DisableQueueingFilter : IClientFilter, IServerFilter
 
     public void OnCreating(CreatingContext filterContext)
     {
-        if (filterContext.Job.Method.GetCustomAttributes(typeof(DisableQueueingAttribute), false).Length == 0)
+        if (filterContext.Job.Method.GetCustomAttributes(typeof(SkipConcurrentExecutionAttribute), false).Length == 0)
         {
             return;
         }
@@ -42,7 +42,7 @@ public class DisableQueueingFilter : IClientFilter, IServerFilter
 
     public void OnPerformed(PerformedContext filterContext)
     {
-        if (filterContext.BackgroundJob.Job.Method.GetCustomAttributes(typeof(DisableQueueingAttribute), false).Length == 0)
+        if (filterContext.BackgroundJob.Job.Method.GetCustomAttributes(typeof(SkipConcurrentExecutionAttribute), false).Length == 0)
         {
             return;
         }

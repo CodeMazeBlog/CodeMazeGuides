@@ -1,5 +1,5 @@
 ﻿namespace HowToPreventAHangfireJobFromRunning.Configurations.Attributes;
 
-public class DisableQueueingAttribute : JobFilterAttribute
+public class SkipConcurrentExecutionAttribute : JobFilterAttribute
 {
 }

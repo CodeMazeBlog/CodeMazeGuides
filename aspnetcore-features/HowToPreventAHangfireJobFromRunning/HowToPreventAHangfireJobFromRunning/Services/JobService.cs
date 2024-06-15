@@ -12,24 +12,22 @@ public class JobService
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
     
-    public Task Job1() => PerformLongRunningOperation(nameof(Job1));
+    public async Task RunJob1Async() => await PerformLongRunningOperationAsync(nameof(RunJob1Async));
 
     [DisableConcurrentExecution(timeoutInSeconds: TimeoutInSeconds)]
-    public Task Job2() => PerformLongRunningOperation(nameof(Job2));
+    public async Task RunJob2Async() => await PerformLongRunningOperationAsync(nameof(RunJob2Async));
 
-    [DisableQueueing]
-    public Task Job3() => PerformLongRunningOperation(nameof(Job3)); 
+    [SkipConcurrentExecution]
+    public async Task RunJob3Async() => await PerformLongRunningOperationAsync(nameof(RunJob3Async)); 
     
-    private Task PerformLongRunningOperation(string jobName)
+    private async Task PerformLongRunningOperationAsync(string jobName)
     {
         var guid = Guid.NewGuid();
         
         _logger.LogInformation("Starting job \"{JobName}\", operation: {Guid}", jobName, guid);
         
-        Thread.Sleep(TimeSpan.FromMinutes(OperationDurationInSeconds));
+        await Task.Delay(TimeSpan.FromSeconds(OperationDurationInSeconds));
         
         _logger.LogInformation("Finished job \"{JobName}\" operation: {Guid}", jobName, guid);
-        
-        return Task.CompletedTask;
     }
 }

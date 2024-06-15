@@ -2,7 +2,7 @@ using HowToPreventAHangfireJobFromRunning.Configurations.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddTransient<JobService>();
+builder.Services.AddSingleton<JobService>();
 
 builder.Services.AddHangfire((provider, config) =>
 {
@@ -10,9 +10,8 @@ builder.Services.AddHangfire((provider, config) =>
     config.UseSimpleAssemblyNameTypeSerializer();
     config.UseRecommendedSerializerSettings();
     config.UseInMemoryStorage();
-    config.UseColouredConsoleLogProvider();
     
-    config.UseFilter(new DisableQueueingFilter(provider.GetRequiredService<ILogger<DisableQueueingFilter>>()));
+    config.UseFilter(new SkipConcurrentExecutionFilter(provider.GetRequiredService<ILogger<SkipConcurrentExecutionFilter>>()));
 });
 builder.Services.AddHangfireServer();
 
