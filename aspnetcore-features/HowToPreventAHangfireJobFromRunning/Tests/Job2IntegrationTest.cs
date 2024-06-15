@@ -1,6 +1,7 @@
 ﻿namespace Tests;
 
-public class Job3IntegrationTests
+[Collection("sequential")]
+public class Job2IntegrationTests
 {
     private readonly string _baseUri = "http://localhost:5000/api/jobs/";
 
@@ -15,10 +16,10 @@ public class Job3IntegrationTests
         var processingCount = 1;
 
         // Act
-        response = await client.PostAsync("create-job-3", null);
+        response = await client.PostAsync("create-job-2", null);
         response.EnsureSuccessStatusCode();
 
-        response = await client.PostAsync("create-job-3", null);
+        response = await client.PostAsync("create-job-2", null);
         response.EnsureSuccessStatusCode();
 
         // Assert

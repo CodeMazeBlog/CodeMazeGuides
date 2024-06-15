@@ -4,29 +4,29 @@ public static class JobExtensions
 {
     public static string GetFingerprintLockKey(this Job job)
     {
-        return String.Format("{0}:lock", job.GetFingerprintKey());
+        return $"{job.GetFingerprintKey()}:lock";
     }
 
     public static string GetFingerprintKey(this Job job)
     {
-        return String.Format("fingerprint:{0}", job.GetFingerprint());
+        return $"fingerprint:{job.GetFingerprint()}";
     }
     
     private static string GetFingerprint(this Job job)
     {
-        string parameters = string.Empty;
-        if (job.Args != null)
+        var parameters = string.Empty;
+
+        if (job.Args is not null)
         {
             parameters = string.Join(".", job.Args);
         }
+
         if (job.Type == null || job.Method == null)
         {
             return string.Empty;
         }
-        var fingerprint = String.Format(
-            "{0}.{1}.{2}",
-            job.Type.FullName,
-            job.Method.Name, parameters);
+
+        var fingerprint = $"{job.Type.FullName}.{job.Method.Name}.{parameters}";
 
         return fingerprint;
     }

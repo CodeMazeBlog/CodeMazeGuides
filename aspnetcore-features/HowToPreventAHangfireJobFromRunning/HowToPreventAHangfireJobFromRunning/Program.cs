@@ -1,5 +1,3 @@
-using HowToPreventAHangfireJobFromRunning.Configurations.Filters;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<JobService>();
