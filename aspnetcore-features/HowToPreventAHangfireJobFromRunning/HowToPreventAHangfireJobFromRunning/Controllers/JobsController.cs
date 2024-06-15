@@ -1,5 +1,4 @@
 ﻿using HowToPreventAHangfireJobFromRunning.Dtos;
-using Microsoft.AspNetCore.Mvc;
 
 namespace HowToPreventAHangfireJobFromRunning.Controllers;
 

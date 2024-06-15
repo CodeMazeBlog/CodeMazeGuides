@@ -1,5 +1,3 @@
-using Hangfire;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHangfire(config =>
