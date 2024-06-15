@@ -1,5 +1,6 @@
 ﻿namespace Tests;
 
+[Collection("sequential")]
 public class Job3IntegrationTests
 {
     private readonly string _baseUri = "http://localhost:5000/api/jobs/";

@@ -8,17 +8,13 @@ public class JobsController : ControllerBase
     public readonly string Job2 = "job-2";
     public readonly string Job3 = "job-3";
     
-    private readonly JobService _jobService;
     private readonly IBackgroundJobClient _backgroundJobClient;
     private readonly IRecurringJobManager _recurringJobManager;
     private readonly ILogger<JobsController> _logger;
 
-    public JobsController(JobService jobService, 
-        IBackgroundJobClient backgroundJobClient, IRecurringJobManager recurringJobManager,
+    public JobsController(IBackgroundJobClient backgroundJobClient, IRecurringJobManager recurringJobManager,
         ILogger<JobsController> logger)
     {
-        _jobService = jobService ?? throw new ArgumentNullException(nameof(jobService));
-        
         _backgroundJobClient = backgroundJobClient ?? throw new ArgumentNullException(nameof(backgroundJobClient));
         _recurringJobManager = recurringJobManager;
 
@@ -49,7 +45,7 @@ public class JobsController : ControllerBase
     {
         _logger.LogInformation("Creating job '{JobName}'", Job1);
 
-        var jobId = _backgroundJobClient.Enqueue(() => _jobService.RunJob1Async());
+        var jobId = _backgroundJobClient.Enqueue<JobService>(jobService => jobService.RunJob1Async());
         
         _logger.LogInformation("Created job '{JobName}' with ID '{JobId}'", Job1, jobId);
         
@@ -62,7 +58,7 @@ public class JobsController : ControllerBase
     {
         _logger.LogInformation("Creating recurring job '{JobName}'", Job2);
         
-        _recurringJobManager.AddOrUpdate(Job2, () => _jobService.RunJob2Async(), Cron.Minutely);
+        _recurringJobManager.AddOrUpdate<JobService>(Job2, jobService => jobService.RunJob2Async(), Cron.Minutely);
         
         return NoContent();
     }
@@ -74,7 +70,7 @@ public class JobsController : ControllerBase
     {
         _logger.LogInformation("Creating job '{JobName}'", Job3);
         
-        var jobId = _backgroundJobClient.Enqueue(() => _jobService.RunJob3Async());
+        var jobId = _backgroundJobClient.Enqueue<JobService>(jobService => jobService.RunJob3Async());
         
         if (string.IsNullOrWhiteSpace(jobId))
         {

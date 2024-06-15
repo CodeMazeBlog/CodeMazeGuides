@@ -1,6 +1,6 @@
 ﻿namespace HowToPreventAHangfireJobFromRunning.Services;
 
-public class JobService
+public static class JobService
 {
     private const int TimeoutInSeconds = 9 * 60;
     private const int OperationDurationInSeconds = 10 * 60;
