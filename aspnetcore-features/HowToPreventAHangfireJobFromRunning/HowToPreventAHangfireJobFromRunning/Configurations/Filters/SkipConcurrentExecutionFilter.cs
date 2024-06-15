@@ -2,10 +2,10 @@
 
 public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
 {
-    private readonly ILogger<SkipConcurrentExecutionFilter> _logger;
     private static readonly TimeSpan DefaultLockTimeout = TimeSpan.FromSeconds(5);
     private static readonly TimeSpan FingerprintTimeout = TimeSpan.FromHours(1);
 
+    private readonly ILogger<SkipConcurrentExecutionFilter> _logger;
     private readonly TimeSpan _lockTimeout;
     private readonly TimeSpan _fingerprintTimeout;
 
