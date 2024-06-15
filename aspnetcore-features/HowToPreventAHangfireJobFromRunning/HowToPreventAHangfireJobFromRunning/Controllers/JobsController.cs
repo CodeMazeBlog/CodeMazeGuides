@@ -1,4 +1,6 @@
-﻿namespace HowToPreventAHangfireJobFromRunning.Controllers;
+﻿using System.Linq.Expressions;
+
+namespace HowToPreventAHangfireJobFromRunning.Controllers;
 
 [ApiController]
 [Route("api/jobs")]
@@ -66,42 +68,34 @@ public class JobsController : ControllerBase
         return Ok(new JobDto { Id = id });
     }
     
-    [HttpPost($"create-recurring-{Job1}")]
+    [HttpPost("create-recurring-job/{number:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public IActionResult CreateJob1()
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult CreateRecurringJob(int number)
     {
-        var cronExpression = Cron.Minutely();
-        _recurringJobManager.AddOrUpdate(Job1, () => _jobService.Job1(), cronExpression);
+        var jobName = $"job-{number}";
         
-        _logger.LogInformation("Recurring job \"{JobName}\" created with cron expression: {CronExpression}", Job1, cronExpression);
-        
-        return NoContent();
-    }
-    
-    [HttpPost($"create-recurring-{Job2}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public IActionResult CreateJob2()
-    {
-        var cronExpression = Cron.Minutely();
-        _recurringJobManager.AddOrUpdate(Job1, () => _jobService.Job1(), cronExpression);
-        
-        _logger.LogInformation("Recurring job \"{JobName}\" created with cron expression: {CronExpression}", Job1, cronExpression);
-        
-        return NoContent();         
-    }
-    
-    [HttpPost($"create-{Job3}")]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public IActionResult CreateJob3()
-    {
-        var jobId = _backgroundJobClient.Enqueue(() => _jobService.Job3());
-        
-        if (string.IsNullOrWhiteSpace(jobId))
+        Expression<Action> methodCall;
+        switch (jobName)
         {
-            return Problem("Failed to create job", statusCode: StatusCodes.Status500InternalServerError);
+            case Job1:
+                methodCall = () => _jobService.Job1();
+                break;
+            case Job2:
+                methodCall = () => _jobService.Job2();
+                break;
+            case Job3:
+                methodCall = () => _jobService.Job3();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(jobName), jobName, "Invalid job name");
         }
 
-        return CreatedAtAction(nameof(GetJob), new { id = jobId }, new JobDto { Id = jobId });
+        var cronExpression = Cron.Minutely();
+        _recurringJobManager.AddOrUpdate(jobName, methodCall, cronExpression);
+        
+        _logger.LogInformation("Recurring job \"{JobName}\" created with cron expression: {CronExpression}", jobName, cronExpression);
+        
+        return NoContent();
     }
 }
