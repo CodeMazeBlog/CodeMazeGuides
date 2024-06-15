@@ -4,9 +4,9 @@
 [Route("api/jobs")]
 public class JobsController : ControllerBase
 {
-    private const string Job1 = "job-1";
-    private const string Job2 = "job-2";
-    private const string Job3 = "job-3";
+    public readonly string Job1 = "job-1";
+    public readonly string Job2 = "job-2";
+    public readonly string Job3 = "job-3";
     
     private readonly JobService _jobService;
     private readonly IBackgroundJobClient _backgroundJobClient;

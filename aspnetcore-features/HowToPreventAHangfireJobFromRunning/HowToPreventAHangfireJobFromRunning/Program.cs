@@ -37,3 +37,8 @@ app.MapHangfireDashboard("/hangfire");
 app.MapControllers();
 
 app.Run();
+
+namespace HowToPreventAHangfireJobFromRunning
+{
+    public class Program;
+}
