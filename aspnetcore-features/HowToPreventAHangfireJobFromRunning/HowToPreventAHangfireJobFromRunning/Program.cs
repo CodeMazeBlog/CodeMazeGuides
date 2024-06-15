@@ -1,5 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<IJobService, JobService>();
+
 builder.Services.AddHangfire(config =>
 {
     config.SetDataCompatibilityLevel(CompatibilityLevel.Version_180);

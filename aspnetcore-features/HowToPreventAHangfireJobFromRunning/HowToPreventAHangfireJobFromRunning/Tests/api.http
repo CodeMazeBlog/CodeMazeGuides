@@ -1,0 +1,17 @@
+@baseUrl = http://localhost:5000/api
+@jobId = PUT_REAL_JOB_ID_HERE
+
+### Create a new job 1
+POST /jobs/create-job-1
+
+### Create a new job 2
+POST /jobs/create-job-2
+
+### Create a new job 3
+POST /jobs/create-job-3
+
+### Get all jobs
+GET /jobs
+
+### Get job by id
+GET /jobs/{jobId}
