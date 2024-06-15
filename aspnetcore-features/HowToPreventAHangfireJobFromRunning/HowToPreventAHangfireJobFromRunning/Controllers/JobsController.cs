@@ -7,16 +7,12 @@ public class JobsController : ControllerBase
     private const string Job1 = "job-1";
     private const string Job2 = "job-2";
     
-    private readonly JobService _jobService;
     private readonly IBackgroundJobClient _backgroundJobClient;
     private readonly ILogger<JobsController> _logger;
 
-    public JobsController(JobService jobService, 
-        IBackgroundJobClient backgroundJobClient, IRecurringJobManager recurringJobManager,
+    public JobsController(IBackgroundJobClient backgroundJobClient, IRecurringJobManager recurringJobManager,
         ILogger<JobsController> logger)
     {
-        _jobService = jobService ?? throw new ArgumentNullException(nameof(jobService));
-        
         _backgroundJobClient = backgroundJobClient ?? throw new ArgumentNullException(nameof(backgroundJobClient));
 
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
@@ -56,7 +52,19 @@ public class JobsController : ControllerBase
     {
         _logger.LogInformation("Creating job '{JobName}'", Job2);
         
-        var jobId = _backgroundJobClient.Enqueue<JobService>(jobService => _jobService.RunJob2Async());
+        _recurringJobManager.AddOrUpdate(Job2, () => _jobService.RunJob2Async(), Cron.Minutely);
+        
+        return NoContent();
+    }
+    
+    [HttpPost("create-job-3")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public IActionResult CreateJob3()
+    {
+        _logger.LogInformation("Creating job '{JobName}'", Job3);
+        
+        var jobId = _backgroundJobClient.Enqueue(() => _jobService.RunJob3Async());
         
         if (string.IsNullOrWhiteSpace(jobId))
         {

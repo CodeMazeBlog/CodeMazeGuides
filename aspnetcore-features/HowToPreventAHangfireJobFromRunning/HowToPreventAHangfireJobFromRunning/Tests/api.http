@@ -1,5 +1,6 @@
+# Jobs API
+
 @baseUrl = http://localhost:5000/api
-@jobId = babdbaa9-4276-4b35-a7e3-1723dc1c821c
 
 ### Create a new job (another execution of the same job can run concurrently)
 POST {{baseUrl}}/jobs/create-job-1
