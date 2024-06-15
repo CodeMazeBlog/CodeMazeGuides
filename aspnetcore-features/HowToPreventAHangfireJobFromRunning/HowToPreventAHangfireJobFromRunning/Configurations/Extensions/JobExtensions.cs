@@ -15,9 +15,9 @@ public static class JobExtensions
     private static string GetFingerprint(this Job job)
     {
         string parameters = string.Empty;
-        if (job.Arguments != null)
+        if (job.Args != null)
         {
-            parameters = string.Join(".", job.Arguments);
+            parameters = string.Join(".", job.Args);
         }
         if (job.Type == null || job.Method == null)
         {

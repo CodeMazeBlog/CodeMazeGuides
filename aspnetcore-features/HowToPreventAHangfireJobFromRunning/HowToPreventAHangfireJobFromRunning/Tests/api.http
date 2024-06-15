@@ -1,17 +1,18 @@
 @baseUrl = http://localhost:5000/api
-@jobId = PUT_REAL_JOB_ID_HERE
+@jobId = babdbaa9-4276-4b35-a7e3-1723dc1c821c
 
 ### Create a new job 1
-POST /jobs/create-job-1
+POST {{baseUrl}}/jobs/create-recurring-job-1
 
 ### Create a new job 2
-POST /jobs/create-job-2
+POST {{baseUrl}}/jobs/create-recurring-job-2
 
 ### Create a new job 3
-POST /jobs/create-job-3
-
-### Get all jobs
-GET /jobs
+POST {{baseUrl}}/jobs/create-job-3
 
 ### Get job by id
-GET /jobs/{jobId}
+GET {{baseUrl}}/jobs/{{jobId}}
+
+### Get jobs statistics
+GET {{baseUrl}}/jobs/statistics
+

@@ -2,7 +2,8 @@
 
 public class JobService : IJobService
 {
-    private const int SleepTimeInMilliseconds = 5000;
+    private const int TimeoutInSeconds = 9 * 60;
+    private const int OperationDurationInSeconds = 10 * 60;
     
     private readonly ILogger<JobService> _logger;
 
@@ -13,27 +14,28 @@ public class JobService : IJobService
     
     public void Job1()
     {
-        PerformOperation();
+        PerformLongRunningOperation(nameof(Job1));
     }
 
+    [DisableConcurrentExecution(timeoutInSeconds: TimeoutInSeconds)]
     public void Job2()
     {
-        PerformOperation();
+        PerformLongRunningOperation(nameof(Job2));
     }
 
     public void Job3()
     {
-        PerformOperation();
+        PerformLongRunningOperation(nameof(Job3));
     }
     
-    private void PerformOperation()
+    private void PerformLongRunningOperation(string jobName)
     {
         var guid = Guid.NewGuid();
         
-        _logger.LogInformation("Starting operation: {Guid}", guid);
+        _logger.LogInformation("Starting job \"{JobName}\", operation: {Guid}", jobName, guid);
         
-        Thread.Sleep(SleepTimeInMilliseconds);
+        Thread.Sleep(TimeSpan.FromMinutes(OperationDurationInSeconds));
         
-        _logger.LogInformation("Finished operation: {Guid}", guid);
+        _logger.LogInformation("Finished job \"{JobName}\" operation: {Guid}", jobName, guid);
     }
 }
