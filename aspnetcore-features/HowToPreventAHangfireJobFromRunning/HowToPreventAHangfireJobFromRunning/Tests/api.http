@@ -1,17 +1,14 @@
 @baseUrl = http://localhost:5000/api
 @jobId = babdbaa9-4276-4b35-a7e3-1723dc1c821c
 
-### Create recurring job (no protection against another job is already running)
-POST {{baseUrl}}/jobs/create-recurring-job/1
+### Create a new job 1 (another execution of the same job can run concurrently)
+POST {{baseUrl}}/jobs/create-job/1
 
-### Create a new job 2 (protected with [DisableConcurrentExecution] attribute)
-POST {{baseUrl}}/jobs/create-recurring-job/2
+### Create a new job 2 (queueing if another execution of the same job is running)
+POST {{baseUrl}}/jobs/create-job/2
 
-### Create a new job 3
-POST {{baseUrl}}/jobs/create-recurring-job/3
-
-### Get job by id
-GET {{baseUrl}}/jobs/{{jobId}}
+### Create a new job 3 (skip if another execution of the same job is running)
+POST {{baseUrl}}/jobs/create-job/3
 
 ### Get jobs statistics
 GET {{baseUrl}}/jobs/statistics

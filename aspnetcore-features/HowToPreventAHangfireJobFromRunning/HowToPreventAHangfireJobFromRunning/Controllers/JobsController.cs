@@ -10,19 +10,16 @@ public class JobsController : ControllerBase
     private const string Job2 = "job-2";
     private const string Job3 = "job-3";
     
-    private readonly IJobService _jobService;
+    private readonly JobService _jobService;
     private readonly IBackgroundJobClient _backgroundJobClient;
-    private readonly IRecurringJobManager _recurringJobManager;
     private readonly ILogger<JobsController> _logger;
 
-    public JobsController(IJobService jobService, 
-        IBackgroundJobClient backgroundJobClient, IRecurringJobManager recurringJobManager,
+    public JobsController(JobService jobService, IBackgroundJobClient backgroundJobClient, 
         ILogger<JobsController> logger)
     {
         _jobService = jobService ?? throw new ArgumentNullException(nameof(jobService));
         
         _backgroundJobClient = backgroundJobClient ?? throw new ArgumentNullException(nameof(backgroundJobClient));
-        _recurringJobManager = recurringJobManager ?? throw new ArgumentNullException(nameof(recurringJobManager));
         
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
@@ -45,29 +42,6 @@ public class JobsController : ControllerBase
         return Ok(statisticsDto);
     }
     
-    [HttpGet("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<JobDto> GetJob(string id)
-    {
-        var api = JobStorage.Current.GetMonitoringApi();
-        var job = api.JobDetails(id);
-        
-        if (job == null)
-        {
-            return NotFound();
-        }
-        
-        var jobDto = new JobDto
-        {
-            Id = id,
-            CreatedAt = job.CreatedAt,
-            StateName = job.History.LastOrDefault()?.StateName
-        };
-        
-        return Ok(new JobDto { Id = id });
-    }
-    
     [HttpPost("create-recurring-job/{number:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -75,26 +49,22 @@ public class JobsController : ControllerBase
     {
         var jobName = $"job-{number}";
         
-        Expression<Action> methodCall;
-        switch (jobName)
+        switch (jobName) 
         {
             case Job1:
-                methodCall = () => _jobService.Job1();
+                _backgroundJobClient.Enqueue<JobService>(jobService => jobService.Job1());
                 break;
             case Job2:
-                methodCall = () => _jobService.Job2();
+                _backgroundJobClient.Enqueue<JobService>(jobService => jobService.Job2());
                 break;
             case Job3:
-                methodCall = () => _jobService.Job3();
+                _backgroundJobClient.Enqueue<JobService>(jobService => jobService.Job3());
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(jobName), jobName, "Invalid job name");
+                return BadRequest("Invalid job number.");
         }
-
-        var cronExpression = Cron.Minutely();
-        _recurringJobManager.AddOrUpdate(jobName, methodCall, cronExpression);
         
-        _logger.LogInformation("Recurring job \"{JobName}\" created with cron expression: {CronExpression}", jobName, cronExpression);
+        _logger.LogInformation("Created job '{JobName}'", jobName);
         
         return NoContent();
     }

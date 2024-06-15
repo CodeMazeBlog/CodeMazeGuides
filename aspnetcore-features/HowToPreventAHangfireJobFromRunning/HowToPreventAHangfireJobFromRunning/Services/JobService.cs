@@ -1,6 +1,6 @@
 ﻿namespace HowToPreventAHangfireJobFromRunning.Services;
 
-public class JobService : IJobService
+public class JobService
 {
     private const int TimeoutInSeconds = 9 * 60;
     private const int OperationDurationInSeconds = 10 * 60;
@@ -23,6 +23,7 @@ public class JobService : IJobService
         PerformLongRunningOperation(nameof(Job2));
     }
 
+    [DisableQueueing]
     public void Job3()
     {
         PerformLongRunningOperation(nameof(Job3));
