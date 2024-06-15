@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Configurations\Extensions\" />
     <Folder Include="Configurations\Filters\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,6 @@
 using Hangfire;
-using HowToPreventAHangfireJobFromRunningWhenItIsAlreadyActive.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddScoped<IService, Service>();
 
 builder.Services.AddHangfire(config =>
 {
