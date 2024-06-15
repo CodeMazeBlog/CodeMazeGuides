@@ -39,7 +39,7 @@ public class JobsController : ControllerBase
     {
         _logger.LogInformation("Creating job '{JobName}'", Job1);
 
-        var jobId = _backgroundJobClient.Enqueue<JobService>(jobService => _jobService.RunJob1Async());
+        var jobId = _backgroundJobClient.Enqueue<JobService>(jobService => jobService.RunJob1Async());
         
         _logger.LogInformation("Created job '{JobName}' with ID '{JobId}'", Job1, jobId);
         
@@ -48,23 +48,12 @@ public class JobsController : ControllerBase
     
     [HttpPost("create-job-2")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult CreateJob2()
     {
         _logger.LogInformation("Creating job '{JobName}'", Job2);
         
-        _recurringJobManager.AddOrUpdate(Job2, () => _jobService.RunJob2Async(), Cron.Minutely);
-        
-        return NoContent();
-    }
-    
-    [HttpPost("create-job-3")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult CreateJob3()
-    {
-        _logger.LogInformation("Creating job '{JobName}'", Job3);
-        
-        var jobId = _backgroundJobClient.Enqueue(() => _jobService.RunJob3Async());
+        var jobId = _backgroundJobClient.Enqueue<JobService>(jobService => jobService.RunJob2Async());
         
         if (string.IsNullOrWhiteSpace(jobId))
         {
