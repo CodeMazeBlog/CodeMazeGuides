@@ -1,39 +1,33 @@
-﻿namespace Tests.Controllers;
+﻿namespace Tests;
 
-[Collection("Sequential")]
-public class Job1ControllerTests : IClassFixture<ApiApplicationFactory>
+public class Job1IntegrationTests
 {
     private readonly string _baseUri = "http://localhost:5000/api/jobs/";
-    
-    private readonly HttpClient _client;
 
-    public Job1ControllerTests(ApiApplicationFactory factory)
-    {
-        _client = factory.CreateClient();
-    }
-    
     [Fact]
     public async Task GivenJobsController_WhenCreatingManyOccurrencesOfAGivenJob_ThenTheyAreProcessedConcurrently()
     {
         // Arrange
-        _client.BaseAddress = new Uri(_baseUri);
+        await using var factory = new WebApplicationFactory<Program>();
+        var client = factory.CreateClient();
+        client.BaseAddress = new Uri(_baseUri);
         HttpResponseMessage response;
         var processingCount = 2;
 
         // Act
-        response = await _client.PostAsync("create-job-1", null);
+        response = await client.PostAsync("create-job-1", null);
         response.EnsureSuccessStatusCode();
 
-        response = await _client.PostAsync("create-job-1", null);
+        response = await client.PostAsync("create-job-1", null);
         response.EnsureSuccessStatusCode();
 
         // Assert
-        response = await _client.GetAsync("statistics");
+        response = await client.GetAsync("statistics");
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
 
         var statistics = JsonSerializer.Deserialize<StatisticsDto>(
-            content, new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
+            content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         Assert.NotNull(statistics);
         Assert.Equal(processingCount, statistics.Processing);

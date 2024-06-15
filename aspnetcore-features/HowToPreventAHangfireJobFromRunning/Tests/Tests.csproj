@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -10,8 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.3"/>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
@@ -28,4 +28,10 @@
     <ProjectReference Include="..\HowToPreventAHangfireJobFromRunning\HowToPreventAHangfireJobFromRunning.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<AssemblyAttribute Include="Xunit.CollectionBehaviorAttribute">
+			<_Parameter1>DisableTestParallelization = true</_Parameter1>
+			<_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+		</AssemblyAttribute>
+	</ItemGroup>
 </Project>
