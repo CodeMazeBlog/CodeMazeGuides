@@ -8,13 +8,14 @@ public class JobsController : ControllerBase
     private const string Job2 = "job-2";
     
     private readonly IBackgroundJobClient _backgroundJobClient;
+    private readonly IRecurringJobManager _recurringJobManager;
     private readonly ILogger<JobsController> _logger;
 
     public JobsController(IBackgroundJobClient backgroundJobClient, IRecurringJobManager recurringJobManager,
         ILogger<JobsController> logger)
     {
         _backgroundJobClient = backgroundJobClient ?? throw new ArgumentNullException(nameof(backgroundJobClient));
-
+        _recurringJobManager = recurringJobManager ?? throw new ArgumentNullException(nameof(recurringJobManager));
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
     }
 

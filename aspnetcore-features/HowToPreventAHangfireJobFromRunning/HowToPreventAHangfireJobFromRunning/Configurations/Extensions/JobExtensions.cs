@@ -2,6 +2,11 @@
 
 public static class JobExtensions
 {
+    public static bool SkipConcurrentExecution(this Job job)
+    {
+        return job.Method.GetCustomAttributes(typeof(SkipConcurrentExecutionAttribute), false).Length > 0;
+    }
+
     public static string GetFingerprintLockKey(this Job job)
     {
         return $"{job.GetFingerprintKey()}:lock";
@@ -29,10 +34,5 @@ public static class JobExtensions
         var fingerprint = $"{job.Type.FullName}.{job.Method.Name}.{parameters}";
 
         return fingerprint;
-    }
-
-    public static bool SkipConcurrentExecution(this Job job)
-    {
-        return job.Method.GetCustomAttributes(typeof(SkipConcurrentExecutionAttribute), false).Length > 0;
     }
 }
