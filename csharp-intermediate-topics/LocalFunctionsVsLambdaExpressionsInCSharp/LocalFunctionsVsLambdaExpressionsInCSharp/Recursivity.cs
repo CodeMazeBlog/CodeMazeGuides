@@ -16,7 +16,7 @@ public class Recursivity
 
     public static int FactorialAsLambdaExpression(int input)
     {
-        Func<int, int> factorial = null;
+        Func<int, int> factorial = null!;
 
         factorial = (int n) =>
         {
