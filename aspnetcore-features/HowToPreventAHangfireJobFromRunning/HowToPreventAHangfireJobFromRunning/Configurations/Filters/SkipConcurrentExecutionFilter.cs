@@ -34,7 +34,7 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
         
         if (!AddFingerprintIfNotExists(filterContext.Connection, filterContext.Job))
         {
-            _logger.LogWarning("Recurring job '{JobName}' is already running, skipping...", filterContext.Job.Method.Name);
+            _logger.LogWarning("Job '{JobName}' is already running, skipping...", filterContext.Job.Method.Name);
 
             filterContext.Canceled = true;
         }
