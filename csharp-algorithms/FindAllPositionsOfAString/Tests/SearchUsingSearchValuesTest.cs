@@ -6,15 +6,16 @@ namespace Tests;
 [TestClass]
 public class SearchUsingSearchValuesTest
 {
+    private string _partOfLoremIpsumText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+
     [TestMethod]
     public void GivenLoremText_WhenSearchingLoremCaseInsensitive_ThenThereShouldBeFourMatches()
     {
         var searcher = new SearchUsingSearchValues();
         searcher.CaseSensitive = false;
         var searchText = "lorem";
-        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        List<int> positions = searcher.FindAll(text, searchText);
+        List<int> positions = searcher.FindAll(_partOfLoremIpsumText, searchText);
 
         var expectedPositions = new List<int> { 0, 28, 56, 84 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -26,9 +27,8 @@ public class SearchUsingSearchValuesTest
         var searcher = new SearchUsingSearchValues();
         searcher.CaseSensitive = true;
         var searchText = "lorem";
-        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        List<int> positions = searcher.FindAll(text, searchText);
+        List<int> positions = searcher.FindAll(_partOfLoremIpsumText, searchText);
 
         var expectedPositions = new List<int> { 0, 56 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -39,9 +39,8 @@ public class SearchUsingSearchValuesTest
     {
         var searcher = new SearchUsingSearchValues();
         var searchText = "notfound";
-        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        List<int> positions = searcher.FindAll(text, searchText);
+        List<int> positions = searcher.FindAll(_partOfLoremIpsumText, searchText);
 
         Assert.IsTrue(positions.Count == 0);
     }

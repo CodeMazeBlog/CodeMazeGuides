@@ -6,6 +6,8 @@ namespace Tests;
 [TestClass]
 public class SearchUsingRegexWithMatchesTest
 {
+    private string _partOfLoremIpsumText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+
     [TestMethod]
     public void GivenLoremText_WhenSearchingLoremCaseInsensitive_ThenThereShouldBeFourMatches()
     {
@@ -13,9 +15,8 @@ public class SearchUsingRegexWithMatchesTest
         searcher.CaseSensitive = false;
         searcher.SkipWholeFoundText = true;
         var searchText = "lorem";
-        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        List<int> positions = searcher.FindAll(text, searchText);
+        List<int> positions = searcher.FindAll(_partOfLoremIpsumText, searchText);
 
         var expectedPositions = new List<int> { 0, 28, 56, 84 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -28,9 +29,8 @@ public class SearchUsingRegexWithMatchesTest
         searcher.CaseSensitive = true;
         searcher.SkipWholeFoundText = true;
         var searchText = "lorem";
-        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        List<int> positions = searcher.FindAll(text, searchText);
+        List<int> positions = searcher.FindAll(_partOfLoremIpsumText, searchText);
 
         var expectedPositions = new List<int> { 0, 56 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -42,9 +42,8 @@ public class SearchUsingRegexWithMatchesTest
         var searcher = new SearchUsingRegexWithMatches();
         searcher.SkipWholeFoundText = true;
         var searchText = "notfound";
-        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        List<int> positions = searcher.FindAll(text, searchText);
+        List<int> positions = searcher.FindAll(_partOfLoremIpsumText, searchText);
 
         Assert.IsTrue(positions.Count == 0);
     }
