@@ -5,7 +5,7 @@ namespace EFCoreComplexTypes;
 public class ComplexTypesDBService()
 {
     private readonly AppDbContext _context = new();
-    public async void SaveComplexType()
+    public async Task SaveComplexType()
     {
         var user = new User()
         {
