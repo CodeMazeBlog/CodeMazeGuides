@@ -82,7 +82,7 @@ app.MapPost("/register-user", async (AddUserRequest addUserRequest,
                                      ApplicationDbContext dbContext,
                                      CancellationToken cancellationToken) =>
 {
-    var user = new User() { Name = addUserRequest.Name, Email = addUserRequest.Email };
+    var user = new User { Name = addUserRequest.Name, Email = addUserRequest.Email };
 
     using var transaction = await dbContext.Database.BeginTransactionAsync(cancellationToken);
 
