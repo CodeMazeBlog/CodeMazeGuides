@@ -1,9 +1,7 @@
-﻿namespace EfCoreInterceptors.DbContextInterceptors;
-
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Data.Common;
-using System.Threading;
-using System.Threading.Tasks;
+
+namespace EfCoreInterceptors.DbContextInterceptors;
 
 public class ConnectionInterceptor(ILogger<ConnectionInterceptor> logger) : DbConnectionInterceptor
 {

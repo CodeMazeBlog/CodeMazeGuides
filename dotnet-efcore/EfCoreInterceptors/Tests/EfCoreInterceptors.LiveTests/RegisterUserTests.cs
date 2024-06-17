@@ -1,5 +1,3 @@
-namespace EfCoreInterceptors.LiveTests;
-
 using EfCoreInterceptors.Services;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -7,7 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System.Net;
 using System.Text;
-using Xunit;
+
+namespace EfCoreInterceptors.LiveTests;
 
 public class RegisterUserTests : IDisposable
 {

@@ -1,6 +1,6 @@
-﻿namespace EfCoreInterceptors.LiveTests;
+﻿using EfCoreInterceptors.Services;
 
-using EfCoreInterceptors.Services;
+namespace EfCoreInterceptors.LiveTests;
 
 public class MockFailingEmailService : IEmailService
 {

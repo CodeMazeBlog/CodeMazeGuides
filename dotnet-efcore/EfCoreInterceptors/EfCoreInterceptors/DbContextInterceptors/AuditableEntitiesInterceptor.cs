@@ -1,9 +1,7 @@
-﻿namespace EfCoreInterceptors.DbContextInterceptors;
-
-using EfCoreInterceptors;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using System;
+
+namespace EfCoreInterceptors.DbContextInterceptors;
 
 internal class AuditableEntitiesInterceptor(ILogger<AuditableEntitiesInterceptor> logger, TimeProvider timeProvider)
     : SaveChangesInterceptor

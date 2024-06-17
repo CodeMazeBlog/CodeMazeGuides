@@ -1,7 +1,7 @@
-﻿namespace EfCoreInterceptors;
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace EfCoreInterceptors;
 
 internal class UserConfiguration : IEntityTypeConfiguration<User>
 {

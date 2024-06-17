@@ -1,8 +1,7 @@
-﻿namespace EfCoreInterceptors.DbContextInterceptors;
-
-using EfCoreInterceptors;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+
+namespace EfCoreInterceptors.DbContextInterceptors;
 
 internal class ValidateEntitiesStateInterceptor(ILogger<ValidateEntitiesStateInterceptor> logger)
     : SaveChangesInterceptor

@@ -1,6 +1,6 @@
-﻿namespace EfCoreInterceptors;
+﻿using Swashbuckle.AspNetCore.Filters;
 
-using Swashbuckle.AspNetCore.Filters;
+namespace EfCoreInterceptors;
 
 public class UserExample : IExamplesProvider<AddUserRequest>
 {
