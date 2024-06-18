@@ -7,10 +7,12 @@ public class Recursivity
         int Factorial(int n)
         {
             if (n <= 1) return 1;
+
             return n * Factorial(n - 1);
         }
 
         int result = Factorial(input);
+
         return result;
     }
 
@@ -21,10 +23,12 @@ public class Recursivity
         factorial = (int n) =>
         {
             if (n <= 1) return 1;
+
             return n * factorial(n - 1);
         };
 
         int result = factorial(input);
+        
         return result;
     }
 }
