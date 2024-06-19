@@ -7,54 +7,52 @@ namespace FindAllPositionsOfAString.Benchmarks;
 
 public class SearcherBenchmarks
 {
-    public static IEnumerable<object[]> Samples() => SearchingSamples.SamplesForBenchmark();
+    private readonly SearchUsingBruteForceAlgorithm searchUsingBruteForceAlgorithm = new();
+    private readonly SearchUsingIndexOf searchUsingIndexOf = new();
+    private readonly SearchUsingKMPAlgorithm searchUsingKMPAlgorithm = new();
+    private readonly SearchUsingRegexWithMatch searchUsingRegexWithMatch = new();
+    private readonly SearchUsingSearchValues searchUsingSearchValues = new();
+
+    [Params(0, 1, 2, 3)]
+    public int Index { get; set; }
+
+    [GlobalSetup]
+    public void Setup()
+    {
+        searchUsingBruteForceAlgorithm.Initialize(SearchingSamples.SearchPairs[Index].SearchText);
+        searchUsingIndexOf.Initialize(SearchingSamples.SearchPairs[Index].SearchText);
+        searchUsingKMPAlgorithm.Initialize(SearchingSamples.SearchPairs[Index].SearchText);
+        searchUsingRegexWithMatch.Initialize(SearchingSamples.SearchPairs[Index].SearchText);
+        searchUsingSearchValues.Initialize(SearchingSamples.SearchPairs[Index].SearchText);
+    }
 
     [Benchmark(Baseline = true)]
-    [ArgumentsSource(nameof(Samples))]
-    public List<int> BenchmarkSearchUsingIndexOf(string text, string searchText)
+    public List<int> BenchmarkSearchUsingIndexOf()
     {
-        var searcher = new SearchUsingIndexOf();
-        return searcher.FindAll(text, searchText);
+        return searchUsingIndexOf.FindAll(SearchingSamples.SearchPairs[Index].Text);
     }
 
     [Benchmark]
-    [ArgumentsSource(nameof(Samples))]
-    public List<int> BenchmarkSearchUsingSearchValues(string text, string searchText)
+    public List<int> BenchmarkSearchUsingSearchValues()
     {
-        var searcher = new SearchUsingSearchValues();
-        return searcher.FindAll(text, searchText);
+        return searchUsingSearchValues.FindAll(SearchingSamples.SearchPairs[Index].Text);
     }
 
     [Benchmark]
-    [ArgumentsSource(nameof(Samples))]
-    public List<int> BenchmarkSearchUsingRegexMatch(string text, string searchText)
+    public List<int> BenchmarkSearchUsingRegexMatch()
     {
-        var searcher = new SearchUsingRegexWithMatch();
-        return searcher.FindAll(text, searchText);
+        return searchUsingRegexWithMatch.FindAll(SearchingSamples.SearchPairs[Index].Text);
     }
 
     [Benchmark]
-    [ArgumentsSource(nameof(Samples))]
-    public List<int> BenchmarkSearchUsingRegexMatches(string text, string searchText)
+    public List<int> BenchmarkSearchUsingBruteForce()
     {
-        var searcher = new SearchUsingRegexWithMatches();
-        searcher.SkipWholeFoundText = true;
-        return searcher.FindAll(text, searchText);
+        return searchUsingBruteForceAlgorithm.FindAll(SearchingSamples.SearchPairs[Index].Text);
     }
 
     [Benchmark]
-    [ArgumentsSource(nameof(Samples))]
-    public List<int> BenchmarkSearchUsingBruteForce(string text, string searchText)
+    public List<int> BenchmarkSearchUsingKMP()
     {
-        var searcher = new SearchUsingBruteForceAlgorithm();
-        return searcher.FindAll(text, searchText);
-    }
-
-    [Benchmark]
-    [ArgumentsSource(nameof(Samples))]
-    public List<int> BenchmarkSearchUsingKMP(string text, string searchText)
-    {
-        var searcher = new SearchUsingKMPAlgorithm();
-        return searcher.FindAll(text, searchText);
+        return searchUsingKMPAlgorithm.FindAll(SearchingSamples.SearchPairs[Index].Text);
     }
 }

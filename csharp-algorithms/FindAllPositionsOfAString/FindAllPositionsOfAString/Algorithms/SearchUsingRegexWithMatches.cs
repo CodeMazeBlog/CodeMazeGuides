@@ -5,12 +5,21 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingRegexWithMatches : SearchBase, ISearcher
 {
-    public List<int> FindAll(string text, string searchText)
+    private Regex _regex = null!;
+
+    public new void Initialize(string searchText)
+    {
+        base.Initialize(searchText);
+
+        _regex = new Regex(SearchText, CaseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase);
+    }
+
+    public List<int> FindAll(string text)
     {
         if (!SkipWholeFoundText)
             throw new NotSupportedException("For SearchUsingRegexWithMatches SkipWholeFoundText should be set to true");
 
-        return new Regex(searchText, CaseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase)
+        return _regex
             .Matches(text)
             .Select(match => match.Index)
             .ToList();

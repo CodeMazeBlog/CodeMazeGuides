@@ -8,7 +8,10 @@ var benchmark = args.Length >= 1;
 
 if (benchmark)
 {
-    var result = BenchmarkRunner.Run<SearcherBenchmarks>();
+    if (args[0] == "regex")
+        _ = BenchmarkRunner.Run<RegExSearcherBenchmarks>();
+    else
+        _ = BenchmarkRunner.Run<SearcherBenchmarks>();
 }
 else
 {
@@ -38,7 +41,8 @@ else
                     if ((searcher is SearchUsingKMPAlgorithm) && (skipFoundText))
                         continue;
 
-                    List<int> positions = searcher.FindAll(searchPair.Text, searchPair.SearchText);
+                    searcher.Initialize(searchPair.SearchText);
+                    List<int> positions = searcher.FindAll(searchPair.Text);
 
                     Console.WriteLine($"Using {searcher.GetType().Name}");
                     Console.WriteLine($" ** CaseSensitivity == {caseSensitivity}");

@@ -4,7 +4,9 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
 {
-    private int[] ComputePrefix(ReadOnlySpan<char> searchText)
+    private int[] _prefix = [];
+
+    private static int[] ComputePrefix(ReadOnlySpan<char> searchText)
     {
         var prefix = new int[searchText.Length];
 
@@ -35,20 +37,25 @@ public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
         return prefix;
     }
 
-    public List<int> FindAll(string text, string searchText)
+    public new void Initialize(string searchText)
+    {
+        base.Initialize(searchText);
+
+        var searchTextSpan = SearchText.AsSpan();
+        _prefix = ComputePrefix(searchTextSpan);
+    }
+
+    public List<int> FindAll(string text)
     {
         if (SkipWholeFoundText)
             throw new NotSupportedException("SkipWholeFoundText is not supported for KMP algorithm.");
 
         var textSpan = text.AsSpan();
-        var searchTextSpan = searchText.AsSpan();
-
-        var prefix = ComputePrefix(searchTextSpan);
+        var searchTextSpan = SearchText.AsSpan();
 
         List<int> positions = [];
 
         var textLength = textSpan.Length;
-        var searchLength = searchTextSpan.Length;
 
         Func<char, char, bool> AreEqualCharacters =
             CaseSensitive ? AreEqualCharactersSensitive : AreEqualCharactersInsensitive;
@@ -57,15 +64,15 @@ public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
         for (var i = 0; i < textLength; i++)
         {
             while (p != 0 && !AreEqualCharacters(textSpan[i], searchTextSpan[p]))
-                p = prefix[p - 1];
+                p = _prefix[p - 1];
 
             if (p != 0 || AreEqualCharacters(textSpan[i], searchTextSpan[p]))
                 p++;
 
-            if (p == searchLength)
+            if (p == SearchTextLength)
             {
-                positions.Add(i + 1 - searchLength);
-                p = prefix[p - 1];
+                positions.Add(i + 1 - SearchTextLength);
+                p = _prefix[p - 1];
             }
         }
 

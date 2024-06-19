@@ -6,32 +6,30 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingBruteForceAlgorithm : SearchBase, ISearcher
 {
-    public List<int> FindAll(string text, string searchText)
+    public List<int> FindAll(string text)
     {
         List<int> positions = [];
         var textSpan = text.AsSpan();
-        var searchTextSpan = searchText.AsSpan();
+        var searchTextSpan = SearchText.AsSpan();
 
         var textLength = textSpan.Length;
-        var searchLen = searchTextSpan.Length;
 
         Func<char, char, bool> AreEqualCharacters = 
             CaseSensitive ? AreEqualCharactersSensitive : AreEqualCharactersInsensitive;
 
         int searchPosition = 0;
-        for (var textPosition = 0; textPosition <= textLength - searchLen; textPosition++)
+        for (var textPosition = 0; textPosition <= textLength - SearchTextLength; textPosition++)
         {
-            for (searchPosition = 0; searchPosition < searchLen; searchPosition++)
+            for (searchPosition = 0; searchPosition < SearchTextLength; searchPosition++)
             {
                 if (!AreEqualCharacters(textSpan[textPosition + searchPosition], searchTextSpan[searchPosition]))
                     break;
             }
 
-            if (searchPosition == searchLen)
+            if (searchPosition == SearchTextLength)
             {
                 positions.Add(textPosition);
-                if (SkipWholeFoundText)
-                    textPosition += searchLen - 1;
+                textPosition += SkipSize - 1;
             }
         }
 

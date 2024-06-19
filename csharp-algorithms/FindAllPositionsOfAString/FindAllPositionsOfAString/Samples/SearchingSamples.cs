@@ -4,9 +4,9 @@ public record SearchPair(string Text, string SearchText);
 
 public static class SearchingSamples
 {
-    private static string JuliusCaesar = JuliusCaesarText.Read();
+    private static readonly string JuliusCaesar = JuliusCaesarText.Read();
 
-    private static readonly SearchPair[] searchPairs =
+    public static readonly SearchPair[] SearchPairs =
     [
         new SearchPair("Some consider the occurrences to be the unconscious mind’s attempts to communicate to the conscious mind.", "the"),
         new SearchPair("The quick brown fox jumps over the lazy dog?", "the"),
@@ -14,17 +14,9 @@ public static class SearchingSamples
         new SearchPair(JuliusCaesar, "Themselves"),
     ];
 
-    public static IEnumerable<object[]> SamplesForBenchmark()
-    {
-        foreach (SearchPair searchPair in searchPairs)
-        {
-            yield return new object[] { searchPair.Text, searchPair.SearchText };
-        }
-    }
-
     public static IEnumerable<SearchPair> SampleForProgram()
     {
-        foreach (SearchPair searchPair in searchPairs)
+        foreach (SearchPair searchPair in SearchPairs)
         {
             yield return searchPair;
         }

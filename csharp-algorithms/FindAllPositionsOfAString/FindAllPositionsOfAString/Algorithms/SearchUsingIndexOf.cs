@@ -4,21 +4,19 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingIndexOf : SearchBase, ISearcher
 {
-    public List<int> FindAll(string text, string searchText)
+    public List<int> FindAll(string text)
     {
         var spanText = text.AsSpan();
-        var spanSearch = searchText.AsSpan();
+        var spanSearch = SearchText.AsSpan();
         List<int> positions = [];
-
-        var skipSize = ((SkipWholeFoundText) ? spanSearch.Length : 1);
 
         var offset = 0;
         var index = spanText.IndexOf(spanSearch, StringComparison);
         while (index != -1)
         {
             positions.Add(index + offset);
-            offset += index + skipSize;
-            spanText = spanText[(index + skipSize)..];
+            offset += index + SkipSize;
+            spanText = spanText[(index + SkipSize)..];
             index = spanText.IndexOf(spanSearch, StringComparison);
         }
 

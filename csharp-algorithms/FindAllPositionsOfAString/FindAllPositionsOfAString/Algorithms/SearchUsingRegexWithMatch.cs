@@ -5,19 +5,24 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingRegexWithMatch : SearchBase, ISearcher
 {
-    public List<int> FindAll(string text, string searchText)
+    private Regex _regex = null!;
+
+    public new void Initialize(string searchText)
+    {
+        base.Initialize(searchText);
+
+        _regex = new Regex(SearchText, StringComparison);
+    }
+
+    public List<int> FindAll(string text)
     {
         List<int> positions = [];
 
-        var skipSize = SkipWholeFoundText ? searchText.Length : 1;
-
-        var regex = new Regex(searchText, StringComparison);
-
-        Match match = regex.Match(text);
+        Match match = _regex.Match(text);
         while (match.Success)
         {
             positions.Add(match.Index);
-            match = regex.Match(text, match.Index + skipSize);
+            match = _regex.Match(text, match.Index + SkipSize);
         }
 
         return positions;

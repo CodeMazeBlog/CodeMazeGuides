@@ -6,7 +6,7 @@ namespace Tests;
 [TestClass]
 public class SearchUsingRegexWithMatchesTest
 {
-    private string _partOfLoremIpsumText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+    private readonly string _partOfLoremIpsumText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
     [TestMethod]
     public void GivenLoremText_WhenSearchingLoremCaseInsensitive_ThenThereShouldBeFourMatches()
@@ -16,7 +16,8 @@ public class SearchUsingRegexWithMatchesTest
         searcher.SkipWholeFoundText = true;
         var searchText = "lorem";
 
-        List<int> positions = searcher.FindAll(_partOfLoremIpsumText, searchText);
+        searcher.Initialize(searchText);
+        List<int> positions = searcher.FindAll(_partOfLoremIpsumText);
 
         var expectedPositions = new List<int> { 0, 28, 56, 84 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -30,7 +31,8 @@ public class SearchUsingRegexWithMatchesTest
         searcher.SkipWholeFoundText = true;
         var searchText = "lorem";
 
-        List<int> positions = searcher.FindAll(_partOfLoremIpsumText, searchText);
+        searcher.Initialize(searchText);
+        List<int> positions = searcher.FindAll(_partOfLoremIpsumText);
 
         var expectedPositions = new List<int> { 0, 56 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -43,7 +45,8 @@ public class SearchUsingRegexWithMatchesTest
         searcher.SkipWholeFoundText = true;
         var searchText = "notfound";
 
-        List<int> positions = searcher.FindAll(_partOfLoremIpsumText, searchText);
+        searcher.Initialize(searchText);
+        List<int> positions = searcher.FindAll(_partOfLoremIpsumText);
 
         Assert.IsTrue(positions.Count == 0);
     }
@@ -56,7 +59,8 @@ public class SearchUsingRegexWithMatchesTest
         var searchText = "III";
         var text = "IIIIIII";
 
-        List<int> positions = searcher.FindAll(text, searchText);
+        searcher.Initialize(searchText);
+        List<int> positions = searcher.FindAll(text);
 
         var expectedPositions = new List<int> { 0, 3 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -70,7 +74,8 @@ public class SearchUsingRegexWithMatchesTest
         var searchText = "III";
         var text = "IIIIIII";
 
-        Assert.ThrowsException<NotSupportedException>(() => searcher.FindAll(text, searchText));
+        searcher.Initialize(searchText);
+        Assert.ThrowsException<NotSupportedException>(() => searcher.FindAll(text));
     }
 
     [TestMethod]
@@ -83,13 +88,15 @@ public class SearchUsingRegexWithMatchesTest
             var searcher = new SearchUsingRegexWithMatches();
             searcher.CaseSensitive = caseSensitive;
             searcher.SkipWholeFoundText = true;
+            searcher.Initialize(searchPair.SearchText);
 
             var bruteForceSearcher = new SearchUsingIndexOf();
             bruteForceSearcher.CaseSensitive = caseSensitive;
             bruteForceSearcher.SkipWholeFoundText = true;
+            bruteForceSearcher.Initialize(searchPair.SearchText);
 
-            List<int> positions = searcher.FindAll(searchPair.Text, searchPair.SearchText);
-            List<int> bruteForcePositions = bruteForceSearcher.FindAll(searchPair.Text, searchPair.SearchText);
+            List<int> positions = searcher.FindAll(searchPair.Text);
+            List<int> bruteForcePositions = bruteForceSearcher.FindAll(searchPair.Text);
 
             Assert.IsTrue(positions.Count == bruteForcePositions.Count);
             CollectionAssert.AreEqual(bruteForcePositions, positions);

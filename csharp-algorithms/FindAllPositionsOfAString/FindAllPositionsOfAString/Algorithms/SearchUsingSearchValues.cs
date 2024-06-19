@@ -1,27 +1,34 @@
 ﻿using FindAllPositionsOfAString.Algorithms.Interfaces;
 using System.Buffers;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingSearchValues : SearchBase, ISearcher
 {
-    public List<int> FindAll(string text, string searchText)
+    private SearchValues<string> _searchValues = null!;
+
+    public new void Initialize(string searchText)
+    {
+        base.Initialize(searchText);
+
+        _searchValues = SearchValues.Create([SearchText], StringComparison);
+    }
+
+    public List<int> FindAll(string text)
     {
         var spanText = text.AsSpan();
-        var search = SearchValues.Create([searchText], StringComparison);
         List<int> positions = [];
 
-        var skipSize = ((SkipWholeFoundText) ? searchText.Length : 1);
-
         var offset = 0;
-        var index = spanText.IndexOfAny(search);
+        var index = spanText.IndexOfAny(_searchValues);
         while (index != -1)
         {
             positions.Add(index + offset);
-            offset += index + skipSize;
-            spanText = spanText[(index + skipSize)..];
-            index = spanText.IndexOfAny(search);
+            offset += index + SkipSize;
+            spanText = spanText[(index + SkipSize)..];
+            index = spanText.IndexOfAny(_searchValues);
         }
 
         return positions;
