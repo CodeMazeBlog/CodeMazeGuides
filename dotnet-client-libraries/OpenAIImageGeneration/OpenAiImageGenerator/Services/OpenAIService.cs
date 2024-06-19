@@ -1,36 +1,34 @@
 ﻿using Azure.AI.OpenAI;
 
-namespace OpenAiImageGenerator.Services
+namespace OpenAiImageGenerator.Services;
+
+public class OpenAIService : IOpenAIService
 {
-    public class OpenAIService : IOpenAIService
+    readonly IConfiguration _configuration;
+    readonly OpenAIClient _openAIClient;
+
+    public OpenAIService(IConfiguration configuration, OpenAIClient openAIClient)
     {
-        readonly IConfiguration _configuration;
-        readonly OpenAIClient _openAIClient;
+        _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+        _openAIClient = openAIClient ?? throw new ArgumentNullException(nameof(openAIClient));
+    }
 
-        public OpenAIService(IConfiguration configuration, OpenAIClient openAIClient)
+    public async Task<Uri> GenerateImageAsync(ImageGenerationApiModel imageGenerationApiModel)
+    {
+        ImageGenerationOptions imageGenerationOptions = new()
         {
-            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-            _openAIClient = openAIClient ?? throw new ArgumentNullException(nameof(openAIClient));
-        }
+            Prompt = imageGenerationApiModel.Prompt,
+            Size = imageGenerationApiModel.Size,
+            DeploymentName = _configuration["AzureOpenAiDeploymentName"],
+            Quality = imageGenerationApiModel.Quality,
+            Style = imageGenerationApiModel.Style
+        };
 
-        public async Task<Uri> GenerateImageAsync(ImageGenerationApiModel imageGenerationApiModel)
-        {
+        var imageGenerations =
+            await _openAIClient.GetImageGenerationsAsync(imageGenerationOptions);
 
-            ImageGenerationOptions imageGenerationOptions = new()
-            {
-                Prompt = imageGenerationApiModel.Prompt,
-                Size = imageGenerationApiModel.Size,
-                DeploymentName = _configuration["AzureOpenAiDeploymentName"],
-                Quality = imageGenerationApiModel.Quality,
-                Style = imageGenerationApiModel.Style
-            };
+        var imageUri = imageGenerations.Value.Data[0].Url;
 
-            var imageGenerations =
-                await _openAIClient.GetImageGenerationsAsync(imageGenerationOptions);
-
-            var imageUri = imageGenerations.Value.Data[0].Url;
-
-            return imageUri;
-        }
+        return imageUri;
     }
 }

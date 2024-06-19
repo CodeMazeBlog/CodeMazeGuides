@@ -1,7 +1,6 @@
-﻿namespace OpenAiImageGenerator.Services
+﻿namespace OpenAiImageGenerator.Services;
+
+public interface IOpenAIService
 {
-    public interface IOpenAIService
-    {
-        Task<Uri> GenerateImageAsync(ImageGenerationApiModel imageGenerationApiModel);
-    }
+    Task<Uri> GenerateImageAsync(ImageGenerationApiModel imageGenerationApiModel);
 }

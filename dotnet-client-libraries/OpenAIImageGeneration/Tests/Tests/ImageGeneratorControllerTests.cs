@@ -1,11 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Moq;
-using OpenAiImageGenerator;
-using OpenAiImageGenerator.Controllers;
-using OpenAiImageGenerator.Services;
-using System.Net;
-
-namespace Tests;
+﻿namespace Tests;
 
 public class ImageGeneratorControllerTests
 {
