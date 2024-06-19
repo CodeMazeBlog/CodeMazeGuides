@@ -8,7 +8,7 @@ public class TransactionInterceptor(ILogger<TransactionInterceptor> logger) : Db
     public override async Task TransactionCommittedAsync(DbTransaction transaction, TransactionEndEventData eventData,
         CancellationToken cancellationToken = default)
     {
-        logger.LogInformation("Transaction {TransactionId} successful", eventData.TransactionId);
+        logger.LogInformation("Transaction {TransactionId} successful.", eventData.TransactionId);
 
         await base.TransactionCommittedAsync(transaction, eventData, cancellationToken);
     }
