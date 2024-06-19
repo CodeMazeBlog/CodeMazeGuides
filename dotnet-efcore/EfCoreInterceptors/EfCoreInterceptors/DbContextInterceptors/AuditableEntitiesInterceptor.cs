@@ -19,7 +19,7 @@ internal class AuditableEntitiesInterceptor(ILogger<AuditableEntitiesInterceptor
 
     private void UpdateAuditableEntities(DbContext context)
     {
-        logger.LogInformation("Auditing entities");
+        logger.LogInformation("Auditing entities.");
 
         foreach (var entry in context.ChangeTracker.Entries<IAuditableEntity>())
         {

@@ -19,7 +19,7 @@ internal class ValidateEntitiesStateInterceptor(ILogger<ValidateEntitiesStateInt
 
     private void ValidateEntitiesStates(DbContext context)
     {
-        logger.LogInformation("Validating entities");
+        logger.LogInformation("Validating entities.");
 
         foreach (var entry in context.ChangeTracker.Entries<User>())
         {
