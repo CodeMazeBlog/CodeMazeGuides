@@ -52,3 +52,4 @@ This section contains the topics about the client libraries in .NET.
 - [Generate QR Codes With QRCoder in .NET](https://code-maze.com/aspnetcore-generate-qr-codes-with-qrcoder/)
 - [Getting Started With EasyCaching in ASP.NET Core](https://code-maze.com/aspnetcore-easycaching/)
 - [How to Ignore a Property in AutoMapper](https://code-maze.com/csharp-how-to-ignore-a-property-in-automapper/)
+- [How to Use FakeLogger to Test Logging Code in .NET](https://code-maze.com/dotnet-how-to-use-fakelogger/)
