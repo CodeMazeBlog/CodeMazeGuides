@@ -3,6 +3,7 @@
 using BenchmarkDotNet.Attributes;
 
 [MemoryDiagnoser]
+[Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
 public class LocalFunctionLambdaExpressionBenchmark
 {
     [Benchmark]
