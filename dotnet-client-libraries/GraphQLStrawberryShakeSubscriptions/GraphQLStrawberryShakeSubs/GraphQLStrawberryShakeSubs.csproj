@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <GraphQL Remove="OnContainerSpaceChanged.graphql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GraphQLStrawberryShakeSubs.Server\GraphQLStrawberryShakeSubs.Server.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StrawberryShake.Server" Version="13.9.0" />
+    <PackageReference Include="StrawberryShake.Transport.WebSockets" Version="13.9.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,8 @@
+subscription OnContainerSpaceChanged {
+  onShippingContainerSpaceChanged {
+	name
+	space {
+	  volume
+	}
+  }
+}
