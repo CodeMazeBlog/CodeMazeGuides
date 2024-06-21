@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeakEventsInCSharp", "WeakEventsInCSharp\WeakEventsInCSharp.csproj", "{63A221A2-6C46-42AD-BA5D-FDA7943F6B02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{A7B466C4-2371-4212-914D-2741B884589E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63A221A2-6C46-42AD-BA5D-FDA7943F6B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63A221A2-6C46-42AD-BA5D-FDA7943F6B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63A221A2-6C46-42AD-BA5D-FDA7943F6B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63A221A2-6C46-42AD-BA5D-FDA7943F6B02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B466C4-2371-4212-914D-2741B884589E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B466C4-2371-4212-914D-2741B884589E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B466C4-2371-4212-914D-2741B884589E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B466C4-2371-4212-914D-2741B884589E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78D51F63-AD26-4D69-AB0F-047BC042F075}
+	EndGlobalSection
+EndGlobal

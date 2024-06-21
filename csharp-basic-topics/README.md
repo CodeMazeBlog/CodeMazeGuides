@@ -43,3 +43,5 @@ This section contains the topics considered basic level in C#.
 - [Improvements in the Using Directive for Additional Types in C#](https://code-maze.com/csharp-improvements-in-the-using-directive-for-additional-types/)
 - [How to Detect if a Key is Pressed in a C# Console Application](https://code-maze.com/csharp-how-to-detect-if-a-key-is-pressed-in-a-console-application/)
 - [How to Generate a Random Color Name in C#](https://code-maze.com/csharp-generate-a-random-color-name/)
+- [How to Set the Exit Code for a Console Application in .NET](https://code-maze.com/dotnet-how-to-set-the-exit-code-for-a-console-application/)
+- [How to Print a 2D Array to the Console in C#](https://code-maze.com/csharp-print-2d-array-to-the-console/)

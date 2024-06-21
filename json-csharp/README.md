@@ -27,3 +27,4 @@ This section contains the topics related to JSON manipulation in C#.
 - [Property Ordering in C# JSON Serialization](https://code-maze.com/csharp-property-ordering-json-serialization/)
 - [How to Read and Parse a JSON File in C#](https://code-maze.com/csharp-read-and-process-json-file/)
 - [How to Retrieve JSON Property Names in C#](https://code-maze.com/csharp-retrieve-json-property-names/)
+- [How to Serialize a PascalCase JSON.NET JObject to camelCase](https://code-maze.com/dotnet-how-to-serialize-a-pascalcase-json-net-jobject-to-camelcase/)

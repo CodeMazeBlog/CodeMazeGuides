@@ -19,3 +19,6 @@ This section contains LINQ related topics
 - [How to Divide Data Into Batches With LINQ](https://code-maze.com/csharp-how-to-divide-data-into-batches-with-linq/)
 - [How to Create an Outer Join in LINQ – (Left and Right)](https://code-maze.com/csharp-outer-join-linq/)
 - [Execute the SELECT WHERE NOT EXIST SQL Query Using LINQ](https://code-maze.com/linq-execute-the-select-where-not-exist-sql-query-csharp/)
+- [Lookup in C#](https://code-maze.com/csharp-lookup/)
+- [How to Use the LINQ ToDictionary Method in C#](https://code-maze.com/csharp-linq-todictionary-method/)
+- [Find Differences Between Collections With the LINQ Except Method in C#](https://code-maze.com/csharp-using-the-except-method-in-linq/)
