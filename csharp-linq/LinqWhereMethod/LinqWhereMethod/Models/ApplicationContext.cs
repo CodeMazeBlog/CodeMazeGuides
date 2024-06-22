@@ -1,5 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace LinqWhereMethod.Models
 {
@@ -9,14 +9,14 @@ namespace LinqWhereMethod.Models
 
         public ApplicationContext()
         {
-            var folder = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(folder);
-            DbPath = System.IO.Path.Join(path, "PeopleData.db");
+            var test = Assembly.GetExecutingAssembly().Location.Split("LinqWhereMethod\\bin");
+            DbPath = Path.Combine(test[0], "LinqWhereMethod", "Database", "PeopleData.db");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Data Source={DbPath}");
+            optionsBuilder.UseSqlServer($"Server=(localdb)\\mssqllocaldb;Database=PeopleData.db;Trusted_Connection=True;MultipleActiveResultSets=true");
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

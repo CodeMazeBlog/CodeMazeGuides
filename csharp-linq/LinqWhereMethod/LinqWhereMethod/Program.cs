@@ -106,7 +106,6 @@ static void DisplayElements<T> (IEnumerable<T> list)
             break;
     }
 
-
     Console.WriteLine($"\n{elements}");
 }
 

@@ -5,8 +5,9 @@ namespace TestLinqWhereMethod
 {
     public class UnitTests
     { 
-        TypeInfo program = typeof(Program).GetTypeInfo();        
-    
+        private readonly TypeInfo program = typeof(Program).GetTypeInfo();
+        private readonly ApplicationContext context = new ApplicationContext();
+
         [Fact]
         public void GivenAListOfNumbers_WhenFiltering_ThenReturnEvenNumbers()
         {
@@ -39,8 +40,8 @@ namespace TestLinqWhereMethod
             // Arrange
             var peopleBornFrom1974Method = program.DeclaredMethods.Single(m => m.Name.Contains("GetPeopleBornFrom1974"));
 
-            // Act
-            var peopleBornFrom1974 = peopleBornFrom1974Method.Invoke(null, new object[] { new ApplicationContext() }) as IEnumerable<Person>;
+            // Act           
+            var peopleBornFrom1974 = peopleBornFrom1974Method.Invoke(null, new object[] { context }) as IEnumerable<Person>;
 
             // Assert
             Assert.All<Person>(peopleBornFrom1974!, p => Assert.True(p.BirthDate.Year >= 1974));
@@ -55,7 +56,7 @@ namespace TestLinqWhereMethod
             // Arrange
             var peopleBornBefore1974LivingInNancyMethod = program.DeclaredMethods.Single(m => m.Name.Contains("GetPeopleUsingChainingWhereOperators"));
             // Act
-            var peopleBornBefore1974LivingInNancy = peopleBornBefore1974LivingInNancyMethod.Invoke(null, new object[] { new ApplicationContext() }) as IEnumerable<Person>;
+            var peopleBornBefore1974LivingInNancy = peopleBornBefore1974LivingInNancyMethod.Invoke(null, new object[] { context }) as IEnumerable<Person>;
 
             // Assert
             Assert.All<Person>(peopleBornBefore1974LivingInNancy!, p => Assert.True(p.BirthDate.Year <= 1974 && p.Address.City.Equals("NANCY")));
@@ -70,8 +71,8 @@ namespace TestLinqWhereMethod
             var peopleWithAustralianShepherdUsingExpressionMethod = program.DeclaredMethods.Single(m => m.Name.Contains("GetPeopleUsingExpression"));
 
             // Act
-            var peopleWithAustralianShepherdPetUsingImbricatedOperators = peopleWithAustralianShepherdUsingImbricatedOperatorsMethod.Invoke(null, new object[] { new ApplicationContext() }) as IEnumerable<Person>;
-            var peopleWithAustralianShepherdPetUsingExpression = peopleWithAustralianShepherdUsingExpressionMethod.Invoke(null, new object[] { new ApplicationContext() }) as IEnumerable<Person>;
+            var peopleWithAustralianShepherdPetUsingImbricatedOperators = peopleWithAustralianShepherdUsingImbricatedOperatorsMethod.Invoke(null, new object[] { context }) as IEnumerable<Person>;
+            var peopleWithAustralianShepherdPetUsingExpression = peopleWithAustralianShepherdUsingExpressionMethod.Invoke(null, new object[] { context }) as IEnumerable<Person>;
 
 
             // Assert
