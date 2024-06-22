@@ -1,4 +1,5 @@
 using LinqWhereMethod.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace TestLinqWhereMethod
@@ -6,7 +7,6 @@ namespace TestLinqWhereMethod
     public class UnitTests
     { 
         private readonly TypeInfo program = typeof(Program).GetTypeInfo();
-        private readonly ApplicationContext context = new ApplicationContext();
 
         [Fact]
         public void GivenAListOfNumbers_WhenFiltering_ThenReturnEvenNumbers()
@@ -39,6 +39,8 @@ namespace TestLinqWhereMethod
         {
             // Arrange
             var peopleBornFrom1974Method = program.DeclaredMethods.Single(m => m.Name.Contains("GetPeopleBornFrom1974"));
+            ApplicationContext context = GetMemoryContext();
+            context.Database.EnsureCreated();
 
             // Act           
             var peopleBornFrom1974 = peopleBornFrom1974Method.Invoke(null, new object[] { context }) as IEnumerable<Person>;
@@ -55,6 +57,9 @@ namespace TestLinqWhereMethod
         {
             // Arrange
             var peopleBornBefore1974LivingInNancyMethod = program.DeclaredMethods.Single(m => m.Name.Contains("GetPeopleUsingChainingWhereOperators"));
+            ApplicationContext context = GetMemoryContext();
+            context.Database.EnsureCreated();
+
             // Act
             var peopleBornBefore1974LivingInNancy = peopleBornBefore1974LivingInNancyMethod.Invoke(null, new object[] { context }) as IEnumerable<Person>;
 
@@ -69,6 +74,8 @@ namespace TestLinqWhereMethod
             // Arrange
             var peopleWithAustralianShepherdUsingImbricatedOperatorsMethod = program.DeclaredMethods.Single(m => m.Name.Contains("GetPeopleUsingImbricatedWhereOperators"));
             var peopleWithAustralianShepherdUsingExpressionMethod = program.DeclaredMethods.Single(m => m.Name.Contains("GetPeopleUsingExpression"));
+            ApplicationContext context = GetMemoryContext();
+            context.Database.EnsureCreated();
 
             // Act
             var peopleWithAustralianShepherdPetUsingImbricatedOperators = peopleWithAustralianShepherdUsingImbricatedOperatorsMethod.Invoke(null, new object[] { context }) as IEnumerable<Person>;
@@ -81,6 +88,14 @@ namespace TestLinqWhereMethod
 
             Assert.Collection<Person>(peopleWithAustralianShepherdPetUsingExpression!, item => Assert.Contains("RICHARD Dan", $"{item.LastName} {item.FirstName}"));
             Assert.Single(peopleWithAustralianShepherdPetUsingExpression!);
+        }
+
+        public static ApplicationContext GetMemoryContext()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationContext>()
+            .UseInMemoryDatabase(databaseName: "PeopleDatabase")
+            .Options;
+            return new ApplicationContext(options);
         }
     }
 }

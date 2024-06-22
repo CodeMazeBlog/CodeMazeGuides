@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 using System.Reflection;
 
 namespace LinqWhereMethod.Models
@@ -7,15 +8,13 @@ namespace LinqWhereMethod.Models
     {
         public string DbPath { get; }
 
-        public ApplicationContext()
-        {
-            var test = Assembly.GetExecutingAssembly().Location.Split("LinqWhereMethod\\bin");
-            DbPath = Path.Combine(test[0], "LinqWhereMethod", "Database", "PeopleData.db");
-        }
+        public ApplicationContext() {}
+
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer($"Server=(localdb)\\mssqllocaldb;Database=PeopleData.db;Trusted_Connection=True;MultipleActiveResultSets=true");
+            optionsBuilder.UseInMemoryDatabase(databaseName: "PeopleDatabase");
             base.OnConfiguring(optionsBuilder);
         }
 
