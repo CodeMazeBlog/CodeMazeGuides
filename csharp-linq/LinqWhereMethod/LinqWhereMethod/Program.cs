@@ -15,6 +15,7 @@ GetPeopleUsingExpression(context);
 
 static IEnumerable<int> GetEvenNumbers()
 {
+    Console.WriteLine("Get even numbers");
     var randomNumbers = new int[] { 1, 5, 23, 11, 7, 2, 9, 8, 3, 6, 4, 20, 15, 0, 18, 13, 10, 33 };
     var evenNumbers = randomNumbers.OrderBy(x => x).Where(x => x % 2 == 0);
     DisplayElements(evenNumbers);
@@ -24,6 +25,7 @@ static IEnumerable<int> GetEvenNumbers()
 
 static IEnumerable<int> GetOddNumbers()
 {
+    Console.WriteLine("Get odd numbers");
     var sequenceOfNumbers = Enumerable.Range(50, 10).ToList();
     var oddNumbers = sequenceOfNumbers.Where((n, index) => index % 2 != 0);
     DisplayElements(oddNumbers);
@@ -33,6 +35,7 @@ static IEnumerable<int> GetOddNumbers()
 
 static IEnumerable<Person> GetPeopleWhoseNameStartsWithD(ApplicationContext context)
 {
+    Console.WriteLine("Get people whose firstname starts with 'D'");
     //Enumerable.Where method
     IEnumerable<Person> people = context.People.ToList();
     var filteredPeople = people.Where(p => p.FirstName.ToUpper().StartsWith("D"));
@@ -43,49 +46,45 @@ static IEnumerable<Person> GetPeopleWhoseNameStartsWithD(ApplicationContext cont
 
 static IEnumerable<Person> GetPeopleBornFrom1974(ApplicationContext context)
 {
+    Console.WriteLine("Get people born from 1974");
     //Queryable.Where method
     IQueryable<Person> queryResult = context.People.Where(p => p.BirthDate.Year >= 1974);
     DisplayElements(queryResult.ToList());
-    string query = queryResult.ToQueryString();
-    Console.WriteLine(query);
 
     return queryResult.ToList();
 }
 
 static IEnumerable<Person> GetPeopleUsingChainingWhereOperators(ApplicationContext context)
 {
+    Console.WriteLine("Chaining Where operators");
     //Chaining Where methods
-    IQueryable<Person> result = context.People
+    IQueryable <Person> result = context.People
         .Include(person => person.Address)
         .Where(s => s.BirthDate.Year < 1974).Where(s => s.Address.City.Equals("NANCY"));
     DisplayElements(result.ToList());
-    string sqlQuery = result.ToQueryString();
-    Console.WriteLine(sqlQuery);
 
     return result.ToList();
 }
 
 static IEnumerable<Person> GetPeopleUsingImbricatedWhereOperators(ApplicationContext context)
 {
+    Console.WriteLine("Imbricated Where operators");
     //Imbricated Where operators
     IQueryable<Person> PeopleWithAustralianShepherd = context.People
          .Include(p => p.Pets)
          .Where(person => person.Pets.Where(pet => pet.Breed.Equals("Australian Shepherd")).Any());
     DisplayElements(PeopleWithAustralianShepherd.ToList());
-    string PeopleWithAustralianShepherdQuery = PeopleWithAustralianShepherd.ToQueryString();
-    Console.WriteLine(PeopleWithAustralianShepherdQuery);
 
     return PeopleWithAustralianShepherd.ToList();
 }
 
 static IEnumerable<Person> GetPeopleUsingExpression(ApplicationContext context)
 {
+    Console.WriteLine("Using Expression");
     //With an Expression as Where parameter
     Expression<Func<Person, bool>> HasAustralianShepherds = p => p.Pets.Any(pet => pet.Breed.Equals("Australian Shepherd"));
     var filteredResult = context.People.Where(HasAustralianShepherds);
     DisplayElements(filteredResult.ToList());
-    string filteredResultQuery = filteredResult.ToQueryString();
-    Console.WriteLine(filteredResultQuery);
 
     return filteredResult.ToList();
 }
@@ -106,7 +105,7 @@ static void DisplayElements<T> (IEnumerable<T> list)
             break;
     }
 
-    Console.WriteLine($"\n{elements}");
+    Console.WriteLine($"{elements}\n");
 }
 
 //Used in testing project
