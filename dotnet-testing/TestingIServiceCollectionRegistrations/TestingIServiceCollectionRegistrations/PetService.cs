@@ -1,6 +1,11 @@
 ﻿namespace TestingIServiceCollectionRegistrations;
 
-public class PetService : IAnimalService
+public interface IPetService
+{
+    void PrintName(string name);
+}
+
+public class PetService : IPetService
 {
     public void PrintName(string name)
     {

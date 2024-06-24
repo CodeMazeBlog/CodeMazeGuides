@@ -2,40 +2,56 @@
 
 public class ServiceCollectionTest
 {
-    private readonly ServiceCollection ServiceCollection;
-    private readonly ServiceProvider ServiceProvider;
+    private readonly IServiceCollection _serviceCollection;
+    private readonly IServiceProvider _serviceProvider;
 
     public ServiceCollectionTest()
     {
-        ServiceCollection = new ServiceCollection();
-
-        ServiceCollection.AddDependencies();
-
-        ServiceProvider = ServiceCollection.BuildServiceProvider();
+        _serviceCollection = new ServiceCollection();
+        _serviceCollection.AddDependencies();
+        _serviceProvider = _serviceCollection.BuildServiceProvider();
     }
 
     [Fact]
-    public void GivenDependenciesExists_WhenIPetServiceIsRegisteredAsSingleton_ThenServiceIsRegistered()
+    public void GivenDependenciesExists_WhenPetServiceIsRegisteredAsSingleton_ThenServiceIsRegistered()
     {
-        var petService = ServiceProvider.GetService<IAnimalService>();
+        var petService = _serviceProvider.GetService<IPetService>();
 
         Assert.NotNull(petService);
 
-        Assert.Single(ServiceCollection, x =>
-        x.ServiceType == typeof(IAnimalService) &&
-        x.ImplementationType == typeof(PetService) &&
-        x.Lifetime == ServiceLifetime.Singleton);
+        var serviceDescriptor = _serviceCollection.SingleOrDefault(
+            d => d.ServiceType == typeof(IPetService) &&
+                 d.ImplementationType == typeof(PetService) &&
+                 d.Lifetime == ServiceLifetime.Singleton);
+
+        Assert.NotNull(serviceDescriptor);
     }
 
     [Fact]
-    public void GivenDependenciesExists_WhenWildAnimalServicesIsCalled_ThenServiceNotRegistered()
+    public void GivenDependenciesExists_WhenWildAnimalServiceIsRegisteredAsTransient_ThenServiceIsRegistered()
     {
-        var petService = ServiceProvider.GetService<IAnimalService>();
+        var wildAnimalService = _serviceProvider.GetService<IWildAnimalService>();
 
-        Assert.NotNull(petService);
+        Assert.NotNull(wildAnimalService);
 
-        Assert.Empty(ServiceCollection.Where(x =>
-        x.ServiceType == typeof(IAnimalService) &&
-        x.ImplementationType == typeof(WildAnimalServices)));
+        var serviceDescriptor = _serviceCollection.SingleOrDefault(
+            d => d.ServiceType == typeof(IWildAnimalService) &&
+                 d.ImplementationType == typeof(WildAnimalService) &&
+                 d.Lifetime == ServiceLifetime.Transient);
+
+        Assert.NotNull(serviceDescriptor);
+    }
+
+    [Fact]
+    public void GivenDependenciesExists_WhenMarineAnimalsServiceIsRegisteredAsScoped_ThenServiceIsRegistered()
+    {
+        var marineAnimalsService = _serviceProvider.GetService<IMarineAnimalsService>();
+
+        var serviceDescriptor = _serviceCollection.SingleOrDefault(
+            d => d.ServiceType == typeof(IMarineAnimalsService) &&
+                 d.ImplementationType == typeof(MarineAnimalsService) &&
+                 d.Lifetime == ServiceLifetime.Scoped);
+
+        Assert.NotNull(serviceDescriptor);
     }
 }

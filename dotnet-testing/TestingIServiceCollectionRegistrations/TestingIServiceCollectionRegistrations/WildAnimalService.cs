@@ -1,6 +1,11 @@
 ﻿namespace TestingIServiceCollectionRegistrations;
 
-public class WildAnimalServices : IAnimalService
+public interface IWildAnimalService
+{
+    void PrintName(string name);
+}
+
+public class WildAnimalService : IWildAnimalService
 {
     public void PrintName(string name)
     {
