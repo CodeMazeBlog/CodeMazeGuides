@@ -17,7 +17,7 @@ var password = "$trongPassword";
 var portNumber = 1433;
 
 // https://medium.com/codenx/integration-testing-using-testcontainers-in-net-8-520e8911d081
-var _container = new ContainerBuilder()
+var container = new ContainerBuilder()
                 .WithImage("mcr.microsoft.com/mssql/server:2022-latest")
                 .WithPortBinding(portNumber, true)
                 .WithEnvironment("ACCEPT_EULA", "Y")
@@ -27,10 +27,10 @@ var _container = new ContainerBuilder()
                 .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(portNumber))
                 .Build();
 
-await _container.StartAsync();
+await container.StartAsync();
 
-var host = _container.Hostname;
-var port = _container.GetMappedPublicPort(portNumber);
+var host = container.Hostname;
+var port = container.GetMappedPublicPort(portNumber);
 
 var connectionString =
     $"Server={host},{port};Database=master;User Id={user};Password={password};TrustServerCertificate=True";
@@ -58,8 +58,8 @@ var app = builder.Build();
 
 app.Lifetime.ApplicationStopped.Register(() =>
 {
-    _container.StopAsync().GetAwaiter().GetResult();
-    _container.DisposeAsync().GetAwaiter().GetResult();
+    container.StopAsync().GetAwaiter().GetResult();
+    container.DisposeAsync().GetAwaiter().GetResult();
 });
 
 using (var scope = app.Services.CreateScope())
