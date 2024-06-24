@@ -2,10 +2,8 @@
 
 internal interface ISearcher
 {
-    bool CaseSensitive { get; set; }
-    bool SkipWholeFoundText { get; set; }
-
-    void Initialize(string searchText);
+    bool CaseSensitive { get; }
+    bool SkipWholeFoundText { get; }
 
     List<int> FindAll(string text);
 }

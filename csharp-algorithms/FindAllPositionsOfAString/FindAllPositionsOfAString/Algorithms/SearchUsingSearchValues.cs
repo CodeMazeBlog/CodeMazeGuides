@@ -9,10 +9,9 @@ public class SearchUsingSearchValues : SearchBase, ISearcher
 {
     private SearchValues<string> _searchValues = null!;
 
-    public new void Initialize(string searchText)
+    public SearchUsingSearchValues(string searchText, bool skipWholeFoundText, bool caseSensitive)
+        : base(searchText, skipWholeFoundText, caseSensitive)
     {
-        base.Initialize(searchText);
-
         _searchValues = SearchValues.Create([SearchText], StringComparison);
     }
 

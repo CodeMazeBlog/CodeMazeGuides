@@ -4,6 +4,11 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingIndexOf : SearchBase, ISearcher
 {
+    public SearchUsingIndexOf(string searchText, bool skipWholeFoundText, bool caseSensitive)
+        : base(searchText, skipWholeFoundText, caseSensitive)
+    {
+    }
+    
     public List<int> FindAll(string text)
     {
         var spanText = text.AsSpan();

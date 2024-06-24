@@ -6,6 +6,11 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingBruteForceAlgorithm : SearchBase, ISearcher
 {
+    public SearchUsingBruteForceAlgorithm(string searchText, bool skipWholeFoundText, bool caseSensitive)
+        : base(searchText, skipWholeFoundText, caseSensitive)
+    {
+    }
+
     public List<int> FindAll(string text)
     {
         List<int> positions = [];

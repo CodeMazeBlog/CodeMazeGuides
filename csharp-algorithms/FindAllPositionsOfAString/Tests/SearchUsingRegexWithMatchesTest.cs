@@ -11,12 +11,9 @@ public class SearchUsingRegexWithMatchesTest
     [TestMethod]
     public void GivenLoremText_WhenSearchingLoremCaseInsensitive_ThenThereShouldBeFourMatches()
     {
-        var searcher = new SearchUsingRegexWithMatches();
-        searcher.CaseSensitive = false;
-        searcher.SkipWholeFoundText = true;
         var searchText = "lorem";
 
-        searcher.Initialize(searchText);
+        var searcher = new SearchUsingRegexWithMatches(searchText, true, false);
         List<int> positions = searcher.FindAll(_partOfLoremIpsumText);
 
         var expectedPositions = new List<int> { 0, 28, 56, 84 };
@@ -26,12 +23,9 @@ public class SearchUsingRegexWithMatchesTest
     [TestMethod]
     public void GivenLoremText_WhenSearchingLoremCaseSensitive_ThenThereShouldBeTwoMatches()
     {
-        var searcher = new SearchUsingRegexWithMatches();
-        searcher.CaseSensitive = true;
-        searcher.SkipWholeFoundText = true;
         var searchText = "lorem";
 
-        searcher.Initialize(searchText);
+        var searcher = new SearchUsingRegexWithMatches(searchText, true, true);
         List<int> positions = searcher.FindAll(_partOfLoremIpsumText);
 
         var expectedPositions = new List<int> { 0, 56 };
@@ -41,11 +35,9 @@ public class SearchUsingRegexWithMatchesTest
     [TestMethod]
     public void GivenLoremText_WhenSearchingNotFound_ThenThereShouldBeNoMatches()
     {
-        var searcher = new SearchUsingRegexWithMatches();
-        searcher.SkipWholeFoundText = true;
         var searchText = "notfound";
 
-        searcher.Initialize(searchText);
+        var searcher = new SearchUsingRegexWithMatches(searchText, true, true);
         List<int> positions = searcher.FindAll(_partOfLoremIpsumText);
 
         Assert.IsTrue(positions.Count == 0);
@@ -54,12 +46,10 @@ public class SearchUsingRegexWithMatchesTest
     [TestMethod]
     public void GivenIIIIIII_WhenSearchingIIIWithWholeWords_ThenThereShouldBeTwoMatches()
     {
-        var searcher = new SearchUsingRegexWithMatches();
-        searcher.SkipWholeFoundText = true;
         var searchText = "III";
         var text = "IIIIIII";
 
-        searcher.Initialize(searchText);
+        var searcher = new SearchUsingRegexWithMatches(searchText, true, true);
         List<int> positions = searcher.FindAll(text);
 
         var expectedPositions = new List<int> { 0, 3 };
@@ -69,12 +59,10 @@ public class SearchUsingRegexWithMatchesTest
     [TestMethod]
     public void GivenIIIIIII_WhenSearchingIIIWithoutWholeWords_ThenThereShouldBeException()
     {
-        var searcher = new SearchUsingRegexWithMatches();
-        searcher.SkipWholeFoundText = false;
         var searchText = "III";
         var text = "IIIIIII";
 
-        searcher.Initialize(searchText);
+        var searcher = new SearchUsingRegexWithMatches(searchText, false, true);
         Assert.ThrowsException<NotSupportedException>(() => searcher.FindAll(text));
     }
 
@@ -85,15 +73,8 @@ public class SearchUsingRegexWithMatchesTest
     {
         foreach (SearchPair searchPair in SearchingSamples.SampleForProgram())
         {
-            var searcher = new SearchUsingRegexWithMatches();
-            searcher.CaseSensitive = caseSensitive;
-            searcher.SkipWholeFoundText = true;
-            searcher.Initialize(searchPair.SearchText);
-
-            var bruteForceSearcher = new SearchUsingIndexOf();
-            bruteForceSearcher.CaseSensitive = caseSensitive;
-            bruteForceSearcher.SkipWholeFoundText = true;
-            bruteForceSearcher.Initialize(searchPair.SearchText);
+            var searcher = new SearchUsingRegexWithMatches(searchPair.SearchText, true, caseSensitive);
+            var bruteForceSearcher = new SearchUsingIndexOf(searchPair.SearchText, true, caseSensitive);
 
             List<int> positions = searcher.FindAll(searchPair.Text);
             List<int> bruteForcePositions = bruteForceSearcher.FindAll(searchPair.Text);

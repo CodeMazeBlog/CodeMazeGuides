@@ -6,6 +6,13 @@ public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
 {
     private int[] _prefix = [];
 
+    public SearchUsingKMPAlgorithm(string searchText, bool skipWholeFoundText, bool caseSensitive)
+        : base(searchText, skipWholeFoundText, caseSensitive)
+    {
+        var searchTextSpan = SearchText.AsSpan();
+        _prefix = ComputePrefix(searchTextSpan);
+    }
+
     private static int[] ComputePrefix(ReadOnlySpan<char> searchText)
     {
         var prefix = new int[searchText.Length];
@@ -35,14 +42,6 @@ public class SearchUsingKMPAlgorithm : SearchBase, ISearcher
         }
 
         return prefix;
-    }
-
-    public new void Initialize(string searchText)
-    {
-        base.Initialize(searchText);
-
-        var searchTextSpan = SearchText.AsSpan();
-        _prefix = ComputePrefix(searchTextSpan);
     }
 
     public List<int> FindAll(string text)

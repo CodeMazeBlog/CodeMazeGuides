@@ -2,13 +2,12 @@
 using FindAllPositionsOfAString.Algorithms;
 using FindAllPositionsOfAString.Samples;
 
-
 namespace FindAllPositionsOfAString.Benchmarks;
 
 public class RegExSearcherBenchmarks
 {
-    private readonly SearchUsingRegexWithMatch searchUsingRegexWithMatch = new();
-    private readonly SearchUsingRegexWithMatches searchUsingRegexWithMatches = new();
+    private SearchUsingRegexWithMatch? _searchUsingRegexWithMatch;
+    private SearchUsingRegexWithMatches? _searchUsingRegexWithMatches;
 
     [Params(0, 1, 2, 3)]
     public int Index { get; set; }
@@ -16,22 +15,20 @@ public class RegExSearcherBenchmarks
     [GlobalSetup]
     public void Setup()
     {
-        searchUsingRegexWithMatch.Initialize(SearchingSamples.SearchPairs[Index].SearchText);
-        searchUsingRegexWithMatch.SkipWholeFoundText = true;
+        _searchUsingRegexWithMatch = new(SearchingSamples.SearchPairs[Index].SearchText, true, true);
 
-        searchUsingRegexWithMatches.Initialize(SearchingSamples.SearchPairs[Index].SearchText);
-        searchUsingRegexWithMatches.SkipWholeFoundText = true;
+        _searchUsingRegexWithMatches = new(SearchingSamples.SearchPairs[Index].SearchText, true, true);
     }
 
     [Benchmark(Baseline = true)]
     public List<int> BenchmarkSearchUsingRegexMatch()
     {
-        return searchUsingRegexWithMatch.FindAll(SearchingSamples.SearchPairs[Index].Text);
+        return _searchUsingRegexWithMatch!.FindAll(SearchingSamples.SearchPairs[Index].Text);
     }
 
     [Benchmark]
     public List<int> BenchmarkSearchUsingRegexMatches()
     {
-        return searchUsingRegexWithMatches.FindAll(SearchingSamples.SearchPairs[Index].Text);
+        return _searchUsingRegexWithMatches!.FindAll(SearchingSamples.SearchPairs[Index].Text);
     }
 }

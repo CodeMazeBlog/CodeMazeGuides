@@ -7,10 +7,9 @@ public class SearchUsingRegexWithMatches : SearchBase, ISearcher
 {
     private Regex _regex = null!;
 
-    public new void Initialize(string searchText)
+    public SearchUsingRegexWithMatches(string searchText, bool skipWholeFoundText, bool caseSensitive)
+        : base(searchText, skipWholeFoundText, caseSensitive)
     {
-        base.Initialize(searchText);
-
         _regex = new Regex(SearchText, CaseSensitive ? RegexOptions.None : RegexOptions.IgnoreCase);
     }
 

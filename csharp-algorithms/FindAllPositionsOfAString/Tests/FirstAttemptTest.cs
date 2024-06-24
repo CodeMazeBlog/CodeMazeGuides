@@ -5,13 +5,14 @@ namespace Tests;
 [TestClass]
 public class FirstAttemptTest
 {
+    private readonly string _partOfLoremIpsumText = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
+
     [TestMethod]
     public void GivenLoremText_WhenSearchingLoremCaseSensitive_ThenThereShouldBeTwoMatches()
     {
         var searchText = "lorem";
-        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        List<int> positions = FirstAttempt.FindAll(text, searchText);
+        List<int> positions = FirstAttempt.FindAll(_partOfLoremIpsumText, searchText);
 
         var expectedPositions = new List<int> { 0, 56 };
         CollectionAssert.AreEqual(expectedPositions, positions);
@@ -21,9 +22,8 @@ public class FirstAttemptTest
     public void GivenLoremText_WhenSearchingNotFound_ThenThereShouldBeNoMatches()
     {
         var searchText = "notfound";
-        var text = "lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET. lorem ipsum dolor sit amet, LoreM IPSUM DOLOR SIT AMET.";
 
-        List<int> positions = FirstAttempt.FindAll(text, searchText);
+        List<int> positions = FirstAttempt.FindAll(_partOfLoremIpsumText, searchText);
 
         Assert.IsTrue(positions.Count == 0);
     }

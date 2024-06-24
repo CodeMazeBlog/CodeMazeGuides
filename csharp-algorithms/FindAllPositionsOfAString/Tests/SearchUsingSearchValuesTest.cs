@@ -11,11 +11,9 @@ public class SearchUsingSearchValuesTest
     [TestMethod]
     public void GivenLoremText_WhenSearchingLoremCaseInsensitive_ThenThereShouldBeFourMatches()
     {
-        var searcher = new SearchUsingSearchValues();
-        searcher.CaseSensitive = false;
         var searchText = "lorem";
 
-        searcher.Initialize(searchText);
+        var searcher = new SearchUsingSearchValues(searchText, false, false);
         List<int> positions = searcher.FindAll(_partOfLoremIpsumText);
 
         var expectedPositions = new List<int> { 0, 28, 56, 84 };
@@ -25,11 +23,9 @@ public class SearchUsingSearchValuesTest
     [TestMethod]
     public void GivenLoremText_WhenSearchingLoremCaseSensitive_ThenThereShouldBeTwoMatches()
     {
-        var searcher = new SearchUsingSearchValues();
-        searcher.CaseSensitive = true;
         var searchText = "lorem";
 
-        searcher.Initialize(searchText);
+        var searcher = new SearchUsingSearchValues(searchText, false, true);
         List<int> positions = searcher.FindAll(_partOfLoremIpsumText);
 
         var expectedPositions = new List<int> { 0, 56 };
@@ -39,10 +35,9 @@ public class SearchUsingSearchValuesTest
     [TestMethod]
     public void GivenLoremText_WhenSearchingNotFound_ThenThereShouldBeNoMatches()
     {
-        var searcher = new SearchUsingSearchValues();
         var searchText = "notfound";
 
-        searcher.Initialize(searchText);
+        var searcher = new SearchUsingSearchValues(searchText, false, true);
         List<int> positions = searcher.FindAll(_partOfLoremIpsumText);
 
         Assert.IsTrue(positions.Count == 0);
@@ -51,12 +46,10 @@ public class SearchUsingSearchValuesTest
     [TestMethod]
     public void GivenIIIIIII_WhenSearchingIIIWithWholeWords_ThenThereShouldBeTwoMatches()
     {
-        var searcher = new SearchUsingSearchValues();
-        searcher.SkipWholeFoundText = true;
         var searchText = "III";
         var text = "IIIIIII";
 
-        searcher.Initialize(searchText);
+        var searcher = new SearchUsingSearchValues(searchText, true, true);
         List<int> positions = searcher.FindAll(text);
 
         var expectedPositions = new List<int> { 0, 3 };
@@ -66,12 +59,10 @@ public class SearchUsingSearchValuesTest
     [TestMethod]
     public void GivenIIIIIII_WhenSearchingIIIWithoutWholeWords_ThenThereShouldBeFiveMatches()
     {
-        var searcher = new SearchUsingSearchValues();
-        searcher.SkipWholeFoundText = false;
         var searchText = "III";
         var text = "IIIIIII";
 
-        searcher.Initialize(searchText);
+        var searcher = new SearchUsingSearchValues(searchText, false, true);
         List<int> positions = searcher.FindAll(text);
 
         var expectedPositions = new List<int> { 0, 1, 2, 3, 4 };
@@ -87,15 +78,8 @@ public class SearchUsingSearchValuesTest
     {
         foreach (SearchPair searchPair in SearchingSamples.SampleForProgram())
         {
-            var searcher = new SearchUsingSearchValues();
-            searcher.CaseSensitive = caseSensitive;
-            searcher.SkipWholeFoundText = skipWholeWords;
-            searcher.Initialize(searchPair.SearchText);
-
-            var bruteForceSearcher = new SearchUsingIndexOf();
-            bruteForceSearcher.CaseSensitive = caseSensitive;
-            bruteForceSearcher.SkipWholeFoundText = skipWholeWords;
-            bruteForceSearcher.Initialize(searchPair.SearchText);
+            var searcher = new SearchUsingSearchValues(searchPair.SearchText, skipWholeWords, caseSensitive);
+            var bruteForceSearcher = new SearchUsingIndexOf(searchPair.SearchText, skipWholeWords, caseSensitive);
 
             List<int> positions = searcher.FindAll(searchPair.Text);
             List<int> bruteForcePositions = bruteForceSearcher.FindAll(searchPair.Text);
