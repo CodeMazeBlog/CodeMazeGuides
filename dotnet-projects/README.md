@@ -16,3 +16,4 @@ This section contains articles about working with projects in .NET (templates, C
 - [Console Class in C#](https://code-maze.com/csharp-console/)
 - [Running .NET Core Applications as a Linux Service](https://code-maze.com/aspnetcore-running-applications-as-linux-service/)
 - [Running .NET Core Applications as a Windows Service](https://code-maze.com/aspnetcore-running-applications-as-windows-service/)
+- [Multitenancy in .NET With Orchard Core](https://code-maze.com/dotnet-multitenancy-with-orchard-core/)
