@@ -2,9 +2,9 @@
 using SIMDAcceleratedNumericTypes;
 using System.Numerics;
 
-var vector1 = new Vector2(1f, 2f);
-var vector2 = new Vector3(4f, 5f, 6f);
-var vector3 = new Vector4(7f, 8f, 9f, 10f);
+var vector2 = new Vector2(1f, 2f);
+var vector3 = new Vector3(4f, 5f, 6f);
+var vector4 = new Vector4(7f, 8f, 9f, 10f);
 
 var intVector = new Vector<int>(new Span<int>([1, 2, 3, 4, 5, 6, 7, 8]));
 
