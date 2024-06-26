@@ -27,8 +27,8 @@ public class SIMDNumericTypesOperations
 
     public static float[,] CreateAndMultiplyTwoMatricesWithoutSIMD()
     {
-        float[,] matrix1
-            = {
+        float[,] matrix1 = 
+        {
             { 1f, 2f, 3f, 4f },
             { 5f, 6f, 7f, 8f },
             { 9f, 10f, 11f, 12f },

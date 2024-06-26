@@ -18,7 +18,8 @@ public class SIMDNumericTypesOperationsTest
     [Fact]
     public void WhenCreateAndMultiplyTwoMatricesWithoutSIMDIsCalled_ThenReturnsCorrectResult()
     {
-        float[,] expected = {
+        float[,] expected = 
+        {
             { 90f, 100f, 110f, 120f },
             { 202f, 228f, 254f, 280f },
             { 314f, 356f, 398f, 440f },
