@@ -1,6 +1,7 @@
 ﻿using AbstractFactoryPattern.Interfaces;
 
 namespace AbstractFactoryPattern;
+
 public class FantasyShow : IShow
 {
     public void Begin()

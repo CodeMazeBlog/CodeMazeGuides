@@ -1,4 +1,5 @@
 ﻿namespace AbstractFactoryPattern;
+
 public class ThemeParkClient
 {
     public void EnjoyThemePark(string section)

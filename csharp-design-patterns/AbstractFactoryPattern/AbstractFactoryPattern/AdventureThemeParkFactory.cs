@@ -1,6 +1,7 @@
 ﻿using AbstractFactoryPattern.Interfaces;
 
 namespace AbstractFactoryPattern;
+
 public class AdventureThemeParkFactory : IThemeParkFactory
 {
     public IRide CreateRide()

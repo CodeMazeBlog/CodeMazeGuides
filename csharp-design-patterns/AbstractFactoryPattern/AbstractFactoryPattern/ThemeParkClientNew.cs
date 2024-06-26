@@ -1,6 +1,7 @@
 ﻿using AbstractFactoryPattern.Interfaces;
 
 namespace AbstractFactoryPattern;
+
 public class ThemeParkClientNew
 {
     private readonly IRide _ride;
