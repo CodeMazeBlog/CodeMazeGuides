@@ -5,7 +5,7 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingRegexWithMatches : SearchBase, ISearcher
 {
-    private Regex _regex = null!;
+    private readonly Regex _regex;
 
     public SearchUsingRegexWithMatches(string searchText, bool skipWholeFoundText, bool caseSensitive)
         : base(searchText, skipWholeFoundText, caseSensitive)
@@ -24,4 +24,3 @@ public class SearchUsingRegexWithMatches : SearchBase, ISearcher
             .ToList();
     }
 }
-

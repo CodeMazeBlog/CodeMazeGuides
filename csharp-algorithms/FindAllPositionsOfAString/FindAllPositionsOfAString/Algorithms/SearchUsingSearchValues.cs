@@ -7,7 +7,7 @@ namespace FindAllPositionsOfAString.Algorithms;
 
 public class SearchUsingSearchValues : SearchBase, ISearcher
 {
-    private SearchValues<string> _searchValues = null!;
+    private readonly SearchValues<string> _searchValues;
 
     public SearchUsingSearchValues(string searchText, bool skipWholeFoundText, bool caseSensitive)
         : base(searchText, skipWholeFoundText, caseSensitive)
