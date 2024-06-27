@@ -21,7 +21,11 @@ public class ComplexTypesDBService()
         => await _context.Users.FirstAsync(user => user.Id == id);
 
     public async Task<Address> GetComplexTypeFromOwningEntity(int id)
-        => await _context.Users
-        .Where(user => user.Id == id)
-        .Select(u => u.Address).SingleAsync();
+    {
+        var query = await _context.Users
+            .Select(u => new { u.Id, u.Address })
+            .SingleAsync(user => user.Id == id);
+
+        return query.Address;
+    }
 }
