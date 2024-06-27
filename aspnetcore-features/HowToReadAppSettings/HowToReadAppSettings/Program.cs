@@ -14,20 +14,20 @@ Console.WriteLine(appSettings.Settings2);
 #endregion Bind configuration to strongly-typed object
 
 #region Nested example
-var Example1 = configuration["Settings1"];
-Console.WriteLine(Example1);
+var example1 = configuration["Settings1"];
+Console.WriteLine(example1);
 
-var Example1UsingSection = configuration.GetSection("Settings1");
-Console.WriteLine(Example1UsingSection.Value);
+var example1UsingSection = configuration.GetSection("Settings1");
+Console.WriteLine(example1UsingSection.Value);
 
-var Settings = configuration["AppSettings:Settings2"];
-Console.WriteLine(Settings);
+var settings = configuration["AppSettings:Settings2"];
+Console.WriteLine(settings);
 
-var Settings2 = configuration.GetSection("AppSettings");
-Console.WriteLine(Settings2.GetSection("Settings2").Value);
+var settings2 = configuration.GetSection("AppSettings");
+Console.WriteLine(settings2.GetSection("Settings2").Value);
 #endregion Nested example
 
 #region Connection String
-var ConnectionString = configuration.GetConnectionString("DefaultConnection");
-Console.WriteLine(ConnectionString);
+var connectionString = configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine(connectionString);
 #endregion Connection String

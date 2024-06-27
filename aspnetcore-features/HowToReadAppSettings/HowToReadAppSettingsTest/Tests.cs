@@ -19,28 +19,28 @@ namespace HowToReadAppSettingsTest
         [TestMethod]
         public void GivenConnectionString_WhenRequestingConnectionString_ReturnsConnectionString()
         {
-            var ConnectionStringFromAppSettings = _configuration["ConnectionStrings:DefaultConnection"];
-            var ConnectionStringValue = "Server=10.1.1.120;Database=Database;User=Admin;Password=MyStrongPassword;";
+            var connectionStringFromAppSettings = _configuration["ConnectionStrings:DefaultConnection"];
+            var connectionStringValue = "Server=10.1.1.120;Database=Database;User=Admin;Password=MyStrongPassword;";
 
-            Assert.AreEqual(ConnectionStringFromAppSettings, ConnectionStringValue);
+            Assert.AreEqual(connectionStringFromAppSettings, connectionStringValue);
         }
 
         [TestMethod]
         public void GivenSettings_WhenRequestingSettings1_ReturnsValue()
         {
-            var Settings1FromAppSettings = _configuration["Settings1"];
-            var Settings1 = "Hello there";
+            var settings1FromAppSettings = _configuration["Settings1"];
+            var settings1 = "Hello there";
 
-            Assert.AreEqual(Settings1FromAppSettings, Settings1);
+            Assert.AreEqual(settings1FromAppSettings, settings1);
         }
 
         [TestMethod]
         public void GivenSettings_WhenRequestingSettings2_ReturnsValue()
         {
-            var Settings1FromAppSettings = _configuration["AppSettings:Settings2"];
-            var Settings1 = "Hello from nested configuration section!";
+            var settings1FromAppSettings = _configuration["AppSettings:Settings2"];
+            var settings1 = "Hello from nested configuration section!";
 
-            Assert.AreEqual(Settings1FromAppSettings, Settings1);
+            Assert.AreEqual(settings1FromAppSettings, settings1);
         }
     }
 }
