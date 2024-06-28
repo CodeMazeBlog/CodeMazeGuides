@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAiImageGenerator", "OpenAiImageGenerator\OpenAiImageGenerator.csproj", "{DDAD6BD6-5B98-4720-8395-CEA0295A3189}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAiImageGenerator", "OpenAiImageGenerator\OpenAiImageGenerator.csproj", "{DDAD6BD6-5B98-4720-8395-CEA0295A3189}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests\Tests.csproj", "{C8E11A70-8D7C-4305-A121-82AEDC44627C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests\Tests.csproj", "{C8E11A70-8D7C-4305-A121-82AEDC44627C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageGeneratorApp", "ImageGeneratorApp\ImageGeneratorApp.csproj", "{23585207-F771-4531-8374-3EC6D1FEB740}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C8E11A70-8D7C-4305-A121-82AEDC44627C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8E11A70-8D7C-4305-A121-82AEDC44627C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8E11A70-8D7C-4305-A121-82AEDC44627C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23585207-F771-4531-8374-3EC6D1FEB740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23585207-F771-4531-8374-3EC6D1FEB740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23585207-F771-4531-8374-3EC6D1FEB740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23585207-F771-4531-8374-3EC6D1FEB740}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

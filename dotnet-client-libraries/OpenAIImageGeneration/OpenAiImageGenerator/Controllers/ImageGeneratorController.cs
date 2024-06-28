@@ -14,7 +14,7 @@ public class ImageGeneratorController(IOpenAIService openAIService) : Controller
         {
             var imageUri = await openAIService.GenerateImageAsync(apiModel);
 
-            return Ok(imageUri);
+            return Ok(new { ImageUri = imageUri });
         }
         catch (Exception ex)
         {

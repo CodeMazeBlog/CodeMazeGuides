@@ -355,3 +355,4 @@ global.json
 
 # MacOS
 **/.DS_Store
+/dotnet-client-libraries/OpenAIImageGeneration/ImageGeneratorApp/wwwroot
