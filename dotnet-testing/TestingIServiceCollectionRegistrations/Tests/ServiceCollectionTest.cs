@@ -12,45 +12,20 @@ public class ServiceCollectionTest
         _serviceProvider = _serviceCollection.BuildServiceProvider();
     }
 
-    [Fact]
-    public void GivenDependenciesExists_WhenPetServiceIsRegisteredAsSingleton_ThenServiceIsRegistered()
+    [Theory]
+    [InlineData(typeof(IPetService), typeof(PetService), ServiceLifetime.Singleton)]
+    [InlineData(typeof(IWildAnimalService), typeof(WildAnimalService), ServiceLifetime.Transient)]
+    [InlineData(typeof(IMarineAnimalsService), typeof(MarineAnimalsService), ServiceLifetime.Scoped)]
+    public void GivenDependenciesExists_WhenServiceIsRegistered_ThenServiceIsRegistered(Type interfaceType, Type classType, ServiceLifetime serviceLifetime)
     {
-        var petService = _serviceProvider.GetService<IPetService>();
+        var serviceType = _serviceProvider.GetService(interfaceType);
 
-        Assert.NotNull(petService);
+        Assert.NotNull(serviceType);
 
         var serviceDescriptor = _serviceCollection.SingleOrDefault(
-            d => d.ServiceType == typeof(IPetService) &&
-                 d.ImplementationType == typeof(PetService) &&
-                 d.Lifetime == ServiceLifetime.Singleton);
-
-        Assert.NotNull(serviceDescriptor);
-    }
-
-    [Fact]
-    public void GivenDependenciesExists_WhenWildAnimalServiceIsRegisteredAsTransient_ThenServiceIsRegistered()
-    {
-        var wildAnimalService = _serviceProvider.GetService<IWildAnimalService>();
-
-        Assert.NotNull(wildAnimalService);
-
-        var serviceDescriptor = _serviceCollection.SingleOrDefault(
-            d => d.ServiceType == typeof(IWildAnimalService) &&
-                 d.ImplementationType == typeof(WildAnimalService) &&
-                 d.Lifetime == ServiceLifetime.Transient);
-
-        Assert.NotNull(serviceDescriptor);
-    }
-
-    [Fact]
-    public void GivenDependenciesExists_WhenMarineAnimalsServiceIsRegisteredAsScoped_ThenServiceIsRegistered()
-    {
-        var marineAnimalsService = _serviceProvider.GetService<IMarineAnimalsService>();
-
-        var serviceDescriptor = _serviceCollection.SingleOrDefault(
-            d => d.ServiceType == typeof(IMarineAnimalsService) &&
-                 d.ImplementationType == typeof(MarineAnimalsService) &&
-                 d.Lifetime == ServiceLifetime.Scoped);
+            d => d.ServiceType == interfaceType &&
+                 d.ImplementationType == classType &&
+                 d.Lifetime == serviceLifetime);
 
         Assert.NotNull(serviceDescriptor);
     }
