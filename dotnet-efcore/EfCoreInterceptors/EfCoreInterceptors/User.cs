@@ -12,7 +12,7 @@ public class User : IAuditableEntity
 
     public DateTime Modified { get; private set; }
 
-    void IAuditableEntity.AuditCreation(TimeProvider timeProvider)
+    public void AuditCreation(TimeProvider timeProvider)
     {
         var now = timeProvider.GetUtcNow().UtcDateTime;
 
@@ -20,7 +20,7 @@ public class User : IAuditableEntity
         Modified = now;
     }
 
-    void IAuditableEntity.AuditModification(TimeProvider timeProvider)
+    public void AuditModification(TimeProvider timeProvider)
     {
         Modified = timeProvider.GetUtcNow().UtcDateTime;
     }
