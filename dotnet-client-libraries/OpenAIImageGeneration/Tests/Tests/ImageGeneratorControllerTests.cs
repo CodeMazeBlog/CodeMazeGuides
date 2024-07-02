@@ -15,6 +15,7 @@ public class ImageGeneratorControllerTests
             Quality = "standard"
         };
         var imageUri = new Uri("https://www.example.com/image.jpg");
+        var response = new { ImageUri = imageUri};
         
         openAIServiceMock
             .Setup(x => x.GenerateImageAsync(imageGenerationApiModel))
@@ -28,6 +29,6 @@ public class ImageGeneratorControllerTests
         // Assert
         Assert.NotNull(result);
         Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)result.StatusCode);
-        Assert.Equal(imageUri, result.Value);
+        Assert.Equivalent(response, result.Value);
     }
 }
