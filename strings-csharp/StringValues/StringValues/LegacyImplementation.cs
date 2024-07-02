@@ -1,15 +1,15 @@
 ﻿using System.Collections.Specialized;
 
-public class LegacyImplementation
+public static class LegacyImplementation
 {
-    private readonly NameValueCollection _headers = [];
+    private static readonly NameValueCollection _headers = [];
 
-    public void AddHeader(string key, string value)
+    public static void AddHeader(string key, string value)
     {
         _headers.Add(key, value);
     }
 
-    public string[] GetHeaderValues(string key)
+    public static string[] GetHeaderValues(string key)
     {
         return _headers.GetValues(key) ?? [];
     }
