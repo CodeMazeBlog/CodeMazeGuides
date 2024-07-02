@@ -56,12 +56,12 @@ public class IndexModel(IHttpClientFactory clientFactory,
             }
             else
             {
-                Message = "An error occured while generating the image. Please try again later.";
+                Message = "An error occurred while generating the image. Please try again later.";
             }
         }
         catch
         {
-            Message = "An error occured while generating the image. Please try again later.";
+            Message = "An error occurred while generating the image. Please try again later.";
         }
 
         return Page();
