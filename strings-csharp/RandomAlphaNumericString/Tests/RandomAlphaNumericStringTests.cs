@@ -16,7 +16,7 @@ public class RandomAlphaNumericStringTests
     public void GivenPathMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
     {
         var result = Methods.PathMethod(expectedLength);
-        Assert.AreEqual(expectedLength, 8);
+        Assert.AreEqual(8, result.Length);
     }
 
     [TestMethod]
