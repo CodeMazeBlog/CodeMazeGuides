@@ -2,18 +2,10 @@
 {
     public partial class Methods
     {
+        // Only up to 32 characters
         public static string? GuidMethod(int length)
         {
-            var str = "";
-
-            do
-            {
-                str += Guid.NewGuid().ToString().Replace("-", "");
-            }
-
-            while (length > str.Length);
-
-            return str.Substring(0, length);
+            return Guid.NewGuid().ToString("N").Substring(0, length < 32 ? length : 32);
         }
     }
 }

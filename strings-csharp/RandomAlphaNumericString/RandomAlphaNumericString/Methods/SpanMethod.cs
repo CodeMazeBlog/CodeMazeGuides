@@ -6,16 +6,13 @@ namespace RandomAlphaNumericString
     {
         public static string? SpanMethod(int length)
         {
-            Span<byte> data = stackalloc byte[length];
-            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(data);
-            }
-
             Span<char> result = stackalloc char[length];
-            for (var i = 0; i < length; i++)
+            int charSetLength = chars.Length;
+
+            for (int i = 0; i < length; i++)
             {
-                result[i] = chars[data[i] % chars.Length];
+                int index = random.Next(charSetLength);
+                result[i] = chars[index];
             }
 
             return new string(result);

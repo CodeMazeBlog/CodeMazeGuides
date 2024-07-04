@@ -5,6 +5,8 @@ namespace RandomAlphaNumericString
 {
     public partial class Methods
     {
+        internal static readonly char[] chars =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
         public static string CryptographicUniqueMethod(int length)
         {
             var data = new byte[4 * length];

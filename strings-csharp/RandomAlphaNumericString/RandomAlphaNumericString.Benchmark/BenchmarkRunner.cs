@@ -8,7 +8,7 @@ namespace BenchmarkRunner;
 [RankColumn]
 public class RandomAlphaNumericStringBenchmark
 {
-    private readonly int length = 10;
+    private readonly int length = 16;
 
     [Benchmark]
     public void UsingAesMethod()
@@ -28,11 +28,6 @@ public class RandomAlphaNumericStringBenchmark
         Methods.RandomNumberGenGetStringMethod(length);
     }
 
-    [Benchmark]
-    public void UsingRandomNumberGenMethod()
-    {
-        Methods.RandomNumberGenMethod(length);
-    }
 
     [Benchmark]
     public void UsingCryptographicUniqueMethod()
@@ -44,12 +39,6 @@ public class RandomAlphaNumericStringBenchmark
     public void UsingGuidMethod()
     {
         Methods.GuidMethod(length);
-    }
-
-    [Benchmark]
-    public void UsingGuidOneLineMethod()
-    {
-        Methods.GuidOneLineMethod(length);
     }
 
     [Benchmark]
@@ -70,4 +59,21 @@ public class RandomAlphaNumericStringBenchmark
         Methods.StringCreateSecureMethod(length);
     }
 
+    [Benchmark]
+    public void UsingStringBuilderMethod()
+    {
+        Methods.StringBuilderMethod(length);
+    }
+
+    [Benchmark]
+    public void UsingSpanMethod()
+    {
+        Methods.SpanMethod(length);
+    }
+
+    [Benchmark]
+    public void UsingSpanSecureMethod()
+    {
+        Methods.SpanSecureMethod(length);
+    }
 }
