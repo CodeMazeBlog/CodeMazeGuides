@@ -15,3 +15,4 @@ Console.WriteLine(nameof(StringCreateSecureMethod) + ": " + StringCreateSecureMe
 Console.WriteLine(nameof(StringBuilderMethod) + ": " + StringBuilderMethod(length));
 Console.WriteLine(nameof(SpanSecureMethod) + ": " + SpanSecureMethod(length));
 Console.WriteLine(nameof(SpanMethod) + ": " + SpanMethod(length));
+Console.WriteLine(nameof(ForLoopMethod) + ": " + ForLoopMethod(length));

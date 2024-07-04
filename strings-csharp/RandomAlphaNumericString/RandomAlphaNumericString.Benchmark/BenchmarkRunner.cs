@@ -76,4 +76,10 @@ public class RandomAlphaNumericStringBenchmark
     {
         Methods.SpanSecureMethod(length);
     }
+
+    [Benchmark]
+    public void UsingForLoopMethod()
+    {
+        Methods.ForLoopMethod(length);
+    }
 }
