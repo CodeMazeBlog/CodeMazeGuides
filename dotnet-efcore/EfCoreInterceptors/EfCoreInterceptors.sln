@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EfCoreInterceptors", "EfCoreInterceptors\EfCoreInterceptors.csproj", "{B4F3ACF9-30FF-4789-98CA-E075079DCFBD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EfCoreInterceptors.Tests", "EfCoreInterceptors.Tests", "{0BACAC32-51B1-46FA-AFF5-0F707CA13893}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EfCoreInterceptors.LiveTests", "Tests\EfCoreInterceptors.LiveTests\EfCoreInterceptors.LiveTests.csproj", "{CF80D9DF-3500-4D71-832A-E3BAE183C09D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B4F3ACF9-30FF-4789-98CA-E075079DCFBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4F3ACF9-30FF-4789-98CA-E075079DCFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4F3ACF9-30FF-4789-98CA-E075079DCFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4F3ACF9-30FF-4789-98CA-E075079DCFBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF80D9DF-3500-4D71-832A-E3BAE183C09D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF80D9DF-3500-4D71-832A-E3BAE183C09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF80D9DF-3500-4D71-832A-E3BAE183C09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF80D9DF-3500-4D71-832A-E3BAE183C09D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CF80D9DF-3500-4D71-832A-E3BAE183C09D} = {0BACAC32-51B1-46FA-AFF5-0F707CA13893}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B1D820C-B8CA-43FA-8EDB-5E7C51BA2EAA}
+	EndGlobalSection
+EndGlobal
