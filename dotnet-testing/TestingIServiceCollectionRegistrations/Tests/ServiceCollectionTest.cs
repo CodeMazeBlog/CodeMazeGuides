@@ -2,12 +2,11 @@
 
 public class ServiceCollectionTest
 {
-    private readonly IServiceCollection _serviceCollection;
+    private readonly IServiceCollection _serviceCollection = new ServiceCollection();
     private readonly IServiceProvider _serviceProvider;
 
     public ServiceCollectionTest()
     {
-        _serviceCollection = new ServiceCollection();
         _serviceCollection.AddDependencies();
         _serviceProvider = _serviceCollection.BuildServiceProvider();
     }
