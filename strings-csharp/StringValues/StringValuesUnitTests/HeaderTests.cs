@@ -8,9 +8,10 @@ public class HeaderTests
     [TestMethod]
     public void GivenExistingHeader_WhenNewValueAdded_ShouldStoreMultipleValues()
     {
-        StringValuesImplementation.AddHeader("MyHeader", "value1");
-        StringValuesImplementation.AddHeader("MyHeader", "value2");
-        var values = StringValuesImplementation.GetHeaderValues("MyHeader");
+        StringValuesImplementation stringValuesImplementation = new(); 
+        stringValuesImplementation.AddHeader("MyHeader", "value1");
+        stringValuesImplementation.AddHeader("MyHeader", "value2");
+        var values = stringValuesImplementation.GetHeaderValues("MyHeader");
         Assert.AreEqual(2, values.Count);
         CollectionAssert.AreEqual(expected, values.ToArray());
     }
@@ -18,9 +19,10 @@ public class HeaderTests
     [TestMethod]
     public void GivenExistingHeaderInLegacyImplementation_WhenNewValueAdded_ShouldStoreMultipleValues()
     {
-        LegacyImplementation.AddHeader("MyHeader", "value1");
-        LegacyImplementation.AddHeader("MyHeader", "value2");
-        var values = LegacyImplementation.GetHeaderValues("MyHeader");
+        LegacyImplementation legacyImplementation = new();
+        legacyImplementation.AddHeader("MyHeader", "value1");
+        legacyImplementation.AddHeader("MyHeader", "value2");
+        var values = legacyImplementation.GetHeaderValues("MyHeader");
         Assert.AreEqual(2, values.Length);
         CollectionAssert.AreEqual(expected, values);
     }
@@ -28,9 +30,10 @@ public class HeaderTests
     [TestMethod]
     public void GivenExistingHeaderInNaiveImplementation_WhenNewValueAdded_ShouldStoreMultipleValues()
     {
-        NaiveImplementation.AddHeader("MyHeader", "value1");
-        NaiveImplementation.AddHeader("MyHeader", "value2");
-        var values = NaiveImplementation.GetHeaderValues("MyHeader");
+        NaiveImplementation naiveImplementation = new();
+        naiveImplementation.AddHeader("MyHeader", "value1");
+        naiveImplementation.AddHeader("MyHeader", "value2");
+        var values = naiveImplementation.GetHeaderValues("MyHeader");
         Assert.AreEqual(2, values.Length);
         CollectionAssert.AreEqual(expected, values);
     }

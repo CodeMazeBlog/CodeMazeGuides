@@ -1,8 +1,8 @@
-﻿public static class NaiveImplementation
+﻿public class NaiveImplementation
 {
-    private static readonly Dictionary<string, string[]> _headers = [];
+    private readonly Dictionary<string, string[]> _headers = [];
 
-    public static void AddHeader(string key, string value)
+    public void AddHeader(string key, string value)
     {
         if (_headers.ContainsKey(key))
         {
@@ -17,7 +17,7 @@
         }
     }
 
-    public static string[] GetHeaderValues(string key)
+    public string[] GetHeaderValues(string key)
     {
         return _headers.ContainsKey(key) ? _headers[key] : [];
     }

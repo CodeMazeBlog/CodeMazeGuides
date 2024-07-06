@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Primitives;
 
-public static class StringValuesImplementation
+public class StringValuesImplementation
 {
-    private static readonly Dictionary<string, StringValues> _headers = [];
+    private readonly Dictionary<string, StringValues> _headers = [];
 
-    public static Dictionary<string, StringValues> AddHeader(string key, string value)
+    public Dictionary<string, StringValues> AddHeader(string key, string value)
     {
         if (_headers.ContainsKey(key))
         {
@@ -17,7 +17,7 @@ public static class StringValuesImplementation
         return _headers;
     }
 
-    public static void DisplayHeaders()
+    public void DisplayHeaders()
     {
         foreach (var header in _headers)
         {
@@ -39,7 +39,7 @@ public static class StringValuesImplementation
         }
     }
 
-    public static StringValues GetHeaderValues(string key)
+    public StringValues GetHeaderValues(string key)
     {
         return _headers.ContainsKey(key) ? _headers[key] : StringValues.Empty;
     }
