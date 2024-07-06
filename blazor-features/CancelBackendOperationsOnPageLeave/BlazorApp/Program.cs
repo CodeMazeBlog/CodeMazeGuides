@@ -1,4 +1,7 @@
+using BlazorApp.Client.Pages;
 using BlazorApp.Components;
+using BlazorApp.Components.Pages;
+using Microsoft.AspNetCore.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
