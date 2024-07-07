@@ -23,35 +23,35 @@ namespace SagaPattern.Saga.Handlers
             mapper.ConfigureMapping<PrepareShipment>(message => message.OrderId).ToSaga(sagaData => sagaData.OrderId); 
         } 
         
-public async Task Handle(StartOrder message, IMessageHandlerContext context) 
-{ 
-    Data.OrderId = message.OrderId;
+        public async Task Handle(StartOrder message, IMessageHandlerContext context) 
+        { 
+            Data.OrderId = message.OrderId;
 
-    var order = await _repository.GetOrderById(message.OrderId);
-    order.Status = Models.OrderStatus.PaymentPending;
+            var order = await _repository.GetOrderById(message.OrderId);
+            order.Status = Models.OrderStatus.PaymentPending;
 
-    await context.SendLocal(new ProcessPayment { OrderId = message.OrderId }); 
-} 
-        
-public async Task Handle(ProcessPayment message, IMessageHandlerContext context) 
-{ 
-    Data.PaymentProcessed = true;
+            await context.SendLocal(new ProcessPayment { OrderId = message.OrderId }); 
+        } 
+                
+        public async Task Handle(ProcessPayment message, IMessageHandlerContext context) 
+        { 
+            Data.PaymentProcessed = true;
 
-    var order = await _repository.GetOrderById(message.OrderId);
-    order.Status = Models.OrderStatus.Processing;
+            var order = await _repository.GetOrderById(message.OrderId);
+            order.Status = Models.OrderStatus.Processing;
 
-    await context.SendLocal(new PrepareShipment { OrderId = message.OrderId }); 
-} 
-        
-public async Task Handle(PrepareShipment message, IMessageHandlerContext context) 
-{ 
-    Data.ShipmentPrepared = true;
+            await context.SendLocal(new PrepareShipment { OrderId = message.OrderId }); 
+        } 
+                
+        public async Task Handle(PrepareShipment message, IMessageHandlerContext context) 
+        { 
+            Data.ShipmentPrepared = true;
 
-    var order = await _repository.GetOrderById(message.OrderId);
-    order.Status = Models.OrderStatus.OrderCompleted;
+            var order = await _repository.GetOrderById(message.OrderId);
+            order.Status = Models.OrderStatus.OrderCompleted;
 
-    await context.Publish(new OrderCompleted { OrderId = message.OrderId }); 
-    MarkAsComplete();
-} 
+            await context.Publish(new OrderCompleted { OrderId = message.OrderId }); 
+            MarkAsComplete();
+        } 
     }
 }
