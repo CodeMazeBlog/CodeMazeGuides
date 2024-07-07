@@ -3,10 +3,10 @@ using Rebus.Handlers;
 using Rebus.Sagas;
 using RebusSagaPattern.Models;
 using RebusSagaPattern.Repositories;
-using RebusSagaPattern.Saga.Messages;
-using RebusSagaPattern.Saga.SagaData;
+using RebusSagaPattern.Sagas.Messages;
+using RebusSagaPattern.Sagas.SagaData;
 
-namespace RebusSagaPattern.Saga.Handlers
+namespace RebusSagaPattern.Sagas.Handlers
 {
     public class OrderSaga : Saga<OrderSagaData>, 
         IAmInitiatedBy<OrderPlacedEvent>,
@@ -31,12 +31,12 @@ namespace RebusSagaPattern.Saga.Handlers
             config.Correlate<OrderShippedEvent>(m => m.OrderId, d => d.OrderId);
         }
 
-        public Task Handle(OrderPlacedEvent message)
+        public async Task Handle(OrderPlacedEvent message)
         {
             Data.OrderId = message.OrderId;
             Data.IsOrderPlaced = true;
 
-            return _orderRepository.AddOrder(new()
+            await _orderRepository.AddOrder(new()
             {
                 OrderId = message.OrderId,
                 Status = OrderStatus.Placed
@@ -50,12 +50,12 @@ namespace RebusSagaPattern.Saga.Handlers
             var order = await _orderRepository.GetOrderById(message.OrderId);
             order.Status = OrderStatus.Processing;
             
-            await _bus.SendLocal(new ShipOrderCommand { OrderId = Data.OrderId });
+            await _bus.Send(new ShipOrderCommand { OrderId = Data.OrderId });
         }
         
-        public Task Handle(ShipOrderCommand message)
+        public async Task Handle(ShipOrderCommand message)
         {
-            return _bus.SendLocal(new OrderShippedEvent { OrderId = Data.OrderId });
+            await _bus.Send(new OrderShippedEvent { OrderId = Data.OrderId });
         }
 
         public async Task Handle(OrderShippedEvent message)

@@ -1,4 +1,4 @@
-namespace RebusSagaPattern.Saga.Messages;
+namespace RebusSagaPattern.Sagas.Messages;
 
 public class PaymentProcessedEvent
 {

@@ -1,6 +1,6 @@
 ﻿using Rebus.Sagas;
 
-namespace RebusSagaPattern.Saga.SagaData
+namespace RebusSagaPattern.Sagas.SagaData
 {
     public class OrderSagaData : ISagaData
     {
