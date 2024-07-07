@@ -55,13 +55,13 @@ namespace RebusSagaPattern.Sagas.Handlers
         
         public async Task Handle(ShipOrderCommand message)
         {
+            Data.IsOrderShipped = true;
+            
             await _bus.Send(new OrderShippedEvent { OrderId = Data.OrderId });
         }
 
         public async Task Handle(OrderShippedEvent message)
         {
-            Data.IsOrderShipped = true;
-            
             var order = await _orderRepository.GetOrderById(message.OrderId);
             order.Status = OrderStatus.Completed;
             
