@@ -1,6 +1,6 @@
 namespace RebusSagaPattern.Sagas.Messages;
 
-public class PaymentProcessedEvent
+public class ProcessPaymentCommand
 {
     public Guid OrderId { get; set; }
 }

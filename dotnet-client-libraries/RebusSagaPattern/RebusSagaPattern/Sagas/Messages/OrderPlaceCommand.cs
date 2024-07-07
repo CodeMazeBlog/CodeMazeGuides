@@ -1,6 +1,6 @@
 ﻿namespace RebusSagaPattern.Sagas.Messages
 {
-    public class OrderPlacedEvent
+    public class OrderPlaceCommand
     {
         public Guid OrderId { get; set; }
     }
