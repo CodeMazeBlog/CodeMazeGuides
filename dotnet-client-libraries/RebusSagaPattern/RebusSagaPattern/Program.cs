@@ -1,8 +1,10 @@
+using Rebus.Bus;
 using Rebus.Config;
 using Rebus.Persistence.InMem;
 using Rebus.Routing.TypeBased;
 using RebusSagaPattern.Models;
 using RebusSagaPattern.Repositories;
+using RebusSagaPattern.Sagas.Messages;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,14 +16,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IOrderRepository, OrderRepository>();
 
 builder.Services.AddRebus(configure => configure
+    .Routing(routing => routing.TypeBased().MapAssemblyOf<Program>("Rebus.OrderQueue"))
     .Transport(transport => 
         transport.UseRabbitMq(
             builder.Configuration.GetConnectionString("RabbitMq"),
             "Rebus.OrderQueue"))
-    .Routing(routing => routing.TypeBased().MapAssemblyOf<Program>("Rebus.OrderQueue"))
     .Sagas(saga => saga.StoreInMemory())
-    .Timeouts(timeout => timeout.StoreInMemory())
 );
+
+builder.Services.AutoRegisterHandlersFromAssemblyOf<Program>();
 
 var app = builder.Build();
 
@@ -34,11 +37,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/orders/{orderId}", async (IOrderRepository orderRepository, string orderId) =>
+app.MapGet("/api/orders/{orderId}", async (IOrderRepository orderRepository, string orderId) =>
     {
         var validGuid = Guid.TryParse(orderId, out var orderGuid);
 
-        if (validGuid) 
+        if (validGuid)
         {
             var order = await orderRepository.GetOrderById(orderGuid);
 
@@ -47,37 +50,43 @@ app.MapGet("/orders/{orderId}", async (IOrderRepository orderRepository, string 
 
         return Results.NotFound();
     })
-    .WithName("GetOrder")
-    .WithOpenApi();
+    .WithName("GetOrder");
 
-app.MapPost("/orders", async (IOrderRepository orderRepository, CreateOrderRequest request) =>
+app.MapPost("/api/orders", async (IOrderRepository orderRepository, IBus bus, CreateOrderRequest request) =>
     {
         var order = new Order
         {
             OrderId = Guid.NewGuid()
         };
-        
         await orderRepository.AddOrder(order);
         
+        await bus.Send(new OrderPlacedEvent
+        {
+            OrderId = order.OrderId
+        });
+
         return Results.CreatedAtRoute("GetOrder", new { order.OrderId });
     })
-    .WithName("PostOrder")
-    .WithOpenApi();
+    .WithName("CreateOrder");
 
-app.MapPost("/orders/{orderId}/payment", async (IOrderRepository orderRepository, string orderId) =>
+app.MapPost("/api/orders/{orderId}/payment", async (IOrderRepository orderRepository, IBus bus, string orderId) =>
     {
         var validGuid = Guid.TryParse(orderId, out var orderGuid);
 
-        if (validGuid) 
+        if (validGuid)
         {
             var order = await orderRepository.GetOrderById(orderGuid);
+            
+            await bus.Send(new PaymentProcessedEvent
+            {
+                OrderId = order.OrderId
+            });
 
             return Results.Accepted();
         }
 
         return Results.NotFound();
     })
-    .WithName("PostPayment")
-    .WithOpenApi();
+    .WithName("CreatePayment");
 
 app.Run();
