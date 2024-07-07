@@ -9,8 +9,8 @@ using RebusSagaPattern.Sagas.SagaData;
 namespace RebusSagaPattern.Sagas.Handlers
 {
     public class OrderSaga : Saga<OrderSagaData>, 
-        IAmInitiatedBy<OrderPlacedEvent>,
-        IHandleMessages<PaymentProcessedEvent>, 
+        IAmInitiatedBy<OrderPlaceCommand>,
+        IHandleMessages<ProcessPaymentCommand>, 
         IHandleMessages<ShipOrderCommand>,
         IHandleMessages<OrderShippedEvent>
     {
@@ -25,13 +25,13 @@ namespace RebusSagaPattern.Sagas.Handlers
         
         protected override void CorrelateMessages(ICorrelationConfig<OrderSagaData> config)
         {
-            config.Correlate<OrderPlacedEvent>(m => m.OrderId, d => d.OrderId);
-            config.Correlate<PaymentProcessedEvent>(m => m.OrderId, d => d.OrderId);
+            config.Correlate<OrderPlaceCommand>(m => m.OrderId, d => d.OrderId);
+            config.Correlate<ProcessPaymentCommand>(m => m.OrderId, d => d.OrderId);
             config.Correlate<ShipOrderCommand>(m => m.OrderId, d => d.OrderId);
             config.Correlate<OrderShippedEvent>(m => m.OrderId, d => d.OrderId);
         }
 
-        public async Task Handle(OrderPlacedEvent message)
+        public async Task Handle(OrderPlaceCommand message)
         {
             Data.OrderId = message.OrderId;
             Data.IsOrderPlaced = true;
@@ -43,7 +43,7 @@ namespace RebusSagaPattern.Sagas.Handlers
             });
         }
 
-        public async Task Handle(PaymentProcessedEvent message)
+        public async Task Handle(ProcessPaymentCommand message)
         {
             Data.IsPaymentProcessed = true;
 

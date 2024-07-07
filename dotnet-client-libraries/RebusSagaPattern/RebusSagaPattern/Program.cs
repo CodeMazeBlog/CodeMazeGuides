@@ -39,9 +39,7 @@ app.UseHttpsRedirection();
 
 app.MapGet("/api/orders/{orderId}", async (IOrderRepository orderRepository, string orderId) =>
     {
-        var validGuid = Guid.TryParse(orderId, out var orderGuid);
-
-        if (validGuid)
+        if (Guid.TryParse(orderId, out var orderGuid))
         {
             var order = await orderRepository.GetOrderById(orderGuid);
 
@@ -54,30 +52,23 @@ app.MapGet("/api/orders/{orderId}", async (IOrderRepository orderRepository, str
 
 app.MapPost("/api/orders", async (IOrderRepository orderRepository, IBus bus, CreateOrderRequest request) =>
     {
-        var order = new Order
+        var orderId = Guid.NewGuid();
+        await bus.Send(new OrderPlaceCommand
         {
-            OrderId = Guid.NewGuid()
-        };
-        await orderRepository.AddOrder(order);
-        
-        await bus.Send(new OrderPlacedEvent
-        {
-            OrderId = order.OrderId
+            OrderId = orderId
         });
 
-        return Results.CreatedAtRoute("GetOrder", new { order.OrderId });
+        return Results.CreatedAtRoute("GetOrder", new { orderId });
     })
     .WithName("CreateOrder");
 
 app.MapPost("/api/orders/{orderId}/payment", async (IOrderRepository orderRepository, IBus bus, string orderId) =>
     {
-        var validGuid = Guid.TryParse(orderId, out var orderGuid);
-
-        if (validGuid)
+        if (Guid.TryParse(orderId, out var orderGuid))
         {
             var order = await orderRepository.GetOrderById(orderGuid);
             
-            await bus.Send(new PaymentProcessedEvent
+            await bus.Send(new ProcessPaymentCommand
             {
                 OrderId = order.OrderId
             });

@@ -1,6 +1,0 @@
-@RebusSagaPattern_HostAddress = http://localhost:5017
-
-GET {{RebusSagaPattern_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
