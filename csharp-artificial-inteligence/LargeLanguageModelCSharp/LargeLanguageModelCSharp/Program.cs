@@ -3,7 +3,7 @@ using LLama;
 
 // Model GGUF: https://huggingface.co/TheBloke/phi-2-GGUF
 
-string modelPath = @"C:\Users\Alvaro\Downloads\phi-2.Q4_K_M.gguf";
+var modelPath = @"C:\Users\Alvaro\Downloads\phi-2.Q4_K_M.gguf";
 
 var parameters = new ModelParams(modelPath)
 {
@@ -23,7 +23,7 @@ chatHistory.AddMessage(AuthorRole.Assistant, "Hello. How may I help you today?")
 
 var session = new ChatSession(executor, chatHistory);
 
-InferenceParams inferenceParams = new InferenceParams()
+var inferenceParams = new InferenceParams()
 {
     MaxTokens = 1024, // No more than 1024 tokens should appear in answer. Remove it if antiprompt is enough for control.
     AntiPrompts = new List<string> { "User:" }, // Stop generation once antiprompts appear.
@@ -32,7 +32,7 @@ InferenceParams inferenceParams = new InferenceParams()
 Console.ForegroundColor = ConsoleColor.Yellow;
 Console.Write("The chat session has started.\nUser: ");
 Console.ForegroundColor = ConsoleColor.Green;
-string userInput = Console.ReadLine() ?? "";
+var userInput = Console.ReadLine() ?? "";
 
 while (userInput != "exit")
 {
