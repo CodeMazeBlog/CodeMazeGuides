@@ -4,30 +4,21 @@ namespace RandomAlphaNumericString
 {
     public partial class Methods
     {
-        public static string? SpanSecureMethod(int length)
+        public static string? PreSpanSecureMethod(int length)
         {
             if (length > 128)
             {
                 throw new ArgumentOutOfRangeException(nameof(length), "Length must be less than or equal to 128");
-            }
-            Span<byte> data = stackalloc byte[2 * length];
-            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(data);
             }
 
             Span<char> result = stackalloc char[length];
             int charSetLength = chars.Length;
 
             int i = 0;
-            int j = 0;
             while (i < length)
             {
-                var b = data[j++] & 0x3F;
-                if (b <= 61)
-                {
-                    result[i++] = chars[b];
-                }
+                var b = RandomNumberGenerator.GetInt32(62);
+                result[i++] = chars[b];
             }
 
             return new string(result);

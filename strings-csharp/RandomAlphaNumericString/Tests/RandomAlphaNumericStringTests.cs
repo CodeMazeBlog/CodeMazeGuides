@@ -5,19 +5,6 @@ public class RandomAlphaNumericStringTests
 {
     private readonly int expectedLength = 16;
 
-    [TestMethod]
-    public void GivenAesMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
-    {
-        var result = Methods.AesMethod(expectedLength);
-        Assert.AreEqual(expectedLength, result.Length);
-    }
-
-    [TestMethod]
-    public void GivenPathMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
-    {
-        var result = Methods.PathMethod(expectedLength);
-        Assert.AreEqual(8, result.Length);
-    }
 
     [TestMethod]
     public void GivenRandomNumberGenGetStringMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
@@ -79,6 +66,20 @@ public class RandomAlphaNumericStringTests
     public void GivenSpanSecureMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
     {
         var result = Methods.SpanSecureMethod(expectedLength);
+        Assert.AreEqual(expectedLength, result.Length);
+    }
+
+    [TestMethod]
+    public void GivenPreSpanSecureMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
+    {
+        var result = Methods.PreSpanSecureMethod(expectedLength);
+        Assert.AreEqual(expectedLength, result.Length);
+    }
+
+    [TestMethod]
+    public void GivenOldSpanSecureMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
+    {
+        var result = Methods.OldSpanSecureMethod(expectedLength);
         Assert.AreEqual(expectedLength, result.Length);
     }
 }

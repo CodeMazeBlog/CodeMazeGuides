@@ -11,18 +11,6 @@ public class RandomAlphaNumericStringBenchmark
     private readonly int length = 16;
 
     [Benchmark]
-    public void UsingAesMethod()
-    {
-        Methods.AesMethod(length);
-    }
-
-    [Benchmark]
-    public void UsingPathMethod()
-    {
-        Methods.PathMethod(length);
-    }
-
-    [Benchmark]
     public void UsingRandomNumberGenGetStringMethod()
     {
         Methods.RandomNumberGenGetStringMethod(length);
@@ -78,8 +66,14 @@ public class RandomAlphaNumericStringBenchmark
     }
 
     [Benchmark]
-    public void UsingForLoopMethod()
+    public void UsingPreSpanSecureMethod()
     {
-        Methods.ForLoopMethod(length);
+        Methods.PreSpanSecureMethod(length);
+    }
+
+    [Benchmark]
+    public void UsingOldSpanSecureMethod()
+    {
+        Methods.OldSpanSecureMethod(length);
     }
 }
