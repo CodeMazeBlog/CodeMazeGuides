@@ -13,24 +13,24 @@ public class ConvertAStreamToAFileInCSharpBenchmark
     [Benchmark]
     public void CopyToBenchmark()
     {
-        ConvertAStreamToAFileInCSharp.CopyToFile(Stream, Path.Combine(DestinationPath, @"CopyTo.png"));
+        ConvertAStreamToAFileInCSharp.CopyToFile(Stream, Path.Combine([DestinationPath, "CopyTo.png"]));
     }
 
     [Benchmark]
     public void WriteBenchmark()
     {
-        ConvertAStreamToAFileInCSharp.WriteToFileStream(Stream, Path.Combine(DestinationPath, @"Write.png"));
+        ConvertAStreamToAFileInCSharp.WriteToFileStream(Stream, Path.Combine([DestinationPath, "Write.png"]));
     }
 
     [Benchmark]
     public void WriteByteBenchmark()
     {
-        ConvertAStreamToAFileInCSharp.WriteByteToFileStream(Stream, Path.Combine(DestinationPath, @"WriteByte.png"));
+        ConvertAStreamToAFileInCSharp.WriteByteToFileStream(Stream, Path.Combine([DestinationPath, "WriteByte.png"]));
     }
 
     [Benchmark]
     public void WriteAllBytesBenchmark()
     {
-        ConvertAStreamToAFileInCSharp.WriteAllBytesFile(Stream, Path.Combine(DestinationPath, @"WriteAllBytes.png"));
+        ConvertAStreamToAFileInCSharp.WriteAllBytesFile(Stream, Path.Combine([DestinationPath, "WriteAllBytes.png"]));
     }
 }

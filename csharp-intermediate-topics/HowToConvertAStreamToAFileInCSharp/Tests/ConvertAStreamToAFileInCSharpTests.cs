@@ -6,15 +6,14 @@ namespace Tests;
 [TestClass]
 public class ConvertAStreamToAFileInCSharpTests
 {
-
     [TestMethod]
     public void WhenCopyToFile_FileExists()
     {
         var destinationPath = GetPath();
         var memoryStream = GetMemoryStream();
-        ConvertAStreamToAFileInCSharp.CopyToFile(memoryStream, Path.Combine(destinationPath, @"CopyTo.png"));
+        ConvertAStreamToAFileInCSharp.CopyToFile(memoryStream, Path.Combine([destinationPath, "CopyTo.png"]));
 
-        Assert.IsTrue(File.Exists(Path.Combine(destinationPath, @"CopyTo.png")));
+        Assert.IsTrue(File.Exists(Path.Combine([destinationPath, "CopyTo.png"])));
     }
 
     [TestMethod]
@@ -22,9 +21,9 @@ public class ConvertAStreamToAFileInCSharpTests
     {
         var destinationPath = GetPath();
         var memoryStream = GetMemoryStream();
-        ConvertAStreamToAFileInCSharp.WriteToFileStream(memoryStream, Path.Combine(destinationPath, @"WriteTo.png"));
+        ConvertAStreamToAFileInCSharp.WriteToFileStream(memoryStream, Path.Combine([destinationPath, "WriteTo.png"]));
 
-        Assert.IsTrue(File.Exists(Path.Combine(destinationPath, @"WriteTo.png")));
+        Assert.IsTrue(File.Exists(Path.Combine([destinationPath, "WriteTo.png"])));
     }
 
     [TestMethod]
@@ -32,9 +31,9 @@ public class ConvertAStreamToAFileInCSharpTests
     {
         var destinationPath = GetPath();
         var memoryStream = GetMemoryStream();
-        ConvertAStreamToAFileInCSharp.WriteByteToFileStream(memoryStream, Path.Combine(destinationPath, @"WriteByte.png"));
+        ConvertAStreamToAFileInCSharp.WriteByteToFileStream(memoryStream, Path.Combine([destinationPath, "WriteByte.png"]));
 
-        Assert.IsTrue(File.Exists(Path.Combine(destinationPath, @"WriteByte.png")));
+        Assert.IsTrue(File.Exists(Path.Combine([destinationPath, "WriteByte.png"])));
     }
 
     [TestMethod]
@@ -42,9 +41,9 @@ public class ConvertAStreamToAFileInCSharpTests
     {
         var destinationPath = GetPath();
         var memoryStream = GetMemoryStream();
-        ConvertAStreamToAFileInCSharp.WriteAllBytesFile(memoryStream, Path.Combine(destinationPath, @"WriteAllBytes.png"));
+        ConvertAStreamToAFileInCSharp.WriteAllBytesFile(memoryStream, Path.Combine([destinationPath, "WriteAllBytes.png"]));
 
-        Assert.IsTrue(File.Exists(Path.Combine(destinationPath, @"WriteAllBytes.png")));
+        Assert.IsTrue(File.Exists(Path.Combine([destinationPath, "WriteAllBytes.png"])));
     }
 
     private string GetPath()
@@ -55,8 +54,7 @@ public class ConvertAStreamToAFileInCSharpTests
             return string.Empty;
         }
 
-        var sourceFile = Path.Combine(directory, @"Files\source.png");
-        var destinationPath = Path.Combine(directory, @"Files\");
+        var destinationPath = Path.Combine([directory, "Files"]);
 
         return destinationPath;
     }
@@ -69,7 +67,7 @@ public class ConvertAStreamToAFileInCSharpTests
             return null!;
         }
 
-        var sourceFile = Path.Combine(directory, @"Files\source.png");
+        var sourceFile = Path.Combine([directory, "Files", "source.png"]);
 
         using var fileStream = new FileStream(sourceFile, FileMode.Open, FileAccess.Read);
         var memoryStream = new MemoryStream();
