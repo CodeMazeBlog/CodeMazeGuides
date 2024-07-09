@@ -2,10 +2,10 @@
 {
     public partial class Methods
     {
-        public static string? StringCreateMethod(int length)
+        public static string? RandomGetItemsMethod(int length)
         {
             return string.Create<object?>(length, null,
-                static (chars, _) => random.GetItems(charSet, chars));
+                static (chars, _) => FillSpanWithRandomChars(chars));
         }
     }
 }

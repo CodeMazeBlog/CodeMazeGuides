@@ -35,9 +35,9 @@ public class RandomAlphaNumericStringTests
     }
 
     [TestMethod]
-    public void GivenStringCreateMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
+    public void GivenRandomGetItemsMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
     {
-        var result = Methods.StringCreateMethod(expectedLength);
+        var result = Methods.RandomGetItemsMethod(expectedLength);
         Assert.AreEqual(expectedLength, result.Length);
     }
 
@@ -56,9 +56,9 @@ public class RandomAlphaNumericStringTests
     }
 
     [TestMethod]
-    public void GivenSpanMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
+    public void GivenRandomInLoopMethod_WhenCalled_ThenReturnsStringOfExpectedLength()
     {
-        var result = Methods.SpanMethod(expectedLength);
+        var result = Methods.RandomInLoopMethod(expectedLength);
         Assert.AreEqual(expectedLength, result.Length);
     }
 

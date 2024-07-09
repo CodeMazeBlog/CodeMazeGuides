@@ -36,9 +36,9 @@ public class RandomAlphaNumericStringBenchmark
     }
 
     [Benchmark]
-    public void UsingStringCreateMethod()
+    public void UsingRandomGetItemsMethod()
     {
-        Methods.StringCreateMethod(length);
+        Methods.RandomGetItemsMethod(length);
     }
 
     [Benchmark]
@@ -54,9 +54,9 @@ public class RandomAlphaNumericStringBenchmark
     }
 
     [Benchmark]
-    public void UsingSpanMethod()
+    public void UsingRandomInLoopMethod()
     {
-        Methods.SpanMethod(length);
+        Methods.RandomInLoopMethod(length);
     }
 
     [Benchmark]

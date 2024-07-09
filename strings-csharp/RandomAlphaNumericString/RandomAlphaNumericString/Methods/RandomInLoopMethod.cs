@@ -2,7 +2,17 @@
 {
     public partial class Methods
     {
-        public static string? SpanMethod(int length)
+        private static void FillSpanWithRandomChars(Span<char> span)
+        {
+            int charSetLength = charSet.Length;
+            for (int i = 0; i < span.Length; i++)
+            {
+                int index = random.Next(charSetLength);
+                span[i] = charSet[index];
+            }
+        }
+
+        public static string? RandomInLoopMethod(int length)
         {
             if (length > 256)
             {
@@ -11,11 +21,7 @@
             Span<char> result = stackalloc char[length];
             int charSetLength = chars.Length;
 
-            for (int i = 0; i < length; i++)
-            {
-                int index = random.Next(charSetLength);
-                result[i] = chars[index];
-            }
+            FillSpanWithRandomChars(result);
 
             return new string(result);
         }

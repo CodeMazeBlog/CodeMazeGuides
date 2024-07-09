@@ -6,10 +6,10 @@ Console.WriteLine(nameof(RandomNumberGenGetStringMethod) + ": " + RandomNumberGe
 Console.WriteLine(nameof(CryptographicUniqueMethod) + ": " + CryptographicUniqueMethod(length));
 Console.WriteLine(nameof(GuidMethod) + ": " + GuidMethod(length));
 Console.WriteLine(nameof(LinqMethod) + ": " + LinqMethod(length));
-Console.WriteLine(nameof(StringCreateMethod) + ": " + StringCreateMethod(length));
+Console.WriteLine(nameof(RandomGetItemsMethod) + ": " + RandomGetItemsMethod(length));
 Console.WriteLine(nameof(StringCreateSecureMethod) + ": " + StringCreateSecureMethod(length));
 Console.WriteLine(nameof(StringBuilderMethod) + ": " + StringBuilderMethod(length));
 Console.WriteLine(nameof(SpanSecureMethod) + ": " + SpanSecureMethod(length));
 Console.WriteLine(nameof(PreSpanSecureMethod) + ": " + PreSpanSecureMethod(length));
-Console.WriteLine(nameof(SpanMethod) + ": " + SpanMethod(length));
+Console.WriteLine(nameof(RandomInLoopMethod) + ": " + RandomInLoopMethod(length));
 Console.WriteLine(nameof(OldSpanSecureMethod) + ": " + OldSpanSecureMethod(length));
