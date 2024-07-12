@@ -9,7 +9,7 @@ using RebusSagaPattern.Sagas.SagaData;
 namespace RebusSagaPattern.Sagas.Handlers;
 
 public class OrderSaga : Saga<OrderSagaData>, 
-    IAmInitiatedBy<OrderPlaceCommand>,
+    IAmInitiatedBy<PlaceOrderCommand>,
     IHandleMessages<ProcessPaymentCommand>, 
     IHandleMessages<ShipOrderCommand>,
     IHandleMessages<OrderShippedEvent>
@@ -25,13 +25,13 @@ public class OrderSaga : Saga<OrderSagaData>,
         
     protected override void CorrelateMessages(ICorrelationConfig<OrderSagaData> config)
     {
-        config.Correlate<OrderPlaceCommand>(m => m.OrderId, d => d.OrderId);
+        config.Correlate<PlaceOrderCommand>(m => m.OrderId, d => d.OrderId);
         config.Correlate<ProcessPaymentCommand>(m => m.OrderId, d => d.OrderId);
         config.Correlate<ShipOrderCommand>(m => m.OrderId, d => d.OrderId);
         config.Correlate<OrderShippedEvent>(m => m.OrderId, d => d.OrderId);
     }
 
-    public async Task Handle(OrderPlaceCommand message)
+    public async Task Handle(PlaceOrderCommand message)
     {
         Data.OrderId = message.OrderId;
         Data.IsOrderPlaced = true;

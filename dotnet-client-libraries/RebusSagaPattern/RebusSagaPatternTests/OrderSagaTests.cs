@@ -28,12 +28,12 @@ public class OrderSagaTests
     }
     
     [Test]
-    public void WhenOrderPlaceCommandIsReceived_ThenSagaDataIsInitialized()
+    public void WhenPlaceOrderCommandIsReceived_ThenSagaDataIsInitialized()
     {
         var busMock = new FakeBus();
         using var fixture = SagaFixture.For(() => new OrderSaga(busMock, _repositoryMock));
 
-        fixture.Deliver(new OrderPlaceCommand
+        fixture.Deliver(new PlaceOrderCommand
         {
             OrderId = _orderId
         });
