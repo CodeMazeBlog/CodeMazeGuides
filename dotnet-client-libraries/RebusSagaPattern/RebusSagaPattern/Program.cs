@@ -53,7 +53,7 @@ app.MapGet("/api/orders/{orderId}", async (IOrderRepository orderRepository, str
 app.MapPost("/api/orders", async (IOrderRepository orderRepository, IBus bus, CreateOrderRequest request) =>
     {
         var orderId = Guid.NewGuid();
-        await bus.Send(new OrderPlaceCommand
+        await bus.Send(new PlaceOrderCommand
         {
             OrderId = orderId
         });
