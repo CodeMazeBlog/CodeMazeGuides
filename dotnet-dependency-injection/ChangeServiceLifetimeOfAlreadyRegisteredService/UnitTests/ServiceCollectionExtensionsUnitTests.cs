@@ -8,7 +8,7 @@ public class ServiceCollectionExtensionsUnitTests
 {
 
     [Fact]
-    public void GivenServiceIsScoped_WhenReplaceWithSingleton_ThenServiceIsSingleton()
+    public void GivenServiceIsScoped_WhenReplaceWithSingletonAndAnotherImplementation_ThenServiceIsSingletonWithAnotherImplementation()
     {
         // Arrange
         var services = new ServiceCollection();
@@ -42,7 +42,7 @@ public class ServiceCollectionExtensionsUnitTests
     }
 
     [Fact]
-    public void GivenServiceIsSingleton_WhenReplaceWithScoped_ThenServiceIsScoped()
+    public void GivenServiceIsSingleton_WhenReplaceWithScopedAndAnotherImplementation_ThenServiceIsScopedWithAnotherImplementation()
     {
         // Arrange
         var services = new ServiceCollection();
@@ -76,7 +76,7 @@ public class ServiceCollectionExtensionsUnitTests
     }
 
     [Fact]
-    public void GivenServiceIsSingleton_WhenReplaceWithTransient_ThenServiceIsTransient()
+    public void GivenServiceIsSingleton_WhenReplaceWithTransientAndAnotherImplementation_ThenServiceIsTransientWithAnotherImplementation()
     {
         // Arrange
         var services = new ServiceCollection();
