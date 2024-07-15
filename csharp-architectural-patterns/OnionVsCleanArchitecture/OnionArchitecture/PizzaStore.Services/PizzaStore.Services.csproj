@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PizzaStore.Contracts\PizzaStore.Contracts.csproj" />
+    <ProjectReference Include="..\PizzaStore.Domain\PizzaStore.Domain.csproj" />
+    <ProjectReference Include="..\PizzaStore.Services.Abstractions\PizzaStore.Services.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
