@@ -53,3 +53,4 @@ This section contains the topics about the client libraries in .NET.
 - [Getting Started With EasyCaching in ASP.NET Core](https://code-maze.com/aspnetcore-easycaching/)
 - [How to Ignore a Property in AutoMapper](https://code-maze.com/csharp-how-to-ignore-a-property-in-automapper/)
 - [How to Use FakeLogger to Test Logging Code in .NET](https://code-maze.com/dotnet-how-to-use-fakelogger/)
+- [Generate Images Using OpenAI in an ASP.NET Core Application](https://code-maze.com/aspnetcore-generate-images-using-openai/)
