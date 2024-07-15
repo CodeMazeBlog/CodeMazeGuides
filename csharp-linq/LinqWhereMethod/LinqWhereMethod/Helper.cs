@@ -51,7 +51,8 @@ public static class Helper
         //Chaining Where methods
         IQueryable<Person> result = context.People
             .Include(person => person.Address)
-            .Where(s => s.BirthDate.Year < 1974).Where(s => s.Address.City.Equals("NANCY"));
+            .Where(s => s.BirthDate.Year < 1974)
+            .Where(s => s.Address.City.Equals("NANCY"));
         DisplayElements(result.ToList());
 
         return result.ToList();
@@ -63,7 +64,6 @@ public static class Helper
         //Nested Where operators
         IQueryable<Person> PeopleWithAustralianShepherd = context.People
              .Include(p => p.Pets)
-             .Include(p => p.Address)
              .Where(person => person.Pets.Where(pet => pet.Breed.Contains("Australian")).Any(pet => pet.Name.Equals("Naïa")));
         DisplayElements(PeopleWithAustralianShepherd.ToList());
 
