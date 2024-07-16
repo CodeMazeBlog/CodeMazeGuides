@@ -4,7 +4,7 @@ using LinqWhereMethod.Models;
 using var context = new ApplicationContext();
 context.Database.EnsureCreated();
 
-        Console.WriteLine("Get even numbers");
+Console.WriteLine("Get even numbers");
 var evenNumbers = Helper.GetEvenNumbers();
 DisplayElements(evenNumbers);
 
