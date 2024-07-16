@@ -1,14 +1,11 @@
 using LinqWhereMethod;
 using LinqWhereMethod.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 namespace TestLinqWhereMethod;
 
 public class UnitTests
-{ 
-    private readonly TypeInfo program = typeof(Program).GetTypeInfo();
-
+{
     [Fact]
     public void GivenAListOfNumbers_WhenFiltering_ThenReturnEvenNumbers()
     {

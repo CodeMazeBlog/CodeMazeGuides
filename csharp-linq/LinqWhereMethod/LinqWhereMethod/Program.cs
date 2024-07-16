@@ -13,6 +13,3 @@ Helper.GetPeopleUsingNestedWhereOperators(context);
 Helper.GetPeopleUsingExpression(context);
 
 
-//Used in testing project
-public partial class Program { }
-
