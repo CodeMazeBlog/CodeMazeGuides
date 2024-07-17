@@ -26,3 +26,4 @@ This section contains articles about Entity Framework Core.
 - [How to Use Entity Framework Core Migrations in Production](https://code-maze.com/efcore-how-to-use-entity-framework-core-migrations-in-production/)
 - [How to Show the Generated SQL Query in EF Core](https://code-maze.com/efcore-show-generated-sql-query/)
 - [Improve Entity Framework Core Performance with Complex Types](https://code-maze.com/efcore-improve-performance-with-complex-types/)
+- [Using EF Core Interceptors in .NET](https://code-maze.com/efcore-interceptors/)
