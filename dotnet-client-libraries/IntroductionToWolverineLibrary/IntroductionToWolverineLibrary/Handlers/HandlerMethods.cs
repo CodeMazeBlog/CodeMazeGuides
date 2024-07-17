@@ -4,15 +4,12 @@ namespace IntroductionToWolverineLibrary.Handlers;
 
 public class OrderHandler
 {
-    public static void Handle(NewBookOrder order)
-    {
-        Console.WriteLine($"New order received: {order}");
-    }
+    public static void Handle(Order order) => Console.WriteLine($"New order received: {order}");
 }
 
 public class OrderReplyHandler
 {
-    public static string Handle(NewBookOrder order) => $"New order received: {order}";
+    public static string Handle(Order order) => $"New order received: {order}";
 }
 
 public class BookReviewHandler

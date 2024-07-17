@@ -21,11 +21,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/newOrder", async (NewBookOrder newOrder, IMessageBus bus) => await bus.InvokeAsync(newOrder))
+app.MapPost("/order", async (Order newOrder, IMessageBus bus) => await bus.InvokeAsync(newOrder))
     .WithName("NewBookOrder")
     .WithOpenApi();
 
-app.MapPost("/newOrderReply", async (NewBookOrder newOrder, IMessageBus bus) => await bus.InvokeAsync<string>(newOrder))
+app.MapPost("/orderReply", async (Order newOrder, IMessageBus bus) => await bus.InvokeAsync<string>(newOrder))
     .WithName("NewBookOrderReply")
     .WithOpenApi();
 

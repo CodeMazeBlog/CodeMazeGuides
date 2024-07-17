@@ -1,13 +1,12 @@
 using IntroductionToWolverineLibrary.Handlers;
 using IntroductionToWolverineLibrary.Models;
-using Microsoft.AspNetCore.Mvc.ViewEngines;
 
 namespace IntroductionToWolverineLibrary.Tests.Handlers;
 
 public class UnitTests
 {
-    private readonly NewBookOrder _newBookOrder;
-    private readonly NewBookOrder _nullBookOrder;
+    private readonly Order _newBookOrder;
+    private readonly Order _nullBookOrder;
     private readonly BookReview _bookReview;
     private readonly BookReview _nullBookReview;
     private readonly string _expectedMessage;
@@ -18,7 +17,7 @@ public class UnitTests
 
     public UnitTests()
     {
-        _newBookOrder = new NewBookOrder(Guid.NewGuid(),"Test Book", 1 );
+        _newBookOrder = new Order(Guid.NewGuid(),"Test Book", 1 );
         _nullBookOrder = null;
         _bookReview = new BookReview(1, "Mary Graham", 5);
         _nullBookReview = null;
