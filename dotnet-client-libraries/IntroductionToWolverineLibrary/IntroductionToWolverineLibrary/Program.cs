@@ -25,7 +25,8 @@ app.MapPost("/order", async (Order newOrder, IMessageBus bus) => await bus.Invok
     .WithName("NewBookOrder")
     .WithOpenApi();
 
-app.MapPost("/orderReply", async (Order newOrder, IMessageBus bus) => await bus.InvokeAsync<string>(newOrder))
+app.MapPost("/orderReply", async (Order newOrder, IMessageBus bus) => 
+    await bus.InvokeAsync<string>(newOrder))
     .WithName("NewBookOrderReply")
     .WithOpenApi();
 
