@@ -4,6 +4,6 @@ namespace RebusSagaPattern.Repositories;
 
 public interface IOrderRepository
 {
-    Task<Order> GetOrderById(Guid orderId);
-    Task AddOrder(Order order);
+    Order GetOrderById(Guid orderId);
+    void AddOrder(Order order);
 }

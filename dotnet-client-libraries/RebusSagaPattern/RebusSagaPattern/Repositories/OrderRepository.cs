@@ -4,27 +4,20 @@ namespace RebusSagaPattern.Repositories;
 
 public class OrderRepository : IOrderRepository
 {
-    private Dictionary<Guid, Order> _orders;
+    private Dictionary<Guid, Order> _orders = new();
 
-    public OrderRepository()
-    {
-        _orders = new Dictionary<Guid, Order>();
-    }
-
-    public Task AddOrder(Order order)
+    public void AddOrder(Order order)
     {
         _orders.TryAdd(order.OrderId, order);
-
-        return Task.CompletedTask;
     }
 
-    public Task<Order> GetOrderById(Guid orderId)
+    public Order GetOrderById(Guid orderId)
     {
         if (!_orders.TryGetValue(orderId, out var order))
         {
             order = new Order();
         }
 
-        return Task.FromResult(order);
+        return order;
     }
 }
