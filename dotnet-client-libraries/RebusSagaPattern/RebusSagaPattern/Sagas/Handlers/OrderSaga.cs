@@ -14,7 +14,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     IHandleMessages<ShipOrderCommand>,
     IHandleMessages<OrderShippedEvent>
 {
-    private IBus _bus;
+    private readonly IBus _bus;
     private readonly IOrderRepository _orderRepository;
 
     public OrderSaga(IBus bus, IOrderRepository orderRepository)
@@ -31,23 +31,25 @@ public class OrderSaga : Saga<OrderSagaData>,
         config.Correlate<OrderShippedEvent>(m => m.OrderId, d => d.OrderId);
     }
 
-    public async Task Handle(PlaceOrderCommand message)
+    public Task Handle(PlaceOrderCommand message)
     {
         Data.OrderId = message.OrderId;
         Data.IsOrderPlaced = true;
 
-        await _orderRepository.AddOrder(new()
+        _orderRepository.AddOrder(new()
         {
             OrderId = message.OrderId,
             Status = OrderStatus.Placed
         });
+        
+        return Task.CompletedTask;
     }
 
     public async Task Handle(ProcessPaymentCommand message)
     {
         Data.IsPaymentProcessed = true;
 
-        var order = await _orderRepository.GetOrderById(message.OrderId);
+        var order = _orderRepository.GetOrderById(message.OrderId);
         order.Status = OrderStatus.Processing;
             
         await _bus.Send(new ShipOrderCommand { OrderId = Data.OrderId });
@@ -60,11 +62,13 @@ public class OrderSaga : Saga<OrderSagaData>,
         await _bus.Send(new OrderShippedEvent { OrderId = Data.OrderId });
     }
 
-    public async Task Handle(OrderShippedEvent message)
+    public Task Handle(OrderShippedEvent message)
     {
-        var order = await _orderRepository.GetOrderById(message.OrderId);
+        var order = _orderRepository.GetOrderById(message.OrderId);
         order.Status = OrderStatus.Completed;
             
         MarkAsComplete();
+        
+        return Task.CompletedTask;
     }
 }

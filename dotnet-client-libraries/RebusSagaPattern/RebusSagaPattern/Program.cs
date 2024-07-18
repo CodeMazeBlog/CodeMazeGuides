@@ -37,11 +37,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/api/orders/{orderId}", async (IOrderRepository orderRepository, string orderId) =>
+app.MapGet("/api/orders/{orderId}", (IOrderRepository orderRepository, string orderId) =>
     {
         if (Guid.TryParse(orderId, out var orderGuid))
         {
-            var order = await orderRepository.GetOrderById(orderGuid);
+            var order = orderRepository.GetOrderById(orderGuid);
 
             return Results.Ok(order);
         }
@@ -50,7 +50,7 @@ app.MapGet("/api/orders/{orderId}", async (IOrderRepository orderRepository, str
     })
     .WithName("GetOrder");
 
-app.MapPost("/api/orders", async (IOrderRepository orderRepository, IBus bus, CreateOrderRequest request) =>
+app.MapPost("/api/orders", async (IOrderRepository orderRepository, IBus bus) =>
     {
         var orderId = Guid.NewGuid();
         await bus.Send(new PlaceOrderCommand
@@ -66,7 +66,7 @@ app.MapPost("/api/orders/{orderId}/payment", async (IOrderRepository orderReposi
     {
         if (Guid.TryParse(orderId, out var orderGuid))
         {
-            var order = await orderRepository.GetOrderById(orderGuid);
+            var order = orderRepository.GetOrderById(orderGuid);
             
             await bus.Send(new ProcessPaymentCommand
             {

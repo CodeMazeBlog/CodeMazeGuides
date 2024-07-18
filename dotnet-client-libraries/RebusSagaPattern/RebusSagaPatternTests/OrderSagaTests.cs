@@ -30,7 +30,7 @@ public class OrderSagaTests
     [Test]
     public void WhenPlaceOrderCommandIsReceived_ThenSagaDataIsInitialized()
     {
-        var busMock = new FakeBus();
+        using var busMock = new FakeBus();
         using var fixture = SagaFixture.For(() => new OrderSaga(busMock, _repositoryMock));
 
         fixture.Deliver(new PlaceOrderCommand
@@ -49,7 +49,7 @@ public class OrderSagaTests
     [Test]
     public void WhenProcessPaymentCommandIsReceived_ThenShipOrderCommandIsSend()
     {
-        var busMock = new FakeBus();
+        using var busMock = new FakeBus();
         using var fixture = SagaFixture.For(() => new OrderSaga(busMock, _repositoryMock));
         fixture.Add(new OrderSagaData
         {
@@ -73,7 +73,7 @@ public class OrderSagaTests
     [Test]
     public void WhenShipOrderCommandIsReceived_ThenOrderShippedEventIsSend()
     {
-        var busMock = new FakeBus();
+        using var busMock = new FakeBus();
         using var fixture = SagaFixture.For(() => new OrderSaga(busMock, _repositoryMock));
         fixture.Add(new OrderSagaData
         {
@@ -97,7 +97,7 @@ public class OrderSagaTests
     [Test]
     public void WhenProcessPaymentMessageIsReceived_ThenSagaDataIsUpdated()
     {
-        var busMock = new FakeBus();
+        using var busMock = new FakeBus();
         using var fixture = SagaFixture.For(() => new OrderSaga(busMock, _repositoryMock));
         fixture.Add(new OrderSagaData
         {
@@ -120,7 +120,7 @@ public class OrderSagaTests
     [Test]
     public void WhenShipOrderCommandIsReceived_ThenSagaDataIsUpdated()
     {
-        var busMock = new FakeBus();
+        using var busMock = new FakeBus();
         using var fixture = SagaFixture.For(() => new OrderSaga(busMock, _repositoryMock));
         fixture.Add(new OrderSagaData
         {
@@ -143,7 +143,7 @@ public class OrderSagaTests
     [Test]
     public void WhenSagaIsMarkedAsCompleted_ThenSagaDataIsDisposed()
     {
-        var busMock = new FakeBus();
+        using var busMock = new FakeBus();
         using var fixture = SagaFixture.For(() => new OrderSaga(busMock, _repositoryMock));
         fixture.Add(new OrderSagaData
         {
