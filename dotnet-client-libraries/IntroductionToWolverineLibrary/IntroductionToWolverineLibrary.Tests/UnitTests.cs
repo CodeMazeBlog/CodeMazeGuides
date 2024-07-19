@@ -54,6 +54,7 @@ public class UnitTests
 
         Assert.Equal(_expectedReviewMessage, result);
     }
+
     [Fact]
     public void GivenNullOrder_WhenHandlingOrder_ThenThrowsArgumentNullException()
     {
