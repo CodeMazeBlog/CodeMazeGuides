@@ -58,6 +58,7 @@ public class UnitTests
         var result = sw.ToString().Trim();
         Assert.Equal(_expectedReviewMessage, result);
     }
+
     [Fact]
     public void GivenNullOrder_WhenHandlingOrder_ThenThrowsArgumentNullException()
     {
