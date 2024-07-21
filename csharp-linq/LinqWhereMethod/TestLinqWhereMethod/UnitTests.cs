@@ -1,12 +1,11 @@
 using LinqWhereMethod;
 using LinqWhereMethod.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 namespace TestLinqWhereMethod;
 
 public class UnitTests
-{ 
+{
     [Fact]
     public void GivenAListOfNumbers_WhenFiltering_ThenReturnEvenNumbers()
     {
@@ -14,7 +13,7 @@ public class UnitTests
         var evenNumbers = Helper.GetEvenNumbers();
 
         // Assert
-        Assert.All<int>(evenNumbers!, n => Assert.True(n % 2 == 0));
+        Assert.All(evenNumbers, n => Assert.True(n % 2 == 0));
     }
 
     [Fact]
@@ -24,7 +23,7 @@ public class UnitTests
         var oddNumbers = Helper.GetOddNumbers();
 
         // Assert
-        Assert.All<int>(oddNumbers!, n => Assert.True(n % 2 != 0));
+        Assert.All(oddNumbers, n => Assert.True(n % 2 != 0));
     }
 
     [Fact]
@@ -38,10 +37,10 @@ public class UnitTests
         var peopleBornFrom1974 = Helper.GetPeopleBornFrom1974(context);
 
         // Assert
-        Assert.All<Person>(peopleBornFrom1974!, p => Assert.True(p.BirthDate.Year >= 1974));
-        Assert.Collection<Person>(peopleBornFrom1974!, item => Assert.Contains("JACKSON Colleen", $"{item.LastName} {item.FirstName}"),
+        Assert.All(peopleBornFrom1974, p => Assert.True(p.BirthDate.Year >= 1974));
+        Assert.Collection(peopleBornFrom1974, item => Assert.Contains("JACKSON Colleen", $"{item.LastName} {item.FirstName}"),
                                                        item => Assert.Contains("RICHARD Dan", $"{item.LastName} {item.FirstName}"));
-        Assert.Equal(2, peopleBornFrom1974?.Count());
+        Assert.Equal(2, peopleBornFrom1974.Count);
     }
 
     [Fact]
@@ -55,8 +54,8 @@ public class UnitTests
         var peopleBornBefore1974LivingInNancy = Helper.GetPeopleUsingChainingWhereOperators(context);
 
         // Assert
-        Assert.All<Person>(peopleBornBefore1974LivingInNancy!, p => Assert.True(p.BirthDate.Year <= 1974 && p.Address.City.Equals("NANCY")));
-        Assert.Single(peopleBornBefore1974LivingInNancy!);
+        Assert.All(peopleBornBefore1974LivingInNancy, p => Assert.True(p.BirthDate.Year <= 1974 && p.Address.City.Equals("NANCY")));
+        Assert.Single(peopleBornBefore1974LivingInNancy);
     }
 
     [Fact]
@@ -72,11 +71,11 @@ public class UnitTests
 
 
         // Assert
-        Assert.Collection<Person>(peopleWithAustralianShepherdPetUsingNestedOperators!, item => Assert.Contains("RICHARD Dan", $"{item.LastName} {item.FirstName}"));
-        Assert.Single(peopleWithAustralianShepherdPetUsingNestedOperators!);
+        Assert.Collection(peopleWithAustralianShepherdPetUsingNestedOperators, item => Assert.Contains("RICHARD Dan", $"{item.LastName} {item.FirstName}"));
+        Assert.Single(peopleWithAustralianShepherdPetUsingNestedOperators);
 
-        Assert.Collection<Person>(peopleWithAustralianShepherdPetUsingExpression!, item => Assert.Contains("RICHARD Dan", $"{item.LastName} {item.FirstName}"));
-        Assert.Single(peopleWithAustralianShepherdPetUsingExpression!);
+        Assert.Collection(peopleWithAustralianShepherdPetUsingExpression, item => Assert.Contains("RICHARD Dan", $"{item.LastName} {item.FirstName}"));
+        Assert.Single(peopleWithAustralianShepherdPetUsingExpression);
     }
 
     public static ApplicationContext GetMemoryContext()

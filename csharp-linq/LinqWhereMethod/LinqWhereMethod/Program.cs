@@ -52,6 +52,3 @@ void DisplayElements<T>(List<T> list)
     Console.WriteLine($"{elements}\n");
 }
 
-//Used in testing project
-public partial class Program { }
-
