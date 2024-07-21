@@ -1,0 +1,65 @@
+﻿@page "/weather"
+@rendermode @(new InteractiveWebAssemblyRenderMode(false))
+@inject HttpClient HttpClient
+@implements IDisposable
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<p>This component demonstrates showing data.</p>
+
+@if (_forecasts == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in _forecasts)
+        {
+            <tr>
+                <td>@forecast.Date.ToShortDateString()</td>
+                <td>@forecast.TemperatureC</td>
+                <td>@forecast.TemperatureF</td>
+                <td>@forecast.Summary</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[]? _forecasts;
+    private readonly CancellationTokenSource _cancellationTokenSource = new();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        _forecasts = await HttpClient.GetFromJsonAsync<WeatherForecast[]>("/api/weather", _cancellationTokenSource.Token);
+    }
+
+    public class WeatherForecast
+    {
+        public DateOnly Date { get; init; }
+        public int TemperatureC { get; init; }
+        public string? Summary { get; init; }
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+
+    public void Dispose()
+    {
+        _cancellationTokenSource.Cancel();
+        _cancellationTokenSource.Dispose();
+    }
+}
