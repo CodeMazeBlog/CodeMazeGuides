@@ -47,3 +47,4 @@ This section contains the topics considered intermediate level in C#.
 - [The Difference Between Invariance, Contravariance, and Covariance in Generics in C#](https://code-maze.com/csharp-the-difference-between-invariance-contravariance-and-covariance-in-generics/)
 - [Embedded Resources in .NET](https://code-maze.com/dotnet-embedded-resources/)
 - [Local Functions vs Lambda Expressions in C#](https://code-maze.com/csharp-local-function-lambda-expressions/)
+- [How to Convert a Stream to a File in C#](https://code-maze.com/csharp-convert-a-stream-to-a-file/)
