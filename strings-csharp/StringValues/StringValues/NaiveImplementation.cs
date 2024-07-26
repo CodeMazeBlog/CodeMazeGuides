@@ -2,23 +2,23 @@
 {
     private readonly Dictionary<string, string[]> _headers = [];
 
-    public void AddHeader(string key, string value)
+    public void AddHeader(string key, params string[] values)
     {
-        if (_headers.ContainsKey(key))
+        if (_headers.TryGetValue(key, out var existingValues))
         {
-            var existingValues = _headers[key];
-            Array.Resize(ref existingValues, existingValues.Length + 1);
-            existingValues[existingValues.Length - 1] = value;
-            _headers[key] = existingValues;
+            var newValues = new string[existingValues.Length + values.Length];
+            existingValues.CopyTo(newValues, 0);
+            values.CopyTo(newValues, existingValues.Length);
+            _headers[key] = newValues;
         }
         else
         {
-            _headers[key] = [value];
+            _headers[key] = values;
         }
     }
 
     public string[] GetHeaderValues(string key)
     {
-        return _headers.ContainsKey(key) ? _headers[key] : [];
+        return _headers.TryGetValue(key, out var values) ? values : Array.Empty<string>();
     }
 }

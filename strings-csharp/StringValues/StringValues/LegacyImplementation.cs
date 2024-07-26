@@ -4,9 +4,12 @@ public class LegacyImplementation
 {
     private readonly NameValueCollection _headers = [];
 
-    public void AddHeader(string key, string value)
+    public void AddHeader(string key, params string[] values)
     {
-        _headers.Add(key, value);
+        foreach (var value in values)
+        {
+            _headers.Add(key, value);
+        }
     }
 
     public string[] GetHeaderValues(string key)

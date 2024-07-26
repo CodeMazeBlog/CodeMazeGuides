@@ -2,45 +2,48 @@
 
 public class StringValuesImplementation
 {
-    private readonly Dictionary<string, StringValues> _headers = [];
+    private readonly Dictionary<string, StringValues> _headers = new();
 
-    public Dictionary<string, StringValues> AddHeader(string key, string value)
+    public void DemonstrateStringValues()
     {
-        if (_headers.ContainsKey(key))
+        StringValues singleValue = new StringValues("value1");
+        Console.WriteLine(singleValue);
+
+        StringValues multipleValues = new StringValues(new[] { "value1", "value2" });
+        Console.WriteLine(multipleValues);
+
+        StringValues implicitSingle = "value1";
+        Console.WriteLine(implicitSingle);
+
+        StringValues implicitMultiple = new[] { "value1", "value2" };
+        Console.WriteLine(implicitMultiple);
+
+        StringValues values = new StringValues(new[] { "value1", "value2" });
+        Console.WriteLine(values);
+    }
+
+    public void AddHeader(string key, params string[] values)
+    {
+        if (_headers.TryGetValue(key, out var existingValues))
         {
-            _headers[key] = StringValues.Concat(_headers[key], value);
+            _headers[key] = StringValues.Concat(existingValues, new StringValues(values));
         }
         else
         {
-            _headers[key] = new StringValues(value);
+            _headers[key] = new StringValues(values);
         }
-        return _headers;
+    }
+
+    public StringValues GetHeaderValues(string key)
+    {
+        return _headers.TryGetValue(key, out var values) ? values : StringValues.Empty;
     }
 
     public void DisplayHeaders()
     {
         foreach (var header in _headers)
         {
-            StringValues value = header.Value;
-            Console.WriteLine($"{header.Key}:");
-
-            if (value.Count == 1)
-            {
-                string? single = value;
-                Console.WriteLine(single);
-            }
-            else
-            {
-                foreach (var val in value)
-                {
-                    Console.WriteLine(val);
-                }
-            }
+            Console.WriteLine($"{header.Key}: {header.Value}");
         }
-    }
-
-    public StringValues GetHeaderValues(string key)
-    {
-        return _headers.ContainsKey(key) ? _headers[key] : StringValues.Empty;
     }
 }
