@@ -22,3 +22,4 @@ This section contains LINQ related topics
 - [Lookup in C#](https://code-maze.com/csharp-lookup/)
 - [How to Use the LINQ ToDictionary Method in C#](https://code-maze.com/csharp-linq-todictionary-method/)
 - [Find Differences Between Collections With the LINQ Except Method in C#](https://code-maze.com/csharp-using-the-except-method-in-linq/)
+- [The LINQ Where Method in C#](https://code-maze.com/csharp-linq-where-method/)
