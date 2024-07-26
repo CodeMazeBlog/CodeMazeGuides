@@ -1,8 +1,6 @@
-﻿Console.WriteLine("Naive Implementation:");
-NaiveImplementation naiveImplementation = new();
+﻿NaiveImplementation naiveImplementation = new();
 naiveImplementation.AddHeader("MyHeader", "value1", "value2", "value3");
 
-Console.WriteLine("Legacy Implementation:");
 LegacyImplementation legacyImplementation = new();
 legacyImplementation.AddHeader("MyHeader", "value1", "value2", "value3");
 
