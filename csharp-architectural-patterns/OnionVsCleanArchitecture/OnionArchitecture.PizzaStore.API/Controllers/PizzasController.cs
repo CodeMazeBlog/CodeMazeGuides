@@ -8,19 +8,17 @@ namespace OnionArchitecture.PizzaStore.Presentation.Controllers;
 [Route("api/pizzas")]
 public class PizzasController(IPizzaService service) : ControllerBase
 {
-    private readonly IPizzaService _service = service;
-
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
-        var pizzas = await _service.GetAllAsync(cancellationToken);
+        var pizzas = await service.GetAllAsync(cancellationToken);
         return Ok(pizzas);
     }
 
     [HttpPost("orders")]
     public async Task<IActionResult> PlaceOrder([FromBody] OrderDto orderDto, CancellationToken cancellationToken)
     {
-        await _service.PlaceOrderAsync(orderDto, cancellationToken);
+        await service.PlaceOrderAsync(orderDto, cancellationToken);
         return Ok();
     }
 }

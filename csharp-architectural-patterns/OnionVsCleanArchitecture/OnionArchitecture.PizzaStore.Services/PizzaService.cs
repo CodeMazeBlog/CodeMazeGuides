@@ -7,12 +7,9 @@ using OnionArchitecture.PizzaStore.Services.Abstractions;
 namespace OnionArchitecture.PizzaStore.Services;
 public class PizzaService(IPizzaRepository pizzaRepository, IOrderRepository orderRepository) : IPizzaService
 {
-    private readonly IPizzaRepository _pizzaRepository = pizzaRepository;
-    private readonly IOrderRepository _orderRepository = orderRepository;
-
     public async Task<IEnumerable<PizzaDto>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        var pizzas = await _pizzaRepository.GetAllAsync(cancellationToken);
+        var pizzas = await pizzaRepository.GetAllAsync(cancellationToken);
 
         var pizzasDto = new List<PizzaDto>(pizzas.Select(pizza => new PizzaDto()
         {
@@ -28,7 +25,7 @@ public class PizzaService(IPizzaRepository pizzaRepository, IOrderRepository ord
             throw new MaximumPizzasPerOrderException();
         }
 
-        var pizzas = await _pizzaRepository.GetAllAsync(cancellationToken);
+        var pizzas = await pizzaRepository.GetAllAsync(cancellationToken);
 
         var order = new Order
         {
@@ -41,6 +38,7 @@ public class PizzaService(IPizzaRepository pizzaRepository, IOrderRepository ord
                      on p.Name equals p2.Name
                      select p2
         };
-        await _orderRepository.PlaceOrderAsync(order, cancellationToken);
+
+        await orderRepository.PlaceOrderAsync(order, cancellationToken);
     }
 }
