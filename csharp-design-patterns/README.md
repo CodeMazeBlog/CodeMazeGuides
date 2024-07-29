@@ -13,3 +13,4 @@ For additional C# Design Patterns articles, please check this page: https://code
 - [Aggregate Design in .NET](https://code-maze.com/csharp-design-pattern-aggregate/)
 - [Proxy Design Pattern in C#](https://code-maze.com/csharp-proxy-design-pattern/)
 - [Bridge Design Pattern in C#](https://code-maze.com/csharp-bridge-design-pattern/)
+- [Template Method Design Pattern in C#](https://code-maze.com/csharp-template-method-design-pattern/)
