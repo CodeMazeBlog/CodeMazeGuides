@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<JobService>();
+builder.Services.AddSingleton<IJobService, JobService>();
 
 builder.Services.AddHangfire((provider, config) =>
 {

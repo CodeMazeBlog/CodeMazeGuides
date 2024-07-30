@@ -1,6 +1,6 @@
 ﻿namespace HowToPreventAHangfireJobFromRunning.Services;
 
-public class JobService
+public class JobService : IJobService
 {
     private const int OperationDurationInSeconds = 10 * 60;
 
@@ -13,7 +13,6 @@ public class JobService
 
     public async Task RunJob1Async() => await PerformLongRunningOperationAsync(nameof(RunJob1Async));
 
-    [SkipConcurrentExecution]
     public async Task RunJob2Async() => await PerformLongRunningOperationAsync(nameof(RunJob2Async));
 
     private async Task PerformLongRunningOperationAsync(string jobName)

@@ -1,18 +1,18 @@
 ﻿namespace Tests;
 
-public class Job2IntegrationTests : IClassFixture<ApiApplicationFactory>
+public class Job1IntegrationTests : IClassFixture<ApiApplicationFactory>
 {
     private readonly string _baseUri = "http://localhost:5000/api/jobs/";
 
     private readonly HttpClient _client;
 
-    public Job2IntegrationTests(ApiApplicationFactory factory)
+    public Job1IntegrationTests(ApiApplicationFactory factory)
     {
         _client = factory.CreateClient();
     }
 
     [Fact]
-    public async Task GivenJobsController_WhenUsingSkipConcurrentExecution_ThenJobsAreBeingSkipped()
+    public async Task GivenJobsController_WhenUsingDisableConcurrentExecution_ThenJobsAreNotBeingSkipped()
     {
         // Arrange
         _client.BaseAddress = new Uri(_baseUri);
@@ -20,10 +20,10 @@ public class Job2IntegrationTests : IClassFixture<ApiApplicationFactory>
         var processingCount = 1;
 
         // Act
-        response = await _client.PostAsync("create-job-2", null);
+        response = await _client.PostAsync("create-job-1", null);
         response.EnsureSuccessStatusCode();
 
-        response = await _client.PostAsync("create-job-2", null);
+        response = await _client.PostAsync("create-job-1", null);
         response.EnsureSuccessStatusCode();
 
         // Assert
@@ -37,6 +37,6 @@ public class Job2IntegrationTests : IClassFixture<ApiApplicationFactory>
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         Assert.NotNull(statistics);
-        Assert.Equal(processingCount, statistics.Processing);
+        Assert.NotEqual(processingCount, statistics.Processing);
     }
 }
