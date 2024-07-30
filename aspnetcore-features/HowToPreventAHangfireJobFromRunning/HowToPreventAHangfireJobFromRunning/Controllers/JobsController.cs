@@ -42,7 +42,7 @@ public class JobsController : ControllerBase
 
         if (string.IsNullOrWhiteSpace(jobId))
         {
-            _logger.LogWarning("Unable to create job '{JobName}' probably it is already running", Job2);
+            _logger.LogWarning("Unable to create job '{JobName}' probably it is already running", Job1);
 
             return NoContent();
         }
