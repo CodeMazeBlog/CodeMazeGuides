@@ -19,8 +19,5 @@ public class DefaultValueTests
         var recordClassDefaultValue = DefaultValues.GetRecordClassDefaultValue();
 
         Assert.IsTrue(recordClassDefaultValue is null);
-
     }
-
-
 }
