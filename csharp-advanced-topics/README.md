@@ -30,3 +30,4 @@ This section contains the topics considered advanced level in C#.
 - [Using Memory For Efficient Memory Management in C#](https://code-maze.com/csharp-using-memory/)
 - [Restricting a Value Lifetime With the “scoped” Keyword in C#](https://code-maze.com/csharp-scoped-keyword/)
 - [How to Check the Total Number of Items Defined in an Enum](https://code-maze.com/csharp-check-the-total-number-of-items-in-an-enum/)
+- [Weak Events in C#](https://code-maze.com/csharp-weak-events/)

@@ -12,3 +12,4 @@ This section contains the topics related to handling exceptions in C#
 - [Try-Catch Block in C#](https://code-maze.com/try-catch-block-csharp/)
 - [Using the when Keyword in C# While Handling Exceptions](https://code-maze.com/csharp-when-keyword-handling-exceptions/)
 - [Exception Handling in C#](https://code-maze.com/csharp-exception-handling/)
+- [Retrying Failed HttpClient Requests in .NET Using Polly](https://code-maze.com/retrying-failed-httpclient-requests-dotnet-polly/)

@@ -16,3 +16,4 @@ This section contains source code for the articles about algorithms in C#.
 - [Radix Sort in C#](https://code-maze.com/csharp-radix-sort/)
 - [Selection Sort in C#](https://code-maze.com/csharp-selection-sort/)
 - [Shell Sort in C#](https://code-maze.com/shell-sort-csharp/)
+- [Algorithms to Find All the Positions of a Substring in Another String in C#](https://code-maze.com/csharp-find-all-the-positions-of-substring-in-another-string/)

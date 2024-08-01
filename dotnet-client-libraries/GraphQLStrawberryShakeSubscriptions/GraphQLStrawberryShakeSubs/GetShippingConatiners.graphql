@@ -1,0 +1,8 @@
+query GetShippingContainersName {
+    shippingContainers {
+        name
+        space {
+			volume
+		}
+    }
+}

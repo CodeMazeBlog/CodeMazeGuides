@@ -1,0 +1,15 @@
+﻿{
+  "data": {
+    "shippingContainers": [
+      {
+        "id": "0",
+        "name": "Container 3",
+        "space": {
+          "length": 10,
+          "width": 10,
+          "height": 10
+        }
+      }
+    ]
+  }
+}

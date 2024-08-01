@@ -51,3 +51,7 @@ This section contains the topics about the client libraries in .NET.
 - [Serialization and Deserialization with YamlDotNet](https://code-maze.com/csharp-serialization-and-deserialization-with-yamldotnet/)
 - [Generate QR Codes With QRCoder in .NET](https://code-maze.com/aspnetcore-generate-qr-codes-with-qrcoder/)
 - [Getting Started With EasyCaching in ASP.NET Core](https://code-maze.com/aspnetcore-easycaching/)
+- [How to Ignore a Property in AutoMapper](https://code-maze.com/csharp-how-to-ignore-a-property-in-automapper/)
+- [How to Use FakeLogger to Test Logging Code in .NET](https://code-maze.com/dotnet-how-to-use-fakelogger/)
+- [Generate Images Using OpenAI in an ASP.NET Core Application](https://code-maze.com/aspnetcore-generate-images-using-openai/)
+- [Multi-Source Data Integration With Strawberry Shake Subscriptions](https://code-maze.com/dotnetcore-multi-source-data-integration-with-strawberry-shake-subscriptions/)
