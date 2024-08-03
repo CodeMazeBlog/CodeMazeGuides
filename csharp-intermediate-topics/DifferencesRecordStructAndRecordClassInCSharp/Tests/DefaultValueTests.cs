@@ -6,7 +6,7 @@ namespace Tests;
 public class DefaultValueTests
 {
     [TestMethod]
-    public void RecordStructDefaultValue_ReturnsDefaultInitializedValue()
+    public void GivenRecordStruct_WhenGetDefaultValue_ThenReturnsDefaultInitializedValues()
     {
         var recordStructDefaultValue = DefaultValues.GetRecordStructDefaultValue();
 
@@ -14,7 +14,7 @@ public class DefaultValueTests
     }
 
     [TestMethod]
-    public void RecordClassDefaultValue_ReturnsNull()
+    public void GivenRecordClass_WhenGetDefaultValue_ThenReturnsNull()
     {
         var recordClassDefaultValue = DefaultValues.GetRecordClassDefaultValue();
 
