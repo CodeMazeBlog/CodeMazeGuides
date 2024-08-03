@@ -1,5 +1,6 @@
-namespace LoggingInCSharp;
 using log4net;
+
+namespace LoggingInCSharp;
 
 public static class Calculator
 {
@@ -69,6 +70,7 @@ public static class Calculator
         return result;
     }
 }
+
 
 
 
