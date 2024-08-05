@@ -1,6 +1,5 @@
-﻿namespace ChangeServiceLifetimeOfAlreadyRegisteredService.Services
+﻿namespace ChangeServiceLifetimeOfAlreadyRegisteredService.Services;
+
+public interface IService
 {
-    public interface IService
-    {
-    }
 }
