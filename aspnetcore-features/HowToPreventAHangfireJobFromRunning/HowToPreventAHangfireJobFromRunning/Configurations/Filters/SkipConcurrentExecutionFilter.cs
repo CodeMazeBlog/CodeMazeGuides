@@ -61,8 +61,9 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
             var fingerprint = connection.GetAllEntriesFromHash(job.GetFingerprintKey());
 
             if (fingerprint is not null && fingerprint.ContainsKey("Timestamp") &&
-                DateTimeOffset.TryParseExact(fingerprint["Timestamp"], "o", CultureInfo.InvariantCulture, 
-                    DateTimeStyles.RoundtripKind, out var timestamp) &&
+                DateTimeOffset.TryParseExact(
+                    fingerprint["Timestamp"], "o", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, 
+                        out var timestamp) &&
                 DateTimeOffset.UtcNow <= timestamp.Add(_fingerprintTimeout))
             {
                 _logger.LogInformation("Fingerprint for job '{JobName}' already exists, skipping...", job.Method.Name);
