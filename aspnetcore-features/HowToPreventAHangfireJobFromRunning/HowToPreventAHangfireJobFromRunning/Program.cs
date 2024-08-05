@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<IJobService, JobService>();
+builder.Services.AddSingleton<JobService>();
 
 builder.Services.AddHangfire((provider, config) =>
 {
@@ -8,8 +8,9 @@ builder.Services.AddHangfire((provider, config) =>
     config.UseSimpleAssemblyNameTypeSerializer();
     config.UseRecommendedSerializerSettings();
     config.UseInMemoryStorage();
-    
-    config.UseFilter(new SkipConcurrentExecutionFilter(provider.GetRequiredService<ILogger<SkipConcurrentExecutionFilter>>()));
+
+    config.UseFilter(new SkipConcurrentExecutionFilter(
+        provider.GetRequiredService<ILogger<SkipConcurrentExecutionFilter>>()));
 });
 builder.Services.AddHangfireServer();
 

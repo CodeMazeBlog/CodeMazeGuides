@@ -12,7 +12,7 @@ public class Job1IntegrationTests : IClassFixture<ApiApplicationFactory>
     }
 
     [Fact]
-    public async Task GivenJobsController_WhenUsingDisableConcurrentExecution_ThenJobsAreNotBeingSkipped()
+    public async Task GivenJobsController_WhenUsingDisableConcurrentExecutionAndInMemory_ThenJobsAreNotBeingSkipped()
     {
         // Arrange
         _client.BaseAddress = new Uri(_baseUri);

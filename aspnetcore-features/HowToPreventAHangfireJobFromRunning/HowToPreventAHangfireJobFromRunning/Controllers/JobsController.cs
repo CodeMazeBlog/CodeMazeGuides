@@ -38,14 +38,7 @@ public class JobsController : ControllerBase
     {
         _logger.LogInformation("Creating job '{JobName}'", Job1);
 
-        var jobId = _backgroundJobClient.Enqueue<IJobService>((jobService) => jobService.RunJob1Async());
-
-        if (string.IsNullOrWhiteSpace(jobId))
-        {
-            _logger.LogWarning("Unable to create job '{JobName}' probably it is already running", Job1);
-
-            return NoContent();
-        }
+        var jobId = _backgroundJobClient.Enqueue<JobService>((jobService) => jobService.RunJob1Async());
 
         _logger.LogInformation("Created job '{JobName}' with ID '{JobId}'", Job1, jobId);
 
@@ -58,7 +51,7 @@ public class JobsController : ControllerBase
     {
         _logger.LogInformation("Creating job '{JobName}'", Job2);
 
-        var jobId = _backgroundJobClient.Enqueue<IJobService>(jobService => jobService.RunJob2Async());
+        var jobId = _backgroundJobClient.Enqueue<JobService>(jobService => jobService.RunJob2Async());
 
         if (string.IsNullOrWhiteSpace(jobId))
         {

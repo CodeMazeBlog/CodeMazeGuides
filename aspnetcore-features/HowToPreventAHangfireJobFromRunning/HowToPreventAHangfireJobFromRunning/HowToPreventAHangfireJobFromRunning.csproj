@@ -9,6 +9,8 @@
   <ItemGroup>
     <PackageReference Include="Hangfire" Version="1.8.14" />
     <PackageReference Include="Hangfire.InMemory" Version="0.10.1" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.8.14" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
