@@ -15,3 +15,4 @@ This section contains source code for the articles about different architectural
 - [Clean Architecture in .NET](https://code-maze.com/dotnet-clean-architecture/)
 - [Scale Your Services With Service-Oriented Architecture in .NET](https://code-maze.com/csharp-service-oriented-architecture-pattern-in-net/)
 - [Modular Monolith Architecture In .NET](https://code-maze.com/dotnet-modular-monolith/)
+- [What are the Differences Between Onion Architecture and Clean Architecture in .NET?](https://code-maze.com/dotnet-differences-between-onion-architecture-and-clean-architecture/)
