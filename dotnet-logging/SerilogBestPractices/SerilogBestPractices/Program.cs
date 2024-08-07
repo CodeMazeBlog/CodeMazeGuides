@@ -66,9 +66,7 @@ try
 }
 catch (Exception ex)
 {
-    Log.Error(
-        "The following {Exception} was thrown during application startup",
-        ex);
+    Log.Error(ex, "The exception was thrown during application startup");
 }
 finally
 {
