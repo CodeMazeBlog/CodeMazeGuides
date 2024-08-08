@@ -1,14 +1,19 @@
+using Microsoft.Extensions.Logging.Configuration;
+using Microsoft.Extensions.Logging.EventLog;
 using CodeMazeWorkerService;
 
-IHost host = Host.CreateDefaultBuilder(args)
-    .UseWindowsService(options =>
-    {
-        options.ServiceName = "Code-Maze Service";
-    })
-    .ConfigureServices(services =>
-    {
-        services.AddHostedService<Worker>();
-    })
-    .Build();
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddWindowsService(options =>
+{
+    options.ServiceName = "Code-Maze Service";
+});
 
-await host.RunAsync();
+LoggerProviderOptions.RegisterProviderOptions<EventLogSettings, EventLogLoggerProvider>(builder.Services);
+
+builder.Services.AddHostedService<Worker>();
+
+builder.Logging.AddConfiguration(
+    builder.Configuration.GetSection("Logging"));
+
+var host = builder.Build();
+host.Run();
