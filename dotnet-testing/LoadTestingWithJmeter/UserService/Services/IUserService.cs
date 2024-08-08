@@ -1,9 +1,10 @@
-﻿using UserAPI.Models;
+﻿using System.Collections.Concurrent;
+using UserAPI.Models;
 
 namespace UserAPI.Services;
 
 public interface IUserService
 {
-    List<User> GetUsers();
+    ConcurrentBag<User> GetUsers();
     bool AddUser(User user);
 }

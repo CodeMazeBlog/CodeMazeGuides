@@ -13,6 +13,7 @@ public class UsersController(IUserService userService) : ControllerBase
     public IActionResult Get()
     {
         var users = userService.GetUsers();
+
         return Ok(users);
     }
 
@@ -21,6 +22,7 @@ public class UsersController(IUserService userService) : ControllerBase
     public IActionResult Post([FromBody] User user)
     {
         userService.AddUser(user);
+
         return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
     }
 }
