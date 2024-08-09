@@ -13,6 +13,7 @@ public class UserService : IUserService
     {
         return users;
     }
+
     public bool AddUser(User user)
     {
         users.Add(user);
