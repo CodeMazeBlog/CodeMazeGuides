@@ -13,13 +13,19 @@ public class StringValuesImplementation
         Console.WriteLine(multipleValues);
 
         StringValues implicitSingle = "value1";
-        Console.WriteLine(implicitSingle);
+        Console.WriteLine($"Implicit Single Value: {implicitSingle}");
 
         StringValues implicitMultiple = new[] { "value1", "value2" };
-        Console.WriteLine(implicitMultiple);
+        Console.WriteLine($"Implicit Multiple Values: {implicitMultiple}");
 
         StringValues values = new StringValues(new[] { "value1", "value2" });
-        Console.WriteLine(values);
+        Console.WriteLine($"Comma-Separated Values: {values}");
+
+        StringValues emptyValue = new StringValues();
+        Console.WriteLine(emptyValue.Count);
+
+        StringValues nullValue = new StringValues((string)null);
+        Console.WriteLine(nullValue.Count);
     }
 
     public void AddHeader(string key, params string[] values)
@@ -41,9 +47,9 @@ public class StringValuesImplementation
 
     public void DisplayHeaders()
     {
-        foreach (var header in _headers)
+        foreach (var (key, value) in _headers)
         {
-            Console.WriteLine($"{header.Key}: {header.Value}");
+            Console.WriteLine($"{key}: {value}");
         }
     }
 }
