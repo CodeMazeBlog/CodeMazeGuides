@@ -55,3 +55,4 @@ This section contains the topics about the client libraries in .NET.
 - [How to Use FakeLogger to Test Logging Code in .NET](https://code-maze.com/dotnet-how-to-use-fakelogger/)
 - [Generate Images Using OpenAI in an ASP.NET Core Application](https://code-maze.com/aspnetcore-generate-images-using-openai/)
 - [Multi-Source Data Integration With Strawberry Shake Subscriptions](https://code-maze.com/dotnetcore-multi-source-data-integration-with-strawberry-shake-subscriptions/)
+- [Introduction to the Wolverine Library in .NET](https://code-maze.com/dotnet-wolverine-library/)
