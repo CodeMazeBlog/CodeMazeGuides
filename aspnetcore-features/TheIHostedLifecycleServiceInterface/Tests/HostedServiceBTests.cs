@@ -16,7 +16,7 @@ public class HostedServiceBTests
         var sut = new HostedServiceB(logger);
         await sut.StartingAsync(cancellationTokenSource.Token);
 
-        logger.Received().LogDebug($"Service {nameof(HostedServiceB)} starting.");
+        logger.Received().LogInformation($"Service {nameof(HostedServiceB)} starting.");
     }
 
     [TestMethod]
@@ -28,7 +28,7 @@ public class HostedServiceBTests
         var sut = new HostedServiceB(logger);
         await sut.StartAsync(cancellationTokenSource.Token);
 
-        logger.Received().LogDebug($"Service {nameof(HostedServiceB)} start.");
+        logger.Received().LogInformation($"Service {nameof(HostedServiceB)} start.");
     }
 
     [TestMethod]
@@ -40,7 +40,7 @@ public class HostedServiceBTests
         var sut = new HostedServiceB(logger);
         await sut.StartedAsync(cancellationTokenSource.Token);
 
-        logger.Received().LogDebug($"Service {nameof(HostedServiceB)} started.");
+        logger.Received().LogInformation($"Service {nameof(HostedServiceB)} started.");
     }
 
     [TestMethod]
@@ -52,7 +52,7 @@ public class HostedServiceBTests
         var sut = new HostedServiceB(logger);
         await sut.StoppingAsync(cancellationTokenSource.Token);
 
-        logger.Received().LogDebug($"Service {nameof(HostedServiceB)} stopping.");
+        logger.Received().LogInformation($"Service {nameof(HostedServiceB)} stopping.");
     }
 
     [TestMethod]
@@ -64,7 +64,7 @@ public class HostedServiceBTests
         var sut = new HostedServiceB(logger);
         await sut.StopAsync(cancellationTokenSource.Token);
 
-        logger.Received().LogDebug($"Service {nameof(HostedServiceB)} stop.");
+        logger.Received().LogInformation($"Service {nameof(HostedServiceB)} stop.");
     }
 
     [TestMethod]
@@ -76,6 +76,6 @@ public class HostedServiceBTests
         var sut = new HostedServiceB(logger);
         await sut.StoppedAsync(cancellationTokenSource.Token);
 
-        logger.Received().LogDebug($"Service {nameof(HostedServiceB)} stopped.");
+        logger.Received().LogInformation($"Service {nameof(HostedServiceB)} stopped.");
     }
 }
