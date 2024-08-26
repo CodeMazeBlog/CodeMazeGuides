@@ -8,7 +8,7 @@ public class JobService
 
     public JobService(ILogger<JobService> logger)
     {
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _logger = logger;
     }
 
     [DisableConcurrentExecution(timeoutInSeconds: 60)]

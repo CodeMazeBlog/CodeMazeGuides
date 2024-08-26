@@ -19,16 +19,16 @@ public static class JobExtensions
     
     private static string GetFingerprint(this Job job)
     {
+        if (job.Type == null || job.Method == null)
+        {
+            return string.Empty;
+        }
+
         var parameters = string.Empty;
 
         if (job.Args is not null)
         {
             parameters = string.Join(".", job.Args);
-        }
-
-        if (job.Type == null || job.Method == null)
-        {
-            return string.Empty;
         }
 
         var fingerprint = $"{job.Type.FullName}.{job.Method.Name}.{parameters}";

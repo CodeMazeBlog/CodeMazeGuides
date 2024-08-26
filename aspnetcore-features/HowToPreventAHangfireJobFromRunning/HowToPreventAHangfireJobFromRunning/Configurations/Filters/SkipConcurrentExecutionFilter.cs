@@ -34,7 +34,8 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
         
         if (!AddFingerprintIfNotExists(filterContext.Connection, filterContext.Job))
         {
-            _logger.LogWarning("Job '{JobName}' is already running, skipping...", filterContext.Job.Method.Name);
+            _logger.LogWarning("Job '{JobName}' is already running, skipping...", 
+                filterContext.Job.Method.Name);
 
             filterContext.Canceled = true;
         }
@@ -47,7 +48,8 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
             return;
         }
 
-        _logger.LogInformation("Performing job '{JobName}'...", filterContext.BackgroundJob.Job.Method.Name);
+        _logger.LogInformation("Performing job '{JobName}'...", 
+            filterContext.BackgroundJob.Job.Method.Name);
         
         RemoveFingerprint(filterContext.Connection, filterContext.BackgroundJob.Job);
     }
@@ -62,16 +64,18 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
 
             if (fingerprint is not null && fingerprint.ContainsKey("Timestamp") &&
                 DateTimeOffset.TryParseExact(
-                    fingerprint["Timestamp"], "o", CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, 
-                        out var timestamp) &&
+                    fingerprint["Timestamp"], "o", CultureInfo.InvariantCulture, 
+                    DateTimeStyles.RoundtripKind, out var timestamp) &&
                 DateTimeOffset.UtcNow <= timestamp.Add(_fingerprintTimeout))
             {
-                _logger.LogInformation("Fingerprint for job '{JobName}' already exists, skipping...", job.Method.Name);
+                _logger.LogInformation("Fingerprint for job '{JobName}' already exists, skipping...", 
+                    job.Method.Name);
                 
                 return false;
             }
 
-            _logger.LogInformation("Fingerprint for job '{JobName}' does not exist, adding...", job.Method.Name);
+            _logger.LogInformation("Fingerprint for job '{JobName}' does not exist, adding...", 
+                job.Method.Name);
             
             connection.SetRangeInHash(job.GetFingerprintKey(), new Dictionary<string, string>
             {

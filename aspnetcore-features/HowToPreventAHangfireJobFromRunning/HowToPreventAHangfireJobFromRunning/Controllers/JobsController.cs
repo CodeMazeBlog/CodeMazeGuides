@@ -10,11 +10,11 @@ public class JobsController : ControllerBase
     private readonly IBackgroundJobClient _backgroundJobClient;
     private readonly ILogger<JobsController> _logger;
 
-    public JobsController(IBackgroundJobClient backgroundJobClient, IRecurringJobManager recurringJobManager,
+    public JobsController(IBackgroundJobClient backgroundJobClient,
         ILogger<JobsController> logger)
     {
-        _backgroundJobClient = backgroundJobClient ?? throw new ArgumentNullException(nameof(backgroundJobClient));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _backgroundJobClient = backgroundJobClient;
+        _logger = logger;
     }
 
     [HttpGet("statistics")]
