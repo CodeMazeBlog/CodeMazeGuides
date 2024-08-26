@@ -2,26 +2,35 @@
 
 public class TrafficMediator : ITrafficMediator
 {
-    private readonly List<ISignal> _signals = [];
+    private Signal1? _signal1;
+    private Signal2? _signal2;
+    private Signal3? _signal3;
+    private Signal4? _signal4;
 
-    public void Register(params ISignal[] signals)
+    public void Register(Signal1 signal1, Signal2 signal2, Signal3 signal3, Signal4 signal4)
     {
-        _signals.AddRange(signals);
+        _signal1 = signal1;
+        _signal2 = signal2;
+        _signal3 = signal3;
+        _signal4 = signal4;
     }
 
-    public void ShowGreenLight(SignalName signalName)
+    public void RequestClearance(SignalName signalName)
     {
-        var signal = _signals.FirstOrDefault(x => x.Name == signalName)
-            ?? throw new InvalidOperationException($"{signalName} was not registered");
-                
-        foreach (var crossing in _signals.Where(x => x.Direction != signal.Direction))
+        switch (signalName)
         {
-            crossing.ShowRedLight();
-        }
-
-        foreach (var parallel in _signals.Where(x => x.Direction == signal.Direction))
-        {
-            parallel.ShowGreenLight();
+            case SignalName.Signal1:
+            case SignalName.Signal3:
+                _signal2?.ShowRedLight();
+                _signal4?.ShowRedLight();
+                break;
+            case SignalName.Signal2:
+            case SignalName.Signal4:
+                _signal1?.ShowRedLight();
+                _signal3?.ShowRedLight();
+                break;
+            default:
+                throw new InvalidOperationException($"Unrecognized signal - {signalName}");
         }
     }
 }

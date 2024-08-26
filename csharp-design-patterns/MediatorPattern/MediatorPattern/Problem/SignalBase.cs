@@ -1,12 +1,10 @@
 ﻿namespace MediatorPattern.Problem;
 
-public abstract class SignalBase(SignalName name, TrafficDirection direction)
+public abstract class SignalBase(SignalName name)
 {
     public SignalName Name => name;
 
-    public TrafficDirection Direction => direction;
-
-    public TrafficLight Light { get; protected set; }
+    public TrafficLight Light { get; private set; }
 
     protected void ChangeLight(TrafficLight light)
     {

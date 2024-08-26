@@ -10,14 +10,12 @@ public class TrafficControlWithoutMediatorTests
     {
         var signal1 = new Signal1();
         var signal2 = new Signal2();
-        var signal3 = new Signal3();
         var signal4 = new Signal4();
 
-        signal1.ShowGreenLight(signal2, signal3, signal4);
+        signal1.ShowGreenLight(signal2, signal4);
 
         Assert.Equal(TrafficLight.Red, signal2.Light);
         Assert.Equal(TrafficLight.Red, signal4.Light);
         Assert.Equal(TrafficLight.Green, signal1.Light);
-        Assert.Equal(TrafficLight.Green, signal3.Light);
     }
 }

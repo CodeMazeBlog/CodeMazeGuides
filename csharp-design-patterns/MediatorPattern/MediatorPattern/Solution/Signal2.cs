@@ -1,3 +1,3 @@
 ﻿namespace MediatorPattern.Solution;
 
-public class Signal2() : SignalBase(SignalName.Signal2, TrafficDirection.EastWest) { }
+public class Signal2(ITrafficMediator mediator) : SignalBase(mediator, SignalName.Signal2) { }
