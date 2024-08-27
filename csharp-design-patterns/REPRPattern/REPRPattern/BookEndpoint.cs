@@ -10,6 +10,6 @@ public class BookEndpoint : Endpoint<BookEndpointRequest, BookEndpointResponse>
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(BookEndpointRequest req, CancellationToken ct)
-        => await SendAsync(new($"{req.Title} was written by {req.AuthorName}"), cancellation: ct);
+    public override async Task HandleAsync(BookEndpointRequest request, CancellationToken cancellationToken)
+        => await SendAsync(new($"{request.Title} was written by {request.AuthorName}"), cancellation: cancellationToken);
 }
