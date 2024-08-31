@@ -31,8 +31,6 @@ public static class JobExtensions
             parameters = string.Join(".", job.Args);
         }
 
-        var fingerprint = $"{job.Type.FullName}.{job.Method.Name}.{parameters}";
-
-        return fingerprint;
+        return $"{job.Type.FullName}.{job.Method.Name}.{parameters}";
     }
 }
