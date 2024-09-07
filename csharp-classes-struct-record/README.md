@@ -14,4 +14,4 @@ This section contains the topics considered intermediate level in C#.
 - [Static Classes in C#](https://code-maze.com/static-classes-csharp/)
 - [Working With Guid in C#](https://code-maze.com/csharp-guid-class/)
 - [How to Validate a GUID in C#](https://code-maze.com/csharp-how-to-validate-a-guid/)
-
+- [Differences Between Record Struct and Record Class in C#](https://code-maze.com/csharp-differences-between-record-struct-and-record-class/)

@@ -47,3 +47,4 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [Using Delegating Handlers to Extend HttpClient in ASP.NET Core](https://code-maze.com/aspnetcore-using-delegating-handlers-to-extend-httpclient/)
 - [Comparing ExecuteAsync() and StartAsync() Methods from the BackgroundService Class in .NET](https://code-maze.com/dotnet-comparing-executeasync-and-startasync-methods-from-the-backgroundservice-class/)
 - [How to Properly Set Connection Strings in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-properly-set-connection-strings/)
+- [StringValues in ASP.NET Core](https://code-maze.com/aspnetcore-stringvalues/)
