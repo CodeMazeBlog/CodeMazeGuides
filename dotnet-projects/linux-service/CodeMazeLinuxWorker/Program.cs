@@ -1,11 +1,9 @@
 using CodeMazeLinuxWorker;
 
-IHost host = Host.CreateDefaultBuilder(args)
-    .UseSystemd()
-    .ConfigureServices((hostContext, services) =>
-    {
-        services.AddHostedService<Worker>();
-    })
-    .Build();
+var builder = Host.CreateApplicationBuilder(args);
 
+builder.Services.AddSystemd();
+builder.Services.AddHostedService<Worker>();
+
+IHost host = builder.Build();
 await host.RunAsync();

@@ -16,7 +16,8 @@ namespace CodeMazeLinuxWorker
                 _logger.LogInformation("Code-Maze Service running at: {time}", DateTimeOffset.Now);
                 _logger.LogWarning("A warning from Code-Maze Service at: {time}", DateTimeOffset.Now);
                 _logger.LogError("An error from Code-Maze Service at: {time}", DateTimeOffset.Now);
-                await Task.Delay(100, stoppingToken);
+
+                await Task.Delay(1000, stoppingToken);
             }
         }
     }
