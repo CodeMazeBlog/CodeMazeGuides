@@ -22,14 +22,31 @@ public class Product
 public class Customer
 {
     public int Id { get; set; }
-    public string? Name { get; set; }
-    public virtual CustomerProfile? CustomerProfile { get; set; }
+
+    [Required]
+    [MaxLength(100)]
+    public string Name { get; set; }
+
+    [Required]
+    [MaxLength(150)]
+    public string Email { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
+    public decimal CreditLimit { get; set; }
+
+    [Required]
+    [MaxLength(50)]
+    public string Country { get; set; }
+
+    [Required]
+    public DateTime CreatedDate { get; set; }
 }
-public class CustomerProfile 
-{ 
-    public int Id { get; set; } 
-    public int CustomerId { get; set; } 
-    public virtual Customer? Customer { get; set; } 
+public class Category
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+
+    public virtual ICollection<Product>? Products { get; set; }
 }
 public class Supplier
 {
@@ -43,32 +60,4 @@ public class Order
     public string? ProductName { get; set; }
     public int SupplierId { get; set; }
     public virtual Supplier? Supplier { get; set; }
-}
-public class CustomerGroup
-{
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public virtual ICollection<CustomerGroupDiscount>? CustomerGroupDiscounts { get; set; } // Navigation property for the many-to-many relationship
-}
-public class Discount
-{
-    public int Id { get; set; }
-    public string? Code { get; set; }
-    public decimal DiscountAmount { get; set; }
-    public virtual ICollection<CustomerGroupDiscount>? CustomerGroupDiscounts { get; set; } // Navigation property for the many-to-many relationship
-}
-public class CustomerGroupDiscount
-{
-    public int CustomerGroupId { get; set; }
-    public virtual CustomerGroup? CustomerGroup { get; set; } // Navigation property to the CustomerGroup entity
-    public int DiscountId { get; set; }
-    public virtual Discount? Discount { get; set; } // Navigation property to the Discount entity
-}
-public class Category
-{
-    public int Id { get; set; }
-    public string? Name { get; set; }
-
-    // Navigation property for the one-to-many relationship with Product
-    public virtual ICollection<Product>? Products { get; set; }
 }
