@@ -1,8 +1,6 @@
-﻿
-using MediatR;
+﻿using MediatR;
 using MediatR.NotificationPublishers;
 using MediatrParallelPublishing;
-using MediatrParallelPublishing.NotificationHandlers;
 using Microsoft.Extensions.DependencyInjection;
 
 var services = new ServiceCollection();
@@ -17,4 +15,3 @@ var serviceProvider = services.BuildServiceProvider();
 var mediator = serviceProvider.GetRequiredService<IMediator>();
 
 await mediator.Publish(new Notification("Hello, World!"));
-
