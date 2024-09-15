@@ -1,56 +1,56 @@
-using Microsoft.Extensions.ServiceDiscovery.Abstractions;
+using Microsoft.Extensions.ServiceDiscovery;
 using System.Net;
 
 namespace WhatIsServiceDiscovery.MainAPI;
 
 public class Program
 {
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
+	public static void Main(string[] args)
+	{
+		var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-        builder.Services.AddServiceDiscovery();
+		builder.Services.AddEndpointsApiExplorer();
+		builder.Services.AddSwaggerGen();
+		builder.Services.AddServiceDiscovery();
 
-        builder.Services.Configure<ConfigurationServiceEndPointResolverOptions>(static options =>
-        {
-            options.SectionName = "ServiceEndpoints";
-            options.ApplyHostNameMetadata = endpoint =>
-            {
-                return endpoint.EndPoint is DnsEndPoint dns
-                    && !dns.Host.Contains("localhost");
-            };
-        });
+		builder.Services.Configure<ConfigurationServiceEndpointProviderOptions>(static options =>
+		{
+			options.SectionName = "ServiceEndpoints";
+			options.ShouldApplyHostNameMetadata = endpoint =>
+			{
+				return endpoint.EndPoint is DnsEndPoint dns
+					&& !dns.Host.Contains("localhost");
+			};
+		});
 
-        builder.Services.AddHttpClient("shipping", static client =>
-        {
-            client.BaseAddress = new("https://shipping");
-        })
-        .UseServiceDiscovery(PickFirstServiceEndPointSelectorProvider.Instance);
+		builder.Services.AddHttpClient("shipping", static client =>
+		{
+			client.BaseAddress = new("https://shipping");
+		})
+		.AddServiceDiscovery();
 
-        builder.Services.ConfigureHttpClientDefaults(static client =>
-        {
-            client.UseServiceDiscovery(PickFirstServiceEndPointSelectorProvider.Instance);
-        });
+		builder.Services.ConfigureHttpClientDefaults(static client =>
+		{
+			client.AddServiceDiscovery();
+		});
 
-        var app = builder.Build();
+		var app = builder.Build();
 
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+		if (app.Environment.IsDevelopment())
+		{
+			app.UseSwagger();
+			app.UseSwaggerUI();
+		}
 
-        app.UseHttpsRedirection();
+		app.UseHttpsRedirection();
 
-        app.MapGet("/callshippingapi", async (HttpClient client) =>
-        {
-            var response = await client.GetStringAsync("https://shipping/shiporder");
+		app.MapGet("/callshippingapi", async (HttpClient client) =>
+		{
+			var response = await client.GetStringAsync("https://shipping/shiporder");
 
-            return $"Shipping API returned: {response}";
-        });
+			return $"Shipping API returned: {response}";
+		});
 
-        app.Run();
-    }
+		app.Run();
+	}
 }
