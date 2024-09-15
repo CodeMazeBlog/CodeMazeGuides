@@ -1,21 +1,13 @@
-namespace CodeMazeWorkerService
-{
-public class Worker : BackgroundService
-{
-    private readonly ILogger<Worker> _logger;
+namespace CodeMazeWorkerService;
 
-    public Worker(ILogger<Worker> logger)
-    {
-        _logger = logger;
-    }
-
+public class Worker(ILogger<Worker> logger) : BackgroundService
+{
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            _logger.LogInformation("Code-Maze Service running at: {time}", DateTimeOffset.Now);
+            logger.LogInformation("Code-Maze Service running at: {time}", DateTimeOffset.Now);
             await Task.Delay(1000, stoppingToken);
         }
     }
-}
 }

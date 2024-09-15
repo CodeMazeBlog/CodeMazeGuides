@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34707.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateUniqueIDsWithNewId", "GenerateUniqueIDsWithNewId\GenerateUniqueIDsWithNewId.csproj", "{2984EB82-6745-4B9F-AE8D-A37344AF7A26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateUniqueIDsWithNewId.Tests", "GenerateUniqueIDsWithNewId.Tests\GenerateUniqueIDsWithNewId.Tests.csproj", "{B4809B43-74A2-4D28-A140-D691AFC00734}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2984EB82-6745-4B9F-AE8D-A37344AF7A26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2984EB82-6745-4B9F-AE8D-A37344AF7A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2984EB82-6745-4B9F-AE8D-A37344AF7A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2984EB82-6745-4B9F-AE8D-A37344AF7A26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4809B43-74A2-4D28-A140-D691AFC00734}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4809B43-74A2-4D28-A140-D691AFC00734}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4809B43-74A2-4D28-A140-D691AFC00734}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4809B43-74A2-4D28-A140-D691AFC00734}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA4F7648-2235-4275-84DC-80A03C2884FD}
+	EndGlobalSection
+EndGlobal

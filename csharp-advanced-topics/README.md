@@ -4,6 +4,7 @@ This section contains the topics considered advanced level in C#.
 
 ### Relevant articles:
 
+- [Default Values for Lambda Expressions in C#](https://code-maze.com/csharp-default-values-for-lambda-expressions/)
 - [C# Delegates](https://code-maze.com/delegates-charp/)
 - [Differences Between ExpandoObject, DynamicObject and dynamic](https://code-maze.com/csharp-differences-between-expandoobject-dynamicobject-and-dynamic/)
 - [How to Build Dynamic Queries With Expression Trees in C#](https://code-maze.com/dynamic-queries-expression-trees-csharp/)
@@ -11,6 +12,7 @@ This section contains the topics considered advanced level in C#.
 - [Events in C#](https://code-maze.com/csharp-events/)
 - [Expression Trees in C#](https://code-maze.com/csharp-expression-trees/)
 - [Generic Attributes in C#](https://code-maze.com/csharp-generic-attributes/)
+- [How to Use Interceptors in C# 12](https://code-maze.com/how-to-use-interceptors-in-c-12/)
 - [Using Generics in C#](https://code-maze.com/using-generics-in-csharp/)
 - [Introduction to Regular Expressions in C#](https://code-maze.com/regular-expressions-csharp/)
 - [Lambda Expressions in C#](https://code-maze.com/lambda-expressions-in-csharp/)
@@ -25,3 +27,7 @@ This section contains the topics considered advanced level in C#.
 - [Understanding Task and ValueTask in C#](https://code-maze.com/csharp-task-and-valuetask/)
 - [Using Trie Class for Efficient Text Pattern Searching in C#](https://code-maze.com/csharp-using-trie-class-for-efficient-text-pattern-searching/)
 - [Synchronization Mechanisms – Volatile vs Interlocked vs lock in C#](https://code-maze.com/csharp-volatile-interlocked-lock/)
+- [Using Memory For Efficient Memory Management in C#](https://code-maze.com/csharp-using-memory/)
+- [Restricting a Value Lifetime With the “scoped” Keyword in C#](https://code-maze.com/csharp-scoped-keyword/)
+- [How to Check the Total Number of Items Defined in an Enum](https://code-maze.com/csharp-check-the-total-number-of-items-in-an-enum/)
+- [Weak Events in C#](https://code-maze.com/csharp-weak-events/)

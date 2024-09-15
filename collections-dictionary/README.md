@@ -10,3 +10,5 @@ This section contains the topics about Dictionary collection and solving specifi
 - [Different Ways to Iterate Through a Dictionary in C#](https://code-maze.com/csharp-iterate-through-dictionary/)
 - [Sort Dictionary by Value in .NET](https://code-maze.com/sort-dictionary-by-value-dotnet/)
 - [How to Update the Value Stored in a Dictionary in C#](https://code-maze.com/csharp-update-the-value-stored-in-a-dictionary/)
+- [Fastest Way to Get a Dictionary Key by Value in C#](https://code-maze.com/csharp-fastest-way-to-get-a-dictionary-key-by-value/)
+- [How to Compare Two Dictionaries in C#](https://code-maze.com/csharp-compare-two-dictionaries/)

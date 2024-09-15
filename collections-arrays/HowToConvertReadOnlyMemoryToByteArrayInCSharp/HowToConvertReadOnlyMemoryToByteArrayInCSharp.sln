@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToConvertReadOnlyMemoryToByteArrayInCSharp", "HowToConvertReadOnlyMemoryToByteArrayInCSharp\HowToConvertReadOnlyMemoryToByteArrayInCSharp.csproj", "{3DEC2733-C1B3-4DCB-BD70-768198C69BFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToConvertReadOnlyMemoryToByteArrayInCSharpUnitTests", "HowToConvertReadOnlyMemoryToByteArrayInCSharpUnitTests\HowToConvertReadOnlyMemoryToByteArrayInCSharpUnitTests.csproj", "{40937264-B2F0-4F9E-AB3A-F853A84740B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DEC2733-C1B3-4DCB-BD70-768198C69BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DEC2733-C1B3-4DCB-BD70-768198C69BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DEC2733-C1B3-4DCB-BD70-768198C69BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DEC2733-C1B3-4DCB-BD70-768198C69BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40937264-B2F0-4F9E-AB3A-F853A84740B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40937264-B2F0-4F9E-AB3A-F853A84740B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40937264-B2F0-4F9E-AB3A-F853A84740B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40937264-B2F0-4F9E-AB3A-F853A84740B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
