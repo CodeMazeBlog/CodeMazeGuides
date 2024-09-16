@@ -1,7 +1,7 @@
 ﻿namespace HowToGetAnInstanceOfIServiceProvider.Controllers;
 
-using HowToGetAnInstanceOfIServiceProvider.Services;
 using Microsoft.AspNetCore.Mvc;
+using Services;
 
 [ApiController]
 public abstract class CustomBaseController : ControllerBase
