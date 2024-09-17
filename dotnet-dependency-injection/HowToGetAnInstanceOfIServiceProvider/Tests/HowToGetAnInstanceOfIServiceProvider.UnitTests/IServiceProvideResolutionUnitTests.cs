@@ -13,7 +13,7 @@ using Xunit;
 public class IServiceProvideResolutionUnitTests
 {
     [Fact]
-    public void ShouldRegisterDevelopmentExampleService_WhenEnvironmentIsDevelopment()
+    public void GivenDevelopmentEnvironment_WhenServiceIsResolved_ThenShouldReturnDevelopmentExampleService()
     {
         // Arrange
         var services = new ServiceCollection();
@@ -36,7 +36,7 @@ public class IServiceProvideResolutionUnitTests
     }
 
     [Fact]
-    public void ShouldRegisterExampleService_WhenEnvironmentIsNotDevelopment()
+    public void GivenProductionEnvironment_WhenServiceIsResolved_ThenShouldReturnExampleService()
     {
         // Arrange
         var services = new ServiceCollection();
@@ -59,7 +59,7 @@ public class IServiceProvideResolutionUnitTests
     }
 
     [Fact]
-    public async Task ExecuteAsync_ShouldResolveExampleServiceAndNotThrowException()
+    public async Task GivenBackgroundService_WhenStartAsyncIsCalled_ThenShouldNotThrowException()
     {
         // Arrange
         var services = new ServiceCollection();
@@ -76,7 +76,7 @@ public class IServiceProvideResolutionUnitTests
     }
 
     [Fact]
-    public void GetIServiceProviderFromHttpContext_ShouldReturnOk_WhenServiceResolved()
+    public void GivenHttpContext_WhenServiceIsResolvedFromHttpContext_ThenShouldReturnOkWithServiceResolved()
     {
         // Arrange
         var services = new ServiceCollection();
