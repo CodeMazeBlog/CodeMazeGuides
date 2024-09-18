@@ -7,7 +7,7 @@ public sealed class SecondNotificationHandler : INotificationHandler<Notificatio
     public async Task Handle(Notification notification, CancellationToken cancellationToken)
     {
         Console.WriteLine("SecondNotificationHandler: Start");
-        await Task.Delay(Random.Shared.Next(1000, 5000), cancellationToken);
+        await Task.Delay(Random.Shared.Next(10, 50), cancellationToken);
         Console.WriteLine($"SecondNotificationHandler: {notification.Message}");
     }
 }
