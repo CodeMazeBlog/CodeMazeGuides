@@ -23,6 +23,11 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
         _fingerprintTimeout = fingerprintTimeout;
     }
 
+    public void OnCreated(CreatedContext context)
+    {
+        
+    }
+
     public void OnCreating(CreatingContext filterContext)
     {
         if (!filterContext.Job.SkipConcurrentExecution())
@@ -54,6 +59,11 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
         RemoveFingerprint(filterContext.Connection, filterContext.BackgroundJob.Job);
     }
 
+    public void OnPerforming(PerformingContext context)
+    {
+        
+    }
+
     private bool AddFingerprintIfNotExists(IStorageConnection connection, Job job)
     {
         _logger.LogInformation("Adding fingerprint for job '{JobName}'...", job.Method.Name);
@@ -63,8 +73,8 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
             var fingerprint = connection.GetAllEntriesFromHash(job.GetFingerprintKey());
 
             if (fingerprint is not null && fingerprint.ContainsKey("Timestamp") &&
-                DateTimeOffset.TryParseExact(
-                    fingerprint["Timestamp"], "o", CultureInfo.InvariantCulture, 
+                DateTimeOffset.TryParseExact(fingerprint["Timestamp"], "o", 
+                    CultureInfo.InvariantCulture, 
                     DateTimeStyles.RoundtripKind, out var timestamp) &&
                 DateTimeOffset.UtcNow <= timestamp.Add(_fingerprintTimeout))
             {
@@ -99,13 +109,5 @@ public class SkipConcurrentExecutionFilter : IClientFilter, IServerFilter
             
             _logger.LogInformation("Fingerprint for job '{JobName}' removed...", job.Method.Name);
         }
-    }
-
-    void IClientFilter.OnCreated(CreatedContext filterContext)
-    {
-    }
-
-    void IServerFilter.OnPerforming(PerformingContext filterContext)
-    {
     }
 }
