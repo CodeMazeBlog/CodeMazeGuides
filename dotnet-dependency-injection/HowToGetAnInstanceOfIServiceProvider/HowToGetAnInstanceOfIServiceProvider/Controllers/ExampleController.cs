@@ -1,9 +1,13 @@
 ﻿namespace HowToGetAnInstanceOfIServiceProvider.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
+using Services;
 
-public class ExampleController : CustomBaseController
+[ApiController]
+public class ExampleController : ControllerBase
 {
+    private IExampleService ExampleService => HttpContext.RequestServices.GetService<IExampleService>();
+
     [HttpGet("/api/example/get-serviceprovider-within-api-controller")]
     public IActionResult GetIServiceProviderFromHttpContext()
     {
