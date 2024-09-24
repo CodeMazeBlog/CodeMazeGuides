@@ -1,3 +1,4 @@
+using EFCoreBestPractices.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,8 +12,8 @@ namespace EFCoreBestPractices.Controllers
         public async Task<ActionResult> GetProductDataUsingProjection()
         {
             var products = await applicationDbContext.Products
-                                        .Select(p => new { p.Name, p.Id })
-                                        .ToListAsync();
+               .Select(p => new { p.Name, p.Id })
+               .ToListAsync();
 
             return Ok(products);
         }
@@ -21,9 +22,9 @@ namespace EFCoreBestPractices.Controllers
         public async Task<ActionResult> GetProductDataByFilteringEarly()
         {
             var products = await applicationDbContext.Products
-                                        .Where(p => p.Price > 10)
-                                        .Select(x => new { x.Name, x.Price})
-                                        .ToListAsync();
+               .Where(p => p.Price > 10)
+               .Select(x => new { x.Name, x.Price})
+               .ToListAsync();
 
             return Ok(products);
         }
@@ -39,7 +40,6 @@ namespace EFCoreBestPractices.Controllers
 
             applicationDbContext.Products.AddRange(newProducts); 
             await applicationDbContext.SaveChangesAsync();
-
             return Ok();
         }
 
@@ -47,9 +47,9 @@ namespace EFCoreBestPractices.Controllers
         public async Task<ActionResult> GetProductDataUsingAsNoTracking(int productId)
         {
             var product = await applicationDbContext.Products
-                                    .Where(p => p.Id == productId)
-                                    .AsNoTracking()
-                                    .FirstOrDefaultAsync();
+               .Where(p => p.Id == productId)
+               .AsNoTracking()
+               .FirstOrDefaultAsync();
 
             return Ok(product);
         }
@@ -61,10 +61,10 @@ namespace EFCoreBestPractices.Controllers
             var pageSize = 10; 
 
             var pagedProducts = await applicationDbContext.Products
-                                        .OrderBy(p => p.Name)
-                                        .Skip((pageNumber - 1) * pageSize)
-                                        .Take(pageSize)
-                                        .ToListAsync();
+               .OrderBy(p => p.Name)
+               .Skip((pageNumber - 1) * pageSize)
+               .Take(pageSize)
+               .ToListAsync();
 
             return Ok(pagedProducts);
         }
@@ -73,18 +73,33 @@ namespace EFCoreBestPractices.Controllers
         public async Task<ActionResult> GetCategoriesUsingEagerLoading()
         {
             var categoriesWithProducts = await applicationDbContext.Suppliers
-                                        .Include(c => c.Orders)
-                                        .Select(x => new
-                                        {
-                                            x.Name,
-                                            Products = x.Orders!.Select(p => new
-                                            {
-                                                p.ProductName,
-                                            })
-                                        })
-                                        .ToListAsync();
+               .Include(c => c.Orders)
+               .Select(x => new
+               {
+                   x.Name,
+                   Products = x.Orders!.Select(p => new
+                   {
+                       p.ProductName,
+                   })
+               })
+               .ToListAsync();
 
             return Ok(categoriesWithProducts);
+        }
+
+        [HttpGet("split-queries")]
+        public async Task<ActionResult> GetSupplierNamesUsingSplitQuery()
+        {
+            var suppliers = await applicationDbContext.Suppliers
+               .Include(s => s.Orders)
+               .AsSplitQuery()
+               .Select(x => new
+               {
+                   x.Name
+               })
+               .ToListAsync();
+
+            return Ok(suppliers);
         }
 
         [HttpGet("compiled-query")]
@@ -121,8 +136,8 @@ namespace EFCoreBestPractices.Controllers
 
             // Use LINQ to construct a safe query with parameterized input
             var products =  await applicationDbContext.Products
-                              .Where(p => p.Id == producId && p.Name!.Contains(searchTerm))
-                              .ToListAsync();
+               .Where(p => p.Id == producId && p.Name!.Contains(searchTerm))
+               .ToListAsync();
 
             return Ok(products);
         }

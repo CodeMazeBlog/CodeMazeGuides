@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EFCoreBestPractices.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreBestPractices;
 public class ApplicationDbContext : DbContext

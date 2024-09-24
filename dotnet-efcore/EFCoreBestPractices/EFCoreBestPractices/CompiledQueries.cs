@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EFCoreBestPractices.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace EFCoreBestPractices
+namespace EFCoreBestPractices;
+public static class CompiledQueries
 {
-    public static class CompiledQueries
-    {
-        public static readonly Func<ApplicationDbContext, decimal, IEnumerable<Product>> GetExpensiveProducts
-            = EF.CompileQuery((ApplicationDbContext context, decimal price) =>
-                context.Products.Where(p => p.Price > price));
-    }
+    public static readonly Func<ApplicationDbContext, decimal, IEnumerable<Product>> GetExpensiveProducts
+        = EF.CompileQuery((ApplicationDbContext context, decimal price) =>
+            context.Products.Where(p => p.Price > price));
 }

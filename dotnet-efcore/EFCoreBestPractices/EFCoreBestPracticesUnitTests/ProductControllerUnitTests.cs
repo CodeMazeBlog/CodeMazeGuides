@@ -1,5 +1,6 @@
 using EFCoreBestPractices;
 using EFCoreBestPractices.Controllers;
+using EFCoreBestPractices.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -83,6 +84,16 @@ public class ProductControllerUnitTests
         Assert.IsNotNull(result);
         var categories = result.Value as IEnumerable<object>;
         Assert.IsTrue(categories?.Any());
+    }
+
+    [TestMethod]
+    public async Task GivenSupplierWithOrders_WhenGetSupplierNamesUsingSplitQuery_ThenReturnsSupplierNames()
+    {
+        var result = await _controller!.GetSupplierNamesUsingSplitQuery() as OkObjectResult;
+
+        Assert.IsNotNull(result);
+        var supplier = result.Value as IEnumerable<object>;
+        Assert.IsTrue(supplier?.Any());
     }
 
     [TestMethod]
