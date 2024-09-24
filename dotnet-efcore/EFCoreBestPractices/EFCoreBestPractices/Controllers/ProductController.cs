@@ -126,18 +126,18 @@ namespace EFCoreBestPractices.Controllers
         }
 
         [HttpGet("sql-injection")]
-        public async Task<ActionResult> GetProductsDataByPreventingSqlInjection(int producId, string searchTerm)
+        public async Task<ActionResult> GetProductsDataByPreventingSqlInjection(int productId, string searchTerm)
         {
             // Validate user input
-            if (producId <= 0 || string.IsNullOrWhiteSpace(searchTerm))
+            if (productId <= 0 || string.IsNullOrWhiteSpace(searchTerm))
             {
                 throw new ArgumentException("Invalid input parameters.");
             }
 
             // Use LINQ to construct a safe query with parameterized input
             var products =  await applicationDbContext.Products
-               .Where(p => p.Id == producId && p.Name!.Contains(searchTerm))
-               .ToListAsync();
+                              .Where(p => p.Id == productId && p.Name!.Contains(searchTerm))
+                              .ToListAsync();
 
             return Ok(products);
         }
