@@ -22,24 +22,8 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Product>(entity =>
-        {
-            entity.HasKey(e => e.Id);
-
-            entity.Property(e => e.Name)
-                  .IsRequired()
-                  .HasMaxLength(100);
-        });
-
-        modelBuilder.Entity<Product>()
-            .HasOne(p => p.Category)
-            .WithMany(c => c.Products)
-            .HasForeignKey(p => p.CategoryId);
-
-        modelBuilder.Entity<Supplier>()
-            .HasMany(s => s.Orders)
-            .WithOne(o => o.Supplier)
-            .HasForeignKey(o => o.SupplierId);
+        modelBuilder.ApplyConfiguration(new ProductConfiguration());
+        modelBuilder.ApplyConfiguration(new SupplierConfiguration());
     }
 
     public void LoadData()
