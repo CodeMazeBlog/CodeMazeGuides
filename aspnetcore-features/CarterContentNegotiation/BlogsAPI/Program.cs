@@ -2,11 +2,10 @@ using BlogsAPI;
 using Carter;
 using Carter.Response;
 
-public partial class Program // "partial" is important for testing
+public partial class Program
 {
     public static void Main(string[] args)
     {
-
         var builder = WebApplication.CreateBuilder(args);
         builder.Services.AddCarter(configurator: c =>
         {
