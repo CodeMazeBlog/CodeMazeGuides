@@ -30,14 +30,11 @@ unsafe
 
     var intArray = new[] {1, 2, 3, 4, 5};
 
-    fixed (int* arrayPointer = intArray)
-    {
-        Console.WriteLine("Before doubling odd values:");
-        Console.WriteLine(string.Join(", ", intArray));
+    Console.WriteLine("Before doubling odd values:");
+    Console.WriteLine(string.Join(", ", intArray));
 
-        Methods.DoubleOddValues(arrayPointer, intArray.Length);
+    Methods.DoubleOddValues(intArray);
 
-        Console.WriteLine("\nAfter doubling odd values:");
-        Console.WriteLine(string.Join(", ", intArray));
-    }
+    Console.WriteLine("\nAfter doubling odd values:");
+    Console.WriteLine(string.Join(", ", intArray));
 }

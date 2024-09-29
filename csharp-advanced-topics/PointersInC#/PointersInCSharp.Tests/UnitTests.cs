@@ -22,10 +22,7 @@ public class UnitTests
     public unsafe void GivenDoubleOddValuesMethod_WhenIntArray_ThenDoubleOddValues()
     {
         var numbers = new[] { 1, 2, 3, 4, 5 };
-        fixed (int* p = numbers)
-        {
-            Methods.DoubleOddValues(p, numbers.Length);
-        }
+        Methods.DoubleOddValues(numbers);
 
         Assert.Equal([2, 2, 6, 4, 10], numbers);
     }
@@ -34,10 +31,7 @@ public class UnitTests
     public unsafe void GivenDoubleOddValuesMethod_WhenNegativeOddNumbers_ThenValuesDoubled()
     {
         var numbers = new[] { -1, -2, -3, -4, -5 };
-        fixed (int* p = numbers)
-        {
-            Methods.DoubleOddValues(p, numbers.Length);
-        }
+        Methods.DoubleOddValues(numbers);
 
         Assert.Equal([-2, -2, -6, -4, -10], numbers);
     }
@@ -52,10 +46,10 @@ public class UnitTests
     }
 
     [Fact]
-    public unsafe void GivenDoubleOddValuesMethod_WhenNullPointer_ThenThrowsNullReferenceException()
+    public unsafe void GivenDoubleOddValuesMethod_WhenEmptyArray_ThenEmptyArray()
     {
-        int* p = null;
+        var numbers = Array.Empty<int>();
 
-        Assert.Throws<NullReferenceException>(() => Methods.DoubleOddValues(p, 5));
+        Assert.Equal([], numbers);
     }
 }
