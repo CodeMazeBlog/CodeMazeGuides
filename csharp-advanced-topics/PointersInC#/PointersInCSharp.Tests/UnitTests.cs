@@ -19,7 +19,7 @@ public class UnitTests
     }
 
     [Fact]
-    public unsafe void GivenDoubleOddValuesMethod_WhenIntArray_ThenDoubleOddValues()
+    public unsafe void GivenDoubleOddValuesMethod_WhenPositiveNumbers_ThenDoubleOddValues()
     {
         var numbers = new[] { 1, 2, 3, 4, 5 };
         Methods.DoubleOddValues(numbers);
@@ -28,7 +28,7 @@ public class UnitTests
     }
 
     [Fact]
-    public unsafe void GivenDoubleOddValuesMethod_WhenNegativeOddNumbers_ThenValuesDoubled()
+    public unsafe void GivenDoubleOddValuesMethod_WhenNegativeNumbers_ThenValuesDoubled()
     {
         var numbers = new[] { -1, -2, -3, -4, -5 };
         Methods.DoubleOddValues(numbers);
@@ -49,6 +49,7 @@ public class UnitTests
     public unsafe void GivenDoubleOddValuesMethod_WhenEmptyArray_ThenEmptyArray()
     {
         var numbers = Array.Empty<int>();
+        Methods.DoubleOddValues(numbers);
 
         Assert.Equal([], numbers);
     }

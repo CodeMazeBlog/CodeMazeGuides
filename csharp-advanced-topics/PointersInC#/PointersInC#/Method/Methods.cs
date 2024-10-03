@@ -7,7 +7,7 @@ public static class Methods
     {
         fixed (int* arrayPtr = numbers)
         {
-            for (int i = 0; i < numbers.Length; i++)
+            for (var i = 0; i < numbers.Length; i++)
             {
                 if (*(arrayPtr + i) % 2 != 0)
                     *(arrayPtr + i) *= 2;
