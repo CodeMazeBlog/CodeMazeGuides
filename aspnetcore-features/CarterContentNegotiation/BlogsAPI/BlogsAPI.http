@@ -1,0 +1,11 @@
+@hostname = localhost
+@port = 7064
+@url = https://{{hostname}}:{{port}}/blogs
+
+### Get Blogs (JSON)
+GET {{url}}
+Accept: application/json
+
+### Get Blogs (XML)
+GET {{url}}
+Accept: application/xml
