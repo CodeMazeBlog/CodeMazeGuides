@@ -1,11 +1,17 @@
 ﻿using Carter;
 using Carter.Response;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 public class BlogModule : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("/blogs", (HttpResponse response) => response.Negotiate(new Blog[]
+        app.MapGet("/blogs", (HttpResponse response) => response.Negotiate(GetBlogs()));
+    }
+
+    private static Blog[] GetBlogs()
+    {
+        var blogs = new Blog[]
         {
             new()
             {
@@ -35,6 +41,8 @@ public class BlogModule : ICarterModule
                 Title = "Different Web Content Types",
                 Tags = ["web", "content types"]
             }
-        }));
+        };
+
+        return blogs;
     }
 }
