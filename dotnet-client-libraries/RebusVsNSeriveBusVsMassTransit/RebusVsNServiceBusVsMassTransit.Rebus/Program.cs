@@ -6,16 +6,14 @@ using RebusVsNServiceBusVsMassTransit.Rebus;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IMessageSender, MessageSender>();
 
 builder.Services.AddRebus(configure => configure
-    .Transport(t => t.UseInMemoryTransport(new InMemNetwork(true), "myQueue"))
-    .Routing(r => r.TypeBased().MapAssemblyOf<ProcessPayment>("myQueue")));
+    .Transport(t => t.UseInMemoryTransport(new InMemNetwork(true), "MyQueue"))
+    .Routing(r => r.TypeBased().MapAssemblyOf<Message>("MyQueue")));
 builder.Services.AutoRegisterHandlersFromAssemblyOf<Program>();
 
 var app = builder.Build();
@@ -39,8 +37,3 @@ app.MapPost("/payment", async (IMessageSender messageSender) =>
     .WithOpenApi();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

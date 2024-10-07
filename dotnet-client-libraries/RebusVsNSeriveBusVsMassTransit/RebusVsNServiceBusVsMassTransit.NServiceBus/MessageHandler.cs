@@ -2,11 +2,11 @@
 
 namespace RebusVsNServiceBusVsMassTransit.NServiceBus;
 
-public class MessageHandler : IHandleMessages<ProcessPayment>
+public class MessageHandler : IHandleMessages<Message>
 {
-    public Task Handle(ProcessPayment message, IMessageHandlerContext context)
+    public Task Handle(Message message, IMessageHandlerContext context)
     {
-        Console.WriteLine($"NServiceBus received message for TransactionId: {message.TransactionId}"); 
+        Console.WriteLine($"MessageId: {message.MessageId}, Content: {message.Content}");
         
         return Task.CompletedTask;
     }

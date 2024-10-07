@@ -3,19 +3,14 @@ using RebusVsNServiceBusVsMassTransit.Domain;
 
 namespace RebusVsNServiceBusVsMassTransit.MassTransit;
 
-public interface IMessageSender
-{
-    Task SendMessageAsync();
-}
-
 public class MessageSender(IBus bus) : IMessageSender
 {
     public async Task SendMessageAsync()
     {
-        var message = new ProcessPayment()
+        var message = new Message
         {
-            TransactionId = Guid.NewGuid().ToString(),
-            CreditCardNumber = "4242 4242 4242 4242"
+            MessageId = Guid.NewGuid().ToString(),
+            Content = "Message send using MassTransit"
         }; 
         
         await bus.Publish(message);

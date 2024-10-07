@@ -3,11 +3,11 @@ using RebusVsNServiceBusVsMassTransit.Domain;
 
 namespace RebusVsNServiceBusVsMassTransit.Rebus;
 
-public class MessageHandler : IHandleMessages<ProcessPayment>
+public class MessageHandler : IHandleMessages<Message>
 {
-    public Task Handle(ProcessPayment message)
+    public Task Handle(Message message)
     {
-        Console.WriteLine($"Rebus received message for TransactionId: {message.TransactionId}"); 
+        Console.WriteLine($"MessageId: {message.MessageId}, Content: {message.Content}"); 
         
         return Task.CompletedTask;
     }
