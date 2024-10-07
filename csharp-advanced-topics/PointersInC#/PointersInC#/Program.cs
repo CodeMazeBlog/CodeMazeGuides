@@ -8,7 +8,7 @@ unsafe
     int* p = &num;
     Console.WriteLine($"Original variable value: {num}");
     Console.WriteLine($"Pointer points to value: {*p}");
-    Console.WriteLine($"Pointer address: {(long)p}");
+    Console.WriteLine($"Pointer address: {(ulong)p:X}");
 
     Console.WriteLine("\nValue swapping example.");
     var char1 = 'A';
