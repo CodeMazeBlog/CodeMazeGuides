@@ -1,7 +1,7 @@
 ﻿using MassTransit;
-using RebusVsNServiceBusVsMassTransit.Domain;
+using MessagingComparisons.Domain;
 
-namespace RebusVsNServiceBusVsMassTransit.MassTransit;
+namespace MessagingComparisons.MassTransit;
 
 public class MessageHandler : IConsumer<Message>
 {

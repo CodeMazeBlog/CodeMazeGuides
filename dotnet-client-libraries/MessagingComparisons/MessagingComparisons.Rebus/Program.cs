@@ -1,5 +1,8 @@
-using RebusVsNServiceBusVsMassTransit.Domain;
-using RebusVsNServiceBusVsMassTransit.NServiceBus;
+using Rebus.Config;
+using Rebus.Routing.TypeBased;
+using Rebus.Transport.InMem;
+using MessagingComparisons.Domain;
+using MessagingComparisons.Rebus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,16 +11,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IMessageSender, MessageSender>();
 
-builder.Host.UseNServiceBus(context =>
-{
-    var endpointConfiguration = new EndpointConfiguration("HandlerEndpoint");
-    var transport = endpointConfiguration.UseTransport<LearningTransport>();
-    var serialization = endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-    var routing = transport.Routing();
-    routing.RouteToEndpoint(typeof(Message), "HandlerEndpoint");
-
-    return endpointConfiguration;
-});
+builder.Services.AddRebus(configure => configure
+    .Transport(t => t.UseInMemoryTransport(new InMemNetwork(true), "MyQueue"))
+    .Routing(r => r.TypeBased().MapAssemblyOf<Message>("MyQueue")));
+builder.Services.AutoRegisterHandlersFromAssemblyOf<Program>();
 
 var app = builder.Build();
 

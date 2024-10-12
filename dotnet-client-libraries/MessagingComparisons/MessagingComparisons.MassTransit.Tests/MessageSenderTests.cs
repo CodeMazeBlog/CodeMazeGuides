@@ -1,8 +1,8 @@
 using MassTransit;
 using NSubstitute;
-using RebusVsNServiceBusVsMassTransit.Domain;
+using MessagingComparisons.Domain;
 
-namespace RebusVsNServiceBusVsMassTransit.MassTransit.Tests;
+namespace MessagingComparisons.MassTransit.Tests;
 
 public class MessageSenderTests
 {

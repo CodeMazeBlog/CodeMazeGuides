@@ -1,6 +1,6 @@
-﻿using RebusVsNServiceBusVsMassTransit.Domain;
+﻿using MessagingComparisons.Domain;
 
-namespace RebusVsNServiceBusVsMassTransit.NServiceBus;
+namespace MessagingComparisons.NServiceBus;
 
 public class MessageHandler : IHandleMessages<Message>
 {

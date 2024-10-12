@@ -1,4 +1,4 @@
-﻿namespace RebusVsNServiceBusVsMassTransit.Rebus;
+﻿namespace MessagingComparisons.Rebus;
 
 public interface IMessageSender
 {

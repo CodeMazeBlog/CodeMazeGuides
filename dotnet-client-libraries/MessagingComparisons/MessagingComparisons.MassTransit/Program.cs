@@ -1,5 +1,5 @@
 using MassTransit;
-using RebusVsNServiceBusVsMassTransit.MassTransit;
+using MessagingComparisons.MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 

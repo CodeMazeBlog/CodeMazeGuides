@@ -1,7 +1,7 @@
-﻿using Rebus.Bus;
-using RebusVsNServiceBusVsMassTransit.Domain;
+﻿using MassTransit;
+using MessagingComparisons.Domain;
 
-namespace RebusVsNServiceBusVsMassTransit.Rebus;
+namespace MessagingComparisons.MassTransit;
 
 public class MessageSender(IBus bus) : IMessageSender
 {
@@ -10,9 +10,9 @@ public class MessageSender(IBus bus) : IMessageSender
         var message = new Message
         {
             MessageId = Guid.NewGuid().ToString(),
-            Content = "Message send using Rebus"
+            Content = "Message send using MassTransit"
         }; 
         
-        await bus.Send(message);
+        await bus.Publish(message);
     }
 }

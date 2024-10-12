@@ -1,7 +1,7 @@
 using NSubstitute;
-using RebusVsNServiceBusVsMassTransit.Domain;
+using MessagingComparisons.Domain;
 
-namespace RebusVsNServiceBusVsMassTransit.NServiceBus.Tests;
+namespace MessagingComparisons.NServiceBus.Tests;
 
 public class MessageSenderTests
 {
