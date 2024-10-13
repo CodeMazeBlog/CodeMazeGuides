@@ -1,19 +1,15 @@
 using BlogsAPI;
 using Carter;
 
-public partial class Program
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddCarter(configurator: c =>
 {
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
-        builder.Services.AddCarter(configurator: c =>
-        {
-            c.WithResponseNegotiator<XmlNegotiator>();
-        });
+    c.WithResponseNegotiator<XmlNegotiator>();
+});
 
-        var app = builder.Build();
-        app.MapCarter();
-        app.UseHttpsRedirection();
-        app.Run();
-    }
-}
+var app = builder.Build();
+app.MapCarter();
+app.UseHttpsRedirection();
+app.Run();
+
+public partial class Program { }

@@ -1,6 +1,5 @@
 ﻿using Carter;
 using Carter.Response;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 public class BlogModule : ICarterModule
 {
