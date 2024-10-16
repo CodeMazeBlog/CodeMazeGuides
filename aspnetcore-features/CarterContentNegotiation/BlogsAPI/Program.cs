@@ -10,6 +10,7 @@ builder.Services.AddCarter(configurator: c =>
 var app = builder.Build();
 app.MapCarter();
 app.UseHttpsRedirection();
+
 app.Run();
 
 public partial class Program { }
