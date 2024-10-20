@@ -14,9 +14,9 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<WorkItem> WorkItems { get; init; }
 
-    public DbSet<WorkItemAutoVersion> WorkItemsWithAutoVersioning { get; init; }
+    public DbSet<WorkItemWithRowVersion> WorkItemsWithRowVersion { get; init; }
 
-    public DbSet<WorkItemManualVersion> WorkItemsWithManualVersioning { get; init; }
+    public DbSet<WorkItemWithConcurrencyToken> WorkItemsWithConcurrencyToken { get; init; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -34,8 +34,8 @@ public class ApplicationDbContext : DbContext
             });
 
 
-        modelBuilder.Entity<WorkItemAutoVersion>()
-            .HasData(new WorkItemAutoVersion
+        modelBuilder.Entity<WorkItemWithRowVersion>()
+            .HasData(new WorkItemWithRowVersion
             {
                 Id = 2,
                 Title = "Optimistic vs Pessimistic locking",
@@ -45,8 +45,8 @@ public class ApplicationDbContext : DbContext
                 AssignedTo = null
             });
 
-        modelBuilder.Entity<WorkItemManualVersion>()
-             .HasData(new WorkItemManualVersion
+        modelBuilder.Entity<WorkItemWithConcurrencyToken>()
+             .HasData(new WorkItemWithConcurrencyToken
              {
                  Id = 3,
                  Title = "Optimistic vs Pessimistic locking",

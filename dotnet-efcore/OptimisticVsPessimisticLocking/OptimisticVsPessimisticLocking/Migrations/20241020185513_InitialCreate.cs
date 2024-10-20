@@ -29,25 +29,7 @@ namespace OptimisticVsPessimisticLocking.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WorkItemsWithAutoVersioning",
-                columns: table => new
-                {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AssignedTo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WorkItemsWithAutoVersioning", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WorkItemsWithManualVersioning",
+                name: "WorkItemsWithConcurrencyToken",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -61,23 +43,41 @@ namespace OptimisticVsPessimisticLocking.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WorkItemsWithManualVersioning", x => x.Id);
+                    table.PrimaryKey("PK_WorkItemsWithConcurrencyToken", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WorkItemsWithRowVersion",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AssignedTo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkItemsWithRowVersion", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
                 table: "WorkItems",
                 columns: new[] { "Id", "AssignedTo", "Description", "DueDate", "Status", "Title" },
-                values: new object[] { 1L, null, "Write an article about optimistic and pessimistic database locking", new DateTime(2024, 10, 25, 21, 40, 16, 677, DateTimeKind.Local).AddTicks(1592), "Open", "Optimistic vs Pessimistic locking" });
+                values: new object[] { 1L, null, "Write an article about optimistic and pessimistic database locking", new DateTime(2024, 10, 25, 21, 55, 13, 332, DateTimeKind.Local).AddTicks(7509), "Open", "Optimistic vs Pessimistic locking" });
 
             migrationBuilder.InsertData(
-                table: "WorkItemsWithAutoVersioning",
-                columns: new[] { "Id", "AssignedTo", "Description", "DueDate", "Status", "Title" },
-                values: new object[] { 2L, null, "Write an article about optimistic and pessimistic database locking", new DateTime(2024, 10, 25, 21, 40, 16, 677, DateTimeKind.Local).AddTicks(1749), "Open", "Optimistic vs Pessimistic locking" });
-
-            migrationBuilder.InsertData(
-                table: "WorkItemsWithManualVersioning",
+                table: "WorkItemsWithConcurrencyToken",
                 columns: new[] { "Id", "AssignedTo", "Description", "DueDate", "Status", "Title", "Version" },
-                values: new object[] { 3L, null, "Write an article about optimistic and pessimistic database locking", new DateTime(2024, 10, 25, 21, 40, 16, 677, DateTimeKind.Local).AddTicks(1767), "Open", "Optimistic vs Pessimistic locking", 0L });
+                values: new object[] { 3L, null, "Write an article about optimistic and pessimistic database locking", new DateTime(2024, 10, 25, 21, 55, 13, 332, DateTimeKind.Local).AddTicks(7725), "Open", "Optimistic vs Pessimistic locking", 0L });
+
+            migrationBuilder.InsertData(
+                table: "WorkItemsWithRowVersion",
+                columns: new[] { "Id", "AssignedTo", "Description", "DueDate", "Status", "Title" },
+                values: new object[] { 2L, null, "Write an article about optimistic and pessimistic database locking", new DateTime(2024, 10, 25, 21, 55, 13, 332, DateTimeKind.Local).AddTicks(7699), "Open", "Optimistic vs Pessimistic locking" });
         }
 
         /// <inheritdoc />
@@ -87,10 +87,10 @@ namespace OptimisticVsPessimisticLocking.Migrations
                 name: "WorkItems");
 
             migrationBuilder.DropTable(
-                name: "WorkItemsWithAutoVersioning");
+                name: "WorkItemsWithConcurrencyToken");
 
             migrationBuilder.DropTable(
-                name: "WorkItemsWithManualVersioning");
+                name: "WorkItemsWithRowVersion");
         }
     }
 }

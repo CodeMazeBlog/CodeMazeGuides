@@ -55,7 +55,7 @@ public class WorkItemControllerUnitTests
         var assignWorkItemRequest = new AssignWorkItemRequest(SeededWorkItemWithAutomaticVersioningId, "Jane Doe", false);
 
         // Act
-        var response = await _client.PostAsJsonAsync("/workItem/assign-auto-optimistic", assignWorkItemRequest);
+        var response = await _client.PostAsJsonAsync("/workItem/assign-optimistic-row-version", assignWorkItemRequest);
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -68,7 +68,7 @@ public class WorkItemControllerUnitTests
         var assignWorkItemRequest = new AssignWorkItemRequest(SeededWorkItemWithAutomaticVersioningId, "Jane Doe", true);
 
         // Act
-        var response = await _client.PostAsJsonAsync("/workItem/assign-auto-optimistic", assignWorkItemRequest);
+        var response = await _client.PostAsJsonAsync("/workItem/assign-optimistic-row-version", assignWorkItemRequest);
 
         // Assert 
         Assert.Equal(HttpStatusCode.Conflict, response.StatusCode);
@@ -81,7 +81,7 @@ public class WorkItemControllerUnitTests
         var assignWorkItemRequest = new AssignWorkItemRequest(NonExistingWorkitemId, "Jane Doe", false);
 
         // Act
-        var response = await _client.PostAsJsonAsync("/workItem/assign-auto-optimistic", assignWorkItemRequest);
+        var response = await _client.PostAsJsonAsync("/workItem/assign-optimistic-row-version", assignWorkItemRequest);
 
         // Assert
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
@@ -95,7 +95,7 @@ public class WorkItemControllerUnitTests
         var assignWorkItemRequest = new AssignWorkItemRequest(SeededWorkItemWithManualVersioningId, "Jane Doe", false);
 
         // Act
-        var response = await _client.PostAsJsonAsync("/workItem/assign-manual-optimistic", assignWorkItemRequest);
+        var response = await _client.PostAsJsonAsync("/workItem/assign-manual-optimistic-concurrency-token", assignWorkItemRequest);
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -108,7 +108,7 @@ public class WorkItemControllerUnitTests
         var assignWorkItemRequest = new AssignWorkItemRequest(SeededWorkItemWithManualVersioningId, "Jane Doe", true);
 
         // Act
-        var response = await _client.PostAsJsonAsync("/workItem/assign-manual-optimistic", assignWorkItemRequest);
+        var response = await _client.PostAsJsonAsync("/workItem/assign-manual-optimistic-concurrency-token", assignWorkItemRequest);
 
         // Assert 
         Assert.Equal(HttpStatusCode.Conflict, response.StatusCode);
@@ -121,7 +121,7 @@ public class WorkItemControllerUnitTests
         var assignWorkItemRequest = new AssignWorkItemRequest(NonExistingWorkitemId, "Jane Doe", false);
 
         // Act
-        var response = await _client.PostAsJsonAsync("/workItem/assign-manual-optimistic", assignWorkItemRequest);
+        var response = await _client.PostAsJsonAsync("/workItem/assign-manual-optimistic-concurrency-token", assignWorkItemRequest);
 
         // Assert
         Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);

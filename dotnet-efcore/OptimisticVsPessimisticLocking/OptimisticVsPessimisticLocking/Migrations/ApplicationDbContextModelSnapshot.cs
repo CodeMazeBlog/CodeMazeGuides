@@ -54,13 +54,56 @@ namespace OptimisticVsPessimisticLocking.Migrations
                         {
                             Id = 1L,
                             Description = "Write an article about optimistic and pessimistic database locking",
-                            DueDate = new DateTime(2024, 10, 25, 21, 40, 16, 677, DateTimeKind.Local).AddTicks(1592),
+                            DueDate = new DateTime(2024, 10, 25, 21, 55, 13, 332, DateTimeKind.Local).AddTicks(7509),
                             Status = "Open",
                             Title = "Optimistic vs Pessimistic locking"
                         });
                 });
 
-            modelBuilder.Entity("OptimisticVsPessimisticLocking.Entities.WorkItemAutoVersion", b =>
+            modelBuilder.Entity("OptimisticVsPessimisticLocking.Entities.WorkItemWithConcurrencyToken", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("AssignedTo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("Version")
+                        .IsConcurrencyToken()
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WorkItemsWithConcurrencyToken");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3L,
+                            Description = "Write an article about optimistic and pessimistic database locking",
+                            DueDate = new DateTime(2024, 10, 25, 21, 55, 13, 332, DateTimeKind.Local).AddTicks(7725),
+                            Status = "Open",
+                            Title = "Optimistic vs Pessimistic locking",
+                            Version = 0L
+                        });
+                });
+
+            modelBuilder.Entity("OptimisticVsPessimisticLocking.Entities.WorkItemWithRowVersion", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,59 +133,16 @@ namespace OptimisticVsPessimisticLocking.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WorkItemsWithAutoVersioning");
+                    b.ToTable("WorkItemsWithRowVersion");
 
                     b.HasData(
                         new
                         {
                             Id = 2L,
                             Description = "Write an article about optimistic and pessimistic database locking",
-                            DueDate = new DateTime(2024, 10, 25, 21, 40, 16, 677, DateTimeKind.Local).AddTicks(1749),
+                            DueDate = new DateTime(2024, 10, 25, 21, 55, 13, 332, DateTimeKind.Local).AddTicks(7699),
                             Status = "Open",
                             Title = "Optimistic vs Pessimistic locking"
-                        });
-                });
-
-            modelBuilder.Entity("OptimisticVsPessimisticLocking.Entities.WorkItemManualVersion", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("AssignedTo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("Version")
-                        .IsConcurrencyToken()
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WorkItemsWithManualVersioning");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 3L,
-                            Description = "Write an article about optimistic and pessimistic database locking",
-                            DueDate = new DateTime(2024, 10, 25, 21, 40, 16, 677, DateTimeKind.Local).AddTicks(1767),
-                            Status = "Open",
-                            Title = "Optimistic vs Pessimistic locking",
-                            Version = 0L
                         });
                 });
 #pragma warning restore 612, 618

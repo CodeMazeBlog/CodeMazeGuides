@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-public class WorkItemManualVersion
+public class WorkItemWithConcurrencyToken
 {
     public long Id { get; set; }
 

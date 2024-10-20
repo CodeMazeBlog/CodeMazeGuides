@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-public class WorkItemAutoVersion
+public class WorkItemWithRowVersion
 {
     public long Id { get; set; }
 
