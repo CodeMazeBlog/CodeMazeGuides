@@ -5,7 +5,7 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptimisticVsPessimisticLocking", "OptimisticVsPessimisticLocking\OptimisticVsPessimisticLocking.csproj", "{E79620EF-DBD2-4D5A-B664-81ADF82D00D1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptimisticVsPessimisticLocking.IntegrationTests", "Tests\OptimisticVsPessimisticLocking.IntegrationTests\OptimisticVsPessimisticLocking.IntegrationTests.csproj", "{2595F705-805E-42BD-8F94-7880777A2C70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OptimisticVsPessimisticLocking.LiveTests", "Tests\OptimisticVsPessimisticLocking.LiveTests\OptimisticVsPessimisticLocking.LiveTests.csproj", "{7F55C548-9909-4421-9032-591D4ACF113A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{E79620EF-DBD2-4D5A-B664-81ADF82D00D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E79620EF-DBD2-4D5A-B664-81ADF82D00D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E79620EF-DBD2-4D5A-B664-81ADF82D00D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2595F705-805E-42BD-8F94-7880777A2C70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2595F705-805E-42BD-8F94-7880777A2C70}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2595F705-805E-42BD-8F94-7880777A2C70}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2595F705-805E-42BD-8F94-7880777A2C70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F55C548-9909-4421-9032-591D4ACF113A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F55C548-9909-4421-9032-591D4ACF113A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F55C548-9909-4421-9032-591D4ACF113A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F55C548-9909-4421-9032-591D4ACF113A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="OptimisticVsPessimisticLocking.IntegrationTests" />
+		<InternalsVisibleTo Include="OptimisticVsPessimisticLocking.LiveTests" />
 	</ItemGroup>
 
 	<ItemGroup>
