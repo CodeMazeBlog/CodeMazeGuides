@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
 using System.Net.Http.Json;
 
-public class WorkItemControllerUnitTests
+public class WorkItemControllerLiveTests
 {
     private const int SeededWorkItemId = 1;
     private const int SeededWorkItemWithAutomaticVersioningId = 2;
