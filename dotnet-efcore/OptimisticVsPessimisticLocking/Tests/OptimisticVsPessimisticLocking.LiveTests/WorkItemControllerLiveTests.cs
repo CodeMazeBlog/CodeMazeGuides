@@ -13,7 +13,7 @@ public class WorkItemControllerLiveTests
 
     private readonly HttpClient _client;
 
-    public WorkItemControllerUnitTests()
+    public WorkItemControllerLiveTests()
     {
         var factory = new WebApplicationFactory<Program>();
 
