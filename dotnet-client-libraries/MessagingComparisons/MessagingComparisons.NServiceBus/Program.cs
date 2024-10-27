@@ -1,6 +1,8 @@
+using System.Security.Cryptography;
 using MessagingComparisons.Domain;
 using MessagingComparisons.Domain.Interfaces;
 using MessagingComparisons.NServiceBus;
+using NServiceBus.Encryption.MessageProperty;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +41,14 @@ builder.Host.UseNServiceBus(context =>
         return RecoverabilityAction.MoveToError("ErrorQueue");
     });
     endpointConfiguration.SendFailedMessagesTo("ErrorQueue");
+    var encryptionService = new AesEncryptionService(
+        encryptionKeyIdentifier: "2024-10", 
+        key: Convert.FromBase64String("mK8nD2pL9qR5vX7hJ4tF3wA6cE1bN0yZ")); 
+    endpointConfiguration.EnableMessagePropertyEncryption(
+        encryptionService: encryptionService,
+        encryptedPropertyConvention: propertyInfo => 
+            propertyInfo.Name.Equals(nameof(Message.Content))
+    );
 
     return endpointConfiguration;
 });
@@ -54,13 +64,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/payment", async (IMessageSender messageSender) =>
+app.MapPost("/send-message", async (IMessageSender messageSender) =>
     {
         await messageSender.SendMessageAsync();
         
         return Results.Ok();
     })
-    .WithName("Payment")
+    .WithName("Send Message")
     .WithOpenApi();
 
 app.Run();

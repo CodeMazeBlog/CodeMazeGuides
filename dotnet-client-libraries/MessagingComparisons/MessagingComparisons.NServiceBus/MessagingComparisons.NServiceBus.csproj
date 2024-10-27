@@ -9,6 +9,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" />
         <PackageReference Include="NServiceBus" Version="9.2.2" />
+        <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="5.0.0" />
         <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>

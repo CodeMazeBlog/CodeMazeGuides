@@ -1,4 +1,5 @@
 using MassTransit;
+using MassTransit.Serialization;
 using MessagingComparisons.Domain;
 using MessagingComparisons.Domain.Interfaces;
 using MessagingComparisons.MassTransit;
@@ -10,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IMessageHandler, MessageHandler>();
 builder.Services.AddScoped<IMessageBusStrategy, MassTransitStrategy>();
+builder.Services.AddScoped<ICustomMessageSender, MassTransitStrategy>();
 builder.Services.AddScoped<IMessageSender, MessageSender>(sp => 
     new MessageSender(
         sp.GetRequiredService<IMessageBusStrategy>(),
@@ -26,6 +28,7 @@ builder.Services.AddMassTransit(x =>
             e.ConfigureConsumer<MassTransitMessageHandler>(context);
             e.UseMessageRetry(r => r.Interval(3, TimeSpan.FromSeconds(2)));
         });
+        cfg.UseEncryption(Convert.FromBase64String("mK8nD2pL9qR5vX7hJ4tF3wA6cE1bN0yZ"));
     });
 });
 
@@ -40,13 +43,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/payment", async (IMessageSender messageSender) =>
+app.MapPost("/send-message", async (IMessageSender messageSender) =>
     {
         await messageSender.SendMessageAsync();
         
         return Results.Ok();
     })
-    .WithName("Payment")
+    .WithName("Send Message")
     .WithOpenApi();
 
 app.Run();

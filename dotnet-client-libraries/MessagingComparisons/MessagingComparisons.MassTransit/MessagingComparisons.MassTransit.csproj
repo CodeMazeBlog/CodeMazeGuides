@@ -7,7 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MassTransit" Version="8.2.5" />
+        <PackageReference Include="MassTransit" Version="8.3.0" />
+        <PackageReference Include="MassTransit.Newtonsoft" Version="8.3.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
