@@ -4,7 +4,7 @@ using MessagingComparisons.Domain;
 
 namespace MessagingComparisons.Rebus.Tests;
 
-public class MessageSenderTests
+public class RebusStrategyTests
 {
     [Test]
     public async Task GivenRebusMessageBus_WhenSendMessageAsync_ThenSendIsCalled()

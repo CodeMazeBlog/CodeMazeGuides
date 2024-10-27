@@ -1,4 +1,5 @@
 using MessagingComparisons.Domain;
+using MessagingComparisons.Domain.Interfaces;
 using MessagingComparisons.NServiceBus;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IMessageHandler, MessageHandler>();
 builder.Services.AddScoped<IMessageBusStrategy, NServiceBusStrategy>();
 builder.Services.AddScoped<IMessageSender, MessageSender>(sp => 
     new MessageSender(

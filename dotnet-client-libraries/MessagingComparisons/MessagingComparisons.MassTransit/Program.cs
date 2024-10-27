@@ -1,5 +1,6 @@
 using MassTransit;
 using MessagingComparisons.Domain;
+using MessagingComparisons.Domain.Interfaces;
 using MessagingComparisons.MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IMessageHandler, MessageHandler>();
 builder.Services.AddScoped<IMessageBusStrategy, MassTransitStrategy>();
 builder.Services.AddScoped<IMessageSender, MessageSender>(sp => 
     new MessageSender(
@@ -16,13 +18,13 @@ builder.Services.AddScoped<IMessageSender, MessageSender>(sp =>
 
 builder.Services.AddMassTransit(x =>
 {
-    x.AddConsumer<MessageHandler>(); 
+    x.AddConsumer<MassTransitMessageHandler>(); 
     x.UsingInMemory((context, cfg) =>
     {
         cfg.ReceiveEndpoint("MyQueue", e =>
         {
             e.UseMessageRetry(r => r.Interval(3, TimeSpan.FromSeconds(2)));
-            e.ConfigureConsumer<MessageHandler>(context);
+            e.ConfigureConsumer<MassTransitMessageHandler>(context);
         });
     });
 });

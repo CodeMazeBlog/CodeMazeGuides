@@ -1,4 +1,4 @@
-﻿namespace MessagingComparisons.Domain;
+﻿namespace MessagingComparisons.Domain.Interfaces;
 
 public interface IMessageBusStrategy
 {

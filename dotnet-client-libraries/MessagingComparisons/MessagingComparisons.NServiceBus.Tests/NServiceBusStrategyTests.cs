@@ -3,7 +3,7 @@ using MessagingComparisons.Domain;
 
 namespace MessagingComparisons.NServiceBus.Tests;
 
-public class MessageSenderTests
+public class NServiceBusStrategyTests
 {
     [Test]
     public async Task GivenNServiceBusMessageBus_WhenSendMessageAsync_ThenSendIsCalled()

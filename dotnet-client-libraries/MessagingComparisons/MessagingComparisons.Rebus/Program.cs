@@ -2,6 +2,7 @@ using Rebus.Config;
 using Rebus.Routing.TypeBased;
 using Rebus.Transport.InMem;
 using MessagingComparisons.Domain;
+using MessagingComparisons.Domain.Interfaces;
 using MessagingComparisons.Rebus;
 using Rebus.Retry.Simple;
 
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IMessageHandler, MessageHandler>();
 builder.Services.AddScoped<IMessageBusStrategy, RebusStrategy>();
 builder.Services.AddScoped<IMessageSender, MessageSender>(sp => 
     new MessageSender(

@@ -4,7 +4,7 @@ using MessagingComparisons.Domain;
 
 namespace MessagingComparisons.MassTransit.Tests;
 
-public class MessageSenderTests
+public class MassTransitStrategyTests
 {
     [Test]
     public async Task GivenMassTransitMessageBus_WhenSendMessageAsync_ThenPublishIsCalled()

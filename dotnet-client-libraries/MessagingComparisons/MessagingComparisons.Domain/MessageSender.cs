@@ -1,4 +1,6 @@
-﻿namespace MessagingComparisons.Domain;
+﻿using MessagingComparisons.Domain.Interfaces;
+
+namespace MessagingComparisons.Domain;
 
 public class MessageSender(IMessageBusStrategy messageBusStrategy, string providerName)
     : IMessageSender

@@ -1,4 +1,5 @@
 ﻿using MessagingComparisons.Domain;
+using MessagingComparisons.Domain.Interfaces;
 
 namespace MessagingComparisons.NServiceBus;
 

@@ -1,5 +1,6 @@
 ﻿using MassTransit;
 using MessagingComparisons.Domain;
+using MessagingComparisons.Domain.Interfaces;
 
 namespace MessagingComparisons.MassTransit;
 
