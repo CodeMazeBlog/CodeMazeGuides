@@ -3,17 +3,27 @@ using Rebus.Routing.TypeBased;
 using Rebus.Transport.InMem;
 using MessagingComparisons.Domain;
 using MessagingComparisons.Rebus;
+using Rebus.Retry.Simple;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IMessageSender, MessageSender>();
+builder.Services.AddScoped<IMessageBusStrategy, RebusStrategy>();
+builder.Services.AddScoped<IMessageSender, MessageSender>(sp => 
+    new MessageSender(
+        sp.GetRequiredService<IMessageBusStrategy>(),
+        "Rebus"
+    ));
 
 builder.Services.AddRebus(configure => configure
     .Transport(t => t.UseInMemoryTransport(new InMemNetwork(true), "MyQueue"))
-    .Routing(r => r.TypeBased().MapAssemblyOf<Message>("MyQueue")));
+    .Routing(r => r.TypeBased().MapAssemblyOf<Message>("MyQueue"))
+    .Options(o => o.RetryStrategy(
+        maxDeliveryAttempts: 5,
+        secondLevelRetriesEnabled: true,
+        errorQueueName: "ErrorQueue" )));
 builder.Services.AutoRegisterHandlersFromAssemblyOf<Program>();
 
 var app = builder.Build();

@@ -1,4 +1,4 @@
-﻿namespace MessagingComparisons.NServiceBus;
+﻿namespace MessagingComparisons.Domain;
 
 public interface IMessageSender
 {

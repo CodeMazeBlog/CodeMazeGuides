@@ -9,11 +9,16 @@ public class MessageSenderTests
     [Test]
     public async Task GivenMassTransitMessageBus_WhenSendMessageAsync_ThenPublishIsCalled()
     {
+        var message = new Message
+        {
+            MessageId = Guid.NewGuid().ToString(),
+            Content = "Message send using MassTransit"
+        };
         var bus = Substitute.For<IBus>();
-        var sut = new MessageSender(bus);
+        var sut = new MassTransitStrategy(bus);
         
-        await sut.SendMessageAsync();
+        await sut.SendMessageAsync(message);
 
-        await bus.Received(1).Publish(Arg.Any<Message>());
+        await bus.Received(1).Publish(message);
     }
 }
