@@ -23,8 +23,8 @@ builder.Services.AddMassTransit(x =>
     {
         cfg.ReceiveEndpoint("MyQueue", e =>
         {
-            e.UseMessageRetry(r => r.Interval(3, TimeSpan.FromSeconds(2)));
             e.ConfigureConsumer<MassTransitMessageHandler>(context);
+            e.UseMessageRetry(r => r.Interval(3, TimeSpan.FromSeconds(2)));
         });
     });
 });

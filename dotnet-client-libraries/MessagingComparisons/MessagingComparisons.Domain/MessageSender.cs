@@ -2,8 +2,7 @@
 
 namespace MessagingComparisons.Domain;
 
-public class MessageSender(IMessageBusStrategy messageBusStrategy, string providerName)
-    : IMessageSender
+public class MessageSender(IMessageBusStrategy messageBusStrategy, string providerName) : IMessageSender
 {
     public async Task SendMessageAsync()
     {

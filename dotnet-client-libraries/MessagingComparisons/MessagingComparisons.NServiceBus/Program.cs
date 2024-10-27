@@ -29,6 +29,15 @@ builder.Host.UseNServiceBus(context =>
         delayed.NumberOfRetries(2); 
         delayed.TimeIncrease(TimeSpan.FromSeconds(5));
     });
+    recoverability.CustomPolicy((config, context) =>
+    {
+        if (context.Exception is TimeoutException)
+        {
+            return RecoverabilityAction.ImmediateRetry();
+        }
+        
+        return RecoverabilityAction.MoveToError("ErrorQueue");
+    });
     endpointConfiguration.SendFailedMessagesTo("ErrorQueue");
 
     return endpointConfiguration;
