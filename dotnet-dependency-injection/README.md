@@ -13,3 +13,4 @@ This section contains the topics related to dependency injection mechanisms in .
 - [How to Inject a DbContext Instance Into an IHostedService](https://code-maze.com/efcore-inject-dbcontext-instance-into-ihostedservice/)
 - [How to Resolve IOptions Instance Inside Program Class in C#](https://code-maze.com/csharp-how-to-resolve-ioptions-instance-inside-program-class/)
 - [Dynamically Change the ServiceLifetime of a Registered Service in .NET](https://code-maze.com/dotnet-dynamically-change-the-servicelifetime-of-a-registered-service/)
+- [How to Get an Instance of IServiceProvider in .NET](https://code-maze.com/dotnet-get-an-instance-of-iserviceprovider/)
