@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using MessagingComparisons.Domain;
 using MessagingComparisons.Domain.Interfaces;
 using MessagingComparisons.NServiceBus;
@@ -20,17 +19,25 @@ builder.Services.AddScoped<IMessageSender, MessageSender>(sp =>
 builder.Host.UseNServiceBus(context =>
 {
     var endpointConfiguration = new EndpointConfiguration("HandlerEndpoint");
+
     var transport = endpointConfiguration.UseTransport<LearningTransport>();
     var serialization = endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
     var routing = transport.Routing();
     routing.RouteToEndpoint(typeof(Message), "HandlerEndpoint");
+
     var recoverability = endpointConfiguration.Recoverability();
-    recoverability.Immediate(immediate => immediate.NumberOfRetries(3));
+
+    recoverability.Immediate(immediate => 
+        immediate.NumberOfRetries(3)
+    );
+
     recoverability.Delayed(delayed =>
     {
         delayed.NumberOfRetries(2); 
         delayed.TimeIncrease(TimeSpan.FromSeconds(5));
     });
+
     recoverability.CustomPolicy((config, context) =>
     {
         if (context.Exception is TimeoutException)
@@ -40,10 +47,13 @@ builder.Host.UseNServiceBus(context =>
         
         return RecoverabilityAction.MoveToError("ErrorQueue");
     });
+
     endpointConfiguration.SendFailedMessagesTo("ErrorQueue");
+
     var encryptionService = new AesEncryptionService(
         encryptionKeyIdentifier: "2024-10", 
         key: Convert.FromBase64String("mK8nD2pL9qR5vX7hJ4tF3wA6cE1bN0yZ")); 
+
     endpointConfiguration.EnableMessagePropertyEncryption(
         encryptionService: encryptionService,
         encryptedPropertyConvention: propertyInfo => 

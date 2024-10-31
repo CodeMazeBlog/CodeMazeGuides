@@ -1,5 +1,4 @@
 using MassTransit;
-using MassTransit.Serialization;
 using MessagingComparisons.Domain;
 using MessagingComparisons.Domain.Interfaces;
 using MessagingComparisons.MassTransit;
