@@ -1,12 +1,12 @@
-using Rebus.Config;
-using Rebus.Routing.TypeBased;
-using Rebus.Transport.InMem;
 using MessagingComparisons.Domain;
 using MessagingComparisons.Domain.Configuration;
 using MessagingComparisons.Domain.Interfaces;
 using MessagingComparisons.Rebus;
+using Rebus.Config;
 using Rebus.Encryption;
 using Rebus.Retry.Simple;
+using Rebus.Routing.TypeBased;
+using Rebus.Transport.InMem;
 
 var builder = WebApplication.CreateBuilder(args);
 

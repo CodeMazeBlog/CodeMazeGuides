@@ -1,6 +1,6 @@
 using MassTransit;
-using NSubstitute;
 using MessagingComparisons.Domain;
+using NSubstitute;
 
 namespace MessagingComparisons.MassTransit.Tests;
 

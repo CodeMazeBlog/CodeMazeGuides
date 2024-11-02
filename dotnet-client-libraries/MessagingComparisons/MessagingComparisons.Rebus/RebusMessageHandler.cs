@@ -1,6 +1,6 @@
-﻿using Rebus.Handlers;
-using MessagingComparisons.Domain;
+﻿using MessagingComparisons.Domain;
 using MessagingComparisons.Domain.Interfaces;
+using Rebus.Handlers;
 
 namespace MessagingComparisons.Rebus;
 

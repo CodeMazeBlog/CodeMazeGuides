@@ -1,6 +1,6 @@
+using MessagingComparisons.Domain;
 using NSubstitute;
 using Rebus.Bus;
-using MessagingComparisons.Domain;
 
 namespace MessagingComparisons.Rebus.Tests;
 
