@@ -3,7 +3,7 @@ using MessagingComparisons.Domain;
 
 namespace MessagingComparisons.NServiceBus.Tests;
 
-public class NServiceBusStrategyTests
+public class NServiceBusMessageSenderTests
 {
     [Test]
     public async Task GivenNServiceBusMessageBus_WhenSendMessageAsync_ThenSendIsCalled()
@@ -14,7 +14,7 @@ public class NServiceBusStrategyTests
             Content = "Message send using NServiceBus"
         };
         var messageSession = Substitute.For<IMessageSession>();
-        var sut = new NServiceBusStrategy(messageSession);
+        var sut = new NServiceBusMessageSender(messageSession);
         
         await sut.SendMessageAsync(message);
 

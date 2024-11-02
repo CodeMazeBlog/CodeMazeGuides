@@ -4,8 +4,8 @@ using MessagingComparisons.Domain.Interfaces;
 
 namespace MessagingComparisons.MassTransit;
 
-public class MassTransitStrategy(IBus bus, ISendEndpointProvider sendEndpointProvider)
-    : IMessageBusStrategy, ICustomMessageSender
+public class MassTransitMessageSender(IBus bus, ISendEndpointProvider sendEndpointProvider)
+    : IMessageSender, ICustomMessageSender
 {
     public async Task SendMessageAsync(Message message) => await bus.Publish(message);
     

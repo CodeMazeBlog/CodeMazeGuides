@@ -4,7 +4,7 @@ using MessagingComparisons.Domain;
 
 namespace MessagingComparisons.MassTransit.Tests;
 
-public class MassTransitStrategyTests
+public class MassTransitMessageSenderTests
 {
     private IBus _bus;
     private ISendEndpoint _sendEndpoint;
@@ -29,7 +29,7 @@ public class MassTransitStrategyTests
     [Test]
     public async Task GivenMassTransitMessageBus_WhenSendMessageAsync_ThenPublishIsCalled()
     {
-        var sut = new MassTransitStrategy(_bus, _sendEndpointProvider);
+        var sut = new MassTransitMessageSender(_bus, _sendEndpointProvider);
         
         await sut.SendMessageAsync(_message);
 
@@ -39,7 +39,7 @@ public class MassTransitStrategyTests
     [Test]
     public async Task GivenMassTransitMessageBus_WhenSendMessageAsyncWithQueueName_ThenPublishIsCalled()
     {
-        var sut = new MassTransitStrategy(_bus, _sendEndpointProvider);
+        var sut = new MassTransitMessageSender(_bus, _sendEndpointProvider);
         
         await sut.SendMessageAsync(_message, "queue:TestQueue");
 

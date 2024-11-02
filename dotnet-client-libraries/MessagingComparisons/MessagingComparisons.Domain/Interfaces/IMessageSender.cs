@@ -2,5 +2,5 @@
 
 public interface IMessageSender
 {
-    Task SendMessageAsync();
+    Task SendMessageAsync(Message message);
 }

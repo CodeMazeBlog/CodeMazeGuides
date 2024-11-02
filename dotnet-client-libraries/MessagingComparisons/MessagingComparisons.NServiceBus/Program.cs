@@ -9,12 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IMessageHandler, MessageHandler>();
-builder.Services.AddScoped<IMessageBusStrategy, NServiceBusStrategy>();
-builder.Services.AddScoped<IMessageSender, MessageSender>(sp => 
-    new MessageSender(
-        sp.GetRequiredService<IMessageBusStrategy>(),
-        "NServiceBus"
-    ));
+builder.Services.AddScoped<IMessageSender, NServiceBusMessageSender>();
 
 builder.Host.UseNServiceBus(context =>
 {
@@ -74,9 +69,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/send-message", async (IMessageSender messageSender) =>
+app.MapPost("/send-message", async (IMessageSender messageSender, string content) =>
     {
-        await messageSender.SendMessageAsync();
+        var message = new Message
+        {
+            MessageId = Guid.NewGuid().ToString(),
+            Content = content
+        };
+
+        await messageSender.SendMessageAsync(message);
         
         return Results.Ok();
     })

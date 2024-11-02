@@ -4,7 +4,7 @@ using MessagingComparisons.Domain;
 
 namespace MessagingComparisons.Rebus.Tests;
 
-public class RebusStrategyTests
+public class RebusMessageSenderTests
 {
     [Test]
     public async Task GivenRebusMessageBus_WhenSendMessageAsync_ThenSendIsCalled()
@@ -15,7 +15,7 @@ public class RebusStrategyTests
             Content = "Message send using Rebus"
         };
         var bus = Substitute.For<IBus>();
-        var sut = new RebusStrategy(bus);
+        var sut = new RebusMessageSender(bus);
         
         await sut.SendMessageAsync(message);
 

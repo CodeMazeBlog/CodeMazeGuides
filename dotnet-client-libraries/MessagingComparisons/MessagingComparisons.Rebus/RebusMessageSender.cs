@@ -4,7 +4,7 @@ using MessagingComparisons.Domain.Interfaces;
 
 namespace MessagingComparisons.Rebus;
 
-public class RebusStrategy(IBus bus) : IMessageBusStrategy
+public class RebusMessageSender(IBus bus) : IMessageSender
 {
     public async Task SendMessageAsync(Message message) => await bus.Send(message);
 }
