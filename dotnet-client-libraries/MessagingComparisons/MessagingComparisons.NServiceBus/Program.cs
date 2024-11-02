@@ -1,4 +1,5 @@
 using MessagingComparisons.Domain;
+using MessagingComparisons.Domain.Configuration;
 using MessagingComparisons.Domain.Interfaces;
 using MessagingComparisons.NServiceBus;
 using NServiceBus.Encryption.MessageProperty;
@@ -10,6 +11,10 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IMessageHandler, MessageHandler>();
 builder.Services.AddScoped<IMessageSender, NServiceBusMessageSender>();
+
+var encryptionConfig = builder.Configuration.GetSection("Encryption").Get<EncryptionConfiguration>();
+var encryptionKeyId = encryptionConfig?.KeyId ?? "";
+var encryptionKey = encryptionConfig?.Key ?? "";
 
 builder.Host.UseNServiceBus(context =>
 {
@@ -46,8 +51,8 @@ builder.Host.UseNServiceBus(context =>
     endpointConfiguration.SendFailedMessagesTo("ErrorQueue");
 
     var encryptionService = new AesEncryptionService(
-        encryptionKeyIdentifier: "2024-10", 
-        key: Convert.FromBase64String("mK8nD2pL9qR5vX7hJ4tF3wA6cE1bN0yZ")); 
+        encryptionKeyIdentifier: encryptionKeyId,
+        key: Convert.FromBase64String(encryptionKey));
 
     endpointConfiguration.EnableMessagePropertyEncryption(
         encryptionService: encryptionService,
