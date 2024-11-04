@@ -49,3 +49,4 @@ This section contains articles about specific ASP.NET Core Web API features.
 - [How to Properly Set Connection Strings in ASP.NET Core](https://code-maze.com/aspnetcore-how-to-properly-set-connection-strings/)
 - [StringValues in ASP.NET Core](https://code-maze.com/aspnetcore-stringvalues/)
 - [How to Prevent Concurrent Execution of a Hangfire Job](https://code-maze.com/aspnetcore-prevent-concurrent-execution-of-a-hangfire-job/)
+- [Content Negotiation in an ASP.NET Core Minimal API Using Carter](https://code-maze.com/aspnetcore-content-negotiation-using-carter/)
