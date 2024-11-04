@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIsUsingSQLite", "APIsUsingSQLite.csproj", "{A884B7FD-3CF3-499E-A309-7293D49EEB19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIsUsingSQLite", "APIsUsingSQLite\APIsUsingSQLite.csproj", "{A884B7FD-3CF3-499E-A309-7293D49EEB19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\Tests\Tests.csproj", "{9230D7A4-0A44-45D9-A6DB-E7EEAC7D41A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{9230D7A4-0A44-45D9-A6DB-E7EEAC7D41A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
