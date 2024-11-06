@@ -7,11 +7,15 @@ using Microsoft.EntityFrameworkCore;
 public class WorkItemController(ILogger<WorkItemController> Logger, ApplicationDbContext DbContext) : ControllerBase
 {
     [HttpPost("/workItem/assign-pessimistic")]
-    public async Task<IActionResult> AssignWorkItemWithPessimisticLockAsync(AssignWorkItemRequest assignWorkItemRequest, CancellationToken cancellationToken)
+    public async Task<IActionResult> AssignWorkItemWithPessimisticLockAsync(
+        AssignWorkItemRequest assignWorkItemRequest, 
+        CancellationToken cancellationToken)
     {
-        using var transaction = await DbContext.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable, cancellationToken);
+        using var transaction = await DbContext.Database
+            .BeginTransactionAsync(System.Data.IsolationLevel.Serializable, cancellationToken);
 
-        var workItem = await DbContext.WorkItems.FirstOrDefaultAsync(x => x.Id == assignWorkItemRequest.Id, cancellationToken);
+        var workItem = await DbContext.WorkItems.
+            FirstOrDefaultAsync(x => x.Id == assignWorkItemRequest.Id, cancellationToken);
 
         if (workItem is null)
             return NotFound($"Work Item with Id {assignWorkItemRequest.Id} was not found!");
@@ -36,9 +40,12 @@ public class WorkItemController(ILogger<WorkItemController> Logger, ApplicationD
     }
 
     [HttpPost("/workItem/assign-optimistic-row-version")]
-    public async Task<IActionResult> AssignWorkItemWithAutomaticOptimicsticLockAsync(AssignWorkItemRequest assignWorkItemRequest, CancellationToken cancellationToken)
+    public async Task<IActionResult> AssignWorkItemWithAutomaticOptimicsticLockAsync(
+        AssignWorkItemRequest assignWorkItemRequest,
+        CancellationToken cancellationToken)
     {
-        var workItem = await DbContext.WorkItemsWithRowVersion.FirstOrDefaultAsync(x => x.Id == assignWorkItemRequest.Id, cancellationToken);
+        var workItem = await DbContext.WorkItemsWithRowVersion
+            .FirstOrDefaultAsync(x => x.Id == assignWorkItemRequest.Id, cancellationToken);
 
         if (workItem is null)
             return NotFound($"Work Item with Id {assignWorkItemRequest.Id} was not found!");
@@ -48,7 +55,9 @@ public class WorkItemController(ILogger<WorkItemController> Logger, ApplicationD
         if (assignWorkItemRequest.ForceConflict)
         {
             _ = await DbContext.Database.ExecuteSqlInterpolatedAsync(
-                $@"UPDATE dbo.WorkItemsWithRowVersion SET AssignedTo = 'John Stevens' WHERE Id = {assignWorkItemRequest.Id}", cancellationToken);
+                $@"UPDATE dbo.WorkItemsWithRowVersion
+                   SET AssignedTo = 'John Stevens'
+                   WHERE Id = {assignWorkItemRequest.Id}", cancellationToken);
         }
 
         try
@@ -66,9 +75,12 @@ public class WorkItemController(ILogger<WorkItemController> Logger, ApplicationD
     }
 
     [HttpPost("/workItem/assign-manual-optimistic-concurrency-token")]
-    public async Task<IActionResult> AssignWorkItemWithManualOptimicsticLockAsync(AssignWorkItemRequest assignWorkItemRequest, CancellationToken cancellationToken)
+    public async Task<IActionResult> AssignWorkItemWithManualOptimicsticLockAsync(
+        AssignWorkItemRequest assignWorkItemRequest,
+        CancellationToken cancellationToken)
     {
-        var workItem = await DbContext.WorkItemsWithConcurrencyToken.FirstOrDefaultAsync(x => x.Id == assignWorkItemRequest.Id, cancellationToken);
+        var workItem = await DbContext.WorkItemsWithConcurrencyToken
+            .FirstOrDefaultAsync(x => x.Id == assignWorkItemRequest.Id, cancellationToken);
 
         if (workItem is null)
             return NotFound($"Work Item with Id {assignWorkItemRequest.Id} was not found!");
