@@ -15,7 +15,7 @@ public class ProductsControllerTest
     {
         // Arrange
         var products = new Fixture().Build<Product>().CreateMany(1);
-        var productContextMock = new Mock<ApplicationDbContext>();
+        var productContextMock = CreateMockDbContext();
         productContextMock.Setup(x => x.Products)
             .ReturnsDbSet(products);
 
@@ -28,12 +28,14 @@ public class ProductsControllerTest
         Assert.Single(result);
     }
 
+
+
     [Fact]
     public void GivenProductsController_WhenGetProductByIdInvoked_ThenReturnProduct()
     {
         // Arrange
         var product = new Fixture().Build<Product>().Create();
-        var productContextMock = new Mock<ApplicationDbContext>();
+        var productContextMock = CreateMockDbContext();
         productContextMock.Setup(x => x.Products.Find(product.Id))
            .Returns(product);
 
@@ -51,7 +53,7 @@ public class ProductsControllerTest
     {
         // Arrange
         var product = new Fixture().Build<Product>().Create();
-        var productContextMock = new Mock<ApplicationDbContext>();
+        var productContextMock = CreateMockDbContext();
         var productDbSetMock = new Mock<DbSet<Product>>();
         productContextMock.Setup(x => x.Products)
             .Returns(productDbSetMock.Object);
@@ -70,7 +72,7 @@ public class ProductsControllerTest
     {
         // Arrange
         var product = new Fixture().Build<Product>().Create();
-        var productContextMock = new Mock<ApplicationDbContext>();
+        var productContextMock = CreateMockDbContext();
         var productDbSetMock = new Mock<DbSet<Product>>();
         productContextMock.Setup(x => x.Products)
             .Returns(productDbSetMock.Object);
@@ -84,5 +86,12 @@ public class ProductsControllerTest
         // Assert
         productDbSetMock.Verify(x => x.Remove(It.Is<Product>(y => y == product)), Times.Once);
         productContextMock.Verify(x => x.SaveChanges(), Times.Once);
+    }
+
+    private static Mock<ApplicationDbContext> CreateMockDbContext()
+    {
+        var options = new DbContextOptions<ApplicationDbContext>();
+        var productContextMock = new Mock<ApplicationDbContext>(options);
+        return productContextMock;
     }
 }
