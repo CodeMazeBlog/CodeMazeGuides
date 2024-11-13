@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 var services = new ServiceCollection();
 services.AddDbContext<SoftDeleteDbContext>(options =>
 {
-    options.UseSqlServer("Server=localhost,1433;Database=CodeMaze;User Id=sa;Password=Aa332667&;Trusted_Connection=False;Encrypt=False");
+    options.UseSqlServer("CONNECTION STRING");
 });
 
 var serviceProvider = services.BuildServiceProvider();
@@ -28,4 +28,4 @@ Console.WriteLine("Parent soft deleted");
 var childAfterParentDelete = await dbContext.Children
     .Include(c => c.Parent)
     .FirstOrDefaultAsync(c => c.Id == child.Id);
-Console.WriteLine($"Child queried from DB after parent is soft deleted: {childAfterParentDelete?.Id.ToString() ?? "null"}");
+Console.WriteLine($"Child queried after parent is soft deleted: {childAfterParentDelete?.Id.ToString() ?? "null"}");
