@@ -8,49 +8,18 @@ namespace APIsUsingSQLite.Controllers;
 [ApiController]
 public class ProductsController(ApplicationDbContext context) : ControllerBase
 {
-    private readonly ApplicationDbContext _context = context;
-
     [HttpGet]
     public ActionResult<IEnumerable<Product>> GetProducts()
     {
-        return _context.Products;
-    }
-
-    [HttpGet("{id}")]
-    public ActionResult<Product> GetProductById(int id)
-    {
-        var product = _context.Products.Find(id);
-
-        if (product == null)
-        {
-            return NotFound();
-        }
-
-        return product;
+        return context.Products;
     }
 
     [HttpPost]
     public ActionResult<Product> PostProduct(Product product)
     {
-        _context.Products.Add(product);
-        _context.SaveChanges();
+        context.Products.Add(product);
+        context.SaveChanges();
 
         return CreatedAtAction("GetProductById", new { id = product.Id }, product);
-    }
-
-    [HttpDelete]
-    public ActionResult<Product> DeleteProduct(int id)
-    {
-        var product = _context.Products.Find(id);
-
-        if (product == null)
-        {
-            return NotFound();
-        }
-
-        _context.Products.Remove(product);
-        _context.SaveChanges();
-
-        return product;
     }
 }

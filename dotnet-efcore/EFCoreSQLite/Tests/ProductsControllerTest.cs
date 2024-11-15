@@ -28,27 +28,7 @@ public class ProductsControllerTest
         Assert.Single(result);
     }
 
-
-
-    [Fact]
-    public void GivenProductsController_WhenGetProductByIdInvoked_ThenReturnProduct()
-    {
-        // Arrange
-        var product = new Fixture().Build<Product>().Create();
-        var productContextMock = CreateMockDbContext();
-        productContextMock.Setup(x => x.Products.Find(product.Id))
-           .Returns(product);
-
-        // Act
-        ProductsController controller = new(productContextMock.Object);
-        var productResult = controller.GetProductById(product.Id).Value;
-
-        // Assert
-        Assert.NotNull(productResult);
-        Assert.Equal(productResult.Id, product.Id);
-    }
-
-    [Fact]
+     [Fact]
     public void GivenProductsController_WhenPostProductInvoked_ThenProductAdded()
     {
         // Arrange
@@ -64,27 +44,6 @@ public class ProductsControllerTest
 
         // Assert
         productDbSetMock.Verify(x => x.Add(It.Is<Product>(y => y == product)), Times.Once);
-        productContextMock.Verify(x => x.SaveChanges(), Times.Once);
-    }
-
-    [Fact]
-    public void GivenProductsController_WhenDeleteProductInvoked_ThenProductRemoved()
-    {
-        // Arrange
-        var product = new Fixture().Build<Product>().Create();
-        var productContextMock = CreateMockDbContext();
-        var productDbSetMock = new Mock<DbSet<Product>>();
-        productContextMock.Setup(x => x.Products)
-            .Returns(productDbSetMock.Object);
-        productContextMock.Setup(x => x.Products.Find(product.Id))
-           .Returns(product);
-
-        // Act
-        ProductsController controller = new(productContextMock.Object);
-        var productResult = controller.DeleteProduct(product.Id).Value;
-
-        // Assert
-        productDbSetMock.Verify(x => x.Remove(It.Is<Product>(y => y == product)), Times.Once);
         productContextMock.Verify(x => x.SaveChanges(), Times.Once);
     }
 
