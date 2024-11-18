@@ -48,3 +48,4 @@ This section contains the topics considered intermediate level in C#.
 - [Embedded Resources in .NET](https://code-maze.com/dotnet-embedded-resources/)
 - [Local Functions vs Lambda Expressions in C#](https://code-maze.com/csharp-local-function-lambda-expressions/)
 - [How to Convert a Stream to a File in C#](https://code-maze.com/csharp-convert-a-stream-to-a-file/)
+- [Early Binding and Late Binding in C#](https://code-maze.com/csharp-binding/)
