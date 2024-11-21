@@ -6,8 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="NServiceBus.MessageInterfaces" Version="1.0.0" />
-    </ItemGroup>
-
 </Project>

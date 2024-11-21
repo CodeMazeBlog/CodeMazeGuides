@@ -23,6 +23,9 @@ builder.Host.UseNServiceBus(context =>
     var transport = endpointConfiguration.UseTransport<LearningTransport>();
     var serialization = endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
+    var conventions = endpointConfiguration.Conventions();
+    conventions.DefiningMessagesAs(type => type.Namespace == typeof(Message).Namespace);
+
     var routing = transport.Routing();
     routing.RouteToEndpoint(typeof(Message), "HandlerEndpoint");
 
