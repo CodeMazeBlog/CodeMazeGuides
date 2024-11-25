@@ -27,3 +27,4 @@ This section contains articles about Entity Framework Core.
 - [How to Show the Generated SQL Query in EF Core](https://code-maze.com/efcore-show-generated-sql-query/)
 - [Improve Entity Framework Core Performance with Complex Types](https://code-maze.com/efcore-improve-performance-with-complex-types/)
 - [Using EF Core Interceptors in .NET](https://code-maze.com/efcore-interceptors/)
+- [Optimistic Locking vs Pessimistic Locking in .NET](https://code-maze.com/dotnet-optimistic-locking-vs-pessimistic-locking/)
