@@ -31,4 +31,4 @@ var entityAfterDeleteWithDisabledQueryFilter = await dbContext.SoftDeleteEntitie
     .FirstOrDefaultAsync(e => e.Id == entity.Id);
 
 Console.WriteLine("Entity queried from DB after soft delete with disabled query filter: " +
-    $"{entityAfterDeleteWithDisabledQueryFilter?.Id.ToString() ?? "null"}");
+    entityAfterDeleteWithDisabledQueryFilter?.Id.ToString() ?? "null");
