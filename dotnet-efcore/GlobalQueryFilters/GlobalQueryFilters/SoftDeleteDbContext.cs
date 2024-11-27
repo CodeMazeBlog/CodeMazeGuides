@@ -4,7 +4,7 @@ namespace GlobalQueryFilters;
 
 public sealed class SoftDeleteDbContext(DbContextOptions<SoftDeleteDbContext> options) : DbContext(options)
 {
-    public DbSet<SoftDeleteEntity> SoftDeleteEntities { get; private set; }
+    public DbSet<SoftDeleteEntity> SoftDeleteEntities { get; private set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
