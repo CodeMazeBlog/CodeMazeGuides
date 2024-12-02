@@ -28,3 +28,4 @@ This section contains articles about Entity Framework Core.
 - [Improve Entity Framework Core Performance with Complex Types](https://code-maze.com/efcore-improve-performance-with-complex-types/)
 - [Using EF Core Interceptors in .NET](https://code-maze.com/efcore-interceptors/)
 - [Optimistic Locking vs Pessimistic Locking in .NET](https://code-maze.com/dotnet-optimistic-locking-vs-pessimistic-locking/)
+- -[How to Connect a SQLite Database to EF Core](https://code-maze.com/efcore-how-to-connect-a-sqlite-database/)
