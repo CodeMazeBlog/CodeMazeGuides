@@ -1,0 +1,18 @@
+﻿{
+  Id: Guid_1,
+  Make: Toyota,
+  Model: Camry,
+  Year: 2022,
+  Color: Blue,
+  Location: {
+    Street: 123 Main St,
+    City: Anytown,
+    State: CA,
+    Country: USA
+  },
+  Features: [
+    Sunroof,
+    4 Seats,
+    Navigation
+  ]
+}
