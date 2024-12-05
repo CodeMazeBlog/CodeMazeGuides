@@ -8,6 +8,7 @@ public class VerifyVehicleTests
     public Task WhenGetVehicleIsCalled_ThenReturnsTheCorrectObject()
     {
         var vehicle = VehicleFactory.GetVehicle();
+
         return Verify(vehicle);
     }
 }
