@@ -16,3 +16,4 @@ For additional C# Design Patterns articles, please check this page: https://code
 - [Template Method Design Pattern in C#](https://code-maze.com/csharp-template-method-design-pattern/)
 - [Mediator Design Pattern in C#](https://code-maze.com/csharp-mediator-design-pattern/)
 - [How to Use the REPR (Request-Endpoint-Response) Pattern in .NET](https://code-maze.com/aspnetcore-repr-request-endpoint-response-pattern/)
+- [Chain of Responsibility Design Pattern in C#](https://code-maze.com/csharp-chain-of-responsibility-design-pattern/)
