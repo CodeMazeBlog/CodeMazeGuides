@@ -22,15 +22,12 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
 
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.2" />
 	</ItemGroup>
 
 </Project>
