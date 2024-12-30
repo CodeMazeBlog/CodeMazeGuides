@@ -1,7 +1,7 @@
-﻿namespace TestForValidDbConnection.LiveTests;
-
-using Microsoft.AspNetCore.Mvc.Testing;
+﻿using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
+
+namespace TestForValidDbConnection.LiveTests;
 
 public class ConnectionStateLiveTests
 {
@@ -15,7 +15,7 @@ public class ConnectionStateLiveTests
     }
 
     [Fact]
-    public async Task GivenDatabaseIsAvailable_WhenRequestingConectivityStatus_ThenReturnOk()
+    public async Task GivenDatabaseIsAvailable_WhenRequestingConnectivityStatus_ThenReturnOk()
     {
         // Arrange
         var requestUri = "/can-connect";

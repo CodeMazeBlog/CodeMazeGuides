@@ -1,6 +1,6 @@
-﻿namespace TestForValidDbConnection;
+﻿using Microsoft.EntityFrameworkCore;
 
-using Microsoft.EntityFrameworkCore;
+namespace TestForValidDbConnection;
 
 public class ApplicationDbContext(DbContextOptions Options) : DbContext(Options)
 { 
