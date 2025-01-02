@@ -19,7 +19,6 @@ var container = new ContainerBuilder()
                 .WithEnvironment("SQLCMDPASSWORD", password)
                 .WithEnvironment("MSSQL_SA_PASSWORD", password)
                 .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(portNumber))
-                .WithReuse(true)
                 .Build();
 
 await container.StartAsync();
