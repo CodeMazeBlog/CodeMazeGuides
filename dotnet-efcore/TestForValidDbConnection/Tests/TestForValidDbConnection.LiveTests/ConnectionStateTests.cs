@@ -3,25 +3,17 @@ using System.Net;
 
 namespace TestForValidDbConnection.LiveTests;
 
-public class ConnectionStateLiveTests
+public class ConnectionStateLiveTests(WebApplicationFactory<Program> Factory) : IClassFixture<WebApplicationFactory<Program>>
 {
-    private readonly HttpClient _client;
-
-    public ConnectionStateLiveTests()
-    {
-        var factory = new WebApplicationFactory<Program>();
-
-        _client = factory.CreateClient();
-    }
-
     [Fact]
     public async Task GivenDatabaseIsAvailable_WhenRequestingConnectivityStatus_ThenReturnOk()
     {
         // Arrange
         var requestUri = "/can-connect";
+        var client = Factory.CreateClient();
 
         // Act
-        var response = await _client.GetAsync(requestUri);
+        var response = await client.GetAsync(requestUri);
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -32,9 +24,10 @@ public class ConnectionStateLiveTests
     {
         // Arrange
         var requestUri = "/health";
+        var client = Factory.CreateClient();
 
         // Act
-        var response = await _client.GetAsync(requestUri);
+        var response = await client.GetAsync(requestUri);
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);

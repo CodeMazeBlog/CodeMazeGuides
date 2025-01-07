@@ -57,3 +57,5 @@ app.MapGet("/can-connect", async (ApplicationDbContext applicationDbContext, Can
 });
 
 await app.RunAsync();
+
+public partial class Program { }
