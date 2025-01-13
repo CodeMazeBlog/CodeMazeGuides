@@ -30,3 +30,4 @@ This section contains the topics related to all kinds of testing in C#/.NET
 - [Architecture Tests in .NET with NetArchTest.Rules](https://code-maze.com/csharp-architecture-tests-with-netarchtest-rules/)
 - [How to Test gRPC Services in ASP.NET Core](https://code-maze.com/aspnetcore-test-grpc-services/)
 - [Load Testing ASP.NET Core Web API With JMeter](https://code-maze.com/aspnetcore-load-testing-web-api-with-jmeter/)
+- [How to Perform Snapshot Testing With Verify in C#](https://code-maze.com/csharp-snapshot-testing-with-verify/)
