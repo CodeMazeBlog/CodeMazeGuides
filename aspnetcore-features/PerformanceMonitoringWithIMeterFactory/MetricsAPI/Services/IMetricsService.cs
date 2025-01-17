@@ -1,4 +1,4 @@
-﻿namespace MetricsInAPI.Services;
+﻿namespace MetricsAPI.Services;
 
 public interface IMetricsService
 {

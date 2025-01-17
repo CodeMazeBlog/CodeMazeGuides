@@ -1,7 +1,7 @@
-﻿using MetricsInAPI.Services;
+﻿using MetricsAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MetricsInAPI.Controllers;
+namespace MetricsAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

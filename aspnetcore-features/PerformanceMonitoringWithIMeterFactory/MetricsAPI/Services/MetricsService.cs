@@ -1,11 +1,9 @@
 ﻿using System.Diagnostics.Metrics;
 
-namespace MetricsInAPI.Services;
+namespace MetricsAPI.Services;
 
 public class MetricsService : IMetricsService
 {
-    private readonly Meter meter;
-
     private readonly Counter<int> userClicks;
     private readonly Histogram<double> responseTime;
 
@@ -17,7 +15,7 @@ public class MetricsService : IMetricsService
 
     public MetricsService(IMeterFactory meterFactory)
     {
-        meter = meterFactory.Create("Metrics.Service");
+        Meter meter = meterFactory.Create("Metrics.Service");
 
         userClicks = meter.CreateCounter<int>("metrics.service.user_clicks");
 
@@ -25,14 +23,14 @@ public class MetricsService : IMetricsService
             unit: "Seconds",
             description: "This metric measures the time taken for the application to respond to user requests.");
 
-        meter.CreateObservableCounter<int>("metrics.service.requests", () => requests);
+        meter.CreateObservableCounter("metrics.service.requests", () => requests);
 
-        meter.CreateObservableGauge<double>(name: "metrics.service.memory_consumption",
+        meter.CreateObservableGauge(name: "metrics.service.memory_consumption",
             () => memoryConsumption,
             unit: "Megabytes",
             description: "This metric measures the amount of memory used by the application.");
 
-        meter.CreateObservableGauge<int>(name: "metricsservice.resource_consumption",
+        meter.CreateObservableGauge(name: "metricsservice.resource_consumption",
             () => GetResourceConsumption());
     }
 

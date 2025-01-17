@@ -1,4 +1,4 @@
-using MetricsInAPI.Services;
+using MetricsAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();

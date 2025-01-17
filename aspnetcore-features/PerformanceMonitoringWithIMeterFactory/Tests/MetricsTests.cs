@@ -1,7 +1,7 @@
-using MetricsInAPI.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.Metrics;
 using Microsoft.Extensions.Diagnostics.Metrics.Testing;
+using MetricsAPI.Services;
 
 namespace Tests;
 
