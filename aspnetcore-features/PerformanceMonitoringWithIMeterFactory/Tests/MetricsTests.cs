@@ -11,7 +11,7 @@ public class MetricsTests
     public void GivenMetricsConfigured_WhenUserClickRecorded_ThenCounterCaptured()
     {
         // Arrange
-        var services = CreateServiceProvider();
+        using var services = CreateServiceProvider();
         var metrics = services.GetRequiredService<MetricsService>();
         var meterFactory = services.GetRequiredService<IMeterFactory>();
         var collector = new MetricCollector<int>(meterFactory, "Metrics.Service", "metrics.service.user_clicks");
@@ -29,7 +29,7 @@ public class MetricsTests
     public void GivenMetricsConfigured_WhenRequestRecorded_ThenObservableCounterCaptured()
     {
         // Arrange
-        var services = CreateServiceProvider();
+        using var services = CreateServiceProvider();
         var metrics = services.GetRequiredService<MetricsService>();
         var meterFactory = services.GetRequiredService<IMeterFactory>();
         var collector = new MetricCollector<int>(meterFactory, "Metrics.Service", "metrics.service.requests");
@@ -44,11 +44,12 @@ public class MetricsTests
         Assert.Equal(1, measurements[0].Value);
     }
 
-    private static IServiceProvider CreateServiceProvider()
+    private static ServiceProvider CreateServiceProvider()
     {
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddMetrics();
         serviceCollection.AddSingleton<MetricsService>();
+
         return serviceCollection.BuildServiceProvider();
     }
 }

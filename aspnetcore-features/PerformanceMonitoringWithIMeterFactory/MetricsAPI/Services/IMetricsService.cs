@@ -7,5 +7,5 @@ public interface IMetricsService
     void RecordRequest();
     void RecordMemoryConsumption(double value);
     void RecordUserClickDetailed(string region, string feature);
-    void RecordResourceUsage(int currentCpuUsage, int currentMemoryUsage, int currentThreadCount);
+    void RecordResourceUsage(double currentCpuUsage, double currentMemoryUsage, double currentThreadCount);
 }

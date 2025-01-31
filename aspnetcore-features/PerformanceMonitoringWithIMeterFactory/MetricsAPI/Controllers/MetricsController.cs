@@ -1,5 +1,6 @@
 ﻿using MetricsAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace MetricsAPI.Controllers;
 
@@ -10,7 +11,7 @@ public class MetricsController(IMetricsService metricsService) : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        Random random = new();
+        var random = Random.Shared;
 
         metricsService.RecordUserClick();
 
@@ -21,11 +22,14 @@ public class MetricsController(IMetricsService metricsService) : ControllerBase
 
         metricsService.RecordRequest();
 
-        metricsService.RecordMemoryConsumption(random.NextDouble() * 1000);
+        metricsService.RecordMemoryConsumption(GC.GetAllocatedBytesForCurrentThread() / (1024 * 1024));
 
         metricsService.RecordUserClickDetailed("US", "checkout");
 
-        metricsService.RecordResourceUsage(random.Next(1, 100), random.Next(16, 2048), random.Next(1, 16));
+        metricsService.RecordResourceUsage(
+            Utilities.GetCpuUsagePercentage(),
+            GC.GetTotalAllocatedBytes() / (1024 * 1024),
+            Process.GetCurrentProcess().Threads.Count);
 
         return Ok();
     }
