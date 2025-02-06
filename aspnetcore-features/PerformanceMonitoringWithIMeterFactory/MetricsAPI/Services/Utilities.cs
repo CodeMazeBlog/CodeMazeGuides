@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 
-namespace MetricsAPI.Services
-{
+namespace MetricsAPI.Services;
+
 public static class Utilities
 {
     public static double GetCpuUsagePercentage()
@@ -23,5 +23,4 @@ public static class Utilities
 
         return cpuUsage;
     }
-}
 }

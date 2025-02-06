@@ -15,7 +15,7 @@ public class MetricsService : IMetricsService
 
     public MetricsService(IMeterFactory meterFactory)
     {
-        Meter meter = meterFactory.Create("Metrics.Service");
+        var meter = meterFactory.Create("Metrics.Service");
 
         _userClicks = meter.CreateCounter<int>("metrics.service.user_clicks");
 
@@ -25,13 +25,13 @@ public class MetricsService : IMetricsService
 
         meter.CreateObservableCounter("metrics.service.requests", () => _requests);
 
-        meter.CreateObservableGauge<double>(name: "metrics.service.memory_consumption",
+        meter.CreateObservableGauge(name: "metrics.service.memory_consumption",
             () => _memoryConsumption,
             unit: "Megabytes",
             description: "This metric measures the amount of memory used by the application.");
 
         meter.CreateObservableGauge(name: "metrics.service.resource_consumption",
-            () => GetResourceConsumption());
+            GetResourceConsumption);
     }
     public void RecordUserClick()
     {
