@@ -5,7 +5,6 @@ using Microsoft.Extensions.Caching.Hybrid;
 
 var builder = WebApplication.CreateBuilder(args);
 
-#pragma warning disable EXTEXP0018 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 builder.Services.AddHybridCache(options =>
 {
     options.MaximumPayloadBytes = 1024 * 10 * 10;
@@ -20,7 +19,6 @@ builder.Services.AddHybridCache(options =>
     options.ReportTagMetrics = true;
     options.DisableCompression = true;
 });
-#pragma warning restore EXTEXP0018 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
 builder.Services.AddScoped<ICmCourseService, CmCourseService>();
 

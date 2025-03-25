@@ -24,15 +24,16 @@ public class CmCourseService(HybridCache cache) : ICmCourseService
             Name = "Blazer",
             Category = "Frontend"
         },
-    ];
+        ];
 
     public async Task<CmCourse?> GetCourseAsync(int id, CancellationToken cancellationToken = default)
     {
-        return await cache.GetOrCreateAsync($"course-{id}", async token =>
+        return await cache.GetOrCreateAsync(
+            $"course-{id}",
+            async token =>
             {
                 await Task.Delay(1000, token);
                 var course = courseList.FirstOrDefault(course => course.Id == id);
-                
                 return course;
             },
             options: new HybridCacheEntryOptions
