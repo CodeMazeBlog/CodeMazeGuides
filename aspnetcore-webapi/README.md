@@ -1,6 +1,6 @@
 ## ASP.NET Core Web API
 
-This section contains articles about ASP.NET Core Web API-related topics .
+This section contains articles about ASP.NET Core Web API-related topics.
 
 ### Relevant articles:
 
