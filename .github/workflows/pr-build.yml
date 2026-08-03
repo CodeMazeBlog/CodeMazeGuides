@@ -123,3 +123,28 @@ jobs:
           dotnet build "$sln" --configuration Release
           echo "Testing $sln (no-op for folders with no test project)"
           dotnet test "$sln" --configuration Release --no-build
+
+  # Stable, folder-independent name for branch protection to require -- the
+  # build-and-test job's displayed name varies with the matrix (one leg per
+  # changed folder), so it can't be set as a required check directly. This
+  # job always runs (even if earlier jobs are skipped) and only fails when a
+  # needed job actually failed or was cancelled; an empty build matrix (a PR
+  # touching no buildable folders) is a skip, not a failure, and passes here.
+  ci-result:
+    name: CI result
+    needs: [detect-changes, build-and-test]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check required jobs
+        shell: bash
+        run: |
+          detect="${{ needs.detect-changes.result }}"
+          build="${{ needs.build-and-test.result }}"
+          echo "detect-changes: $detect"
+          echo "build-and-test: $build"
+          if [ "$detect" = "failure" ] || [ "$detect" = "cancelled" ] || [ "$build" = "failure" ] || [ "$build" = "cancelled" ]; then
+            echo "A required job failed or was cancelled."
+            exit 1
+          fi
+          echo "All required jobs passed (or were skipped)."
