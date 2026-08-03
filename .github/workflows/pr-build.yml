@@ -1,0 +1,125 @@
+# Advisory only. This check is never marked as a required status check, and main
+# has no branch protection rule referencing it. It builds and tests exactly the
+# article folder(s) a PR touches -- nothing else. Folders in .github/ci-skip-folders.txt
+# are filtered out before the matrix is built, so they never show up as a run,
+# passing or failing (edit that file, not this one, to change what's excluded).
+name: PR Build
+
+on:
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same PR when new commits land.
+concurrency:
+  group: pr-build-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  detect-changes:
+    name: Detect changed article folders
+    runs-on: ubuntu-latest
+    outputs:
+      folders: ${{ steps.compute.outputs.folders }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compute changed, buildable folders
+        id: compute
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          SKIP_FILE=".github/ci-skip-folders.txt"
+
+          # Skip list: strip comments and blank lines.
+          mapfile -t skip_list < <(
+            sed 's/\r$//' "$SKIP_FILE" | grep -vE '^\s*#' | grep -vE '^\s*$'
+          )
+
+          is_skipped() {
+            local f="$1"
+            for s in "${skip_list[@]:-}"; do
+              [ "$f" = "$s" ] && return 0
+            done
+            return 1
+          }
+
+          # Reduce every changed path to its "<category>/<article>" prefix.
+          # Every article folder in this repo is exactly two levels deep.
+          mapfile -t folders < <(
+            git diff --name-only "$BASE_SHA" "$HEAD_SHA" \
+              | awk -F/ 'NF>=2 {print $1"/"$2}' \
+              | sort -u
+          )
+
+          entries="[]"
+          for f in "${folders[@]:-}"; do
+            [ -z "$f" ] && continue
+
+            if is_skipped "$f"; then
+              echo "::notice::Skipping '$f' -- listed in $SKIP_FILE."
+              continue
+            fi
+
+            # Folder may have been deleted in this PR -- skip if no .sln remains at HEAD.
+            if ! compgen -G "$f"/*.sln > /dev/null 2>&1; then
+              echo "::notice::Skipping '$f' -- no .sln at HEAD (deleted or restructured)."
+              continue
+            fi
+
+            entries=$(jq -c --arg folder "$f" '. + [{folder: $folder}]' <<<"$entries")
+          done
+
+          echo "folders=$entries" >> "$GITHUB_OUTPUT"
+          echo "Changed, buildable folders:"
+          echo "$entries" | jq .
+
+  build-and-test:
+    name: Build & test (${{ matrix.folder }})
+    needs: detect-changes
+    if: needs.detect-changes.outputs.folders != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.detect-changes.outputs.folders) }}
+    steps:
+      - name: Checkout (sparse)
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            ${{ matrix.folder }}
+          sparse-checkout-cone-mode: true
+
+      - name: Setup .NET SDKs
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            6.0.x
+            7.0.x
+            8.0.x
+            9.0.x
+            10.0.x
+
+      - name: Build and test
+        working-directory: ${{ matrix.folder }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          sln=$(find . -maxdepth 1 -iname "*.sln" | head -n1)
+          if [ -z "$sln" ]; then
+            echo "::notice::No .sln found in ${{ matrix.folder }} -- skipping."
+            exit 0
+          fi
+          echo "Building $sln"
+          dotnet build "$sln" --configuration Release
+          echo "Testing $sln (no-op for folders with no test project)"
+          dotnet test "$sln" --configuration Release --no-build
