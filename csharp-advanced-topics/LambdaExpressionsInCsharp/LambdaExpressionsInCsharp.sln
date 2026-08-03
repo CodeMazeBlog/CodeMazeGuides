@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32519.111
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaExpressionsInCsharp", "LambdaExpressionsInCsharp\LambdaExpressionsInCsharp.csproj", "{0F6E48B7-CE4E-4EAC-9D8A-BE1D1D4F40B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{FDF71795-1DCA-4918-BDF4-64C7ED952405}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F6E48B7-CE4E-4EAC-9D8A-BE1D1D4F40B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F6E48B7-CE4E-4EAC-9D8A-BE1D1D4F40B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F6E48B7-CE4E-4EAC-9D8A-BE1D1D4F40B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F6E48B7-CE4E-4EAC-9D8A-BE1D1D4F40B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDF71795-1DCA-4918-BDF4-64C7ED952405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDF71795-1DCA-4918-BDF4-64C7ED952405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDF71795-1DCA-4918-BDF4-64C7ED952405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDF71795-1DCA-4918-BDF4-64C7ED952405}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B949486-58C8-43DD-A430-1992BE89F49A}
+	EndGlobalSection
+EndGlobal

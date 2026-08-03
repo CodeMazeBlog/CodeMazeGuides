@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToUseFakeLogger", "HowToUseFakeLogger\HowToUseFakeLogger.csproj", "{77BA158D-18E4-44D7-8407-EE274E7D819A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeLoggerTests", "FakeLoggerTests\FakeLoggerTests.csproj", "{ECCD2B86-70E3-4A51-96BC-C91A74223C0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77BA158D-18E4-44D7-8407-EE274E7D819A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77BA158D-18E4-44D7-8407-EE274E7D819A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77BA158D-18E4-44D7-8407-EE274E7D819A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77BA158D-18E4-44D7-8407-EE274E7D819A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECCD2B86-70E3-4A51-96BC-C91A74223C0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECCD2B86-70E3-4A51-96BC-C91A74223C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECCD2B86-70E3-4A51-96BC-C91A74223C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECCD2B86-70E3-4A51-96BC-C91A74223C0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46518214-AF0C-4EB3-B236-F70427D93B78}
+	EndGlobalSection
+EndGlobal

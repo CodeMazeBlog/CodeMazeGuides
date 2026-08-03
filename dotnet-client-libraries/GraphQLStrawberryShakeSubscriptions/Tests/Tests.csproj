@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="coverlet.collector" Version="6.0.0" />
+	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.2" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.2" />
+	<PackageReference Include="Snapshooter.Xunit" Version="0.14.1" />
+	<PackageReference Include="xunit" Version="2.5.3" />
+	<PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+	<PackageReference Include="FluentAssertions" Version="6.12.0" />
+	<PackageReference Include="NSubstitute" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GraphQLStrawberryShakeSubs.Server\GraphQLStrawberryShakeSubs.Server.csproj" />
+    <ProjectReference Include="..\GraphQLStrawberryShakeSubs\GraphQLStrawberryShakeSubs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

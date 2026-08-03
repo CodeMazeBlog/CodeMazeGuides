@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCoreMocking", "EFCoreMocking\EFCoreMocking.csproj", "{65894413-9747-4A83-9881-766EDD231E7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests\Tests.csproj", "{8080B1A7-9484-4B62-B415-E27EECCDABED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{65894413-9747-4A83-9881-766EDD231E7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65894413-9747-4A83-9881-766EDD231E7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65894413-9747-4A83-9881-766EDD231E7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65894413-9747-4A83-9881-766EDD231E7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8080B1A7-9484-4B62-B415-E27EECCDABED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8080B1A7-9484-4B62-B415-E27EECCDABED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8080B1A7-9484-4B62-B415-E27EECCDABED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8080B1A7-9484-4B62-B415-E27EECCDABED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2307D50C-7A30-428E-91ED-6269BE5CCE95}
+	EndGlobalSection
+EndGlobal

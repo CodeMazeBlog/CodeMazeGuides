@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundServiceExecuteAsyncAndStartAsync", "BackgroundServiceExecuteAsyncAndStartAsync\BackgroundServiceExecuteAsyncAndStartAsync.csproj", "{C2F8455F-550A-4580-9051-1FBF3DBF6F48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{C1605844-6BC2-44F8-AC38-869293497EBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2F8455F-550A-4580-9051-1FBF3DBF6F48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F8455F-550A-4580-9051-1FBF3DBF6F48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F8455F-550A-4580-9051-1FBF3DBF6F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F8455F-550A-4580-9051-1FBF3DBF6F48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1605844-6BC2-44F8-AC38-869293497EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1605844-6BC2-44F8-AC38-869293497EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1605844-6BC2-44F8-AC38-869293497EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1605844-6BC2-44F8-AC38-869293497EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB4809BF-9BE1-45C0-ACC6-8937B6A78EEB}
+	EndGlobalSection
+EndGlobal

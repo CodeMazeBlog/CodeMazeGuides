@@ -1,0 +1,6 @@
+@ConcertsApplication_HostAddress = https://localhost:5299
+
+GET {{ConcertsApplication_HostAddress}}/concerts/
+Accept: application/json
+
+###

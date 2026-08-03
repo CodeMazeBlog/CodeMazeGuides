@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 1324px;
+}
+
+.form-container {        
+    margin-right: 20px;
+}
+
+.image-container {
+    flex: 1;
+    width: 824px;
+    display: flex;
+    flex-direction: column;
+}
+.generated-image {
+    width: 1024px;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+    .form-group label,
+    .form-group textarea,
+    .form-group select,
+    .form-group button {
+        display: block;
+        width: 100%; 
+        margin-bottom: 0.5rem; 
+    }
+
+    .form-group button {
+        cursor: pointer; 
+    }
+
+.placeholder {
+    width: 824px;
+    height: 100%;
+    display: flex;
+    text-align: center;
+    border: 1px dashed;
+    border-radius: 4px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+}
+

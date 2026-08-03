@@ -1,0 +1,10 @@
+﻿<p>Control key pressed: @controlKeyPressed</p>
+
+<button @onclick="OnClick">Click me</button>
+
+@code {
+
+	bool controlKeyPressed = false;
+
+	void OnClick(MouseEventArgs e) => controlKeyPressed = e.CtrlKey;
+}

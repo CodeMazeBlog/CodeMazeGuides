@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Log4NetImplementationCSharp", "Log4NetImplementationCSharp\Log4NetImplementationCSharp.csproj", "{30F5C67C-FC25-42CB-9858-07A76732FD06}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{9A34E77F-4766-49A7-8021-A323AA102CBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30F5C67C-FC25-42CB-9858-07A76732FD06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30F5C67C-FC25-42CB-9858-07A76732FD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30F5C67C-FC25-42CB-9858-07A76732FD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30F5C67C-FC25-42CB-9858-07A76732FD06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A34E77F-4766-49A7-8021-A323AA102CBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A34E77F-4766-49A7-8021-A323AA102CBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A34E77F-4766-49A7-8021-A323AA102CBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A34E77F-4766-49A7-8021-A323AA102CBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E0F7983-08CF-4182-8564-AF723494B101}
+	EndGlobalSection
+EndGlobal

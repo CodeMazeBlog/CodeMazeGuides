@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountNumberOfVowelsInString", "CountNumberOfVowelsInString\CountNumberOfVowelsInString.csproj", "{8EE99262-088E-4385-B8D9-C104AB5FBC83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountNumberOfVowelsInStringTests", "CountNumberOfVowelsInStringTests\CountNumberOfVowelsInStringTests.csproj", "{973797EC-242F-4E3C-AE32-FDC5804CD5A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EE99262-088E-4385-B8D9-C104AB5FBC83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EE99262-088E-4385-B8D9-C104AB5FBC83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EE99262-088E-4385-B8D9-C104AB5FBC83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EE99262-088E-4385-B8D9-C104AB5FBC83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{973797EC-242F-4E3C-AE32-FDC5804CD5A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{973797EC-242F-4E3C-AE32-FDC5804CD5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{973797EC-242F-4E3C-AE32-FDC5804CD5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{973797EC-242F-4E3C-AE32-FDC5804CD5A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {951EE2E7-F23F-4529-955E-180B040C7E69}
+	EndGlobalSection
+EndGlobal

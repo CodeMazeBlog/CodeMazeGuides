@@ -1,0 +1,6 @@
+@HttpClientCookies_HostAddress = http://localhost:5059
+
+GET {{HttpClientCookies_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

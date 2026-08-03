@@ -1,0 +1,9 @@
+﻿{{#if lines}}
+        public {{class}}()
+        {
+{{#each lines}}
+            {{property-name}} = new HashSet<{{property-type}}>();
+{{/each}}
+        }
+
+{{/if}}

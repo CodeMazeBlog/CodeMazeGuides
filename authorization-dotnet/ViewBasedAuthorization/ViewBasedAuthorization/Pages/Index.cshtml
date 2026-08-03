@@ -1,0 +1,47 @@
+﻿@page
+@model IndexModel
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container mt-5">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Welcome, @User.Identity.Name.ToString().Split('@')[0]!</p>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var document in Model.Documents)
+                {
+                    <tr>
+                        <td>@document.Title</td>
+                        <td>
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "EditDocument")).Succeeded)
+                            {
+                                <a class="btn btn-primary" href="/Edit?id=@document.Id">Edit</a>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a class="btn btn-danger" href="/Delete?id=@document.Id">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr/>
+        <p><a class="btn btn-success" href="/Add">Add New Document</a></p>
+    }
+    else
+    {
+        <p>Please <a href="/Account/Login">login</a> to view documents.</p>
+    }
+</div>

@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchVsIfElsePerformanceTests", "SwitchVsIfElsePerformanceTests\SwitchVsIfElsePerformanceTests.csproj", "{D2273F4D-2952-4C5E-B3A2-1CBBC777C7FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2273F4D-2952-4C5E-B3A2-1CBBC777C7FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2273F4D-2952-4C5E-B3A2-1CBBC777C7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2273F4D-2952-4C5E-B3A2-1CBBC777C7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2273F4D-2952-4C5E-B3A2-1CBBC777C7FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

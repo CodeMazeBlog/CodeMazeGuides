@@ -1,0 +1,10 @@
+h2{
+    font-size: 26px;
+}
+
+.box{
+    border: 1px grey solid;
+    border-radius: 5px;
+    margin:10px;
+    padding:10px;
+}

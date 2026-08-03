@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSentEventsForRealtimeUpdates.Test", "ServerSentEventsForRealtimeUpdates.Test\ServerSentEventsForRealtimeUpdates.Test.csproj", "{952D4800-658E-4184-BE93-B802EF5E5F91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSentEventsForRealtimeUpdates.Server", "ServerSentEventsForRealtimeUpdates.Server\ServerSentEventsForRealtimeUpdates.Server.csproj", "{27144789-AE30-438B-820C-CDB16EB0A86E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{952D4800-658E-4184-BE93-B802EF5E5F91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{952D4800-658E-4184-BE93-B802EF5E5F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{952D4800-658E-4184-BE93-B802EF5E5F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{952D4800-658E-4184-BE93-B802EF5E5F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27144789-AE30-438B-820C-CDB16EB0A86E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27144789-AE30-438B-820C-CDB16EB0A86E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27144789-AE30-438B-820C-CDB16EB0A86E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27144789-AE30-438B-820C-CDB16EB0A86E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

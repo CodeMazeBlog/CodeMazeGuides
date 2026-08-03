@@ -1,0 +1,29 @@
+@HybridCachingDotNet_HostAddress = http://localhost:5009
+
+GET {{HybridCachingDotNet_HostAddress}}/cm-courses/4
+Accept: application/json
+
+###
+
+POST {{HybridCachingDotNet_HostAddress}}/cm-courses
+Accept: application/json
+Content-Type: application/json
+
+{
+    "id": 4,
+    "name": "NewCourse",
+    "category": "NewCategory"
+}
+
+###
+
+DELETE {{HybridCachingDotNet_HostAddress}}/cm-courses/4
+Accept: application/json
+
+###
+
+
+DELETE {{HybridCachingDotNet_HostAddress}}/cm-courses/category/NewCategory
+Accept: application/json
+
+###

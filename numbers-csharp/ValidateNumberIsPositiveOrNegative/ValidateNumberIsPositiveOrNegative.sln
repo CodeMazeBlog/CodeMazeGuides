@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidateNumberIsPositiveOrNegative", "ValidateNumberIsPositiveOrNegative\ValidateNumberIsPositiveOrNegative.csproj", "{8AEB36F6-AA9E-46A2-9232-1364426C17E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidateNumberIsPositiveOrNegativeTests", "ValidateNumberIsPositiveOrNegativeTests\ValidateNumberIsPositiveOrNegativeTests.csproj", "{2369A31F-A256-4CB3-B701-9E03720EFC6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AEB36F6-AA9E-46A2-9232-1364426C17E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AEB36F6-AA9E-46A2-9232-1364426C17E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AEB36F6-AA9E-46A2-9232-1364426C17E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AEB36F6-AA9E-46A2-9232-1364426C17E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2369A31F-A256-4CB3-B701-9E03720EFC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2369A31F-A256-4CB3-B701-9E03720EFC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2369A31F-A256-4CB3-B701-9E03720EFC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2369A31F-A256-4CB3-B701-9E03720EFC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CE9B729-4471-4E37-9882-9D2D5C0697C8}
+	EndGlobalSection
+EndGlobal

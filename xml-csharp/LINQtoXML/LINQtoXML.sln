@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQtoXML", "LINQtoXML\LINQtoXML.csproj", "{FB9D1617-AC45-4CF9-B66B-FE3E53C0E992}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQtoXMLTests", "LINQtoXMLTests\LINQtoXMLTests.csproj", "{A9CEA17E-9827-4408-B992-26A5546BC969}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FB9D1617-AC45-4CF9-B66B-FE3E53C0E992} = {FB9D1617-AC45-4CF9-B66B-FE3E53C0E992}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB9D1617-AC45-4CF9-B66B-FE3E53C0E992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB9D1617-AC45-4CF9-B66B-FE3E53C0E992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB9D1617-AC45-4CF9-B66B-FE3E53C0E992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB9D1617-AC45-4CF9-B66B-FE3E53C0E992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9CEA17E-9827-4408-B992-26A5546BC969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9CEA17E-9827-4408-B992-26A5546BC969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9CEA17E-9827-4408-B992-26A5546BC969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9CEA17E-9827-4408-B992-26A5546BC969}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5355614A-7FEE-498D-88FD-773B9C8497EE}
+	EndGlobalSection
+EndGlobal

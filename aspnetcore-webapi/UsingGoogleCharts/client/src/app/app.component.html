@@ -1,0 +1,80 @@
+<div class="container">
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      The Most Spoken Languages in the World
+    </blockquote>
+  </figure>
+  <div class="row">
+    <div class="col-6">
+      <google-chart
+        title="Bar Chart"
+        [type]="barChart"
+        [data]="data"
+        [columns]="columnNames"
+        [width]="width"
+        [height]="height"
+      >
+      </google-chart>
+    </div>
+    <div class="col-6">
+      <google-chart
+        title="Column Chart"
+        [type]="columnChart"
+        [data]="data"
+        [columns]="columnNames"
+        [width]="width"
+        [height]="height"
+      >
+      </google-chart>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <google-chart
+        title="Donut Chart"
+        [type]="pieChart"
+        [data]="data"
+        [columns]="columnNames"
+        [width]="width"
+        [height]="height"
+        [options]="donutOptions"
+      >
+      </google-chart>
+    </div>
+    <div class="col-6">
+      <google-chart
+        title="Pie Chart"
+        [type]="pieChart"
+        [data]="data"
+        [columns]="columnNames"
+        [width]="width"
+        [height]="height"
+      >
+      </google-chart>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <google-chart
+        title="Line Chart"
+        [type]="lineChart"
+        [data]="data"
+        [columns]="columnNames"
+        [width]="width"
+        [height]="height"
+      >
+      </google-chart>
+    </div>
+    <div class="col-6">
+      <google-chart
+        title="Area Chart"
+        [type]="areaChart"
+        [data]="data"
+        [columns]="columnNames"
+        [width]="width"
+        [height]="height"
+      >
+      </google-chart>
+    </div>
+  </div>
+</div>

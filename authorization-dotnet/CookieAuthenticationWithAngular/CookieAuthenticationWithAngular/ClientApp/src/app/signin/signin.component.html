@@ -1,0 +1,30 @@
+<div class="d-flex flex-column align-items-center justify-content-center" *ngIf="!signedIn else signedInAlready">
+    <div>Please Sign In to continue</div>
+    <form class="form w-50" [formGroup]="loginForm" (submit)="signIn($event)">
+        <div class="row m-3">
+            <label for="name">Email*</label>
+            <input class="col form-field" name="email" formControlName="email" />
+        </div>
+        <div class="row m-3">
+            <label for="password">Password*</label>
+            <input class="col form-field" type="password" name="password" formControlName="password" autocomplete="on" />
+        </div>
+        <div class="row m-3" *ngIf="authFailed">
+            <label style="color: red">Invalid credentials</label>
+        </div>
+        <div class="row m-3">
+            <button class="col btn btn-primary" [disabled]="!loginForm.valid" type="submit">Sign In</button>
+        </div>
+    </form>
+    <div class="alert-info p-2">
+        Try user1@test.com / user1
+        or user2@test.com / user2
+    </div>
+</div>
+
+<ng-template #signedInAlready>
+    <h4>Sign In</h4>
+    <div>
+        You are already signed in!
+    </div>
+</ng-template>

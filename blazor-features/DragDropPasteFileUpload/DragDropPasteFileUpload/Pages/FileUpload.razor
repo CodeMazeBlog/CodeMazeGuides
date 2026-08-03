@@ -1,0 +1,82 @@
+﻿@page "/fileupload"
+
+@inject IJSRuntime JSRuntime;
+@implements IAsyncDisposable
+
+<h3>File Upload</h3>
+
+<div @ref="fileDropContainer" class="file-drop-zone @HoverClass" @ondragenter="OnDragEnter" @ondragleave="OnDragLeave" @ondragover="OnDragEnter">
+    <InputFile OnChange="@OnChange" @ref="inputFile" multiple />
+</div>
+<div class="error-message-container">
+    <p>@ErrorMessage</p>
+</div>
+<div class="image-container">
+    @foreach(var imageSource in imageSources)
+    {
+        <img src="@imageSource" />
+    }
+</div>
+
+@code {
+    ElementReference fileDropContainer;
+    InputFile inputFile;
+
+    IJSObjectReference _filePasteModule;
+    IJSObjectReference _filePasteFunctionReference;
+
+    private string HoverClass;
+    private List<string> imageSources = new();
+    private const int maxAllowedFiles = 2;
+    private string ErrorMessage;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _filePasteModule = await JSRuntime.InvokeAsync<IJSObjectReference>("import", "./js/filePaste.js");
+
+            _filePasteFunctionReference = await _filePasteModule.InvokeAsync<IJSObjectReference>("initializeFilePaste", fileDropContainer, inputFile.Element);
+        }
+    }
+
+    void OnDragEnter(DragEventArgs e) => HoverClass = "hover";
+
+    void OnDragLeave(DragEventArgs e) => HoverClass = string.Empty;
+
+    async Task OnChange(InputFileChangeEventArgs e)
+    {
+        imageSources.Clear();
+        ErrorMessage = string.Empty;
+
+        if (e.FileCount > maxAllowedFiles)
+        {
+            ErrorMessage = $"Only {maxAllowedFiles} files can be uploaded";
+            return;
+        }
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            using var stream = file.OpenReadStream();
+            using var ms = new MemoryStream();
+            await stream.CopyToAsync(ms);
+            imageSources.Add($"data:{file.ContentType};base64,{Convert.ToBase64String(ms.ToArray())}");
+        }
+
+        HoverClass = string.Empty;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_filePasteFunctionReference != null)
+        {
+            await _filePasteFunctionReference.InvokeVoidAsync("dispose");
+            await _filePasteFunctionReference.DisposeAsync();
+        }
+
+        if (_filePasteModule != null)
+        {
+            await _filePasteModule.DisposeAsync();
+        }
+    }
+}

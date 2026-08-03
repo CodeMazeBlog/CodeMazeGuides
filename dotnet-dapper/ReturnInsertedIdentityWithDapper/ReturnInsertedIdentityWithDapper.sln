@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReturnInsertedIdentityWithDapper", "ReturnInsertedIdentityWithDapper\ReturnInsertedIdentityWithDapper.csproj", "{83DA8C09-9B0A-41FF-91E1-4C8346F97B6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReturnInsertedIdentity.Tests", "ReturnInsertedIdentity.Tests\ReturnInsertedIdentity.Tests.csproj", "{BA040AB1-6A06-4B65-8AB6-BD981A4518D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83DA8C09-9B0A-41FF-91E1-4C8346F97B6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83DA8C09-9B0A-41FF-91E1-4C8346F97B6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83DA8C09-9B0A-41FF-91E1-4C8346F97B6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83DA8C09-9B0A-41FF-91E1-4C8346F97B6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA040AB1-6A06-4B65-8AB6-BD981A4518D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA040AB1-6A06-4B65-8AB6-BD981A4518D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA040AB1-6A06-4B65-8AB6-BD981A4518D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA040AB1-6A06-4B65-8AB6-BD981A4518D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4C93634-D461-45D3-BC13-7F001122215A}
+	EndGlobalSection
+EndGlobal

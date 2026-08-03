@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadOnlyModifierInCSharp", "ReadOnlyModifierInCSharp\ReadOnlyModifierInCSharp.csproj", "{F59E1C2D-0A64-4D45-850F-8E70C6AAAFC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadOnlyTests", "ReadOnlyTests\ReadOnlyTests.csproj", "{B02B029C-BB4A-4873-B0D4-29F25FEF3862}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F59E1C2D-0A64-4D45-850F-8E70C6AAAFC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F59E1C2D-0A64-4D45-850F-8E70C6AAAFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F59E1C2D-0A64-4D45-850F-8E70C6AAAFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F59E1C2D-0A64-4D45-850F-8E70C6AAAFC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B02B029C-BB4A-4873-B0D4-29F25FEF3862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B02B029C-BB4A-4873-B0D4-29F25FEF3862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B02B029C-BB4A-4873-B0D4-29F25FEF3862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B02B029C-BB4A-4873-B0D4-29F25FEF3862}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35751D9F-AE08-461B-8503-DB800EAADCD1}
+	EndGlobalSection
+EndGlobal

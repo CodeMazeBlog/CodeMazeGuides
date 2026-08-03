@@ -1,0 +1,28 @@
+@API_HostAddress = https://localhost:7287
+
+GET {{API_HostAddress}}/api/pizzas/
+Accept: application/json
+
+###
+
+POST {{API_HostAddress}}/api/pizzas/orders
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "phone": 123456,
+    "pizzas":
+    [
+        {
+            "name": "Meatlovers"
+        },
+        {
+            "name": "Mushroom"
+        },
+        {
+            "name": "Ham & Pineapple"
+        }
+    ]
+}
+
+###

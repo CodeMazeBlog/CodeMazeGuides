@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximizeBrowserWindowInSeleniumTests", "MaximizeBrowserWindowInSeleniumTests\MaximizeBrowserWindowInSeleniumTests.csproj", "{84FE8635-6384-4E38-BF12-471C8F6652AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84FE8635-6384-4E38-BF12-471C8F6652AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FE8635-6384-4E38-BF12-471C8F6652AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FE8635-6384-4E38-BF12-471C8F6652AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FE8635-6384-4E38-BF12-471C8F6652AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85204F44-E5D7-41DB-998D-49F09F60EF7A}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 80
+		$4.TabsToSpaces = True
+		$4.scope = text/plain
+		$0.StandardHeader = $5
+	EndGlobalSection
+EndGlobal

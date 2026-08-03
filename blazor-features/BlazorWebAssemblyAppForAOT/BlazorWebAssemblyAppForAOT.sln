@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAssemblyAppForAOT", "BlazorWebAssemblyAppForAOT\BlazorWebAssemblyAppForAOT.csproj", "{4773600D-9E10-49BA-AF9B-DA3E1D5B8CE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{7257F149-04DE-420C-AC9E-CD7E73E97BFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4773600D-9E10-49BA-AF9B-DA3E1D5B8CE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4773600D-9E10-49BA-AF9B-DA3E1D5B8CE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4773600D-9E10-49BA-AF9B-DA3E1D5B8CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4773600D-9E10-49BA-AF9B-DA3E1D5B8CE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7257F149-04DE-420C-AC9E-CD7E73E97BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7257F149-04DE-420C-AC9E-CD7E73E97BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7257F149-04DE-420C-AC9E-CD7E73E97BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7257F149-04DE-420C-AC9E-CD7E73E97BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9EC97EF-2186-436D-BE0D-BC379EAA022D}
+	EndGlobalSection
+EndGlobal

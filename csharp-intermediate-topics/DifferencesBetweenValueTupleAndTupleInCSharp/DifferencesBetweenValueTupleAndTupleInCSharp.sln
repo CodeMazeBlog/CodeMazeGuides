@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DifferencesBetweenValueTupleAndTupleInCSharp", "DifferencesBetweenValueTupleAndTupleInCSharp\DifferencesBetweenValueTupleAndTupleInCSharp.csproj", "{6244D79E-5BD0-4678-A1E8-CA352EFE3170}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{DC5BB670-AD95-4B90-BC92-984755A1A7CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6244D79E-5BD0-4678-A1E8-CA352EFE3170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6244D79E-5BD0-4678-A1E8-CA352EFE3170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6244D79E-5BD0-4678-A1E8-CA352EFE3170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6244D79E-5BD0-4678-A1E8-CA352EFE3170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC5BB670-AD95-4B90-BC92-984755A1A7CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC5BB670-AD95-4B90-BC92-984755A1A7CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC5BB670-AD95-4B90-BC92-984755A1A7CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC5BB670-AD95-4B90-BC92-984755A1A7CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ABAC4354-2752-481B-A76A-47477A3FE04D}
+	EndGlobalSection
+EndGlobal

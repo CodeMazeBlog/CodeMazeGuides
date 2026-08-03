@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeprecationInCsharp", "DeprecationInCsharp\DeprecationInCsharp.csproj", "{908EA2AE-A67A-4160-BB60-176365DE95C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{943758CD-ACAF-4962-BB3E-711230FF294F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{908EA2AE-A67A-4160-BB60-176365DE95C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{908EA2AE-A67A-4160-BB60-176365DE95C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{908EA2AE-A67A-4160-BB60-176365DE95C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{908EA2AE-A67A-4160-BB60-176365DE95C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{943758CD-ACAF-4962-BB3E-711230FF294F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{943758CD-ACAF-4962-BB3E-711230FF294F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{943758CD-ACAF-4962-BB3E-711230FF294F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{943758CD-ACAF-4962-BB3E-711230FF294F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

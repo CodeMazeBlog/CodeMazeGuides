@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertionSort", "InsertionSort\InsertionSort.csproj", "{639C6592-A264-4F46-9C2C-26FD872012EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsertionSortTests", "InsertionSortTests\InsertionSortTests.csproj", "{EF1071A1-ACB0-426B-91DC-9A88E7AA9AA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{639C6592-A264-4F46-9C2C-26FD872012EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{639C6592-A264-4F46-9C2C-26FD872012EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{639C6592-A264-4F46-9C2C-26FD872012EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{639C6592-A264-4F46-9C2C-26FD872012EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF1071A1-ACB0-426B-91DC-9A88E7AA9AA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF1071A1-ACB0-426B-91DC-9A88E7AA9AA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF1071A1-ACB0-426B-91DC-9A88E7AA9AA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF1071A1-ACB0-426B-91DC-9A88E7AA9AA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35E39DB4-281A-41DF-A097-C3A92DDECD45}
+	EndGlobalSection
+EndGlobal

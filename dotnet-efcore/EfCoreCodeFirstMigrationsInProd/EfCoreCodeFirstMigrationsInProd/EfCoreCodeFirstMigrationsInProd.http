@@ -1,0 +1,6 @@
+@EfCoreCodeFirstMigrationsInProd_HostAddress = http://localhost:5177
+
+GET {{EfCoreCodeFirstMigrationsInProd_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

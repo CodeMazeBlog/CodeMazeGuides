@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1705.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnChangeEventWithSelectDropdown", "OnChangeEventWithSelectDropdown\OnChangeEventWithSelectDropdown.csproj", "{82374C01-1E80-436F-A65A-0A004F8DF9C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnChangeEventWithSelectDropdownTests", "OnChangeEventWithSelectDropdownTests\OnChangeEventWithSelectDropdownTests.csproj", "{E84A7471-952E-459A-99F8-F57248BF9BFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82374C01-1E80-436F-A65A-0A004F8DF9C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82374C01-1E80-436F-A65A-0A004F8DF9C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82374C01-1E80-436F-A65A-0A004F8DF9C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82374C01-1E80-436F-A65A-0A004F8DF9C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E84A7471-952E-459A-99F8-F57248BF9BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E84A7471-952E-459A-99F8-F57248BF9BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E84A7471-952E-459A-99F8-F57248BF9BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E84A7471-952E-459A-99F8-F57248BF9BFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90469FB8-6336-4982-93F0-78466DC05E5E}
+	EndGlobalSection
+EndGlobal

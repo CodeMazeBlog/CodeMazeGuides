@@ -1,0 +1,68 @@
+﻿@page
+@model ImageGeneratorApp.Pages.IndexModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Image Generator</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label for="Prompt">Enter your prompt:</label>
+                    <textarea id="Prompt" name="Prompt" asp-for="Prompt" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="Size">Select image size:</label>
+                    <select id="Size" name="Size" asp-for="Size">
+                        <option value="1024x1024">1024x1024</option>
+                        <option value="1792x1024">1792x1024</option>
+                        <option value="1024x1792">1024x1792</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Style">Select style:</label>
+                    <select id="Style" name="Style" asp-for="Style">
+                        <option value="natural">Natural</option>
+                        <option value="vivid">Vivid</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="Quality">Select quality:</label>
+                    <select id="Quality" name="Quality" asp-for="Quality">
+                        <option value="standard">Standard</option>
+                        <option value="hd">HD</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">Generate Image</button>
+                </div>
+            </form>
+        </div>
+        <div class="image-container">
+            <h2>Generated Image</h2>
+            @if (Model.ImageUrl != null)
+            {
+                <img src="@Model.ImageUrl" alt="Generated Image" className="generated-image" />
+            }
+            else
+            {
+                <div class="placeholder">
+                    <label>@Model.Message</label>
+                </div>
+            }
+        </div>
+
+    </div>
+</body>
+</html>

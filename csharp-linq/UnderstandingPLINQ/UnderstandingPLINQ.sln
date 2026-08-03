@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnderstandingPLINQ", "UnderstandingPLINQ\UnderstandingPLINQ.csproj", "{270D5604-7733-4ACB-AE64-16DBBFA445D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B4050F65-2C58-46B1-A3C5-FF8CB562FD90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{270D5604-7733-4ACB-AE64-16DBBFA445D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{270D5604-7733-4ACB-AE64-16DBBFA445D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{270D5604-7733-4ACB-AE64-16DBBFA445D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{270D5604-7733-4ACB-AE64-16DBBFA445D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4050F65-2C58-46B1-A3C5-FF8CB562FD90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4050F65-2C58-46B1-A3C5-FF8CB562FD90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4050F65-2C58-46B1-A3C5-FF8CB562FD90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4050F65-2C58-46B1-A3C5-FF8CB562FD90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

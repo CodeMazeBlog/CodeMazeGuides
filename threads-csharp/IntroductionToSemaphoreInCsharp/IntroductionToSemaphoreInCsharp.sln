@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroductionToSemaphoreInCsharp", "IntroductionToSemaphoreInCsharp\IntroductionToSemaphoreInCsharp.csproj", "{42053CB8-52C7-4E39-ADCA-A2538C35B1A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{1E17C3D0-BAD2-4A3F-A822-432FA9B5AA8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42053CB8-52C7-4E39-ADCA-A2538C35B1A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42053CB8-52C7-4E39-ADCA-A2538C35B1A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42053CB8-52C7-4E39-ADCA-A2538C35B1A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42053CB8-52C7-4E39-ADCA-A2538C35B1A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E17C3D0-BAD2-4A3F-A822-432FA9B5AA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E17C3D0-BAD2-4A3F-A822-432FA9B5AA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E17C3D0-BAD2-4A3F-A822-432FA9B5AA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E17C3D0-BAD2-4A3F-A822-432FA9B5AA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21514034-5613-43AE-B58A-F42C6FA0867C}
+	EndGlobalSection
+EndGlobal

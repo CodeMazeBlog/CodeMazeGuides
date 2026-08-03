@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatchMultipleExceptions", "CatchMultipleExceptions\CatchMultipleExceptions.csproj", "{D8A4C8FF-D161-42FA-B348-6E4F2CC82226}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{1E76E898-34EC-4BF4-8365-345C45EE9B8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8A4C8FF-D161-42FA-B348-6E4F2CC82226}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8A4C8FF-D161-42FA-B348-6E4F2CC82226}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8A4C8FF-D161-42FA-B348-6E4F2CC82226}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8A4C8FF-D161-42FA-B348-6E4F2CC82226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E76E898-34EC-4BF4-8365-345C45EE9B8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E76E898-34EC-4BF4-8365-345C45EE9B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E76E898-34EC-4BF4-8365-345C45EE9B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E76E898-34EC-4BF4-8365-345C45EE9B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {268CBB97-1C03-4A55-AF6C-7FE24DB33737}
+	EndGlobalSection
+EndGlobal

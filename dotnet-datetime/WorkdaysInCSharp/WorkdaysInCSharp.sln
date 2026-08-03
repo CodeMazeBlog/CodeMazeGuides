@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkdaysInCSharp", "WorkdaysInCSharp\WorkdaysInCSharp.csproj", "{96867C57-B14D-4404-9D7C-6AB6BD779872}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkdaysInCSharpTests", "WorkdaysInCSharpTests\WorkdaysInCSharpTests.csproj", "{870C06E1-9A05-4422-94C1-9BBF3A2CB97A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96867C57-B14D-4404-9D7C-6AB6BD779872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96867C57-B14D-4404-9D7C-6AB6BD779872}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96867C57-B14D-4404-9D7C-6AB6BD779872}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96867C57-B14D-4404-9D7C-6AB6BD779872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{870C06E1-9A05-4422-94C1-9BBF3A2CB97A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{870C06E1-9A05-4422-94C1-9BBF3A2CB97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{870C06E1-9A05-4422-94C1-9BBF3A2CB97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{870C06E1-9A05-4422-94C1-9BBF3A2CB97A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F027E0B1-1DB6-4A68-BAF5-8B1640F8E2D8}
+	EndGlobalSection
+EndGlobal

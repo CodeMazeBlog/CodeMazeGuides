@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BitArray in CSharp", "BitArray in CSharp\BitArray in CSharp.csproj", "{E2492EB9-7C9D-4576-9955-7539D3CE6812}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{643ECB64-ADF1-4C8E-A45A-40559C852AD6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2492EB9-7C9D-4576-9955-7539D3CE6812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2492EB9-7C9D-4576-9955-7539D3CE6812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2492EB9-7C9D-4576-9955-7539D3CE6812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2492EB9-7C9D-4576-9955-7539D3CE6812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{643ECB64-ADF1-4C8E-A45A-40559C852AD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{643ECB64-ADF1-4C8E-A45A-40559C852AD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{643ECB64-ADF1-4C8E-A45A-40559C852AD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{643ECB64-ADF1-4C8E-A45A-40559C852AD6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85AEAB01-75D2-4F14-9011-1C38247CD77E}
+	EndGlobalSection
+EndGlobal

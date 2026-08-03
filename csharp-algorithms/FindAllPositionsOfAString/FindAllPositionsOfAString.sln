@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindAllPositionsOfAString", "FindAllPositionsOfAString\FindAllPositionsOfAString.csproj", "{E5FC21D6-6353-47C8-A3C4-46614D38E83D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{E6433A90-D2AA-432F-B0B3-9D18BD457892}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5FC21D6-6353-47C8-A3C4-46614D38E83D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5FC21D6-6353-47C8-A3C4-46614D38E83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5FC21D6-6353-47C8-A3C4-46614D38E83D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5FC21D6-6353-47C8-A3C4-46614D38E83D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6433A90-D2AA-432F-B0B3-9D18BD457892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6433A90-D2AA-432F-B0B3-9D18BD457892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6433A90-D2AA-432F-B0B3-9D18BD457892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6433A90-D2AA-432F-B0B3-9D18BD457892}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

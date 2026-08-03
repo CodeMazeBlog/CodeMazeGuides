@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+<ItemGroup>
+  <PackageReference Include="Newtonsoft.Json" />
+  <PackageReference Include="Serilog" VersionOverride="2.00.0" />
+</ItemGroup>
+
+</Project>

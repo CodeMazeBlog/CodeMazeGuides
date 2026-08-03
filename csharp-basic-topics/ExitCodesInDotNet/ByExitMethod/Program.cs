@@ -1,0 +1,1 @@
+﻿Environment.Exit(1);

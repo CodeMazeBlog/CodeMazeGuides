@@ -1,0 +1,54 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscriptions
+}
+
+type Query {
+  shippingContainers: [ShippingContainer!]!
+}
+
+type Mutation {
+  addAvaliableShippingContainer(input: AddShippingContainerInput!): AddShippingContainerPayload!
+  updateShippingContainer(input: UpdateShippingContainerInput!): UpdateShippingContainerPayload!
+}
+
+type Subscriptions {
+  onShippingContainerAdded: ShippingContainer!
+  onShippingContainerSpaceChanged: ShippingContainer!
+}
+
+type UpdateShippingContainerPayload {
+  shippingContainer: ShippingContainer!
+}
+
+input AddShippingContainerInput {
+  name: String!
+  length: Float!
+  width: Float!
+  height: Float!
+}
+
+type AddShippingContainerPayload {
+  shippingContainer: ShippingContainer!
+}
+
+type ShippingContainer {
+  id: String
+  name: String!
+  space: AvailableSpace
+}
+
+input UpdateShippingContainerInput {
+  name: String!
+  length: Float!
+  width: Float!
+  height: Float!
+}
+
+type AvailableSpace {
+  length: Float!
+  width: Float!
+  height: Float!
+  volume: Float!
+}

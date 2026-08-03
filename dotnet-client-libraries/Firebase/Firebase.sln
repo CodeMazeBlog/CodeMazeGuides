@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Firebase", "Firebase\Firebase.csproj", "{55EDB9CE-CF34-483C-8315-2CEC2DABA39C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{0B81C992-656A-4366-9ACB-016BE8DF88BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55EDB9CE-CF34-483C-8315-2CEC2DABA39C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55EDB9CE-CF34-483C-8315-2CEC2DABA39C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55EDB9CE-CF34-483C-8315-2CEC2DABA39C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55EDB9CE-CF34-483C-8315-2CEC2DABA39C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B81C992-656A-4366-9ACB-016BE8DF88BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B81C992-656A-4366-9ACB-016BE8DF88BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B81C992-656A-4366-9ACB-016BE8DF88BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B81C992-656A-4366-9ACB-016BE8DF88BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD87FC75-3A35-46DC-90A8-64984063A15F}
+	EndGlobalSection
+EndGlobal

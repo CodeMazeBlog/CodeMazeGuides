@@ -1,0 +1,22 @@
+[
+    {
+        "teacherId":1,
+        "firstName":"Clare",
+        "lastName":"Anyanwu",
+        "birthYear":1987,
+        "level":8,
+        "courses":
+        [
+            {
+                "name":"Biology",
+                "creditUnits":3,
+                "numberOfStudents":42
+            },
+            {
+                "name":"Basic Science",
+                "creditUnits":4,
+                "numberOfStudents":35
+            }
+        ]
+    }
+]

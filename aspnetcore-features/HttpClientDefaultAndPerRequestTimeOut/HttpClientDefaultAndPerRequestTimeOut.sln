@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpClientDefaultAndPerRequestTimeOut", "HttpClientDefaultAndPerRequestTimeOut\HttpClientDefaultAndPerRequestTimeOut.csproj", "{BF70B475-237E-49F9-865D-3E68C33D1BB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClientDefaultAndPerRequestTimeOut.Tests", "Tests\HttpClientDefaultAndPerRequestTimeOut.Tests\HttpClientDefaultAndPerRequestTimeOut.Tests.csproj", "{0E93A821-F795-481B-AFD8-34A398F59A01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF70B475-237E-49F9-865D-3E68C33D1BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF70B475-237E-49F9-865D-3E68C33D1BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF70B475-237E-49F9-865D-3E68C33D1BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF70B475-237E-49F9-865D-3E68C33D1BB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E93A821-F795-481B-AFD8-34A398F59A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E93A821-F795-481B-AFD8-34A398F59A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E93A821-F795-481B-AFD8-34A398F59A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E93A821-F795-481B-AFD8-34A398F59A01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {961CBD1A-99AB-46A8-8154-F10CB43F1380}
+	EndGlobalSection
+EndGlobal

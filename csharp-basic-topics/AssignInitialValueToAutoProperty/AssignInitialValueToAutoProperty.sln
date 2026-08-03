@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssignInitialValueToAutoProperty", "AssignInitialValueToAutoProperty\AssignInitialValueToAutoProperty.csproj", "{C3DDEB28-7C75-4667-9918-35FFDC32FB3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{3659B6D8-7DC9-4BEC-B062-E17DBEBC6FAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3DDEB28-7C75-4667-9918-35FFDC32FB3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3DDEB28-7C75-4667-9918-35FFDC32FB3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3DDEB28-7C75-4667-9918-35FFDC32FB3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3DDEB28-7C75-4667-9918-35FFDC32FB3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3659B6D8-7DC9-4BEC-B062-E17DBEBC6FAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3659B6D8-7DC9-4BEC-B062-E17DBEBC6FAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3659B6D8-7DC9-4BEC-B062-E17DBEBC6FAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3659B6D8-7DC9-4BEC-B062-E17DBEBC6FAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {332179DD-3195-47E0-9343-7CE807D82C1A}
+	EndGlobalSection
+EndGlobal

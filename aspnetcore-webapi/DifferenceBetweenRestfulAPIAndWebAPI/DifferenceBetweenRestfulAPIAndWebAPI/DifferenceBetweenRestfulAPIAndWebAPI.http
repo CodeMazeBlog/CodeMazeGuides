@@ -1,0 +1,6 @@
+@DifferenceBetweenRestfulAPIAndWebAPI_HostAddress = http://localhost:5204
+
+GET {{DifferenceBetweenRestfulAPIAndWebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

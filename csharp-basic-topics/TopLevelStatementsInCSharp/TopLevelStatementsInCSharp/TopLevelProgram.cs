@@ -1,0 +1,3 @@
+﻿using KitchenEntities;
+
+Fridge.ApplianceFunctionality();

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastestWayToCheckIfListIsOrdered", "FastestWayToCheckIfListIsOrdered\FastestWayToCheckIfListIsOrdered.csproj", "{0BC55895-5C1C-4578-A3F5-525F1AE951E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{66FB0FEA-A08D-4915-9676-8BA182B6D559}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BC55895-5C1C-4578-A3F5-525F1AE951E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BC55895-5C1C-4578-A3F5-525F1AE951E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BC55895-5C1C-4578-A3F5-525F1AE951E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BC55895-5C1C-4578-A3F5-525F1AE951E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66FB0FEA-A08D-4915-9676-8BA182B6D559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66FB0FEA-A08D-4915-9676-8BA182B6D559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66FB0FEA-A08D-4915-9676-8BA182B6D559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66FB0FEA-A08D-4915-9676-8BA182B6D559}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

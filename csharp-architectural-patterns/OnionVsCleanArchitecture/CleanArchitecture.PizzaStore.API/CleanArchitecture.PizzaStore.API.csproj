@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CleanArchitecture.PizzaStore.Application\CleanArchitecture.PizzaStore.Application.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.PizzaStore.Domain\CleanArchitecture.PizzaStore.Domain.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.PizzaStore.Infrastructure\CleanArchitecture.PizzaStore.Infrastructure.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.PizzaStore.Persistence\CleanArchitecture.PizzaStore.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

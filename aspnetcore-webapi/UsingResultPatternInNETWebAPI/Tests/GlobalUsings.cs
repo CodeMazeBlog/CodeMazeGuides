@@ -1,0 +1,11 @@
+﻿global using Xunit;
+global using Xunit.Abstractions;
+global using Microsoft.AspNetCore.Mvc.Testing;
+global using System.Net;
+global using System.Net.Http.Json;
+global using UsingResultPatternInNETWebAPI;
+global using UsingResultPatternInNETWebAPI.Dtos;
+global using UsingResultPatternInNETWebAPI.Errors;
+global using UsingResultPatternInNETWebAPI.Exceptions;
+global using UsingResultPatternInNETWebAPI.Repositories;
+global using UsingResultPatternInNETWebAPI.Services;

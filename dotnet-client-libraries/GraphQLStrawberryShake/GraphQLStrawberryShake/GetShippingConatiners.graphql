@@ -1,0 +1,5 @@
+query GetShippingContainersName {
+    shippingContainers {
+        name
+    }
+}

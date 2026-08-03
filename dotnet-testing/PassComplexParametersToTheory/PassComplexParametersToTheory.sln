@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34518.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PassComplexParametersToTheory", "PassComplexParametersToTheory\PassComplexParametersToTheory.csproj", "{F7BA2C21-09B1-44C3-945B-26E0E89E5780}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PassComplexParametersToTheory.Tests", "PassComplexParametersToTheory.Tests\PassComplexParametersToTheory.Tests.csproj", "{E1AFE9F1-F99D-4C71-9722-2A065BD361CB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7BA2C21-09B1-44C3-945B-26E0E89E5780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7BA2C21-09B1-44C3-945B-26E0E89E5780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7BA2C21-09B1-44C3-945B-26E0E89E5780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7BA2C21-09B1-44C3-945B-26E0E89E5780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1AFE9F1-F99D-4C71-9722-2A065BD361CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1AFE9F1-F99D-4C71-9722-2A065BD361CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1AFE9F1-F99D-4C71-9722-2A065BD361CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1AFE9F1-F99D-4C71-9722-2A065BD361CB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7889638F-75D4-4B7A-BB16-E7FE997BBDB5}
+	EndGlobalSection
+EndGlobal

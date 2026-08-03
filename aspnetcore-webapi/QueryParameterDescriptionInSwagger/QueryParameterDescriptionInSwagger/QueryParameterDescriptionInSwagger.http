@@ -1,0 +1,6 @@
+@QueryParameterDescriptionInSwagger_HostAddress = http://localhost:5165
+
+GET {{QueryParameterDescriptionInSwagger_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

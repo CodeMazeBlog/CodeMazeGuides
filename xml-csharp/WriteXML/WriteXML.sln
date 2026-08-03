@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteXML", "WriteXML\WriteXML.csproj", "{AE48EEBC-1CBC-468A-8CFC-DE1AEE90BBD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{5048F025-61D0-40DD-AF80-F7307865C36E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE48EEBC-1CBC-468A-8CFC-DE1AEE90BBD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE48EEBC-1CBC-468A-8CFC-DE1AEE90BBD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE48EEBC-1CBC-468A-8CFC-DE1AEE90BBD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE48EEBC-1CBC-468A-8CFC-DE1AEE90BBD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5048F025-61D0-40DD-AF80-F7307865C36E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5048F025-61D0-40DD-AF80-F7307865C36E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5048F025-61D0-40DD-AF80-F7307865C36E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5048F025-61D0-40DD-AF80-F7307865C36E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C92A188-2D5A-4F5F-A324-13CCFF87704C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+@ConvertAppSettingsToDictionary_HostAddress = http://localhost:5229
+
+GET {{ConvertAppSettingsToDictionary_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

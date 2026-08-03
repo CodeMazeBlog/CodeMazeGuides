@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestVsWebSocket", "RestVsWebSocket\RestVsWebSocket.csproj", "{7F5F6C84-A0D7-495C-915F-A090100A9666}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{3ADF2A4A-E9D7-4F5A-9D22-65E75E631393}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{2AA38DCB-E4ED-409D-BDE2-1DED54F6EAD6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F5F6C84-A0D7-495C-915F-A090100A9666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F5F6C84-A0D7-495C-915F-A090100A9666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F5F6C84-A0D7-495C-915F-A090100A9666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F5F6C84-A0D7-495C-915F-A090100A9666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ADF2A4A-E9D7-4F5A-9D22-65E75E631393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ADF2A4A-E9D7-4F5A-9D22-65E75E631393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ADF2A4A-E9D7-4F5A-9D22-65E75E631393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ADF2A4A-E9D7-4F5A-9D22-65E75E631393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AA38DCB-E4ED-409D-BDE2-1DED54F6EAD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AA38DCB-E4ED-409D-BDE2-1DED54F6EAD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AA38DCB-E4ED-409D-BDE2-1DED54F6EAD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AA38DCB-E4ED-409D-BDE2-1DED54F6EAD6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {927BAEE7-8688-47C6-890F-F25E00EC88BC}
+	EndGlobalSection
+EndGlobal

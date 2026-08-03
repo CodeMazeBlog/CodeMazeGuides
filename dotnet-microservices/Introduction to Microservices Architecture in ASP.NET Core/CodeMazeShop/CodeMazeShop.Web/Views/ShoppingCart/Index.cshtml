@@ -1,0 +1,98 @@
+﻿@model CodeMazeShop.Web.Models.CartViewModel
+
+<h2>Your shopping cart</h2>
+
+@if (Model.CartId != Guid.Empty && Model.CartLineItems is not null && Model.CartLineItems.Count > 0)
+{
+
+    <h4>Here are the items currently in your shopping cart.</h4>
+
+    <table class="table">
+        <thead>
+            <tr class="columnHeader">
+                <th>PRODUCT NAME</th>            
+                <th>PRICE PER ITEM</th>
+                <th>QUANTITY</th>
+                <th>TOTAL</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.CartLineItems)
+            {
+                <tr>
+                    <td>@line.ProductName</td>               
+                    <td class="bold">$@line.Price</td>
+                    <td>
+                        <form asp-action="UpdateLineItem">
+                            <input type="hidden" name="CartLineItemId" value="@line.CartLineItemId" />
+                            <select name="Quantity" class="w-25" asp-for="@line.Quantity">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <button type="submit" class="filterButton">Update</button>
+                        </form>
+                    </td>
+                    <td class="bold">$@(
+                line.Price * line.Quantity
+                ) </td>
+                    <td>
+                        <a asp-action="RemoveLineItem" asp-route-cartLineItemId="@line.CartLineItemId">
+                            <img class="cancelIcon" src="~/img/times.svg" />
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-right bold big">Discount:</td>
+                <td class="text-right bold big">
+                    @Model.Discount.ToString("c")
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="text-right bold big">Total:</td>
+                <td class="text-right bold big">
+                    @(
+                        (Model.ShoppingCartTotal - Model.Discount).ToString("c")
+                     )
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="row">
+        <div class="col-9">
+            <h4>Enter your discount code here!</h4>
+
+            <form asp-action="ApplyDiscountCode" method="post" class="form-inline" role="form">
+
+                <label class="sr-only">Code</label>
+                <input type="text" class="form-control mb-2 mr-sm-2" name="Code" placeholder="ABC-123">
+                <input type="submit" class="filterButton" value="Apply" />
+
+            </form>
+        </div>
+        <div class="col-3">
+            <div class="text-center">
+                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="Checkout">Check out now!</a>
+            </div>
+        </div>
+
+    </div>
+}else{
+    <h4>There are  currently no items in your shopping cart.</h4>
+}
+
+<div class="mt-2">
+    <a asp-controller="ProductCatalog" asp-action="Index">
+        <img class="backIcon" src="~/img/arrow-down.svg" /> Back to Product catalog
+    </a>
+</div>
+
+

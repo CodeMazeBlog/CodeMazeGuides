@@ -1,0 +1,22 @@
+@page
+@inject ShellSettings ShellSettings
+
+@using OrchardCore.Environment.Shell
+@model MultiTenantApp.Pages.Index
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Welcome</title>
+  </head>
+  <body>
+    <div>
+      <h1>Welcome to @ShellSettings.Name Tenant</h1>
+    </div>
+  </body>
+</html>

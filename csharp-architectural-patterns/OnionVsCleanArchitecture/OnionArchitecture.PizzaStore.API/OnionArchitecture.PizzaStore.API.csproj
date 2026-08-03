@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnionArchitecture.PizzaStore.Contracts\OnionArchitecture.PizzaStore.Contracts.csproj" />
+    <ProjectReference Include="..\OnionArchitecture.PizzaStore.Domain\OnionArchitecture.PizzaStore.Domain.csproj" />
+    <ProjectReference Include="..\OnionArchitecture.PizzaStore.Persistence\OnionArchitecture.PizzaStore.Persistence.csproj" />
+    <ProjectReference Include="..\OnionArchitecture.PizzaStore.Services\OnionArchitecture.PizzaStore.Services.csproj" />
+  </ItemGroup>
+
+</Project>

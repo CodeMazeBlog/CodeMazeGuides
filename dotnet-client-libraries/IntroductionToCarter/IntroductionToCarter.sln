@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34707.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntroductionToCarter", "IntroductionToCarter\IntroductionToCarter.csproj", "{143AB013-6F34-442D-B60C-E074EDCB4D5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroductionToCarter.Tests", "IntroductionToCarter.Tests\IntroductionToCarter.Tests.csproj", "{A42D097E-E31C-4D99-9C36-C2226FD7D5F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{143AB013-6F34-442D-B60C-E074EDCB4D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143AB013-6F34-442D-B60C-E074EDCB4D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{143AB013-6F34-442D-B60C-E074EDCB4D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143AB013-6F34-442D-B60C-E074EDCB4D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A42D097E-E31C-4D99-9C36-C2226FD7D5F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42D097E-E31C-4D99-9C36-C2226FD7D5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42D097E-E31C-4D99-9C36-C2226FD7D5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42D097E-E31C-4D99-9C36-C2226FD7D5F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B568ED8E-DE69-4AAF-A07F-3D786E133F6B}
+	EndGlobalSection
+EndGlobal

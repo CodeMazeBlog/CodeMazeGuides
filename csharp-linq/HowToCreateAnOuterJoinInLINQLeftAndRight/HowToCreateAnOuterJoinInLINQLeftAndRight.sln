@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToCreateAnOuterJoinInLINQLeftAndRight", "HowToCreateAnOuterJoinInLINQLeftAndRight\HowToCreateAnOuterJoinInLINQLeftAndRight.csproj", "{4AC086D4-EB76-47CE-B391-C75BA847F3BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{9FACC570-6C51-4CA0-8457-3BE36647F578}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4AC086D4-EB76-47CE-B391-C75BA847F3BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AC086D4-EB76-47CE-B391-C75BA847F3BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AC086D4-EB76-47CE-B391-C75BA847F3BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AC086D4-EB76-47CE-B391-C75BA847F3BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FACC570-6C51-4CA0-8457-3BE36647F578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FACC570-6C51-4CA0-8457-3BE36647F578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FACC570-6C51-4CA0-8457-3BE36647F578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FACC570-6C51-4CA0-8457-3BE36647F578}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09D55BF5-B813-4878-BBBA-38C7169CF201}
+	EndGlobalSection
+EndGlobal

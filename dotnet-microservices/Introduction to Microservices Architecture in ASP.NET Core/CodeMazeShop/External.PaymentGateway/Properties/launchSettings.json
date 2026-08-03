@@ -1,0 +1,17 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true   
+  },
+  "profiles": {
+    "External.PaymentGateway": {
+      "commandName": "Project",     
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7049",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

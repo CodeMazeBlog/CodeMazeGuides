@@ -1,0 +1,20 @@
+﻿@page
+@model ViewBasedAuthorization.Pages.Account.LoginModel
+@{
+}
+<div class="container mt-5">
+    <h1 class="mb-4">Login</h1>
+
+    <form method="post">
+        <div class="mb-3">
+            <label for="InputEmail" class="form-label">Email:</label>
+            <input type="email" class="form-control" asp-for="Input.Email">
+        </div>
+        <div class="mb-3">
+            <label for="InputPassword" class="form-label">Password:</label>
+            <input type="password" class="form-control" asp-for="Input.Password">
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <button type="submit" class="btn btn-primary">Login</button>            
+    </form>
+</div>

@@ -1,0 +1,10 @@
+﻿global using Architecture.Tests.Rules;
+global using Domain.Entities;
+global using Domain.Exceptions;
+global using Domain.Exceptions.Base;
+global using FluentAssertions;
+global using Mono.Cecil;
+global using NetArchTest.Rules;
+global using NetArchTest.Rules.Policies;
+global using Persistence;
+global using Services.Abstractions;

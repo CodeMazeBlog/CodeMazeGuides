@@ -1,0 +1,18 @@
+﻿@page
+@model ViewBasedAuthorization.Pages.DeleteModel
+@{
+}
+<div class="container mt-5">
+    <h1>Delete Document</h1>
+
+    <p>Are you sure you want to delete this document?</p>
+
+    <form method="post">
+        <input type="hidden" name="Id" asp-for="Document.Id" />
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-page="/Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

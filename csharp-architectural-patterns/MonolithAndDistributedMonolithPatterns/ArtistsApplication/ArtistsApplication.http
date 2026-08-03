@@ -1,0 +1,6 @@
+@ArtistsApplication_HostAddress = https://localhost:5106
+
+GET {{ArtistsApplication_HostAddress}}/artists/
+Accept: application/json
+
+###

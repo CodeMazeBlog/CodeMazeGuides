@@ -1,0 +1,6 @@
+@BackgroundServiceExecuteAsyncAndStartAsync_HostAddress = http://localhost:5114
+
+GET {{BackgroundServiceExecuteAsyncAndStartAsync_HostAddress}}/api/stockprices
+Accept: application/json
+
+###

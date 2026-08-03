@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntroductionToWolverineLibrary", "IntroductionToWolverineLibrary\IntroductionToWolverineLibrary.csproj", "{F1B58E7D-5FE9-4AC0-9EDE-13E16F2AD78B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroductionToWolverineLibrary.Tests", "IntroductionToWolverineLibrary.Tests\IntroductionToWolverineLibrary.Tests.csproj", "{70AD7D65-D239-451F-B2D0-31B88CCBD0A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1B58E7D-5FE9-4AC0-9EDE-13E16F2AD78B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B58E7D-5FE9-4AC0-9EDE-13E16F2AD78B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B58E7D-5FE9-4AC0-9EDE-13E16F2AD78B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B58E7D-5FE9-4AC0-9EDE-13E16F2AD78B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70AD7D65-D239-451F-B2D0-31B88CCBD0A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70AD7D65-D239-451F-B2D0-31B88CCBD0A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70AD7D65-D239-451F-B2D0-31B88CCBD0A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70AD7D65-D239-451F-B2D0-31B88CCBD0A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E6FD2D4-A8D6-481F-AA1A-FAF64573366F}
+	EndGlobalSection
+EndGlobal

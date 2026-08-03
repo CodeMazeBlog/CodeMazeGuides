@@ -1,0 +1,52 @@
+﻿[
+  {
+    "Id": 1,
+    "Name": "English",
+    "SpeakersInMillions": 1132
+  },
+  {
+    "Id": 2,
+    "Name": "Mandarin",
+    "SpeakersInMillions": 1117
+  },
+  {
+    "Id": 3,
+    "Name": "Hindi",
+    "SpeakersInMillions": 665
+  },
+  {
+    "Id": 4,
+    "Name": "Spanish",
+    "SpeakersInMillions": 534
+  },
+  {
+    "Id": 5,
+    "Name": "French",
+    "SpeakersInMillions": 280
+  },
+  {
+    "Id": 6,
+    "Name": "Arabic",
+    "SpeakersInMillions": 274
+  },
+  {
+    "Id": 7,
+    "Name": "Bengali",
+    "SpeakersInMillions": 265
+  },
+  {
+    "Id": 8,
+    "Name": "Russian",
+    "SpeakersInMillions": 258
+  },
+  {
+    "Id": 9,
+    "Name": "Portuguese",
+    "SpeakersInMillions": 234
+  },
+  {
+    "Id": 10,
+    "Name": "Indonesian",
+    "SpeakersInMillions": 198
+  }
+]

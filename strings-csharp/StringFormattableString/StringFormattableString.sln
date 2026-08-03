@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringFormattableString", "StringFormattableString\StringFormattableString.csproj", "{32D00959-CC11-4382-885E-C88B72B5DB7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringFormattableStringTests", "StringFormattableStringTests\StringFormattableStringTests.csproj", "{6ADD5937-227A-4E99-94B2-1BFED2425949}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32D00959-CC11-4382-885E-C88B72B5DB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32D00959-CC11-4382-885E-C88B72B5DB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32D00959-CC11-4382-885E-C88B72B5DB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32D00959-CC11-4382-885E-C88B72B5DB7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ADD5937-227A-4E99-94B2-1BFED2425949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADD5937-227A-4E99-94B2-1BFED2425949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADD5937-227A-4E99-94B2-1BFED2425949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADD5937-227A-4E99-94B2-1BFED2425949}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C9AFF9FC-D59E-4888-8822-9EFBDF2452EA}
+	EndGlobalSection
+EndGlobal

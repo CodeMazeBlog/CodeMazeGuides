@@ -1,0 +1,5 @@
+- name: Coding Guidelines
+  href: articles/
+- name: Source Code
+  href: api/
+  homepage: api/index.md
