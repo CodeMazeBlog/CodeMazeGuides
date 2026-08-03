@@ -1,5 +1,6 @@
 ﻿namespace ToDictionaryMethodInCSharp;
 
+// Static sample data backing the ToDictionary() examples below.
 public class ToDictionaryOperations
 {
     private static readonly List<Country> _countries
