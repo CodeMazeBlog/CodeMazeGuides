@@ -1,0 +1,29 @@
+# Article folders excluded from PR CI builds.
+#
+# One "<category>/<article>" path per line (exactly as it appears at the repo root,
+# e.g. "dotnet-efcore/EfCoreInterceptors"). Blank lines and lines starting with "#"
+# are ignored. Edit this file directly to add or remove a folder -- no workflow
+# (.yml) changes needed.
+
+# Live-integration tests: hit a real external DB, no DB available on the runner.
+dotnet-efcore/TestForValidDbConnection
+dotnet-efcore/OptimisticVsPessimisticLocking
+dotnet-efcore/EfCoreInterceptors
+
+# docker-compose-dependent: needs external infra (Kafka / OTel collector) the
+# runner doesn't provide.
+aspnetcore-webapi/Kafka
+dotnet-client-libraries/OpenTelemetryCollector
+
+# Windows-only (WPF / *-windows TFM / classic .NET Framework). This workflow runs
+# on Linux runners only, matching how the old Jenkins setup always worked.
+threads-csharp/MultithreadingInCsharp
+dotnet-platform-specific/HowToForceRunDotNetApplicationAsAdministrator
+csharp-intermediate-topics/FlagsAttributeForEnum
+
+# Dead/broken example (targets netcoreapp1.1; no current SDK builds it). Predates
+# this workflow and is unrelated to any CI change -- not worth chasing.
+visual-studio/ChangeLanguageVersionForAllProjects
+
+# Pins its own SDK via a local global.json; excluded rather than special-cased.
+dotnet-projects/SwitchingDotnetSdk
