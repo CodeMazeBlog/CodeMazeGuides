@@ -8,12 +8,7 @@
             var secondDate = new DateTime(2021, 05, 06, 12, 0, 0, DateTimeKind.Utc);
             var firstDateAsUtc = firstDate.ToUniversalTime();
 
-            if (firstDateAsUtc.Equals(secondDate))
-            {
-                return true;
-            }
-
-            return false;
+            return firstDateAsUtc.Equals(secondDate);
         }
 
         public static bool IsDatePrecisionSame()
@@ -21,12 +16,21 @@
             var firstDate = new DateTime(2021, 05, 06, 12, 0, 0);
             var secondDate = new DateTime(2021, 05, 06, 12, 0, 0, 500);
 
-            if (firstDate == secondDate)
-            {
-                return true;
-            }
+            return firstDate == secondDate;
+        }
 
-            return false;
+        public static (bool AreClose, bool SameDay, bool SameDayViaDateOnly) CompareWithTolerance()
+        {
+            var firstDate = new DateTime(2021, 05, 06, 12, 0, 0);
+            var secondDate = new DateTime(2021, 05, 06, 12, 0, 0, 500);
+
+            var tolerance = TimeSpan.FromMilliseconds(1);
+            var areClose = (firstDate - secondDate).Duration() <= tolerance;
+
+            var sameDay = firstDate.Date == secondDate.Date;
+            var sameDayViaDateOnly = DateOnly.FromDateTime(firstDate) == DateOnly.FromDateTime(secondDate);
+
+            return (areClose, sameDay, sameDayViaDateOnly);
         }
     }
 }
