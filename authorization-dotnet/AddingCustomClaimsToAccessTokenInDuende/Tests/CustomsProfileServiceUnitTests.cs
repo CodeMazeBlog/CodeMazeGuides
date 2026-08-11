@@ -1,6 +1,6 @@
 using System.Security.Claims;
+using Duende.IdentityModel;
 using Duende.IdentityServer.Models;
-using IdentityModel;
 using IdentityServer;
 
 namespace Tests;
@@ -14,13 +14,13 @@ public class CustomsProfileServiceUnitTests
     {
         var context = new ProfileDataRequestContext
         {
-            Client = new Client
+            Application = new Client
             {
                 ClientId = "test"
             }
         };
 
-        _profileService.GetProfileDataAsync(context);
+        _profileService.GetProfileDataAsync(context, CancellationToken.None);
 
         Assert.Empty(context.IssuedClaims);
     }
@@ -30,13 +30,13 @@ public class CustomsProfileServiceUnitTests
     {
         var context = new ProfileDataRequestContext
         {
-            Client = new Client
+            Application = new Client
             {
                 ClientId = "web"
             }
         };
 
-        _profileService.GetProfileDataAsync(context);
+        _profileService.GetProfileDataAsync(context, CancellationToken.None);
 
         Assert.Contains(context.IssuedClaims, claim => claim is { Type: "tenant", Value: "main" });
     }
@@ -46,13 +46,13 @@ public class CustomsProfileServiceUnitTests
     {
         var context = new ProfileDataRequestContext
         {
-            Client = new Client
+            Application = new Client
             {
                 ClientId = "test"
             }
         };
 
-        _profileService.GetProfileDataAsync(context);
+        _profileService.GetProfileDataAsync(context, CancellationToken.None);
 
         Assert.DoesNotContain(context.IssuedClaims, claim => claim.Type == "payments.discount");
     }
@@ -62,14 +62,14 @@ public class CustomsProfileServiceUnitTests
     {
         var context = new ProfileDataRequestContext
         {
-            Client = new Client
+            Application = new Client
             {
                 ClientId = "test"
             },
             RequestedClaimTypes = new [] {"payments.discount"}
         };
 
-        _profileService.GetProfileDataAsync(context);
+        _profileService.GetProfileDataAsync(context, CancellationToken.None);
 
         Assert.Contains(context.IssuedClaims, claim => claim is { Type: "payments.discount", Value: "20" });
     }
@@ -84,7 +84,7 @@ public class CustomsProfileServiceUnitTests
             new Client { ClientId = "test" },
             caller: "AuthorizeEndpoint");
 
-        _profileService.IsActiveAsync(context);
+        _profileService.IsActiveAsync(context, CancellationToken.None);
 
         Assert.False(context.IsActive);
     }
@@ -99,8 +99,16 @@ public class CustomsProfileServiceUnitTests
             new Client { ClientId = "test" },
             caller: "AuthorizeEndpoint");
 
-        _profileService.IsActiveAsync(context);
+        _profileService.IsActiveAsync(context, CancellationToken.None);
 
         Assert.True(context.IsActive);
+    }
+
+    [Fact]
+    public void WhenApiResourceIsConfigured_ThenItDeclaresRoleAsAUserClaim()
+    {
+        var paymentsApi = Config.ApiResources.Single(resource => resource.Name == "paymentsapi");
+
+        Assert.Contains(JwtClaimTypes.Role, paymentsApi.UserClaims);
     }
 }

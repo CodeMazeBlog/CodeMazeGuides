@@ -1,4 +1,5 @@
-﻿using Duende.IdentityServer;
+﻿using Duende.IdentityModel;
+using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
 
 namespace IdentityServer;
@@ -17,6 +18,15 @@ public static class Config
         {
             new(name: "payments", displayName: "Allow payments", userClaims: new[] { "payments.discount" })
         };
+
+    public static IEnumerable<ApiResource> ApiResources =>
+    [
+        new ApiResource("paymentsapi", "Payments API")
+        {
+            Scopes = { "payments" },
+            UserClaims = { JwtClaimTypes.Role }
+        }
+    ];
 
     public static IEnumerable<Client> Clients =>
         new Client[]
