@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net.WebSockets;
-using System.Net;
 using System.Text;
 
 namespace RestVsWebSocket.Controllers;
@@ -35,32 +34,15 @@ public class TaskController : ControllerBase
     [HttpGet]
     public async Task Get()
     {
-        if (HttpContext.WebSockets.IsWebSocketRequest)
-        {
-            using var ws = await HttpContext.WebSockets.AcceptWebSocketAsync();
+        using var ws = await HttpContext.WebSockets.AcceptWebSocketAsync();
 
-            while (true)
-            {
-                var message = "The time is: " + DateTime.Now.ToString("HH:mm:ss");
-                var bytes = Encoding.UTF8.GetBytes(message);
-                var arraySegment = new ArraySegment<byte>(bytes, 0, bytes.Length);
-                if (ws.State == WebSocketState.Open)
-                {
-                    await ws.SendAsync(arraySegment,
-                    WebSocketMessageType.Text,
-                    true,
-                    CancellationToken.None);
-                }
-                else if (ws.State == WebSocketState.Closed || ws.State == WebSocketState.Aborted)
-                {
-                    break;
-                }
-                Thread.Sleep(1000);
-            }
-        }
-        else
+        while (ws.State == WebSocketState.Open)
         {
-            HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            var message = $"The time is: {DateTime.Now:HH:mm:ss}";
+            var bytes = Encoding.UTF8.GetBytes(message);
+
+            await ws.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
+            await Task.Delay(1000);
         }
     }
 }
