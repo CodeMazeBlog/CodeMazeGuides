@@ -177,9 +177,7 @@ public class ParsingHtmlWithAngleSharpUnitTests
     {
         var booksCatalogUrl = "https://books.toscrape.com/";
 
-        var config = Configuration.Default
-            .WithDefaultLoader()
-            .WithJs();
+        var config = Configuration.Default.WithDefaultLoader();
         var context = BrowsingContext.New(config);
 
         var document = await context.OpenAsync(new Url(booksCatalogUrl));
@@ -200,16 +198,10 @@ public class ParsingHtmlWithAngleSharpUnitTests
     [Fact]
     public async Task WhenParsingHtmlFromString_ThenDocumentIsCreatedAndDomManipulationChangesDomAsExpected()
     {
-        var config = Configuration.Default
-            .WithDefaultLoader()
-            .WithJs();
-
-        var context = BrowsingContext.New(config);
+        var context = BrowsingContext.New(Configuration.Default);
         var document = await context.OpenAsync(req => req.Content(Html));
 
-        var paragraphElement = document.CreateElement("p");
-
-        paragraphElement = document.CreateElement<IHtmlParagraphElement>();
+        var paragraphElement = document.CreateElement<IHtmlParagraphElement>();
         paragraphElement.TextContent = "This is a new paragraph.";
 
         document.Body.AppendChild(paragraphElement);
