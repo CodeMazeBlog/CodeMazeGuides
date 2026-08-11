@@ -46,6 +46,12 @@
             {
                 Console.WriteLine("Date precisions are different.");
             }
+
+            // Comparing DateTime values with a tolerance, and comparing by date only
+            var (areClose, sameDay, sameDayViaDateOnly) = Examples.CompareWithTolerance();
+            Console.WriteLine($"Within 1ms tolerance: {areClose}");
+            Console.WriteLine($"Same day (Date property): {sameDay}");
+            Console.WriteLine($"Same day (DateOnly): {sameDayViaDateOnly}");
         }
 
         private static void ShowResult(DateTime firstDate, DateTime secondDate, int result)

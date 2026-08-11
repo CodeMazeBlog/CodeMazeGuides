@@ -1,4 +1,5 @@
 using Serilog;
+using Serilog.Core;
 using Serilog.Events;
 
 var configuration = new ConfigurationBuilder()
@@ -10,13 +11,17 @@ var configuration = new ConfigurationBuilder()
 Log.Information("Web Host started");
 var builder = WebApplication.CreateBuilder(args);
 
+// Wrapping the minimum level in a LoggingLevelSwitch lets us change it at
+// runtime -- e.g. from an admin endpoint -- with no redeploy and no restart.
+var levelSwitch = new LoggingLevelSwitch(LogEventLevel.Information);
+
 builder.Services.AddSerilog(options =>
 {
     //we can configure serilog from configuration
     options.ReadFrom.Configuration(configuration);
 
     //or we can configure serilog via fluent api
-    options.MinimumLevel.Information()
+    options.MinimumLevel.ControlledBy(levelSwitch)
            .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
            .MinimumLevel.Override("System", LogEventLevel.Warning)
            .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information,
@@ -43,5 +48,13 @@ app.UseHttpsRedirection();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// e.g. POST /admin/log-level/Debug -- flips the minimum level on every sink
+// immediately, with no restart.
+app.MapPost("/admin/log-level/{level}", (LogEventLevel level) =>
+{
+    levelSwitch.MinimumLevel = level;
+    return Results.Ok($"Minimum log level set to {level}.");
+});
 
 app.Run();
