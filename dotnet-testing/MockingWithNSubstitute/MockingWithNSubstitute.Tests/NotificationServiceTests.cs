@@ -1,3 +1,5 @@
+using NSubstitute.ExceptionExtensions;
+
 namespace MockingWithNSubstitute.Tests;
 
 public class NotificationServiceTests
@@ -16,7 +18,7 @@ public class NotificationServiceTests
     [Fact]
     public void GivenInputIsCorrect_WhenNotifyUserIsInvoked_ThenTrueIsReturned()
     {
-        // Arrange            
+        // Arrange
         const string message = "Mocking behaviors and expectations with NSubstitute";
         _emailService.IsValidEmail(_user.Email)
             .Returns(true);
@@ -27,7 +29,7 @@ public class NotificationServiceTests
         var result = _notificationService.NotifyUser(_user, message);
 
         // Assert
-        result.Should().BeTrue();
+        Assert.True(result);
     }
 
     [Fact]
@@ -44,25 +46,35 @@ public class NotificationServiceTests
         var result = _notificationService.NotifyUser(_user, message);
 
         // Assert
-        result.Should().BeFalse();
+        Assert.False(result);
         _emailService.Received().IsValidEmail(Arg.Any<string>());
         _emailService.DidNotReceive().SendEmail(Arg.Any<string>(), Arg.Is<string>(x => x.Length > 5), message);
     }
 
     [Fact]
-    public void GivenExceptionIsThrown_WhenNotifyUserIsInvoked_ThenFalseIsReturned()
+    public void GivenExceptionIsThrown_WhenNotifyUserIsInvoked_ThenExceptionIsPropagated()
     {
         // Arrange
         const string message = "Throwing Exceptions When Mocking With NSubstitute";
         _emailService.IsValidEmail(_user.Email)
             .Returns(true);
-        _emailService.When(x => x.SendEmail(_user.Email, "Notification from CodeMaze", message))
-            .Do(x => { throw new InvalidEmailException(); });
+        _emailService.SendEmail(_user.Email, "Notification from CodeMaze", message)
+            .Throws<InvalidEmailException>();
 
-        // Act
-        var act = () => _notificationService.NotifyUser(_user, message);
+        // Act & Assert
+        Assert.Throws<InvalidEmailException>(() => _notificationService.NotifyUser(_user, message));
+    }
 
-        // Assert
-        act.Should().ThrowExactly<InvalidEmailException>();
+    [Fact]
+    public async Task GivenExceptionIsThrown_WhenSendEmailAsyncIsAwaited_ThenExceptionIsPropagated()
+    {
+        // Arrange
+        const string message = "Throwing exceptions from asynchronous members";
+        _emailService.SendEmailAsync(_user.Email, "Notification from CodeMaze", message)
+            .ThrowsAsync<InvalidEmailException>();
+
+        // Act & Assert
+        await Assert.ThrowsAsync<InvalidEmailException>(() =>
+            _emailService.SendEmailAsync(_user.Email, "Notification from CodeMaze", message));
     }
 }

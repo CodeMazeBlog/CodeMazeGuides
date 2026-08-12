@@ -17,16 +17,7 @@ public class NotificationService : INotificationService
             return false;
         }
 
-        try
-        {
-            var sentSuccessfully = _emailService
+        return _emailService
             .SendEmail(user.Email, "Notification from CodeMaze", message);
-
-            return sentSuccessfully;
-        }
-        catch
-        {
-            throw;
-        }
     }
 }
