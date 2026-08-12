@@ -4,58 +4,68 @@ using Duende.IdentityServer.Stores;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace IdentityServer.Pages.ServerSideSessions
+namespace IdentityServer.Pages.ServerSideSessions;
+
+public class IndexModel(ISessionManagementService? sessionManagementService = null) : PageModel
 {
-    public class IndexModel : PageModel
+    public QueryResult<UserSession>? UserSessions { get; set; }
+
+    [BindProperty(SupportsGet = true)]
+    public string? DisplayNameFilter { get; set; }
+
+    [BindProperty(SupportsGet = true)]
+    public string? SessionIdFilter { get; set; }
+
+    [BindProperty(SupportsGet = true)]
+    public string? SubjectIdFilter { get; set; }
+
+    [BindProperty(SupportsGet = true)]
+    public string? Token { get; set; }
+
+    [BindProperty(SupportsGet = true)]
+    public string? Prev { get; set; }
+
+    public async Task<ActionResult> OnGetAsync(CancellationToken ct)
     {
-        private readonly ISessionManagementService _sessionManagementService;
-
-        public IndexModel(ISessionManagementService sessionManagementService = null)
+        //Replace with an authorization policy check
+        if (HttpContext.Connection.IsRemote())
         {
-            _sessionManagementService = sessionManagementService;
+            return NotFound();
         }
 
-        public QueryResult<UserSession> UserSessions { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public string DisplayNameFilter { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public string SessionIdFilter { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public string SubjectIdFilter { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public string Token { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public string Prev { get; set; }
-
-        public async Task OnGet()
+        if (sessionManagementService != null)
         {
-            if (_sessionManagementService != null)
+            UserSessions = await sessionManagementService.QuerySessionsAsync(new SessionQuery
             {
-                UserSessions = await _sessionManagementService.QuerySessionsAsync(new SessionQuery
-                {
-                    ResultsToken = Token,
-                    RequestPriorResults = Prev == "true",
-                    DisplayName = DisplayNameFilter,
-                    SessionId = SessionIdFilter,
-                    SubjectId = SubjectIdFilter
-                });
-            }
+                ResultsToken = Token,
+                RequestPriorResults = Prev == "true",
+                DisplayName = DisplayNameFilter,
+                SessionId = SessionIdFilter,
+                SubjectId = SubjectIdFilter
+            }, ct);
         }
 
-        [BindProperty]
-        public string SessionId { get; set; }
+        return Page();
+    }
 
-        public async Task<IActionResult> OnPost()
+    [BindProperty]
+    public string? SessionId { get; set; }
+
+    public async Task<IActionResult> OnPostAsync(CancellationToken ct)
+    {
+        //Replace with an authorization policy check
+        if (HttpContext.Connection.IsRemote())
         {
-            await _sessionManagementService.RemoveSessionsAsync(new RemoveSessionsContext { 
-                SessionId = SessionId,
-            });
-            return RedirectToPage("/ServerSideSessions/Index", new { Token, DisplayNameFilter, SessionIdFilter, SubjectIdFilter, Prev });
+            return NotFound();
         }
+
+        ArgumentNullException.ThrowIfNull(sessionManagementService);
+
+        await sessionManagementService.RemoveSessionsAsync(new RemoveSessionsContext
+        {
+            SessionId = SessionId,
+        }, ct);
+
+        return RedirectToPage("/ServerSideSessions/Index", new { Token, DisplayNameFilter, SessionIdFilter, SubjectIdFilter, Prev });
     }
 }

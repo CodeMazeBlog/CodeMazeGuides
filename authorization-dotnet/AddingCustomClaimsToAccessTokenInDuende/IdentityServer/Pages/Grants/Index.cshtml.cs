@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Services;
@@ -11,37 +10,26 @@ namespace IdentityServer.Pages.Grants;
 
 [SecurityHeaders]
 [Authorize]
-public class Index : PageModel
+public class Index(
+    IIdentityServerInteractionService interaction,
+    IClientStore clients,
+    IResourceStore resources,
+    IEventService events)
+    : PageModel
 {
-    private readonly IIdentityServerInteractionService _interaction;
-    private readonly IClientStore _clients;
-    private readonly IResourceStore _resources;
-    private readonly IEventService _events;
+    public ViewModel View { get; set; } = default!;
 
-    public Index(IIdentityServerInteractionService interaction,
-        IClientStore clients,
-        IResourceStore resources,
-        IEventService events)
+    public async Task OnGetAsync(CancellationToken ct)
     {
-        _interaction = interaction;
-        _clients = clients;
-        _resources = resources;
-        _events = events;
-    }
-
-    public ViewModel View { get; set; }
-        
-    public async Task OnGet()
-    {
-        var grants = await _interaction.GetAllUserGrantsAsync();
+        var grants = await interaction.GetAllUserGrantsAsync(ct);
 
         var list = new List<GrantViewModel>();
         foreach (var grant in grants)
         {
-            var client = await _clients.FindClientByIdAsync(grant.ClientId);
+            var client = await clients.FindClientByIdAsync(grant.ClientId, ct);
             if (client != null)
             {
-                var resources = await _resources.FindResourcesByScopeAsync(grant.Scopes);
+                var resources1 = await resources.FindResourcesByScopeAsync(grant.Scopes, ct);
 
                 var item = new GrantViewModel()
                 {
@@ -52,8 +40,8 @@ public class Index : PageModel
                     Description = grant.Description,
                     Created = grant.CreationTime,
                     Expires = grant.Expiration,
-                    IdentityGrantNames = resources.IdentityResources.Select(x => x.DisplayName ?? x.Name).ToArray(),
-                    ApiGrantNames = resources.ApiScopes.Select(x => x.DisplayName ?? x.Name).ToArray()
+                    IdentityGrantNames = resources1.IdentityResources.Select(x => x.DisplayName ?? x.Name).ToArray(),
+                    ApiGrantNames = resources1.ApiScopes.Select(x => x.DisplayName ?? x.Name).ToArray()
                 };
 
                 list.Add(item);
@@ -67,13 +55,13 @@ public class Index : PageModel
     }
 
     [BindProperty]
-    [Required]
-    public string ClientId { get; set; }
+    public string? ClientId { get; set; }
 
-    public async Task<IActionResult> OnPost()
+    public async Task<IActionResult> OnPostAsync(CancellationToken ct)
     {
-        await _interaction.RevokeUserConsentAsync(ClientId);
-        await _events.RaiseAsync(new GrantsRevokedEvent(User.GetSubjectId(), ClientId));
+        await interaction.RevokeUserConsentAsync(ClientId, ct);
+        await events.RaiseAsync(new GrantsRevokedEvent(User.GetSubjectId(), ClientId), ct);
+        Telemetry.Metrics.GrantsRevoked(ClientId);
 
         return RedirectToPage("/Grants/Index");
     }

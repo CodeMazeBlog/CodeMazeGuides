@@ -1,46 +1,37 @@
 using Duende.IdentityServer;
-using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
-using Duende.IdentityServer.Stores;
 using Duende.IdentityServer.Test;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace IdentityServer.Pages.Create;
+namespace IdentityServer.Pages.Account.Create;
 
 [SecurityHeaders]
 [AllowAnonymous]
-public class Index : PageModel
+public class Index(
+    IIdentityServerInteractionService interaction,
+    TestUserStore? users = null)
+    : PageModel
 {
-    private readonly TestUserStore _users;
-    private readonly IIdentityServerInteractionService _interaction;
+    private readonly TestUserStore _users = users ?? throw new InvalidOperationException("Please call 'AddTestUsers(TestUsers.Users)' on the IIdentityServerBuilder in Startup or remove the TestUserStore from the AccountController.");
 
     [BindProperty]
-    public InputModel Input { get; set; }
-        
-    public Index(
-        IIdentityServerInteractionService interaction,
-        TestUserStore users = null)
-    {
-        // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
-        _users = users ?? throw new Exception("Please call 'AddTestUsers(TestUsers.Users)' on the IIdentityServerBuilder in Startup or remove the TestUserStore from the AccountController.");
-            
-        _interaction = interaction;
-    }
+    public InputModel Input { get; set; } = default!;
 
-    public IActionResult OnGet(string returnUrl)
+    // this is where you would plug in your own custom identity management library (e.g. ASP.NET Identity)
+
+    public IActionResult OnGet(string? returnUrl)
     {
         Input = new InputModel { ReturnUrl = returnUrl };
         return Page();
     }
-        
-    public async Task<IActionResult> OnPost()
+
+    public async Task<IActionResult> OnPostAsync(CancellationToken ct)
     {
         // check if we are in the context of an authorization request
-        var context = await _interaction.GetAuthorizationContextAsync(Input.ReturnUrl);
+        var context = await interaction.GetAuthorizationContextAsync(Input.ReturnUrl, ct);
 
         // the user clicked the "cancel" button
         if (Input.Button != "create")
@@ -50,7 +41,7 @@ public class Index : PageModel
                 // if the user cancels, send a result back into IdentityServer as if they 
                 // denied the consent (even if this client does not require consent).
                 // this will send back an access denied OIDC error response to the client.
-                await _interaction.DenyAuthorizationAsync(context, AuthorizationError.AccessDenied);
+                await interaction.DenyAuthorizationAsync(context, InteractionError.AccessDenied, ct);
 
                 // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
                 if (context.IsNativeClient())
@@ -60,7 +51,7 @@ public class Index : PageModel
                     return this.LoadingPage(Input.ReturnUrl);
                 }
 
-                return Redirect(Input.ReturnUrl);
+                return Redirect(Input.ReturnUrl ?? "~/");
             }
             else
             {
@@ -95,8 +86,8 @@ public class Index : PageModel
                     return this.LoadingPage(Input.ReturnUrl);
                 }
 
-                // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
-                return Redirect(Input.ReturnUrl);
+                // we can trust Input.ReturnUrl since GetAuthorizationContextAsync returned non-null
+                return Redirect(Input.ReturnUrl ?? "~/");
             }
 
             // request for a local page
@@ -111,7 +102,7 @@ public class Index : PageModel
             else
             {
                 // user might have clicked on a malicious link - should be logged
-                throw new Exception("invalid return URL");
+                throw new ArgumentException("invalid return URL");
             }
         }
 

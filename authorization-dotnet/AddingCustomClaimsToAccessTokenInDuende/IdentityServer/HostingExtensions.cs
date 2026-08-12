@@ -1,3 +1,4 @@
+using IdentityServer.Pages;
 using Serilog;
 
 namespace IdentityServer;
@@ -9,11 +10,12 @@ internal static class HostingExtensions
 
         builder.Services.AddIdentityServer(options =>
             {
-                // https://docs.duendesoftware.com/identityserver/v6/fundamentals/resources/api_scopes#authorization-based-on-scopes
+                // https://docs.duendesoftware.com/identityserver/fundamentals/resources/api-scopes/
                 options.EmitStaticAudienceClaim = true;
             })
             .AddInMemoryIdentityResources(Config.IdentityResources)
             .AddInMemoryApiScopes(Config.ApiScopes)
+            .AddInMemoryApiResources(Config.ApiResources)
             .AddInMemoryClients(Config.Clients)
             .AddTestUsers(TestUsers.Users)
             .AddProfileService<CustomProfileService>();
