@@ -36,16 +36,35 @@
         <option value="@topping.Id">@topping.Name +$@topping.Price</option>
     }
 </select>
+<br/>
+<span>Fourth topping (InputSelect inside EditForm):</span>
+<EditForm Model="order">
+    <InputSelect @bind-Value="order.ToppingId" @bind-Value:after="RecalculateTotal">
+        @foreach (var topping in toppings)
+        {
+            <option value="@topping.Id">@topping.Name</option>
+        }
+    </InputSelect>
+</EditForm>
+<p>Fourth topping total: $@fourthTotal</p>
 
 @code
 {
     public record Topping(int Id, string Name, double Price);
+
+    public class Order
+    {
+        public int ToppingId { get; set; }
+    }
+
     public string? selectedTopping;
     public string? selectedSecondTopping;
     public string? selectedThirdTopping;
     public static double baseBurgerCost = 5.4;
     public double totalCost = baseBurgerCost;
     public double grandTotal;
+    public double fourthTotal;
+    public Order order = new();
 
     public List<Topping> toppings = new List<Topping>()
     {
@@ -59,26 +78,37 @@
 
     public void HandleChange(ChangeEventArgs args)
     {
-        @foreach (var topping in toppings)
+        if (!int.TryParse(args.Value?.ToString(), out var id))
         {
-            if (topping.Id == int.Parse(args.Value.ToString()))
-            {
-                selectedSecondTopping = topping.Name;
-                totalCost = Math.Round(baseBurgerCost + topping.Price, 2);
-            }
+            return;
         }
+
+        var topping = toppings.FirstOrDefault(t => t.Id == id);
+        if (topping is null)
+        {
+            return;
+        }
+
+        selectedSecondTopping = topping.Name;
+        totalCost = Math.Round(baseBurgerCost + topping.Price, 2);
     }
 
     public async Task CalculateGrandTotal()
     {
         await Task.Delay(2000);
 
-        @foreach (var topping in toppings)
+        foreach (var topping in toppings)
         {
             if (topping.Id == int.Parse(selectedThirdTopping))
             {
                 grandTotal = Math.Round(totalCost + topping.Price, 2);
             }
         }
+    }
+
+    public void RecalculateTotal()
+    {
+        var topping = toppings.FirstOrDefault(t => t.Id == order.ToppingId);
+        fourthTotal = topping is null ? 0 : Math.Round(baseBurgerCost + topping.Price, 2);
     }
 }
