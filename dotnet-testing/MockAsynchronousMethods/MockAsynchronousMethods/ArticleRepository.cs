@@ -21,5 +21,10 @@ namespace MockAsynchronousMethods.Repository
         {
             return await _fakeDbArticle.GetAsync();
         }
+
+        public async Task DeleteArticleAsync(int id)
+        {
+            await _fakeDbArticle.DeleteAsync(id);
+        }
     }
 }
