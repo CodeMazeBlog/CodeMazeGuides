@@ -21,5 +21,10 @@ namespace MockAsynchronousMethods.Repository
         {
             return await _fakeDbArticle.GetAsync();
         }
+
+        public async Task SaveArticleAsync(ArticleDbModel article)
+        {
+            await _fakeDbArticle.SaveAsync(article);
+        }
     }
 }

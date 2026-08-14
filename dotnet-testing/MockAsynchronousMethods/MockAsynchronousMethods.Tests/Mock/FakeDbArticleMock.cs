@@ -31,5 +31,13 @@ namespace MockAsynchronousMethods.Repository.Tests.Mock
 
             return this;
         }
+
+        public FakeDbArticleMock SaveAsync()
+        {
+            Setup(x => x.SaveAsync(It.IsAny<ArticleDbModel>()))
+                .Returns(Task.CompletedTask);
+
+            return this;
+        }
     }
 }
