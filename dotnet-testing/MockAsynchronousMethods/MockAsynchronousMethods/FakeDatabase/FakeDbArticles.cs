@@ -43,5 +43,12 @@ namespace MockAsynchronousMethods.Repository.FakeDatabase
         {
             return await Task.FromResult(_articles.FirstOrDefault(x => x.Id == id));
         }
+
+        public Task SaveAsync(ArticleDbModel article)
+        {
+            _articles.Add(article);
+
+            return Task.CompletedTask;
+        }
     }
 }
