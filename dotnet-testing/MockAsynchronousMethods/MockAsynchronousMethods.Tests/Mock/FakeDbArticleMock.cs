@@ -3,6 +3,7 @@ using MockAsynchronousMethods.Repository.Interfaces;
 using MockAsynchronousMethods.Tests.Mock;
 using Moq;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MockAsynchronousMethods.Repository.Tests.Mock
 {
@@ -28,6 +29,14 @@ namespace MockAsynchronousMethods.Repository.Tests.Mock
         {
             Setup(x => x.GetAsync())
                 .ReturnsAsync(FakeDb.Articles);
+
+            return this;
+        }
+
+        public FakeDbArticleMock DeleteAsync()
+        {
+            Setup(x => x.DeleteAsync(It.IsAny<int>()))
+                .Returns(Task.CompletedTask);
 
             return this;
         }

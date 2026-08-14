@@ -43,5 +43,17 @@ namespace MockAsynchronousMethods.Repository.FakeDatabase
         {
             return await Task.FromResult(_articles.FirstOrDefault(x => x.Id == id));
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            var article = _articles.FirstOrDefault(x => x.Id == id);
+
+            if (article is not null)
+            {
+                _articles.Remove(article);
+            }
+
+            await Task.CompletedTask;
+        }
     }
 }
