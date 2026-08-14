@@ -6,5 +6,6 @@ namespace MockAsynchronousMethods.Repository.Interfaces
     {
         Task<IEnumerable<ArticleDbModel>> GetAsync();
         Task<ArticleDbModel?> GetByIdAsync(int id);
+        Task SaveAsync(ArticleDbModel article);
     }
 }
