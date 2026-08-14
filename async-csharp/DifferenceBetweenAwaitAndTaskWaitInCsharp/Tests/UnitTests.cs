@@ -6,9 +6,8 @@ namespace Tests;
 public class UnitTests
 {
     [TestMethod]
-    [ExpectedException(typeof(AggregateException))]
     public void GivenAFailingTask_WhenTaskWaitIsCalled_ThenAggregateExceptionIsRaised()
     {
-        CodeExamples.BlockingExceptionHandling();
+        Assert.ThrowsExactly<AggregateException>(() => CodeExamples.BlockingExceptionHandling());
     }
 }
