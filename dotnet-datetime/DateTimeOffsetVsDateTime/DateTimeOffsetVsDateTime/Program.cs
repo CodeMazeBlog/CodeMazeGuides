@@ -25,3 +25,10 @@ Console.WriteLine($"DateTime Kind: {dateTimeUnspecified.Kind}");
 
 var dateTimeOffsetUnspecified = DateTimeOffset.Now;
 Console.WriteLine($"DateTimeOffset Kind: {dateTimeOffsetUnspecified.DateTime.Kind}");
+
+//Converting DateTimeOffset to DateTime
+var moment = DateTimeOffset.Now;
+
+var forStorage = moment.UtcDateTime;      // Kind = Utc — safe to persist
+var forDisplay = moment.LocalDateTime;    // Kind = Local — server's zone
+var raw        = moment.DateTime;         // Kind = Unspecified — offset lost
