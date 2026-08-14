@@ -76,4 +76,42 @@ public static class CodeExamples
             Console.WriteLine(ex.Message);
         }
     }
+
+    public async static Task NonBlockingWaitExamplesAsync()
+    {
+        Console.WriteLine("** Non-Blocking Wait Examples **");
+
+        Task<string> singleTask = Task<string>.Run(() =>
+        {
+            Thread.Sleep(10);
+
+            return "Hello, from a single awaited task";
+        });
+
+        string singleResult = await singleTask;
+        Console.WriteLine(singleResult);
+
+        Task<string> firstTask = Task<string>.Run(() =>
+        {
+            Thread.Sleep(10);
+
+            return "Hello, from the first task";
+        });
+
+        Task<string> secondTask = Task<string>.Run(() =>
+        {
+            Thread.Sleep(20);
+
+            return "Hello, from the second task";
+        });
+
+        string[] allResults = await Task.WhenAll(firstTask, secondTask);
+        Console.WriteLine($"Both tasks finished: {string.Join(", ", allResults)}");
+
+        Task<string> firstToFinish = await Task.WhenAny(firstTask, secondTask);
+        Console.WriteLine($"First task to finish: {firstToFinish.Result}");
+
+        await Task.Delay(10);
+        Console.WriteLine("Waited 10ms without blocking the thread");
+    }
 }
