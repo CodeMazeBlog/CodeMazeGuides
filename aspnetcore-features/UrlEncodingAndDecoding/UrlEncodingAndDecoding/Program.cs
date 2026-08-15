@@ -1,21 +1,16 @@
-﻿using System.Net;
+using System.Net;
 using System.Web;
 
-var url = @"http://example.com/resource?foo=bar with space#fragment";
+var value = "bar with space&more";
 
-var httpUtilityEncoded = HttpUtility.UrlEncode(url);
-var httpUtilityDecoded = HttpUtility.UrlDecode(httpUtilityEncoded);
+var httpUtilityEncoded = HttpUtility.UrlEncode(value);
+var webUtilityEncoded = WebUtility.UrlEncode(value);
+var uriEncoded = Uri.EscapeDataString(value);
 
-var webUtilityEncoded = WebUtility.UrlEncode(url);
-var webUtilityDecoded = WebUtility.UrlDecode(webUtilityEncoded);
+Console.WriteLine($"http://example.com/resource?foo={httpUtilityEncoded}");
+Console.WriteLine($"http://example.com/resource?foo={webUtilityEncoded}");
+Console.WriteLine($"http://example.com/resource?foo={uriEncoded}");
 
-var uriEncoded = Uri.EscapeDataString(url);
-var uriDecoded = Uri.UnescapeDataString(uriEncoded);
-
-Console.WriteLine(httpUtilityEncoded);
-Console.WriteLine(webUtilityEncoded);
-Console.WriteLine(uriEncoded);
-
-Console.WriteLine(httpUtilityDecoded);
-Console.WriteLine(webUtilityDecoded);
-Console.WriteLine(uriDecoded);
+Console.WriteLine(HttpUtility.UrlDecode(httpUtilityEncoded));
+Console.WriteLine(WebUtility.UrlDecode(webUtilityEncoded));
+Console.WriteLine(Uri.UnescapeDataString(uriEncoded));
