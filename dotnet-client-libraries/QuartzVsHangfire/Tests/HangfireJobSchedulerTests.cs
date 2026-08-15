@@ -6,6 +6,7 @@ using QuartzVsHangfire.Services;
 
 namespace Tests;
 
+[Collection("HangfireStorage")]
 public class HangfireJobSchedulerTests
 {
     static HangfireJobSchedulerTests()

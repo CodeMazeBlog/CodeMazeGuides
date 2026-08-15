@@ -12,4 +12,12 @@ public static class QuartzTriggerScheduler
             .WithIdentity("nightly")
             .WithCronSchedule("0 0 2 * * ?")
             .Build();
+
+    // Quartz.NET has no fire-and-forget queue. The closest equivalent is a
+    // trigger that starts immediately instead of firing on a schedule.
+    public static ITrigger BuildImmediateTrigger() =>
+        TriggerBuilder.Create()
+            .WithIdentity("welcome-email")
+            .StartNow()
+            .Build();
 }

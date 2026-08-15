@@ -10,7 +10,9 @@
     <ItemGroup>
         <PackageReference Include="Hangfire.Core" Version="1.8.24"/>
         <PackageReference Include="Hangfire.InMemory" Version="1.0.0"/>
+        <PackageReference Include="Hangfire.NetCore" Version="1.8.24"/>
         <PackageReference Include="Quartz" Version="3.19.1"/>
+        <PackageReference Include="Quartz.Extensions.Hosting" Version="3.19.1"/>
     </ItemGroup>
 
 </Project>
