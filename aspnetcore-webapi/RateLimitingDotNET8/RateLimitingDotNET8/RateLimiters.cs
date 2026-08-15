@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.RateLimiting;
+﻿using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.Options;
 using System.Threading.RateLimiting;
 
@@ -11,14 +10,17 @@ public static class RateLimiters
     {
         var fixedOptions = GetOptionValues<FixedOptions>(builder);
 
-        builder.Services.AddRateLimiter(options => options
-            .AddFixedWindowLimiter(policyName: Policies.Fixed, limiterOptions =>
+        builder.Services.AddRateLimiter(options =>
+        {
+            options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+            options.AddFixedWindowLimiter(policyName: Policies.Fixed, limiterOptions =>
             {
                 limiterOptions.PermitLimit = fixedOptions!.PermitLimit;
                 limiterOptions.Window = TimeSpan.FromMinutes(fixedOptions.Window);
                 limiterOptions.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
                 limiterOptions.QueueLimit = fixedOptions.QueueLimit;
-            }));
+            });
+        });
     }
 
     public static void SlidingRateLimiter(WebApplicationBuilder builder)
@@ -79,10 +81,10 @@ public static class RateLimiters
             limiterOptions.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
             limiterOptions.AddPolicy(policyName: Policies.Authorization, partitioner: httpContext =>
             {
-                var accessToken = httpContext.GetTokenAsync("access_token").Result;
+                var username = httpContext.User.Identity?.Name;
 
-                return !string.IsNullOrEmpty(accessToken)
-                    ? RateLimitPartition.GetFixedWindowLimiter(accessToken, options =>
+                return !string.IsNullOrEmpty(username)
+                    ? RateLimitPartition.GetFixedWindowLimiter(username, options =>
                         new FixedWindowRateLimiterOptions
                         {
                             QueueLimit = authorizedLimiterOptions!.QueueLimit,
