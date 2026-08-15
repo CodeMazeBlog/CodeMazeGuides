@@ -50,7 +50,7 @@
             var rand = new Random();
             var numbers = new HashSet<int>();
 
-            for (int i = 0; i < size; i++) 
+            while (numbers.Count < size)
             {
                 numbers.Add(rand.Next());
             }
