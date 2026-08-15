@@ -99,7 +99,7 @@
 
         public static string[] SplitStringIntoNewLines(string multiLineText, string[] separators)
         {
-            string[] lines = multiLineText.Split(separators, StringSplitOptions.None);
+            string[] lines = multiLineText.ReplaceLineEndings().Split(separators, StringSplitOptions.None);
 
             foreach (string line in lines) 
             { 
