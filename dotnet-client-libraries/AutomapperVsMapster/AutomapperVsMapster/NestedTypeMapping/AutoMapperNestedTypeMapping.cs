@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AutomapperVsMapster.NestedTypeMapping;
 public class AutoMapperNestedTypeMapping
@@ -7,7 +8,7 @@ public class AutoMapperNestedTypeMapping
         {
             cfg.CreateMap<User, UserDto>();
             cfg.CreateMap<Address, AddressDto>();
-        })
+        }, NullLoggerFactory.Instance)
         .CreateMapper();
 
     public static UserDto Map(User source)

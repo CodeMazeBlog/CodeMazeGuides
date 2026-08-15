@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AutomapperVsMapster.CustomPropertyMapping;
 public class AutoMapperCustomPropertyMapping
@@ -10,7 +11,7 @@ public class AutoMapperCustomPropertyMapping
                 dest => dest.FullName,
                 config => config.MapFrom(src => $"{src.FirstName} {src.LastName}"
             ));
-        })
+        }, NullLoggerFactory.Instance)
         .CreateMapper();
 
     public static UserDto Map(User source)
