@@ -86,6 +86,23 @@ namespace Tests
         }
 
         [Fact]
+        public void CanConvertToDateTime()
+        {
+            // Arrange.
+            var dateOnly = new DateOnly(2022, 1, 1);
+            var timeOnly = new TimeOnly(11, 30);
+
+            // Act.
+            var dateTime = dateOnly.ToDateTime(timeOnly);
+            var atMidnight = dateOnly.ToDateTime(TimeOnly.MinValue);
+
+            // Assert.
+            Assert.Equal(new DateTime(2022, 1, 1, 11, 30, 0), dateTime);
+            Assert.Equal(new DateTime(2022, 1, 1, 0, 0, 0), atMidnight);
+            Assert.Equal(DateTimeKind.Unspecified, dateTime.Kind);
+        }
+
+        [Fact]
         public void CanUseLessThanOperator()
         {
             // Arrange.

@@ -60,6 +60,12 @@ public class Program
 
         Console.WriteLine(dateOnly);
         Console.WriteLine(timeOnly);
+
+        var backToDateTime = dateOnly.ToDateTime(timeOnly);
+        var atMidnight = dateOnly.ToDateTime(TimeOnly.MinValue);
+
+        Console.WriteLine(backToDateTime);
+        Console.WriteLine(atMidnight);
     }
 
     public static void DemonstrateBasicOperators()
