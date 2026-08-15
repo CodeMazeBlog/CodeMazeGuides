@@ -5,8 +5,8 @@ namespace InitSetters.Tests
     public class CityTests
     {
         private readonly string _name = "Tokyo";
-        private readonly double _lat = 139.839478;
-        private readonly double _lon = 35.652832;
+        private readonly double _lat = 35.652832;
+        private readonly double _lon = 139.839478;
 
         [Fact]
         public void WhenConstructorIsInvoked_ThenValidObjectIsReturned()

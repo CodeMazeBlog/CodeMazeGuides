@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            var city = new City("Tokyo", 139.839478, 35.652832);
+            var city = new City("Tokyo", 35.652832, 139.839478);
 
             Console.WriteLine($"{city.Name}: {city.Latitude}, {city.Longitude}");
 
