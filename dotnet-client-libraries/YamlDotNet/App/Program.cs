@@ -7,7 +7,6 @@ using YamlDotNet.Serialization.NodeDeserializers;
 
 namespace App;
 
-// Entry point for the YamlDotNet serialization/deserialization samples.
 public class Program
 {
     public static void Main(string[] args)
