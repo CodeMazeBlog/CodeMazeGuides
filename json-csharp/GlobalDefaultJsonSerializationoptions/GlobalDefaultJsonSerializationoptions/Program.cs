@@ -25,7 +25,7 @@ builder.Services.Configure<JsonOptions>(options =>
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
-    options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    options.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseUpper;
     options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
     options.SerializerOptions.WriteIndented = false;
     options.SerializerOptions.Encoder = JavaScriptEncoder.Default;
@@ -34,15 +34,15 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
 });
 
-JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
-    ContractResolver = new CamelCasePropertyNamesContractResolver(),
-    Formatting = Formatting.Indented,
-    NullValueHandling = NullValueHandling.Ignore,
-    DateFormatString = "dd-MM-yyyy",
-    DefaultValueHandling = DefaultValueHandling.Ignore,
-    MaxDepth = 3
-};
+    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+    options.SerializerSettings.Formatting = Formatting.Indented;
+    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+    options.SerializerSettings.DateFormatString = "dd-MM-yyyy";
+    options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
+    options.SerializerSettings.MaxDepth = 3;
+});
 
 var app = builder.Build();
 
