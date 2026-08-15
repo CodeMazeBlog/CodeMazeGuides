@@ -8,9 +8,9 @@ namespace App.UseCases;
 public class DeserializerValidation(INodeDeserializer nodeDeserializer) : INodeDeserializer
 {
     public bool Deserialize(IParser reader, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer,
-        out object? value)
+        out object? value, ObjectDeserializer rootDeserializer)
     {
-        if (!nodeDeserializer.Deserialize(reader, expectedType, nestedObjectDeserializer, out value))
+        if (!nodeDeserializer.Deserialize(reader, expectedType, nestedObjectDeserializer, out value, rootDeserializer))
             return false;
 
         var context = new ValidationContext(value);

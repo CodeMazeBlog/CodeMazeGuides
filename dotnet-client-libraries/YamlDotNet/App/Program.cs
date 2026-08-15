@@ -2,6 +2,7 @@
 using App.UseCases;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.Serialization.NodeDeserializers;
 
 namespace App;
@@ -79,6 +80,15 @@ public class Program
         {
             Console.WriteLine($"Unable to deserialize person: {e.Message}");
         }
+
+        // Map YAML Names to C# Property Names
+
+        var config = new ServiceConfig { ServiceName = "orders", MaxRetries = 3 };
+        var hyphenatedYaml = NamingConventions.Serialize(config, HyphenatedNamingConvention.Instance);
+        Console.WriteLine(hyphenatedYaml);
+
+        var deserializeConfig = NamingConventions.Deserialize<ServiceConfig>(hyphenatedYaml, HyphenatedNamingConvention.Instance);
+        Console.WriteLine($"ServiceName: {deserializeConfig.ServiceName}, MaxRetries: {deserializeConfig.MaxRetries}");
 
         // JSON Support in YamlDotNet
 
