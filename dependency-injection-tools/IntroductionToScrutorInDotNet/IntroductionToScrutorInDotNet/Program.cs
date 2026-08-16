@@ -7,7 +7,7 @@ using Scrutor;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Scan(selector => selector
-    .FromCallingAssembly()
+    .FromAssembliesOf(typeof(Program))
     .AddClasses(
         classSelector =>
             classSelector.InNamespaces("IntroductionToScrutorInDotNet.Services.Implementations")
@@ -24,7 +24,7 @@ builder.Services.Scan(selector => selector
 );
 
 builder.Services.Scan(selector => selector
-    .FromCallingAssembly()
+    .FromAssembliesOf(typeof(Program))
     .AddClasses(classSelector => classSelector.AssignableTo(typeof(IRepository<>)))
     .UsingRegistrationStrategy(RegistrationStrategy.Skip)
     .AsImplementedInterfaces());
