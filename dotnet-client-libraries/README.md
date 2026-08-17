@@ -30,6 +30,7 @@ This section contains the topics about the client libraries in .NET.
 - [Vendor-Agnostic Telemetry Using OpenTelemetry Collector in .NET](https://code-maze.com/vendor-agnostic-telemetry-opentelemetry-collector-dotnet/)
 - [MediatR Publish and Send Methods](https://code-maze.com/csharp-mediatr-publish-and-send-methods/)
 - [Schedule Jobs with Quartz.NET](https://code-maze.com/schedule-jobs-with-quartz-net/)
+- [Hangfire vs Quartz.NET: Which Scheduler to Choose?](https://code-maze.com/chsarp-the-differences-between-quartz-net-and-hangfire/)
 - [Rebus in .NET – Service Bus Implementation](https://code-maze.com/rebus-dotnet/)
 - [Easy Sorting, Filtering and Pagination in .NET With Sieve Package](https://code-maze.com/dotnet-sorting-filtering-pagination-sieve-package/)
 - [Using Refit to Consume APIs in C#](https://code-maze.com/using-refit-to-consume-apis-in-csharp/)
