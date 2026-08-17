@@ -13,7 +13,8 @@ namespace HowToUseMapster.Config
                 .NewConfig()
                 .Map(dest => dest.FullName, src => $"{src.Title} {src.FirstName} {src.LastName}")
                 .Map(dest => dest.Age,
-                     src => DateTime.Now.Year - src.DateOfBirth.Value.Year,
+                     src => CalculateAge(DateOnly.FromDateTime(src.DateOfBirth!.Value),
+                                         DateOnly.FromDateTime(DateTime.UtcNow)),
                      srcCond => srcCond.DateOfBirth.HasValue)
                 .Map(dest => dest.FullAddress, src => $"{src.Address.Street} {src.Address.PostCode} - {src.Address.City}");
 
@@ -27,6 +28,18 @@ namespace HowToUseMapster.Config
                 .AfterMapping((src, result) => result.SayGoodbye());
 
             TypeAdapterConfig.GlobalSettings.Scan(Assembly.GetExecutingAssembly());
+        }
+
+        public static int CalculateAge(DateOnly birthDate, DateOnly today)
+        {
+            var age = today.Year - birthDate.Year;
+
+            if (birthDate > today.AddYears(-age))
+            {
+                age--;
+            }
+
+            return age;
         }
     }
 }
