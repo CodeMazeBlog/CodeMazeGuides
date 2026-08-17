@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace AutomapperVsMapster.ReverseMappingAndUnflattening;
 public class AutoMapperReverseMapping
@@ -8,7 +9,7 @@ public class AutoMapperReverseMapping
             cfg.CreateMap<User, UserDto>()
                 .ForMember(dest => dest.EmailAddress, config => config.MapFrom(src => src.Email))
                 .ReverseMap();
-        })
+        }, NullLoggerFactory.Instance)
         .CreateMapper();
 
     public static User Map(UserDto destination)
