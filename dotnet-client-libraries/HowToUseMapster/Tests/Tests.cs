@@ -1,5 +1,7 @@
 using HowToUseMapster;
+using HowToUseMapster.Config;
 using HowToUseMapster.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -45,6 +47,28 @@ namespace Tests
 
             Assert.NotNull(entity);
             Assert.Equal(_person.FirstName, entity.FirstName);
+        }
+
+        [Fact]
+        public void GivenBirthdayAlreadyPassedThisYear_WhenCalculateAge_ThenReturnsFullYears()
+        {
+            var birthDate = new DateOnly(1990, 1, 1);
+            var today = new DateOnly(2026, 8, 15);
+
+            var age = MapsterConfig.CalculateAge(birthDate, today);
+
+            Assert.Equal(36, age);
+        }
+
+        [Fact]
+        public void GivenLeapDayBirthdayInNonLeapYear_WhenCalculateAgeBeforeMarch_ThenBirthdayNotYetCounted()
+        {
+            var birthDate = new DateOnly(2000, 2, 29);
+            var today = new DateOnly(2025, 2, 28);
+
+            var age = MapsterConfig.CalculateAge(birthDate, today);
+
+            Assert.Equal(24, age);
         }
     }
 }
