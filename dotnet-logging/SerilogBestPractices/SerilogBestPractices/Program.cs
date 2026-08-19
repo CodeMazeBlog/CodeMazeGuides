@@ -8,7 +8,7 @@ Log.Logger = new LoggerConfiguration()
         "logs/log.txt",
         retainedFileCountLimit: 21,
         rollingInterval: RollingInterval.Day)
-    .CreateLogger();
+    .CreateBootstrapLogger();
 
 try
 {
