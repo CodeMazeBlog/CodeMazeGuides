@@ -12,39 +12,21 @@
 <table class="table shoe-table">
     <thead>
         <tr>
-            <th>
-                <label>Id</label>
-            </th>
-            <th>
-                <label>Name</label>
-            </th>
-            <th>
-                <label>Brand</label>
-            </th>
-            <th>
-                <label>Price</label>
-            </th>
-            <th>
-                <label>Image</label>
-            </th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Image</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var shoe in Model.Shoes)
         {
             <tr>
-                <td>
-                    <label>@shoe.Id</label>
-                </td>
-                <td>
-                    <label>@shoe.Name</label>
-                </td>
-                <td>
-                    <label>@shoe.Brand</label>
-                </td>
-                <td>
-                    <label>@shoe.Price</label>
-                </td>
+                <td>@shoe.Id</td>
+                <td>@shoe.Name</td>
+                <td>@shoe.Brand</td>
+                <td>@shoe.Price</td>
                 <td>
                     <img src="@shoe.ImageUri" alt="shoe-image">
                 </td>
