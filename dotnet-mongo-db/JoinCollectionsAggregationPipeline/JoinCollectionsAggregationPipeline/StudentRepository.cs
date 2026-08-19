@@ -14,7 +14,7 @@ public class StudentRepository
         _studentCollection = database.GetCollection<Student>("Students");
     }
 
-    public async Task<List<Student>> GetAllUsers()
+    public async Task<List<Student>> GetAllStudentsAsync()
     {
         //Empty Pipeline
         var studentAggregationPipeline = _studentCollection.Aggregate();
