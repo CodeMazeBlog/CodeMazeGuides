@@ -36,6 +36,11 @@ namespace IEnumerableVsICollectionVsIListVsList
             output = lst.CountSpecialCharacters(specialCharacter);
             Console.WriteLine($"List:{output}");
 
+            //Deferred execution vs a materialised collection
+            var deferred = new DeferredExecutionDemo();
+            Console.WriteLine($"Deferred vs materialised:");
+            deferred.ShowDeferredVsMaterialised(new List<int> { 5, 11, 12, 42 });
+
             Console.ReadLine();
         }       
     }    
