@@ -12,3 +12,4 @@ This section contains articles about various blazor features.
 - [How to Use onchange Event with Select DropDown in Blazor](https://code-maze.com/blazor-how-to-use-onchange-event-with-select-dropdown/)
 - [Blazor WebAssembly Exception Handling With Error Boundaries](https://code-maze.com/blazor-webassembly-exception-handling-error-boundaries/)
 - [How to Cancel an HTTP Request on Leaving a Blazor Component](https://code-maze.com/blazor-cancel-http-request-on-leaving-a-component/)
+- [Blazor Localization in WebAssembly Applications](https://code-maze.com/localization-in-blazor-webassembly-applications/)
