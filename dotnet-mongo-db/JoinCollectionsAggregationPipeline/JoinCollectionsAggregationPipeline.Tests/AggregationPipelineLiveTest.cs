@@ -3,7 +3,7 @@
 public class AggregationPipelineLiveTest : IAsyncLifetime
 {
     private readonly MongoDbContainer _mongoDbContainer =
-        new MongoDbBuilder().Build();
+        new MongoDbBuilder("mongo:8.0").Build();
 
     [Fact]
     public async Task GivenIHaveUsersAndRolesCollectionsInMongoDB_WhenICallTheGetUserModelsMethod_ThenItMergesTheTwoCollectionsIntoOneResult()
@@ -30,7 +30,7 @@ public class AggregationPipelineLiveTest : IAsyncLifetime
         await MongoHelper.AddSeedData(database);
         
         //Act
-        var actualResult = await sut.GetAllUsers();
+        var actualResult = await sut.GetAllStudentsAsync();
 
         //Assert
         Assert.NotNull(actualResult);
