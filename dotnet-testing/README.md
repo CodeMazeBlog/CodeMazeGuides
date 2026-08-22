@@ -31,3 +31,8 @@ This section contains the topics related to all kinds of testing in C#/.NET
 - [How to Test gRPC Services in ASP.NET Core](https://code-maze.com/aspnetcore-test-grpc-services/)
 - [Load Testing ASP.NET Core Web API With JMeter](https://code-maze.com/aspnetcore-load-testing-web-api-with-jmeter/)
 - [How to Perform Snapshot Testing With Verify in C#](https://code-maze.com/csharp-snapshot-testing-with-verify/)
+- [xUnit Testing in C# and ASP.NET Core](https://code-maze.com/aspnetcore-unit-testing-xunit/)
+- [Testing Controllers with Unit Tests and Moq in ASP.NET Core](https://code-maze.com/unit-testing-controllers-aspnetcore-moq/)
+- [Integration Testing in ASP.NET Core](https://code-maze.com/aspnet-core-integration-testing/)
+- [How to Include AntiForgeryToken for MVC Integration Testing](https://code-maze.com/aspnet-core-testing-anti-forgery-token/)
+- [Automated UI Tests with Selenium and ASP.NET Core](https://code-maze.com/selenium-aspnet-core-ui-tests/)

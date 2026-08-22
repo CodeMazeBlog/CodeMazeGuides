@@ -3,12 +3,12 @@ using SerilogBestPractices.Enrichers;
 using SerilogBestPractices.Models;
 
 Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
     .WriteTo.File(
         "logs/log.txt",
         retainedFileCountLimit: 21,
         rollingInterval: RollingInterval.Day)
-    .MinimumLevel.Information()
-    .CreateLogger();
+    .CreateBootstrapLogger();
 
 try
 {
@@ -17,8 +17,8 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    builder.Host.UseSerilog((context, config) =>
-        config.ReadFrom.Configuration(context.Configuration)
+    builder.Services.AddSerilog((services, config) =>
+        config.ReadFrom.Configuration(builder.Configuration)
             .Enrich.With(new ThreadPriorityEnricher()));
 
     var app = builder.Build();

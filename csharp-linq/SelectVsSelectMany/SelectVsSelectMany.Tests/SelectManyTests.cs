@@ -80,4 +80,26 @@ public class SelectManyTests
         Assert.That(detailedListOfEmployees[4], Is.EqualTo("Cedric | Development | Developer"));
         Assert.That(detailedListOfEmployees[5], Is.EqualTo("Monica | BackOffice | HumanResources"));
     }
+
+    [Test]
+    public void WhenProjectingACollectionProperty_ThenSelectNestsAndSelectManyFlattens()
+    {
+        var employeeLists = _listOfDepartments.Select(d => d.Employees);      // IEnumerable<List<Employee>>
+        var employees = _listOfDepartments.SelectMany(d => d.Employees);      // IEnumerable<Employee>
+
+        Assert.That(employeeLists.Count(), Is.EqualTo(3));
+        Assert.That(employees.Count(), Is.EqualTo(6));
+    }
+
+    [Test]
+    public void WhenUsingASecondFromClauseInQuerySyntax_ThenItTranslatesToSelectMany()
+    {
+        var employees = from department in _listOfDepartments
+                        from employee in department.Employees
+                        select employee;
+
+        var flattenedWithSelectMany = _listOfDepartments.SelectMany(department => department.Employees);
+
+        Assert.That(employees, Is.EqualTo(flattenedWithSelectMany));
+    }
 }
