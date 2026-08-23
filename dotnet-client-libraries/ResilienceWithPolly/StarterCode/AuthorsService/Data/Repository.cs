@@ -10,5 +10,5 @@ public class Repository
         new Author { AuthorId = 2, Name = "Jane Smith", Country = "United States" }
     ];
 
-    public Task<IEnumerable<Author>> GetAuthorsAsync() => Task.FromResult(_authors);
+    public IEnumerable<Author> GetAuthors() => _authors;
 }

@@ -9,5 +9,5 @@ namespace AuthorsService.Controllers;
 public class AuthorsController(Repository repository) : ControllerBase
 {
     [HttpGet]
-    public Task<IEnumerable<Author>> Get() => repository.GetAuthorsAsync();
+    public IEnumerable<Author> Get() => repository.GetAuthors();
 }
