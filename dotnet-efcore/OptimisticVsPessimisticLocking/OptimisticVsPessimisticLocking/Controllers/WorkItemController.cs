@@ -40,7 +40,7 @@ public class WorkItemController(ILogger<WorkItemController> Logger, ApplicationD
     }
 
     [HttpPost("/workItem/assign-optimistic-row-version")]
-    public async Task<IActionResult> AssignWorkItemWithAutomaticOptimicsticLockAsync(
+    public async Task<IActionResult> AssignWorkItemWithAutomaticOptimisticLockAsync(
         AssignWorkItemRequest assignWorkItemRequest,
         CancellationToken cancellationToken)
     {
@@ -75,7 +75,7 @@ public class WorkItemController(ILogger<WorkItemController> Logger, ApplicationD
     }
 
     [HttpPost("/workItem/assign-manual-optimistic-concurrency-token")]
-    public async Task<IActionResult> AssignWorkItemWithManualOptimicsticLockAsync(
+    public async Task<IActionResult> AssignWorkItemWithManualOptimisticLockAsync(
         AssignWorkItemRequest assignWorkItemRequest,
         CancellationToken cancellationToken)
     {
