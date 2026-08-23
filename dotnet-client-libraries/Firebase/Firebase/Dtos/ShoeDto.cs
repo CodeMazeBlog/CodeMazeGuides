@@ -10,7 +10,6 @@ public class ShoeDto
     [Required]
     public required string Brand { get; set; }
 
-    [Required]
     public required decimal Price { get; set; }
 
     [Required]
