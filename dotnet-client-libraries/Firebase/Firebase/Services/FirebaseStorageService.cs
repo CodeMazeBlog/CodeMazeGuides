@@ -6,7 +6,7 @@ namespace Firebase.Services;
 public class FirebaseStorageService : IFirebaseStorageService
 {
     private readonly StorageClient _storageClient;
-    private const string BucketName = "codemaze-firebase.appspot.com";
+    private const string BucketName = "codemaze-firebase.firebasestorage.app";
 
     public FirebaseStorageService(StorageClient storageClient)
     {

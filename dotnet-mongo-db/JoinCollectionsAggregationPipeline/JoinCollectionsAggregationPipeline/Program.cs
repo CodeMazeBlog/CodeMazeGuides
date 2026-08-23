@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using Testcontainers.MongoDb;
 using JoinCollectionsAggregationPipeline.Models;
 
-await using var mongoDbContainer = new MongoDbBuilder().Build();
+await using var mongoDbContainer = new MongoDbBuilder("mongo:8.0").Build();
 
 await mongoDbContainer.StartAsync();
 var mongoClient = new MongoClient(mongoDbContainer.GetConnectionString());
@@ -14,10 +14,10 @@ var repository = new StudentRepository(mongoClient);
 var database = mongoClient.GetDatabase(DatabaseConfiguration.DatabaseName);
 await MongoHelper.AddSeedData(database);
 
-var users = await repository.GetAllUsers();
-foreach (var user in users)
+var students = await repository.GetAllStudentsAsync();
+foreach (var student in students)
 {
-    Console.WriteLine(user.ToJson());
+    Console.WriteLine(student.ToJson());
 }
 
 await mongoDbContainer.StopAsync();
