@@ -1,0 +1,21 @@
+<html>
+	<head></head>
+	<body>
+		<button onclick="callAPI('books')">Get Books</button>
+		<button onclick="callAPI('authors')">Get Authors</button>
+	</body>
+	<script type="text/javascript">
+	function callAPI(path) {
+		let request = new XMLHttpRequest();
+		request.open("GET", "https://localhost:7001/" + path);
+		request.send();
+		request.onload = () => {
+			if (request.status === 200) {
+				alert(request.response);
+			} else {
+				alert(`Error: ${request.status} ${request.statusText}`);
+			}
+		}
+	}
+	</script>
+</html>
