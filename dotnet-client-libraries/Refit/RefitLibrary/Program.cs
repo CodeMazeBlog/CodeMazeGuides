@@ -7,7 +7,7 @@ using IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((_, services) =>
     {
         services
-        .AddRefitClient<IUsersClient>()
+        .AddRefitGeneratedClient<IUsersClient>()
         .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/"));
     }).Build();
 
@@ -32,5 +32,10 @@ Console.WriteLine($"User email updated to {updatedUser.Email}");
 
 await usersClient.DeleteUser(userId); 
 Console.WriteLine("User deleted");
+
+var response = await usersClient.GetUserResponse(999);
+
+if (!response.IsSuccessStatusCode)
+    Console.WriteLine($"Failed: {response.StatusCode}");
 
 public partial class Program { }
