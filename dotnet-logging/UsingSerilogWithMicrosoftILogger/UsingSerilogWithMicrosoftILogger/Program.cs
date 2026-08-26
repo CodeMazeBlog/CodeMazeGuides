@@ -1,10 +1,13 @@
 using Serilog;
+using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, loggerConfiguration) =>
 {
-    loggerConfiguration.WriteTo.Console();
+    loggerConfiguration
+        .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+        .WriteTo.Console();
 });
 
 builder.Services.AddControllers();
@@ -17,6 +20,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseSerilogRequestLogging();
 
 app.UseAuthorization();
 
