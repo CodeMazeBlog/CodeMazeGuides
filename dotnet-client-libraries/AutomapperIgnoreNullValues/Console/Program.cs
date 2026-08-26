@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 
 namespace AutoMapperIgnoreNullValues;
 internal class Program
@@ -13,7 +13,7 @@ internal class Program
             Grades = null
         };
 
-        Console.WriteLine("\nSource : {0}", JsonConvert.SerializeObject(source, Formatting.Indented));
+        Console.WriteLine("\nSource : {0}", JsonSerializer.Serialize(source, new JsonSerializerOptions { WriteIndented = true }));
 
         try
         {
