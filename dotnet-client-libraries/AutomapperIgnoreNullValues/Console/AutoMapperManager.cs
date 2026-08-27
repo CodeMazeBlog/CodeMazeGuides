@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Logging.Abstractions;
+using System.Text.Json;
 
 namespace AutoMapperIgnoreNullValues;
 
@@ -21,14 +22,14 @@ public class AutoMapperManager
         var config = new MapperConfiguration(cfg =>
         {
             cfg.AddProfile<TProfile>();
-        });
+        }, NullLoggerFactory.Instance);
 
         IMapper mapper = config.CreateMapper();
         var destination = GetSampleEntity();
         destination = mapper.Map(source, destination);
 
         Console.WriteLine("Destination : {0}",
-            JsonConvert.SerializeObject(destination, Formatting.Indented));
+            JsonSerializer.Serialize(destination, new JsonSerializerOptions { WriteIndented = true }));
 
         if (destination.Department == null)
             throw new ArgumentNullException("Department", "Department is null");
