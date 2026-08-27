@@ -33,6 +33,12 @@ namespace ArrayListVsList
             return Sum;
         }
 
+        public ArrayList MixedTypes { get; set; } = new() { 1, "two", DateTime.Now };
+
+        public int ReadFirstAsInt() => (int)MixedTypes[0]!;
+
+        public int ReadSecondAsInt() => (int)MixedTypes[1]!;
+
         public void ListExample()
         {
             Sum = 0;
