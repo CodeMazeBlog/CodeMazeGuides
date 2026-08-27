@@ -53,4 +53,11 @@ public static class ListCompareMethods
                 (customer, order) => customer
             ).Distinct().ToList();
     }
+
+    public static List<Customer> ExceptByMethod(List<Customer> customerList, List<Order> orderList)
+    {
+        var orderedIds = orderList.Select(o => o.CustomerId);
+
+        return customerList.ExceptBy(orderedIds, c => c.Id).ToList();
+    }
 }
