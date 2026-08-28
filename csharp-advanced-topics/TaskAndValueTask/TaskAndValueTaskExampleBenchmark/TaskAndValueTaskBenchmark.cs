@@ -21,7 +21,7 @@ public class TaskAndValueTaskBenchmark
     }
 
     [Benchmark]
-    [Arguments("London")]
+    [Arguments("Denver")]
     public async ValueTask<Weather> ValueTaskBenchmark(string city)
     {
         return await _weatherService.GetWeatherValueTask(city);

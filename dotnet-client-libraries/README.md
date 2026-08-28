@@ -59,3 +59,4 @@ This section contains the topics about the client libraries in .NET.
 - [Introduction to the Wolverine Library in .NET](https://code-maze.com/dotnet-wolverine-library/)
 - [Comparison of Rebus, NServiceBus, and MassTransit in .NET](https://code-maze.com/aspnetcore-comparison-of-rebus-nservicebus-and-masstransit/)
 - [Polly in .NET: Retry, Circuit Breaker, and Fallback](https://code-maze.com/creating-resilient-microservices-in-net-with-polly/)
+- [FluentValidation Validators in C#: Built-in and Custom](https://code-maze.com/deep-dive-validators-fluentvalidation/)
