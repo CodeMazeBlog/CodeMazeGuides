@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Threading.Channels;
 using NUnit.Framework;
 
@@ -71,6 +72,38 @@ namespace ThrowVsThrowEx
    --- End of inner exception stack trace ---
    at ThrowVsThrowEx.BusinessWorker.Work_WrapAndThrowNewEx()
    at ThrowVsThrowEx.ThrowVsThrowExSamples.WrapAndThrowNewEx_KeepsTheStackTraceInTheInnerException()",
+                    ex.ToString());
+            }
+        }
+
+        [Test]
+        public void ExceptionDispatchInfo_RethrowsOutsideTheCatchBlock_KeepsTheOriginalStackTrace()
+        {
+            ExceptionDispatchInfo? captured = null;
+
+            try
+            {
+                new ThirdPartyComponent().DoInternalWork();
+            }
+            catch (Exception ex)
+            {
+                captured = ExceptionDispatchInfo.Capture(ex);
+            }
+
+            try
+            {
+                captured?.Throw();
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual(
+                    @"System.InvalidOperationException: That's a nasty bug!
+   at ThrowVsThrowEx.ThirdPartyComponent.<GoDeeper>g__DoDangerousOperation|1_0()
+   at ThrowVsThrowEx.ThirdPartyComponent.GoDeeper()
+   at ThrowVsThrowEx.ThirdPartyComponent.DoInternalWork()
+   at ThrowVsThrowEx.ThrowVsThrowExSamples.ExceptionDispatchInfo_RethrowsOutsideTheCatchBlock_KeepsTheOriginalStackTrace()
+--- End of stack trace from previous location ---
+   at ThrowVsThrowEx.ThrowVsThrowExSamples.ExceptionDispatchInfo_RethrowsOutsideTheCatchBlock_KeepsTheOriginalStackTrace()",
                     ex.ToString());
             }
         }
