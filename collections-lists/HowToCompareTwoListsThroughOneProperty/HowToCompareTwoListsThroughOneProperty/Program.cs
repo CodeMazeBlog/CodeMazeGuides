@@ -29,3 +29,6 @@ Console.WriteLine(string.Join(',', customerWithOrdersD.Select(i => i.Firstname))
 
 var customerWithOrdersE = ListCompareMethods.JoinListMethod(customers, orders);
 Console.WriteLine(string.Join(',', customerWithOrdersE.Select(i => i.Firstname)));
+
+var customersWithoutOrders = ListCompareMethods.ExceptByMethod(customers, orders);
+Console.WriteLine(string.Join(',', customersWithoutOrders.Select(i => i.Firstname)));

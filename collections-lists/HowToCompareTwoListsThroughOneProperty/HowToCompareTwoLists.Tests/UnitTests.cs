@@ -250,4 +250,35 @@ public class Tests
         Assert.That(result, Is.Not.Null);
         Assert.That(result, Has.Count.EqualTo(0));
     }
+
+    [Test]
+    public void GivenExceptByMethod_WhenThreeCustomersWithTwoOrders_ThenReturnCustomerWithoutOrders()
+    {
+        var result = ListCompareMethods.ExceptByMethod(_threeCustomers, _twoOrders);
+
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result, Has.Count.EqualTo(1));
+
+        CollectionAssert.Contains(result, _threeCustomers[2]);
+        CollectionAssert.DoesNotContain(result, _threeCustomers[0]);
+        CollectionAssert.DoesNotContain(result, _threeCustomers[1]);
+    }
+
+    [Test]
+    public void GivenExceptByMethod_WhenThreeCustomersWithThreeOrders_ThenReturnEmptyList()
+    {
+        var result = ListCompareMethods.ExceptByMethod(_threeCustomers, _threeOrders);
+
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result, Has.Count.EqualTo(0));
+    }
+
+    [Test]
+    public void GivenExceptByMethod_WhenNoOrders_ThenReturnAllCustomers()
+    {
+        var result = ListCompareMethods.ExceptByMethod(_threeCustomers, []);
+
+        Assert.That(result, Is.Not.Null);
+        Assert.That(result, Has.Count.EqualTo(3));
+    }
 }
