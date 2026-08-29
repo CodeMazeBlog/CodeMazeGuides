@@ -30,6 +30,22 @@ namespace Tests
         }
 
         [Fact]
+        public void WhenMixedTypeArrayListReadWithMatchingCast_ThenValueReturned()
+        {
+            var expectedResult = 1;
+
+            var actualResult = _collection.ReadFirstAsInt();
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Fact]
+        public void WhenMixedTypeArrayListReadWithWrongCast_ThenInvalidCastExceptionThrown()
+        {
+            Assert.Throws<InvalidCastException>(() => _collection.ReadSecondAsInt());
+        }
+
+        [Fact]
         public void WhenInvalidObjectsAddedToArrayList_ThenSumFail()
         {
             var expectedResult = "FormatException";

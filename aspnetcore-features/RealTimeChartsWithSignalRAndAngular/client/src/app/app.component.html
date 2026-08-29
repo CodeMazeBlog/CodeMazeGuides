@@ -1,0 +1,15 @@
+<div style="display: block" *ngIf='signalRService.data'>
+  <canvas baseChart
+          [datasets]="signalRService.data"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          [legend]="chartLegend"
+          [chartType]="chartType"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>
+<br><br>
+<ul>
+  <li *ngFor='let data of signalRService.broadcastedData'>
+    <strong>Label: </strong> {{data.label}} - <strong>Value: </strong> {{data.data[0]}}
+  </li>
+</ul>
