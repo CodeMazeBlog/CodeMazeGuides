@@ -6,23 +6,23 @@ namespace AsynchronousProgramming
     {
         public static async Task FirstAsync()
         {
-            Console.WriteLine("First Async Method on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("First Async Method on Thread with Id: " + Environment.CurrentManagedThreadId);
             await Task.Delay(1000);
-            Console.WriteLine("First Async Method Continuation on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("First Async Method Continuation on Thread with Id: " + Environment.CurrentManagedThreadId);
         }
 
         public static async Task SecondAsync()
         {
-            Console.WriteLine("Second Async Method on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("Second Async Method on Thread with Id: " + Environment.CurrentManagedThreadId);
             await Task.Delay(1000);
-            Console.WriteLine("Second Async Method Continuation on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("Second Async Method Continuation on Thread with Id: " + Environment.CurrentManagedThreadId);
         }
 
         public static async Task ThirdAsync()
         {
-            Console.WriteLine("Third Async Method on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("Third Async Method on Thread with Id: " + Environment.CurrentManagedThreadId);
             await Task.Delay(1000);
-            Console.WriteLine("Third Async Method Continuation on Thread with Id: " + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("Third Async Method Continuation on Thread with Id: " + Environment.CurrentManagedThreadId);
         }
 
         public static async Task ExecuteAsyncFunctions()
