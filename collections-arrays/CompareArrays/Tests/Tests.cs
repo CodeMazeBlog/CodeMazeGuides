@@ -92,33 +92,33 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenTwoDifferentReferenceArrays_WhenCompareThemUsingEnumerableEquals_ThenReturnFalse()
+        public void GivenTwoDifferentReferenceArrays_WhenCompareThemUsingObjectEquals_ThenReturnFalse()
         {
-            var result = _arrayComparer.EnumerableEquals(_firstArray, _secondArray);
+            var result = _arrayComparer.ObjectEquals(_firstArray, _secondArray);
 
             Assert.IsFalse(result);
         }
 
         [TestMethod]
-        public void GivenTwoEqualReferenceArrays_WhenCompareThemUsingEnumerableEquals_ThenReturnTrue()
+        public void GivenTwoEqualReferenceArrays_WhenCompareThemUsingObjectEquals_ThenReturnTrue()
         {
-            var result = _arrayComparer.EnumerableEquals(_firstArray, _firstArray);
+            var result = _arrayComparer.ObjectEquals(_firstArray, _firstArray);
 
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void GivenTwoDifferentReferenceArrays_WhenCompareThemUsingEnumerableReferenceEquals_ThenReturnFalse()
+        public void GivenTwoDifferentReferenceArrays_WhenCompareThemUsingObjectReferenceEquals_ThenReturnFalse()
         {
-            var result = _arrayComparer.EnumerableReferenceEquals(_firstArray, _secondArray);
+            var result = _arrayComparer.ObjectReferenceEquals(_firstArray, _secondArray);
 
             Assert.IsFalse(result);
         }
 
         [TestMethod]
-        public void GivenTwoEqualReferenceArrays_WhenCompareThemUsingEnumerableReferenceEquals_ThenReturnTrue()
+        public void GivenTwoEqualReferenceArrays_WhenCompareThemUsingObjectReferenceEquals_ThenReturnTrue()
         {
-            var result = _arrayComparer.EnumerableReferenceEquals(_firstArray, _firstArray);
+            var result = _arrayComparer.ObjectReferenceEquals(_firstArray, _firstArray);
 
             Assert.IsTrue(result);
         }
