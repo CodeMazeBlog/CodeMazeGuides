@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      FluentValidation.AspNetCore is deliberately NOT referenced. It stops at 11.3.1 and
+      cannot pair with FluentValidation 12.1.1, and its automatic-validation pipeline is the
+      approach the maintainers say they "no longer recommend ... for new projects". Validators
+      are registered with AddValidatorsFromAssemblyContaining() from
+      FluentValidation.DependencyInjectionExtensions and invoked explicitly in the controller.
+    -->
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj" />
+  </ItemGroup>
+
+</Project>
