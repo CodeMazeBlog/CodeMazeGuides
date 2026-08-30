@@ -1,5 +1,6 @@
 ﻿using DefaultValueFromDictionaryInCSharp.MethodContainsKey;
 using DefaultValueFromDictionaryInCSharp.MethodGetValueOrDefault;
+using DefaultValueFromDictionaryInCSharp.MethodGetValueOrDefaultWithFallback;
 using DefaultValueFromDictionaryInCSharp.MethodTryGetValue;
 
 var myDictionary = new Dictionary<string, int>
@@ -15,5 +16,7 @@ Console.WriteLine($"{MethodContainsKey.GetValueFromDictionary(myDictionary, key)
 Console.WriteLine($"{MethodTryGetValue.GetValueFromDictionary(myDictionary, key)}");
 
 Console.WriteLine($"{MethodGetValueOrDefault.GetValueFromDictionary(myDictionary, key)}");
+
+Console.WriteLine($"{MethodGetValueOrDefaultWithFallback.GetValueFromDictionary(myDictionary, key, -1)}");
 
 Console.ReadKey();
