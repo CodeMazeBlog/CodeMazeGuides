@@ -1,8 +1,10 @@
-using RateLimitingDotNET8;
+using RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSettings(builder.Configuration);
+
+RateLimiters.RejectionHandling(builder);
 
 RateLimiters.FixedRateLimiter(builder);
 
