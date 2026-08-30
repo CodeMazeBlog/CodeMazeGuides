@@ -6,7 +6,7 @@ namespace CustomNamingPolicy
     {
         public override string ConvertName(string name)
         {
-            return char.IsUpper(name[0]) ? char.ToLower(name[0]) + name.Substring(1) : name;
+            return char.IsUpper(name[0]) ? char.ToLower(name[0]) + name[1..] : name;
         }
     }
 }

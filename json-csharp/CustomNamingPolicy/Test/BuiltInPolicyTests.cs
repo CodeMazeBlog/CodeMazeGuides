@@ -1,14 +1,9 @@
 using System.Text.Json;
 
-namespace CustomNamingPolicy.NET8.Test;
+namespace Test;
 
-public class Tests
+public class BuiltInPolicyTests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     [Test]
     public void GivenObject_WhenSerializeWithSnakeCaseLowerPolicy_ReturnSnakeCaseLowerResult()
     {
@@ -24,7 +19,7 @@ public class Tests
         var expectedJsonObj = "{\"property_name\":\"value\"}";
 
         //Assert
-        Assert.AreEqual(expectedJsonObj, jsonObj);
+        Assert.That(jsonObj, Is.EqualTo(expectedJsonObj));
     }
 
     [Test]
@@ -42,7 +37,7 @@ public class Tests
         var expectedJsonObj = "{\"PROPERTY_NAME\":\"value\"}";
 
         //Assert
-        Assert.AreEqual(expectedJsonObj, jsonObj);
+        Assert.That(jsonObj, Is.EqualTo(expectedJsonObj));
     }
 
     [Test]
@@ -60,7 +55,7 @@ public class Tests
         var expectedJsonObj = "{\"property-name\":\"value\"}";
 
         //Assert
-        Assert.AreEqual(expectedJsonObj, jsonObj);
+        Assert.That(jsonObj, Is.EqualTo(expectedJsonObj));
     }
 
     [Test]
@@ -78,6 +73,6 @@ public class Tests
         var expectedJsonObj = "{\"PROPERTY-NAME\":\"value\"}";
 
         //Assert
-        Assert.AreEqual(expectedJsonObj, jsonObj);
+        Assert.That(jsonObj, Is.EqualTo(expectedJsonObj));
     }
 }
