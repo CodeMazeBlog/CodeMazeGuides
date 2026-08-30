@@ -35,15 +35,15 @@ namespace CompareArrays
 
         public bool EnumerableSequenceEqual(Article[] articleArray, Article[] articleArrayCopy)
         {
-            return Enumerable.SequenceEqual(articleArray, articleArrayCopy, new Article());
+            return Enumerable.SequenceEqual(articleArray, articleArrayCopy, new ArticleComparer());
         }
 
-        public bool EnumerableEquals(int[] firstArray, int[] secondArray)
+        public bool ObjectEquals(int[] firstArray, int[] secondArray)
         {
             return Equals(firstArray, secondArray);
         }
 
-        public bool EnumerableReferenceEquals(int[] firstArray, int[] secondArray)
+        public bool ObjectReferenceEquals(int[] firstArray, int[] secondArray)
         {
             return ReferenceEquals(firstArray, secondArray);
         }

@@ -8,8 +8,6 @@ builder.Services.AddMassTransit(x =>
     x.UsingRabbitMq();
 });
 
-builder.Services.AddMassTransitHostedService();
-
 builder.Services.AddControllers();
 
 var app = builder.Build();

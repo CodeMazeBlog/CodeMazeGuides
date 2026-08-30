@@ -48,13 +48,13 @@
 
             Console.WriteLine();
 
-            Console.WriteLine("---------- Compare using Enumerable.Equals");
-            Console.WriteLine($"Are equal: {_arrayComparer.EnumerableEquals(_firstArray, _secondArray)}");
+            Console.WriteLine("---------- Compare using object.Equals");
+            Console.WriteLine($"Are equal: {_arrayComparer.ObjectEquals(_firstArray, _secondArray)}");
 
             Console.WriteLine();
 
-            Console.WriteLine("---------- Compare using Enumerable.ReferenceEquals");
-            Console.WriteLine($"Are equal: {_arrayComparer.EnumerableReferenceEquals(_firstArray, _secondArray)}");
+            Console.WriteLine("---------- Compare using object.ReferenceEquals");
+            Console.WriteLine($"Are equal: {_arrayComparer.ObjectReferenceEquals(_firstArray, _secondArray)}");
 
             Console.WriteLine();
 

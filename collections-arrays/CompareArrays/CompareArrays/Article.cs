@@ -1,18 +1,27 @@
 ﻿namespace CompareArrays
 {
-    public class Article : IEqualityComparer<Article>
+    public class Article
     {
         public string? Title { get; set; }
         public DateTime LastUpdate { get; set; }
+    }
 
+    public class ArticleComparer : IEqualityComparer<Article>
+    {
         public bool Equals(Article? first, Article? second)
         {
-            return first?.Title == second?.Title && first?.LastUpdate == second?.LastUpdate;
+            if (ReferenceEquals(first, second))
+                return true;
+
+            if (first is null || second is null)
+                return false;
+
+            return first.Title == second.Title && first.LastUpdate == second.LastUpdate;
         }
 
         public int GetHashCode(Article obj)
         {
-            return base.GetHashCode();
+            return HashCode.Combine(obj.Title, obj.LastUpdate);
         }
     }
 }
