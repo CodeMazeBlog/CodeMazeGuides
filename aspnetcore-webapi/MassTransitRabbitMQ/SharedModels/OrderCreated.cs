@@ -1,13 +1,13 @@
-﻿namespace SharedModels
+namespace SharedModels
 {
     public interface OrderCreated
     {
-        int Id { get; set; }
+        int Id { get; }
 
-        string ProductName { get; set; }
+        string ProductName { get; }
 
-        decimal Price { get; set; }
+        decimal Price { get; }
 
-        int Quantity { get; set; }
+        int Quantity { get; }
     }   
 }

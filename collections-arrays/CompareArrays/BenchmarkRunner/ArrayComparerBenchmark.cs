@@ -54,15 +54,15 @@ namespace BenchmarkRunner
         }
 
         [Benchmark]
-        public void EnumerableEquals()
+        public void ObjectEquals()
         {
-            _arrayComparer.EnumerableEquals(_firstArray, _secondArray);
+            _arrayComparer.ObjectEquals(_firstArray, _secondArray);
         }
 
         [Benchmark]
-        public void EnumerableReferenceEquals()
+        public void ObjectReferenceEquals()
         {
-            _arrayComparer.EnumerableReferenceEquals(_firstArray, _secondArray);
+            _arrayComparer.ObjectReferenceEquals(_firstArray, _secondArray);
         }
 
         [Benchmark]
