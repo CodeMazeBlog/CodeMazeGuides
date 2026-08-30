@@ -1,81 +1,54 @@
 namespace Tests
 {
+    // Every test in this class reads and writes the registry of the machine that runs it,
+    // so it can only pass on Windows. The names carry "Live" and CI excludes them with
+    // --filter "FullyQualifiedName!~Live". Run them locally on Windows.
     [TestClass]
     public class RegistryDemoTests
     {
         [TestMethod]
-        public void WhenGetCurrentUserRootKeyName_ResultIsRootKeyCurrentUserName()
+        public void WhenGetCurrentUserRootKeyName_ResultIsRootKeyCurrentUserName_Live()
         {
-            if (!OperatingSystem.IsWindows())
-            {
-                return;
-            }
-
             var currentUserRegistryName = RegistryDemo.GetCurrentUserRootKeyName();
 
             Assert.AreEqual(currentUserRegistryName, Registry.CurrentUser.Name);
         }
 
         [TestMethod]
-        public void WhenGetCurrentUserRootKeyNameWithPlatformCheck_ResultIsRootKeyCurrentUserName()
+        public void WhenGetCurrentUserRootKeyNameWithPlatformCheck_ResultIsRootKeyCurrentUserName_Live()
         {
-            if (!OperatingSystem.IsWindows())
-            {
-                return;
-            }
-
             var currentUserRegistryName = RegistryDemo.GetCurrentUserRootKeyNameWithPlatformCheck();
 
             Assert.AreEqual(currentUserRegistryName, Registry.CurrentUser.Name);
         }
 
         [TestMethod]
-        public void WhenGetCurrentUserRootKeySubkeyCount_ResultIsGreaterThanZero()
+        public void WhenGetCurrentUserRootKeySubkeyCount_ResultIsGreaterThanZero_Live()
         {
-            if (!OperatingSystem.IsWindows())
-            {
-                return;
-            }
-
             var subKeyCount = RegistryDemo.GetCurrentUserRootKeySubkeyCount();
 
             Assert.IsTrue(subKeyCount > 0);
         }
 
         [TestMethod]
-        public void WhenReadAndWriteRegistryValueUsingRegistryClass_ResultIsCodeMazeRegistryDemoValue()
+        public void WhenReadAndWriteRegistryValueUsingRegistryClass_ResultIsCodeMazeRegistryDemoValue_Live()
         {
-            if (!OperatingSystem.IsWindows())
-            {
-                return;
-            }
-
             var writtenValue = RegistryDemo.ReadAndWriteRegistryValueUsingRegistryClass();
 
             Assert.AreEqual(writtenValue, RegistryDemo.CodeMazeRegistryDemoValue);
         }
 
         [TestMethod]
-        public void WhenReadAndWriteRegistryValueUsingRegistryKeyClass_ResultIsCodeMazeRegistryDemoValue()
+        public void WhenReadAndWriteRegistryValueUsingRegistryKeyClass_ResultIsCodeMazeRegistryDemoValue_Live()
         {
-            if (!OperatingSystem.IsWindows())
-            {
-                return;
-            }
-
             var writtenValue = RegistryDemo.ReadAndWriteRegistryValueUsingRegistryKeyClass();
 
             Assert.AreEqual(writtenValue, RegistryDemo.CodeMazeRegistryDemoValue);
         }
 
         [TestMethod]
-        public void WhenGetSubKeyNames_ResultAreTwoSpecificNames()
+        public void WhenGetSubKeyNames_ResultAreTwoSpecificNames_Live()
         {
-            if (!OperatingSystem.IsWindows())
-            {
-                return;
-            }
-
             var subKeyNames = RegistryDemo.GetSubKeyNames();
 
             Assert.IsTrue(subKeyNames.Length == 2);
@@ -84,13 +57,8 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenGetValueNames_ResultAreTwoSpecificValues()
+        public void WhenGetValueNames_ResultAreTwoSpecificValues_Live()
         {
-            if (!OperatingSystem.IsWindows())
-            {
-                return;
-            }
-
             var valueNames = RegistryDemo.GetValueNames();
 
             Assert.IsTrue(valueNames.Length == 2);
@@ -99,39 +67,24 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WhenGetValueKind_ResultIsString()
+        public void WhenGetValueKind_ResultIsString_Live()
         {
-            if (!OperatingSystem.IsWindows())
-            {
-                return;
-            }
-
             var valueKind = RegistryDemo.GetValueKind();
 
             Assert.IsTrue(valueKind.Equals("String"));
         }
 
         [TestMethod]
-        public void WhenSetRegistryKeyAccessPermissions_ResultIsTrue()
+        public void WhenSetRegistryKeyAccessPermissions_ResultIsTrue_Live()
         {
-            if (!OperatingSystem.IsWindows())
-            {
-                return;
-            }
-
             var setPermission = RegistryDemo.SetRegistryKeyAccessPermissions();
 
             Assert.IsTrue(setPermission);
         }
 
         [TestMethod]
-        public void WhenOpenRemoteBaseKey_ResultIsFalse()
+        public void WhenOpenRemoteBaseKey_ResultIsFalse_Live()
         {
-            if (!OperatingSystem.IsWindows())
-            {
-                return;
-            }
-
             var openRemote = RegistryDemo.OpenRemoteBaseKey("machineName");
 
             Assert.IsFalse(openRemote);
