@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rebus" Version="6.6.5" />
-	<PackageReference Include="Rebus.FleetManager" Version="6.2.0" />
-    <PackageReference Include="Rebus.RabbitMq" Version="7.4.4" />
+    <PackageReference Include="Rebus" Version="8.9.3" />
+	<PackageReference Include="Rebus.FleetManager" Version="8.2.2" />
+    <PackageReference Include="Rebus.RabbitMq" Version="10.1.1" />
 	  
   </ItemGroup>
 
