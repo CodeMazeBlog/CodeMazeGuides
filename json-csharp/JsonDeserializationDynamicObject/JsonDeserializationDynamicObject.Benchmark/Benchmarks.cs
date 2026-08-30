@@ -51,7 +51,7 @@ namespace JsonDeserializationDynamicObject.Benchmark
         [Benchmark]
         public void NewtonsoftJsonAnonymousType()
         {
-            NewtonsoftJson.UsingAnonymousTypeWithDictionary(_json);
+            NewtonsoftJson.UsingAnonymousType(_json);
         }
 
         [BenchmarkCategory(nameof(NewtonsoftJson))]

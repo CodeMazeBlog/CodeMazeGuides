@@ -1,7 +1,7 @@
 using JsonDeserializationDynamicObject.Native;
 using Xunit;
 using System.Text.Json;
-using System;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace JsonDeserializationDynamicObject.Tests;
 
@@ -14,7 +14,7 @@ public class NativeJsonUnitTest
 
         var dynamicObject = JsonSerializer.Deserialize<dynamic>(jsonString)!;
 
-        Assert.ThrowsAny<Exception>(() => dynamicObject.Genre);
+        Assert.Throws<RuntimeBinderException>(() => dynamicObject.Genre);
         Assert.IsType<JsonElement>(dynamicObject);
     }
 
