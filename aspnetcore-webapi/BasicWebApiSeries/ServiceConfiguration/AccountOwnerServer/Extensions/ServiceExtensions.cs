@@ -1,4 +1,4 @@
-﻿namespace AccountOwnerServer.Extensions
+namespace AccountOwnerServer.Extensions
 {
     public static class ServiceExtensions
     {
@@ -12,6 +12,5 @@
                     .AllowAnyHeader());
             });
         }
-
     }
 }

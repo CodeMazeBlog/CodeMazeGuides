@@ -1,4 +1,4 @@
-﻿using Contracts;
+using Contracts;
 using LoggerService;
 
 namespace AccountOwnerServer.Extensions
@@ -16,10 +16,9 @@ namespace AccountOwnerServer.Extensions
             });
         }
 
-
-        public static void ConfigureLoggerService(this IServiceCollection services) 
+        public static void ConfigureLoggerService(this IServiceCollection services)
         {
-            services.AddSingleton<ILoggerManager, LoggerManager>(); 
+            services.AddSingleton<ILoggerManager, LoggerManager>();
         }
     }
 }

@@ -19,10 +19,9 @@ namespace AccountOwnerServer.Extensions
             });
         }
 
-
-        public static void ConfigureLoggerService(this IServiceCollection services) 
+        public static void ConfigureLoggerService(this IServiceCollection services)
         {
-            services.AddSingleton<ILoggerManager, LoggerManager>(); 
+            services.AddSingleton<ILoggerManager, LoggerManager>();
         }
 
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration config)
@@ -32,9 +31,9 @@ namespace AccountOwnerServer.Extensions
             services.AddDbContext<RepositoryContext>(o => o.UseSqlServer(connectionString));
         }
 
-        public static void ConfigureRepositoryWrapper(this IServiceCollection services) 
-        { 
-            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>(); 
+        public static void ConfigureRepositoryWrapper(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
         }
     }
 }
