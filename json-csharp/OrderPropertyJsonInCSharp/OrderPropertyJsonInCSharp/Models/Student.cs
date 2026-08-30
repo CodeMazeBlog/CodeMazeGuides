@@ -2,7 +2,7 @@
 {
     public class Student: Person
     {
-        public int RegistratioNumber { get; set; }
+        public int RegistrationNumber { get; set; }
 
         public double Grade { get; set; }
     }
