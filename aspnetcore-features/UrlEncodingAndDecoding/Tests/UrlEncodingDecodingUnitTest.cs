@@ -104,17 +104,33 @@ namespace Tests
         }
 
         [TestMethod]
-        public void GivenABarePath_WhenConstructingAUri_ThenUriFormatExceptionThrown()
+        public void GivenABarePath_WhenConstructingAUri_ThenTheOutcomeIsPlatformDependent()
         {
-            Assert.ThrowsExactly<UriFormatException>(() => new Uri("/foo"));
+            if (OperatingSystem.IsWindows())
+            {
+                //A bare path is not an absolute URI on Windows and not a rooted local path either.
+                Assert.ThrowsExactly<UriFormatException>(() => new Uri("/foo"));
+                Assert.IsFalse(Uri.TryCreate("/foo", UriKind.Absolute, out _));
+            }
+            else
+            {
+                //On Unix a bare path IS a rooted local path, so it parses as an absolute file URI.
+                var uri = new Uri("/foo");
 
-            Assert.IsFalse(Uri.TryCreate("/foo", UriKind.Absolute, out _));
+                Assert.AreEqual("file", uri.Scheme);
+                Assert.AreEqual("file:///foo", uri.AbsoluteUri);
+                Assert.IsTrue(Uri.TryCreate("/foo", UriKind.Absolute, out _));
+            }
+
+            //The relative remedy works the same way on every platform.
             Assert.IsTrue(Uri.TryCreate("/foo", UriKind.Relative, out _));
+            Assert.IsFalse(new Uri("/foo", UriKind.Relative).IsAbsoluteUri);
         }
 
         [TestMethod]
         public void GivenAProtocolRelativeUrl_WhenConstructingAUri_ThenItParsesAsAFileUri()
         {
+            //Same on Windows and on Unix: this does not throw, it becomes a file URI.
             var uri = new Uri("//example.com");
 
             Assert.AreEqual("file", uri.Scheme);
