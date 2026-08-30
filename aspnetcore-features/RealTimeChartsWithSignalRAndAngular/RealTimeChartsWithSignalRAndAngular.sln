@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeCharts.Server", "RealTimeCharts.Server\RealTimeCharts.Server.csproj", "{0464F2B0-B76B-4164-9E13-6F171F881DE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Debug|x64.Build.0 = Debug|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Debug|x86.Build.0 = Debug|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Release|x64.ActiveCfg = Release|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Release|x64.Build.0 = Release|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Release|x86.ActiveCfg = Release|Any CPU
+		{0464F2B0-B76B-4164-9E13-6F171F881DE3}.Release|x86.Build.0 = Release|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Debug|x64.Build.0 = Debug|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Debug|x86.Build.0 = Debug|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Release|x64.ActiveCfg = Release|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Release|x64.Build.0 = Release|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Release|x86.ActiveCfg = Release|Any CPU
+		{FCA2A762-2CC0-456D-959E-EF8BFB0F563F}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
