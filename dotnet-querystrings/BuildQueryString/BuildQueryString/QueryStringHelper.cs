@@ -31,6 +31,20 @@ namespace BuildQueryString
             return fullApiUrl;
         }
 
+        public static string BuildUrlWithQueryStringUsingUriBuilderSafely(
+            string basePath, Dictionary<string, string?> queryParams)
+        {
+            var uriBuilder = new UriBuilder(basePath)
+            {
+                Query = QueryString.Create(queryParams).Value
+            };
+
+            var fullApiUrl = uriBuilder.Uri.AbsoluteUri;
+            Console.WriteLine($"Full API Url: {fullApiUrl}");
+
+            return fullApiUrl;
+        }
+
         public static string BuildUrlWithQueryStringUsingParseQueryStringMethod(
             string basePath, Dictionary<string, string> queryParams)
         {
