@@ -42,7 +42,7 @@ public static class RegistryDemo
             return string.Empty;
         }
 
-        var subKeyToWrite = Path.Combine(Registry.CurrentUser.Name, CodeMazeRegistryDemoSubKey);
+        var subKeyToWrite = $@"{Registry.CurrentUser.Name}\{CodeMazeRegistryDemoSubKey}";
 
         Registry.SetValue(subKeyToWrite, CodeMazeRegistryDemoName, CodeMazeRegistryDemoValue);
         var writtenValue = Registry.GetValue(subKeyToWrite, CodeMazeRegistryDemoName, string.Empty);
@@ -64,9 +64,9 @@ public static class RegistryDemo
         using var subKey = baseKey.OpenSubKey(CodeMazeRegistryDemoSubKey, true) ??
                            baseKey.CreateSubKey(CodeMazeRegistryDemoSubKey);
 
-        subKey?.SetValue(CodeMazeRegistryDemoName, CodeMazeRegistryDemoValue);
-        var writtenValue = subKey?.GetValue(CodeMazeRegistryDemoName);
-        subKey?.DeleteValue(CodeMazeRegistryDemoName);
+        subKey.SetValue(CodeMazeRegistryDemoName, CodeMazeRegistryDemoValue);
+        var writtenValue = subKey.GetValue(CodeMazeRegistryDemoName);
+        subKey.DeleteValue(CodeMazeRegistryDemoName);
 
         baseKey.DeleteSubKey(CodeMazeRegistryDemoSubKey);
 
@@ -77,37 +77,37 @@ public static class RegistryDemo
     {
         if (!OperatingSystem.IsWindows())
         {
-            return Array.Empty<string>();
+            return [];
         }
 
         using var subKey = Registry.CurrentUser.CreateSubKey(CodeMazeRegistryDemoSubKey);
-        subKey?.CreateSubKey("SubKey1");
-        subKey?.CreateSubKey("SubKey2");
+        subKey.CreateSubKey("SubKey1");
+        subKey.CreateSubKey("SubKey2");
 
-        var subKeyNames = subKey?.GetSubKeyNames();
+        var subKeyNames = subKey.GetSubKeyNames();
 
         Registry.CurrentUser.DeleteSubKeyTree(CodeMazeRegistryDemoSubKey);
 
-        return subKeyNames ?? Array.Empty<string>();
+        return subKeyNames;
     }
 
     public static string[] GetValueNames()
     {
         if (!OperatingSystem.IsWindows())
         {
-            return Array.Empty<string>();
+            return [];
         }
 
         using var subKey = Registry.CurrentUser.CreateSubKey(CodeMazeRegistryDemoSubKey);
-        using var subKey1 = subKey?.CreateSubKey("SubKey1");
-        subKey1?.SetValue("Name1", "Value1");
-        subKey1?.SetValue("Name2", "Value2");
+        using var subKey1 = subKey.CreateSubKey("SubKey1");
+        subKey1.SetValue("Name1", "Value1");
+        subKey1.SetValue("Name2", "Value2");
 
-        var subKeyNames = subKey1?.GetValueNames();
+        var subKeyNames = subKey1.GetValueNames();
 
         Registry.CurrentUser.DeleteSubKeyTree(CodeMazeRegistryDemoSubKey);
 
-        return subKeyNames ?? Array.Empty<string>();
+        return subKeyNames;
     }
 
     public static string GetValueKind()
@@ -118,14 +118,14 @@ public static class RegistryDemo
         }
 
         using var subKey = Registry.CurrentUser.CreateSubKey(CodeMazeRegistryDemoSubKey);
-        using var subKey1 = subKey?.CreateSubKey("SubKey1");
-        subKey1?.SetValue("Name1", "Value1");
+        using var subKey1 = subKey.CreateSubKey("SubKey1");
+        subKey1.SetValue("Name1", "Value1");
 
-        var valueKind = subKey1?.GetValueKind("Name1");
+        var valueKind = subKey1.GetValueKind("Name1");
 
         Registry.CurrentUser.DeleteSubKeyTree(CodeMazeRegistryDemoSubKey);
 
-        return valueKind.ToString() ?? string.Empty;
+        return valueKind.ToString();
     }
 
     public static bool SetRegistryKeyAccessPermissions()
@@ -135,7 +135,7 @@ public static class RegistryDemo
             return false;
         }
 
-        var user = Path.Combine(Environment.UserDomainName, Environment.UserName);
+        var user = $@"{Environment.UserDomainName}\{Environment.UserName}";
         var registrySecurity = new RegistrySecurity();
 
         var accessRule = new RegistryAccessRule(user,
@@ -180,10 +180,16 @@ public static class RegistryDemo
 
         try
         {
-            var remoteBaseKey = RegistryKey.OpenRemoteBaseKey(RegistryHive.CurrentUser, machineName);
+            using var remoteBaseKey = RegistryKey.OpenRemoteBaseKey(RegistryHive.CurrentUser, machineName);
+
             return true;
         }
-        catch
+        catch (ArgumentException)
+        {
+            // An unreachable machine and a stopped Remote Registry service both surface here.
+            return false;
+        }
+        catch (IOException)
         {
             return false;
         }
