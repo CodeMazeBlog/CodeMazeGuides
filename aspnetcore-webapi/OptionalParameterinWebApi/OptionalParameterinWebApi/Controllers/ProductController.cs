@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OptionalParameterinWebApi.Controllers
 {
@@ -6,18 +6,10 @@ namespace OptionalParameterinWebApi.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-
-        private static readonly string[] Products = new[]
-        {
+        private static readonly string[] Products =
+        [
             "Sweater", "Umbrella", "Jacket", "Polo", "Boots", "Microwave", "Schoolbag", "Sunshade", "SKinny Jeans", "Sunscreen"
-        };
-
-        private readonly ILogger<ProductController> _logger;
-
-        public ProductController(ILogger<ProductController> logger)
-        {
-            _logger = logger;
-        }
+        ];
 
         [HttpGet]
         public IEnumerable<Product> Get()
@@ -37,6 +29,22 @@ namespace OptionalParameterinWebApi.Controllers
             return products;
         }
 
+        [HttpGet("GetBy/{name}")]
+        public Product GetBy(string name)
+        {
+            var products = Get();
+
+            return products.Where(p => p.Name == name).FirstOrDefault()!;
+        }
+
+        [HttpGet("GetBy/{id:int}")]
+        public Product GetBy(int id)
+        {
+            var products = Get();
+
+            return products.Where(p => p.Id == id).FirstOrDefault()!;
+        }
+
         [HttpGet("GetById/{id:int?}")]
         public Product GetById(int id = 1)
         {
@@ -46,4 +54,3 @@ namespace OptionalParameterinWebApi.Controllers
         }
     }
 }
-
