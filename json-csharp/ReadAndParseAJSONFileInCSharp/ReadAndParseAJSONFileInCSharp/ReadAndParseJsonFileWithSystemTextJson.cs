@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace ReadAndParseAJSONFileInCSharp
 {
@@ -37,6 +38,22 @@ namespace ReadAndParseAJSONFileInCSharp
         {
             using FileStream json = File.OpenRead(_sampleJsonFilePath);
             List<Teacher> teachers = JsonSerializer.Deserialize<List<Teacher>>(json, _options);
+
+            return teachers;
+        }
+
+        public async Task<List<Teacher>> UseFileOpenReadAsyncWithSystemTextJson()
+        {
+            using FileStream json = File.OpenRead(_sampleJsonFilePath);
+            List<Teacher> teachers = await JsonSerializer.DeserializeAsync<List<Teacher>>(json, _options);
+
+            return teachers;
+        }
+
+        public JsonNode UseJsonNodeWithSystemTextJson()
+        {
+            var json = File.ReadAllText(_sampleJsonFilePath);
+            JsonNode teachers = JsonNode.Parse(json);
 
             return teachers;
         }
