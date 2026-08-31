@@ -41,4 +41,28 @@ public class CustomSerializationUnitTest : UnitTestBase
 
         Assert.Equal("[{\"Name\":\"toggle1\",\"Type\":\"EnableDisable\"},{\"Name\":\"toggle2\",\"Type\":\"VisibleHidden\"}]", json);
     }
+
+    [Fact]
+    public void GivenEnum_WhenDecoratedWithJsonStringEnumMemberName_ThenSerializeAsSpecifiedString()
+    {
+        var controls = new CustomNames.ToggleControl[]
+        {
+            new("toggle1", CustomNames.ToggleType.EnableDisable),
+            new("toggle2", CustomNames.ToggleType.VisibleHidden)
+        };
+
+        var json = SerializeWithStringEnum(controls);
+
+        Assert.Equal("[{\"Name\":\"toggle1\",\"Type\":\"Enable/Disable\"},{\"Name\":\"toggle2\",\"Type\":\"Visible/Hidden\"}]", json);
+    }
+
+    [Fact]
+    public void GivenEnum_WhenDecoratedWithJsonStringEnumMemberNameButNoConverterRegistered_ThenSerializeAsNumber()
+    {
+        var control = new CustomNames.ToggleControl("toggle1", CustomNames.ToggleType.EnableDisable);
+
+        var json = Serialize(control);
+
+        Assert.Equal("{\"Name\":\"toggle1\",\"Type\":0}", json);
+    }
 }
