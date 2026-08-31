@@ -1,12 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
+using HowToSerializeAListToJsonInCSharp;
 
-namespace HowToSerializeAListToJsonInCSharp
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            BenchmarkRunner.Run<SerializeMethodsBenchmark>();
-        }
-    }
-}
+BenchmarkRunner.Run<SerializeMethodsBenchmark>();
