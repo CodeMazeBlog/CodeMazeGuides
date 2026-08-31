@@ -1,4 +1,4 @@
-namespace StandardAndCustomNumericFormatStringsTests;
+namespace StandardAndCustomFormatStringsTests;
 
 public class CustomFormatStringsTests
 {
@@ -53,6 +53,37 @@ public class CustomFormatStringsTests
   public void GivenANumber_WhenPhoneInterpolated_ReturnsFormattedPhoneNumber(long input, string expected)
   {
     string result = CustomFormatStrings.PhoneInterpolated(input);
+
+    Assert.Equal(expected, result);
+  }
+
+  [Theory]
+  [InlineData(1234.5, "1,234.50")]
+  [InlineData(-1234.5, "(1,234.50)")]
+  [InlineData(0.0, "Zero")]
+  public void GivenAValue_WhenAccounting_ThenTheSectionMatchingTheSignIsUsed(double input, string expected)
+  {
+    string result = CustomFormatStrings.Accounting(input);
+
+    Assert.Equal(expected, result);
+  }
+
+  [Theory]
+  [InlineData(1234.5, "1235")]
+  [InlineData(-1234.5, "-1235")]
+  [InlineData(0.0, "")]
+  public void GivenAValue_WhenBlankZero_ThenZeroFormatsAsAnEmptyString(double input, string expected)
+  {
+    string result = CustomFormatStrings.BlankZero(input);
+
+    Assert.Equal(expected, result);
+  }
+
+  [Theory]
+  [InlineData(0.0, "0.00")]
+  public void GivenZero_WhenTheThirdSectionIsEmpty_ThenItIsIgnoredAndTheFirstSectionIsUsed(double input, string expected)
+  {
+    string result = CustomFormatStrings.EmptyThirdSection(input);
 
     Assert.Equal(expected, result);
   }
