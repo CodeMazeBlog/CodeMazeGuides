@@ -1,4 +1,5 @@
-﻿using HowToSerializeAListToJsonInCSharp;
+﻿using System.Text;
+using HowToSerializeAListToJsonInCSharp;
 
 namespace Tests
 {
@@ -11,21 +12,21 @@ namespace Tests
                     Name = "Arsenal",
                     YearFounded = 1886,
                     Country = "England",
-                    NumberOfPlayers = "26",
+                    NumberOfPlayers = 26,
                 },
                 new Club
                 {
                     Name = "Manchester City",
                     YearFounded = 1880,
                     Country = "England",
-                    NumberOfPlayers = "25",
+                    NumberOfPlayers = 25,
                 },
                 new Club
                 {
                     Name = "Sunderland",
                     YearFounded = 1879,
                     Country = "England",
-                    NumberOfPlayers = "30",
+                    NumberOfPlayers = 30,
                 }
             };
 
@@ -39,19 +40,19 @@ namespace Tests
                     "name": "Arsenal",
                     "yearFounded": 1886,
                     "country": "England",
-                    "numberOfPlayers": "26"
+                    "numberOfPlayers": 26
                   },
                   {
                     "name": "Manchester City",
                     "yearFounded": 1880,
                     "country": "England",
-                    "numberOfPlayers": "25"
+                    "numberOfPlayers": 25
                   },
                   {
                     "name": "Sunderland",
                     "yearFounded": 1879,
                     "country": "England",
-                    "numberOfPlayers": "30"
+                    "numberOfPlayers": 30
                   }
                 ]
                 """;
@@ -69,6 +70,17 @@ namespace Tests
         {
             var englishClubsJson = _serializeList.SerializeToUtf8BytesMethod();
 
+            Assert.Equal(_expectedResult, englishClubsJson);
+        }
+
+        [Fact]
+        public async Task GivenAList_WhenUsingTheSerializeToStreamAsyncMethod_ThenWritesAJsonStringToTheStream()
+        {
+            using var stream = new MemoryStream();
+
+            await _serializeList.SerializeToStreamAsync(stream);
+
+            var englishClubsJson = Encoding.UTF8.GetString(stream.ToArray());
             Assert.Equal(_expectedResult, englishClubsJson);
         }
     }
