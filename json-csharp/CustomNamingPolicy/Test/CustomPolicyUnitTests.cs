@@ -25,7 +25,7 @@ public class Tests
         var expectedJson = "{\"GivenName\":\"Name1\",\"surName\":\"Surname1\"}";
 
         //Assert
-        Assert.AreEqual(expectedJson, jsonString);
+        Assert.That(jsonString, Is.EqualTo(expectedJson));
     }
 
     [Test]
@@ -42,7 +42,7 @@ public class Tests
         var expectedJson = "{\"given/name\":\"Name1\",\"sur/name\":\"Surname1\"}";
 
         //Assert
-        Assert.AreEqual(expectedJson, jsonString);
+        Assert.That(jsonString, Is.EqualTo(expectedJson));
     }
 
     [Test]
@@ -59,6 +59,6 @@ public class Tests
         var expectedJson = "{\"givenName\":\"Name1\",\"surName\":\"Surname1\"}";
 
         //Assert
-        Assert.AreEqual(expectedJson, jsonString);
+        Assert.That(jsonString, Is.EqualTo(expectedJson));
     }
 }

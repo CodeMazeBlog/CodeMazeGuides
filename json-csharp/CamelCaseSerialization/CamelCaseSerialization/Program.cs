@@ -32,8 +32,12 @@ Console.WriteLine($"{JsonSerializer.Serialize(person, new JsonSerializerOptions
     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
 })}");
 
+// With the JsonSerializerDefaults.Web preset, the same options ASP.NET Core applies
+var webOptions = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+Console.WriteLine($"{JsonSerializer.Serialize(person, webOptions)}");
+
 // With extension method
 Console.WriteLine($"{person.SerializeWithCamelCase()}");
 
 var personObject = personString.DeserializeFromCamelCase<Person>();
-Console.WriteLine($"{personObject.FirstName} {personObject.Surname}({personObject.IsActive}) is {personObject.Age}");
+Console.WriteLine($"{personObject?.FirstName} {personObject?.Surname}({personObject?.IsActive}) is {personObject?.Age}");
