@@ -12,7 +12,8 @@ namespace OrderPropertyJsonInCSharp.Converters
 
         public override T Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return JsonSerializer.Deserialize<T>(ref reader, options);
+            throw new NotSupportedException(
+                "This converter only controls the order properties are written in. Deserialize without it.");
         }
 
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
