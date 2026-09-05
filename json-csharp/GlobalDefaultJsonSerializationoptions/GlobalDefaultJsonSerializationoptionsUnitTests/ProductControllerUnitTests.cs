@@ -2,7 +2,6 @@ using GlobalDefaultJsonSerializationoptions;
 using GlobalDefaultJsonSerializationoptions.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 
 namespace GlobalDefaultJsonSerializationoptionsUnitTests;
 
@@ -42,8 +41,6 @@ public class ProductControllerUnitTests
         // Assert
         Assert.IsNotNull(result);
         Assert.AreEqual(200, result.StatusCode);
-
-        var expectedJson = JsonConvert.SerializeObject(product);
-        Assert.AreEqual(expectedJson, result?.Value?.ToString());
+        Assert.AreEqual(product, result.Value);
     }
 }
