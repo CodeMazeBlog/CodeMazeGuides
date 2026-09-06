@@ -12,7 +12,7 @@
                     Name = $"Club-{i}",
                     YearFounded = 1000 + i,
                     Country = "England",
-                    NumberOfPlayers = "30",
+                    NumberOfPlayers = 30,
                 };
                 englishClubs.Add(club);
             }
