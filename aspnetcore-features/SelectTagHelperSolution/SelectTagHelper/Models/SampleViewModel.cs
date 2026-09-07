@@ -1,4 +1,4 @@
-using SelectTagHelper.Enums;
+﻿using SelectTagHelper.Enums;
 
 namespace SelectTagHelper.Models
 {

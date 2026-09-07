@@ -1,4 +1,4 @@
-namespace SelectTagHelper.Models
+﻿namespace SelectTagHelper.Models
 {
     public class EmployeeViewModel
     {

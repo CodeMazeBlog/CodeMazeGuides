@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using SelectTagHelper.Enums;
 
 namespace SelectTagHelper.Models

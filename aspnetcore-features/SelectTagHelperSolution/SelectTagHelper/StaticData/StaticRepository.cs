@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using SelectTagHelper.Models;
 
 namespace SelectTagHelper.StaticData
