@@ -1,11 +1,11 @@
-﻿@model ProductViewModel
+@model ProductViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <p>Products Dropdown List</p>
 <form method="post">
-    <select class="form-select-sm" asp-for="Product" asp-items="@Model.Products"></select>
+    <select class="form-select form-select-sm" asp-for="Product" asp-items="@Model.Products"></select>
     <div class="mt-4">
         <input class="btn btn-primary" type="submit" value="Submit"/>
     </div>

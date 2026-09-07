@@ -1,0 +1,9 @@
+@model SelectViewModel
+@{
+    ViewData["Title"] = "Placeholder dropdown";
+}
+
+<p class="mt-2">Gender Dropdown - Using a disabled first item as a placeholder</p>
+
+<select class="form-select form-select-sm" asp-for="SelectedGender" asp-items="@Model.Genders">
+</select>
