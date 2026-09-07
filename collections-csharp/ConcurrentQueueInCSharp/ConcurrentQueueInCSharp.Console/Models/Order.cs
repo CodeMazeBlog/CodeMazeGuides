@@ -2,6 +2,6 @@
 {
     public class Order
     {
-        public string Id { get; init; }
+        public required string Id { get; init; }
     }
 }

@@ -1,17 +1,10 @@
-using ConcurrentQueueInCSharp;
 using ConcurrentQueueInCSharp.Models;
 
 namespace ConcurrentQueueInCSharpTests
 {
     public class MessageBusTests
     {
-        private OrderMessageBus _messageBus;
-
-        [SetUp]
-        public void Setup()
-        {
-            _messageBus = new OrderMessageBus();
-        }
+        private readonly OrderMessageBus _messageBus = new();
 
         [Test]
         public void WhenAddingNewOrder_ThenOrderIsStoredInQueue()
