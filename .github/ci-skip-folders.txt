@@ -9,6 +9,7 @@
 dotnet-efcore/TestForValidDbConnection
 dotnet-efcore/OptimisticVsPessimisticLocking
 dotnet-efcore/EfCoreInterceptors
+dotnet-efcore/FilteringResultsInsideTheIncludeMethodInEFCore
 
 # docker-compose-dependent: needs external infra (Kafka / OTel collector) the
 # runner doesn't provide.
