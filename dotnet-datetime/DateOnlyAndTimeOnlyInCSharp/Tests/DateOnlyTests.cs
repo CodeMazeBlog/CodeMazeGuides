@@ -112,5 +112,92 @@ namespace Tests
             // Assert.
             Assert.True(isAfter);
         }
+        [Fact]
+        public void CanParseExactWithAKnownFormat()
+        {
+            // Arrange.
+            var text = "2022-01-01";
+
+            // Act.
+            var date = DateOnly.ParseExact(text, "yyyy-MM-dd");
+
+            // Assert.
+            Assert.Equal(new DateOnly(2022, 1, 1), date);
+        }
+
+        [Fact]
+        public void CanConvertToDateTimeWithATimeOnly()
+        {
+            // Arrange.
+            var dateOnly = new DateOnly(2022, 1, 1);
+            var timeOnly = new TimeOnly(11, 30);
+
+            // Act.
+            var combined = dateOnly.ToDateTime(timeOnly);
+
+            // Assert.
+            Assert.Equal(new DateTime(2022, 1, 1, 11, 30, 0), combined);
+            Assert.Equal(DateTimeKind.Unspecified, combined.Kind);
+        }
+
+        [Fact]
+        public void CanConvertToDateTimeAtMidnight()
+        {
+            // Arrange.
+            var dateOnly = new DateOnly(2022, 1, 1);
+
+            // Act.
+            var midnight = dateOnly.ToDateTime(TimeOnly.MinValue);
+
+            // Assert.
+            Assert.Equal(new DateTime(2022, 1, 1, 0, 0, 0), midnight);
+            Assert.Equal(DateTimeKind.Unspecified, midnight.Kind);
+        }
+
+        [Fact]
+        public void CanConvertToDateTimeWithAKnownKind()
+        {
+            // Arrange.
+            var dateOnly = new DateOnly(2022, 1, 1);
+            var timeOnly = new TimeOnly(11, 30);
+
+            // Act.
+            var utc = dateOnly.ToDateTime(timeOnly, DateTimeKind.Utc);
+
+            // Assert.
+            Assert.Equal(DateTimeKind.Utc, utc.Kind);
+            Assert.Equal(new DateTime(2022, 1, 1, 11, 30, 0, DateTimeKind.Utc), utc);
+        }
+
+        [Fact]
+        public void CanGetTodaysDateFromDateTimeNow()
+        {
+            // Arrange.
+            var now = DateTime.Now;
+
+            // Act.
+            var today = DateOnly.FromDateTime(now);
+
+            // Assert. CI runs at an arbitrary instant, so we assert consistency, not a value.
+            Assert.Equal(now.Year, today.Year);
+            Assert.Equal(now.Month, today.Month);
+            Assert.Equal(now.Day, today.Day);
+        }
+
+        [Fact]
+        public void CanRoundTripThroughDayNumber()
+        {
+            // Arrange.
+            var dateOnly = new DateOnly(2022, 1, 1);
+
+            // Act.
+            var dayNumber = dateOnly.DayNumber;
+            var roundTripped = DateOnly.FromDayNumber(dayNumber);
+
+            // Assert.
+            Assert.Equal(dateOnly, roundTripped);
+            Assert.Equal(1, dateOnly.DayNumber - new DateOnly(2021, 12, 31).DayNumber);
+        }
+
     }
 }
