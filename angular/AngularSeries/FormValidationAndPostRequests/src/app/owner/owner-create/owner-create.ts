@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsDatepickerDirective, BsDatepickerInputDirective } from 'ngx-bootstrap/datepicker';
@@ -11,7 +11,6 @@ import { OwnerRepositoryService } from '../../shared/services/owner-repository.s
 import { SuccessModal } from '../../shared/modals/success-modal/success-modal';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, BsDatepickerDirective, BsDatepickerInputDirective],
   providers: [DatePipe],
   selector: 'app-owner-create',

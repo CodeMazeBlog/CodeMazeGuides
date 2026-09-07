@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsDatepickerDirective, BsDatepickerInputDirective } from 'ngx-bootstrap/datepicker';
@@ -11,7 +11,6 @@ import { OwnerRepositoryService } from '../../shared/services/owner-repository.s
 import { SuccessModal } from '../../shared/modals/success-modal/success-modal';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [ReactiveFormsModule, BsDatepickerDirective, BsDatepickerInputDirective],
   providers: [DatePipe],
   selector: 'app-owner-update',
@@ -19,7 +18,7 @@ import { SuccessModal } from '../../shared/modals/success-modal/success-modal';
   templateUrl: './owner-update.html',
 })
 export class OwnerUpdate implements OnInit {
-  owner!: Owner;
+  owner = signal<Owner | undefined>(undefined);
   ownerForm!: FormGroup;
   bsModalRef?: BsModalRef;
 
@@ -46,10 +45,12 @@ export class OwnerUpdate implements OnInit {
     this.repository.getOwner(ownerByIdUri)
     .subscribe({
       next: (own: Owner) => {
-        this.owner = { ...own,
+        const owner: Owner = { ...own,
           dateOfBirth: new Date(own.dateOfBirth)
         };
-        this.ownerForm.patchValue(this.owner);
+
+        this.owner.set(owner);
+        this.ownerForm.patchValue(owner);
       }
     })
   }
@@ -76,7 +77,7 @@ export class OwnerUpdate implements OnInit {
       address: ownerFormValue.address
     }
 
-    const apiUri: string = `api/owner/${this.owner.id}`;
+    const apiUri: string = `api/owner/${this.owner()?.id}`;
 
     this.repository.updateOwner(apiUri, ownerForUpd)
     .subscribe({

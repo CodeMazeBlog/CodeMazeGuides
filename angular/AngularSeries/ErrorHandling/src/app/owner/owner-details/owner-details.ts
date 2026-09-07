@@ -1,19 +1,18 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Owner } from '../../_interfaces/owner.model';
 import { OwnerRepositoryService } from '../../shared/services/owner-repository.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DatePipe],
   selector: 'app-owner-details',
   styleUrl: './owner-details.css',
   templateUrl: './owner-details.html',
 })
 export class OwnerDetails implements OnInit {
-  owner!: Owner;
+  owner = signal<Owner | undefined>(undefined);
 
   private repository = inject(OwnerRepositoryService);
   private activeRoute = inject(ActivatedRoute);
@@ -28,7 +27,7 @@ export class OwnerDetails implements OnInit {
 
     this.repository.getOwner(apiUrl)
     .subscribe({
-      next: (own: Owner) => this.owner = own
+      next: (own: Owner) => this.owner.set(own)
     })
   }
 

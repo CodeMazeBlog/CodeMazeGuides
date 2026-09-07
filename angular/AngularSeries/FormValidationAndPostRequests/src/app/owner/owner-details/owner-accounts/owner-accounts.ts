@@ -1,10 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Account } from '../../../_interfaces/account.model';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DatePipe],
   selector: 'app-owner-accounts',
   styleUrl: './owner-accounts.css',

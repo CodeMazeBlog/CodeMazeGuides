@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 
@@ -8,14 +8,13 @@ import { OwnerRepositoryService } from '../../shared/services/owner-repository.s
 import { SuccessModal } from '../../shared/modals/success-modal/success-modal';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [DatePipe],
   selector: 'app-owner-delete',
   styleUrl: './owner-delete.css',
   templateUrl: './owner-delete.html',
 })
 export class OwnerDelete implements OnInit {
-  owner!: Owner;
+  owner = signal<Owner | undefined>(undefined);
   bsModalRef?: BsModalRef;
 
   private repository = inject(OwnerRepositoryService);
@@ -33,12 +32,12 @@ export class OwnerDelete implements OnInit {
 
     this.repository.getOwner(apiUri)
     .subscribe({
-      next: (own: Owner) => this.owner = own
+      next: (own: Owner) => this.owner.set(own)
     })
   }
 
   deleteOwner = () => {
-    const deleteUri: string = `api/owner/${this.owner.id}`;
+    const deleteUri: string = `api/owner/${this.owner()?.id}`;
 
     this.repository.deleteOwner(deleteUri)
     .subscribe({

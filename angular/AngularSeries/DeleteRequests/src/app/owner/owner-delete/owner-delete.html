@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-7">
           <span name="name">
-            {{owner?.name}}
+            {{owner()?.name}}
           </span>
         </div>
       </div>
@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-7">
           <span name="dateOfBirth">
-            {{owner?.dateOfBirth | date: 'MM/dd/yyyy'}}
+            {{owner()?.dateOfBirth | date: 'MM/dd/yyyy'}}
           </span>
         </div>
       </div>
@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-7">
           <span name="address">
-            {{owner?.address}}
+            {{owner()?.address}}
           </span>
         </div>
       </div>

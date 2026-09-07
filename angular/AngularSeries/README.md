@@ -37,6 +37,49 @@ Strict mode is on. TypeScript 6 enables `strict` by its own default, so a worksp
 CLI generates carries no `"strict": true` line and is strict all the same, `strictTemplates`
 included.
 
+## Zoneless, OnPush, and fetched state in signals
+
+Every folder keeps the two defaults an Angular 22 project is generated with, and nothing here
+switches either off.
+
+- **Zoneless.** `ng new` on CLI 22 writes no `zone.js` dependency, no `polyfills` entry in
+  `angular.json` and no `provideZoneChangeDetection` in `app.config.ts`. Neither does any folder
+  here. `app.config.ts` holds `provideBrowserGlobalErrorListeners()`, `provideRouter(routes)` and,
+  from `AngularHttpClientAndServices` onward, `provideHttpClient(...)`.
+- **OnPush.** A component with no `changeDetection` line compiles OnPush on Angular 22, and none
+  of the components here carries one. `angular.json` has no `@schematics/angular:component`
+  override either, so `ng generate component` in these workspaces writes exactly what the CLI
+  writes anywhere else.
+
+The one consequence a reader has to know is that **a value fetched over `HttpClient` is held in a
+signal**. Assigning to a plain property inside a `subscribe` callback changes nothing Angular is
+watching, so the template never re-renders. Declaring the field as a signal and setting it inside
+the same callback does:
+
+```ts
+owners = signal<Owner[]>([]);
+
+private getAllOwners = () => {
+  this.repository.getOwners('api/owner')
+  .subscribe({
+    next: (own: Owner[]) => this.owners.set(own)
+  })
+}
+```
+
+and the template reads it as a call:
+
+```html
+@for (owner of owners(); track owner.id) {
+```
+
+That is the whole pattern, and it is the same in every component that fetches: `owners` on the
+owner list, `owner` on the details, update and delete screens. The subscription itself is
+unchanged, there is no `toSignal`, no `resource` and no `effect`, and `@Input()` / `@Output()`
+keep the decorator API that part 12 is about. Reactive forms are unchanged too: a validation
+message is driven by the template's own input and blur events, which mark the component for
+check on their own.
+
 ## Running one part on its own
 
 ```bash

@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (owner of owners; track owner.id) {
+          @for (owner of owners(); track owner.id) {
             <tr>
               <td>{{owner.name}}</td>
               <td>{{owner.address}}</td>

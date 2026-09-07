@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject } from '@angular/core';
+import { Component, EventEmitter, inject } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'app-success-modal',
   styleUrl: './success-modal.css',
   templateUrl: './success-modal.html',

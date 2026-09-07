@@ -4,7 +4,7 @@
       <strong>Owner name:</strong>
     </div>
     <div class="col-md-3">
-      {{owner?.name}}
+      {{owner()?.name}}
     </div>
   </div>
   <div class="row">
@@ -12,16 +12,16 @@
       <strong>Date of birth:</strong>
     </div>
     <div class="col-md-3">
-      {{owner?.dateOfBirth | date: 'dd/MM/yyyy'}}
+      {{owner()?.dateOfBirth | date: 'dd/MM/yyyy'}}
     </div>
   </div>
-  @if ((owner?.accounts?.length ?? 0) <= 2) {
+  @if ((owner()?.accounts?.length ?? 0) <= 2) {
     <div class="row">
       <div class="col-md-3">
         <strong>Type of user:</strong>
       </div>
       <div class="col-md-3">
-        <span [appAppend]="owner" class="text-success">Beginner user.</span>
+        <span [appAppend]="owner()" class="text-success">Beginner user.</span>
       </div>
     </div>
   } @else {
@@ -30,11 +30,11 @@
         <strong>Type of user:</strong>
       </div>
       <div class="col-md-3">
-        <span [appAppend]="owner" class="text-info">Advanced user.</span>
+        <span [appAppend]="owner()" class="text-info">Advanced user.</span>
       </div>
     </div>
   }
 </div>
 
-<app-owner-accounts [accounts]="owner?.accounts ?? []"
+<app-owner-accounts [accounts]="owner()?.accounts ?? []"
   (accountClick)="printToConsole($event)"></app-owner-accounts>

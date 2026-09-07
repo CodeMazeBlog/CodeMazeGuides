@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 import { Home } from './home/home';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [Home],
   selector: 'app-root',
   styleUrl: './app.css',

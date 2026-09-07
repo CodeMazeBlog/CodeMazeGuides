@@ -4,7 +4,7 @@
       <strong>Owner name:</strong>
     </div>
     <div class="col-md-3">
-      {{owner?.name}}
+      {{owner()?.name}}
     </div>
   </div>
   <div class="row">
@@ -12,10 +12,10 @@
       <strong>Date of birth:</strong>
     </div>
     <div class="col-md-3">
-      {{owner?.dateOfBirth | date: 'dd/MM/yyyy'}}
+      {{owner()?.dateOfBirth | date: 'dd/MM/yyyy'}}
     </div>
   </div>
-  @if ((owner?.accounts?.length ?? 0) <= 2) {
+  @if ((owner()?.accounts?.length ?? 0) <= 2) {
     <div class="row">
       <div class="col-md-3">
         <strong>Type of user:</strong>
@@ -47,7 +47,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (account of owner?.accounts; track account.id) {
+          @for (account of owner()?.accounts; track account.id) {
             <tr>
               <td>{{account?.accountType}}</td>
               <td>{{account?.dateCreated | date: 'dd/MM/yyyy'}}</td>

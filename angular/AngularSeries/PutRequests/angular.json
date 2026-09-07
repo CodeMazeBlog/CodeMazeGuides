@@ -8,11 +8,7 @@
   "projects": {
     "AccountOwnerClient": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "changeDetection": "Eager"
-        }
-      },
+      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -21,9 +17,6 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
