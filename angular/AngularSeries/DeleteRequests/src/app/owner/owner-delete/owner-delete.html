@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 card card-body bg-light mb-2 mt-2">
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="name" class="control-label">Owners name:</label>
+        </div>
+        <div class="col-md-7">
+          <span name="name">
+            {{owner?.name}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="dateOfBirth" class="control-label">Date of birth:</label>
+        </div>
+        <div class="col-md-7">
+          <span name="dateOfBirth">
+            {{owner?.dateOfBirth | date: 'MM/dd/yyyy'}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="address" class="control-label">Address:</label>
+        </div>
+        <div class="col-md-7">
+          <span name="address">
+            {{owner?.address}}
+          </span>
+        </div>
+      </div>
+
+      <br>
+      <div class="row">
+        <div class="offset-md-3 col-md-1">
+          <button type="submit" class="btn btn-info" (click)="deleteOwner()">Delete</button>
+        </div>
+        <div class="col-md-1">
+          <button type="button" class="btn btn-danger" (click)="redirectToOwnerList()">Cancel</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

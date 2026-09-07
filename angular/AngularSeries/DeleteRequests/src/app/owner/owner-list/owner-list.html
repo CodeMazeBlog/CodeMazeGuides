@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="offset-10 col-md-2 mt-2"> <a [routerLink]="['/owner/create']">Create owner</a> </div>
+</div> <br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Owner name</th>
+            <th>Owner address</th>
+            <th>Date of birth</th>
+            <th>Details</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (owner of owners; track owner.id) {
+            <tr>
+              <td>{{owner.name}}</td>
+              <td>{{owner.address}}</td>
+              <td>{{owner.dateOfBirth | date: 'dd/MM/yyyy'}}</td>
+              <td><button type="button" id="details" class="btn btn-primary"
+              (click)="getOwnerDetails(owner.id)">Details</button></td>
+              <td><button type="button" id="update" class="btn btn-success"
+              (click)="redirectToUpdatePage(owner.id)">Update</button></td>
+              <td><button type="button" id="delete" class="btn btn-danger"
+              (click)="redirectToDeletePage(owner.id)">Delete</button></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
