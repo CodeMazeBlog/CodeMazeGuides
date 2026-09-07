@@ -18,7 +18,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   };
 
   const handleOtherError = (error: HttpErrorResponse) => {
-    createErrorMessage(error); //TODO: this will be fixed later;
+    createErrorMessage(error); // this will be fixed later
   };
 
   return next(req).pipe(
