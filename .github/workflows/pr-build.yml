@@ -137,7 +137,7 @@ jobs:
           echo "Building $sln"
           dotnet build "$sln" --configuration Release
           echo "Testing $sln (no-op for folders with no test project)"
-          dotnet test "$sln" --configuration Release --no-build
+          dotnet test "$sln" --configuration Release --no-build --filter "FullyQualifiedName!~Live"
 
       - name: Setup Node
         if: matrix.kind == 'npm'
