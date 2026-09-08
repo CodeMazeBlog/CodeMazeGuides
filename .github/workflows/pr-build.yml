@@ -1,8 +1,11 @@
 # Advisory only. This check is never marked as a required status check, and main
 # has no branch protection rule referencing it. It builds and tests exactly the
-# article folder(s) a PR touches -- nothing else. Folders in .github/ci-skip-folders.txt
-# are filtered out before the matrix is built, so they never show up as a run,
-# passing or failing (edit that file, not this one, to change what's excluded).
+# article folder(s) a PR touches -- nothing else. A folder is classified once:
+# "dotnet" when it holds a .sln, "npm" when it holds a package.json at its root
+# or in an immediate subfolder (the layout an Angular series folder uses).
+# Folders in .github/ci-skip-folders.txt are filtered out before the matrix is
+# built, so they never show up as a run, passing or failing (edit that file, not
+# this one, to change what's excluded).
 name: PR Build
 
 on:
@@ -69,13 +72,23 @@ jobs:
               continue
             fi
 
-            # Folder may have been deleted in this PR -- skip if no .sln remains at HEAD.
-            if ! compgen -G "$f"/*.sln > /dev/null 2>&1; then
+            # Classify the folder. A .sln makes it a .NET folder; otherwise a
+            # package.json at the folder root or one level down makes it an npm
+            # folder. Anything else has nothing to build.
+            kind=""
+            if compgen -G "$f"/*.sln > /dev/null 2>&1; then
+              kind="dotnet"
+            elif [ -f "$f/package.json" ] || compgen -G "$f"/*/package.json > /dev/null 2>&1; then
+              kind="npm"
+            fi
+
+            # Folder may have been deleted in this PR -- skip if nothing buildable remains at HEAD.
+            if [ -z "$kind" ]; then
               echo "::notice::Skipping '$f' -- no .sln at HEAD (deleted or restructured)."
               continue
             fi
 
-            entries=$(jq -c --arg folder "$f" '. + [{folder: $folder}]' <<<"$entries")
+            entries=$(jq -c --arg folder "$f" --arg kind "$kind" '. + [{folder: $folder, kind: $kind}]' <<<"$entries")
           done
 
           echo "folders=$entries" >> "$GITHUB_OUTPUT"
@@ -100,6 +113,7 @@ jobs:
           sparse-checkout-cone-mode: true
 
       - name: Setup .NET SDKs
+        if: matrix.kind == 'dotnet'
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
@@ -110,6 +124,7 @@ jobs:
             10.0.x
 
       - name: Build and test
+        if: matrix.kind == 'dotnet'
         working-directory: ${{ matrix.folder }}
         shell: bash
         run: |
@@ -123,6 +138,40 @@ jobs:
           dotnet build "$sln" --configuration Release
           echo "Testing $sln (no-op for folders with no test project)"
           dotnet test "$sln" --configuration Release --no-build --filter "FullyQualifiedName!~Live"
+
+      - name: Setup Node
+        if: matrix.kind == 'npm'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: ${{ matrix.folder }}/**/package-lock.json
+
+      - name: Build (npm)
+        if: matrix.kind == 'npm'
+        working-directory: ${{ matrix.folder }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Every directory at depth 0 or 1 that holds a package.json is its own
+          # project: one folder may carry a single application or a set of them.
+          mapfile -t projects < <(
+            find . -maxdepth 2 -name package.json -not -path "*/node_modules/*" -printf '%h\n' \
+              | sort -u
+          )
+          if [ ${#projects[@]} -eq 0 ]; then
+            echo "::error::No package.json found in ${{ matrix.folder }}."
+            exit 1
+          fi
+          for p in "${projects[@]}"; do
+            echo "::group::${{ matrix.folder }}/${p#./} -- npm ci && npm run build"
+            (
+              cd "$p"
+              npm ci
+              npm run build
+            )
+            echo "::endgroup::"
+          done
 
   # Stable, folder-independent name for branch protection to require -- the
   # build-and-test job's displayed name varies with the matrix (one leg per
