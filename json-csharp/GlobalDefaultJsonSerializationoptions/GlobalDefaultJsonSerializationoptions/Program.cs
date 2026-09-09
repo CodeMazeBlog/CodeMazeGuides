@@ -1,27 +1,22 @@
-using Microsoft.AspNetCore.Mvc;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using GlobalDefaultJsonSerializationoptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using GlobalDefaultJsonSerializationoptions;
-using System.Text.Encodings.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddControllers();
-
-builder.Services.Configure<JsonOptions>(options =>
-{
-    options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
-    options.JsonSerializerOptions.WriteIndented = false;
-    options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Default;
-    options.JsonSerializerOptions.AllowTrailingCommas = true;
-    options.JsonSerializerOptions.MaxDepth = 3;
-    options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
-});
+var controllers = builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        options.JsonSerializerOptions.WriteIndented = false;
+        options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Default;
+        options.JsonSerializerOptions.AllowTrailingCommas = true;
+        options.JsonSerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
+    });
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
@@ -30,27 +25,27 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.WriteIndented = false;
     options.SerializerOptions.Encoder = JavaScriptEncoder.Default;
     options.SerializerOptions.AllowTrailingCommas = true;
-    options.SerializerOptions.MaxDepth = 3;
     options.SerializerOptions.NumberHandling = JsonNumberHandling.AllowReadingFromString;
 });
 
-JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+// AddNewtonsoftJson() replaces both MVC formatters, so it would take the
+// System.Text.Json configuration above out of play for every controller action.
+// The sample demonstrates all three approaches, so this one is registered behind
+// a configuration switch: run with UseNewtonsoftJson=true to serialize controller
+// responses with Json.NET instead.
+if (builder.Configuration.GetValue<bool>("UseNewtonsoftJson"))
 {
-    ContractResolver = new CamelCasePropertyNamesContractResolver(),
-    Formatting = Formatting.Indented,
-    NullValueHandling = NullValueHandling.Ignore,
-    DateFormatString = "dd-MM-yyyy",
-    DefaultValueHandling = DefaultValueHandling.Ignore,
-    MaxDepth = 3
-};
+    controllers.AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        options.SerializerSettings.Formatting = Formatting.Indented;
+        options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+        options.SerializerSettings.DateFormatString = "dd-MM-yyyy";
+        options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
+    });
+}
 
 var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.UseHttpsRedirection();
 
@@ -64,3 +59,5 @@ app.MapPost("api/Product/create", (Product product) =>
 });
 
 app.Run();
+
+public partial class Program;

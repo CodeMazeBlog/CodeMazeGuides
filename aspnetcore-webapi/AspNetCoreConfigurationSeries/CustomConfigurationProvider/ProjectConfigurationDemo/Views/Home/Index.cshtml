@@ -1,0 +1,10 @@
+@model HomeModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    @if (Model.Configuration.ShowWelcomeMessage)
+    {
+        <h1 class="display-4" style="color:@Model.Configuration.Color">@Model.Configuration.WelcomeMessage</h1>
+    }
+</div>
