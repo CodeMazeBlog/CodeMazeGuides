@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RateLimitingDotNET8", "RateLimitingDotNET8\RateLimitingDotNET8.csproj", "{080CC0E5-4B65-41EB-A34A-D810C414820D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RateLimiting", "RateLimiting\RateLimiting.csproj", "{080CC0E5-4B65-41EB-A34A-D810C414820D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateLimitingDotNET8.Tests", "RateLimitingDotNET8.Tests\RateLimitingDotNET8.Tests.csproj", "{B8FEBE55-F1D9-49FB-ADDE-2B456A195DB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateLimiting.Tests", "RateLimiting.Tests\RateLimiting.Tests.csproj", "{B8FEBE55-F1D9-49FB-ADDE-2B456A195DB1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{080CC0E5-4B65-41EB-A34A-D810C414820D} = {080CC0E5-4B65-41EB-A34A-D810C414820D}
 	EndProjectSection

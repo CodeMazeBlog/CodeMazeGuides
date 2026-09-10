@@ -1,18 +1,18 @@
-﻿namespace RateLimitingDotNET8;
+﻿namespace RateLimiting;
 
-public class RateLimiterOptions
+public class LimiterSettings
 {
     public int QueueLimit { get; set; } = default!;
 }
 
-public class FixedOptions : RateLimiterOptions
+public class FixedOptions : LimiterSettings
 {
     public const string Fixed = "FixedOptions";
     public int PermitLimit { get; set; } = default!;
     public double Window { get; set; } = default!;
 }
 
-public class SlidingWindowOptions : RateLimiterOptions
+public class SlidingWindowOptions : LimiterSettings
 {
     public const string Sliding = "SlidingWindowOptions";
 
@@ -21,7 +21,7 @@ public class SlidingWindowOptions : RateLimiterOptions
     public int SegmentsPerWindow { get; set; } = default!;
 }
 
-public class TokenBucketOptions : RateLimiterOptions
+public class TokenBucketOptions : LimiterSettings
 {
     public const string Token = "TokenBucketOptions";
 
@@ -31,7 +31,7 @@ public class TokenBucketOptions : RateLimiterOptions
     public bool AutoReplenishment { get; set; } = default!;
 }
 
-public class ConcurrencyOptions : RateLimiterOptions
+public class ConcurrencyOptions : LimiterSettings
 {
     public const string Concurrency = "ConcurrencyOptions";
 

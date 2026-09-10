@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 
-namespace RateLimitingDotNET8.Controllers;
+namespace RateLimiting.Controllers;
 
-//[EnableRateLimiting(Policies.Fixed)]
+[EnableRateLimiting(Policies.Fixed)]
 [ApiController]
 [Route("customer")]
 public class CustomerController : ControllerBase

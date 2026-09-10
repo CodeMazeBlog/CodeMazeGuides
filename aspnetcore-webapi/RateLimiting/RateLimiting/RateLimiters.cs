@@ -1,12 +1,31 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.RateLimiting;
-using Microsoft.Extensions.Options;
+using System.Globalization;
 using System.Threading.RateLimiting;
 
-namespace RateLimitingDotNET8;
+namespace RateLimiting;
 
 public static class RateLimiters
 {
+    public static void RejectionHandling(WebApplicationBuilder builder)
+    {
+        builder.Services.AddRateLimiter(limiterOptions =>
+        {
+            limiterOptions.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+            limiterOptions.OnRejected = (context, cancellationToken) =>
+            {
+                if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
+                {
+                    context.HttpContext.Response.Headers.RetryAfter =
+                        ((int)retryAfter.TotalSeconds).ToString(NumberFormatInfo.InvariantInfo);
+                }
+
+                return ValueTask.CompletedTask;
+            };
+        });
+    }
+
     public static void FixedRateLimiter(WebApplicationBuilder builder)
     {
         var fixedOptions = GetOptionValues<FixedOptions>(builder);
@@ -67,7 +86,7 @@ public static class RateLimiters
 
     public static void AuthorizationRateLimiter(WebApplicationBuilder builder)
     {
-        var authorizedLimiterOptions = builder.Configuration.GetSection(AuthorizedOptions.Authorized).Get<AuthorizedOptions>();
+        var authorizedLimiterOptions = GetOptionValues<AuthorizedOptions>(builder);
 
         var unauthorizedLimiterOptions = GetOptionValues<UnauthorizedOptions>(builder);
 
@@ -76,7 +95,6 @@ public static class RateLimiters
 
         builder.Services.AddRateLimiter(limiterOptions =>
         {
-            limiterOptions.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
             limiterOptions.AddPolicy(policyName: Policies.Authorization, partitioner: httpContext =>
             {
                 var accessToken = httpContext.GetTokenAsync("access_token").Result;
@@ -144,9 +162,6 @@ public static class RateLimiters
     }
 
 
-    private static T GetOptionValues<T>(WebApplicationBuilder builder) where T : class
-    {
-        var serviceProvider = builder.Services.BuildServiceProvider();
-        return serviceProvider.GetRequiredService<IOptions<T>>().Value;
-    }
+    private static T GetOptionValues<T>(WebApplicationBuilder builder) where T : class, new()
+        => builder.Configuration.GetSection(typeof(T).Name).Get<T>() ?? new T();
 }

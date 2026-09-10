@@ -1,4 +1,4 @@
-﻿namespace RateLimitingDotNET8;
+﻿namespace RateLimiting;
 
 public static class ConfigurationSettingsExtension
 {

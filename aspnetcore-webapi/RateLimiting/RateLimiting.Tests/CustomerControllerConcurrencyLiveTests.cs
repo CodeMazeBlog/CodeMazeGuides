@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 using Xunit.Abstractions;
 
-namespace RateLimitingDotNET8.Tests;
+namespace RateLimiting.Tests;
 
 public class CustomerControllerConcurrencyLiveTests : IClassFixture<WebApplicationFactory<Program>>
 {
