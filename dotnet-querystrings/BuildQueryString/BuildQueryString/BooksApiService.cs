@@ -61,7 +61,7 @@
 
         public async Task<string> GetWithQueryParamsUsingAddQueryStringMethod(string author, string language)
         {
-            var query = new Dictionary<string, string>
+            var query = new Dictionary<string, string?>
             {
                 { "author", author },
                 { "language", language }
@@ -83,7 +83,7 @@
 
         public async Task<string> GetWithQueryParamsUsingCreateMethod(string author, string language)
         {
-            var query = new Dictionary<string, string>
+            var query = new Dictionary<string, string?>
             {
                 { "author", author },
                 { "language", language }
