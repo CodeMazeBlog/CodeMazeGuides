@@ -2,31 +2,30 @@
 
 namespace HowToSerializeAListToJsonInCSharp
 {
-    public class SerializeListToJsonWithSystemTextJson
+    public class SerializeListToJsonWithSystemTextJson(List<Club> clubList)
     {
-        private readonly List<Club> _clubList;
-        private readonly JsonSerializerOptions _options 
-            = new() 
+        private readonly JsonSerializerOptions _options
+            = new()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 WriteIndented = true,
             };
 
-        public SerializeListToJsonWithSystemTextJson(List<Club> clubList)
-        {
-            _clubList = clubList;
-        }
-
         public string SerializeMethod()
         {
-            return JsonSerializer.Serialize(_clubList, _options);
+            return JsonSerializer.Serialize(clubList, _options);
         }
 
         public string SerializeToUtf8BytesMethod()
         {
-            var result = JsonSerializer.SerializeToUtf8Bytes(_clubList, _options);
-            
+            var result = JsonSerializer.SerializeToUtf8Bytes(clubList, _options);
+
             return System.Text.Encoding.UTF8.GetString(result);
+        }
+
+        public async Task SerializeToStreamAsync(Stream stream)
+        {
+            await JsonSerializer.SerializeAsync(stream, clubList, _options);
         }
     }
 }
