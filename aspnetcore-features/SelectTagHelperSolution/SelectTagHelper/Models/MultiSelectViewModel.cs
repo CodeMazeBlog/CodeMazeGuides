@@ -2,7 +2,7 @@
 {
     public class MultiSelectViewModel
     {
-        public List<EmployeeViewModel> Employees { get; set; }
-        public int[] SelectedEmployeeIds { get; set; }
+        public List<EmployeeViewModel> Employees { get; set; } = [];
+        public int[] SelectedEmployeeIds { get; set; } = [];
     }
 }
