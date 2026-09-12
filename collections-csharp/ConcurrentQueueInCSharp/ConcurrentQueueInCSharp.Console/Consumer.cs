@@ -1,21 +1,21 @@
-﻿public class Consumer
+﻿public class Consumer(OrderMessageBus messageBus)
 {
-    private readonly OrderMessageBus _messageBus;
-
-    public Consumer(OrderMessageBus messageBus)
+    public Task Process(CancellationToken token)
     {
-        _messageBus = messageBus;
-    }
-
-    public Task Process()
-    {
-        return Task.Run(() =>
+        return Task.Run(async () =>
         {
-            while (_messageBus.Fetch(out var order))
+            while (!token.IsCancellationRequested)
             {
-                Console.WriteLine($"ProcessId {Task.CurrentId} | Processing order {order.Id}");
-                Thread.Sleep(200);
+                if (messageBus.Fetch(out var order))
+                {
+                    Console.WriteLine($"ProcessId {Task.CurrentId} | Processing order {order!.Id}");
+                    Thread.Sleep(200);
+                }
+                else
+                {
+                    await Task.Delay(50, CancellationToken.None);
+                }
             }
-        });
+        }, CancellationToken.None);
     }
 }
