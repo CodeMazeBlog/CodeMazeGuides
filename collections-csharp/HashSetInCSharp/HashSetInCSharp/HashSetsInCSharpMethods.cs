@@ -45,9 +45,23 @@
             return list;
         }
 
-        public HashSet<int> RandomInts(int size) 
+        public HashSet<string> CreateFromList(List<string> languageList)
         {
-            var rand = new Random();
+            var fromList = languageList.ToHashSet();
+
+            return fromList;
+        }
+
+        public HashSet<string> CreateCaseInsensitive(List<string> languageList)
+        {
+            var caseInsensitive = new HashSet<string>(languageList, StringComparer.OrdinalIgnoreCase);
+
+            return caseInsensitive;
+        }
+
+        public HashSet<int> RandomInts(int size, int seed = 42)
+        {
+            var rand = new Random(seed);
             var numbers = new HashSet<int>();
 
             for (int i = 0; i < size; i++) 
@@ -60,7 +74,7 @@
 
         public bool IsOdd(int num) 
         {
-            return num % 2 == 1;
+            return num % 2 != 0;
         }
     }
 }
