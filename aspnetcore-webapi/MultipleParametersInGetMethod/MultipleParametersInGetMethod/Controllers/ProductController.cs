@@ -1,5 +1,3 @@
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MultipleParametersInGetMethod.Models;
 
@@ -19,12 +17,6 @@ namespace MultipleParametersInGetMethod.Controllers
             new Product{ Id = 6, Category = "Sports", Brand = "Adidas", Name = "Football", WarrantyYears = 3, IsAvailable = false },
             new Product{ Id = 7, Category = "Electronic", Brand = "Apple", Name = "Mobile", WarrantyYears = 2, IsAvailable = true }
         };
-        private readonly IMapper _mapper;
-
-        public ProductController(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
 
         [HttpGet]
         public IActionResult GetProductsByCategoryAndBrand(string category, string brand)
@@ -33,7 +25,7 @@ namespace MultipleParametersInGetMethod.Controllers
                 .Where(x => x.Category == category && x.Brand == brand)
                 .ToList();
 
-            return Ok(_mapper.Map<List<ProductDto>>(result));
+            return Ok(result);
         }
 
         [HttpGet("type-manufacturer")]
@@ -45,31 +37,31 @@ namespace MultipleParametersInGetMethod.Controllers
                 .Where(x => x.Category == category && x.Brand == brand)
                 .ToList();
 
-            return Ok(_mapper.Map<List<ProductDto>>(result));
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetProductById(int id)
         {
-            return Ok(_mapper.Map<ProductDto>(_products
+            return Ok(_products
                 .Where(x => x.Id == id)
-                .FirstOrDefault()));
+                .FirstOrDefault());
         }
 
         [HttpGet("productId/{productId}")]
         public IActionResult GetProductByIdUsingFromRoute([FromRoute(Name = "productId")] int id)
         {
-            return Ok(_mapper.Map<ProductDto>(_products
+            return Ok(_products
                 .Where(x => x.Id == id)
-                .FirstOrDefault()));
+                .FirstOrDefault());
         }
 
         [HttpGet("brand/{brand}")]
         public IActionResult GetProductsByBrandAndWarranty(string brand, int warranty)
         {
-            return Ok(_mapper.Map<List<ProductDto>>(_products
+            return Ok(_products
                 .Where(x => x.Brand == brand && x.WarrantyYears == warranty)
-                .ToList()));
+                .ToList());
         }
 
         [HttpGet("manufacturer/{manufacturer}")]
@@ -77,25 +69,25 @@ namespace MultipleParametersInGetMethod.Controllers
             [FromRoute(Name = "manufacturer")] string brand,
             [FromQuery(Name = "coverage")] int warranty)
         {
-            return Ok(_mapper.Map<List<ProductDto>>(_products
+            return Ok(_products
                 .Where(x => x.Brand == brand && x.WarrantyYears == warranty)
-                .ToList()));
+                .ToList());
         }
 
         [HttpGet("category")]
-        public IActionResult GetProductsByCategory([FromBody] ProductDto model)
+        public IActionResult GetProductsByCategory([FromBody] Product model)
         {
-            return Ok(_mapper.Map<List<ProductDto>>(_products
+            return Ok(_products
                 .Where(x => x.Category == model.Category)
-                .ToList()));
+                .ToList());
         }
 
         [HttpGet("category-brand")]
         public IActionResult GetProductsByCategoryAndBrandViaHeaders([FromHeader] string category, [FromHeader] string brand)
         {
-            return Ok(_mapper.Map<List<ProductDto>>(_products
+            return Ok(_products
                 .Where(x => x.Category == category && x.Brand == brand)
-                .ToList()));
+                .ToList());
         }
     }
 }
