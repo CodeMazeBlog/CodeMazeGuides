@@ -3,7 +3,7 @@ using Quartz;
 namespace QuartzVsHangfire.QuartzSample;
 
 // Quartz.NET has no dashboard. Monitoring is a listener we attach to the
-// scheduler. This one counts completed jobs — the hook a custom UI would use.
+// scheduler. This one counts completed jobs, the hook a custom UI would use.
 public class LoggingJobListener : IJobListener
 {
     public string Name => "logging-job-listener";
