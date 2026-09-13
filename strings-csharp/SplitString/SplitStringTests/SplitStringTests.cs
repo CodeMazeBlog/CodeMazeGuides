@@ -104,14 +104,100 @@ namespace SplitStringTests
         {
             // Arrange
             string input = "Line 1\nLine 2\nLine 3\nLine 4\nLine 5";
-            string[] separators = { Environment.NewLine };
-            int expectedOutputLength = 5;
+            string[] separators = ["\r\n", "\n"];
+            string[] expectedOutput = ["Line 1", "Line 2", "Line 3", "Line 4", "Line 5"];
 
             // Act
             string[] result = Program.SplitStringIntoNewLines(input, separators);
 
             // Assert
-            Assert.AreEqual(expectedOutputLength, result.Length);
+            CollectionAssert.AreEqual(expectedOutput, result);
+        }
+
+        [TestMethod]
+        public void WhenSplittingCrLfAndLfMixedText_ThenReturnOneEntryPerLineOnEveryPlatform()
+        {
+            // Arrange
+            string input = "Line 1\r\nLine 2\nLine 3\r\nLine 4";
+            string[] separators = ["\r\n", "\n"];
+            string[] expectedOutput = ["Line 1", "Line 2", "Line 3", "Line 4"];
+
+            // Act
+            string[] result = Program.SplitStringIntoNewLines(input, separators);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedOutput, result);
+        }
+
+        [TestMethod]
+        public void WhenSplittingWithNone_ThenKeepEveryPieceAsCut()
+        {
+            // Arrange
+            string input = "a,,b, c, , d ,e";
+            string[] expectedOutput = ["a", "", "b", " c", " ", " d ", "e"];
+
+            // Act
+            string[] result = Program.SplitStringWithOptions(input, ',', StringSplitOptions.None);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedOutput, result);
+        }
+
+        [TestMethod]
+        public void WhenSplittingWithRemoveEmptyEntries_ThenDropZeroLengthPiecesOnly()
+        {
+            // Arrange
+            string input = "a,,b, c, , d ,e";
+            string[] expectedOutput = ["a", "b", " c", " ", " d ", "e"];
+
+            // Act
+            string[] result = Program.SplitStringWithOptions(input, ',', StringSplitOptions.RemoveEmptyEntries);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedOutput, result);
+        }
+
+        [TestMethod]
+        public void WhenSplittingWithTrimEntries_ThenTrimEveryPieceAndKeepTheEmpties()
+        {
+            // Arrange
+            string input = "a,,b, c, , d ,e";
+            string[] expectedOutput = ["a", "", "b", "c", "", "d", "e"];
+
+            // Act
+            string[] result = Program.SplitStringWithOptions(input, ',', StringSplitOptions.TrimEntries);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedOutput, result);
+        }
+
+        [TestMethod]
+        public void WhenSplittingWithRemoveEmptyEntriesAndTrimEntries_ThenTrimFirstThenDrop()
+        {
+            // Arrange
+            string input = "a,,b, c, , d ,e";
+            string[] expectedOutput = ["a", "b", "c", "d", "e"];
+
+            // Act
+            string[] result = Program.SplitStringWithOptions(input, ',',
+                StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+            // Assert
+            CollectionAssert.AreEqual(expectedOutput, result);
+        }
+
+        [TestMethod]
+        public void WhenSplittingIntoRanges_ThenReturnThePieceCountWithoutAllocatingSubstrings()
+        {
+            // Arrange
+            string input = "apple,banana,cherry,date";
+            int expectedCount = 4;
+
+            // Act
+            int count = Program.CountSplitRanges(input, ',');
+
+            // Assert
+            Assert.AreEqual(expectedCount, count);
         }
     }
 }

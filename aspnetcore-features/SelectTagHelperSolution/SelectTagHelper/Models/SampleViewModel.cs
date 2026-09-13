@@ -1,4 +1,4 @@
-﻿using static SelectTagHelper.Enums.Enumerations;
+﻿using SelectTagHelper.Enums;
 
 namespace SelectTagHelper.Models
 {

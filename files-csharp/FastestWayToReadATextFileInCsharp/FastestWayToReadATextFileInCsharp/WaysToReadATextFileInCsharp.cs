@@ -3,14 +3,9 @@ using System.Text;
 
 namespace FastestWayToReadATextFileInCsharp;
 
-public class WaysToReadATextFileInCsharp
+public class WaysToReadATextFileInCsharp(string sampleFilePath)
 {
-    private readonly string _sampleFilePath;
-
-    public WaysToReadATextFileInCsharp(string sampleFilePath)
-    {
-        _sampleFilePath = sampleFilePath;
-    }
+    private readonly string _sampleFilePath = sampleFilePath;
 
     public string UseFileReadAllLines()
     {
@@ -132,11 +127,13 @@ public class WaysToReadATextFileInCsharp
     {
         var stringBuilder = new StringBuilder();
 
-        using var fileStream = new FileStream(_sampleFilePath,
-                                    FileMode.Open,
-                                    FileAccess.Read,
-                                    FileShare.Read,
-                                    0);
+        using var fileStream = new FileStream(_sampleFilePath, new FileStreamOptions
+        {
+            Mode = FileMode.Open,
+            Access = FileAccess.Read,
+            Share = FileShare.Read,
+            BufferSize = 0
+        });
         using var bufferedStream = new BufferedStream(fileStream);
         using var streamReader = new StreamReader(bufferedStream);
 
@@ -147,5 +144,35 @@ public class WaysToReadATextFileInCsharp
         stringBuilder.Length -= Environment.NewLine.Length;
 
         return stringBuilder.ToString();
+    }
+
+    public async Task<string> UseFileReadAllTextAsync()
+        => await File.ReadAllTextAsync(_sampleFilePath);
+
+    public async Task<string> UseFileReadLinesAsync()
+    {
+        var stringBuilder = new StringBuilder();
+
+        await foreach (var line in File.ReadLinesAsync(_sampleFilePath))
+        {
+            stringBuilder.AppendLine(line);
+        }
+        stringBuilder.Length -= Environment.NewLine.Length;
+
+        return stringBuilder.ToString();
+    }
+
+    public async Task<string> UseStreamReaderReadToEndAsync()
+    {
+        using var fileStream = new FileStream(_sampleFilePath, new FileStreamOptions
+        {
+            Mode = FileMode.Open,
+            Access = FileAccess.Read,
+            Share = FileShare.Read,
+            Options = FileOptions.Asynchronous | FileOptions.SequentialScan
+        });
+        using var streamReader = new StreamReader(fileStream);
+
+        return await streamReader.ReadToEndAsync();
     }
 }

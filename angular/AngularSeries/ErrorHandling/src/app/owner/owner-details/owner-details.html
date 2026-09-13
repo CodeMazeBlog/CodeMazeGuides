@@ -1,0 +1,60 @@
+<div class="card card-body bg-light mb-2 mt-2">
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Owner name:</strong>
+    </div>
+    <div class="col-md-3">
+      {{owner()?.name}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Date of birth:</strong>
+    </div>
+    <div class="col-md-3">
+      {{owner()?.dateOfBirth | date: 'dd/MM/yyyy'}}
+    </div>
+  </div>
+  @if ((owner()?.accounts?.length ?? 0) <= 2) {
+    <div class="row">
+      <div class="col-md-3">
+        <strong>Type of user:</strong>
+      </div>
+      <div class="col-md-3">
+        <span class="text-success">Beginner user.</span>
+      </div>
+    </div>
+  } @else {
+    <div class="row">
+      <div class="col-md-3">
+        <strong>Type of user:</strong>
+      </div>
+      <div class="col-md-3">
+        <span class="text-info">Advanced user.</span>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Account type</th>
+            <th>Date created</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (account of owner()?.accounts; track account.id) {
+            <tr>
+              <td>{{account?.accountType}}</td>
+              <td>{{account?.dateCreated | date: 'dd/MM/yyyy'}}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
