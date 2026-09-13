@@ -13,24 +13,12 @@ namespace SelectTagHelper.Controllers
         {
             var model = new ProductViewModel
             {
-                Products = new List<SelectListItem>
-                {
-                    new SelectListItem
-                    {
-                        Text = "Motherboards",
-                        Value = "MB"
-                    },
-                    new SelectListItem
-                    {
-                        Text = "Graphic Cards",
-                        Value = "GC"
-                    },
-                    new SelectListItem
-                    {
-                        Text = "Liquid Coolants",
-                        Value = "LC"
-                    }
-                },
+                Products =
+                [
+                    new() { Text = "Motherboards", Value = "MB" },
+                    new() { Text = "Graphic Cards", Value = "GC" },
+                    new() { Text = "Liquid Coolants", Value = "LC" }
+                ],
                 Product = "GC"
             };
 
@@ -71,6 +59,17 @@ namespace SelectTagHelper.Controllers
         public IActionResult SelectTagHelperWithEnum()
         {
             var model = new SampleViewModel();
+            return View(model);
+        }
+
+        //Usage of a disabled first item to render a placeholder row
+        public IActionResult Placeholder()
+        {
+            var model = new SelectViewModel
+            {
+                Genders = StaticRepository.GetGendersWithPlaceholder(),
+                SelectedGender = string.Empty
+            };
             return View(model);
         }
 
