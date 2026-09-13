@@ -43,4 +43,9 @@ public static class MessageConversion
 
         return byteArray;
     }
+
+    public static string ConvertUTF8BytesToString(byte[] byteArray)
+    {
+        return Encoding.UTF8.GetString(byteArray);
+    }
 }

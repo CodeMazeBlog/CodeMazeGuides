@@ -36,6 +36,7 @@ public class CustomerService
         switch (verificationResult)
         {
             case PasswordVerificationResult.Success:
+            // This sample deliberately ignores the rehash signal: code calling IPasswordHasher<TUser> directly must rehash and save the password itself.
             case PasswordVerificationResult.SuccessRehashNeeded:
                 return LoginResult.Success;
             default:
