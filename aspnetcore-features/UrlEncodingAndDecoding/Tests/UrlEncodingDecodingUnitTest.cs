@@ -1,4 +1,5 @@
 using System.Net;
+using System.Text.Encodings.Web;
 using System.Web;
 
 namespace Tests
@@ -22,7 +23,7 @@ namespace Tests
         [DataRow(EncodedUrlLowerPlus)]
         [DataRow(EncodedUrlUpperPercent)]
         [DataRow(EncodedUrlUpperPlus)]
-        [DataTestMethod]
+        [TestMethod]
         public void GivenAUrl_WhenDecodingWithHttpUtility_ThenCharactersDecoded(string encodedUrl)
         {
             var decoded = HttpUtility.UrlDecode(encodedUrl);
@@ -41,7 +42,7 @@ namespace Tests
         [DataRow(EncodedUrlLowerPlus)]
         [DataRow(EncodedUrlUpperPercent)]
         [DataRow(EncodedUrlUpperPlus)]
-        [DataTestMethod]
+        [TestMethod]
         public void GivenAUrl_WhenDecodingWithWebUtility_ThenCharactersDecoded(string encodedUrl)
         {
             var decoded = WebUtility.UrlDecode(encodedUrl);
@@ -58,7 +59,7 @@ namespace Tests
         }
 
         [DataRow(EncodedUrlUpperPercent)]
-        [DataTestMethod]
+        [TestMethod]
         public void GivenAUrl_WhenDecodingWithUri_ThenCharactersDecoded(string encodedUrl)
         {
             var decoded = Uri.UnescapeDataString(encodedUrl);
@@ -68,12 +69,73 @@ namespace Tests
 
         [DataRow(EncodedUrlLowerPlus)]
         [DataRow(EncodedUrlUpperPlus)]
-        [DataTestMethod]
+        [TestMethod]
         public void GivenAUrl_WhenDecodingWithUri_ThenCharactersNotDecoded(string encodedUrl)
         {
             var decoded = Uri.UnescapeDataString(encodedUrl);
 
             Assert.AreNotEqual(Url, decoded); //Uri.UnescapeDataString does not decode + character to space
+        }
+
+        [TestMethod]
+        public void GivenAUrl_WhenEncodingWithUrlEncoder_ThenCharactersEncoded()
+        {
+            var encoded = UrlEncoder.Default.Encode(Url);
+
+            Assert.AreEqual(EncodedUrlUpperPercent, encoded);
+        }
+
+        [TestMethod]
+        public void GivenAVeryLongString_WhenEscapingWithUri_ThenNoLengthLimitApplies()
+        {
+            var longValue = new string('a', 100_000) + " ";
+
+            var encoded = Uri.EscapeDataString(longValue);
+
+            Assert.AreEqual(100_003, encoded.Length);
+        }
+
+        [TestMethod]
+        public void GivenTheEncodeUriComponentSafeCharacters_WhenEscapingWithUri_ThenTheyAreEscaped()
+        {
+            var encoded = Uri.EscapeDataString("!'()*~");
+
+            Assert.AreEqual("%21%27%28%29%2A~", encoded);
+        }
+
+        [TestMethod]
+        public void GivenABarePath_WhenConstructingAUri_ThenTheOutcomeIsPlatformDependent()
+        {
+            if (OperatingSystem.IsWindows())
+            {
+                //A bare path is not an absolute URI on Windows and not a rooted local path either.
+                Assert.ThrowsExactly<UriFormatException>(() => new Uri("/foo"));
+                Assert.IsFalse(Uri.TryCreate("/foo", UriKind.Absolute, out _));
+            }
+            else
+            {
+                //On Unix a bare path IS a rooted local path, so it parses as an absolute file URI.
+                var uri = new Uri("/foo");
+
+                Assert.AreEqual("file", uri.Scheme);
+                Assert.AreEqual("file:///foo", uri.AbsoluteUri);
+                Assert.IsTrue(Uri.TryCreate("/foo", UriKind.Absolute, out _));
+            }
+
+            //The relative remedy works the same way on every platform.
+            Assert.IsTrue(Uri.TryCreate("/foo", UriKind.Relative, out _));
+            Assert.IsFalse(new Uri("/foo", UriKind.Relative).IsAbsoluteUri);
+        }
+
+        [TestMethod]
+        public void GivenAProtocolRelativeUrl_WhenConstructingAUri_ThenItParsesAsAFileUri()
+        {
+            //Same on Windows and on Unix: this does not throw, it becomes a file URI.
+            var uri = new Uri("//example.com");
+
+            Assert.AreEqual("file", uri.Scheme);
+            Assert.AreEqual("file://example.com/", uri.AbsoluteUri);
+            Assert.IsTrue(Uri.TryCreate("//example.com", UriKind.Absolute, out _));
         }
     }
 }
