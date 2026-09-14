@@ -10,7 +10,7 @@ namespace Tests
             var shape = new Shape { Color = "Black" };
             var actual = shape.Draw();
 
-            var expected = string.Format("Drawing a Black colored shape");
+            var expected = "Drawing a Black colored shape";
 
             Assert.Equal(expected, actual);
         }
@@ -21,7 +21,7 @@ namespace Tests
             var circle = new Circle { Color = "Gray", Radius = 22.7 };
             var actual = circle.Draw();
 
-            var expected = string.Format("Drawing a Gray colored circle with a radius of 22.7 units.");
+            var expected = "Drawing a Gray colored circle with a radius of 22.7 units.";
 
             Assert.Equal(expected, actual);
         }
