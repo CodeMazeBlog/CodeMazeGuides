@@ -28,13 +28,20 @@ namespace CaseInsensitiveSubstringSearch
         }
 
         // Regular Expression Search
+        // Regex.Escape() treats the search term as literal text, so a term such as "c.de" or "z*"
+        // is not reinterpreted as a pattern and an unmatched bracket does not throw.
+        // RegexOptions.CultureInvariant keeps IgnoreCase off the current culture's casing rules.
         public static bool RegexIsMatch(string sourceString, string substringToSearch)
         {
             return Regex
-                .IsMatch(sourceString, substringToSearch, RegexOptions.IgnoreCase);
+                .IsMatch(sourceString,
+                    Regex.Escape(substringToSearch),
+                    RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         }
 
         // Linq With String Equals Method Search
+        // This matches whole separator-delimited words, not substrings, so it answers a different
+        // question from the other four methods. That difference is intentional, not a bug.
         public static bool LinqStringEquals(string sourceString, string substringToSearch, char separator)
         {
             return sourceString
