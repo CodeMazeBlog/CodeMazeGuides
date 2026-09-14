@@ -1,3 +1,6 @@
-﻿using ReadFromCsv;
+using ReadFromCsv;
 
-ReadMethods.ReadPersons();
+foreach (var person in ReadMethods.ReadPersons())
+{
+    Console.WriteLine($"{person.Id} {person.Name} {person.IsLiving}");
+}
