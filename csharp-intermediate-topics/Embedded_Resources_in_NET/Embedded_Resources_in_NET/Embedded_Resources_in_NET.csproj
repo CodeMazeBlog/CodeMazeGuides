@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -11,13 +11,13 @@
     <EmbeddedResource Include="Files\text-file.txt" />
     <EmbeddedResource Include="Resources\Pdf\pdf-file.pdf" />
     <EmbeddedResource Include="Resources\text-file.txt" />
+    <EmbeddedResource Include="my-folder\note.txt" />
 	<EmbeddedResource Include="..\Embedded_Resources_in_NET.sln" />
 	<EmbeddedResource Include="..\..\README.md" />
-	<!-- <EmbeddedResource Include="..\..\csharp-linq\README.md" /> -->
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Embedded_Resources_in_NET_Satellite\Embedded_Resources_in_NET_Satellite.csproj" />
+    <ProjectReference Include="..\Embedded_Resources_in_NET_Library\Embedded_Resources_in_NET_Library.csproj" />
   </ItemGroup>
 
 </Project>

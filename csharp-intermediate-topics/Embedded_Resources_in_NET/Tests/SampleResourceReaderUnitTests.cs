@@ -1,6 +1,4 @@
 ﻿using Embedded_Resources_in_NET;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
-using System.Reflection;
 
 namespace Tests;
 
@@ -8,13 +6,22 @@ namespace Tests;
 public class SampleResourceReaderTests
 {
     [TestMethod]
-    public void GivenMainAssembly_WhenRunningListResourcesInThisAssembly_ThenExpect8LinesInConsole()
+    public void GivenMainAssembly_WhenRunningListResourcesInThisAssembly_ThenExpect9LinesInConsole()
     {
         var (content, noLines) = GetConsoleOutput(SampleResourceReader.ListResourcesInThisAssembly);
-        var expectedLines = 8;
+        var expectedLines = 9;
         var expectedText = "Embedded_Resources_in_NET.Embedded_Resources_in_NET.sln";
 
         Assert.AreEqual(expectedLines, noLines);
+        StringAssert.Contains(content, expectedText);
+    }
+
+    [TestMethod]
+    public void GivenFolderNameThatIsNotAnIdentifier_WhenRunningListResourcesInThisAssembly_ThenExpectMangledName()
+    {
+        var (content, _) = GetConsoleOutput(SampleResourceReader.ListResourcesInThisAssembly);
+        var expectedText = "Embedded_Resources_in_NET.my_folder.note.txt";
+
         StringAssert.Contains(content, expectedText);
     }
 
@@ -34,7 +41,7 @@ public class SampleResourceReaderTests
     {
         var (content, noLines) = GetConsoleOutput(SampleResourceReader.ListResourcesInOurSatelliteAssembly);
         var expectedLines = 4;
-        var expectedText = "Embedded_Resources_in_NET_Satellite.Resources.text-file.txt";
+        var expectedText = "Embedded_Resources_in_NET_Library.Resources.text-file.txt";
 
         Assert.AreEqual(expectedLines, noLines);
         StringAssert.Contains(content, expectedText);
@@ -59,7 +66,7 @@ public class SampleResourceReaderTests
         var expectedText = "";
 
         Assert.AreEqual(expectedLines, noLines);
-        Assert.AreEqual(content, expectedText);
+        Assert.AreEqual(expectedText, content);
     }
 
     private static (string content, int noLines) GetConsoleOutput(Action action)

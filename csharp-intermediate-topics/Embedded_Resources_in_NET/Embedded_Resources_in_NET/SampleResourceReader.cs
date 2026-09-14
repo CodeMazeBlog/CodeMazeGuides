@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Reflection;
 
 namespace Embedded_Resources_in_NET;
@@ -63,7 +62,7 @@ public class SampleResourceReader
         => AppDomain.CurrentDomain.GetAssemblies();
 
     private static Assembly SatelliteAssembly =>
-        Assembly.Load("Embedded_Resources_in_NET_Satellite");
+        Assembly.Load("Embedded_Resources_in_NET_Library");
 
     private static Stream? FindResourceByName(string resourceName)
         => FindResource(names => names?.FirstOrDefault(rn => rn == resourceName));
