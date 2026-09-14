@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ReadingRequestBody.Models;
-using ReadingRequestBody.SwaggerUtils;
+using ReadingRequestBody.OpenApiUtils;
 using ReadingRequestBody.Utils;
 
 namespace ReadingRequestBody.Controllers;
@@ -15,7 +15,7 @@ public class HomeController : ControllerBase
         return Ok("Web API is ready.");
     }
 
-    [SwaggerEnableRawText]
+    [RawTextRequest]
     [HttpPost("read-as-string")]
     public async Task<IActionResult> ReadAsString()
     {
@@ -24,7 +24,7 @@ public class HomeController : ControllerBase
         return Ok($"Request Body As String: {requestBody}");
     }
 
-    [SwaggerEnableRawText]
+    [RawTextRequest]
     [HttpPost("read-as-string-multiple")]
     public async Task<IActionResult> ReadAsStringMultiple()
     {
@@ -34,7 +34,7 @@ public class HomeController : ControllerBase
         return Ok($"First: {requestBody}, Second:{requestBodySecond}");
     }
 
-    [SwaggerEnableRawText]
+    [RawTextRequest]
     [HttpPost("read-multiple-enable-buffering")]
     public async Task<IActionResult> ReadMultipleEnableBuffering()
     {
@@ -55,7 +55,7 @@ public class HomeController : ControllerBase
         return Ok(message);
     }
 
-    [SwaggerEnableRawText]
+    [RawTextRequest]
     [HttpPost("read-from-attribute")]
     [ReadRequestBody]
     public IActionResult ReadFromAttribute()
@@ -66,7 +66,7 @@ public class HomeController : ControllerBase
         return Ok(message);
     }
 
-    [SwaggerEnableRawText]
+    [RawTextRequest]
     [HttpPost("read-from-action-filter")]
     public IActionResult ReadFromActionFilter()
     {
@@ -76,7 +76,7 @@ public class HomeController : ControllerBase
         return Ok(message);
     }
 
-    [SwaggerEnableRawText]
+    [RawTextRequest]
     [HttpPost("read-from-middleware")]
     public IActionResult ReadFromMiddleware()
     {

@@ -17,14 +17,14 @@ namespace Tests
     [TestClass]
     public class HomeControllerTests
     {
-        private IFixture _fixture;
-        private Mock<ILogger> _loggerMock;
+        private IFixture _fixture = null!;
+        private Mock<ILogger<RequestBodyMiddleware>> _loggerMock = null!;
 
         [TestInitialize]
         public void Setup()
         {
             _fixture = new Fixture();
-            _loggerMock = new Mock<ILogger>();
+            _loggerMock = new Mock<ILogger<RequestBodyMiddleware>>();
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace Tests
             var result = controller.Index();
 
             Assert.AreEqual(typeof(OkObjectResult), result.GetType());
-            Assert.AreEqual((result as OkObjectResult).Value, "Web API is ready.");
+            Assert.AreEqual("Web API is ready.", (result as OkObjectResult)!.Value);
         }
 
         [TestMethod]
@@ -71,11 +71,11 @@ namespace Tests
                     ActionDescriptor = controller.ControllerContext.ActionDescriptor
                 },
                 new List<IFilterMetadata>(),
-                new Dictionary<string, object>(),
+                new Dictionary<string, object?>(),
                 controller);
 
             var attribute = new ReadRequestBodyAttribute();
-            await attribute.OnActionExecutionAsync(context, () => Task.FromResult<ActionExecutedContext>(null));
+            await attribute.OnActionExecutionAsync(context, () => Task.FromResult<ActionExecutedContext>(null!));
 
             var result = controller.ReadFromAttribute();
 
@@ -138,7 +138,7 @@ namespace Tests
                 new RouteData(),
                 new ActionDescriptor(),
                 new ModelStateDictionary());
-            var actionExecutingContext = new ActionExecutingContext(actionContext, new List<IFilterMetadata>(), new Dictionary<string, object>(), controller: controller);
+            var actionExecutingContext = new ActionExecutingContext(actionContext, new List<IFilterMetadata>(), new Dictionary<string, object?>(), controller: controller);
 
             Task<ActionExecutedContext> next()
             {
@@ -156,11 +156,11 @@ namespace Tests
 
         private static void TestRequest(IActionResult result, string responsePrefix, string bodyString)
         {
-            var resultValue = result != null ? (result as OkObjectResult).Value : string.Empty;
+            var resultValue = result != null ? (result as OkObjectResult)!.Value : string.Empty;
 
             Assert.IsNotNull(result);
             Assert.AreEqual(typeof(OkObjectResult), result.GetType());
-            Assert.AreEqual(resultValue, $"{responsePrefix} {bodyString}");
+            Assert.AreEqual($"{responsePrefix} {bodyString}", resultValue);
         }
 
         private static HomeController GetControllerInstance(string bodyString)
