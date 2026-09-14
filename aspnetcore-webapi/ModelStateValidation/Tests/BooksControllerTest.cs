@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using ModelStateValidation.Models;
 using System.Net.Http.Json;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Tests;
@@ -15,7 +16,7 @@ public class BooksControllerTest : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Fact]
-    public async void GivenValidBookInput_WhenPostBooksEndpointIsCalled_Then200StatusCodeIsReturned()
+    public async Task GivenValidBookInput_WhenPostBooksEndpointIsCalled_Then200StatusCodeIsReturned()
     {
         // Given
         var client = _factory.CreateClient();
@@ -36,7 +37,7 @@ public class BooksControllerTest : IClassFixture<WebApplicationFactory<Program>>
 
 
     [Fact]
-    public async void GivenInvalidBookInput_WhenPostBooksEndpointIsCalled_Then422StatusCodeIsReturned()
+    public async Task GivenInvalidBookInput_WhenPostBooksEndpointIsCalled_Then422StatusCodeIsReturned()
     {
         // Given
         var client = _factory.CreateClient();

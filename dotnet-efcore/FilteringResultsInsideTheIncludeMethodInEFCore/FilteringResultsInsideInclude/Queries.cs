@@ -7,7 +7,8 @@ namespace FilteringResultsInsideInclude
     {
         public const int CourseCount = 10;
         public const int StudentCountPerCourse = 100;
-        
+        public const int AssignmentCountPerStudent = 2;
+
         public static async Task SeedData(AppDbContext context)
         {
             if (!context.Courses!.Any())
@@ -18,7 +19,11 @@ namespace FilteringResultsInsideInclude
                     Students = Enumerable.Range(1, StudentCountPerCourse).Select(j => new Student()
                     {
                         Name = $"Student {10 * i + j}",
-                        Mark = j
+                        Mark = j,
+                        Assignments = Enumerable.Range(1, AssignmentCountPerStudent).Select(k => new Assignment
+                        {
+                            Title = $"Assignment {k}"
+                        }).ToList()
                     }).ToList()
                 }).ToList();
 
@@ -50,6 +55,18 @@ namespace FilteringResultsInsideInclude
             var goodQuery = context.Courses!
                 .Include(c => c.Students!.Where(s => s.Mark > 50))
                 .Include(c => c.Students!.Where(s => s.Mark > 50))
+                .ToList();
+
+            return goodQuery;
+        }
+
+        public static List<Course> GoodFilteringOnMultipleIncludeWithThenInclude(AppDbContext context)
+        {
+            var goodQuery = context.Courses!
+                .Include(c => c.Students!.Where(s => s.Mark > 50))
+                    .ThenInclude(s => s.Assignments)
+                .Include(c => c.Students!)
+                    .ThenInclude(s => s.Assignments)
                 .ToList();
 
             return goodQuery;
@@ -98,7 +115,7 @@ namespace FilteringResultsInsideInclude
         public static List<Course> FilteringInsideIncludeAndSelectMethod(AppDbContext context)
         {
             var courses = context.Courses!
-                .Include(x => x.Students!.Where(x => x.Mark > 50))
+                .Include(c => c.Students!.Where(s => s.Mark > 50))
                 .Select(c => new Course 
                 { 
                     Id = c.Id,
@@ -120,6 +137,38 @@ namespace FilteringResultsInsideInclude
                 }).ToList();
 
             return courses;
+        }
+
+        public static List<Course> FilteredIncludeWithSortingAndPaging(AppDbContext context)
+        {
+            var topStudents = context.Courses!
+                .Include(c => c.Students!
+                    .Where(s => s.Mark > 50)
+                    .OrderByDescending(s => s.Mark)
+                    .Take(3))
+                .ToList();
+
+            return topStudents;
+        }
+
+        public static List<Course> FilteredIncludeWithoutMatchingStudents(AppDbContext context)
+        {
+            var courses = context.Courses!
+                .Include(c => c.Students!.Where(s => s.Mark > StudentCountPerCourse))
+                .ToList();
+
+            return courses;
+        }
+
+        public static List<Student> ExplicitLoadingWithFilter(AppDbContext context, Course course)
+        {
+            var students = context.Entry(course)
+                .Collection(c => c.Students!)
+                .Query()
+                .Where(s => s.Mark > 50)
+                .ToList();
+
+            return students;
         }
 
     }

@@ -119,5 +119,53 @@ namespace Tests
             Assert.Equal(expected, actual.Select(x => x.Students).Sum(x => x!.Count));
         }
 
+        [Fact]
+        public void WhenUsingThenIncludeAfterAFilteredInclude_ThenTheLowerLevelInheritsTheNarrowedSet()
+        {
+            var context = new AppDbContext();
+            var actual = Queries.GoodFilteringOnMultipleIncludeWithThenInclude(context);
+
+            var expectedStudents = Queries.CourseCount * (Queries.StudentCountPerCourse / 2);
+            var expectedAssignments = expectedStudents * Queries.AssignmentCountPerStudent;
+
+            Assert.Equal(Queries.CourseCount, actual.Count);
+            Assert.Equal(expectedStudents, actual.Sum(x => x.Students!.Count));
+            Assert.Equal(expectedAssignments, actual.SelectMany(x => x.Students!).Sum(s => s.Assignments!.Count));
+        }
+
+        [Fact]
+        public void WhenSortingAndPagingInsideInclude_ThenTakeAppliesPerCourse()
+        {
+            var context = new AppDbContext();
+            var actual = Queries.FilteredIncludeWithSortingAndPaging(context);
+
+            Assert.Equal(Queries.CourseCount, actual.Count);
+            Assert.All(actual, course => Assert.Equal(3, course.Students!.Count));
+            Assert.Equal(Queries.CourseCount * 3, actual.Sum(x => x.Students!.Count));
+            Assert.All(actual, course => Assert.Equal(Queries.StudentCountPerCourse, course.Students!.First().Mark));
+        }
+
+        [Fact]
+        public void WhenNoStudentMatchesTheFilter_ThenTheCourseIsStillReturnedWithAnEmptyCollection()
+        {
+            var context = new AppDbContext();
+            var actual = Queries.FilteredIncludeWithoutMatchingStudents(context);
+
+            Assert.Equal(Queries.CourseCount, actual.Count);
+            Assert.All(actual, course => Assert.Empty(course.Students!));
+        }
+
+        [Fact]
+        public void WhenExplicitlyLoadingWithAFilter_ThenOnlyMatchingStudentsAreLoaded()
+        {
+            var context = new AppDbContext();
+            var course = context.Courses!.First();
+
+            var actual = Queries.ExplicitLoadingWithFilter(context, course);
+
+            Assert.Equal(Queries.StudentCountPerCourse / 2, actual.Count);
+            Assert.All(actual, student => Assert.True(student.Mark > 50));
+        }
+
     }
 }

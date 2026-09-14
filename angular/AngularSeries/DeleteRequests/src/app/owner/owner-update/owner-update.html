@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <form [formGroup]="ownerForm" autocomplete="off" novalidate (ngSubmit)="updateOwner(ownerForm.value)">
+    <div class="card card-body bg-light mb-2 mt-2">
+
+      <div class="row mb-3">
+        <label for="name" class="col-form-label col-md-2">Name of the owner: </label>
+        <div class="col-md-5">
+          <input type="text" formControlName="name" id="name" class="form-control" />
+        </div>
+        <div class="col-md-5">
+          @if (validateControl('name') && hasError('name', 'required')) {
+            <em>Name is required</em>
+          }
+          @if (validateControl('name') && hasError('name', 'maxlength')) {
+            <em>Maximum allowed length is 60 characters.</em>
+          }
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label for="dateOfBirth" class="col-form-label col-md-2">Date of birth: </label>
+        <div class="col-md-5">
+          <input type="text" formControlName="dateOfBirth" id="dateOfBirth"
+          class="form-control" readonly bsDatepicker/>
+        </div>
+        <div class="col-md-5">
+          @if (validateControl('dateOfBirth') && hasError('dateOfBirth', 'required')) {
+            <em>Date of birth is required</em>
+          }
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label for="address" class="col-form-label col-md-2">Address: </label>
+        <div class="col-md-5">
+          <input type="text" formControlName="address" id="address" class="form-control" />
+        </div>
+        <div class="col-md-5">
+          @if (validateControl('address') && hasError('address', 'required')) {
+            <em>Address is required</em>
+          }
+          @if (validateControl('address') && hasError('address', 'maxlength')) {
+            <em>Maximum allowed length is 100 characters.</em>
+          }
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="mb-3 row">
+          <div class="offset-5 col-md-1">
+              <button type="submit" class="btn btn-info" [disabled]="!ownerForm.valid">Save</button>
+          </div>
+          <div class="col-md-1">
+              <button type="button" class="btn btn-danger" (click)="redirectToOwnerList()">Cancel</button>
+          </div>
+      </div>
+
+    </div>
+  </form>
+</div>

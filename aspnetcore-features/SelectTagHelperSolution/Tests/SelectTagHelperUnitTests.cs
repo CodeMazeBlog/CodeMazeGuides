@@ -66,6 +66,22 @@ namespace Tests
         }
 
         [TestMethod]
+        public void WhenActionMethodPlaceholder_ThenFirstItemIsDisabledAndSelected()
+        {
+            var controller = new HomeController();
+            var placeholder = controller.Placeholder() as ViewResult;
+
+            var actualModel = (SelectViewModel)placeholder!.Model!;
+            var firstItem = actualModel.Genders.First();
+
+            Assert.AreEqual("Please select a gender", firstItem.Text);
+            Assert.AreEqual(string.Empty, firstItem.Value);
+            Assert.IsTrue(firstItem.Disabled);
+            Assert.IsTrue(firstItem.Selected);
+            Assert.AreEqual(4, actualModel.Genders.Count);
+        }
+
+        [TestMethod]
         public void WhenActionMethodDetailsWithGenders_ThenReturnEqual()
         {
             var controller = new HomeController();
@@ -88,7 +104,7 @@ namespace Tests
                     Value="Others"
                 }
             };
-            var actualModel = (SelectViewModel)details.Model;
+            var actualModel = (SelectViewModel)details!.Model!;
             var actualGenders = actualModel.Genders;
 
             Assert.AreEqual(expectedGenders.Count, actualGenders.Count);
@@ -123,7 +139,7 @@ namespace Tests
                     EmployeeName="Rosy"
                 }
             };
-            var actualModel = (SelectViewModel)details.Model;
+            var actualModel = (SelectViewModel)details!.Model!;
             var actualEmployees = actualModel.Employees;
 
             Assert.AreEqual(expectedEmployees.Count, actualEmployees.Count);
@@ -146,8 +162,8 @@ namespace Tests
               "India","USA","UK","France","Germany"
             });
 
-            var actualModel = (SelectViewModel)details.Model;
-            var actualCountries = actualModel.Countries;
+            var actualModel = (SelectViewModel)details!.Model!;
+            var actualCountries = actualModel.Countries!;
 
             Assert.AreEqual(expectedCountries.Count(), actualCountries.Count());
 
@@ -207,7 +223,7 @@ namespace Tests
                 }
             };
 
-            var actualModel = (GroupViewModel)grouped.Model;
+            var actualModel = (GroupViewModel)grouped!.Model!;
             var actualCourses = actualModel.Courses;
 
             Assert.AreEqual(expectedCourses.Count, actualCourses.Count);
