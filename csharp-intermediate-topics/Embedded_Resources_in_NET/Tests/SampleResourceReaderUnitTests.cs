@@ -37,9 +37,9 @@ public class SampleResourceReaderTests
     }
 
     [TestMethod]
-    public void GivenSatelliteAssembly_WhenRunningListResourcesInOurSatelliteAssembly_ThenExpect4LinesInConsole()
+    public void GivenReferencedAssembly_WhenRunningListResourcesInReferencedAssembly_ThenExpect4LinesInConsole()
     {
-        var (content, noLines) = GetConsoleOutput(SampleResourceReader.ListResourcesInOurSatelliteAssembly);
+        var (content, noLines) = GetConsoleOutput(SampleResourceReader.ListResourcesInReferencedAssembly);
         var expectedLines = 4;
         var expectedText = "Embedded_Resources_in_NET_Library.Resources.text-file.txt";
 

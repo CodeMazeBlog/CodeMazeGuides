@@ -11,8 +11,8 @@ public class SampleResourceReader
     public static void ListResourcesInAllAssemblies() 
         => AllAssembliesOfCurrentAppDomain.ToList().ForEach(ListResourcesInAssembly);
 
-    public static void ListResourcesInOurSatelliteAssembly()
-        => ListResourcesInAssembly(SatelliteAssembly);
+    public static void ListResourcesInReferencedAssembly()
+        => ListResourcesInAssembly(ReferencedAssembly);
 
     public static void FindResourceByNameAndDisplayIt(string resourceName)
         => DisplayResource(resourceName, FindResourceByName);
@@ -61,7 +61,7 @@ public class SampleResourceReader
     private static Assembly[] AllAssembliesOfCurrentAppDomain
         => AppDomain.CurrentDomain.GetAssemblies();
 
-    private static Assembly SatelliteAssembly =>
+    private static Assembly ReferencedAssembly =>
         Assembly.Load("Embedded_Resources_in_NET_Library");
 
     private static Stream? FindResourceByName(string resourceName)
