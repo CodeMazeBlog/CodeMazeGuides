@@ -1,4 +1,4 @@
-# Configuration in ASP.NET Core — the series samples
+# Configuration in ASP.NET Core: the series samples
 
 This folder holds the code for the [Configuration in ASP.NET Core](https://code-maze.com/net-core-series/#configuration)
 series. Each article gets its own folder with its own solution, so you can start at
@@ -53,7 +53,7 @@ docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=<a strong password>" -p 1433
 ```
 
 `SecuringDataLocally` ships with **no connection string in `appsettings.json` at
-all** — that is the whole subject of its article. Supply it from a user secret
+all**, that is the whole subject of its article. Supply it from a user secret
 before running that project:
 
 ```
@@ -68,7 +68,7 @@ ConnectionStrings__sqlConnection=...
 ```
 
 Each of the three projects that use the Secret Manager carries its **own**
-`UserSecretsId`, so their secret stores are separate — which is the point the last
+`UserSecretsId`, so their secret stores are separate, which is the point the last
 article makes about user secrets being scoped to a project.
 
 ## The tests
