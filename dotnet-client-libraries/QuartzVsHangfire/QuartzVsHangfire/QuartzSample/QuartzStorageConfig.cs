@@ -5,7 +5,7 @@ using Quartz.Impl;
 namespace QuartzVsHangfire.QuartzSample;
 
 // Quartz.NET runs fine with no database: RAMJobStore is the default. Durable
-// schedules are opt-in — we swap the job store type for an ADO.NET store.
+// schedules are opt-in, and we swap the job store type for an ADO.NET store.
 public static class QuartzStorageConfig
 {
     public static Task<IScheduler> CreateInMemorySchedulerAsync()
