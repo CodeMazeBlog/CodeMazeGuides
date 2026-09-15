@@ -19,6 +19,20 @@ namespace HowToConvertAStreamToAByteArray
         }
 
         [Benchmark]
+        public void UseReadExactly()
+        {
+            using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
+            _convertStreamToByteArray.UseReadExactly(_benchmarkStream);
+        }
+
+        [Benchmark]
+        public void UseCopyTo()
+        {
+            using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
+            _convertStreamToByteArray.UseCopyTo(_benchmarkStream);
+        }
+
+        [Benchmark]
         public void UseStreamDotReadMethod()
         {
             using var _benchmarkStream = new FileStream(_sampleFilePath, FileMode.Open, FileAccess.Read);
