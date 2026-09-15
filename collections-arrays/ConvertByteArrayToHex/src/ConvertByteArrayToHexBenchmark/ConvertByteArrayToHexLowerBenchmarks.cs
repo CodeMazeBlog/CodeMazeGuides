@@ -71,4 +71,9 @@ public class ConvertByteArrayToHexLowerBenchmarks
     [ArgumentsSource(nameof(ArrayData))]
     public string ConvertToLowerHexUsingConvert(byte[] source) =>
         ConversionHelpers.ToHexWithConvert(source, true);
+
+    [Benchmark]
+    [ArgumentsSource(nameof(ArrayData))]
+    public string ConvertToLowerHexUsingConvertAndToLowerInvariant(byte[] source) =>
+        Convert.ToHexString(source).ToLowerInvariant();
 }
