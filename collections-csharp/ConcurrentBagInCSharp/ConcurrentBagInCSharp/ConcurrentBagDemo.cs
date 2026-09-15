@@ -82,6 +82,54 @@ namespace ConcurrentBagInCSharp
             });
         }
 
+        public static List<int> DrainOwnQueue()
+        {
+            var bag = new ConcurrentBag<int>();
+            for (var i = 1; i <= 5; i++)
+            {
+                bag.Add(i);
+            }
+
+            var taken = new List<int>();
+            while (bag.TryTake(out var item))
+            {
+                taken.Add(item);
+            }
+
+            return taken;
+        }
+
+        public static List<int> DrainStolenQueue()
+        {
+            var bag = new ConcurrentBag<int>();
+            var taken = new List<int>();
+
+            // Dedicated threads, never Task.Run: the thread pool is free to hand both pieces of
+            // work to the same thread, and a consumer running on the producer's thread pops its
+            // own queue last in, first out instead of stealing.
+            var producer = new Thread(() =>
+            {
+                for (var i = 0; i < 5; i++)
+                {
+                    bag.Add(i);
+                }
+            });
+            producer.Start();
+            producer.Join();
+
+            var consumer = new Thread(() =>
+            {
+                while (bag.TryTake(out var item))
+                {
+                    taken.Add(item);
+                }
+            });
+            consumer.Start();
+            consumer.Join();
+
+            return taken;
+        }
+
         public static int[] ConcurrentBagToArrayMethod(ConcurrentBag<int> bag)
         {
             return bag.ToArray();

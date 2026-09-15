@@ -64,6 +64,22 @@ namespace Tests
         }
 
         [Fact]
+        public void GivenAConcurrentBagFilledOnOneThread_WhenDrainingOnThatThread_ThenReturnsItemsLastInFirstOut()
+        {
+            var result = ConcurrentBagDemo.DrainOwnQueue();
+
+            Assert.Equal(new List<int> { 5, 4, 3, 2, 1 }, result);
+        }
+
+        [Fact]
+        public void GivenAConcurrentBagFilledOnOneThread_WhenDrainingOnADifferentThread_ThenReturnsItemsOldestFirst()
+        {
+            var result = ConcurrentBagDemo.DrainStolenQueue();
+
+            Assert.Equal(new List<int> { 0, 1, 2, 3, 4 }, result);
+        }
+
+        [Fact]
         public void GivenAConcurrentBag_WhenClearingAConcurrentBag_ThenReturnsAnEmptyConcurrentBag()
         {
             var bag = ConcurrentBagDemo.CreateAndAddToConcurrentBagConcurrently();
