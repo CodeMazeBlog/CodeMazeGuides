@@ -1,5 +1,4 @@
 ﻿using ConcurrentBagInCSharp;
-using System.Collections;
 using System.Collections.Concurrent;
 
 namespace Tests
@@ -25,32 +24,32 @@ namespace Tests
         }
 
         [Fact]
-        public void GivenAConcurrentBag_WhenRemovingFromAConcurrentBag_ThenReturnsAnArrayList()
+        public void GivenAConcurrentBag_WhenRemovingFromAConcurrentBag_ThenReturnsAList()
         {
             var bag = ConcurrentBagDemo.CreateAndAddToConcurrentBagConcurrently();
             var result = ConcurrentBagDemo.RemoveFromConcurrentBag(bag);
 
-            Assert.IsType<ArrayList>(result);
+            Assert.IsType<List<int>>(result);
             Assert.Single(result);
         }
 
         [Fact]
-        public void GivenAConcurrentBag_WhenRemovingFromAConcurrentBagConcurrently_ThenReturnsAnArrayList()
+        public void GivenAConcurrentBag_WhenRemovingFromAConcurrentBagConcurrently_ThenReturnsAList()
         {
             var bag = ConcurrentBagDemo.CreateAndAddToConcurrentBagConcurrently();
             var result = ConcurrentBagDemo.RemoveFromConcurrentBagConcurrently(bag);
 
-            Assert.IsType<ArrayList>(result);
+            Assert.IsType<List<int>>(result);
             Assert.NotEmpty(result);
         }
 
         [Fact]
-        public void GivenAConcurrentBag_WhenReadingFromAConcurrentBag_ThenReturnsAnArrayList()
+        public void GivenAConcurrentBag_WhenReadingFromAConcurrentBag_ThenReturnsAList()
         {
             var bag = ConcurrentBagDemo.CreateAndAddToConcurrentBagConcurrently();
             var result = ConcurrentBagDemo.AccessItemFromAConcurrentBag(bag);
 
-            Assert.IsType<ArrayList>(result);
+            Assert.IsType<List<int>>(result);
             Assert.Single(result);
         }
 
@@ -62,6 +61,17 @@ namespace Tests
 
             Assert.IsType<int[]>(result);
             Assert.NotEmpty(result);
+        }
+
+        [Fact]
+        public void GivenAConcurrentBag_WhenClearingAConcurrentBag_ThenReturnsAnEmptyConcurrentBag()
+        {
+            var bag = ConcurrentBagDemo.CreateAndAddToConcurrentBagConcurrently();
+
+            ConcurrentBagDemo.ConcurrentBagClearMethod(bag);
+
+            Assert.True(bag.IsEmpty);
+            Assert.Empty(bag);
         }
 
         [Fact]

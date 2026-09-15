@@ -1,21 +1,24 @@
 ﻿using System.Collections.Concurrent;
-using System.Collections;
 
 namespace ConcurrentBagInCSharp
 {
     public class ConcurrentBagDemo
     {
+        public static ConcurrentBag<int> CreateEmptyConcurrentBag()
+        {
+            return new ConcurrentBag<int>();
+        }
+
+        public static ConcurrentBag<int> CreateConcurrentBagWithInitialItems()
+        {
+            return new ConcurrentBag<int>() { 2, 4, 6, 8, 10 };
+        }
+
         public static ConcurrentBag<int> CreateConcurrentBag()
         {
-            ConcurrentBag<int> myNumbers = new();
-
-            var myConcurrentBag = new ConcurrentBag<int>() { 2, 4, 6, 8, 10 };
-            var myConcurrentBagCount = myConcurrentBag.Count;
-
             var myList = new List<int>() { 1, 2, 3, 4, 5, 6, 7 };
-            var anotherConcurrentBag = new ConcurrentBag<int>(myList);
 
-            return anotherConcurrentBag;
+            return new ConcurrentBag<int>(myList);
         }
 
         public static ConcurrentBag<int> CreateAndAddToConcurrentBagConcurrently()
@@ -30,9 +33,9 @@ namespace ConcurrentBagInCSharp
             return numbersBag;
         }
 
-        public static ArrayList RemoveFromConcurrentBag(ConcurrentBag<int> numbersBag)
+        public static List<int> RemoveFromConcurrentBag(ConcurrentBag<int> numbersBag)
         {
-            var result = new ArrayList();
+            var result = new List<int>();
             if (numbersBag.TryTake(out int number))
             {
                 result.Add(number);
@@ -41,9 +44,9 @@ namespace ConcurrentBagInCSharp
             return result;
         }
 
-        public static ArrayList RemoveFromConcurrentBagConcurrently(ConcurrentBag<int> bag)
+        public static List<int> RemoveFromConcurrentBagConcurrently(ConcurrentBag<int> bag)
         {
-            var numbersList = new ArrayList();
+            var numbersList = new List<int>();
             Parallel.For(0, 20, i =>
             {
                 if (bag.TryTake(out int number))
@@ -56,9 +59,9 @@ namespace ConcurrentBagInCSharp
             return numbersList;
         }
 
-        public static ArrayList AccessItemFromAConcurrentBag(ConcurrentBag<int> bag)
+        public static List<int> AccessItemFromAConcurrentBag(ConcurrentBag<int> bag)
         {
-            var result = new ArrayList();
+            var result = new List<int>();
 
             if (bag.TryPeek(out int number))
             {
@@ -81,20 +84,21 @@ namespace ConcurrentBagInCSharp
 
         public static int[] ConcurrentBagToArrayMethod(ConcurrentBag<int> bag)
         {
-            var myArray = new int[bag.Count];
-            myArray = bag.ToArray();
-
-            return myArray;
+            return bag.ToArray();
         }
 
         public static int[] ConcurrentBagCopyToMethod(ConcurrentBag<int> bag)
         {
+            // Count and CopyTo are two separate operations. In a multithreaded program another
+            // thread can add an item between them, and CopyTo then throws ArgumentException
+            // because the destination is too short. Size the destination from a snapshot,
+            // or generously, whenever other threads can still write to the bag.
             var someArray = new int[bag.Count];
             bag.CopyTo(someArray, 0);
 
             return someArray;
         }
-        
+
         public static void ConcurrentBagClearMethod(ConcurrentBag<int> bag)
         {
             bag.Clear();
