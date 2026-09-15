@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace HowToDetectIfADictionaryKeyExistsInCsharp
 {
-    public class MyClassWithEquality
+    public class MyClassWithEquality : IEquatable<MyClassWithEquality>
     {
         public int MyNumber { get; set; }
 
@@ -16,15 +9,11 @@ namespace HowToDetectIfADictionaryKeyExistsInCsharp
             MyNumber = num;
         }
 
-        public bool Equals(MyClassWithEquality other)
-        {
-            if (this.MyNumber != other.MyNumber) return false;
-            return true;
-        }
-        public override bool Equals(object obj)
+        public bool Equals(MyClassWithEquality? other) => other is not null && MyNumber == other.MyNumber;
+
+        public override bool Equals(object? obj)
         {
             if (obj is not MyClassWithEquality) return false;
-            if (obj == null) return false;
             return Equals(obj as MyClassWithEquality);
         }
 

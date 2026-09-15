@@ -10,7 +10,7 @@ namespace FastestWayToReadATextFileInCsharp;
 public class WaysToReadATextFileInCsharpBenchmark
 {
     private static readonly string SampleFilePath
-       = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName, "BenchmarkTextFile.txt");
+       = Path.Combine(AppContext.BaseDirectory, "BenchmarkTextFile.txt");
 
     private readonly WaysToReadATextFileInCsharp _textFileReader = new(SampleFilePath);
 
@@ -53,4 +53,16 @@ public class WaysToReadATextFileInCsharpBenchmark
     [Benchmark]
     public string BufferedStreamWithNoFileStreamBuffer()
      => _textFileReader.UseBufferedStreamObjectWithNoFileStreamBuffer();
+
+    [Benchmark]
+    public async Task<string> FileReadAllTextAsync()
+     => await _textFileReader.UseFileReadAllTextAsync();
+
+    [Benchmark]
+    public async Task<string> FileReadLinesAsync()
+     => await _textFileReader.UseFileReadLinesAsync();
+
+    [Benchmark]
+    public async Task<string> StreamReaderReadToEndAsync()
+     => await _textFileReader.UseStreamReaderReadToEndAsync();
 }

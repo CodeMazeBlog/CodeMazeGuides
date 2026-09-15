@@ -1,13 +1,12 @@
-﻿using System;
+using System;
 
-namespace ConvertStringAndIntToEnumTests
+namespace ConvertStringAndIntToEnumTests;
+
+[Flags]
+public enum UserType
 {
-    [Flags]
-    public enum UserType
-    {
-        None = 0,
-        Customer = 1,
-        Driver = 2,
-        Admin = 4,
-    }
+    None = 0,
+    Customer = 1,
+    Driver = 2,
+    Admin = 4,
 }

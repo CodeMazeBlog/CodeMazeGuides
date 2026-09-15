@@ -16,10 +16,31 @@ namespace FilteringResultsInsideInclude.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.8")
+                .HasAnnotation("ProductVersion", "10.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("FilteringResultsInsideInclude.Models.Assignment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Assignments");
+                });
 
             modelBuilder.Entity("FilteringResultsInsideInclude.Models.Course", b =>
                 {
@@ -27,7 +48,7 @@ namespace FilteringResultsInsideInclude.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -43,7 +64,7 @@ namespace FilteringResultsInsideInclude.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
@@ -61,6 +82,17 @@ namespace FilteringResultsInsideInclude.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("FilteringResultsInsideInclude.Models.Assignment", b =>
+                {
+                    b.HasOne("FilteringResultsInsideInclude.Models.Student", "Student")
+                        .WithMany("Assignments")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("FilteringResultsInsideInclude.Models.Student", b =>
                 {
                     b.HasOne("FilteringResultsInsideInclude.Models.Course", "Course")
@@ -75,6 +107,11 @@ namespace FilteringResultsInsideInclude.Migrations
             modelBuilder.Entity("FilteringResultsInsideInclude.Models.Course", b =>
                 {
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("FilteringResultsInsideInclude.Models.Student", b =>
+                {
+                    b.Navigation("Assignments");
                 });
 #pragma warning restore 612, 618
         }
