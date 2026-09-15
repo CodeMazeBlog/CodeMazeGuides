@@ -12,7 +12,8 @@ public class AddPlanetEndpointLiveTests(SolarSystemApiApplicationFactory factory
         {
             Name = "Mars",
             Mass = 6.4171,
-            Radius = 3389.5
+            Radius = 3389.5,
+            OrbitalPeriod = 686.98
         };
 
         // Act
@@ -30,8 +31,9 @@ public class AddPlanetEndpointLiveTests(SolarSystemApiApplicationFactory factory
         var planet = new Planet
         {
             Name = "Venus",
-            Mass = 6.4171,
-            Radius = 3389.5
+            Mass = 4.8675,
+            Radius = 6051.8,
+            OrbitalPeriod = 224.7
         };
 
         // Act
