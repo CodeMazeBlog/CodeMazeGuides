@@ -69,5 +69,15 @@ namespace Tests
 
             Assert.AreEqual(expectedResult, json);
         }
+
+        [TestMethod]
+        public void WhenDeserializingWithOrderedPropertiesConverter_ThenThrowsNotSupportedException()
+        {
+            var options = new System.Text.Json.JsonSerializerOptions();
+            options.Converters.Add(new MicrosoftOrderedPropertiesConverter<Animal>());
+
+            Assert.ThrowsExactly<NotSupportedException>(
+                () => System.Text.Json.JsonSerializer.Deserialize<Animal>("{\"Id\":1,\"Name\":\"Miau\",\"Age\":3}", options));
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using ReadAndParseAJSONFileInCSharp;
+﻿using System.Text.Json.Nodes;
+using ReadAndParseAJSONFileInCSharp;
 
 namespace Tests
 {
@@ -62,6 +63,26 @@ namespace Tests
            
             Assert.IsType<List<Teacher>>(teachers);
             Assert.Equivalent(_expectedTeacher, firstTeacher, true);
+        }
+
+        [Fact]
+        public async Task GivenJsonFile_WhenUsingFileOpenReadAsyncWithSystemTextJson_ThenParsesToAList()
+        {
+            var teachers = await _readJson.UseFileOpenReadAsyncWithSystemTextJson();
+            var firstTeacher = teachers.FirstOrDefault();
+
+            Assert.IsType<List<Teacher>>(teachers);
+            Assert.Equivalent(_expectedTeacher, firstTeacher, true);
+        }
+
+        [Fact]
+        public void GivenJsonFile_WhenUsingJsonNodeWithSystemTextJson_ThenParsesToAJsonNode()
+        {
+            var teachers = _readJson.UseJsonNodeWithSystemTextJson();
+
+            Assert.IsType<JsonArray>(teachers);
+            Assert.Equal(_expectedTeacher.FirstName, teachers[0]["firstName"].GetValue<string>());
+            Assert.Equal(_expectedTeacher.BirthYear, teachers[0]["birthYear"].GetValue<int>());
         }
     }
 }

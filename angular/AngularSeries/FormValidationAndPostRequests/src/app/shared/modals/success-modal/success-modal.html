@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{modalHeaderText}}</h4>
+  <button type="button" class="btn-close close pull-right"
+  aria-label="Close" (click)="onOkClicked()">
+    <span aria-hidden="true" class="visually-hidden">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  {{modalBodyText}}
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="onOkClicked()">{{okButtonText}}</button>
+</div>

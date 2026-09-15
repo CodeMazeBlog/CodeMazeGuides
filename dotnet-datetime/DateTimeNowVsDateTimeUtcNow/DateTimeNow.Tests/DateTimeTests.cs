@@ -56,5 +56,27 @@ namespace DateTimeNow.Tests
 
             Assert.IsTrue(now.Kind == DateTimeKind.Local && utc.Kind == DateTimeKind.Utc);
         }
+
+        [TestMethod]
+        public void UnspecifiedDate_WhenConvertedToLocalTime_IsTreatedAsUtc()
+        {
+            var value = new DateTime(2022, 1, 9, 14, 34, 42);
+
+            var unspecified = DateTime.SpecifyKind(value, DateTimeKind.Unspecified);
+            var asUtc = DateTime.SpecifyKind(value, DateTimeKind.Utc);
+
+            Assert.AreEqual(asUtc.ToLocalTime(), unspecified.ToLocalTime());
+        }
+
+        [TestMethod]
+        public void UnspecifiedDate_WhenConvertedToUniversalTime_IsTreatedAsLocal()
+        {
+            var value = new DateTime(2022, 1, 9, 14, 34, 42);
+
+            var unspecified = DateTime.SpecifyKind(value, DateTimeKind.Unspecified);
+            var asLocal = DateTime.SpecifyKind(value, DateTimeKind.Local);
+
+            Assert.AreEqual(asLocal.ToUniversalTime(), unspecified.ToUniversalTime());
+        }
     }
 }

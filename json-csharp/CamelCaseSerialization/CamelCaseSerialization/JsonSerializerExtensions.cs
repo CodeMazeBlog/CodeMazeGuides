@@ -4,19 +4,14 @@ namespace CamelCaseSerialization;
 
 public static class JsonSerializerExtensions
 {
-    public static string SerializeWithCamelCase<T>(this T data)
+    private static readonly JsonSerializerOptions CamelCaseOptions = new()
     {
-        return JsonSerializer.Serialize(data, new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        });
-    }
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
 
-    public static T DeserializeFromCamelCase<T>(this string json)
-    {
-        return JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        });
-    }
+    public static string SerializeWithCamelCase<T>(this T data) =>
+        JsonSerializer.Serialize(data, CamelCaseOptions);
+
+    public static T? DeserializeFromCamelCase<T>(this string json) =>
+        JsonSerializer.Deserialize<T>(json, CamelCaseOptions);
 }

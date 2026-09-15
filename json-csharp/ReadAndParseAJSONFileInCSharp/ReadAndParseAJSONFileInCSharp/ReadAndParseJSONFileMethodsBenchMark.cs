@@ -7,10 +7,13 @@ namespace ReadAndParseAJSONFileInCSharp
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class ReadAndParseJSONFileMethodsBenchMark
     {
+        private static readonly string _benchmarkJsonFilePath
+            = Path.Combine(AppContext.BaseDirectory, "Data", "MethodsBenchmark-json.json");
+
         private readonly ReadAndParseJsonFileWithNewtonsoftJson _readWithNewtonsoftJson
-            = new(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName, "Data", "MethodsBenchmark-json.json"));
+            = new(_benchmarkJsonFilePath);
         private readonly ReadAndParseJsonFileWithSystemTextJson _readWithSystemTextJson
-            = new(Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.Parent.Parent.Parent.FullName, "Data", "MethodsBenchmark-json.json"));
+            = new(_benchmarkJsonFilePath);
 
         [Benchmark]
         public void UseUserDefinedObjectWithNewtonsoftJson()

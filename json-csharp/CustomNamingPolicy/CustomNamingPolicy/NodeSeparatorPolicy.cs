@@ -7,10 +7,8 @@ public class NodeSeparatorPolicy : JsonNamingPolicy
 {
     public override string ConvertName(string name)
     {
-        if (name is null)
-        {
-            throw new ArgumentNullException(nameof(name));
-        }
+        ArgumentNullException.ThrowIfNull(name);
+
         var sb = new StringBuilder();
         sb.Append(char.ToLower(name[0]));
         for (int i = 1; i < name.Length; i++)

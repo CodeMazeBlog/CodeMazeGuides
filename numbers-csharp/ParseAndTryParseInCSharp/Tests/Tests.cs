@@ -18,11 +18,11 @@ namespace ParseAndTryParseInCSharp.Tests
         [TestMethod]
         public void GivenIntParse_WhenInvalid_ThenConversionThrowsException()
         {
-            Assert.ThrowsException<FormatException>(() => int.Parse("3456.89"));
+            Assert.Throws<FormatException>(() => int.Parse("3456.89"));
 
-            Assert.ThrowsException<OverflowException>(() => int.Parse("34343454574745"));
+            Assert.Throws<OverflowException>(() => int.Parse("34343454574745"));
 
-            Assert.ThrowsException<ArgumentNullException>(() => int.Parse(null));
+            Assert.Throws<ArgumentNullException>(() => int.Parse(null!));
         }
 
         [TestMethod]
@@ -40,11 +40,11 @@ namespace ParseAndTryParseInCSharp.Tests
             var culture = new CultureInfo("en-US");
             culture.NumberFormat.PositiveSign = "#";
 
-            Assert.ThrowsException<FormatException>(() => int.Parse("#4567"));
+            Assert.Throws<FormatException>(() => int.Parse("#4567"));
 
-            Assert.ThrowsException<FormatException>(() => int.Parse("$4561", culture));
+            Assert.Throws<FormatException>(() => int.Parse("$4561", culture));
 
-            Assert.ThrowsException<OverflowException>(() => int.Parse("#34343454574745", culture));
+            Assert.Throws<OverflowException>(() => int.Parse("#34343454574745", culture));
         }
 
         [TestMethod]
@@ -60,9 +60,9 @@ namespace ParseAndTryParseInCSharp.Tests
         [TestMethod]
         public void GivenIntParseStyles_WhenInvalid_ThenConversionThrowsException()
         {
-            Assert.ThrowsException<FormatException>(() => int.Parse("$45,618", NumberStyles.AllowThousands));
+            Assert.Throws<FormatException>(() => int.Parse("$45,618", NumberStyles.AllowThousands));
 
-            Assert.ThrowsException<OverflowException>(() => int.Parse("56.89", NumberStyles.AllowDecimalPoint));
+            Assert.Throws<OverflowException>(() => int.Parse("56.89", NumberStyles.AllowDecimalPoint));
         }
 
         [TestMethod]
@@ -78,9 +78,9 @@ namespace ParseAndTryParseInCSharp.Tests
         [TestMethod]
         public void GivenIntParseFormatStyles_WhenInvalid_ThenConversionThrowsException()
         {
-            Assert.ThrowsException<FormatException>(() => int.Parse("$78,000", NumberStyles.Float, new CultureInfo("en-US")));
+            Assert.Throws<FormatException>(() => int.Parse("$78,000", NumberStyles.Float, new CultureInfo("en-US")));
 
-            Assert.ThrowsException<OverflowException>(() => int.Parse("78.567", NumberStyles.AllowDecimalPoint, new CultureInfo("en-US")));
+            Assert.Throws<OverflowException>(() => int.Parse("78.567", NumberStyles.AllowDecimalPoint, new CultureInfo("en-US")));
         }
 
         [TestMethod]
@@ -96,9 +96,9 @@ namespace ParseAndTryParseInCSharp.Tests
         [TestMethod]
         public void GivenIntParseFormatStylesSpan_WhenInvalid_ThenConversionThrowsException()
         {
-            Assert.ThrowsException<FormatException>(() => int.Parse("$78,000".AsSpan(), NumberStyles.Float, new CultureInfo("en-US")));
+            Assert.Throws<FormatException>(() => int.Parse("$78,000".AsSpan(), NumberStyles.Float, new CultureInfo("en-US")));
 
-            Assert.ThrowsException<OverflowException>(() => int.Parse("78.567".AsSpan(), NumberStyles.AllowDecimalPoint, new CultureInfo("en-US")));
+            Assert.Throws<OverflowException>(() => int.Parse("78.567".AsSpan(), NumberStyles.AllowDecimalPoint, new CultureInfo("en-US")));
         }
 
         [TestMethod]
@@ -116,7 +116,7 @@ namespace ParseAndTryParseInCSharp.Tests
 
             Assert.IsFalse(int.TryParse("34343454574745", out int overflowNum));
 
-            Assert.IsFalse(int.TryParse(null, out int nullNum));
+            Assert.IsFalse(int.TryParse((string?)null, out int nullNum));
         }
 
         [TestMethod]
@@ -177,6 +177,30 @@ namespace ParseAndTryParseInCSharp.Tests
             Assert.IsTrue(int.TryParse("78.000".AsSpan(), NumberStyles.Float, new CultureInfo("en-US"), out int usNum));
 
             Assert.AreEqual(78, usNum);
+        }
+
+        [TestMethod]
+        public void GivenIntTryParseProvider_WhenValid_ThenConversionSuccess()
+        {
+            Assert.IsTrue(int.TryParse("78000", new CultureInfo("en-US"), out int usNum));
+
+            Assert.AreEqual(78000, usNum);
+
+            Assert.IsFalse(int.TryParse("abc", new CultureInfo("en-US"), out int invalidNum));
+
+            Assert.AreEqual(0, invalidNum);
+        }
+
+        [TestMethod]
+        public void GivenIntTryParseUtf8_WhenValid_ThenConversionSuccess()
+        {
+            Assert.IsTrue(int.TryParse("45689"u8, out int result));
+
+            Assert.AreEqual(45689, result);
+
+            Assert.IsFalse(int.TryParse("3456.89"u8, out int formatNum));
+
+            Assert.AreEqual(0, formatNum);
         }
 
         [TestMethod]

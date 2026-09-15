@@ -18,7 +18,7 @@ namespace Test
             var datetime = new DateTime(2017, 8, 24);
             Console.WriteLine(datetime.ToString("d")); // 8/24/2017
 
-            Assert.AreEqual($"8/24/2017{Environment.NewLine}", sw.ToString());
+            Assert.AreEqual($"8/24/2017{Environment.NewLine}", TextExpectation.NormalizeSpaces(sw.ToString()));
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace Test
 
             Assert.AreEqual($"8/24/2017{Environment.NewLine}" +
                                 $"24/8/2017{Environment.NewLine}" +
-                                $"2017/08/24{Environment.NewLine}", sw.ToString());
+                                $"2017/08/24{Environment.NewLine}", TextExpectation.NormalizeSpaces(sw.ToString()));
         }
 
         [TestMethod]
@@ -49,7 +49,7 @@ namespace Test
 
             Console.WriteLine(datetime.ToString("d", formatInfo)); // 8-24-2017
 
-            Assert.AreEqual($"8-24-2017{Environment.NewLine}", sw.ToString());
+            Assert.AreEqual($"8-24-2017{Environment.NewLine}", TextExpectation.NormalizeSpaces(sw.ToString()));
         }
 
         [TestMethod]
@@ -62,11 +62,12 @@ namespace Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FormatException))]
         public void WhenUsingFormatSpecifierAndWrongCulture_ThenThrowsException()
         {
             var dateLiteral = "8/24/2017";
-            DateTime.ParseExact(dateLiteral, "d", CultureInfo.CreateSpecificCulture("ja-JP"));
+
+            Assert.ThrowsExactly<FormatException>(() =>
+                DateTime.ParseExact(dateLiteral, "d", CultureInfo.CreateSpecificCulture("ja-JP")));
         }
 
         [TestMethod]
@@ -82,7 +83,7 @@ namespace Test
 
             Assert.AreEqual($"Thursday, August 24, 2017{Environment.NewLine}" +
                                 $"jueves, 24 de agosto de 2017{Environment.NewLine}" +
-                                $"Donnerstag, 24. August 2017{Environment.NewLine}", sw.ToString());
+                                $"Donnerstag, 24. August 2017{Environment.NewLine}", TextExpectation.NormalizeSpaces(sw.ToString()));
         }
     }
 }

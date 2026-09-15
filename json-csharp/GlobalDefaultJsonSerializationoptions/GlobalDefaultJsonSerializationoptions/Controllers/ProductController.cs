@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace GlobalDefaultJsonSerializationoptions.Controllers;
 
@@ -16,6 +15,6 @@ public class ProductController : ControllerBase
     [HttpPost("save")]
     public ActionResult SaveProduct(Product product)
     {
-        return Ok(JsonConvert.SerializeObject(product));
+        return Ok(product);
     }
 }

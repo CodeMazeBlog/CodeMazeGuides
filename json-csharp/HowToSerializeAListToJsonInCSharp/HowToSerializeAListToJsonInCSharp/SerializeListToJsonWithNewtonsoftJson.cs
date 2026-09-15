@@ -4,9 +4,8 @@ using System.Text;
 
 namespace HowToSerializeAListToJsonInCSharp
 {
-    public class SerializeListToJsonWithNewtonsoftJson
+    public class SerializeListToJsonWithNewtonsoftJson(List<Club> clubList)
     {
-        private readonly List<Club> _clubList;
         private readonly JsonSerializerSettings _settings
             = new()
             {
@@ -14,14 +13,9 @@ namespace HowToSerializeAListToJsonInCSharp
                 ContractResolver = new DefaultContractResolver { NamingStrategy = new CamelCaseNamingStrategy() },
             };
 
-        public SerializeListToJsonWithNewtonsoftJson(List<Club> clubList)
-        {
-            _clubList = clubList;
-        }
-
         public string SerializeObjectMethod()
         {
-            return JsonConvert.SerializeObject(_clubList, _settings);
+            return JsonConvert.SerializeObject(clubList, _settings);
         }
 
         public string JsonSerializerClass()
@@ -30,7 +24,7 @@ namespace HowToSerializeAListToJsonInCSharp
             var stringBuilder = new StringBuilder();
             using (var writer = new JsonTextWriter(new StringWriter(stringBuilder)))
             {
-                serializer.Serialize(writer, _clubList);
+                serializer.Serialize(writer, clubList);
             }
 
             return stringBuilder.ToString();

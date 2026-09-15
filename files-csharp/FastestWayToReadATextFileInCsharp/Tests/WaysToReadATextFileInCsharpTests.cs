@@ -100,6 +100,30 @@ public class WaysToReadATextFileInCsharpTests:IDisposable
         Assert.Equal(ExpectedText, result);
     }
 
+    [Fact]
+    public async Task WhenReadingATextFileWithFileReadAllTextAsync_ThenReturnsExpectedText()
+    {
+        var result = await _textFileReader.UseFileReadAllTextAsync();
+
+        Assert.Equal(ExpectedText, result);
+    }
+
+    [Fact]
+    public async Task WhenReadingATextFileWithFileReadLinesAsync_ThenReturnsExpectedText()
+    {
+        var result = await _textFileReader.UseFileReadLinesAsync();
+
+        Assert.Equal(ExpectedText, result);
+    }
+
+    [Fact]
+    public async Task WhenReadingATextFileWithStreamReaderReadToEndAsync_ThenReturnsExpectedText()
+    {
+        var result = await _textFileReader.UseStreamReaderReadToEndAsync();
+
+        Assert.Equal(ExpectedText, result);
+    }
+
     public void Dispose()
     {
         if (File.Exists(TempFilePath))

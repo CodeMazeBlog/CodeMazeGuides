@@ -1,12 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
+using ReadAndParseAJSONFileInCSharp;
 
-namespace ReadAndParseAJSONFileInCSharp
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-           BenchmarkRunner.Run<ReadAndParseJSONFileMethodsBenchMark>();
-        }
-    }
-}
+BenchmarkRunner.Run<ReadAndParseJSONFileMethodsBenchMark>();

@@ -7,6 +7,6 @@
         public string LastName { get; set; } = string.Empty;
         public int BirthYear { get; set; }
         public int Level { get; set; }
-        public List<Course> Courses {get; set; }
+        public List<Course> Courses { get; set; }
     }
 }
