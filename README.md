@@ -1,9 +1,5 @@
 <div align="center">
 
-<a href="https://code-maze.com/?source=github">
-  <img src="https://code-maze.com/wp-content/uploads/2020/05/Code-Maze-Banner-Final-White-BG-wo-Glow.png" alt="Code Maze: Learn, Code, Succeed" width="640">
-</a>
-
 # Code Maze Guides
 
 **The source code for 800+ C# and .NET articles from [code-maze.com](https://code-maze.com/?source=github).**<br>Every article gets its own runnable solution, most with tests.
