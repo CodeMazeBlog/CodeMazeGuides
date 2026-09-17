@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace HideEndpointInSwagger.Controllers;
+namespace HideEndpointInOpenApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
