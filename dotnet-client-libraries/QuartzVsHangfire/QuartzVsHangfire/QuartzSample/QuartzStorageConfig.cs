@@ -1,22 +1,16 @@
-using System.Collections.Specialized;
 using Quartz;
-using Quartz.Impl;
 
 namespace QuartzVsHangfire.QuartzSample;
 
-// Quartz.NET runs fine with no database: RAMJobStore is the default. Durable
-// schedules are opt-in — we swap the job store type for an ADO.NET store.
+// Quartz.NET runs fine with no database: the in-memory store is the default.
+// 4.x removed StdSchedulerFactory, so a scheduler outside a container is built
+// with QuartzSchedulerBuilder, the same builder AddQuartz configures.
 public static class QuartzStorageConfig
 {
-    public static Task<IScheduler> CreateInMemorySchedulerAsync()
+    public static async Task<IScheduler> CreateInMemorySchedulerAsync()
     {
-        var properties = new NameValueCollection
-        {
-            ["quartz.jobStore.type"] = "Quartz.Simpl.RAMJobStore, Quartz"
-        };
+        var factory = QuartzSchedulerBuilder.Create().Build();
 
-        var factory = new StdSchedulerFactory(properties);
-
-        return factory.GetScheduler();
+        return await factory.GetScheduler();
     }
 }
