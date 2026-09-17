@@ -8,11 +8,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Hangfire.Core" Version="1.8.24"/>
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Hangfire.Core" Version="1.8.25"/>
         <PackageReference Include="Hangfire.InMemory" Version="1.0.0"/>
-        <PackageReference Include="Hangfire.NetCore" Version="1.8.24"/>
-        <PackageReference Include="Quartz" Version="3.19.1"/>
-        <PackageReference Include="Quartz.Extensions.Hosting" Version="3.19.1"/>
+        <PackageReference Include="Hangfire.NetCore" Version="1.8.25"/>
+        <!-- Hangfire.Core pulls Newtonsoft.Json 11.0.1, which carries a known high
+             severity advisory (NU1903). Pinning the current release removes it. -->
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.4"/>
+        <PackageReference Include="Quartz" Version="4.1.0"/>
+        <PackageReference Include="Quartz.Dashboard" Version="4.1.0"/>
     </ItemGroup>
 
 </Project>
