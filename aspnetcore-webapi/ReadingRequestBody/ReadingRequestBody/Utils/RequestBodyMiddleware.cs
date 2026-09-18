@@ -1,39 +1,32 @@
-﻿namespace ReadingRequestBody.Utils;
+namespace ReadingRequestBody.Utils;
 
-public class RequestBodyMiddleware
+public class RequestBodyMiddleware(RequestDelegate next, ILogger<RequestBodyMiddleware> logger)
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger _logger;
-    private readonly int MaxContentLength = 1024;
-
-    public RequestBodyMiddleware(RequestDelegate next, ILogger logger)
-    {
-        _next = next;
-        _logger = logger;
-    }
+    private const int MaxContentLength = 1024;
 
     public async Task Invoke(HttpContext context)
     {
-        var requestPath = context.Request.Path.Value;
+        var requestPath = context.Request.Path.Value ?? string.Empty;
 
-        if (requestPath.IndexOf("read-from-middleware") > -1)
+        if (requestPath.Contains("read-from-middleware", StringComparison.OrdinalIgnoreCase))
         {
-            context.Request.EnableBuffering();
-            var requestBody = await context.Request.Body.ReadAsStringAsync(true);
-
-            if (requestBody.Length > MaxContentLength)
+            if (context.Request.ContentLength > MaxContentLength)
             {
-                context.Response.StatusCode = 413;
+                context.Response.StatusCode = StatusCodes.Status413PayloadTooLarge;
                 await context.Response.WriteAsync("Request Body Too Large");
+
                 return;
             }
 
-            _logger.LogInformation("Request Body:{@requestBody}", requestBody);
+            context.Request.EnableBuffering(bufferThreshold: MaxContentLength, bufferLimit: MaxContentLength);
+            var requestBody = await context.Request.Body.ReadAsStringAsync(true);
+
+            logger.LogInformation("Request Body:{@requestBody}", requestBody);
             context.Request.Headers.Append("RequestBodyMiddleware", requestBody);
             context.Items.Add("RequestBody", requestBody);
             context.Request.Body.Position = 0;
         }
 
-        await _next(context);
+        await next(context);
     }
 }
