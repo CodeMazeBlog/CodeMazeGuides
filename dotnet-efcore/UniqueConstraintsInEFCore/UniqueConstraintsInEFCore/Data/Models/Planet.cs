@@ -9,4 +9,5 @@ public class Planet
     public required string Name { get; set; }
     public required double Mass { get; set; }
     public required double Radius { get; set; }
+    public required double OrbitalPeriod { get; set; }
 }
