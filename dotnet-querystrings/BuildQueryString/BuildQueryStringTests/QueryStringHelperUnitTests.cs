@@ -1,4 +1,5 @@
 using BuildQueryString;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BuildQueryStringTests
@@ -49,6 +50,28 @@ namespace BuildQueryStringTests
         }
 
         [TestMethod]
+        public void GivenValuesWithQueryDelimiters_WhenBuildUrlWithQueryStringUsingUriBuilderSafely_ThenValuesRoundTrip()
+        {
+            // Arrange
+            var dict = new Dictionary<string, string?>
+            {
+                { "author", "Tom & Jerry" },
+                { "tag", "C#" }
+            };
+            var expectedApiUrl = "https://localhost:7220/api/Books?author=Tom%20%26%20Jerry&tag=C%23";
+
+            // Act
+            var result = QueryStringHelper.BuildUrlWithQueryStringUsingUriBuilderSafely(basePath, dict);
+
+            //Assert
+            Assert.AreEqual(expectedApiUrl, result);
+
+            var parsed = QueryHelpers.ParseQuery(new Uri(result).Query);
+            Assert.AreEqual("Tom & Jerry", parsed["author"].ToString());
+            Assert.AreEqual("C#", parsed["tag"].ToString());
+        }
+
+        [TestMethod]
         public void GivenBasePathAndQueryParams_WhenBuildUrlWithQueryStringUsingParseQueryStringMethod_ThenCorrectApiUrlIsBuilt()
         {
             // Arrange
@@ -74,7 +97,7 @@ namespace BuildQueryStringTests
             // Arrange
             var author = "Haruki Murakami";
             var language = "japanese";
-            var dict = new Dictionary<string, string>
+            var dict = new Dictionary<string, string?>
             {
                 { "author", author },
                 { "language", language }
@@ -114,7 +137,7 @@ namespace BuildQueryStringTests
             // Arrange
             var author = "Leo Tolstoy";
             var language = "russian";
-            var dict = new Dictionary<string, string>
+            var dict = new Dictionary<string, string?>
             {
                 { "author", author },
                 { "language", language }
