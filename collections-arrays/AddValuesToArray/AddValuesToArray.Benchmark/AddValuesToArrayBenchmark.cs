@@ -6,49 +6,37 @@ namespace AddValuesToArray.Benchmark;
 [MemoryDiagnoser, Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [GroupBenchmarksBy(BenchmarkDotNet.Configs.BenchmarkLogicalGroupRule.ByCategory)]
 [CategoriesColumn]
+[HideColumns("StdDev", "Median", "Gen0", "Gen1")]
 public class AddValuesToArrayBenchmark
 {
-    int[] concatArray = Enumerable.Range(0, 10000).ToArray();
-    int[] copyToArray = Enumerable.Range(0, 10000).ToArray();
-    List<int> list = Enumerable.Range(0, 10000).ToList();
+    private int[] _source = [];
+    private List<int> _list = [];
 
-    public IEnumerable<object> ArraySize()
+    [Params(1_000, 10_000)]
+    public int ArraySize { get; set; }
+
+    [GlobalSetup]
+    public void GlobalSetup()
     {
-        yield return 10_000;
+        _source = Enumerable.Range(0, ArraySize).ToArray();
+        _list = Enumerable.Range(0, ArraySize).ToList();
     }
 
     [Benchmark, BenchmarkCategory("Manual")]
-    [ArgumentsSource(nameof(ArraySize))]
-    public void ArrayIndexInitializer(int arraySize)
-    {
-        AddValuesToArrayMethods.ArrayIndexInitializer(arraySize);
-    }
+    public int[] ArrayIndexInitializer() => AddValuesToArrayMethods.ArrayIndexInitializer(ArraySize);
 
     [Benchmark, BenchmarkCategory("Manual")]
-    [ArgumentsSource(nameof(ArraySize))]
-    public void SetValueMethod(int arraySize)
-    {
-        AddValuesToArrayMethods.SetValueMethod(arraySize);
-    }
+    public int[] SetValueMethod() => AddValuesToArrayMethods.SetValueMethod(ArraySize);
 
     [Benchmark, BenchmarkCategory("Populated Collection")]
-    [ArgumentsSource(nameof(ArraySize))]
-    public void ListCollection(int arraySize)
-    {
-        AddValuesToArrayMethods.UsingList(arraySize, list);
-    }
+    public int[] ListCollection() => AddValuesToArrayMethods.UsingList(_list);
 
     [Benchmark, BenchmarkCategory("Populated Collection")]
-    [ArgumentsSource(nameof(ArraySize))]
-    public void LinqConcat(int arraySize)
-    {
-        AddValuesToArrayMethods.LinqConcat(concatArray);
-    }
+    public int[] LinqConcat() => AddValuesToArrayMethods.LinqConcat(_source);
 
     [Benchmark, BenchmarkCategory("Populated Collection")]
-    [ArgumentsSource(nameof(ArraySize))]
-    public void ArrayCopyTo(int arraySize)
-    {
-        AddValuesToArrayMethods.ArrayCopyTo(arraySize, copyToArray);
-    }
+    public int[] ArrayCopyTo() => AddValuesToArrayMethods.ArrayCopyTo(ArraySize, _source);
+
+    [Benchmark, BenchmarkCategory("Populated Collection")]
+    public int[] CollectionExpression() => AddValuesToArrayMethods.CollectionExpression(_source);
 }
