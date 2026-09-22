@@ -37,12 +37,7 @@ Console.WriteLine("Full phrase: {0}", fullPhrase);
 
 Methods.LoadImageFromResources();
 
-var person = new Person
-{
-    FirstName = "Jack",
-    LastName = "Black",
-    Age = 30
-};
+var person = new Person("Jack", "Black", 30);
 byte[] serializedData = Methods.SerializeObject(person);
 var deserializedPerson = Methods.DeserializeObject(serializedData);
 Console.WriteLine($"\nFirst Name: {deserializedPerson.FirstName}, " +
