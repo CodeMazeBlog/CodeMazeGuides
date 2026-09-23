@@ -7,6 +7,7 @@ var contents = new string[] { "Hello" };
 var updatedContents = new string[] { "Hello World" };
 
 using var manager = new TextFileManager(FileUtil.DirectoryToMonitor);
+// The watcher raises its events on another thread, so the order of the output below is not guaranteed.
 manager.Create(fileName, contents);
 manager.Update(fileName, updatedContents);
 manager.Rename(fileName, updatedFileName);
