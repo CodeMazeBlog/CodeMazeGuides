@@ -62,31 +62,26 @@ public class MethodsTests
         Methods.WriteToMemoryStream(memoryStream, phrase2Bytes);
 
         var phrases = Methods.ReadFromMemoryStream(memoryStream);
-        Assert.True(phrases[0].Equals("How to Use"));
-        Assert.True(phrases[1].Equals(" MemoryStream in C# "));
-        Assert.True(phrases[2].Equals("- explanation with examples"));
+        Assert.Equal("How to Use", phrases[0]);
+        Assert.Equal(" MemoryStream in C# ", phrases[1]);
+        Assert.Equal("- explanation with examples", phrases[2]);
 
         var fullPhrase = Encoding.UTF8.GetString(memoryStream.ToArray());
-        Assert.True(fullPhrase.Equals("How to Use MemoryStream in C# - explanation with examples"));
+        Assert.Equal("How to Use MemoryStream in C# - explanation with examples", fullPhrase);
     }
 
     [Fact]
     public void WhenSerializeAndDeserializePerson_ThenSuccess()
     {
-        var person = new Person
-        {
-            FirstName = "Jack",
-            LastName = "Black",
-            Age = 30
-        };
+        var person = new Person("Jack", "Black", 30);
 
         byte[] serializedData = Methods.SerializeObject(person);
         Assert.True(serializedData.Length > 0);
 
         var deserializedPerson = Methods.DeserializeObject(serializedData);
-        Assert.True(person.FirstName.Equals(deserializedPerson.FirstName));
-        Assert.True(person.LastName.Equals(deserializedPerson.LastName));
-        Assert.True(person.Age == deserializedPerson.Age);
+        Assert.Equal(person.FirstName, deserializedPerson.FirstName);
+        Assert.Equal(person.LastName, deserializedPerson.LastName);
+        Assert.Equal(person.Age, deserializedPerson.Age);
     }
 
     [Fact]
