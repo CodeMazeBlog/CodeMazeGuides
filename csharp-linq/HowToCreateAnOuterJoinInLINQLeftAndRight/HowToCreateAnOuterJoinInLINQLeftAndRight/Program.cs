@@ -52,6 +52,32 @@ foreach (var item in results)
 Console.WriteLine();
 Console.WriteLine();
 
+Console.WriteLine("Left outer join - LeftJoin method");
+Console.WriteLine();
+
+results = Utilities.PerformLeftJoinWithLeftJoinMethod(Utilities.Songs, Utilities.Authors);
+
+foreach (var item in results)
+{
+    Console.WriteLine($"Title: {item.Title}, Author: {item.AuthorName}");
+}
+
+Console.WriteLine();
+Console.WriteLine();
+
+Console.WriteLine("Right outer join - RightJoin method");
+Console.WriteLine();
+
+results = Utilities.PerformRightJoinWithRightJoinMethod(Utilities.Songs, Utilities.Authors);
+
+foreach (var item in results)
+{
+    Console.WriteLine($"Title: {item.Title}, Author: {item.AuthorName}");
+}
+
+Console.WriteLine();
+Console.WriteLine();
+
 Console.WriteLine("Full outer join");
 Console.WriteLine();
 

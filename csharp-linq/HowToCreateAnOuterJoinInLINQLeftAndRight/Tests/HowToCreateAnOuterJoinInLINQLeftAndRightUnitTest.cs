@@ -105,6 +105,56 @@ public class HowToCreateAnOuterJoinInLINQLeftAndRightUnitTest
     }
 
     [Fact]
+    public void GivenTwoDataSources_WhenPerformLeftJoinWithLeftJoinMethodCalled_ThenAllItemsFromLeftSourceAreReturned()
+    {
+        // Arrange
+        List<Song> songs =
+        [
+            new() { Id = 1, Title = "song A", AuthorId = 3 },
+            new() { Id = 2, Title = "song B", AuthorId = 1 },
+            new() { Id = 3, Title = "song C", AuthorId = 5 },
+            new() { Id = 4, Title = "song D", AuthorId = 2 }
+        ];
+
+        List<Author> authors =
+        [
+            new() { Id = 1, Name = "Author A" },
+            new() { Id = 9, Name = "Author B" }
+        ];
+
+        // Act
+        var output = Utilities.PerformLeftJoinWithLeftJoinMethod(songs, authors).Count;
+
+        // Assert
+        Assert.Equal(songs.Count, output);
+    }
+
+    [Fact]
+    public void GivenTwoDataSources_WhenPerformRightJoinWithRightJoinMethodCalled_ThenAllItemsFromRightSourceAreReturned()
+    {
+        // Arrange
+        List<Song> songs =
+        [
+            new() { Id = 1, Title = "song A", AuthorId = 3 },
+            new() { Id = 2, Title = "song B", AuthorId = 1 },
+            new() { Id = 3, Title = "song C", AuthorId = 5 },
+            new() { Id = 4, Title = "song D", AuthorId = 2 }
+        ];
+
+        List<Author> authors =
+        [
+            new() { Id = 1, Name = "Author A" },
+            new() { Id = 9, Name = "Author B" }
+        ];
+
+        // Act
+        var output = Utilities.PerformRightJoinWithRightJoinMethod(songs, authors).Count;
+
+        // Assert
+        Assert.Equal(authors.Count, output);
+    }
+
+    [Fact]
     public void GivenTwoDataSources_WhenPerformFullOuterJoinMethodCalled_ThenAllItemsFromBothSourcesAreReturned()
     {
         // Arrange
