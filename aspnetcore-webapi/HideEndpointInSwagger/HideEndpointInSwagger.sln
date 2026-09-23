@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HideEndpointInSwagger", "Hi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HideEndpointInSwaggerTests", "HideEndpointInSwaggerTests\HideEndpointInSwaggerTests.csproj", "{997C22B1-9AA6-44C1-82F0-96A9FB3DD6E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HideEndpointInOpenApi", "HideEndpointInOpenApi\HideEndpointInOpenApi.csproj", "{6B2FE7B7-D288-4F8C-85D3-2F0E8906B397}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{997C22B1-9AA6-44C1-82F0-96A9FB3DD6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{997C22B1-9AA6-44C1-82F0-96A9FB3DD6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{997C22B1-9AA6-44C1-82F0-96A9FB3DD6E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B2FE7B7-D288-4F8C-85D3-2F0E8906B397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B2FE7B7-D288-4F8C-85D3-2F0E8906B397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B2FE7B7-D288-4F8C-85D3-2F0E8906B397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B2FE7B7-D288-4F8C-85D3-2F0E8906B397}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,7 +13,7 @@ public static class QuartzStartup
         {
             var reportJob = new JobKey("nightly-report");
 
-            configurator.AddJob<ReportJob>(reportJob);
+            configurator.AddJob<ReportJob>(job => job.WithIdentity(reportJob));
             configurator.AddTrigger(trigger => trigger
                 .ForJob(reportJob)
                 .WithIdentity("nightly")
