@@ -42,15 +42,11 @@ public class ContentionExample
 
     private void ProcessingStep(int stepNumber)
     {
-        int emptyHits = 0;
         for (int iteration = 0; iteration < MaxIterations; iteration++)
         {
             var entryKey = iteration % MaxStateEntries;
 
-            if (CheckStateIsEmpty())
-            {
-                emptyHits++;
-            }
+            CheckStateIsEmpty();
 
             _sharedState.AddOrUpdate(
                 entryKey,
