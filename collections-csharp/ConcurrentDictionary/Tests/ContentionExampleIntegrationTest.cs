@@ -5,7 +5,7 @@ namespace Tests
     public class ContentionExampleIntegrationTest
     {
         private int expectedEntryValue = ContentionExample.ProcessingSteps * ContentionExample.MaxIterations / ContentionExample.MaxStateEntries;
-        private ContentionExample sut = new();
+        private ContentionExample sut;
 
         [SetUp]
         public void SetUp()
@@ -30,7 +30,7 @@ namespace Tests
         }
 
         [Test]
-        public void WhenBothVariantsRun_ThenTheSecondVariantTakesMoreTime()
+        public void WhenBothVariantsRun_ThenTheSecondVariantTakesMoreTime_Live()
         {
             ContentionExample firstVariant = new();
             ContentionExample secondVariant = new();

@@ -4,7 +4,7 @@ namespace Tests
     {
         private int expectedEntryValue = MemoryLeakExample.ProcessingSteps * MemoryLeakExample.MaxIterations / MemoryLeakExample.MaxStateEntries;
 
-        private MemoryLeakExample sut = new();
+        private MemoryLeakExample sut;
 
         [SetUp]
         public void SetUp()
