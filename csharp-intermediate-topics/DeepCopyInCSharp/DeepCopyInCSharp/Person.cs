@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 
 namespace DeepCopyInCSharp
 {
@@ -14,6 +15,16 @@ namespace DeepCopyInCSharp
 
         [DataMember]
         public required Address Address { get; set; }
+
+        public Person() { }
+
+        [SetsRequiredMembers]
+        public Person(Person other)
+        {
+            Name = other.Name;
+            Age = other.Age;
+            Address = new Address(other.Address);
+        }
 
         public Person ShallowCopy() => (Person)this.MemberwiseClone();
 

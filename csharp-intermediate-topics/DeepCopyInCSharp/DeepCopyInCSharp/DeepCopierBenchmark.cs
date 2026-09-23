@@ -4,7 +4,7 @@ namespace DeepCopyInCSharp
 {
     public class DeepCopierBenchmark
     {
-        private Person? _person;
+        private Person _person = null!;
 
         [GlobalSetup]
         public void Setup()
@@ -20,6 +20,12 @@ namespace DeepCopyInCSharp
                     State = "TY"
                 }
             };
+        }
+
+        [Benchmark]
+        public Person CopyConstructorBenchmark()
+        {
+            return new Person(_person);
         }
 
         [Benchmark]
@@ -56,12 +62,6 @@ namespace DeepCopyInCSharp
         public Person ExpressionTreesBenchmark()
         {
             return DeepCopyMaker.DeepCopyExpressionTrees(_person);
-        }
-
-        [Benchmark]
-        public Person AutoMapperBenchmark()
-        {
-            return new DeepCopyMaker().DeepCopyAutoMapper(_person);
         }
 
         [Benchmark]
