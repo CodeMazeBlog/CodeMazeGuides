@@ -17,7 +17,7 @@ namespace XMLDeserializationInCsharpTests
                             """;
 			var expectedPerson = new Person { Name = "Jane Smith", Age = 25 };
 
-			var actualPerson = Program.DeserializeXmlData<Person>(xmlData);
+			var actualPerson = XmlDeserializer.DeserializeXmlData<Person>(xmlData);
 
 			Assert.IsNotNull(actualPerson);
 			Assert.AreEqual(expectedPerson.Name, actualPerson.Name);
@@ -42,7 +42,7 @@ namespace XMLDeserializationInCsharpTests
                                 </Library>
                                 """;
 
-			var library = Program.DeserializeXmlData<Library>(complexXML);
+			var library = XmlDeserializer.DeserializeXmlData<Library>(complexXML);
 
 			Assert.IsNotNull(library);
 			Assert.IsNotNull(library.Books);
@@ -67,7 +67,7 @@ namespace XMLDeserializationInCsharpTests
                             """;
 			var expectedPerson = new PersonRecord { Name = "John Wick", Age = 35 };
 
-			var actualPerson = Program.DeserializeXmlData<PersonRecord>(personXML);
+			var actualPerson = XmlDeserializer.DeserializeXmlData<PersonRecord>(personXML);
 
 			Assert.IsNotNull(actualPerson);
 			Assert.AreEqual(expectedPerson.Name, actualPerson.Name);
@@ -93,7 +93,7 @@ namespace XMLDeserializationInCsharpTests
                             </LibraryRecord>
                           """;
 
-			var library = Program.DeserializeXmlData<LibraryRecord>(libraryXML);
+			var library = XmlDeserializer.DeserializeXmlData<LibraryRecord>(libraryXML);
 
 			Assert.IsNotNull(library);
 			Assert.IsNotNull(library.Books);
@@ -104,6 +104,26 @@ namespace XMLDeserializationInCsharpTests
 
 			Assert.AreEqual("Keanu Reeves", library.Books[1].Title);
 			Assert.AreEqual("BRZRKR", library.Books[1].Author);
+		}
+
+		[TestMethod]
+		public void WhenDeserializingWithCachedSerializer_ThenReturnPerson()
+		{
+			var contactXML = """
+                            <Contact>
+                                <Name>Jane Smith</Name>
+                                <Age>25</Age>
+                            </Contact>
+                            """;
+
+			var first = PersonSerializer.Deserialize(contactXML);
+			var second = PersonSerializer.Deserialize(contactXML);
+
+			Assert.IsNotNull(first);
+			Assert.AreEqual("Jane Smith", first.Name);
+			Assert.AreEqual(25, first.Age);
+			Assert.IsNotNull(second);
+			Assert.AreEqual(first.Name, second.Name);
 		}
 	}
 }
