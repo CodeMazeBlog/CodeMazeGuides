@@ -1,6 +1,5 @@
 public class TextFileManager : IDisposable
 {
-    private bool _desposed;
     private readonly string _rootDirectory;
     private readonly FileSystemWatcher _fileSystemWatcher;
 
@@ -17,7 +16,7 @@ public class TextFileManager : IDisposable
     {
         var path = AbsolutePath(fileName);
         if (File.Exists(path))
-            throw new Exception($"File With the same name exists: {fileName}");
+            throw new IOException($"File With the same name exists: {fileName}");
         
         File.WriteAllLines(path, content);
     }
@@ -102,27 +101,5 @@ public class TextFileManager : IDisposable
 
     private string AbsolutePath(string fileName) => Path.Combine(_rootDirectory, fileName);
 
-    ~TextFileManager()
-    {
-        Dispose(false);
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(true);
-    }
-
-    public virtual void Dispose(bool disposing)
-    {
-        if(_desposed)
-            return;
-        
-        if(disposing)
-        {
-            _fileSystemWatcher.Dispose();
-        }
-
-        _desposed = true;
-    }
+    public void Dispose() => _fileSystemWatcher.Dispose();
 }
