@@ -1,4 +1,6 @@
-﻿namespace APIReturnType
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace APIReturnType
 {
     public class FakeRepository : IFakeRepository
     {
@@ -31,7 +33,7 @@
             return Employees;
         }
 
-        public bool TryGetEmployee(int id, out Employee? employee)
+        public bool TryGetEmployee(int id, [NotNullWhen(true)] out Employee? employee)
         {
             employee = GetEmployees().FirstOrDefault(e => e.Id == id);
             return employee != null;

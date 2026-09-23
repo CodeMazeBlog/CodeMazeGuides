@@ -1,5 +1,6 @@
 ﻿using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace SelectingXmlNodesWithXpath;
 
@@ -10,18 +11,23 @@ public static class XmlNodesSelector
         return XElement.Parse(unformattedXml).ToString();
     }
 
-    public static string SelectSingleBook(XmlNode root)
+    public static string? SelectSingleBook(XmlNode root)
     {
         var node = root.SelectSingleNode("//catalog/book[position()=2]");
-        
-        return FormatXml(node!.OuterXml);
+
+        return node is null ? null : FormatXml(node.OuterXml);
     }
 
     public static List<string> SelectBooks(XmlNode root)
     {
         var nodes = root.SelectNodes("//catalog/book[price<50.00]");
 
-        return nodes!
+        if (nodes is null)
+        {
+            return [];
+        }
+
+        return nodes
             .Cast<XmlNode>()
             .Select(x => FormatXml(x.OuterXml))
             .ToList();
@@ -34,9 +40,22 @@ public static class XmlNodesSelector
 
         var nodes = doc.SelectNodes("descendant::ex:book", nsmgr);
 
-        return nodes!
+        if (nodes is null)
+        {
+            return [];
+        }
+
+        return nodes
             .Cast<XmlNode>()
             .Select(x => FormatXml(x.OuterXml))
+            .ToList();
+    }
+
+    public static List<string> SelectBooksWithLinqToXml(XDocument doc)
+    {
+        return doc
+            .XPathSelectElements("//catalog/book[price<50.00]")
+            .Select(x => x.ToString())
             .ToList();
     }
 }
