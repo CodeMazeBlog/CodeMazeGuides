@@ -1,10 +1,11 @@
 ﻿using ImageMagick;
+using ImageMagick.Drawing;
 
 namespace ImageMagickLibrary;
 
 public static class ImageService
 {
-    public static MagickImage CreateBlankImage(int width, int height, MagickColor color)
+    public static MagickImage CreateBlankImage(uint width, uint height, MagickColor color)
     {
         return new MagickImage(color, width, height);
     }
