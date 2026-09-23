@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Running;
+﻿using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Running;
 
 namespace DeepCopyInCSharp
 {
@@ -7,7 +8,13 @@ namespace DeepCopyInCSharp
         static void Main(string[] args)
         {
             //Benchmark - start
-            var summary = BenchmarkRunner.Run<DeepCopierBenchmark>();
+            // FastDeepCloner 1.3.6 ships an assembly built without optimizations, and BenchmarkDotNet
+            // refuses to run while any referenced assembly is non-optimized. This switch turns that
+            // check off for every assembly, so always run this project with -c Release.
+            var config = ManualConfig.Create(DefaultConfig.Instance)
+                                     .WithOptions(ConfigOptions.DisableOptimizationsValidator);
+
+            var summary = BenchmarkRunner.Run<DeepCopierBenchmark>(config);
             Console.WriteLine(summary);
             //Benchmark - end
 
