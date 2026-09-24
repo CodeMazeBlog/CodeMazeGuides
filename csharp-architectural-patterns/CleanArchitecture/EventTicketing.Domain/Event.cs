@@ -1,6 +1,4 @@
-using EventTicketing.Domain.Common;
-
-namespace EventTicketing.Domain.Events;
+namespace EventTicketing.Domain;
 
 public sealed class Event
 {
@@ -19,19 +17,15 @@ public sealed class Event
 
     public static Event Create(string name, int capacity)
     {
-        if (string.IsNullOrWhiteSpace(name))
-            throw new DomainException("An event needs a name.");
-
-        if (capacity <= 0)
-            throw new DomainException("Capacity must be positive.");
+        ArgumentException.ThrowIfNullOrWhiteSpace(name);
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(capacity);
 
         return new Event(name, capacity);
     }
 
     public Result Reserve(int quantity)
     {
-        if (quantity <= 0)
-            throw new DomainException("Quantity must be positive.");
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(quantity);
 
         if (quantity > TicketsLeft)
             return EventErrors.SoldOut(TicketsLeft, quantity);

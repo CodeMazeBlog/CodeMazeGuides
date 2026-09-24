@@ -1,7 +1,4 @@
-using EventTicketing.Application.Abstractions;
-using EventTicketing.Application.Events;
-using EventTicketing.Infrastructure.Events;
-using EventTicketing.Infrastructure.Persistence;
+using EventTicketing.Application;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,10 +10,7 @@ public static class DependencyInjection
         this IServiceCollection services, string connectionString)
     {
         services.AddDbContext<TicketingDbContext>(options => options.UseSqlite(connectionString));
-
         services.AddScoped<IEventRepository, EventRepository>();
-        services.AddScoped<IEventReadRepository, EventReadRepository>();
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }

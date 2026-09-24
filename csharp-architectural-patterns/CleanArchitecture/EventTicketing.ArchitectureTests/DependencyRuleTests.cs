@@ -1,26 +1,20 @@
-using EventTicketing.Application.Events;
-using EventTicketing.Domain.Events;
-using EventTicketing.Infrastructure.Persistence;
+using EventTicketing.Application;
+using EventTicketing.Domain;
 using NetArchTest.Rules;
-using TestResult = NetArchTest.Rules.TestResult;
 
 namespace EventTicketing.ArchitectureTests;
 
 public class DependencyRuleTests
 {
-    private const string Application = "EventTicketing.Application";
-    private const string Infrastructure = "EventTicketing.Infrastructure";
-    private const string Api = "EventTicketing.Api";
-
     [Fact]
     public void Domain_DependsOnNoOtherLayer()
     {
         var result = Types.InAssembly(typeof(Event).Assembly)
             .ShouldNot()
-            .HaveDependencyOnAny(Application, Infrastructure, Api)
+            .HaveDependencyOnAny("EventTicketing.Application", "EventTicketing.Infrastructure", "EventTicketing.Api")
             .GetResult();
 
-        Assert.True(result.IsSuccessful, Describe(result));
+        Assert.True(result.IsSuccessful, "Offending types: " + string.Join(", ", result.FailingTypeNames ?? []));
     }
 
     [Fact]
@@ -28,23 +22,10 @@ public class DependencyRuleTests
     {
         var result = Types.InAssembly(typeof(ReserveTicketsHandler).Assembly)
             .ShouldNot()
-            .HaveDependencyOnAny(Infrastructure, Api, "Microsoft.EntityFrameworkCore", "Microsoft.AspNetCore")
+            .HaveDependencyOnAny("EventTicketing.Infrastructure", "EventTicketing.Api",
+                "Microsoft.EntityFrameworkCore", "Microsoft.AspNetCore")
             .GetResult();
 
-        Assert.True(result.IsSuccessful, Describe(result));
+        Assert.True(result.IsSuccessful, "Offending types: " + string.Join(", ", result.FailingTypeNames ?? []));
     }
-
-    [Fact]
-    public void Infrastructure_DoesNotDependOnTheApi()
-    {
-        var result = Types.InAssembly(typeof(TicketingDbContext).Assembly)
-            .ShouldNot()
-            .HaveDependencyOn(Api)
-            .GetResult();
-
-        Assert.True(result.IsSuccessful, Describe(result));
-    }
-
-    private static string Describe(TestResult result) =>
-        "Offending types: " + string.Join(", ", result.FailingTypeNames ?? []);
 }

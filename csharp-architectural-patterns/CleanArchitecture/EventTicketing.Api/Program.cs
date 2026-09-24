@@ -1,7 +1,6 @@
-using EventTicketing.Api.Endpoints;
+using EventTicketing.Api;
 using EventTicketing.Application;
 using EventTicketing.Infrastructure;
-using EventTicketing.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,16 +9,15 @@ builder.Services.AddInfrastructure(builder.Configuration.GetConnectionString("Ti
 
 builder.Services.AddProblemDetails();
 builder.Services.AddValidation();
-builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
 app.UseExceptionHandler();
 
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.MapOpenApi();
-    await app.Services.SeedDatabaseAsync();
+    var dbContext = scope.ServiceProvider.GetRequiredService<TicketingDbContext>();
+    dbContext.Database.EnsureCreated();
 }
 
 app.MapEventEndpoints();

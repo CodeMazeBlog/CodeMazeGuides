@@ -1,14 +1,12 @@
-using EventTicketing.Application.Abstractions;
-using EventTicketing.Domain.Common;
-using EventTicketing.Domain.Events;
+using EventTicketing.Domain;
 
-namespace EventTicketing.Application.Events;
+namespace EventTicketing.Application;
 
 public sealed record ReserveTicketsCommand(int EventId, int Quantity);
 
 public sealed record ReservationResponse(int EventId, int TicketsReserved, int TicketsLeft);
 
-public sealed class ReserveTicketsHandler(IEventRepository events, IUnitOfWork unitOfWork)
+public sealed class ReserveTicketsHandler(IEventRepository events)
 {
     public async Task<Result<ReservationResponse>> HandleAsync(
         ReserveTicketsCommand command, CancellationToken cancellationToken = default)
@@ -18,10 +16,10 @@ public sealed class ReserveTicketsHandler(IEventRepository events, IUnitOfWork u
             return EventErrors.NotFound(command.EventId);
 
         var reservation = ev.Reserve(command.Quantity);
-        if (reservation.IsFailure)
-            return reservation.Error;
+        if (!reservation.IsSuccess)
+            return reservation.Error!;
 
-        await unitOfWork.SaveChangesAsync(cancellationToken);
+        await events.SaveChangesAsync(cancellationToken);
 
         return new ReservationResponse(ev.Id, command.Quantity, ev.TicketsLeft);
     }

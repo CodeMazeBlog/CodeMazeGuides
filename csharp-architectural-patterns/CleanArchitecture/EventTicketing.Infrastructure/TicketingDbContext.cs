@@ -1,7 +1,7 @@
-using EventTicketing.Domain.Events;
+using EventTicketing.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace EventTicketing.Infrastructure.Persistence;
+namespace EventTicketing.Infrastructure;
 
 public sealed class TicketingDbContext(DbContextOptions<TicketingDbContext> options)
     : DbContext(options)
@@ -12,8 +12,11 @@ public sealed class TicketingDbContext(DbContextOptions<TicketingDbContext> opti
     {
         modelBuilder.Entity<Event>(builder =>
         {
-            builder.HasKey(e => e.Id);
             builder.Property(e => e.Name).HasMaxLength(200);
+
+            builder.HasData(
+                new { Id = 1, Name = "Clean Architecture Live", Capacity = 100, TicketsSold = 0 },
+                new { Id = 2, Name = "Tiny Jazz Club Night", Capacity = 2, TicketsSold = 0 });
         });
     }
 }
