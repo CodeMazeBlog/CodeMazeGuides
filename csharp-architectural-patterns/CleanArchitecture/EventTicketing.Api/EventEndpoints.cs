@@ -1,12 +1,13 @@
-using EventTicketing.Api.Contracts;
-using EventTicketing.Api.Extensions;
-using EventTicketing.Application.Events;
+using System.ComponentModel.DataAnnotations;
+using EventTicketing.Application;
 
-namespace EventTicketing.Api.Endpoints;
+namespace EventTicketing.Api;
+
+public sealed record ReserveTicketsRequest([property: Range(1, 20)] int Quantity);
 
 public static class EventEndpoints
 {
-    public static IEndpointRouteBuilder MapEventEndpoints(this IEndpointRouteBuilder app)
+    public static void MapEventEndpoints(this IEndpointRouteBuilder app)
     {
         var events = app.MapGroup("/api/events");
 
@@ -31,7 +32,5 @@ public static class EventEndpoints
 
             return result.IsSuccess ? Results.Ok(result.Value) : result.ToProblem();
         });
-
-        return app;
     }
 }

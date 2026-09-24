@@ -1,4 +1,3 @@
-using EventTicketing.Application.Events;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EventTicketing.Application;
