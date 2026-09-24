@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CheckPathFileOrDirectoryCSharp
+﻿namespace CheckPathFileOrDirectoryCSharp
 {
-    public class FileInfoAndDirectoryInfoDrawbacks
+    public static class FileInfoAndDirectoryInfoDrawbacks
     {
         public static void Run()
         {
@@ -23,13 +17,18 @@ namespace CheckPathFileOrDirectoryCSharp
             Console.WriteLine($"existsFileInfo = {existsFileInfo}");
             Console.WriteLine($"existsFile = {existsFile}");
 
-            File.CreateText(testFile);
+            File.WriteAllText(testFile, string.Empty);
 
             existsFileInfo = fileInfo.Exists;
             existsFile = File.Exists(testFile);
 
             Console.WriteLine($"existsFileInfo = {existsFileInfo}");
-            Console.WriteLine($"existsFile = {existsFile}\n");
+            Console.WriteLine($"existsFile = {existsFile}");
+
+            fileInfo.Refresh();
+            existsFileInfo = fileInfo.Exists;
+
+            Console.WriteLine($"existsFileInfo after Refresh() = {existsFileInfo}\n");
         }
 
     }
