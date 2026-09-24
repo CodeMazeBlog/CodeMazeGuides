@@ -1,28 +1,26 @@
-@baseUrl = http://localhost:5000
-
-GET {{baseUrl}}/api/events/1
+GET http://localhost:5000/api/events/1
 
 ###
 
-POST {{baseUrl}}/api/events/1/reservations
+POST http://localhost:5000/api/events/1/reservations
 Content-Type: application/json
 
 { "quantity": 3 }
 
 ###
 
-POST {{baseUrl}}/api/events/2/reservations
+POST http://localhost:5000/api/events/2/reservations
 Content-Type: application/json
 
 { "quantity": 3 }
 
 ###
 
-POST {{baseUrl}}/api/events/1/reservations
+POST http://localhost:5000/api/events/1/reservations
 Content-Type: application/json
 
 { "quantity": 0 }
 
 ###
 
-GET {{baseUrl}}/api/events/99
+GET http://localhost:5000/api/events/99
