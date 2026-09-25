@@ -25,7 +25,7 @@ public class AddValuesToArrayMethods
         return array;
     }
 
-    public static int[] UsingList(int arraySize, List<int> list)
+    public static int[] UsingList(List<int> list)
     {
         return list.ToArray();
     }
@@ -41,10 +41,47 @@ public class AddValuesToArrayMethods
 
     public static int[] ArrayCopyTo(int arraySize, int[] array)
     {
-        var array1 = new int[arraySize];       
+        var array1 = new int[arraySize];
 
         array.CopyTo(array1, 0);
 
         return array1;
+    }
+
+    public static int[] AppendWithResize(int[] array, int value)
+    {
+        Array.Resize(ref array, array.Length + 1);
+        array[^1] = value;
+
+        return array;
+    }
+
+    public static int[] AppendWithCollectionExpression(int[] array, int value) => [.. array, value];
+
+    public static int[] CollectionExpression(int[] array) => [.. array];
+
+    public static int[] GrowWithResize(int count)
+    {
+        var array = Array.Empty<int>();
+
+        for (var index = 0; index < count; index++)
+        {
+            Array.Resize(ref array, array.Length + 1);
+            array[index] = index;
+        }
+
+        return array;
+    }
+
+    public static int[] GrowWithList(int count)
+    {
+        var list = new List<int>();
+
+        for (var index = 0; index < count; index++)
+        {
+            list.Add(index);
+        }
+
+        return list.ToArray();
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CheckPathFileOrDirectoryCSharp
 {
-    public class FileInfoAndDirectoryInfoUsage
+    public static class FileInfoAndDirectoryInfoUsage
     {
         public static void Run()
         {
@@ -14,7 +14,7 @@
 
             // file
             var testFile = Path.Combine(Path.GetTempPath(), "test_file2.abc");
-            File.CreateText(testFile);
+            File.WriteAllText(testFile, string.Empty);
 
             fileInfo = new FileInfo(testFile);
             directoryInfo = new DirectoryInfo(testFile);

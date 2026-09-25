@@ -24,22 +24,18 @@
             var toppingsClonedWithConvertAll = toppings
                 .ConvertAll(new Converter<string, string>(x => x));
 
-            var customToppingsList = new ToppingsList<string>
-            {
-                "Mozzarella",
-                "Olive oil",
-                "Basil"
-            };
+            List<string> toppingsClonedWithCollectionExpression = [.. toppings];
 
-            var toppingsClonedWithICloneable = (ToppingsList<string>)customToppingsList.Clone();
+            var toppingsClonedWithGetRange = toppings.GetRange(0, toppings.Count);
 
             Console.WriteLine("Original list: " + string.Join(", ", toppings));
             Console.WriteLine("Cloned with Constructor: " + string.Join(", ", toppingsClonedWithConstructor));
             Console.WriteLine("Cloned with CopyTo: " + string.Join(", ", toppingsClonedWithCopyTo));
             Console.WriteLine("Cloned with AddRange: " + string.Join(", ", toppingsClonedWithAddRange));
             Console.WriteLine("Cloned with ToList: " + string.Join(", ", toppingsClonedWithToList));
-            Console.WriteLine("Cloned with ConverAll: " + string.Join(", ", toppingsClonedWithConvertAll));
-            Console.WriteLine("Cloned with ICloneable: " + string.Join(", ", toppingsClonedWithICloneable));
+            Console.WriteLine("Cloned with ConvertAll: " + string.Join(", ", toppingsClonedWithConvertAll));
+            Console.WriteLine("Cloned with a collection expression: " + string.Join(", ", toppingsClonedWithCollectionExpression));
+            Console.WriteLine("Cloned with GetRange: " + string.Join(", ", toppingsClonedWithGetRange));
 
             var pizzas = new List<Pizza>
             {
@@ -74,15 +70,10 @@
                 pizzasClonedWithICloneable.Add((Pizza)pizza.Clone());
             }
 
-            var pizzasClonedWithCopyConstructor = new List<Pizza>();
-
-            foreach (var pizza in pizzas)
-            {
-                pizzasClonedWithCopyConstructor.Add(new Pizza(pizza));
-            }
+            List<Pizza> pizzasClonedWithCopyConstructor = [.. pizzas.Select(p => new Pizza(p))];
 
             var margherita = pizzas
-                .FirstOrDefault(x => x.Name == "Margherita");
+                .First(x => x.Name == "Margherita");
 
             margherita.Toppings.Clear();
 

@@ -16,6 +16,8 @@ public class DictionaryHelperNullTest
 
     private readonly DictionaryHelper _dictionaryHelper = new(_dictionary, "NonExistentValue");
 
+    private readonly ReverseDictionaryLookup _reverseDictionaryLookup = new(_dictionary);
+
     [Fact]
     public void GivenANonExistentValue_WhenUseReverseDictionaryIsCalled_ThenReturnsNull()
     {
@@ -44,6 +46,22 @@ public class DictionaryHelperNullTest
     public void GivenANonExistentValue_WhenLoopThroughKeysIsCalled_ThenReturnsNull()
     {
         var result = _dictionaryHelper.LoopThroughKeys();
+
+        Assert.Null(result);
+    }
+
+    [Fact]
+    public void GivenANonExistentValue_WhenGetKeyFromReverseDictionaryIsCalled_ThenReturnsNull()
+    {
+        var result = _reverseDictionaryLookup.GetKeyFromReverseDictionary("NonExistentValue");
+
+        Assert.Null(result);
+    }
+
+    [Fact]
+    public void GivenANonExistentValue_WhenGetKeyFromFrozenReverseDictionaryIsCalled_ThenReturnsNull()
+    {
+        var result = _reverseDictionaryLookup.GetKeyFromFrozenReverseDictionary("NonExistentValue");
 
         Assert.Null(result);
     }

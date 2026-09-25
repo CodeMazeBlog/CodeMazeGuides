@@ -51,6 +51,17 @@ namespace Test
         }
 
         [Fact]
+        public void WhenSearchCharWithAdjacentOccurencesThenReturnNumberOfOccurences()
+        {
+            string main = "LLama LLama";
+            char toFind = 'L';
+
+            int actual = _countChars.CountCharsUsingIndex(main, toFind);
+
+            Assert.Equal(4, actual);
+        }
+
+        [Fact]
         public void WhenSearchCharUsingForThenReturnNumberOfOccurences()
         {
             string main = "Mary Had A Little Lamb";

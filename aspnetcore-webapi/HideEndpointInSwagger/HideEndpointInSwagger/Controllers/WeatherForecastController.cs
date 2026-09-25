@@ -7,7 +7,7 @@ namespace HideEndpointInSwagger.Controllers;
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries =
-    {
+    [
         "Freezing",
         "Bracing",
         "Chilly",
@@ -18,7 +18,7 @@ public class WeatherForecastController : ControllerBase
         "Hot",
         "Sweltering",
         "Scorching"
-    };
+    ];
 
     [HttpGet("GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
