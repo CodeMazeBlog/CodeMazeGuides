@@ -11,7 +11,7 @@
 
             // file
             var testFile = Path.Combine(Path.GetTempPath(), "test_file1.abc");
-            File.CreateText(testFile);
+            File.WriteAllText(testFile, string.Empty);
 
             isFile = File.Exists(testFile);
             isDirectory = Directory.Exists(testFile);

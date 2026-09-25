@@ -2,6 +2,23 @@
 {
     public class ConvertStreamToByteArray
     {
+        public byte[] UseReadExactly(Stream stream)
+        {
+            var bytes = new byte[stream.Length];
+            stream.ReadExactly(bytes);
+
+            return bytes;
+        }
+
+        public byte[] UseCopyTo(Stream stream)
+        {
+            using var memoryStream = new MemoryStream();
+            stream.CopyTo(memoryStream);
+
+            return memoryStream.ToArray();
+        }
+
+
         public byte[] UseStreamDotReadMethod(Stream stream)
         {
             byte[] bytes;
@@ -72,6 +89,20 @@
             }
                 
             return bytes;
+        }
+
+        public Stream UseMemoryStreamConstructor(byte[] bytes)
+        {
+            return new MemoryStream(bytes);
+        }
+
+        public Stream UseWritableMemoryStream(byte[] bytes)
+        {
+            var stream = new MemoryStream();
+            stream.Write(bytes, 0, bytes.Length);
+            stream.Position = 0;
+
+            return stream;
         }
     }
 }
