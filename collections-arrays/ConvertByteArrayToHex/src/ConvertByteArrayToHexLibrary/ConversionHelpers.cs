@@ -1,7 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
-using ConvertByteArrayHexLibrary;
 
 namespace ConvertByteArrayToHexLibrary;
 
@@ -160,8 +159,6 @@ public static class ConversionHelpers
 
     public static string ToHexWithConvert(ReadOnlySpan<byte> source, bool lowercase = false)
     {
-        var result = Convert.ToHexString(source);
-
-        return lowercase ? result.ToLowerInvariant() : result;
+        return lowercase ? Convert.ToHexStringLower(source) : Convert.ToHexString(source);
     }
 }
