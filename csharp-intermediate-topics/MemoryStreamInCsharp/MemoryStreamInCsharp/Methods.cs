@@ -68,17 +68,10 @@ public static class Methods
 
     public static Person DeserializeObject(byte[] serializedData)
     {
-        Person deserializedPerson;
         var memoryStream = Constructors.ByteArrayConstructor(serializedData);
         using var reader = new BinaryReader(memoryStream);
-        deserializedPerson = new Person
-        {
-            FirstName = reader.ReadString(),
-            LastName = reader.ReadString(),
-            Age = reader.ReadInt32()
-        };
 
-        return deserializedPerson;
+        return new Person(reader.ReadString(), reader.ReadString(), reader.ReadInt32());
     }
 }
 

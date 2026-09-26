@@ -11,5 +11,7 @@ public class ReportJob : IJob
 
     public ReportJob(IReportBuilder reportBuilder) => _reportBuilder = reportBuilder;
 
-    public Task Execute(IJobExecutionContext context) => _reportBuilder.RunAsync();
+    // 4.x signature: ValueTask plus the scheduler's CancellationToken.
+    public async ValueTask Execute(IJobExecutionContext context, CancellationToken cancellationToken = default)
+        => await _reportBuilder.RunAsync();
 }
