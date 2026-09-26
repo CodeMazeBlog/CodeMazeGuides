@@ -1,6 +1,6 @@
 ﻿namespace CheckPathFileOrDirectoryCSharp
 {
-    public class FileAttributesUsage
+    public static class FileAttributesUsage
     {
         public static void Run()
         {
@@ -11,7 +11,7 @@
 
             // file
             var testFile = Path.Combine(Path.GetTempPath(), "test_file4.abc");
-            File.CreateText(testFile);
+            File.WriteAllText(testFile, string.Empty);
 
             var attributes = File.GetAttributes(testFile);
 
@@ -32,18 +32,19 @@
             Console.WriteLine($"{testDirectory}: isFile = {isFile}, isDirectory = {isDirectory}\n");
 
             // no file or directory
-            var notExistingPath = "someNotExistingPath4";
+            var notExistingPath = Path.Combine(Path.GetTempPath(), "someNotExistingPath4");
 
-            try
+            isDirectory = false;
+            isFile = false;
+
+            if (Path.Exists(notExistingPath))
             {
                 attributes = File.GetAttributes(notExistingPath);
+
                 isDirectory = attributes.HasFlag(FileAttributes.Directory);
                 isFile = !isDirectory;
             }
-            catch (FileNotFoundException)
-            {
-                isFile = isDirectory = false;
-            }
+
             Console.WriteLine($"{notExistingPath}: isFile = {isFile}, isDirectory = {isDirectory}\n");
         }
     }
