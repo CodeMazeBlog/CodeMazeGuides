@@ -1,0 +1,26 @@
+GET http://localhost:5000/api/accounts/1
+
+###
+
+POST http://localhost:5000/api/accounts/1/withdrawals
+Content-Type: application/json
+
+{ "amount": 30 }
+
+###
+
+POST http://localhost:5000/api/accounts/2/withdrawals
+Content-Type: application/json
+
+{ "amount": 50 }
+
+###
+
+POST http://localhost:5000/api/accounts/1/withdrawals
+Content-Type: application/json
+
+{ "amount": 0 }
+
+###
+
+GET http://localhost:5000/api/accounts/99
