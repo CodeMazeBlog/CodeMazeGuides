@@ -1,3 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using GetValueByKeyFromJObject;
 
-Console.WriteLine("Application Started");
+var jObjectManipulation = new JObjectManipulation();
+
+jObjectManipulation.GetValuesUsingIndex();
+jObjectManipulation.GetValuesUsingValueMethod();
+jObjectManipulation.GetValuesUsingSelectToken();
+jObjectManipulation.GetValuesUsingTryGetValue();

@@ -2,7 +2,7 @@
 {
     public class Shape
     {
-        public string Color { get; set; }
+        public required string Color { get; set; }
 
         public virtual string Draw()
         {
