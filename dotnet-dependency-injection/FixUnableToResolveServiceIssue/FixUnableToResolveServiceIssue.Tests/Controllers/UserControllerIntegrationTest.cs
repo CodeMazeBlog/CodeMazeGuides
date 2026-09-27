@@ -5,14 +5,22 @@ using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace FixUnableToResolveServiceIssue.Tests.Controllers
 {
-    internal class UserControllerIntegrationTest
+    public class UserControllerIntegrationTest
     {
+        private readonly WebApplicationFactory<Program> _application;
         private readonly HttpClient _httpClient;
-        
+
         public UserControllerIntegrationTest()
         {
-            var application = new WebApplicationFactory<Program>();
-            _httpClient = application.CreateClient();
+            _application = new WebApplicationFactory<Program>();
+            _httpClient = _application.CreateClient();
+        }
+
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            _httpClient.Dispose();
+            _application.Dispose();
         }
 
         [Test]
