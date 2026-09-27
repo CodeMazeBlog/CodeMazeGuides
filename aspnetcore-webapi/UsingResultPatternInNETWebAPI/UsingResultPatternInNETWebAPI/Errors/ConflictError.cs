@@ -2,4 +2,4 @@ using FluentResults;
 
 namespace UsingResultPatternInNETWebAPI.Errors;
 
-public class RecordNotFoundError(string message) : Error(message);
+public class ConflictError(string message) : Error(message);
