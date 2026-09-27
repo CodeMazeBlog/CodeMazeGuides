@@ -1,8 +1,8 @@
-namespace UniqueConstraintsInEFCore.Tests;
+﻿namespace UniqueConstraintsInEFCore.Tests;
 
 public class SolarSystemApiApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
-    private readonly MsSqlContainer _msSqlContainer = new MsSqlBuilder().Build();
+    private readonly MsSqlContainer _msSqlContainer = new MsSqlBuilder("mcr.microsoft.com/mssql/server:2022-latest").Build();
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {

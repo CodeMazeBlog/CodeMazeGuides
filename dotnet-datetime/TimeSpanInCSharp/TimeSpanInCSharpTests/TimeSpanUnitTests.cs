@@ -50,8 +50,8 @@ namespace TimeSpanInCSharpTests
         [TestMethod]
         public void GivenTwoTimeSpanValues_WhenDivideOperationExecuted_VerifyAccurateResult()
         {
-            var firstTimeSpan = new TimeSpan(2, 60, 3600);
-            var secondTimeSpan = new TimeSpan(1, 30, 1800);
+            var firstTimeSpan = new TimeSpan(4, 0, 0);
+            var secondTimeSpan = new TimeSpan(2, 0, 0);
 
             var expected = firstTimeSpan.Divide(secondTimeSpan);
             var actual = firstTimeSpan / secondTimeSpan;
@@ -64,8 +64,8 @@ namespace TimeSpanInCSharpTests
         [TestMethod]
         public void GivenATimeSpan_WhenDividedByDivisor_VerifyAccurateResult()
         {
-            var firstTimeSpan = new TimeSpan(2, 60, 3600);
-            var secondTimeSpan = new TimeSpan(1, 30, 1800);
+            var firstTimeSpan = new TimeSpan(4, 0, 0);
+            var secondTimeSpan = new TimeSpan(2, 0, 0);
 
             var divisionByMethod = firstTimeSpan.Divide(2);
             var divisionByOperator = firstTimeSpan / 2;
@@ -95,8 +95,8 @@ namespace TimeSpanInCSharpTests
         [TestMethod]
         public void GivenATimeSpanAndFactor_WhenMultiplied_VerifyAccurateResult()
         {
-            var expected = new TimeSpan(2, 60, 3600);
-            var firstTimeSpan = new TimeSpan(1, 30, 1800);
+            var expected = new TimeSpan(4, 0, 0);
+            var firstTimeSpan = new TimeSpan(2, 0, 0);
             var factor = 2;
 
             var multiplyMethod = firstTimeSpan.Multiply(factor);
@@ -112,9 +112,9 @@ namespace TimeSpanInCSharpTests
         [TestMethod]
         public void GivenTwoTimeSpans_WhenSubtractOperationApplied_VerifyAccurateResult()
         {
-            var firstTimeSpan = new TimeSpan(2, 60, 3600);
-            var secondTimeSpan = new TimeSpan(1, 30, 1800);
-            var expected = new TimeSpan(1, 30, 1800);
+            var firstTimeSpan = new TimeSpan(4, 0, 0);
+            var secondTimeSpan = new TimeSpan(2, 0, 0);
+            var expected = new TimeSpan(2, 0, 0);
 
             var subtractMethod = firstTimeSpan.Subtract(secondTimeSpan);
             var subtractOperator = firstTimeSpan - secondTimeSpan;
@@ -141,12 +141,12 @@ namespace TimeSpanInCSharpTests
         [TestMethod]
         public void GivenATimeSpan_WhenConvertedToDuration_VerifyAccurateResult()
         {
-            var firstTimeSpan = new TimeSpan(2, 60, 3600);
+            var firstTimeSpan = new TimeSpan(4, 0, 0);
 
             var actual = firstTimeSpan.Duration();
-            var expected = new TimeSpan(04, 00, 00);
+            var expected = new TimeSpan(4, 0, 0);
 
-            Assert.AreEqual(actual, expected);
+            Assert.AreEqual(expected, actual);
             Assert.IsInstanceOfType(actual, typeof(TimeSpan));
         }
 
@@ -159,7 +159,7 @@ namespace TimeSpanInCSharpTests
             var negateMethod = firstTimeSpan.Negate();
             var negateOperator = -(firstTimeSpan);
 
-            Assert.AreEqual(negateMethod, expected);
+            Assert.AreEqual(expected, negateMethod);
             Assert.AreEqual(negateMethod, negateOperator);
             Assert.IsInstanceOfType(negateMethod, typeof(TimeSpan));
         }
@@ -188,6 +188,52 @@ namespace TimeSpanInCSharpTests
 
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(hours, totalHours);
+        }
+
+        [TestMethod]
+        public void GivenATimeSpan_WhenFormattedWithSpecifiers_VerifyAccurateResult()
+        {
+            var interval = new TimeSpan(1, 2, 3, 4, 5);
+
+            Assert.AreEqual("1.02:03:04.0050000", interval.ToString("c", CultureInfo.InvariantCulture));
+            Assert.AreEqual("1:2:03:04.005", interval.ToString("g", CultureInfo.InvariantCulture));
+            Assert.AreEqual("02:03", interval.ToString(@"hh\:mm", CultureInfo.InvariantCulture));
+            Assert.ThrowsExactly<FormatException>(() => interval.ToString("hh:mm", CultureInfo.InvariantCulture));
+        }
+
+        [TestMethod]
+        public void GivenStrings_WhenTryParseInvoked_VerifyAccurateResult()
+        {
+            Assert.IsFalse(TimeSpan.TryParse("24:00", out var failed));
+            Assert.AreEqual(TimeSpan.Zero, failed);
+
+            Assert.IsTrue(TimeSpan.TryParse("23:00", out var parsed));
+            Assert.AreEqual(new TimeSpan(23, 0, 0), parsed);
+
+            Assert.IsTrue(TimeSpan.TryParse("6", out var days));
+            Assert.AreEqual(TimeSpan.FromDays(6), days);
+        }
+
+        [TestMethod]
+        public void GivenTheNamedValues_WhenInspected_VerifyRangeBehavior()
+        {
+            Assert.AreEqual("10675199.02:48:05.4775807", TimeSpan.MaxValue.ToString());
+            Assert.AreEqual(long.MaxValue, TimeSpan.MaxValue.Ticks);
+            Assert.AreEqual(long.MinValue, TimeSpan.MinValue.Ticks);
+
+            Assert.ThrowsExactly<OverflowException>(() => TimeSpan.MinValue.Negate());
+            Assert.AreEqual(TimeSpan.FromMilliseconds(-1), Timeout.InfiniteTimeSpan);
+        }
+
+        [TestMethod]
+        public void GivenSecondsAndMilliseconds_WhenIntegerOverloadUsed_VerifyNoPrecisionLoss()
+        {
+            var fromDouble = TimeSpan.FromSeconds(101.832);
+            var fromIntegers = TimeSpan.FromSeconds(seconds: 101, milliseconds: 832);
+
+            Assert.AreEqual(1018319999L, fromDouble.Ticks);
+            Assert.AreEqual(1018320000L, fromIntegers.Ticks);
+            Assert.AreNotEqual(fromDouble, fromIntegers);
         }
     }
 }

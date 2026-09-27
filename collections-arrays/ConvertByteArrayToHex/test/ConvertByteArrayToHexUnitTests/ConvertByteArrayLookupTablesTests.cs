@@ -1,4 +1,4 @@
-﻿using ConvertByteArrayHexLibrary;
+﻿using ConvertByteArrayToHexLibrary;
 
 namespace ConvertByteArrayToHexUnitTests;
 

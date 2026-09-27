@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Reflection;
 
 namespace Embedded_Resources_in_NET;
@@ -12,8 +11,8 @@ public class SampleResourceReader
     public static void ListResourcesInAllAssemblies() 
         => AllAssembliesOfCurrentAppDomain.ToList().ForEach(ListResourcesInAssembly);
 
-    public static void ListResourcesInOurSatelliteAssembly()
-        => ListResourcesInAssembly(SatelliteAssembly);
+    public static void ListResourcesInReferencedAssembly()
+        => ListResourcesInAssembly(ReferencedAssembly);
 
     public static void FindResourceByNameAndDisplayIt(string resourceName)
         => DisplayResource(resourceName, FindResourceByName);
@@ -62,8 +61,8 @@ public class SampleResourceReader
     private static Assembly[] AllAssembliesOfCurrentAppDomain
         => AppDomain.CurrentDomain.GetAssemblies();
 
-    private static Assembly SatelliteAssembly =>
-        Assembly.Load("Embedded_Resources_in_NET_Satellite");
+    private static Assembly ReferencedAssembly =>
+        Assembly.Load("Embedded_Resources_in_NET_Library");
 
     private static Stream? FindResourceByName(string resourceName)
         => FindResource(names => names?.FirstOrDefault(rn => rn == resourceName));

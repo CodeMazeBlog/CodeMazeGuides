@@ -1,51 +1,41 @@
 using HideEndpointInSwagger.Conventions;
 using HideEndpointInSwagger.Filters;
 
-namespace HideEndpointInSwagger;
+var builder = WebApplication.CreateBuilder(args);
 
-public class Program
+// Add services to the container.
+builder.Services.AddControllers(s =>
+   s.Conventions.Add(new HideControllerConvention()
+   ));
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddSwaggerGen(c =>
 {
-    public static void Main(string[] args)
+    c.DocumentFilter<SwaggerDocumentFilter>();
+    c.DocInclusionPredicate((docName, apiDesc) =>
     {
-        var builder = WebApplication.CreateBuilder(args);
+        var routeTemplate = apiDesc.RelativePath;
 
-        // Add services to the container.
-        builder.Services.AddControllers(s =>
-           s.Conventions.Add(new HideControllerConvention()
-           ));
+        if (routeTemplate == "WeatherForecast/GetWeatherForecast")
+            return false;
 
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
+        return true;
+    });
+});
 
-        builder.Services.AddSwaggerGen(c =>
-        {
-            c.DocumentFilter<SwaggerDocumentFilter>();
-            c.DocInclusionPredicate((docName, apiDesc) =>
-            {
-                var routeTemplate = apiDesc.RelativePath;
+var app = builder.Build();
 
-                if (routeTemplate == "WeatherForecast/GetWeatherForecast")
-                    return false;
-
-                return true;
-            });
-        });
-
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        app.MapControllers();
-
-        app.Run();
-    }
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

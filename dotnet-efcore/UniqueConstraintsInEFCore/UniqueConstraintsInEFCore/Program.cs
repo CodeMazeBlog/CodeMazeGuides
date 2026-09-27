@@ -1,12 +1,11 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using UniqueConstraintsInEFCore.Data;
 using UniqueConstraintsInEFCore.Data.Models;
 using UniqueConstraintsInEFCore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi();
 
 builder.Services.AddHostedService<InitializationService>();
 
@@ -17,8 +16,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
@@ -27,18 +25,17 @@ app.MapPost("/planets", async (Planet planet, SolarSystemDbContext context) =>
 {
     try
     {
-        await context.Planets.AddAsync(planet);
+        context.Planets.Add(planet);
         await context.SaveChangesAsync();
 
         return Results.Created($"/planets/{planet.Id}", planet);
     }
-    catch
+    catch (DbUpdateException)
     {
         return Results.BadRequest();
     }
 })
-.WithName("AddPlanet")
-.WithOpenApi();
+.WithName("AddPlanet");
 
 app.Run();
 

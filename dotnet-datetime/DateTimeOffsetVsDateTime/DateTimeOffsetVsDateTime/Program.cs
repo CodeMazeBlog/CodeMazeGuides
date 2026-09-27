@@ -29,6 +29,6 @@ Console.WriteLine($"DateTimeOffset Kind: {dateTimeOffsetUnspecified.DateTime.Kin
 //Converting DateTimeOffset to DateTime
 var moment = DateTimeOffset.Now;
 
-var forStorage = moment.UtcDateTime;      // Kind = Utc — safe to persist
-var forDisplay = moment.LocalDateTime;    // Kind = Local — server's zone
-var raw        = moment.DateTime;         // Kind = Unspecified — offset lost
+var forStorage = moment.UtcDateTime;      // Kind = Utc, safe to persist
+var forDisplay = moment.LocalDateTime;    // Kind = Local, server's zone
+var raw        = moment.DateTime;         // Kind = Unspecified, offset lost

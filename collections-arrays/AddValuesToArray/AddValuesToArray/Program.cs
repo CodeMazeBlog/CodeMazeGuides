@@ -14,7 +14,7 @@ internal class Program
 
         Console.WriteLine(nameof(AddValuesToArrayMethods.UsingList));
         var list = Enumerable.Range(0, 5).ToList();
-        var array3 = AddValuesToArrayMethods.UsingList(5, list);
+        var array3 = AddValuesToArrayMethods.UsingList(list);
         Console.WriteLine(string.Join(", ", array3));
 
         Console.WriteLine(nameof(AddValuesToArrayMethods.LinqConcat));
