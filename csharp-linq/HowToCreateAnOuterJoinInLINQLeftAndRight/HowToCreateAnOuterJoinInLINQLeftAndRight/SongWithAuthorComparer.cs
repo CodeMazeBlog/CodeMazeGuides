@@ -6,16 +6,11 @@ internal class SongWithAuthorComparer : IEqualityComparer<SongWithAuthor>
 {
     public bool Equals(SongWithAuthor? x, SongWithAuthor? y)
     {
-        if (x?.AuthorName == y?.AuthorName && x?.Title == y?.Title)
-        {
-            return true;
-        }
-
-        return false;
+        return x?.AuthorName == y?.AuthorName && x?.Title == y?.Title;
     }
 
     public int GetHashCode([DisallowNull] SongWithAuthor obj)
     {
-        return obj.AuthorName.GetHashCode();
+        return HashCode.Combine(obj.Title, obj.AuthorName);
     }
 }

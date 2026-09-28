@@ -4,7 +4,7 @@
     {
         public string GenerateSingleJsonObject()
         {
-            const string car = $$"""
+            const string car = """
                 {
                     "name": "Charger",
                     "make": "Dodge",
