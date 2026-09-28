@@ -92,6 +92,38 @@ public static class Utilities
 
         return results.ToList();
     }
+
+    public static List<SongWithAuthor> PerformLeftJoinWithLeftJoinMethod(
+        List<Song> songs, List<Author> authors)
+    {
+        var results = songs.LeftJoin(
+            authors,
+            song => song.AuthorId,
+            author => author.Id,
+            (song, author) => new SongWithAuthor
+            {
+                Title = song.Title,
+                AuthorName = author?.Name ?? "unknown"
+            });
+
+        return results.ToList();
+    }
+
+    public static List<SongWithAuthor> PerformRightJoinWithRightJoinMethod(
+        List<Song> songs, List<Author> authors)
+    {
+        var results = songs.RightJoin(
+            authors,
+            song => song.AuthorId,
+            author => author.Id,
+            (song, author) => new SongWithAuthor
+            {
+                Title = song?.Title ?? "-",
+                AuthorName = author.Name
+            });
+
+        return results.ToList();
+    }
        
     public static List<SongWithAuthor> PerformFullOuterJoin(
         List<Song> songs, List<Author> authors)

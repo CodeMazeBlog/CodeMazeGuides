@@ -17,7 +17,7 @@
         public void WhenPathIsFile_ThenFileExistsIsTrue()
         {
             string path = Path.Combine(Path.GetTempPath(), "test_file_1.abc");
-            File.CreateText(path);
+            File.WriteAllText(path, string.Empty);
 
             Assert.IsFalse(Directory.Exists(path));
             Assert.IsTrue(File.Exists(path));

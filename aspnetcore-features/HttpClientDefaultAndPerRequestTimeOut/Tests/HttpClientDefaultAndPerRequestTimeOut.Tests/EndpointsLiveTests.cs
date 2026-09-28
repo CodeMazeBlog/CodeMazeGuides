@@ -55,4 +55,30 @@ public class EndpointsLiveTests
         // Assert
         await Assert.ThrowsAsync<TaskCanceledException>(() => client.GetAsync("/api/test-combined-timeout", cts.Token));
     }
+
+    [Fact]
+    public async Task WhenTheTimeoutElapses_ThenTheOperationCanceledExceptionNestsATimeoutException()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+
+        // Act
+        var responseMessage = await client.GetStringAsync("/api/test-timeout-vs-cancellation");
+
+        // Assert
+        Assert.Equal("The request timed out", responseMessage);
+    }
+
+    [Fact]
+    public async Task WhenTheResilienceHandlerTimesOut_ThenItThrowsTimeoutRejectedExceptionAndDisablesHttpClientTimeout()
+    {
+        // Arrange
+        var client = _factory.CreateClient();
+
+        // Act
+        var responseMessage = await client.GetStringAsync("/api/test-resilience-timeout");
+
+        // Assert
+        Assert.Equal("TimeoutRejectedException after -00:00:00.0010000", responseMessage);
+    }
 }

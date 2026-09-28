@@ -13,6 +13,8 @@ public class DictionaryHelperBenchmark
 
     private readonly DictionaryHelper _dictionaryHelper = new(_benchmarkDict, "NonExistentValue");
 
+    private ReverseDictionaryLookup _reverseDictionaryLookup = null!;
+
     private static Dictionary<string, string> GetDictionary()
     {
         var benchmarkDict = new Dictionary<string, string>(100000);
@@ -25,6 +27,10 @@ public class DictionaryHelperBenchmark
 
         return benchmarkDict;
     }
+
+    [GlobalSetup]
+    public void Setup()
+        => _reverseDictionaryLookup = new(_benchmarkDict);
 
     [Benchmark]
     public string? UseReverseDictionary()
@@ -41,4 +47,12 @@ public class DictionaryHelperBenchmark
     [Benchmark]
     public string? LoopThroughTheKeys()
         => _dictionaryHelper.LoopThroughKeys();
+
+    [Benchmark]
+    public string? UsePrebuiltReverseDictionary()
+        => _reverseDictionaryLookup.GetKeyFromReverseDictionary("NonExistentValue");
+
+    [Benchmark]
+    public string? UsePrebuiltFrozenDictionary()
+        => _reverseDictionaryLookup.GetKeyFromFrozenReverseDictionary("NonExistentValue");
 }
