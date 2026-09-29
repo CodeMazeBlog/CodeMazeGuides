@@ -1,18 +1,18 @@
 public static class FileUtil
 {
-    private static string? _dircetoryToMonitor;
+    private static string? _directoryToMonitor;
 
     public static string DirectoryToMonitor
     {
         get
         {
-            if(string.IsNullOrEmpty(_dircetoryToMonitor))
+            if(string.IsNullOrEmpty(_directoryToMonitor))
             {
-                _dircetoryToMonitor = Path.Combine(Directory.GetCurrentDirectory(),"bin","DirectoryToMonitor");
-                Directory.CreateDirectory(_dircetoryToMonitor);
+                _directoryToMonitor = Path.Combine(Directory.GetCurrentDirectory(),"bin","DirectoryToMonitor");
+                Directory.CreateDirectory(_directoryToMonitor);
             }
             
-            return _dircetoryToMonitor;
+            return _directoryToMonitor;
         }
     }
 }

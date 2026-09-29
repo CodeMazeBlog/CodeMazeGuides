@@ -1,13 +1,4 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
-using System.Threading;
-
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
 
 builder.Services.AddHttpClient("TestClient", (sp, httpClient) =>
 {
@@ -18,15 +9,17 @@ builder.Services.AddHttpClient("TestClient", (sp, httpClient) =>
     httpClient.Timeout = TimeSpan.FromSeconds(timeoutSeconds);
 });
 
+builder.Services.AddHttpClient("ResilientClient", httpClient =>
+{
+    httpClient.BaseAddress = new Uri("http://localhost:5000");
+})
+.AddStandardResilienceHandler(options =>
+{
+    options.AttemptTimeout.Timeout = TimeSpan.FromSeconds(2);
+    options.TotalRequestTimeout.Timeout = TimeSpan.FromSeconds(8);
+});
+
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
 
 app.MapGet("/api/delay-4-seconds", async (CancellationToken cancellationToken) => await Task.Delay(TimeSpan.FromSeconds(4), cancellationToken));
 
@@ -36,7 +29,7 @@ app.MapGet("/api/test-global-timeout", async (IHttpClientFactory httpClientFacto
 
     try
     {
-        var response = await httpClient.GetAsync("/api/delay-4-seconds");
+        using var response = await httpClient.GetAsync("/api/delay-4-seconds");
 
         return Results.Ok();
     }
@@ -53,7 +46,7 @@ app.MapGet("/api/test-per-request-timeout", async (IHttpClientFactory httpClient
 
     try
     {
-        var response = await httpClient.GetAsync($"/api/delay-4-seconds", cancellationToken);
+        using var response = await httpClient.GetAsync($"/api/delay-4-seconds", cancellationToken);
 
         return Results.Ok();
     }
@@ -71,7 +64,7 @@ app.MapGet("/api/test-combined-timeout", async (IHttpClientFactory httpClientFac
 
     try
     {
-        var response = await httpClient.GetAsync("/api/delay-4-seconds", tokenSource.Token);
+        using var response = await httpClient.GetAsync("/api/delay-4-seconds", tokenSource.Token);
 
         return Results.Ok();
     }
@@ -80,6 +73,42 @@ app.MapGet("/api/test-combined-timeout", async (IHttpClientFactory httpClientFac
         return endpointSpecificToken.IsCancellationRequested
             ? Results.Text("TaskCanceledException: Specific token canceled")
             : Results.Text("TaskCanceledException: HttpClient global timeout passed");
+    }
+});
+
+app.MapGet("/api/test-timeout-vs-cancellation", async (IHttpClientFactory httpClientFactory, CancellationToken cancellationToken) =>
+{
+    var httpClient = httpClientFactory.CreateClient("TestClient");
+
+    try
+    {
+        using var response = await httpClient.GetAsync("/api/delay-4-seconds", cancellationToken);
+
+        return Results.Ok();
+    }
+    catch (OperationCanceledException ex) when (ex.InnerException is TimeoutException)
+    {
+        return Results.Text("The request timed out");
+    }
+    catch (OperationCanceledException)
+    {
+        return Results.Text("The caller canceled the request");
+    }
+});
+
+app.MapGet("/api/test-resilience-timeout", async (IHttpClientFactory httpClientFactory) =>
+{
+    var httpClient = httpClientFactory.CreateClient("ResilientClient");
+
+    try
+    {
+        using var response = await httpClient.GetAsync("/api/delay-4-seconds");
+
+        return Results.Ok();
+    }
+    catch (Exception ex)
+    {
+        return Results.Text($"{ex.GetType().Name} after {httpClient.Timeout}");
     }
 });
 
