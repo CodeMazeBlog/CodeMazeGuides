@@ -8,8 +8,8 @@ Console.WriteLine("\n\nResources in all assemblies:\n\n");
 SampleResourceReader.ListResourcesInAllAssemblies();
 
 WaitForUser();
-Console.WriteLine("\n\nResources in our satellite assembly:\n\n");
-SampleResourceReader.ListResourcesInOurSatelliteAssembly();
+Console.WriteLine("\n\nResources in our referenced assembly:\n\n");
+SampleResourceReader.ListResourcesInReferencedAssembly();
 
 WaitForUser();
 Console.WriteLine("\n\nFind resource by name and display it:\n\n");

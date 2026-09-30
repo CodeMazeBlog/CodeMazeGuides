@@ -14,7 +14,7 @@ var trigger = TriggerBuilder.Create()
     .WithIdentity(name: "SimpleRepeatingTrigger", group: "TriggerGroup")
     .WithSimpleSchedule(o => o
         .RepeatForever()
-        .WithIntervalInSeconds(5))
+        .WithInterval(TimeSpan.FromSeconds(5)))
     .Build();
 
 var host = Host.CreateDefaultBuilder()
@@ -25,7 +25,7 @@ var host = Host.CreateDefaultBuilder()
             opt.UsePersistentStore(s =>
             {
                 s.UseSqlServer("Server=localhost,1433;Database=Quartz;User Id=sa;Password=<CONNECTION_STRING>;Encrypt=False;");
-                s.UseNewtonsoftJsonSerializer();
+                s.UseSystemTextJsonSerializer();
             });
         });
         services.AddQuartzHostedService(opt =>
@@ -37,5 +37,5 @@ var host = Host.CreateDefaultBuilder()
 var schedulerFactory = host.Services.GetRequiredService<ISchedulerFactory>();
 var scheduler = await schedulerFactory.GetScheduler();
 
-await scheduler.ScheduleJob(job, trigger);
+await scheduler.ScheduleJob(job, trigger, ScheduleJobOptions.Replacing);
 await host.RunAsync();

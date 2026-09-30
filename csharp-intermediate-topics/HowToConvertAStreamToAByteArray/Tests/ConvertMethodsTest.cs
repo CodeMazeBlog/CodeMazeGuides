@@ -57,5 +57,47 @@ namespace Tests
 
             Assert.Equal(_expected, result);
         }
+
+        [Fact]
+        public void GivenAStream_WhenConvertingWithReadExactly_ThenReturnsAByteArray()
+        {
+            var result = _converter.UseReadExactly(_stream);
+
+            Assert.Equal(_expected, result);
+        }
+
+        [Fact]
+        public void GivenAStream_WhenConvertingWithCopyTo_ThenReturnsAByteArray()
+        {
+            var result = _converter.UseCopyTo(_stream);
+
+            Assert.Equal(_expected, result);
+        }
+
+        [Fact]
+        public void GivenAByteArray_WhenWrappingInAMemoryStreamConstructor_ThenStreamReadsBackTheSameBytes()
+        {
+            var result = _converter.UseMemoryStreamConstructor(_expected);
+
+            Assert.Equal(_expected.Length, result.Length);
+            Assert.Equal(_expected, ReadToEnd(result));
+        }
+
+        [Fact]
+        public void GivenAByteArray_WhenWritingToAnExpandableMemoryStream_ThenStreamReadsBackTheSameBytes()
+        {
+            var result = _converter.UseWritableMemoryStream(_expected);
+
+            Assert.Equal(_expected.Length, result.Length);
+            Assert.Equal(_expected, ReadToEnd(result));
+        }
+
+        private static byte[] ReadToEnd(Stream stream)
+        {
+            using var memoryStream = new MemoryStream();
+            stream.CopyTo(memoryStream);
+
+            return memoryStream.ToArray();
+        }
     }
 }

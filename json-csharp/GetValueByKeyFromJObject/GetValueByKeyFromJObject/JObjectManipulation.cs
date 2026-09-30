@@ -42,7 +42,7 @@ namespace GetValueByKeyFromJObject
             var name = jsonObject.Value<string>("name");
             var make = jsonObject.Value<string>("make");
             var model = jsonObject.Value<string>("model");
-            var year = jsonObject.Value<string>("year");
+            var year = jsonObject.Value<int>("year");
 
             var amount = jsonObject.Value<JObject>("price")
                 .Value<int>("amount");

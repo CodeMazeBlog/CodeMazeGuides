@@ -1,4 +1,4 @@
-﻿namespace ConvertByteArrayHexLibrary;
+﻿namespace ConvertByteArrayToHexLibrary;
 
 public static class LookupTables
 {

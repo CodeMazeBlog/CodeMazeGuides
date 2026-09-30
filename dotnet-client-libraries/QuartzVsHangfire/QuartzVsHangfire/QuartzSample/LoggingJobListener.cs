@@ -2,25 +2,28 @@ using Quartz;
 
 namespace QuartzVsHangfire.QuartzSample;
 
-// Quartz.NET has no dashboard. Monitoring is a listener we attach to the
-// scheduler. This one counts completed jobs — the hook a custom UI would use.
+// A listener is still the seam for custom monitoring. Since 4.x Quartz.NET also
+// ships its own dashboard, so this is an extension point rather than the only way.
 public class LoggingJobListener : IJobListener
 {
     public string Name => "logging-job-listener";
 
     public int ExecutedCount { get; private set; }
 
-    public Task JobToBeExecuted(IJobExecutionContext context, CancellationToken cancellationToken = default)
-        => Task.CompletedTask;
+    // 4.x: every listener member returns ValueTask. A 3.x Task signature still
+    // compiles, stops implementing the interface member, and is refused at
+    // registration.
+    public ValueTask JobToBeExecuted(IJobExecutionContext context, CancellationToken cancellationToken = default)
+        => ValueTask.CompletedTask;
 
-    public Task JobExecutionVetoed(IJobExecutionContext context, CancellationToken cancellationToken = default)
-        => Task.CompletedTask;
+    public ValueTask JobExecutionVetoed(IJobExecutionContext context, CancellationToken cancellationToken = default)
+        => ValueTask.CompletedTask;
 
-    public Task JobWasExecuted(IJobExecutionContext context, JobExecutionException? jobException,
+    public ValueTask JobWasExecuted(IJobExecutionContext context, JobExecutionException? jobException,
         CancellationToken cancellationToken = default)
     {
         ExecutedCount++;
 
-        return Task.CompletedTask;
+        return ValueTask.CompletedTask;
     }
 }

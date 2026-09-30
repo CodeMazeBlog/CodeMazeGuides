@@ -15,6 +15,8 @@ public class DictionaryHelperPositiveTest
 
     private readonly DictionaryHelper _dictionaryHelper = new(_dictionary, "value3");
 
+    private readonly ReverseDictionaryLookup _reverseDictionaryLookup = new(_dictionary);
+
     private static readonly string _expectedKey = "key3";
 
     [Fact]
@@ -45,6 +47,22 @@ public class DictionaryHelperPositiveTest
     public void GivenAnExistentValue_WhenLoopThroughKeysIsCalled_ThenReturnsTheDesiredKey()
     {
         var result = _dictionaryHelper.LoopThroughKeys();
+
+        Assert.Equal(_expectedKey, result);
+    }
+
+    [Fact]
+    public void GivenAnExistentValue_WhenGetKeyFromReverseDictionaryIsCalled_ThenReturnsTheDesiredKey()
+    {
+        var result = _reverseDictionaryLookup.GetKeyFromReverseDictionary("value3");
+
+        Assert.Equal(_expectedKey, result);
+    }
+
+    [Fact]
+    public void GivenAnExistentValue_WhenGetKeyFromFrozenReverseDictionaryIsCalled_ThenReturnsTheDesiredKey()
+    {
+        var result = _reverseDictionaryLookup.GetKeyFromFrozenReverseDictionary("value3");
 
         Assert.Equal(_expectedKey, result);
     }
