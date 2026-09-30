@@ -42,9 +42,9 @@ public class RemoveLastCharOfAStringUnitTests
     }
 
     [TestMethod]
-    public void GivenAString_WhenStringBuilderUsed_ThenVerifyLastCharRemoved()
+    public void GivenAString_WhenStringBuilderLengthUsed_ThenVerifyLastCharRemoved()
     {
-        var actualString = _methodInstances.RemoveLastCharUsingStringBuilder(InputString);
+        var actualString = _methodInstances.RemoveLastCharUsingStringBuilderLength(InputString);
 
         Assert.AreEqual(OutputString, actualString);
     }
@@ -55,5 +55,30 @@ public class RemoveLastCharOfAStringUnitTests
         var actualSpan = _methodInstances.RemoveLastCharAsSpan(InputString);
 
         Assert.AreEqual(OutputString, actualSpan.ToString());
+    }
+
+    [TestMethod]
+    public void GivenAString_WhenRangeOperatorUsed_ThenVerifyLastCharRemoved()
+    {
+        var actualString = _methodInstances.RemoveLastCharUsingRange(InputString);
+
+        Assert.AreEqual(OutputString, actualString);
+    }
+
+    [TestMethod]
+    public void GivenAString_WhenStringBuilderRemoveUsed_ThenVerifyLastCharRemoved()
+    {
+        var actualString = _methodInstances.RemoveLastCharUsingStringBuilderRemove(InputString);
+
+        Assert.AreEqual(OutputString, actualString);
+    }
+
+    [TestMethod]
+    public void GivenAStringEndingInAnEmoji_WhenRemoveLastTextElementUsed_ThenVerifyWholeCharacterRemoved()
+    {
+        var actualString = TechniquesToRemoveLastChar.RemoveLastTextElement("Hi \U0001F44B");
+
+        Assert.AreEqual("Hi ", actualString);
+        Assert.AreEqual(3, actualString.Length);
     }
 }

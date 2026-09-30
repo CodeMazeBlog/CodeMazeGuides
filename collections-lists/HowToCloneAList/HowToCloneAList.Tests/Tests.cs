@@ -56,5 +56,27 @@ namespace HowToCloneAList.Tests
 
             listClone.Should().BeEquivalentTo(list);
         }
+
+        [Fact]
+        public void GivenAValidList_WhenACollectionExpressionIsUsed_ThenTheCollectionExpressionReturnsNewListInstance()
+        {
+            var list = new List<string> { "one", "two", "three" };
+
+            List<string> listClone = [.. list];
+
+            listClone.Should().BeEquivalentTo(list);
+            listClone.Should().NotBeSameAs(list);
+        }
+
+        [Fact]
+        public void GivenAValidList_WhenGetRangeMethodIsInvoked_ThenGetRangeMethodReturnsNewListInstance()
+        {
+            var list = new List<string> { "one", "two", "three" };
+
+            var listClone = list.GetRange(0, list.Count);
+
+            listClone.Should().BeEquivalentTo(list);
+            listClone.Should().NotBeSameAs(list);
+        }
     }
 }

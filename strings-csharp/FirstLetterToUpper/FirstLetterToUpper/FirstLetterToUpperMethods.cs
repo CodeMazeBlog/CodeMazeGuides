@@ -1,145 +1,156 @@
-﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Attributes;
 using System.Text.RegularExpressions;
 
-namespace FirstLetterToUpper
+namespace FirstLetterToUpper;
+
+[MemoryDiagnoser]
+[Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
+[RankColumn]
+public partial class FirstLetterToUpperMethods
 {
-    [MemoryDiagnoser]
-    [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.FastestToSlowest)]
-    [RankColumn]
-    public class FirstLetterToUpperMethods
+    public IEnumerable<object[]> SampleStrings()
     {
-        public IEnumerable<object[]> SampleStrings()
+        yield return new object[] { GenerateRandomString(2000)};
+    }
+
+    [Benchmark]
+    [ArgumentsSource(nameof(SampleStrings))]
+    public string FirstCharSubstring(string input)
+    {
+        if (string.IsNullOrEmpty(input))
         {
-            yield return new object[] { GenerateRandomString(2000)};
+            return string.Empty;
         }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleStrings))]
-        public string FirstCharSubstring(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-            {
-                return string.Empty;
-            }
+        return $"{input[0].ToString().ToUpper()}{input.Substring(1)}";
+    }
 
-            return $"{input[0].ToString().ToUpper()}{input.Substring(1)}";
+    [Benchmark]
+    [ArgumentsSource(nameof(SampleStrings))]
+    public string FirstCharToUpper(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            return string.Empty;
         }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleStrings))]
-        public string FirstCharToUpper(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-            {
-                return string.Empty;
-            }
+        return $"{char.ToUpper(input[0])}{input[1..]}";
+    }
 
-            return $"{char.ToUpper(input[0])}{input[1..]}";
+    [Benchmark]
+    [ArgumentsSource(nameof(SampleStrings))]
+    public string FirstCharToCharArray(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            return string.Empty;
         }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleStrings))]
-        public string FirstCharToCharArray(string input)
+        var stringArray = input.ToCharArray();
+
+        if (char.IsLower(stringArray[0]))
         {
-            if (string.IsNullOrEmpty(input))
-            {
-                return string.Empty;
-            }
-
-            var stringArray = input.ToCharArray();
-
-            if (char.IsLower(stringArray[0]))
-            {
-                stringArray[0] = char.ToUpper(stringArray[0]);
-            }
-
-            return new string(stringArray);
+            stringArray[0] = char.ToUpper(stringArray[0]);
         }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleStrings))]
-        public string FirstCharToUpperAsSpan(string input)
+        return new string(stringArray);
+    }
+
+    [Benchmark]
+    [ArgumentsSource(nameof(SampleStrings))]
+    public string FirstCharToUpperAsSpan(string input)
+    {
+        if (string.IsNullOrEmpty(input))
         {
-            if (string.IsNullOrEmpty(input))
-            {
-                return string.Empty;
-            }
-
-            Span<char> destination = stackalloc char[1];
-
-            input.AsSpan(0, 1).ToUpperInvariant(destination);
-
-            return $"{destination}{input.AsSpan(1)}";
+            return string.Empty;
         }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleStrings))]
-        public string FirstCharToUpperRegex(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-            {
-                return string.Empty;
-            }
+        Span<char> destination = stackalloc char[1];
 
-            return Regex.Replace(input, "^[a-z]", c => c.Value.ToUpper());
+        input.AsSpan(0, 1).ToUpperInvariant(destination);
+
+        return $"{destination}{input.AsSpan(1)}";
+    }
+
+    [GeneratedRegex("^\\p{Ll}")]
+    private static partial Regex FirstLowerLetter();
+
+    [Benchmark]
+    [ArgumentsSource(nameof(SampleStrings))]
+    public string FirstCharToUpperRegex(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            return string.Empty;
         }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleStrings))]
-        public string FirstCharToUpperLinq(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-            {
-                return string.Empty;
-            }
+        return FirstLowerLetter().Replace(input, c => c.Value.ToUpper());
+    }
 
-            return $"{input.FirstOrDefault().ToString().ToUpper()}{input.Substring(1)}";
+    [Benchmark]
+    [ArgumentsSource(nameof(SampleStrings))]
+    public string FirstCharToUpperLinq(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            return string.Empty;
         }
 
+        return $"{input.FirstOrDefault().ToString().ToUpper()}{input.Substring(1)}";
+    }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleStrings))]
-        public string FirstCharToUpperStringCreate(string input)
+
+    [Benchmark]
+    [ArgumentsSource(nameof(SampleStrings))]
+    public string FirstCharToUpperStringCreate(string input)
+    {
+        if (string.IsNullOrEmpty(input))
         {
-            if (string.IsNullOrEmpty(input))
-            {
-                return string.Empty;
-            }
-
-            return string.Create(input.Length, input, static (Span<char> chars, string str) =>
-            {
-                chars[0] = char.ToUpperInvariant(str[0]);
-                str.AsSpan(1).CopyTo(chars[1..]);
-            });
+            return string.Empty;
         }
 
-        [Benchmark]
-        [ArgumentsSource(nameof(SampleStrings))]
-        public string FirstCharToUpperUnsafeCode(string input)
+        return string.Create(input.Length, input, static (Span<char> chars, string str) =>
         {
-            if (string.IsNullOrEmpty(input))
-            {
-                return string.Empty;
-            }
+            chars[0] = char.ToUpperInvariant(str[0]);
+            str.AsSpan(1).CopyTo(chars[1..]);
+        });
+    }
 
-            unsafe
-            {
-                fixed (char* p = input)
-                {
-                    *p = char.ToUpper(*p);
-                }
-            }
-
-            return input;
+    /// <summary>
+    /// Demonstration code only. This method does not build a new string: it pins the string it was
+    /// given and overwrites its first character in place, so every other variable, field or
+    /// dictionary key pointing at the same instance changes with it. Identical string literals in an
+    /// assembly share one interned instance, which makes the damage reach code this method never saw.
+    /// Do not use it in production.
+    /// </summary>
+    [Benchmark]
+    [ArgumentsSource(nameof(SampleStrings))]
+    public string FirstCharToUpperUnsafeCode(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            return string.Empty;
         }
 
-        private string GenerateRandomString(int size)
+        unsafe
         {
-            var random = new Random();
-
-            var charOptions = "abcdefghijklmnopqrstuvwxyz";
-
-            return new string(Enumerable.Repeat(charOptions, size).Select(s => s[random.Next(s.Length)]).ToArray()).ToLower();
+            // Mutates the instance itself. If input is an interned literal, every reference to
+            // that literal now reads the modified value. See the XML comment above.
+            fixed (char* p = input)
+            {
+                *p = char.ToUpper(*p);
+            }
         }
+
+        return input;
+    }
+
+    private string GenerateRandomString(int size)
+    {
+        var random = new Random();
+
+        var charOptions = "abcdefghijklmnopqrstuvwxyz";
+
+        return new string(Enumerable.Repeat(charOptions, size).Select(s => s[random.Next(s.Length)]).ToArray()).ToLower();
     }
 }

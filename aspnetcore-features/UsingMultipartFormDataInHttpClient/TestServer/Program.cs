@@ -1,19 +1,17 @@
-public class Program
-{
-    private static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
+// Add services to the container.
 
-        builder.Services.AddControllers();
+builder.Services.AddControllers();
 
-        var app = builder.Build();
+var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline.
 
-        app.MapControllers();
+app.MapControllers();
 
-        app.Run();
-    }
-}
+app.Run();
+
+// WebApplicationFactory<Program> in the test project needs Program to be a nameable,
+// accessible type. Top-level statements generate an internal one, so we declare it here.
+public partial class Program;

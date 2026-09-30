@@ -31,4 +31,24 @@ public class TaskCompletedVsTaskFromResultVsReturnTests
 
         Assert.Equal(20, result);
     }
+
+    [Fact]
+    public void WhenCallingUseTaskFromResultAsync_ThenTaskIsAlreadyComplete()
+    {
+        var taskFromResultClass = new TaskFromResultHandler();
+
+        var result = taskFromResultClass.UseTaskFromResultAsync();
+
+        Assert.True(result.IsCompletedSuccessfully);
+    }
+
+    [Fact]
+    public void WhenCallingHandleAsync_ThenTaskIsAlreadyComplete()
+    {
+        INotificationHandler handler = new ConsoleNotificationHandler();
+
+        var result = handler.HandleAsync("Order 42 shipped.");
+
+        Assert.True(result.IsCompletedSuccessfully);
+    }
 }

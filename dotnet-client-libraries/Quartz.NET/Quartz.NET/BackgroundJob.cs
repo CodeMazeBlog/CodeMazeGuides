@@ -1,7 +1,7 @@
 ﻿namespace Quartz.NET;
 public class BackgroundJob : IJob
 {
-    public async Task Execute(IJobExecutionContext context)
+    public async ValueTask Execute(IJobExecutionContext context, CancellationToken cancellationToken = default)
     {
         var jobDataMap = context.MergedJobDataMap;
 

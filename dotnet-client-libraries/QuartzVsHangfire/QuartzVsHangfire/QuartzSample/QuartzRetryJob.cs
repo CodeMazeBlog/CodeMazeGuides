@@ -2,21 +2,13 @@ using Quartz;
 
 namespace QuartzVsHangfire.QuartzSample;
 
-// Quartz.NET has no automatic retry. We opt in by catching the failure and
-// throwing a JobExecutionException that asks the scheduler to refire the job.
+// Since 4.x the job no longer owns the retry. It throws, and the retry policy
+// on the trigger decides whether and when the occurrence runs again.
 public class QuartzRetryJob : IJob
 {
-    public async Task Execute(IJobExecutionContext context)
-    {
-        try
-        {
-            await DoWorkAsync(context);
-        }
-        catch (Exception ex)
-        {
-            throw new JobExecutionException(ex, refireImmediately: true);
-        }
-    }
+    public async ValueTask Execute(IJobExecutionContext context, CancellationToken cancellationToken = default)
+        => await DoWorkAsync(context, cancellationToken);
 
-    protected virtual Task DoWorkAsync(IJobExecutionContext context) => Task.CompletedTask;
+    protected virtual ValueTask DoWorkAsync(IJobExecutionContext context, CancellationToken cancellationToken)
+        => ValueTask.CompletedTask;
 }

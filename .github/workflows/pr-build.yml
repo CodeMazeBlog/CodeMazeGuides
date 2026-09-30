@@ -1,6 +1,7 @@
-# Advisory only. This check is never marked as a required status check, and main
-# has no branch protection rule referencing it. It builds and tests exactly the
-# article folder(s) a PR touches -- nothing else. A folder is classified once:
+# "CI result" (the last job) is a required status check on main. The workflow
+# builds and tests exactly the article folder(s) a PR touches -- nothing else --
+# and checks that the PR carries no AI attribution (see no-ai-attribution).
+# A folder is classified once:
 # "dotnet" when it holds a .sln, "npm" when it holds a package.json at its root
 # or in an immediate subfolder (the layout an Angular series folder uses).
 # Folders in .github/ci-skip-folders.txt are filtered out before the matrix is
@@ -11,6 +12,8 @@ name: PR Build
 on:
   pull_request:
     branches: [main]
+    # "edited" re-runs the attribution check when the title or description changes.
+    types: [opened, synchronize, reopened, edited]
 
 # Cancel superseded runs on the same PR when new commits land.
 concurrency:
@@ -94,6 +97,52 @@ jobs:
           echo "folders=$entries" >> "$GITHUB_OUTPUT"
           echo "Changed, buildable folders:"
           echo "$entries" | jq .
+
+  # Public repo: commits and PRs go out under the Code Maze name only. Fails when a
+  # PR commit message, the PR title or the PR description carries an AI co-author
+  # trailer or a "generated with" footer. Squash merges build their message from
+  # these commits, so a clean PR also means a clean commit on main.
+  no-ai-attribution:
+    name: No AI attribution
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Check commit messages, title and description
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          set -euo pipefail
+          pattern='co-authored-by:.*(claude|anthropic|copilot|chatgpt|openai)|generated (with|by) .{0,3}(claude|chatgpt|copilot)|noreply@anthropic\.com'
+
+          found=0
+          check() {
+            local where="$1" text="$2"
+            local hits
+            hits=$(printf '%s\n' "$text" | grep -Ein "$pattern" || true)
+            if [ -n "$hits" ]; then
+              echo "::error::AI attribution in $where:"
+              printf '%s\n' "$hits"
+              found=1
+            fi
+          }
+
+          check "PR title" "$PR_TITLE"
+          check "PR description" "$PR_BODY"
+          while IFS= read -r sha; do
+            check "commit ${sha:0:7}" "$(gh api "repos/$GITHUB_REPOSITORY/commits/$sha" --jq .commit.message)"
+          done < <(gh api --paginate "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER/commits" --jq '.[].sha')
+
+          if [ "$found" -ne 0 ]; then
+            echo "Remove the lines above (amend or reword the commits, edit the PR), then push again."
+            exit 1
+          fi
+          echo "No AI attribution found."
 
   build-and-test:
     name: Build & test (${{ matrix.folder }})
@@ -181,7 +230,7 @@ jobs:
   # touching no buildable folders) is a skip, not a failure, and passes here.
   ci-result:
     name: CI result
-    needs: [detect-changes, build-and-test]
+    needs: [detect-changes, build-and-test, no-ai-attribution]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -190,10 +239,17 @@ jobs:
         run: |
           detect="${{ needs.detect-changes.result }}"
           build="${{ needs.build-and-test.result }}"
+          attribution="${{ needs.no-ai-attribution.result }}"
           echo "detect-changes: $detect"
           echo "build-and-test: $build"
+          echo "no-ai-attribution: $attribution"
           if [ "$detect" = "failure" ] || [ "$detect" = "cancelled" ] || [ "$build" = "failure" ] || [ "$build" = "cancelled" ]; then
             echo "A required job failed or was cancelled."
+            exit 1
+          fi
+          # The attribution check never legitimately skips, so anything but success fails.
+          if [ "$attribution" != "success" ]; then
+            echo "The AI attribution check did not pass."
             exit 1
           fi
           echo "All required jobs passed (or were skipped)."

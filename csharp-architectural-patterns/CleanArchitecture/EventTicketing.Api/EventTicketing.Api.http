@@ -1,0 +1,26 @@
+GET http://localhost:5000/api/events/1
+
+###
+
+POST http://localhost:5000/api/events/1/reservations
+Content-Type: application/json
+
+{ "quantity": 3 }
+
+###
+
+POST http://localhost:5000/api/events/2/reservations
+Content-Type: application/json
+
+{ "quantity": 3 }
+
+###
+
+POST http://localhost:5000/api/events/1/reservations
+Content-Type: application/json
+
+{ "quantity": 0 }
+
+###
+
+GET http://localhost:5000/api/events/99

@@ -20,7 +20,7 @@
         public void WhenPathIsFile_ThenFileExistsIsTrue()
         {
             string path = Path.Combine(Path.GetTempPath(), "test_file_3.abc");
-            File.CreateText(path);
+            File.WriteAllText(path, string.Empty);
 
             var fileInfo = new FileInfo(path);
             var directoryInfo = new DirectoryInfo(path);

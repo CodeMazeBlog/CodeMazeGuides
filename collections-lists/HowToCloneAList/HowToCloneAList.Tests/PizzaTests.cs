@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 
 namespace HowToCloneAList.Tests
 {
@@ -59,6 +59,30 @@ namespace HowToCloneAList.Tests
             var expectedOutput = $"Pizza name: {margherita.Name}; Toppings: {string.Join(", ", margherita.Toppings)}"; ;
 
             expectedOutput.Should().Be(margherita.ToString());
+        }
+
+        [Fact]
+        public void GivenAListOfPizzas_WhenProjectedThroughTheCopyConstructor_ThenTheCloneKeepsItsToppings()
+        {
+            var pizzas = new List<Pizza>
+            {
+                new Pizza
+                {
+                    Name = "Margherita",
+                    Toppings = new List<string>
+                    {
+                        "Mozzarella",
+                        "Olive oil",
+                        "Basil"
+                    }
+                }
+            };
+
+            List<Pizza> clone = [.. pizzas.Select(p => new Pizza(p))];
+
+            pizzas[0].Toppings.Clear();
+
+            clone[0].Toppings.Should().HaveCount(3);
         }
     }
 }

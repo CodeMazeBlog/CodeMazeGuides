@@ -14,7 +14,7 @@ namespace APIReturnType.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Employee))]
+        [ProducesResponseType<Employee>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetById(int id)
         {
@@ -31,7 +31,7 @@ namespace APIReturnType.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateAsync(Employee employee)
         {
-            if (employee.Name.Length < 3 || employee.Name.Length > 30)
+            if (employee.Name is not { Length: >= 3 and <= 30 })
             {
                 return BadRequest("Name should be between 3 and 30 characters.");
             }

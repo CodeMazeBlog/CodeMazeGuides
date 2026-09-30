@@ -8,3 +8,6 @@ Console.WriteLine(stringReplaceLineEndingsResult);
 
 var regularExpressionReplaceResult = ReplaceLineBreak.ReplaceLineBreaksUsingTheRegularExpressionReplaceMethod();
 Console.WriteLine(regularExpressionReplaceResult);
+
+var removeLineBreaksResult = ReplaceLineBreak.RemoveLineBreaks();
+Console.WriteLine(removeLineBreaksResult);
