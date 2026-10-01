@@ -22,6 +22,11 @@ a loop) and a fast one (`/report/fast`, `StringBuilder`), and an xUnit test proj
    "csharp.experimental.debug.hotReload": true
    ```
 
+   On Windows, `Directory.Build.props` in this folder sets the compiler's `PathMap` so the debug
+   symbols store the source paths with an upper-case drive letter. In our test, the C# Dev Kit's
+   build wrote a lower-case one (`d:\`), and Hot Reload then reported "No code changes were found."
+   for every edit. The file does nothing on Linux and macOS.
+
 3. Open this folder, then run and debug `ReportApi`.
 4. With the API running, use the .NET diagnostic tools from the terminal while you call
    `/report/slow`:
