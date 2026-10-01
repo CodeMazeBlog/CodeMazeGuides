@@ -1,4 +1,4 @@
-﻿namespace UsingResultPatternInNETWebAPI.Repositories;
+namespace UsingResultPatternInNETWebAPI.Repositories;
 
 public class InMemoryContactRepository : IContactRepository
 {
@@ -6,7 +6,7 @@ public class InMemoryContactRepository : IContactRepository
     [
         new Contact
         {
-            Id = Guid.Parse("ffffffff-ffff-ffff-ffff-ffffffffffff"), 
+            Id = Guid.Parse("ffffffff-ffff-ffff-ffff-ffffffffffff"),
             Email = "jdoe@unknown.com"
         }
     ];
