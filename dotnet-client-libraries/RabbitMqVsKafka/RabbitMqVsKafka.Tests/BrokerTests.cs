@@ -28,7 +28,9 @@ public class BrokerTests
     [Fact]
     public async Task Kafka_CommitsGoodOrders_DeadLettersPoisonOrder_SecondGroupAndReplayReadAllFive()
     {
-        await using var kafka = new KafkaBuilder("apache/kafka:4.3.1").Build();
+        await using var kafka = new KafkaBuilder("apache/kafka:4.3.1")
+            .WithCommand(StartKafkaWithoutTrailingComma)
+            .Build();
         await kafka.StartAsync(TestContext.Current.CancellationToken);
 
         var result = await new KafkaDemo(kafka.GetBootstrapAddress()).RunAsync();
@@ -50,4 +52,14 @@ public class BrokerTests
         Assert.Equal(AllOrders, first);
         Assert.Equal(AllOrders, second);
     }
+
+    // Testcontainers.Kafka 4.15.0 writes KAFKA_ADVERTISED_LISTENERS with a trailing comma, and
+    // apache/kafka:4.3.1 refuses to start with it ("values must not be empty"). The fix
+    // (testcontainers-dotnet PR 1772) is not released yet, so this start command drops the
+    // comma from the generated startup script before it starts the broker.
+    private static readonly DotNet.Testcontainers.Configurations.OverwriteEnumerable<string> StartKafkaWithoutTrailingComma = new(
+    [
+        "while [ ! -f /testcontainers.sh ]; do sleep 0.1; done; " +
+        "sed 's/,$//' /testcontainers.sh > /tmp/testcontainers.sh && exec bash /tmp/testcontainers.sh"
+    ]);
 }
