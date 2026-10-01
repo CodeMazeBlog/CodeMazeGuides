@@ -1,4 +1,7 @@
-﻿namespace UsingResultPatternInNETWebAPI.Services;
+using FluentResults;
+using UsingResultPatternInNETWebAPI.Errors;
+
+namespace UsingResultPatternInNETWebAPI.Services;
 
 public class FluentResultsContactService
 {
@@ -9,11 +12,12 @@ public class FluentResultsContactService
         _contactRepository = contactRepository;
     }
 
-    public Result<IEnumerable<ContactDto>> GetAll()
+    public Result<List<ContactDto>> GetAll()
     {
         var contactDtos = _contactRepository
             .GetAll()
-            .Select(c => new ContactDto(c.Id, c.Email));
+            .Select(c => new ContactDto(c.Id, c.Email))
+            .ToList();
 
         return Result.Ok(contactDtos);
     }
@@ -34,10 +38,10 @@ public class FluentResultsContactService
     {
         if (_contactRepository.GetByEmail(contact.Email) is not null)
         {
-            return new ValidationError("contact with this email already exists");
+            return new ConflictError($"contact with email {contact.Email} already exists");
         }
 
-        var createdContact = _contactRepository.Create(new Contact {Email = contact.Email});
+        var createdContact = _contactRepository.Create(new Contact { Email = contact.Email });
 
         return Result.Ok(new ContactDto(createdContact.Id, createdContact.Email));
     }

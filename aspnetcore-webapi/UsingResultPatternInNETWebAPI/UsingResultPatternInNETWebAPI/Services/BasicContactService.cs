@@ -1,4 +1,4 @@
-﻿namespace UsingResultPatternInNETWebAPI.Services;
+namespace UsingResultPatternInNETWebAPI.Services;
 
 public class BasicContactService
 {

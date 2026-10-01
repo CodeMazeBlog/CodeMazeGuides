@@ -1,4 +1,4 @@
-﻿namespace UsingResultPatternInNETWebAPI.Domain;
+namespace UsingResultPatternInNETWebAPI.Domain;
 
 public class Contact
 {
