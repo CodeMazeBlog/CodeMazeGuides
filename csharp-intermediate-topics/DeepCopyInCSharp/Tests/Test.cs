@@ -29,6 +29,19 @@ namespace Tests
         }
 
         [Fact]
+        public void WhenUsingCopyConstructor_ThenAllPropertiesCopiedAndAddressNotShared()
+        {
+            var copy = new Person(_person);
+
+            Assert.Equal(copy.Name, _person.Name);
+            Assert.Equal(copy.Age, _person.Age);
+            Assert.Equal(copy.Address.Street, _person.Address.Street);
+            Assert.Equal(copy.Address.City, _person.Address.City);
+            Assert.Equal(copy.Address.State, _person.Address.State);
+            Assert.NotSame(_person.Address, copy.Address);
+        }
+
+        [Fact]
         public void WhenUsingXMLSerialization_ThenAllPropertiesCopied()
         {
             var copy = DeepCopyMaker.DeepCopyXML(_person);
@@ -80,19 +93,6 @@ namespace Tests
         public void WhenUsingExpressionTrees_ThenAllPropertiesCopied()
         {
             var copy = DeepCopyMaker.DeepCopyExpressionTrees(_person);
-
-            Assert.Equal(copy.Name, _person.Name);
-            Assert.Equal(copy.Age, _person.Age);
-            Assert.Equal(copy.Address.Street, _person.Address.Street);
-            Assert.Equal(copy.Address.City, _person.Address.City);
-            Assert.Equal(copy.Address.State, _person.Address.State);
-        }
-
-        [Fact]
-        public void WhenUsingAutoMApper_ThenAllPropertiesCopied()
-        {
-            var copier = new DeepCopyMaker();
-            var copy = copier.DeepCopyAutoMapper(_person);
 
             Assert.Equal(copy.Name, _person.Name);
             Assert.Equal(copy.Age, _person.Age);

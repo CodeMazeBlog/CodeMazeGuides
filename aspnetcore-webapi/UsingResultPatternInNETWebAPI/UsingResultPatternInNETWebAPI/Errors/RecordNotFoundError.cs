@@ -1,9 +1,5 @@
-﻿namespace UsingResultPatternInNETWebAPI.Errors;
+using FluentResults;
 
-public class RecordNotFoundError : Error
-{
-    public RecordNotFoundError(string message)
-        : base(message)
-    {
-    }
-}
+namespace UsingResultPatternInNETWebAPI.Errors;
+
+public class RecordNotFoundError(string message) : Error(message);
