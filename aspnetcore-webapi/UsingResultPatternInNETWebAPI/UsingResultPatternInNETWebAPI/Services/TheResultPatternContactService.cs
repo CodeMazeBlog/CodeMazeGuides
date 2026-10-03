@@ -1,4 +1,6 @@
-﻿namespace UsingResultPatternInNETWebAPI.Services;
+using UsingResultPatternInNETWebAPI.TheResultPattern;
+
+namespace UsingResultPatternInNETWebAPI.Services;
 
 public class TheResultPatternContactService
 {
@@ -9,34 +11,31 @@ public class TheResultPatternContactService
         _contactRepository = contactRepository;
     }
 
-    public CustomResult<IEnumerable<ContactDto>> GetAll()
+    public Result<List<ContactDto>> GetAll()
     {
-        var contactDtos = _contactRepository
+        return _contactRepository
             .GetAll()
-            .Select(c => new ContactDto(c.Id, c.Email));
-
-        return CustomResult<IEnumerable<ContactDto>>.Success(contactDtos);
+            .Select(c => new ContactDto(c.Id, c.Email))
+            .ToList();
     }
 
-    public CustomResult<ContactDto> GetById(Guid id)
+    public Result<ContactDto> GetById(Guid id)
     {
         var contact = _contactRepository.GetById(id);
 
         if (contact is null)
         {
-            var message = $"contact with id {id} not found";
-            return CustomResult<ContactDto>.Failure(CustomError.RecordNotFound(message));
+            return ContactErrors.NotFound(id);
         }
 
-        return CustomResult<ContactDto>.Success(new ContactDto(contact.Id, contact.Email));
+        return new ContactDto(contact.Id, contact.Email);
     }
 
-    public CustomResult<ContactDto> Create(CreateContactDto createContactDto)
+    public Result<ContactDto> Create(CreateContactDto createContactDto)
     {
         if (_contactRepository.GetByEmail(createContactDto.Email) is not null)
         {
-            var message = $"contact with email {createContactDto.Email} already exists";
-            return CustomResult<ContactDto>.Failure(CustomError.ValidationError(message));
+            return ContactErrors.EmailTaken(createContactDto.Email);
         }
 
         var contact = new Contact
@@ -46,6 +45,6 @@ public class TheResultPatternContactService
 
         var createdContact = _contactRepository.Create(contact);
 
-        return CustomResult<ContactDto>.Success(new ContactDto(createdContact.Id, createdContact.Email));
+        return new ContactDto(createdContact.Id, createdContact.Email);
     }
 }

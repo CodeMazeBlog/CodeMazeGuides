@@ -1,4 +1,4 @@
-﻿using ValueObjects.ValueObjects;
+using ValueObjects.ValueObjects;
 
 namespace ValueObjects.Entities;
 
@@ -13,5 +13,10 @@ public class Payment
         Id = Guid.NewGuid();
         Quoted = quoted;
         CreatedAt = DateTime.UtcNow;
+    }
+
+    private Payment()
+    {
+        Quoted = null!;
     }
 }
