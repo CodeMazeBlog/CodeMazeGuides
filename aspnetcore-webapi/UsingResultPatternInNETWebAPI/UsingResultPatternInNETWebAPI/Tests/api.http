@@ -1,9 +1,9 @@
 # Contacts API
 
 @baseUrl = http://localhost:5000/api
-### Choose the right version of the API (v1, v2, etc.) to test
-@apiVersion= v1
-### Replace with the id of the created contact (the one provided is for the contact hardcoded in the repository)
+### Choose the version of the API to test (v1 to v5)
+@apiVersion = v4
+### The id of the contact the repository starts with
 @contactId = ffffffff-ffff-ffff-ffff-ffffffffffff
 
 ### Create a contact
@@ -14,7 +14,7 @@ Content-Type: application/json
   "email": "asmith@unknown.com"
 }
 
-### Create a contact for the wrong email address
+### Create a contact with an invalid email address
 POST {{baseUrl}}/{{apiVersion}}/contacts
 Content-Type: application/json
 
@@ -22,7 +22,7 @@ Content-Type: application/json
   "email": "NOT_AN_EMAIL"
 }
 
-### Create another contact for the existing email address (this one is hardcoded in the repository)
+### Create another contact with an email that already exists
 POST {{baseUrl}}/{{apiVersion}}/contacts
 Content-Type: application/json
 
@@ -33,8 +33,8 @@ Content-Type: application/json
 ### Get all contacts
 GET {{baseUrl}}/{{apiVersion}}/contacts
 
-### Get contact by id
+### Get a contact by id
 GET {{baseUrl}}/{{apiVersion}}/contacts/{{contactId}}
 
-### Get non-existing contact by id
+### Get a contact that doesn't exist
 GET {{baseUrl}}/{{apiVersion}}/contacts/00000000-0000-0000-0000-000000000000
