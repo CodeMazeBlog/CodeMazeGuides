@@ -16,7 +16,7 @@ namespace RevertMigration.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    HangarNumber = table.Column<string>(type: "TEXT", nullable: false)
+                    HangarNumber = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -29,11 +29,11 @@ namespace RevertMigration.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    TailNumber = table.Column<string>(type: "TEXT", nullable: false),
-                    NumberOfEngines = table.Column<int>(type: "INTEGER", nullable: false),
-                    MaxAirSpeed = table.Column<double>(type: "REAL", nullable: false),
-                    RunsOnJetFuel = table.Column<bool>(type: "INTEGER", nullable: false),
-                    HangarId = table.Column<int>(type: "INTEGER", nullable: false)
+                    TailNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    NumberOfEngines = table.Column<int>(type: "INTEGER", nullable: true),
+                    MaxAirSpeed = table.Column<double>(type: "REAL", nullable: true),
+                    RunsOnJetFuel = table.Column<bool>(type: "INTEGER", nullable: true),
+                    HangarId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -42,8 +42,7 @@ namespace RevertMigration.Migrations
                         name: "FK_Airplanes_Hangars_HangarId",
                         column: x => x.HangarId,
                         principalTable: "Hangars",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
