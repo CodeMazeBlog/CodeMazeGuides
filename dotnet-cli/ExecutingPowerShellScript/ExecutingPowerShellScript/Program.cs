@@ -13,7 +13,7 @@ var powerShellClass = new PowerShellClass();
 Console.WriteLine(powerShellClass.ExecuteScript(scriptPath));
 Console.WriteLine(powerShellClass.ExecuteCommand("Get-Date"));
 
-// notepad is a Windows example; on macOS or Linux use open or xdg-open
+// notepad is a Windows example; on Linux, start a GUI program such as gedit
 Console.WriteLine(powerShellClass.StartProcess("notepad"));
 
 using var customRunspace = new PSCustomRunspace();

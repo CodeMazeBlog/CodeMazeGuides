@@ -15,8 +15,6 @@ public class PSCustomRunspace : IDisposable
             "AllowedCommands", new[] { "Get-Date" }, "List of allowed commands");
         iss.Variables.Add(entry);
 
-        var ms = new ModuleSpecification("Microsoft.PowerShell.Utility");
-        iss.ImportPSModule(new[] { ms });
         var getDateCmdlet = new SessionStateCmdletEntry("Get-Date",
             typeof(GetDateCommand), "");
         iss.Commands.Add(getDateCmdlet);
