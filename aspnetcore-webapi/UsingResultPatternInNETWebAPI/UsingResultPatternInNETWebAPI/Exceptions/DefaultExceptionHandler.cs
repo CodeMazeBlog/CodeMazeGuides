@@ -1,48 +1,37 @@
-﻿namespace UsingResultPatternInNETWebAPI.Exceptions;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 
-public class DefaultExceptionHandler : IExceptionHandler
+namespace UsingResultPatternInNETWebAPI.Exceptions;
+
+public class DefaultExceptionHandler(IProblemDetailsService problemDetailsService) : IExceptionHandler
 {
-    private readonly ILogger<DefaultExceptionHandler> _logger;
-
-    public DefaultExceptionHandler(ILogger<DefaultExceptionHandler> logger)
+    public async ValueTask<bool> TryHandleAsync(
+        HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
-        _logger = logger;
-    }
-
-    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, 
-        Exception exception,
-        CancellationToken cancellationToken)
-    {
-        _logger.LogError("an error occurred while processing your request: {Message}", 
-            exception.Message);
-
-        var problemDetails = new ProblemDetails
+        int? statusCode = exception switch
         {
-            Detail = exception.Message
+            RecordNotFoundException => StatusCodes.Status404NotFound,
+            ConflictException => StatusCodes.Status409Conflict,
+            _ => null
         };
 
-        switch (exception)
+        if (statusCode is null)
         {
-            case RecordNotFoundException:
-                problemDetails.Status = (int) HttpStatusCode.NotFound;
-                problemDetails.Title = exception.GetType().Name;
-                break;
-            case ValidationException:
-                problemDetails.Status = (int) HttpStatusCode.BadRequest;
-                problemDetails.Title = exception.GetType().Name;
-                break;
-            default:
-                problemDetails.Status = (int) HttpStatusCode.InternalServerError;
-                problemDetails.Title = "Internal Server Error";
-                break;
+            return false;
         }
 
-        httpContext.Response.StatusCode = problemDetails.Status.Value;
+        httpContext.Response.StatusCode = statusCode.Value;
 
-        await httpContext
-            .Response
-            .WriteAsJsonAsync(problemDetails, cancellationToken);
-
-        return true;
+        return await problemDetailsService.TryWriteAsync(new ProblemDetailsContext
+        {
+            HttpContext = httpContext,
+            Exception = exception,
+            ProblemDetails = new ProblemDetails
+            {
+                Status = statusCode,
+                Title = exception.GetType().Name,
+                Detail = exception.Message
+            }
+        });
     }
 }

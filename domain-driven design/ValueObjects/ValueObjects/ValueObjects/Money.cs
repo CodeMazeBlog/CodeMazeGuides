@@ -1,12 +1,12 @@
 namespace ValueObjects.ValueObjects;
 
-public record Money
+public sealed record Money
 {
-    private static readonly IReadOnlyCollection<string> SupportedCurrencies = new[]{"USD", "EUR"};
+    private static readonly string[] SupportedCurrencies = ["USD", "EUR"];
 
     public decimal Amount { get; }
     public string Currency { get; }
-    
+
     private Money(decimal amount, string currency)
     {
         Amount = amount;
@@ -15,12 +15,14 @@ public record Money
 
     public static Result<Money> Create(decimal amount, string currency)
     {
-        if(string.IsNullOrWhiteSpace(currency))
-            return Result<Money>.Failure($"{nameof(currency)} cannot be null or whitespace.");
+        if (amount < 0)
+            return MoneyErrors.NegativeAmount(amount);
 
-        if(!SupportedCurrencies.Contains(currency.ToUpperInvariant()))
-            return Result<Money>.Failure($"'{currency}' is not supported.");
-        
-        return Result<Money>.Success(new(amount, currency));
+        var code = currency.ToUpperInvariant();
+
+        if (!SupportedCurrencies.Contains(code))
+            return MoneyErrors.UnsupportedCurrency(currency);
+
+        return new Money(amount, code);
     }
 }
