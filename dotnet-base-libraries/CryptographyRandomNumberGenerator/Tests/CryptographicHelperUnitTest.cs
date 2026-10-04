@@ -20,7 +20,7 @@ public class CryptographicHelperUnitTest
     {
         var randomNumber = CryptographicHelpers.GenerateSecureRandomInteger(minValue, maxValue);
 
-        Assert.InRange(randomNumber, minValue, maxValue);
+        Assert.InRange(randomNumber, minValue, maxValue - 1);
     }
     
     [Theory]
@@ -29,6 +29,28 @@ public class CryptographicHelperUnitTest
     {
         var randomNumber = CryptographicHelpers.GenerateGeneralRandomInteger(minValue, maxValue);
 
-        Assert.InRange(randomNumber, minValue, maxValue);
+        Assert.InRange(randomNumber, minValue, maxValue - 1);
+    }
+
+    [Theory]
+    [InlineData(32)]
+    public void WhenHexKeyIsGenerated_ThenItHasTheRequestedLengthAndOnlyLowercaseHexCharacters(int length)
+    {
+        var hexKey = CryptographicHelpers.GenerateHexKey(length);
+
+        Assert.Equal(length, hexKey.Length);
+        Assert.Matches("^[0-9a-f]+$", hexKey);
+    }
+
+    [Theory]
+    [InlineData(16)]
+    public void WhenTokenIsGenerated_ThenItHasTheRequestedLengthAndOnlyCharactersFromTheAlphabet(int length)
+    {
+        const string alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+        var token = CryptographicHelpers.GenerateToken(length);
+
+        Assert.Equal(length, token.Length);
+        Assert.All(token, character => Assert.Contains(character, alphabet));
     }
 }
