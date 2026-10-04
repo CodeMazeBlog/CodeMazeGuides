@@ -12,7 +12,6 @@ namespace VirtualKeywordInEFCore
             LoadDataWithLazyLoading();
 
             LoadDataWithInjectedLazyLoader();
-
             LoadDataWithExplicitLoading();
         }
 
@@ -43,14 +42,17 @@ namespace VirtualKeywordInEFCore
             AuthorLazy authorLazy;
             authorLazy = contextLazy.AuthorsLazy.AsNoTracking().First(a => a.FullName == "Holly JACKSON");
 
-            Console.WriteLine($"Author Name: {authorLazy.FullName}");
-            Console.WriteLine($"{authorLazy.FullName}'s Books number: {authorLazy.Books.Count}");
-            Console.WriteLine($"{nameof(AuthorLazy)} datatype: {authorLazy.GetType()}");
-            Console.WriteLine($"{nameof(BookLazy)} datatype: {authorLazy.Books.First().GetType()}");
-
-            foreach (var bookLazy in authorLazy.Books)
+            if (authorLazy is not null)
             {
-                Console.WriteLine($"Book Title: {bookLazy.Title}");
+                Console.WriteLine($"Author Name: {authorLazy.FullName}");                
+                Console.WriteLine($"{authorLazy.FullName}'s Books number: {authorLazy.Books?.Count}");
+                Console.WriteLine($"{nameof(AuthorLazy)} datatype: {authorLazy.GetType()}");
+                Console.WriteLine($"{nameof(BookLazy)} datatype: {authorLazy.Books?.First().GetType()}");
+
+                foreach (var bookLazy in authorLazy.Books)
+                {
+                    Console.WriteLine($"Book Title: {bookLazy.Title}");
+                }
             }
         }
 
