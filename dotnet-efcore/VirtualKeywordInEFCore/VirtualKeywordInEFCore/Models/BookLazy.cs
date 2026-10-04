@@ -8,6 +8,6 @@ namespace VirtualKeywordInEFCore.Models
         public int BookId { get; set; }
         public string? Title { get; set; }
         public int AuthorId { get; set; }
-        public virtual AuthorLazy Author { get; set; }
+        public virtual AuthorLazy Author { get; set; } = null!;
     }
 }
