@@ -1,4 +1,4 @@
-﻿namespace UsingResultPatternInNETWebAPI.Repositories;
+namespace UsingResultPatternInNETWebAPI.Repositories;
 
 public interface IContactRepository
 {

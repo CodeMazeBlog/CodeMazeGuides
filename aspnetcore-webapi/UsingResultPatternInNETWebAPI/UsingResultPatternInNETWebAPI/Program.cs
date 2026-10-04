@@ -1,3 +1,5 @@
+using UsingResultPatternInNETWebAPI.Endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IContactRepository, InMemoryContactRepository>();
@@ -8,34 +10,18 @@ builder.Services.AddScoped<ExceptionsForFlowControlContactService>();
 builder.Services.AddScoped<TheResultPatternContactService>();
 builder.Services.AddScoped<FluentResultsContactService>();
 
-builder.Services.AddControllers();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddValidation();
 builder.Services.AddExceptionHandler<DefaultExceptionHandler>();
 builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 
-app.UseExceptionHandler(opt => { });
+app.UseExceptionHandler();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-else
-{
-    app.UseHsts();
-    app.UseStatusCodePages();
-}
-
-app.UseHttpsRedirection();
-app.MapControllers();
+app.MapBasicContactEndpoints();
+app.MapNullCheckingContactEndpoints();
+app.MapExceptionsForFlowControlContactEndpoints();
+app.MapTheResultPatternContactEndpoints();
+app.MapFluentResultsContactEndpoints();
 
 app.Run();
-
-namespace UsingResultPatternInNETWebAPI
-{
-    public class Program;
-}

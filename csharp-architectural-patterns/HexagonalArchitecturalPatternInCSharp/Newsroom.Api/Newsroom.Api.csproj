@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Newsroom.Core\Newsroom.Core.csproj" />
+    <ProjectReference Include="..\Newsroom.Persistence\Newsroom.Persistence.csproj" />
+    <ProjectReference Include="..\Newsroom.Notifications\Newsroom.Notifications.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>

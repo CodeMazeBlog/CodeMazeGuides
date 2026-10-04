@@ -1,0 +1,6 @@
+@GlobalErrorHandling_HostAddress = http://localhost:5180
+
+GET {{GlobalErrorHandling_HostAddress}}/api/values/
+Accept: application/json
+
+###

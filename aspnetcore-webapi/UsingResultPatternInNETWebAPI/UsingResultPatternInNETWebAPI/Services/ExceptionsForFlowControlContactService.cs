@@ -1,4 +1,4 @@
-﻿namespace UsingResultPatternInNETWebAPI.Services;
+namespace UsingResultPatternInNETWebAPI.Services;
 
 public class ExceptionsForFlowControlContactService
 {
@@ -32,7 +32,7 @@ public class ExceptionsForFlowControlContactService
     {
         if (_contactRepository.GetByEmail(createContactDto.Email) is not null)
         {
-            throw new ValidationException("contact with this email already exists");
+            throw new ConflictException($"contact with email {createContactDto.Email} already exists");
         }
 
         var contact = new Contact

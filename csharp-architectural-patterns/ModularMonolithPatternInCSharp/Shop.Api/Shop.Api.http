@@ -1,0 +1,45 @@
+GET http://localhost:5000/api/inventory/items/1
+
+###
+
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+
+{ "itemId": 1, "quantity": 2 }
+
+###
+
+GET http://localhost:5000/api/inventory/items/1
+
+###
+
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+
+{ "itemId": 2, "quantity": 3 }
+
+###
+
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+
+{ "itemId": 1, "quantity": 0 }
+
+###
+
+POST http://localhost:5000/api/orders
+Content-Type: application/json
+
+{ "itemId": 1, "quantity": 2 }
+
+###
+
+POST http://localhost:5000/api/orders/1/cancel
+
+###
+
+GET http://localhost:5000/api/inventory/items/1
+
+###
+
+POST http://localhost:5000/api/orders/1/cancel
