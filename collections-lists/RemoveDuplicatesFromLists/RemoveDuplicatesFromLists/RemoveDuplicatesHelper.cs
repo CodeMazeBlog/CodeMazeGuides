@@ -155,7 +155,7 @@ public class RemoveDuplicatesHelper<T> where T : notnull
         T? element = default;
         foreach (T result in ListWithDuplicates)
         {
-            if (!result!.Equals(element))
+            if (listWithoutDuplicates.Count == 0 || !result.Equals(element))
             {
                 listWithoutDuplicates.Add(result);
                 element = result;

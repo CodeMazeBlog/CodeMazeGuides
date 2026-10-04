@@ -1,4 +1,4 @@
-using RemoveDuplicatesFromLists;
+﻿using RemoveDuplicatesFromLists;
 
 namespace RemoveDuplicatesFromListsTests;
 
@@ -201,6 +201,21 @@ public class Tests
 
         Assert.Equal(5, response.Count);
         Assert.Equal(new[] { 1, 2, 3, 4, 5 }, response.Order());
+    }
+
+    [Theory]
+    [MemberData(nameof(OrderKeepingMethods))]
+    [MemberData(nameof(OrderFreeMethods))]
+    public void GivenAZeroInTheList_WhenRemovingDuplicates_ThenKeepsTheZero(string method)
+    {
+        var helper = new RemoveDuplicatesHelper<int>
+        {
+            ListWithDuplicates = new List<int>() { 0, 1, 0, 2 }
+        };
+
+        var response = Run(helper, method);
+
+        Assert.Equal(new[] { 0, 1, 2 }, response.Order());
     }
 
     private static List<int> Run(RemoveDuplicatesHelper<int> helper, string method) => method switch
