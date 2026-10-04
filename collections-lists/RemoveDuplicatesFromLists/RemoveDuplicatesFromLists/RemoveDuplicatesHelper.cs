@@ -1,6 +1,6 @@
 ﻿namespace RemoveDuplicatesFromLists;
 
-public class RemoveDuplicatesHelper<T> where T : notnull
+public class RemoveDuplicatesHelper<T> where T : IEquatable<T>
 {
     public RemoveDuplicatesHelper()
     {
