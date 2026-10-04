@@ -1,13 +1,6 @@
-﻿global using System.ComponentModel.DataAnnotations;
-global using System.Net;
-global using FluentResults;
-global using Microsoft.AspNetCore.Diagnostics;
-global using Microsoft.AspNetCore.Mvc;
+global using System.ComponentModel.DataAnnotations;
 global using UsingResultPatternInNETWebAPI.Domain;
 global using UsingResultPatternInNETWebAPI.Dtos;
-global using UsingResultPatternInNETWebAPI.Errors;
 global using UsingResultPatternInNETWebAPI.Exceptions;
 global using UsingResultPatternInNETWebAPI.Repositories;
 global using UsingResultPatternInNETWebAPI.Services;
-global using UsingResultPatternInNETWebAPI.TheResultPattern;
-global using ValidationException = UsingResultPatternInNETWebAPI.Exceptions.ValidationException;

@@ -1,0 +1,28 @@
+GET http://localhost:5000/api/pizzas/Margherita
+Accept: application/json
+
+###
+
+GET http://localhost:5000/api/pizzas/Hawaiian
+Accept: application/json
+
+###
+
+POST http://localhost:5000/api/pizzas/Diavola/orders
+Content-Type: application/json
+Accept: application/json
+
+{ "quantity": 3 }
+
+###
+
+POST http://localhost:5000/api/pizzas/Margherita/orders
+Content-Type: application/json
+Accept: application/json
+
+{ "quantity": 0 }
+
+###
+
+GET http://localhost:5000/api/pizza/Margherita
+Accept: application/json
