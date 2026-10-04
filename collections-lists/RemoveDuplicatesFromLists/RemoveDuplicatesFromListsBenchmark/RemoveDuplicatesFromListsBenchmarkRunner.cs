@@ -11,83 +11,108 @@ public class RemoveDuplicateFromListBenchmarkRunner
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class RemoveDuplicateElementsBenchmark
     {
-        private RemoveDuplicatesHelper<int> _helper = new RemoveDuplicatesHelper<int>();
+        private const int ItemCount = 2_000;
 
-        public RemoveDuplicateElementsBenchmark()
+        private readonly RemoveDuplicatesHelper<int> _helper = new RemoveDuplicatesHelper<int>();
+        private List<int> _source = new List<int>();
+
+        // Every case holds 2,000 items. Only the number of distinct values changes,
+        // because that is what decides which approach wins.
+        [Params(3, 100, 2_000)]
+        public int DistinctValues { get; set; }
+
+        [GlobalSetup]
+        public void GlobalSetup()
         {
-            _helper.ListWithDuplicates.AddRange(Enumerable.Repeat(1, 50).Concat(Enumerable.Repeat(2, 80)).Concat(Enumerable.Repeat(3, 70)).ToList());
+            var random = new Random(42);
+            _source = Enumerable.Range(0, ItemCount)
+                .Select(i => i % DistinctValues + 1)
+                .OrderBy(_ => random.Next())
+                .ToList();
+            _helper.ListWithDuplicates = _source;
         }
 
         [Benchmark]
-        public void DistinctLINQMethod()
+        public List<int> DistinctLINQMethod()
         {
-            _helper.UsingDistinct();
+            return _helper.UsingDistinct();
         }
 
         [Benchmark]
-        public void GroupByLINQMethod()
+        public List<int> GroupByLINQMethod()
         {
-            _helper.UsingGroupBy();
+            return _helper.UsingGroupBy();
         }
 
         [Benchmark]
-        public void UnionLINQMethod()
+        public List<int> UnionLINQMethod()
         {
-            _helper.UsingUnion();
+            return _helper.UsingUnion();
         }
 
         [Benchmark]
-        public void HashSetMethod()
+        public List<int> ConvertToHashSetMethod()
         {
-            _helper.ConvertingToHashSet();
+            return _helper.ConvertingToHashSet();
         }
 
         [Benchmark]
-        public void InitializingHashetMethod()
+        public List<int> InitializingHashSetMethod()
         {
-            _helper.InitializingAHashSet();
+            return _helper.InitializingAHashSet();
         }
 
         [Benchmark]
-        public void DictionaryMethod()
+        public List<int> DictionaryMethod()
         {
-            _helper.UsingDictionary();
+            return _helper.UsingDictionary();
         }
 
         [Benchmark]
-        public void EmptyListWithContainsMethod()
+        public List<int> EmptyListWithContainsMethod()
         {
-            _helper.UsingEmptyListWithContains();
+            return _helper.UsingEmptyListWithContains();
         }
 
         [Benchmark]
-        public void EmptyListWithAnyMethod()
+        public List<int> EmptyListWithAnyMethod()
         {
-            _helper.UsingEmptyListWithAny();
+            return _helper.UsingEmptyListWithAny();
         }
 
         [Benchmark]
-        public void IterationsAndShiftingMethod()
+        public List<int> IterationsAndShiftingMethod()
         {
-            _helper.UsingIterationsAndShifting();
+            return _helper.UsingIterationsAndShifting();
         }
 
         [Benchmark]
-        public void IterationsAndSwappingMethod()
+        public List<int> IterationsAndSwappingMethod()
         {
-            _helper.UsingIterationsAndSwapping();
+            return _helper.UsingIterationsAndSwapping();
         }
 
         [Benchmark]
-        public void RecursiveMethod()
+        public List<int> RecursiveMethod()
         {
-            _helper.UsingRecursion();
+            return _helper.UsingRecursion();
+        }
+
+        // Sorting() and RemoveDuplicatesInPlace() change the list they work on, so these two
+        // start every call from a fresh copy of the same source list. The copy is part of what they measure.
+        [Benchmark]
+        public List<int> SortMethod()
+        {
+            _helper.ListWithDuplicates = new List<int>(_source);
+            return _helper.Sorting();
         }
 
         [Benchmark]
-        public void SortMethod()
+        public List<int> RemoveAllInPlaceMethod()
         {
-            _helper.Sorting();
+            _helper.ListWithDuplicates = new List<int>(_source);
+            _helper.RemoveDuplicatesInPlace();
+            return _helper.ListWithDuplicates;
         }
     }
 }
