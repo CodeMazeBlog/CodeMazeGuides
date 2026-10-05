@@ -1,0 +1,11 @@
+services:
+  rabbitmq:
+    image: rabbitmq:4.3.6-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  kafka:
+    image: apache/kafka:4.3.1
+    ports:
+      - "9092:9092"
