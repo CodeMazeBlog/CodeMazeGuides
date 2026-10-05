@@ -1,12 +1,11 @@
 ﻿using BenchmarkDotNet.Running;
 
-namespace Benchmark
+namespace Benchmark;
+
+public class ProgramBenchmark
 {
-	public class ProgramBenchmark
+	static void Main(string[] args)
 	{
-		static void Main(string[] args)
-		{
-			BenchmarkRunner.Run<DictionaryIterateBenchmark>();
-		}
+		BenchmarkRunner.Run(typeof(ProgramBenchmark).Assembly, args: args);
 	}
 }
