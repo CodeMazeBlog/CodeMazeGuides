@@ -1,36 +1,37 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ReturnFileWebApi.Interface;
 
-namespace ReturnFileWebApi.Controllers
+namespace ReturnFileWebApi.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class DownloadsController(IFileService fileService) : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class DownloadsController : ControllerBase
+    private readonly IFileService _fileService = fileService;
+    private const string MimeType = "image/png";
+    private const string FileName = "CM-Logo.png";
+
+    [HttpGet("images-byte")]
+    public IActionResult ReturnByteArray()
     {
-        private readonly IFileService _fileService;
-        private const string MimeType = "image/png";
-        private const string FileName = "CM-Logo.png";
+        var image = _fileService.GetImageAsByteArray();
 
-        public DownloadsController(IFileService fileService)
-        {
-            _fileService = fileService;
-        }
+        return File(image, MimeType, FileName);
+    }
 
-        [HttpGet("images-byte")]
-        public IActionResult ReturnByteArray()
-        {
-            var image = _fileService.GetImageAsByteArray();
+    [HttpGet("images-stream")]
+    public IActionResult ReturnStream()
+    {
+        var image = _fileService.GetImageAsStream();
 
-            return File(image, MimeType, FileName);
-        }
+        return File(image, MimeType, FileName);
+    }
 
-        [HttpGet("images-stream")]
-        public IActionResult ReturnStream()
-        {
-            var image = _fileService.GetImageAsStream();
+    [HttpGet("images-stream-range")]
+    public IActionResult ReturnStreamWithRanges()
+    {
+        var image = _fileService.GetImageAsStream();
 
-            return File(image, MimeType, FileName);
-        }
+        return File(image, MimeType, FileName, enableRangeProcessing: true);
     }
 }

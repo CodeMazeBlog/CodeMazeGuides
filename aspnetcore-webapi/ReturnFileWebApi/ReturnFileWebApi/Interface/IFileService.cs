@@ -1,8 +1,7 @@
-﻿namespace ReturnFileWebApi.Interface
+﻿namespace ReturnFileWebApi.Interface;
+
+public interface IFileService
 {
-    public interface IFileService
-    {
-        Stream GetImageAsStream();
-        byte[] GetImageAsByteArray();
-    }
+    Stream GetImageAsStream();
+    byte[] GetImageAsByteArray();
 }

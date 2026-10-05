@@ -1,51 +1,54 @@
-using Moq;
+using Microsoft.AspNetCore.Mvc;
+using NSubstitute;
 using ReturnFileWebApi.Assets;
 using ReturnFileWebApi.Controllers;
 using ReturnFileWebApi.Interface;
 
-namespace Tests
+namespace Tests;
+
+public class Tests
 {
-    public class Tests
+    private readonly IFileService _fileService = Substitute.For<IFileService>();
+
+    public Tests()
     {
-        private readonly Mock<IFileService> _fileServiceMock;
+        _fileService.GetImageAsByteArray()
+            .Returns(Convert.FromBase64String(Image.Base64Image));
 
-        public Tests()
-        {
-            _fileServiceMock = new();
+        _fileService.GetImageAsStream()
+            .Returns(new MemoryStream(Convert.FromBase64String(Image.Base64Image)));
+    }
 
-            SetupMocks();
-        }
+    [Fact]
+    public void GivenAnImagesbyteRoute_WhenUsingByteArray_ThenReturnAFileToDownload()
+    {
+        var controller = new DownloadsController(_fileService);
 
-        private void SetupMocks()
-        {
-            _fileServiceMock.Setup(x => x.GetImageAsByteArray())
-                .Returns(Convert.FromBase64String(Image.Base64Image))
-                .Verifiable();
+        var result = Assert.IsType<FileContentResult>(controller.ReturnByteArray());
 
-            _fileServiceMock.Setup(x => x.GetImageAsStream())
-                .Returns(new MemoryStream(Convert.FromBase64String(Image.Base64Image)))
-                .Verifiable();
-        }
+        Assert.Equal("image/png", result.ContentType);
+        Assert.Equal("CM-Logo.png", result.FileDownloadName);
+    }
 
-        [Fact]
-        public void GivenAnImagesbyteRoute_WhenUsingByteArray_ThenReturnAFileToDownload()
-        {
-            var controller = new DownloadsController(_fileServiceMock.Object);
+    [Fact]
+    public void GivenAnImagesStreamRoute_WhenUsingStream_ThenReturnAFileToDownload()
+    {
+        var controller = new DownloadsController(_fileService);
 
-            var image = controller.ReturnByteArray();
+        var result = Assert.IsType<FileStreamResult>(controller.ReturnStream());
 
-            Assert.NotNull(image);
-        }
+        Assert.Equal("image/png", result.ContentType);
+        Assert.Equal("CM-Logo.png", result.FileDownloadName);
+    }
 
-        [Fact]
+    [Fact]
+    public void GivenAnImagesStreamRangeRoute_WhenUsingStream_ThenEnableRangeProcessing()
+    {
+        var controller = new DownloadsController(_fileService);
 
-        public void GivenAnImagesStreamRoute_WhenUsingStream_ThenReturnAFileToDownload()
-        {
-            var controller = new DownloadsController(_fileServiceMock.Object);
+        var result = Assert.IsType<FileStreamResult>(controller.ReturnStreamWithRanges());
 
-            var image = controller.ReturnStream();
-
-            Assert.NotNull(image);
-        }
+        Assert.True(result.EnableRangeProcessing);
+        Assert.Equal("image/png", result.ContentType);
     }
 }
