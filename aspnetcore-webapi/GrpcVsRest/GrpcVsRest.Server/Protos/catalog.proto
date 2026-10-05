@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcVsRest.Server";
+
+package catalog;
+
+import "google/api/annotations.proto";
+
+service Catalog {
+  rpc GetProduct (GetProductRequest) returns (Product) {
+    option (google.api.http) = {
+      get: "/v1/products/{id}"
+    };
+  }
+
+  rpc ListProducts (ListProductsRequest) returns (ProductList) {
+    option (google.api.http) = {
+      get: "/v1/products"
+    };
+  }
+
+  rpc WatchStock (WatchStockRequest) returns (stream StockUpdate) {
+    option (google.api.http) = {
+      get: "/v1/products/{id}/stock"
+    };
+  }
+}
+
+message GetProductRequest {
+  int32 id = 1;
+}
+
+message ListProductsRequest {
+}
+
+message Product {
+  int32 id = 1;
+  string name = 2;
+  string category = 3;
+  double price = 4;
+  int32 stock = 5;
+}
+
+message ProductList {
+  repeated Product products = 1;
+}
+
+message WatchStockRequest {
+  int32 id = 1;
+  int32 updates = 2;
+}
+
+message StockUpdate {
+  int32 id = 1;
+  int32 stock = 2;
+}
