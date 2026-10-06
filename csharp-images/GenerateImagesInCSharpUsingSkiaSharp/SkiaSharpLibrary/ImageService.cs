@@ -6,6 +6,11 @@ public static class ImageService
 {
     public static SKBitmap CreateBlankImage(int width, int height)
     {
+        if (width <= 0 || height <= 0)
+        {
+            throw new ArgumentException("Image width and height must be greater than zero.");
+        }
+
         var bitmap = new SKBitmap(width, height);
         using var canvas = new SKCanvas(bitmap);
         canvas.Clear(SKColors.White);
@@ -15,9 +20,9 @@ public static class ImageService
 
     public static void DrawSquareOnImage(SKBitmap bitmap, int squareSize, int startX, int startY)
     {
-        if (squareSize <= 0 || startX <= 0 || startY <= 0)
+        if (squareSize <= 0 || startX < 0 || startY < 0)
         {
-            throw new ArgumentException("Square size and coordinates must be greater than zero.");
+            throw new ArgumentException("Square size must be greater than zero and coordinates cannot be negative.");
         }
         using var canvas = new SKCanvas(bitmap);
         using var paint = new SKPaint();
