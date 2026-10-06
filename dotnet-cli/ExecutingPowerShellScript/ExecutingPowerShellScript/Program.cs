@@ -1,35 +1,21 @@
-﻿namespace ExecutingPowerShellScript
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            var processStart = new ProcessStart();
-            var output1 = processStart.ExecuteScript(@"C:\Users\scule\Desktop\echo.ps1");
-            Console.WriteLine(output1.ToString());
+using ExecutingPowerShellScript;
 
-            var output2 = processStart.ExecuteCommand("echo 'I am invoked using echo command!'");
-            Console.WriteLine(output2.ToString());
+var scriptPath = Path.Combine(AppContext.BaseDirectory, "echo.ps1");
 
-            var powerShellClass = new PowerShellClass();
-            var output3 = powerShellClass.ExecuteScript(@"C:\Users\scule\Desktop\echo.ps1");
-            Console.WriteLine(output3.ToString());
+var processStart = new ProcessStart();
+var scriptResult = await processStart.ExecuteScriptAsync(scriptPath);
+Console.WriteLine(scriptResult.Output);
 
-            var output4 = powerShellClass.ExecuteCommand("Get-Date");
-            Console.WriteLine(output4);
+var commandResult = await processStart.ExecuteCommandAsync("echo 'I am invoked using echo command!'");
+Console.WriteLine(commandResult.Output);
 
-            var output5 = powerShellClass.StartProcess("notepad");
-            Console.WriteLine(output5.ToString());
+var powerShellClass = new PowerShellClass();
+Console.WriteLine(powerShellClass.ExecuteScript(scriptPath));
+Console.WriteLine(powerShellClass.ExecuteCommand("Get-Date"));
 
-            var customRunspace = new PSCustomRunspace();
-            var output6 = customRunspace.ExecuteCommand("Get-Date");
-            Console.WriteLine(output6.ToString());
-            customRunspace.StartProcess("notepad");
+// notepad is a Windows example; on Linux, start a GUI program such as gedit
+Console.WriteLine(powerShellClass.StartProcess("notepad"));
 
-            var output7 = customRunspace.StartProcess("notepad");
-            Console.WriteLine(output7.ToString());
-
-            Console.ReadLine();
-        }
-    }
-}
+using var customRunspace = new PSCustomRunspace();
+Console.WriteLine(customRunspace.ExecuteCommand("Get-Date"));
+Console.WriteLine(customRunspace.StartProcess("notepad"));
