@@ -1,23 +1,21 @@
 ﻿using ReturnFileWebApi.Assets;
 using ReturnFileWebApi.Interface;
-using System.Buffers.Text;
 
-namespace ReturnFileWebApi.Services
+namespace ReturnFileWebApi.Services;
+
+public class FileService : IFileService
 {
-    public class FileService : IFileService
+    public Stream GetImageAsStream()
     {
-        public Stream GetImageAsStream()
-        {
-            var stream = new MemoryStream(Convert.FromBase64String(Image.Base64Image));
+        var stream = new MemoryStream(Convert.FromBase64String(Image.Base64Image));
 
-            return stream;
-        }
+        return stream;
+    }
 
-        public byte[] GetImageAsByteArray()
-        {
-            var bytes = Convert.FromBase64String(Image.Base64Image);
+    public byte[] GetImageAsByteArray()
+    {
+        var bytes = Convert.FromBase64String(Image.Base64Image);
 
-            return bytes;
-        }
+        return bytes;
     }
 }

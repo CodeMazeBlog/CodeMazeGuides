@@ -1,40 +1,52 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 
-namespace ExecutingPowerShellScript
+namespace ExecutingPowerShellScript;
+
+public class ProcessStart
 {
-    public class ProcessStart
+    public async Task<PowerShellResult> ExecuteScriptAsync(string pathToScript)
     {
-        public string ExecuteScript(string pathToScript)
+        var processStartInfo = new ProcessStartInfo("pwsh")
         {
-            var scriptArguments = "-ExecutionPolicy Bypass -File \"" + pathToScript + "\"";
-            var processStartInfo = new ProcessStartInfo("powershell.exe", scriptArguments);
-            processStartInfo.RedirectStandardOutput = true;
-            processStartInfo.RedirectStandardError = true;
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true
+        };
+        processStartInfo.ArgumentList.Add("-ExecutionPolicy");
+        processStartInfo.ArgumentList.Add("Bypass");
+        processStartInfo.ArgumentList.Add("-File");
+        processStartInfo.ArgumentList.Add(pathToScript);
 
-            using var process = new Process();
-            process.StartInfo = processStartInfo;
-            process.Start();
-            string output = process.StandardOutput.ReadToEnd();
-            string error = process.StandardError.ReadToEnd();
+        using var process = new Process { StartInfo = processStartInfo };
+        process.Start();
 
-            return output;
-        }
+        var outputTask = process.StandardOutput.ReadToEndAsync();
+        var errorTask = process.StandardError.ReadToEndAsync();
+        await Task.WhenAll(outputTask, errorTask);
+        await process.WaitForExitAsync();
 
-        public string ExecuteCommand(string command)
+        return new PowerShellResult(process.ExitCode, outputTask.Result, errorTask.Result);
+    }
+
+    public async Task<PowerShellResult> ExecuteCommandAsync(string command)
+    {
+        var processStartInfo = new ProcessStartInfo("pwsh")
         {
-            ProcessStartInfo processStartInfo = new ProcessStartInfo();
-            processStartInfo.FileName = "powershell.exe";
-            processStartInfo.Arguments = $"-Command \"{command}\"";
-            processStartInfo.UseShellExecute = false;
-            processStartInfo.RedirectStandardOutput = true;
-            using (var process = new Process())
-            {
-                process.StartInfo = processStartInfo;
-                process.Start();
-                string output = process.StandardOutput.ReadToEnd();
+            UseShellExecute = false,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true
+        };
+        processStartInfo.ArgumentList.Add("-Command");
+        processStartInfo.ArgumentList.Add(command);
 
-                return output;
-            }
-        }
+        using var process = new Process { StartInfo = processStartInfo };
+        process.Start();
+
+        var outputTask = process.StandardOutput.ReadToEndAsync();
+        var errorTask = process.StandardError.ReadToEndAsync();
+        await Task.WhenAll(outputTask, errorTask);
+        await process.WaitForExitAsync();
+
+        return new PowerShellResult(process.ExitCode, outputTask.Result, errorTask.Result);
     }
 }
