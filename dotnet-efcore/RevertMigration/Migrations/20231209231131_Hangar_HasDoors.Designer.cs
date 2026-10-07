@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace RevertMigration.Migrations
 {
     [DbContext(typeof(AirportDbContext))]
-    [Migration("20231209224404_Init")]
-    partial class Init
+    [Migration("20231209231131_Hangar_HasDoors")]
+    partial class Hangar_HasDoors
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,9 @@ namespace RevertMigration.Migrations
 
                     b.Property<string>("HangarNumber")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("HasDoors")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
