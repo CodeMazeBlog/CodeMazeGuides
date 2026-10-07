@@ -3,7 +3,7 @@ using SkiaSharpLibrary;
 
 namespace Tests;
 
-public class SkiaSharpLibraryLiveTest : IDisposable
+public class ImageServiceTests : IDisposable
 {
     private const string OutputPath = @"outputImage.png";
     private const string NullOutputPath = "";
@@ -13,7 +13,7 @@ public class SkiaSharpLibraryLiveTest : IDisposable
     private bool _isDisposed = false;
 
 
-    public SkiaSharpLibraryLiveTest()
+    public ImageServiceTests()
     {
         _bitmap = ImageService.CreateBlankImage(_width, _height);
     }
@@ -34,7 +34,7 @@ public class SkiaSharpLibraryLiveTest : IDisposable
     public void GivenInvalidDimensions_WhenCreateBlankImageIsCalled_ThenThrowArgumentException(int width, int height)
     {
         // Act & Assert
-        Assert.Throws<Exception>(() => ImageService.CreateBlankImage(width, height));
+        Assert.Throws<ArgumentException>(() => ImageService.CreateBlankImage(width, height));
     }
 
     [Fact]
@@ -48,6 +48,32 @@ public class SkiaSharpLibraryLiveTest : IDisposable
 
         // Assert
         Assert.Contains(_bitmap.Pixels, pixel => pixel != SKColors.White);
+    }
+
+    [Fact]
+    public void GivenSquareAtTopLeftCorner_WhenDrawSquareOnImageIsCalled_ThenSquareIsDrawn()
+    {
+        // Act
+        ImageService.DrawSquareOnImage(_bitmap, 120, 0, 0);
+
+        // Assert
+        Assert.Equal(SKColors.Red, _bitmap.GetPixel(0, 0));
+    }
+
+    [Fact]
+    public void GivenNewBitmap_WhenItsLayoutIsRead_ThenItMatchesThePlatformColorType()
+    {
+        // Arrange
+        using var bitmap = new SKBitmap(_width, _height);
+
+        // Assert
+        Assert.Equal(SKImageInfo.PlatformColorType, bitmap.ColorType);
+        Assert.Equal(SKColorType.Bgra8888, bitmap.ColorType);
+        Assert.Equal(SKAlphaType.Premul, bitmap.AlphaType);
+        Assert.Equal(4, bitmap.BytesPerPixel);
+        Assert.Equal(4 * _width, bitmap.RowBytes);
+        Assert.Equal(_width * _height, bitmap.Pixels.Length);
+        Assert.NotEqual(IntPtr.Zero, bitmap.GetPixels());
     }
 
     [Fact]
