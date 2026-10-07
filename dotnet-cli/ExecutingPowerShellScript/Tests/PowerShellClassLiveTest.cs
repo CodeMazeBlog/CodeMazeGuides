@@ -1,27 +1,37 @@
-﻿using ExecutingPowerShellScript;
+using ExecutingPowerShellScript;
 
-namespace Tests
+namespace Tests;
+
+public class PowerShellClassLiveTest
 {
-    public class PowerShellClassLiveTest
+    [Fact]
+    public void GivenPath_WhenInvoked_ThenExecutesScript()
     {
-        [Fact]
-        public void GivenCommand_WhenInvoked_ThenExecutesCommand()
-        {
-            var powerShellClass = new PowerShellClass();
-            var result = powerShellClass.ExecuteCommand("Get-Date");
-            var expected = true;
+        var powerShellClass = new PowerShellClass();
+        var scriptPath = Path.Combine(AppContext.BaseDirectory, "echo.ps1");
 
-            Assert.Equal(expected, result!="");
-        }
+        var result = powerShellClass.ExecuteScript(scriptPath);
 
-        [Fact]
-        public void GivenName_WhenInvoked_ThenStartsAProcess()
-        {
-            var powerShellClass = new PowerShellClass();
-            var result = powerShellClass.StartProcess("notepad");
-            var expectedResult = "True";
+        Assert.True(result);
+    }
 
-            Assert.Equal(expectedResult, result.ToString());
-        }
+    [Fact]
+    public void GivenCommand_WhenInvoked_ThenExecutesCommand()
+    {
+        var powerShellClass = new PowerShellClass();
+
+        var result = powerShellClass.ExecuteCommand("Get-Date");
+
+        Assert.NotEqual(string.Empty, result);
+    }
+
+    [Fact]
+    public void GivenName_WhenInvoked_ThenStartsAProcess()
+    {
+        var powerShellClass = new PowerShellClass();
+
+        var result = powerShellClass.StartProcess("notepad");
+
+        Assert.True(result);
     }
 }
