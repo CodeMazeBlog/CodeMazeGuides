@@ -1,20 +1,37 @@
-﻿using UpdateDictionaryValue;
+﻿using System.Collections.Concurrent;
+using UpdateDictionaryValue;
 
 var toppingsDictionary = new ToppingsDictionary();
 toppingsDictionary.AddToppings("pepperoni", 4);
+toppingsDictionary.AddToppings("olive", 3);
+
+PrintToppings(toppingsDictionary);
 
 try
 {
-    toppingsDictionary.Toppings["jalepeno"] = toppingsDictionary.Toppings["jalepeno"] + 1;
+    // The indexer-only version of AddToppings reads the value before it writes it
+    toppingsDictionary.Toppings["jalapeno"] = toppingsDictionary.Toppings["jalapeno"] + 1;
 }
-catch (Exception e)
+catch (KeyNotFoundException e)
 {
-    Console.WriteLine(e);
+    Console.WriteLine($"{e.GetType()}: {e.Message}");
 }
 
-toppingsDictionary.AddToppings("jalepeno", 1);
+toppingsDictionary.AddToppings("jalapeno", 1);
 
-foreach (var topping in toppingsDictionary.Toppings)
+PrintToppings(toppingsDictionary);
+
+var toppings = new ConcurrentDictionary<string, int>();
+
+Console.WriteLine(toppings.AddOrUpdate("pepperoni", 4, (_, currentAmount) => currentAmount + 4));
+Console.WriteLine(toppings.AddOrUpdate("pepperoni", 4, (_, currentAmount) => currentAmount + 4));
+
+static void PrintToppings(ToppingsDictionary toppingsDictionary)
 {
-    Console.WriteLine($"{topping.Key} = {topping.Value}");
+    foreach (var topping in toppingsDictionary.Toppings)
+    {
+        Console.WriteLine($"{topping.Key} = {topping.Value}");
+    }
+
+    Console.WriteLine();
 }
