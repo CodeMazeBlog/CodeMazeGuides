@@ -1,56 +1,62 @@
-﻿using Microsoft.PowerShell.Commands;
+using Microsoft.PowerShell.Commands;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 
-namespace ExecutingPowerShellScript
+namespace ExecutingPowerShellScript;
+
+public class PSCustomRunspace : IDisposable
 {
-    public class PSCustomRunspace
+    private readonly Runspace _rs;
+
+    public PSCustomRunspace()
     {
-        private readonly Runspace? _rs;
+        InitialSessionState iss = InitialSessionState.Create();
+        var entry = new SessionStateVariableEntry(
+            "AllowedCommands", new[] { "Get-Date" }, "List of allowed commands");
+        iss.Variables.Add(entry);
 
-        public PSCustomRunspace()
+        var getDateCmdlet = new SessionStateCmdletEntry("Get-Date",
+            typeof(GetDateCommand), "");
+        iss.Commands.Add(getDateCmdlet);
+
+        _rs = RunspaceFactory.CreateRunspace(iss);
+        _rs.Open();
+    }
+
+    public string ExecuteCommand(string command)
+    {
+        using var ps = PowerShell.Create();
+        ps.Runspace = _rs;
+        ps.AddCommand(command);
+        var results = ps.Invoke();
+
+        if (ps.HadErrors)
         {
-            InitialSessionState iss = InitialSessionState.Create();
-            var entry = new SessionStateVariableEntry(
-                "AllowedCommands", new[] { "Get-Date" }, "List of allowed commands");
-            iss.Variables.Add(entry);
-
-            var ms = new ModuleSpecification("Microsoft.PowerShell.Utility");
-            iss.ImportPSModule(new[] { ms });
-            var getDateCmdlet = new SessionStateCmdletEntry("Get-Date", 
-                typeof(GetDateCommand), "");
-            iss.Commands.Add(getDateCmdlet);
-            _rs = RunspaceFactory.CreateRunspace(iss);
-            _rs.Open();
+            throw new InvalidOperationException(ps.Streams.Error[0].ToString());
         }
 
-        public string ExecuteCommand(string command)
+        return results.FirstOrDefault()?.ToString() ?? string.Empty;
+    }
+
+    public bool StartProcess(string processName)
+    {
+        try
         {
             using var ps = PowerShell.Create();
             ps.Runspace = _rs;
-            ps.AddCommand(command);
-            var processes = ps.Invoke();
+            ps.AddCommand("Start-Process").AddArgument(processName);
+            ps.Invoke();
 
-            return processes.First().ToString();
+            return true;
         }
-
-        public bool StartProcess(string processName)
+        catch (Exception)
         {
-            try
-            {
-                using (var ps = PowerShell.Create())
-                {
-                    ps.Runspace = _rs;
-                    ps.AddCommand("Start-Process").AddArgument(processName);
-                    ps.Invoke();
-
-                    return true;
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            return false;
         }
+    }
+
+    public void Dispose()
+    {
+        _rs.Dispose();
     }
 }

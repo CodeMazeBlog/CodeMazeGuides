@@ -38,3 +38,31 @@ Console.WriteLine("Output = {0}", string.Join(",", helper.UsingUnion()));
 
 Console.WriteLine("\n------Using sorting------");
 Console.WriteLine("Output = {0}", string.Join(",", helper.Sorting()));
+
+Console.WriteLine("\n------Removing duplicates in place------");
+var sameList = helper.ListWithDuplicates;
+helper.RemoveDuplicatesInPlace();
+Console.WriteLine("Output = {0}", string.Join(",", sameList));
+
+var people = new List<Person>
+{
+    new() { Name = "Ann", Age = 30, Email = "ann@example.com" },
+    new() { Name = "Ann", Age = 30, Email = "ann@example.com" },
+    new() { Name = "Bob", Age = 22, Email = "bob@example.com" }
+};
+
+var records = new List<PersonRecord>
+{
+    new("Ann", 30, "ann@example.com"),
+    new("Ann", 30, "ann@example.com"),
+    new("Bob", 22, "bob@example.com")
+};
+
+Console.WriteLine("\n------Distinct on a class------");
+Console.WriteLine("Count = {0}", PeopleHelper.UsingDistinct(people).Count);
+
+Console.WriteLine("\n------Distinct on a record------");
+Console.WriteLine("Count = {0}", PeopleHelper.UsingDistinct(records).Count);
+
+Console.WriteLine("\n------DistinctBy on a class------");
+Console.WriteLine("Output = {0}", string.Join(",", PeopleHelper.UsingDistinctBy(people).Select(p => p.Name)));

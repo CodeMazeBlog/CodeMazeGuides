@@ -1,4 +1,4 @@
-﻿using BenchmarkDotNet.Running;
+using BenchmarkDotNet.Running;
 using SortListByProperty;
 
-var benchmark = BenchmarkRunner.Run<Sort>();
+BenchmarkRunner.Run<SortBenchmarks>();
