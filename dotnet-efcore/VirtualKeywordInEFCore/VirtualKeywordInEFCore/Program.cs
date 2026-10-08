@@ -10,6 +10,9 @@ namespace VirtualKeywordInEFCore
             LoadData();
 
             LoadDataWithLazyLoading();
+
+            LoadDataWithInjectedLazyLoader();
+            LoadDataWithExplicitLoading();
         }
 
         public static void LoadData()
@@ -21,15 +24,12 @@ namespace VirtualKeywordInEFCore
             Author author;
             author = contextWithoutLazyLoading.Authors.AsNoTracking().First(a => a.FullName == "Lucy FOLEY");
 
-            if (author is not null)
-            {
-                Console.WriteLine($"Author Name: {author.FullName}");
-                Console.WriteLine($"{author.FullName}'s Books number: {author.Books.Count}");
+            Console.WriteLine($"Author Name: {author.FullName}");
+            Console.WriteLine($"{author.FullName}'s Books number: {author.Books.Count}");
 
-                foreach (var book in author.Books)
-                {
-                    Console.WriteLine($"Book Title: {book.Title}");
-                }
+            foreach (var book in author.Books)
+            {
+                Console.WriteLine($"Book Title: {book.Title}");
             }
         }
 
@@ -54,6 +54,39 @@ namespace VirtualKeywordInEFCore
                     Console.WriteLine($"Book Title: {bookLazy.Title}");
                 }
             }
+        }
+
+        public static void LoadDataWithInjectedLazyLoader()
+        {
+            Console.WriteLine("\nLazy Loading with an injected ILazyLoader:");
+
+            using (var seedContext = new DataContextInjected())
+            {
+                DataSeeder.SeedInjected(seedContext);
+            }
+
+            using var context = new DataContextInjected();
+            var author = context.AuthorsInjected.First(a => a.FullName == "Freida MCFADDEN");
+
+            Console.WriteLine($"{nameof(AuthorInjected)} datatype: {author.GetType()}");
+            Console.WriteLine($"{author.FullName}'s Books number: {author.Books?.Count}");
+        }
+
+        public static void LoadDataWithExplicitLoading()
+        {
+            Console.WriteLine("\nExplicit Loading:");
+
+            using (var seedContext = new DataContextWithoutLazyLoading())
+            {
+                DataSeeder.SeedWithoutLazy(seedContext);
+            }
+
+            using var context = new DataContextWithoutLazyLoading();
+            var author = context.Authors.First(a => a.FullName == "Lucy FOLEY");
+
+            context.Entry(author).Collection(a => a.Books).Load();
+
+            Console.WriteLine($"{author.FullName}'s Books number after Load(): {author.Books.Count}");
         }
     }
 }

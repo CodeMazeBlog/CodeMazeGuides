@@ -55,5 +55,40 @@ namespace Tests
             Assert.False(authorHollyJackson.Books.Any());
             Assert.Empty(authorHollyJackson.Books);
         }
+
+        [Fact]
+        public void GivenInjectedLazyLoader_WhenAuthorRetrievedInFreshContext_ThenBooksLazyLoadedWithoutProxy()
+        {
+            // Arrange
+            using (var seedContext = new DataContextInjected())
+            {
+                DataSeeder.SeedInjected(seedContext);
+            }
+
+            using var context = new DataContextInjected();
+
+            // Act
+            var author = context.AuthorsInjected.First(a => a.FullName == "Freida MCFADDEN");
+
+            // Assert
+            Assert.Equal(typeof(AuthorInjected), author.GetType());
+            Assert.NotNull(author.Books);
+            Assert.Equal(2, author.Books.Count);
+        }
+
+        [Fact]
+        public void GivenNoLazyLoading_WhenCollectionExplicitlyLoaded_ThenEmptyCollectionIsFilled()
+        {
+            // Arrange
+            using var context = new DataContextWithoutLazyLoading();
+            var author = context.Authors.First(a => a.FullName == "Lucy FOLEY");
+            Assert.Empty(author.Books);
+
+            // Act
+            context.Entry(author).Collection(a => a.Books).Load();
+
+            // Assert
+            Assert.Equal(4, author.Books.Count);
+        }
     }
 }
