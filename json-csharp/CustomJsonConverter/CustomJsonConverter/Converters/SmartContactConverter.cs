@@ -41,8 +41,4 @@ public class SmartContactConverter : JsonConverter<Contact>
 
         return jo.ToObject<Contact>();
     }
-
-    public override bool CanWrite => true;
-
-    public override bool CanRead => true;
 }
