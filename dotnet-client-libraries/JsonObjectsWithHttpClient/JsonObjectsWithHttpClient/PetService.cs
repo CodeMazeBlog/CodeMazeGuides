@@ -1,19 +1,11 @@
-﻿using System.Net;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
 namespace JsonObjectsWithHttpClient;
 
-public class PetService : IPetService
+public class PetService(HttpClient httpClient) : IPetService
 {
-    private readonly HttpClient _httpClient;
-
-    public PetService(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
-
     public async Task<PetDto?> PostAsStringContentAsync()
     {
         var petData = CreatePet();
@@ -22,29 +14,43 @@ public class PetService : IPetService
 
         var request = new HttpRequestMessage(HttpMethod.Post, "pet");
         request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        request.Content = new StringContent(pet, Encoding.UTF8);
-        request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        request.Content = new StringContent(pet, Encoding.UTF8, "application/json");
 
-        var response = await _httpClient.SendAsync(request);
+        var response = await httpClient.SendAsync(request);
         response.EnsureSuccessStatusCode();
 
-        var content = await response.Content.ReadAsStringAsync();
-        var createdPet = JsonSerializer.Deserialize<PetDto>(content);
-
-        return createdPet;
+        return await response.Content.ReadFromJsonAsync<PetDto>();
     }
-    
-    public async Task<PetDto?> PostAsJsonAsync()
+
+    public async Task<PetDto?> PostWithPostAsJsonAsync()
     {
         var petData = CreatePet();
 
-        var response = await _httpClient.PostAsJsonAsync("pet", petData);
+        var response = await httpClient.PostAsJsonAsync("pet", petData);
         response.EnsureSuccessStatusCode();
 
-        var content = await response.Content.ReadAsStringAsync();
-        var createdPet = JsonSerializer.Deserialize<PetDto>(content);
+        return await response.Content.ReadFromJsonAsync<PetDto>();
+    }
 
-        return createdPet;
+    public async Task<PetDto?> PostAsJsonContentAsync()
+    {
+        var petData = CreatePet();
+
+        using var content = JsonContent.Create(petData);
+        var response = await httpClient.PostAsync("pet", content);
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadFromJsonAsync<PetDto>();
+    }
+
+    public async Task<PetDto?> PostAsSourceGeneratedJsonAsync()
+    {
+        var petData = CreatePet();
+
+        var response = await httpClient.PostAsJsonAsync("pet", petData, PetContext.Default.PetDto);
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadFromJsonAsync(PetContext.Default.PetDto);
     }
 
     private PetDto CreatePet()
