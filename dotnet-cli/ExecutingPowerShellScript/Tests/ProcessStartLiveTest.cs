@@ -1,27 +1,41 @@
-﻿using ExecutingPowerShellScript;
+using ExecutingPowerShellScript;
 
-namespace Tests
+namespace Tests;
+
+public class ProcessStartLiveTest
 {
-    public class ProcessStartLiveTest
+    [Fact]
+    public async Task GivenPath_WhenInvoked_ThenExecutesGivenScript()
     {
-        [Fact]
-        public void GivenPath_WhenInvoked_ThenExecutesGivenScript()
-        {
-            var processStart = new ProcessStart();
-            var result = processStart.ExecuteScript(@"C:\Users\scule\Desktop\echo.ps1");
-            var expected= "I am invoked using ProcessStartInfoClass!\r\n";
+        var processStart = new ProcessStart();
+        var scriptPath = Path.Combine(AppContext.BaseDirectory, "echo.ps1");
 
-            Assert.Equal(expected, result.ToString());
-        }
+        var result = await processStart.ExecuteScriptAsync(scriptPath);
 
-        [Fact]
-        public void GivenCommand_WhenInvoked_ThenExecutesGivenCommand()
-        {
-            var processStart = new ProcessStart();
-            var result= processStart.ExecuteCommand("echo 'I am invoked using echo command!'");
-            var expected = "I am invoked using echo command!\r\n";
+        Assert.Equal(0, result.ExitCode);
+        Assert.Equal("I am invoked using ProcessStartInfoClass!" + Environment.NewLine, result.Output);
+        Assert.Equal(string.Empty, result.Error);
+    }
 
-            Assert.Equal(expected, result.ToString());
-        }
+    [Fact]
+    public async Task GivenCommand_WhenInvoked_ThenExecutesGivenCommand()
+    {
+        var processStart = new ProcessStart();
+
+        var result = await processStart.ExecuteCommandAsync("echo 'I am invoked using echo command!'");
+
+        Assert.Equal(0, result.ExitCode);
+        Assert.Equal("I am invoked using echo command!" + Environment.NewLine, result.Output);
+    }
+
+    [Fact]
+    public async Task GivenFailingCommand_WhenInvoked_ThenReturnsNonZeroExitCodeAndError()
+    {
+        var processStart = new ProcessStart();
+
+        var result = await processStart.ExecuteCommandAsync("Get-Item 'does-not-exist.txt'");
+
+        Assert.Equal(1, result.ExitCode);
+        Assert.NotEqual(string.Empty, result.Error);
     }
 }
