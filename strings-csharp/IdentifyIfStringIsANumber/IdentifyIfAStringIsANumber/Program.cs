@@ -25,8 +25,26 @@ foreach (var item in values)
     Console.WriteLine($" * {item,-15} ====> {StringIsANumberChecker.UsingRegex(item)}");
 }
 
-Console.WriteLine("Using Char.IdDigit:");
+Console.WriteLine("Using char.IsAsciiDigit():");
 foreach (var item in values)
 {
     Console.WriteLine($" * {item,-15} ====> {StringIsANumberChecker.UsingCharIsDigit(item)}");
+}
+
+Console.WriteLine("Using compiled Regex:");
+foreach (var item in values)
+{
+    Console.WriteLine($" * {item,-15} ====> {StringIsANumberChecker.UsingCompiledRegex(item)}");
+}
+
+Console.WriteLine("Using char.IsAsciiDigit() with foreach:");
+foreach (var item in values)
+{
+    Console.WriteLine($" * {item,-15} ====> {StringIsANumberChecker.UsingCharIsDigitWithForeach(item)}");
+}
+
+Console.WriteLine("Using character value comparison:");
+foreach (var item in values)
+{
+    Console.WriteLine($" * {item,-15} ====> {StringIsANumberChecker.UsingCharIsBetween09(item)}");
 }
