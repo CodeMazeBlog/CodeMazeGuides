@@ -8,47 +8,48 @@ namespace BenchmarkRunner;
 [MemoryDiagnoser]
 public class StringIsANumberBenchmark
 {
-    private string value = "123456789";
+    [Params("123456789", "a12345678")]
+    public string Value { get; set; } = string.Empty;
 
     [Benchmark]
     public void IntTryParse()
     {
-        StringIsANumberChecker.IntTryParse(value);
+        StringIsANumberChecker.IntTryParse(Value);
     }
 
     [Benchmark]
     public void DoubleTryParse()
     {
-        StringIsANumberChecker.DoubleTryParse(value);
+        StringIsANumberChecker.DoubleTryParse(Value);
     }
 
     [Benchmark]
     public void UsingRegex()
     {
-        StringIsANumberChecker.UsingRegex(value);
+        StringIsANumberChecker.UsingRegex(Value);
     }
 
     [Benchmark]
     public void UsingCompiledRegex()
     {
-        StringIsANumberChecker.UsingCompiledRegex(value);
+        StringIsANumberChecker.UsingCompiledRegex(Value);
     }
 
     [Benchmark]
     public void UsingCharIsDigit()
     {
-        StringIsANumberChecker.UsingCharIsDigit(value);
+        StringIsANumberChecker.UsingCharIsDigit(Value);
     }
 
     [Benchmark]
     public void UsingCharIsDigitWithForeach()
     {
-        StringIsANumberChecker.UsingCharIsDigitWithForeach(value);
+        StringIsANumberChecker.UsingCharIsDigitWithForeach(Value);
     }
 
     [Benchmark]
     public void UsingCharIsBetween09()
     {
-        StringIsANumberChecker.UsingCharIsBetween09(value);
+        StringIsANumberChecker.UsingCharIsBetween09(Value);
     }
 }
