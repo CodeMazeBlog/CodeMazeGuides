@@ -10,7 +10,7 @@ public class SymmetricEncryptionUnitTests
     {
         var input = "Hello, Bouncy Castle!";
 
-        var encryptedData = AesEncryptor.AesEncrypt(input, out byte[] iv, out byte[] key);
+        var encryptedData = AesEncryptor.AesEncrypt(input, out _, out _);
 
         var encryptedString = Convert.ToBase64String(encryptedData);
 
@@ -39,7 +39,7 @@ public class SymmetricEncryptionUnitTests
         var input = "Hello, Bouncy Castle!";
         var password = "mysecretpassword";
 
-        var encryptedBytes = BlowfishEncryptor.BlowfishEncrypt(input, password, out byte[] iv);
+        var encryptedBytes = BlowfishEncryptor.BlowfishEncrypt(input, password, out _, out _);
 
         var encryptedString = Convert.ToBase64String(encryptedBytes);
 
@@ -53,9 +53,9 @@ public class SymmetricEncryptionUnitTests
         var input = "Hello, Bouncy Castle!";
         var password = "mysecretpassword";
 
-        var encryptedBytes = BlowfishEncryptor.BlowfishEncrypt(input, password, out byte[] iv);
+        var encryptedBytes = BlowfishEncryptor.BlowfishEncrypt(input, password, out byte[] salt, out byte[] iv);
 
-        var myDecryptedStr = BlowfishEncryptor.BlowfishDecrypt(encryptedBytes, password, iv);
+        var myDecryptedStr = BlowfishEncryptor.BlowfishDecrypt(encryptedBytes, password, salt, iv);
 
         Assert.IsNotNull(myDecryptedStr);
         Assert.AreEqual(input, myDecryptedStr);

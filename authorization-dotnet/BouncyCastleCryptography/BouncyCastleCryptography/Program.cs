@@ -3,17 +3,18 @@ using BouncyCastleCryptography.Hashing;
 using BouncyCastleCryptography.SymmetricEncryption;
 
 var input = "Hello, Bouncy Castle!";
+var secretValue = "This is my password! Dont read me!";
 
 // HASHING
 Console.WriteLine("Hashing:");
 
-var hash = Md5Hasher.Md5Hash(input);
+var hash = Md5Hasher.Md5Hash(secretValue);
 
 var hashAsStr = Convert.ToBase64String(hash);
 
 Console.WriteLine("MD5 hash result: " + hashAsStr);
 
-hash = ShaHasher.ShaHash(input);
+hash = ShaHasher.ShaHash(secretValue);
 
 hashAsStr = Convert.ToBase64String(hash);
 
@@ -32,7 +33,7 @@ Console.WriteLine("AES encryption result: " + encryptedString);
 
 var password = "mysecretpassword";
 
-encryptedData = BlowfishEncryptor.BlowfishEncrypt(input, password, out byte[] iv2);
+encryptedData = BlowfishEncryptor.BlowfishEncrypt(input, password, out byte[] salt, out byte[] iv2);
 
 encryptedString = Convert.ToBase64String(encryptedData);
 
@@ -55,7 +56,7 @@ var keyPair2 = DsaEncryptor.GenerateDsaKeyPair();
 
 var signature = DsaEncryptor.DsaSign(input, keyPair2.Private);
 
-var signatureAsStr = Convert.ToBase64String(encryptedData);
+var signatureAsStr = Convert.ToBase64String(signature);
 
 var isSignatureValid = DsaEncryptor.DsaVerify(input, signature, keyPair2.Public);
 
