@@ -1,27 +1,26 @@
-﻿using ExecutingPowerShellScript;
+using ExecutingPowerShellScript;
 
-namespace Tests
+namespace Tests;
+
+public class PSCustomRunspaceLiveTest
 {
-    public  class PSCustomRunspaceLiveTest
+    [Fact]
+    public void GivenCommand_WhenInvoked_ThenExecutesCommandGiven()
     {
-        [Fact]
-        public void GivenCommand_WhenInvoked_ThenExecutesCommandGiven()
-        {
-            var customRunspace = new PSCustomRunspace(); 
-            var result = customRunspace.ExecuteCommand("Get-Date");
-            var expectedResult = DateTime.Now.ToShortDateString();
+        using var customRunspace = new PSCustomRunspace();
 
-            Assert.Equal(expectedResult, DateTime.Parse(result).ToShortDateString());
-        }
+        var result = customRunspace.ExecuteCommand("Get-Date");
 
-        [Fact]
-        public void GivenName_WhenInvoked_ThenDoesntStartAProcess()
-        {
-            var customRunspace = new PSCustomRunspace(); 
-            var result = customRunspace.StartProcess("notepad");
-            var expectedResult = false;
+        Assert.Equal(DateTime.Now.ToShortDateString(), DateTime.Parse(result).ToShortDateString());
+    }
 
-            Assert.Equal(expectedResult, result);
-        }
+    [Fact]
+    public void GivenName_WhenInvoked_ThenDoesntStartAProcess()
+    {
+        using var customRunspace = new PSCustomRunspace();
+
+        var result = customRunspace.StartProcess("notepad");
+
+        Assert.False(result);
     }
 }

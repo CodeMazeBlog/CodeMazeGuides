@@ -1,4 +1,5 @@
-﻿using Org.BouncyCastle.Crypto.Encodings;
+﻿using Org.BouncyCastle.Crypto.Digests;
+using Org.BouncyCastle.Crypto.Encodings;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto;
@@ -21,7 +22,7 @@ public static class RsaEncryptor
     {
         var inputBytes = Encoding.UTF8.GetBytes(input);
 
-        var cipher = new Pkcs1Encoding(new RsaEngine());
+        var cipher = new OaepEncoding(new RsaEngine(), new Sha256Digest());
 
         cipher.Init(true, publicKey);
 
@@ -30,7 +31,7 @@ public static class RsaEncryptor
 
     public static string RsaDecrypt(byte[] encryptedBytes, AsymmetricKeyParameter privateKey)
     {
-        var cipher = new Pkcs1Encoding(new RsaEngine());
+        var cipher = new OaepEncoding(new RsaEngine(), new Sha256Digest());
 
         // Initialize the cipher for decryption with the private key
         cipher.Init(false, privateKey);

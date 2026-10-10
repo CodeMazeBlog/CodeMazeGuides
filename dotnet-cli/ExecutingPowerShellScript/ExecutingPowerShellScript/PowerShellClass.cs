@@ -1,45 +1,42 @@
-﻿using System.Management.Automation;
+using Microsoft.PowerShell;
+using System.Management.Automation;
+using System.Management.Automation.Runspaces;
 
-namespace ExecutingPowerShellScript
+namespace ExecutingPowerShellScript;
+
+public class PowerShellClass
 {
-    public class PowerShellClass
+    public bool ExecuteScript(string pathToScript)
     {
-        public bool ExecuteScript(string pathToScript)
+        var iss = InitialSessionState.CreateDefault();
+        iss.ExecutionPolicy = ExecutionPolicy.Bypass;
+
+        using var ps = PowerShell.Create(iss);
+        ps.AddCommand(pathToScript).Invoke();
+
+        return !ps.HadErrors;
+    }
+
+    public string ExecuteCommand(string command)
+    {
+        using var ps = PowerShell.Create();
+        ps.AddCommand(command);
+        var results = ps.Invoke();
+
+        if (ps.HadErrors)
         {
-            using var ps = PowerShell.Create();
-            ps.AddScript(pathToScript).Invoke();
-            if (ps.HadErrors)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            throw new InvalidOperationException(ps.Streams.Error[0].ToString());
         }
 
-        public string ExecuteCommand(string command)
-        {
-            using var ps = PowerShell.Create();
-            ps.AddCommand(command);
-            var processes = ps.Invoke();
+        return results.FirstOrDefault()?.ToString() ?? string.Empty;
+    }
 
-            return processes.First().ToString();
-        }
+    public bool StartProcess(string processName)
+    {
+        using var ps = PowerShell.Create();
+        ps.AddCommand("Start-Process").AddArgument(processName);
+        ps.Invoke();
 
-        public bool StartProcess(string processName)
-        {
-            using var ps = PowerShell.Create();
-            ps.AddCommand("Start-Process").AddArgument(processName);
-            ps.Invoke();
-            if (ps.HadErrors)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        return !ps.HadErrors;
     }
 }

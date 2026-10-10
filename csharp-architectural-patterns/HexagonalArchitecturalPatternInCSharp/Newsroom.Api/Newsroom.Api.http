@@ -1,0 +1,23 @@
+POST http://localhost:5270/api/articles
+Content-Type: application/json
+
+{ "title": "Hexagonal Architecture in C#" }
+
+###
+
+POST http://localhost:5270/api/articles/1/publish
+
+###
+
+POST http://localhost:5270/api/articles/1/publish
+
+###
+
+GET http://localhost:5270/api/articles/42
+
+###
+
+POST http://localhost:5270/api/articles
+Content-Type: application/json
+
+{ "title": "" }

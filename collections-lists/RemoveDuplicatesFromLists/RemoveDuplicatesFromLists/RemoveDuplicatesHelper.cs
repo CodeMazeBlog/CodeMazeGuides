@@ -1,6 +1,6 @@
 ﻿namespace RemoveDuplicatesFromLists;
 
-public class RemoveDuplicatesHelper<T>
+public class RemoveDuplicatesHelper<T> where T : IEquatable<T>
 {
     public RemoveDuplicatesHelper()
     {
@@ -77,20 +77,26 @@ public class RemoveDuplicatesHelper<T>
         return listWithoutDuplicates;
     }
 
+    public void RemoveDuplicatesInPlace()
+    {
+        var seen = new HashSet<T>();
+        ListWithDuplicates.RemoveAll(x => !seen.Add(x));
+    }
+
     public List<T> UsingIterationsAndShifting()
     {
-        var n = ListWithDuplicates.Count;
+        var list = new List<T>(ListWithDuplicates);
+        var n = list.Count;
 
         for (int i = 0; i < n; i++)
         {
             for (int j = i + 1; j < n; j++)
             {
-                if (ListWithDuplicates.ElementAt(i)!.Equals(ListWithDuplicates.ElementAt(j)))
+                if (list[i].Equals(list[j]))
                 {
                     for (int k = j; k < n - 1; k++)
                     {
-                        T item = ListWithDuplicates.ElementAt(k);
-                        item = ListWithDuplicates.ElementAt(k + 1);
+                        list[k] = list[k + 1];
                     }
                     j--;
                     n--;
@@ -98,27 +104,28 @@ public class RemoveDuplicatesHelper<T>
             }
         }
 
-        return ListWithDuplicates.Take(n).ToList();
+        return list.Take(n).ToList();
     }
 
     public List<T> UsingIterationsAndSwapping()
     {
-        var size = ListWithDuplicates.Count;
+        var list = new List<T>(ListWithDuplicates);
+        var size = list.Count;
+
         for (int i = 0; i < size; i++)
         {
             for (int j = i + 1; j < size; j++)
             {
-                if (ListWithDuplicates.ElementAt(i)!.Equals(ListWithDuplicates.ElementAt(j)))
+                if (list[i].Equals(list[j]))
                 {
                     size--;
-                    T jThItem = ListWithDuplicates.ElementAt(j);
-                    jThItem = ListWithDuplicates.ElementAt(size);
+                    (list[j], list[size]) = (list[size], list[j]);
                     j--;
                 }
             }
         }
 
-        return ListWithDuplicates.Take(size).ToList();
+        return list.Take(size).ToList();
     }
 
     public List<T> UsingRecursion(List<T>? listWithoutDuplicates = default, int index = 0)
@@ -129,7 +136,7 @@ public class RemoveDuplicatesHelper<T>
         }
         if (index >= ListWithDuplicates.Count)
         {
-            return ListWithDuplicates;
+            return listWithoutDuplicates;
         }
         if (listWithoutDuplicates.IndexOf(ListWithDuplicates[index]) < 0)
         {
@@ -148,7 +155,7 @@ public class RemoveDuplicatesHelper<T>
         T? element = default;
         foreach (T result in ListWithDuplicates)
         {
-            if (!result!.Equals(element))
+            if (listWithoutDuplicates.Count == 0 || !result.Equals(element))
             {
                 listWithoutDuplicates.Add(result);
                 element = result;

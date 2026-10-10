@@ -16,7 +16,7 @@ namespace RevertMigration.Migrations
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.12");
 
             modelBuilder.Entity("Airplane", b =>
                 {
@@ -24,20 +24,19 @@ namespace RevertMigration.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("HangarId")
+                    b.Property<int?>("HangarId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("MaxAirSpeed")
+                    b.Property<double?>("MaxAirSpeed")
                         .HasColumnType("REAL");
 
-                    b.Property<int>("NumberOfEngines")
+                    b.Property<int?>("NumberOfEngines")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("RunsOnJetFuel")
+                    b.Property<bool?>("RunsOnJetFuel")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("TailNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -54,7 +53,6 @@ namespace RevertMigration.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("HangarNumber")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -66,9 +64,7 @@ namespace RevertMigration.Migrations
                 {
                     b.HasOne("Hangar", "Hangar")
                         .WithMany("Airplanes")
-                        .HasForeignKey("HangarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HangarId");
 
                     b.Navigation("Hangar");
                 });

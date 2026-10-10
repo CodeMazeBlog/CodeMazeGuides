@@ -1,0 +1,4 @@
+# SQLite database the API creates on first run (EnsureCreated)
+*.db
+*.db-shm
+*.db-wal

@@ -1,8 +1,10 @@
-﻿namespace UpdateDictionaryValue
+﻿using System.Runtime.InteropServices;
+
+namespace UpdateDictionaryValue
 {
     public class ToppingsDictionary
     {
-        public Dictionary<string, int> Toppings { get; private set; }
+        public Dictionary<string, int> Toppings { get; }
 
         public ToppingsDictionary()
         {
@@ -24,6 +26,22 @@
             {
                 Toppings.Add(toppingType, amount);
             }
+        }
+
+        public void AddToppingIfMissing(string toppingType, int amount)
+        {
+            if (!Toppings.TryAdd(toppingType, amount))
+            {
+                Console.WriteLine($"{toppingType} is already on the pizza.");
+            }
+        }
+
+        public void AddToppingsByRef(string toppingType, int amount)
+        {
+            ref var currentAmount = ref CollectionsMarshal
+                .GetValueRefOrAddDefault(Toppings, toppingType, out _);
+
+            currentAmount += amount;
         }
     }
 }

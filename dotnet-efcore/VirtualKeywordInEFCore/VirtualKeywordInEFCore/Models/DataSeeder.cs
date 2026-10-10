@@ -64,5 +64,27 @@
             contextLazy.AddRange(booksLazy);
             contextLazy.SaveChanges();
         }
+
+        public static void SeedInjected(DataContextInjected contextInjected)
+        {
+            contextInjected.Database.EnsureCreated();
+            if (contextInjected.AuthorsInjected.Any())
+            {
+                return;
+            }
+
+            var authorInjected = new AuthorInjected
+            {
+                FullName = "Freida MCFADDEN",
+                Books = new List<BookInjected>
+                {
+                    new () { Title = "The Housemaid" },
+                    new () { Title = "The Coworker" }
+                }
+            };
+
+            contextInjected.Add(authorInjected);
+            contextInjected.SaveChanges();
+        }
     }
 }

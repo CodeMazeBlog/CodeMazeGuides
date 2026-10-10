@@ -4,5 +4,9 @@ public interface IPetService
 {
     Task<PetDto?> PostAsStringContentAsync();
 
-    Task<PetDto?> PostAsJsonAsync();
+    Task<PetDto?> PostWithPostAsJsonAsync();
+
+    Task<PetDto?> PostAsJsonContentAsync();
+
+    Task<PetDto?> PostAsSourceGeneratedJsonAsync();
 }

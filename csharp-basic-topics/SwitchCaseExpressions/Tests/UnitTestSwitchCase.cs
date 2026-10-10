@@ -1,120 +1,98 @@
-using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SwitchCaseExpression;
-using System.IO;
-using System.Text;
 
-namespace Tests
+namespace Tests;
+
+[TestClass]
+public class UnitTestSwitch
 {
-    [TestClass]
-    public class UnitTestSwitch
+    private const string PleasantWeather = "It is a pleasant day";
+    private const string HotWeather = "It is hot today";
+    private const string VeryHotWeather = "It is very hot today";
+    private const string NoWeatherReport = "No weather report";
+
+    private static string GetExpectedOutputForTest(int temp)
     {
-        private readonly string _pleasantWeather = "It is a pleasant day";
-        private readonly string _hotWeather = "It is hot today";
-        private readonly string _veryHotWeather = "It is very hot today";
-        private readonly string _noWeatherReport = "No weather report";
-
-        StringWriter stringWrite = new StringWriter();
-
-        public UnitTestSwitch()
+        switch (temp)
         {
-            Console.SetOut(stringWrite);
+            case 20:
+            case 22:
+            case 24:
+                return PleasantWeather;
+            case 30:
+                return HotWeather;
+            case 35:
+                return VeryHotWeather;
+            default:
+                return NoWeatherReport;
         }
+    }
 
-        public string GetExpectedOutputForTest(int temp)
-        {
-            var expectedout = string.Empty;
-           
-            switch (temp)
-            {
-                case 20:
-                case 22:
-                case 24:
-                    expectedout = _pleasantWeather;
-                    break;
-                case 30:
-                    expectedout = _hotWeather;
-                    break;
-                case 35:
-                    expectedout = _veryHotWeather;
-                    break;
-                default:
-                    expectedout = _noWeatherReport;
-                    break;
-            }
+    [TestMethod]
+    [DataRow(20)]
+    [DataRow(22)]
+    [DataRow(24)]
+    [DataRow(30)]
+    [DataRow(35)]
+    [DataRow(99)]
+    public void WhenMultipleCasesHaveSameResult(int temp)
+    {
+        Assert.AreEqual(GetExpectedOutputForTest(temp), Program.SubMultipleCaseResults(temp));
+    }
 
-            return expectedout;
-        }
+    [TestMethod]
+    [DataRow(100, "The value is between 50 and 150")]
+    [DataRow(150, "The value is between 50 and 150")]
+    [DataRow(151, "The value is between 150 and 200")]
+    [DataRow(200, "The value is between 150 and 200")]
+    [DataRow(201, "The number is not within the given range.")]
+    public void WhenMultipleCasesUseRangePattern(int value, string expected)
+    {
+        Assert.AreEqual(expected, Program.SubMultipleCaseWithRangePattern(value));
+    }
 
-        [TestMethod]
-        public void whenMultipleCasesHaveSameResult()
-        {
-            var switchTemp = 20;
-            var expectedout = GetExpectedOutputForTest(switchTemp);
+    [TestMethod]
+    public void WhenGuardMatchesEvenValue()
+    {
+        Assert.AreEqual("An even value between 50 and 150", Program.SubMultipleCaseWithGuard(100));
+    }
 
-            Program.SubMultipleCaseResults(switchTemp);
+    [TestMethod]
+    public void WhenGuardMatchesOddValue()
+    {
+        Assert.AreEqual("An odd value between 50 and 150", Program.SubMultipleCaseWithGuard(101));
+    }
 
-            var resultstring = stringWrite.ToString().Trim();
+    [TestMethod]
+    [DataRow(20)]
+    [DataRow(22)]
+    [DataRow(24)]
+    [DataRow(30)]
+    [DataRow(35)]
+    public void WhenMultipleCaseWithListValues(int temp)
+    {
+        Assert.AreEqual(GetExpectedOutputForTest(temp), Program.SubMultipleCaseWithListValues(temp));
+    }
 
-            Assert.AreEqual(expectedout, resultstring);
-        }
+    [TestMethod]
+    [DataRow(20)]
+    [DataRow(22)]
+    [DataRow(24)]
+    [DataRow(30)]
+    [DataRow(35)]
+    public void WhenSwitchCaseWithOrPattern(int temp)
+    {
+        Assert.AreEqual(GetExpectedOutputForTest(temp), Program.SubMultipleCaseWithOrPattern(temp));
+    }
 
-        [TestMethod]
-        public void whenMultipleCasesUseWhenKeyword()
-        {
-            var expoutput = "The value is between 50 and 150";
-
-            Program.SubMultipleCaseResultsWithWhen(100);
-
-            var resultstring = stringWrite.ToString().Trim();
-
-            Assert.AreEqual(expoutput, resultstring);
-        }
-
-        [TestMethod]
-        public void whenMultipleCaseWithListValues()
-        {   
-            var tempValue = 22;
-            var expectedout = GetExpectedOutputForTest(tempValue);
-
-            Program.SubMultipleCaseWithListValues(tempValue);
-
-            var resultstring = stringWrite.ToString();
-            var arr = resultstring.Split("-");
-            resultstring = arr[0].ToString().Trim();
-
-            Assert.AreEqual(expectedout, resultstring);
-        }
-
-        [TestMethod]
-        public void whenSwitchCaseWithEasyFormat()
-        {
-            var tempValue = 22;
-            var resultText = string.Empty;
-            var expectedoutput = GetExpectedOutputForTest(tempValue);
-
-            Program.SubMultipleCaseWithNewVersion(tempValue);
-
-            resultText = stringWrite.ToString();
-            var arr = resultText.Split("-");
-            resultText = arr[0].ToString().Trim();
-
-            Assert.AreEqual(expectedoutput, resultText);
-        }
-
-        [TestMethod]
-        public void whenSwitchCaseWithExtensionMethod()
-        {
-            var tempValue = 22;
-            var expectedout = GetExpectedOutputForTest(tempValue);
-
-            Program.SubMultipleCaseWithExtension(tempValue);
-
-            var result = stringWrite.ToString();
-            var arr = result.Split("-");
-            result = arr[0].ToString().Trim();
-
-            Assert.AreEqual(expectedout, result);
-        }
+    [TestMethod]
+    [DataRow(20)]
+    [DataRow(22)]
+    [DataRow(24)]
+    [DataRow(30)]
+    [DataRow(35)]
+    public void WhenSwitchCaseWithExtensionMethod(int temp)
+    {
+        Assert.AreEqual(GetExpectedOutputForTest(temp), Program.SubMultipleCaseWithExtension(temp));
     }
 }
