@@ -4,57 +4,91 @@ public class PetTest
 {
     private const string _baseAddress = "https://mockdomain.mock";
 
-    [Fact]
-    public async void GivenPetObjectHasValues_WhenPostAsStringContentIsCalled_ThenPetResultIsReturned()
+    private static (HttpClient Client, List<string?> ContentTypes) CreateClient()
     {
+        var contentTypes = new List<string?>();
         var httpMessageHandlerMock = new Mock<HttpMessageHandler>();
 
         httpMessageHandlerMock.Protected()
             .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.Is<HttpRequestMessage>(r => r.RequestUri!.AbsoluteUri == $"{_baseAddress}/pet"), ItExpr.IsAny<CancellationToken>())
-            .ReturnsAsync(new HttpResponseMessage
+            .Callback<HttpRequestMessage, CancellationToken>((request, _) => contentTypes.Add(request.Content?.Headers.ContentType?.ToString()))
+            .ReturnsAsync(() => new HttpResponseMessage
             {
                 StatusCode = HttpStatusCode.OK,
-                Content = new StringContent("{\n  \"id\": 12,\n  \"name\": \"German Shepherd\"\n}")
+                Content = new StringContent("{\n  \"id\": 12,\n  \"name\": \"German Shepherd\"\n}", Encoding.UTF8, "application/json")
             });
 
-        var httpClientMock = new HttpClient(httpMessageHandlerMock.Object)
+        var httpClient = new HttpClient(httpMessageHandlerMock.Object)
         {
             BaseAddress = new Uri(_baseAddress)
         };
 
-        var successResult = await new PetService(httpClientMock)
+        return (httpClient, contentTypes);
+    }
+
+    [Fact]
+    public async Task GivenPetObjectHasValues_WhenPostAsStringContentIsCalled_ThenPetResultIsReturned()
+    {
+        var (httpClient, contentTypes) = CreateClient();
+
+        var successResult = await new PetService(httpClient)
             .PostAsStringContentAsync();
 
         Assert.NotNull(successResult);
         Assert.Equal(12, successResult!.Id);
-
         Assert.Equal("German Shepherd", successResult!.Name);
+        Assert.Equal("application/json; charset=utf-8", Assert.Single(contentTypes));
     }
 
     [Fact]
-    public async void GivenPetObjectHasValues_WhenPostAsJsonIsCalled_ThenPetResultIsReturned()
+    public async Task GivenPetObjectHasValues_WhenPostWithPostAsJsonIsCalled_ThenPetResultIsReturned()
     {
-        var httpMessageHandlerMock = new Mock<HttpMessageHandler>();
+        var (httpClient, contentTypes) = CreateClient();
 
-        httpMessageHandlerMock.Protected()
-            .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.Is<HttpRequestMessage>(r => r.RequestUri!.AbsoluteUri == $"{_baseAddress}/pet"), ItExpr.IsAny<CancellationToken>())
-            .ReturnsAsync(new HttpResponseMessage
-            {
-                StatusCode = HttpStatusCode.OK,
-                Content = new StringContent("{\n  \"id\": 12,\n  \"name\": \"German Shepherd\"\n}")
-            });
-
-        var httpClientMock = new HttpClient(httpMessageHandlerMock.Object)
-        {
-            BaseAddress = new Uri(_baseAddress)
-        };
-        
-        var successResult = await new PetService(httpClientMock)
-            .PostAsJsonAsync();
+        var successResult = await new PetService(httpClient)
+            .PostWithPostAsJsonAsync();
 
         Assert.NotNull(successResult);
         Assert.Equal(12, successResult!.Id);
-
         Assert.Equal("German Shepherd", successResult!.Name);
+        Assert.Equal("application/json; charset=utf-8", Assert.Single(contentTypes));
+    }
+
+    [Fact]
+    public async Task GivenPetObjectHasValues_WhenPostAsJsonContentIsCalled_ThenPetResultIsReturned()
+    {
+        var (httpClient, contentTypes) = CreateClient();
+
+        var successResult = await new PetService(httpClient)
+            .PostAsJsonContentAsync();
+
+        Assert.NotNull(successResult);
+        Assert.Equal(12, successResult!.Id);
+        Assert.Equal("German Shepherd", successResult!.Name);
+        Assert.Equal("application/json; charset=utf-8", Assert.Single(contentTypes));
+    }
+
+    [Fact]
+    public async Task GivenPetObjectHasValues_WhenPostAsSourceGeneratedJsonIsCalled_ThenPetResultIsReturned()
+    {
+        var (httpClient, contentTypes) = CreateClient();
+
+        var successResult = await new PetService(httpClient)
+            .PostAsSourceGeneratedJsonAsync();
+
+        Assert.NotNull(successResult);
+        Assert.Equal(12, successResult!.Id);
+        Assert.Equal("German Shepherd", successResult!.Name);
+        Assert.Equal("application/json; charset=utf-8", Assert.Single(contentTypes));
+    }
+
+    [Fact]
+    public void GivenStringContent_WhenMediaTypeIsOmitted_ThenContentTypeIsTextPlain()
+    {
+        var withoutMediaType = new StringContent("{}", Encoding.UTF8);
+        var withMediaType = new StringContent("{}", Encoding.UTF8, "application/json");
+
+        Assert.Equal("text/plain; charset=utf-8", withoutMediaType.Headers.ContentType!.ToString());
+        Assert.Equal("application/json; charset=utf-8", withMediaType.Headers.ContentType!.ToString());
     }
 }
