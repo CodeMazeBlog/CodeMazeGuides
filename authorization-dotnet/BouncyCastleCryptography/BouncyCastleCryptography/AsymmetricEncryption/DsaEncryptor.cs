@@ -1,4 +1,5 @@
-﻿using Org.BouncyCastle.Crypto.Generators;
+﻿using Org.BouncyCastle.Crypto.Digests;
+using Org.BouncyCastle.Crypto.Generators;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Security;
@@ -11,9 +12,9 @@ public static class DsaEncryptor
     public static AsymmetricCipherKeyPair GenerateDsaKeyPair()
     {
         // Create DSA parameters
-        var dsaParamsGenerator = new DsaParametersGenerator();
+        var dsaParamsGenerator = new DsaParametersGenerator(new Sha256Digest());
         var random = new SecureRandom();
-        dsaParamsGenerator.Init(1024, 80, random); // key size: 1024 bits, certainty: 80
+        dsaParamsGenerator.Init(new DsaParameterGenerationParameters(2048, 256, 80, random)); // key size: 2048 bits, q size: 256 bits, certainty: 80
 
         // Generate DSA key pair
         var dsaParams = dsaParamsGenerator.GenerateParameters();

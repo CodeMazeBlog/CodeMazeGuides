@@ -12,7 +12,8 @@ public partial class StringIsANumberChecker
 
     public static bool DoubleTryParse(string stringValue)
     {
-        return double.TryParse(stringValue, NumberStyles.Any, CultureInfo.InvariantCulture, out _);
+        return double.TryParse(stringValue, NumberStyles.Float | NumberStyles.AllowThousands,
+            CultureInfo.InvariantCulture, out _);
     }
 
     public static bool UsingRegex(string stringValue)
@@ -33,11 +34,14 @@ public partial class StringIsANumberChecker
 
     public static bool UsingCharIsDigit(string stringValue)
     {
-        return stringValue.All(char.IsAsciiDigit);
+        return !string.IsNullOrEmpty(stringValue) && stringValue.All(char.IsAsciiDigit);
     }
 
     public static bool UsingCharIsDigitWithForeach(string stringValue)
     {
+        if (string.IsNullOrEmpty(stringValue))
+            return false;
+
         foreach (var c in stringValue)
         {
             if (!char.IsAsciiDigit(c))
@@ -48,6 +52,9 @@ public partial class StringIsANumberChecker
 
     public static bool UsingCharIsBetween09(string stringValue)
     {
+        if (string.IsNullOrEmpty(stringValue))
+            return false;
+
         foreach (var c in stringValue)
         {
             if (c is < '0' or > '9')
