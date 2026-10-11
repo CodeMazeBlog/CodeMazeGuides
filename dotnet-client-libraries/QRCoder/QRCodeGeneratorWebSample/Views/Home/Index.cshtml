@@ -1,4 +1,4 @@
-﻿@model HomeModel;
+﻿@model HomeModel
 
 <div class="text-center">
     @foreach (var qr in Model.QRCodes)
@@ -6,5 +6,5 @@
         <hr/>
         <h2>@qr.Key</h2>
         <img width="250px" src="@qr.Value" />
-    }    
+    }
 </div>
