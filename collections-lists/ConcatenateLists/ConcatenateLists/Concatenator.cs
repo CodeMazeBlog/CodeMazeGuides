@@ -4,7 +4,24 @@
     {
         public List<string> UsingAdd(List<string> firstList, List<string> secondList)
         {
-            var result = new List<string>(firstList.Count() + secondList.Count());
+            var result = new List<string>(firstList.Count + secondList.Count);
+
+            foreach (var item in firstList)
+            {
+                result.Add(item);
+            }
+
+            foreach (var item in secondList)
+            {
+                result.Add(item);
+            }
+
+            return result;
+        }
+
+        public List<string> UsingAddNoCapacity(List<string> firstList, List<string> secondList)
+        {
+            var result = new List<string>();
 
             foreach (var item in firstList)
             {
@@ -31,7 +48,17 @@
 
         public List<string> UsingAddRange(List<string> firstList, List<string> secondList)
         {
-            var result = new List<string>(firstList.Count() + secondList.Count());
+            var result = new List<string>(firstList.Count + secondList.Count);
+
+            result.AddRange(firstList);
+            result.AddRange(secondList);
+
+            return result;
+        }
+
+        public List<string> UsingAddRangeNoCapacity(List<string> firstList, List<string> secondList)
+        {
+            var result = new List<string>();
 
             result.AddRange(firstList);
             result.AddRange(secondList);
@@ -41,19 +68,26 @@
 
         public List<string> UsingCopyTo(List<string> firstList, List<string> secondList)
         {
-            var combinedList = new string[firstList.Count() + secondList.Count()];
+            var combinedArray = new string[firstList.Count + secondList.Count];
 
-            firstList.CopyTo(combinedList);
-            secondList.CopyTo(combinedList, firstList.Count());
+            firstList.CopyTo(combinedArray, 0);
+            secondList.CopyTo(combinedArray, firstList.Count);
 
-            return combinedList.ToList();
+            return combinedArray.ToList();
         }
 
         public List<string> UsingSelectMany(List<string> firstList, List<string> secondList)
-        {  
+        {
             var combinedArray = new[] { firstList, secondList }.SelectMany(x => x);
 
             return combinedArray.ToList();
+        }
+
+        public List<string> UsingCollectionExpression(List<string> firstList, List<string> secondList)
+        {
+            List<string> result = [.. firstList, .. secondList];
+
+            return result;
         }
     }
 }
