@@ -63,4 +63,7 @@ public partial class GuidHelper
 
         return true;
     }
+
+    public static bool IsUsableGuid(string? input) =>
+        Guid.TryParse(input, out var id) && id != Guid.Empty;
 }

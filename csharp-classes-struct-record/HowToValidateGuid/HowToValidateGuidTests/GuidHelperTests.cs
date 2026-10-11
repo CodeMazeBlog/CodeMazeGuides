@@ -247,6 +247,42 @@ namespace HowToValidateGuidTests
 
         #endregion
 
+        #region IsUsableGuid
+
+        [TestMethod]
+        public void WhenIsUsableGuidCalled_ForANullString_ThenResultMustBeFalse()
+        {
+            string? input = null;
+
+            Validate(input, GuidHelper.IsUsableGuid, false);
+        }
+
+        [TestMethod]
+        public void WhenIsUsableGuidCalled_ForARandomString_ThenResultMustBeFalse()
+        {
+            var input = _fixture.Create<string>() + _fixture.Create<string>();
+
+            Validate(input, GuidHelper.IsUsableGuid, false);
+        }
+
+        [TestMethod]
+        public void WhenIsUsableGuidCalled_ForAnEmptyGuidString_ThenResultMustBeFalse()
+        {
+            var input = Guid.Empty.ToString();
+
+            Validate(input, GuidHelper.IsUsableGuid, false);
+        }
+
+        [TestMethod]
+        public void WhenIsUsableGuidCalled_ForAGuidString_ThenResultMustBeTrue()
+        {
+            var input = _fixture.Create<Guid>().ToString();
+
+            Validate(input, GuidHelper.IsUsableGuid, true);
+        }
+
+        #endregion
+
         private void Validate(string? input, Func<string?, bool> action, bool expected)
         {
             var result = action(input);
