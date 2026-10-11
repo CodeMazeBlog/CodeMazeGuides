@@ -2,9 +2,10 @@ using CsvHelper.Configuration.Attributes;
 
 namespace WritingCSV
 {
-    // The two class-level attributes take effect only through
-    // CsvConfiguration.FromAttributes<Employee>(); a CsvWriter built
-    // from a CultureInfo alone ignores them.
+    // The two class-level attributes take effect only through a
+    // configuration built with the class's attributes, for example
+    // CsvConfiguration.FromAttributes<Employee>(CultureInfo.InvariantCulture);
+    // a CsvWriter built from a CultureInfo alone ignores them.
     [Delimiter(";")]
     [HasHeaderRecord(false)]
     public class Employee
