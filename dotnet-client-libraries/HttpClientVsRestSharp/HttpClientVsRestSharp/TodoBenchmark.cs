@@ -1,21 +1,14 @@
 ﻿using BenchmarkDotNet.Attributes;
 using RestSharp;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
 
 namespace HttpClientVsRestSharp
 {
     [MemoryDiagnoser]
     public class TodoBenchmark
     {
-        private static readonly HttpClient httpClient = new HttpClient();
-        private static readonly RestClient restClient = new RestClient("https://jsonplaceholder.typicode.com/");
-
-        public TodoBenchmark()
-        {
-            httpClient.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
-        }
+        private static readonly HttpClient httpClient = new() { BaseAddress = new Uri("https://jsonplaceholder.typicode.com/") };
+        private static readonly RestClient restClient = new("https://jsonplaceholder.typicode.com/");
 
         [Benchmark]
         public async Task<List<Todo>?> GetAllTodos_HttpClient()
@@ -62,10 +55,7 @@ namespace HttpClientVsRestSharp
         {
             var todoForUpdate = GetTodoForUpdate();
 
-            var serializedTodo = JsonSerializer.Serialize(todoForUpdate);
-            var requestContent = new StringContent(serializedTodo, Encoding.UTF8, "application/json");
-
-            var response = await httpClient.PutAsync($"todos/{todoForUpdate.Id}", requestContent);
+            var response = await httpClient.PutAsJsonAsync($"todos/{todoForUpdate.Id}", todoForUpdate);
             var updatedTodo = await response.Content.ReadFromJsonAsync<Todo>();
 
             return updatedTodo;
