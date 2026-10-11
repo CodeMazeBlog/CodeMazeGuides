@@ -2,6 +2,7 @@ using ByteArrayToFile;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ByteArrayToFileTest
 {
@@ -50,6 +51,33 @@ namespace ByteArrayToFileTest
             ByteArrayToFileConverter.SaveByteArrayToFileWithStaticMethod(_dataInBytes, _filePath);
 
             Assert.AreEqual(Data, File.ReadAllText(_filePath));
+        }
+
+        [TestMethod]
+        public async Task GivenWriteAllBytesAsync_WhenSavingByteArray_ThenLoadCorrectData()
+        {
+            await ByteArrayToFileConverter.SaveByteArrayToFileAsync(_dataInBytes, _filePath);
+
+            Assert.AreEqual(Data, File.ReadAllText(_filePath));
+        }
+
+        [TestMethod]
+        public void GivenAppendAllBytes_WhenAppendingByteArray_ThenBytesAreAddedAtTheEnd()
+        {
+            ByteArrayToFileConverter.SaveByteArrayToFileWithStaticMethod([1, 2, 3], _filePath);
+            ByteArrayToFileConverter.AppendByteArrayToFile([4, 5], _filePath);
+
+            CollectionAssert.AreEqual(new byte[] { 1, 2, 3, 4, 5 }, File.ReadAllBytes(_filePath));
+        }
+
+        [TestMethod]
+        public void GivenRandomAccess_WhenWritingAtOffset_ThenBytesAreReplacedInPlace()
+        {
+            File.WriteAllText(_filePath, "AAAAAAAAAA");
+
+            ByteArrayToFileConverter.SaveByteArrayToFileAtOffset(Encoding.UTF8.GetBytes("BB"), _filePath, 4);
+
+            Assert.AreEqual("AAAABBAAAA", File.ReadAllText(_filePath));
         }
     }
 }
