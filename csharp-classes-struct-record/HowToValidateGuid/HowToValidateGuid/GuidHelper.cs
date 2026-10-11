@@ -7,18 +7,18 @@ public partial class GuidHelper
     [GeneratedRegex("^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$")]
     private static partial Regex GuidValidatorRegex();
 
-    public static bool ValidateWithRegex(string input)
+    public static bool ValidateWithRegex(string? input)
     {
-        return GuidValidatorRegex().IsMatch(input);
+        return input is not null && GuidValidatorRegex().IsMatch(input);
     }
 
-    public static bool ValidateWithGuidParse(string input)
+    public static bool ValidateWithGuidParse(string? input)
     {
         try
         {
-            Guid.Parse(input);
+            Guid.Parse(input!);
         }
-        catch (FormatException)
+        catch (Exception ex) when (ex is FormatException or ArgumentNullException)
         {
             return false;
         }
@@ -26,13 +26,13 @@ public partial class GuidHelper
         return true;
     }
 
-    public static bool ValidateWithGuidParseExact(string input, string format)
+    public static bool ValidateWithGuidParseExact(string? input, string format)
     {
         try
         {
-            Guid.ParseExact(input, format);
+            Guid.ParseExact(input!, format);
         }
-        catch (FormatException)
+        catch (Exception ex) when (ex is FormatException or ArgumentNullException)
         {
             return false;
         }
@@ -40,23 +40,23 @@ public partial class GuidHelper
         return true;
     }
 
-    public static bool ValidateWithGuidTryParse(string input)
+    public static bool ValidateWithGuidTryParse(string? input)
     {
         return Guid.TryParse(input, out Guid _);
     }
 
-    public static bool ValidateWithGuidTryParseExact(string input, string format)
+    public static bool ValidateWithGuidTryParseExact(string? input, string format)
     {
         return Guid.TryParseExact(input, format, out Guid _);
     }
 
-    public static bool ValidateWithNewGuid(string input)
+    public static bool ValidateWithNewGuid(string? input)
     {
         try
         {
-            var _ = new Guid(input);
+            var _ = new Guid(input!);
         }
-        catch (FormatException)
+        catch (Exception ex) when (ex is FormatException or ArgumentNullException)
         {
             return false;
         }
