@@ -4,7 +4,7 @@ public static class ByteArrayToFileConverter
 {
     public static void SaveByteArrayToFileWithBinaryWriter(byte[] data, string filePath)
     {
-        using var writer = new BinaryWriter(File.OpenWrite(filePath));
+        using var writer = new BinaryWriter(File.Create(filePath));
         writer.Write(data);
     }
     public static void SaveByteArrayToFileWithFileStream(byte[] data, string filePath)
