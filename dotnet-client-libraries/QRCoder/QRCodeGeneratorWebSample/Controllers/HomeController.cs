@@ -43,14 +43,14 @@ public class HomeController(QrCodesDb db) : Controller
 
     private string GenerateQRCodeString()
     {
-        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers", QRCodeGenerator.ECCLevel.Q);
+        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers :)", QRCodeGenerator.ECCLevel.Q);
 
         return GeneratePng(qrCodeData);
     }
 
     private string GenerateQRCodeSvg()
     {
-        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers", QRCodeGenerator.ECCLevel.Q);
+        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers :)", QRCodeGenerator.ECCLevel.Q);
         using var qrCode = new SvgQRCode(qrCodeData);
         var svg = qrCode.GetGraphic(20);
 
@@ -73,7 +73,7 @@ public class HomeController(QrCodesDb db) : Controller
 
     private string GenerateQRCodeBranded()
     {
-        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers", QRCodeGenerator.ECCLevel.Q);
+        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers :)", QRCodeGenerator.ECCLevel.Q);
 
         return GeneratePngBranded(qrCodeData);
     }
