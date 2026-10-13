@@ -4,7 +4,7 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
 using HowToValidateGuid;
 
-namespace HowToUseStringPool.Benchmark;
+namespace HowToValidateGuid.Benchmark;
 
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
