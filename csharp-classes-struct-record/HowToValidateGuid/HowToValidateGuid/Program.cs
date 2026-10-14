@@ -1,5 +1,5 @@
 ﻿using BenchmarkDotNet.Running;
-using HowToUseStringPool.Benchmark;
+using HowToValidateGuid.Benchmark;
 using HowToValidateGuid;
 
 BenchmarkRunner.Run<HowToValidateGuidBenchmark>();
