@@ -13,7 +13,7 @@ namespace WritingCSV
         [Index(0)]
         public int Id { get; set; }
         [Index(2)]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         [Index(1)]
         public bool IsLiving { get; set; }
         [Format("yyyy-MM-dd")]
