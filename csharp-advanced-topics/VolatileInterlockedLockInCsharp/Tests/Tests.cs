@@ -5,7 +5,7 @@ namespace Tests;
 public class Tests
 {
     [Fact]
-    public void GivenBalanceWithoutSync_WhenMultipleWithdrawals_ThenFinalBalanceIsIncorrect()
+    public void GivenBalanceWithoutSync_WhenMultipleWithdrawals_ThenFinalBalanceIsNotGuaranteed()
     {
         var account = new Account
         {
@@ -14,11 +14,12 @@ public class Tests
 
         AccountService.WithdrawBalance(account.Withdraw);
 
-        Assert.NotEqual(100000, account.Balance);
+        // A race is not deterministic: this demonstrates the race, it cannot prove it happened.
+        Assert.InRange(account.Balance, 0, 100000);
     }
 
     [Fact]
-    public void GivenBalanceVolatile_WhenMultipleWithdrawals_ThenFinalBalanceIsIncorrect()
+    public void GivenBalanceVolatile_WhenMultipleWithdrawals_ThenFinalBalanceIsNotGuaranteed()
     {
         var account = new Account
         {
@@ -27,7 +28,8 @@ public class Tests
 
         AccountService.WithdrawBalance(account.WithdrawVolatile);
 
-        Assert.NotEqual(1000, account.BalanceVolatile);
+        // A race is not deterministic: this demonstrates the race, it cannot prove it happened.
+        Assert.InRange(account.BalanceVolatile, 0, 100000);
     }
 
     [Fact]
@@ -54,5 +56,40 @@ public class Tests
         AccountService.WithdrawBalance(account.WithdrawInterlocked);
 
         Assert.Equal(0, account.BalanceInterlocked);
+    }
+
+    [Fact]
+    public void GivenCompareExchangeLoop_WhenConcurrentWithdrawals_ThenEveryWithdrawalSucceedsAndBalanceIsZero()
+    {
+        var account = new Account
+        {
+            BalanceInterlocked = 100000
+        };
+        var succeeded = 0;
+
+        Parallel.For(0, 1000, _ =>
+        {
+            if (account.WithdrawIfSufficient(100))
+                Interlocked.Increment(ref succeeded);
+        });
+
+        Assert.Equal(1000, succeeded);
+        Assert.Equal(0, account.BalanceInterlocked);
+        Assert.False(account.WithdrawIfSufficient(100));
+    }
+
+    [Fact]
+    public void GivenOneShotInitializer_WhenManyThreadsTryToStart_ThenExactlyOneWins()
+    {
+        var initializer = new OneShotInitializer();
+        var winners = 0;
+
+        Parallel.For(0, 1000, _ =>
+        {
+            if (initializer.TryStart())
+                Interlocked.Increment(ref winners);
+        });
+
+        Assert.Equal(1, winners);
     }
 }
