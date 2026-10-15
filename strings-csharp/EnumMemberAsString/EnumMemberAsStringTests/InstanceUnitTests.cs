@@ -7,9 +7,9 @@ public class InstanceUnitTests
     [Fact]
     public void WhenUsingGetName_ThenReturnsString()
     {
-        var usa = Enum.GetName(typeof(Country), bob.Country);
-        var india = Enum.GetName(typeof(Country), alice.Country);
-        var australia = Enum.GetName(typeof(Country), john.Country);
+        var usa = Enum.GetName<Country>(bob.Country);
+        var india = Enum.GetName<Country>(alice.Country);
+        var australia = Enum.GetName<Country>(john.Country);
 
         Assert.Equal("USA", usa);
         Assert.Equal("India", india);
