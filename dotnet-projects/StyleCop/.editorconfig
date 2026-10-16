@@ -1,0 +1,3 @@
+[*.cs]
+# SA1101: Prefix local calls with this (demoted to a suggestion, see the article)
+dotnet_diagnostic.SA1101.severity = suggestion
