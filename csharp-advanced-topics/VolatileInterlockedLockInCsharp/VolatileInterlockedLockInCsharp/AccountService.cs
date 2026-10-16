@@ -6,15 +6,16 @@ public static class AccountService
     {
         using var synch = new ManualResetEventSlim(false);
 
-        var tasks = new Task[1000];
+        var tasks = new Task[10];
 
         for (var i = 0; i < tasks.Length; i++)
         {
             tasks[i] = Task.Run(() =>
             {
                 synch.Wait();
-                Thread.Sleep(Random.Shared.Next(50, 300));
-                withdrawalAction(100);
+
+                for (var j = 0; j < 100; j++)
+                    withdrawalAction(100);
             });
         }
 

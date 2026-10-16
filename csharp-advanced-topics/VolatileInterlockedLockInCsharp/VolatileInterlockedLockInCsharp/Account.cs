@@ -6,7 +6,7 @@ public class Account
     private volatile int _balanceVolatile;
     private int _balanceLock;
     private int _balanceInterlocked;
-    private object _lock = new object();
+    private readonly Lock _lock = new();
 
     public int Balance
     {
@@ -65,5 +65,22 @@ public class Account
     public void WithdrawInterlocked(int amount)
     {
         Interlocked.Add(ref _balanceInterlocked, -amount);
+    }
+
+    public bool WithdrawIfSufficient(int amount)
+    {
+        var current = Volatile.Read(ref _balanceInterlocked);
+
+        while (current >= amount)
+        {
+            var actual = Interlocked.CompareExchange(ref _balanceInterlocked, current - amount, current);
+
+            if (actual == current)
+                return true;
+
+            current = actual;
+        }
+
+        return false;
     }
 }
