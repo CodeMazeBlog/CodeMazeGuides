@@ -3,69 +3,92 @@ namespace Tests
 {
     public class ArrayUnitTest
     {
-        private readonly int _expectedSize = 0;
-
         [Fact]
-        public void WhenCreateEmptyArrayExample1IsCalled_ThenReturnAnEmptyStringArray()
+        public void WhenCreateWithNewAndZeroLengthIsCalled_ThenReturnAnEmptyStringArray()
         {
-            var actual = ArrayFactory.CreateEmptyArrayExample1();
+            var actual = ArrayFactory.CreateWithNewAndZeroLength();
 
             Assert.NotNull(actual);
             Assert.IsType<string[]>(actual);
+            Assert.Empty(actual);
         }
 
         [Fact]
-        public void WhenCreateEmptyArrayExample2IsCalled_ThenReturnAnEmptyStringArray()
+        public void WhenCreateWithEmptyInitializerIsCalled_ThenReturnAnEmptyStringArray()
         {
-            var actual = ArrayFactory.CreateEmptyArrayExample2();
+            var actual = ArrayFactory.CreateWithEmptyInitializer();
 
             Assert.NotNull(actual);
             Assert.IsType<string[]>(actual);
+            Assert.Empty(actual);
         }
 
         [Fact]
-        public void WhenCreateEmptyArrayExample3IsCalled_ThenReturnAnEmptyStringArray()
+        public void WhenCreateWithImplicitInitializerIsCalled_ThenReturnAnEmptyStringArray()
         {
-            var actual = ArrayFactory.CreateEmptyArrayExample3();
+            var actual = ArrayFactory.CreateWithImplicitInitializer();
 
             Assert.NotNull(actual);
             Assert.IsType<string[]>(actual);
+            Assert.Empty(actual);
         }
 
         [Fact]
-        public void WhenCreateEmptyArrayExample4IsCalled_ThenReturnAnEmptyStringArray()
+        public void WhenCreateWithEnumerableEmptyIsCalled_ThenReturnAnEmptyStringArray()
         {
-            var actual = ArrayFactory.CreateEmptyArrayExample4();
+            var actual = ArrayFactory.CreateWithEnumerableEmpty();
 
             Assert.NotNull(actual);
             Assert.IsType<string[]>(actual);
+            Assert.Empty(actual);
         }
 
         [Fact]
-        public void WhenCreateEmptyArrayExample5IsCalled_ThenReturnAnEmptyStringArray()
+        public void WhenCreateWithEnumerableRepeatEmptyStringIsCalled_ThenReturnAnEmptyStringArray()
         {
-            var actual = ArrayFactory.CreateEmptyArrayExample5();
+            var actual = ArrayFactory.CreateWithEnumerableRepeatEmptyString();
 
             Assert.NotNull(actual);
             Assert.IsType<string[]>(actual);
+            Assert.Empty(actual);
         }
 
         [Fact]
-        public void WhenCreateEmptyArrayExample6IsCalled_ThenReturnAnEmptyStringArray()
+        public void WhenCreateWithEnumerableRepeatStringEmptyIsCalled_ThenReturnAnEmptyStringArray()
         {
-            var actual = ArrayFactory.CreateEmptyArrayExample6();
+            var actual = ArrayFactory.CreateWithEnumerableRepeatStringEmpty();
 
             Assert.NotNull(actual);
             Assert.IsType<string[]>(actual);
+            Assert.Empty(actual);
         }
 
         [Fact]
-        public void WhenCreateEmptyArrayExample7IsCalled_ThenReturnAnEmptyStringArray()
+        public void WhenCreateWithArrayEmptyIsCalled_ThenReturnAnEmptyStringArray()
         {
-            var actual = ArrayFactory.CreateEmptyArrayExample7();
+            var actual = ArrayFactory.CreateWithArrayEmpty();
 
             Assert.NotNull(actual);
             Assert.IsType<string[]>(actual);
+            Assert.Empty(actual);
         }
+
+        [Fact]
+        public void WhenCreateEmptyArrayWithCollectionExpressionIsCalled_ThenReturnAnEmptyStringArray()
+        {
+            var actual = ArrayFactory.CreateEmptyArrayWithCollectionExpression();
+
+            Assert.NotNull(actual);
+            Assert.IsType<string[]>(actual);
+            Assert.Empty(actual);
+        }
+
+        [Fact]
+        public void WhenCreateWithArrayEmptyIsCalledTwice_ThenBothCallsReturnTheSameInstance() =>
+            Assert.Same(ArrayFactory.CreateWithArrayEmpty(), ArrayFactory.CreateWithArrayEmpty());
+
+        [Fact]
+        public void WhenCreateWithCollectionExpressionIsCalled_ThenItReturnsTheArrayEmptyInstance() =>
+            Assert.Same(Array.Empty<string>(), ArrayFactory.CreateEmptyArrayWithCollectionExpression());
     }
 }
