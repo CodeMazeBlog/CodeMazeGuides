@@ -4,9 +4,9 @@ using SwashbuckleVsNSwag.Models.Customers;
 using SwashbuckleVsNSwag.Repositories.CustomerRepository;
 using SwashbuckleVsNSwag.Swashbuckle.Controllers;
 
-namespace SwashbuckleVsNSwag.NSwag.Tests
+namespace SwashbuckleVsNSwag.Swashbuckle.Tests
 {
-    public class CustomerConsollerTest
+    public class CustomerControllerTest
     {
         private Mock<ILogger<CustomerController>> _logger;
         private Mock<ICustomerRepository> _customerRepository;

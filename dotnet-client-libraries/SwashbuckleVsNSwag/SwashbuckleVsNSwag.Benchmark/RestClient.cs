@@ -8,12 +8,12 @@ namespace SwashbuckleVsNSwag.Benchmark
     {
         private static readonly HttpClient client = new HttpClient();
 
-        public async Task<Customer> GetCustomerAsync(string host)
+        public async Task<Customer?> GetCustomerAsync(string host)
         {
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var id = "8e282cc4-71bd-4ffd-b63c-05e91ba79ad1";
-            return await client.GetFromJsonAsync<Customer>($"{host}/customer/{id}");
+            return await client.GetFromJsonAsync<Customer>($"{host}customer?customerId={id}");
         }
 
         public async Task PostCustomerAsync(string host)
@@ -34,7 +34,8 @@ namespace SwashbuckleVsNSwag.Benchmark
                 }
             };
 
-            await client.PostAsJsonAsync($"{host}/customer", customer);
+            var response = await client.PostAsJsonAsync($"{host}customer", customer);
+            response.EnsureSuccessStatusCode();
         }
     }
 }

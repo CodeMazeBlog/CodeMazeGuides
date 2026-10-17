@@ -41,7 +41,7 @@ namespace SwashbuckleVsNSwag.Benchmark
         {
             for (var i = 0; i < _size; i++)
             {
-                 _restClient.GetCustomerAsync("https://localhost:7089/");
+                await _restClient.GetCustomerAsync("https://localhost:7089/");
             }
         }
     }

@@ -1,12 +1,12 @@
 using Microsoft.Extensions.Logging;
 using Moq;
 using SwashbuckleVsNSwag.Models.Products;
-using SwashbuckleVsNSwag.NSwag.Controllers;
 using SwashbuckleVsNSwag.Repositories.ProductRepository;
+using SwashbuckleVsNSwag.Swashbuckle.Controllers;
 
-namespace SwashbuckleVsNSwag.NSwag.Tests
+namespace SwashbuckleVsNSwag.Swashbuckle.Tests
 {
-    public class ProductConsollerTest
+    public class ProductControllerTest
     {
         private Mock<ILogger<ProductController>> _logger;
         private Mock<IProductRepository> _productRepository;

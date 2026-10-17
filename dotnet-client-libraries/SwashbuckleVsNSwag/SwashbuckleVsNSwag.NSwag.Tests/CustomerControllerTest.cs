@@ -6,7 +6,7 @@ using SwashbuckleVsNSwag.Repositories.CustomerRepository;
 
 namespace SwashbuckleVsNSwag.NSwag.Tests
 {
-    public class CustomerConsollerTest
+    public class CustomerControllerTest
     {
         private Mock<ILogger<CustomerController>> _logger;
         private Mock<ICustomerRepository> _customerRepository;

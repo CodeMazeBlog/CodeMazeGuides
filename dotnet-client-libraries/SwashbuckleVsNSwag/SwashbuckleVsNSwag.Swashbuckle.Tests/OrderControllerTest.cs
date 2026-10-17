@@ -1,12 +1,12 @@
 using Microsoft.Extensions.Logging;
 using Moq;
 using SwashbuckleVsNSwag.Models.Orders;
-using SwashbuckleVsNSwag.NSwag.Controllers;
 using SwashbuckleVsNSwag.Repositories.OrderRepository;
+using SwashbuckleVsNSwag.Swashbuckle.Controllers;
 
-namespace SwashbuckleVsNSwag.NSwag.Tests
+namespace SwashbuckleVsNSwag.Swashbuckle.Tests
 {
-    public class OrderConsollerTest
+    public class OrderControllerTest
     {
         private Mock<ILogger<OrderController>> _logger;
         private Mock<IOrderRepository> _orderRepository;
