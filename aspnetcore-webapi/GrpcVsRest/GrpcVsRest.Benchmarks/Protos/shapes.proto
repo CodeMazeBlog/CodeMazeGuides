@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcVsRest.Benchmarks";
+
+package shapes;
+
+message Reading {
+  int32 sensor_id = 1;
+  int64 timestamp = 2;
+  double temperature = 3;
+  double humidity = 4;
+  double pressure = 5;
+}
+
+message ReadingList {
+  repeated Reading readings = 1;
+}
+
+message Review {
+  int32 id = 1;
+  int32 product_id = 2;
+  string author = 3;
+  string text = 4;
+}
+
+message ReviewList {
+  repeated Review reviews = 1;
+}
