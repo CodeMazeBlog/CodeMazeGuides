@@ -19,3 +19,23 @@ Console.WriteLine($"Name: {person.Name}");
 
 person.ChangeName("Emily");
 Console.WriteLine($"Changed Name: {person.Name}");
+
+var playlist = new Playlist();
+playlist.Add("Bohemian Rhapsody");
+playlist.Add("Hotel California");
+Console.WriteLine($"Songs: {playlist.Count}");
+
+var tally = new Tally();
+tally.Count();
+tally.Count();
+Console.WriteLine($"Total: {tally.Total}");
+
+var counter = new Counter();
+counter.Increment();
+counter.Increment();
+Console.WriteLine(counter.Describe());
+
+var book = new Book { Title = "Dune" };
+Console.WriteLine($"Title: {book.Title}");
+
+//book.Title = "Emma"; //Throws compiler error

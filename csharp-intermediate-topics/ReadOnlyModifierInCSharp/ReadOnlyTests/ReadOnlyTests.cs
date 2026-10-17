@@ -20,4 +20,34 @@ public class ReadOnlyTests
 
         Assert.Equal(expectedName, person.Name);
     }
+
+    [Fact]
+    public void GivenReadonlyListField_WhenAddingSongs_ThenListChanges()
+    {
+        var playlist = new Playlist();
+        playlist.Add("Bohemian Rhapsody");
+        playlist.Add("Hotel California");
+
+        Assert.Equal(2, playlist.Count);
+    }
+
+    [Fact]
+    public void GivenReadonlyStructField_WhenCountingTwice_ThenTotalStaysZero()
+    {
+        var tally = new Tally();
+        tally.Count();
+        tally.Count();
+
+        Assert.Equal(0, tally.Total);
+    }
+
+    [Fact]
+    public void GivenCounterVariable_WhenIncrementingTwice_ThenValueIsTwo()
+    {
+        var counter = new Counter();
+        counter.Increment();
+        counter.Increment();
+
+        Assert.Equal("Counted 2 times", counter.Describe());
+    }
 }
