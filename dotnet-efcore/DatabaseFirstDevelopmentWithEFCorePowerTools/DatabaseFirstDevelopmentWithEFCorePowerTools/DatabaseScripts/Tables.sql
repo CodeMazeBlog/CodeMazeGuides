@@ -1,3 +1,6 @@
+CREATE DATABASE DatabaseFirstDevelopmentUsingEFCorePowerToolsDB
+GO
+
 USE DatabaseFirstDevelopmentUsingEFCorePowerToolsDB
 
 CREATE TABLE Authors (
@@ -26,8 +29,10 @@ CREATE TABLE Books_Categories (
     FOREIGN KEY (BookID) REFERENCES Books(ID),
     FOREIGN KEY (CategoryID) REFERENCES Categories(ID)
 );
+GO
 
-CREATE SCHEMA dbo2
+CREATE SCHEMA dbo2;
+GO
 
 CREATE TABLE dbo2.Movies (
     ID INT IDENTITY(1,1) PRIMARY KEY,
