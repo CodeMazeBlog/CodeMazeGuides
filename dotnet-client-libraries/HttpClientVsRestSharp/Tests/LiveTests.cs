@@ -2,6 +2,7 @@ using HttpClientVsRestSharp;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -11,7 +12,7 @@ using Xunit;
 
 namespace Tests
 {
-    public class Tests
+    public class LiveTests
     {
 
         [Fact]
@@ -143,6 +144,97 @@ namespace Tests
 
             //Assert
             Assert.True(response.IsSuccessful);
+        }
+
+        [Fact]
+        public async Task GivenHttpClient_WhenGettingTodosWithGetFromJsonAsync_ThenReturnsListOfTodos()
+        {
+            //Arrange
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
+
+            //Act
+            var todos = await httpClient.GetFromJsonAsync<List<Todo>>("todos");
+
+            //Assert
+            Assert.NotNull(todos);
+            Assert.NotEmpty(todos);
+        }
+
+        [Fact]
+        public async Task GivenRestSharp_WhenExecutingGetForTodos_ThenResponseIsSuccessful()
+        {
+            //Arrange
+            var restClient = new RestClient("https://jsonplaceholder.typicode.com/");
+            var request = new RestRequest("todos");
+
+            //Act
+            var response = await restClient.ExecuteGetAsync<List<Todo>>(request);
+
+            //Assert
+            Assert.True(response.IsSuccessful);
+            Assert.NotNull(response.Data);
+            Assert.NotEmpty(response.Data);
+        }
+
+        [Fact]
+        public async Task GivenHttpClient_WhenPathDoesNotExist_ThenEnsureSuccessStatusCodeThrows()
+        {
+            //Arrange
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
+
+            //Act
+            var response = await httpClient.GetAsync("no-such-path");
+
+            //Assert
+            Assert.False(response.IsSuccessStatusCode);
+            Assert.Throws<HttpRequestException>(() => response.EnsureSuccessStatusCode());
+        }
+
+        [Fact]
+        public async Task GivenRestSharp_WhenPathDoesNotExist_ThenResponseIsNotSuccessfulAndNothingThrows()
+        {
+            //Arrange
+            var restClient = new RestClient("https://jsonplaceholder.typicode.com/");
+            var request = new RestRequest("no-such-path");
+
+            //Act
+            var response = await restClient.ExecuteGetAsync<Todo>(request);
+
+            //Assert
+            Assert.False(response.IsSuccessful);
+            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+        }
+
+        [Fact]
+        public void GivenHttpClient_WhenSendingSynchronously_ThenResponseIsSuccessStatusCode()
+        {
+            //Arrange
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
+            var request = new HttpRequestMessage(HttpMethod.Get, "todos");
+
+            //Act
+            var response = httpClient.Send(request);
+
+            //Assert
+            Assert.True(response.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public void GivenRestSharp_WhenGettingTodosSynchronously_ThenReturnsListOfTodos()
+        {
+            //Arrange
+            var restClient = new RestClient("https://jsonplaceholder.typicode.com/");
+            var request = new RestRequest("todos");
+
+            //Act
+            var todos = restClient.Get<List<Todo>>(request);
+
+            //Assert
+            Assert.NotNull(todos);
+            Assert.NotEmpty(todos);
         }
 
         private static Todo GetTodoForCreation()

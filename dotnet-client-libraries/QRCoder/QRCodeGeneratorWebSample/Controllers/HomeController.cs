@@ -14,9 +14,11 @@ public class HomeController(QrCodesDb db) : Controller
         var qrCodes = new Dictionary<string, string>
         {
             { "Basic String", GenerateQRCodeString() },
+            { "SVG", GenerateQRCodeSvg() },
             { "URL", GenerateQRCodeURL() },
             { "Phone Number", GenerateQRCodePhoneNumber() },
-            { "Custom", GenerateQRCodeCustom() }
+            { "Custom", GenerateQRCodeCustom() },
+            { "Branded", GenerateQRCodeBranded() }
         };
 
         var model = new HomeModel(qrCodes);
@@ -25,7 +27,7 @@ public class HomeController(QrCodesDb db) : Controller
     }
 
     private string GenerateQRCodeCustom()
-    {        
+    {
         const string key = "Custom";
 
         var raw = db.Get(key);
@@ -41,9 +43,18 @@ public class HomeController(QrCodesDb db) : Controller
 
     private string GenerateQRCodeString()
     {
-        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers", QRCodeGenerator.ECCLevel.Q);
+        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers :)", QRCodeGenerator.ECCLevel.Q);
 
         return GeneratePng(qrCodeData);
+    }
+
+    private string GenerateQRCodeSvg()
+    {
+        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers :)", QRCodeGenerator.ECCLevel.Q);
+        using var qrCode = new SvgQRCode(qrCodeData);
+        var svg = qrCode.GetGraphic(20);
+
+        return $"data:image/svg+xml,{Uri.EscapeDataString(svg)}";
     }
 
     private string GenerateQRCodeURL()
@@ -60,7 +71,22 @@ public class HomeController(QrCodesDb db) : Controller
         return GeneratePng(qrCodeData);
     }
 
+    private string GenerateQRCodeBranded()
+    {
+        var qrCodeData = qrGenerator.CreateQrCode("Hello CodeMaze readers :)", QRCodeGenerator.ECCLevel.Q);
+
+        return GeneratePngBranded(qrCodeData);
+    }
+
     private static string GeneratePng(QRCodeData data)
+    {
+        using var qrCode = new PngByteQRCode(data);
+        var qrCodeImage = qrCode.GetGraphic(20);
+
+        return $"data:image/png;base64,{Convert.ToBase64String(qrCodeImage)}";
+    }
+
+    private static string GeneratePngBranded(QRCodeData data)
     {
         using var qrCode = new PngByteQRCode(data);
         var qrCodeImage = qrCode.GetGraphic(20, [255, 0, 0], [0, 0, 139]);

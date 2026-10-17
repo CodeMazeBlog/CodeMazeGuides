@@ -27,5 +27,31 @@ internal class Program
         Console.WriteLine("Withdrawal with the 'Interlocked' class");
         AccountService.WithdrawBalance(account.WithdrawInterlocked);
         Console.WriteLine($"Final balance: {account.BalanceInterlocked}");
+
+        var initializer = new OneShotInitializer();
+        var winners = 0;
+
+        Parallel.For(0, 1000, _ =>
+        {
+            if (initializer.TryStart())
+                Interlocked.Increment(ref winners);
+        });
+
+        Console.WriteLine($"Calls that won the initialization: {winners}");
+
+        var guardedAccount = new Account
+        {
+            BalanceInterlocked = 100000
+        };
+        var approved = 0;
+
+        Parallel.For(0, 1100, _ =>
+        {
+            if (guardedAccount.WithdrawIfSufficient(100))
+                Interlocked.Increment(ref approved);
+        });
+
+        Console.WriteLine($"Approved withdrawals: {approved} of 1100");
+        Console.WriteLine($"Final balance: {guardedAccount.BalanceInterlocked}");
     }
 }

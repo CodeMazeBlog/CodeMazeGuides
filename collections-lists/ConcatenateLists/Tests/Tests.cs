@@ -15,7 +15,16 @@ namespace Tests
         {
             var result = _concatenator.UsingAdd(_firstList, _secondList);
 
-            Assert.Equal(_expectedList.Count(), result.Count);
+            Assert.Equal(_expectedList.Count, result.Count);
+            Assert.Equal(_expectedList, result);
+        }
+
+        [Fact]
+        public void GivenTwoLists_WhenUsingAddNoCapacityMethod_ThenReturnANewConcatenatedList()
+        {
+            var result = _concatenator.UsingAddNoCapacity(_firstList, _secondList);
+
+            Assert.Equal(_expectedList.Count, result.Count);
             Assert.Equal(_expectedList, result);
         }
 
@@ -24,7 +33,7 @@ namespace Tests
         {
             var result = _concatenator.UsingEnumerableConcat(_firstList, _secondList);
 
-            Assert.Equal(_expectedList.Count(), result.Count);
+            Assert.Equal(_expectedList.Count, result.Count);
             Assert.Equal(_expectedList, result);
         }
 
@@ -33,7 +42,7 @@ namespace Tests
         {
             var result = _concatenator.UsingEnumerableUnion(_firstList, _secondList);
 
-            Assert.Equal(_expectedList.Count(), result.Count);
+            Assert.Equal(_expectedList.Count, result.Count);
             Assert.Equal(_expectedList, result);
         }
 
@@ -42,7 +51,16 @@ namespace Tests
         {
             var result = _concatenator.UsingAddRange(_firstList, _secondList);
 
-            Assert.Equal(_expectedList.Count(), result.Count);
+            Assert.Equal(_expectedList.Count, result.Count);
+            Assert.Equal(_expectedList, result);
+        }
+
+        [Fact]
+        public void GivenTwoLists_WhenUsingAddRangeNoCapacityMethod_ThenReturnANewConcatenatedList()
+        {
+            var result = _concatenator.UsingAddRangeNoCapacity(_firstList, _secondList);
+
+            Assert.Equal(_expectedList.Count, result.Count);
             Assert.Equal(_expectedList, result);
         }
 
@@ -51,7 +69,7 @@ namespace Tests
         {
             var result = _concatenator.UsingCopyTo(_firstList, _secondList);
 
-            Assert.Equal(_expectedList.Count(), result.Count);
+            Assert.Equal(_expectedList.Count, result.Count);
             Assert.Equal(_expectedList, result);
         }
 
@@ -60,8 +78,25 @@ namespace Tests
         {
             var result = _concatenator.UsingSelectMany(_firstList, _secondList);
 
-            Assert.Equal(_expectedList.Count(), result.Count);
+            Assert.Equal(_expectedList.Count, result.Count);
             Assert.Equal(_expectedList, result);
+        }
+
+        [Fact]
+        public void GivenTwoLists_WhenUsingCollectionExpression_ThenReturnANewConcatenatedList()
+        {
+            var result = _concatenator.UsingCollectionExpression(_firstList, _secondList);
+
+            Assert.Equal(_expectedList.Count, result.Count);
+            Assert.Equal(_expectedList, result);
+        }
+
+        [Fact]
+        public void GivenListsWithDuplicates_WhenUsingEnumerableUnionMethod_ThenReturnEachValueOnce()
+        {
+            var result = _concatenator.UsingEnumerableUnion(new List<string> { "a", "a" }, new List<string> { "a" });
+
+            Assert.Equal(new List<string> { "a" }, result);
         }
     }
 }
