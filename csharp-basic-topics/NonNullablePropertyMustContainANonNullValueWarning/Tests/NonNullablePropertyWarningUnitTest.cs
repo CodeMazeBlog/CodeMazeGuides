@@ -1,6 +1,7 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NonNullablePropertyWarning;
+using HelperAddress = NonNullablePropertyWarning.HelperMethod.Address;
 
 namespace Tests
 {
@@ -16,8 +17,8 @@ namespace Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void WhenDereferencingFirstName_ThenExceptionThrown() => _ = _address?.FirstName.Length;
+        public void WhenDereferencingFirstName_ThenExceptionThrown() =>
+            Assert.ThrowsExactly<NullReferenceException>(() => _ = _address!.FirstName.Length);
 
         [TestMethod]
         public void WhenInstantiatingAddress_ThenFirstNameNull() => Assert.IsNull(_address?.FirstName);
@@ -36,5 +37,19 @@ namespace Tests
 
         [TestMethod]
         public void WhenInstantiatingAddress_ThenPostalCodeNull() => Assert.IsNull(_address?.PostalCode);
+
+        [TestMethod]
+        public void WhenInstantiatingAddress_ThenRegionNull() => Assert.IsNull(_address?.Region);
+
+        [TestMethod]
+        public void WhenInstantiatingAddress_ThenTownEmpty() => Assert.AreEqual(string.Empty, _address?.Town);
+
+        [TestMethod]
+        public void WhenInstantiatingHelperAddressWithoutCity_ThenCityDefault() =>
+            Assert.AreEqual("Default City", new HelperAddress().City);
+
+        [TestMethod]
+        public void WhenInstantiatingHelperAddressWithCity_ThenCitySet() =>
+            Assert.AreEqual("Belgrade", new HelperAddress("Belgrade").City);
     }
 }

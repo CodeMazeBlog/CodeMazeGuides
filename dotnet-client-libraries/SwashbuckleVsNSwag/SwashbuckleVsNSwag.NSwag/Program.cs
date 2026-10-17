@@ -9,11 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 //NSwag configuration
-builder.Services.AddOpenApiDocument(c => 
-{ 
-    c.DocumentName = "v1"; 
-    c.Title = "API using NSwag"; 
-    c.Version = "v1"; 
+builder.Services.AddOpenApiDocument(c =>
+{
+    c.DocumentName = "v1";
+    c.Title = "API using NSwag";
+    c.Version = "v1";
 });
 
 builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
@@ -26,8 +26,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     //Enable Swagger
-    app.UseOpenApi(p => p.Path = "/swagger/v1/swagger.yaml"); 
-    app.UseReDoc(p => p.DocumentPath = "/swagger/v1/swagger.yaml");
+    app.UseOpenApi(p => p.Path = "/swagger/v1/swagger.yaml");
+    app.UseSwaggerUi(p => p.DocumentPath = "/swagger/v1/swagger.yaml");
+    app.UseReDoc(p =>
+    {
+        p.Path = "/redoc";
+        p.DocumentPath = "/swagger/v1/swagger.yaml";
+    });
 }
 
 app.UseHttpsRedirection();

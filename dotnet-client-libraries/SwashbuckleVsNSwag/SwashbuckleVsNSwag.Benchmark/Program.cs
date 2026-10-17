@@ -7,7 +7,6 @@ namespace SwashbuckleVsNSwag.Benchmark
         static void Main(string[] args)
         {
             BenchmarkRunner.Run<SwashbuckleVsNSwagBenchmark>();
-            Console.ReadKey();
         }
     }
 }

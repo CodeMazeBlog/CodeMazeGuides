@@ -9,14 +9,30 @@ namespace BenchmarkRunner
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     public class ConcatenatorBenchmark
     {
-        private readonly List<string> _firstList = Enumerable.Repeat("Code", 1_000_000).ToList();
-        private readonly List<string> _secondList = Enumerable.Repeat("Maze", 1_000_000).ToList();
+        [Params(50_000, 1_000_000)]
+        public int Size;
+
+        private List<string> _firstList = [];
+        private List<string> _secondList = [];
         private readonly Concatenator _concatenator = new();
-               
+
+        [GlobalSetup]
+        public void Setup()
+        {
+            _firstList = Enumerable.Range(0, Size).Select(i => $"Code{i}").ToList();
+            _secondList = Enumerable.Range(0, Size).Select(i => $"Maze{i}").ToList();
+        }
+
         [Benchmark]
         public void UsingAdd()
         {
-             _concatenator.UsingAdd(_firstList, _secondList);
+            _concatenator.UsingAdd(_firstList, _secondList);
+        }
+
+        [Benchmark]
+        public void UsingAddNoCapacity()
+        {
+            _concatenator.UsingAddNoCapacity(_firstList, _secondList);
         }
 
         [Benchmark]
@@ -38,6 +54,12 @@ namespace BenchmarkRunner
         }
 
         [Benchmark]
+        public void UsingAddRangeNoCapacity()
+        {
+            _concatenator.UsingAddRangeNoCapacity(_firstList, _secondList);
+        }
+
+        [Benchmark]
         public void UsingCopyTo()
         {
             _concatenator.UsingCopyTo(_firstList, _secondList);
@@ -47,6 +69,12 @@ namespace BenchmarkRunner
         public void UsingSelectMany()
         {
             _concatenator.UsingSelectMany(_firstList, _secondList);
+        }
+
+        [Benchmark]
+        public void UsingCollectionExpression()
+        {
+            _concatenator.UsingCollectionExpression(_firstList, _secondList);
         }
     }
 }

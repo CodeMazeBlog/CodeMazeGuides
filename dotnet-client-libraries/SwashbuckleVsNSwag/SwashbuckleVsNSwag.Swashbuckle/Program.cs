@@ -1,4 +1,4 @@
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using SwashbuckleVsNSwag.Repositories.CustomerRepository;
 using SwashbuckleVsNSwag.Repositories.OrderRepository;
 using SwashbuckleVsNSwag.Repositories.ProductRepository;
