@@ -1,4 +1,5 @@
-﻿using BogusNugetPackage;
+﻿using Bogus;
+using BogusNugetPackage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,8 @@ public class Tests
 
         var employee = DataGenerator.Employees.First();
 
-        Assert.StartsWith(employee.FirstName, employee.Email);
+        // Bogus slugifies the name for the email, so D'angelo becomes Dangelo
+        Assert.StartsWith(Utils.Slugify(employee.FirstName), employee.Email);
     }
 
     [Fact]
