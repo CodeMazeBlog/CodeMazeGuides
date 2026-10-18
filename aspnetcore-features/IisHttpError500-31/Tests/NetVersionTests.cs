@@ -19,7 +19,7 @@ namespace Tests
         }
 
         [Fact]
-        public async void WhenGetIndexPageIsCalled_Then200StatusCodeIsReturned()
+        public async Task WhenGetIndexPageIsCalled_Then200StatusCodeIsReturned()
         {
             //Given
             var client = _factory.CreateClient();
