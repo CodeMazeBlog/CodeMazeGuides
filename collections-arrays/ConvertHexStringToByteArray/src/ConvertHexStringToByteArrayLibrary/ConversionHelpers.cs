@@ -20,7 +20,7 @@ public static class ConversionHelpers
 
         var dest = new byte[input.Length >> 1];
         for (int i = 0, j = 0; j < dest.Length; j++)
-            dest[j] = (byte)((PerformModularArithmeticCalculation(input[i++]) << 4) +
+            dest[j] = (byte) ((PerformModularArithmeticCalculation(input[i++]) << 4) +
                 PerformModularArithmeticCalculation(input[i++]));
 
         return dest;
@@ -136,7 +136,7 @@ public static class ConversionHelpers
                 byte lowValue;
 
                 if (*s > 102 || (*d = hiRef[*s++]) == 255 ||
-                    *s > 102 || (lowValue = lowRef[*s++]) == 255 )
+                    *s > 102 || (lowValue = lowRef[*s++]) == 255)
                     throw new ArgumentException("Input contains a non-hex character", nameof(input));
 
                 *d++ += lowValue;
