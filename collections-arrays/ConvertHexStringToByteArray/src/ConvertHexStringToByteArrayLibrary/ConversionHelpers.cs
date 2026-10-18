@@ -53,7 +53,8 @@ public static class ConversionHelpers
         {
             var destPtr = d;
             var srcPtr = s;
-            while (*srcPtr != 0)
+            var srcEnd = s + input.Length;
+            while (srcPtr < srcEnd)
             {
                 var result = (byte) (ComputeNibbleFromHexChar(*srcPtr++) << 4);
                 result |= ComputeNibbleFromHexChar(*srcPtr++);
@@ -89,7 +90,8 @@ public static class ConversionHelpers
         {
             var sPtr = &srcPtr[0];
             var dPtr = &destPtr[0];
-            while (*sPtr != 0)
+            var sEnd = sPtr + input.Length;
+            while (sPtr < sEnd)
             {
                 var hi = PerformBitManipulation(*sPtr++);
                 var lo = PerformBitManipulation(*sPtr++) & 0x0F;
@@ -127,14 +129,15 @@ public static class ConversionHelpers
         {
             var s = &inputRef[0];
             var d = destRef;
+            var end = s + input.Length;
 
-            while (*s != 0)
+            while (s < end)
             {
                 byte lowValue;
 
                 if (*s > 102 || (*d = hiRef[*s++]) == 255 ||
                     *s > 102 || (lowValue = lowRef[*s++]) == 255 )
-                    throw new ArgumentException($"Invalid character found in string: '{*s}'", nameof(input));
+                    throw new ArgumentException("Input contains a non-hex character", nameof(input));
 
                 *d++ += lowValue;
             }
