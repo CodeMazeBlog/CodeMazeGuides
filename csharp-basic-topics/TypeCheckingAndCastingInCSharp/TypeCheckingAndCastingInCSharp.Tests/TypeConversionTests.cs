@@ -42,6 +42,17 @@ namespace TypeCheckingAndCastingInCSharp.Tests
         }
 
         [Fact]
+        public void WhenCastingAnOverflowingValue_ThenUncheckedWrapsAndCheckedThrows()
+        {
+            // arrange
+            long tooBig = long.MaxValue;
+
+            // act & assert
+            Assert.Equal(-1, unchecked((int)tooBig));
+            Assert.Throws<OverflowException>(() => checked((int)tooBig));
+        }
+
+        [Fact]
         public void WhenAssigningBaseToDerivedType_ThenUseCastExpressionForExplicitConversion()
         {
             // act
