@@ -9,35 +9,58 @@ public class Program
     {
         var host = BuildHost();
 
-        var httpClientFactory = host.Services.GetService<IHttpClientFactory>();
+        var httpClientFactory = host.Services.GetRequiredService<IHttpClientFactory>();
 
         GetDefaultAgentOnHttpClient(httpClientFactory);
+
+        SetUserAgentOnHttpRequestMessage("CodeMazeDesktopApp/1.1");
 
         SetUserAgentOnHttpRequestMessage("CodeMazeDesktopApp", "1.1");
     }
 
     public static IHost BuildHost()
     {
-        var builder = new HostBuilder()
-            .ConfigureServices(services =>
-            {
-                services.AddHttpClient("CodeMazeHttpClient", client =>
-                {
-                    var productHeaderValue = new ProductHeaderValue(name: "CodeMazeDesktopApp", version: "1.1");
-                    var productInfoHeaderValue = new ProductInfoHeaderValue(productHeaderValue);
+        var builder = Host.CreateApplicationBuilder();
 
-                    client.DefaultRequestHeaders.UserAgent.Add(productInfoHeaderValue);
-                });
+        builder.Services.AddHttpClient("CodeMazeHttpClient", client =>
+        {
+            var productHeaderValue = new ProductHeaderValue(name: "CodeMazeDesktopApp", version: "1.1");
+            var productInfoHeaderValue = new ProductInfoHeaderValue(productHeaderValue);
+
+            client.DefaultRequestHeaders.UserAgent.Add(productInfoHeaderValue);
+        });
+
+        return builder.Build();
+    }
+
+    public static IHost BuildHostWithUserAgentForAllClients()
+    {
+        var builder = Host.CreateApplicationBuilder();
+
+        builder.Services.ConfigureHttpClientDefaults(httpClientBuilder =>
+        {
+            httpClientBuilder.ConfigureHttpClient(client =>
+            {
+                client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("CodeMazeDesktopApp", "1.1"));
             });
+        });
 
         return builder.Build();
     }
 
     public static string GetDefaultAgentOnHttpClient(IHttpClientFactory httpClientFactory)
-    { 
+    {
         var httpClient = httpClientFactory.CreateClient("CodeMazeHttpClient");
 
         return httpClient.DefaultRequestHeaders.UserAgent.ToString();
+    }
+
+    public static string SetUserAgentOnHttpRequestMessage(string userAgentValue)
+    {
+        var httpRequestMessage = new HttpRequestMessage();
+        httpRequestMessage.Headers.Add("User-Agent", userAgentValue);
+
+        return httpRequestMessage.Headers.UserAgent.ToString();
     }
 
     public static string SetUserAgentOnHttpRequestMessage(string productName, string productVersion)
