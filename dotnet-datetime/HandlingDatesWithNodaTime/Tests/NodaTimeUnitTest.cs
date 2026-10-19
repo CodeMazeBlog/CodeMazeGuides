@@ -27,14 +27,15 @@ public class NodaTimeUnitTest
     }
 
     [Fact]
-    public void WhenFromUnixTimeTicksMethodIsCalled_ThenReturnInstantFromUnixTicks()
+    public void WhenFromUnixTimeSecondsMethodIsCalled_ThenReturnInstantFromUnixSeconds()
     {
         var epochTime = 1693153840;
 
-        var instant = Instant.FromUnixTimeTicks(epochTime);
-        var unixTimeTicks = instant.ToUnixTimeTicks();
+        var instant = Instant.FromUnixTimeSeconds(epochTime);
+        var unixTimeSeconds = instant.ToUnixTimeSeconds();
 
-        Assert.Equal(epochTime, unixTimeTicks);
+        Assert.Equal(epochTime, unixTimeSeconds);
+        Assert.Equal(Instant.FromUtc(2023, 8, 27, 16, 30, 40), instant);
     }
 
     [Fact]
@@ -109,14 +110,14 @@ public class NodaTimeUnitTest
     }
 
     [Fact]
-    public void WhenLocalDateTimezoneAndDateTimezoneAreCombined_ThenReturnZoneDateTime()
+    public void WhenLocalDateTimezoneAndDateTimezoneAreCombined_ThenReturnZonedDateTime()
     {
         var localDateTime = new LocalDateTime(2023, 8, 31, 15, 30);
         var timezone = DateTimeZoneProviders.Tzdb["Africa/Cairo"];
 
-        var zoneDateTime = localDateTime.InZoneLeniently(timezone);
+        var zonedDateTime = localDateTime.InZoneLeniently(timezone);
 
-        Assert.Equal("Africa/Cairo", zoneDateTime.Zone.Id);
+        Assert.Equal("Africa/Cairo", zonedDateTime.Zone.Id);
     }
 
     [Fact]
@@ -127,7 +128,7 @@ public class NodaTimeUnitTest
 
         var sumOfDurations = durationInDays + durationInHours;
 
-        Assert.Equal( 1.125, sumOfDurations.TotalDays);
+        Assert.Equal(1.125, sumOfDurations.TotalDays);
     }
 
     [Fact]
@@ -224,5 +225,49 @@ public class NodaTimeUnitTest
         Assert.NotNull(newYorkTimeZone);
         Assert.Equal(timeZoneId, newYorkTimeZone.Id);
     }
-}
 
+    [Fact]
+    public void WhenDurationIsAddedToZonedDateTime_ThenElapsedTimeCrossesTheDstGap()
+    {
+        var newYork = DateTimeZoneProviders.Tzdb["America/New_York"];
+        var start = new LocalDateTime(2026, 3, 8, 1, 30).InZoneStrictly(newYork);
+
+        var later = start + Duration.FromHours(1);
+
+        Assert.Equal(new LocalDateTime(2026, 3, 8, 3, 30), later.LocalDateTime);
+        Assert.Equal(Duration.FromHours(1), later.ToInstant() - start.ToInstant());
+    }
+
+    [Fact]
+    public void WhenPeriodIsAddedToLocalDateTime_ThenOnlyTheWallClockMoves()
+    {
+        var newYork = DateTimeZoneProviders.Tzdb["America/New_York"];
+        var start = new LocalDateTime(2026, 3, 8, 1, 30);
+
+        var later = start + Period.FromHours(1);
+
+        Assert.Equal(new LocalDateTime(2026, 3, 8, 2, 30), later);
+        Assert.Throws<SkippedTimeException>(() => later.InZoneStrictly(newYork));
+    }
+
+    [Fact]
+    public void WhenDurationIsAddedAsNanoseconds_ThenLocalDateTimeMovesByThatAmount()
+    {
+        var start = new LocalDateTime(2026, 3, 8, 1, 30);
+        var duration = Duration.FromMinutes(90);
+
+        var later = start.PlusNanoseconds(duration.ToInt64Nanoseconds());
+
+        Assert.Equal(new LocalDateTime(2026, 3, 8, 3, 0), later);
+    }
+
+    [Fact]
+    public void WhenTimeProviderIsConvertedToClock_ThenReturnCurrentInstant()
+    {
+        IClock clock = TimeProvider.System.ToClock();
+
+        var instant = clock.GetCurrentInstant();
+
+        Assert.True(instant != default);
+    }
+}
