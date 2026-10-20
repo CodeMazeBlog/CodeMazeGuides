@@ -1,4 +1,5 @@
 USE DatabaseFirstDevelopmentUsingEFCorePowerToolsDB
+GO
 
 CREATE VIEW BookDetails AS
 SELECT
