@@ -1,23 +1,27 @@
-using System.Text;
+char[] charArray = ['c', 'o', 'd', 'e', ' ', 'm', 'a', 'z', 'e'];
 
-namespace ConvertCharArray2String
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            char[] charArray = { 'c', 'o', 'd', 'e', ' ', 'm', 'a', 'z', 'e' };
-            
-            var convertedToString = new string(charArray); 
-            Console.WriteLine(convertedToString);
+var convertedToString = new string(charArray);
 
-            var joinedToString = string.Join("", charArray); 
-            Console.WriteLine(joinedToString);
+Console.WriteLine(convertedToString);
 
-            var concatedToString = string.Concat(charArray); 
-            Console.WriteLine(concatedToString);
+var partOfArray = new string(charArray, 0, 4);
 
-            Console.ReadLine();
-        }
-    }
-}
+Console.WriteLine(partOfArray);
+
+var joinedToString = string.Join("", charArray);
+
+Console.WriteLine(joinedToString);
+
+var withDashes = string.Join("-", charArray);
+
+Console.WriteLine(withDashes);
+
+var concatedToString = string.Concat(charArray);
+
+Console.WriteLine(concatedToString);
+
+char letter = 'c';
+
+var fromChar = letter.ToString();
+
+Console.WriteLine(fromChar);

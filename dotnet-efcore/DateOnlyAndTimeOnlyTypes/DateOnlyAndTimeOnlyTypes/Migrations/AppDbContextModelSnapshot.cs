@@ -17,7 +17,7 @@ namespace DateOnlyAndTimeOnlyTypes.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "10.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -30,17 +30,17 @@ namespace DateOnlyAndTimeOnlyTypes.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateOnly>("BirthDate")
                         .HasColumnType("date");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeSpan>("WorkEndTime")
+                    b.Property<TimeOnly>("WorkEndTime")
                         .HasColumnType("time");
 
-                    b.Property<TimeSpan>("WorkStartTime")
+                    b.Property<TimeOnly>("WorkStartTime")
                         .HasColumnType("time");
 
                     b.HasKey("Id");
