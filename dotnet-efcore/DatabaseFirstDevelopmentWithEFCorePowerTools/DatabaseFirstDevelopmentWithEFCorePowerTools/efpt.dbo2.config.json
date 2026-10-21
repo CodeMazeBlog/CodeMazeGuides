@@ -1,5 +1,5 @@
 ﻿{
-   "CodeGenerationMode": 3,
+   "CodeGenerationMode": 6,
    "ContextClassName": "DBO2Context",
    "ContextNamespace": "Data",
    "DefaultDacpacSchema": null,
