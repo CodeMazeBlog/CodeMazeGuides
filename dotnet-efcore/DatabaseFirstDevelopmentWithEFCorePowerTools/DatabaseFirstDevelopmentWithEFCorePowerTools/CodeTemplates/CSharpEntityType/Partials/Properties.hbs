@@ -2,13 +2,13 @@
 {{#if property-comment}}
 
         /// <summary>
-        {{property-comment}}
+{{property-comment}}
         /// </summary>
 {{/if}}
 {{#each property-annotations}}
         {{{property-annotation}}}
 {{/each}}
-        public {{property-type}} {{property-name}} { get; set; }{{#if nullable-reference-types }}{{#unless property-isnullable}} = null!;{{/unless}}{{/if}}
+        public {{property-type}} {{property-name}} { get; set; }{{#if nullable-reference-types }}{{#unless property-isnullable}} = null!;{{/unless}}{{else}}{{#if property-default-enum}} = {{property-default-enum}};{{/if}}{{/if}}
 {{/each}}
 {{#if nav-properties}}
 

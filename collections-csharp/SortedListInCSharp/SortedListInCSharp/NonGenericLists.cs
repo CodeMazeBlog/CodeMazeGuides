@@ -12,7 +12,7 @@ namespace SortedListInCSharp
             myNonGenericList.Add(2, "This is my second string element");
             // These next lines will give us runtime exceptions...
             /*
-                myNonGenericList.Add("three", "This is my third string element");     // System.ArgumentException: 'Item has already been added. Key in dictionary: '1' Key being added: 'three''
+                myNonGenericList.Add("three", "This is my third string element");     // System.InvalidOperationException: Failed to compare two elements in the array.
                 myNonGenericList.Add(null, "There is nothing to see here");     // System.ArgumentNullException: 'Key cannot be null. (Parameter 'key')'
             */
 

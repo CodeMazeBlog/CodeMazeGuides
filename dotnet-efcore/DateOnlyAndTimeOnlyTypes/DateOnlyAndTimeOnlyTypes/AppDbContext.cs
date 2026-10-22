@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace DateOnlyAndTimeOnlyTypes;
@@ -18,17 +18,7 @@ public class AppDbContext : DbContext
         builder.UseSqlServer(configuration.GetConnectionString("Default"));
     }
 
-    protected override void ConfigureConventions(ModelConfigurationBuilder builder)
-    {
-        base.ConfigureConventions(builder);
-
-        builder.Properties<DateOnly>()
-            .HaveConversion<DateOnlyConverter, DateOnlyComparer>()
-            .HaveColumnType("date");
-
-        builder.Properties<TimeOnly>()
-            .HaveConversion<TimeOnlyConverter, TimeOnlyComparer>();
-    }
+    public AppDbContext() { }
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 }
