@@ -1,5 +1,7 @@
-using System.IdentityModel.Tokens.Jwt;
-using IdentityModel.Client;
+using System.Buffers.Text;
+using System.Text;
+using Duende.IdentityModel.Client;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace App;
 
@@ -20,25 +22,25 @@ public static class JwtUtils
                 { Address = discoveryDocument.TokenEndpoint, ClientId = "m2m", ClientSecret = "secret", Scope = "api" });
         }
 
-        if (tokenResponse.IsError) 
+        if (tokenResponse.IsError)
         {
             throw new Exception(tokenResponse.Error);
         }
-        
+
         return tokenResponse.AccessToken;
     }
 
-    public static JwtSecurityToken ConvertJwtStringToJwtSecurityToken(string? jwt)
+    public static JsonWebToken ConvertJwtStringToJsonWebToken(string jwt)
     {
-        var handler = new JwtSecurityTokenHandler();
-        var token = handler.ReadJwtToken(jwt);
-        
+        var handler = new JsonWebTokenHandler();
+        var token = handler.ReadJsonWebToken(jwt);
+
         return token;
     }
 
-    public static DecodedToken DecodeJwt(JwtSecurityToken token)
+    public static DecodedToken DecodeJwt(JsonWebToken token)
     {
-        var keyId = token.Header.Kid;
+        var keyId = token.Kid;
         var audience = token.Audiences.ToList();
         var claims = token.Claims.Select(claim => (claim.Type, claim.Value)).ToList();
 
@@ -48,12 +50,21 @@ public static class JwtUtils
             audience,
             claims,
             token.ValidTo,
-            token.SignatureAlgorithm,
-            token.RawData,
+            token.Alg,
+            token.EncodedToken,
             token.Subject,
             token.ValidFrom,
             token.EncodedHeader,
             token.EncodedPayload
         );
+    }
+
+    public static (string Header, string Payload) DecodeJwtWithoutLibrary(string jwt)
+    {
+        var parts = jwt.Split('.');
+        var header = Encoding.UTF8.GetString(Base64Url.DecodeFromChars(parts[0]));
+        var payload = Encoding.UTF8.GetString(Base64Url.DecodeFromChars(parts[1]));
+
+        return (header, payload);
     }
 }
