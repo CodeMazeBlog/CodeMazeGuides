@@ -14,6 +14,7 @@ BEGIN
 
     RETURN @Count;
 END;
+GO
 
 CREATE PROCEDURE CountBooksInCategory_SP
 (

@@ -38,6 +38,12 @@ comparer.CarTypeComparerUsingNotEqual(car);
 
 comparer.CarTypeComparerUsingIsNot(car);
 
+comparer.SerialNumberNotInUsingIsNot(vehicle);
+
+comparer.SerialNumberNotInListUsingNot(vehicle, [1000, 2000, 3000]);
+
+comparer.MeasurementComparer(double.NaN);
+
 var otherVehicle = new Vehicle()
 {
     SerialNumber = 1002,
@@ -48,3 +54,5 @@ Console.WriteLine(vehicle != otherVehicle);
 Console.WriteLine(vehicle == otherVehicle);
 
 Console.WriteLine(vehicle != null);
+Console.WriteLine(!(vehicle == null));
+Console.WriteLine(vehicle is not null);
