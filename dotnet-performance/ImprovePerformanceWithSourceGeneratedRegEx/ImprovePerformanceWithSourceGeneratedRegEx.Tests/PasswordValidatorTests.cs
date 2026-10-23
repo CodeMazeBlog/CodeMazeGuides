@@ -13,7 +13,7 @@ public class PasswordValidatorTests
         var result = PasswordValidator.ValidatePasswordWithRegularRegEx(ValidPassword);
 
         // Assert
-        result.Should().BeTrue();
+        Assert.True(result);
     }
 
     [Fact]
@@ -23,7 +23,7 @@ public class PasswordValidatorTests
         var result = PasswordValidator.ValidatePasswordWithRegularRegEx(InvalidPassword);
 
         // Assert
-        result.Should().BeFalse();
+        Assert.False(result);
     }
     #endregion
 
@@ -35,7 +35,7 @@ public class PasswordValidatorTests
         var result = PasswordValidator.ValidatePasswordWithCompiledRegEx(ValidPassword);
 
         // Assert
-        result.Should().BeTrue();
+        Assert.True(result);
     }
 
     [Fact]
@@ -45,7 +45,7 @@ public class PasswordValidatorTests
         var result = PasswordValidator.ValidatePasswordWithCompiledRegEx(InvalidPassword);
 
         // Assert
-        result.Should().BeFalse();
+        Assert.False(result);
     }
     #endregion
 
@@ -57,7 +57,7 @@ public class PasswordValidatorTests
         var result = PasswordValidator.ValidatePasswordWithSourceGeneratedRegEx(ValidPassword);
 
         // Assert
-        result.Should().BeTrue();
+        Assert.True(result);
     }
 
     [Fact]
@@ -67,7 +67,73 @@ public class PasswordValidatorTests
         var result = PasswordValidator.ValidatePasswordWithSourceGeneratedRegEx(InvalidPassword);
 
         // Assert
-        result.Should().BeFalse();
+        Assert.False(result);
+    }
+    #endregion
+
+    #region ValidatePasswordWithStaticRegEx
+    [Fact]
+    public void GivenValidPassword_WhenValidatePasswordWithStaticRegExIsInvoked_ThenTrueIsReturned()
+    {
+        // Act
+        var result = PasswordValidator.ValidatePasswordWithStaticRegEx(ValidPassword);
+
+        // Assert
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void GivenInvalidPassword_WhenValidatePasswordWithStaticRegExIsInvoked_ThenFalseIsReturned()
+    {
+        // Act
+        var result = PasswordValidator.ValidatePasswordWithStaticRegEx(InvalidPassword);
+
+        // Assert
+        Assert.False(result);
+    }
+    #endregion
+
+    #region ValidatePasswordWithNewCompiledRegEx
+    [Fact]
+    public void GivenValidPassword_WhenValidatePasswordWithNewCompiledRegExIsInvoked_ThenTrueIsReturned()
+    {
+        // Act
+        var result = PasswordValidator.ValidatePasswordWithNewCompiledRegEx(ValidPassword);
+
+        // Assert
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void GivenInvalidPassword_WhenValidatePasswordWithNewCompiledRegExIsInvoked_ThenFalseIsReturned()
+    {
+        // Act
+        var result = PasswordValidator.ValidatePasswordWithNewCompiledRegEx(InvalidPassword);
+
+        // Assert
+        Assert.False(result);
+    }
+    #endregion
+
+    #region ValidatePasswordWithSourceGeneratedRegExProperty
+    [Fact]
+    public void GivenValidPassword_WhenValidatePasswordWithSourceGeneratedRegExPropertyIsInvoked_ThenTrueIsReturned()
+    {
+        // Act
+        var result = PasswordValidator.ValidatePasswordWithSourceGeneratedRegExProperty(ValidPassword);
+
+        // Assert
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void GivenInvalidPassword_WhenValidatePasswordWithSourceGeneratedRegExPropertyIsInvoked_ThenFalseIsReturned()
+    {
+        // Act
+        var result = PasswordValidator.ValidatePasswordWithSourceGeneratedRegExProperty(InvalidPassword);
+
+        // Assert
+        Assert.False(result);
     }
     #endregion
 }

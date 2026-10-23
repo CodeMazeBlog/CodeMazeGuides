@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using TypeCheckingAndCastingInCSharp.Models;
 using Xunit;
 
 namespace TypeCheckingAndCastingInCSharp.Tests
@@ -94,12 +95,24 @@ namespace TypeCheckingAndCastingInCSharp.Tests
         [Fact]
         public void WhenTypeCheckingValues_ThenIsOperatorReturnsBoolean()
         {
-            int number = 16;
-            string name = "John Smith";
+            object number = 16;
+            object name = "John Smith";
 
             Assert.True(number is int);     // true
             Assert.True(name is string);    // true
             Assert.False(number is bool);   // false
+        }
+
+        [Fact]
+        public void WhenCheckingADerivedInstance_ThenIsMatchesTheBaseTypeAndGetTypeDoesNot()
+        {
+            // arrange
+            Animal animal = new Horse();
+
+            // act & assert
+            Assert.True(animal is Animal);                       // compatible type
+            Assert.False(animal.GetType() == typeof(Animal));    // not the exact type
+            Assert.True(animal.GetType() == typeof(Horse));      // the exact type
         }
 
         [Fact]

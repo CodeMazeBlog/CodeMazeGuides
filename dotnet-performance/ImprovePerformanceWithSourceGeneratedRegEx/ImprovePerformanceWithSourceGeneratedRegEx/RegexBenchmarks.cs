@@ -12,15 +12,23 @@ public class RegexBenchmarks
     private const string Password = "c0d3-MaZ3-Pa55w0rd";
 
     [Benchmark(Baseline = true)]
-    public void RegularRegex()
+    public bool RegularRegex()
         => PasswordValidator.ValidatePasswordWithRegularRegEx(Password);
 
     [Benchmark]
-    public void CompiledRegex()
+    public bool StaticRegex()
+        => PasswordValidator.ValidatePasswordWithStaticRegEx(Password);
+
+    [Benchmark]
+    public bool CompiledRegex()
         => PasswordValidator.ValidatePasswordWithCompiledRegEx(Password);
 
     [Benchmark]
-    public void SourceGeneratedRegex()
+    public bool NewCompiledRegex()
+        => PasswordValidator.ValidatePasswordWithNewCompiledRegEx(Password);
+
+    [Benchmark]
+    public bool SourceGeneratedRegex()
         => PasswordValidator.ValidatePasswordWithSourceGeneratedRegEx(Password);
 
     private class StyleConfig : ManualConfig
