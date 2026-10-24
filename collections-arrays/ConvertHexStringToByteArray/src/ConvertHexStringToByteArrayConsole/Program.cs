@@ -17,5 +17,9 @@ PrintResult(nameof(ConversionHelpers.FromHexWithConvert), result);
 result = ConversionHelpers.FromHexWithLookup(input);
 PrintResult(nameof(ConversionHelpers.FromHexWithLookup), result);
 
+Span<byte> buffer = stackalloc byte[8];
+var status = Convert.FromHexString("ABC", buffer, out var charsConsumed, out var bytesWritten);
+Console.WriteLine($"odd: {status} consumed={charsConsumed} written={bytesWritten}");
+
 static void PrintResult(string method, IEnumerable<byte> input) =>
     Console.WriteLine($"{method}: \t[{string.Join(',', input)}]");

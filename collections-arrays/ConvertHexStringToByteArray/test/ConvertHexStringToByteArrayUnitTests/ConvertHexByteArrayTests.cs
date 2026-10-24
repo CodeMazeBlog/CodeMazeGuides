@@ -142,4 +142,16 @@ public class ConvertHexByteArrayTests
     {
         Assert.Throws<ArgumentException>(() => ConversionHelpers.FromHexWithLookup(source));
     }
+    [Fact]
+    public void GivenSliceOfLongerString_WhenConverting_ThenEveryMethodStopsAtTheEndOfTheSlice()
+    {
+        var slice = "DEADZZ".AsSpan(0, 4);
+        var expected = new byte[] {222, 173};
+
+        Assert.Equal(expected, ConversionHelpers.FromHexWithModularArithmetic(slice));
+        Assert.Equal(expected, ConversionHelpers.FromHexWithSwitchComputation(slice));
+        Assert.Equal(expected, ConversionHelpers.FromHexWithBitManipulation(slice));
+        Assert.Equal(expected, ConversionHelpers.FromHexWithConvert(slice));
+        Assert.Equal(expected, ConversionHelpers.FromHexWithLookup(slice));
+    }
 }

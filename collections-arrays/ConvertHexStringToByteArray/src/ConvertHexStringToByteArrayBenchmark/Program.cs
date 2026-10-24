@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
 using ConvertHexStringToByteArray.Benchmarks;
 
-BenchmarkRunner.Run<ConvertHexStringToByteArrayBenchmarks>();
+BenchmarkRunner.Run<ConvertHexStringToByteArrayBenchmarks>(args: args);
