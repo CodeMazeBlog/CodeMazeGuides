@@ -1,0 +1,14 @@
+<Window x:Class="Converter.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="clr-namespace:Converter.Core;assembly=Converter.Core"
+        Title="Converter (WPF)" Width="320" SizeToContent="Height">
+    <Window.DataContext>
+        <core:ConverterViewModel />
+    </Window.DataContext>
+    <StackPanel Margin="12">
+        <TextBox Text="{Binding Celsius, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Content="Convert" Command="{Binding ConvertCommand}" Margin="0,8" />
+        <TextBlock Text="{Binding Result}" />
+    </StackPanel>
+</Window>
