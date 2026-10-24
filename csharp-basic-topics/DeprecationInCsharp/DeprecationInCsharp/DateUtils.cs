@@ -2,7 +2,9 @@
 
 public static class DateUtils
 {
-    [Obsolete("Please use GetCurrentYearV2() instead.", false)]
+    [Obsolete($"Please use {nameof(GetCurrentYearV2)}() instead.",
+        DiagnosticId = "DATEUTILS001",
+        UrlFormat = "https://example.com/obsoletions/{0}")]
     public static int GetCurrentYearV1()
     {
         return 2022;
