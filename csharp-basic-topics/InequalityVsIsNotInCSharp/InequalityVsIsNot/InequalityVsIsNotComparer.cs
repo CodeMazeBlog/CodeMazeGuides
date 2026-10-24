@@ -110,5 +110,27 @@
                 Console.WriteLine("model is not Focus"); 
             } 
         }
+
+        public void SerialNumberNotInUsingIsNot(Vehicle vehicle)
+        {
+            if (vehicle.SerialNumber is not (1000 or 2000 or 3000))
+            {
+                Console.WriteLine("serial number is not 1000, 2000 or 3000");
+            }
+        }
+
+        public void SerialNumberNotInListUsingNot(Vehicle vehicle, int[] recalledSerialNumbers)
+        {
+            if (!recalledSerialNumbers.Contains(vehicle.SerialNumber))
+            {
+                Console.WriteLine("serial number is not recalled");
+            }
+        }
+
+        public void MeasurementComparer(double measurement)
+        {
+            Console.WriteLine(measurement != double.NaN);
+            Console.WriteLine(measurement is not double.NaN);
+        }
     }
 }

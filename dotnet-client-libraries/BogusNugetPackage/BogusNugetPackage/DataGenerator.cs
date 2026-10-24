@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace BogusNugetPackage;
 public static class DataGenerator
 {
-    public static readonly List<Employee> Employees = new();
-    public static readonly List<Vehicle> Vehicles = new();
+    public static readonly List<Employee> Employees = [];
+    public static readonly List<Vehicle> Vehicles = [];
 
     public const int NumberOfEmployees = 5;
     public const int NumberOfVehiclesPerEmployee = 2;
@@ -17,7 +17,7 @@ public static class DataGenerator
     {
         using var employeeDbContext = new EmployeeContext();
 
-        employeeDbContext.Database.EnsureCreated();
+        employeeDbContext.Database.Migrate();
 
         var dbEmployeesWithVehicles = employeeDbContext.Employees
            .Include(e => e.Vehicles)
@@ -31,14 +31,23 @@ public static class DataGenerator
         var employeeGenerator = GetEmployeeGenerator();
         var generatedEmployees = employeeGenerator.Generate(NumberOfEmployees);
         Employees.AddRange(generatedEmployees);
-        generatedEmployees.ForEach(e => Vehicles.AddRange(GetBogusVehicleData(e.Id)));
+    }
+
+    public static List<Vehicle> GenerateRepeatableVehicles(int seed)
+    {
+        return new Faker<Vehicle>()
+            .UseSeed(seed)
+            .RuleFor(v => v.Id, f => f.Random.Guid())
+            .RuleFor(v => v.Manufacturer, f => f.Vehicle.Manufacturer())
+            .RuleFor(v => v.Fuel, f => f.Vehicle.Fuel())
+            .Generate(NumberOfVehiclesPerEmployee);
     }
 
     private static List<Vehicle> GetBogusVehicleData(Guid employeeId)
     {
         var vehicleGenerator = GetVehicleGenerator(employeeId);
         var generatedVehicles = vehicleGenerator.Generate(NumberOfVehiclesPerEmployee);
-
+        Vehicles.AddRange(generatedVehicles);
         return generatedVehicles;
     }
 
@@ -52,7 +61,11 @@ public static class DataGenerator
             .RuleFor(e => e.Email, (f, e) => f.Internet.Email(e.FirstName, e.LastName))
             .RuleFor(e => e.AboutMe, f => f.Lorem.Paragraph(1))
             .RuleFor(e => e.YearsOld, f => f.Random.Int(18, 90))
-            .RuleFor(e => e.Personality, f => f.PickRandom<Personality>());
+            .RuleFor(e => e.Personality, f => f.PickRandom<Personality>())
+            .RuleFor(e => e.Vehicles, (_, e) =>
+            {
+                return GetBogusVehicleData(e.Id);
+            });
     }
 
     private static Faker<Vehicle> GetVehicleGenerator(Guid employeeId)
