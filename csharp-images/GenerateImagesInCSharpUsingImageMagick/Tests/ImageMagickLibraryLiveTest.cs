@@ -21,9 +21,9 @@ public class ImageMagickLibraryLiveTest
     public ImageMagickLibraryLiveTest()
     {
         _expectedColor = _color;
-        _centerX = _circle.X + _circle.Width / 2;
-        _centerY = _circle.Y + _circle.Height / 2;
-        _radius = _circle.Width / 2;
+        _centerX = _circle.X + (int)_circle.Width / 2;
+        _centerY = _circle.Y + (int)_circle.Height / 2;
+        _radius = (int)_circle.Width / 2;
         _strokeWidth = 5;
     }
 
@@ -51,9 +51,9 @@ public class ImageMagickLibraryLiveTest
     }
 
     [Theory]
-    [InlineData(0, 200)]
-    [InlineData(400, 0)]
-    public void GivenInvalidSize_WhenCreateBlankImage_ThenThrowArgumentException(int width, int height)
+    [InlineData(0u, 200u)]
+    [InlineData(400u, 0u)]
+    public void GivenInvalidSize_WhenCreateBlankImage_ThenThrowArgumentException(uint width, uint height)
     {
         // Arrange, Act & Assert
         Assert.Throws<ArgumentException>(() => ImageService.CreateBlankImage(width, height, MagickColors.White));
