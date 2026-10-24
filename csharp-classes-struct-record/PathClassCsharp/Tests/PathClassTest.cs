@@ -495,5 +495,61 @@ namespace PathClassCsharpUnitTest
                 Assert.That(resultComponent, Is.EqualTo("D:/users/user1/documents\\letters"));
             }           
         }
+
+        [Test]
+        public void WhenCombiningWithRootedFileName_ThenCombineDropsTheBaseAndJoinKeepsIt()
+        {
+            string basePath = @"C:\uploads";
+            string fileName = @"\report.pdf";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                //Linux StringPath
+                basePath = "/uploads";
+                fileName = "/report.pdf";
+            }
+
+            var (combined, joined) = pathClass.CombineVersusJoin(basePath, fileName);
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Assert.That(combined, Is.EqualTo("/report.pdf"));
+                Assert.That(joined, Is.EqualTo("/uploads/report.pdf"));
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                Assert.That(combined, Is.EqualTo(@"\report.pdf"));
+                Assert.That(joined, Is.EqualTo(@"C:\uploads\report.pdf"));
+            }
+        }
+
+        [Test]
+        public void WhenCallingTableMembers_ThenDocumentedResultsAreReturned()
+        {
+            string filePath = @"C:\MyDir\MySubDir\myfile.ext";
+            string basePath = @"C:\MyDir";
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                //Linux StringPath
+                filePath = "/MyDir/MySubDir/myfile.ext";
+                basePath = "/MyDir";
+            }
+
+            bool linux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+
+            Assert.That(Path.GetFileName(filePath), Is.EqualTo("myfile.ext"));
+            Assert.That(Path.GetFileNameWithoutExtension(filePath), Is.EqualTo("myfile"));
+            Assert.That(Path.GetExtension(filePath), Is.EqualTo(".ext"));
+            Assert.That(Path.HasExtension(filePath), Is.True);
+            Assert.That(Path.ChangeExtension(filePath, ".old"),
+                Is.EqualTo(linux ? "/MyDir/MySubDir/myfile.old" : @"C:\MyDir\MySubDir\myfile.old"));
+            Assert.That(Path.GetDirectoryName(filePath),
+                Is.EqualTo(linux ? "/MyDir/MySubDir" : @"C:\MyDir\MySubDir"));
+            Assert.That(Path.GetPathRoot(filePath), Is.EqualTo(linux ? "/" : @"C:\"));
+            Assert.That(Path.GetRelativePath(basePath, filePath),
+                Is.EqualTo(linux ? "MySubDir/myfile.ext" : @"MySubDir\myfile.ext"));
+            Assert.That(Path.IsPathFullyQualified(filePath), Is.True);
+            Assert.That(Path.IsPathFullyQualified("MySubDir/myfile.ext"), Is.False);
+            Assert.That(Path.EndsInDirectorySeparator(filePath), Is.False);
+        }
     }
 }
