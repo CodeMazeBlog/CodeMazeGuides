@@ -193,5 +193,94 @@ namespace Tests
             Assert.Equal(expected, actual);
         }
 
+        [Fact]
+        public void WhenNotEqualOperatorIsOverloaded_ThenIsNotNullIgnoresIt()
+        {
+            var vehicle = new Vehicle()
+            {
+                SerialNumber = 1001,
+                VehicleBrand = Brand.Toyota
+            };
+
+            Assert.False(vehicle != null);
+            Assert.True(!(vehicle == null));
+            Assert.True(vehicle is not null);
+        }
+
+        [Fact]
+        public void WhenSerialNumberIsBoxedAndEqualToConstant_ThenNotEqualStillReportsDifferent()
+        {
+            var vehicle = new Vehicle() { SerialNumber = 1000 };
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+
+            _comparer.BoxedSerialNumberComparerUsingNotEqual(vehicle);
+            _comparer.BoxedSerialNumberComparerUsingIsNot(vehicle);
+
+            Assert.Equal($"boxed serial number != 1000{Environment.NewLine}", sw.ToString());
+        }
+
+        [Fact]
+        public void WhenCarIsNull_ThenCarIsNotVehicle()
+        {
+            Car? car = null;
+
+            Assert.True(car is not Vehicle);
+        }
+
+        [Fact]
+        public void WhenSerialNumberIsNotInTheList_ThenMessageIsPrinted()
+        {
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+
+            _comparer.SerialNumberNotInUsingIsNot(_vehicle);
+            _comparer.SerialNumberNotInUsingIsNot(new Vehicle() { SerialNumber = 2000 });
+
+            Assert.Equal($"serial number is not 1000, 2000 or 3000{Environment.NewLine}", sw.ToString());
+        }
+
+        [Fact]
+        public void WhenNotHasNoParentheses_ThenItOnlyNegatesTheFirstPattern()
+        {
+            var serialNumber = 2000;
+
+#pragma warning disable CS9336 // The pattern is redundant: this test documents the trap
+            Assert.True(serialNumber is not 1000 or 2000 or 3000);
+#pragma warning restore CS9336
+            Assert.False(serialNumber is not (1000 or 2000 or 3000));
+        }
+
+        [Fact]
+        public void WhenMeasurementIsNaN_ThenOnlyIsNotRecognisesIt()
+        {
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+
+            _comparer.MeasurementComparer(double.NaN);
+
+            Assert.Equal($"True{Environment.NewLine}False{Environment.NewLine}", sw.ToString());
+        }
+
+        [Fact]
+        public void WhenVehicleIsNotEmptyPattern_ThenItIsNull()
+        {
+            Vehicle? vehicle = null;
+
+            Assert.True(vehicle is not { });
+            Assert.False(_vehicle is not { });
+        }
+
+        [Fact]
+        public void WhenSerialNumberIsNotInTheArray_ThenMessageIsPrinted()
+        {
+            using var sw = new StringWriter();
+            Console.SetOut(sw);
+
+            _comparer.SerialNumberNotInListUsingNot(_vehicle, [1000, 2000, 3000]);
+            _comparer.SerialNumberNotInListUsingNot(new Vehicle() { SerialNumber = 2000 }, [1000, 2000, 3000]);
+
+            Assert.Equal($"serial number is not recalled{Environment.NewLine}", sw.ToString());
+        }
     }
 }

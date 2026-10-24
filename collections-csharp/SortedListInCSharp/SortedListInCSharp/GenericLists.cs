@@ -51,12 +51,21 @@ namespace SortedListInCSharp
 
         public static SortedList<int, string> RemoveElementsFromSortedList(SortedList<int, string> myGenericList)
         {
-            myGenericList.RemoveAt(3); // removes (2, "") which is the item at position 3
-            myGenericList.Remove(4); // removes (4, "")
+            myGenericList.RemoveAt(1); // removes the element with key 2, which sits at index 1
+            myGenericList.Remove(4); // removes the element with key 4
 
-            myGenericList.Clear(); // removes all the elements and returns an empty collection
+            myGenericList.Clear(); // removes all the elements, Count is now 0
 
             return myGenericList;
+        }
+
+        public static (string Third, string Fifth, int FirstKey) ReadElementsFromSortedList(SortedList<int, string> myGenericList)
+        {
+            var third = myGenericList[3]; // "This is my third value"
+            myGenericList.TryGetValue(5, out var fifth); // false, fifth is null
+            var firstKey = myGenericList.GetKeyAtIndex(0); // 1
+
+            return (third, fifth, firstKey);
         }
 
         public static bool CheckContentsOfGenericList(SortedList<int, string> myGenericList, int myKey)

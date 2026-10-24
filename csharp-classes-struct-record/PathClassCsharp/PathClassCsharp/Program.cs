@@ -175,6 +175,17 @@
             }
             
             resultComponent = pathClass.Join(pathArrayComponents);
+
+            string uploadsFolder = @"C:\uploads";
+            string userFileName = @"\report.pdf";
+            if (!Path.IsPathFullyQualified(uploadsFolder))
+            {
+                //Linux StringPath
+                uploadsFolder = "/uploads";
+                userFileName = "/report.pdf";
+            }
+
+            var (combined, joined) = pathClass.CombineVersusJoin(uploadsFolder, userFileName);
         }
     }
 }
