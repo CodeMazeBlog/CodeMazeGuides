@@ -19,3 +19,5 @@ Console.WriteLine($"ReaderWriterLock execution time: {readerWriterLockReadWrite.
 var readerWriterLockSlimReadWrite = new ReaderWriterLockSlimReadWrite();
 Console.WriteLine($"ReaderWriterLockSlim execution time: " +
     $"{readerWriterLockSlimReadWrite.Execute(config)} milliseconds.");
+
+Console.WriteLine(await AsyncPitfall.ExitWriteLockAfterAwait());

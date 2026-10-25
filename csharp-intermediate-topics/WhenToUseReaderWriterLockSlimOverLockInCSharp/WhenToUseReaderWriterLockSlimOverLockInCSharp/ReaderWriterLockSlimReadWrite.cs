@@ -45,12 +45,12 @@ public class ReaderWriterLockSlimReadWrite : BaseReaderWriter
 
     public void ReadOrAdd(int writerExecutionDelay)
     {
-        var random = Random.Shared.Next(0, NumbersList.Count);
-
         ReaderWriterLockSlim.EnterUpgradeableReadLock();
 
         try
         {
+            var random = Random.Shared.Next(0, NumbersList.Count);
+
             if (!NumbersList.Contains(random))
             {
                 ReaderWriterLockSlim.EnterWriteLock();
