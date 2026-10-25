@@ -3,7 +3,7 @@
 public class Program
 {
     private static readonly ElementPrinter _elementPrinter = new();
-    private static readonly int[] _array = new int[] { 1, 4, 6, 7, 9, 3, 5 };
+    private static readonly int[] _array = [1, 4, 6, 7, 9, 3, 5];
     public static int OutPutResult = 0;
 
     public static void Main(string[] args)

@@ -1,3 +1,3 @@
 ﻿using BenchmarkRunner;
 
-BenchmarkDotNet.Running.BenchmarkRunner.Run<ElementPrinterBenchmark>();
+BenchmarkDotNet.Running.BenchmarkRunner.Run<ElementPrinterBenchmark>(args: args);

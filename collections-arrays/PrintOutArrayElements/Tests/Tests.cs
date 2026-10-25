@@ -10,7 +10,7 @@ namespace Tests
     public class Tests
     {
         private static readonly ElementPrinter _elementPrinter = new();
-        private static readonly int[] _array = new int[] { 1, 4, 6, 7, 9, 3, 5 };
+        private static readonly int[] _array = [1, 4, 6, 7, 9, 3, 5];
         private const string _expectedResult = " ==> 1 ==> 4 ==> 6 ==> 7 ==> 9 ==> 3 ==> 5";
         private static readonly StringBuilder _consoleOutput = new();
 
@@ -27,6 +27,14 @@ namespace Tests
             Program.Main(Array.Empty<string>());
 
             Assert.AreEqual(1, Program.OutPutResult);
+        }
+
+        [TestMethod]
+        public void GivenAnArray_WhenPassingItToConsoleWrite_ThenPrintOutTheTypeName()
+        {
+            Console.Write(_array);
+
+            Assert.AreEqual("System.Int32[]", _consoleOutput.ToString());
         }
 
         [TestMethod]
