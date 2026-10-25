@@ -1,5 +1,5 @@
 ﻿{
-   "CodeGenerationMode": 3,
+   "CodeGenerationMode": 6,
    "ContextClassName": "DBContext",
    "ContextNamespace": "Data",
    "DefaultDacpacSchema": null,

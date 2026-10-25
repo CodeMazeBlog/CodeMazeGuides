@@ -1,36 +1,35 @@
 ﻿using System.Collections;
 
-namespace IEnumerableCSharp
+namespace IEnumerableCSharp;
+
+public class BookEnumerator : IEnumerator
 {
-    public class BookEnumerator : IEnumerator
+    private readonly Book[] _books;
+    private int _index = -1;
+
+    public BookEnumerator(Book[] books)
     {
-        private readonly Book[] _books;
-        private int _index = -1;
+        _books = books;
+    }
 
-        public BookEnumerator(Book[] books)
+    public Book Current
+    {
+        get
         {
-            _books = books;
+            return _books[_index];
         }
+    }
 
-        public Book Current
-        {
-            get
-            {
-                return _books[_index];
-            }
-        }
+    object IEnumerator.Current => Current;
 
-        object IEnumerator.Current => Current;
+    public bool MoveNext()
+    {
+        _index++;
+        return _index < _books.Length;
+    }
 
-        public bool MoveNext()
-        {
-            _index++;
-            return _index < _books.Length;
-        }
-
-        public void Reset()
-        {
-            _index = -1;
-        }
+    public void Reset()
+    {
+        _index = -1;
     }
 }

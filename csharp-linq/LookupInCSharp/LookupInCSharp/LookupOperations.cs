@@ -30,4 +30,17 @@ public class LookupOperations
 
     public static int GetLookupCount()
         => _lookup.Count;
+
+    public static (int FromGroupBy, int FromLookup) CountValuesAfterSourceChanges(
+        string key, Student newStudent)
+    {
+        List<Student> students = [.. _students];
+
+        var grouped = students.GroupBy(s => s.Name, s => s.Course);
+        var lookup = students.ToLookup(s => s.Name, s => s.Course);
+
+        students.Add(newStudent);
+
+        return (grouped.Single(g => g.Key == key).Count(), lookup[key].Count());
+    }
 }
