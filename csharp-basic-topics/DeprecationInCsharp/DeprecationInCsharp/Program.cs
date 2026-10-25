@@ -5,3 +5,6 @@ Console.WriteLine($"Current year from deprecated method: {deprecatedMethodResult
 
 var newMethodResult = DateUtils.GetCurrentYearV2();
 Console.WriteLine($"Current year from new method: {newMethodResult}");
+
+var legacyYear = LegacyDateUtils.GetYear();
+Console.WriteLine($"Year from legacy class: {legacyYear}");

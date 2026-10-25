@@ -96,5 +96,18 @@ namespace Tests
 
             Assert.AreEqual("This is a circle", circleType);
         }
+
+        [TestMethod]
+        public void WhenCircleClassDrawMock_ThenNotSupportedException()
+        {
+            var circleMock = new Mock<Circle>();
+
+            var exception = Assert.ThrowsExactly<NotSupportedException>(
+                () => circleMock.Setup(p => p.Draw()).Returns("Drawing a circle"));
+
+            StringAssert.Contains(exception.Message, "Unsupported expression: p => p.Draw()");
+            StringAssert.Contains(exception.Message,
+                "Non-overridable members (here: Circle.Draw) may not be used in setup / verification expressions.");
+        }
     }
 }

@@ -9,15 +9,17 @@ public sealed class EmployeeContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        options.UseSqlServer("Server=localhost;Database=EmployeeDb;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True");
+        options.UseSqlServer("Server=localhost;Database=EmployeeDb;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True")
+            .UseSeeding((context, _) =>
+            {
+                if (context.Set<Employee>().Any())
+                {
+                    return;
+                }
+
+                context.Set<Employee>().AddRange(DataGenerator.Employees);
+                context.SaveChanges();
+            });
         options.EnableSensitiveDataLogging();
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-
-        modelBuilder.Entity<Employee>().HasData(DataGenerator.Employees);
-        modelBuilder.Entity<Vehicle>().HasData(DataGenerator.Vehicles);
     }
 }
