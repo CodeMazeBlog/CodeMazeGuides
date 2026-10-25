@@ -20,7 +20,7 @@
 
         public char PathSeparator()
         {
-            var result =Path.PathSeparator;            
+            var result = Path.PathSeparator;            
             Console.WriteLine($"Path.PathSeparator: '{result}'");
             
             return result;
@@ -46,13 +46,13 @@
             }            
             Console.WriteLine();
             
-            return (invalidChars);
+            return invalidChars;
         }
 
-        public bool EndsInDirectorySeparator(ReadOnlySpan<Char> filePath)
+        public bool EndsInDirectorySeparator(ReadOnlySpan<char> filePath)
         {
             var result = Path.EndsInDirectorySeparator(filePath);            
-            Console.WriteLine($"EndsInDirectorySeparator('{filePath.ToString()}') returns '{result.ToString()}'");
+            Console.WriteLine($"EndsInDirectorySeparator('{filePath.ToString()}') returns '{result}'");
             
             return result;
         }
@@ -60,7 +60,7 @@
         public bool EndsInDirectorySeparator(string filePath)
         {
             var result = Path.EndsInDirectorySeparator(filePath);            
-            Console.WriteLine($"EndsInDirectorySeparator('{filePath}') returns '{result.ToString()}'");
+            Console.WriteLine($"EndsInDirectorySeparator('{filePath}') returns '{result}'");
             
             return result;
         }
@@ -75,10 +75,10 @@
 
         public string ChangeExtension(string path, string newExtension)
         {            
-            var result= Path.ChangeExtension(path, newExtension);            
-            Console.WriteLine($"ChangeExtension({path}, '.old') returns '{result}'");
+            var result = Path.ChangeExtension(path, newExtension);            
+            Console.WriteLine($"ChangeExtension('{path}', '{newExtension}') returns '{result}'");
             
-            return (result);
+            return result;
         }
 
         public string Combine(string path1, string path2)
@@ -105,7 +105,7 @@
             return combination;
         }
 
-        public string Combine(String[] paths)
+        public string Combine(string[] paths)
         {
             var combination = Path.Combine(paths);            
             Console.WriteLine($"When you combine '{paths[0]}' and '{paths[1]}' and '{paths[2]}' and '{paths[3]}', the result is: {Environment.NewLine}'{combination}'");
@@ -113,7 +113,7 @@
             return combination;
         }
 
-        public string GetDirectoryName(string filePath)
+        public string? GetDirectoryName(string filePath)
         {
             var directoryName = Path.GetDirectoryName(filePath);            
             Console.WriteLine($"GetDirectoryName('{filePath}') returns '{directoryName}'");
@@ -121,7 +121,7 @@
             return directoryName;
         }
 
-        public ReadOnlySpan<char> GetFileName(ReadOnlySpan<Char> filePath)
+        public ReadOnlySpan<char> GetFileName(ReadOnlySpan<char> filePath)
         {
             ReadOnlySpan<char> fileName = Path.GetFileName(filePath);            
             Console.WriteLine($"GetFileName('{filePath.ToString()}') returns '{fileName.ToString()}'");
@@ -153,7 +153,7 @@
             return pathResult;
         }
 
-        public string GetPathRoot(string fullPathString)
+        public string? GetPathRoot(string fullPathString)
         {
             var pathRoot = Path.GetPathRoot(fullPathString);            
             Console.WriteLine($"GetPathRoot('{fullPathString}') returns '{pathRoot}'");
@@ -161,20 +161,29 @@
             return pathRoot;
         }
 
-        public void TryJoin(ReadOnlySpan<Char> path1, ReadOnlySpan<Char> path2, Span<Char> destination, out Int32 charsWritten)
+        public void TryJoin(ReadOnlySpan<char> path1, ReadOnlySpan<char> path2, Span<char> destination, out int charsWritten)
         {
             if (Path.TryJoin(path1, path2, destination, out charsWritten))
-                Console.WriteLine($"Wrote {charsWritten} characters: '{destination.Slice(0, charsWritten).ToString()}'");
+                Console.WriteLine($"Wrote {charsWritten} characters: '{destination[..charsWritten].ToString()}'");
             else
                 Console.WriteLine("Concatenation operation failed.");
         }
 
-        public void TryJoin(ReadOnlySpan<Char> path1, ReadOnlySpan<Char> path2, ReadOnlySpan<Char> path3, Span<Char> destination, out Int32 charsWritten)
+        public void TryJoin(ReadOnlySpan<char> path1, ReadOnlySpan<char> path2, ReadOnlySpan<char> path3, Span<char> destination, out int charsWritten)
         {
             if (Path.TryJoin(path1, path2, path3, destination, out charsWritten))
-                Console.WriteLine($"Wrote {charsWritten} characters: '{destination.Slice(0, charsWritten).ToString()}'");
+                Console.WriteLine($"Wrote {charsWritten} characters: '{destination[..charsWritten].ToString()}'");
             else
                 Console.WriteLine("Concatenation operation failed.");
+        }
+
+        public (string Combined, string Joined) CombineVersusJoin(string basePath, string fileName)
+        {
+            var combined = Path.Combine(basePath, fileName);
+            var joined = Path.Join(basePath, fileName);
+            Console.WriteLine($"Combine: '{combined}', Join: '{joined}'");
+
+            return (combined, joined);
         }
 
         public string Join(string path1, string path2, string path3)

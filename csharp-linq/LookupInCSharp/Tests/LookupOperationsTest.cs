@@ -75,4 +75,22 @@ public class LookupOperationsTest
 
         Assert.Equal(3, count);
     }
+
+    [Fact]
+    public void GivenKeyThatDoesNotExist_WhenRetrieveValuesOfAKeyFromLookupIsCalled_ThenReturnsEmpty()
+    {
+        var values = LookupOperations.RetrieveValuesOfAKeyFromLookup("Michael Sorla");
+
+        Assert.Empty(values);
+    }
+
+    [Fact]
+    public void GivenSourceChangesAfterTheCall_WhenCountValuesAfterSourceChangesIsCalled_ThenOnlyGroupBySeesTheChange()
+    {
+        var (fromGroupBy, fromLookup) = LookupOperations.CountValuesAfterSourceChanges(
+            "Kate Green", new Student("Kate Green", "Taxation"));
+
+        Assert.Equal(2, fromGroupBy);
+        Assert.Equal(1, fromLookup);
+    }
 }

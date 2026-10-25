@@ -7,7 +7,9 @@ public class DateUtilsTests
     [Fact]
     public void WhenUsingV1Method_ThenReturns2022()
     {
+#pragma warning disable DATEUTILS001
         var result = DateUtils.GetCurrentYearV1();
+#pragma warning restore DATEUTILS001
         
         Assert.Equal(2022, result);
     }

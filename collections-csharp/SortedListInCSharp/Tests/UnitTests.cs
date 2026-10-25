@@ -17,7 +17,7 @@ namespace Tests
             var genericSortedList = GenericLists.GenericSortedList();
             var expected = typeof(SortedList<int, string>);
             var output = genericSortedList.GetType();
-            Assert.AreEqual(output, expected);
+            Assert.AreEqual(expected, output);
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace Tests
             var genericSortedList = NonGenericLists.NonGenericSortedList();
             var expected = typeof(SortedList);
             var output = genericSortedList.GetType();
-            Assert.AreEqual(output, expected);
+            Assert.AreEqual(expected, output);
         }
 
         [TestMethod]
@@ -35,7 +35,7 @@ namespace Tests
             var genericSortedList = GenericLists.GenericSortedListFromDictionary();
             var expected = typeof(SortedList<int, string>);
             var output = genericSortedList.GetType();
-            Assert.AreEqual(output, expected);
+            Assert.AreEqual(expected, output);
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace Tests
 
             GenericLists.RemoveElementsFromSortedList(testGenericSortedList);
 
-            Assert.AreEqual(testGenericSortedList.Count, 0);
+            Assert.AreEqual(0, testGenericSortedList.Count);
         }
 
         [TestMethod]
@@ -99,6 +99,28 @@ namespace Tests
             testNonGenericSortedList = new SortedList();
             testNonGenericSortedList.Add(4, "This is my fourth string element");
             Assert.IsFalse(NonGenericLists.CheckContentsOfNonGenericList(testNonGenericSortedList, "This is my first string element"));
+        }
+
+        [TestMethod]
+        public void whenReadElementsFromSortedListIsCalled_MethodReturnsValuesByKeyAndIndex()
+        {
+            testGenericSortedList = new SortedList<int, string>();
+            GenericLists.AddElementsToSortedList(testGenericSortedList);
+
+            var (third, fifth, firstKey) = GenericLists.ReadElementsFromSortedList(testGenericSortedList);
+
+            Assert.AreEqual("This is my third value", third);
+            Assert.IsNull(fifth);
+            Assert.AreEqual(1, firstKey);
+        }
+
+        [TestMethod]
+        public void whenNonGenericSortedListGetsKeyOfAnotherType_AddThrowsInvalidOperationException()
+        {
+            var nonGenericSortedList = NonGenericLists.NonGenericSortedList();
+
+            Assert.ThrowsExactly<System.InvalidOperationException>(
+                () => nonGenericSortedList.Add("three", "This is my third string element"));
         }
     }
 }
