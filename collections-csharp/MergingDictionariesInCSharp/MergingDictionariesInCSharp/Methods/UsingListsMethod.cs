@@ -3,6 +3,7 @@
     public partial class Methods
     {
         public static Dictionary<TKey, TValue> UsingListsMethod<TKey, TValue>(params Dictionary<TKey, TValue>[] dictionaries)
+            where TKey : notnull
         {
             var keys = new List<TKey>();
             var values = new List<TValue>();

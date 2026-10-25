@@ -3,9 +3,10 @@ using static MergingDictionariesInCSharp.Methods;
 [TestFixture]
 public class MergingMethodsTests
 {
-    private Dictionary<int, string> _dictionaryA;
-    private Dictionary<int, string> _dictionaryB;
-    private Dictionary<int, string> _expectedMergedDictionary;
+    private Dictionary<int, string> _dictionaryA = [];
+    private Dictionary<int, string> _dictionaryB = [];
+    private Dictionary<int, string> _expectedMergedDictionary = [];
+    private Dictionary<int, string> _clashingDictionary = [];
 
     [SetUp]
     public void SetUp()
@@ -33,6 +34,12 @@ public class MergingMethodsTests
             { 5, "Watermelon" },
             { 6, "Pineapple" }
         };
+
+        // key 1 already exists in _dictionaryA, with a different value
+        _clashingDictionary = new Dictionary<int, string>()
+        {
+            { 1, "Watermelon" }
+        };
     }
 
     [Test]
@@ -40,7 +47,7 @@ public class MergingMethodsTests
     {
         var mergedDictionary = ConcatMethod(_dictionaryA, _dictionaryB);
 
-        CollectionAssert.AreEqual(_expectedMergedDictionary, mergedDictionary);
+        Assert.That(mergedDictionary, Is.EqualTo(_expectedMergedDictionary));
     }
 
     [Test]
@@ -48,7 +55,7 @@ public class MergingMethodsTests
     {
         var mergedDictionary = ForEachMethod(_dictionaryA, _dictionaryB);
 
-        CollectionAssert.AreEqual(_expectedMergedDictionary, mergedDictionary);
+        Assert.That(mergedDictionary, Is.EqualTo(_expectedMergedDictionary));
     }
 
     [Test]
@@ -56,7 +63,7 @@ public class MergingMethodsTests
     {
         var mergedDictionary = GroupByMethod(_dictionaryA, _dictionaryB);
 
-        CollectionAssert.AreEqual(_expectedMergedDictionary, mergedDictionary);
+        Assert.That(mergedDictionary, Is.EqualTo(_expectedMergedDictionary));
     }
 
     [Test]
@@ -64,7 +71,7 @@ public class MergingMethodsTests
     {
         var mergedDictionary = LookupMethod(_dictionaryA, _dictionaryB);
 
-        CollectionAssert.AreEqual(_expectedMergedDictionary, mergedDictionary);
+        Assert.That(mergedDictionary, Is.EqualTo(_expectedMergedDictionary));
     }
 
     [Test]
@@ -72,7 +79,7 @@ public class MergingMethodsTests
     {
         var mergedDictionary = UnionMethod(_dictionaryA, _dictionaryB);
 
-        CollectionAssert.AreEqual(_expectedMergedDictionary, mergedDictionary);
+        Assert.That(mergedDictionary, Is.EqualTo(_expectedMergedDictionary));
     }
 
     [Test]
@@ -80,30 +87,56 @@ public class MergingMethodsTests
     {
         var mergedDictionary = UsingListsMethod(_dictionaryA, _dictionaryB);
 
-        CollectionAssert.AreEqual(_expectedMergedDictionary, mergedDictionary);
+        Assert.That(mergedDictionary, Is.EqualTo(_expectedMergedDictionary));
     }
 
     [Test]
-    public void GivenConcatMethod_WhenDictionariesWithDublicateKeys_ThenException()
+    public void GivenConcatMethod_WhenDictionariesWithDuplicateKeys_ThenException()
     {
         Assert.Throws<ArgumentException>(() => ConcatMethod(_dictionaryA, _dictionaryA));
     }
 
     [Test]
-    public void GivenUnionMethod_WhenDictionariesWithDublicateKeys_ThenException()
+    public void GivenUnionMethod_WhenDictionariesWithDuplicateKeys_ThenException()
     {
-        Assert.Throws<ArgumentException>(() => UnionMethod(_dictionaryA, new Dictionary<int, string>()
-            {
-                {1, "Watermelon" } 
-                //key:1 already exists in _dictionaryA,
-                //but UnionMethod needs different key value pair to throw exception.
-            })
-        );
+        Assert.Throws<ArgumentException>(() => UnionMethod(_dictionaryA, _clashingDictionary));
     }
 
     [Test]
-    public void GivenListsMethod_WhenDictionariesWithDublicateKeys_ThenException()
+    public void GivenUnionMethod_WhenSameKeyWithSameValue_ThenNoException()
+    {
+        var mergedDictionary = UnionMethod(_dictionaryA, _dictionaryA);
+
+        Assert.That(mergedDictionary, Is.EqualTo(_dictionaryA));
+    }
+
+    [Test]
+    public void GivenListsMethod_WhenDictionariesWithDuplicateKeys_ThenException()
     {
         Assert.Throws<ArgumentException>(() => UsingListsMethod(_dictionaryA, _dictionaryA));
+    }
+
+    [Test]
+    public void GivenForEachMethod_WhenDictionariesWithDuplicateKeys_ThenFirstValueKept()
+    {
+        var mergedDictionary = ForEachMethod(_dictionaryA, _clashingDictionary);
+
+        Assert.That(mergedDictionary[1], Is.EqualTo("Apple"));
+    }
+
+    [Test]
+    public void GivenGroupByMethod_WhenDictionariesWithDuplicateKeys_ThenFirstValueKept()
+    {
+        var mergedDictionary = GroupByMethod(_dictionaryA, _clashingDictionary);
+
+        Assert.That(mergedDictionary[1], Is.EqualTo("Apple"));
+    }
+
+    [Test]
+    public void GivenToLookupMethod_WhenDictionariesWithDuplicateKeys_ThenFirstValueKept()
+    {
+        var mergedDictionary = LookupMethod(_dictionaryA, _clashingDictionary);
+
+        Assert.That(mergedDictionary[1], Is.EqualTo("Apple"));
     }
 }
