@@ -11,6 +11,7 @@ while (continueExecution)
     Console.WriteLine("2. ListPropertywithValue");
     Console.WriteLine("3. ResolverImplementation");
     Console.WriteLine("4. AlternateImplementation();");
+    Console.WriteLine("5. SerializerMetadataImplementation");
 
     string? option = Console.ReadLine();
 
@@ -30,6 +31,10 @@ while (continueExecution)
 
         case "4":
             AlternateImplementation();
+            break;
+
+        case "5":
+            SerializerMetadataImplementation();
             break;
 
         case "exit":
@@ -84,6 +89,17 @@ static void AlternateImplementation()
     var sales = CreateSalesObject();
 
     var propertyNames = JsonTextImplementation.GetJsonPropertyNames(sales);
+
+    Console.WriteLine("JSON property names:");
+    foreach (var propertyName in propertyNames)
+    {
+        Console.WriteLine(propertyName);
+    }
+}
+
+static void SerializerMetadataImplementation()
+{
+    var propertyNames = JsonTextImplementation.GetSerializedPropertyNames<Sales>();
 
     Console.WriteLine("JSON property names:");
     foreach (var propertyName in propertyNames)
