@@ -22,7 +22,7 @@ public static class JsonHelper
     {
         string json = JsonConvert.SerializeObject(obj);
 
-        var values = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+        var values = JsonConvert.DeserializeObject<Dictionary<string, object?>>(json);
 
         return values != null 
             ? values.Keys 
