@@ -1,5 +1,7 @@
-﻿using ConvertInt2String;
+using System.Globalization;
 using System.Text;
+using BenchmarkDotNet.Running;
+using ConvertInt2String;
 
 var luckyNumber = 3;
 
@@ -14,11 +16,10 @@ Console.WriteLine(string.Empty + luckyNumber);
 Console.WriteLine(luckyNumber + luckyNumber + string.Empty + luckyNumber + luckyNumber);
 Console.WriteLine(new StringBuilder().Append(luckyNumber).ToString());
 
-Console.WriteLine(Benchmark.Run(luckyNumber, 200000));
-Console.WriteLine(Benchmark.Run(luckyNumber, 2000000));
+var negativeNumber = -5;
+var swedish = CultureInfo.GetCultureInfo("sv-SE");
 
-Console.ReadLine();
+Console.WriteLine(negativeNumber.ToString(swedish) == "-5");
+Console.WriteLine(negativeNumber.ToString(CultureInfo.InvariantCulture) == "-5");
 
-
-
-
+BenchmarkSwitcher.FromAssembly(typeof(IntToStringBenchmarks).Assembly).Run(args);
