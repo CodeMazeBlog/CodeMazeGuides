@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CatchMultipleExceptionsAtOnes
+﻿namespace CatchMultipleExceptionsAtOnes
 {
     public class CatchExamples
     {
@@ -42,9 +36,7 @@ namespace CatchMultipleExceptionsAtOnes
 
                 return (int)(numerator / denominator);
             }
-            catch (Exception ex) when (ex is FormatException ||
-                                       ex is DivideByZeroException ||
-                                       ex is OverflowException)
+            catch (Exception ex) when (ex is FormatException or DivideByZeroException or OverflowException)
             {
                 return -1;
             }
@@ -72,6 +64,8 @@ namespace CatchMultipleExceptionsAtOnes
                     case OverflowException:
                         Console.WriteLine("Overflow Exception!");
                         break;
+                    default:
+                        throw;
                 }
             }
 
@@ -101,6 +95,40 @@ namespace CatchMultipleExceptionsAtOnes
             }
 
             return -1;
+        }
+
+        public static List<string> FilterRunsBeforeUnwinding()
+        {
+            var steps = new List<string>();
+
+            try
+            {
+                ThrowFromInnerMethod(steps);
+            }
+            catch (FormatException) when (Record(steps, "filter"))
+            {
+                steps.Add("catch");
+            }
+
+            return steps;
+        }
+
+        private static void ThrowFromInnerMethod(List<string> steps)
+        {
+            try
+            {
+                throw new FormatException();
+            }
+            finally
+            {
+                steps.Add("inner finally");
+            }
+        }
+
+        private static bool Record(List<string> steps, string step)
+        {
+            steps.Add(step);
+            return true;
         }
     }
 }
