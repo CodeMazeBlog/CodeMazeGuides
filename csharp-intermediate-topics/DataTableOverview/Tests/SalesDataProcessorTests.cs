@@ -1,10 +1,10 @@
 ﻿using DataTableOverview;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Xunit;
 using System;
 
 namespace Tests
 {
+    [Collection("Console output")]
     public class SalesDataProcessorTests
     {
         [Fact]
@@ -32,6 +32,15 @@ namespace Tests
 
             Assert.Contains("Carrot", output);
         }
+
+        [Fact]
+        public void WhenNumericFilterRunsOnCsvColumn_ThenEvaluateExceptionThrown()
+        {
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + "vegetable-sales.csv";
+            var veggieSales = SalesDataProcessor.CsvToDataTable(filePath);
+
+            Assert.Equal(typeof(string), veggieSales.Columns["Price"]!.DataType);
+            Assert.Throws<System.Data.EvaluateException>(() => veggieSales.Select("Price > 1"));
+        }
     }
 }
-

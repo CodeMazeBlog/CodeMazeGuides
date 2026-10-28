@@ -16,21 +16,21 @@ namespace DataTableOverview
 
         public static DataTable CsvToDataTable(string filePath)
         {
-            DataTable dtRes = new DataTable();
+            var dtRes = new DataTable();
             using (var parser = new TextFieldParser(filePath))
             {
                 parser.TextFieldType = FieldType.Delimited;
                 parser.TrimWhiteSpace = true;
                 parser.SetDelimiters(",");
 
-                var columns = parser.ReadFields();
+                var columns = parser.ReadFields() ?? [];
 
                 foreach (var col in columns)
                     dtRes.Columns.Add(col);
 
                 while (!parser.EndOfData)
                 {
-                    var row = parser.ReadFields();
+                    var row = parser.ReadFields() ?? [];
                     dtRes.LoadDataRow(row, true);
                 }
             }
