@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Globalization;
 using System.Text;
 
 namespace ConvertInt2StringTests
@@ -76,6 +77,24 @@ namespace ConvertInt2StringTests
             var str = new StringBuilder().Append(num).ToString();
 
             Assert.AreEqual("3", str);
+        }
+
+        [TestMethod]
+        public void GivenNegativeInt_WhenConvertedWithSwedishCulture_ThenUsesUnicodeMinusSign()
+        {
+            var num = -5;
+            var str = num.ToString(CultureInfo.GetCultureInfo("sv-SE"));
+
+            Assert.AreEqual("\u22125", str);
+        }
+
+        [TestMethod]
+        public void GivenNegativeInt_WhenConvertedWithInvariantCulture_ThenUsesHyphenMinus()
+        {
+            var num = -5;
+            var str = num.ToString(CultureInfo.InvariantCulture);
+
+            Assert.AreEqual("-5", str);
         }
     }
 }
