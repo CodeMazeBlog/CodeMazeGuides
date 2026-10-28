@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace PriorityQueueInCSharp;
 
-namespace PriorityQueueInCSharp
+public class HospitalQueueComparer : IComparer<Patient>
 {
-    public class HospitalQueueComparer : IComparer<Patient>
+    public int Compare(Patient? x, Patient? y)
     {
-        public int Compare(Patient x, Patient y)
-        {
-            Console.WriteLine($"Comparing {x.Name} and {y.Name}\n\r"); 
+        ArgumentNullException.ThrowIfNull(x);
+        ArgumentNullException.ThrowIfNull(y);
 
-            if (x.Age == y.Age)
-                return 0;
-            else if(x.Age > y.Age)
-                return -1;
-            else
-                return 1;  
-        }
+        Console.WriteLine($"Comparing {x.Name} and {y.Name}");
+        Console.WriteLine();
+
+        if (x.Age == y.Age)
+            return 0;
+        else if (x.Age > y.Age)
+            return -1;
+        else
+            return 1;
     }
 }

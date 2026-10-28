@@ -16,8 +16,7 @@ namespace BenchmarkRunner
 
             for (int i = 0; i < length; i++)
             {
-                var value = new Random().Next(0, 1000);
-                array[i] = value;
+                array[i] = Random.Shared.Next(0, 1000);
             }
 
             return array;
