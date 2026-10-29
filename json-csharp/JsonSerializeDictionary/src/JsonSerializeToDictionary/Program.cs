@@ -65,3 +65,37 @@ var systemJsonComplex = JsonSerializer.Serialize(invoicesByCustomer, new JsonSer
 });
 Console.WriteLine(systemJsonComplex);
 Console.WriteLine();
+
+// Using System.Text.Json with a converter for the key type only
+Console.WriteLine("============ Complex Dictionary: System.Text.Json w/ Key Converter ============");
+var systemJsonKeyConverter = JsonSerializer.Serialize(invoicesByCustomer, new JsonSerializerOptions
+{
+    Converters = { new CustomerKeyConverter() },
+    WriteIndented = true
+});
+Console.WriteLine(systemJsonKeyConverter);
+Console.WriteLine();
+
+// Using System.Text.Json after projecting the keys to Guid
+Console.WriteLine("============ Complex Dictionary: System.Text.Json w/ Guid Keys ============");
+var invoicesByCustomerId = invoicesByCustomer.ToDictionary(pair => pair.Key.CustomerId, pair => pair.Value);
+var systemJsonGuidKeys = JsonSerializer.Serialize(invoicesByCustomerId, new JsonSerializerOptions
+{
+    WriteIndented = true
+});
+Console.WriteLine(systemJsonGuidKeys);
+Console.WriteLine();
+
+// Using System.Text.Json with a naming policy for the keys
+Console.WriteLine("============ System.Text.Json - camelCase Keys ============");
+var stockByProduct = new Dictionary<string, int>
+{
+    {"AppleCount", 3},
+    {"OrangeCount", 5}
+};
+var systemJsonCamelCaseKeys = JsonSerializer.Serialize(stockByProduct, new JsonSerializerOptions
+{
+    DictionaryKeyPolicy = JsonNamingPolicy.CamelCase
+});
+Console.WriteLine(systemJsonCamelCaseKeys);
+Console.WriteLine();
