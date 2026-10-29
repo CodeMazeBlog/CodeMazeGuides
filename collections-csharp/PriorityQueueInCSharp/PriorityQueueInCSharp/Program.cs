@@ -1,14 +1,18 @@
-﻿using PriorityQueueInCSharp;
+using PriorityQueueInCSharp;
+
+ExploreEqualPriorities();
+ExploreSortingMechanism();
 
 static void ExploreEqualPriorities()
 {
-    var hospitalQueue = new PriorityQueue<Patient, int>(5); 
-    hospitalQueue.Enqueue(new("Sarah", 23), 1); 
-    hospitalQueue.Enqueue(new("Joe", 50), 1); 
-    hospitalQueue.Enqueue(new("Elizabeth", 60), 1); 
-    hospitalQueue.Enqueue(new("Natalie", 16), 1); 
-    hospitalQueue.Enqueue(new("Angie", 25), 1); 
-    while (hospitalQueue.Count > 0) 
+    var hospitalQueue = new PriorityQueue<Patient, int>(5);
+    hospitalQueue.Enqueue(new("Sarah", 23), 1);
+    hospitalQueue.Enqueue(new("Joe", 50), 1);
+    hospitalQueue.Enqueue(new("Elizabeth", 60), 1);
+    hospitalQueue.Enqueue(new("Natalie", 16), 1);
+    hospitalQueue.Enqueue(new("Angie", 25), 1);
+
+    while (hospitalQueue.Count > 0)
         Console.WriteLine(hospitalQueue.Dequeue().Name);
 }
 
@@ -23,7 +27,8 @@ static void ExploreSortingMechanism()
         new("Angie", 25),
     };
     var hospitalQueue = new PriorityQueue<Patient, Patient>(new HospitalQueueComparer());
-    patients.ForEach(p => {
+    patients.ForEach(p =>
+    {
         Console.WriteLine($"Enqueueing {p.Name}");
         hospitalQueue.Enqueue(p, p);
     });

@@ -1,125 +1,146 @@
-﻿namespace RoundDownToNearestInteger
+namespace RoundDownToNearestInteger;
+
+public static class RoundingMethods
 {
-    public class RoundingMethods
+    public static int[] RoundDownUsingMathFloor(double[] testCases)
     {
-        public static int[] RoundDownUsingMathFloor(double[] testCases)
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
         {
-            var results = new int[testCases.Length];
-
-            for (var cnt = 0; cnt < testCases.Length; cnt++)
-            {
-                results[cnt] = (int)Math.Floor(testCases[cnt]);
-            }
-
-            return results;
+            results[cnt] = (int)Math.Floor(testCases[cnt]);
         }
 
-        public static int[] RoundDownUsingMathTruncate(double[] testCases)
+        return results;
+    }
+
+    public static int[] RoundDownUsingMathTruncate(double[] testCases)
+    {
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
         {
-            var results = new int[testCases.Length];
-
-            for (var cnt = 0; cnt < testCases.Length; cnt++)
-            {
-                results[cnt] = (int)Math.Truncate(testCases[cnt]);
-            }
-
-            return results;
+            results[cnt] = (int)Math.Truncate(testCases[cnt]);
         }
 
-        public static int[] RoundDownUsingMathRoundWithToEvenMode(double[] testCases)
+        return results;
+    }
+
+    public static int[] RoundDownUsingMathRoundWithToEvenMode(double[] testCases)
+    {
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
         {
-            var results = new int[testCases.Length];
-
-            for (var cnt = 0; cnt < testCases.Length; cnt++)
-            {
-                results[cnt] = (int)Math.Round(testCases[cnt], MidpointRounding.ToEven);
-            }
-
-            return results;
+            results[cnt] = (int)Math.Round(testCases[cnt], MidpointRounding.ToEven);
         }
 
-        public static int[] RoundDownUsingMathRoundWithAwayFromZeroMode(double[] testCases)
+        return results;
+    }
+
+    public static int[] RoundDownUsingMathRoundWithAwayFromZeroMode(double[] testCases)
+    {
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
         {
-            var results = new int[testCases.Length];
-
-            for (var cnt = 0; cnt < testCases.Length; cnt++)
-            {
-                results[cnt] = (int)Math.Round(testCases[cnt], MidpointRounding.AwayFromZero);
-            }
-
-            return results;
+            results[cnt] = (int)Math.Round(testCases[cnt], MidpointRounding.AwayFromZero);
         }
 
-        public static int[] RoundDownUsingMathRoundWithToZeroMode(double[] testCases)
+        return results;
+    }
+
+    public static int[] RoundDownUsingMathRoundWithToZeroMode(double[] testCases)
+    {
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
         {
-            var results = new int[testCases.Length];
-
-            for (var cnt = 0; cnt < testCases.Length; cnt++)
-            {
-                results[cnt] = (int)Math.Round(testCases[cnt], MidpointRounding.ToZero);
-            }
-
-            return results;
+            results[cnt] = (int)Math.Round(testCases[cnt], MidpointRounding.ToZero);
         }
 
-        public static int[] RoundDownUsingMathRoundWithToNegativeInfinityMode(double[] testCases)
+        return results;
+    }
+
+    public static int[] RoundDownUsingMathRoundWithToNegativeInfinityMode(double[] testCases)
+    {
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
         {
-            var results = new int[testCases.Length];
-
-            for (var cnt = 0; cnt < testCases.Length; cnt++)
-            {
-                results[cnt] = (int)Math.Round(testCases[cnt], MidpointRounding.ToNegativeInfinity);
-            }
-
-            return results;
+            results[cnt] = (int)Math.Round(testCases[cnt], MidpointRounding.ToNegativeInfinity);
         }
 
-        public static int[] RoundDownUsingMathRoundWithToPositiveInfinityMode(double[] testCases)
+        return results;
+    }
+
+    public static int[] RoundDownUsingMathRoundWithToPositiveInfinityMode(double[] testCases)
+    {
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
         {
-            var results = new int[testCases.Length];
-
-            for (var cnt = 0; cnt < testCases.Length; cnt++)
-            {
-                results[cnt] = (int)Math.Round(testCases[cnt], MidpointRounding.ToPositiveInfinity);
-            }
-
-            return results;
+            results[cnt] = (int)Math.Round(testCases[cnt], MidpointRounding.ToPositiveInfinity);
         }
 
-        public static int[] RoundDownUsingConvertToInt32(double[] testCases)
+        return results;
+    }
+
+    public static int[] RoundDownUsingConvertToInt32(double[] testCases)
+    {
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
         {
-            var results = new int[testCases.Length];
-
-            for (var cnt = 0; cnt < testCases.Length; cnt++)
-            {
-                results[cnt] = Convert.ToInt32(testCases[cnt]);
-            }
-
-            return results;
+            results[cnt] = Convert.ToInt32(testCases[cnt]);
         }
 
-        public static int[] RoundDownUsingCasting(double[] testCases)
+        return results;
+    }
+
+    public static int[] RoundDownUsingCasting(double[] testCases)
+    {
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
         {
-            var results = new int[testCases.Length];
-
-            for (var cnt = 0; cnt < testCases.Length; cnt++)
-            {
-                results[cnt] = (int)testCases[cnt];
-            }
-
-            return results;
+            results[cnt] = (int)testCases[cnt];
         }
 
-        public static int[] RoundDownUsingSubtractionWithModulo(double[] testCases)
+        return results;
+    }
+
+    public static int[] RoundDownUsingSubtractionWithModulo(double[] testCases)
+    {
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
         {
-            var results = new int[testCases.Length];
-
-            for (var cnt = 0; cnt < testCases.Length; cnt++)
-            {
-                results[cnt] = (int)(testCases[cnt] - (testCases[cnt] % 1));
-            }
-
-            return results;
+            results[cnt] = (int)(testCases[cnt] - (testCases[cnt] % 1));
         }
+
+        return results;
+    }
+
+    public static int[] RoundUpUsingMathCeiling(double[] testCases)
+    {
+        var results = new int[testCases.Length];
+
+        for (var cnt = 0; cnt < testCases.Length; cnt++)
+        {
+            results[cnt] = (int)Math.Ceiling(testCases[cnt]);
+        }
+
+        return results;
+    }
+
+    public static int DivideAndRoundDown(int dividend, int divisor)
+    {
+        var quotient = dividend / divisor;
+        var remainder = dividend % divisor;
+
+        return (remainder != 0 && (remainder < 0) != (divisor < 0))
+            ? quotient - 1
+            : quotient;
     }
 }
