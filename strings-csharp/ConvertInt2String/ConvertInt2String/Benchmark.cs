@@ -1,126 +1,35 @@
-﻿using System;
 using System.Text;
-using System.Diagnostics;
+using BenchmarkDotNet.Attributes;
 
-namespace ConvertInt2String
+namespace ConvertInt2String;
+
+[MemoryDiagnoser]
+public class IntToStringBenchmarks
 {
-    public static class Benchmark
-    {
-        const int formatOffsetLeft = 23;
-        const int formatOffsetRight = 10;
+    [Params(3, 1_234_567)]
+    public int Number { get; set; }
 
-        static string BenchmarkToString(int num, int reps)
-        {
-            var watch = new Stopwatch();
-            watch.Start();
-            for (int i = 0; i < reps; i++)
-            {
-                var tmpResult = num.ToString();
-            }
-            watch.Stop();
+    [Benchmark(Baseline = true)]
+    public string IntToString() => Number.ToString();
 
-            return $"|{"'ToString'",formatOffsetLeft} | {watch.ElapsedMilliseconds,formatOffsetRight:N0}|";
-        }
-        static string BenchmarkConvertToString(int num, int reps)
-        {
-            var watch = new Stopwatch();
-            watch.Start();
-            for (int i = 0; i < reps; i++)
-            {
-                var tmpResult = num.ToString();
-            }
-            watch.Stop();
+    [Benchmark]
+    public string ConvertToString() => Convert.ToString(Number);
 
-            return $"|{"'ConvertToString'",formatOffsetLeft} | {watch.ElapsedMilliseconds,formatOffsetRight:N0}|";
-        }
-        static string BenchmarkStringFormat(int num, int reps)
-        {
-            var watch = new Stopwatch();
-            watch.Start();
-            for (int i = 0; i < reps; i++)
-            {
-                var tmpResult = string.Format("{0}", num);
-            }
-            watch.Stop();
+    [Benchmark]
+    public string StringFormat() => string.Format("{0}", Number);
 
-            return $"|{"'String.Format'",formatOffsetLeft} | {watch.ElapsedMilliseconds,formatOffsetRight:N0}|";
-        }
-        static string BenchmarkStringInterpolation(int num, int reps)
-        {
-            var watch = new Stopwatch();
-            watch.Start();
-            for (int i = 0; i < reps; i++)
-            {
-                var tmpResult = $"{num}";
-            }
-            watch.Stop();
+    [Benchmark]
+    public string StringInterpolation() => $"{Number}";
 
-            return $"|{"'String Interpolation'",formatOffsetLeft} | {watch.ElapsedMilliseconds,formatOffsetRight:N0}|";
-        }
-        static string BenchmarkStringConcat(int num, int reps)
-        {
-            var watch = new Stopwatch();
-            watch.Start();
-            for (int i = 0; i < reps; i++)
-            {
-                var tmpResult = string.Concat(string.Empty, num);
-            }
-            watch.Stop();
+    [Benchmark]
+    public string StringConcat() => string.Concat(string.Empty, Number);
 
-            return $"|{"'String.Concat'",formatOffsetLeft} | {watch.ElapsedMilliseconds,formatOffsetRight:N0}|";
-        }
-        static string BenchmarkStringJoin(int num, int reps)
-        {
-            var watch = new Stopwatch();
-            watch.Start();
-            for (int i = 0; i < reps; i++)
-            {
-                var tmpResult = string.Join(string.Empty, num);
-            }
-            watch.Stop();
+    [Benchmark]
+    public string StringJoin() => string.Join(string.Empty, Number);
 
-            return $"|{"'String.Join'",formatOffsetLeft} | {watch.ElapsedMilliseconds,formatOffsetRight:N0}|";
-        }
-        static string BenchmarkPlusSign(int num, int reps)
-        {
-            var watch = new Stopwatch();
-            watch.Start();
-            for (int i = 0; i < reps; i++)
-            {
-                var tmpResult = string.Empty + num;
-            }
-            watch.Stop();
+    [Benchmark]
+    public string PlusSign() => string.Empty + Number;
 
-            return $"|{"'Plus sign'",formatOffsetLeft} | {watch.ElapsedMilliseconds,formatOffsetRight:N0}|";
-        }
-        static string BenchmarkStringBuilderAppend(int num, int reps)
-        {
-            var watch = new Stopwatch();
-            watch.Start();
-            for (int i = 0; i < reps; i++)
-            {
-                var tmpResult = new StringBuilder().Append(num).ToString();
-            }
-            watch.Stop();
-
-            return $"|{"'Stringbuilder Append'",formatOffsetLeft} | {watch.ElapsedMilliseconds,formatOffsetRight:N0}|";
-        }
-
-        public static string Run(int number, int repetitions)
-        {
-            var benchmarkResultsBuilder = new StringBuilder($"\r\nBenchmarks with {repetitions:N0} repetitions: \r\n")
-                .AppendLine($"|{"Method",formatOffsetLeft} | {"Speed (ms)",formatOffsetRight}|")
-                .AppendLine($"|{"-----------------------",formatOffsetLeft}-|-{"----------",formatOffsetRight}|")
-                .AppendLine(BenchmarkToString(number, repetitions))
-                .AppendLine(BenchmarkConvertToString(number, repetitions))
-                .AppendLine(BenchmarkStringFormat(number, repetitions))
-                .AppendLine(BenchmarkStringInterpolation(number, repetitions))
-                .AppendLine(BenchmarkStringConcat(number, repetitions))
-                .AppendLine(BenchmarkStringJoin(number, repetitions))
-                .AppendLine(BenchmarkPlusSign(number, repetitions))
-                .AppendLine(BenchmarkStringBuilderAppend(number, repetitions));
-
-            return benchmarkResultsBuilder.ToString();
-        }
-    }
+    [Benchmark]
+    public string StringBuilderAppend() => new StringBuilder().Append(Number).ToString();
 }
