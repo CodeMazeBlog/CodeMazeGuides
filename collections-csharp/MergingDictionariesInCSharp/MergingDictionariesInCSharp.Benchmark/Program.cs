@@ -1,1 +1,1 @@
-﻿BenchmarkDotNet.Running.BenchmarkRunner.Run<MergingMethodsBenchmark>();
+﻿BenchmarkDotNet.Running.BenchmarkRunner.Run<MergingMethodsBenchmark>(args: args);
