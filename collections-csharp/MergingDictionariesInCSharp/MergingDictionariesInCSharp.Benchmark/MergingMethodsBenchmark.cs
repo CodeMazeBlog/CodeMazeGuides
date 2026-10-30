@@ -8,27 +8,24 @@ using static MergingDictionariesInCSharp.Methods;
 [RankColumn]
 public class MergingMethodsBenchmark
 {
-    private Dictionary<int, string> _dictionaryA;
-    private Dictionary<int, string> _dictionaryB;
+    private readonly Dictionary<int, string> _dictionaryA = [];
+    private readonly Dictionary<int, string> _dictionaryB = [];
 
     [GlobalSetup]
     public void Setup()
     {
-        _dictionaryA = new Dictionary<int, string>();
-        _dictionaryB = new Dictionary<int, string>();
-
         // Generate random values for dictionaryA
         for (var i = 0; i < 100; i++)
         {
             var randomValue = GenerateRandomValue();
-            _dictionaryA.Add(i, randomValue);            
+            _dictionaryA.Add(i, randomValue);
         }
 
         // Generate random values for dictionaryB
-        for (int i = 100; i < 200; i++)
+        for (var i = 100; i < 200; i++)
         {
             var randomValue = GenerateRandomValue();
-            _dictionaryB.Add(i, randomValue);            
+            _dictionaryB.Add(i, randomValue);
         }
     }
 

@@ -9,16 +9,20 @@ namespace DataTableOverview
             var dt = CreateMainDataTable();
 
             PopulateDataTable(dt);
+            AddPrimaryKey(dt);
+            PrintConstraints(dt);
             PrintData(dt);
 
             DataTable dtClone = dt.Clone();
-            PrintColumns(dtClone);          
+            PrintColumns(dtClone);
 
             DataTable dtCopy = dt.Copy();
             PrintData(dtCopy);
 
             AddNewRow(dt);
             FilterDataTable(dt);
+
+            PrintTable(dt);
 
             SalesDataProcessor.ProcessSales();
         }
@@ -32,45 +36,41 @@ namespace DataTableOverview
             dt.Columns.Add("Date", typeof(DateTime));
             dt.Columns.Add("Price", typeof(double));
 
-            // add primary key
-            var pkCol = new DataColumn("Key", typeof(int));
-            dt.Columns.Add(pkCol);
-
-            var pkCols = new DataColumn[1];
-            pkCols[0] = pkCol;
-
-            dt.PrimaryKey = pkCols;
-
             return dt;
         }
 
         public static void PopulateDataTable(DataTable dt)
         {
-            // add row
             // 1) declare and instantiate row
-            DataRow row;
-            row = dt.NewRow();
+            DataRow row = dt.NewRow();
 
             // 2) set column values
             row["Ticker"] = "MSFT";
             row["Date"] = new DateTime(2023, 3, 3);
-            row["Price"] = 255.29;  
-            row["Key"] = 0;
+            row["Price"] = 255.29;
 
             // by Ordinal/index
             row[0] = "MSFT";
             row[1] = new DateTime(2023, 3, 3);
             row[2] = 255.29;
-            row[3] = 0;
 
             // 3) add populated row to table
             dt.Rows.Add(row);
         }
 
+        public static void AddPrimaryKey(DataTable dt)
+        {
+            var pkCol = new DataColumn("Key", typeof(int));
+            dt.Columns.Add(pkCol);
+
+            dt.Rows[0]["Key"] = 0;
+
+            dt.PrimaryKey = [pkCol];
+        }
+
         public static void AddNewRow(DataTable dt)
         {
-            DataRow row;
-            row = dt.NewRow();
+            DataRow row = dt.NewRow();
 
             row["Ticker"] = "AMZN";
             row["Date"] = new DateTime(2023, 3, 6);
@@ -78,6 +78,11 @@ namespace DataTableOverview
             row["Key"] = 1;
 
             dt.Rows.Add(row);
+        }
+
+        public static void AddNewRowFromValues(DataTable dt)
+        {
+            dt.Rows.Add("AMZN", new DateTime(2023, 3, 6), 93.75, 1);
         }
 
         public static void PrintConstraints(DataTable dt)
@@ -123,6 +128,22 @@ namespace DataTableOverview
                     Console.WriteLine($"{col}: {row[col]}");
                 }
             }
+        }
+
+        public static void PrintTable(DataTable dt)
+        {
+            var header = dt.Columns.Cast<DataColumn>().Select(col => col.ColumnName);
+            Console.WriteLine(string.Join(" | ", header));
+
+            foreach (DataRow row in dt.Rows)
+                Console.WriteLine(string.Join(" | ", row.ItemArray));
+        }
+
+        public static IEnumerable<string?> GetTickersBelow(DataTable dt, double price)
+        {
+            return dt.AsEnumerable()
+                .Where(row => row.Field<double>("Price") < price)
+                .Select(row => row.Field<string>("Ticker"));
         }
     }
 }

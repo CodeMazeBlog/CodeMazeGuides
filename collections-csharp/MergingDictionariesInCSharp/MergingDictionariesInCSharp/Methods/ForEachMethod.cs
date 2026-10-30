@@ -3,6 +3,7 @@
     public partial class Methods
     {
         public static Dictionary<TKey, TValue> ForEachMethod<TKey, TValue>(params Dictionary<TKey, TValue>[] dictionaries)
+            where TKey : notnull
         {
             var mergedDictionary = new Dictionary<TKey, TValue>();
 
