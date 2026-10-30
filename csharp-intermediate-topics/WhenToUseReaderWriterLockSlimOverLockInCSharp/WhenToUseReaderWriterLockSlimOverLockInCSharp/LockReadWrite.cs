@@ -2,7 +2,7 @@
 
 public class LockReadWrite : BaseReaderWriter
 {
-    private static readonly object LockObject = new();
+    private static readonly Lock LockObject = new();
 
     public override void AddNumbersToList(int writerExecutionsCount, int writerExecutionDelay)
     {

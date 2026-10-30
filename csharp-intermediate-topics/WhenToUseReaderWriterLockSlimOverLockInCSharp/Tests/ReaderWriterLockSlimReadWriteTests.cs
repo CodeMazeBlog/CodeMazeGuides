@@ -48,4 +48,39 @@ public class ReaderWriterLockSlimReadWriteTests
 
         Assert.AreEqual(1, readerWriterLockSlimReadWrite.ListOfNumbers.Count);
     }
+
+    [TestMethod]
+    public void WhenReadLockIsEnteredTwiceWithDefaultPolicy_ThrowsLockRecursionException()
+    {
+        using var readerWriterLockSlim = new ReaderWriterLockSlim();
+        readerWriterLockSlim.EnterReadLock();
+
+        Assert.ThrowsExactly<LockRecursionException>(() => readerWriterLockSlim.EnterReadLock());
+
+        readerWriterLockSlim.ExitReadLock();
+    }
+
+    [TestMethod]
+    public void WhenReadLockIsEnteredTwiceWithSupportsRecursion_RecursiveReadCountIsTwo()
+    {
+        using var readerWriterLockSlim = new ReaderWriterLockSlim(LockRecursionPolicy.SupportsRecursion);
+        readerWriterLockSlim.EnterReadLock();
+        readerWriterLockSlim.EnterReadLock();
+
+        Assert.AreEqual(2, readerWriterLockSlim.RecursiveReadCount);
+
+        readerWriterLockSlim.ExitReadLock();
+        readerWriterLockSlim.ExitReadLock();
+    }
+
+    [TestMethod]
+    public void WhenReadLockHolderEntersWriteLock_ThrowsLockRecursionException()
+    {
+        using var readerWriterLockSlim = new ReaderWriterLockSlim();
+        readerWriterLockSlim.EnterReadLock();
+
+        Assert.ThrowsExactly<LockRecursionException>(() => readerWriterLockSlim.EnterWriteLock());
+
+        readerWriterLockSlim.ExitReadLock();
+    }
 }
