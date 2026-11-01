@@ -26,4 +26,28 @@ public class SortDictionary
 
         return sortedKeyValuePairs;
     }
+
+    public static List<KeyValuePair<string, string>> SortDictionaryValueThenKey(Dictionary<string, string> dictionary)
+    {
+        var sortedKeyValuePairs = dictionary
+            .OrderBy(x => x.Value)
+            .ThenBy(x => x.Key)
+            .ToList();
+
+        return sortedKeyValuePairs;
+    }
+
+    public static SortedDictionary<string, int> SortDictionaryKeyUsingSortedDictionary(Dictionary<string, int> stock)
+    {
+        var sortedStock = new SortedDictionary<string, int>(stock);
+
+        return sortedStock;
+    }
+
+    public static OrderedDictionary<string, string> KeepValueOrderInOrderedDictionary(Dictionary<string, string> dictionary)
+    {
+        var orderedByValue = new OrderedDictionary<string, string>(dictionary.OrderBy(x => x.Value));
+
+        return orderedByValue;
+    }
 }
