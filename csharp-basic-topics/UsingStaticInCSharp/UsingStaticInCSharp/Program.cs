@@ -7,8 +7,11 @@ internal class Program
         new Enums.Caller().Invoke();
         new Constants.Caller().Invoke();
         new NestedTypeMembers.Caller().Invoke();
+        new NestedTypeMembers.OuterTypeCaller().Invoke();
         new ExtensionMethods.Caller().Invoke();
         new BaseClassMembers.Caller().Invoke();
         new Ambiguity.Caller().Invoke();
+        new GlobalUsingStatic.Caller().Invoke();
+        new MemberPrecedence.Caller().Invoke();
     }
 }
