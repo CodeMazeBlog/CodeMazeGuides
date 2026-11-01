@@ -13,6 +13,7 @@ Console.WriteLine(textinfo.ToTitleCase(textinfo.ToLower("THE NASA MISSION")));
 Console.WriteLine("a tale oF tWo citIes".ToTitleCaseWithMinorWords(textinfo));
 Console.WriteLine("harry potter and the Deathly hallows".ToTitleCaseWithMinorWords(textinfo));
 
+Console.OutputEncoding = System.Text.Encoding.UTF8;
 var turkish = new CultureInfo("tr-TR", false).TextInfo;
 Console.WriteLine(turkish.ToTitleCase("a tale oF tWo citIes"));
 Console.WriteLine(turkish.ToTitleCase("istanbul"));
