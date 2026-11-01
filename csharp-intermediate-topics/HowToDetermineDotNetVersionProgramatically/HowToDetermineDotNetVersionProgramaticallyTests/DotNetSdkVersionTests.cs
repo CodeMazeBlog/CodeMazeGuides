@@ -1,6 +1,6 @@
 namespace HowToDetermineDotNetVersionProgramaticallyTests;
 
-public class DotNetSdkVersionLiveTests
+public class DotNetSdkVersionTests
 {
     [Fact]
     public void GivenPlatformWithInstalledDotNetSdks_WhenCallingGetDotNetSdkVersionsInstalled_ThenReturnInstalledSdks()
