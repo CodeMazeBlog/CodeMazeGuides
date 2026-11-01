@@ -1,34 +1,28 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 
-namespace AnyAndExistsMethodsInCSharp
+namespace AnyAndExistsMethodsInCSharp;
+
+[MemoryDiagnoser]
+[Orderer(SummaryOrderPolicy.FastestToSlowest)]
+public class NumbersHelperBenchmark
 {
-    [MemoryDiagnoser]
-    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-    public class NumbersHelperBenchmark
+    [Params(10_000, 100_000, 1_000_000)]
+    public int ListSize { get; set; }
+
+    private List<int> _list = [];
+
+    [GlobalSetup]
+    public void GlobalSetup()
     {
-        [Params(10000, 100000, 1000000)]
-        public int ListSize { get; set; }
-
-        private List<int> list;
-
-        [GlobalSetup]
-        public void GlobalSetup()
-        {
-            list = Enumerable.Range(-ListSize, ListSize).ToList();
-        }
-
-        [Benchmark]
-        public void ComparePositiveNumbersMethodsExists()
-        {
-            NumbersHelper.CheckIfListContainsPositiveNumbersExists(list);
-        }
-
-        [Benchmark]
-        public void ComparePositiveNumbersMethodsAny()
-        {
-            NumbersHelper.CheckIfListContainsPositiveNumbersAny(list);
-        }
+        _list = Enumerable.Range(-ListSize, ListSize).ToList();
     }
 
+    [Benchmark(Baseline = true)]
+    public bool ComparePositiveNumbersMethodsExists()
+        => NumbersHelper.CheckIfListContainsPositiveNumbersExists(_list);
+
+    [Benchmark]
+    public bool ComparePositiveNumbersMethodsAny()
+        => NumbersHelper.CheckIfListContainsPositiveNumbersAny(_list);
 }
