@@ -13,8 +13,8 @@ public class DynamicMethodGenerator
         var right = Expression.Parameter(typeof(int), variables[1]);
 
         // Create the expression tree
-        var add = Expression.Multiply(left, right);
-        var lambda = Expression.Lambda(add, left, right);
+        var product = Expression.Multiply(left, right);
+        var lambda = Expression.Lambda(product, left, right);
 
         // Return the compiled method
         return (Func<int, int, int>)lambda.Compile();

@@ -33,4 +33,9 @@ public class ExpressionTrees
 
         return delegateRepresentingLambdaExpression;
     }
+
+    public static Func<int, int, int> InterpretExpressionTree(Expression<Func<int, int, int>> expressionTree)
+    {
+        return expressionTree.Compile(preferInterpretation: true);
+    }
 }
