@@ -19,20 +19,30 @@ public static class StringHelper
         return char.Parse(inputString);
     }
 
-public static char[] ConvertStringArrayToCharArrayUsingLoop(string[] stringArray)
-{
-    var combinedString = new StringBuilder();
-
-    foreach (var str in stringArray)
+    public static char GetCharacterAtIndex(string inputString, int index)
     {
-        combinedString.Append(str);
+        return inputString[index];
     }
 
-    var result = new char[combinedString.Length];
-    combinedString.CopyTo(0, result, 0, result.Length);
+    public static bool TryConvertSingleCharacterStringToChar(string? inputString, out char result)
+    {
+        return char.TryParse(inputString, out result);
+    }
 
-    return result;
-}
+    public static char[] ConvertStringArrayToCharArrayUsingLoop(string[] stringArray)
+    {
+        var combinedString = new StringBuilder();
+
+        foreach (var str in stringArray)
+        {
+            combinedString.Append(str);
+        }
+
+        var result = new char[combinedString.Length];
+        combinedString.CopyTo(0, result, 0, result.Length);
+
+        return result;
+    }
 
     public static char[] ConvertStringArrayToCharArrayUsingLinq(string[] stringArray)
     {
