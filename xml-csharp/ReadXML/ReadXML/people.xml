@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<people>
+  <person>
+    <name>
+      <firstName>Olivia</firstName>
+      <lastName>Davis</lastName>
+    </name>
+    <email>olivia.davis@code-maze.com</email>
+    <age>34</age>
+  </person>
+  <person>
+    <name>
+      <firstName>John</firstName>
+      <lastName>Davis</lastName>
+    </name>
+    <email>john.davis@code-maze.com</email>
+    <age>41</age>
+  </person>
+  <person>
+    <name>
+      <firstName>Sarah</firstName>
+      <lastName>Moore</lastName>
+    </name>
+    <email>sarah.moore@code-maze.com</email>
+    <age>27</age>
+  </person>
+  <person>
+    <name>
+      <firstName>Sarah</firstName>
+      <lastName>Smith</lastName>
+    </name>
+    <email>sarah.smith@code-maze.com</email>
+    <age>62</age>
+  </person>
+</people>
