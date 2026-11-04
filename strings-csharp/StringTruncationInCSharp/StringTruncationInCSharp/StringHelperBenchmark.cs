@@ -14,38 +14,44 @@ public class StringHelperBenchmark
     public int MaxLength;
         
     [Benchmark]
-    public void TruncateWithSubstring()
+    public string TruncateWithSubstring()
     {
-        StringHelper.TruncateWithSubstring(_originalString, MaxLength);
+        return StringHelper.TruncateWithSubstring(_originalString, MaxLength);
     }
 
     [Benchmark]
-    public void TruncateWithForLoopStringBuilder()
+    public string TruncateWithForLoopStringBuilder()
     {
-        StringHelper.TruncateWithForLoopStringBuilder(_originalString, MaxLength);
+        return StringHelper.TruncateWithForLoopStringBuilder(_originalString, MaxLength);
     }
 
     [Benchmark]
-    public void TruncateWithRegularExpressions()
+    public string TruncateWithRegularExpressions()
     {
-        StringHelper.TruncateWithRegularExpressions(_originalString, MaxLength);
+        return StringHelper.TruncateWithRegularExpressions(_originalString, MaxLength);
     }
 
     [Benchmark]
-    public void TruncateWithRemove()
+    public string TruncateWithRemove()
     {
-        StringHelper.TruncateWithRemove(_originalString, MaxLength);
+        return StringHelper.TruncateWithRemove(_originalString, MaxLength);
     }
 
     [Benchmark]
-    public void TruncateWithLINQ()
+    public string TruncateWithLINQ()
     {
-        StringHelper.TruncateWithLINQ(_originalString, MaxLength);
+        return StringHelper.TruncateWithLINQ(_originalString, MaxLength);
     }
 
     [Benchmark]
-    public void TruncateWithSpan()
+    public string TruncateWithSpan()
     {
-        StringHelper.TruncateWithSpan(_originalString, MaxLength);
+        return StringHelper.TruncateWithSpan(_originalString, MaxLength);
+    }
+
+    [Benchmark]
+    public string TruncateWithTextElements()
+    {
+        return StringHelper.TruncateWithTextElements(_originalString, MaxLength);
     }
 }
