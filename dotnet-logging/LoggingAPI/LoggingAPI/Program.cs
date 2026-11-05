@@ -1,22 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
+using LoggingAPI;
+using Microsoft.Extensions.Logging;
 
-namespace LoggingAPI
+using ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
 {
-    public class Program
-    {
-        static void Main(string[] args)
-        {
-            ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
-            {
-                builder.AddConsole();
-                builder.AddDebug();
-            });
+    builder.AddConsole();
+    builder.AddDebug();
+});
 
-            ILogger<Student> logger = loggerFactory.CreateLogger<Student>();
-            var student = new Student("John", "IT", logger);
+ILogger<Student> logger = loggerFactory.CreateLogger<Student>();
+var student = new Student("John", "IT", logger);
 
-            var department = new Department("IT", "Information Technology", loggerFactory);
-
-        }
-    }
-}
+var department = new Department("IT", "Information Technology", loggerFactory);
