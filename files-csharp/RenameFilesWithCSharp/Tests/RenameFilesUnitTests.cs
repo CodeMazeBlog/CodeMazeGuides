@@ -97,4 +97,88 @@ public class RenameFilesUnitTests : IDisposable
         // Assert
         Assert.Equal(existingFiles, updatedFiles);
     }
+
+    [Fact]
+    public void WhenTwoPhotosShareACreationSecond_ThenBothAreRenamedWithoutCollision()
+    {
+        var first = Path.Combine(_tempDirectory, "a.jpg");
+        var second = Path.Combine(_tempDirectory, "b.jpg");
+        File.Create(first).Close();
+        File.Create(second).Close();
+        var sameSecond = new DateTime(2025, 6, 1, 10, 30, 0);
+        File.SetCreationTime(first, sameSecond);
+        File.SetCreationTime(second, sameSecond);
+
+        // Act
+        ImageRenameService.RenameImagesWithDateTime(_tempDirectory);
+
+        // Assert
+        var names = Directory.GetFiles(_tempDirectory).Select(f => Path.GetFileName(f)).Order(StringComparer.Ordinal).ToArray();
+        Assert.Equal(["Image_2025-06-01_103000.jpg", "Image_2025-06-01_103000_1.jpg"], names);
+    }
+
+    [Fact]
+    public void WhenBatchRenameRunsTwice_ThenSecondRunChangesNothing()
+    {
+        var sameSecond = new DateTime(2025, 6, 1, 10, 30, 0);
+        foreach (var name in new[] { "a.jpg", "b.jpg" })
+        {
+            var path = Path.Combine(_tempDirectory, name);
+            File.Create(path).Close();
+            File.SetCreationTime(path, sameSecond);
+        }
+        ImageRenameService.RenameImagesWithDateTimeUsingFileInfo(_tempDirectory);
+        var afterFirstRun = Directory.GetFiles(_tempDirectory).Order().ToArray();
+
+        // Act
+        ImageRenameService.RenameImagesWithDateTimeUsingFileInfo(_tempDirectory);
+
+        // Assert
+        Assert.Equal(afterFirstRun, Directory.GetFiles(_tempDirectory).Order().ToArray());
+    }
+
+    [Fact]
+    public void GivenExistingFolder_WhenRenamingFolder_ThenContentMovesWithIt()
+    {
+        var oldFolder = Path.Combine(_tempDirectory, "Invoices2025");
+        Directory.CreateDirectory(oldFolder);
+        File.WriteAllText(Path.Combine(oldFolder, "invoice-001.pdf"), "content");
+        var newFolder = Path.Combine(_tempDirectory, "Invoices-2025");
+
+        // Act
+        FolderRenameService.RenameFolder(oldFolder, newFolder);
+
+        // Assert
+        Assert.False(Directory.Exists(oldFolder));
+        Assert.True(File.Exists(Path.Combine(newFolder, "invoice-001.pdf")));
+    }
+
+    [Fact]
+    public void GivenTextFile_WhenChangingExtension_ThenOnlyExtensionChanges()
+    {
+        var filePath = Path.Combine(_tempDirectory, "notes.txt");
+        File.WriteAllText(filePath, "content");
+
+        // Act
+        var newFilePath = FileRenameService.ChangeExtension(filePath, ".md");
+
+        // Assert
+        Assert.Equal(Path.Combine(_tempDirectory, "notes.md"), newFilePath);
+        Assert.True(File.Exists(newFilePath));
+        Assert.False(File.Exists(filePath));
+    }
+
+    [Fact]
+    public void GivenExistingDestination_WhenMovingWithoutOverwrite_ThenIOException()
+    {
+        var source = Path.Combine(_tempDirectory, "a.txt");
+        var destination = Path.Combine(_tempDirectory, "b.txt");
+        File.WriteAllText(source, "new");
+        File.WriteAllText(destination, "old");
+
+        Assert.Throws<IOException>(() => File.Move(source, destination));
+
+        File.Move(source, destination, overwrite: true);
+        Assert.Equal("new", File.ReadAllText(destination));
+    }
 }
