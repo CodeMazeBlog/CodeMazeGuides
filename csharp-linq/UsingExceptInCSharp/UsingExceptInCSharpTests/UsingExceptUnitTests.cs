@@ -16,8 +16,25 @@ public class UsingExceptUnitTests
         var sheilaRecord = nonSales.Find(i => i.Name == "Sheila Foxx");
 
         Assert.IsInstanceOfType(nonSales, typeof(List<Employee>));
+        Assert.HasCount(8, nonSales);
         Assert.IsNull(maryRecord);
         Assert.IsNotNull(sheilaRecord);
+    }
+
+    [TestMethod]
+    public void GivenDuplicatesInFirstSequence_WhenExceptInvoked_ThenVerifyThatResultIsDistinct()
+    {
+        var result = _examples.GetDistinctDifference();
+
+        CollectionAssert.AreEqual(new List<int> { 1, 2, 4 }, result);
+    }
+
+    [TestMethod]
+    public void GivenCopiesOfSalesEmployees_WhenExceptInvokedWithoutComparer_ThenVerifyThatNothingIsRemoved()
+    {
+        var result = _examples.GetEmployeesNotInSalesFromCopies();
+
+        Assert.HasCount(12, result);
     }
 
     [TestMethod]
@@ -27,18 +44,18 @@ public class UsingExceptUnitTests
 
         Assert.IsNotNull(nonIT);
         Assert.IsInstanceOfType(nonIT, typeof(List<string>));
-        Assert.IsFalse(nonIT.Contains("ava knowles"));
-        Assert.IsFalse(nonIT.Contains("grace jones"));
+        Assert.HasCount(10, nonIT);
+        Assert.DoesNotContain("Ava Knowles", nonIT);
+        Assert.DoesNotContain("Grace Jones", nonIT);
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentNullException))]
     public void GivenAllEmployees_WhenExceptInvokedAgainstNull_ThenVerifyThatExceptionThrown()
     {
         var numbers = new List<int> { 1, 2, 3, 4 };
-        List<int> emptyList = null;
+        List<int>? nullList = null;
 
-        var result = numbers.Except(emptyList);
+        Assert.ThrowsExactly<ArgumentNullException>(() => numbers.Except(nullList!));
     }
 
     [TestMethod]
@@ -50,7 +67,26 @@ public class UsingExceptUnitTests
         var comparison = _employeeComparer.Equals(expectedRecord, sheilaRecord);
 
         Assert.IsInstanceOfType(nonSales, typeof(List<Employee>));
+        Assert.HasCount(8, nonSales);
         Assert.IsTrue(comparison);
         Assert.IsNotNull(sheilaRecord);
+    }
+
+    [TestMethod]
+    public void GivenRecords_WhenExceptInvokedWithoutComparer_ThenVerifyThatValueEqualityIsUsed()
+    {
+        var result = _examples.GetEmployeeRecordsNotInSales();
+
+        CollectionAssert.AreEqual(new List<string> { "Sheila Foxx", "Grace Jones" }, result.Select(e => e.Name).ToList());
+    }
+
+    [TestMethod]
+    public void GivenITEmployeeIDs_WhenExceptByInvoked_ThenVerifyThatNoITEmployeesReturned()
+    {
+        var result = _examples.GetEmployeesNotInITByID();
+
+        Assert.HasCount(10, result);
+        Assert.IsNull(result.Find(e => e.ID == 6));
+        Assert.IsNull(result.Find(e => e.ID == 7));
     }
 }
