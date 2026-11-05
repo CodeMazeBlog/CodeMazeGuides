@@ -22,4 +22,13 @@ public static class FileRenameService
 
         Directory.Delete(directoryPath, true);
     }
+
+    public static string ChangeExtension(string filePath, string newExtension)
+    {
+        var newFilePath = Path.ChangeExtension(filePath, newExtension);
+
+        File.Move(filePath, newFilePath);
+
+        return newFilePath;
+    }
 }
