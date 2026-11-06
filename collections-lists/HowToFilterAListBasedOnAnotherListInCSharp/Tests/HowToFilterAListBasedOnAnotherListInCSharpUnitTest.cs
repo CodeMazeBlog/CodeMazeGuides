@@ -231,4 +231,74 @@ public class HowToFilterAListBasedOnAnotherListInCSharpUnitTest
         // Assert
         Assert.Equal([50, 7], output);
     }
+
+    [Fact]
+    public void Given2Lists_WhenRemoveNotContainedMethodCalled_ThenListIsChangedInPlace()
+    {
+        // Arrange
+        List<int> numbers = [17, 34, 50, 68, 121, 7, 145];
+        List<int> otherNumbers = [50, 44, 121];
+
+        // Act
+        var removed = Utilities.RemoveNotContained(numbers, otherNumbers);
+
+        // Assert
+        Assert.Equal(5, removed);
+        Assert.Equal([50, 121], numbers);
+    }
+
+    [Fact]
+    public void Given2Lists_WhenFilterContainedUsingHashSetLookupMethodCalled_ThenOrderAndDuplicatesAreKept()
+    {
+        // Arrange
+        List<int> numbers = [121, 17, 50, 50, 68, 121, 7];
+        List<int> otherNumbers = [50, 44, 121];
+
+        // Act
+        var output = Utilities.FilterContainedUsingHashSetLookup(numbers, otherNumbers);
+
+        // Assert
+        Assert.Equal([121, 50, 50, 121], output);
+    }
+
+    [Fact]
+    public void Given2Lists_WhenFilterStudentsBySchoolCityUsingIntersectByMethodCalled_ThenOneStudentPerCityIsKept()
+    {
+        // Arrange
+        List<Student> students =
+        [
+            new Student { Id = 1, Name = "Alice", SchoolId = 1, City = "Paris" },
+            new Student { Id = 2, Name = "Bob", SchoolId = 2, City = "Reims" },
+            new Student { Id = 5, Name = "Eve", SchoolId = 2, City = "Reims" }
+        ];
+        List<School> schools = [new School { Id = 1, City = "Paris" }, new School { Id = 2, City = "Reims" }];
+
+        // Act
+        var output = Utilities.FilterStudentsBySchoolCityUsingIntersectBy(students, schools)
+            .Select(student => student.Name).ToList();
+
+        // Assert
+        Assert.Equal(["Alice", "Bob"], output);
+    }
+
+    [Fact]
+    public void Given2Lists_WhenFilterStudentsBySchoolCityUsingJoinMethodCalled_ThenEveryMatchingStudentIsKept()
+    {
+        // Arrange
+        List<Student> students =
+        [
+            new Student { Id = 1, Name = "Alice", SchoolId = 1, City = "Paris" },
+            new Student { Id = 2, Name = "Bob", SchoolId = 2, City = "Reims" },
+            new Student { Id = 3, Name = "Charlie", SchoolId = 1, City = "Calais" },
+            new Student { Id = 5, Name = "Eve", SchoolId = 2, City = "Reims" }
+        ];
+        List<School> schools = [new School { Id = 1, City = "Paris" }, new School { Id = 2, City = "Reims" }];
+
+        // Act
+        var output = Utilities.FilterStudentsBySchoolCityUsingJoin(students, schools)
+            .Select(student => student.Name).ToList();
+
+        // Assert
+        Assert.Equal(["Alice", "Bob", "Eve"], output);
+    }
 }
