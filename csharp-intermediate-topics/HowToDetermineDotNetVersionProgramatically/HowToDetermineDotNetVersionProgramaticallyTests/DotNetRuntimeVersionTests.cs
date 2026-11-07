@@ -1,6 +1,6 @@
 namespace HowToDetermineDotNetVersionProgramaticallyTests;
 
-public class DotNetRuntimeVersionLiveTests
+public class DotNetRuntimeVersionTests
 {
     [Fact]
     public void

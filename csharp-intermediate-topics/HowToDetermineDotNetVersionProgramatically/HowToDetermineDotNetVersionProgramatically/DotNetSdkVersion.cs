@@ -4,7 +4,7 @@ public static class DotNetSdkVersion
 {
     public static string GetDotNetSdkVersionsInstalled()
     {
-        var process = new Process();
+        using var process = new Process();
         process.StartInfo.FileName = "dotnet";
         process.StartInfo.Arguments = "--list-sdks";
         process.StartInfo.RedirectStandardOutput = true;
@@ -19,7 +19,7 @@ public static class DotNetSdkVersion
     {
         return GetDotNetSdkVersionsInstalled()
             .Split(Environment.NewLine)
-            .Select(x => x.Split(' '))
+            .Select(x => x.Split(' ', 2))
             .Where(x => x.Length == 2)
             .Select(x => (version: x[0], installPath: x[1]))
             .ToArray();
