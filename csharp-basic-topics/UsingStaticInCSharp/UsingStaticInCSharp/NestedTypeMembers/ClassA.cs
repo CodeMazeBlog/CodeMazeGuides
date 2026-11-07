@@ -1,8 +1,13 @@
 ﻿namespace UsingStaticInCSharp.NestedTypeMembers;
-public static class ClassA
+public class ClassA
 {
-    public static class ClassB
+    public class ClassB
     {
+        public static void MethodA()
+        {
+            Console.WriteLine("NestedTypeMembers.ClassA.ClassB.MethodA() called");
+        }
+
         public static void MethodB()
         {
             Console.WriteLine("NestedTypeMembers.ClassA.ClassB.MethodB() called");
