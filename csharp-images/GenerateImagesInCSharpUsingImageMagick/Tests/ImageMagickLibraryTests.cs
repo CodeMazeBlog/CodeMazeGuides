@@ -3,7 +3,7 @@ using ImageMagickLibrary;
 
 namespace Tests;
 
-public class ImageMagickLibraryLiveTest
+public class ImageMagickLibraryTests
 {
     private const string OutputPath = @"outputImage.png";
     private const string NullOutputPath = "";
@@ -18,12 +18,12 @@ public class ImageMagickLibraryLiveTest
     private readonly int _invalidPointX = -1;
     private readonly int _invalidPointY = -1;
 
-    public ImageMagickLibraryLiveTest()
+    public ImageMagickLibraryTests()
     {
         _expectedColor = _color;
-        _centerX = _circle.X + _circle.Width / 2;
-        _centerY = _circle.Y + _circle.Height / 2;
-        _radius = _circle.Width / 2;
+        _centerX = _circle.X + (int)_circle.Width / 2;
+        _centerY = _circle.Y + (int)_circle.Height / 2;
+        _radius = (int)_circle.Width / 2;
         _strokeWidth = 5;
     }
 
@@ -53,7 +53,7 @@ public class ImageMagickLibraryLiveTest
     [Theory]
     [InlineData(0, 200)]
     [InlineData(400, 0)]
-    public void GivenInvalidSize_WhenCreateBlankImage_ThenThrowArgumentException(int width, int height)
+    public void GivenInvalidSize_WhenCreateBlankImage_ThenThrowArgumentException(uint width, uint height)
     {
         // Arrange, Act & Assert
         Assert.Throws<ArgumentException>(() => ImageService.CreateBlankImage(width, height, MagickColors.White));

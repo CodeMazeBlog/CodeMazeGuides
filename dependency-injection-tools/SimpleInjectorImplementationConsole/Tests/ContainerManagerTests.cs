@@ -1,6 +1,7 @@
 using SimpleInjectorExample.Services;
 using SimpleInjectorExample.Spec;
 
+using SimpleInjector;
 using SimpleInjector.Lifestyles;
 
 namespace Tests;
@@ -62,6 +63,20 @@ public class ContainerManagerTests
 
         Assert.NotNull(service);
         Assert.Equal(expectedType,service.GetType());
+    }
+
+    [Fact]
+    public void GivenSingletonDependingOnScoped_WhenVerifyIsInvoked_ThenThrowsLifestyleMismatch()
+    {
+        var container = new Container();
+        container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
+        container.Register<IUserRepository, UserRepository>(Lifestyle.Singleton);
+        container.Register<IAddressRepository, AddressRepository>(Lifestyle.Scoped);
+        container.Register<IUserService, UserService>(Lifestyle.Singleton);
+
+        var exception = Assert.Throws<DiagnosticVerificationException>(() => container.Verify());
+
+        Assert.Contains("[Lifestyle Mismatch]", exception.Message);
     }
 
 }

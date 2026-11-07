@@ -42,11 +42,55 @@ public class StringHelperTests
         Assert.Equal(InputString.ToCharArray(), resultLinq);
     }
 
-    [Fact]
-    public void GivenStringToChar_WhenInvalidInput_ThenThrowsArgumentException()
+    [Theory]
+    [InlineData("AB")]
+    [InlineData("")]
+    public void GivenStringToChar_WhenLengthIsNotOne_ThenThrowsFormatException(string inputString)
     {
-        const string inputString = "AB";
-
         Assert.Throws<FormatException>(() => StringHelper.ConvertSingleCharacterStringToChar(inputString));
+    }
+
+    [Fact]
+    public void GivenStringToChar_WhenNull_ThenThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => StringHelper.ConvertSingleCharacterStringToChar(null!));
+    }
+
+    [Fact]
+    public void GivenCharacterAtIndex_WhenIndexInRange_ThenReturnsThatChar()
+    {
+        Assert.Equal('H', StringHelper.GetCharacterAtIndex(InputString, 0));
+        Assert.Equal('W', StringHelper.GetCharacterAtIndex(InputString, 7));
+    }
+
+    [Fact]
+    public void GivenCharacterAtIndex_WhenStringIsEmpty_ThenThrowsIndexOutOfRangeException()
+    {
+        Assert.Throws<IndexOutOfRangeException>(() => StringHelper.GetCharacterAtIndex(string.Empty, 0));
+    }
+
+    [Theory]
+    [InlineData("A", true)]
+    [InlineData("AB", false)]
+    [InlineData("", false)]
+    [InlineData(null, false)]
+    public void GivenTryConvert_WhenCalled_ThenReportsSuccessWithoutThrowing(string? inputString, bool expectedSuccess)
+    {
+        bool success = StringHelper.TryConvertSingleCharacterStringToChar(inputString, out char result);
+
+        Assert.Equal(expectedSuccess, success);
+        if (success)
+            Assert.Equal(inputString![0], result);
+    }
+
+    [Fact]
+    public void GivenEmoji_WhenConverted_ThenTwoCharsAndParseFails()
+    {
+        const string thumbsUp = "\U0001F44D";
+
+        Assert.Equal(2, thumbsUp.Length);
+        Assert.True(char.IsHighSurrogate(StringHelper.GetCharacterAtIndex(thumbsUp, 0)));
+        Assert.False(StringHelper.TryConvertSingleCharacterStringToChar(thumbsUp, out _));
+        Assert.Equal(0x1F44D, System.Text.Rune.GetRuneAt(thumbsUp, 0).Value);
     }
 }

@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
 using StringTruncationInCSharp;
 
-BenchmarkRunner.Run<StringHelperBenchmark>();
+BenchmarkRunner.Run<StringHelperBenchmark>(args: args);
