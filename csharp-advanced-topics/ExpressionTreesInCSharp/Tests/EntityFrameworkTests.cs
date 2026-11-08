@@ -33,4 +33,16 @@ public class EntityFrameworkTests
 
         Assert.Equal(expectedQuery, query);
     }
+
+    [Fact]
+    public void GivenAFuncPredicate_WhenFiltering_ThenTheQueryLeavesEntityFramework()
+    {
+        var efSqlite = new EntityFrameworkSqlite();
+
+        var withFunc = efSqlite.FilterWithFunc(x => x.Age > 20);
+        var withExpression = efSqlite.FilterWithExpression(x => x.Age > 20);
+
+        Assert.False(withFunc is IQueryable<User>);
+        Assert.True(withExpression is IQueryable<User>);
+    }
 }
