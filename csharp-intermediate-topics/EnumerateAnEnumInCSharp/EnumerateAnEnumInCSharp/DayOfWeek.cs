@@ -1,13 +1,12 @@
-﻿namespace EnumerateAnEnumInCSharp
+﻿namespace EnumerateAnEnumInCSharp;
+
+internal enum DayOfWeek
 {
-    internal enum DayOfWeek
-    {
-        Monday,
-        Tuesday,
-        Wednesday,
-        Thursday,
-        Friday,
-        Saturday,
-        Sunday
-    }
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
 }
