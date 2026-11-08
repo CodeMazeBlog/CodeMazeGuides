@@ -53,7 +53,13 @@ Console.WriteLine($"{Environment.NewLine}Sorting by Id Descending using Comparis
 
 PrintEmployeeList(employeeList);
 
-BenchmarkRunner.Run<ObjectComparisonBenchmark>();
+employeeList.Sort((x, y) => string.Compare(x.Name, y.Name, StringComparison.Ordinal));
+
+Console.WriteLine($"{Environment.NewLine}Sorting by Name using a Lambda Expression");
+
+PrintEmployeeList(employeeList);
+
+BenchmarkRunner.Run<ObjectComparisonBenchmark>(args: args);
 
 static void PrintEmployees(Employee[] employees)
 {
