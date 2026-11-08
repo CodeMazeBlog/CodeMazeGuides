@@ -1,13 +1,13 @@
 namespace HowToDetermineDotNetVersionProgramaticallyTests;
 
-public class DotNetAssemblyVersionLiveTests
+public class DotNetAssemblyVersionTests
 {
     [Fact]
     public void GivenPathToDllBuiltWithDotNet_WhenCallingGetAssemblyDotNetVersion_ThenReturnExpectedVersion()
     {
         // Given
-        var path = typeof(DotNetAssemblyVersionLiveTests).Assembly.Location;
-        var expectedVersion = "7.0";
+        var path = typeof(DotNetAssemblyVersionTests).Assembly.Location;
+        var expectedVersion = "10.0";
         
         // When
         var actualVersion = DotNetAssemblyVersion.GetAssemblyDotNetVersion(path);
