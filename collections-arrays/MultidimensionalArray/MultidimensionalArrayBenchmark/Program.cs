@@ -1,6 +1,4 @@
 using BenchmarkDotNet.Running;
 
-var summary = BenchmarkRunner.Run<MaxElement>();
-
-// var summary = BenchmarkRunner.Run<Convolution>();
+BenchmarkSwitcher.FromAssembly(typeof(MaxElement).Assembly).Run(args);
 
