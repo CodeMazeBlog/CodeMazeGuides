@@ -1,10 +1,6 @@
 ﻿namespace LINQLikeOperator;
 
-public class BlogDbContext : DbContext
+public class BlogDbContext(DbContextOptions<BlogDbContext> options) : DbContext(options)
 {
-    public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options)
-    {
-    }
-
     public DbSet<Article> Articles { get; set; }
 }
