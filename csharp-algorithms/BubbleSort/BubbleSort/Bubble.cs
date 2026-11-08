@@ -4,7 +4,7 @@ public class Bubble
 {
     public int[] NumArray { get; set; } = [];
 
-    public int[] SortArray()
+    public int[] SortArray() 
     {
         var n = NumArray.Length;
 
@@ -25,7 +25,7 @@ public class Bubble
         var n = NumArray.Length;
         bool swapRequired;
 
-        for (int i = 0; i < n - 1; i++)
+        for (int i = 0; i < n - 1; i++) 
         {
             swapRequired = false;
 
@@ -37,7 +37,6 @@ public class Bubble
                     NumArray[j + 1] = tempVar;
                     swapRequired = true;
                 }
-
             if (swapRequired == false)
                 break;
         }
