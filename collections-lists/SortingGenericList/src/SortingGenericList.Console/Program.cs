@@ -43,6 +43,22 @@ Console.WriteLine("**Sorted**");
 PrintProducts(productList);
 Console.WriteLine();
 
+Console.WriteLine("----------List<Product> In Place Sort With Comparer<T>.Create (Order: Price - Descending)----------");
+Console.WriteLine("Products:");
+PrintProducts(unsortedProducts);
+Console.WriteLine();
+
+productList.Clear();
+productList.AddRange(unsortedProducts);
+
+var byPriceDescending = Comparer<Product?>.Create(
+    (a, b) => Nullable.Compare(b?.Price, a?.Price));
+
+productList.Sort(byPriceDescending);
+Console.WriteLine("**Sorted**");
+PrintProducts(productList);
+Console.WriteLine();
+
 Console.WriteLine("----------List<Product> In Place Sort With Comparison<T> (Lambda: Order - Category)----------");
 Console.WriteLine("Products:");
 PrintProducts(unsortedProducts);
