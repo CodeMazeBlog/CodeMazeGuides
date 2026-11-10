@@ -48,8 +48,12 @@ public sealed class MySortedList<T> : IList<T>
     public int IndexOf(T item)
     {
         var index = _list.BinarySearch(item, _comparer);
+        if (index < 0) return -1;
 
-        return index < 0 ? -1 : index;
+        var comparer = _comparer ?? Comparer<T>.Default;
+        while (index > 0 && comparer.Compare(_list[index - 1], item) == 0) index--;
+
+        return index;
     }
 
     public void Insert(int index, T item)
