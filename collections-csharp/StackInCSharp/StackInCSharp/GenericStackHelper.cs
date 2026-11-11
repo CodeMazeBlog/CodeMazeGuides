@@ -1,4 +1,6 @@
-﻿namespace StackInCSharp;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace StackInCSharp;
 
 public class GenericStackHelper<T>
 {
@@ -48,7 +50,7 @@ public class GenericStackHelper<T>
         return GenericStack.Pop();
     }
 
-    public bool TryPeekItem(out T result)
+    public bool TryPeekItem([MaybeNullWhen(false)] out T result)
     {
         if (GenericStack == null)
         {
@@ -58,7 +60,7 @@ public class GenericStackHelper<T>
         return GenericStack.TryPeek(out result);
     }
 
-    public bool TryPopItem(out T result)
+    public bool TryPopItem([MaybeNullWhen(false)] out T result)
     {
         if (GenericStack == null)
         {
