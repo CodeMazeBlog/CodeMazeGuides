@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
 using SelectionSort;
 
-var summary = BenchmarkRunner.Run<Selection>();
+BenchmarkRunner.Run<SelectionBenchmarks>(args: args);
