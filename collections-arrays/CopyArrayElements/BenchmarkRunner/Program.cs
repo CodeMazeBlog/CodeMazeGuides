@@ -1,12 +1,4 @@
-﻿using BenchmarkRunner;
+﻿using BenchmarkDotNet.Running;
+using BenchmarkRunner;
 
-namespace BenchmarkRunner
-{
-    public class Program
-    {
-        static void Main(string[] args)
-        {
-            BenchmarkDotNet.Running.BenchmarkRunner.Run<ElementCopierBenchmark>();
-        }
-    }
-}
+BenchmarkSwitcher.FromAssembly(typeof(ElementCopierBenchmark).Assembly).Run(args);
