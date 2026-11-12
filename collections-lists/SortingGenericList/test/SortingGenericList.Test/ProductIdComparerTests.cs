@@ -9,27 +9,27 @@ public class ProductIdComparerTests
     {
         var id = Guid.NewGuid();
         var productA = new Product("ProductName", "Category", 100m) {Id = id};
-        _comparer.Compare(productA, productA).Should().Be(0);
+        Assert.Equal(0, _comparer.Compare(productA, productA));
     }
 
     [Fact]
     public void Compare_BothNull_ShouldReturnZero()
     {
-        _comparer.Compare(null, null).Should().Be(0);
+        Assert.Equal(0, _comparer.Compare(null, null));
     }
 
     [Fact]
     public void Compare_AIsNull_ShouldReturnNegative()
     {
         var productB = new Product("ProductName", "Category", 100m) {Id = Guid.NewGuid()};
-        _comparer.Compare(null, productB).Should().BeNegative();
+        Assert.True(_comparer.Compare(null, productB) < 0);
     }
 
     [Fact]
     public void Compare_BIsNull_ShouldReturnPositive()
     {
         var productA = new Product("ProductName", "Category", 100m) {Id = Guid.NewGuid()};
-        _comparer.Compare(productA, null).Should().BePositive();
+        Assert.True(_comparer.Compare(productA, null) > 0);
     }
 
     [Fact]
@@ -38,10 +38,9 @@ public class ProductIdComparerTests
         var idA = Guid.Parse("00000000-0000-0000-0000-000000000000");
         var idB = Guid.NewGuid();
 
-        _comparer.Compare(
+        Assert.True(_comparer.Compare(
             new Product("ProductName", "Category", 100m) {Id = idA},
-            new Product("ProductName", "Category", 100m) {Id = idB})
-                 .Should().BeNegative();
+            new Product("ProductName", "Category", 100m) {Id = idB}) < 0);
     }
 
     [Fact]
@@ -50,9 +49,9 @@ public class ProductIdComparerTests
         var idA = Guid.Parse("FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF");
         var idB = Guid.NewGuid();
 
-        _comparer.Compare(
+        Assert.True(_comparer.Compare(
             new Product("ProductName", "Category", 100m) {Id = idA},
-            new Product("ProductName", "Category", 100m) {Id = idB}).Should().BePositive();
+            new Product("ProductName", "Category", 100m) {Id = idB}) > 0);
     }
 
     [Fact]
@@ -60,8 +59,8 @@ public class ProductIdComparerTests
     {
         var id = Guid.NewGuid();
 
-        _comparer.Compare(
+        Assert.Equal(0, _comparer.Compare(
             new Product("ProductName", "Category", 100m) {Id = id},
-            new Product("ProductName", "Category", 100m) {Id = id}).Should().Be(0);
+            new Product("ProductName", "Category", 100m) {Id = id}));
     }
 }
