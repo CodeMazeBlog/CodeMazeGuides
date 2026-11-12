@@ -46,3 +46,15 @@ shapeList.OfType<Square>().PrintList();
 
 Console.WriteLine("\nFilter Is Not Null");
 shapeList.FilterNotNull().PrintList();
+
+Console.WriteLine("\n--------------------Query Syntax--------------------\n");
+
+Console.WriteLine("orderby ShapeType, ShapeId descending");
+var byTypeThenId =
+    from s in shapeList
+    orderby s?.ShapeType, s?.ShapeId descending
+    select s;
+byTypeThenId.PrintList();
+
+Console.WriteLine("\nOfType<Shape>");
+shapeList.OfType<Shape>().PrintList();
