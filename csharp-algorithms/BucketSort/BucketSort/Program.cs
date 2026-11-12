@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
 using BucketSort;
 
-var summary = BenchmarkRunner.Run<BucketSortMethods>();
+BenchmarkRunner.Run<BucketSortBenchmarks>(args: args);
