@@ -1,29 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace CopyAllContentInDirectory.Extensions;
 
-namespace CopyAllContentInDirectory.Extensions
+public static class DirectoryInfoExtensions
 {
-    public static class DirectoryInfoExtensions
+    public static void DeepCopy(this DirectoryInfo directory, string destinationDir, bool overwriteFiles)
     {
-        public static void DeepCopy(this DirectoryInfo directory, string destinationDir)
+        foreach (string dir in Directory.GetDirectories(directory.FullName, "*", SearchOption.AllDirectories))
         {
-            var allDirectories = Directory.GetDirectories(directory.FullName, "*", SearchOption.AllDirectories);
+            string dirToCreate = Path.Join(destinationDir, Path.GetRelativePath(directory.FullName, dir));
+            Directory.CreateDirectory(dirToCreate);
+        }
 
-            foreach (string dir in allDirectories)
-            {
-                string dirToCreate = dir.Replace(directory.FullName, destinationDir);
-                Directory.CreateDirectory(dirToCreate);
-            }
+        Directory.CreateDirectory(destinationDir);
 
-            var allFiles = Directory.GetFiles(directory.FullName, "*.*", SearchOption.AllDirectories);
-
-            foreach (string newPath in allFiles)
-            {
-                File.Copy(newPath, newPath.Replace(directory.FullName, destinationDir), true);
-            }
+        foreach (string newPath in Directory.GetFiles(directory.FullName, "*.*", SearchOption.AllDirectories))
+        {
+            string newFile = Path.Join(destinationDir, Path.GetRelativePath(directory.FullName, newPath));
+            File.Copy(newPath, newFile, overwriteFiles);
         }
     }
 }
