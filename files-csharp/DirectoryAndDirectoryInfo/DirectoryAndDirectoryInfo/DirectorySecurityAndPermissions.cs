@@ -1,17 +1,21 @@
-﻿using System.Security.AccessControl;
+﻿using System.Runtime.Versioning;
+using System.Security.AccessControl;
 
 namespace DirectoryAndDirectoryInfo
 {
     public class DirectorySecurityAndPermissions
     {
-        public void GetSetAccessControl()
+        [SupportedOSPlatform("windows")]
+        public void GrantFullControl(string directoryPath, string identity)
         {
-            var directoryPath = @"C:\Users\Public\CM-Demos";
             var directoryInfo = new DirectoryInfo(directoryPath);
 
             DirectorySecurity directorySecurity = directoryInfo.GetAccessControl();
 
-            directorySecurity.AddAccessRule(new FileSystemAccessRule("UserName", FileSystemRights.FullControl, AccessControlType.Allow));
+            directorySecurity.AddAccessRule(new FileSystemAccessRule(
+                identity,
+                FileSystemRights.FullControl,
+                AccessControlType.Allow));
 
             directoryInfo.SetAccessControl(directorySecurity);
         }
