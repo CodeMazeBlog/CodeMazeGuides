@@ -4,19 +4,21 @@ using BenchmarkDotNet.Order;
 
 namespace GetFirstNCharactersOfAString;
 
+[InProcess]
 [MemoryDiagnoser]
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 public class FirstNCharactersOfStringGetterBenchmark
 {
-    private readonly FirstNCharactersOfStringGetter _firstNCharactersOfStringGetter;
-    private readonly Consumer _consumer;
+    private readonly FirstNCharactersOfStringGetter _firstNCharactersOfStringGetter = new();
+    private readonly Consumer _consumer = new();
 
-    public FirstNCharactersOfStringGetterBenchmark()
-    {
-        _consumer = new Consumer();
-        _firstNCharactersOfStringGetter
-            = new FirstNCharactersOfStringGetter();
-    }
+    [Benchmark]
+    public ReadOnlySpan<char> UseSubstring()
+        => _firstNCharactersOfStringGetter.UseSubstring();
+
+    [Benchmark]
+    public ReadOnlySpan<char> UseRangeOperator()
+        => _firstNCharactersOfStringGetter.UseRangeOperator();
 
     [Benchmark]
     public ReadOnlySpan<char> UseForLoop()
@@ -33,6 +35,10 @@ public class FirstNCharactersOfStringGetterBenchmark
     [Benchmark]
     public ReadOnlySpan<char> UseAsSpan()
         => _firstNCharactersOfStringGetter.UseAsSpan();
+
+    [Benchmark]
+    public string UseAsSpanThenToString()
+        => _firstNCharactersOfStringGetter.UseAsSpan().ToString();
 
     [Benchmark]
     public ReadOnlySpan<char> UseAsSpanWithRangeOperator()

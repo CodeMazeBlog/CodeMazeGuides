@@ -1,4 +1,6 @@
 ﻿using BenchmarkDotNet.Running;
 using GetFirstNCharactersOfAString;
 
-BenchmarkRunner.Run<FirstNCharactersOfStringGetterBenchmark>();
+BenchmarkSwitcher
+    .FromAssembly(typeof(FirstNCharactersOfStringGetterBenchmark).Assembly)
+    .Run(args);
