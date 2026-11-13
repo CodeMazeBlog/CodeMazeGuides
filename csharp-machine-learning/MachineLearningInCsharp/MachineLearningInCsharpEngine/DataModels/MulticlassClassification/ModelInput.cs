@@ -14,5 +14,5 @@ public class ModelInput
     public float Age { get; set; }
 
     [ColumnName("class"), LoadColumn(20)]
-    public string Class { get; set; }
+    public string Class { get; set; } = string.Empty;
 }
