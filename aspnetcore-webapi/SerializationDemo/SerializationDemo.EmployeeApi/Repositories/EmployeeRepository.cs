@@ -5,7 +5,6 @@ namespace SerializationDemo.EmployeeApi.Repositories
     public class EmployeeRepository : IEmployeeRepository
     {
         private readonly Dictionary<Guid, Employee> _employees = new();
-        private Random _rnd = new Random();
         public EmployeeRepository()
         {
             InitializeEmployeeStore();
@@ -39,8 +38,8 @@ namespace SerializationDemo.EmployeeApi.Repositories
                     {
                         AddressLine1 = $"Street #{i + 1}",
                         AddressLine2 = $"District #{i + 1}",
-                        City = $"Sample City{_rnd.Next(1, 5)}",
-                        Country = $"Sample Country{_rnd.Next(1, 5)}",
+                        City = $"Sample City{Random.Shared.Next(1, 5)}",
+                        Country = $"Sample Country{Random.Shared.Next(1, 5)}",
                     }
                 });
             }

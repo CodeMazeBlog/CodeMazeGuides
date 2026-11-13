@@ -1,38 +1,35 @@
-﻿using NUnit.Framework;
-using SerializationDemo.Client.Serialization.Xml;
-using System;
+﻿using SerializationDemo.Client.Serialization.Xml;
 
+namespace Tests;
 
-namespace Tests
+[TestClass]
+public class XmlSerializerTests
 {
-    [TestFixture]
-    public class XmlSerializerTests
+    [TestMethod]
+    public void XmlSerializationFollowedByDeserialization_ReturnsSameObject()
     {
-        [Test]
-        public void XmlSerializationFollowedByDeserialization_ReturnsSameObject()
+        var expected = new TestClass
         {
-            var expected = new TestClass
-            {
-                Flag = true,
-                Text = "Test String",
-                Timestamp = DateTime.UtcNow
-            };
-            var serializer = new XmlSerializer();
+            Flag = true,
+            Text = "Test String",
+            Timestamp = DateTime.UtcNow
+        };
+        var serializer = new XmlSerializer();
 
-            var obj = serializer.Deserialize<TestClass>(serializer.Serialize(expected));
+        var obj = serializer.Deserialize<TestClass>(serializer.Serialize(expected));
 
-            Assert.AreEqual(expected.Text, obj.Text);
-            Assert.AreEqual(expected.Flag, obj.Flag);
-            Assert.AreEqual(expected.Timestamp, obj.Timestamp);
-        }
+        Assert.IsNotNull(obj);
+        Assert.AreEqual(expected.Text, obj.Text);
+        Assert.AreEqual(expected.Flag, obj.Flag);
+        Assert.AreEqual(expected.Timestamp, obj.Timestamp);
+    }
 
-        public class TestClass
-        {
-            public DateTime Timestamp { get; set; }
+    public class TestClass
+    {
+        public DateTime Timestamp { get; set; }
 
-            public string Text { get; set; }
+        public string Text { get; set; } = string.Empty;
 
-            public bool Flag { get; set; }
-        }
+        public bool Flag { get; set; }
     }
 }
