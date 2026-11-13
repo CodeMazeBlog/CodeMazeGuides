@@ -37,8 +37,8 @@ public class RoleManagerConcurrentDictionaryTests
         await Task.WhenAll(task1, task2, task3);
         var roles = concurrentRoleManager.GetAll();
         var firstRoleExits = roles.TryGetValue(role, out User? user);
-        var secondRoleExits = roles.TryGetValue(role, out User? user1);
-        var thirdRoleExits = roles.TryGetValue(role, out User? user2);
+        var secondRoleExits = roles.TryGetValue(role1, out User? user1);
+        var thirdRoleExits = roles.TryGetValue(role2, out User? user2);
 
         Assert.True(firstRoleExits);
         Assert.True(secondRoleExits);

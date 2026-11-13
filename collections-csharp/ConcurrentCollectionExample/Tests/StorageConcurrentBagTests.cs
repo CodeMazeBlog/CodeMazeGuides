@@ -9,7 +9,7 @@ public class StorageConcurrentBagTests
     {
         var storage = new StorageConcurrentBag();
         var task1 = Task.Run(() => storage.AddNew("sample.txt"));
-        var task2 = Task.Run(() => storage.AddNew("awsome.png"));
+        var task2 = Task.Run(() => storage.AddNew("awesome.png"));
         var task3 = Task.Run(() => storage.AddNew("sample.pdf"));
 
         await Task.WhenAll(task1, task2, task3);
@@ -20,7 +20,7 @@ public class StorageConcurrentBagTests
     [Fact]
     public void GivenFileName_WhenTryRemoveIsInvoked_ThenFileIsRemovedAndReturnsTrue()
     {
-        var fileName = "awsome.png";
+        var fileName = "awesome.png";
         var storage = new StorageConcurrentBag();
         storage.AddNew(fileName);
         var result = storage.TryRemove(out string? removedFile);
@@ -30,9 +30,9 @@ public class StorageConcurrentBagTests
     }
 
     [Fact]
-    public void GivenFileName_WhenTryGetIsInvoked_ThenFileIsRetrivedAndReturnsTrue()
+    public void GivenFileName_WhenTryGetIsInvoked_ThenFileIsRetrievedAndReturnsTrue()
     {
-        var fileName = "awsome.png";
+        var fileName = "awesome.png";
         var storage = new StorageConcurrentBag();
         storage.AddNew(fileName);
         var result = storage.TryGet(out string? retrievedFile);

@@ -28,6 +28,6 @@ public class PrinterColorPaperConcurrentStack
 
     public int Count()
     {
-        return _paperColor.Count();
+        return _paperColor.Count;
     }
 }
