@@ -1,6 +1,5 @@
 ﻿namespace Tests;
 
-[UsesVerify]
 public class BasicUsagesTest
 {
     private static readonly List<Student> _students = StudentsGenerator.GenerateStudents();
@@ -11,6 +10,18 @@ public class BasicUsagesTest
         var console = new TestConsole();
         console.Markup($"[[{_students[3].FirstName}]][blue][[{_students[3].Hostel}]][/]");
         console.Output.ShouldBe("[Sabrina][George]");
+    }
+
+    [Fact]
+    public void WhenUserTextContainsBrackets_ThenInterpolatedMarkupEscapesIt()
+    {
+        var nickname = "[Sabrina]";
+        var console = new TestConsole();
+
+        Should.Throw<InvalidOperationException>(() => console.MarkupLine($"[blue]{nickname}[/]"));
+
+        console.MarkupLineInterpolated($"[blue]{nickname}[/]");
+        console.Output.Trim().ShouldBe("[Sabrina]");
     }
 
     [Fact]
