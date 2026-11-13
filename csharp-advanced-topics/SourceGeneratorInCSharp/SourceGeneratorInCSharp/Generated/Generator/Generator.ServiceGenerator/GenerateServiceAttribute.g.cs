@@ -1,8 +1,8 @@
-﻿
-namespace Generator
+﻿namespace Generator
 {
     [System.AttributeUsage(System.AttributeTargets.Class)]
-    public class GenerateServiceAttribute : System.Attribute
+    [Microsoft.CodeAnalysis.Embedded]
+    internal sealed class GenerateServiceAttribute : System.Attribute
     {
     }
 }
