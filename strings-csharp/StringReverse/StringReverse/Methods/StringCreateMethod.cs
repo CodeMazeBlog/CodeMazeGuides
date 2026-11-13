@@ -1,14 +1,13 @@
-﻿namespace StringReverse
+﻿namespace StringReverse;
+
+public partial class Methods
 {
-    public partial class Methods
+    public static string StringCreateMethod(string stringToReverse)
     {
-        public static string? StringCreateMethod(string stringToReverse)
+        return string.Create(stringToReverse.Length, stringToReverse, (chars, state) =>
         {
-            return string.Create(stringToReverse.Length, stringToReverse, (chars, state) =>
-            {
-                state.AsSpan().CopyTo(chars);
-                chars.Reverse();
-            });
-        }
+            state.AsSpan().CopyTo(chars);
+            chars.Reverse();
+        });
     }
 }
