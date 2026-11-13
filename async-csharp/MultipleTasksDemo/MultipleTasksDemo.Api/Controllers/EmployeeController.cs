@@ -6,8 +6,6 @@ namespace MultipleTasksDemo.Api.Controllers;
 [ApiController]
 public class EmployeeController : ControllerBase
 {
-    private readonly Random _random = new Random();
-
     [HttpGet("details/{id}")]
     public async Task<IActionResult> GetEmployeeDetails(Guid id)
     {
@@ -15,7 +13,7 @@ public class EmployeeController : ControllerBase
         {
             Id = id,
             Name = $"Sam_{id}",
-            DateOfBirth = DateTime.Now.AddYears(-1 * _random.Next(20, 30)).Date,
+            DateOfBirth = DateTime.Now.AddYears(-1 * Random.Shared.Next(20, 30)).Date,
             Address = "Employee Dummy Address"
         }));
     }
@@ -33,7 +31,6 @@ public class EmployeeController : ControllerBase
     [HttpGet("rating/{id}")]
     public async Task<IActionResult> GetEmployeeRating(Guid id)
     {
-
         return await Task.FromResult(Ok(new
         {
             Id = id,
