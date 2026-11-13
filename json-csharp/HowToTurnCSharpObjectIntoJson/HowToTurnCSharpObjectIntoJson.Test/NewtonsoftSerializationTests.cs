@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace HowToTurnCSharpObjectIntoJson.Test
@@ -131,7 +132,9 @@ namespace HowToTurnCSharpObjectIntoJson.Test
             var jsonString = JsonConvert.SerializeObject(obj, new GeneralDateTimeNewtonsoftConverter());
 
             // assert
-            Assert.AreEqual($"{{\"DueDate\":\"8/24/2017 12:00:00 AM\"}}", jsonString);
+            var expectedDate = new DateTime(2017, 8, 24).ToString("G", new CultureInfo("en-US"));
+
+            Assert.AreEqual($"{{\"DueDate\":{JsonConvert.SerializeObject(expectedDate)}}}", jsonString);
         }
 
         [TestMethod]
@@ -144,7 +147,7 @@ namespace HowToTurnCSharpObjectIntoJson.Test
             department.Staff.Add(employee);
 
             // act & assert
-            Assert.ThrowsException<JsonSerializationException>(() => JsonConvert.SerializeObject(employee));
+            Assert.ThrowsExactly<JsonSerializationException>(() => JsonConvert.SerializeObject(employee));
 
         }
 
