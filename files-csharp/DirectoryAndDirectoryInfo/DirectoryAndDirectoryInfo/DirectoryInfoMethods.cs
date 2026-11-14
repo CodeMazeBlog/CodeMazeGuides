@@ -2,9 +2,9 @@
 {
     public class DirectoryInfoMethods
     {
-        public void CreateSubDirectories(DirectoryInfo directory, string subDirectory)
+        public DirectoryInfo CreateSubDirectories(DirectoryInfo directory, string subDirectory)
         {
-            directory.CreateSubdirectory(subDirectory);
+            return directory.CreateSubdirectory(subDirectory);
         }
 
         public void MoveDirectories(DirectoryInfo sourceDirectory, string destDirectory)
@@ -16,7 +16,7 @@
         {
             foreach (var subdirectory in directoryInfo.EnumerateDirectories())
             {
-                Console.WriteLine(subdirectory.FullName);
+                Console.WriteLine(subdirectory.Name);
             }
         }
     }
