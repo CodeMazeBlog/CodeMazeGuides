@@ -1,67 +1,62 @@
-using MachineLearningInCsharpEngine.DataModels.MulticlassClassification;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
+using MachineLearningInCsharpEngine.DataModels.MulticlassClassification;
 
 namespace MachineLearningInCsharpTests;
 
 [TestClass]
 public class MulticlassClassificationTests
 {
-    private ModelBuilder? _modelBuilder;
-    private string _savedModelFilename = "multiclassCreditClassificationModel.zip";
+    private const string SavedModelFilename = "multiclassCreditClassificationModel.zip";
+    private static ModelBuilder _modelBuilder = null!;
 
-    public MulticlassClassificationTests()
+    [ClassInitialize]
+    public static void TrainModelOnce(TestContext _)
     {
-        if (_modelBuilder is null)
-        {
-            _modelBuilder = new ModelBuilder();
-            var currentDir = Directory.GetCurrentDirectory();
-            var parentDir = Directory.GetParent(currentDir)?.Parent?.Parent;
-            _modelBuilder.CreateModel(Path.Combine(parentDir == null ? string.Empty : parentDir.FullName, @"DataSets/credit_customers.csv"),
-                Path.Combine(currentDir, _savedModelFilename));
-        }
+        _modelBuilder = new ModelBuilder();
+        _modelBuilder.CreateModel(
+            Path.Combine(AppContext.BaseDirectory, "DataSets", "credit_customers.csv"),
+            Path.Combine(AppContext.BaseDirectory, SavedModelFilename));
     }
 
     [TestMethod]
-    public void WhenPredictGoodCreditClass_ThanSuccess()
+    public void WhenPredictGoodCreditClass_ThenSuccess()
     {
-        var prediction = _modelBuilder?.Predict(new ModelInput()
+        var prediction = _modelBuilder.Predict(new ModelInput
         {
-            Age = 340,
-            CreditAmount = 25000,
-            Duration = 80
+            Age = 35,
+            CreditAmount = 2000,
+            Duration = 12
         });
 
-        Assert.IsTrue(prediction?.Prediction.Equals("good"));
+        Assert.AreEqual("good", prediction.Prediction);
     }
 
     [TestMethod]
-    public void WhenPredictBadCreditClass_ThanSuccess()
+    public void WhenPredictBadCreditClass_ThenSuccess()
     {
-        var prediction = _modelBuilder?.Predict(new ModelInput()
+        var prediction = _modelBuilder.Predict(new ModelInput
         {
-            Age = 240,
-            CreditAmount = 45000,
-            Duration = 480
+            Age = 22,
+            CreditAmount = 15000,
+            Duration = 60
         });
 
-        Assert.IsTrue(prediction?.Prediction.Equals("bad"));
+        Assert.AreEqual("bad", prediction.Prediction);
     }
 
     [TestMethod]
-    public void WhenPredictUsingSavedModel_ThanSuccess()
+    public void WhenPredictUsingSavedModel_ThenSuccess()
     {
         var loadedModelBuilder = new ModelBuilder();
-        var currentDir = Directory.GetCurrentDirectory();
-        loadedModelBuilder.LoadModel(Path.Combine(currentDir, _savedModelFilename));
+        loadedModelBuilder.LoadModel(Path.Combine(AppContext.BaseDirectory, SavedModelFilename));
 
-        var prediction = loadedModelBuilder?.Predict(new ModelInput()
+        var prediction = loadedModelBuilder.Predict(new ModelInput
         {
-            Age = 340,
-            CreditAmount = 25000,
-            Duration = 80
+            Age = 35,
+            CreditAmount = 2000,
+            Duration = 12
         });
 
-        Assert.IsTrue(prediction?.Prediction.Equals("good"));
+        Assert.AreEqual("good", prediction.Prediction);
     }
 }
