@@ -40,7 +40,7 @@ public class ArchitectureTests
 
         // Act
         var result = Types.InAssembly(domainLayerAssembly)
-            .ShouldNot().HaveDependencyOnAll(
+            .ShouldNot().HaveDependencyOnAny(
                 ["Api", "Contracts", "Persistence", "Services", "Services.Abstractions"])
             .GetResult();
 
@@ -82,7 +82,7 @@ public class ArchitectureTests
     }
 
     [Fact]
-    public void GivenServiceInterfaces_ThenShouldMeetCustomRuleAndServiceManagerShouldHaveDependencyOnContracts()
+    public void GivenServiceInterfaces_ThenShouldMeetCustomRuleAndServiceManagerShouldNotHaveDependencyOnContracts()
     {
         // Arrange
         var serviceLayerAssembly = typeof(IServiceManager).Assembly;
