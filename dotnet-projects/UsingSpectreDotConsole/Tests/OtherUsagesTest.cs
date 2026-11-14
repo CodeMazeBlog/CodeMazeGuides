@@ -1,6 +1,5 @@
 ﻿namespace Tests;
 
-[UsesVerify]
 public class OtherUsagesTest
 {
     [Fact]
@@ -16,15 +15,28 @@ public class OtherUsagesTest
     public Task WhenPromptingStudentForAge_ThenReturnErrorIfValidationFails()
     {
         var console = new TestConsole();
-        console.Input.PushTextWithEnter("102");
         console.Input.PushTextWithEnter("ABC");
-        console.Input.PushTextWithEnter("99");
+        console.Input.PushTextWithEnter("5");
+        console.Input.PushTextWithEnter("150");
         console.Input.PushTextWithEnter("22");
 
-        console.Prompt(SpectreConsoleOtherUsages.GetAgeTextPrompt());
+        var age = console.Prompt(SpectreConsoleOtherUsages.GetAgeTextPrompt());
+
+        age.ShouldBe(22);
 
         return Verify(console.Output);
+    }
 
+    [Fact]
+    public void WhenStudentPressesDownThenEnter_ThenSelectSecondHostel()
+    {
+        var console = new TestConsole().Interactive();
+        console.Input.PushKey(ConsoleKey.DownArrow);
+        console.Input.PushKey(ConsoleKey.Enter);
+
+        var hostel = console.Prompt(SpectreConsoleOtherUsages.GetHostelSelectionPrompt());
+
+        hostel.ShouldBe("Louisa");
     }
 
     [Fact]
