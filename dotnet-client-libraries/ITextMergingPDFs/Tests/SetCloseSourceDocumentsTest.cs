@@ -64,7 +64,7 @@ namespace Tests
             pdfMerger.Merge(sourcePdfDocument, 1, sourcePdfDocument.GetNumberOfPages());
 
             // document is not open, we can't use it
-            Assert.ThrowsException<PdfException>(() => { sourcePdfDocument.GetNumberOfPages(); });
+            Assert.ThrowsExactly<PdfException>(() => { sourcePdfDocument.GetNumberOfPages(); });
         }
 
         [TestMethod]

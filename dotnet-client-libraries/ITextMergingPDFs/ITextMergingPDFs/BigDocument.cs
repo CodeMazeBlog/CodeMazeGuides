@@ -74,7 +74,7 @@ namespace ITextMergingPDFs
             return new Paragraph(caption)
                 .SetTextAlignment(TextAlignment.CENTER)
                 .SetFontSize(20)
-                .SetBold();
+                .SimulateBold();
         }
 
         private static Paragraph CreateHeader2(string caption)
@@ -82,7 +82,7 @@ namespace ITextMergingPDFs
             return new Paragraph(caption)
                 .SetTextAlignment(TextAlignment.LEFT)
                 .SetFontSize(15)
-                .SetBold();
+                .SimulateBold();
         }
 
         private static Paragraph CreateNormalParagraph(string text)
