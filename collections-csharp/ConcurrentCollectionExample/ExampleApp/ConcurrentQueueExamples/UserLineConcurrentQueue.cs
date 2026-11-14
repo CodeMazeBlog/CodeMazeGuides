@@ -41,6 +41,6 @@ public class UserLineConcurrentQueue
 
     public int CountUsersInLine()
     {
-        return _users.Count();
+        return _users.Count;
     }
 }

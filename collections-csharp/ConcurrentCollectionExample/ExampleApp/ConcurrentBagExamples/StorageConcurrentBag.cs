@@ -28,6 +28,6 @@ public class StorageConcurrentBag
 
     public int CountFiles()
     {
-        return _files.Count();
+        return _files.Count;
     }
 }

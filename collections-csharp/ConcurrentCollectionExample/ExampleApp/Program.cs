@@ -1,11 +1,23 @@
 ﻿using ExampleApp.DictionaryExamples;
+using ExampleApp.ListAndSetExamples;
 
-// Console.WriteLine("RunRoleManagerDictionaryExampleConcurrent()");
-// await RunRoleManagerDictionaryExampleConcurrent();
+if (args.Contains("--race"))
+{
+    Console.WriteLine("RunRoleManagerDictionaryExampleConcurrent()");
+    await RunRoleManagerDictionaryExampleConcurrent();
 
-// Console.WriteLine("\n\n");
+    return;
+}
+
+Console.WriteLine("RunRoleManagerDictionaryExampleSync()");
+await RunRoleManagerDictionaryExampleSync();
+
 Console.WriteLine("RunRoleManagerConcurrentDictionaryExampleConcurrent()");
 await RunRoleManagerConcurrentDictionaryExampleConcurrent();
+
+Console.WriteLine($"Unique ids: {ListAndSetAlternatives.CountUniqueIds(workers: 4, idsPerWorker: 1000)}");
+Console.WriteLine($"Queued entries: {ListAndSetAlternatives.AppendToQueue(workers: 4, itemsPerWorker: 1000)}");
+Console.WriteLine($"Locked list entries: {ListAndSetAlternatives.AppendToLockedList(workers: 4, itemsPerWorker: 1000)}");
 
 static async Task RunRoleManagerDictionaryExampleSync()
 {
