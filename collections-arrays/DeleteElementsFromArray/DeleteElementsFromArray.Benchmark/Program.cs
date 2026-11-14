@@ -1,3 +1,4 @@
-﻿using BenchmarkRunner;
+﻿using BenchmarkDotNet.Running;
+using BenchmarkRunner;
 
-BenchmarkDotNet.Running.BenchmarkRunner.Run<DeleteElementsFromAnArrayBenchmark>();
+BenchmarkSwitcher.FromAssembly(typeof(DeleteElementsFromAnArrayBenchmark).Assembly).Run(args);
