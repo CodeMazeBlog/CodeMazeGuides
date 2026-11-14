@@ -1,32 +1,52 @@
 using IntroductionToSemaphoreInCsharp;
+using System.Diagnostics;
 
 namespace Tests;
 
 [TestClass]
 public class UnitTests
 {
-    const int SleepDelay = 50;
+    const int SleepDelay = 200;
 
     [TestMethod]
-    public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreAsyncIsInvoked_ThenAllThreadsShouldExecute()
+    public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreAsyncIsInvoked_ThenAllThreadsExecuteAndTheCallerIsBlocked()
     {
-        var output = await ExampleWithSemaphore.AccessWithSemaphoreAsync(SleepDelay);
+        var stopwatch = Stopwatch.StartNew();
+        var task = ExampleWithSemaphore.AccessWithSemaphoreAsync(SleepDelay);
+        var callerBlockedMs = stopwatch.ElapsedMilliseconds;
+        var output = await task;
 
         Assert.AreEqual(Constants.NumberOfThreads, output.Count);
+        Assert.IsGreaterThanOrEqualTo(SleepDelay, callerBlockedMs);
     }
 
     [TestMethod]
-    public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreSlimAsyncIsInvoked_ThenAllThreadsShouldExecute()
+    public async Task GivenSomeConcurrentCode_WhenAccessWithSemaphoreSlimAsyncIsInvoked_ThenAllThreadsExecuteAndTheCallerIsNotBlocked()
     {
-        var output = await ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync(SleepDelay);
+        var stopwatch = Stopwatch.StartNew();
+        var task = ExampleWithSemaphoreSlim.AccessWithSemaphoreSlimAsync(SleepDelay);
+        var callerBlockedMs = stopwatch.ElapsedMilliseconds;
+        var output = await task;
 
         Assert.AreEqual(Constants.NumberOfThreads, output.Count);
+        Assert.IsLessThan(SleepDelay, callerBlockedMs);
     }
 
     [TestMethod]
-    [ExpectedException(typeof(SemaphoreFullException))]
     public void GivenASemaphore_WhenReleaseMultipleTimesIsInvoked_ThenAnExceptionIsThrown()
     {
-        ExampleWithSemaphore.ReleaseMultipleTimes();
+        Assert.ThrowsExactly<SemaphoreFullException>(ExampleWithSemaphore.ReleaseMultipleTimes);
+    }
+
+    [TestMethod]
+    public void GivenASemaphoreSlimWithoutMaxCount_WhenReleasedOnceTooOften_ThenTheCountGrowsWithoutAnException()
+    {
+        using var semaphoreSlim = new SemaphoreSlim(1);
+
+        semaphoreSlim.Wait();
+        semaphoreSlim.Release();
+        semaphoreSlim.Release();
+
+        Assert.AreEqual(2, semaphoreSlim.CurrentCount);
     }
 }
