@@ -1,4 +1,3 @@
-using System.Reflection;
 using HowToConvertAStreamToAFileInCSharp;
 
 namespace Tests;
@@ -6,70 +5,95 @@ namespace Tests;
 [TestClass]
 public class ConvertAStreamToAFileInCSharpTests
 {
-    [TestMethod]
-    public void WhenCopyToFile_FileExists()
-    {
-        var destinationPath = GetPath();
-        var memoryStream = GetMemoryStream();
-        ConvertAStreamToAFileInCSharp.CopyToFile(memoryStream, Path.Combine([destinationPath, "CopyTo.png"]));
+    private static readonly string FilesPath = Path.Combine(AppContext.BaseDirectory, "Files");
+    private static readonly string SourceFile = Path.Combine(FilesPath, "source.png");
 
-        Assert.IsTrue(File.Exists(Path.Combine([destinationPath, "CopyTo.png"])));
+    [TestMethod]
+    public void WhenCopyToFile_ThenFileHasTheSourceBytes()
+    {
+        var path = Path.Combine(FilesPath, "CopyTo.png");
+        using var memoryStream = GetMemoryStream();
+
+        ConvertAStreamToAFileInCSharp.CopyToFile(memoryStream, path);
+
+        CollectionAssert.AreEqual(File.ReadAllBytes(SourceFile), File.ReadAllBytes(path));
     }
 
     [TestMethod]
-    public void WhenWriteToFile_FileExists()
+    public async Task WhenCopyToFileAsync_ThenFileHasTheSourceBytes()
     {
-        var destinationPath = GetPath();
-        var memoryStream = GetMemoryStream();
-        ConvertAStreamToAFileInCSharp.WriteToFileStream(memoryStream, Path.Combine([destinationPath, "WriteTo.png"]));
+        var path = Path.Combine(FilesPath, "CopyToAsync.png");
+        using var memoryStream = GetMemoryStream();
 
-        Assert.IsTrue(File.Exists(Path.Combine([destinationPath, "WriteTo.png"])));
+        await ConvertAStreamToAFileInCSharp.CopyToFileAsync(memoryStream, path);
+
+        CollectionAssert.AreEqual(File.ReadAllBytes(SourceFile), File.ReadAllBytes(path));
     }
 
     [TestMethod]
-    public void WhenWriteByteToFile_FileExists()
+    public void WhenWriteToFile_ThenFileHasTheSourceBytes()
     {
-        var destinationPath = GetPath();
-        var memoryStream = GetMemoryStream();
-        ConvertAStreamToAFileInCSharp.WriteByteToFileStream(memoryStream, Path.Combine([destinationPath, "WriteByte.png"]));
+        var path = Path.Combine(FilesPath, "WriteTo.png");
+        using var memoryStream = GetMemoryStream();
 
-        Assert.IsTrue(File.Exists(Path.Combine([destinationPath, "WriteByte.png"])));
+        ConvertAStreamToAFileInCSharp.WriteToFileStream(memoryStream, path);
+
+        CollectionAssert.AreEqual(File.ReadAllBytes(SourceFile), File.ReadAllBytes(path));
     }
 
     [TestMethod]
-    public void WhenWriteAllBytesToFile_FileExists()
+    public void WhenWriteByteToFile_ThenFileHasTheSourceBytes()
     {
-        var destinationPath = GetPath();
-        var memoryStream = GetMemoryStream();
-        ConvertAStreamToAFileInCSharp.WriteAllBytesFile(memoryStream, Path.Combine([destinationPath, "WriteAllBytes.png"]));
+        var path = Path.Combine(FilesPath, "WriteByte.png");
+        using var memoryStream = GetMemoryStream();
 
-        Assert.IsTrue(File.Exists(Path.Combine([destinationPath, "WriteAllBytes.png"])));
+        ConvertAStreamToAFileInCSharp.WriteByteToFileStream(memoryStream, path);
+
+        CollectionAssert.AreEqual(File.ReadAllBytes(SourceFile), File.ReadAllBytes(path));
     }
 
-    private string GetPath()
+    [TestMethod]
+    public void WhenWriteAllBytesToFile_ThenFileHasTheSourceBytes()
     {
-        var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        if (!Directory.Exists(directory))
+        var path = Path.Combine(FilesPath, "WriteAllBytes.png");
+        using var memoryStream = GetMemoryStream();
+
+        ConvertAStreamToAFileInCSharp.WriteAllBytesFile(memoryStream, path);
+
+        CollectionAssert.AreEqual(File.ReadAllBytes(SourceFile), File.ReadAllBytes(path));
+    }
+
+    [TestMethod]
+    public void GivenAStreamAtItsEnd_WhenCopyToWithoutRewinding_ThenFileIsEmpty()
+    {
+        var path = Path.Combine(FilesPath, "NoRewind.png");
+        using var memoryStream = GetMemoryStream();
+        Assert.AreEqual(memoryStream.Length, memoryStream.Position);
+
+        using (var fileStream = File.Create(path))
         {
-            return string.Empty;
+            memoryStream.CopyTo(fileStream);
         }
 
-        var destinationPath = Path.Combine([directory, "Files"]);
-
-        return destinationPath;
+        Assert.AreEqual(0, new FileInfo(path).Length);
     }
 
-    private MemoryStream GetMemoryStream()
+    [TestMethod]
+    public void WhenCopyTo_ThenBothPositionsEndAfterTheCopiedBytes()
     {
-        var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        if (!Directory.Exists(directory))
-        {
-            return null!;
-        }
+        using var memoryStream = GetMemoryStream();
+        memoryStream.Position = 0;
+        using var destination = new MemoryStream();
 
-        var sourceFile = Path.Combine([directory, "Files", "source.png"]);
+        memoryStream.CopyTo(destination);
 
-        using var fileStream = new FileStream(sourceFile, FileMode.Open, FileAccess.Read);
+        Assert.AreEqual(memoryStream.Length, memoryStream.Position);
+        Assert.AreEqual(memoryStream.Length, destination.Position);
+    }
+
+    private static MemoryStream GetMemoryStream()
+    {
+        using var fileStream = new FileStream(SourceFile, FileMode.Open, FileAccess.Read);
         var memoryStream = new MemoryStream();
         fileStream.CopyTo(memoryStream);
 
