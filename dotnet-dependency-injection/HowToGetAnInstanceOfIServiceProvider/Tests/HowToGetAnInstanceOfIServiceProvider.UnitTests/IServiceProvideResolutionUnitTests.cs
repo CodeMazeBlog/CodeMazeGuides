@@ -59,6 +59,21 @@ public class IServiceProvideResolutionUnitTests
     }
 
     [Fact]
+    public void GivenUnregisteredService_WhenResolved_ThenGetServiceReturnsNullAndGetRequiredServiceThrows()
+    {
+        // Arrange
+        var serviceProvider = new ServiceCollection().BuildServiceProvider();
+
+        // Act
+        var service = serviceProvider.GetService<IExampleService>();
+        var exception = Record.Exception(() => serviceProvider.GetRequiredService<IExampleService>());
+
+        // Assert
+        Assert.Null(service);
+        Assert.IsType<InvalidOperationException>(exception);
+    }
+
+    [Fact]
     public async Task GivenBackgroundService_WhenStartAsyncIsCalled_ThenShouldNotThrowException()
     {
         // Arrange
