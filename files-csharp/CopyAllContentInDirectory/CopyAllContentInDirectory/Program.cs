@@ -1,25 +1,36 @@
 ﻿using System.IO.Abstractions;
 
-namespace CopyAllContentInDirectory
+namespace CopyAllContentInDirectory;
+
+public static class Program
 {
-    public static class Program
+    public static string SourceDir { get; set; } = "";
+    public static string DestinationDir { get; set; } = "";
+    public static IFileSystem FileSystem { get; set; } = new FileSystem(); // for testing purposes
+
+    public static void Main()
     {
-        public static string SourceDir { get; set; } = "";
-        public static string DestinationDir { get; set; } = "";
-        public static IFileSystem FileSystem { get; set; } = new FileSystem(); // for testing purposes
+        CopyDirectory(SourceDir, DestinationDir, true);
+    }
 
-        public static void Main()
+    public static void CopyDirectory(string sourceDir, string destinationDir, bool overwriteFiles)
+    {
+        var allDirectories = FileSystem.Directory.GetDirectories(sourceDir, "*", SearchOption.AllDirectories);
+
+        foreach (string dir in allDirectories)
         {
-            foreach (string dir in FileSystem.Directory.GetDirectories(SourceDir, "*", SearchOption.AllDirectories))
-            {
-                string dirToCreate = dir.Replace(SourceDir, DestinationDir);
-                FileSystem.Directory.CreateDirectory(dirToCreate);
-            }
+            string dirToCreate = FileSystem.Path.Join(destinationDir, FileSystem.Path.GetRelativePath(sourceDir, dir));
+            FileSystem.Directory.CreateDirectory(dirToCreate);
+        }
 
-            foreach (string newPath in FileSystem.Directory.GetFiles(SourceDir, "*.*", SearchOption.AllDirectories))
-            {
-                FileSystem.File.Copy(newPath, newPath.Replace(SourceDir, DestinationDir), true);
-            }
+        FileSystem.Directory.CreateDirectory(destinationDir);
+
+        var allFiles = FileSystem.Directory.GetFiles(sourceDir, "*.*", SearchOption.AllDirectories);
+
+        foreach (string newPath in allFiles)
+        {
+            string newFile = FileSystem.Path.Join(destinationDir, FileSystem.Path.GetRelativePath(sourceDir, newPath));
+            FileSystem.File.Copy(newPath, newFile, overwriteFiles);
         }
     }
 }
