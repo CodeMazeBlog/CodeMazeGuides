@@ -2,42 +2,40 @@
 using BenchmarkDotNet.Order;
 using StringArrayToString;
 
-namespace BenchmarkRunner
+namespace BenchmarkRunner;
+
+[InProcess]
+[MemoryDiagnoser]
+[Orderer(SummaryOrderPolicy.FastestToSlowest)]
+public class ArrayConverterBenchmark
 {
-    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-    public class ArrayConverterBenchmark
+    private readonly ArrayConverter _arrayConverter = new();
+    private string[] _array = [];
+
+    [Params(1_000, 10_000)]
+    public int Size { get; set; }
+
+    [GlobalSetup]
+    public void Setup()
     {
-        private string[] _array = Enumerable.Repeat("Code-Maze", 10_000).ToArray();
-        private ArrayConverter _elementConcateneator = new();
-
-        [Benchmark]
-        public void UsingLoopStringAdditionAssignment()
-        {
-            _elementConcateneator.UsingLoopStringAdditionAssignment(_array);
-        }
-
-        [Benchmark]
-        public void UsingLoopStringBuilder()
-        {
-            _elementConcateneator.UsingLoopStringBuilder(_array);
-        }
-
-        [Benchmark] 
-        public void UsingStringJoin()
-        {
-            _elementConcateneator.UsingStringJoin(_array);
-        }
-
-        [Benchmark]
-        public void UsingStringConcat()
-        {
-            _elementConcateneator.UsingStringConcat(_array);
-        }
-
-        [Benchmark]
-        public void UsingAggregation()
-        {
-            _elementConcateneator.UsingAggregation(_array);
-        }
+        _array = Enumerable.Repeat("Code-Maze", Size).ToArray();
     }
+
+    [Benchmark]
+    public string UsingLoopStringAdditionAssignment() => _arrayConverter.UsingLoopStringAdditionAssignment(_array);
+
+    [Benchmark]
+    public string UsingLoopStringBuilder() => _arrayConverter.UsingLoopStringBuilder(_array);
+
+    [Benchmark]
+    public string UsingStringJoin() => _arrayConverter.UsingStringJoin(_array);
+
+    [Benchmark]
+    public string UsingStringConcat() => _arrayConverter.UsingStringConcat(_array);
+
+    [Benchmark]
+    public string UsingAggregation() => _arrayConverter.UsingAggregation(_array);
+
+    [Benchmark]
+    public string UsingAggregationWithStringBuilder() => _arrayConverter.UsingAggregationWithStringBuilder(_array);
 }
