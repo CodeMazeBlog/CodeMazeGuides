@@ -1,9 +1,8 @@
 ﻿using DtoVsPoco.Dtos;
 
-namespace DtoVsPoco.Services
+namespace DtoVsPoco.Services;
+
+public interface IPersonService
 {
-    public interface IPersonService
-    {
-        Task<ICollection<PersonDetails>> GetPersonDetailsData();
-    }
+    Task<ICollection<PersonDetails>> GetPersonDetailsData();
 }
