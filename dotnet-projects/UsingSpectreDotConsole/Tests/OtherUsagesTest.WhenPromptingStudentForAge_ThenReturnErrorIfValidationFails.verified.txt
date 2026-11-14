@@ -1,1 +1,7 @@
-﻿How old are you? 102
+﻿How old are you? ABC
+That's not a valid age
+How old are you? 5
+You must be above 10 years
+How old are you? 150
+You must be younger than that
+How old are you? 22
