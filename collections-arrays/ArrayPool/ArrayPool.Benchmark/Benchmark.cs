@@ -3,19 +3,14 @@ using System.Buffers;
 
 namespace ArrayPool.Benchmark;
 
+[InProcess]
 [MemoryDiagnoser]
 public class Benchmark
 {
-    private ArrayPool<int>? _arrayPool;
+    private readonly ArrayPool<int> _arrayPool = ArrayPool<int>.Shared;
 
-    [Params(100, 1000, 10000, 100000)]
-    public int ArraySize { get; set; }    
-
-    [GlobalSetup]
-    public void GlobalSetup()
-    {
-        _arrayPool = ArrayPool<int>.Shared;
-    }
+    [Params(16, 100, 1000, 10000, 100000)]
+    public int ArraySize { get; set; }
 
     [Benchmark]
     public void CreateArrayWithArrayPool()
@@ -26,8 +21,10 @@ public class Benchmark
     }
 
     [Benchmark]
-    public void CreateArrayNewArray()
+    public int[] CreateArrayNewArray()
     {
         var array = new int[ArraySize];
+
+        return array;
     }
 }
