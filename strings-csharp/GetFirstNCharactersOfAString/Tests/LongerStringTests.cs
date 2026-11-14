@@ -11,7 +11,7 @@ public class LongerStringTests
     }
 
     [Fact]
-    public void WhenUseForLoopIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    public void WhenUseForLoopIsCalledWithLongerString_ThenReturnsTheFirstEightCharactersOfTheInputString()
     {
         var result = _firstNCharactersOfStringGetter.UseForLoop();
 
@@ -20,7 +20,7 @@ public class LongerStringTests
     }
 
     [Fact]
-    public void WhenUseRemoveIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    public void WhenUseRemoveIsCalledWithLongerString_ThenReturnsTheFirstEightCharactersOfTheInputString()
     {
         var result = _firstNCharactersOfStringGetter.UseRemove();
 
@@ -29,7 +29,7 @@ public class LongerStringTests
     }
 
     [Fact]
-    public void WhenUseLINQEnumerableIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    public void WhenUseLINQEnumerableIsCalledWithLongerString_ThenReturnsTheFirstEightCharactersOfTheInputString()
     {
         var result = _firstNCharactersOfStringGetter.UseLINQEnumerable();
 
@@ -38,7 +38,7 @@ public class LongerStringTests
     }
 
     [Fact]
-    public void WhenUseAsSpanIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    public void WhenUseAsSpanIsCalledWithLongerString_ThenReturnsTheFirstEightCharactersOfTheInputString()
     {
         var result = _firstNCharactersOfStringGetter.UseAsSpan();
 
@@ -47,7 +47,7 @@ public class LongerStringTests
     }
 
     [Fact]
-    public void WhenUseAsSpanWithRangeOperatorIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    public void WhenUseAsSpanWithRangeOperatorIsCalledWithLongerString_ThenReturnsTheFirstEightCharactersOfTheInputString()
     {
         var result = _firstNCharactersOfStringGetter.UseAsSpanWithRangeOperator();
 
@@ -56,7 +56,7 @@ public class LongerStringTests
     }
 
     [Fact]
-    public void WhenUseToCharArrayIsCalledWithEqualString_ThenReturnsTheFirstEightCharactersOfTheInputString()
+    public void WhenUseToCharArrayIsCalledWithLongerString_ThenReturnsTheFirstEightCharactersOfTheInputString()
     {
         var result = _firstNCharactersOfStringGetter.UseToCharArray();
 
