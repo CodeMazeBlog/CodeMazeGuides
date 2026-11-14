@@ -14,7 +14,7 @@ namespace SerializationDemo.Client.Serialization.Json
         public JsonStringSerializer(JsonSerializerOptions options)
             => _options = options;
 
-        public T Deserialize<T>(string text)
+        public T? Deserialize<T>(string text)
             => JsonSerializer.Deserialize<T>(text, _options);
 
         public string Serialize(object data)

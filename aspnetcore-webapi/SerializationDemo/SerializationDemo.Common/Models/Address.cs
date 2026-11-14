@@ -6,15 +6,15 @@ namespace SerializationDemo.Common.Models
     public class Address
     {
         [ProtoMember(1)]
-        public string AddressLine1 { get; set; }
+        public string AddressLine1 { get; set; } = string.Empty;
 
         [ProtoMember(2)]
         public string? AddressLine2 { get; set; }
 
         [ProtoMember(3)]
-        public string City { get; set; }
+        public string City { get; set; } = string.Empty;
 
         [ProtoMember(4)]
-        public string Country { get; set; }
+        public string Country { get; set; } = string.Empty;
     }
 }
