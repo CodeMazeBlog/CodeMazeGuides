@@ -1,8 +1,8 @@
 {
   "profiles": {
     "Generator": {
-      "commandName": "Project",
-      "nativeDebugging": false
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\SourceGeneratorInCSharp\\SourceGeneratorInCSharp.csproj"
     }
   }
 }

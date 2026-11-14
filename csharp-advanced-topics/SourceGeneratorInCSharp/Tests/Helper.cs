@@ -6,27 +6,34 @@ namespace Tests
 {
     public static class Helper
     {
-        public static string GetGeneratedOutput(string sourceCode)
+        public static CSharpCompilation CreateCompilation(string sourceCode)
         {
             var syntaxTree = CSharpSyntaxTree.ParseText(sourceCode);
 
             var references = AppDomain.CurrentDomain.GetAssemblies()
                 .Where(assembly => !assembly.IsDynamic)
-                .Select(assembly => MetadataReference.CreateFromFile(assembly.Location))
-                .Cast<MetadataReference>();
+                .Select(assembly => MetadataReference.CreateFromFile(assembly.Location));
 
-            var compilation = CSharpCompilation.Create("SourceGeneratorTests",
-                new[] { syntaxTree },
+            return CSharpCompilation.Create("SourceGeneratorTests",
+                [syntaxTree],
                 references,
                 new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+        }
 
-            // Source Generator to test
-            var generator = new ServiceGenerator();
+        public static GeneratorRunResult RunGenerator(string sourceCode)
+        {
+            GeneratorDriver driver = CSharpGeneratorDriver.Create(new ServiceGenerator());
 
-            CSharpGeneratorDriver.Create(generator)
-                .RunGeneratorsAndUpdateCompilation(compilation, out var outputCompilation, out var diagnostics);
+            driver = driver.RunGenerators(CreateCompilation(sourceCode));
 
-            return outputCompilation.SyntaxTrees.Skip(1).LastOrDefault()?.ToString();
+            return driver.GetRunResult().Results.Single();
+        }
+
+        public static string? GetGeneratedOutput(string sourceCode, string hintName)
+        {
+            return RunGenerator(sourceCode).GeneratedSources
+                .SingleOrDefault(source => source.HintName == hintName)
+                .SourceText?.ToString();
         }
     }
 }

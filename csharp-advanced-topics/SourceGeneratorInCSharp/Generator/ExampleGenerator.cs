@@ -1,6 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-using System.Diagnostics;
 using System.Text;
 
 namespace Generator
