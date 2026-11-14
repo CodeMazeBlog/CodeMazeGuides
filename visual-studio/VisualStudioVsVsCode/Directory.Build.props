@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <ProjectDrive>$(MSBuildProjectDirectory.Substring(0, 2))</ProjectDrive>
+    <PathMap Condition="$(ProjectDrive.EndsWith(':'))">$(ProjectDrive.ToLowerInvariant())=$(ProjectDrive.ToUpperInvariant())</PathMap>
+  </PropertyGroup>
+</Project>
