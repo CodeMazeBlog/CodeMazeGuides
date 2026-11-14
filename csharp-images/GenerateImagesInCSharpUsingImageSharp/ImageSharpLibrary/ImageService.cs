@@ -18,7 +18,7 @@ public static class ImageService
         ValidatePoint(point2);
         ValidatePoint(point3);
         var pen = Pens.Solid(Color.Red, 3);
-        image.Mutate(ctx => ctx.DrawPolygon(pen, [point1, point2, point3, point1]));
+        image.Mutate(ctx => ctx.DrawPolygon(pen, [point1, point2, point3]));
     }
 
     public static void ValidatePoint(PointF point)
