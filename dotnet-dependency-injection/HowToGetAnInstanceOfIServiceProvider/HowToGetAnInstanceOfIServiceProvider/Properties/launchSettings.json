@@ -5,7 +5,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "openapi/v1.json",
       "applicationUrl": "https://localhost:7006",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
