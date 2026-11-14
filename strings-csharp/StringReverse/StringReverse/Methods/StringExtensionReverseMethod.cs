@@ -1,10 +1,9 @@
-﻿namespace StringReverse
+﻿namespace StringReverse;
+
+public partial class Methods
 {
-    public partial class Methods
+    public static string StringExtensionReverseMethod(string stringToReverse)
     {
-        public static string? StringExtensionReverseMethod(string stringToReverse)
-        {
-            return new string(stringToReverse.Reverse().ToArray());
-        }
+        return new string(stringToReverse.Reverse().ToArray());
     }
 }
