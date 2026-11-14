@@ -6,7 +6,7 @@ using PersistValuesInAsyncFlowUsingAsyncLocalInCSharp;
 public class AsyncLocalExampleTests
 {
     [TestMethod]
-    public async Task GivenAsyncLocalExample_WhenDoWork_AsyncValueIsOne()
+    public async Task GivenAsyncLocalExample_WhenDoWork_ThenCallerKeepsDefaultValue()
     {
         await AsyncLocalExample.DoWork();
 
