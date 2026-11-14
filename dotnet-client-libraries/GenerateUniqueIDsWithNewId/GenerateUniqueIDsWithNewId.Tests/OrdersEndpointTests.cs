@@ -18,7 +18,7 @@ public class OrdersEndpointTests(WebApplicationFactory<Program> factory)
         var result = await client.GetAsync("/orders");
 
         // Assert
-        result.StatusCode.Should().Be(HttpStatusCode.OK);
+        Assert.Equal(HttpStatusCode.OK, result.StatusCode);
     }
 
     [Fact]
@@ -44,11 +44,11 @@ public class OrdersEndpointTests(WebApplicationFactory<Program> factory)
             await result.Content.ReadAsStringAsync(), _options);
 
         // Assert
-        result.StatusCode.Should().Be(HttpStatusCode.OK);
-        returnedOrder.Should().NotBeNull();
-        returnedOrder!.CustomerName.Should().Be(order.CustomerName);
-        returnedOrder.Products.Should().BeEquivalentTo(order.Products);
-        returnedOrder.TotalAmount.Should().Be(order.TotalAmount);
+        Assert.Equal(HttpStatusCode.OK, result.StatusCode);
+        Assert.NotNull(returnedOrder);
+        Assert.Equal(order.CustomerName, returnedOrder!.CustomerName);
+        Assert.Equal(order.Products, returnedOrder.Products);
+        Assert.Equal(order.TotalAmount, returnedOrder.TotalAmount);
     }
 
     [Fact]
@@ -67,7 +67,7 @@ public class OrdersEndpointTests(WebApplicationFactory<Program> factory)
         var response = await client.PostAsJsonAsync("/orders", order);
 
         // Assert
-        response.StatusCode.Should().Be(HttpStatusCode.Created);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 
     [Fact]
@@ -100,11 +100,11 @@ public class OrdersEndpointTests(WebApplicationFactory<Program> factory)
         var updatedOrder = JsonSerializer.Deserialize<OrderDto>(
             await updatedOrderResponse.Content.ReadAsStringAsync(), _options);
 
-        updatedOrderResponse.StatusCode.Should().Be(HttpStatusCode.OK);
-        updatedOrder!.Should().NotBeNull();
-        updatedOrder!.CustomerName.Should().Be(orderForUpdate.CustomerName);
-        updatedOrder.Products.Should().BeEquivalentTo(orderForUpdate.Products);
-        updatedOrder.TotalAmount.Should().Be(orderForUpdate.TotalAmount);
+        Assert.Equal(HttpStatusCode.OK, updatedOrderResponse.StatusCode);
+        Assert.NotNull(updatedOrder);
+        Assert.Equal(orderForUpdate.CustomerName, updatedOrder!.CustomerName);
+        Assert.Equal(orderForUpdate.Products, updatedOrder.Products);
+        Assert.Equal(orderForUpdate.TotalAmount, updatedOrder.TotalAmount);
     }
 
     [Fact]
@@ -127,6 +127,6 @@ public class OrdersEndpointTests(WebApplicationFactory<Program> factory)
         var result = await client.DeleteAsync($"/orders/{orderDto!.Id}");
 
         // Assert
-        result.StatusCode.Should().Be(HttpStatusCode.NoContent);
+        Assert.Equal(HttpStatusCode.NoContent, result.StatusCode);
     }
 }
