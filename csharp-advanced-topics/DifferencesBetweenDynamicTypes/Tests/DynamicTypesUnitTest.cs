@@ -92,8 +92,10 @@ public class DynamicTypesUnitTest
         };
 
         person.Name = "John Doe";
+        person.Name = "Jane Doe";
+        ((IDictionary<string, object>)person).Remove("Name");
 
-        Assert.Equal("John Doe", person.Name);
+        Assert.False(((IDictionary<string, object>)person).ContainsKey("Name"));
     }
 
     [Fact]
@@ -108,5 +110,33 @@ public class DynamicTypesUnitTest
         Assert.Equal("Daniel", dynamicPerson.Name);
         Assert.Equal(30, dynamicPerson.Age);
         Assert.Equal("1234 Good Street", dynamicPerson.Address);
+    }
+
+    [Fact]
+    public void WhenReadingMissingExpandoObjectMember_ThenThrowRuntimeBinderException()
+    {
+        dynamic book = new ExpandoObject();
+
+        Assert.Throws<RuntimeBinderException>(() => book.Title);
+    }
+
+    [Fact]
+    public void WhenReadingMemberThatWasNeverSet_ThenThrowRuntimeBinderException()
+    {
+        dynamic dynamicPerson = new Person();
+
+        Assert.Throws<RuntimeBinderException>(() => dynamicPerson.Email);
+    }
+
+    [Fact]
+    public void WhenUsingExpandoObjectAsDictionary_ThenReadValuesWithoutDynamic()
+    {
+        IDictionary<string, object?> book = new ExpandoObject();
+
+        book["Author"] = "John Doe";
+        book["Year"] = 2023;
+
+        Assert.Equal("John Doe", book["Author"]);
+        Assert.Equal(2, book.Count);
     }
 }
