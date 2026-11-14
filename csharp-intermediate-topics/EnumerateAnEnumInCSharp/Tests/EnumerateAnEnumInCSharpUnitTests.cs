@@ -1,51 +1,78 @@
 using EnumerateAnEnumInCSharp;
+using DayOfWeek = EnumerateAnEnumInCSharp.DayOfWeek;
 
-namespace Tests
+namespace Tests;
+
+[TestClass]
+public class EnumerateAnEnumInCSharpUnitTests
 {
-    [TestClass]
-    public class EnumerateAnEnumInCSharpUnitTests
+    [TestMethod]
+    public void GivenDaysOfWeek_ThenArrayOfValuesIsReturned()
     {
-        [TestMethod]
-        public void GivenDaysOfWeek_ThenArrayOfValuesIsReturned()
-        {
-            var result = EnumHelper.GetValues(typeof(DayOfWeek));
+        var result = EnumHelper.GetValues(typeof(DayOfWeek));
 
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(Array));
-            TestAllDaysInResult(result);
-        }
+        Assert.IsNotNull(result);
+        Assert.IsInstanceOfType<DayOfWeek[]>(result);
+        TestAllDaysInResult(result);
+    }
 
-        [TestMethod]
-        public void GivenDaysOfWeek_ThenIEnumerableOfValuesIsReturned()
-        {
-            var result = EnumHelper.GetValues<DayOfWeek>();
+    [TestMethod]
+    public void GivenDaysOfWeek_ThenTypedArrayOfValuesIsReturned()
+    {
+        var result = EnumHelper.GetValues<DayOfWeek>();
 
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(IEnumerable<DayOfWeek>));
-            TestAllDaysInResult(result.ToList());
-        }
+        Assert.IsNotNull(result);
+        Assert.IsInstanceOfType<DayOfWeek[]>(result);
+        TestAllDaysInResult(result);
+    }
 
-        [TestMethod]
-        public void GivenDaysOfWeek_WhenEnumValuessFromReflection_ThenValuesArrayIsReturned()
-        {
-            var result = EnumHelper.GetValuesWithReflection<DayOfWeek>();
+    [TestMethod]
+    public void GivenDaysOfWeek_WhenEnumValuesFromReflection_ThenValuesArrayIsReturned()
+    {
+        var result = EnumHelper.GetValuesWithReflection<DayOfWeek>();
 
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(DayOfWeek[]));
-            TestAllDaysInResult(result.ToList());
-        }
+        Assert.IsNotNull(result);
+        Assert.IsInstanceOfType<DayOfWeek[]>(result);
+        TestAllDaysInResult(result);
+    }
 
-        private void TestAllDaysInResult(System.Collections.ICollection result)
-        {
-            Assert.AreEqual(7, result.Count);
+    [TestMethod]
+    public void GivenANegativeMember_WhenGetValues_ThenItComesLast()
+    {
+        var result = Enum.GetValues<OrderStatus>();
 
-            CollectionAssert.Contains(result, DayOfWeek.Monday);
-            CollectionAssert.Contains(result, DayOfWeek.Tuesday);
-            CollectionAssert.Contains(result, DayOfWeek.Wednesday);
-            CollectionAssert.Contains(result, DayOfWeek.Thursday);
-            CollectionAssert.Contains(result, DayOfWeek.Friday);
-            CollectionAssert.Contains(result, DayOfWeek.Saturday);
-            CollectionAssert.Contains(result, DayOfWeek.Sunday);
-        }
+        Assert.AreEqual(OrderStatus.Cancelled, result[^1]);
+    }
+
+    [TestMethod]
+    public void GivenTwoMembersWithOneValue_WhenGetValues_ThenTheValueAppearsTwice()
+    {
+        var result = Enum.GetValues<OrderStatus>();
+
+        Assert.AreEqual(5, result.Length);
+        Assert.AreEqual(2, result.Count(status => status == OrderStatus.Shipped));
+    }
+
+    [TestMethod]
+    public void GivenTwoMembersWithOneValue_WhenGetNames_ThenBothNamesAreReturned()
+    {
+        var result = Enum.GetNames<OrderStatus>();
+
+        CollectionAssert.AreEquivalent(
+            new[] { "Cancelled", "Pending", "Paid", "Shipped", "Dispatched" },
+            result);
+    }
+
+    private static void TestAllDaysInResult(System.Collections.ICollection result)
+    {
+        Assert.AreEqual(7, result.Count);
+
+        CollectionAssert.Contains(result, DayOfWeek.Monday);
+        CollectionAssert.Contains(result, DayOfWeek.Tuesday);
+        CollectionAssert.Contains(result, DayOfWeek.Wednesday);
+        CollectionAssert.Contains(result, DayOfWeek.Thursday);
+        CollectionAssert.Contains(result, DayOfWeek.Friday);
+        CollectionAssert.Contains(result, DayOfWeek.Saturday);
+        CollectionAssert.Contains(result, DayOfWeek.Sunday);
     }
 }
