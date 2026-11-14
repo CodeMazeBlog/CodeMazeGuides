@@ -1,5 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-using FileVsFileInfoInCSharp;
+﻿using FileVsFileInfoInCSharp;
 
-Console.WriteLine("Hello, World!");
 FileVsFileInfoSamples.OpenFile();
+FileVsFileInfoSamples.RefreshMethodOfFileInfo();
+FileVsFileInfoSamples.OpenWriteKeepsTheTail();
+FileVsFileInfoSamples.UsingFileOnMultipleFiles();
+FileVsFileInfoSamples.UsingFileInfoOnOneFile();

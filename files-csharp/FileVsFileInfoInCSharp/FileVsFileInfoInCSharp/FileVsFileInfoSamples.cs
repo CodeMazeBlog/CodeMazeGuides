@@ -86,7 +86,8 @@ namespace FileVsFileInfoInCSharp
 
             //Open a read-only file stream with instance FileInfo.OpenRead()
             FileInfo fileInfo = new("myFileTwo.txt");
-            if (!fileInfo.Exists) fileInfo.Create();
+            if (!fileInfo.Exists)
+                fileInfo.Create().Dispose();
 
             using FileStream openReadFileInfoResult = fileInfo.OpenRead();
 
@@ -121,13 +122,12 @@ namespace FileVsFileInfoInCSharp
                 using StreamWriter streamWriter = File.CreateText("sampleDocument.txt");
                 //To write to the file
                 streamWriter.WriteLine("My Todo");
-                Console.WriteLine();
                 streamWriter.WriteLine("Drink Water");
                 streamWriter.WriteLine("Be Awesome");
             }
             //To open and read from the created .txt file
             using StreamReader streamReader = File.OpenText("sampleDocument.txt");
-            string result;
+            string? result;
 
             StringBuilder sr = new();
             while ((result = streamReader.ReadLine()) != null)
@@ -153,7 +153,7 @@ namespace FileVsFileInfoInCSharp
             }
             //To open and read from the created .txt file
             using StreamReader streamReader = fileInfo.OpenText();
-            string result;
+            string? result;
 
             StringBuilder sr = new();
             while ((result = streamReader.ReadLine()) != null)
@@ -164,33 +164,69 @@ namespace FileVsFileInfoInCSharp
             return sr.ToString();
         }
 
-        public static void RefreshMethodOfFileInfo()
+        public static (bool BeforeRefresh, bool AfterRefresh) RefreshMethodOfFileInfo()
         {
             FileInfo fileInfo = new("myFileFifteen.txt");
+            Console.WriteLine(fileInfo.Exists); // False, and now cached
 
-            fileInfo.Attributes = FileAttributes.Hidden;
+            File.WriteAllText("myFileFifteen.txt", "Created behind our back");
+            bool beforeRefresh = fileInfo.Exists;
+            Console.WriteLine(beforeRefresh); // still False
+
             fileInfo.Refresh();
-            Console.WriteLine(fileInfo.Attributes.ToString());
+            bool afterRefresh = fileInfo.Exists;
+            Console.WriteLine(afterRefresh); // True
+
             fileInfo.Delete();
+
+            return (beforeRefresh, afterRefresh);
+        }
+
+        public static string OpenWriteKeepsTheTail()
+        {
+            File.WriteAllText("myFileSeventeen.txt", "This is a long line");
+
+            using (FileStream stream = File.OpenWrite("myFileSeventeen.txt"))
+            {
+                stream.Write("Short"u8);
+            }
+
+            string content = File.ReadAllText("myFileSeventeen.txt");
+            Console.WriteLine(content); // Shortis a long line
+            File.Delete("myFileSeventeen.txt");
+
+            return content;
         }
 
         public static void UsingFileOnMultipleFiles()
         {
+            File.WriteAllText("myFileSix.txt", "My Todo");
+
             File.Copy("myFileSix.txt", "myFileSeven.txt");
-            File.Encrypt("myFileSix.txt");
-            File.Decrypt("myFileSix.txt");
-            File.Move("myFileSeven.txt", "myFileSix.txt");
+            File.AppendAllText("myFileSeven.txt", " list");
+            File.Move("myFileSeven.txt", "myFileEight.txt");
             File.Delete("myFileSix.txt");
-            File.Delete("myFileSeven.txt");
+            File.Delete("myFileEight.txt");
         }
 
-        public static void UsingFileInfoOnOneFile()
+        public static string UsingFileInfoOnOneFile()
         {
             FileInfo fileInfo = new("myFileSixteen.txt");
-            fileInfo.OpenText();
-            fileInfo.Encrypt();
-            fileInfo.Decrypt();
+
+            using (StreamWriter writer = fileInfo.CreateText())
+            {
+                writer.Write("My Todo");
+            }
+
+            Console.WriteLine($"{fileInfo.Name}: {fileInfo.Length} bytes");
+
+            fileInfo.MoveTo("myFileSixteenMoved.txt");
+            Console.WriteLine(fileInfo.Name); // myFileSixteenMoved.txt
+
+            string name = fileInfo.Name;
             fileInfo.Delete();
+
+            return name;
         }
     }
 }
