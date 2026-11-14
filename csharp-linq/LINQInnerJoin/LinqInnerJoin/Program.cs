@@ -18,6 +18,7 @@ EnrolmentHelper.PrintCoursesWithCategory(coursesWithCategoryName);
 
 Console.WriteLine("-----tuple join-----");
 var pairs = EnrolmentHelper.GetCourseCategoryPairs(Course.GetDummyCourses());
+
 foreach (var (course, category) in pairs.Take(3))
 {
     Console.WriteLine($"{course.Name} is a {category.Name}");

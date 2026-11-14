@@ -273,8 +273,7 @@ public static class EnrolmentHelper
     private static IEnumerable<dynamic> GetEnrolmentsRelation(
         IEnumerable<Enrolment> enrolments,
         IEnumerable<Student> students,
-        IEnumerable<Course> courses
-    )
+        IEnumerable<Course> courses)
     {
         return enrolments
             .Join(
