@@ -1,68 +1,25 @@
-﻿namespace LinqInnerJoin
+﻿namespace LinqInnerJoin;
+
+public class Course
 {
-    public class Course
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int CategoryId { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public int CategoryId { get; set; }
 
-        public static IEnumerable<Course> GetDummyCourses()
-        {
-            int id = 1;
-            List<Course> courses = new();
-
-            List<string> programmingLanguages = new()
-            {
-                "CSHARP",
-                "PYTHON",
-                "JAVA",
-                "RUBY",
-                "GO"
-            };
-
-            List<string> databases = new()
-            {
-                "MSSQL",
-                "POSTGRES",
-                "MONGODB",
-                "MYSQL"
-            };
-
-            List<string> devops = new()
-            {
-                "DOCKER",
-                "JENKINS",
-                "GIT",
-                "KUBERNETES"
-            };
-
-            courses.AddRange(from pr in programmingLanguages
-                             select new Course
-                             {
-                                 Id = id++,
-                                 CategoryId = 1,
-                                 Name = pr
-                             });
-
-
-            courses.AddRange(from db in databases
-                             select new Course
-                             {
-                                 Id = id++,
-                                 CategoryId = 2,
-                                 Name = db
-                             });
-
-
-            courses.AddRange(from dv in devops
-                             select new Course
-                             {
-                                 Id = id++,
-                                 CategoryId = 3,
-                                 Name = dv
-                             });
-
-            return courses;
-        }
-    }
+    public static IEnumerable<Course> GetDummyCourses() =>
+    [
+        new() { Id = 1, Name = "CSHARP", CategoryId = 1 },
+        new() { Id = 2, Name = "PYTHON", CategoryId = 1 },
+        new() { Id = 3, Name = "JAVA", CategoryId = 1 },
+        new() { Id = 4, Name = "RUBY", CategoryId = 1 },
+        new() { Id = 5, Name = "GO", CategoryId = 1 },
+        new() { Id = 6, Name = "MSSQL", CategoryId = 3 },
+        new() { Id = 7, Name = "POSTGRES", CategoryId = 3 },
+        new() { Id = 8, Name = "MONGODB", CategoryId = 3 },
+        new() { Id = 9, Name = "MYSQL", CategoryId = 3 },
+        new() { Id = 10, Name = "DOCKER", CategoryId = 2 },
+        new() { Id = 11, Name = "JENKINS", CategoryId = 2 },
+        new() { Id = 12, Name = "GIT", CategoryId = 2 },
+        new() { Id = 13, Name = "KUBERNETES", CategoryId = 2 }
+    ];
 }
