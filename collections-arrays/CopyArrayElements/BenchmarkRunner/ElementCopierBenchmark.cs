@@ -1,53 +1,49 @@
 ﻿using BenchmarkDotNet.Attributes;
 using CopyArrayElements;
 
-namespace BenchmarkRunner
+namespace BenchmarkRunner;
+
+[MemoryDiagnoser]
+public class ElementCopierBenchmark
 {
-    public class ElementCopierBenchmark
+    private static readonly ElementCopier elementCopier = new();
+    private Article[] benchMarkSourceArray = [];
+
+    [Params(1000, 10000)]
+    public int Size { get; set; }
+
+    [GlobalSetup]
+    public void Setup()
     {
-        Article[] benchMarkSourceArray = Enumerable.Repeat(new Article { Title = "Title", LastUpdate = DateTime.Now }, 10000).ToArray();
-        private static readonly ElementCopier elementCopier = new ElementCopier();
-
-        [Benchmark]
-        public void CopyUsingAssignment()
-        {
-            elementCopier.CopyUsingAssignment(benchMarkSourceArray);
-        }
-
-        [Benchmark]
-        public void CopyUsingArrayClass()
-        {
-            elementCopier.CopyUsingArrayClass(benchMarkSourceArray);
-        }
-
-        [Benchmark]
-        public void CopyUsingClone()
-        {
-            elementCopier.CopyUsingClone(benchMarkSourceArray);
-        }
-
-        [Benchmark]
-        public void CopyUsingCopyTo()
-        {
-            elementCopier.CopyUsingCopyTo(benchMarkSourceArray);
-        }
-
-        [Benchmark]
-        public void CopyUsingRange()
-        {
-            elementCopier.CopyUsingRange(benchMarkSourceArray);
-        }
-
-        [Benchmark]
-        public void CopyUsingLinq()
-        {
-            elementCopier.CopyUsingLinq(benchMarkSourceArray);
-        }
-
-        [Benchmark]
-        public void ManuallyCopy()
-        {
-            elementCopier.ManuallyCopy(benchMarkSourceArray);
-        }
+        benchMarkSourceArray = Enumerable
+            .Repeat(new Article { Title = "Title", LastUpdate = DateTime.Now }, Size)
+            .ToArray();
     }
+
+    [Benchmark]
+    public Article[] CopyUsingAssignment() => elementCopier.CopyUsingAssignment(benchMarkSourceArray);
+
+    [Benchmark]
+    public Article[] CopyUsingArrayClass() => elementCopier.CopyUsingArrayClass(benchMarkSourceArray);
+
+    [Benchmark]
+    public Article[] CopyUsingClone() => elementCopier.CopyUsingClone(benchMarkSourceArray);
+
+    [Benchmark]
+    public Article[] CopyUsingCopyTo() => elementCopier.CopyUsingCopyTo(benchMarkSourceArray);
+
+    [Benchmark]
+    public Article[] CopyUsingRange() => elementCopier.CopyUsingRange(benchMarkSourceArray);
+
+    [Benchmark]
+    public Article[] CopyUsingSpan() => elementCopier.CopyUsingSpan(benchMarkSourceArray);
+
+    [Benchmark]
+    public Article[] CopyUsingCollectionExpression() => elementCopier.CopyUsingCollectionExpression(benchMarkSourceArray);
+
+    [Benchmark]
+    public Article[] CopyUsingLinq() => elementCopier.CopyUsingLinq(benchMarkSourceArray);
+
+    [Benchmark]
+    public Article[] ManuallyCopy() => elementCopier.ManuallyCopy(benchMarkSourceArray);
 }

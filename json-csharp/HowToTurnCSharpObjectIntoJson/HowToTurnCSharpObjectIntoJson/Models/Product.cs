@@ -1,11 +1,8 @@
-﻿using HowToTurnCSharpObjectIntoJson.Converters;
-using Newtonsoft.Json;
-
-namespace HowToTurnCSharpObjectIntoJson.Models
+﻿namespace HowToTurnCSharpObjectIntoJson.Models
 {
     public class Product
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         public int? Stock { get; set; }
 
