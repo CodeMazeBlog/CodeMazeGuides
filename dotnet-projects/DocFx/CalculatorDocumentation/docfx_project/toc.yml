@@ -1,5 +1,6 @@
 - name: Coding Guidelines
-  href: articles/
+  href: docs/
 - name: Source Code
   href: api/
-  homepage: api/index.md
+- name: REST API
+  href: restapi/
