@@ -42,9 +42,9 @@ namespace Tests
         [TestMethod]
         public void GivenInValidParameters_WhenUsingMerge_ThenExpectException()
         {
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Merger.Merge(Array.Empty<string>(), "merged"));
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Merger.Merge(new string[] { "test" }, "merged"));
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => Merger.Merge(new string[] { "test", "test2" }, ""));
+            Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => Merger.Merge(Array.Empty<string>(), "merged"));
+            Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => Merger.Merge(new string[] { "test" }, "merged"));
+            Assert.ThrowsExactly<ArgumentOutOfRangeException>(() => Merger.Merge(new string[] { "test", "test2" }, ""));
         }
 
         [TestMethod]
