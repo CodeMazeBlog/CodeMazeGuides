@@ -4,7 +4,8 @@ namespace Tests
 {
     public class DirectoryInfoMethodsTests : IDisposable
     {
-        private readonly string _testDirectoryPath = @"C:\Public\CM-Demos\Test";
+        private readonly string _testDirectoryPath =
+            Path.Combine(Path.GetTempPath(), "CM-Demos-Tests", Guid.NewGuid().ToString());
 
         public DirectoryInfoMethodsTests()
         {
@@ -14,57 +15,93 @@ namespace Tests
         [Fact]
         public void WhenCreateSubDirectoriesIsCalled_ShouldCreateSubDirectory()
         {
-            // Arrange
             var directoryInfoMethods = new DirectoryInfoMethods();
             var directoryInfo = new DirectoryInfo(_testDirectoryPath);
-            var subDirectory = "SubFolder";
-            var subDirectoryPath = Path.Combine(_testDirectoryPath, subDirectory);
+            var subDirectoryPath = Path.Combine(_testDirectoryPath, "SubFolder");
 
-            // Act
-            directoryInfoMethods.CreateSubDirectories(directoryInfo, subDirectory);
+            directoryInfoMethods.CreateSubDirectories(directoryInfo, "SubFolder");
 
-            // Assert
             Assert.True(Directory.Exists(subDirectoryPath));
+        }
+
+        [Fact]
+        public void GivenMissingParent_WhenCreateSubDirectoriesIsCalled_ThenParentIsCreatedToo()
+        {
+            var directoryInfoMethods = new DirectoryInfoMethods();
+            var parent = new DirectoryInfo(Path.Combine(_testDirectoryPath, "NotYetThere"));
+
+            var subDirectory = directoryInfoMethods.CreateSubDirectories(parent, "SubFolder");
+
+            Assert.True(Directory.Exists(parent.FullName));
+            Assert.True(subDirectory.Exists);
         }
 
         [Fact]
         public void WhenSourceDirectoryInfoIsMoved_ShouldDeleteOldDirectoryPath()
         {
-            // Arrange
             var directoryInfoMethods = new DirectoryInfoMethods();
             var sourceDirectoryPath = Path.Combine(_testDirectoryPath, "Directory");
             var sourceDirectoryInfo = Directory.CreateDirectory(sourceDirectoryPath);
             var destDirectoryPath = Path.Combine(_testDirectoryPath, "NewDirectory");
 
-
-            // Act
             directoryInfoMethods.MoveDirectories(sourceDirectoryInfo, destDirectoryPath);
 
-            // Assert
             Assert.False(Directory.Exists(sourceDirectoryPath));
             Assert.True(Directory.Exists(destDirectoryPath));
         }
 
         [Fact]
-        public void WhenEnumerateDirectoriesIsCalled_ShouldPrintSubDirectoriesToConsole()
+        public void GivenMovedDirectory_WhenTheSameReferenceIsUsed_ThenItPointsToTheNewPath()
         {
-            // Arrange
-            var directoryMethods = new DirectoryInfoMethods();
+            var directoryInfoMethods = new DirectoryInfoMethods();
+            var sourceDirectoryInfo = Directory.CreateDirectory(Path.Combine(_testDirectoryPath, "Directory"));
+            File.WriteAllText(Path.Combine(sourceDirectoryInfo.FullName, "notes.txt"), "x");
+            var subDirectory = sourceDirectoryInfo.CreateSubdirectory("SubFolder");
+
+            directoryInfoMethods.MoveDirectories(sourceDirectoryInfo, Path.Combine(_testDirectoryPath, "NewDirectory"));
+
+            Assert.Equal("NewDirectory", sourceDirectoryInfo.Name);
+            Assert.Single(sourceDirectoryInfo.GetFiles());
+            Assert.False(subDirectory.Exists);
+            Assert.Throws<DirectoryNotFoundException>(() => subDirectory.GetFiles());
+        }
+
+        [Fact]
+        public void GivenSubDirectoryOfItself_WhenMoveDirectoriesIsCalled_ThenIOExceptionIsThrown()
+        {
+            var directoryInfoMethods = new DirectoryInfoMethods();
+            var sourceDirectoryInfo = Directory.CreateDirectory(Path.Combine(_testDirectoryPath, "Directory"));
+
+            Assert.Throws<IOException>(() => directoryInfoMethods.MoveDirectories(
+                sourceDirectoryInfo, Path.Combine(sourceDirectoryInfo.FullName, "NewDirectory")));
+        }
+
+        [Fact]
+        public void WhenEnumerateDirectoriesIsCalled_ShouldPrintSubDirectoryNames()
+        {
+            var directoryInfoMethods = new DirectoryInfoMethods();
             var directoryInfo = new DirectoryInfo(_testDirectoryPath);
+            directoryInfo.CreateSubdirectory("Archive");
+            directoryInfo.CreateSubdirectory("SubFolder");
             var output = new StringWriter();
+            var originalOut = Console.Out;
             Console.SetOut(output);
 
-            // Act
-            directoryMethods.EnumerateDirectories(directoryInfo);
+            try
+            {
+                directoryInfoMethods.EnumerateDirectories(directoryInfo);
+            }
+            finally
+            {
+                Console.SetOut(originalOut);
+            }
 
-            // Assert
-            if (!directoryInfo.GetDirectories().Any())
-                Assert.Equal(string.Empty, output.ToString());
+            var names = output.ToString().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            Assert.Equal(["Archive", "SubFolder"], names.Order());
         }
 
         public void Dispose()
         {
-            // Clean up the test directory after tests
             if (Directory.Exists(_testDirectoryPath))
             {
                 Directory.Delete(_testDirectoryPath, true);
