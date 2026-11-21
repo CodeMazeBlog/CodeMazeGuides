@@ -9,6 +9,13 @@ public static class ConvertAStreamToAFileInCSharp
         stream.CopyTo(fileStream);
     }
 
+    public static async Task CopyToFileAsync(MemoryStream stream, string path)
+    {
+        await using var fileStream = File.Create(path);
+        stream.Position = 0;
+        await stream.CopyToAsync(fileStream);
+    }
+
     public static void WriteToFileStream(MemoryStream stream, string path)
     {
         using var fileStream = File.Create(path);

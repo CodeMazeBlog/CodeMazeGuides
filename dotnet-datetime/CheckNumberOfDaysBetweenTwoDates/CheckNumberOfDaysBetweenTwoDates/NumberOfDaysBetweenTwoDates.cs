@@ -12,7 +12,12 @@ public static class NumberOfDaysBetweenTwoDates
     public static int CalculateDaysUntilEvent(DateTimeOffset eventDateTime, DateTimeOffset currentDateTime)
     {
         TimeSpan daysUntilEvent = eventDateTime - currentDateTime;
-        
+
         return daysUntilEvent.Days;
+    }
+
+    public static int CalculateDaysBetweenDates(DateOnly startDate, DateOnly endDate)
+    {
+        return endDate.DayNumber - startDate.DayNumber;
     }
 }

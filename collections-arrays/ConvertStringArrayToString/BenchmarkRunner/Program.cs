@@ -1,3 +1,4 @@
-﻿using BenchmarkRunner;
+﻿using BenchmarkDotNet.Running;
+using BenchmarkRunner;
 
-BenchmarkDotNet.Running.BenchmarkRunner.Run<ArrayConverterBenchmark>();
+BenchmarkSwitcher.FromAssembly(typeof(ArrayConverterBenchmark).Assembly).Run(args);

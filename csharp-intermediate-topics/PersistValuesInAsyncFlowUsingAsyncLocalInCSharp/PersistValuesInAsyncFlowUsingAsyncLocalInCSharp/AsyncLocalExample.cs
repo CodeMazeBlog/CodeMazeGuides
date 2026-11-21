@@ -7,11 +7,11 @@ public static class AsyncLocalExample
     public static async Task DoWork()
     {
         AsyncLocalInt.Value = 1;
-        Console.WriteLine($"AsyncLocal value in DoMainWork method: {AsyncLocalInt.Value}");
+        Console.WriteLine($"AsyncLocal value in DoWork method: {AsyncLocalInt.Value}");
 
         await DoSubTaskLevel1();
 
-        Console.WriteLine($"AsyncLocal value in DoMainWork method after executing " +
+        Console.WriteLine($"AsyncLocal value in DoWork method after executing " +
             $"DoSubTaskLevel1 method: {AsyncLocalInt.Value}");
     }
 
