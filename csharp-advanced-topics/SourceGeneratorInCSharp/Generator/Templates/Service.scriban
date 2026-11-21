@@ -1,6 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using {{class_namespace}};
 
-namespace {{class_assembly}}.Services 
+namespace {{class_assembly}}.Services
 {
     public partial class {{class_name}}Service
     {
