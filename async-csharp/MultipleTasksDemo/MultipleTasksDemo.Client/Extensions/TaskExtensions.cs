@@ -9,10 +9,10 @@ public class TaskExtensions
         {
             await allTasks;
         }
-        catch (Exception exp)
+        catch
         {
-            Console.WriteLine("Task Exception", exp);
-            throw allTasks.Exception;
+            Console.WriteLine("Task Exception");
+            throw allTasks.Exception!;
         }
 
         return (task1.Result, task2.Result, task3.Result);

@@ -2,6 +2,7 @@ using HowToTurnCSharpObjectIntoJson.Converters;
 using HowToTurnCSharpObjectIntoJson.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -139,7 +140,9 @@ namespace HowToTurnCSharpObjectIntoJson.Test
             var jsonString = JsonSerializer.Serialize(obj, options);
 
             // assert
-            Assert.AreEqual("{\"DateCreated\":\"8/24/2017 12:00:00 AM\"}", jsonString);
+            var expectedDate = new DateTime(2017, 8, 24).ToString("G", new CultureInfo("en-US"));
+
+            Assert.AreEqual($"{{\"DateCreated\":{JsonSerializer.Serialize(expectedDate)}}}", jsonString);
         }
 
         [TestMethod]
@@ -162,7 +165,7 @@ namespace HowToTurnCSharpObjectIntoJson.Test
             var jsonString = JsonSerializer.Serialize(obj, options);
 
             // assert
-            Assert.AreEqual($"{{{Environment.NewLine}  \"FirstName\": \"John\",{Environment.NewLine}  \"LastName\": \"Smith\",{Environment.NewLine}  \"BirthDate\": \"8/24/2017 12:00:00 AM\"{Environment.NewLine}}}", jsonString);
+            Assert.AreEqual($"{{{Environment.NewLine}  \"FirstName\": \"John\",{Environment.NewLine}  \"LastName\": \"Smith\",{Environment.NewLine}  \"BirthDate\": {JsonSerializer.Serialize(new DateTime(2017, 8, 24).ToString("G", new CultureInfo("en-US")))}{Environment.NewLine}}}", jsonString);
         }
 
         [TestMethod]
@@ -175,7 +178,7 @@ namespace HowToTurnCSharpObjectIntoJson.Test
             department.Staff.Add(employee);
 
             // act & assert
-            Assert.ThrowsException<JsonException>(() => JsonSerializer.Serialize(employee));
+            Assert.ThrowsExactly<JsonException>(() => JsonSerializer.Serialize(employee));
         }
 
         [TestMethod]
