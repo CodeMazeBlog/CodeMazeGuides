@@ -1,0 +1,15 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:core="using:Converter.Core"
+        x:Class="Converter.Avalonia.MainWindow"
+        x:DataType="core:ConverterViewModel"
+        Title="Converter (Avalonia)" Width="320" SizeToContent="Height">
+    <Window.DataContext>
+        <core:ConverterViewModel />
+    </Window.DataContext>
+    <StackPanel Margin="12">
+        <TextBox Text="{Binding Celsius}" />
+        <Button Content="Convert" Command="{Binding ConvertCommand}" Margin="0,8" />
+        <TextBlock Text="{Binding Result}" />
+    </StackPanel>
+</Window>
