@@ -1,13 +1,12 @@
-﻿namespace StringReverse
-{
-    public partial class Methods
-    {
-        public static string? ArrayReverseString(string stringToReverse)
-        {
-            var charArray = stringToReverse.ToCharArray();
-            Array.Reverse(charArray);
+﻿namespace StringReverse;
 
-            return new string(charArray);
-        }
+public partial class Methods
+{
+    public static string ArrayReverseString(string stringToReverse)
+    {
+        var charArray = stringToReverse.ToCharArray();
+        Array.Reverse(charArray);
+
+        return new string(charArray);
     }
 }
