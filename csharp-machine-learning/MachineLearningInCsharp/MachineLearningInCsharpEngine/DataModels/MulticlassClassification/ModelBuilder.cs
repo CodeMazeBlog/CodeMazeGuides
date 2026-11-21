@@ -4,10 +4,10 @@ namespace MachineLearningInCsharpEngine.DataModels.MulticlassClassification;
 public class ModelBuilder
 {
     private MLContext _mlContext = new MLContext(seed: 0);
-    private PredictionEngine<ModelInput, ModelOutput> _predictionEngine;
-    private IDataView _trainingDataView;
-    private IDataView _testDataView;
-    private ITransformer _mlModel;
+    private PredictionEngine<ModelInput, ModelOutput> _predictionEngine = null!;
+    private IDataView _trainingDataView = null!;
+    private IDataView _testDataView = null!;
+    private ITransformer _mlModel = null!;
 
     public void CreateModel(string dataFilePath, string savingPath)
     {
@@ -27,7 +27,8 @@ public class ModelBuilder
     public void LoadModel(string path)
     {
         _mlModel = _mlContext.Model.Load(path, out _);
-        CreatePredictionEngine();    }
+        CreatePredictionEngine();
+    }
 
     private void LoadAndSplitData(string dataFilePath)
     {
@@ -69,6 +70,7 @@ public class ModelBuilder
         Console.WriteLine($"- MacroAccuracy:\t{testMetrics.MacroAccuracy:0.###}");
         Console.WriteLine($"- LogLoss:\t\t{testMetrics.LogLoss:#.###}");
         Console.WriteLine($"- LogLossReduction:\t{testMetrics.LogLossReduction:#.###}");
+        Console.WriteLine(testMetrics.ConfusionMatrix.GetFormattedConfusionTable());
     }
 
     private void SaveModel(string saveModelPath)
