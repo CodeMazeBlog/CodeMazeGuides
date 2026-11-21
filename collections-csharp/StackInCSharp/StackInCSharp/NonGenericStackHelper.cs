@@ -31,7 +31,7 @@ public class NonGenericStackHelper
         NonGenericStack.Push(o);
     }
 
-    public object PeekItem()
+    public object? PeekItem()
     {
         if (NonGenericStack == null)
         {
@@ -41,7 +41,7 @@ public class NonGenericStackHelper
         return NonGenericStack.Peek();
     }
 
-    public object PopItem()
+    public object? PopItem()
     {
         if (NonGenericStack == null)
         {
