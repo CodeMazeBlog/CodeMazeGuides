@@ -27,22 +27,26 @@ public class ExampleWithSemaphore
     static async Task WorkerWithSemaphoreAsync(ProcessParams processParams)
     {
         _semaphore.WaitOne();
+        try
+        {
+            await Task.Delay(processParams.SleepDelay);
 
-        await Task.Delay(processParams.SleepDelay);
+            var output = string.Format("Semaphore: Thread {0} is accessing {1} at {2}",
+                                       processParams.SequenceNo,
+                                       nameof(_outputQueue),
+                                       DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture));
 
-        var output = string.Format("Semaphore: Thread {0} is accessing {1} at {2}",
-                                   processParams.SequenceNo,
-                                   nameof(_outputQueue),
-                                   DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture));
-
-        _outputQueue.Enqueue(output);
-
-        _semaphore.Release();
+            _outputQueue.Enqueue(output);
+        }
+        finally
+        {
+            _semaphore.Release();
+        }
     }
 
     public static void ReleaseMultipleTimes()
     {
-        var semaphore = new Semaphore(initialCount: 2, maximumCount: 2);
+        using var semaphore = new Semaphore(initialCount: 2, maximumCount: 2);
 
         semaphore.WaitOne();
         semaphore.Release();
