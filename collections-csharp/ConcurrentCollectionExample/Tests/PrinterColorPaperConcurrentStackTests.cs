@@ -19,7 +19,7 @@ public class PrinterColorPaperConcurrentStackTests
     }
 
     [Fact]
-    public void GivenFileName_WhenTryRemoveIsInvoked_ThenFileIsRemovedAndReturnsTrue()
+    public void GivenColor_WhenTryUseIsInvoked_ThenColorIsRemovedAndReturnsTrue()
     {
         var color = "white";
         var papers = new PrinterColorPaperConcurrentStack();
@@ -31,7 +31,7 @@ public class PrinterColorPaperConcurrentStackTests
     }
 
     [Fact]
-    public void GivenFileName_WhenTryGetIsInvoked_ThenFileIsRetrivedAndReturnsTrue()
+    public void GivenColor_WhenTryGetTopIsInvoked_ThenColorIsRetrievedAndReturnsTrue()
     {
         var color = "white";
         var papers = new PrinterColorPaperConcurrentStack();

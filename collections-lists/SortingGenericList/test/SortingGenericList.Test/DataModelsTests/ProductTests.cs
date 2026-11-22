@@ -6,7 +6,7 @@ public sealed class ProductTests
     public void Product_Default_Id_Should_Not_Be_Empty()
     {
         var product = new Product("Product A", "Category1", 10.0m);
-        product.Id.Should().NotBeEmpty();
+        Assert.NotEqual(Guid.Empty, product.Id);
     }
 
     [Fact]
@@ -16,15 +16,15 @@ public sealed class ProductTests
         var product2 = new Product("Product B", "Category1", 10.0m);
         var product3 = new Product("Product A", "Category1", 20.0m);
 
-        product1.Should().BeLessThan(product2);
-        product1.Should().BeLessOrEqualTo(product2);
-        product2.Should().BeGreaterThan(product1);
-        product2.Should().BeGreaterOrEqualTo(product1);
+        Assert.True(product1 < product2);
+        Assert.True(product1 <= product2);
+        Assert.True(product2 > product1);
+        Assert.True(product2 >= product1);
 
-        product1.Should().NotBe(product3);
-        product1.CompareTo(product3).Should().BeNegative();
+        Assert.NotEqual(product1, product3);
+        Assert.True(product1.CompareTo(product3) < 0);
 
-        product1.CompareTo(product1).Should().Be(0);
+        Assert.Equal(0, product1.CompareTo(product1));
     }
 
     [Fact]
@@ -32,10 +32,10 @@ public sealed class ProductTests
     {
         var product = new Product("Product A", "Category1", 10.0m);
 
-        product.Invoking(p => p.CompareTo(new object()))
-               .Should().Throw<ArgumentException>().WithMessage($"Object must be of type {nameof(Product)}");
+        var exception = Assert.Throws<ArgumentException>(() => product.CompareTo(new object()));
+        Assert.Equal($"Object must be of type {nameof(Product)}", exception.Message);
 
-        product.CompareTo(null).Should().Be(1);
+        Assert.Equal(1, product.CompareTo(null));
     }
 
     [Fact]
@@ -46,7 +46,7 @@ public sealed class ProductTests
 
         var result = Product.DescendingCompare(product1, product2);
 
-        result.Should().BePositive();
+        Assert.True(result > 0);
     }
 
     [Fact]
@@ -57,7 +57,7 @@ public sealed class ProductTests
 
         var result = Product.DescendingCompare(product1, product2);
 
-        result.Should().BeNegative();
+        Assert.True(result < 0);
     }
 
     [Fact]
@@ -68,6 +68,30 @@ public sealed class ProductTests
 
         var result = Product.DescendingCompare(product1, product2);
 
-        result.Should().Be(0);
+        Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void DescendingCompare_ForTwoNulls_ReturnsZero()
+    {
+        Assert.Equal(0, Product.DescendingCompare(null, null));
+    }
+
+    [Fact]
+    public void DescendingCompare_WhenListHasManyNulls_SortsWithNullsLast()
+    {
+        var random = new Random(1);
+        var products = Enumerable.Range(0, 200)
+            .Select(i => i % 5 == 0 ? null : new Product($"P{random.Next(1000):D3}", "Category", 1m))
+            .ToList();
+
+        products.Sort(Product.DescendingCompare);
+
+        Assert.All(products.Take(160), Assert.NotNull);
+        Assert.All(products.Skip(160), Assert.Null);
+        Assert.Equal(
+            products.Take(160).OrderByDescending(p => p!.ProductName, StringComparer.OrdinalIgnoreCase)
+                .Select(p => p!.ProductName),
+            products.Take(160).Select(p => p!.ProductName));
     }
 }

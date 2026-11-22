@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
 using RadixSort;
 
-var summary = BenchmarkRunner.Run<RadixSortMethods>();
+BenchmarkRunner.Run<RadixSortBenchmarks>(args: args);
