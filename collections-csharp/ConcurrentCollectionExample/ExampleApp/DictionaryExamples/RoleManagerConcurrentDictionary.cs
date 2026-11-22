@@ -1,5 +1,4 @@
-﻿using System;
-using ExampleApp.Helpers;
+﻿using ExampleApp.Helpers;
 using System.Collections.Concurrent;
 
 namespace ExampleApp.DictionaryExamples;
@@ -27,7 +26,7 @@ public class RoleManagerConcurrentDictionary
 
     public void PrintAll()
     {
-        Console.WriteLine($"No. of Records: {_record.Count()}");
+        Console.WriteLine($"No. of Records: {_record.Count}");
         foreach (var (role, user) in _record)
         {
             Console.WriteLine($"Role: {role}, User: {user}");

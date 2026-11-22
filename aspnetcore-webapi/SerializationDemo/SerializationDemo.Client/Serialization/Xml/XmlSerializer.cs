@@ -4,26 +4,23 @@ namespace SerializationDemo.Client.Serialization.Xml
 {
     public class XmlSerializer : IStringSerializer
     {
-        public T Deserialize<T>(string text)
+        public T? Deserialize<T>(string text)
         {
             var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
 
-            using (var stream = new StringReader(text))
-            {
-                return (T)serializer.Deserialize(stream);
-            }
+            using var reader = new StringReader(text);
+
+            return (T?)serializer.Deserialize(reader);
         }
 
         public string Serialize(object data)
         {
             var serializer = new System.Xml.Serialization.XmlSerializer(data.GetType());
 
-            using (var stream = new Utf8StringWriter())
-            {
-                serializer.Serialize(stream, data);
+            using var writer = new Utf8StringWriter();
+            serializer.Serialize(writer, data);
 
-                return stream.ToString();
-            }
+            return writer.ToString();
         }
     }
 
