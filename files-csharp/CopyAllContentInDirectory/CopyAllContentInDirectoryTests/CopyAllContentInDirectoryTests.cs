@@ -1,4 +1,5 @@
 using CopyAllContentInDirectory;
+using CopyAllContentInDirectory.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.IO.Abstractions.TestingHelpers;
@@ -92,7 +93,7 @@ namespace CopyAllContentInDirectoryTests
             Program.DestinationDir = "C:\\Destination";
             Program.FileSystem = mockFileSystem;
 
-            Assert.ThrowsException<DirectoryNotFoundException>(() =>
+            Assert.ThrowsExactly<DirectoryNotFoundException>(() =>
             {
                 Program.Main();
             });
@@ -114,7 +115,7 @@ namespace CopyAllContentInDirectoryTests
             Program.DestinationDir = "/Destination";
             Program.FileSystem = mockFileSystem;
 
-            Assert.ThrowsException<DirectoryNotFoundException>(() => 
+            Assert.ThrowsExactly<DirectoryNotFoundException>(() => 
             {
                 Program.Main();
             });
@@ -141,10 +142,89 @@ namespace CopyAllContentInDirectoryTests
 
             Program.FileSystem = mockFileSystem;
 
-            Assert.ThrowsException<ArgumentException>(() =>
+            Assert.ThrowsExactly<ArgumentException>(() =>
             {
                 Program.Main();
             });
+        }
+        private static string Root => OperatingSystem.IsWindows() ? @"C:\" : "/";
+
+        [TestMethod]
+        public void GivenFolderNameStartsWithSourceName_WhenRunningMain_ThenNameIsKept()
+        {
+            var mockFileSystem = new MockFileSystem();
+            Program.SourceDir = Path.Join(Root, "data");
+            Program.DestinationDir = Path.Join(Root, "backup");
+            Program.FileSystem = mockFileSystem;
+            mockFileSystem.AddFile(Path.Join(Root, "data", "database", "notes.txt"), new MockFileData("notes"));
+
+            Program.Main();
+
+            Assert.IsTrue(mockFileSystem.FileExists(Path.Join(Root, "backup", "database", "notes.txt")));
+        }
+
+        [TestMethod]
+        public void GivenSourceWithTrailingSeparator_WhenRunningMain_ThenSubfolderLandsUnderDestination()
+        {
+            var mockFileSystem = new MockFileSystem();
+            Program.SourceDir = Path.Join(Root, "Source") + Path.DirectorySeparatorChar;
+            Program.DestinationDir = Path.Join(Root, "Destination");
+            Program.FileSystem = mockFileSystem;
+            mockFileSystem.AddFile(Path.Join(Root, "Source", "ChildDir", "childfile.txt"), new MockFileData("childfile"));
+
+            Program.Main();
+
+            Assert.IsTrue(mockFileSystem.FileExists(Path.Join(Root, "Destination", "ChildDir", "childfile.txt")));
+        }
+
+        [TestMethod]
+        public void GivenSourceWithoutSubfolders_WhenDestinationIsMissing_ThenFilesAreCopied()
+        {
+            var mockFileSystem = new MockFileSystem();
+            Program.SourceDir = Path.Join(Root, "Source");
+            Program.DestinationDir = Path.Join(Root, "Destination");
+            Program.FileSystem = mockFileSystem;
+            mockFileSystem.AddFile(Path.Join(Root, "Source", "file.txt"), new MockFileData("file"));
+
+            Program.Main();
+
+            Assert.IsTrue(mockFileSystem.FileExists(Path.Join(Root, "Destination", "file.txt")));
+        }
+
+        [TestMethod]
+        public void GivenExistingFile_WhenOverwriteIsFalse_ThenIOExceptionIsThrown()
+        {
+            var mockFileSystem = new MockFileSystem();
+            Program.FileSystem = mockFileSystem;
+            mockFileSystem.AddFile(Path.Join(Root, "Source", "file.txt"), new MockFileData("new"));
+            mockFileSystem.AddFile(Path.Join(Root, "Destination", "file.txt"), new MockFileData("old"));
+
+            Assert.ThrowsExactly<IOException>(() =>
+                Program.CopyDirectory(Path.Join(Root, "Source"), Path.Join(Root, "Destination"), false));
+        }
+
+        [TestMethod]
+        public void GivenRealDirectory_WhenCallingDeepCopy_ThenTreeIsCopied()
+        {
+            var testRoot = Path.Join(Path.GetTempPath(), "CopyAllContentInDirectory-" + Guid.NewGuid());
+            var source = Path.Join(testRoot, "Source");
+            var destination = Path.Join(testRoot, "Destination");
+            Directory.CreateDirectory(Path.Join(source, "ChildDir", "Empty"));
+            File.WriteAllText(Path.Join(source, "top.txt"), "top");
+            File.WriteAllText(Path.Join(source, "ChildDir", "child.txt"), "child");
+
+            try
+            {
+                new DirectoryInfo(source).DeepCopy(destination, true);
+
+                Assert.AreEqual("top", File.ReadAllText(Path.Join(destination, "top.txt")));
+                Assert.AreEqual("child", File.ReadAllText(Path.Join(destination, "ChildDir", "child.txt")));
+                Assert.IsTrue(Directory.Exists(Path.Join(destination, "ChildDir", "Empty")));
+            }
+            finally
+            {
+                Directory.Delete(testRoot, true);
+            }
         }
     }
 }
