@@ -1,8 +1,8 @@
 ﻿namespace SerializationDemo.Client.Serialization
 {
-    internal interface IStringSerializer    
+    internal interface IStringSerializer
     {
-        T Deserialize<T>(string text);
+        T? Deserialize<T>(string text);
 
         string Serialize(object data);
     }

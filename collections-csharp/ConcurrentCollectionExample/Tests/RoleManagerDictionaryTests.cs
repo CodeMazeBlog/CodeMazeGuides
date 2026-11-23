@@ -10,12 +10,12 @@ public class RoleManagerDictionaryTests
     public async Task GivenIdenticalRoles_WhenTryAssignIsInvoked_ThenOnlyOneUserIsAssigned()
     {
         var role = "Admin";
-        var concurrentRoleManager = new RoleManagerConcurrentDictionary();
-        await concurrentRoleManager.TryAssign(role, 1);
-        await concurrentRoleManager.TryAssign(role, 2);
-        await concurrentRoleManager.TryAssign(role, 3);
+        var roleManager = new RoleManagerDictionary();
+        await roleManager.TryAssign(role, 1);
+        await roleManager.TryAssign(role, 2);
+        await roleManager.TryAssign(role, 3);
 
-        var roles = concurrentRoleManager.GetAll();
+        var roles = roleManager.GetAll();
         var valueExists = roles.TryGetValue(role, out User? user);
 
         Assert.True(valueExists);
@@ -28,15 +28,15 @@ public class RoleManagerDictionaryTests
         var role = "Admin";
         var role1 = "Dev";
         var role2 = "User";
-        var concurrentRoleManager = new RoleManagerConcurrentDictionary();
-        await concurrentRoleManager.TryAssign(role, 1);
-        await concurrentRoleManager.TryAssign(role1, 2);
-        await concurrentRoleManager.TryAssign(role2, 3);
+        var roleManager = new RoleManagerDictionary();
+        await roleManager.TryAssign(role, 1);
+        await roleManager.TryAssign(role1, 2);
+        await roleManager.TryAssign(role2, 3);
 
-        var roles = concurrentRoleManager.GetAll();
+        var roles = roleManager.GetAll();
         var firstRoleExits = roles.TryGetValue(role, out User? user);
-        var secondRoleExits = roles.TryGetValue(role, out User? user1);
-        var thirdRoleExits = roles.TryGetValue(role, out User? user2);
+        var secondRoleExits = roles.TryGetValue(role1, out User? user1);
+        var thirdRoleExits = roles.TryGetValue(role2, out User? user2);
 
         Assert.True(firstRoleExits);
         Assert.True(secondRoleExits);
