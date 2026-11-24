@@ -6,17 +6,17 @@ using System.Net.Http.Headers;
 namespace SerializationDemo.Client.Clients
 {
     internal class ProtobufClient : ClientBase, IClient
-    { 
+    {
         private readonly IByteSerializer _serializer = new ProtobufSerializer();
         private readonly HttpClient _client = new HttpClient();
 
-        public async Task<Employee> CreateEmployee(Employee employee)
+        public async Task<Employee?> CreateEmployee(Employee employee)
         {
             var url = $"{BaseUrl}/api/employees";
             var request = new HttpRequestMessage(HttpMethod.Post, url);
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));            
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
             request.Content = new ByteArrayContent(_serializer.Serialize(employee));
-            request.Content.Headers.Add("Content-Type", "application/x-protobuf");
+            request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-protobuf");
 
             var response = await _client.SendAsync(request);
 
@@ -34,11 +34,11 @@ namespace SerializationDemo.Client.Clients
             var url = $"{BaseUrl}/api/employees";
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-protobuf"));
-            
+
             var response = await _client.SendAsync(request);
             var content = await response.Content.ReadAsByteArrayAsync();
-            
-            return _serializer.Deserialize<List<Employee>>(content);
+
+            return _serializer.Deserialize<List<Employee>>(content) ?? [];
         }
     }
 }

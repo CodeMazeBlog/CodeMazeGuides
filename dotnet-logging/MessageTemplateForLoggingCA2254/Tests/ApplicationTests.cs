@@ -1,6 +1,7 @@
 using MessageTemplateForLoggingCA2254;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
+using System.Globalization;
 using System.Text.Json;
 using Xunit;
 
@@ -71,10 +72,12 @@ public class ApplicationTests
         var app = GetApplication();
         app.LogMessageWithoutFormatting(_userId, _loggedInTime);
 
+        var expected = string.Create(CultureInfo.InvariantCulture, $"User {_userId} logged in at {_loggedInTime}.");
+
         _logger.Received(1).Log(
             LogLevel.Information,
             Arg.Any<EventId>(),
-            Arg.Is<object>(o => o.ToString()!.Contains($"User {_userId} logged in at {_loggedInTime:MM/dd/yyyy HH:mm:ss}.")),
+            Arg.Is<object>(o => o.ToString()!.Contains(expected)),
             Arg.Any<Exception>(),
             Arg.Any<Func<object, Exception?, string>>()
         );
@@ -86,10 +89,12 @@ public class ApplicationTests
         var app = GetApplication();
         app.LogMessageWithFormatting(_userId, _loggedInTime);
 
+        var expected = string.Create(CultureInfo.InvariantCulture, $"User {_userId:N} logged in at {_loggedInTime:F}.");
+
         _logger.Received(1).Log(
             LogLevel.Information,
             Arg.Any<EventId>(),
-            Arg.Is<object>(o => o.ToString()!.Contains($"User {_userId:N} logged in at {_loggedInTime:F}.")),
+            Arg.Is<object>(o => o.ToString()!.Contains(expected)),
             Arg.Any<Exception>(),
             Arg.Any<Func<object, Exception?, string>>()
         );
@@ -132,11 +137,13 @@ public class ApplicationTests
         var app = GetApplication();
         app.LogMessageToFixCA2254Warning(_userName, _loggedInTime);
 
+        var expected = string.Create(CultureInfo.InvariantCulture, $"User {_userName} logged on {_loggedInTime}");
+
         _logger.Received(1).Log(
             LogLevel.Information,
             Arg.Any<EventId>(),
             Arg.Is<object>(o => 
-                o.ToString()!.Contains($"User {_userName} logged on {_loggedInTime:MM/dd/yyyy HH:mm:ss}")),
+                o.ToString()!.Contains(expected)),
             Arg.Any<Exception>(),
             Arg.Any<Func<object, Exception?, string>>()
         );
