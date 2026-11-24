@@ -151,4 +151,28 @@ public class Tests
 
         Assert.Empty(_genericStackHelper.GenericStack);
     }
+
+    [Fact]
+    public void GivenEmptyGenericStack_WhenTryPop_ThenItReturnsFalse()
+    {
+        var popped = _genericStackHelper.TryPopItem(out var page);
+
+        Assert.False(popped);
+        Assert.Null(page);
+    }
+
+    [Fact]
+    public void GivenEmptyGenericStack_WhenPeek_ThenItThrows()
+    {
+        Assert.Throws<InvalidOperationException>(() => _genericStackHelper.PeekItem());
+    }
+
+    [Fact]
+    public void GivenAList_WhenStackIsCreatedFromIt_ThenTheLastElementIsOnTop()
+    {
+        var stack = new System.Collections.Generic.Stack<string>(["a", "b", "c"]);
+
+        Assert.Equal("c", stack.Peek());
+        Assert.Equal(["c", "b", "a"], stack.ToArray());
+    }
 }

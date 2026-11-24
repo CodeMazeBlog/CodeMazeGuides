@@ -1,129 +1,143 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Moq;
+﻿using Moq;
 using MultipleTasksDemo.Client;
 using MultipleTasksDemo.Client.Contracts;
 using NUnit.Framework;
 
-namespace Tests
+namespace Tests;
+
+[TestFixture]
+public class ExecutorTests
 {
-    [TestFixture]
-    public class ExecutorTests
+    private static readonly Guid[] EmployeeIds =
+    [
+        new("7119e779-3054-493c-8cf7-c617b4aa0f4e"),
+        new("cbb9c89f-3718-43d9-8763-b3fa3765bcea"),
+        new("165bcfa8-3a4f-4850-a681-bc496616f830")
+    ];
+
+    private Mock<IEmployeeApiFacade> _apiFacade = null!;
+    private Executor _executor = null!;
+
+    [SetUp]
+    public void Setup()
     {
-        private Mock<IEmployeeApiFacade> _apiFacade;
-        private Executor _executor;
+        _apiFacade = new Mock<IEmployeeApiFacade>();
 
-        [SetUp]
-        public void Setup()
+        _apiFacade.Setup(m => m.GetEmployeeDetails(It.IsAny<Guid>())).ReturnsAsync((Guid id) => new EmployeeDetails
         {
-            _apiFacade = new Mock<IEmployeeApiFacade>();
+            Id = id,
+            Name = "Test Name",
+            Address = "Test Address",
+            DateOfBirth = new DateTime(1980, 12, 01)
+        });
+        _apiFacade.Setup(m => m.GetEmployeeSalary(It.IsAny<Guid>())).ReturnsAsync(2000);
+        _apiFacade.Setup(m => m.GetEmployeeRating(It.IsAny<Guid>())).ReturnsAsync(4);
 
-            _apiFacade.Setup(m => m.GetEmployeeDetails(It.IsAny<Guid>())).ReturnsAsync((Guid id) => new EmployeeDetails
-            {
-                Id = id,
-                Name = "Test Name",
-                Address = "Test Address",
-                DateOfBirth = new DateTime(1980, 12, 01)
-            });
-            _apiFacade.Setup(m => m.GetEmployeeSalary(It.IsAny<Guid>())).ReturnsAsync(2000);
-            _apiFacade.Setup(m => m.GetEmployeeRating(It.IsAny<Guid>())).ReturnsAsync(4);
+        _executor = new Executor(_apiFacade.Object);
+    }
 
-            _executor = new Executor(_apiFacade.Object);
-        }
+    private void AssertProfile(EmployeeProfile employeeProfile, Guid id)
+    {
+        _apiFacade.Verify(x => x.GetEmployeeDetails(It.IsAny<Guid>()), Times.Once);
+        _apiFacade.Verify(x => x.GetEmployeeSalary(It.IsAny<Guid>()), Times.Once);
+        _apiFacade.Verify(x => x.GetEmployeeRating(It.IsAny<Guid>()), Times.Once);
+        Assert.That(employeeProfile.EmployeeDetails.Name, Is.EqualTo("Test Name"));
+        Assert.That(employeeProfile.EmployeeDetails.Address, Is.EqualTo("Test Address"));
+        Assert.That(employeeProfile.EmployeeDetails.DateOfBirth, Is.EqualTo(new DateTime(1980, 12, 01)));
+        Assert.That(employeeProfile.EmployeeDetails.Id, Is.EqualTo(id));
+        Assert.That(employeeProfile.Salary, Is.EqualTo(2000));
+        Assert.That(employeeProfile.Rating, Is.EqualTo(4));
+    }
 
-        [Test]
-        public async Task WhenExecuteInSequenceIsInvoked_ReturnsEmployeeProfileWithAllData()
+    private void AssertAllDetails(IEnumerable<EmployeeDetails> employeeDetails)
+    {
+        _apiFacade.Verify(x => x.GetEmployeeDetails(It.IsAny<Guid>()), Times.Exactly(3));
+        Assert.That(employeeDetails.Select(e => e.Id), Is.EquivalentTo(EmployeeIds));
+    }
+
+    [Test]
+    public async Task WhenExecuteInSequenceIsInvoked_ReturnsEmployeeProfileWithAllData()
+    {
+        var id = Guid.NewGuid();
+
+        AssertProfile(await _executor.ExecuteInSequence(id), id);
+    }
+
+    [Test]
+    public async Task WhenExecuteInParallelUsingTaskWhenAllIsInvoked_ReturnsEmployeeProfileWithAllData()
+    {
+        var id = Guid.NewGuid();
+
+        AssertProfile(await _executor.ExecuteInParallelUsingTaskWhenAll(id), id);
+    }
+
+    [Test]
+    public async Task WhenExecuteInParallelIsInvoked_ReturnsEmployeeProfileWithAllData()
+    {
+        var id = Guid.NewGuid();
+
+        AssertProfile(await _executor.ExecuteInParallel(id), id);
+    }
+
+    [Test]
+    public async Task WhenExceptionIsThrownFromApiFacadeForExecuteInParallel_AggregateExceptionIsThrown()
+    {
+        _apiFacade.Setup(m => m.GetEmployeeDetails(It.IsAny<Guid>())).ThrowsAsync(new Exception("Test Exception 1"));
+        _apiFacade.Setup(m => m.GetEmployeeSalary(It.IsAny<Guid>())).ThrowsAsync(new Exception("Test Exception 2"));
+
+        var aggregateException = await Assert.ThrowsAsync<AggregateException>(
+            async () => await _executor.ExecuteInParallel(Guid.NewGuid()));
+
+        Assert.That(aggregateException!.InnerExceptions, Has.Count.EqualTo(2));
+        Assert.That(aggregateException.InnerExceptions[0].Message, Is.EqualTo("Test Exception 1"));
+        Assert.That(aggregateException.InnerExceptions[1].Message, Is.EqualTo("Test Exception 2"));
+    }
+
+    [Test]
+    public async Task WhenExecuteUsingNormalForEachIsInvoked_ReturnsCollectionOfEmployeeDetails()
+    {
+        AssertAllDetails(await _executor.ExecuteUsingNormalForEach(EmployeeIds));
+    }
+
+    [Test]
+    public void WhenExecuteUsingParallelForeachIsInvoked_ReturnsCollectionOfEmployeeDetails()
+    {
+        AssertAllDetails(_executor.ExecuteUsingParallelForeach(EmployeeIds));
+    }
+
+    [Test]
+    public async Task WhenExecuteUsingParallelForeachAsyncIsInvoked_ReturnsCollectionOfEmployeeDetails()
+    {
+        AssertAllDetails(await _executor.ExecuteUsingParallelForeachAsync(EmployeeIds));
+    }
+
+    [Test]
+    public async Task WhenExecuteUsingTaskWhenAllIsInvoked_ReturnsDetailsInInputOrder()
+    {
+        var employeeDetails = await _executor.ExecuteUsingTaskWhenAll(EmployeeIds);
+
+        _apiFacade.Verify(x => x.GetEmployeeDetails(It.IsAny<Guid>()), Times.Exactly(3));
+        Assert.That(employeeDetails.Select(e => e.Id), Is.EqualTo(EmployeeIds));
+    }
+
+    [Test]
+    public async Task WhenExecuteUsingTaskWhenEachIsInvoked_ReturnsDetailsInCompletionOrder()
+    {
+        // The first id answers last and the last id answers first.
+        var delays = new Dictionary<Guid, int>
         {
-            var id = Guid.NewGuid();
-
-            var employeeProfile = await _executor.ExecuteInSequence(id);
-
-            _apiFacade.Verify(x => x.GetEmployeeDetails(It.IsAny<Guid>()), Times.Once);
-            _apiFacade.Verify(x => x.GetEmployeeSalary(It.IsAny<Guid>()), Times.Once);
-            _apiFacade.Verify(x => x.GetEmployeeRating(It.IsAny<Guid>()), Times.Once);
-            Assert.AreEqual("Test Name", employeeProfile.EmployeeDetails.Name);
-            Assert.AreEqual("Test Address", employeeProfile.EmployeeDetails.Address);
-            Assert.AreEqual(new DateTime(1980, 12, 01), employeeProfile.EmployeeDetails.DateOfBirth);
-            Assert.AreEqual(id, employeeProfile.EmployeeDetails.Id);
-        }
-
-        [Test]
-        public async Task WhenExecuteInParallelIsInvoked_ReturnsEmployeeProfileWithAllData()
+            [EmployeeIds[0]] = 300,
+            [EmployeeIds[1]] = 150,
+            [EmployeeIds[2]] = 0
+        };
+        _apiFacade.Setup(m => m.GetEmployeeDetails(It.IsAny<Guid>())).Returns(async (Guid id) =>
         {
-            var id = Guid.NewGuid();
+            await Task.Delay(delays[id]);
+            return new EmployeeDetails { Id = id };
+        });
 
-            var employeeProfile = await _executor.ExecuteInParallel(id);
+        var employeeDetails = await _executor.ExecuteUsingTaskWhenEach(EmployeeIds);
 
-            _apiFacade.Verify(x => x.GetEmployeeDetails(It.IsAny<Guid>()), Times.Once);
-            _apiFacade.Verify(x => x.GetEmployeeSalary(It.IsAny<Guid>()), Times.Once);
-            _apiFacade.Verify(x => x.GetEmployeeRating(It.IsAny<Guid>()), Times.Once);
-            Assert.AreEqual("Test Name", employeeProfile.EmployeeDetails.Name);
-            Assert.AreEqual("Test Address", employeeProfile.EmployeeDetails.Address);
-            Assert.AreEqual(new DateTime(1980, 12, 01), employeeProfile.EmployeeDetails.DateOfBirth);
-            Assert.AreEqual(id, employeeProfile.EmployeeDetails.Id);
-        }
-
-        [Test]
-        public async Task WhenExceptinIsThrownFromApiFacadeForExecuteInParallel_AggregateExceptionisThrown()
-        {
-            _apiFacade.Setup(m => m.GetEmployeeDetails(It.IsAny<Guid>())).ThrowsAsync(new Exception("Test Exception 1"));
-            _apiFacade.Setup(m => m.GetEmployeeSalary(It.IsAny<Guid>())).ThrowsAsync(new Exception("Test Exception 2"));            
-
-            var aggregateException = Assert.ThrowsAsync<AggregateException>(async () => await _executor.ExecuteInParallel(Guid.NewGuid()));
-
-            Assert.AreEqual(2, aggregateException?.InnerExceptions.Count);
-            Assert.AreEqual("Test Exception 1", aggregateException?.InnerExceptions[0].Message);
-            Assert.AreEqual("Test Exception 2", aggregateException?.InnerExceptions[1].Message);
-
-        }
-
-        [Test]
-        public async Task WhenExecuteUsingNormalForEachIsInvoked_ReturnsCollectionOfEmployeeDetails()
-        {
-            var employeeIds = new[]
-            {
-                new Guid("7119e779-3054-493c-8cf7-c617b4aa0f4e"),
-                new Guid("cbb9c89f-3718-43d9-8763-b3fa3765bcea"),
-                new Guid("165bcfa8-3a4f-4850-a681-bc496616f830")
-            };
-
-            var employeeDetails = await _executor.ExecuteUsingNormalForEach(employeeIds);
-
-            _apiFacade.Verify(x => x.GetEmployeeDetails(It.IsAny<Guid>()), Times.Exactly(3));
-            Assert.AreEqual(3, employeeDetails.ToList().Count);
-        }
-
-        [Test]
-        public async Task WhenExecuteUsingParallelForeachIsInvoked_ReturnsCollectionOfEmployeeDetails()
-        {
-            var employeeIds = new[]
-            {
-                new Guid("7119e779-3054-493c-8cf7-c617b4aa0f4e"),
-                new Guid("cbb9c89f-3718-43d9-8763-b3fa3765bcea"),
-                new Guid("165bcfa8-3a4f-4850-a681-bc496616f830")
-            };
-
-            var employeeDetails = await _executor.ExecuteUsingNormalForEach(employeeIds);
-
-            _apiFacade.Verify(x => x.GetEmployeeDetails(It.IsAny<Guid>()), Times.Exactly(3));
-            Assert.AreEqual(3, employeeDetails.ToList().Count);
-        }
-
-        [Test]
-        public async Task WhenExecuteUsingParallelForeachAsyncIsInvoked_ReturnsCollectionOfEmployeeDetails()
-        {
-            var employeeIds = new[]
-            {
-                new Guid("7119e779-3054-493c-8cf7-c617b4aa0f4e"),
-                new Guid("cbb9c89f-3718-43d9-8763-b3fa3765bcea"),
-                new Guid("165bcfa8-3a4f-4850-a681-bc496616f830")
-            };
-
-            var employeeDetails = await _executor.ExecuteUsingNormalForEach(employeeIds);
-
-            _apiFacade.Verify(x => x.GetEmployeeDetails(It.IsAny<Guid>()), Times.Exactly(3));
-            Assert.AreEqual(3, employeeDetails.ToList().Count);
-        }
+        Assert.That(employeeDetails.Select(e => e.Id), Is.EqualTo(EmployeeIds.Reverse()));
     }
 }
