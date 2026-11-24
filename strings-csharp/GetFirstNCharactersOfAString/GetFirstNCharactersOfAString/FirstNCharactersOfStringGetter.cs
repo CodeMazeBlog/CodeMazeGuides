@@ -1,11 +1,25 @@
-﻿using System.Text;
-
-namespace GetFirstNCharactersOfAString;
+﻿namespace GetFirstNCharactersOfAString;
 
 public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int numberOfCharacters = 4)
 {
     private bool IsInputStringShorter()
         => inputString.Length < numberOfCharacters;
+
+    public ReadOnlySpan<char> UseSubstring()
+    {
+        if (IsInputStringShorter())
+            return inputString;
+
+        return inputString.Substring(0, numberOfCharacters);
+    }
+
+    public ReadOnlySpan<char> UseRangeOperator()
+        => IsInputStringShorter()
+        ? inputString
+        : inputString[..numberOfCharacters];
+
+    public string UseRangeWithMathMin()
+        => inputString[..Math.Min(numberOfCharacters, inputString.Length)];
 
     public ReadOnlySpan<char> UseForLoop()
     {
@@ -52,4 +66,7 @@ public class FirstNCharactersOfStringGetter(string inputString = "CodeMaze", int
 
         return inputString.ToCharArray(0, numberOfCharacters);
     }
+
+    public char GetFirstCharacter()
+        => inputString[0];
 }

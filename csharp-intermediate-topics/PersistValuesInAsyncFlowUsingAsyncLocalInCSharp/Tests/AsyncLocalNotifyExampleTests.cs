@@ -6,7 +6,7 @@ using PersistValuesInAsyncFlowUsingAsyncLocalInCSharp;
 public class AsyncLocalNotifyExampleTests
 {
     [TestMethod]
-    public async Task GivenAsyncLocalNotifyExample_WhenDoWork_AsyncValueIsOne()
+    public async Task GivenAsyncLocalNotifyExample_WhenDoWork_ThenCallerKeepsNullValue()
     {
         await AsyncLocalNotifyExample.DoWork();
 
