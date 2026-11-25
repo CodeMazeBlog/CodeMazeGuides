@@ -1,110 +1,136 @@
 using CopyArrayElements;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Tests;
+
+[TestClass]
+public class Tests
 {
-    [TestClass]
-    public class Tests
+    private readonly ElementCopier _elementCopier = new();
+
+    [TestMethod]
+    public void GivenTheClassProgram_ThenRunTheMainMethodAndWriteResultsAtTheConsole()
     {
-        private readonly ElementCopier _elementCopier;
-        
-        public Tests()
-        {
-            _elementCopier = new ElementCopier();
-        }
+        Program.Main([]);
 
-        [TestMethod]
-        public void GivenTheClassProgram_ThenRunTheMainMethodAndWriteResultsAtTheConsole()
-        {
-            Program.Main(new string[]{ });
+        Assert.AreEqual(1, Program.OutputResult);
+    }
 
-            Assert.AreEqual(1, Program.OutputResult);
-        }
+    [TestMethod]
+    public void GivenAnInitialArray_ThenReturnSameArrayUsingTheMethodCopyUsingAssignment()
+    {
+        var initialArray = Program.InstantiateInitialArray();
 
-        [TestMethod]
-        public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingAssignment()
-        {
-            var initialArray = Program.InstantiateInitialArray();
+        var destinationArray = _elementCopier.CopyUsingAssignment(initialArray);
 
-            var destinationArray = _elementCopier.CopyUsingAssignment(initialArray);
+        Assert.AreSame(initialArray, destinationArray);
+    }
 
-            Assert.AreSame(initialArray, destinationArray);
-        }
+    [TestMethod]
+    public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingArrayClass()
+        => AssertShallowCopy(_elementCopier.CopyUsingArrayClass);
 
-        [TestMethod]
-        public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingArrayClass()
-        {
-            var initialArray = Program.InstantiateInitialArray();
+    [TestMethod]
+    public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingClone()
+        => AssertShallowCopy(_elementCopier.CopyUsingClone);
 
-            var destinationArray = _elementCopier.CopyUsingArrayClass(initialArray);
+    [TestMethod]
+    public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingCopyTo()
+        => AssertShallowCopy(_elementCopier.CopyUsingCopyTo);
 
-            //Not returning the same array
-            Assert.AreNotSame(initialArray, destinationArray);
-            //The size of both array are equals
-            Assert.AreEqual(initialArray.Length, destinationArray.Length);
-            //It made a shallow Copy
-            Assert.AreSame(initialArray[0], destinationArray[0]);
-        }
+    [TestMethod]
+    public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingRange()
+        => AssertShallowCopy(_elementCopier.CopyUsingRange);
 
-        [TestMethod]
-        public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingClone()
-        {
-            var initialArray = Program.InstantiateInitialArray();
+    [TestMethod]
+    public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingSpan()
+        => AssertShallowCopy(_elementCopier.CopyUsingSpan);
 
-            var destinationArray = _elementCopier.CopyUsingClone(initialArray);
+    [TestMethod]
+    public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingCollectionExpression()
+        => AssertShallowCopy(_elementCopier.CopyUsingCollectionExpression);
 
-            Assert.AreNotSame(initialArray, destinationArray);
-            Assert.AreEqual(initialArray.Length, destinationArray.Length);
-            Assert.AreSame(initialArray[0], destinationArray[0]);
-        }
+    [TestMethod]
+    public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingToArray()
+        => AssertShallowCopy(_elementCopier.CopyUsingToArray);
 
-        [TestMethod]
-        public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingCopyTo()
-        {
-            var initialArray = Program.InstantiateInitialArray();
+    [TestMethod]
+    public void GivenAnInitialArray_ThenCopyLastTwoElementsUsingTheMethodCopyPartUsingArrayClass()
+    {
+        var initialArray = Program.InstantiateInitialArray();
 
-            var destinationArray = _elementCopier.CopyUsingCopyTo(initialArray);
+        var destinationArray = _elementCopier.CopyPartUsingArrayClass(initialArray);
 
-            Assert.AreNotSame(initialArray, destinationArray);
-            Assert.AreEqual(initialArray.Length, destinationArray.Length);
-            Assert.AreSame(initialArray[0], destinationArray[0]);
-        }
+        Assert.AreEqual(initialArray.Length, destinationArray.Length);
+        Assert.AreSame(initialArray[1], destinationArray[0]);
+        Assert.AreSame(initialArray[2], destinationArray[1]);
+        Assert.IsNull(destinationArray[2]);
+    }
 
-        [TestMethod]
-        public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingRange()
-        {
-            var initialArray = Program.InstantiateInitialArray();
+    [TestMethod]
+    public void GivenAnInitialArray_ThenCopyIndexOneAndTwoUsingTheMethodCopyPartUsingRange()
+    {
+        var initialArray = Program.InstantiateInitialArray();
 
-            var destinationArray = _elementCopier.CopyUsingRange(initialArray);
+        var destinationArray = _elementCopier.CopyPartUsingRange(initialArray);
 
-            Assert.AreNotSame(initialArray, destinationArray);
-            Assert.AreEqual(initialArray.Length, destinationArray.Length);
-            Assert.AreSame(initialArray[0], destinationArray[0]);
-        }
+        Assert.AreEqual(2, destinationArray.Length);
+        Assert.AreSame(initialArray[1], destinationArray[0]);
+        Assert.AreSame(initialArray[2], destinationArray[1]);
+    }
 
-        [TestMethod]
-        public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodCopyUsingLinq()
-        {
-            var initialArray = Program.InstantiateInitialArray();
+    [TestMethod]
+    public void GivenAnInitialArray_ThenCopyIndexOneAndTwoUsingTheMethodCopyPartUsingSpan()
+    {
+        var initialArray = Program.InstantiateInitialArray();
 
-            var destinationArray = _elementCopier.CopyUsingLinq(initialArray);
+        var destinationArray = _elementCopier.CopyPartUsingSpan(initialArray);
 
-            Assert.AreNotSame(initialArray, destinationArray);
-            Assert.AreEqual(initialArray.Length, destinationArray.Length);
-            //In this case, we are not doing shallow copy, but deep copy
-            Assert.AreNotSame(initialArray[0], destinationArray[0]);
-        }
+        Assert.AreEqual(initialArray.Length, destinationArray.Length);
+        Assert.AreSame(initialArray[1], destinationArray[0]);
+        Assert.AreSame(initialArray[2], destinationArray[1]);
+        Assert.IsNull(destinationArray[2]);
+    }
 
-        [TestMethod]
-        public void GivenAnInitialArray_ThenReturnNewArrayUsingTheMethodManuallyCopy()
-        {
-            var initialArray = Program.InstantiateInitialArray();
+    [TestMethod]
+    public void GivenAnInitialArray_ThenReturnDeepCopyUsingTheMethodCopyUsingLinq()
+        => AssertDeepCopy(_elementCopier.CopyUsingLinq);
 
-            var destinationArray = _elementCopier.ManuallyCopy(initialArray);
+    [TestMethod]
+    public void GivenAnInitialArray_ThenReturnDeepCopyUsingTheMethodManuallyCopy()
+        => AssertDeepCopy(_elementCopier.ManuallyCopy);
 
-            Assert.AreNotSame(initialArray, destinationArray);
-            Assert.AreEqual(initialArray.Length, destinationArray.Length);
-            Assert.AreNotSame(initialArray[0], destinationArray[0]);
-        }
+    [TestMethod]
+    public void GivenAShallowCopy_WhenAnElementChangesThroughTheCopy_ThenTheSourceSeesTheChange()
+    {
+        var initialArray = Program.InstantiateInitialArray();
+        var destinationArray = _elementCopier.CopyUsingArrayClass(initialArray);
+
+        destinationArray[0].Title = "Changed through the copy";
+
+        Assert.AreEqual("Changed through the copy", initialArray[0].Title);
+    }
+
+    private static void AssertShallowCopy(Func<Article[], Article[]> copy)
+    {
+        var initialArray = Program.InstantiateInitialArray();
+
+        var destinationArray = copy(initialArray);
+
+        Assert.AreNotSame(initialArray, destinationArray);
+        Assert.AreEqual(initialArray.Length, destinationArray.Length);
+        Assert.AreSame(initialArray[0], destinationArray[0]);
+    }
+
+    private static void AssertDeepCopy(Func<Article[], Article[]> copy)
+    {
+        var initialArray = Program.InstantiateInitialArray();
+
+        var destinationArray = copy(initialArray);
+
+        Assert.AreNotSame(initialArray, destinationArray);
+        Assert.AreEqual(initialArray.Length, destinationArray.Length);
+        Assert.AreNotSame(initialArray[0], destinationArray[0]);
+        Assert.AreEqual(initialArray[0].Title, destinationArray[0].Title);
     }
 }
