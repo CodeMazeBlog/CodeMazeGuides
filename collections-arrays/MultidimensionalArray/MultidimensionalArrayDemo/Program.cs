@@ -3,7 +3,7 @@
 
 int[,] matrix = new int[,] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
 // int[][] jaggedArray = new int[3][] { new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 0, 0 }, new int[] { 0, 0, 0, 0 } };
-int[][] jaggedArray = new int[3][] { new int[4], new int[3], new int[4] };
+int[][] jaggedArray = [new int[4], new int[3], new int[4]];
 
 for (int row = 0; row < matrix.GetLength(0); row++)
 {
