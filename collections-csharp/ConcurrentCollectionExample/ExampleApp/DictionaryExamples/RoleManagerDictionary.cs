@@ -25,7 +25,7 @@ public class RoleManagerDictionary
 
     public void PrintAll()
     {
-        Console.WriteLine($"No. of Records: {_record.Count()}");
+        Console.WriteLine($"No. of Records: {_record.Count}");
         foreach (var (role, user) in _record)
         {
             Console.WriteLine($"Role: {role}, User: {user}");

@@ -1,90 +1,63 @@
-using System;
-using System.Threading.Tasks;
 using NUnit.Framework;
 using TaskExtensions = MultipleTasksDemo.Client.Extensions.TaskExtensions;
 
-namespace Tests
+namespace Tests;
+
+[TestFixture]
+public class TaskExtensionsTests
 {
-    [TestFixture]
-    public class Tests
+    private static async Task<int> Succeed(int value)
     {
-        [Test]
-        public void WhenAll_ThrowsAggregateException()
-        {
-            var t1 = Task.Run(async () =>
-            { 
-                 await Task.Delay(10);
-                 throw new Exception("Test Exception 1");
-                 return 1;
-            });
-            var t2 = Task.Run(async () =>
-            {
-                await Task.Delay(10);
-                throw new Exception("Test Exception 2");
-                return 2;
-            });
-            var t3 = Task.Run(async () =>
-            {
-                await Task.Delay(10);
-                return 3;
-            });
+        await Task.Delay(10);
+        return value;
+    }
 
-            Assert.ThrowsAsync<AggregateException>(async () => { var (result1, result2, result3) = await TaskExtensions.WhenAll(t1, t2, t3); });
-        }
+    private static async Task<int> Fail(string message)
+    {
+        await Task.Delay(10);
+        throw new Exception(message);
+    }
 
-        [Test]
-        public void WhenAll_ReturnsIndividualExceptionsOnEachTask()
-        {
-            var t1 = Task.Run(async () =>
-            {
-                await Task.Delay(10);
-                throw new Exception("Test Exception 1");
-                return 1;
-            });
-            var t2 = Task.Run(async () =>
-            {
-                await Task.Delay(10);
-                throw new Exception("Test Exception 2");
-                return 2;
-            });
-            var t3 = Task.Run(async () =>
-            {
-                await Task.Delay(10);
-                return 3;
-            });
+    [Test]
+    public async Task WhenAll_ThrowsAggregateException()
+    {
+        await Assert.ThrowsAsync<AggregateException>(async () =>
+            await TaskExtensions.WhenAll(Fail("Test Exception 1"), Fail("Test Exception 2"), Succeed(3)));
+    }
 
-            var aggregateException = Assert.ThrowsAsync<AggregateException>(async () => { var (result1, result2, result3) = await TaskExtensions.WhenAll(t1, t2, t3); });
+    [Test]
+    public async Task WhenAll_ReturnsIndividualExceptionsOnEachTask()
+    {
+        var aggregateException = await Assert.ThrowsAsync<AggregateException>(async () =>
+            await TaskExtensions.WhenAll(Fail("Test Exception 1"), Fail("Test Exception 2"), Succeed(3)));
 
-            Assert.AreEqual(2, aggregateException?.InnerExceptions.Count);
-            Assert.AreEqual("Test Exception 1", aggregateException?.InnerExceptions[0].Message);
-            Assert.AreEqual("Test Exception 2", aggregateException?.InnerExceptions[1].Message);
-        }
+        Assert.That(aggregateException!.InnerExceptions.Select(e => e.Message),
+            Is.EquivalentTo(new[] { "Test Exception 1", "Test Exception 2" }));
+    }
 
-        [Test]
-        public async Task WhenAll_ReturnsResultsForEachTask()
-        {
-            var t1 = Task.Run(async () =>
-            {
-                await Task.Delay(10);
-                return 1;
-                              });
-            var t2 = Task.Run(async () =>
-            {
-                await Task.Delay(10);
-                return 2;
-            });
-            var t3 = Task.Run(async () =>
-            {
-                await Task.Delay(10);
-                return 3;
-            });
+    [Test]
+    public async Task WhenAll_ReturnsResultsForEachTask()
+    {
+        var (result1, result2, result3) = await TaskExtensions.WhenAll(Succeed(1), Succeed(2), Succeed(3));
 
-            var (result1, result2, result3) = await TaskExtensions.WhenAll(t1, t2, t3);
+        Assert.That(result1, Is.EqualTo(1));
+        Assert.That(result2, Is.EqualTo(2));
+        Assert.That(result3, Is.EqualTo(3));
+    }
 
-            Assert.AreEqual(1, result1);
-            Assert.AreEqual(2, result2);
-            Assert.AreEqual(3, result3);
-        }
+    [Test]
+    public async Task PlainTaskWhenAll_AwaitThrowsOnlyTheExceptionOfTheTaskThatFailedFirst()
+    {
+        var first = new TaskCompletionSource<int>();
+        var second = new TaskCompletionSource<string>();
+        var whenAll = Task.WhenAll(first.Task, second.Task);
 
+        second.SetException(new Exception("Test Exception 2"));
+        first.SetException(new Exception("Test Exception 1"));
+
+        var exception = await Assert.ThrowsAsync<Exception>(async () => await whenAll);
+
+        Assert.That(exception!.Message, Is.EqualTo("Test Exception 2"));
+        Assert.That(whenAll.Exception!.InnerExceptions, Has.Count.EqualTo(2));
     }
 }
