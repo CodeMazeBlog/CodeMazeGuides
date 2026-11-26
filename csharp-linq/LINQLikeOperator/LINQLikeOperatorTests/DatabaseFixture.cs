@@ -6,6 +6,8 @@ public class DatabaseFixture : IDisposable
     internal string containsN = "mnp";
     internal string endsWithN = "lmn";
     internal string notContainsN = "abc";
+    internal string percentTitle = "50% off";
+    internal string digitsTitle = "50 tips";
     internal BlogDbContext? blogDbContext;
 
     public DatabaseFixture()
@@ -19,15 +21,14 @@ public class DatabaseFixture : IDisposable
         blogDbContext.Articles.Add(new() { Id = 2, Title = containsN });
         blogDbContext.Articles.Add(new() { Id = 3, Title = endsWithN });
         blogDbContext.Articles.Add(new() { Id = 4, Title = notContainsN });
+        blogDbContext.Articles.Add(new() { Id = 5, Title = percentTitle });
+        blogDbContext.Articles.Add(new() { Id = 6, Title = digitsTitle });
 
         blogDbContext.SaveChanges();
     }
 
     public void Dispose()
     {
-        if (blogDbContext is not null)
-        {
-            blogDbContext.Dispose();
-        }
+        blogDbContext?.Dispose();
     }
 }

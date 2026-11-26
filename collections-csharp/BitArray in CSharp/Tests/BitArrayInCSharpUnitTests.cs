@@ -159,5 +159,61 @@ namespace Tests
                 && bitArray1[2] == false
                 && bitArray1[3] == true);
         }
+
+        [Fact]
+        public void WhenUsingConstructorArrayOfBytes_ThenIndexZeroIsTheLeastSignificantBit()
+        {
+            var bitArray = new BitArray(new byte[] { 2 });
+
+            Assert.False(bitArray[0]);
+            Assert.True(bitArray[1]);
+        }
+
+        [Fact]
+        public void WhenUsingLeftShiftMethod_ThenBitsMoveToHigherIndexes()
+        {
+            var bitArray = new BitArray(new bool[] { false, true, true, false });
+
+            bitArray.LeftShift(1);
+
+            Assert.Equal(new[] { false, false, true, true }, bitArray.Cast<bool>());
+        }
+
+        [Fact]
+        public void WhenUsingHasAnySetAndHasAllSet_ThenTheyReflectTheBits()
+        {
+            var bitArray = new BitArray(4);
+            bitArray[2] = true;
+
+            Assert.True(bitArray.HasAnySet());
+            Assert.False(bitArray.HasAllSet());
+        }
+
+        [Fact]
+        public void WhenUsingCopyToByteArray_ThenBitsPackIntoTheByte()
+        {
+            var bitArray = new BitArray(8);
+            bitArray[1] = true;
+            bitArray[3] = true;
+            var bytes = new byte[1];
+
+            bitArray.CopyTo(bytes, 0);
+
+            Assert.Equal(10, bytes[0]);
+        }
+
+        [Fact]
+        public void WhenCountingSetBits_ThenPopCountOfTheWordsIsReturned()
+        {
+            var bitArray = new BitArray(new byte[] { 2, 255 });
+
+            Assert.Equal(9, BitArray_in_CSharp.Examples.CountSetBits(bitArray));
+        }
+
+        [Fact]
+        public void WhenUsingAndWithDifferentLengths_ThenThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new BitArray(4).And(new BitArray(8)));
+        }
     }
 }
