@@ -3,9 +3,9 @@ using FluentValidation.Validators;
 
 namespace ValidateEmailAddress.Fluent;
 
-public class EmailFluentValidator : AbstractValidator<string>
+public class EmailFluentRegexValidator : AbstractValidator<string>
 {
-    public EmailFluentValidator()
+    public EmailFluentRegexValidator()
     {
         RuleFor(email => email)
             .EmailAddress(EmailValidationMode.Net4xRegex);

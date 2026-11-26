@@ -16,7 +16,7 @@ public class UserProvider
 
     public static async Task<User> GetUser(int id)
     {
-        await Task.Delay((int)TimeSpan.FromSeconds(1).TotalMilliseconds);
+        await Task.Delay(TimeSpan.FromSeconds(1));
         
         return _users[id];
     }   

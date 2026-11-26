@@ -19,7 +19,7 @@ public class MaxElement
     }
 
     [Benchmark(Baseline = true)]
-    public void MultidimensionalArray()
+    public double MultidimensionalArray()
     {
         double max = double.MinValue;
         for (int row = 0; row < elementsMulti.GetLength(0); row++)
@@ -29,10 +29,12 @@ public class MaxElement
                 max = Math.Max(max, elementsMulti[row, col]);
             }
         }
+
+        return max;
     }
 
     [Benchmark]
-    public void JaggedArray()
+    public double JaggedArray()
     {
         double max = double.MinValue;
         for (int row = 0; row < elementsJagged.Length; row++)
@@ -42,5 +44,7 @@ public class MaxElement
                 max = Math.Max(max, elementsJagged[row][col]);
             }
         }
+
+        return max;
     }
 }
