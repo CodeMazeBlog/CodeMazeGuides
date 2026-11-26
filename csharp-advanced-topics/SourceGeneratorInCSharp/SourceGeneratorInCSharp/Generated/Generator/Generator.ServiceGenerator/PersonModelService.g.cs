@@ -1,6 +1,8 @@
-﻿using SourceGeneratorInCSharp.Models;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SourceGeneratorInCSharp.Models;
 
-namespace SourceGeneratorInCSharp.Services 
+namespace SourceGeneratorInCSharp.Services
 {
     public partial class PersonModelService
     {
