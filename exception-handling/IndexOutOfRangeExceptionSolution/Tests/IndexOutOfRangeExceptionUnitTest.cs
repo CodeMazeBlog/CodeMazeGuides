@@ -1,77 +1,98 @@
 using IndexOutOfRangeExceptionProject;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Tests
+namespace Tests;
+
+[TestClass]
+public class IndexOutOfRangeExceptionUnitTest
 {
-    [TestClass]
-    public class IndexOutOfRangeExceptionUnitTest
+    private readonly UtilityHelper utilityHelper = new();
+
+    [TestMethod]
+    public void WhenExceptionFlagIsTrueForUpperBoundMethod_ThenRaiseException()
     {
-        private readonly UtilityHelper utilityHelper = new();
-
-        [TestMethod]
-        public void WhenExceptionFlagIsTrueForUpperBoundMethod_ThenRaiseException()
+        var testArray = () =>
         {
-            var testArray = () =>
-            {
-                utilityHelper.UpperBoundMethod(true);
-            };
+            utilityHelper.UpperBoundMethod(true);
+        };
 
-            Assert.ThrowsException<IndexOutOfRangeException>(testArray);
-        }
+        Assert.ThrowsExactly<IndexOutOfRangeException>(testArray);
+    }
 
-        [TestMethod]
-        public void WhenExceptionFlagIsTrueForCustomLowerBoundMethod_ThenRaiseException()
+    [TestMethod]
+    public void WhenExceptionFlagIsTrueForCustomLowerBoundMethod_ThenRaiseException()
+    {
+        var testArray = () =>
         {
-            var testArray = () =>
-            {
-                utilityHelper.CustomLowerBoundMethod(2, true);
-            };
+            utilityHelper.CustomLowerBoundMethod(2, true);
+        };
 
-            Assert.ThrowsException<IndexOutOfRangeException>(testArray);
-        }
+        Assert.ThrowsExactly<IndexOutOfRangeException>(testArray);
+    }
 
-        [TestMethod]
-        public void WhenExceptionFlagIsTrueAndInvalidSearchArgumentForListIndexOfMethod_ThenRaiseException()
+    [TestMethod]
+    public void WhenExceptionFlagIsTrueAndInvalidSearchArgumentForListIndexOfMethod_ThenRaiseException()
+    {
+        var testArray = () =>
         {
-            var testArray = () =>
-            {
-                utilityHelper.ListIndexOfMethod(11, true);
-            };
+            utilityHelper.ListIndexOfMethod(11, true);
+        };
 
-            Assert.ThrowsException<ArgumentOutOfRangeException>(testArray);
-        }
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(testArray);
+    }
 
-        [TestMethod]
-        public void WhenExceptionFlagIsTrueForAssignFirstArrayElementToSecondArrayMethod_ThenRaiseException()
+    [TestMethod]
+    public void WhenExceptionFlagIsTrueForAssignFirstArrayElementToSecondArrayMethod_ThenRaiseException()
+    {
+        var testArray = () =>
         {
-            var testArray = () =>
-            {
-                utilityHelper.AssignFirstArrayElementToSecondArrayMethod(true);
-            };
+            utilityHelper.AssignFirstArrayElementToSecondArrayMethod(true);
+        };
 
-            Assert.ThrowsException<IndexOutOfRangeException>(testArray);
-        }
+        Assert.ThrowsExactly<IndexOutOfRangeException>(testArray);
+    }
 
-        [TestMethod]
-        public void WhenExceptionFlagIsTrueForIndexAndValueMethod_ThenRaiseException()
+    [TestMethod]
+    public void WhenExceptionFlagIsTrueForIndexAndValueMethod_ThenRaiseException()
+    {
+        var testArray = () =>
         {
-            var testArray = () =>
-            {
-                utilityHelper.IndexAndValueMethod(true);
-            };
+            utilityHelper.IndexAndValueMethod(true);
+        };
 
-            Assert.ThrowsException<IndexOutOfRangeException>(testArray);
-        }
+        Assert.ThrowsExactly<IndexOutOfRangeException>(testArray);
+    }
 
-        [TestMethod]
-        public void WhenExceptionFlagIsTrueForDataTableMethod_ThenRaiseException()
+    [TestMethod]
+    public void WhenExceptionFlagIsTrueForDataTableMethod_ThenRaiseException()
+    {
+        var testArray = () =>
         {
-            var testArray = () =>
-            {
-                utilityHelper.DataTableMethod(true);
-            };
+            utilityHelper.DataTableMethod(true);
+        };
 
-            Assert.ThrowsException<IndexOutOfRangeException>(testArray);
-        }
+        Assert.ThrowsExactly<IndexOutOfRangeException>(testArray);
+    }
+
+    [TestMethod]
+    public void WhenExceptionFlagIsTrueForIndexFromEndMethod_ThenRaiseException()
+    {
+        var testArray = () =>
+        {
+            utilityHelper.IndexFromEndMethod(true);
+        };
+
+        Assert.ThrowsExactly<IndexOutOfRangeException>(testArray);
+    }
+
+    [TestMethod]
+    public void WhenExceptionFlagIsTrueForRangeMethod_ThenRaiseArgumentOutOfRangeException()
+    {
+        var testArray = () =>
+        {
+            utilityHelper.RangeMethod(true);
+        };
+
+        Assert.ThrowsExactly<ArgumentOutOfRangeException>(testArray);
     }
 }

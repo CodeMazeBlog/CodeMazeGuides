@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace ExpressionTreesInCSharp.EntityFramework;
 public class EntityFrameworkSqlite
@@ -25,5 +26,15 @@ public class EntityFrameworkSqlite
             .ToQueryString();
 
         return whereQuery;
+    }
+
+    public IEnumerable<User> FilterWithFunc(Func<User, bool> predicate)
+    {
+        return _dbContext.Users.Where(predicate);
+    }
+
+    public IQueryable<User> FilterWithExpression(Expression<Func<User, bool>> predicate)
+    {
+        return _dbContext.Users.Where(predicate);
     }
 }

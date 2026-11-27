@@ -1,10 +1,9 @@
-namespace DeleteElementsFromAnArray 
+namespace DeleteElementsFromAnArray;
+
+public static partial class Methods
 {
-    public static partial class Methods 
+    public static int[] DeleteWithWhere(int[] inputArray, int elementToRemove)
     {
-        public static int[] DeleteWithWhere(int[] inputArray, int elementToRemove) 
-        {
-            return inputArray.Where(e => e != elementToRemove).ToArray();
-        }
+        return inputArray.Where(e => e != elementToRemove).ToArray();
     }
 }

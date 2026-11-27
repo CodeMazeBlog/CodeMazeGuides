@@ -1,5 +1,3 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
 namespace UsingExceptInCSharp;
 
 public class EmployeeComparer : IEqualityComparer<Employee>
@@ -12,11 +10,5 @@ public class EmployeeComparer : IEqualityComparer<Employee>
         return x.ID == y.ID && x.Name == y.Name && x.Age == y.Age && x.Department == y.Department;
     }
 
-    public int GetHashCode([DisallowNull] Employee obj)
-    {
-        var hashID = obj.ID.GetHashCode();
-        var hashName = obj.Name.GetHashCode();
-
-        return hashID ^ hashName;
-    }
+    public int GetHashCode(Employee obj) => HashCode.Combine(obj.ID, obj.Name);
 }

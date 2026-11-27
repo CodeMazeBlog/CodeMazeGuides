@@ -97,4 +97,31 @@ public static class Utilities
     { 
         return listToFilter.Where((item, index) => mask[index % mask.Count]).ToList();
     }
+
+    public static int RemoveNotContained(List<int> listToFilter, List<int> filteringList)
+    {
+        return listToFilter.RemoveAll(item => !filteringList.Contains(item));
+    }
+
+    public static List<int> FilterContainedUsingHashSetLookup(List<int> listToFilter, List<int> filteringList)
+    {
+        HashSet<int> lookup = filteringList.ToHashSet();
+
+        return listToFilter.Where(lookup.Contains).ToList();
+    }
+
+    public static List<Student> FilterStudentsBySchoolCityUsingIntersectBy(List<Student> listToFilter, List<School> filteringList)
+    {
+        return listToFilter.IntersectBy(filteringList.Select(school => school.City), student => student.City)
+            .ToList();
+    }
+
+    public static List<Student> FilterStudentsBySchoolCityUsingJoin(List<Student> listToFilter, List<School> filteringList)
+    {
+        return listToFilter.Join(filteringList,
+                student => student.City,
+                school => school.City,
+                (student, school) => student)
+            .ToList();
+    }
 }

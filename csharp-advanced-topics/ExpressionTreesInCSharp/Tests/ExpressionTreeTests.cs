@@ -70,4 +70,14 @@ public class ExpressionTreeTests
 
         Assert.Equal(2, sum);
     }
+
+    [Fact]
+    public void GivenAnExpressionTree_WhenInterpreted_ThenShouldReturnTheSameResult()
+    {
+        var expression = ExpressionTrees.CreateExpressionTreeFromLambdaExpression();
+
+        var interpretedSum = ExpressionTrees.InterpretExpressionTree(expression);
+
+        Assert.Equal(3, interpretedSum(1, 2));
+    }
 }

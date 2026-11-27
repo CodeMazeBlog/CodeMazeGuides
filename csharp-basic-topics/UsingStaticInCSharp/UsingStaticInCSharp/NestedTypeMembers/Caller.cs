@@ -5,6 +5,7 @@ public class Caller
 {
     public virtual void Invoke()
     {
+        MethodA();
         MethodB();
     }
 }

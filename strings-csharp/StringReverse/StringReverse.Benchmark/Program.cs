@@ -1,3 +1,4 @@
-﻿using BenchmarkRunner;
+﻿using BenchmarkDotNet.Running;
+using BenchmarkRunner;
 
-BenchmarkDotNet.Running.BenchmarkRunner.Run<StringReverseBenchmark>();
+BenchmarkSwitcher.FromAssembly(typeof(StringReverseBenchmark).Assembly).Run(args);

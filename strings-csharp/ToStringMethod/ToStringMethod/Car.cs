@@ -19,15 +19,18 @@ public class Car
 
     public string ToString(string culture)
     {
-        var price = Price.ToString("C", new CultureInfo(culture));
+        var cultureInfo = new CultureInfo(culture);
+        var price = Price.ToString("C", cultureInfo);
+        var saleDate = SoldAt.ToString(cultureInfo);
 
-        return $"{Make} {Model} costs {price} and was sold on {SoldAt}";
+        return $"{Make} {Model} costs {price} and was sold on {saleDate}";
     }
 
     public string ToString(string culture, string dateFormat)
     {
-        var price = Price.ToString("C", new CultureInfo(culture));
-        var saleDate = SoldAt.ToString(dateFormat);
+        var cultureInfo = new CultureInfo(culture);
+        var price = Price.ToString("C", cultureInfo);
+        var saleDate = SoldAt.ToString(dateFormat, cultureInfo);
 
         return $"{Make} {Model} costs {price} and was sold on {saleDate}";
     }

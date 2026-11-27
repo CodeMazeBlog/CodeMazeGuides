@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Generator.Helper
+﻿namespace Generator.Helper
 {
-    public class SourceGenerationHelper
+    public static class SourceGenerationHelper
     {
         public const string Attribute = """
             namespace Generator
             {
                 [System.AttributeUsage(System.AttributeTargets.Class)]
-                public class GenerateServiceAttribute : System.Attribute
+                [Microsoft.CodeAnalysis.Embedded]
+                internal sealed class GenerateServiceAttribute : System.Attribute
                 {
                 }
             }

@@ -261,4 +261,85 @@ public class StringTruncationTests
 
         Assert.Equal(string.Empty, truncatedString);
     }
+
+    [Fact]
+    public void GivenAMultiLineString_WhenTruncatingAString_ThenUseRegularExpressionsMethodToTruncateTheString()
+    {
+        var truncatedString = StringHelper.TruncateWithRegularExpressions("First line\nSecond line", 5);
+
+        Assert.Equal("First", truncatedString);
+    }
+
+    [Fact]
+    public void GivenATrailingNewLine_WhenTruncatingAString_ThenUseRegularExpressionsMethodToTruncateTheString()
+    {
+        var truncatedString = StringHelper.TruncateWithRegularExpressions("Hello world\n", 5);
+
+        Assert.Equal("Hello", truncatedString);
+    }
+
+
+    [Fact]
+    public void WhenTruncatingAString_ThenUseTextElementsMethodToTruncateTheString()
+    {
+        var truncatedString = StringHelper.TruncateWithTextElements(OriginalString, MaxLength);
+
+        Assert.Equal(ExpectedTruncatedString, truncatedString);
+    }
+
+    [Fact]
+    public void GivenAZeroLength_WhenTruncatingAString_ThenUseTextElementsMethodAndReturnAnEmptyString()
+    {
+        var truncatedString = StringHelper.TruncateWithTextElements(OriginalString, 0);
+
+        Assert.Equal(string.Empty, truncatedString);
+    }
+
+    [Fact]
+    public void GivenALengthGreaterThanTheStringLength_WhenTruncatingAString_ThenUseTextElementsMethodWithoutTruncatingTheString()
+    {
+        var truncatedString = StringHelper.TruncateWithTextElements(OriginalString, OriginalString.Length + 10);
+
+        Assert.Equal(OriginalString, truncatedString);
+    }
+
+    [Fact]
+    public void GivenAnEmojiAtTheCut_WhenTruncatingWithSubstring_ThenTheResultEndsWithAHalfSurrogatePair()
+    {
+        var truncatedString = StringHelper.TruncateWithSubstring("Thumbs up \U0001F44D", 11);
+
+        Assert.True(char.IsHighSurrogate(truncatedString[^1]));
+    }
+
+    [Fact]
+    public void GivenAnEmojiAtTheCut_WhenTruncatingWithTextElements_ThenTheWholeEmojiIsDropped()
+    {
+        var truncatedString = StringHelper.TruncateWithTextElements("Thumbs up \U0001F44D", 11);
+
+        Assert.Equal("Thumbs up ", truncatedString);
+    }
+
+    [Fact]
+    public void GivenAJoinedEmojiAtTheCut_WhenTruncatingWithTextElements_ThenTheWholeEmojiIsDropped()
+    {
+        var truncatedString = StringHelper.TruncateWithTextElements("Family \U0001F468\u200D\U0001F469\u200D\U0001F467", 12);
+
+        Assert.Equal("Family ", truncatedString);
+    }
+
+    [Fact]
+    public void GivenAnEmojiAtTheCut_WhenTruncatingWithSurrogateCheck_ThenTheWholeEmojiIsDropped()
+    {
+        var truncatedString = StringHelper.TruncateWithSurrogateCheck("Thumbs up \U0001F44D", 11);
+
+        Assert.Equal("Thumbs up ", truncatedString);
+    }
+
+    [Fact]
+    public void WhenTruncatingAString_ThenUseSurrogateCheckMethodToTruncateTheString()
+    {
+        var truncatedString = StringHelper.TruncateWithSurrogateCheck(OriginalString, MaxLength);
+
+        Assert.Equal(ExpectedTruncatedString, truncatedString);
+    }
 }

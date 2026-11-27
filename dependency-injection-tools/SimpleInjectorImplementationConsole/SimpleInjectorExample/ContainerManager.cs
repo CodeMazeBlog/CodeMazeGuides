@@ -5,7 +5,7 @@ using SimpleInjectorExample.Spec;
 
 public class ContainerManager
 {
-    private static readonly Lazy<Container> _container = new Lazy<Container>(ConfigureServices);
+    private static readonly Lazy<Container> _container = new(ConfigureServices);
     
     private static Container ConfigureServices()
     {
@@ -20,5 +20,5 @@ public class ContainerManager
         return container;
     }
 
-    public static Container Instance { get => _container.Value; }
+    public static Container Instance => _container.Value;
 }

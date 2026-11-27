@@ -2,13 +2,21 @@
 
 public class MySortedListTests
 {
-    private static readonly int[] UnsortedListData = {2, 4, 1, 8, 9, 6, 5, 3, 7};
-    private static readonly int[] SortedListData = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private static readonly int[] UnsortedListData = [2, 4, 1, 8, 9, 6, 5, 3, 7];
+    private static readonly int[] SortedListData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    private static void AssertAscending<T>(IEnumerable<T> items) => Assert.Equal(items.Order(), items);
+
+    private static void AssertNotSorted(int[] items)
+    {
+        Assert.NotEqual(items.Order(), items);
+        Assert.NotEqual(items.OrderDescending(), items);
+    }
 
     [Fact]
     public void Init_WhenCreatingNew_ListIsEmpty()
     {
-        new MySortedList<int>().Should().BeEmpty();
+        Assert.Empty(new MySortedList<int>());
     }
 
     [Fact]
@@ -17,7 +25,7 @@ public class MySortedListTests
         const int capacity = 10;
         var list = new MySortedList<int>(capacity);
 
-        list.Capacity.Should().Be(capacity);
+        Assert.Equal(capacity, list.Capacity);
     }
 
     [Fact]
@@ -25,7 +33,7 @@ public class MySortedListTests
     {
         var list = new MySortedList<int>(UnsortedListData);
 
-        list.Should().BeEquivalentTo(UnsortedListData).And.BeInAscendingOrder();
+        Assert.Equal(UnsortedListData.Order(), list);
     }
 
     [Fact]
@@ -33,7 +41,7 @@ public class MySortedListTests
     {
         var list = new MySortedList<int>(UnsortedListData, new DescendingIntComparison());
 
-        list.Should().BeInDescendingOrder();
+        Assert.Equal(UnsortedListData.OrderDescending(), list);
     }
 
     [Fact]
@@ -43,7 +51,7 @@ public class MySortedListTests
         var currentCount = list.Count;
         list.Add(1);
 
-        list.Count.Should().Be(currentCount + 1);
+        Assert.Equal(currentCount + 1, list.Count);
     }
 
     [Fact]
@@ -51,11 +59,11 @@ public class MySortedListTests
     {
         const int expected = 10;
         var list = new MySortedList<int>();
-        list.Should().NotContain(expected);
+        Assert.DoesNotContain(expected, list);
 
         list.Add(expected);
 
-        list.Should().Contain(expected);
+        Assert.Contains(expected, list);
     }
 
     [Fact]
@@ -63,95 +71,110 @@ public class MySortedListTests
     {
         var list = new MySortedList<int>(SortedListData);
 
-        list[2].Should().Be(SortedListData[2]);
+        Assert.Equal(SortedListData[2], list[2]);
     }
 
     [Fact]
     public void Indexer_WhenCalledWithInvalidIndex_ThrowsOutOfRange()
     {
-        this.Invoking(_ => new MySortedList<int>()[1]).Should().Throw<ArgumentOutOfRangeException>();
+        Assert.Throws<ArgumentOutOfRangeException>(() => new MySortedList<int>()[1]);
     }
 
     [Fact]
     public void Indexer_WhenCalledWithNegativeIndex_ThrowsOutOfRange()
     {
-        this.Invoking(_ => new MySortedList<int>()[-1]).Should().Throw<ArgumentOutOfRangeException>();
+        Assert.Throws<ArgumentOutOfRangeException>(() => new MySortedList<int>()[-1]);
     }
 
     [Fact]
     public void Add_WhenCalledWithSortedData_ListIsSorted()
     {
-        SortedListData.Should().BeInAscendingOrder();
+        AssertAscending(SortedListData);
 
         var list = new MySortedList<int>();
         foreach (var item in SortedListData) list.Add(item);
 
-        list.Should().BeInAscendingOrder();
+        AssertAscending(list);
     }
 
     [Fact]
     public void Init_WhenCalledWithSortedData_ListIsSorted()
     {
-        SortedListData.Should().BeInAscendingOrder();
+        AssertAscending(SortedListData);
 
         var list = new MySortedList<int>(SortedListData);
 
-        list.Should().BeInAscendingOrder();
+        AssertAscending(list);
     }
 
     [Fact]
     public void AddRange_WhenCalledWithSortedData_ListIsSorted()
     {
-        SortedListData.Should().BeInAscendingOrder();
+        AssertAscending(SortedListData);
 
         var list = new MySortedList<int>();
         list.AddRange(SortedListData);
 
-        list.Should().BeInAscendingOrder();
+        AssertAscending(list);
     }
 
     [Fact]
     public void Add_WhenCalledWithUnsortedData_ListIsSorted()
     {
-        UnsortedListData.Should().NotBeInAscendingOrder().And.NotBeInDescendingOrder();
+        AssertNotSorted(UnsortedListData);
 
         var list = new MySortedList<int>();
         foreach (var item in UnsortedListData) list.Add(item);
 
-        list.Should().BeInAscendingOrder();
+        AssertAscending(list);
     }
 
     [Fact]
     public void Init_WhenWithUnsortedData_ListIsSorted()
     {
-        UnsortedListData.Should().NotBeInAscendingOrder().And.NotBeInDescendingOrder();
+        AssertNotSorted(UnsortedListData);
 
         var list = new MySortedList<int>(UnsortedListData);
 
-        list.Should().BeInAscendingOrder();
+        AssertAscending(list);
     }
 
     [Fact]
     public void AddRange_CallingWithUnsortedData_ListIsSorted()
     {
-        UnsortedListData.Should().NotBeInAscendingOrder().And.NotBeInDescendingOrder();
+        AssertNotSorted(UnsortedListData);
 
         var list = new MySortedList<int>();
         list.AddRange(UnsortedListData);
 
-        list.Should().BeInAscendingOrder();
+        AssertAscending(list);
+    }
+
+    [Fact]
+    public void Add_WhenCalledWithRandomData_MatchesListSort()
+    {
+        var random = new Random(42);
+        var data = Enumerable.Range(0, 1_000).Select(_ => random.Next(100)).ToArray();
+
+        var list = new MySortedList<int>();
+        foreach (var item in data) list.Add(item);
+
+        var expected = new List<int>(data);
+        expected.Sort();
+
+        Assert.Equal(expected, list);
     }
 
     [Fact]
     public void Clear_WhenCalled_ClearsList()
     {
         const int count = 10;
-        var list = new MySortedList<int>(Enumerable.Range(0, count).Select(x => x));
+        var list = new MySortedList<int>(Enumerable.Range(0, count));
         Assert.Equal(count, list.Count);
 
         list.Clear();
 
-        list.Should().BeEmpty();
+        Assert.Empty(list);
     }
 
     [Fact]
@@ -159,7 +182,9 @@ public class MySortedListTests
     {
         var list = new MySortedList<int> {10};
 
-        list.Contains(10).Should().BeTrue();
+        var found = list.Contains(10);
+
+        Assert.True(found);
     }
 
     [Fact]
@@ -167,7 +192,9 @@ public class MySortedListTests
     {
         var list = new MySortedList<int> {42};
 
-        list.Contains(10).Should().BeFalse();
+        var found = list.Contains(10);
+
+        Assert.False(found);
     }
 
     [Fact]
@@ -175,7 +202,7 @@ public class MySortedListTests
     {
         var list = new MySortedList<int> {1, 2};
 
-        list.Remove(10).Should().BeFalse();
+        Assert.False(list.Remove(10));
     }
 
     [Fact]
@@ -183,7 +210,7 @@ public class MySortedListTests
     {
         var list = new MySortedList<int> {1, 2, 10};
 
-        list.Remove(10).Should().BeTrue();
+        Assert.True(list.Remove(10));
     }
 
     [Fact]
@@ -193,7 +220,7 @@ public class MySortedListTests
         var currentCount = list.Count;
         list.Remove(1);
 
-        list.Count.Should().Be(currentCount - 1);
+        Assert.Equal(currentCount - 1, list.Count);
     }
 
     [Fact]
@@ -202,11 +229,11 @@ public class MySortedListTests
         const int itemToRemove = 10;
 
         var list = new MySortedList<int> {1, 2, itemToRemove};
-        list.Should().Contain(itemToRemove);
+        Assert.Contains(itemToRemove, list);
 
         list.Remove(itemToRemove);
 
-        list.Should().NotContain(itemToRemove);
+        Assert.DoesNotContain(itemToRemove, list);
     }
 
     [Fact]
@@ -217,40 +244,43 @@ public class MySortedListTests
 
         list.CopyTo(dest, 0);
 
-        dest.Should().BeEquivalentTo(list).And.BeEquivalentTo(SortedListData);
+        Assert.Equal(list, dest);
+        Assert.Equal(SortedListData, dest);
     }
 
     [Fact]
     public void CopyTo_CallingWithSpan_CopiedArrayIsExpected()
     {
-        var expectedList = new[] {0, 1, 2, 3, 4};
+        int[] expectedList = [0, 1, 2, 3, 4];
         var list = new MySortedList<int>(expectedList);
 
         var dest = new int[expectedList.Length];
         list.CopyTo(dest.AsSpan());
 
-        dest.Should().BeEquivalentTo(list).And.BeEquivalentTo(expectedList);
+        Assert.Equal(list, dest);
+        Assert.Equal(expectedList, dest);
     }
 
     [Fact]
     public void ToArray_WhenCalling_ResultArrayIsExpected()
     {
-        var expectedList = new[] {0, 1, 2, 3, 4};
+        int[] expectedList = [0, 1, 2, 3, 4];
         var list = new MySortedList<int>(expectedList);
 
         var dest = list.ToArray();
 
-        dest.Should().BeEquivalentTo(list).And.BeEquivalentTo(expectedList);
+        Assert.Equal(list, dest);
+        Assert.Equal(expectedList, dest);
     }
 
     [Fact]
     public void Init_WhenCallingWithUnsortedStrings_ListIsSorted()
     {
-        var unsortedList = new[] {"Bill", "Dan", "Adam", "Chuck"};
+        string[] unsortedList = ["Bill", "Dan", "Adam", "Chuck"];
 
         var list = new MySortedList<string>(unsortedList);
 
-        list.Should().BeInAscendingOrder();
+        Assert.Equal(["Adam", "Bill", "Chuck", "Dan"], list);
     }
 
     [Fact]
@@ -258,7 +288,7 @@ public class MySortedListTests
     {
         var sortedList = new MySortedList<int> {0, 1, 2, 3, 4};
 
-        sortedList.Invoking(list => list.Insert(2, 42)).Should().Throw<NotSupportedException>();
+        Assert.Throws<NotSupportedException>(() => sortedList.Insert(2, 42));
     }
 
     [Fact]
@@ -266,41 +296,51 @@ public class MySortedListTests
     {
         var sortedList = new MySortedList<int> {0, 1, 2, 3, 4};
 
-        sortedList.Invoking(list => list[2] = 42).Should().Throw<NotSupportedException>();
+        Assert.Throws<NotSupportedException>(() => sortedList[2] = 42);
     }
 
     [Fact]
     public void IndexOf_WhenItemIsPresent_ShouldReturnCorrectIndex()
     {
-        var sortedList = new MySortedList<int>(new[] {1, 2, 3});
+        var sortedList = new MySortedList<int>([1, 2, 3]);
 
-        sortedList.IndexOf(2).Should().Be(1);
+        Assert.Equal(1, sortedList.IndexOf(2));
+    }
+
+    [Fact]
+    public void IndexOf_WhenItemIsDuplicated_ShouldReturnFirstIndex()
+    {
+        var sortedList = new MySortedList<int>([1, 5, 5, 5, 5, 5, 5, 9]);
+
+        Assert.Equal(1, sortedList.IndexOf(5));
     }
 
     [Fact]
     public void IndexOf_WhenItemIsNotPresent_ShouldReturnNegativeOne()
     {
-        var sortedList = new MySortedList<int>(new[] {1, 2, 3});
+        var sortedList = new MySortedList<int>([1, 2, 3]);
 
-        sortedList.IndexOf(4).Should().Be(-1);
+        Assert.Equal(-1, sortedList.IndexOf(4));
     }
 
     [Fact]
     public void RemoveAt_WhenIndexIsValid_ShouldRemoveItemAtGivenIndex()
     {
-        var sortedList = new MySortedList<int>(new[] {1, 2, 3});
+        var sortedList = new MySortedList<int>([1, 2, 3]);
 
         sortedList.RemoveAt(1);
 
-        sortedList.Contains(2).Should().BeFalse();
+        var found = sortedList.Contains(2);
+
+        Assert.False(found);
     }
 
     [Fact]
     public void RemoveAt_WhenIndexIsInvalid_ShouldThrowException()
     {
-        var sortedList = new MySortedList<int>(new[] {1, 2, 3});
+        var sortedList = new MySortedList<int>([1, 2, 3]);
 
-        sortedList.Invoking(list => list.RemoveAt(3)).Should().Throw<ArgumentOutOfRangeException>();
+        Assert.Throws<ArgumentOutOfRangeException>(() => sortedList.RemoveAt(3));
     }
 
     private sealed class DescendingIntComparison : IComparer<int>
