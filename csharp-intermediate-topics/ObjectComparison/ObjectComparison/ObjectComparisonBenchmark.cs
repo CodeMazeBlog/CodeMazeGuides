@@ -2,50 +2,53 @@
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Order;
 
-namespace ObjectComparisons
+namespace ObjectComparisons;
+
+[MemoryDiagnoser]
+[Orderer(SummaryOrderPolicy.FastestToSlowest)]
+[GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
+public class ObjectComparisonBenchmark
 {
-    [MemoryDiagnoser]
-    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-    [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByParams)]
-    public class ObjectComparisonBenchmark
+    private Employee[] _source = [];
+    private Employee[] _employees = [];
+
+    [Params(5, 1_000)]
+    public int Size { get; set; }
+
+    [GlobalSetup]
+    public void Setup()
     {
-        [Params(10000)]
-        public int Count { get; set; }
+        var ids = Enumerable.Range(1, Size).ToArray();
+        new Random(42).Shuffle(ids);
 
-        public Employee[] Employees { get; } = new Employee[5]
-        {
-            new Employee(4, "John"),
-            new Employee(2, "Tom"),
-            new Employee(1, "Eric"),
-            new Employee(5, "Dan"),
-            new Employee(3, "Alen")
-        };
+        _source = ids.Select(id => new Employee(id, $"Employee {id}")).ToArray();
+        _employees = new Employee[Size];
+    }
 
-        [Benchmark]
-        public void CompareUsingIComparable()
-        {
-            for (int i = 0; i < Count; i++)
-            {
-                Array.Sort(Employees);
-            }
-        }
+    [Benchmark]
+    public Employee[] CompareUsingIComparable()
+    {
+        _source.CopyTo(_employees, 0);
+        Array.Sort(_employees);
 
-        [Benchmark]
-        public void CompareUsingIComparer()
-        {
-            for (int i = 0; i < Count; i++)
-            {
-                Array.Sort(Employees, Employee.SortByIdAscending());
-            }
-        }
+        return _employees;
+    }
 
-        [Benchmark]
-        public void CompareUsingComparisonDelegate()
-        {
-            for (int i = 0; i < Count; i++)
-            {
-                Array.Sort(Employees, Employee.CompareEmployeesByIdAscending);
-            }
-        }
+    [Benchmark]
+    public Employee[] CompareUsingIComparer()
+    {
+        _source.CopyTo(_employees, 0);
+        Array.Sort(_employees, Employee.SortByIdAscending());
+
+        return _employees;
+    }
+
+    [Benchmark]
+    public Employee[] CompareUsingComparisonDelegate()
+    {
+        _source.CopyTo(_employees, 0);
+        Array.Sort(_employees, Employee.CompareEmployeesByIdAscending);
+
+        return _employees;
     }
 }

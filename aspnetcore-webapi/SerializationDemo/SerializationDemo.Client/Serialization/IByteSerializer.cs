@@ -2,7 +2,7 @@
 {
     internal interface IByteSerializer
     {
-        T Deserialize<T>(byte[] buffer);
+        T? Deserialize<T>(byte[] buffer);
 
         byte[] Serialize(object data);
     }
