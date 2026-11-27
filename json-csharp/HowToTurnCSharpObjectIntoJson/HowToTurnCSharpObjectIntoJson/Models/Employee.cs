@@ -2,8 +2,8 @@
 {
     public class Employee
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public Department Department { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
+        public Department? Department { get; set; }
     }
 }

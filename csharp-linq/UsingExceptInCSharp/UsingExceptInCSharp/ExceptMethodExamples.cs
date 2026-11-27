@@ -31,6 +31,27 @@ public class ExceptMethodExamples
         return empNotInSales;
     }
 
+    public List<int> GetDistinctDifference()
+    {
+        int[] first = [1, 1, 2, 3, 3, 4];
+        int[] second = [3];
+
+        return first.Except(second).ToList();
+    }
+
+    public List<Employee> GetEmployeesNotInSalesFromCopies()
+    {
+        List<Employee> salesCopies = new()
+        {
+            new Employee {ID = 1, Name = "John Doe", Age = 28, Department = "Sales"},
+            new Employee {ID = 2, Name = "Emily Sanders", Age = 29, Department = "Sales"},
+            new Employee {ID = 3, Name = "Benjamin Winters", Age = 30, Department = "Sales"},
+            new Employee {ID = 12, Name = "Mary Jane", Age = 35, Department = "Sales"}
+        };
+
+        return employees.Except(salesCopies).ToList();
+    }
+
     public List<string> GetEmployeesNotInITIgnoreCase()
     {
         var employeesNotInIT = employees.Select(e => e.Name)
@@ -46,5 +67,27 @@ public class ExceptMethodExamples
         var employeesInSales = employees.Where(e => e.Department.Equals("Sales")).ToList();
 
         return employees.Except(employeesInSales, comparer).ToList();
+    }
+
+    public List<EmployeeRecord> GetEmployeeRecordsNotInSales()
+    {
+        List<EmployeeRecord> staff = new()
+        {
+            new EmployeeRecord(1, "John Doe", 28, "Sales"),
+            new EmployeeRecord(4, "Sheila Foxx", 31, "Marketing"),
+            new EmployeeRecord(6, "Grace Jones", 32, "IT")
+        };
+
+        List<EmployeeRecord> sales = new()
+        {
+            new EmployeeRecord(1, "John Doe", 28, "Sales")
+        };
+
+        return staff.Except(sales).ToList();
+    }
+
+    public List<Employee> GetEmployeesNotInITByID()
+    {
+        return employees.ExceptBy(employeesIT.Select(e => e.ID), e => e.ID).ToList();
     }
 }

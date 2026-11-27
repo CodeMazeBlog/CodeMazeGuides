@@ -15,27 +15,37 @@ public class RandomizeGenericListsUnitTests
     }
 
     [TestMethod]
-    public void GivenAnOrderedList_WhenNotEmpty_VerifyShuffleGuid()
+    public void GivenAnOrderedList_WhenNotEmpty_VerifyShuffleLoop()
     {
-        var shuffledList = _randomizeListObj.GenerateRandomOrderByGuid(_orderedList);
+        var listToShuffle = new List<int>(_orderedList);
 
-        var firstVal = shuffledList.First();
-        var lastVal = shuffledList.Last();
-        
-        Assert.AreNotEqual(firstVal, 0);
-        Assert.AreNotEqual(lastVal, 999999);
+        var shuffledList = _randomizeListObj.GenerateRandomLoop(listToShuffle);
+
+        Assert.AreSame(listToShuffle, shuffledList);
+        CollectionAssert.AreEquivalent(_orderedList, shuffledList);
+        CollectionAssert.AreNotEqual(_orderedList, shuffledList);
     }
 
     [TestMethod]
-    public void GivenAnOrderedList_WhenNotEmpty_VerifyShuffleLoop()
+    public void GivenAnOrderedList_WhenNotEmpty_VerifyRandomShuffle()
     {
-        var shuffledList = _randomizeListObj.GenerateRandomLoop(_orderedList);
+        var listToShuffle = new List<int>(_orderedList);
 
-        var firstVal = shuffledList.First();
-        var lastVal = shuffledList.Last();
+        var shuffledList = _randomizeListObj.GenerateRandomShuffle(listToShuffle);
 
-        Assert.AreNotEqual(firstVal, 0);
-        Assert.AreNotEqual(lastVal, 999999);
+        Assert.AreSame(listToShuffle, shuffledList);
+        CollectionAssert.AreEquivalent(_orderedList, shuffledList);
+        CollectionAssert.AreNotEqual(_orderedList, shuffledList);
+    }
+
+    [TestMethod]
+    public void GivenAnOrderedList_WhenNotEmpty_VerifyLinqShuffle()
+    {
+        var shuffledList = _randomizeListObj.GenerateLinqShuffle(_orderedList);
+
+        Assert.AreNotSame(_orderedList, shuffledList);
+        CollectionAssert.AreEquivalent(_orderedList, shuffledList);
+        CollectionAssert.AreNotEqual(_orderedList, shuffledList);
     }
 
     [TestMethod]
@@ -43,21 +53,35 @@ public class RandomizeGenericListsUnitTests
     {
         var shuffledList = _randomizeListObj.GenerateRandomOrderBy(_orderedList);
 
-        var firstVal = shuffledList.First();
-        var lastVal = shuffledList.Last();
+        Assert.AreNotSame(_orderedList, shuffledList);
+        CollectionAssert.AreEquivalent(_orderedList, shuffledList);
+        CollectionAssert.AreNotEqual(_orderedList, shuffledList);
+    }
 
-        Assert.AreNotEqual(firstVal, 0);
-        Assert.AreNotEqual(lastVal, 999999);
+    [TestMethod]
+    public void GivenAnOrderedList_WhenNotEmpty_VerifyShuffleGuid()
+    {
+        var shuffledList = _randomizeListObj.GenerateRandomOrderByGuid(_orderedList);
+
+        Assert.AreNotSame(_orderedList, shuffledList);
+        CollectionAssert.AreEquivalent(_orderedList, shuffledList);
+        CollectionAssert.AreNotEqual(_orderedList, shuffledList);
+    }
+
+    [TestMethod]
+    public void GivenAThreeElementList_WhenShuffledManyTimes_VerifyFisherYatesProducesEveryOrder()
+    {
+        var counts = _randomizeListObj.CountOrders(_randomizeListObj.GenerateRandomLoop, 60_000);
+
+        Assert.HasCount(6, counts);
+        Assert.AreEqual(60_000, counts.Values.Sum());
     }
 
     [TestMethod]
     public void GivenAnInteger_WhenListIsEmpty_VerifyOrderedListGenerated()
     {
-        var firstVal = _orderedList.First();
-        var lastVal = _orderedList.Last();
-
-        Assert.AreEqual(firstVal, 0);
-        Assert.AreEqual(lastVal, 999999);
-        Assert.IsInstanceOfType(_orderedList, typeof(List<int>));
+        Assert.AreEqual(0, _orderedList.First());
+        Assert.AreEqual(999999, _orderedList.Last());
+        Assert.HasCount(1000000, _orderedList);
     }
 }

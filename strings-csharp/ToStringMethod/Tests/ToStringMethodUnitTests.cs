@@ -25,8 +25,8 @@ public class ToStringMethodUnitTests
     }
 
     [Theory]
-    [InlineData("en-GB", "Range Rover Vogue costs £200,000.00 and was sold on 12/02/2022 20:50:10")]
-    [InlineData("ja-JP", "Range Rover Vogue costs ￥200,000 and was sold on 12/02/2022 20:50:10")]
+    [InlineData("en-GB", "Range Rover Vogue costs £200,000.00 and was sold on 02/12/2022 20:50:10")]
+    [InlineData("ja-JP", "Range Rover Vogue costs ￥200,000 and was sold on 2022/12/02 20:50:10")]
     public void WhenCultureIsPassed_ThenReturnFormattedCurrency(string culture, string expected)
     {
         var result = _car.ToString(culture);
@@ -39,7 +39,7 @@ public class ToStringMethodUnitTests
     [Theory]
     [InlineData("en-GB", "dd/MM/yyyy", "Range Rover Vogue costs £200,000.00 and was sold on 02/12/2022")]
     [InlineData("en-US", "MM/dd/yyyy", "Range Rover Vogue costs $200,000.00 and was sold on 12/02/2022")]
-    [InlineData("ja-JP", "yyyy-MMM-dd", "Range Rover Vogue costs ￥200,000 and was sold on 2022-Dec-02")]
+    [InlineData("ja-JP", "yyyy-MM-dd", "Range Rover Vogue costs ￥200,000 and was sold on 2022-12-02")]
     public void WhenCultureAndDateFormatIsSpecified_ThenReturnFormattedString(string culture, string dateFormat,
         string expected)
     {
@@ -48,5 +48,15 @@ public class ToStringMethodUnitTests
         Assert.NotEmpty(result);
         Assert.NotNull(result);
         Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void WhenRecordIsPrinted_ThenReturnPropertyNamesAndValues()
+    {
+        var personRecord = new PersonRecord("Jane Doe", 26, "Secretary");
+
+        var result = personRecord.ToString();
+
+        Assert.Equal("PersonRecord { Name = Jane Doe, Age = 26, Profession = Secretary }", result);
     }
 }

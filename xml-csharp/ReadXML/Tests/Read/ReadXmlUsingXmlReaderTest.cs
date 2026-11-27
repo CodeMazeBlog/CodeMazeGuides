@@ -16,7 +16,7 @@
         [TestMethod]
         public void GivenInvalidXmlString_WhenCallingReadXml_ThenExceptionIsThrown()
         {
-            Assert.ThrowsException<XmlException>(() => ReadXmlUsingXmlReader.ReadXml(CreateInvalidXmlString()));
+            Assert.ThrowsExactly<XmlException>(() => ReadXmlUsingXmlReader.ReadXml(CreateInvalidXmlString()));
         }
 
 
@@ -41,7 +41,7 @@
             var people = People.Get(numberOfPersons);
             var arrayOfPeople = CreateXmlUsingXmlWriter.CreateAnArrayOfPeople(people);
 
-            var result = ReadXmlUsingXmlReader.ReadNamesAndAges(arrayOfPeople);
+            var result = ReadXmlUsingXmlReader.ReadNamesAndSurnames(arrayOfPeople);
 
             Assert.AreEqual(numberOfPersons, result.Count());
         }

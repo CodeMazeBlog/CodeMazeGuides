@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
 using ShellSort;
 
-var summary = BenchmarkRunner.Run<ShellSortMethods>();
+BenchmarkRunner.Run<ShellSortBenchmarks>(args: args);

@@ -46,7 +46,7 @@ public class PeriodicTimerMethods
                     Console.WriteLine(item);
                 }
 
-                Console.WriteLine($"Created {numberOfArrays++} arrays in {stopWatch.Elapsed.Seconds}s");
+                Console.WriteLine($"Created {numberOfArrays++} arrays in {stopWatch.Elapsed.TotalSeconds:F1}s");
                 Console.WriteLine(DateTime.Now.ToString("O"));
             }
         }
@@ -65,6 +65,7 @@ public class PeriodicTimerMethods
         _cancellationToken.Cancel();
         await _task;
         _cancellationToken.Dispose();
+        _periodicTimer.Dispose();
         Console.WriteLine("The array task was canceled");
     }
 }
