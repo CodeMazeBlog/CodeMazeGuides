@@ -2,22 +2,15 @@
 {
     public class DirectoryMethods
     {
-        public static DirectoryInfo? CreateADirectory(string path)
+        public static DirectoryInfo CreateADirectory(string path)
         {
-            try
-            {
-                if (Directory.Exists(path))
-                {
-                    return new DirectoryInfo(path);
-                }
+            var newDirectory = Directory.CreateDirectory(path);
+            return newDirectory;
+        }
 
-                var newDirectory = Directory.CreateDirectory(path);
-                return newDirectory;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+        public static void DeleteEmptyDirectory(string path)
+        {
+            Directory.Delete(path);
         }
 
         public static void DeleteDirectory(string path)
