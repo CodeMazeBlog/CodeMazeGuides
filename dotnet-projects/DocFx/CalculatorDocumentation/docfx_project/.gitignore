@@ -1,9 +1,4 @@
-###############
-#    folder   #
-###############
-/**/DROP/
-/**/TEMP/
-/**/packages/
-/**/bin/
-/**/obj/
-_site
+_site/
+api/
+bin/
+obj/
