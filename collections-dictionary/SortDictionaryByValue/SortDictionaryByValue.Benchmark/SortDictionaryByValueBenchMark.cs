@@ -12,22 +12,22 @@ public class SortDictionaryByValueBenchMark
 
     [Benchmark]
     [ArgumentsSource(nameof(DictionaryInput))]
-    public void SortDictionaryValueUsingLinqOrderBy(DictionaryInput dictionaryInput)
+    public List<KeyValuePair<string, string>> SortDictionaryValueUsingLinqOrderBy(DictionaryInput dictionaryInput)
     {
-        SortDictionary.SortDictionaryValueUsingLinqOrderBy(dictionaryInput.GeneratedDictionary);
+        return SortDictionary.SortDictionaryValueUsingLinqOrderBy(dictionaryInput.GeneratedDictionary);
     }
 
     [Benchmark]
     [ArgumentsSource(nameof(DictionaryInput))]
-    public void SortDictionaryValueUsingLinqQueryExpression(DictionaryInput dictionaryInput)
+    public List<KeyValuePair<string, string>> SortDictionaryValueUsingLinqQueryExpression(DictionaryInput dictionaryInput)
     {
-        SortDictionary.SortDictionaryValueUsingLinqQueryExpression(dictionaryInput.GeneratedDictionary);
+        return SortDictionary.SortDictionaryValueUsingLinqQueryExpression(dictionaryInput.GeneratedDictionary);
     }
 
     [Benchmark]
     [ArgumentsSource(nameof(DictionaryInput))]
-    public void SortDictionaryValueUsingSortMethod(DictionaryInput dictionaryInput)
+    public List<KeyValuePair<string, string>> SortDictionaryValueUsingSortMethod(DictionaryInput dictionaryInput)
     {
-        SortDictionary.SortDictionaryValueUsingSortMethod(dictionaryInput.GeneratedDictionary);
+        return SortDictionary.SortDictionaryValueUsingSortMethod(dictionaryInput.GeneratedDictionary);
     }
 }

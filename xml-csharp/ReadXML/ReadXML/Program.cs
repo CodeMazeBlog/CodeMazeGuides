@@ -51,11 +51,33 @@ ReadXmlUsingXmlReader.ReadXmlWithoutWhiteSpace(sampleXML)
 Console.ReadKey();
 
 Console.Clear();
-Console.WriteLine("XmlReader: Read names and ages from XML document with people data:\n");
+Console.WriteLine("XmlReader: Read names and surnames from XML document with people data:\n");
 Console.WriteLine("\n---\n");
-ReadXmlUsingXmlReader.ReadNamesAndAges(
+ReadXmlUsingXmlReader.ReadNamesAndSurnames(
     CreateXmlUsingXmlWriter.CreateAnArrayOfPeople(people)
     )
     .ToList()
     .ForEach(Console.WriteLine);
 Console.ReadKey();
+
+Console.Clear();
+Console.WriteLine("Read an XML file from the output folder:\n");
+Console.WriteLine("\n---\n");
+ReadXmlFromFile.ReadEmailsUsingXDocument(ReadXmlFromFile.FilePath)
+    .ToList()
+    .ForEach(Console.WriteLine);
+ReadXmlFromFile.ReadEmailsUsingXmlReader(ReadXmlFromFile.FilePath)
+    .ToList()
+    .ForEach(Console.WriteLine);
+ReadXmlUsingXmlDocument.ReadEmails(ReadXmlFromFile.FilePath)
+    .ToList()
+    .ForEach(Console.WriteLine);
+Console.ReadKey();
+
+Console.Clear();
+Console.WriteLine("XmlReader: Read names and surnames from people.xml:\n");
+Console.WriteLine("\n---\n");
+var xml = File.ReadAllText(ReadXmlFromFile.FilePath);
+
+foreach (var row in ReadXmlUsingXmlReader.ReadNamesAndSurnames(xml))
+    Console.WriteLine(row);

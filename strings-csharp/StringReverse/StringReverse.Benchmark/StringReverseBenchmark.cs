@@ -1,85 +1,64 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿using System.Text;
+using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Order;
 using StringReverse;
-using System.Text;
 
-namespace BenchmarkRunner
+namespace BenchmarkRunner;
+
+[InProcess]
+[MemoryDiagnoser]
+[Orderer(SummaryOrderPolicy.FastestToSlowest)]
+[RankColumn]
+public class StringReverseBenchmark
 {
-    [Orderer(SummaryOrderPolicy.FastestToSlowest)]
-    [RankColumn]
-    public class StringReverseBenchmark
-    {        
-        private readonly string _randomString = GenerateText();
+    private string _randomString = string.Empty;
 
-        [Benchmark]
-        public void UsingArrayReverseString()
+    [Params(64, 1024)]
+    public int Length { get; set; }
+
+    [GlobalSetup]
+    public void Setup() => _randomString = GenerateText(Length);
+
+    [Benchmark]
+    public string UsingArrayReverseString() => Methods.ArrayReverseString(_randomString);
+
+    [Benchmark]
+    public string UsingStringCreateMethod() => Methods.StringCreateMethod(_randomString);
+
+    [Benchmark]
+    public string UsingStringBuilderReverseMethod() => Methods.StringBuilderReverseMethod(_randomString);
+
+    [Benchmark]
+    public string UsingReverseXorMethod() => Methods.ReverseXorMethod(_randomString);
+
+    [Benchmark]
+    public string UsingEnumerableReverseMethod() => Methods.EnumerableReverseMethod(_randomString);
+
+    [Benchmark]
+    public string UsingRecursiveStringReverseMethod() => Methods.RecursiveStringReverseMethod(_randomString);
+
+    [Benchmark]
+    public string UsingStackReverseMethod() => Methods.StackReverseMethod(_randomString);
+
+    [Benchmark]
+    public string UsingStringExtensionReverseMethod() => Methods.StringExtensionReverseMethod(_randomString);
+
+    [Benchmark]
+    public string UsingTextElementEnumeratorReverseMethod() => Methods.TextElementEnumeratorMethod(_randomString);
+
+    public static string GenerateText(int length)
+    {
+        var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var random = new Random();
+        var builder = new StringBuilder(length);
+
+        for (int i = 0; i < length; ++i)
         {
-            Methods.ArrayReverseString(_randomString);
+            var index = random.Next(alphabet.Length);
+
+            builder.Append(alphabet[index]);
         }
 
-        [Benchmark]
-        public void UsingStringCreateMethod()
-        {
-            Methods.StringCreateMethod(_randomString);
-        }
-
-        [Benchmark]
-        public void UsingStringBuilderReverseMethod()
-        {
-            Methods.StringBuilderReverseMethod(_randomString);
-        }
-
-        [Benchmark]
-        public void UsingReverseXorMethod()
-        {
-            Methods.ReverseXorMethod(_randomString);
-        }
-
-        [Benchmark]
-        public void UsingEnumerableReverseMethod()
-        {
-            Methods.EnumerableReverseMethod(_randomString);
-        }
-
-        [Benchmark]
-        public void UsingRecursiveStringReverseMethod()
-        {
-            Methods.RecursiveStringReverseMethod(_randomString);
-        }
-
-        [Benchmark]
-        public void UsingStackReverseMethod()
-        {
-            Methods.StackReverseMethod(_randomString);
-        }
-
-        [Benchmark]
-        public void UsingStringExtensionReverseMethod()
-        {
-            Methods.StringExtensionReverseMethod(_randomString);
-        }
-
-        [Benchmark]
-        public void UsingTextElementEnumeratorReverseMethod()
-        {
-            Methods.TextElementEnumeratorMethod(_randomString);
-        }
-
-        public static string GenerateText()
-        {
-            var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var random = new Random();
-            var length = 64;
-            var builder = new StringBuilder(length);
-
-            for (int i = 0; i < length; ++i)
-            {
-                var index = random.Next(alphabet.Length);
-
-                builder.Append(alphabet[index]);
-            }
-
-            return builder.ToString();
-        }
+        return builder.ToString();
     }
 }

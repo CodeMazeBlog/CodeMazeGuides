@@ -2,8 +2,14 @@
 
 public static class Program
 {
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
+        if (args.FirstOrDefault() == "--async-pitfall")
+        {
+            Console.WriteLine(await MutexAsyncPitfall.ReleaseAfterAwait());
+            return;
+        }
+
         var fileName = args.FirstOrDefault() ?? "numbers.txt";
         WriteNumbers(fileName);
     }

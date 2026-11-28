@@ -5,6 +5,6 @@ public class Caller
 {
     public virtual void Invoke()
     {
-        Console.WriteLine("The contants are {0}, {1}, {2}", Pending, InProgress, Completed);
+        Console.WriteLine("The constants are {0}, {1}, {2}", Pending, InProgress, Completed);
     }
 }

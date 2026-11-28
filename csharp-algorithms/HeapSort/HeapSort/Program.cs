@@ -1,4 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
 using HeapSort;
 
-var summary = BenchmarkRunner.Run<HeapSortMethods>();
+BenchmarkRunner.Run<HeapSortBenchmarks>(args: args);

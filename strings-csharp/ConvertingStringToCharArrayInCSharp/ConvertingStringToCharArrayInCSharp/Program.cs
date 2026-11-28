@@ -8,10 +8,19 @@ string singleCharString = "A";
 char singleChar = StringHelper.ConvertSingleCharacterStringToChar(singleCharString);
 Console.WriteLine(singleChar);
 
+char firstChar = StringHelper.GetCharacterAtIndex(myString, 0);
+char lastChar = myString[^1];
+Console.WriteLine($"{firstChar} {lastChar}");
+
+if (StringHelper.TryConvertSingleCharacterStringToChar("AB", out char parsed))
+    Console.WriteLine(parsed);
+else
+    Console.WriteLine("Not a single character");
+
 ReadOnlySpan<char> charArrayReadOnlySpan = StringHelper.ConvertStringToCharArrayUsingReadOnlySpan(myString);
 PrintArray(charArrayReadOnlySpan);
 
-string[] stringArray = { "C#", "is", "awesome" };
+string[] stringArray = ["C#", "is", "awesome"];
 char[] combinedCharArray = StringHelper.ConvertStringArrayToCharArrayUsingLoop(stringArray);
 PrintArray(combinedCharArray);
 

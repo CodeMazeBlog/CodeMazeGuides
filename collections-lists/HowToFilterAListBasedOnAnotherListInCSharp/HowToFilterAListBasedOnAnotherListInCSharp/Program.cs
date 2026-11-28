@@ -26,6 +26,12 @@ filteredContainedInts = Utilities.FilterNotContainedUsingWhere(intsToFilter, fil
 Console.WriteLine(Utilities.PrintList(filteredContainedInts));
 Console.WriteLine();
 
+Console.WriteLine("REMOVEALL");
+List<int> intsToChange = [1, 2, 3, 4, 4, 4, 5, 6, 7, 7, 8, 8, 9];
+int removedCount = Utilities.RemoveNotContained(intsToChange, filteringIntList);
+Console.WriteLine($"Removed {removedCount}, left: {Utilities.PrintList(intsToChange)}");
+Console.WriteLine();
+
 Console.WriteLine("DUPLICATES");
 Console.WriteLine("Unique elements from list 1 that are contained in list 2:");
 filteredContainedInts = Utilities.FilterContainedUnique(intsToFilter, filteringIntList);
@@ -78,6 +84,13 @@ filteredStudents = Utilities.FilterStudentsBySchoolCity(studentsToFilter, school
 Console.WriteLine(Utilities.PrintList(filteredStudents));
 Console.WriteLine();
 
+Console.WriteLine("INTERSECTBY");
+Console.WriteLine(Utilities.PrintList(Utilities.FilterStudentsBySchoolCityUsingIntersectBy(studentsToFilter, schoolsToFilter)));
+Console.WriteLine();
+Console.WriteLine("JOIN");
+Console.WriteLine(Utilities.PrintList(Utilities.FilterStudentsBySchoolCityUsingJoin(studentsToFilter, schoolsToFilter)));
+Console.WriteLine();
+
 Console.WriteLine("SPECIFIC PROPERTIES");
 List<int> schoolIds = [1, 3];
 Console.WriteLine("Names of students from list 1 that attend schools with IDs from list 2:");
@@ -98,6 +111,11 @@ filteringIntList = [0, 10, 20, 30, 40, 50];
 Console.WriteLine("Elements from list 1 that are contained in list 2:");
 filteredContainedInts = Utilities.FilterUsingHashSet(intsToFilter, filteringIntList);
 Console.WriteLine(Utilities.PrintList(filteredContainedInts));
+Console.WriteLine();
+
+Console.WriteLine("HASHSET LOOKUP");
+Console.WriteLine(Utilities.PrintList(Utilities.FilterContainedUsingHashSetLookup(intsToFilter, filteringIntList)));
+Console.WriteLine(Utilities.PrintList(Utilities.FilterContainedUsingHashSetLookup([1, 2, 3, 4, 4, 4, 5, 6, 7, 7, 8, 8, 9], [4, 4, 7, 9, 10])));
 Console.WriteLine();
 
 Console.WriteLine("MASKS");

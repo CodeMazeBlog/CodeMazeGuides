@@ -33,39 +33,38 @@ namespace ReadXml.Read
             return result;
         }
 
-        public static IEnumerable<string> ReadNamesAndAges(string xml)
+        public static IEnumerable<string> ReadNamesAndSurnames(string xml)
         {
             var settings = new XmlReaderSettings
             {
                 IgnoreWhitespace = true
             };
 
-            List<string> result = [];
             using var reader = XmlReader.Create(new StringReader(xml), settings);
+
+            List<string> result = [];
+            var personData = new PersonData();
+            var numberOfPersons = 0;
+
+            while (reader.Read())
             {
-                var personData = new PersonData();
-                var numberOfPersons = 0;
-
-                while (reader.Read())
+                if (reader.NodeType == XmlNodeType.Element)
                 {
-                    if (reader.NodeType == XmlNodeType.Element)
-                    {
-                        if (reader.Name == "person")
-                            personData.Init();
+                    if (reader.Name == "person")
+                        personData.Init();
 
-                        if (reader.Name == "firstName")
-                            personData.FirstName = reader.ReadElementContentAsString();
+                    if (reader.Name == "firstName")
+                        personData.FirstName = reader.ReadElementContentAsString();
 
-                        if (reader.Name == "lastName")
-                            personData.LastName = reader.ReadElementContentAsString();
-                    }
+                    if (reader.Name == "lastName")
+                        personData.LastName = reader.ReadElementContentAsString();
+                }
 
-                    if (reader.NodeType == XmlNodeType.EndElement)
-                    {
-                        if (reader.Name == "person")
-                            result.Add($"#{++numberOfPersons,3} | " +
-                                $"{personData.FirstName,-15} | {personData.LastName,-15}");
-                    }
+                if (reader.NodeType == XmlNodeType.EndElement)
+                {
+                    if (reader.Name == "person")
+                        result.Add($"#{++numberOfPersons,3} | " +
+                            $"{personData.FirstName,-15} | {personData.LastName,-15}");
                 }
             }
 
