@@ -1,30 +1,32 @@
-﻿namespace DtoVsPoco.Domain
+﻿namespace DtoVsPoco.Domain;
+
+public class Person
 {
-    public class Person
+    public Person(int id)
     {
-        public Person(int id)
-        {
-            Id = id;
-        }
+        Id = id;
+    }
 
-        public int Id { get; private init; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? Address { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string? JobTitle { get; set; }
+    public int Id { get; private init; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? Address { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public string? JobTitle { get; set; }
 
-        public string DoWork()
-        {
-            return $"{JobTitle} doing his work!";
-        }
+    public string DoWork()
+    {
+        return $"{JobTitle} doing his work!";
+    }
 
-        public bool IsAdult()
-        {
-            var currentYear = DateTime.Now.Year;
-            var age = currentYear - DateOfBirth.Year;
+    public bool IsAdult()
+    {
+        var today = DateTime.Today;
+        var age = today.Year - DateOfBirth.Year;
 
-            return age >= 21;
-        }
+        if (DateOfBirth.Date > today.AddYears(-age))
+            age--;
+
+        return age >= 21;
     }
 }

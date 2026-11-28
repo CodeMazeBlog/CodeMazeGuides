@@ -4,5 +4,5 @@ namespace MachineLearningInCsharpEngine.DataModels.MulticlassClassification;
 public class ModelOutput
 {
     [ColumnName("PredictedLabel")]
-    public string Prediction { get; set; }
+    public string Prediction { get; set; } = string.Empty;
 }

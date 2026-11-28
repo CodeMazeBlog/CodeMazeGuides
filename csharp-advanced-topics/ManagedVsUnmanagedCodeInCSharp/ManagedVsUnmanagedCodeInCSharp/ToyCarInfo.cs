@@ -3,7 +3,7 @@
 namespace ManagedVsUnmanagedCodeInCSharp
 {
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    struct ToyCarInfo
+    public struct ToyCarInfo
     {
         public byte Color;
         public int ModelNumber;

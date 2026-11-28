@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
+using System.Runtime.Versioning;
 using BenchmarkDotNet.Attributes;
 
+[SupportedOSPlatform("windows")]
 public class Convolution
 {
     [Benchmark(Baseline = true)]
@@ -57,12 +59,12 @@ public class Convolution
     {
         var image = (Bitmap)Image.FromFile("example.png");
         var destImage = new Bitmap(image.Width, image.Height);
-        var kernel = new double[][]
-        {
-            new double[] { 2, 1, 0 },
-            new double[] { 1, 0, -1 },
-            new double[] { 0, -1, -2 }
-        };
+        double[][] kernel =
+        [
+            [2, 1, 0],
+            [1, 0, -1],
+            [0, -1, -2]
+        ];
         int kernelOffset = 1;
 
         for (int row = 0; row < image.Height; row++)
