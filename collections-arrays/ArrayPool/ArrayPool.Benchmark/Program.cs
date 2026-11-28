@@ -1,4 +1,4 @@
 ﻿using ArrayPool.Benchmark;
 using BenchmarkDotNet.Running;
 
-BenchmarkRunner.Run<Benchmark>();
+BenchmarkSwitcher.FromAssembly(typeof(Benchmark).Assembly).Run(args);
