@@ -1,30 +1,68 @@
-namespace AnyAndExistsMethodsInCSharp.Tests
+namespace AnyAndExistsMethodsInCSharp.Tests;
+
+public class NumbersHelperUnitTests
 {
-    public class NumbersHelperUnitTests
+    [Fact]
+    public void WhenProvidingAnEmptyCollection_ThenReturnTrue()
     {
+        int[] numbers = [];
 
-        [Fact]
-        public void WhenProvidingAnEmptyCollection_ThenReturnTrue()
-        {
-            var numbers = new int[0];
+        Assert.True(NumbersHelper.CheckIfArrayIsEmpty(numbers));
+    }
 
-            Assert.True(NumbersHelper.CheckIfArrayIsEmpty(numbers));
-        }
+    [Fact]
+    public void WhenProvidingACollectionWithPositiveNumbers_ThenReturnTrue()
+    {
+        List<int> numbers = [-10, 0, 1];
 
-        [Fact]
-        public void WhenProvidingACollectionWithPositiveNumbers_ThenReturnTrue()
-        {
-            var numbers = new List<int>() { -10, 0, 1 };
+        Assert.True(NumbersHelper.CheckIfListContainsPositiveNumbersAny(numbers));
+    }
 
-            Assert.True(NumbersHelper.CheckIfListContainsPositiveNumbersAny(numbers));
-        }
+    [Fact]
+    public void WhenProvidingAListWithNoPositiveNumbers_ThenReturnFalse()
+    {
+        List<int> numbers = [-10, 0, -1];
 
-        [Fact]
-        public void WhenProvidingAListWithNoPositiveNumbers_ThenReturnFalse()
-        {
-            var numbers = new List<int>() { -10, 0, -1 };
+        Assert.False(NumbersHelper.CheckIfListContainsPositiveNumbersAny(numbers));
+    }
 
-            Assert.False(NumbersHelper.CheckIfListContainsPositiveNumbersAny(numbers));
-        }
+    [Fact]
+    public void WhenProvidingAListWithPositiveNumbers_ThenExistsReturnsTrue()
+    {
+        List<int> numbers = [-10, 0, 1];
+
+        Assert.True(NumbersHelper.CheckIfListContainsPositiveNumbersExists(numbers));
+    }
+
+    [Fact]
+    public void WhenProvidingAListWithNoPositiveNumbers_ThenExistsReturnsFalse()
+    {
+        List<int> numbers = [-10, 0, -1];
+
+        Assert.False(NumbersHelper.CheckIfListContainsPositiveNumbersExists(numbers));
+    }
+
+    [Fact]
+    public void WhenProvidingAnArrayWithPositiveNumbers_ThenArrayExistsReturnsTrue()
+    {
+        int[] numbers = [-10, 0, 1];
+
+        Assert.True(NumbersHelper.CheckIfArrayContainsPositiveNumbersExists(numbers));
+    }
+
+    [Fact]
+    public void WhenListIsNull_ThenAnyThrowsArgumentNullException()
+    {
+        List<int> numbers = null!;
+
+        Assert.Throws<ArgumentNullException>(() => NumbersHelper.CheckIfListContainsPositiveNumbersAny(numbers));
+    }
+
+    [Fact]
+    public void WhenListIsNull_ThenExistsThrowsNullReferenceException()
+    {
+        List<int> numbers = null!;
+
+        Assert.Throws<NullReferenceException>(() => NumbersHelper.CheckIfListContainsPositiveNumbersExists(numbers));
     }
 }
