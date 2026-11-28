@@ -14,7 +14,7 @@ public class LINQLikeOperatorUnitTest : IClassFixture<DatabaseFixture>
     {
         List<Article> articles = _fixture.blogDbContext!.Articles.Where(x => x.Title.Contains("n")).ToList();
 
-        Assert.True(articles.Count == 3);
+        Assert.Equal(3, articles.Count);
         Assert.Contains(_fixture.startsWithN, articles.Select(x => x.Title));
         Assert.Contains(_fixture.containsN, articles.Select(x => x.Title));
         Assert.Contains(_fixture.endsWithN, articles.Select(x => x.Title));
@@ -42,7 +42,7 @@ public class LINQLikeOperatorUnitTest : IClassFixture<DatabaseFixture>
     {
         List<Article> articles = _fixture.blogDbContext!.Articles.Where(x => x.Title.StartsWith("n")).ToList();
 
-        Assert.True(articles.Count == 1);
+        Assert.Single(articles);
         Assert.Contains(_fixture.startsWithN, articles.Select(x => x.Title));
         Assert.DoesNotContain(_fixture.containsN, articles.Select(x => x.Title));
         Assert.DoesNotContain(_fixture.endsWithN, articles.Select(x => x.Title));
@@ -54,7 +54,7 @@ public class LINQLikeOperatorUnitTest : IClassFixture<DatabaseFixture>
     {
         List<Article> articles = _fixture.blogDbContext!.Articles.Where(x => x.Title.EndsWith("n")).ToList();
 
-        Assert.True(articles.Count == 1);
+        Assert.Single(articles);
         Assert.DoesNotContain(_fixture.startsWithN, articles.Select(x => x.Title));
         Assert.DoesNotContain(_fixture.containsN, articles.Select(x => x.Title));
         Assert.Contains(_fixture.endsWithN, articles.Select(x => x.Title));
@@ -66,7 +66,7 @@ public class LINQLikeOperatorUnitTest : IClassFixture<DatabaseFixture>
     {
         List<Article> articles = _fixture.blogDbContext!.Articles.Where(x => x.Title.StartsWith("_n")).ToList();
 
-        Assert.True(articles.Count == 0);
+        Assert.Empty(articles);
         Assert.DoesNotContain(_fixture.startsWithN, articles.Select(x => x.Title));
         Assert.DoesNotContain(_fixture.containsN, articles.Select(x => x.Title));
         Assert.DoesNotContain(_fixture.endsWithN, articles.Select(x => x.Title));
@@ -78,10 +78,47 @@ public class LINQLikeOperatorUnitTest : IClassFixture<DatabaseFixture>
     {
         List<Article> articles = _fixture.blogDbContext!.Articles.Where(x => EF.Functions.Like(x.Title, "_n%")).ToList();
 
-        Assert.True(articles.Count == 1);
+        Assert.Single(articles);
         Assert.DoesNotContain(_fixture.startsWithN, articles.Select(x => x.Title));
         Assert.Contains(_fixture.containsN, articles.Select(x => x.Title));
         Assert.DoesNotContain(_fixture.endsWithN, articles.Select(x => x.Title));
         Assert.DoesNotContain(_fixture.notContainsN, articles.Select(x => x.Title));
+    }
+
+    [Fact]
+    public void WhenSearchTermHasWildcardAndContains_ThenWildcardIsLiteral()
+    {
+        string searchTerm = "50%";
+        List<Article> articles = _fixture.blogDbContext!.Articles.Where(x => x.Title.Contains(searchTerm)).ToList();
+
+        Assert.Single(articles);
+        Assert.Contains(_fixture.percentTitle, articles.Select(x => x.Title));
+    }
+
+    [Fact]
+    public void WhenSearchTermHasWildcardAndEFFunctionLike_ThenWildcardMatchesEverything()
+    {
+        string pattern = "50%%";
+        List<Article> articles = _fixture.blogDbContext!.Articles.Where(x => EF.Functions.Like(x.Title, pattern)).ToList();
+
+        Assert.Equal(2, articles.Count);
+    }
+
+    [Fact]
+    public void WhenSearchTermIsEscapedAndEFFunctionLike_ThenWildcardIsLiteral()
+    {
+        string safePattern = $"{LikePattern.Escape("50%")}%";
+        List<Article> articles = _fixture.blogDbContext!.Articles.Where(x => EF.Functions.Like(x.Title, safePattern, @"\")).ToList();
+
+        Assert.Single(articles);
+        Assert.Contains(_fixture.percentTitle, articles.Select(x => x.Title));
+    }
+
+    [Fact]
+    public void WhenEFFunctionLikeRunsOnAList_ThenItThrows()
+    {
+        List<string> titles = ["nop", "mnp"];
+
+        Assert.Throws<InvalidOperationException>(() => titles.Where(t => EF.Functions.Like(t, "_n%")).ToList());
     }
 }

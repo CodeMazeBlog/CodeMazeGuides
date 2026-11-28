@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Management;
+using System.Runtime.InteropServices;
 
 namespace RetrievalOfCpuCores;
 
@@ -7,16 +8,17 @@ public class CpuInformation
     const string wmiQuery = "Select * from Win32_ComputerSystem";
 
     /// <summary>
-    /// Retrieves the number of logical processors of the CPU by using Environment.ProcessorCount.
+    /// Retrieves the number of processors available to the current process by using Environment.ProcessorCount.
     /// </summary>
-    /// <returns>number of logical processors</returns>
+    /// <returns>number of processors available to the process</returns>
     public int GetProcessorsCount()
     {
         return Environment.ProcessorCount;
     }
 
     /// <summary>
-    /// Retrieves the number of logical processors of the CPU.
+    /// Retrieves the number of logical processors of the machine.
+    /// This is only supported on Windows.
     /// </summary>
     /// <returns>number of logical processors</returns>
     public int GetLogicalProcessors()
@@ -26,9 +28,10 @@ public class CpuInformation
             throw new PlatformNotSupportedException();
         }
 
-        foreach (var item in new System.Management.ManagementObjectSearcher(wmiQuery).Get())
+        using var searcher = new ManagementObjectSearcher(wmiQuery);
+        foreach (var item in searcher.Get())
         {
-            return int.Parse(item["NumberOfLogicalProcessors"].ToString());
+            return Convert.ToInt32(item["NumberOfLogicalProcessors"]);
         }
 
         return 0;
@@ -36,7 +39,7 @@ public class CpuInformation
 
     /// <summary>
     /// Retrieves the number of cores of the CPU.
-    /// This is only supported on windows.
+    /// This is only supported on Windows.
     /// </summary>
     /// <returns>number of cores of the CPU</returns>
     public int GetNumberOfCores()
@@ -47,10 +50,10 @@ public class CpuInformation
         }
 
         var coreCount = 0;
-        const string wmiQuery = "Select * from Win32_Processor";
-        foreach (var item in new System.Management.ManagementObjectSearcher(wmiQuery).Get())
+        using var searcher = new ManagementObjectSearcher("Select * from Win32_Processor");
+        foreach (var item in searcher.Get())
         {
-            coreCount += int.Parse(item["NumberOfCores"].ToString());
+            coreCount += Convert.ToInt32(item["NumberOfCores"]);
         }
 
         return coreCount;
@@ -58,7 +61,7 @@ public class CpuInformation
 
     /// <summary>
     /// Retrieves the number of physical processors of the CPU.
-    /// This is only supported on windows.
+    /// This is only supported on Windows.
     /// </summary>
     /// <returns>number of physical processors</returns>
     public int GetPhysicalProcessors()
@@ -68,19 +71,21 @@ public class CpuInformation
             throw new PlatformNotSupportedException();
         }
 
-        foreach (var item in new System.Management.ManagementObjectSearcher(wmiQuery).Get())
+        using var searcher = new ManagementObjectSearcher(wmiQuery);
+        foreach (var item in searcher.Get())
         {
-            return int.Parse(item["NumberOfProcessors"].ToString());
+            return Convert.ToInt32(item["NumberOfProcessors"]);
         }
 
         return 0;
     }
 
     /// <summary>
-    /// Retrieves the number of logical processors of the CPU, including also the excluded processors.
+    /// Retrieves the number of logical processors of the CPU, including the excluded processors.
+    /// This is only supported on Windows.
     /// </summary>
-    /// <returns></returns>
-    public int GetExcludedProcessors()
+    /// <returns>number of logical processors, including the excluded ones</returns>
+    public int GetLogicalProcessorsIncludingExcluded()
     {
         if (!OperatingSystem.IsWindows())
         {
@@ -112,6 +117,16 @@ public class CpuInformation
         }
 
         return deviceCount;
+    }
+
+    /// <summary>
+    /// Retrieves the number of logical processors that are excluded from Windows.
+    /// This is only supported on Windows.
+    /// </summary>
+    /// <returns>number of excluded processors</returns>
+    public int GetExcludedProcessors()
+    {
+        return GetLogicalProcessorsIncludingExcluded() - GetLogicalProcessors();
     }
 
     [DllImport("setupapi.dll", SetLastError = true)]
